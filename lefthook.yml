@@ -1,0 +1,30 @@
+# Git hooks. Docs: https://lefthook.dev/configuration/
+pre-commit:
+  parallel: true
+  jobs:
+    - name: eslint
+      glob: '*.{ts,js,mjs,cjs,astro}'
+      run: pnpm exec eslint --fix {staged_files}
+      stage_fixed: true
+    - name: prettier
+      glob: '*.{ts,js,mjs,cjs,astro,json,css,yml,yaml}'
+      exclude:
+        - 'src/data/**'
+        - 'pnpm-lock.yaml'
+        - 'docs/**'
+      run: pnpm exec prettier --write --ignore-unknown {staged_files}
+      stage_fixed: true
+    - name: stylelint
+      glob: '*.{css,astro}'
+      run: pnpm exec stylelint --fix --allow-empty-input {staged_files}
+      stage_fixed: true
+
+commit-msg:
+  jobs:
+    - name: commitlint
+      run: pnpm exec commitlint --edit {1}
+
+pre-push:
+  jobs:
+    - name: typecheck and unit tests
+      run: pnpm typecheck && pnpm test
