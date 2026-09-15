@@ -2853,8 +2853,8 @@ Then check reality yourself. Search your trade plus your town on Google and Face
 1. [Branding prompts](#doc-branding-prompts) — Prompt 0, Prompt 1, the modified Prompt 2 above
 2. [Mood and materials (use after Prompt 4)](#doc-mood-and-materials-use-after-prompt-4) — settle the mood before the logo
 3. [Branding prompts](#doc-branding-prompts) — Prompt 5 onwards
-2. [Brand applications and polish](#doc-brand-applications-and-polish) — the files you need and the quality tests
-3. [Marketing prompts](#doc-marketing-prompts) — Google Business Profile and WhatsApp Business
+4. [Brand applications and polish](#doc-brand-applications-and-polish) — the files you need and the quality tests
+5. [Marketing prompts](#doc-marketing-prompts) — Google Business Profile and WhatsApp Business
 
 If you have not yet decided whether you needed the company at all, or you registered one and are unsure what it now costs you, read [Register: what you actually need](#doc-register-what-you-actually-need).
 
