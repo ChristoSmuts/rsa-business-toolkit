@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.astro/
+.vitest/
+coverage/
+playwright-report/
+test-results/
+blob-report/
+.lighthouseci/
+public/search/
+*.local
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
