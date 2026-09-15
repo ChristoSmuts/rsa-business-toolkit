@@ -29,6 +29,8 @@ The full approved build plan is `docs/build-plan.md`. Read the part that covers 
 - Every UI string lives in `src/i18n/en.json` and `src/i18n/af.json` with identical keys.
 - Heading ids are English slugs in every language, so anchors are shared.
 - Afrikaans keeps numbers, rand amounts, form codes, URLs and placeholder counts byte-identical to English.
+- Every content page shows an "AI-generated" notice near the top and a "Sources for this page" section built from `doc.sources`. See `docs/build-plan.md` D5 and `docs/adr/0006-ai-disclosure-and-accuracy.md`.
+- Content that is found to be wrong is fixed in the English markdown under `docs/rsa-business-toolkit/` with a `fix(content):` commit that cites an official source. Never fix facts only in generated JSON or in a translation.
 - Only free and open-source libraries. No third-party network requests at runtime.
 - Run `pnpm gate:fast` before claiming a change is done. Paste real output, never a summary.
 
