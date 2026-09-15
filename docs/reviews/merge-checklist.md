@@ -7,6 +7,20 @@ Tasks the orchestrator committed to doing when work packages merge into `main`. 
 - [ ] Switch `tests/e2e/smoke.spec.ts` to import `test` and `expect` from `tests/e2e/fixtures.ts`, and remove its entry from `KNOWN_DIRECT_PLAYWRIGHT_IMPORTS` in `tests/unit/e2e-harness.test.ts`.
 - [ ] Check that `pnpm test` passes after the merge; the "no direct `@playwright/test` import" check must stay green.
 
+## When WP-11 (design system) merges
+
+WP-11 pass 2 was clean; pass 3 runs on the frozen diff at `8710091`. The pass-2 minors and nits go to follow-up package WP-11b, which gets its own two review passes:
+
+- [ ] `Icon` inside prose: `.st-icon { display: inline-block; vertical-align: -0.125em }`; the global `svg { display: block }` rule must not break inline icons in error messages.
+- [ ] `Badge` must wrap, so long Afrikaans labels never cause horizontal scrolling at 320px (WCAG 1.4.10).
+- [ ] Restore CSS inlining for tiny stylesheets without re-inlining scripts (the `assetsInlineLimit: 0` regression adds a 232-byte request on `/`).
+- [ ] Forced colours: the selected theme option must differ by more than border colour below 560px.
+- [ ] Section header dot pattern: move it out from behind the lead text on narrow screens.
+- [ ] Dark section tints: test separation in OKLab and raise the Start here and Paperwork dark tints so each section is distinct.
+- [ ] WebKit axe tests: make timeouts configurable rather than failing under load.
+- [ ] Design guidance and live demos on `/design-system/` for the D5 AI notice and "Sources for this page" pattern, using the existing Callout and Official badge, with the `trust.*` strings from WP-12b.
+- [ ] Remaining pass-2 and pass-3 nits.
+
 ## When WP-11 (design system) and WP-22a have both merged
 
 - [ ] Switch `tests/e2e/design-system.spec.ts` to import from `tests/e2e/fixtures.ts`.
