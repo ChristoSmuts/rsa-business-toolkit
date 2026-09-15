@@ -34,6 +34,7 @@ WP-12 merged as `33bf2a8` after clean passes 3 and 4. The items below are delega
 - [ ] Add `tsc --noEmit -p .` to `gate:fast` in `package.json` (WP-12 pass 1 nit n6).
 - [ ] Fix the three deferred nits recorded in `docs/reviews/backlog.md` (P1–P3), plus pass 4 minors m1–m4 and its nits.
 - [ ] Add UI strings for the per-page AI notice and verification status required by build plan D5: the notice sentence with `{date}`, "AI-checked", "Checked by {reviewer}", "Sources for this page", and the source-note text for pages without their own sources. Both `en.json` and `af.json`, regenerate `ParamNames`, and run the i18n tests.
+- [ ] Resolve the `gate:fast` line in `package.json` when merging WP-12b, WP-10 and the glossary branch: WP-12b adds `tsc --noEmit -p .`, WP-10 adds `pnpm content:drift`. The combined line keeps both, in the order lint, typecheck, tsc, test, content:drift, test:content (see `WP-12b-pass1.md`).
 - Decision on pass 4 m5: no generic "layer count" key. The plan's "3 registration layers" is content specific to the vehicle dealer document, not a UI element.
 
 ## When WP-10 (content pipeline) merges
