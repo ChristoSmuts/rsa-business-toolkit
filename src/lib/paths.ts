@@ -1,6 +1,9 @@
-export const LOCALES = ['en', 'af'] as const;
-export type Locale = (typeof LOCALES)[number];
-export const DEFAULT_LOCALE: Locale = 'en';
+import { DEFAULT_LOCALE, ENABLED_LOCALES, isEnabledLocale, type Locale } from '../i18n/locales';
+
+export { DEFAULT_LOCALE, type Locale };
+
+/** Enabled locale codes. The list itself lives in `src/i18n/locales.ts`. */
+export const LOCALES: readonly Locale[] = ENABLED_LOCALES;
 
 /** Base path, always with a leading and trailing slash. */
 export function basePath(raw: string = import.meta.env.BASE_URL ?? '/'): string {
@@ -9,7 +12,7 @@ export function basePath(raw: string = import.meta.env.BASE_URL ?? '/'): string 
 }
 
 export function isLocale(value: string | undefined): value is Locale {
-  return (LOCALES as readonly string[]).includes(value ?? '');
+  return isEnabledLocale(value);
 }
 
 /**

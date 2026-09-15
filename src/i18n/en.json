@@ -1,0 +1,897 @@
+{
+  "site": {
+    "name": "SA Business Toolkit",
+    "tagline": "Start and run a one-person business in South Africa",
+    "description": "A free guide for one person who starts and runs a business in South Africa. Plain words, checked facts, checklists and templates.",
+    "disclaimerShort": "Written by AI. Checked against official sources. Not legal, tax or financial advice.",
+    "disclaimerLong": "An AI assistant (Claude, made by Anthropic) wrote this guide. Fees, thresholds, form numbers and legal rules were checked against official South African sources. AI can still be wrong, and rules change often. Before you pay, sign or file something, open the official link and check the number yourself. This is general information. It is not legal, tax or financial advice.",
+    "checkedOn": "Facts checked against official sources on {date}.",
+    "howThisWasMade": "How this was made and how to check it",
+    "titleTemplate": "{page} · {section} · {site}",
+    "titleTemplateShort": "{page} · {site}",
+    "footerLabel": "Site footer",
+    "designSystem": "Design system",
+    "updatedNotice": "This guide was updated on {date}.",
+    "updatedLink": "See what has changed",
+    "updatedDismiss": "Dismiss the update notice",
+    "noJs": "Some tools need JavaScript. You can still read every page."
+  },
+  "nav": {
+    "mainLabel": "Main",
+    "home": "Home",
+    "read": "Read",
+    "tools": "Tools",
+    "sections": {
+      "start": {
+        "name": "Start here",
+        "description": "What this guide is, how to use it and what has changed."
+      },
+      "core": {
+        "name": "Core: applies to everyone",
+        "description": "Register, tax, licences and money rules for every business."
+      },
+      "branding": {
+        "name": "Branding and marketing",
+        "description": "Copy-and-paste AI prompts for your name, logo and marketing."
+      },
+      "paperwork": {
+        "name": "Paperwork and templates",
+        "description": "Quotes, invoices, receipts and free tools to use."
+      },
+      "business-types": {
+        "name": "Your kind of business",
+        "description": "Extra rules that apply only to your type of business."
+      },
+      "lookup": {
+        "name": "Look it up",
+        "description": "Glossary, master checklist and official sources."
+      }
+    },
+    "toolDescriptions": {
+      "myPath": "Your steps, in order",
+      "checklist": "Tick each item when you finish it",
+      "templates": "Fill in and print",
+      "glossary": "Short words explained",
+      "sources": "Official links for every fact"
+    },
+    "findMyPath": "Find my path",
+    "myPath": "My path",
+    "pathProgress": "My path: {done} of {total} steps done",
+    "checklist": "Checklist",
+    "templates": "Templates",
+    "glossary": "Glossary",
+    "sources": "Sources",
+    "contents": "Contents",
+    "about": "About",
+    "search": "Search",
+    "searchHint": "Press / to search",
+    "menu": "Menu",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "sectionToggle": "Pages in {section}",
+    "breadcrumbLabel": "You are here",
+    "sectionPagesLabel": "Pages in this section",
+    "onThisPage": "On this page",
+    "onThisPageCount": {
+      "one": "On this page ({count} section)",
+      "other": "On this page ({count} sections)"
+    },
+    "currentSection": "Now reading",
+    "pagerLabel": "Previous and next page",
+    "previous": "Previous: {title}",
+    "next": "Next: {title}",
+    "backToTop": "Back to top",
+    "skipLink": "Skip to main content"
+  },
+  "lang": {
+    "switcherLabel": "Language",
+    "switchTo": "Read this page in {language}",
+    "names": {
+      "en": "English",
+      "af": "Afrikaans",
+      "zu": "Zulu",
+      "xh": "Xhosa",
+      "st": "Southern Sotho",
+      "tn": "Tswana",
+      "nso": "Northern Sotho",
+      "ts": "Tsonga",
+      "ss": "Swati",
+      "ve": "Venda",
+      "nr": "Southern Ndebele"
+    },
+    "plannedNotice": "More South African languages are planned.",
+    "continueBanner": {
+      "message": "Last time you read this guide in {language}.",
+      "action": "Continue in {language}",
+      "stay": "Stay on this page",
+      "dismiss": "Close the language message"
+    },
+    "mtNotice": {
+      "title": "Machine translation",
+      "body": "An AI translated this page from English. No person has checked the translation yet. If something is not clear, read the English version.",
+      "link": "Read the English version"
+    },
+    "fallbackNotice": {
+      "title": "Not translated yet",
+      "body": "This page is not available in {language} yet. You are reading the English version."
+    },
+    "englishTag": "English"
+  },
+  "theme": {
+    "label": "Theme",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "home": {
+    "heroTitle": "Start and run your business in South Africa",
+    "heroLead": "A free guide for one person who is the owner and the only worker. Plain words, checked facts, and only the steps that apply to you.",
+    "heroVerify": "Written by AI. Facts checked against official sources on {date}. Check the official link before you pay or sign.",
+    "findMyPath": "Find my path",
+    "findMyPathHint": "Answer {total} short questions",
+    "knowWhatINeed": "I know what I need",
+    "whereToStart": {
+      "heading": "Where to start",
+      "fiveMinutes": {
+        "title": "If you have {minutes} minutes",
+        "body": "Read Core: start here. It shows the order to do things, and what you can ignore.",
+        "action": "Read Core: start here"
+      },
+      "anHour": {
+        "title": "If you have an hour",
+        "body": "Read the whole core section. Then open your kind of business.",
+        "action": "Open the core section"
+      },
+      "checklist": {
+        "title": "If you know what you need",
+        "body": "Open the master checklist. Tick each item when you finish it.",
+        "action": "Open the checklist"
+      }
+    },
+    "businessTypes": {
+      "heading": "Your kind of business",
+      "lead": "Pick the one that fits. If two fit, read both.",
+      "allTypes": "See all business types",
+      "openType": "Open: {name}"
+    },
+    "fourThings": {
+      "heading": "Four things that matter early",
+      "bank": "A separate bank account for business money",
+      "sars": "Filing with SARS, even when you earn nothing",
+      "licence": "A licence before you trade, if your business type needs one",
+      "records": "Records that you keep for five years"
+    },
+    "threeNumbers": {
+      "heading": "Three numbers that changed in {year}",
+      "lead": "Most websites still show the old numbers.",
+      "vatCompulsory": "Compulsory VAT registration",
+      "vatVoluntary": "Voluntary VAT registration",
+      "turnoverTax": "Turnover tax threshold",
+      "turnoverTaxZero": "{rate}% tax on the first {amount}",
+      "notOld": "Not {amount}",
+      "from": "From {date}",
+      "officialSource": "Official source",
+      "officialSourceFor": "Official source for {name}"
+    },
+    "trust": {
+      "label": "Why you can use this guide",
+      "checked": "Facts checked on {date}",
+      "sources": "An official link for every fact",
+      "free": "Free, and you do not need an account",
+      "private": "Your answers stay on this device",
+      "howThisWasMade": "How this was made"
+    },
+    "yourPath": {
+      "heading": "Your path",
+      "continue": "Continue: step {n} of {total}",
+      "editAnswers": "Edit answers",
+      "open": "Open my path"
+    }
+  },
+  "section": {
+    "startWith": "Start with",
+    "startWithNamed": "Start with: {title}",
+    "startWithLead": "Based on your answers, start with this page.",
+    "docCount": {
+      "one": "{count} page",
+      "other": "{count} pages"
+    },
+    "pageNumber": "Page {n} of {total}",
+    "pagesLabel": "Pages in {section}"
+  },
+  "businessTypesHub": {
+    "title": "Your kind of business",
+    "intro": "The core section applies to everyone. This part adds the rules that apply only to your kind of business.",
+    "ifYouHeading": "Find your kind of business",
+    "ifYouLead": "Look for the row that describes you, then open that page.",
+    "ifYouColumn": "If you…",
+    "openColumn": "Open",
+    "readBoth": "If two kinds of business apply to you, read both pages.",
+    "effortHeading": "How much setup effort each kind of business needs",
+    "effortLead": "This shows about how much setup effort each kind of business needs before you can legally trade. The list goes from the least effort to the most.",
+    "effortMeter": "Setup effort for {name}: {level}",
+    "mainReason": "Main reason",
+    "everyoneNeeds": "What everyone needs, for every kind of business",
+    "nobodyNeeds": "What nobody needs on day one",
+    "notSure": "Not sure which one fits?",
+    "notSureAction": "Find my path"
+  },
+  "doc": {
+    "readTime": "{minutes} min read",
+    "readingProgress": "Reading progress",
+    "appliesTo": "Applies to",
+    "everyone": "Everyone",
+    "soleProprietorOnly": "Sole proprietor only",
+    "ptyOnly": "Pty Ltd only",
+    "effort": "Setup effort: {level}",
+    "wordsUsed": "Words used in this file",
+    "show": "Show",
+    "hide": "Hide",
+    "showNamed": "Show {name}",
+    "hideNamed": "Hide {name}",
+    "sourcesForPage": "Sources for this page",
+    "verifiedOn": "Checked on {date}",
+    "hiddenSections": {
+      "one": "{count} section is hidden",
+      "other": "{count} sections are hidden"
+    },
+    "showHiddenSections": {
+      "one": "Show {count} hidden section",
+      "other": "Show {count} hidden sections"
+    },
+    "hiddenFor": {
+      "sole-prop": "Hidden: this part is only for a sole proprietor.",
+      "pty": "Hidden: this part is only for a Pty Ltd.",
+      "businessTypes": "Hidden: this part is only for these kinds of business: {types}."
+    },
+    "hiddenShow": "Show",
+    "showHiddenNamed": "Show hidden part: {title}",
+    "onlyWhatApplies": "Only what applies to me",
+    "onlyWhatAppliesHelp": "Hides the parts for other kinds of business. Nothing is removed. You can show them again at any time.",
+    "onlyWhatAppliesNoProfile": "Answer the questions in Find my path to use this.",
+    "plainWords": "In plain words",
+    "note": "Note",
+    "warning": "Warning",
+    "copyLink": "Copy link",
+    "copyLinkTo": "Copy link to {heading}",
+    "linkCopied": "Link copied",
+    "tableRegion": "Table: {caption}. Scroll sideways to see all of it.",
+    "readCoreFirstTitle": "Read Core first",
+    "readCoreFirst": "Read the core section first. It applies to every business.",
+    "readCoreFirstAction": "Open the core section",
+    "related": {
+      "heading": "Other kinds of business that may apply to you",
+      "lead": "Many businesses fit more than one kind. For example, a food truck is a food business and also owns a vehicle.",
+      "item": "Also read {name} if this applies to you"
+    },
+    "yourChecklist": "Your checklist",
+    "checklistComplete": "Checklist complete",
+    "checklistCompleteNamed": "{title}: checklist complete",
+    "sectionLabel": "Section"
+  },
+  "wizard": {
+    "title": "Find my path",
+    "intro": "Answer {total} short questions. You get the steps that apply to you, in order.",
+    "stepsLabel": "Questions",
+    "stepOf": "Step {n} of {total}",
+    "stepHeading": "Question {n} of {total}: {title}",
+    "steps": {
+      "entity": "How you trade",
+      "types": "Kind of business",
+      "stage": "Where you are now"
+    },
+    "entity": {
+      "question": "How do you trade, or plan to trade?",
+      "help": "Choose one.",
+      "options": {
+        "sole-prop": {
+          "label": "In my own name (sole proprietor)",
+          "body": "You trade under your own name. You do not need to register a company. You and the business are the same legal person."
+        },
+        "pty": {
+          "label": "As a registered company (Pty Ltd)",
+          "body": "You registered a company with CIPC. The company is a separate legal person. It has its own tax and filing duties."
+        },
+        "undecided": {
+          "label": "I have not decided",
+          "body": "That is fine. You see the steps for both. You can change this later."
+        }
+      },
+      "difference": "What is the difference?"
+    },
+    "types": {
+      "question": "What kind of business is it?",
+      "help": "Choose all that fit. A food truck is a food business and also owns a vehicle.",
+      "generalHelp": "Not sure, or you do many things? Choose General.",
+      "effort": "Setup effort: {level}",
+      "required": "Choose at least one kind of business."
+    },
+    "stage": {
+      "question": "Where are you now?",
+      "help": "Choose one.",
+      "options": {
+        "not-started": {
+          "label": "I have not started yet",
+          "body": "You want to know what to do first, and what you can skip."
+        },
+        "trading": {
+          "label": "I already sell or work for customers",
+          "body": "You want to check what you missed and fix it."
+        },
+        "pty-growing": {
+          "label": "I have a one-person Pty Ltd and want to grow",
+          "body": "You want to run the company properly, pay yourself and add new work."
+        }
+      },
+      "ptyGrowingDisabled": "Only for a registered company. To choose this, go back to step {step} and choose Pty Ltd."
+    },
+    "back": "Back",
+    "next": "Next",
+    "nextDisabled": "Choose an answer first.",
+    "seeMyPath": "See my path",
+    "savedTip": "Saved on this device only. Nothing is sent anywhere.",
+    "noJs": "JavaScript is off. You can still answer the questions and see a path, but your answers are not saved.",
+    "noJsOneType": "Without JavaScript you can choose one kind of business. To choose more than one, turn on JavaScript."
+  },
+  "myPath": {
+    "title": "My path",
+    "intro": "Your steps, in order, based on your answers.",
+    "empty": {
+      "title": "You have not answered the questions yet",
+      "body": "Answer {total} short questions. Then you see the steps that apply to you.",
+      "action": "Find my path"
+    },
+    "profileLabel": "Your answers",
+    "progress": "{done} of {total} done",
+    "stepLabel": "Step {n}",
+    "read": "Read",
+    "readStep": "Read step {n}: {title}",
+    "markDone": "Mark as done",
+    "markDoneNamed": "Mark {title} as done",
+    "done": "Done",
+    "markNotDone": "Remove the tick",
+    "markNotDoneNamed": "Remove the tick from {title}",
+    "why": "Why this step",
+    "checklistHeading": "Your checklist",
+    "editAnswers": "Edit answers",
+    "reset": "Remove my answers",
+    "resetConfirm": {
+      "title": "Remove your answers?",
+      "body": "This removes your answers from this device. Your checklist ticks stay.",
+      "confirm": "Remove answers"
+    },
+    "resetDone": "Your answers were removed."
+  },
+  "checklist": {
+    "title": "Master checklist",
+    "intro": "Tick each item when you finish it. Your ticks are saved on this device only.",
+    "progress": "{done} of {total} done",
+    "partProgress": "{part}: {done} of {total} done",
+    "parts": {
+      "a": "Part A: everyone, in order",
+      "a2": "Part A2: extra, only if you registered a Pty Ltd",
+      "b": "Part B: additions by business type",
+      "c": "Part C: recurring calendar",
+      "d": "Part D: the four things that cause real trouble"
+    },
+    "filters": {
+      "label": "Show",
+      "all": "Everything",
+      "mine": "Only what applies to me",
+      "notDone": "Not done yet"
+    },
+    "hiddenItems": {
+      "one": "{count} item is hidden because it does not apply to you",
+      "other": "{count} items are hidden because they do not apply to you"
+    },
+    "print": "Print",
+    "printWithTicks": "Print with my ticks",
+    "reset": "Remove ticks",
+    "resetDialog": {
+      "title": "Remove all ticks?",
+      "body": "This removes every tick on this device. You cannot undo this.",
+      "confirm": "Remove ticks",
+      "cancel": "Keep my ticks"
+    },
+    "resetDone": "All ticks were removed.",
+    "storageUnavailable": "Your ticks cannot be saved on this device. This can happen in private browsing. You can still tick items, but the ticks are lost when you close the page.",
+    "saved": "Ticks are saved on this device only.",
+    "noJs": "JavaScript is off. You can tick items, but the ticks are not saved.",
+    "keyToShortWords": "Key to the short words",
+    "keyShort": "Short word",
+    "keyMeans": "Means",
+    "calendarWhen": "When",
+    "calendarWhat": "What",
+    "tickedOn": "Ticked on {date}"
+  },
+  "templates": {
+    "indexTitle": "Templates",
+    "indexIntro": "Fill in a form, check the page, then print it or save it as a PDF.",
+    "whichOne": "Which one do I need?",
+    "items": {
+      "quotation": {
+        "name": "Quotation",
+        "description": "Tell a customer the price before you do the work."
+      },
+      "invoice": {
+        "name": "Invoice",
+        "description": "Ask for payment when you are not registered for VAT."
+      },
+      "tax-invoice": {
+        "name": "Tax invoice",
+        "description": "Ask for payment when you are registered for VAT."
+      },
+      "receipt": {
+        "name": "Receipt",
+        "description": "Show that a customer paid you."
+      },
+      "privacy-notice": {
+        "name": "Privacy notice",
+        "description": "Tell customers what personal information you keep, and why."
+      }
+    },
+    "open": "Open template",
+    "openNamed": "Open template: {name}",
+    "tabsLabel": "Form or page view",
+    "fillIn": "Fill in",
+    "preview": "Preview",
+    "groups": {
+      "business": "Your business",
+      "customer": "Customer",
+      "document": "Document details",
+      "items": "Items",
+      "scope": "What the price includes",
+      "timing": "When",
+      "payment": "Payment details",
+      "receipt": "Payment received",
+      "acceptance": "Acceptance",
+      "notes": "Notes"
+    },
+    "fields": {
+      "businessName": "Business name",
+      "ownerName": "Your name",
+      "phone": "Phone number",
+      "email": "Email address",
+      "address": "Physical address",
+      "vatNumber": "VAT registration number",
+      "vatNumberHint": "Only fill this in when SARS has given you a VAT number.",
+      "registeredName": "Registered company name",
+      "registrationNumber": "Company registration number",
+      "registrationNumberHint": "If you have a Pty Ltd, the law requires this on every quote, invoice and receipt.",
+      "tradingAs": "Trading name",
+      "tradingAsHint": "Only if your company uses a name that is not its registered name.",
+      "tradingAsLine": "A trading name of {company}, Reg. No. {number}",
+      "customerName": "Customer name",
+      "customerAddress": "Customer address",
+      "customerContact": "Customer phone or email",
+      "customerVatNumber": "Customer VAT number",
+      "customerVatNumberHint": "Only if the customer is registered for VAT. Required on a tax invoice over {amount}.",
+      "quoteNumber": "Quote number",
+      "invoiceNumber": "Invoice number",
+      "receiptNumber": "Receipt number",
+      "numberHint": "Use numbers in order with no gaps, for example {example}.",
+      "date": "Date",
+      "dateOfIssue": "Date of issue",
+      "validUntil": "Valid until",
+      "dueDate": "Due date",
+      "validForDays": "Number of days the quote is valid",
+      "depositPercent": "Deposit before work starts (% of the total)",
+      "balanceDue": "When the balance is due",
+      "workStarts": "Work starts",
+      "duration": "How long the work takes",
+      "included": "What is included",
+      "notIncluded": "What is not included",
+      "notIncludedHint": "Write it down. Most arguments are about work the customer thought was in the price.",
+      "termsLink": "Link to your terms and conditions",
+      "bank": "Bank",
+      "accountName": "Account name",
+      "accountNameHint": "Exactly as it appears on the account.",
+      "accountNumber": "Account number",
+      "branchCode": "Branch code",
+      "reference": "Payment reference",
+      "referenceHint": "Ask the customer to use the invoice number.",
+      "latePayment": "Late payment terms",
+      "dateReceived": "Date received",
+      "receivedFrom": "Received from",
+      "amountReceived": "Amount received",
+      "paymentMethod": "Payment method",
+      "forInvoice": "For invoice",
+      "balanceOwing": "Balance still owing",
+      "informationOfficer": "Information Officer",
+      "lastUpdated": "Last updated",
+      "acceptedBy": "Accepted by",
+      "signature": "Signature",
+      "printName": "Name (print)",
+      "signatureDate": "Date",
+      "notes": "Notes"
+    },
+    "paymentMethods": {
+      "eft": "EFT",
+      "payshap": "PayShap",
+      "cash": "Cash",
+      "card": "Card"
+    },
+    "privacy": {
+      "whoWeAre": "Who we are",
+      "whatWeCollect": "What we collect",
+      "whyWeCollect": "Why we collect it",
+      "whoWeShareWith": "Who we share it with",
+      "howLongWeKeepIt": "How long we keep it",
+      "marketing": "Marketing",
+      "yourRights": "Your rights",
+      "listHint": "Add or remove lines so this is true for your business.",
+      "addListItem": "Add a line",
+      "removeListItem": "Remove line: {text}",
+      "registerFirst": "Before you use this notice, register yourself as the Information Officer. It is free."
+    },
+    "line": {
+      "description": "Description",
+      "quantity": "Quantity",
+      "unitPrice": "Unit price",
+      "amount": "Amount",
+      "placeholder": "Item or service"
+    },
+    "addLine": "Add line",
+    "removeLine": "Remove line: {description}",
+    "subtotal": "Subtotal",
+    "subtotalExclVat": "Subtotal (excl. VAT)",
+    "vat": "VAT ({rate}%)",
+    "total": "Total",
+    "totalInclVat": "Total (incl. VAT)",
+    "amountDue": "Amount due",
+    "totalsLabel": "Totals",
+    "noVatNotice": "You are not registered for VAT. This invoice has no VAT line, no VAT number and not the words “Tax Invoice”.",
+    "ptyNotice": "A Pty Ltd must show its registered name and registration number. The law requires it.",
+    "requiredItems": "{present} of {total} required items present",
+    "missing": "Missing: {list}",
+    "allPresent": "All required items are present.",
+    "required": {
+      "taxInvoice": {
+        "heading": "The {total} things a full tax invoice must show",
+        "lead": "For any sale over {amount}.",
+        "words": "The words “Tax Invoice”, “VAT Invoice” or “Invoice”",
+        "supplier": "Your name, address and VAT registration number",
+        "recipient": "The customer’s name and address, and their VAT number if they are registered",
+        "numberAndDate": "A serial number and the date of issue",
+        "description": "A description of the goods or services",
+        "quantity": "The quantity or volume",
+        "values": "The value of the supply, the VAT charged and the total"
+      },
+      "thresholds": {
+        "none": "At {amount} or less, you do not need a tax invoice.",
+        "abridged": "From {from} up to {to}, a short (abridged) tax invoice is allowed.",
+        "full": "Above {amount}, you need a full tax invoice."
+      },
+      "issueWithin": "Issue the tax invoice within {days} days of the sale.",
+      "secondHand": "If you sell second-hand goods, the description must say so."
+    },
+    "receiptWarning": "Only send a receipt when the money is in your account balance. Do not send it while the payment is still pending.",
+    "print": "Print or save as PDF",
+    "printHint": "In the print window, choose Save as PDF to keep a copy.",
+    "clear": "Clear form",
+    "clearConfirm": {
+      "title": "Clear this form?",
+      "body": "This removes everything you typed in this form on this device.",
+      "confirm": "Clear form"
+    },
+    "clearDone": "The form was cleared.",
+    "startNext": "Start next invoice",
+    "startNextDone": "Invoice {number} started.",
+    "startNextHint": "Keeps your business details and uses the next invoice number.",
+    "savedNotice": "What you type is saved on this device only. Nothing is sent anywhere.",
+    "previewLabel": "Page preview",
+    "previewEmpty": "Fill in the form to see your page here.",
+    "prefilled": "Your business details were filled in from your saved answers."
+  },
+  "validation": {
+    "summaryTitle": "Check these answers",
+    "summaryCount": {
+      "one": "{count} answer needs your attention.",
+      "other": "{count} answers need your attention."
+    },
+    "advisory": "These checks only help you. You can still print.",
+    "goToField": "Go to {field}",
+    "required": "{field}: fill this in.",
+    "email": "Enter an email address, for example {example}.",
+    "number": "Enter a number, for example {example}.",
+    "date": "Enter a date.",
+    "chooseOne": "Choose one answer."
+  },
+  "storage": {
+    "unavailable": "This device does not let the guide save anything. This can happen in private browsing. Everything still works, but it is lost when you close the page.",
+    "wizardUnavailable": "Your answers cannot be saved on this device. You can still see your path now.",
+    "templatesUnavailable": "What you type cannot be saved on this device. Print or save as PDF before you close the page.",
+    "settingsUnavailable": "Your settings cannot be saved on this device. They go back to the default when you close the page.",
+    "saveFailed": "Could not save. The storage on your device may be full."
+  },
+  "prompts": {
+    "copy": "Copy prompt",
+    "copyNamed": "Copy prompt {n}: {title}",
+    "copied": "Copied",
+    "copiedNamed": "Prompt {n} copied",
+    "copyFailed": "Could not copy. The text is selected. Copy it with your keyboard, or press and hold it on a phone.",
+    "fillFromProfile": "Fill from my profile",
+    "fillFromProfileNamed": "Fill prompt {n} from my profile",
+    "undoFill": "Undo",
+    "undoFillNamed": "Undo the fill in prompt {n}",
+    "placeholdersRemaining": {
+      "one": "{count} blank left to fill in",
+      "other": "{count} blanks left to fill in"
+    },
+    "allFilled": "All blanks are filled in.",
+    "showFull": "Show full prompt",
+    "showFullNamed": "Show full prompt: {title}",
+    "showLess": "Show less",
+    "showLessNamed": "Show less of prompt: {title}",
+    "placeholderHint": "Words in [square brackets] are blanks. Replace them with your own details.",
+    "stepperLabel": "Prompts in this file",
+    "promptLabel": "Prompt {n}: {title}"
+  },
+  "search": {
+    "label": "Search the guide",
+    "placeholder": "For example: VAT threshold",
+    "button": "Search",
+    "shortcutHint": "Press / to search",
+    "shortcutHintCtrlK": "Press / or Ctrl + K to search",
+    "dialogTitle": "Search",
+    "pageTitle": "Search",
+    "resultsFor": "Results for “{query}”",
+    "instructions": "Type to search. Use the up and down arrow keys to move through the results. Press Enter to open a result. Press Escape to close search.",
+    "loading": "Loading search…",
+    "failed": "Search could not load.",
+    "failedFallback": "Use the contents page instead.",
+    "noResults": "Nothing found for “{query}”.",
+    "suggestions": "Try a shorter word, check the spelling, or look in the glossary.",
+    "results": {
+      "one": "{count} result",
+      "other": "{count} results"
+    },
+    "resultsLabel": "Search results",
+    "groupLabel": "Results in {section}",
+    "resultPath": "{doc} › {heading}",
+    "resultKind": "{kind}: {title}",
+    "commonQuestions": "Common questions",
+    "filters": {
+      "label": "Filter results",
+      "section": "Section",
+      "allSections": "All sections",
+      "myTypes": "My business types"
+    },
+    "kinds": {
+      "section": "Page section",
+      "glossary": "Glossary",
+      "term": "Word",
+      "task": "Checklist item",
+      "answer": "Quick answer"
+    },
+    "browseContents": "Browse all pages",
+    "clear": "Clear search",
+    "close": "Close search",
+    "noJs": "Search needs JavaScript. Use the contents page to find what you need."
+  },
+  "contents": {
+    "title": "Contents",
+    "intro": "Every page in this guide, with its sections.",
+    "metaDescription": "A list of every page and section in the SA Business Toolkit.",
+    "docSections": "Sections of {title}"
+  },
+  "keyboardHelp": {
+    "title": "Keyboard shortcuts",
+    "close": "Close keyboard shortcuts",
+    "moreLink": "Shortcut settings"
+  },
+  "glossary": {
+    "title": "Glossary",
+    "intro": "Short words and terms, explained in plain words.",
+    "filterLabel": "Filter terms",
+    "filterPlaceholder": "For example: PAYE",
+    "termCount": {
+      "one": "{count} term",
+      "other": "{count} terms"
+    },
+    "viewLabel": "Order",
+    "byGroup": "By group",
+    "az": "A–Z",
+    "lettersLabel": "Go to a letter",
+    "letterLink": "Terms that start with {letter}",
+    "letterEmpty": "No terms start with {letter}",
+    "copyLink": "Copy link",
+    "copyLinkTo": "Copy link to {term}",
+    "linkCopied": "Link copied",
+    "noMatches": "No terms match “{query}”."
+  },
+  "sources": {
+    "title": "Sources",
+    "intro": "The official links behind the facts in this guide.",
+    "legendTitle": "What the labels mean",
+    "official": "Official",
+    "officialDescription": "A government or regulator website.",
+    "unofficial": "Other",
+    "unofficialDescription": "A useful website that is not from government or a regulator.",
+    "officialOnly": "Official sources only",
+    "filterLabel": "Filter sources",
+    "count": {
+      "one": "{count} source",
+      "other": "{count} sources"
+    },
+    "usedIn": "Used in",
+    "supports": "Supports",
+    "copyLinkTo": "Copy link to {title}",
+    "legislation": {
+      "heading": "Laws and regulations",
+      "caption": "Laws and regulations that this guide uses",
+      "act": "Act or regulation",
+      "governs": "What it governs",
+      "appearsIn": "Where it appears"
+    },
+    "noMatches": "No sources match “{query}”."
+  },
+  "about": {
+    "title": "About this guide",
+    "aiHeading": "How this was made",
+    "aiSummary": "An AI assistant (Claude, made by Anthropic) wrote this guide. It checked fees, thresholds, form numbers and legal rules against official South African sources. No lawyer, accountant or tax practitioner reviewed it. Check the official link before you act.",
+    "aiLink": "Read how this was made and how to check it",
+    "licenceHeading": "Licence",
+    "licence": "Use it, copy it, change it, give it to someone else. You do not need to name the authors. If you give it to someone else, keep the page on how this was made and the sources with it.",
+    "shortcuts": {
+      "heading": "Keyboard shortcuts",
+      "key": "Key",
+      "action": "What it does",
+      "keys": {
+        "slash": "/",
+        "ctrlK": "Ctrl + K",
+        "question": "?",
+        "altLeft": "Alt + ←",
+        "altRight": "Alt + →",
+        "escape": "Esc"
+      },
+      "search": "Open search",
+      "help": "Show keyboard shortcuts",
+      "previous": "Go to the previous page",
+      "next": "Go to the next page",
+      "escape": "Close a dialog or menu",
+      "modifierNote": "For Ctrl + K and Alt + an arrow key, hold down the first key, then press the second key.",
+      "note": "Single-key shortcuts do not work while you type in a field."
+    },
+    "settings": {
+      "heading": "Settings",
+      "shortcuts": "Single-key shortcuts",
+      "shortcutsHelp": "Turn this off if / or ? causes problems, for example when you use speech input.",
+      "lowData": "Low data mode",
+      "lowDataHelp": "Uses the fonts on your device and loads search only when you open it.",
+      "on": "On",
+      "off": "Off",
+      "clearData": "Clear all my data",
+      "clearDataHelp": "Removes your answers, ticks, filled-in forms and settings from this device.",
+      "clearConfirm": {
+        "title": "Clear all your data?",
+        "body": "This removes everything this guide saved on this device. You cannot undo this.",
+        "confirm": "Clear my data"
+      },
+      "clearDone": "All your data was removed from this device."
+    }
+  },
+  "designSystem": {
+    "title": "Design system",
+    "intro": "The colours, type and parts that this guide uses.",
+    "colours": "Colours",
+    "typography": "Typography",
+    "components": "Components",
+    "illustrations": "Illustrations",
+    "contrast": "Contrast ratio: {ratio}",
+    "pass": "Pass",
+    "fail": "Fail",
+    "diacritics": "Letters with accents"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "This page does not exist. The link may be old, or the address may have a typing mistake.",
+    "suggestion": "Maybe you were looking for: {title}",
+    "search": "Search the guide",
+    "home": "Go to the home page",
+    "contents": "See all pages"
+  },
+  "a11y": {
+    "externalLink": "(external link)",
+    "newTab": "(opens in a new tab)",
+    "officialSource": "Official source",
+    "progress": "{percent}% done",
+    "currentPage": "Current page",
+    "currentStep": "Current step",
+    "loading": "Loading…",
+    "required": "(required)",
+    "done": "Done",
+    "notDone": "Not done yet"
+  },
+  "businessTypes": {
+    "vehicle-dealer": {
+      "name": "Vehicle dealer",
+      "short": "Vehicles",
+      "description": "You buy and sell vehicles."
+    },
+    "food": {
+      "name": "Food business",
+      "short": "Food",
+      "description": "You make, cook, package or sell food or drinks."
+    },
+    "beauty": {
+      "name": "Beauty and personal care",
+      "short": "Beauty",
+      "description": "You do hair, nails, beauty treatments, massage, tattoos or piercings."
+    },
+    "retail-online": {
+      "name": "Retail and online shop",
+      "short": "Retail",
+      "description": "You sell products in a shop, at markets or online."
+    },
+    "services-trades": {
+      "name": "Services and trades",
+      "short": "Services",
+      "description": "You fix, build, install, clean or deliver."
+    },
+    "professional-creative": {
+      "name": "Professional and creative work",
+      "short": "Professional",
+      "description": "You sell your skill or your time, for example design, coding or tutoring."
+    },
+    "general": {
+      "name": "General: I sell or do many things",
+      "short": "General",
+      "description": "Shows the rules for retail, services and professional work."
+    },
+    "effortLabel": "Setup effort",
+    "effort": {
+      "lowest": "Lowest",
+      "low-medium": "Low to medium",
+      "medium": "Medium",
+      "medium-high": "Medium to high",
+      "high": "High"
+    }
+  },
+  "entity": {
+    "sole-prop": "Sole proprietor",
+    "pty": "Pty Ltd",
+    "undecided": "Not decided"
+  },
+  "stage": {
+    "not-started": "Not started yet",
+    "trading": "Already trading",
+    "pty-growing": "One-person Pty Ltd, wants to grow"
+  },
+  "date": {
+    "format": "{day} {month} {year}",
+    "months": {
+      "1": "January",
+      "2": "February",
+      "3": "March",
+      "4": "April",
+      "5": "May",
+      "6": "June",
+      "7": "July",
+      "8": "August",
+      "9": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December"
+    }
+  },
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close",
+    "closeNamed": "Close {name}",
+    "reset": "Reset",
+    "print": "Print",
+    "copy": "Copy",
+    "done": "Done",
+    "dismiss": "Dismiss",
+    "dismissNamed": "Dismiss: {name}",
+    "edit": "Edit",
+    "minutes": {
+      "one": "{count} minute",
+      "other": "{count} minutes"
+    }
+  }
+}

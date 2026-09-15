@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
+import { DEFAULT_LOCALE, ENABLED_LOCALES, sitemapLocales } from './src/i18n/locales';
 
 function normaliseBase(raw: string | undefined): string {
   const value = (raw ?? '/business-toolkit/').trim();
@@ -20,14 +21,14 @@ export default defineConfig({
   build: { format: 'directory', assets: '_astro', inlineStylesheets: 'auto' },
   prefetch: { prefetchAll: false, defaultStrategy: 'hover' },
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'af'],
+    defaultLocale: DEFAULT_LOCALE,
+    locales: [...ENABLED_LOCALES],
     routing: { prefixDefaultLocale: false, redirectToDefaultLocale: false },
   },
   integrations: [
     icon({ include: { lucide: ['*'] } }),
     sitemap({
-      i18n: { defaultLocale: 'en', locales: { en: 'en-ZA', af: 'af-ZA' } },
+      i18n: { defaultLocale: DEFAULT_LOCALE, locales: sitemapLocales() },
       filter: (page) => !page.includes('/design-system/'),
     }),
   ],

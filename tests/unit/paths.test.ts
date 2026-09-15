@@ -1,7 +1,38 @@
 import { describe, expect, it } from 'vitest';
-import { basePath, href, localeFromPath, routeFromPath } from '../../src/lib/paths';
+import { ENABLED_LOCALES, LOCALES as ALL_LOCALES } from '../../src/i18n/locales';
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  basePath,
+  href,
+  isLocale,
+  localeFromPath,
+  routeFromPath,
+} from '../../src/lib/paths';
 
 const base = '/business-toolkit/';
+/** A known locale that is not routed yet, so the example keeps working when one is enabled. */
+const planned = ALL_LOCALES.find((entry) => !entry.enabled)!.code;
+
+describe('locale list', () => {
+  it('comes from src/i18n/locales.ts', () => {
+    expect(LOCALES).toBe(ENABLED_LOCALES);
+    expect([...LOCALES]).toEqual(['en', 'af']);
+    expect(DEFAULT_LOCALE).toBe('en');
+  });
+  it('accepts only enabled locales', () => {
+    expect(isLocale('en')).toBe(true);
+    expect(isLocale('af')).toBe(true);
+    expect(isLocale(planned)).toBe(false);
+    expect(isLocale('AF')).toBe(false);
+    expect(isLocale('')).toBe(false);
+    expect(isLocale(undefined)).toBe(false);
+  });
+  it('does not treat a planned locale prefix as a locale', () => {
+    expect(localeFromPath(`/business-toolkit/${planned}/core/`, base)).toBe('en');
+    expect(routeFromPath(`/business-toolkit/${planned}/core/`, base)).toBe(`${planned}/core/`);
+  });
+});
 
 describe('basePath', () => {
   it('normalises slashes', () => {
