@@ -38,7 +38,7 @@ These were checked against SARS, CIPC, BizPortal, SAPS, the B-BBEE Commission, t
 - B-BBEE EME thresholds and affidavit rules
 - POPIA information officer registration duty
 - Certificate of Acceptability and R638 requirements
-- Business Act licensing categories
+- Businesses Act licensing categories
 - ECTA online selling obligations and the cooling-off right
 - CPA implied warranty and the position on voetstoots
 - Second-Hand Goods Act dealer registration

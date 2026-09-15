@@ -20,9 +20,9 @@ Plain meanings for the terms used in this file. The full list is in [Glossary](.
 
 ## You need a municipal licence
 
-These are health establishments under the Business Act.
+These are health establishments under the Businesses Act.
 
-The categories that typically require a municipal trading licence under the Business Act include health establishments: businesses providing health, beauty, or body treatment services, including hairdressers, barbers, beauty salons, nail salons, tattoo studios, and similar premises.
+The categories that typically require a municipal trading licence under the Businesses Act include health establishments: businesses providing health, beauty, or body treatment services, including hairdressers, barbers, beauty salons, nail salons, tattoo studios, and similar premises.
 
 No person may carry on certain service-related businesses unless they hold a licence issued by the council, local authority or municipality where the business premises are situated.
 

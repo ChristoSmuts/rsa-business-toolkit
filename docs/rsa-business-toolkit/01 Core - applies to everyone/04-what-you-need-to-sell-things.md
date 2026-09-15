@@ -23,7 +23,7 @@ Plain meanings for the terms used in this file. The full list is in [Glossary](.
 
 ## The general rule
 
-Business and trade licence requirements are governed by the Business Act 71 of 1991. No person may carry on certain service-related businesses unless they hold a licence issued by the council, local authority, or municipality where the business premises are situated.
+Business and trade licence requirements are governed by the Businesses Act 71 of 1991. No person may carry on certain service-related businesses unless they hold a licence issued by the council, local authority, or municipality where the business premises are situated.
 
 > **In plain words:** Some kinds of business need a licence from the local municipality before they may open. The licence is for the building where you trade, not for you personally.
 
@@ -59,7 +59,7 @@ The thing that fails most applications: training under R638 Regulation 10 is not
 
 Other things a food business may need, depending on what you do:
 
-- A business licence under the Business Act 71 of 1991
+- A business licence under the Businesses Act 71 of 1991
 - A zoning certificate, if your premises are not zoned for business use
 - A fire compliance certificate (SANS 10400-T)
 - A gas certificate of compliance, if you cook with gas
@@ -79,7 +79,7 @@ One exception worth knowing: unprocessed agricultural products sold as they come
 
 ## If you sell beauty or body treatments
 
-Hairdressing, nails, beauty therapy, massage, and tattooing are health establishments under the Business Act. You need a municipal licence and usually a health inspection.
+Hairdressing, nails, beauty therapy, massage, and tattooing are health establishments under the Businesses Act. You need a municipal licence and usually a health inspection.
 
 Tattoo and piercing studios face extra scrutiny on sharps disposal and sterilisation. Speak to your EHP before you sign a lease.
 
@@ -182,7 +182,7 @@ Your prices must be displayed. If two prices are displayed, the lower one genera
 
 Work through these questions before you take your first order:
 
-1. Does my business type appear in the Business Act categories? If yes, apply for the municipal licence first.
+1. Does my business type appear in the Businesses Act categories? If yes, apply for the municipal licence first.
 2. Do I handle food? If yes, get accredited training, then apply for the COA.
 3. Is my premises zoned for this activity? Ask the municipal town planning department.
 4. Does my product need a Letter of Authority or SAHPRA approval?

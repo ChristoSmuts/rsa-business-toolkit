@@ -25,7 +25,7 @@ Usually not, if you sell ordinary goods like clothing, homeware, stationery, gif
 
 You do need one if you sell food. See [Food business](02-food-business.md).
 
-Food retail, meaning any business that sells, prepares, or handles food for sale to the public, including spaza shops, requires a municipal trading licence under the Business Act.
+Food retail, meaning any business that sells, prepares, or handles food for sale to the public, including spaza shops, requires a municipal trading licence under the Businesses Act.
 
 A general trader's licence is still required by some municipalities for a fixed shop. Ask your municipal Business Licensing office. Market stalls usually need a trading permit from the market or the municipality rather than a business licence.
 

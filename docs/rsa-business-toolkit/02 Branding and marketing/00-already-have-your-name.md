@@ -119,8 +119,8 @@ Then check reality yourself. Search your trade plus your town on Google and Face
 1. [Branding prompts](01-branding-prompts.md) — Prompt 0, Prompt 1, the modified Prompt 2 above
 2. [Mood and materials (use after Prompt 4)](02-mood-and-materials.md) — settle the mood before the logo
 3. [Branding prompts](01-branding-prompts.md) — Prompt 5 onwards
-2. [Brand applications and polish](03-brand-applications-and-polish.md) — the files you need and the quality tests
-3. [Marketing prompts](04-marketing-prompts.md) — Google Business Profile and WhatsApp Business
+4. [Brand applications and polish](03-brand-applications-and-polish.md) — the files you need and the quality tests
+5. [Marketing prompts](04-marketing-prompts.md) — Google Business Profile and WhatsApp Business
 
 If you have not yet decided whether you needed the company at all, or you registered one and are unsure what it now costs you, read [Register: what you actually need](../01%20Core%20-%20applies%20to%20everyone/02-register.md).
 

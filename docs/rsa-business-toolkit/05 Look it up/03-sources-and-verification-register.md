@@ -36,7 +36,7 @@ Official sources are marked **[Official]**. These are government or regulator pu
 | Consumer Protection Act 68 of 2008 | Consumer rights, implied warranty of quality (s55, s56), plain language, cancellation (s16, s17) | `01-core/04`, all business types |
 | Electronic Communications and Transactions Act 25 of 2002 | Online selling: disclosure (s43), cooling-off (s44), performance (s46), scope (s42) | `01-core/04`, `04-business-types/04` |
 | Protection of Personal Information Act 4 of 2013 | Data protection, information officer registration (s55) | `01-core/02`, `03-documents/01` |
-| Business Act 71 of 1991 | Municipal trading licences for food, health and entertainment businesses | `01-core/04`, `04-business-types/02`, `03` |
+| Businesses Act 71 of 1991 | Municipal trading licences for food, health and entertainment businesses | `01-core/04`, `04-business-types/02`, `03` |
 | Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 | Food hygiene (R638 of 2018), food labelling (R146 of 2012), cosmetics | `04-business-types/02`, `03` |
 | Second-Hand Goods Act 6 of 2009 | Dealer registration with SAPS, transaction registers, motor vehicle records | `04-business-types/01`, `04` |
 | National Road Traffic Act 93 of 1996 | Vehicle registration, business register numbers, motor trade numbers, roadworthiness | `01-core/05`, `04-business-types/01` |
@@ -302,7 +302,7 @@ Magistrates' court civil jurisdiction (district R200,000, regional R200,000 to R
 **[Official] Regulation R146 of 2012** — Labelling and Advertising of Foodstuffs. Available through gov.za.
 
 Secondary:
-- Food Focus — https://www.foodfocus.co.za/home/whats-hot/Starting-a-new-food-business/How-do-I-get-a-Certificate-of-Acceptability — the COA process and the Business Act licensing position.
+- Food Focus — https://www.foodfocus.co.za/home/whats-hot/Starting-a-new-food-business/How-do-I-get-a-Certificate-of-Acceptability — the COA process and the Businesses Act licensing position.
 - ASC Food Safety — https://ascfoodsafety.com/steps-to-starting-a-food-business-in-south-africa/ — the nine-document list and realistic timelines. This is a commercial training provider, so treat the timelines as a guide and confirm with your municipality.
 
 Your actual authority is your municipal Environmental Health Practitioner. Contact them before relying on any web source.
@@ -311,7 +311,7 @@ Your actual authority is your municipal Environmental Health Practitioner. Conta
 
 ## Business licensing
 
-**Business Act 71 of 1991.** Administered by your local municipality, not by national government. There is no single national list of licensable businesses, because municipalities apply the Act through their own by-laws.
+**Businesses Act 71 of 1991.** Administered by your local municipality, not by national government. There is no single national list of licensable businesses, because municipalities apply the Act through their own by-laws.
 
 Secondary:
 - SME South Africa — https://smesouthafrica.co.za/sme-guides/business-licences-in-south-africa/

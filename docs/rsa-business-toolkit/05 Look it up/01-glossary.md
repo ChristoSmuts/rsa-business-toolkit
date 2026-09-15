@@ -16,7 +16,7 @@ South African business is full of abbreviations. Here is what they mean, in plai
 
 **Pty Ltd** — Private company. A separate legal person from you.
 
-**Sole proprietor** — You, trading as yourself. Not a separate legal person. No registration needed.
+**Sole proprietor** — You, trading as yourself. Not a separate legal person. No company registration needed, but you still need to register with SARS for tax.
 
 **Beneficial ownership filing** — A free CIPC filing naming the real humans behind a company. Compulsory.
 
@@ -156,7 +156,7 @@ South African business is full of abbreviations. Here is what they mean, in plai
 
 **R146** — The 2012 regulation on food labelling and advertising.
 
-**Business Act licence** — A municipal trading licence required for food, health and entertainment businesses.
+**Businesses Act licence** — A municipal trading licence required for food, health and entertainment businesses.
 
 **Zoning certificate** — Municipal confirmation that your premises may legally be used for your kind of business.
 
@@ -168,7 +168,7 @@ South African business is full of abbreviations. Here is what they mean, in plai
 
 **NCR** — National Credit Regulator. You must register with them before extending credit.
 
-**FSP** — Financial Services Provider. A licence required to sell or advise on financial products.
+**FSP** — Financial Services Provider. A business licensed under FAIS to give advice on, or sell, financial products. Anyone who does this must hold an FSP licence or work as a representative of a licensed FSP.
 
 **FAIS** — Financial Advisory and Intermediary Services Act. The law behind FSP licensing.
 

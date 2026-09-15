@@ -364,7 +364,7 @@ A written deposit receipt stating the amount, the vehicle by VIN, the hold perio
 
 Vehicle sales premises almost always need zoning approval for motor trade. Residential zoning does not permit a car lot. Check with municipal town planning before you sign a lease, because you cannot fix this afterwards.
 
-Many municipalities also require a trading licence under the Business Act 71 of 1991. Ask your Business Licensing Officer.
+Many municipalities also require a trading licence under the Businesses Act 71 of 1991. Ask your Business Licensing Officer.
 
 ### If you extend credit yourself
 

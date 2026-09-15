@@ -467,7 +467,7 @@ These were checked against SARS, CIPC, BizPortal, SAPS, the B-BBEE Commission, t
 - B-BBEE EME thresholds and affidavit rules
 - POPIA information officer registration duty
 - Certificate of Acceptability and R638 requirements
-- Business Act licensing categories
+- Businesses Act licensing categories
 - ECTA online selling obligations and the cooling-off right
 - CPA implied warranty and the position on voetstoots
 - Second-Hand Goods Act dealer registration
@@ -1336,7 +1336,7 @@ Plain meanings for the terms used in this file. The full list is in [Glossary](#
 
 ### The general rule
 
-Business and trade licence requirements are governed by the Business Act 71 of 1991. No person may carry on certain service-related businesses unless they hold a licence issued by the council, local authority, or municipality where the business premises are situated.
+Business and trade licence requirements are governed by the Businesses Act 71 of 1991. No person may carry on certain service-related businesses unless they hold a licence issued by the council, local authority, or municipality where the business premises are situated.
 
 > **In plain words:** Some kinds of business need a licence from the local municipality before they may open. The licence is for the building where you trade, not for you personally.
 
@@ -1372,7 +1372,7 @@ The thing that fails most applications: training under R638 Regulation 10 is not
 
 Other things a food business may need, depending on what you do:
 
-- A business licence under the Business Act 71 of 1991
+- A business licence under the Businesses Act 71 of 1991
 - A zoning certificate, if your premises are not zoned for business use
 - A fire compliance certificate (SANS 10400-T)
 - A gas certificate of compliance, if you cook with gas
@@ -1392,7 +1392,7 @@ One exception worth knowing: unprocessed agricultural products sold as they come
 
 ### If you sell beauty or body treatments
 
-Hairdressing, nails, beauty therapy, massage, and tattooing are health establishments under the Business Act. You need a municipal licence and usually a health inspection.
+Hairdressing, nails, beauty therapy, massage, and tattooing are health establishments under the Businesses Act. You need a municipal licence and usually a health inspection.
 
 Tattoo and piercing studios face extra scrutiny on sharps disposal and sterilisation. Speak to your EHP before you sign a lease.
 
@@ -1495,7 +1495,7 @@ Your prices must be displayed. If two prices are displayed, the lower one genera
 
 Work through these questions before you take your first order:
 
-1. Does my business type appear in the Business Act categories? If yes, apply for the municipal licence first.
+1. Does my business type appear in the Businesses Act categories? If yes, apply for the municipal licence first.
 2. Do I handle food? If yes, get accredited training, then apply for the COA.
 3. Is my premises zoned for this activity? Ask the municipal town planning department.
 4. Does my product need a Letter of Authority or SAHPRA approval?
@@ -5595,7 +5595,7 @@ A written deposit receipt stating the amount, the vehicle by VIN, the hold perio
 
 Vehicle sales premises almost always need zoning approval for motor trade. Residential zoning does not permit a car lot. Check with municipal town planning before you sign a lease, because you cannot fix this afterwards.
 
-Many municipalities also require a trading licence under the Business Act 71 of 1991. Ask your Business Licensing Officer.
+Many municipalities also require a trading licence under the Businesses Act 71 of 1991. Ask your Business Licensing Officer.
 
 #### If you extend credit yourself
 
@@ -5771,7 +5771,7 @@ Nine documents cover most food businesses: CIPC registration, SARS tax, a Busine
 
 > **In plain words:** Most food businesses need: company or tax registration, a municipal business licence, the food certificate (COA), zoning approval, a fire certificate, a gas certificate if you use gas, a liquor licence if you sell alcohol, and food safety training certificates for everyone who handles food.
 
-You may not begin trading in a business that requires a licence before the licence has been issued. Trading without a valid licence is punishable with a fine. Licensing is governed by the Business Act 71 of 1991.
+You may not begin trading in a business that requires a licence before the licence has been issued. Trading without a valid licence is punishable with a fine. Licensing is governed by the Businesses Act 71 of 1991.
 
 > **In plain words:** You cannot open until the licence is in your hand. Opening early can get you fined.
 
@@ -5801,7 +5801,7 @@ Do not make health claims. "Boosts immunity" or "helps with diabetes" can push y
 
 ### The wider law
 
-Food businesses are governed by the Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972, the Consumer Protection Act 68 of 2008, the Business Act 71 of 1991, the Agricultural Products Standards Act 119 of 1990, the Occupational Health and Safety Act 85 of 1993, and the Standards Act 8 of 2008.
+Food businesses are governed by the Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972, the Consumer Protection Act 68 of 2008, the Businesses Act 71 of 1991, the Agricultural Products Standards Act 119 of 1990, the Occupational Health and Safety Act 85 of 1993, and the Standards Act 8 of 2008.
 
 > **In plain words:** Several laws apply to food. The important ones for a small business are the food hygiene rules (R638), the labelling rules (R146), consumer law, and the municipal licence.
 
@@ -5859,9 +5859,9 @@ Plain meanings for the terms used in this file. The full list is in [Glossary](#
 
 ### You need a municipal licence
 
-These are health establishments under the Business Act.
+These are health establishments under the Businesses Act.
 
-The categories that typically require a municipal trading licence under the Business Act include health establishments: businesses providing health, beauty, or body treatment services, including hairdressers, barbers, beauty salons, nail salons, tattoo studios, and similar premises.
+The categories that typically require a municipal trading licence under the Businesses Act include health establishments: businesses providing health, beauty, or body treatment services, including hairdressers, barbers, beauty salons, nail salons, tattoo studios, and similar premises.
 
 No person may carry on certain service-related businesses unless they hold a licence issued by the council, local authority or municipality where the business premises are situated.
 
@@ -5963,7 +5963,7 @@ Usually not, if you sell ordinary goods like clothing, homeware, stationery, gif
 
 You do need one if you sell food. See [Food business](#doc-food-business).
 
-Food retail, meaning any business that sells, prepares, or handles food for sale to the public, including spaza shops, requires a municipal trading licence under the Business Act.
+Food retail, meaning any business that sells, prepares, or handles food for sale to the public, including spaza shops, requires a municipal trading licence under the Businesses Act.
 
 A general trader's licence is still required by some municipalities for a fixed shop. Ask your municipal Business Licensing office. Market stalls usually need a trading permit from the market or the municipality rather than a business licence.
 
@@ -6354,7 +6354,7 @@ South African business is full of abbreviations. Here is what they mean, in plai
 
 **Pty Ltd** — Private company. A separate legal person from you.
 
-**Sole proprietor** — You, trading as yourself. Not a separate legal person. No registration needed.
+**Sole proprietor** — You, trading as yourself. Not a separate legal person. No company registration needed, but you still need to register with SARS for tax.
 
 **Beneficial ownership filing** — A free CIPC filing naming the real humans behind a company. Compulsory.
 
@@ -6494,7 +6494,7 @@ South African business is full of abbreviations. Here is what they mean, in plai
 
 **R146** — The 2012 regulation on food labelling and advertising.
 
-**Business Act licence** — A municipal trading licence required for food, health and entertainment businesses.
+**Businesses Act licence** — A municipal trading licence required for food, health and entertainment businesses.
 
 **Zoning certificate** — Municipal confirmation that your premises may legally be used for your kind of business.
 
@@ -6506,7 +6506,7 @@ South African business is full of abbreviations. Here is what they mean, in plai
 
 **NCR** — National Credit Regulator. You must register with them before extending credit.
 
-**FSP** — Financial Services Provider. A licence required to sell or advise on financial products.
+**FSP** — Financial Services Provider. A business licensed under FAIS to give advice on, or sell, financial products. Anyone who does this must hold an FSP licence or work as a representative of a licensed FSP.
 
 **FAIS** — Financial Advisory and Intermediary Services Act. The law behind FSP licensing.
 
@@ -6847,7 +6847,7 @@ Official sources are marked **[Official]**. These are government or regulator pu
 | Consumer Protection Act 68 of 2008 | Consumer rights, implied warranty of quality (s55, s56), plain language, cancellation (s16, s17) | `01-core/04`, all business types |
 | Electronic Communications and Transactions Act 25 of 2002 | Online selling: disclosure (s43), cooling-off (s44), performance (s46), scope (s42) | `01-core/04`, `04-business-types/04` |
 | Protection of Personal Information Act 4 of 2013 | Data protection, information officer registration (s55) | `01-core/02`, `03-documents/01` |
-| Business Act 71 of 1991 | Municipal trading licences for food, health and entertainment businesses | `01-core/04`, `04-business-types/02`, `03` |
+| Businesses Act 71 of 1991 | Municipal trading licences for food, health and entertainment businesses | `01-core/04`, `04-business-types/02`, `03` |
 | Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 | Food hygiene (R638 of 2018), food labelling (R146 of 2012), cosmetics | `04-business-types/02`, `03` |
 | Second-Hand Goods Act 6 of 2009 | Dealer registration with SAPS, transaction registers, motor vehicle records | `04-business-types/01`, `04` |
 | National Road Traffic Act 93 of 1996 | Vehicle registration, business register numbers, motor trade numbers, roadworthiness | `01-core/05`, `04-business-types/01` |
@@ -7113,7 +7113,7 @@ Magistrates' court civil jurisdiction (district R200,000, regional R200,000 to R
 **[Official] Regulation R146 of 2012** — Labelling and Advertising of Foodstuffs. Available through gov.za.
 
 Secondary:
-- Food Focus — https://www.foodfocus.co.za/home/whats-hot/Starting-a-new-food-business/How-do-I-get-a-Certificate-of-Acceptability — the COA process and the Business Act licensing position.
+- Food Focus — https://www.foodfocus.co.za/home/whats-hot/Starting-a-new-food-business/How-do-I-get-a-Certificate-of-Acceptability — the COA process and the Businesses Act licensing position.
 - ASC Food Safety — https://ascfoodsafety.com/steps-to-starting-a-food-business-in-south-africa/ — the nine-document list and realistic timelines. This is a commercial training provider, so treat the timelines as a guide and confirm with your municipality.
 
 Your actual authority is your municipal Environmental Health Practitioner. Contact them before relying on any web source.
@@ -7122,7 +7122,7 @@ Your actual authority is your municipal Environmental Health Practitioner. Conta
 
 ### Business licensing
 
-**Business Act 71 of 1991.** Administered by your local municipality, not by national government. There is no single national list of licensable businesses, because municipalities apply the Act through their own by-laws.
+**Businesses Act 71 of 1991.** Administered by your local municipality, not by national government. There is no single national list of licensable businesses, because municipalities apply the Act through their own by-laws.
 
 Secondary:
 - SME South Africa — https://smesouthafrica.co.za/sme-guides/business-licences-in-south-africa/

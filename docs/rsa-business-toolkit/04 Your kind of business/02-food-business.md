@@ -61,7 +61,7 @@ Nine documents cover most food businesses: CIPC registration, SARS tax, a Busine
 
 > **In plain words:** Most food businesses need: company or tax registration, a municipal business licence, the food certificate (COA), zoning approval, a fire certificate, a gas certificate if you use gas, a liquor licence if you sell alcohol, and food safety training certificates for everyone who handles food.
 
-You may not begin trading in a business that requires a licence before the licence has been issued. Trading without a valid licence is punishable with a fine. Licensing is governed by the Business Act 71 of 1991.
+You may not begin trading in a business that requires a licence before the licence has been issued. Trading without a valid licence is punishable with a fine. Licensing is governed by the Businesses Act 71 of 1991.
 
 > **In plain words:** You cannot open until the licence is in your hand. Opening early can get you fined.
 
@@ -91,7 +91,7 @@ Do not make health claims. "Boosts immunity" or "helps with diabetes" can push y
 
 ## The wider law
 
-Food businesses are governed by the Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972, the Consumer Protection Act 68 of 2008, the Business Act 71 of 1991, the Agricultural Products Standards Act 119 of 1990, the Occupational Health and Safety Act 85 of 1993, and the Standards Act 8 of 2008.
+Food businesses are governed by the Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972, the Consumer Protection Act 68 of 2008, the Businesses Act 71 of 1991, the Agricultural Products Standards Act 119 of 1990, the Occupational Health and Safety Act 85 of 1993, and the Standards Act 8 of 2008.
 
 > **In plain words:** Several laws apply to food. The important ones for a small business are the food hygiene rules (R638), the labelling rules (R146), consumer law, and the municipal licence.
 
