@@ -9,7 +9,7 @@ Tasks the orchestrator committed to doing when work packages merge into `main`. 
 
 ## When WP-11 (design system) merges
 
-WP-11 pass 2 was clean; pass 3 runs on the frozen diff at `8710091`. The pass-2 minors and nits go to follow-up package WP-11b, which gets its own two review passes:
+Superseded on 2026-09-16. Pass 3 was NOT clean: it rated the `Badge` no-wrap overflow a major (a 38-character Afrikaans label makes a 320px page 336px wide, a WCAG 1.4.10 reflow failure), so the diff had to change anyway. Every item below was folded into the WP-11 fix round on branch `worktree-agent-a2273231b664d89f3` instead of a separate WP-11b package, together with the pass-3 findings and the D5 AI-notice and sources demos. The package now needs two fresh consecutive clean passes. Kept here for the record:
 
 - [ ] `Icon` inside prose: `.st-icon { display: inline-block; vertical-align: -0.125em }`; the global `svg { display: block }` rule must not break inline icons in error messages.
 - [ ] `Badge` must wrap, so long Afrikaans labels never cause horizontal scrolling at 320px (WCAG 1.4.10).
