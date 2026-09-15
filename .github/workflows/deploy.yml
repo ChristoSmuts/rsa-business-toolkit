@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify
+    uses: ./.github/workflows/ci.yml
+
+  build:
+    name: Build for Pages
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - id: pages
+        uses: actions/configure-pages@v6
+      - run: pnpm install --frozen-lockfile
+      - name: Build
+        env:
+          BASE_PATH: ${{ vars.BASE_PATH || format('{0}/', steps.pages.outputs.base_path) }}
+          SITE_URL: ${{ vars.SITE_URL || steps.pages.outputs.origin }}
+        run: pnpm build
+      - name: Keep underscore folders on Pages
+        run: touch dist/.nojekyll
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

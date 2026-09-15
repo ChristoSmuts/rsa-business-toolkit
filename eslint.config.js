@@ -7,6 +7,7 @@ import prettier from 'eslint-config-prettier';
 export default defineConfig(
   {
     ignores: [
+      '.claude/',
       'dist/',
       '.astro/',
       'node_modules/',

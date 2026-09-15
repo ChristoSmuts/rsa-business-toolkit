@@ -1,0 +1,33 @@
+name: Update visual baselines
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  BASE_PATH: ${{ vars.BASE_PATH || '/business-toolkit/' }}
+  SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io', github.repository_owner) }}
+
+jobs:
+  update:
+    name: Regenerate Linux screenshots
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:visual:update
+      - uses: actions/upload-artifact@v7
+        with:
+          name: linux-visual-baselines
+          path: tests/e2e/__screenshots__/linux
+          retention-days: 14

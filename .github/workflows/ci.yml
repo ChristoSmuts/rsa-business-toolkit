@@ -1,0 +1,198 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_call:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name != 'workflow_call' }}
+
+permissions:
+  contents: read
+
+env:
+  BASE_PATH: ${{ vars.BASE_PATH || '/business-toolkit/' }}
+  SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io', github.repository_owner) }}
+  PLAYWRIGHT_VERSION: '1.63.0'
+
+jobs:
+  quality:
+    name: Lint, types, unit and content checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - name: Generated content is up to date
+        run: pnpm content:drift
+      - run: pnpm test:content
+      - name: Afrikaans fidelity
+        run: pnpm content:fidelity
+
+  build:
+    name: Build site
+    needs: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist
+          retention-days: 7
+          include-hidden-files: true
+
+  e2e:
+    name: E2E (${{ matrix.project }})
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [chromium, webkit, mobile, nojs]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+      - name: Cache Playwright browsers
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
+      - run: pnpm exec playwright install --with-deps chromium webkit
+      - run: pnpm exec playwright test --project ${{ matrix.project }}
+      - if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report-${{ matrix.project }}
+          path: |
+            playwright-report
+            test-results
+          retention-days: 7
+
+  a11y:
+    name: Accessibility (axe)
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+      - uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:a11y
+      - if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: a11y-report
+          path: test-results
+          retention-days: 7
+
+  visual:
+    name: Visual regression
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+      - uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Compare screenshots (skipped until Linux baselines are committed)
+        run: |
+          if [ -d tests/e2e/__screenshots__/linux ]; then
+            pnpm test:visual
+          else
+            echo "No Linux baselines yet. Run the 'Update visual baselines' workflow and commit the artifact."
+          fi
+      - if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: visual-diffs
+          path: test-results
+          retention-days: 7
+
+  lighthouse:
+    name: Lighthouse budgets
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+      - name: Run Lighthouse CI
+        run: |
+          if node -e "process.exit(require('./package.json').scripts.lhci ? 0 : 1)"; then
+            pnpm lhci
+          else
+            echo "lhci script not defined yet"
+          fi
+      - if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse
+          path: .lighthouseci
+          if-no-files-found: ignore
+          retention-days: 7

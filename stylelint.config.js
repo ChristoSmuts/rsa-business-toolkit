@@ -30,5 +30,5 @@ export default {
     'selector-class-pattern': null,
     'no-descending-specificity': null,
   },
-  ignoreFiles: ['dist/**', 'node_modules/**', 'coverage/**', 'playwright-report/**'],
+  ignoreFiles: ['.claude/**', 'dist/**', 'node_modules/**', 'coverage/**', 'playwright-report/**'],
 };
