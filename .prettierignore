@@ -1,7 +1,7 @@
 docs/
 src/data/
 pnpm-lock.yaml
-dist/
+/dist/
 .astro/
 playwright-report/
 test-results/
