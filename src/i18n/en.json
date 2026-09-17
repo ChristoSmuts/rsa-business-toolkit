@@ -2,10 +2,10 @@
   "site": {
     "name": "SA Business Toolkit",
     "tagline": "Start and run a one-person business in South Africa",
-    "description": "A free guide for one person who starts and runs a business in South Africa. Plain words, checked facts, checklists and templates.",
-    "disclaimerShort": "Written by AI. Checked against official sources. Not legal, tax or financial advice.",
-    "disclaimerLong": "An AI assistant (Claude, made by Anthropic) wrote this guide. Fees, thresholds, form numbers and legal rules were checked against official South African sources. AI can still be wrong, and rules change often. Before you pay, sign or file something, open the official link and check the number yourself. This is general information. It is not legal, tax or financial advice.",
-    "checkedOn": "Facts checked against official sources on {date}.",
+    "description": "A free guide for one person who starts and runs a business in South Africa. Plain words, AI-checked facts, checklists and templates.",
+    "disclaimerShort": "Written by AI, and checked by AI against the sources in the sources register. Not legal, tax or financial advice.",
+    "disclaimerLong": "An AI assistant (Claude, made by Anthropic) wrote this guide. An AI checked the fees, thresholds, form numbers and legal rules against the South African sources in the sources register, where official ones are marked. No person has checked them. AI can still be wrong, and rules change often. Before you pay, sign or file something, open the official link and check the number yourself. This is general information. It is not legal, tax or financial advice.",
+    "checkedOn": "An AI checked the facts against the sources in the sources register on {date}.",
     "howThisWasMade": "How this was made and how to check it",
     "titleTemplate": "{page} · {section} · {site}",
     "titleTemplateShort": "{page} · {site}",
@@ -44,7 +44,7 @@
       },
       "lookup": {
         "name": "Look it up",
-        "description": "Glossary, master checklist and official sources."
+        "description": "Glossary, master checklist and sources."
       }
     },
     "toolDescriptions": {
@@ -52,7 +52,7 @@
       "checklist": "Tick each item when you finish it",
       "templates": "Fill in and print",
       "glossary": "Short words explained",
-      "sources": "Official links for every fact"
+      "sources": "The sources behind the facts in this guide"
     },
     "findMyPath": "Find my path",
     "myPath": "My path",
@@ -125,8 +125,8 @@
   },
   "home": {
     "heroTitle": "Start and run your business in South Africa",
-    "heroLead": "A free guide for one person who is the owner and the only worker. Plain words, checked facts, and only the steps that apply to you.",
-    "heroVerify": "Written by AI. Facts checked against official sources on {date}. Check the official link before you pay or sign.",
+    "heroLead": "A free guide for one person who is the owner and the only worker. Plain words, AI-checked facts, and only the steps that apply to you.",
+    "heroVerify": "Written by AI. An AI checked the facts against the sources in the sources register on {date}. No person has checked them yet. Check the official link before you pay or sign.",
     "findMyPath": "Find my path",
     "findMyPathHint": "Answer {total} short questions",
     "knowWhatINeed": "I know what I need",
@@ -175,8 +175,8 @@
     },
     "trust": {
       "label": "Why you can use this guide",
-      "checked": "Facts checked on {date}",
-      "sources": "An official link for every fact",
+      "checked": "An AI checked the facts on {date}",
+      "sources": "Sources listed where facts are stated, with official ones marked",
       "free": "Free, and you do not need an account",
       "private": "Your answers stay on this device",
       "howThisWasMade": "How this was made"
@@ -208,7 +208,7 @@
     "openColumn": "Open",
     "readBoth": "If two kinds of business apply to you, read both pages.",
     "effortHeading": "How much setup effort each kind of business needs",
-    "effortLead": "This shows about how much setup effort each kind of business needs before you can legally trade. The list goes from the least effort to the most.",
+    "effortLead": "This list shows how much setup effort each kind of business needs before you can legally trade. It goes from the least effort to the most. The levels are only a rough guide.",
     "effortMeter": "Setup effort for {name}: {level}",
     "mainReason": "Main reason",
     "everyoneNeeds": "What everyone needs, for every kind of business",
@@ -229,8 +229,6 @@
     "hide": "Hide",
     "showNamed": "Show {name}",
     "hideNamed": "Hide {name}",
-    "sourcesForPage": "Sources for this page",
-    "verifiedOn": "Checked on {date}",
     "hiddenSections": {
       "one": "{count} section is hidden",
       "other": "{count} sections are hidden"
@@ -268,6 +266,48 @@
     "checklistComplete": "Checklist complete",
     "checklistCompleteNamed": "{title}: checklist complete",
     "sectionLabel": "Section"
+  },
+  "trust": {
+    "aiNotice": {
+      "label": "About this page",
+      "body": "Written by AI (Claude, Anthropic). An AI checked it against the sources below on {date}. No person has checked it yet. Rules change: check the official source before you act. Not legal, tax or financial advice.",
+      "bodyNoPageSources": "Written by AI (Claude, Anthropic). An AI checked it on {date} against the sources in the sources register, where official sources are marked. No person has checked it yet. Rules change: check the official source before you act. Not legal, tax or financial advice.",
+      "bodyHumanChecked": "Written by AI (Claude, Anthropic). {reviewer} checked it against the sources below on {date}. Rules change: check the official source before you act. Not legal, tax or financial advice.",
+      "bodyHumanCheckedNoPageSources": "Written by AI (Claude, Anthropic). {reviewer} checked it on {date} against the sources in the sources register, where official sources are marked. Rules change: check the official source before you act. Not legal, tax or financial advice.",
+      "link": "How this was made"
+    },
+    "status": {
+      "aiChecked": "AI-checked",
+      "humanChecked": "Checked by {reviewer}",
+      "aiCheckedMeans": "An AI compared the facts on this page with the sources. An AI can miss mistakes.",
+      "humanCheckedMeans": "{reviewer} checked the facts on this page against the sources. Mistakes are still possible, and rules can change after that date."
+    },
+    "sources": {
+      "heading": "Sources for this page",
+      "count": {
+        "one": "{count} source",
+        "other": "{count} sources"
+      },
+      "officialLabel": "Official source",
+      "supportsLabel": "What this source supports",
+      "externalLink": "Opens the official website",
+      "externalLinkOther": "Opens a website that is not official",
+      "actsHeading": "Acts and regulations",
+      "noPageSources": "This page has no sources of its own.",
+      "seeRegister": "See the full sources register",
+      "seeHowMade": "See how this guide was made"
+    },
+    "fact": {
+      "checked": "AI-checked {date}",
+      "source": "Source: {title}",
+      "sourceNamed": "Source for this fact: {title}"
+    },
+    "unverified": {
+      "label": "Not confirmed",
+      "body": "An AI could not confirm this in an official source. Before you act, ask the office that is responsible for it, for example SARS or CIPC."
+    },
+    "checklistReminder": "This checklist helps you remember what to do. Ticking every item does not prove that you follow the law.",
+    "templateRulesChecked": "An AI checked the legal rules for what this document must show on {date}."
   },
   "wizard": {
     "title": "Find my path",
@@ -522,6 +562,7 @@
       "listHint": "Add or remove lines so this is true for your business.",
       "addListItem": "Add a line",
       "removeListItem": "Remove line: {text}",
+      "removeListItemEmpty": "Remove empty line {n}",
       "registerFirst": "Before you use this notice, register yourself as the Information Officer. It is free."
     },
     "line": {
@@ -533,6 +574,7 @@
     },
     "addLine": "Add line",
     "removeLine": "Remove line: {description}",
+    "removeLineEmpty": "Remove empty line {n}",
     "subtotal": "Subtotal",
     "subtotalExclVat": "Subtotal (excl. VAT)",
     "vat": "VAT ({rate}%)",
@@ -611,18 +653,18 @@
     "copiedNamed": "Prompt {n} copied",
     "copyFailed": "Could not copy. The text is selected. Copy it with your keyboard, or press and hold it on a phone.",
     "fillFromProfile": "Fill from my profile",
-    "fillFromProfileNamed": "Fill prompt {n} from my profile",
+    "fillFromProfileNamed": "Fill prompt {n} from my profile: {title}",
     "undoFill": "Undo",
-    "undoFillNamed": "Undo the fill in prompt {n}",
+    "undoFillNamed": "Undo filling in prompt {n}: {title}",
     "placeholdersRemaining": {
       "one": "{count} blank left to fill in",
       "other": "{count} blanks left to fill in"
     },
     "allFilled": "All blanks are filled in.",
     "showFull": "Show full prompt",
-    "showFullNamed": "Show full prompt: {title}",
+    "showFullNamed": "Show full prompt {n}: {title}",
     "showLess": "Show less",
-    "showLessNamed": "Show less of prompt: {title}",
+    "showLessNamed": "Show less of prompt {n}: {title}",
     "placeholderHint": "Words in [square brackets] are blanks. Replace them with your own details.",
     "stepperLabel": "Prompts in this file",
     "promptLabel": "Prompt {n}: {title}"
@@ -702,7 +744,7 @@
   },
   "sources": {
     "title": "Sources",
-    "intro": "The official links behind the facts in this guide.",
+    "intro": "The sources behind the facts in this guide. Official sources are marked.",
     "legendTitle": "What the labels mean",
     "official": "Official",
     "officialDescription": "A government or regulator website.",
@@ -729,7 +771,7 @@
   "about": {
     "title": "About this guide",
     "aiHeading": "How this was made",
-    "aiSummary": "An AI assistant (Claude, made by Anthropic) wrote this guide. It checked fees, thresholds, form numbers and legal rules against official South African sources. No lawyer, accountant or tax practitioner reviewed it. Check the official link before you act.",
+    "aiSummary": "An AI assistant (Claude, made by Anthropic) wrote this guide. It checked fees, thresholds, form numbers and legal rules against the South African sources in the sources register, where official ones are marked. No lawyer, accountant or tax practitioner reviewed it. Check the official link before you act.",
     "aiLink": "Read how this was made and how to check it",
     "licenceHeading": "Licence",
     "licence": "Use it, copy it, change it, give it to someone else. You do not need to name the authors. If you give it to someone else, keep the page on how this was made and the sources with it.",

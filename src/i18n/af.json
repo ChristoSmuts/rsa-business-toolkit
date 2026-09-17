@@ -2,10 +2,10 @@
   "site": {
     "name": "SA Business Toolkit",
     "tagline": "Begin en bestuur ’n eenpersoonbesigheid in Suid-Afrika",
-    "description": "’n Gratis gids vir een persoon wat ’n besigheid in Suid-Afrika begin en bestuur. Gewone taal, gekontroleerde feite, kontrolelyste en sjablone.",
-    "disclaimerShort": "Deur KI geskryf. Teen amptelike bronne nagegaan. Nie regs-, belasting- of finansiële advies nie.",
-    "disclaimerLong": "’n KI-assistent (Claude, gemaak deur Anthropic) het hierdie gids geskryf. Fooie, drempels, vormnommers en wetlike reëls is teen amptelike Suid-Afrikaanse bronne nagegaan. KI kan steeds foute maak, en reëls verander dikwels. Maak die amptelike skakel oop en kontroleer die getal self voordat jy iets betaal, teken of indien. Dit is algemene inligting. Dit is nie regs-, belasting- of finansiële advies nie.",
-    "checkedOn": "Feite op {date} teen amptelike bronne nagegaan.",
+    "description": "’n Gratis gids vir een persoon wat ’n besigheid in Suid-Afrika begin en bestuur. Gewone taal, feite wat ’n KI in die Engelse teks nagegaan het, kontrolelyste en sjablone.",
+    "disclaimerShort": "Deur KI geskryf. ’n KI het die Engelse teks teen die bronne in die bronneregister nagegaan. Nie regs-, belasting- of finansiële advies nie.",
+    "disclaimerLong": "’n KI-assistent (Claude, gemaak deur Anthropic) het hierdie gids geskryf. ’n KI het die fooie, drempels, vormnommers en wetlike reëls in die Engelse teks nagegaan teen die Suid-Afrikaanse bronne in die bronneregister, waar amptelike bronne gemerk is. Geen mens het hulle nagegaan nie. KI kan steeds foute maak, en reëls verander dikwels. Maak die amptelike skakel oop en kontroleer die getal self voordat jy iets betaal, teken of indien. Dit is algemene inligting. Dit is nie regs-, belasting- of finansiële advies nie.",
+    "checkedOn": "’n KI het die feite in die Engelse teks op {date} teen die bronne in die bronneregister nagegaan.",
     "howThisWasMade": "Hoe dit gemaak is en hoe om dit na te gaan",
     "titleTemplate": "{page} · {section} · {site}",
     "titleTemplateShort": "{page} · {site}",
@@ -44,7 +44,7 @@
       },
       "lookup": {
         "name": "Slaan dit na",
-        "description": "Woordelys, hoofkontrolelys en amptelike bronne."
+        "description": "Woordelys, hoofkontrolelys en bronne."
       }
     },
     "toolDescriptions": {
@@ -52,7 +52,7 @@
       "checklist": "Merk elke item af wanneer jy klaar is",
       "templates": "Vul in en druk",
       "glossary": "Kort woorde verduidelik",
-      "sources": "Amptelike skakels vir elke feit"
+      "sources": "Die bronne agter die feite in hierdie gids"
     },
     "findMyPath": "Vind my roete",
     "myPath": "My roete",
@@ -108,7 +108,7 @@
     },
     "mtNotice": {
       "title": "Masjienvertaling",
-      "body": "’n KI het hierdie bladsy uit Engels vertaal. Niemand het die vertaling nog nagegaan nie. As iets nie duidelik is nie, lees die Engelse weergawe.",
+      "body": "’n KI het hierdie bladsy uit Engels vertaal. Geen mens het die vertaling nog nagegaan nie. As iets nie duidelik is nie, lees die Engelse weergawe.",
       "link": "Lees die Engelse weergawe"
     },
     "fallbackNotice": {
@@ -125,8 +125,8 @@
   },
   "home": {
     "heroTitle": "Begin en bestuur jou besigheid in Suid-Afrika",
-    "heroLead": "’n Gratis gids vir een persoon wat die eienaar en die enigste werker is. Gewone taal, gekontroleerde feite, en net die stappe wat vir jou geld.",
-    "heroVerify": "Deur KI geskryf. Feite op {date} teen amptelike bronne nagegaan. Kontroleer die amptelike skakel voordat jy betaal of teken.",
+    "heroLead": "’n Gratis gids vir een persoon wat die eienaar en die enigste werker is. Gewone taal, feite wat ’n KI in die Engelse teks nagegaan het, en net die stappe wat vir jou geld.",
+    "heroVerify": "Deur KI geskryf. ’n KI het die feite in die Engelse teks op {date} teen die bronne in die bronneregister nagegaan. Geen mens het hulle nog nagegaan nie. Kontroleer die amptelike skakel voordat jy betaal of teken.",
     "findMyPath": "Vind my roete",
     "findMyPathHint": "Beantwoord {total} kort vrae",
     "knowWhatINeed": "Ek weet wat ek nodig het",
@@ -175,8 +175,8 @@
     },
     "trust": {
       "label": "Waarom jy hierdie gids kan gebruik",
-      "checked": "Feite op {date} nagegaan",
-      "sources": "’n Amptelike skakel vir elke feit",
+      "checked": "Engelse teks op {date} deur KI nagegaan",
+      "sources": "Bronne gelys waar feite gestel word, met amptelike bronne gemerk",
       "free": "Gratis, en jy het nie ’n rekening nodig nie",
       "private": "Jou antwoorde bly op hierdie toestel",
       "howThisWasMade": "Hoe dit gemaak is"
@@ -208,7 +208,7 @@
     "openColumn": "Maak oop",
     "readBoth": "As twee soorte besigheid vir jou geld, lees albei bladsye.",
     "effortHeading": "Hoeveel werk elke soort besigheid nodig het om te begin",
-    "effortLead": "Dit wys omtrent hoeveel werk elke soort besigheid vra voordat jy wettig handel kan dryf. Die lys gaan van die minste werk na die meeste.",
+    "effortLead": "Hierdie lys wys hoeveel werk elke soort besigheid vra voordat jy wettig handel kan dryf. Dit gaan van die minste werk na die meeste. Die vlakke is net ’n rowwe riglyn.",
     "effortMeter": "Werk om te begin vir {name}: {level}",
     "mainReason": "Hoofrede",
     "everyoneNeeds": "Wat almal nodig het, vir elke soort besigheid",
@@ -229,8 +229,6 @@
     "hide": "Versteek",
     "showNamed": "Wys {name}",
     "hideNamed": "Versteek {name}",
-    "sourcesForPage": "Bronne vir hierdie bladsy",
-    "verifiedOn": "Nagegaan op {date}",
     "hiddenSections": {
       "one": "{count} afdeling is versteek",
       "other": "{count} afdelings is versteek"
@@ -268,6 +266,48 @@
     "checklistComplete": "Kontrolelys voltooi",
     "checklistCompleteNamed": "{title}: kontrolelys voltooi",
     "sectionLabel": "Afdeling"
+  },
+  "trust": {
+    "aiNotice": {
+      "label": "Oor hierdie bladsy",
+      "body": "Deur KI geskryf (Claude, Anthropic). ’n KI het die Engelse teks op {date} teen die bronne hieronder nagegaan. Geen mens het dit nog nagegaan nie. Reëls verander: kontroleer die amptelike bron voordat jy iets doen. Dit is nie regs-, belasting- of finansiële advies nie.",
+      "bodyNoPageSources": "Deur KI geskryf (Claude, Anthropic). ’n KI het die Engelse teks op {date} nagegaan teen die bronne in die bronneregister, waar amptelike bronne gemerk is. Geen mens het dit nog nagegaan nie. Reëls verander: kontroleer die amptelike bron voordat jy iets doen. Dit is nie regs-, belasting- of finansiële advies nie.",
+      "bodyHumanChecked": "Deur KI geskryf (Claude, Anthropic). {reviewer} het die Engelse teks op {date} teen die bronne hieronder nagegaan. Reëls verander: kontroleer die amptelike bron voordat jy iets doen. Dit is nie regs-, belasting- of finansiële advies nie.",
+      "bodyHumanCheckedNoPageSources": "Deur KI geskryf (Claude, Anthropic). {reviewer} het die Engelse teks op {date} nagegaan teen die bronne in die bronneregister, waar amptelike bronne gemerk is. Reëls verander: kontroleer die amptelike bron voordat jy iets doen. Dit is nie regs-, belasting- of finansiële advies nie.",
+      "link": "Hoe dit gemaak is"
+    },
+    "status": {
+      "aiChecked": "KI-nagegaan",
+      "humanChecked": "Deur {reviewer} nagegaan",
+      "aiCheckedMeans": "’n KI het die feite in die Engelse teks met die bronne vergelyk. ’n KI kan foute oorsien.",
+      "humanCheckedMeans": "{reviewer} het die feite in die Engelse teks teen die bronne nagegaan. Foute is steeds moontlik, en reëls kan ná daardie datum verander."
+    },
+    "sources": {
+      "heading": "Bronne vir hierdie bladsy",
+      "count": {
+        "one": "{count} bron",
+        "other": "{count} bronne"
+      },
+      "officialLabel": "Amptelike bron",
+      "supportsLabel": "Wat hierdie bron ondersteun",
+      "externalLink": "Maak die amptelike webwerf oop",
+      "externalLinkOther": "Maak ’n webwerf oop wat nie amptelik is nie",
+      "actsHeading": "Wette en regulasies",
+      "noPageSources": "Hierdie bladsy het geen eie bronne nie.",
+      "seeRegister": "Sien die volledige bronneregister",
+      "seeHowMade": "Sien hoe hierdie gids gemaak is"
+    },
+    "fact": {
+      "checked": "KI-nagegaan op {date}",
+      "source": "Bron: {title}",
+      "sourceNamed": "Bron vir hierdie feit: {title}"
+    },
+    "unverified": {
+      "label": "Nie bevestig nie",
+      "body": "’n KI kon dit nie in ’n amptelike bron bevestig nie. Vra die kantoor wat daarvoor verantwoordelik is, byvoorbeeld SARS of CIPC, voordat jy iets doen."
+    },
+    "checklistReminder": "Hierdie kontrolelys help jou onthou wat om te doen. As jy elke item afmerk, bewys dit nie dat jy die wet nakom nie.",
+    "templateRulesChecked": "’n KI het die wetlike reëls oor wat hierdie dokument moet wys, op {date} nagegaan."
   },
   "wizard": {
     "title": "Vind my roete",
@@ -519,9 +559,10 @@
       "howLongWeKeepIt": "Hoe lank ons dit bewaar",
       "marketing": "Bemarking",
       "yourRights": "Jou regte",
-      "listHint": "Voeg reëls by of haal reëls uit sodat dit waar is vir jou besigheid.",
-      "addListItem": "Voeg ’n reël by",
-      "removeListItem": "Verwyder reël: {text}",
+      "listHint": "Voeg items by of verwyder items sodat dit waar is vir jou besigheid.",
+      "addListItem": "Voeg ’n item by",
+      "removeListItem": "Verwyder item: {text}",
+      "removeListItemEmpty": "Verwyder leë item {n}",
       "registerFirst": "Registreer jouself as die Inligtingsbeampte voordat jy hierdie kennisgewing gebruik. Dit is gratis."
     },
     "line": {
@@ -533,6 +574,7 @@
     },
     "addLine": "Voeg reël by",
     "removeLine": "Verwyder reël: {description}",
+    "removeLineEmpty": "Verwyder leë reël {n}",
     "subtotal": "Subtotaal",
     "subtotalExclVat": "Subtotaal (BTW uitgesluit)",
     "vat": "BTW ({rate}%)",
@@ -540,7 +582,7 @@
     "totalInclVat": "Totaal (BTW ingesluit)",
     "amountDue": "Verskuldig",
     "totalsLabel": "Totale",
-    "noVatNotice": "Jy is nie vir BTW geregistreer nie. Hierdie faktuur het geen BTW-reël, geen BTW-nommer en nie die woorde “Tax Invoice” nie.",
+    "noVatNotice": "Jy is nie vir BTW geregistreer nie. Hierdie faktuur wys nie BTW, ’n BTW-nommer of die woorde “Tax Invoice” nie.",
     "ptyNotice": "’n Pty Ltd moet sy geregistreerde naam en registrasienommer wys. Die wet vereis dit.",
     "requiredItems": "{present} van {total} verpligte items is ingevul",
     "missing": "Ontbreek: {list}",
@@ -611,18 +653,18 @@
     "copiedNamed": "Opdrag {n} gekopieer",
     "copyFailed": "Kon nie kopieer nie. Die teks is gekies. Kopieer dit met jou sleutelbord, of druk lank daarop op ’n foon.",
     "fillFromProfile": "Vul in uit my profiel",
-    "fillFromProfileNamed": "Vul opdrag {n} in uit my profiel",
+    "fillFromProfileNamed": "Vul opdrag {n} in uit my profiel: {title}",
     "undoFill": "Ontdoen",
-    "undoFillNamed": "Ontdoen die invulling in opdrag {n}",
+    "undoFillNamed": "Ontdoen die invulling in opdrag {n}: {title}",
     "placeholdersRemaining": {
       "one": "{count} oop plek om in te vul",
       "other": "{count} oop plekke om in te vul"
     },
     "allFilled": "Alle oop plekke is ingevul.",
     "showFull": "Wys die hele opdrag",
-    "showFullNamed": "Wys die hele opdrag: {title}",
+    "showFullNamed": "Wys die hele opdrag {n}: {title}",
     "showLess": "Wys minder",
-    "showLessNamed": "Wys minder van die opdrag: {title}",
+    "showLessNamed": "Wys minder van opdrag {n}: {title}",
     "placeholderHint": "Woorde in [vierkantige hakies] is oop plekke. Vervang dit met jou eie besonderhede.",
     "stepperLabel": "Opdragte in hierdie lêer",
     "promptLabel": "Opdrag {n}: {title}"
@@ -702,7 +744,7 @@
   },
   "sources": {
     "title": "Bronne",
-    "intro": "Die amptelike skakels agter die feite in hierdie gids.",
+    "intro": "Die bronne agter die feite in hierdie gids. Amptelike bronne is gemerk.",
     "legendTitle": "Wat die etikette beteken",
     "official": "Amptelik",
     "officialDescription": "’n Webwerf van die regering of ’n reguleerder.",
@@ -729,7 +771,7 @@
   "about": {
     "title": "Oor hierdie gids",
     "aiHeading": "Hoe dit gemaak is",
-    "aiSummary": "’n KI-assistent (Claude, gemaak deur Anthropic) het hierdie gids geskryf. Dit het fooie, drempels, vormnommers en wetlike reëls teen amptelike Suid-Afrikaanse bronne nagegaan. Geen regsgeleerde, rekenmeester of belastingpraktisyn het dit nagegaan nie. Kontroleer die amptelike skakel voordat jy iets doen.",
+    "aiSummary": "’n KI-assistent (Claude, gemaak deur Anthropic) het hierdie gids geskryf. Dit het die fooie, drempels, vormnommers en wetlike reëls in die Engelse teks nagegaan teen die Suid-Afrikaanse bronne in die bronneregister, waar amptelike bronne gemerk is. Geen regsgeleerde, rekenmeester of belastingpraktisyn het dit nagegaan nie. Kontroleer die amptelike skakel voordat jy iets doen.",
     "aiLink": "Lees hoe dit gemaak is en hoe om dit na te gaan",
     "licenceHeading": "Lisensie",
     "licence": "Gebruik dit, kopieer dit, verander dit, gee dit vir iemand anders. Jy hoef nie die skrywers te noem nie. As jy dit aan iemand anders gee, hou die bladsy oor hoe dit gemaak is en die bronne daarby.",
@@ -793,7 +835,7 @@
   },
   "a11y": {
     "externalLink": "(eksterne skakel)",
-    "newTab": "(maak in ’n nuwe oortjie oop)",
+    "newTab": "(gaan in ’n nuwe oortjie oop)",
     "officialSource": "Amptelike bron",
     "progress": "{percent}% klaar",
     "currentPage": "Huidige bladsy",

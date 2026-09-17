@@ -1,3 +1,4 @@
+/// <reference types="astro/client" />
 /**
  * Typed UI string helpers. See `docs/i18n.md`.
  *
@@ -93,7 +94,6 @@ interface ParamNames {
   'doc.effort': 'level';
   'doc.showNamed': 'name';
   'doc.hideNamed': 'name';
-  'doc.verifiedOn': 'date';
   'doc.hiddenSections': 'count';
   'doc.showHiddenSections': 'count';
   'doc.hiddenFor.businessTypes': 'types';
@@ -102,6 +102,17 @@ interface ParamNames {
   'doc.tableRegion': 'caption';
   'doc.related.item': 'name';
   'doc.checklistCompleteNamed': 'title';
+  'trust.aiNotice.body': 'date';
+  'trust.aiNotice.bodyNoPageSources': 'date';
+  'trust.aiNotice.bodyHumanChecked': 'date' | 'reviewer';
+  'trust.aiNotice.bodyHumanCheckedNoPageSources': 'date' | 'reviewer';
+  'trust.status.humanChecked': 'reviewer';
+  'trust.status.humanCheckedMeans': 'reviewer';
+  'trust.sources.count': 'count';
+  'trust.fact.checked': 'date';
+  'trust.fact.source': 'title';
+  'trust.fact.sourceNamed': 'title';
+  'trust.templateRulesChecked': 'date';
   'wizard.intro': 'total';
   'wizard.stepOf': 'n' | 'total';
   'wizard.stepHeading': 'n' | 'title' | 'total';
@@ -122,7 +133,9 @@ interface ParamNames {
   'templates.fields.customerVatNumberHint': 'amount';
   'templates.fields.numberHint': 'example';
   'templates.privacy.removeListItem': 'text';
+  'templates.privacy.removeListItemEmpty': 'n';
   'templates.removeLine': 'description';
+  'templates.removeLineEmpty': 'n';
   'templates.vat': 'rate';
   'templates.requiredItems': 'present' | 'total';
   'templates.missing': 'list';
@@ -140,11 +153,11 @@ interface ParamNames {
   'validation.number': 'example';
   'prompts.copyNamed': 'n' | 'title';
   'prompts.copiedNamed': 'n';
-  'prompts.fillFromProfileNamed': 'n';
-  'prompts.undoFillNamed': 'n';
+  'prompts.fillFromProfileNamed': 'n' | 'title';
+  'prompts.undoFillNamed': 'n' | 'title';
   'prompts.placeholdersRemaining': 'count';
-  'prompts.showFullNamed': 'title';
-  'prompts.showLessNamed': 'title';
+  'prompts.showFullNamed': 'n' | 'title';
+  'prompts.showLessNamed': 'n' | 'title';
   'prompts.promptLabel': 'n' | 'title';
   'search.resultsFor': 'query';
   'search.noResults': 'query';
@@ -173,15 +186,29 @@ interface ParamNames {
 
 type ParamValue<N extends string> = N extends 'count' ? number : string | number;
 
-/** The parameters a key needs, from its placeholders in `en.json`. */
-export type ParamsFor<K extends TranslationKey> = K extends keyof ParamNames
-  ? { readonly [N in ParamNames[K]]: ParamValue<N> }
-  : Params;
+/** The keys in `K` that have placeholders. */
+type KeysWithParams<K extends TranslationKey> = Extract<K, keyof ParamNames>;
 
-/** The arguments after the key: required for keys with placeholders, optional otherwise. */
-export type ParamArgs<K extends TranslationKey> = K extends keyof ParamNames
-  ? [params: ParamsFor<K>]
-  : [params?: Params];
+/**
+ * The parameters a key needs, from its placeholders in `en.json`.
+ * For a key union, every placeholder name of every key in the union is required, so
+ * `` `doc.hiddenFor.${reason}` `` needs `{ types }` as soon as one key in the union uses it.
+ * The check is not distributive on purpose: a distributive check would accept the shortest form.
+ */
+export type ParamsFor<K extends TranslationKey> = [KeysWithParams<K>] extends [never]
+  ? Params
+  : { readonly [N in ParamNames[KeysWithParams<K>]]: ParamValue<N> };
+
+/**
+ * The arguments after the key: required when any key in `K` has placeholders, optional otherwise.
+ * The wide `TranslationKey` (a key read from data and cast) is the one escape hatch: its params
+ * are optional and untyped, and a missing placeholder only warns in dev.
+ */
+export type ParamArgs<K extends TranslationKey> = [TranslationKey] extends [K]
+  ? [params?: Params]
+  : [KeysWithParams<K>] extends [never]
+    ? [params?: Params]
+    : [params: ParamsFor<K>];
 
 export type Translator<K extends TranslationKey = TranslationKey> = <Key extends K>(
   key: Key,
@@ -406,10 +433,19 @@ export interface NumberFormatOptions {
   readonly maximumFractionDigits?: number;
 }
 
+/** Decimals `formatNumber` shows when the caller passes no `maximumFractionDigits`. */
+export const DEFAULT_MAX_FRACTION_DIGITS = 3;
+
 /**
  * One number format for every language, so numbers stay byte-identical across locales:
  * thousands grouped with a no-break space (U+00A0), `.` as the decimal mark, `-` for negatives.
  * `formatNumber('af', 1234.5)` → `1 234.5`.
+ *
+ * Decimals: no trailing zeros, and at most `DEFAULT_MAX_FRACTION_DIGITS` (3) unless you pass
+ * `maximumFractionDigits`. Rounding is half away from zero on the number as written, so
+ * `1.23456` → `1.235` and `0.0004` → `0`. A value that rounds to zero never shows a minus sign.
+ * Pass `maximumFractionDigits` for small rates and ratios. `minimumFractionDigits` alone raises
+ * the maximum to match, so `{ minimumFractionDigits: 4 }` shows four decimals.
  */
 export function formatNumber(
   _locale: Locale,
@@ -417,10 +453,14 @@ export function formatNumber(
   options: NumberFormatOptions = {},
 ): string {
   if (!Number.isFinite(value)) throw new RangeError(`Not a finite number: ${String(value)}`);
+  const minimumFractionDigits = options.minimumFractionDigits ?? 0;
+  const maximumFractionDigits =
+    options.maximumFractionDigits ?? Math.max(DEFAULT_MAX_FRACTION_DIGITS, minimumFractionDigits);
   const formatter = new Intl.NumberFormat('en-US', {
     useGrouping: true,
     signDisplay: 'negative',
-    ...options,
+    minimumFractionDigits,
+    maximumFractionDigits,
   });
   return formatter.format(value).replace(/,/g, NBSP);
 }
@@ -461,8 +501,17 @@ type MonthKey = Extract<TranslationKey, `date.months.${string}`>;
 
 /** South Africa uses UTC+02:00 all year, with no daylight saving. */
 const SAST_OFFSET_MINUTES = 120;
-/** Real time zone offsets run from -12:00 to +14:00. */
+/**
+ * Offsets are accepted up to ±14:00. Real offsets run from -12:00 to +14:00; the check is
+ * symmetric on purpose and only rejects offsets that no time zone can have.
+ */
 const MAX_OFFSET_MINUTES = 14 * 60;
+/**
+ * Years that `formatDate` accepts, for the input and for the day shown in South Africa.
+ * `Date.UTC` maps years 0–99 to 1900–1999, and a four-digit input can roll over to year 10000.
+ */
+const MIN_YEAR = 1900;
+const MAX_YEAR = 9999;
 const DATE_ONLY = /^(\d{4})-(\d{2})-(\d{2})$/;
 const TIMESTAMP =
   /^(\d{4}-\d{2}-\d{2})T([01]\d|2[0-3]):([0-5]\d)(?::([0-5]\d)(?:\.\d{1,9})?)?(?:(Z)|([+-])([01]\d|2[0-3]):?([0-5]\d))$/;
@@ -488,9 +537,17 @@ function calendarDate(value: string): DateParts | undefined {
   return real ? { year, month, day } : undefined;
 }
 
+function checkYear(year: number, iso: string): void {
+  if (year < MIN_YEAR || year > MAX_YEAR) {
+    throw new RangeError(`Year outside ${MIN_YEAR} to ${MAX_YEAR}: ${iso}`);
+  }
+}
+
 function dateParts(iso: string): DateParts {
   const timestamp = TIMESTAMP.exec(iso);
-  const day = calendarDate(timestamp ? timestamp[1]! : iso);
+  const datePart = timestamp ? timestamp[1]! : iso;
+  if (DATE_ONLY.test(datePart)) checkYear(Number(datePart.slice(0, 4)), iso);
+  const day = calendarDate(datePart);
   if (!day) {
     const shapeOk = timestamp !== null || DATE_ONLY.test(iso);
     throw new RangeError(
@@ -512,7 +569,9 @@ function dateParts(iso: string): DateParts {
     Date.UTC(day.year, day.month - 1, day.day, Number(hour), Number(minute), Number(second)) -
     offset * 60_000;
   const local = new Date(utc + SAST_OFFSET_MINUTES * 60_000);
-  return { year: local.getUTCFullYear(), month: local.getUTCMonth() + 1, day: local.getUTCDate() };
+  const year = local.getUTCFullYear();
+  checkYear(year, iso);
+  return { year, month: local.getUTCMonth() + 1, day: local.getUTCDate() };
 }
 
 /**
@@ -522,7 +581,8 @@ function dateParts(iso: string): DateParts {
  * Timestamps (`2026-09-13T23:30:00Z`, `2026-09-14T01:00+02:00`) are shown as the calendar day in
  * South Africa.
  * Throws `RangeError` for anything else, including impossible dates such as `2026-02-30` or
- * `2026-02-30T10:00:00Z` and times such as `T24:00`. There is no silent fallback.
+ * `2026-02-30T10:00:00Z`, times such as `T24:00`, and years outside 1900 to 9999 (for the input
+ * or for the day shown in South Africa). There is no silent fallback.
  */
 export function formatDate(locale: Locale, isoDate: string): string {
   const { year, month, day } = dateParts(isoDate);

@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { MAX_RAND_AMOUNT, formatDate, formatNumber, formatRand } from '../../src/i18n/index';
+import {
+  DEFAULT_MAX_FRACTION_DIGITS,
+  MAX_RAND_AMOUNT,
+  formatDate,
+  formatNumber,
+  formatRand,
+} from '../../src/i18n/index';
 
 /** No-break space, used for thousands grouping and after `R`. */
 const S = ' ';
@@ -85,6 +91,21 @@ describe('formatDate', () => {
       expect(() => formatDate('en', bad), bad).toThrow('Invalid time zone offset');
     }
   });
+  it('accepts years from 1900 to 9999 only, for the input and for the day shown', () => {
+    expect(formatDate('en', '1900-01-01')).toBe('1 January 1900');
+    expect(formatDate('en', '9999-12-31')).toBe('31 December 9999');
+    expect(formatDate('en', '9999-12-31T21:59:59Z')).toBe('31 December 9999');
+    for (const bad of [
+      '0099-01-01',
+      '0100-03-01',
+      '1899-12-31',
+      '0100-03-01T10:00:00Z',
+      '9999-12-31T22:00:00Z',
+      '1900-01-01T00:30:00+05:00',
+    ]) {
+      expect(() => formatDate('en', bad), bad).toThrow('Year outside 1900 to 9999');
+    }
+  });
   it('rejects timestamps without a time zone and unparseable timestamps', () => {
     expect(() => formatDate('en', '2026-09-13T10:00:00')).toThrow(RangeError);
     expect(() => formatDate('en', '2026-09-13Tnonsense+02:00')).toThrow(RangeError);
@@ -145,6 +166,23 @@ describe('formatNumber', () => {
   });
   it('is byte-identical in every locale', () => {
     expect(formatNumber('af', 120000.25)).toBe(formatNumber('en', 120000.25));
+  });
+  it('shows at most three decimals by default, without trailing zeros', () => {
+    expect(DEFAULT_MAX_FRACTION_DIGITS).toBe(3);
+    expect(formatNumber('en', 2.5)).toBe('2.5');
+    expect(formatNumber('en', 1.23456)).toBe('1.235');
+    expect(formatNumber('en', 0.125)).toBe('0.125');
+    expect(formatNumber('en', 0.0006)).toBe('0.001');
+    expect(formatNumber('en', 0.0004)).toBe('0');
+    expect(formatNumber('en', -0.0004)).toBe('0');
+  });
+  it('keeps small values when maximumFractionDigits allows it', () => {
+    expect(formatNumber('en', 0.00012, { maximumFractionDigits: 5 })).toBe('0.00012');
+    expect(formatNumber('en', 0.0004, { maximumFractionDigits: 4 })).toBe('0.0004');
+  });
+  it('raises the default maximum when only minimumFractionDigits is given', () => {
+    expect(formatNumber('en', 0.5, { minimumFractionDigits: 4 })).toBe('0.5000');
+    expect(formatNumber('en', 1.234567, { minimumFractionDigits: 4 })).toBe('1.2346');
   });
   it('respects fraction digit options', () => {
     expect(formatNumber('en', 0.5, { minimumFractionDigits: 2 })).toBe('0.50');

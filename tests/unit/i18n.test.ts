@@ -399,6 +399,40 @@ const LABEL_LENGTH_EXCEPTIONS: Partial<Record<LocaleCode, Readonly<Record<string
   },
 };
 
+/**
+ * D5: no string may say something was checked without naming who checked it. The set is derived
+ * from the dictionary itself, so a new key cannot ship an agent-less claim, and the agent must sit
+ * in the *same sentence* as the claim, so an "AI" elsewhere in a long string cannot satisfy it.
+ */
+describe.each(DICTIONARY_LOCALES)('$code names the checker', ({ code, flat }) => {
+  const isEnglish = code === DEFAULT_LOCALE;
+  /** The verb forms that claim a check happened. Imperatives ("check the link") are not claims. */
+  const CLAIM = isEnglish ? /\bchecked\b/i : /\bnagegaan\b|\bbevestig\b/i;
+  const AGENT = isEnglish
+    ? /\bAI\b|\bIt\b|\{reviewer\}|\bNo person\b|\bNo lawyer\b/
+    : /\bKI\b|\{reviewer\}|\bGeen\b|\bDit\b|\bNiemand\b/;
+  /** Buttons and status labels that use the verb as a word, not as a claim about a check. */
+  const NOT_A_CLAIM = new Set(['common.confirm', 'trust.unverified.label']);
+
+  it('has claims to check', () => {
+    const claims = [...flat].filter(([, leaf]) => forms(leaf).some((text) => CLAIM.test(text)));
+    expect(claims.length).toBeGreaterThan(8);
+  });
+
+  it('names an agent in the same sentence as every claim', () => {
+    const bad: string[] = [];
+    for (const [key, leaf] of flat) {
+      if (NOT_A_CLAIM.has(key)) continue;
+      for (const text of forms(leaf)) {
+        for (const sentence of text.split(/(?<=\.)\s+/)) {
+          if (CLAIM.test(sentence) && !AGENT.test(sentence)) bad.push(`${key}: “${sentence}”`);
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+  });
+});
+
 describe.each(TRANSLATED)('$code label length', ({ code, flat }) => {
   const MAX_LABEL_LENGTH = 24;
   const EXCEPTIONS = LABEL_LENGTH_EXCEPTIONS[code] ?? {};
@@ -485,7 +519,7 @@ describe('t', () => {
     expect(t('en', 'nav.next', { title: 'Tax and SARS' })).toBe('Next: Tax and SARS');
     expect(t('af', 'myPath.progress', { done: 3, total: 10 })).toBe('3 van 10 klaar');
     expect(t('en', 'site.checkedOn', { date: '13 September 2026' })).toBe(
-      'Facts checked against official sources on 13 September 2026.',
+      'An AI checked the facts against the sources in the sources register on 13 September 2026.',
     );
     expect(t('en', 'templates.vat', { rate: 15 })).toBe('VAT (15%)');
     expect(t('af', 'home.threeNumbers.heading', { year: 2026 })).toBe(
@@ -565,6 +599,92 @@ describe('t', () => {
     expect(t('en', 'myPath.progress', { done: 1 })).toBe('1 of {total} done');
     // @ts-expect-error: "nav.next" has no {page} placeholder.
     expect(t('en', 'nav.next', { title: 'Tax', page: 2 })).toBe('Next: Tax');
+  });
+
+  it('requires every placeholder of every key in a key union at compile time', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    for (const reason of ['sole-prop', 'businessTypes'] as const) {
+      // @ts-expect-error: the union includes "doc.hiddenFor.businessTypes", which needs { types }.
+      t('en', `doc.hiddenFor.${reason}`);
+      expect(t('en', `doc.hiddenFor.${reason}`, { types: 'Food business' })).not.toContain('{');
+    }
+    expect(warn).toHaveBeenCalledOnce();
+    const noPlaceholders = 'pty' as 'sole-prop' | 'pty';
+    expect(t('af', `doc.hiddenFor.${noPlaceholders}`)).toBe(
+      'Versteek: hierdie deel is net vir ’n Pty Ltd.',
+    );
+    const mixed = 'nav.next' as 'nav.next' | 'site.checkedOn';
+    // @ts-expect-error: the union needs both { title } and { date }.
+    t('en', mixed, { title: 'Tax' });
+    expect(t('en', mixed, { title: 'Tax', date: '1 March 2026' })).toBe('Next: Tax');
+    // @ts-expect-error: useTranslations keeps the same check.
+    useTranslations('af')(`doc.hiddenFor.${noPlaceholders as 'pty' | 'businessTypes'}`);
+  });
+
+  it('renders the trust strings for the AI notice and sources', () => {
+    expect(t('en', 'trust.aiNotice.body', { date: '13 September 2026' })).toBe(
+      'Written by AI (Claude, Anthropic). An AI checked it against the sources below on 13 September 2026. No person has checked it yet. Rules change: check the official source before you act. Not legal, tax or financial advice.',
+    );
+    expect(
+      t('en', 'trust.aiNotice.bodyHumanChecked', { reviewer: 'A. Person', date: '1 March 2027' }),
+    ).toBe(
+      'Written by AI (Claude, Anthropic). A. Person checked it against the sources below on 1 March 2027. Rules change: check the official source before you act. Not legal, tax or financial advice.',
+    );
+    expect(t('af', 'trust.status.humanChecked', { reviewer: 'A. Person' })).toBe(
+      'Deur A. Person nagegaan',
+    );
+    expect(t('en', 'trust.status.humanCheckedMeans', { reviewer: 'A. Person' })).toBe(
+      'A. Person checked the facts on this page against the sources. Mistakes are still possible, and rules can change after that date.',
+    );
+    expect(t('en', 'trust.sources.count', { count: 1 })).toBe('1 source');
+    expect(t('af', 'trust.sources.count', { count: 3 })).toBe('3 bronne');
+    expect(t('en', 'trust.fact.sourceNamed', { title: 'SARS VAT page' })).toBe(
+      'Source for this fact: SARS VAT page',
+    );
+  });
+
+  it('says in every Afrikaans notice and status string that the English text was checked', () => {
+    const date = '13 September 2026';
+    const reviewer = 'A. Person';
+    const afrikaans = [
+      t('af', 'trust.aiNotice.body', { date }),
+      t('af', 'trust.aiNotice.bodyNoPageSources', { date }),
+      t('af', 'trust.aiNotice.bodyHumanChecked', { date, reviewer }),
+      t('af', 'trust.aiNotice.bodyHumanCheckedNoPageSources', { date, reviewer }),
+      t('af', 'trust.status.aiCheckedMeans'),
+      t('af', 'trust.status.humanCheckedMeans', { reviewer }),
+    ];
+    for (const text of afrikaans) {
+      expect(text).toContain('Engelse teks');
+      expect(text).not.toContain('op hierdie bladsy');
+    }
+    // The two short status labels deliberately drop the qualifier: the body directly above them
+    // and the explanation directly below them both carry it, and three statements of it in one
+    // header read as anxious rather than careful.
+    expect(t('af', 'trust.status.aiChecked')).toBe('KI-nagegaan');
+    expect(t('af', 'trust.status.humanChecked', { reviewer })).toBe('Deur A. Person nagegaan');
+    // The machine-translation notice directly under it says that no person checked the translation.
+    expect(t('af', 'lang.mtNotice.body')).toContain(
+      'Geen mens het die vertaling nog nagegaan nie.',
+    );
+  });
+
+  it('says in the Afrikaans strings outside the notice that the English text was checked', () => {
+    // The agent requirement itself is derived from the dictionary in the "names the checker"
+    // suite above. This pins the machine-translation qualifier on the strings that carry it.
+    const date = '13 September 2026';
+    for (const key of [
+      'site.description',
+      'site.disclaimerShort',
+      'site.disclaimerLong',
+      'site.checkedOn',
+      'home.heroLead',
+      'home.heroVerify',
+      'home.trust.checked',
+      'about.aiSummary',
+    ] as const) {
+      expect(t('af', key, { date }), key).toContain('Engelse teks');
+    }
   });
 
   it('binds a locale with useTranslations and keeps the parameter checks', () => {
