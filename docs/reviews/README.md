@@ -45,6 +45,7 @@ Severities:
 
 - A pass is clean when it has zero blocker and zero major findings.
 - A package merges only after two consecutive clean passes. The second pass reviews the whole diff again, not only the fixes.
+- Amendment, 17 September 2026: when a pass is clean and only minor or nit findings remain, they may be fixed without restarting the two-pass count. Those fixes are verified by the next review, which can be the integrated review of `main` after merge. Any blocker or major found at any point resets the count. This replaced a cycle that spent several review rounds on wording-level minors.
 - Packages that touch `src/lib/**` or `src/pages/**` get the second pass from a different reviewer instance.
 - Reviewers never edit the author's code. They may add a failing test that reproduces a finding, in a separate commit clearly labelled as such.
 
