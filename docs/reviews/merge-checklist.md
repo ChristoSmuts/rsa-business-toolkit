@@ -2,11 +2,16 @@
 
 Tasks the orchestrator committed to doing when work packages merge into `main`. Tick each one when done and note the commit.
 
-## Known merge conflicts (checked 2026-09-17 with `git merge-tree`)
+## Known merge conflicts (re-checked 2026-09-17 against `main` at `3781d6d` with `git merge-tree`)
 
-- `astro.config.ts`: WP-22a against `main`, WP-10 and WP-12b. WP-22a replaced the inline `normaliseBase` with `import { normaliseBase } from './scripts/base-path'` (shared with `playwright.config.ts`, review nit n4). `main` added `import { DEFAULT_LOCALE, ENABLED_LOCALES, sitemapLocales } from './src/i18n/locales'` and uses them in `i18n` and the sitemap. Resolution: keep both imports, delete the inline function, keep main's locale wiring.
-- `package.json`: WP-10 against WP-12b, on `gate:fast`. Resolution: `pnpm lint && pnpm typecheck && tsc --noEmit -p . && pnpm test && pnpm content:drift && pnpm test:content`.
-- WP-11's committed branch merges cleanly with everything. Re-check once its uncommitted `astro.config.ts` change (`assetsInlineLimit`, `assetFileNames`) is committed, since WP-22a also edits that file.
+Every conflict below is additive: both sides append to the same region and neither contradicts the other. None needs a judgement call about behaviour.
+
+- `astro.config.ts`: WP-22a only. WP-22a replaced the inline `normaliseBase` with `import { normaliseBase } from './scripts/base-path'` (shared with `playwright.config.ts`, review nit n4). `main` added `import { DEFAULT_LOCALE, ENABLED_LOCALES, sitemapLocales } from './src/i18n/locales'` and uses them in `i18n` and the sitemap. Resolution: keep both imports, delete the inline function, keep main's locale wiring. Re-check after WP-11 merges — WP-11 also edits this file (`assetsInlineLimit` function form, `assetFileNames`), though it merges clean today.
+- `package.json`: WP-10 only, on `gate:fast`. WP-10 also adds the `content:*` and `translate:status` scripts, which main does not have. Resolution: keep all of WP-10's new scripts, and combine the gate line as `pnpm lint && pnpm typecheck && tsc --noEmit -p . && pnpm test && pnpm content:drift && pnpm test:content` (main contributes `tsc --noEmit -p .`, WP-10 contributes `content:drift`).
+- `docs/reviews/backlog.md`: WP-10 only. Main's table is header-only; the WP-10 branch carries six rows (three WP-12 rows plus WP-10 m1, n6 and the m2 residue). Resolution: take the branch's rows wholesale.
+- WP-11 merges clean against `main` with no conflicts at all.
+
+Merge order does not matter for correctness, but merging WP-11 last means re-running `git merge-tree` for `astro.config.ts` after WP-22a lands.
 
 ## When WP-22a (test harness) merges
 
