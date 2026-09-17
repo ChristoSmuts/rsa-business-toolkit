@@ -66,7 +66,8 @@ In the repository settings, set the Pages source to GitHub Actions.
 
 ## Project documents
 
+- `docs/outstanding-work.md`: where the build stopped and what to pick up next. Read this first.
 - `CLAUDE.md`: working rules for AI build agents
 - `docs/build-plan.md`: the approved build plan
 - `docs/adr/`: architecture decision records
-- `docs/reviews/`: review protocol and review reports
+- `docs/reviews/`: review protocol, review reports and the merge checklist
