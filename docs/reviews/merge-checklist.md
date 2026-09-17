@@ -2,6 +2,12 @@
 
 Tasks the orchestrator committed to doing when work packages merge into `main`. Tick each one when done and note the commit.
 
+## Known merge conflicts (checked 2026-09-17 with `git merge-tree`)
+
+- `astro.config.ts`: WP-22a against `main`, WP-10 and WP-12b. WP-22a replaced the inline `normaliseBase` with `import { normaliseBase } from './scripts/base-path'` (shared with `playwright.config.ts`, review nit n4). `main` added `import { DEFAULT_LOCALE, ENABLED_LOCALES, sitemapLocales } from './src/i18n/locales'` and uses them in `i18n` and the sitemap. Resolution: keep both imports, delete the inline function, keep main's locale wiring.
+- `package.json`: WP-10 against WP-12b, on `gate:fast`. Resolution: `pnpm lint && pnpm typecheck && tsc --noEmit -p . && pnpm test && pnpm content:drift && pnpm test:content`.
+- WP-11's committed branch merges cleanly with everything. Re-check once its uncommitted `astro.config.ts` change (`assetsInlineLimit`, `assetFileNames`) is committed, since WP-22a also edits that file.
+
 ## When WP-22a (test harness) merges
 
 - [ ] Switch `tests/e2e/smoke.spec.ts` to import `test` and `expect` from `tests/e2e/fixtures.ts`, and remove its entry from `KNOWN_DIRECT_PLAYWRIGHT_IMPORTS` in `tests/unit/e2e-harness.test.ts`.
