@@ -2,6 +2,8 @@
 
 Tasks the orchestrator committed to doing when work packages merge into `main`. Tick each one when done and note the commit.
 
+> The content-pipeline conflicts below are resolved and merged (`78d3437`, `22e14b0`). The `astro.config.ts` one is still open. Re-check the remaining two branches against `main` at `22e14b0` before merging, since the corpus merge moved `main` a long way.
+
 ## Known merge conflicts (re-checked 2026-09-17 against `main` at `3781d6d` with `git merge-tree`)
 
 Every conflict below is additive: both sides append to the same region and neither contradicts the other. None needs a judgement call about behaviour.
@@ -50,8 +52,10 @@ WP-12 merged as `33bf2a8` after clean passes 3 and 4. The items below are delega
 
 ## When WP-10 (content pipeline) merges
 
-- [ ] Merge `main` into the WP-10 branch first, so it picks up the content corrections in `34175e9` and `745e387`, then run `pnpm content:build` and commit the regenerated `src/data`. `pnpm content:drift` must be clean.
-- [ ] Squash-merge with a `feat(content):` message, replacing the `chore(content): wip checkpoint` subject.
+**Merged as `22e14b0` on 2026-09-18** after clean passes 4 (Reviewer Q) and 5 (Reviewer T). Gate green on merged `main`: lint, typecheck, `tsc --noEmit -p .`, 503 unit and dom tests, 32 content tests, no content drift, build complete.
+
+- [x] Merge `main` into the WP-10 branch first, so it picks up the content corrections in `34175e9` and `745e387`, then run `pnpm content:build` and commit the regenerated `src/data`. `pnpm content:drift` must be clean. — merge commit `78d3437`; the regenerated corpus was byte-identical, so there was nothing to commit.
+- [x] Squash-merge with a `feat(content):` message, replacing the `chore(content): wip checkpoint` subject.
 - [ ] Rebase or merge `content/af-glossary` onto the merged pipeline, drop its `scripts/translate/TERMS-af.json` changes in favour of the pipeline branch's version, then start the glossary fix round (review `WP-40-glossary-pass1.md`, `’n`, notes file rename, fidelity over glossary definitions, stale `sourceHash` after the English corrections).
 - [ ] Start the accuracy review phase (build plan P4a): the WP-45 fact inventory first, then the topic reviewers.
 
