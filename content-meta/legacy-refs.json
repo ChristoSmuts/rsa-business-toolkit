@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "folders": {
+    "01-core": "core",
+    "02-branding-and-marketing": "branding",
+    "03-documents": "paperwork",
+    "04-business-types": "business-types",
+    "05-reference": "lookup"
+  },
+  "refs": {
+    "01-core/01": "core/start-here",
+    "01-core/02": "core/register",
+    "01-core/03": "core/tax-and-sars",
+    "01-core/04": "core/what-you-need-to-sell-things",
+    "01-core/05": "core/vehicles",
+    "01-core/06": "core/running-a-pty-ltd",
+    "01-core/07": "core/paying-yourself",
+    "01-core/08": "core/adding-new-lines",
+    "01-core/09": "core/working-from-home-and-safety",
+    "01-core/10": "core/you-are-the-business",
+    "02-branding-and-marketing/00": "branding/already-have-your-name",
+    "02-branding-and-marketing/01": "branding/branding-prompts",
+    "02-branding-and-marketing/01a": "branding/mood-and-materials",
+    "02-branding-and-marketing/02": "branding/brand-applications-and-polish",
+    "02-branding-and-marketing/03": "branding/marketing-prompts",
+    "03-documents/01": "paperwork/which-template-to-use-when",
+    "03-documents/02": "paperwork/free-tools",
+    "04-business-types/00": "business-types/pick-your-business-type",
+    "04-business-types/01": "business-types/vehicle-dealer",
+    "04-business-types/02": "business-types/food",
+    "04-business-types/03": "business-types/beauty",
+    "04-business-types/04": "business-types/retail-online",
+    "04-business-types/05": "business-types/services-trades",
+    "04-business-types/06": "business-types/professional-creative"
+  }
+}

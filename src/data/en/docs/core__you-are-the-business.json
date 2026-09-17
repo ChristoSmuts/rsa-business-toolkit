@@ -1,0 +1,1850 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Everything else in this toolkit is about the business. This one is about you, because in a one-person business you are not the owner of the asset. You are the asset."
+        }
+      ],
+      "hash": "cca5ba6886a62907",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Three things follow from that, and none of them are covered anywhere else:"
+        }
+      ],
+      "hash": "946e23d63ba91184",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "d6f374d06b2cf504",
+      "id": "intro.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "If you cannot work, income stops. What protection you have depends on how you are structured, and one structure has almost none."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "If a customer does not pay, how you chase them also depends on how you are structured. One structure has a free court. The other does not."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "If something happens to you, someone has to be able to run or close the business. For a company this is much harder than people expect."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "0ecf18865dcf8b8a",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Unemployment Insurance Fund. Pays you if you cannot work. Employees contribute; the self-employed generally cannot."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "UIF"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The workplace injury fund. Pays out if you are hurt while working."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "COIDA"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Proof your COIDA account is up to date. Expires yearly. Often needed for tender work."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Letter of Good Standing"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Private insurance that pays you a monthly income if illness or injury stops you working."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Income protection"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A formal written demand for payment, usually the last step before court."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Letter of demand"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A debt you leave too long stops being claimable. Three years for most ordinary debts."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Prescription"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The person the Master of the High Court appoints to wind up a dead person's estate."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Executor"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The office that oversees deceased estates."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Master of the High Court"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Memorandum of Incorporation. The company's rulebook."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "MOI"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 1: if you cannot work"
+        }
+      ],
+      "depth": 2,
+      "hash": "efd44e0c1f04beb1",
+      "id": "part-1-if-you-cannot-work",
+      "kind": "heading",
+      "text": "Part 1: if you cannot work"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Sole proprietor: you have nothing"
+        }
+      ],
+      "depth": 3,
+      "hash": "fb3cceb9d5a18499",
+      "id": "sole-proprietor-you-have-nothing",
+      "kind": "heading",
+      "text": "Sole proprietor: you have nothing"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is not an exaggeration. Section 1 of the Unemployment Insurance Contributions Act defines an employee as a natural person who receives remuneration for services rendered, but expressly excludes an independent contractor. A sole proprietor therefore cannot contribute to UIF, because a sole proprietor cannot be an employee who becomes unemployed."
+        }
+      ],
+      "hash": "2118fe5c798627fa",
+      "id": "sole-proprietor-you-have-nothing.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "COIDA is the same story. Its definition of employee covers someone working under a contract of service, and a working director of a company, but a sole proprietor or a partner is not an employee under the Act."
+        }
+      ],
+      "hash": "29ef519bad4ce837",
+      "id": "sole-proprietor-you-have-nothing.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "So as a sole proprietor: no unemployment benefit, no illness benefit, no maternity benefit, and no cover if you are injured while working. Break your wrist on a Tuesday and your income is zero until you can work again."
+        }
+      ],
+      "hash": "17f76985dc3e9c90",
+      "id": "sole-proprietor-you-have-nothing.3",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Pty Ltd paying you a salary: you may have some"
+        }
+      ],
+      "depth": 3,
+      "hash": "01fdaf40a5e3b083",
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some",
+      "kind": "heading",
+      "text": "Pty Ltd paying you a salary: you may have some"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A one-person company changes this, and it is one of the few real advantages of incorporating that nobody mentions in the register-or-not conversation."
+        }
+      ],
+      "hash": "f18dfc8f2419f21b",
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "COIDA is the clearer one."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " The Act's definition of employee includes a working director of a company who has entered into a contract of service, in so far as they act within the scope of that employment. It excludes shareholders or silent partners who only receive dividends or profit share. Guidance for 2026 puts it plainly: a working director paid a monthly salary qualifies as an employee, must be registered, and must submit a Return of Earnings even where that director is the only employee."
+        }
+      ],
+      "hash": "c0f476164fc09cba",
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "That matters because COIDA is exactly the cover a sole proprietor cannot get: it pays out for injury on duty."
+        }
+      ],
+      "hash": "77e84061cdbb8c31",
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "UIF is the contested one."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Some sources say a director on the company payroll is an employee for UIF and must contribute, which would also mean they can claim. Others say UIF does not apply where the director takes director's fees rather than a salary under a contract of service. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Paying yourself from a Pty Ltd"
+            }
+          ],
+          "doc": "core/paying-yourself",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " sets out both positions."
+        }
+      ],
+      "hash": "225e8738c823211b",
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The point for this file is the one that gets missed. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "UIF is usually described as a cost. For a one-person company it may also be the only illness benefit you will ever have access to."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " If you were going to argue your way out of contributing, weigh that first."
+        }
+      ],
+      "hash": "99d05e37ce780458",
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Unemployment benefit is the odd one for a sole director, because being unemployed from your own company is a strange event. The illness and maternity benefits are the realistic ones."
+        }
+      ],
+      "hash": "6f2980d1cb196671",
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What both structures still need"
+        }
+      ],
+      "depth": 3,
+      "hash": "c3b82792ba7fee96",
+      "id": "what-both-structures-still-need",
+      "kind": "heading",
+      "text": "What both structures still need"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Income protection or disability cover."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Private insurance that pays a monthly income if you cannot work. For a one-person business this is arguably more important than the public liability cover recommended elsewhere in this toolkit, because public liability protects against something you might do to someone else, and income protection protects against the thing most likely to actually happen to you."
+        }
+      ],
+      "hash": "ac3d6f45beb1da02",
+      "id": "what-both-structures-still-need.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ask a broker for income protection, and ask specifically what the waiting period is before it pays, since a policy that starts paying after three months does not help with a six-week injury."
+        }
+      ],
+      "hash": "2893595adb4ca5ff",
+      "id": "what-both-structures-still-need.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "A cash buffer."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Not an investment, just money in a separate account that you do not touch. Whatever number of months you could not work and still pay rent. This is the whole safety net for a sole proprietor and the first line for a company."
+        }
+      ],
+      "hash": "8ce141624a5c0ccb",
+      "id": "what-both-structures-still-need.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "COIDA registration and Letter of Good Standing, if you have a company and pay yourself a salary."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " The Letter of Good Standing expires every year, and you will need a current one to tender for government work."
+        }
+      ],
+      "hash": "8d9e5fbe065e7495",
+      "id": "what-both-structures-still-need.4",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "what-both-structures-still-need.5",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 2: when a customer does not pay"
+        }
+      ],
+      "depth": 2,
+      "hash": "f2bce52bffff64d3",
+      "id": "part-2-when-a-customer-does-not-pay",
+      "kind": "heading",
+      "text": "Part 2: when a customer does not pay"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The escalation ladder"
+        }
+      ],
+      "depth": 3,
+      "hash": "739fbfe5a511639b",
+      "id": "the-escalation-ladder",
+      "kind": "heading",
+      "text": "The escalation ladder"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most unpaid invoices are resolved in the first two steps. Work through them in order and keep every message."
+        }
+      ],
+      "hash": "591645a580aaa069",
+      "id": "the-escalation-ladder.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "309c1cb079086fa4",
+      "id": "the-escalation-ladder.2",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "A friendly reminder"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", three days after the due date. Assume it was forgotten, because usually it was."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "A firm reminder"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", a week later, restating the amount, the invoice number, and the date it was due."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "A final demand"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", giving a clear deadline and saying what happens next. Put it in writing, not a voice note."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "A letter of demand."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " This is the formal step before court. An attorney will write one for a modest fee, and a surprising number of debts are paid at this point because the letterhead changes the conversation."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Court."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Which court depends on how you are structured. See below."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Do not wait years."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " A monetary claim must generally be instituted within three years of the date the debt arose, or it prescribes and you lose it."
+        }
+      ],
+      "hash": "07db382527b12bed",
+      "id": "the-escalation-ladder.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Small Claims Court: only if you are a natural person"
+        }
+      ],
+      "depth": 3,
+      "hash": "819c84ca482302e4",
+      "id": "small-claims-court-only-if-you-are-a-natural-person",
+      "kind": "heading",
+      "text": "Small Claims Court: only if you are a natural person"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is the rule that catches company owners by surprise."
+        }
+      ],
+      "hash": "82fec69605ac5d5c",
+      "id": "small-claims-court-only-if-you-are-a-natural-person.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Section 7(1) of the Small Claims Courts Act 61 of 1984 provides that only a natural person may institute an action, and a juristic person may become a party only as defendant."
+        }
+      ],
+      "hash": "3b0ebad60c749eff",
+      "id": "small-claims-court-only-if-you-are-a-natural-person.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "So:"
+        }
+      ],
+      "hash": "14b8aecd3aaaa33e",
+      "id": "small-claims-court-only-if-you-are-a-natural-person.3",
+      "kind": "paragraph"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "4f67ba0db8078243",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "You are"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Owed R25,000"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Can you use Small Claims Court?"
+          }
+        ]
+      ],
+      "id": "small-claims-court-only-if-you-are-a-natural-person.4",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "A sole proprietor"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Yes, the debt is yours"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Yes."
+                }
+              ],
+              "t": "strong"
+            },
+            {
+              "t": "text",
+              "v": " Free, no lawyer, hearings often after hours."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "A Pty Ltd"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "The debt is the company's"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "No."
+                }
+              ],
+              "t": "strong"
+            },
+            {
+              "t": "text",
+              "v": " You must instruct an attorney and go to the magistrates' court."
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The limit is R30,000, set in Government Gazette 55038, Government Notice 7717 of 20 July 2026, effective 1 August 2026. It replaced the R20,000 limit in place since 2019, and many websites still quote the old figure."
+        }
+      ],
+      "hash": "e312b515dcfa7e59",
+      "id": "small-claims-court-only-if-you-are-a-natural-person.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A few more points worth knowing:"
+        }
+      ],
+      "hash": "4753555755909b8a",
+      "id": "small-claims-court-only-if-you-are-a-natural-person.6",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "1698fad68005b4d3",
+      "id": "small-claims-court-only-if-you-are-a-natural-person.7",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Your company can still be "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "sued"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " in the Small Claims Court. A juristic person may participate as a defendant, and a nominated director or officer may appear for it. The disadvantage runs one way only."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "No legal representation is allowed. You appear yourself, and the commissioner asks questions rather than leaving you to argue a case."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "You cannot claim against the State, and claims cannot be brought against municipalities or local government."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "If your claim is above R30,000 you may abandon the excess to bring it inside the limit. Sometimes worth it to avoid legal costs."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "This belongs in the decide-whether-to-register conversation."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Registering a company costs you access to the cheapest debt recovery route in the country, and nobody weighing R175 against limited liability is told that."
+        }
+      ],
+      "hash": "37852f7e2f984471",
+      "id": "small-claims-court-only-if-you-are-a-natural-person.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prevention beats collection"
+        }
+      ],
+      "depth": 3,
+      "hash": "cb5bfd68b91b76b9",
+      "id": "prevention-beats-collection",
+      "kind": "heading",
+      "text": "Prevention beats collection"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Everything above is what you do after it has gone wrong. The cheaper controls are earlier:"
+        }
+      ],
+      "hash": "f0553588d9a29fa5",
+      "id": "prevention-beats-collection.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "7c6f8d2d3e8edaeb",
+      "id": "prevention-beats-collection.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Take a deposit. See "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Which template to use when"
+              }
+            ],
+            "doc": "paperwork/which-template-to-use-when",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Invoice the day you finish, not at month end."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "State late payment terms in writing before the work, because interest on an overdue amount is enforceable only if it was agreed in advance."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "For creative or professional work, transfer ownership on full payment rather than on delivery."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Wait for the money to reflect in your balance before you hand anything over. See "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Working from home and meeting safely"
+              }
+            ],
+            "doc": "core/working-from-home-and-safety",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prevention-beats-collection.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 3: if something happens to you"
+        }
+      ],
+      "depth": 2,
+      "hash": "10eed8354dbcdc40",
+      "id": "part-3-if-something-happens-to-you",
+      "kind": "heading",
+      "text": "Part 3: if something happens to you"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Sole proprietor"
+        }
+      ],
+      "depth": 3,
+      "hash": "543332baaa7c5b7c",
+      "id": "sole-proprietor",
+      "kind": "heading",
+      "text": "Sole proprietor"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The business and you are the same person in law, so the business forms part of your estate. Your family will need access to the bank account, the customer list, and any deposits customers have already paid. Write the one-page record below."
+        }
+      ],
+      "hash": "077cd124536031b1",
+      "id": "sole-proprietor.1",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Pty Ltd: this is the serious one"
+        }
+      ],
+      "depth": 3,
+      "hash": "b32ff06d87097e93",
+      "id": "pty-ltd-this-is-the-serious-one",
+      "kind": "heading",
+      "text": "Pty Ltd: this is the serious one"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A company is a separate legal person with perpetual succession, but "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "it can only act through its directors."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Under the Companies Act a person ceases to be a director on death."
+        }
+      ],
+      "hash": "33f06a483b555eef",
+      "id": "pty-ltd-this-is-the-serious-one.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "So when a sole director dies, the company is incapacitated. And because directors are appointed by shareholders, and the sole shareholder is the same person, there is nobody left who can appoint a replacement."
+        }
+      ],
+      "hash": "57cfb4a71875362f",
+      "id": "pty-ltd-this-is-the-serious-one.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What happens next:"
+        }
+      ],
+      "hash": "9fcf19f4382acdb8",
+      "id": "pty-ltd-this-is-the-serious-one.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "2e2bbda013818b5d",
+      "id": "pty-ltd-this-is-the-serious-one.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "The shares fall into the deceased estate. The estate must be reported to the Master of the High Court within 14 days under section 13(1) of the Administration of Estates Act 66 of 1965."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "The Master appoints an executor. This commonly takes anywhere from two weeks to three months."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Whether the executor can then appoint a director "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "depends on what your MOI says."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " If the MOI does not give the executor that power, the remedy is an application to court, which is expensive and granted at the court's discretion."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Meanwhile nobody can sign anything, the bank account is effectively stuck, salaries and SARS obligations go unpaid, and CIPC deadlines keep running."
+        }
+      ],
+      "hash": "0551e4ff16a34a5e",
+      "id": "pty-ltd-this-is-the-serious-one.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "South Africa has a real example. In the Saga Wines matter, a sole director and shareholder died without a will dealing with her South African shares, and the company's financial manager had to bring an urgent High Court application to get interim powers so the business could function."
+        }
+      ],
+      "hash": "98ad45fab370fed4",
+      "id": "pty-ltd-this-is-the-serious-one.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Incapacity may be worse than death"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": ", because there is no estate and therefore no executor. A person who has had a stroke is still the director, still the shareholder, and still unable to act. Resolving that can require a curator appointed through the High Court. Ask an attorney what your options are before you need them."
+        }
+      ],
+      "hash": "685b56cea72f1522",
+      "id": "pty-ltd-this-is-the-serious-one.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The four fixes, cheapest first"
+        }
+      ],
+      "depth": 3,
+      "hash": "a7ed93fab389a862",
+      "id": "the-four-fixes-cheapest-first",
+      "kind": "heading",
+      "text": "The four fixes, cheapest first"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "1. Appoint a second director."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " The single most effective fix. A spouse, an adult child, a trusted business partner. If one director dies or is incapacitated, the other can act immediately and the company keeps running. Filing a director change with CIPC is free."
+        }
+      ],
+      "hash": "0be39d0552dadab1",
+      "id": "the-four-fixes-cheapest-first.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Be aware of one trade-off this toolkit already flags. Adding a "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "shareholder"
+            }
+          ],
+          "t": "em"
+        },
+        {
+          "t": "text",
+          "v": " who is not a director can cost you the owner-managed exemption from audit and independent review, described in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Running a Pty Ltd"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Adding a second "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "director"
+            }
+          ],
+          "t": "em"
+        },
+        {
+          "t": "text",
+          "v": " does not have that effect. If you do both, check the Public Interest Score consequence."
+        }
+      ],
+      "hash": "a366fa83efa33bb9",
+      "id": "the-four-fixes-cheapest-first.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "2. Check your MOI."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Find out whether it lets an executor appoint a director. If you registered a standard company on BizPortal, do not assume it does. This is a question for an attorney and it is a short one."
+        }
+      ],
+      "hash": "aa9f7b5b7e7b19b9",
+      "id": "the-four-fixes-cheapest-first.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "3. Write a will that deals with the shares"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": ", and make sure it is consistent with the MOI. A will that leaves the shares to someone the MOI will not recognise as able to act does not solve the problem."
+        }
+      ],
+      "hash": "8463d92ea346563b",
+      "id": "the-four-fixes-cheapest-first.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "4. Consider holding the shares in a trust"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": ", so trustees can act as shareholder immediately. This is the heaviest option, it has its own costs and tax consequences, and it is only worth it for a business with real value. Get advice before doing it."
+        }
+      ],
+      "hash": "055618c0f6249432",
+      "id": "the-four-fixes-cheapest-first.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The one-page record"
+        }
+      ],
+      "depth": 3,
+      "hash": "38633851bc25f27a",
+      "id": "the-one-page-record",
+      "kind": "heading",
+      "text": "The one-page record"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Write this, keep it somewhere a trusted person can reach, and update it once a year. It costs an hour and it is the difference between a family closing your business in an orderly way and losing it."
+        }
+      ],
+      "hash": "8c0f1dc2d8c6ef9f",
+      "id": "the-one-page-record.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What to include:"
+        }
+      ],
+      "hash": "01432391c7a4e95c",
+      "id": "the-one-page-record.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "50f22e0c6ee3fd78",
+      "id": "the-one-page-record.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Who to phone first: your accountant, your attorney, your bank contact"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "The registered company name and registration number, and where the CoR 14.3 is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Where the MOI, share certificate and company records are kept"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "The bank, the account, and who is authorised to operate it"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Whether there is a second director, and who"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your SARS tax number and eFiling details, and who your registered representative is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Any licence or registration that must be renewed, and when: SAPS second-hand goods, municipal licence, B-BBEE affidavit, COIDA Letter of Good Standing"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Customers who have paid a deposit for work not yet done, and how much"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Money owed to you, and by whom"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Money you owe, and to whom"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Where the password manager is, and how to get into it"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Where the brand files live, if anyone will carry on the business"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Do not put passwords in this document."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Put the location of the password manager and who holds the master key."
+        }
+      ],
+      "hash": "a55ef8500685e119",
+      "id": "the-one-page-record.4",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "the-one-page-record.5",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Checklist"
+        }
+      ],
+      "depth": 2,
+      "hash": "fe7899d3da62ca07",
+      "id": "checklist",
+      "kind": "heading",
+      "text": "Checklist"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Protection"
+        }
+      ],
+      "depth": 4,
+      "hash": "465444f39efbe504",
+      "id": "protection",
+      "kind": "heading",
+      "pseudo": true,
+      "text": "Protection"
+    },
+    {
+      "hash": "67e42909037c58d2",
+      "id": "protection.1",
+      "items": [
+        {
+          "block": "protection.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "I know whether I can contribute to UIF, and have decided deliberately rather than by accident"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:277f7921"
+        },
+        {
+          "block": "protection.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "If I have a company and pay myself a salary: registered for COIDA, Return of Earnings submitted, Letter of Good Standing current"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:69e6fedf",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "protection.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Got a quote for income protection, and checked the waiting period before it pays"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:6be42aa2"
+        },
+        {
+          "block": "protection.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Have a cash buffer in a separate account, sized in months I could not work"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:84889f74"
+        }
+      ],
+      "kind": "tasklist"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Getting paid"
+        }
+      ],
+      "depth": 4,
+      "hash": "cf8342d4a655c0dc",
+      "id": "getting-paid",
+      "kind": "heading",
+      "pseudo": true,
+      "text": "Getting paid"
+    },
+    {
+      "hash": "6a11c7295e900b16",
+      "id": "getting-paid.1",
+      "items": [
+        {
+          "block": "getting-paid.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Deposit taken before I buy materials or start work"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:80860154"
+        },
+        {
+          "block": "getting-paid.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Late payment terms agreed in writing before the work, not after"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:91c38f5a"
+        },
+        {
+          "block": "getting-paid.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "I know which court I may use, given how I am structured"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:21970149"
+        },
+        {
+          "block": "getting-paid.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Nothing owed to me is close to three years old"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:b6fe6cfd"
+        }
+      ],
+      "kind": "tasklist"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Continuity"
+        }
+      ],
+      "depth": 4,
+      "hash": "8941e06016a928fa",
+      "id": "continuity",
+      "kind": "heading",
+      "pseudo": true,
+      "text": "Continuity"
+    },
+    {
+      "hash": "79ab900f53dc5dc7",
+      "id": "continuity.1",
+      "items": [
+        {
+          "block": "continuity.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "A second director appointed, or a deliberate decision not to"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:8e6615a6"
+        },
+        {
+          "block": "continuity.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Checked whether my MOI allows an executor to appoint a director"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:b554cb87"
+        },
+        {
+          "block": "continuity.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "A will that deals with the shares, consistent with the MOI"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:b5a8d0d2"
+        },
+        {
+          "block": "continuity.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "The one-page record written, and someone knows where it is"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:c7f7b0fd"
+        },
+        {
+          "block": "continuity.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Record reviewed within the last twelve months"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:e3e2729b"
+        }
+      ],
+      "kind": "tasklist"
+    }
+  ],
+  "contentHash": "8bbc1d6a3138fe18",
+  "generated": {
+    "date": "2026-09-14",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "You are the business",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "part-1-if-you-cannot-work",
+      "text": "Part 1: if you cannot work"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "depth": 3,
+      "id": "sole-proprietor-you-have-nothing",
+      "text": "Sole proprietor: you have nothing"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 3,
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some",
+      "text": "Pty Ltd paying you a salary: you may have some"
+    },
+    {
+      "depth": 3,
+      "id": "what-both-structures-still-need",
+      "text": "What both structures still need"
+    },
+    {
+      "depth": 2,
+      "id": "part-2-when-a-customer-does-not-pay",
+      "text": "Part 2: when a customer does not pay"
+    },
+    {
+      "depth": 3,
+      "id": "the-escalation-ladder",
+      "text": "The escalation ladder"
+    },
+    {
+      "depth": 3,
+      "id": "small-claims-court-only-if-you-are-a-natural-person",
+      "text": "Small Claims Court: only if you are a natural person"
+    },
+    {
+      "depth": 3,
+      "id": "prevention-beats-collection",
+      "text": "Prevention beats collection"
+    },
+    {
+      "depth": 2,
+      "id": "part-3-if-something-happens-to-you",
+      "text": "Part 3: if something happens to you"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "depth": 3,
+      "id": "sole-proprietor",
+      "text": "Sole proprietor"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 3,
+      "id": "pty-ltd-this-is-the-serious-one",
+      "text": "Pty Ltd: this is the serious one"
+    },
+    {
+      "depth": 3,
+      "id": "the-four-fixes-cheapest-first",
+      "text": "The four fixes, cheapest first"
+    },
+    {
+      "depth": 3,
+      "id": "the-one-page-record",
+      "text": "The one-page record"
+    },
+    {
+      "depth": 2,
+      "id": "checklist",
+      "text": "Checklist"
+    },
+    {
+      "depth": 4,
+      "id": "protection",
+      "pseudo": true,
+      "text": "Protection"
+    },
+    {
+      "depth": 4,
+      "id": "getting-paid",
+      "pseudo": true,
+      "text": "Getting paid"
+    },
+    {
+      "depth": 4,
+      "id": "continuity",
+      "pseudo": true,
+      "text": "Continuity"
+    }
+  ],
+  "id": "core/you-are-the-business",
+  "kind": "guide",
+  "lang": "en",
+  "order": 10,
+  "readingTime": 12,
+  "related": [
+    "core/paying-yourself",
+    "paperwork/which-template-to-use-when",
+    "core/working-from-home-and-safety",
+    "core/running-a-pty-ltd"
+  ],
+  "route": "core/you-are-the-business/",
+  "section": "core",
+  "slug": "you-are-the-business",
+  "sourcePath": "01 Core - applies to everyone/10-you-are-the-business.md",
+  "sources": {
+    "acts": [
+      "companies-act-71-of-2008"
+    ],
+    "entries": [
+      "govchain-how-to-register-a-company-directly-with-cipc",
+      "clearcomply-public-interest-score",
+      "department-of-justice--small-claims-courts",
+      "department-of-justice--media-statement-22-july-2026",
+      "flip-the-market",
+      "uif-and-the-self-employed",
+      "coida-and-working-directors",
+      "small-claims-court-who-may-sue",
+      "death-of-a-sole-director-and-shareholder"
+    ]
+  },
+  "summary": "Everything else in this toolkit is about the business. This one is about you, because in a one-person business you are not the owner of the asset. You are the asset.",
+  "tags": [
+    "continuity",
+    "getting-paid"
+  ],
+  "terms": [
+    {
+      "meaning": "Unemployment Insurance Fund. Pays you if you cannot work. Employees contribute; the self-employed generally cannot.",
+      "term": "UIF"
+    },
+    {
+      "meaning": "The workplace injury fund. Pays out if you are hurt while working.",
+      "term": "COIDA"
+    },
+    {
+      "meaning": "Proof your COIDA account is up to date. Expires yearly. Often needed for tender work.",
+      "term": "Letter of Good Standing"
+    },
+    {
+      "meaning": "Private insurance that pays you a monthly income if illness or injury stops you working.",
+      "term": "Income protection"
+    },
+    {
+      "meaning": "A formal written demand for payment, usually the last step before court.",
+      "term": "Letter of demand"
+    },
+    {
+      "meaning": "A debt you leave too long stops being claimable. Three years for most ordinary debts.",
+      "term": "Prescription"
+    },
+    {
+      "meaning": "The person the Master of the High Court appoints to wind up a dead person's estate.",
+      "term": "Executor"
+    },
+    {
+      "meaning": "The office that oversees deceased estates.",
+      "term": "Master of the High Court"
+    },
+    {
+      "meaning": "Memorandum of Incorporation. The company's rulebook.",
+      "term": "MOI"
+    }
+  ],
+  "title": "You are the business",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-14",
+    "status": "ai-checked"
+  }
+}

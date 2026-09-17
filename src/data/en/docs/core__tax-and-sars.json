@@ -1,0 +1,1615 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Numbers here are for the tax year 1 March 2026 to 28 February 2027. They changed a lot in the February 2026 Budget. Check "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.sars.gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.sars.gov.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " before you file."
+        }
+      ],
+      "hash": "f88d39e7d12c3f73",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "6183569144a963d2",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Total sales, before costs."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Turnover"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Profit after allowed costs. Tax is worked out on this."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Taxable income"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Paying tax in advance, twice a year, because no employer deducts it for you."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Provisional tax"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The short form you fill in for each provisional tax payment."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "IRP6"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The yearly tax return. ITR12 for people, ITR14 for companies."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "ITR12 / ITR14"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A simple tax for small businesses, charged on sales instead of profit."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Turnover tax"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "15% tax added to sales, only by businesses registered for it."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "VAT"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A cost you may subtract from income before tax is worked out."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Deduction"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The short version"
+        }
+      ],
+      "depth": 2,
+      "hash": "67354f8180841866",
+      "id": "the-short-version",
+      "kind": "heading",
+      "text": "The short version"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If your business earns under R99,000 profit a year and you have no other income, you pay no income tax. You may still have to file a return showing zero."
+        }
+      ],
+      "hash": "0f4986252ed1712c",
+      "id": "the-short-version.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If your business turns over under R2.3 million a year, you do not have to register for VAT."
+        }
+      ],
+      "hash": "57cdf918a6a72005",
+      "id": "the-short-version.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If your business turns over under R600,000 a year, there is a system called turnover tax where you pay 0%."
+        }
+      ],
+      "hash": "f22bb92043823242",
+      "id": "the-short-version.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "So a small solo business can legally pay no tax at all. The danger is not tax. The danger is not filing."
+        }
+      ],
+      "hash": "44550b26151d8549",
+      "id": "the-short-version.4",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "What SARS wants from a sole proprietor"
+        }
+      ],
+      "depth": 2,
+      "hash": "b2d21fe3c235806b",
+      "id": "what-sars-wants-from-a-sole-proprietor",
+      "kind": "heading",
+      "text": "What SARS wants from a sole proprietor"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You do not register the business with SARS. There is no business to register. You register yourself."
+        }
+      ],
+      "hash": "c6ae789b53b0f927",
+      "id": "what-sars-wants-from-a-sole-proprietor.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most South Africans already have an income tax number from a past job. If you do not, register on SARS eFiling at "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.sarsefiling.co.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.sarsefiling.co.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", or use the SARS MobiApp."
+        }
+      ],
+      "hash": "bb2db78541af1e95",
+      "id": "what-sars-wants-from-a-sole-proprietor.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Business profit goes on your normal personal tax return, the ITR12, in the \"local business income\" section. You declare income and subtract expenses. The answer is your profit, and it is added to any salary or other income you have."
+        }
+      ],
+      "hash": "e1d5fc6eed0b1960",
+      "id": "what-sars-wants-from-a-sole-proprietor.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Provisional tax"
+        }
+      ],
+      "depth": 3,
+      "hash": "9ba2716c26ce940b",
+      "id": "provisional-tax",
+      "kind": "heading",
+      "text": "Provisional tax"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Because nobody deducts PAYE from your business income, SARS wants payment during the year, not all at the end."
+        }
+      ],
+      "hash": "1b6b52b4767703ee",
+      "id": "provisional-tax.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you own a business, the Income Tax Act says you must register as a provisional taxpayer. This applies to a sole trader, a partner in a partnership, a member of a CC, and a director of a company."
+        }
+      ],
+      "hash": "2cafd35c68a559aa",
+      "id": "provisional-tax.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you run any kind of business, you must pay tax in advance twice a year. This is called being a provisional taxpayer. It applies whether you trade as yourself or through a company."
+        }
+      ],
+      "hash": "c600b471d924faeb",
+      "id": "provisional-tax.3",
+      "kind": "callout",
+      "pairsWith": "provisional-tax.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Provisional taxpayers submit two IRP6 returns during the tax year. The first is due within the first six months of the year and the second at the end of the year of assessment. There is also an optional third top-up payment before you submit your annual ITR12."
+        }
+      ],
+      "hash": "32ca44edb2e4a459",
+      "id": "provisional-tax.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Twice a year you fill in a short form (the IRP6) that estimates your income and pay tax on it. Once by the end of August, once by the end of February. A third payment in September is optional."
+        }
+      ],
+      "hash": "88fc9ba521610cdc",
+      "id": "provisional-tax.5",
+      "kind": "callout",
+      "pairsWith": "provisional-tax.4",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "In practice your dates are:"
+        }
+      ],
+      "hash": "da03ac0e6e7a33bb",
+      "id": "provisional-tax.6",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "3c7b9f49add2c797",
+      "id": "provisional-tax.7",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "First IRP6: by 31 August"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Second IRP6: by 28 or 29 February, or the business day before if that is a weekend"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Optional third payment: by 30 September"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Annual ITR12: during filing season, which usually opens in July; SARS publishes the closing dates each year"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Important relief: a natural person who does not carry on a business does not have to pay provisional tax if taxable income stays below the tax threshold for the year. If you do carry on a business and your total taxable income stays under the threshold, there is no tax to pay, but the safe approach is still to submit a nil IRP6 rather than submit nothing. An IRP6 return can be requested and submitted even if the provisional tax payment is nil."
+        }
+      ],
+      "hash": "b9469ef9d0bf2243",
+      "id": "provisional-tax.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Filing a zero return costs nothing. Not filing creates penalties that grow every month."
+        }
+      ],
+      "hash": "0171a35f8a7721f5",
+      "id": "provisional-tax.9",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "What SARS wants from a company"
+        }
+      ],
+      "depth": 2,
+      "hash": "eeaa2ca769e514cb",
+      "id": "what-sars-wants-from-a-company",
+      "kind": "heading",
+      "text": "What SARS wants from a company"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A company is registered for income tax automatically when CIPC registers it. You still need to confirm the registered representative on eFiling before you can do anything."
+        }
+      ],
+      "hash": "458fbface7f993a1",
+      "id": "what-sars-wants-from-a-company.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A company is automatically a provisional taxpayer. It files two IRP6 returns and one ITR14 annual return."
+        }
+      ],
+      "hash": "feb5b9f87503aacd",
+      "id": "what-sars-wants-from-a-company.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This applies even if the company earned nothing. A dormant company still files a nil ITR14 with SARS and a nil annual return with CIPC. This is the single most common way small owners build up debt to the state without noticing."
+        }
+      ],
+      "hash": "67ca6bf9178d67e0",
+      "id": "what-sars-wants-from-a-company.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How to pay little or no tax, legally"
+        }
+      ],
+      "depth": 2,
+      "hash": "90961e3067783a3b",
+      "id": "how-to-pay-little-or-no-tax-legally",
+      "kind": "heading",
+      "text": "How to pay little or no tax, legally"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "There are four legal routes. They are different, and you must choose the right one."
+        }
+      ],
+      "hash": "781cd3baf6e5bec2",
+      "id": "how-to-pay-little-or-no-tax-legally.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Route 1: stay under the tax threshold"
+        }
+      ],
+      "depth": 3,
+      "hash": "5cdf26d8b41dcfaa",
+      "id": "route-1-stay-under-the-tax-threshold",
+      "kind": "heading",
+      "text": "Route 1: stay under the tax threshold"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For the 2026/2027 year, if you are under 65 you owe no income tax on earnings below R99,000 per year. The threshold is R153,250 for ages 65 to 74, and R171,300 for 75 and older."
+        }
+      ],
+      "hash": "3d0721e406315a74",
+      "id": "route-1-stay-under-the-tax-threshold.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is taxable income, which means profit after expenses, not sales. A business with R250,000 sales and R160,000 real costs has R90,000 profit and pays nothing."
+        }
+      ],
+      "hash": "55bc96fdfadde9ce",
+      "id": "route-1-stay-under-the-tax-threshold.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Careful: if you also have a salary, the salary is added to the profit. The threshold applies to the total, not to the business alone."
+        }
+      ],
+      "hash": "6e964357c0e5b4fa",
+      "id": "route-1-stay-under-the-tax-threshold.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Route 2: claim every real expense"
+        }
+      ],
+      "depth": 3,
+      "hash": "ecbc1d65c7c03150",
+      "id": "route-2-claim-every-real-expense",
+      "kind": "heading",
+      "text": "Route 2: claim every real expense"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is the biggest, most ignored lever for a sole proprietor. Every rand of legitimate business cost reduces taxable profit."
+        }
+      ],
+      "hash": "f9eb2eec6e2f5937",
+      "id": "route-2-claim-every-real-expense.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Things you can usually claim if they are genuinely for the business:"
+        }
+      ],
+      "hash": "d0a7d19692cee264",
+      "id": "route-2-claim-every-real-expense.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "db1258631b76499c",
+      "id": "route-2-claim-every-real-expense.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Stock and materials"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Data, airtime, and internet used for work"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Tools and equipment, written off over their useful life"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Business travel, using a logbook (see "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Vehicles for your business"
+              }
+            ],
+            "doc": "core/vehicles",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ")"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Bank charges on the business account"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Advertising, printing, and website costs"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Accounting and legal fees"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Rent of business premises"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A portion of home costs if you use part of your home for work"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The home office deduction has strict rules. SARS generally expects a specific part of the home used regularly and exclusively for the trade, and properly equipped for it. If you work at the kitchen table, you do not qualify. If you have a converted room used only for work, you can claim a share of rent or bond interest, rates, and electricity based on floor area. Keep a photo and a floor measurement on file."
+        }
+      ],
+      "hash": "0e6e2af454b39103",
+      "id": "route-2-claim-every-real-expense.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Two hard rules: the expense must be for the business, and you must be able to prove it. No slip, no claim. Take a photo of every slip the day you get it."
+        }
+      ],
+      "hash": "7b610b063062963f",
+      "id": "route-2-claim-every-real-expense.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Route 3: turnover tax"
+        }
+      ],
+      "depth": 3,
+      "hash": "38cdfa9d3501479b",
+      "id": "route-3-turnover-tax",
+      "kind": "heading",
+      "text": "Route 3: turnover tax"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This changed in 2026 and it is now a very good option for many small businesses."
+        }
+      ],
+      "hash": "f28d81b45534098d",
+      "id": "route-3-turnover-tax.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS increased the turnover tax annual turnover limit from R1 million to R2.3 million, effective 1 April 2026, and the tax-free band for 2026/2027 is R0 to R600,000."
+        }
+      ],
+      "hash": "dd68a37ee1f222a0",
+      "id": "route-3-turnover-tax.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The rates for the 2026/2027 year:"
+        }
+      ],
+      "hash": "023311aca3f2f618",
+      "id": "route-3-turnover-tax.3",
+      "kind": "paragraph"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "1b14de0dc86ec4e8",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Turnover"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Rate on the amount in that band"
+          }
+        ]
+      ],
+      "id": "route-3-turnover-tax.4",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "R0 to R600,000"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "0%"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "R600,001 to R950,000"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "1%"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "R950,001 to R1,400,000"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "2%"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "R1,400,001 to R2,300,000"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "3%"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a business with R800,000 turnover: the first R600,000 is taxed at 0%, and the next R200,000 at 1%, so the total turnover tax for the year is R2,000."
+        }
+      ],
+      "hash": "b33f33c0fd227153",
+      "id": "route-3-turnover-tax.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What makes it attractive: turnover tax replaces income tax, VAT, provisional tax, capital gains tax, and dividends tax, so you pay a single tax instead of several. Record-keeping is minimal. You only track amounts received, dividends declared, and assets or liabilities over R10,000."
+        }
+      ],
+      "hash": "7e6d1c822dfc1310",
+      "id": "route-3-turnover-tax.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What makes it risky: you cannot claim any expense deductions. Costs like rent, stock purchases, and equipment cannot be set against the amount taxed, which may mean paying more tax than under the normal system."
+        }
+      ],
+      "hash": "fbb4e02796e3ecbb",
+      "id": "route-3-turnover-tax.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Because tax is on turnover and not profit, turnover tax suits a business with high margins and low costs. A consultant, a service business, or a maker with cheap inputs does well. A business that buys and resells goods at a small markup does badly. A shop with R900,000 sales and R750,000 cost of stock has R150,000 profit and would pay R3,000 in turnover tax, which is more than the nothing it would pay under normal tax."
+        }
+      ],
+      "hash": "203931faaef581f8",
+      "id": "route-3-turnover-tax.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Who cannot use it: professional service providers, labour brokers, personal service providers, and certain other excluded activities. A business is excluded where more than 20% of income comes from professional services. That exclusion catches accountants, lawyers, engineers, architects, and similar. Check the SARS list for your trade before you rely on this."
+        }
+      ],
+      "hash": "7df7cccc2f191619",
+      "id": "route-3-turnover-tax.9",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How to register: through SARS eFiling or at a SARS branch. You must elect to be a micro business at the start of your year of assessment, and once registered you stay in the system unless you deregister voluntarily or exceed R2.3 million."
+        }
+      ],
+      "hash": "5b6121da300fdc25",
+      "id": "route-3-turnover-tax.10",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You choose turnover tax at the start of the tax year, on eFiling or at a branch. Once you are in, you stay in until you choose to leave or your sales go over R2.3 million."
+        }
+      ],
+      "hash": "71b9c2fb1293ccca",
+      "id": "route-3-turnover-tax.11",
+      "kind": "callout",
+      "pairsWith": "route-3-turnover-tax.10",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sole proprietors, partnerships, close corporations, companies, and co-operatives can all register, so this works whether or not you have a Pty."
+        }
+      ],
+      "hash": "5cf1ca1c6da89dd0",
+      "id": "route-3-turnover-tax.12",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Work out both options on your actual numbers before choosing. If your costs are more than about 25% of your sales, normal tax is usually better."
+        }
+      ],
+      "hash": "36a65f99a32a6945",
+      "id": "route-3-turnover-tax.13",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Route 4: small business corporation rates (companies only)"
+        }
+      ],
+      "depth": 3,
+      "hash": "17ab0c205446e1c7",
+      "id": "route-4-small-business-corporation-rates-companies-only",
+      "kind": "heading",
+      "text": "Route 4: small business corporation rates (companies only)"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you registered a Pty, check whether it qualifies as a Small Business Corporation. A qualifying SBC pays on a sliding scale starting at 0% on the first R99,000 of taxable income, instead of the flat 27% company rate."
+        }
+      ],
+      "hash": "492696800a5991e8",
+      "id": "route-4-small-business-corporation-rates-companies-only.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "To qualify, every year: all shareholders must be natural persons, gross income must not exceed R20 million, no shareholder may hold shares in another company apart from limited exceptions, no more than 20% of gross income may come from investment income or personal services, and the company must not be a personal service provider."
+        }
+      ],
+      "hash": "0df6056dd273afb0",
+      "id": "route-4-small-business-corporation-rates-companies-only.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a company to get the lower tax rates, every year: all owners must be people, not other companies. Sales must be under R20 million. You must not own shares in another company. And most of the income must come from real trade, not from investments or from one person's personal services."
+        }
+      ],
+      "hash": "421ea21203215fd3",
+      "id": "route-4-small-business-corporation-rates-companies-only.3",
+      "kind": "callout",
+      "pairsWith": "route-4-small-business-corporation-rates-companies-only.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The condition that disqualifies most companies is a shareholder holding shares in another company. If you own shares in any other Pty, even a dormant one you forgot about, your new company may lose SBC status."
+        }
+      ],
+      "hash": "30e313beb357739f",
+      "id": "route-4-small-business-corporation-rates-companies-only.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SBC status is not automatic. If any condition is missed, the standard 27% rate applies for that year. Do not tick \"yes\" on the ITR14 just because the company feels small."
+        }
+      ],
+      "hash": "e118d81870d7aca3",
+      "id": "route-4-small-business-corporation-rates-companies-only.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A fifth option if you have a salary as well"
+        }
+      ],
+      "depth": 3,
+      "hash": "5d5e24403d991fac",
+      "id": "a-fifth-option-if-you-have-a-salary-as-well",
+      "kind": "heading",
+      "text": "A fifth option if you have a salary as well"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you have a job and run a business on the side, a loss in the business can generally reduce your total taxable income in that year. This is real and legal."
+        }
+      ],
+      "hash": "b6027caedf36c22a",
+      "id": "a-fifth-option-if-you-have-a-salary-as-well.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "There is a limit. Section 20A of the Income Tax Act can \"ring-fence\" losses from certain trades, especially where you are a high earner and the activity keeps losing money year after year, or where it looks like a hobby. If you plan to use business losses against a salary, get an hour of advice from a tax practitioner first."
+        }
+      ],
+      "hash": "fce8148ab3009a8f",
+      "id": "a-fifth-option-if-you-have-a-salary-as-well.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Retirement contributions"
+        }
+      ],
+      "depth": 3,
+      "hash": "66731587d2fdc0ba",
+      "id": "retirement-contributions",
+      "kind": "heading",
+      "text": "Retirement contributions"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Contributions to a retirement annuity are deductible, generally up to 27.5% of the greater of remuneration or taxable income, capped in rands. The 2026 Budget increased the retirement contribution cap to R430,000 per year, up from R350,000."
+        }
+      ],
+      "hash": "a9d4ec66ddd100c8",
+      "id": "retirement-contributions.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This only helps if you have taxable income to reduce and cash to spare. It is not useful in a year where you earn under the threshold."
+        }
+      ],
+      "hash": "327c762ada179725",
+      "id": "retirement-contributions.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "VAT: probably not yet"
+        }
+      ],
+      "depth": 2,
+      "hash": "386f18e9287b5d15",
+      "id": "vat-probably-not-yet",
+      "kind": "heading",
+      "text": "VAT: probably not yet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "From 1 April 2026, the compulsory VAT registration threshold increased from R1 million to R2.3 million. Small businesses only need to register for VAT once annual turnover exceeds R2.3 million."
+        }
+      ],
+      "hash": "1b341335c656c449",
+      "id": "vat-probably-not-yet.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The voluntary registration threshold increased from R50,000 to R120,000 per year."
+        }
+      ],
+      "hash": "afea32919d9260b1",
+      "id": "vat-probably-not-yet.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You must register within 21 business days from the date you exceed R2.3 million, or from the date it becomes clear you will exceed it. The threshold is measured over any rolling 12 months, not over a calendar year. Check your last 12 months every month once you pass about R1.5 million."
+        }
+      ],
+      "hash": "216a09b9df7d55d6",
+      "id": "vat-probably-not-yet.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Should you register voluntarily once you pass R120,000? Usually no."
+        }
+      ],
+      "hash": "45de57dab111779b",
+      "id": "vat-probably-not-yet.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If your customers are the public, registering makes you 15% more expensive overnight, or cuts your margin by 15% if you absorb it. You also take on VAT returns every two months, forever."
+        }
+      ],
+      "hash": "9d0994aca4c04260",
+      "id": "vat-probably-not-yet.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If your customers are VAT-registered businesses, the 15% costs them nothing because they claim it back, and you get to claim VAT on your own purchases. Then it can be worth it."
+        }
+      ],
+      "hash": "8b1da4e5896c44b0",
+      "id": "vat-probably-not-yet.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The honest test: add up the VAT you would claim back on stock, equipment, and rent in a year. If that number is smaller than the cost of your time doing bi-monthly returns plus the accounting fee, do not register."
+        }
+      ],
+      "hash": "06bc4669708708fa",
+      "id": "vat-probably-not-yet.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you should be registered and you are not, SARS will backdate your registration to the date you became liable, and you will owe VAT on all taxable supplies from that date plus a 10% late payment penalty and interest. Deliberate non-registration can also be a criminal offence."
+        }
+      ],
+      "hash": "10fdb9c062e04504",
+      "id": "vat-probably-not-yet.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you should have registered for VAT but did not, SARS will treat you as registered from the day you crossed the line. You will owe 15% on everything you sold since then, even though you never charged it, plus a penalty and interest."
+        }
+      ],
+      "hash": "ec04778f72a34624",
+      "id": "vat-probably-not-yet.9",
+      "kind": "callout",
+      "pairsWith": "vat-probably-not-yet.8",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Until you are registered: do not write \"Tax Invoice\" on your invoices, do not show a VAT line, and do not charge VAT. Charging VAT you are not registered for is fraud. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Which template to use when"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " for a correct non-VAT invoice."
+        }
+      ],
+      "hash": "b44106edb351f67d",
+      "id": "vat-probably-not-yet.10",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Records"
+        }
+      ],
+      "depth": 2,
+      "hash": "3d7f3fac1461cdf8",
+      "id": "records",
+      "kind": "heading",
+      "text": "Records"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Keep everything for five years from the date you submit the return."
+        }
+      ],
+      "hash": "dba14605766628cf",
+      "id": "records.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The minimum that works for a one-person business:"
+        }
+      ],
+      "hash": "c64524afa233fa40",
+      "id": "records.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "694b719f03213757",
+      "id": "records.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "One bank account used only for business"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A folder of photographed slips, one folder per month"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A simple spreadsheet with date, description, money in, money out, category"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Copies of every invoice you issued, numbered in order with no gaps"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "That spreadsheet is the whole system. You do not need accounting software in year one."
+        }
+      ],
+      "hash": "e4f7aa8296c444fe",
+      "id": "records.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you use turnover tax, the records are even lighter. You track amounts received, dividends declared, and assets or liabilities over R10,000."
+        }
+      ],
+      "hash": "33a22c254d32461c",
+      "id": "records.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your tax year calendar"
+        }
+      ],
+      "depth": 2,
+      "hash": "6c3a91928bfbdc6f",
+      "id": "your-tax-year-calendar",
+      "kind": "heading",
+      "text": "Your tax year calendar"
+    },
+    {
+      "hash": "1c10daec0f239f68",
+      "id": "your-tax-year-calendar.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "1 March: new tax year starts"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "31 August: first provisional return (IRP6) due"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "30 September: optional third provisional payment for the previous year"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "28/29 February: tax year ends, second provisional return (IRP6) due"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Filing season for the annual return (ITR12): SARS gazettes the dates each year. For the 2026 year the deadlines are 23 October 2026 for people who are not provisional taxpayers, and 22 January 2027 for provisional taxpayers. Confirm each year on "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "sars.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://sars.gov.za/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "One rule that catches people: if a SARS deadline falls on a weekend or public holiday, it moves to the business day before, not after. 28 February 2027 is a Sunday, so the second provisional return for that year is due on Friday 26 February 2027."
+        }
+      ],
+      "hash": "e377a7f1abc1a253",
+      "id": "your-tax-year-calendar.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "3c75acc8426cff0c",
+      "id": "your-tax-year-calendar.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Company annual return to CIPC: due each year on the anniversary of registration"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "B-BBEE affidavit: renew 12 months after signing"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Put all of these in your phone calendar today with a two-week warning."
+        }
+      ],
+      "hash": "b202799c053cf90a",
+      "id": "your-tax-year-calendar.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Two things that are not legal"
+        }
+      ],
+      "depth": 2,
+      "hash": "1db1698f04ad48ce",
+      "id": "two-things-that-are-not-legal",
+      "kind": "heading",
+      "text": "Two things that are not legal"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Taking cash and not declaring it. SARS receives data from banks, card machine providers, and crypto exchanges. The risk is not worth it."
+        }
+      ],
+      "hash": "b0d918e49e0bbb9a",
+      "id": "two-things-that-are-not-legal.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Claiming personal spending as business expenses. Groceries, family holidays, and a partner's phone are not deductible. If SARS audits and disallows them, you pay the tax plus penalties plus interest."
+        }
+      ],
+      "hash": "cbc3a48ec3dc57e9",
+      "id": "two-things-that-are-not-legal.2",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "0051cde00d245143",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Tax and SARS",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "the-short-version",
+      "text": "The short version"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "depth": 2,
+      "id": "what-sars-wants-from-a-sole-proprietor",
+      "text": "What SARS wants from a sole proprietor"
+    },
+    {
+      "depth": 3,
+      "id": "provisional-tax",
+      "text": "Provisional tax"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 2,
+      "id": "what-sars-wants-from-a-company",
+      "text": "What SARS wants from a company"
+    },
+    {
+      "depth": 2,
+      "id": "how-to-pay-little-or-no-tax-legally",
+      "text": "How to pay little or no tax, legally"
+    },
+    {
+      "depth": 3,
+      "id": "route-1-stay-under-the-tax-threshold",
+      "text": "Route 1: stay under the tax threshold"
+    },
+    {
+      "depth": 3,
+      "id": "route-2-claim-every-real-expense",
+      "text": "Route 2: claim every real expense"
+    },
+    {
+      "depth": 3,
+      "id": "route-3-turnover-tax",
+      "text": "Route 3: turnover tax"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 3,
+      "id": "route-4-small-business-corporation-rates-companies-only",
+      "text": "Route 4: small business corporation rates (companies only)"
+    },
+    {
+      "depth": 3,
+      "id": "a-fifth-option-if-you-have-a-salary-as-well",
+      "text": "A fifth option if you have a salary as well"
+    },
+    {
+      "depth": 3,
+      "id": "retirement-contributions",
+      "text": "Retirement contributions"
+    },
+    {
+      "depth": 2,
+      "id": "vat-probably-not-yet",
+      "text": "VAT: probably not yet"
+    },
+    {
+      "depth": 2,
+      "id": "records",
+      "text": "Records"
+    },
+    {
+      "depth": 2,
+      "id": "your-tax-year-calendar",
+      "text": "Your tax year calendar"
+    },
+    {
+      "depth": 2,
+      "id": "two-things-that-are-not-legal",
+      "text": "Two things that are not legal"
+    }
+  ],
+  "id": "core/tax-and-sars",
+  "kind": "guide",
+  "lang": "en",
+  "order": 3,
+  "readingTime": 13,
+  "related": [
+    "core/vehicles",
+    "paperwork/which-template-to-use-when"
+  ],
+  "route": "core/tax-and-sars/",
+  "section": "core",
+  "slug": "tax-and-sars",
+  "sourcePath": "01 Core - applies to everyone/03-tax-and-sars.md",
+  "sources": {
+    "acts": [
+      "income-tax-act-58-of-1962",
+      "value-added-tax-act-89-of-1991"
+    ],
+    "entries": [
+      "sars--turnover-tax",
+      "sars--budget-2026-frequently-asked-questions",
+      "sars--what-is-the-new-threshold-for-vat-registration",
+      "sars--tax-calendar",
+      "sars--guide-to-provisional-tax",
+      "xero-za-sars-tax-tables-20262027",
+      "sait-turnover-tax-vs-sbc"
+    ]
+  },
+  "summary": "Numbers here are for the tax year 1 March 2026 to 28 February 2027. They changed a lot in the February 2026 Budget. Check www.sars.gov.za before you file.",
+  "tags": [
+    "tax"
+  ],
+  "terms": [
+    {
+      "meaning": "Total sales, before costs.",
+      "term": "Turnover"
+    },
+    {
+      "meaning": "Profit after allowed costs. Tax is worked out on this.",
+      "term": "Taxable income"
+    },
+    {
+      "meaning": "Paying tax in advance, twice a year, because no employer deducts it for you.",
+      "term": "Provisional tax"
+    },
+    {
+      "meaning": "The short form you fill in for each provisional tax payment.",
+      "term": "IRP6"
+    },
+    {
+      "meaning": "The yearly tax return. ITR12 for people, ITR14 for companies.",
+      "term": "ITR12 / ITR14"
+    },
+    {
+      "meaning": "A simple tax for small businesses, charged on sales instead of profit.",
+      "term": "Turnover tax"
+    },
+    {
+      "meaning": "15% tax added to sales, only by businesses registered for it.",
+      "term": "VAT"
+    },
+    {
+      "meaning": "A cost you may subtract from income before tax is worked out.",
+      "term": "Deduction"
+    }
+  ],
+  "title": "Tax and SARS",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

@@ -1,0 +1,1936 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You have a name, a logo, colours, type and a voice. This file turns that into files you can actually use, and checks whether it looks professional before you spend money."
+        }
+      ],
+      "hash": "8b795e269c5173ba",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most small businesses skip this step and then discover the problem at the sign maker, at the printer, or at 3am when a client asks for \"the logo in vector\"."
+        }
+      ],
+      "hash": "f99f5bb03372a865",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "b2674c649d6feaea",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A logo file that can be made any size without going blurry. SVG, EPS, PDF, AI."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Vector"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A picture file. Fine for screens. Goes blurry when enlarged. Can have a see-through background."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "PNG"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "No white box around the logo."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Transparent background"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A fixed arrangement of your mark and your name."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Lockup"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The white version of your logo, for dark backgrounds."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Reversed"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The tiny icon in a browser tab."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Favicon"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "RGB is colour for screens. CMYK is colour for printing. They do not match exactly."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "RGB / CMYK"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Dots per inch. Print needs 300. Web pictures are usually 72 and look blurry printed."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "DPI"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Extra 3mm of colour past the edge of the paper so trimming leaves no white line."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Bleed"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A numbered system for exact print colours."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Pantone"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The style of lettering."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Typeface / font"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "How easily text can be read against its background."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Contrast"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 1: the files you must have"
+        }
+      ],
+      "depth": 2,
+      "hash": "7b67d9a1b1b99e56",
+      "id": "part-1-the-files-you-must-have",
+      "kind": "heading",
+      "text": "Part 1: the files you must have"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Make these once. Put them in one folder. Send that folder to anyone who makes anything for you."
+        }
+      ],
+      "hash": "ff05423c30e2ac2c",
+      "id": "part-1-the-files-you-must-have.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Logo files"
+        }
+      ],
+      "depth": 3,
+      "hash": "f1b6f26b8c6b4884",
+      "id": "logo-files",
+      "kind": "heading",
+      "text": "Logo files"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "cc5a9fdf1f5831ff",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "File"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Format"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "What it is for"
+          }
+        ]
+      ],
+      "id": "logo-files.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Full colour, vector"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "SVG and PDF"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Printers, sign makers, anything large"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Full colour, transparent background"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "PNG, 2000px wide"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Websites, documents, email"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "One colour black"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "SVG and PNG"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Stamps, faxes, cheap printing, embroidery"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "One colour white (reversed)"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "SVG and PNG"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Placing on a dark photo or coloured background"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Square icon"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "PNG, 1000 x 1000"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Social profile pictures, WhatsApp Business"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Favicon"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "PNG, 512 x 512"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "The little icon in a browser tab"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You also want two arrangements of the same logo, called lockups:"
+        }
+      ],
+      "hash": "a06bb320176fbdcb",
+      "id": "logo-files.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Horizontal"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " — mark next to the name. Use on letterheads, vehicle doors, website headers."
+        }
+      ],
+      "hash": "7b50085079cd5e14",
+      "id": "logo-files.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Stacked"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " — mark above the name. Use in square spaces, social profiles, stamps."
+        }
+      ],
+      "hash": "00314d6e99def6f4",
+      "id": "logo-files.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A logo that only exists in one arrangement will be stretched or squashed by somebody eventually."
+        }
+      ],
+      "hash": "6661f8e27aa705e3",
+      "id": "logo-files.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Two rules that protect the logo"
+        }
+      ],
+      "depth": 3,
+      "hash": "d0d2c1844d7bbe04",
+      "id": "two-rules-that-protect-the-logo",
+      "kind": "heading",
+      "text": "Two rules that protect the logo"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Clear space."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Decide a minimum empty space around the logo and write it into your brand guide. A simple rule: leave space equal to the height of the first letter on every side. Nothing else goes in that space."
+        }
+      ],
+      "hash": "f2d41847b03c2b4f",
+      "id": "two-rules-that-protect-the-logo.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Minimum size."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Test how small it can go before it becomes mud. Write that number down, in millimetres for print and pixels for screen. Below that size, use the icon only."
+        }
+      ],
+      "hash": "6de25e5f26fc4233",
+      "id": "two-rules-that-protect-the-logo.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt: generate the file checklist for your brand"
+        }
+      ],
+      "depth": 3,
+      "hash": "316a6a580176dd5b",
+      "id": "prompt-generate-the-file-checklist-for-your-brand",
+      "kind": "heading",
+      "text": "Prompt: generate the file checklist for your brand"
+    },
+    {
+      "hash": "1802309ea064c9ef",
+      "id": "prompt-generate-the-file-checklist-for-your-brand.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "DESCRIBE IT, or say you will attach it"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "HEX CODES"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "NAMES"
+        }
+      ],
+      "text": "My logo is: [DESCRIBE IT, or say you will attach it]\nMy colours are: [HEX CODES]\nMy typefaces are: [NAMES]\n\nWrite me a one-page \"brand assets\" checklist listing every logo file,\nsize and format I need for a small South African business, and what\neach one is used for.\n\nInclude: vector files, transparent versions, one-colour versions, a\nreversed version, social profile sizes, a favicon, and the two lockups.\n\nThen give me a clear space rule and a minimum size rule for my logo,\nwritten so a printer or sign maker can follow them.\n\nKeep it to one page in simple English.",
+      "variant": "prompt"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prompt-generate-the-file-checklist-for-your-brand.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 2: print basics that save money"
+        }
+      ],
+      "depth": 2,
+      "hash": "e2b1809d12c5b13f",
+      "id": "part-2-print-basics-that-save-money",
+      "kind": "heading",
+      "text": "Part 2: print basics that save money"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Printers ask questions that surprise people. These are the answers."
+        }
+      ],
+      "hash": "79ac872ebab7c8c2",
+      "id": "part-2-print-basics-that-save-money.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "RGB or CMYK."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Screens use RGB. Printing uses CMYK. A bright screen colour can print dull and muddy. Ask your printer for a CMYK version of your brand colours, and check a printed proof before you order a thousand of anything."
+        }
+      ],
+      "hash": "fda63409c9530c62",
+      "id": "part-2-print-basics-that-save-money.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Resolution."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Print needs 300 DPI. A photo pulled off Facebook is usually 72 DPI and will look blurry printed. Keep your original photo files."
+        }
+      ],
+      "hash": "8897b73df9a5016b",
+      "id": "part-2-print-basics-that-save-money.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bleed."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " If a colour or a photo runs to the edge of the paper, the printer needs 3mm extra beyond the edge to trim into. Ask for \"3mm bleed\" and your artwork will not come back with white slivers on the edges."
+        }
+      ],
+      "hash": "95b59b872722004e",
+      "id": "part-2-print-basics-that-save-money.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Pantone."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " If exact colour matters, for example on packaging, ask about a Pantone spot colour. It costs more. For most small businesses it is not needed."
+        }
+      ],
+      "hash": "f1a1e8143fd2e5f6",
+      "id": "part-2-print-basics-that-save-money.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Embroidery."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Shirts and caps need a simple, one-colour, chunky design. Fine lines and small text disappear in thread. This is why the one-colour version of your logo exists."
+        }
+      ],
+      "hash": "f077200309c004bc",
+      "id": "part-2-print-basics-that-save-money.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Vinyl and signage."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Sign makers need vector. A PNG will be refused or will come back with soft edges."
+        }
+      ],
+      "hash": "2fc9488fde1085b9",
+      "id": "part-2-print-basics-that-save-money.7",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "part-2-print-basics-that-save-money.8",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 3: where the brand actually gets used"
+        }
+      ],
+      "depth": 2,
+      "hash": "28e23e5a8ad4d991",
+      "id": "part-3-where-the-brand-actually-gets-used",
+      "kind": "heading",
+      "text": "Part 3: where the brand actually gets used"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Work through these in order of how much they earn you. Most one-person businesses should stop after item 6."
+        }
+      ],
+      "hash": "534d433644e30ba9",
+      "id": "part-3-where-the-brand-actually-gets-used.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "1. WhatsApp Business profile"
+        }
+      ],
+      "depth": 3,
+      "hash": "4b48f9102ed5850d",
+      "id": "1-whatsapp-business-profile",
+      "kind": "heading",
+      "text": "1. WhatsApp Business profile"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The most-seen thing you own. Square icon version of the logo as the profile picture. Business name, hours, address and a one-line description in your voice."
+        }
+      ],
+      "hash": "4b62a3592191021e",
+      "id": "1-whatsapp-business-profile.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "2. Google Business Profile"
+        }
+      ],
+      "depth": 3,
+      "hash": "220f8273af5c3598",
+      "id": "2-google-business-profile",
+      "kind": "heading",
+      "text": "2. Google Business Profile"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Logo, cover photo, and at least ten real photos of real work. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Marketing prompts"
+            }
+          ],
+          "doc": "branding/marketing-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "b59f5c9261d7e4d8",
+      "id": "2-google-business-profile.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "3. Your quote and invoice"
+        }
+      ],
+      "depth": 3,
+      "hash": "bc426af0b2b0427c",
+      "id": "3-your-quote-and-invoice",
+      "kind": "heading",
+      "text": "3. Your quote and invoice"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Logo top left, your colours used sparingly, your body typeface throughout. Nothing else. An invoice is not the place for a design."
+        }
+      ],
+      "hash": "c2570a74bc4e92e2",
+      "id": "3-your-quote-and-invoice.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Templates are in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Which template to use when"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Keep the layout plain and the details correct. A wrong VAT line matters more than a nice header."
+        }
+      ],
+      "hash": "ef6b144368a83031",
+      "id": "3-your-quote-and-invoice.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "4. Email signature"
+        }
+      ],
+      "depth": 3,
+      "hash": "7669b81054be492a",
+      "id": "4-email-signature",
+      "kind": "heading",
+      "text": "4. Email signature"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Name, business name, role, phone, email, website. One line of colour at most. No large images, no quotes, no \"sent from my phone\", no social icons that break in half the email clients."
+        }
+      ],
+      "hash": "e5c9460eed8ff679",
+      "id": "4-email-signature.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "5. Vehicle signage"
+        }
+      ],
+      "depth": 3,
+      "hash": "2ec5af700df16ff9",
+      "id": "5-vehicle-signage",
+      "kind": "heading",
+      "text": "5. Vehicle signage"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Often the cheapest advertising a local business can buy, and a deductible expense."
+        }
+      ],
+      "hash": "eb65313a099dfb99",
+      "id": "5-vehicle-signage.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Rules: the phone number is the biggest thing after the name. What you do must be readable in under three seconds from another lane. Two colours maximum. No fine detail. Check your municipal by-laws for size restrictions before you order."
+        }
+      ],
+      "hash": "feb700ff2029fb83",
+      "id": "5-vehicle-signage.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "6. Business card"
+        }
+      ],
+      "depth": 3,
+      "hash": "a16035a4793e8ba7",
+      "id": "6-business-card",
+      "kind": "heading",
+      "text": "6. Business card"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Still useful in South Africa, especially for trades and at markets. Name, what you do, phone, WhatsApp, email. Everything else is optional. A QR code to your WhatsApp is worth more than a website address."
+        }
+      ],
+      "hash": "662e49d99f1a3894",
+      "id": "6-business-card.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "7. Social profile and cover images"
+        }
+      ],
+      "depth": 3,
+      "hash": "df6f492030867f44",
+      "id": "7-social-profile-and-cover-images",
+      "kind": "heading",
+      "text": "7. Social profile and cover images"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Each platform crops differently. Keep anything important in the middle. Test your profile picture at thumbnail size on a phone before you commit."
+        }
+      ],
+      "hash": "4b926e2b00f8364e",
+      "id": "7-social-profile-and-cover-images.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "8. Signage and window"
+        }
+      ],
+      "depth": 3,
+      "hash": "3d6afeb419cd4e0e",
+      "id": "8-signage-and-window",
+      "kind": "heading",
+      "text": "8. Signage and window"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you have premises: name, what you do, hours. Readable from across the road."
+        }
+      ],
+      "hash": "37152c1c24c2de81",
+      "id": "8-signage-and-window.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "9. Packaging and labels"
+        }
+      ],
+      "depth": 3,
+      "hash": "682d1c5f21a8031a",
+      "id": "9-packaging-and-labels",
+      "kind": "heading",
+      "text": "9. Packaging and labels"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you sell a physical product. For food, check "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Food business"
+            }
+          ],
+          "doc": "business-types/food",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " first, because labelling is regulated under R146 of 2012 and getting it wrong means reprinting."
+        }
+      ],
+      "hash": "281ee9542b293835",
+      "id": "9-packaging-and-labels.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "10. Uniform or shirt"
+        }
+      ],
+      "depth": 3,
+      "hash": "53ed176e6dfa7eb6",
+      "id": "10-uniform-or-shirt",
+      "kind": "heading",
+      "text": "10. Uniform or shirt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "One-colour logo, embroidered or printed. Small on the chest, larger on the back with the phone number."
+        }
+      ],
+      "hash": "58f50bdd490f81af",
+      "id": "10-uniform-or-shirt.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt: plan your applications"
+        }
+      ],
+      "depth": 3,
+      "hash": "355257838579f32f",
+      "id": "prompt-plan-your-applications",
+      "kind": "heading",
+      "text": "Prompt: plan your applications"
+    },
+    {
+      "hash": "3eb12e8d3e05004d",
+      "id": "prompt-plan-your-applications.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BUSINESS TYPE"
+        },
+        {
+          "key": "town",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "TOWN/CITY"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE THE ONE-PAGE BRAND GUIDE"
+        }
+      ],
+      "text": "My business is: [BUSINESS TYPE] in [TOWN/CITY], South Africa.\nI am the owner and only worker.\nMy brand guide says: [PASTE THE ONE-PAGE BRAND GUIDE]\n\nList the brand applications I should make, in order of how much each one\nis likely to earn me, for my specific kind of business.\n\nFor each one tell me:\n- What goes on it, exactly\n- What to leave off\n- The file format and size to give the supplier\n- A rough idea of whether this is a do-it-yourself job or a paid job\n- Whether it can wait\n\nBe honest about which ones I do not need. I have very little money.\n\nStop after the list. Do not design anything yet.",
+      "variant": "prompt"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prompt-plan-your-applications.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 4: the quality tests"
+        }
+      ],
+      "depth": 2,
+      "hash": "56f400fc13155b66",
+      "id": "part-4-the-quality-tests",
+      "kind": "heading",
+      "text": "Part 4: the quality tests"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Run every one of these before you spend money. They take ten minutes and they catch almost everything."
+        }
+      ],
+      "hash": "f8091fe5932a8180",
+      "id": "part-4-the-quality-tests.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "The competitor swap test."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Put a competitor's name on your logo, tagline and description. Does it still work? If yes, it is generic."
+        }
+      ],
+      "hash": "c57f1e1148949ab0",
+      "id": "part-4-the-quality-tests.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "The one-colour test."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Print it in black only. Does it still read? If the design relies on colour to be understood, it will fail on a stamp, a fax, a photocopy and a shirt."
+        }
+      ],
+      "hash": "944274a259f3aef1",
+      "id": "part-4-the-quality-tests.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "The thumbnail test."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Shrink it to about the size of a WhatsApp profile picture on a phone. Can you still tell what it is?"
+        }
+      ],
+      "hash": "1af71efc92536b6d",
+      "id": "part-4-the-quality-tests.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "The squint test."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Squint at it until it blurs. Is the shape still distinctive, or does it become a grey blob?"
+        }
+      ],
+      "hash": "e9c52f2292ccffca",
+      "id": "part-4-the-quality-tests.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "The photocopy test."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Print it, photocopy the print, then photocopy the copy. This is what your logo looks like after it has been through three of your customers' offices."
+        }
+      ],
+      "hash": "b674de2a46a83300",
+      "id": "part-4-the-quality-tests.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "The distance test."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Put it on the floor and walk five metres back. This approximates a vehicle passing you."
+        }
+      ],
+      "hash": "b88d4d84bdc8a7af",
+      "id": "part-4-the-quality-tests.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "The phone call test."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Say your business name and web address out loud to someone who has never heard it. Can they spell it back correctly?"
+        }
+      ],
+      "hash": "e1a4a918b958411a",
+      "id": "part-4-the-quality-tests.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "The three-second test."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Show your business card or vehicle to someone for three seconds. Ask what the business does and what the phone number was. If they cannot answer both, there is too much on it."
+        }
+      ],
+      "hash": "7731be23f2401e0e",
+      "id": "part-4-the-quality-tests.9",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "The consistency test."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Put your invoice, your business card, your WhatsApp profile and one social post side by side. Do they look like the same business? Inconsistency is the most common reason small brands look amateur, and it costs nothing to fix."
+        }
+      ],
+      "hash": "70372cc75e1b1735",
+      "id": "part-4-the-quality-tests.10",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "part-4-the-quality-tests.11",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 5: the critique prompt"
+        }
+      ],
+      "depth": 2,
+      "hash": "0efd13713df3562d",
+      "id": "part-5-the-critique-prompt",
+      "kind": "heading",
+      "text": "Part 5: the critique prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use this when you think you are finished. It is written to be harsh on purpose."
+        }
+      ],
+      "hash": "77cdb18857f96cf4",
+      "id": "part-5-the-critique-prompt.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "95cd1f28bdcbf267",
+      "id": "part-5-the-critique-prompt.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "NAME"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "TAGLINE or \"none\""
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "DESCRIBE IT IN DETAIL, or attach the image"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "HEX CODES"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "NAMES"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "THREE WORDS"
+        }
+      ],
+      "text": "I am a one-person business in South Africa. Here is my branding:\n\nBusiness name: [NAME]\nTagline: [TAGLINE or \"none\"]\nOne-sentence description: [PASTE]\nLogo: [DESCRIBE IT IN DETAIL, or attach the image]\nColours: [HEX CODES]\nTypefaces: [NAMES]\nVoice: [THREE WORDS]\n\nCritique this honestly. Do not be encouraging. Assume I can take it.\n\nGo through each of these and answer plainly:\n\n1. Does any part of this look AI-generated or template-made? Point at\n the specific element and say why.\n2. Would this still work if a competitor put their name on it? If yes,\n which parts?\n3. What visual cliché from my industry am I repeating without realising?\n4. Where will this break: small sizes, one colour, embroidery, a vehicle,\n a black and white print?\n5. Which text-on-background pairs look risky for readability? I will\n check the exact contrast ratios myself at webaim.org, so do not\n claim to have calculated them.\n6. Does the name, tagline and description all say the same thing, or do\n they contradict each other?\n7. What is the single weakest element, and what would you replace it with?\n8. Was any part of this generated by an image tool rather than set in a\n real font or drawn? If so, tell me which parts I may struggle to own\n or protect, and what to redo by hand.\n\nEnd with the three changes that would improve this most, in order of\nimpact. Be specific. Do not suggest a full redesign.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Then run one more:"
+        }
+      ],
+      "hash": "89f1cfa063131d7a",
+      "id": "part-5-the-critique-prompt.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "06cd81ab48b98cb3",
+      "id": "part-5-the-critique-prompt.4",
+      "kind": "code",
+      "text": "Based on that critique, give me 5 specific fixes for the weakest element\nonly. Keep everything else the same.\n\nNumber them 1 to 5. After the 5 options, stop.",
+      "variant": "prompt"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "part-5-the-critique-prompt.5",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 6: what to pay for and what to do yourself"
+        }
+      ],
+      "depth": 2,
+      "hash": "9124dac9de27618a",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself",
+      "kind": "heading",
+      "text": "Part 6: what to pay for and what to do yourself"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do yourself, free:"
+        }
+      ],
+      "hash": "fb51288de4ee7608",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "59c659590ea18c54",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "The brand brief, name, tagline and voice, using "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Branding prompts"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Colours and typeface choice from Google Fonts"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Social profile and cover images in Canva"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Photography of your own work on your phone"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your invoice and quote templates"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Worth paying for, in this order, when you have money:"
+        }
+      ],
+      "hash": "b9944dfb18547d12",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "b16f9c8e88424245",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself.4",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "A vector redraw of your logo."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " The single highest-value design purchase for a small business. Get two or three quotes."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Vehicle signage."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Earns its cost back faster than almost anything else for a local business."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "A sign for your premises"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", if you have them."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "A proper photo shoot"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", only once you have work worth photographing."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "A designer to review your brand"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", cheaper than a designer to build it, and often more useful."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Not worth paying for in year one:"
+        }
+      ],
+      "hash": "ccae69cfb98ee50f",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "4fb7c3199efce078",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself.6",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "A full brand identity package"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A website, before you have customers"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Printed brochures"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Branded merchandise of any kind"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself.7",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 7: your brand folder"
+        }
+      ],
+      "depth": 2,
+      "hash": "a6329b9b04cf3a3a",
+      "id": "part-7-your-brand-folder",
+      "kind": "heading",
+      "text": "Part 7: your brand folder"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Set this up in Google Drive or on your laptop. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Free tools"
+            }
+          ],
+          "doc": "paperwork/free-tools",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "823f4646c437a831",
+      "id": "part-7-your-brand-folder.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "70d7048c313c49a1",
+      "id": "part-7-your-brand-folder.2",
+      "kind": "code",
+      "text": "07 Brand/\n├── brand-guide.pdf The one-page guide from Prompt 10\n├── logo/\n│ ├── logo-colour.svg\n│ ├── logo-colour.pdf\n│ ├── logo-colour-2000px.png\n│ ├── logo-black.svg\n│ ├── logo-white.svg\n│ ├── icon-1000px.png\n│ └── favicon-512px.png\n├── fonts/ The font files you downloaded\n├── colours.txt Hex codes, and CMYK from your printer\n├── photos/ Your best 20 work photos, full size\n└── templates/ Quote, invoice, email signature",
+      "variant": "listing"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Back it up somewhere other than your laptop. If your laptop is stolen and the only copy of your vector logo goes with it, you pay to have it drawn again."
+        }
+      ],
+      "hash": "f172d08123ad1016",
+      "id": "part-7-your-brand-folder.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "part-7-your-brand-folder.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The one rule"
+        }
+      ],
+      "depth": 2,
+      "hash": "ec2d44107190aa4d",
+      "id": "the-one-rule",
+      "kind": "heading",
+      "text": "The one rule"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Pick it, use it everywhere, and leave it alone for a year."
+        }
+      ],
+      "hash": "b06ee6eb65dc6c8b",
+      "id": "the-one-rule.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A consistent ordinary brand beats a brilliant brand used inconsistently. Customers recognise you by repetition, not by cleverness."
+        }
+      ],
+      "hash": "5539d16efa242d03",
+      "id": "the-one-rule.2",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "2ca761530f95a13e",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Brand applications and polish",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "part-1-the-files-you-must-have",
+      "text": "Part 1: the files you must have"
+    },
+    {
+      "depth": 3,
+      "id": "logo-files",
+      "text": "Logo files"
+    },
+    {
+      "depth": 3,
+      "id": "two-rules-that-protect-the-logo",
+      "text": "Two rules that protect the logo"
+    },
+    {
+      "depth": 3,
+      "id": "prompt-generate-the-file-checklist-for-your-brand",
+      "text": "Prompt: generate the file checklist for your brand"
+    },
+    {
+      "depth": 2,
+      "id": "part-2-print-basics-that-save-money",
+      "text": "Part 2: print basics that save money"
+    },
+    {
+      "depth": 2,
+      "id": "part-3-where-the-brand-actually-gets-used",
+      "text": "Part 3: where the brand actually gets used"
+    },
+    {
+      "depth": 3,
+      "id": "1-whatsapp-business-profile",
+      "text": "1. WhatsApp Business profile"
+    },
+    {
+      "depth": 3,
+      "id": "2-google-business-profile",
+      "text": "2. Google Business Profile"
+    },
+    {
+      "depth": 3,
+      "id": "3-your-quote-and-invoice",
+      "text": "3. Your quote and invoice"
+    },
+    {
+      "depth": 3,
+      "id": "4-email-signature",
+      "text": "4. Email signature"
+    },
+    {
+      "depth": 3,
+      "id": "5-vehicle-signage",
+      "text": "5. Vehicle signage"
+    },
+    {
+      "depth": 3,
+      "id": "6-business-card",
+      "text": "6. Business card"
+    },
+    {
+      "depth": 3,
+      "id": "7-social-profile-and-cover-images",
+      "text": "7. Social profile and cover images"
+    },
+    {
+      "depth": 3,
+      "id": "8-signage-and-window",
+      "text": "8. Signage and window"
+    },
+    {
+      "depth": 3,
+      "id": "9-packaging-and-labels",
+      "text": "9. Packaging and labels"
+    },
+    {
+      "depth": 3,
+      "id": "10-uniform-or-shirt",
+      "text": "10. Uniform or shirt"
+    },
+    {
+      "depth": 3,
+      "id": "prompt-plan-your-applications",
+      "text": "Prompt: plan your applications"
+    },
+    {
+      "depth": 2,
+      "id": "part-4-the-quality-tests",
+      "text": "Part 4: the quality tests"
+    },
+    {
+      "depth": 2,
+      "id": "part-5-the-critique-prompt",
+      "text": "Part 5: the critique prompt"
+    },
+    {
+      "depth": 2,
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself",
+      "text": "Part 6: what to pay for and what to do yourself"
+    },
+    {
+      "depth": 2,
+      "id": "part-7-your-brand-folder",
+      "text": "Part 7: your brand folder"
+    },
+    {
+      "depth": 2,
+      "id": "the-one-rule",
+      "text": "The one rule"
+    }
+  ],
+  "id": "branding/brand-applications-and-polish",
+  "kind": "guide",
+  "lang": "en",
+  "order": 4,
+  "readingTime": 11,
+  "related": [
+    "branding/marketing-prompts",
+    "paperwork/which-template-to-use-when",
+    "business-types/food",
+    "branding/branding-prompts",
+    "paperwork/free-tools"
+  ],
+  "route": "branding/brand-applications-and-polish/",
+  "section": "branding",
+  "slug": "brand-applications-and-polish",
+  "sourcePath": "02 Branding and marketing/03-brand-applications-and-polish.md",
+  "sources": {
+    "acts": [],
+    "entries": [
+      "regulation-r146-of-2012",
+      "webaim-contrast-checker"
+    ]
+  },
+  "summary": "You have a name, a logo, colours, type and a voice. This file turns that into files you can actually use, and checks whether it looks professional before you spend money.",
+  "tags": [
+    "prompts"
+  ],
+  "terms": [
+    {
+      "meaning": "A logo file that can be made any size without going blurry. SVG, EPS, PDF, AI.",
+      "term": "Vector"
+    },
+    {
+      "meaning": "A picture file. Fine for screens. Goes blurry when enlarged. Can have a see-through background.",
+      "term": "PNG"
+    },
+    {
+      "meaning": "No white box around the logo.",
+      "term": "Transparent background"
+    },
+    {
+      "meaning": "A fixed arrangement of your mark and your name.",
+      "term": "Lockup"
+    },
+    {
+      "meaning": "The white version of your logo, for dark backgrounds.",
+      "term": "Reversed"
+    },
+    {
+      "meaning": "The tiny icon in a browser tab.",
+      "term": "Favicon"
+    },
+    {
+      "meaning": "RGB is colour for screens. CMYK is colour for printing. They do not match exactly.",
+      "term": "RGB / CMYK"
+    },
+    {
+      "meaning": "Dots per inch. Print needs 300. Web pictures are usually 72 and look blurry printed.",
+      "term": "DPI"
+    },
+    {
+      "meaning": "Extra 3mm of colour past the edge of the paper so trimming leaves no white line.",
+      "term": "Bleed"
+    },
+    {
+      "meaning": "A numbered system for exact print colours.",
+      "term": "Pantone"
+    },
+    {
+      "meaning": "The style of lettering.",
+      "term": "Typeface / font"
+    },
+    {
+      "meaning": "How easily text can be read against its background.",
+      "term": "Contrast"
+    }
+  ],
+  "title": "Brand applications and polish",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

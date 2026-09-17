@@ -1,0 +1,742 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Where South African small businesses actually get customers"
+        }
+      ],
+      "depth": 2,
+      "hash": "f06cb9cb55e651a5",
+      "id": "where-south-african-small-businesses-actually-get-customers",
+      "kind": "heading",
+      "text": "Where South African small businesses actually get customers"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Be honest about this before you spend a day making Instagram posts."
+        }
+      ],
+      "hash": "973635e68c43701d",
+      "id": "where-south-african-small-businesses-actually-get-customers.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a local service business (plumber, hairdresser, tutor, cleaner, mechanic), most first customers come from a Google Business Profile, WhatsApp, word of mouth, and local Facebook groups. Instagram and TikTok are slow starts."
+        }
+      ],
+      "hash": "3484b5659bd8c7d7",
+      "id": "where-south-african-small-businesses-actually-get-customers.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a product business selling nationally, Facebook Marketplace, Instagram, and a WhatsApp catalogue usually come first. A full online store is a later step."
+        }
+      ],
+      "hash": "4ad7c290692e8d63",
+      "id": "where-south-african-small-businesses-actually-get-customers.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Pick two channels. Do those two properly. Being weak on six channels is worse than being good on two."
+        }
+      ],
+      "hash": "f0c0fc700ed93645",
+      "id": "where-south-african-small-businesses-actually-get-customers.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do these two things first, before any content"
+        }
+      ],
+      "depth": 2,
+      "hash": "83f9058bfa7672a8",
+      "id": "do-these-two-things-first-before-any-content",
+      "kind": "heading",
+      "text": "Do these two things first, before any content"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "1. Google Business Profile"
+        }
+      ],
+      "depth": 3,
+      "hash": "4a902a19e4212533",
+      "id": "1-google-business-profile",
+      "kind": "heading",
+      "text": "1. Google Business Profile"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is free and it is the highest-value thing a local business can do. When someone searches \"plumber near me\" in your town, this is what decides whether you appear."
+        }
+      ],
+      "hash": "699234f3f4554cb7",
+      "id": "1-google-business-profile.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Go to "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "business.google.com"
+            }
+          ],
+          "external": true,
+          "href": "https://business.google.com/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Claim your business. Fill in everything: hours, service area, phone, WhatsApp link, categories, and at least 10 photos."
+        }
+      ],
+      "hash": "120b64a1ca75faa4",
+      "id": "1-google-business-profile.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Then ask every happy customer for a review. Reviews are the single biggest factor in whether you show up above your competitors."
+        }
+      ],
+      "hash": "6bf0570a7837fe04",
+      "id": "1-google-business-profile.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "2. WhatsApp Business"
+        }
+      ],
+      "depth": 3,
+      "hash": "870f4652b2520747",
+      "id": "2-whatsapp-business",
+      "kind": "heading",
+      "text": "2. WhatsApp Business"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Free app, separate from normal WhatsApp. Install it on the business number."
+        }
+      ],
+      "hash": "31cae7ec73e4f6e8",
+      "id": "2-whatsapp-business.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Set up:"
+        }
+      ],
+      "hash": "4662d794febf02d6",
+      "id": "2-whatsapp-business.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "9df41f25f179db65",
+      "id": "2-whatsapp-business.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "A business profile with your address, hours, and a description"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A catalogue with your products or services and prices"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Quick replies for the three questions you answer every day"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "An away message for after hours"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Labels to track leads: New, Quoted, Waiting, Paid"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most South African customers will contact you on WhatsApp whether you invite them to or not. Make that experience good and you will beat competitors who only have a contact form."
+        }
+      ],
+      "hash": "9988ee17693d8189",
+      "id": "2-whatsapp-business.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 1: content pillars"
+        }
+      ],
+      "depth": 2,
+      "hash": "889e464e5ea2a1bb",
+      "id": "prompt-1-content-pillars",
+      "kind": "heading",
+      "text": "Prompt 1: content pillars"
+    },
+    {
+      "hash": "cf089ed8f9b49371",
+      "id": "prompt-1-content-pillars.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "PASTE YOUR BRAND BRIEF FROM 05-branding-prompts.md"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE YOUR VOICE GUIDE"
+        }
+      ],
+      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF FROM 05-branding-prompts.md]\n\nHere is my brand voice:\n\n[PASTE YOUR VOICE GUIDE]\n\nGive me 5 sets of content pillars. A content pillar is a repeating topic\nI post about.\n\nEach set must have exactly 4 pillars. For each pillar give me:\n- The pillar name\n- Why my specific customers care about it\n- Three example post ideas\n\nMake the 5 sets genuinely different in approach. At least one set must be\nbuilt around things I can photograph with a phone while working, with no\nplanning.\n\nRemember I am one person with no time and no budget.\n\nNumber the sets 1 to 5. After the 5 sets, stop. Ask me which set is\nclosest and what I would change.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 2: a month of posts"
+        }
+      ],
+      "depth": 2,
+      "hash": "ce00b640dc4e5116",
+      "id": "prompt-2-a-month-of-posts",
+      "kind": "heading",
+      "text": "Prompt 2: a month of posts"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Run this after you choose your pillars."
+        }
+      ],
+      "hash": "004b7f499193f9fe",
+      "id": "prompt-2-a-month-of-posts.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "e4f0c66201677e84",
+      "id": "prompt-2-a-month-of-posts.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE THE 4 PILLARS YOU CHOSE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE YOUR VOICE GUIDE"
+        },
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BUSINESS TYPE"
+        },
+        {
+          "key": "town",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "TOWN/CITY"
+        }
+      ],
+      "text": "My content pillars are:\n\n[PASTE THE 4 PILLARS YOU CHOSE]\n\nMy brand voice is:\n\n[PASTE YOUR VOICE GUIDE]\n\nI am a [BUSINESS TYPE] in [TOWN/CITY], South Africa.\n\nWrite me 12 posts for one month. That is 3 posts a week.\n\nFor each post give me:\n- Which pillar it belongs to\n- The caption, ready to paste, maximum 60 words\n- What photo or video to take, described so I can shoot it on my phone\n in under 5 minutes\n- 5 hashtags that a South African customer would actually search\n- One line telling the reader what to do next\n\nRules:\n- Simple English\n- South African spelling and money in rands\n- No emojis on every line, maximum two per post\n- Do not invent claims, statistics, or customer stories\n- Mention load shedding, weather, or local events only if it is genuinely\n relevant to what I sell\n\nSpread the 12 posts across the pillars evenly.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 3: WhatsApp messages you send every week"
+        }
+      ],
+      "depth": 2,
+      "hash": "dfe4ef133a7bc26d",
+      "id": "prompt-3-whatsapp-messages-you-send-every-week",
+      "kind": "heading",
+      "text": "Prompt 3: WhatsApp messages you send every week"
+    },
+    {
+      "hash": "6d3811a57fc30cd2",
+      "id": "prompt-3-whatsapp-messages-you-send-every-week.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BUSINESS TYPE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE YOUR VOICE GUIDE"
+        }
+      ],
+      "text": "I am a [BUSINESS TYPE] in South Africa. My brand voice is:\n\n[PASTE YOUR VOICE GUIDE]\n\nWrite me short WhatsApp message templates for these 8 situations. Each\none must be under 60 words, polite, and easy to read on a phone.\n\n1. Someone asks \"how much?\" and I need more information before quoting\n2. Sending a quote\n3. Following up on a quote after 3 days with no reply\n4. Confirming a booking with date, time, and address\n5. Reminding a customer the day before\n6. Telling a customer I am running late\n7. Asking for payment politely when an invoice is overdue\n8. Asking for a Google review after a job went well\n\nUse [SQUARE BRACKETS] for anything I must fill in.\n\nGive me each message twice: once in English and once in a warmer, less\nformal tone.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Save these as Quick Replies in WhatsApp Business. You will use them every day."
+        }
+      ],
+      "hash": "b811e8877bbb2f05",
+      "id": "prompt-3-whatsapp-messages-you-send-every-week.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 4: your Google Business Profile description"
+        }
+      ],
+      "depth": 2,
+      "hash": "ddd0b956da9fcf76",
+      "id": "prompt-4-your-google-business-profile-description",
+      "kind": "heading",
+      "text": "Prompt 4: your Google Business Profile description"
+    },
+    {
+      "hash": "b03a04f68b279f46",
+      "id": "prompt-4-your-google-business-profile-description.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BUSINESS TYPE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "AREAS"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "DESCRIBE IN YOUR OWN WORDS"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "DESCRIBE"
+        }
+      ],
+      "text": "I am a [BUSINESS TYPE] serving [AREAS] in South Africa.\n\nWhat I do: [DESCRIBE IN YOUR OWN WORDS]\nWhat makes me different: [DESCRIBE]\n\nWrite 5 different Google Business Profile descriptions.\n\nRules:\n- Maximum 700 characters each\n- Include the words a customer would actually type into Google\n- Name the areas I serve\n- No marketing language\n- Say what to do next\n\nAlso give me a list of the Google Business categories I should choose,\nprimary and secondary.\n\nNumber them 1 to 5. After the 5 options, stop.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 5: answering the questions that stop a sale"
+        }
+      ],
+      "depth": 2,
+      "hash": "a7d1ee5cbb9ddc73",
+      "id": "prompt-5-answering-the-questions-that-stop-a-sale",
+      "kind": "heading",
+      "text": "Prompt 5: answering the questions that stop a sale"
+    },
+    {
+      "hash": "0e32382f88c192db",
+      "id": "prompt-5-answering-the-questions-that-stop-a-sale.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BUSINESS TYPE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PRODUCT OR SERVICE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PRICE"
+        }
+      ],
+      "text": "I am a [BUSINESS TYPE] in South Africa selling [PRODUCT OR SERVICE] at\naround [PRICE].\n\nList the 10 questions or worries that most often stop a South African\ncustomer from buying from a small, unknown business like mine.\n\nFor each one, write a short answer I can use on WhatsApp, on my price\nlist, and on social media. Under 40 words each.\n\nBe honest. Do not write answers that make promises I cannot keep.\n\nThen tell me which three of these I should answer publicly, before the\ncustomer even asks.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This one is usually the most useful prompt in this file. The answers become your FAQ, your sales script, and half your content."
+        }
+      ],
+      "hash": "9dd557dd4582054d",
+      "id": "prompt-5-answering-the-questions-that-stop-a-sale.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Making the images"
+        }
+      ],
+      "depth": 2,
+      "hash": "b9a3a07636c37a27",
+      "id": "making-the-images",
+      "kind": "heading",
+      "text": "Making the images"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Free tools:"
+        }
+      ],
+      "hash": "8147eac8a6b1cca7",
+      "id": "making-the-images.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "b09a2bc8e20c648e",
+      "id": "making-the-images.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Canva free plan — social templates, sizes already set, brand colours saveable"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Photopea — free in the browser, opens PSD files"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "GIMP — free desktop photo editor"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your phone camera — better than any stock photo for a local business"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Advice: real photos of your real work beat designed graphics almost every time for a small local business. A clear photo of a finished job, taken in daylight, outperforms a polished graphic from a template."
+        }
+      ],
+      "hash": "49c8dc441d70d360",
+      "id": "making-the-images.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Keep image files small. Many of your customers pay for data by the megabyte. Export social images under 500 KB."
+        }
+      ],
+      "hash": "4dd1e3c9b3feecd0",
+      "id": "making-the-images.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What to ignore in your first year"
+        }
+      ],
+      "depth": 2,
+      "hash": "ff250a14fb2baedd",
+      "id": "what-to-ignore-in-your-first-year",
+      "kind": "heading",
+      "text": "What to ignore in your first year"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Paid advertising. Do not spend money on ads until you know exactly which message converts. Organic posts and a Google Business Profile teach you that for free."
+        }
+      ],
+      "hash": "9aacca55436eddb8",
+      "id": "what-to-ignore-in-your-first-year.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Posting daily. Three good posts a week beats seven rushed ones. Nobody is counting."
+        }
+      ],
+      "hash": "2b86d8421d8c53b0",
+      "id": "what-to-ignore-in-your-first-year.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Being on every platform. If you are not going to answer messages on a platform within a day, do not open an account there."
+        }
+      ],
+      "hash": "dde38c1ce9321b03",
+      "id": "what-to-ignore-in-your-first-year.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A blog. Only worth it if search traffic is genuinely how your customers find your kind of business, and only if you will write it for a year."
+        }
+      ],
+      "hash": "3a7f9bbf02745c11",
+      "id": "what-to-ignore-in-your-first-year.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Buying followers or joining engagement groups. It damages your reach and it sells nothing."
+        }
+      ],
+      "hash": "1b6a76725f2404e0",
+      "id": "what-to-ignore-in-your-first-year.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The one metric that matters"
+        }
+      ],
+      "depth": 2,
+      "hash": "970dcfac7183118c",
+      "id": "the-one-metric-that-matters",
+      "kind": "heading",
+      "text": "The one metric that matters"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Count how many people contacted you this month, and how many of those bought."
+        }
+      ],
+      "hash": "bfa586d6e966a4f3",
+      "id": "the-one-metric-that-matters.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Not likes. Not followers. Enquiries and sales."
+        }
+      ],
+      "hash": "272c697546293c1b",
+      "id": "the-one-metric-that-matters.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Write these two numbers down every month in the same spreadsheet where you track money. After three months you will know which channel is actually working, and you can stop doing the other one."
+        }
+      ],
+      "hash": "dc855774236e1488",
+      "id": "the-one-metric-that-matters.3",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "187b957190eba872",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Marketing prompts and assets",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "where-south-african-small-businesses-actually-get-customers",
+      "text": "Where South African small businesses actually get customers"
+    },
+    {
+      "depth": 2,
+      "id": "do-these-two-things-first-before-any-content",
+      "text": "Do these two things first, before any content"
+    },
+    {
+      "depth": 3,
+      "id": "1-google-business-profile",
+      "text": "1. Google Business Profile"
+    },
+    {
+      "depth": 3,
+      "id": "2-whatsapp-business",
+      "text": "2. WhatsApp Business"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-1-content-pillars",
+      "text": "Prompt 1: content pillars"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-2-a-month-of-posts",
+      "text": "Prompt 2: a month of posts"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-3-whatsapp-messages-you-send-every-week",
+      "text": "Prompt 3: WhatsApp messages you send every week"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-4-your-google-business-profile-description",
+      "text": "Prompt 4: your Google Business Profile description"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-5-answering-the-questions-that-stop-a-sale",
+      "text": "Prompt 5: answering the questions that stop a sale"
+    },
+    {
+      "depth": 2,
+      "id": "making-the-images",
+      "text": "Making the images"
+    },
+    {
+      "depth": 2,
+      "id": "what-to-ignore-in-your-first-year",
+      "text": "What to ignore in your first year"
+    },
+    {
+      "depth": 2,
+      "id": "the-one-metric-that-matters",
+      "text": "The one metric that matters"
+    }
+  ],
+  "id": "branding/marketing-prompts",
+  "kind": "guide",
+  "lang": "en",
+  "order": 5,
+  "readingTime": 6,
+  "related": [],
+  "route": "branding/marketing-prompts/",
+  "section": "branding",
+  "slug": "marketing-prompts",
+  "sourceNote": {
+    "reason": "This page contains AI prompts and marketing advice. It makes no factual claims from the sources register.",
+    "see": [
+      "lookup/sources",
+      "start/how-this-was-made"
+    ]
+  },
+  "sourcePath": "02 Branding and marketing/04-marketing-prompts.md",
+  "sources": {
+    "acts": [],
+    "entries": []
+  },
+  "summary": "Where South African small businesses actually find customers, plus AI prompts for content pillars, posts, WhatsApp messages and your Google Business Profile.",
+  "tags": [
+    "prompts",
+    "marketing"
+  ],
+  "terms": [],
+  "title": "Marketing prompts",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

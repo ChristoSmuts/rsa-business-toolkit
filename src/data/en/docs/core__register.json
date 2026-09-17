@@ -1,0 +1,1509 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most advice tells you to register a company first. For a one-person business earning under about R500,000 a year, that is usually the wrong first move."
+        }
+      ],
+      "hash": "551da30e6d53dbc5",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Read this before you spend money."
+        }
+      ],
+      "hash": "b2d04d603c93ff3d",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "72633b3630efd8db",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "You trade as yourself. No company. The business and you are the same person in law."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Sole proprietor"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A registered company. A separate legal person from you."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Pty Ltd"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The government office that registers companies."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "CIPC"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Signing to say you will personally pay a debt if the company cannot."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Surety"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The law about protecting customers' personal information."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "POPIA"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A free sworn statement of your turnover and ownership, signed at a police station."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "B-BBEE affidavit"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Two ways to trade"
+        }
+      ],
+      "depth": 2,
+      "hash": "8a45dbae12823906",
+      "id": "two-ways-to-trade",
+      "kind": "heading",
+      "text": "Two ways to trade"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sole proprietor (trading as yourself)"
+        }
+      ],
+      "depth": 3,
+      "hash": "c2380c8bfe9e5f32",
+      "id": "sole-proprietor-trading-as-yourself",
+      "kind": "heading",
+      "text": "Sole proprietor (trading as yourself)"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You trade under your own name and your own ID number. There is no separate business to register. You can start today."
+        }
+      ],
+      "hash": "fbc28133228a3699",
+      "id": "sole-proprietor-trading-as-yourself.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You can use a trading name like \"Thabo's Plumbing\". You do not register that name anywhere. You just use it on your invoices and your signage."
+        }
+      ],
+      "hash": "4e6fddebfd6f075d",
+      "id": "sole-proprietor-trading-as-yourself.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What this means in practice:"
+        }
+      ],
+      "hash": "43b91bfb36c52ddf",
+      "id": "sole-proprietor-trading-as-yourself.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The business and you are the same person in law. Business income goes on your personal tax return. If the business owes money, you owe it. Your house and your car can be taken to pay a business debt. There is no protection."
+        }
+      ],
+      "hash": "afdbf19682a7925b",
+      "id": "sole-proprietor-trading-as-yourself.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Cost to set up: R0."
+        }
+      ],
+      "hash": "bd778e47c1d2f92b",
+      "id": "sole-proprietor-trading-as-yourself.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Private company (Pty) Ltd"
+        }
+      ],
+      "depth": 3,
+      "hash": "c84ae8f94bc1b869",
+      "id": "private-company-pty-ltd",
+      "kind": "heading",
+      "text": "Private company (Pty) Ltd"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The company is a separate legal person. It has its own registration number. It can own things, sign contracts, and be sued on its own."
+        }
+      ],
+      "hash": "dcae521bbdd87aa0",
+      "id": "private-company-pty-ltd.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If the company owes money, generally the company owes it, not you. This is the main reason to register one. But this protection breaks if you sign personal surety (most banks and landlords will demand it) or if you trade while unable to pay your debts."
+        }
+      ],
+      "hash": "82e1ccaeac5bf4df",
+      "id": "private-company-pty-ltd.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Cost to set up: R125 on BizPortal without a name, or R175 if you reserve a name."
+        }
+      ],
+      "hash": "2de169af78136582",
+      "id": "private-company-pty-ltd.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Cost to keep alive every year: much more. You must file an annual return with CIPC, a beneficial ownership filing, and an annual company tax return. Most owners pay an accountant for this. One South African accounting firm puts the realistic first-year all-in cost at R2,500 to R3,500, and ongoing compliance at R15,000 to R40,000 a year. You can do it yourself for much less, but it takes real effort."
+        }
+      ],
+      "hash": "78542ffbc581bbb0",
+      "id": "private-company-pty-ltd.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A company that earns nothing still has to file. A dormant company that nobody files for builds up penalties and eventually gets deregistered."
+        }
+      ],
+      "hash": "6855f2a2260b2c9b",
+      "id": "private-company-pty-ltd.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Which one should you choose"
+        }
+      ],
+      "depth": 2,
+      "hash": "be22e884b5bb951f",
+      "id": "which-one-should-you-choose",
+      "kind": "heading",
+      "text": "Which one should you choose"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Stay a sole proprietor if:"
+        }
+      ],
+      "hash": "526edf37777aa9b1",
+      "id": "which-one-should-you-choose.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "1d814d64b46ffa59",
+      "id": "which-one-should-you-choose.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "You sell to the public or to small businesses"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your work cannot easily cause big financial damage to someone else"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "You earn under roughly R500,000 a year"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Nobody has asked you for a company registration number"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Register a Pty if:"
+        }
+      ],
+      "hash": "4a0553ddcf8d65e9",
+      "id": "which-one-should-you-choose.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "68d3a6bd68a71770",
+      "id": "which-one-should-you-choose.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Corporate clients or government refuse to buy from an individual (this is common)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "You want to bid for tenders"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your work could cause serious loss or injury, so you want a legal wall between the business and your house"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "You need to register a vehicle in the business name (see "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Vehicles for your business"
+              }
+            ],
+            "doc": "core/vehicles",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ")"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "You will bring in a partner or investor later"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Before you register, read "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Running a Pty Ltd"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". It sets out every filing a company owes each year, and what happens when those are missed. Read it first, not after registering."
+        }
+      ],
+      "hash": "31608011a3abc614",
+      "id": "which-one-should-you-choose.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Two trade-offs nobody mentions"
+        }
+      ],
+      "depth": 3,
+      "hash": "79fa6b3d9cbbe341",
+      "id": "two-trade-offs-nobody-mentions",
+      "kind": "heading",
+      "text": "Two trade-offs nobody mentions"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "A company may give you a safety net a sole proprietor cannot have."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " A sole proprietor cannot contribute to UIF and is not an employee under COIDA. A working director on a company payroll generally is an employee for COIDA, and may be for UIF. That is access to injury-on-duty cover, and possibly an illness benefit, that no sole proprietor can buy through this route."
+        }
+      ],
+      "hash": "62c57ec6ea433647",
+      "id": "two-trade-offs-nobody-mentions.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "A company loses you the free court."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Section 7(1) of the Small Claims Courts Act 61 of 1984 says only a natural person may institute an action, and a juristic person may take part only as a defendant. If a customer owes your sole proprietorship R25,000 you can go to the Small Claims Court yourself, free, with no lawyer. If they owe your Pty the same amount, you must instruct an attorney and use the magistrates' court. Your company can still be sued there; the disadvantage runs one way."
+        }
+      ],
+      "hash": "508055141ab2af85",
+      "id": "two-trade-offs-nobody-mentions.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Both are set out in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "You are the business"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "a8bdb1f1703f6f44",
+      "id": "two-trade-offs-nobody-mentions.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You can start as a sole proprietor and register a company later. That is normal and easy. Starting the other way around, with a company you cannot afford to keep compliant, is the expensive mistake."
+        }
+      ],
+      "hash": "7d40f32bbf5185f2",
+      "id": "two-trade-offs-nobody-mentions.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How to register a company yourself"
+        }
+      ],
+      "depth": 2,
+      "hash": "5f8c87bbdf4cdf23",
+      "id": "how-to-register-a-company-yourself",
+      "kind": "heading",
+      "text": "How to register a company yourself"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do not pay an agent for this. Agents charge several times the CIPC fee for a form you can complete yourself in an afternoon."
+        }
+      ],
+      "hash": "a3c00e9da44b773f",
+      "id": "how-to-register-a-company-yourself.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Go to "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.bizportal.gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.bizportal.gov.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". You need a valid South African ID number."
+        }
+      ],
+      "hash": "56163f2f513ced2e",
+      "id": "how-to-register-a-company-yourself.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Registration on BizPortal costs R175 in total: R50 for the name reservation and R125 for the incorporation itself. If you skip the name and register with your enterprise number, it is R125."
+        }
+      ],
+      "hash": "22f8cca51aa2b533",
+      "id": "how-to-register-a-company-yourself.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Steps:"
+        }
+      ],
+      "hash": "e6c05b10228c274a",
+      "id": "how-to-register-a-company-yourself.4",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "a80c275d09a3a68f",
+      "id": "how-to-register-a-company-yourself.5",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Create a BizPortal account with your ID number."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Choose to register a private company."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Either propose up to four names, or skip the name. CIPC checks proposed names one at a time and registers the first one that clears. If you skip, your company is named after its registration number, like 2026/123456/07. You can add a name later, and you can still trade under any trading name you like."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Enter director details exactly as they appear on the ID. One digit wrong and the Home Affairs check fails."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Enter the company address and choose a financial year end. Choose February so it matches the tax year."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Pay by card."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your registration certificate, form CoR 14.3, and Memorandum of Incorporation arrive by email as PDF attachments, and your income tax number is issued automatically by SARS at the same time."
+        }
+      ],
+      "hash": "5698c831d33490ba",
+      "id": "how-to-register-a-company-yourself.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "After registration, two things are easy to miss, and both are free:"
+        }
+      ],
+      "hash": "09fc91524a8f7352",
+      "id": "how-to-register-a-company-yourself.7",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "667b5b55409061cd",
+      "id": "how-to-register-a-company-yourself.8",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Confirm the SARS registered representative (the public officer). Without this you cannot use eFiling for the company."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "File the beneficial ownership information with CIPC. This is a legal requirement and it is free."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Choosing the name"
+        }
+      ],
+      "depth": 2,
+      "hash": "18eed99c73b26095",
+      "id": "choosing-the-name",
+      "kind": "heading",
+      "text": "Choosing the name"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If your name is already registered and decided, skip to "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Already have your name (shortcut)"
+            }
+          ],
+          "doc": "branding/already-have-your-name",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". It lists the three checks still worth doing."
+        }
+      ],
+      "hash": "95e4730425af37bc",
+      "id": "choosing-the-name.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Before you fall in love with a name, check three things in this order:"
+        }
+      ],
+      "hash": "eac5b97e3cb1768c",
+      "id": "choosing-the-name.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "57b01d4ea7095d0a",
+      "id": "choosing-the-name.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Search the name on the CIPC website or BizPortal. If a similar registered company exists, your name may be refused."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Check the domain. Go to any South African domain seller and see if "
+          },
+          {
+            "t": "code",
+            "v": "yourname.co.za"
+          },
+          {
+            "t": "text",
+            "v": " is free. A "
+          },
+          {
+            "t": "code",
+            "v": ".co.za"
+          },
+          {
+            "t": "text",
+            "v": " domain is cheap, usually well under R200 a year, but prices differ between sellers so compare two or three. Buy it even if you will not build a website yet."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Check Instagram, Facebook, and TikTok for the handle."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A trademark is different from a company name. A company name stops nobody from using the same brand. A trademark does. Trademarks cost several thousand rand and take a long time. Do not do this in year one unless your brand is the whole product."
+        }
+      ],
+      "hash": "c7a35b97424324df",
+      "id": "choosing-the-name.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Business bank account"
+        }
+      ],
+      "depth": 2,
+      "hash": "9d65d1de4088f617",
+      "id": "business-bank-account",
+      "kind": "heading",
+      "text": "Business bank account"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is the one thing every business should do, even a sole proprietor with no registration."
+        }
+      ],
+      "hash": "13f737273d9793a9",
+      "id": "business-bank-account.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use a separate account for business money. Not a separate wallet. A separate bank account."
+        }
+      ],
+      "hash": "aec7f33d44916640",
+      "id": "business-bank-account.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Why it matters: when SARS asks how much you earned, you need one account with only business money in it. Mixing home and business money turns one hour of bookkeeping into two days."
+        }
+      ],
+      "hash": "cf2ef03c7cd55eea",
+      "id": "business-bank-account.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A sole proprietor can use a second personal account. It is legal and cheap. You can only get a business account in a business name if you have a registered company."
+        }
+      ],
+      "hash": "28a55c2aed07c110",
+      "id": "business-bank-account.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "When comparing accounts, compare these four things and ignore the marketing:"
+        }
+      ],
+      "hash": "fd23b8c11affe082",
+      "id": "business-bank-account.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "93caa5ee5445a7cb",
+      "id": "business-bank-account.6",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Monthly account fee"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Cost to deposit cash (this is the big hidden cost if customers pay cash)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Cost per EFT and per card swipe"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Whether a card machine is included, and what percentage it takes"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ask your bank for their current business pricing guide. Do not trust a blog for bank fees."
+        }
+      ],
+      "hash": "6a57fea6437c206d",
+      "id": "business-bank-account.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "POPIA: register your information officer"
+        }
+      ],
+      "depth": 2,
+      "hash": "911f32c0cb468f4f",
+      "id": "popia-register-your-information-officer",
+      "kind": "heading",
+      "text": "POPIA: register your information officer"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This one surprises people. It is free and most solo owners have never heard of it."
+        }
+      ],
+      "hash": "a9f7b1e12e826355",
+      "id": "popia-register-your-information-officer.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "POPIA is South Africa's data protection law. If you keep any customer information at all, names, phone numbers, addresses, it applies to you."
+        }
+      ],
+      "hash": "d3cd7cfa09187e81",
+      "id": "popia-register-your-information-officer.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "POPIA makes it compulsory for all private and public bodies to register an Information Officer with the Information Regulator. Neither the law nor the guidance note allows any exemption, and the Information Officer may only take up duties after being registered."
+        }
+      ],
+      "hash": "f7214d981ebfd035",
+      "id": "popia-register-your-information-officer.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a one-person business, the information officer is you."
+        }
+      ],
+      "hash": "91509023fdb34616",
+      "id": "popia-register-your-information-officer.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Register on the Information Regulator portal at "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "inforegulator.org.za"
+            }
+          ],
+          "external": true,
+          "href": "https://inforegulator.org.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". It costs nothing."
+        }
+      ],
+      "hash": "388403735941d86f",
+      "id": "popia-register-your-information-officer.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The Information Regulator is enforcing POPIA with administrative fines of up to R10 million. Small businesses are not the main target, but registration takes under an hour and removes the risk entirely."
+        }
+      ],
+      "hash": "44729ce896af0ee7",
+      "id": "popia-register-your-information-officer.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You also need a short privacy notice telling customers what data you collect and why. There is a template in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Which template to use when"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "78962dcf7a42a566",
+      "id": "popia-register-your-information-officer.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "B-BBEE affidavit: free, do not pay for it"
+        }
+      ],
+      "depth": 2,
+      "hash": "a7b7dbbe183dc16a",
+      "id": "b-bbee-affidavit-free-do-not-pay-for-it",
+      "kind": "heading",
+      "text": "B-BBEE affidavit: free, do not pay for it"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If your turnover is under R10 million a year, you are an Exempted Micro Enterprise (EME)."
+        }
+      ],
+      "hash": "c51955cd403ee974",
+      "id": "b-bbee-affidavit-free-do-not-pay-for-it.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "All EMEs are exempt from B-BBEE compliance and receive automatic B-BBEE Recognition Level 4. An EME that is at least 51% black owned automatically receives Level 2 status, and one that is 100% black owned receives Level 1. EMEs only need a sworn affidavit or a CIPC certificate."
+        }
+      ],
+      "hash": "67f278a37ae3bbf1",
+      "id": "b-bbee-affidavit-free-do-not-pay-for-it.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The sworn affidavit is free. It is a standard template signed in front of a Commissioner of Oaths, confirming your turnover and your black ownership. The CIPC also issues free B-BBEE certificates to EMEs. A Commissioner of Oaths is available free at any police station."
+        }
+      ],
+      "hash": "52db4b9c045e31dc",
+      "id": "b-bbee-affidavit-free-do-not-pay-for-it.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The affidavit is valid for twelve months from the date it is signed. Set a reminder to renew it."
+        }
+      ],
+      "hash": "b843c26796745708",
+      "id": "b-bbee-affidavit-free-do-not-pay-for-it.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do not pay a consultant for a B-BBEE certificate while you are under R10 million. Some sectors, including construction, ICT, and tourism, have their own sector codes with different rules, so check your sector code if you work in one of those."
+        }
+      ],
+      "hash": "7d925a282ca3cd84",
+      "id": "b-bbee-affidavit-free-do-not-pay-for-it.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Things you can skip at the start"
+        }
+      ],
+      "depth": 2,
+      "hash": "0536264ff593e921",
+      "id": "things-you-can-skip-at-the-start",
+      "kind": "heading",
+      "text": "Things you can skip at the start"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Selling to government (CSD registration). Only register on the Central Supplier Database if you are actually going to bid for tenders. It is free but it is admin."
+        }
+      ],
+      "hash": "954887ca22c35a8b",
+      "id": "things-you-can-skip-at-the-start.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "UIF and COIDA. A sole proprietor with no staff does not register, and in fact cannot. The Unemployment Insurance Contributions Act excludes independent contractors from its definition of employee, and a sole proprietor is not an employee under COIDA either. That cuts both ways: it also means no illness benefit and no injury-on-duty cover, ever."
+        }
+      ],
+      "hash": "c334bd6f10ca7f63",
+      "id": "things-you-can-skip-at-the-start.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "With a company it is different. If your Pty pays you a salary as a director, you are generally an employee of your own company, and PAYE, UIF and COIDA obligations start. Read that as a trade rather than a catch: you take on the admin, and you get cover a sole proprietor cannot buy through this route. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "You are the business"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". There are three legal ways to take money out of a company, each taxed differently. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Paying yourself from a Pty Ltd"
+            }
+          ],
+          "doc": "core/paying-yourself",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " before you pay yourself the first time."
+        }
+      ],
+      "hash": "268a80ec2584198e",
+      "id": "things-you-can-skip-at-the-start.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A business plan. You only need one to raise money from a bank or investor. Writing a 30-page plan for yourself is procrastination dressed as work."
+        }
+      ],
+      "hash": "68aa9ad937c350e5",
+      "id": "things-you-can-skip-at-the-start.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A website. A Google Business Profile plus a WhatsApp Business number gets most local businesses their first hundred customers. Build the site when you have something to put on it."
+        }
+      ],
+      "hash": "1afcc81767f1dda7",
+      "id": "things-you-can-skip-at-the-start.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A logo designer. Use the prompts in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Branding prompts"
+            }
+          ],
+          "doc": "branding/branding-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " and a free tool. Spend money on a designer when the brand starts earning."
+        }
+      ],
+      "hash": "202eda9e41bade85",
+      "id": "things-you-can-skip-at-the-start.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A company stamp. It has no legal meaning in South Africa. Nobody needs one."
+        }
+      ],
+      "hash": "7800273fa157970e",
+      "id": "things-you-can-skip-at-the-start.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your registration checklist"
+        }
+      ],
+      "depth": 2,
+      "hash": "496eb624b8b5e308",
+      "id": "your-registration-checklist",
+      "kind": "heading",
+      "text": "Your registration checklist"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Required for everyone:"
+        }
+      ],
+      "hash": "ba0850ab11ac60b3",
+      "id": "your-registration-checklist.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "2d884021946f760a",
+      "id": "your-registration-checklist.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Separate bank account for business money"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "SARS registration and filing (see "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Tax and SARS"
+              }
+            ],
+            "doc": "core/tax-and-sars",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ")"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "POPIA information officer registration"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Municipal licence, if your business type needs one (see "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "What you need to sell things"
+              }
+            ],
+            "doc": "core/what-you-need-to-sell-things",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ")"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Required only in some cases:"
+        }
+      ],
+      "hash": "4175ad481797777b",
+      "id": "your-registration-checklist.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "bce5c280bfc5098a",
+      "id": "your-registration-checklist.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "CIPC company registration"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "VAT registration (only over R2.3 million turnover)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "CSD registration (only for government tenders)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "B-BBEE affidavit (only when a customer asks for it, and it is free)"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    }
+  ],
+  "contentHash": "ddf4ef38cd7096cf",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Register: what you actually need",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "two-ways-to-trade",
+      "text": "Two ways to trade"
+    },
+    {
+      "depth": 3,
+      "id": "sole-proprietor-trading-as-yourself",
+      "text": "Sole proprietor (trading as yourself)"
+    },
+    {
+      "depth": 3,
+      "id": "private-company-pty-ltd",
+      "text": "Private company (Pty) Ltd"
+    },
+    {
+      "depth": 2,
+      "id": "which-one-should-you-choose",
+      "text": "Which one should you choose"
+    },
+    {
+      "depth": 3,
+      "id": "two-trade-offs-nobody-mentions",
+      "text": "Two trade-offs nobody mentions"
+    },
+    {
+      "depth": 2,
+      "id": "how-to-register-a-company-yourself",
+      "text": "How to register a company yourself"
+    },
+    {
+      "depth": 2,
+      "id": "choosing-the-name",
+      "text": "Choosing the name"
+    },
+    {
+      "depth": 2,
+      "id": "business-bank-account",
+      "text": "Business bank account"
+    },
+    {
+      "depth": 2,
+      "id": "popia-register-your-information-officer",
+      "text": "POPIA: register your information officer"
+    },
+    {
+      "depth": 2,
+      "id": "b-bbee-affidavit-free-do-not-pay-for-it",
+      "text": "B-BBEE affidavit: free, do not pay for it"
+    },
+    {
+      "depth": 2,
+      "id": "things-you-can-skip-at-the-start",
+      "text": "Things you can skip at the start"
+    },
+    {
+      "depth": 2,
+      "id": "your-registration-checklist",
+      "text": "Your registration checklist"
+    }
+  ],
+  "id": "core/register",
+  "kind": "guide",
+  "lang": "en",
+  "order": 2,
+  "readingTime": 10,
+  "related": [
+    "core/you-are-the-business",
+    "core/vehicles",
+    "core/running-a-pty-ltd",
+    "branding/already-have-your-name",
+    "paperwork/which-template-to-use-when"
+  ],
+  "route": "core/register/",
+  "section": "core",
+  "slug": "register",
+  "sourcePath": "01 Core - applies to everyone/02-register.md",
+  "sources": {
+    "acts": [
+      "companies-act-71-of-2008",
+      "protection-of-personal-information-act-4-of-2013",
+      "broad-based-black-economic-empowerment-act-53-of-2003"
+    ],
+    "entries": [
+      "sars--what-is-the-new-threshold-for-vat-registration",
+      "bizportal-cipc--company-registration",
+      "govchain-how-to-register-a-company-directly-with-cipc",
+      "smartbook-cost-to-register-a-company",
+      "b-bbee-commission--frequently-asked-questions",
+      "rsm-south-africa",
+      "information-regulator-of-south-africa",
+      "serr-synergy",
+      "michalsons",
+      "uif-and-the-self-employed",
+      "coida-and-working-directors",
+      "small-claims-court-who-may-sue"
+    ]
+  },
+  "summary": "Most advice tells you to register a company first. For a one-person business earning under about R500,000 a year, that is usually the wrong first move.",
+  "tags": [
+    "registration"
+  ],
+  "terms": [
+    {
+      "meaning": "You trade as yourself. No company. The business and you are the same person in law.",
+      "term": "Sole proprietor"
+    },
+    {
+      "meaning": "A registered company. A separate legal person from you.",
+      "term": "Pty Ltd"
+    },
+    {
+      "meaning": "The government office that registers companies.",
+      "term": "CIPC"
+    },
+    {
+      "meaning": "Signing to say you will personally pay a debt if the company cannot.",
+      "term": "Surety"
+    },
+    {
+      "meaning": "The law about protecting customers' personal information.",
+      "term": "POPIA"
+    },
+    {
+      "meaning": "A free sworn statement of your turnover and ownership, signed at a police station.",
+      "term": "B-BBEE affidavit"
+    }
+  ],
+  "title": "Register: what you actually need",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

@@ -1,0 +1,983 @@
+{
+  "appliesTo": {
+    "businessTypes": [
+      "services-trades"
+    ],
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Read "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " first. This file adds the rules that apply when you fix, build, install, clean, or deliver."
+        }
+      ],
+      "hash": "919b7382ddd94cfd",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This covers plumbers, electricians, builders, painters, mechanics, gardeners, cleaners, handymen, couriers, and installers."
+        }
+      ],
+      "hash": "c89cfc4cd3f45e87",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "7ede2df35070bbe0",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Certificate of Compliance. The document an electrician or gas installer signs. Only registered people may sign one."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "CoC"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Insurance for damage you cause to other people or their property."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Public liability"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Exactly what work is included in the price, and what is not."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Scope"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Extra work outside the original scope. Agree it in writing before doing it."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Variation"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Being paid in stages as the job goes along."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Progress payment"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Check whether your trade is regulated"
+        }
+      ],
+      "depth": 2,
+      "hash": "48121dadd832187a",
+      "id": "check-whether-your-trade-is-regulated",
+      "kind": "heading",
+      "text": "Check whether your trade is regulated"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most trades need no licence. Some trades may not legally be done without registration. If you do the work anyway, your customer's insurance may refuse to pay, and you carry the risk."
+        }
+      ],
+      "hash": "c05535265f3df9f7",
+      "id": "check-whether-your-trade-is-regulated.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Trades that commonly require registration or certification:"
+        }
+      ],
+      "hash": "6194756f7385a8d7",
+      "id": "check-whether-your-trade-is-regulated.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Electricians who issue a Certificate of Compliance must be registered with the Department of Employment and Labour as a registered person. An electrical CoC signed by someone not registered is worthless, and the customer finds out when their house sale falls through."
+        }
+      ],
+      "hash": "cd4ca80bc3e8ce49",
+      "id": "check-whether-your-trade-is-regulated.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gas installers must be registered and authorised to issue a gas Certificate of Conformity."
+        }
+      ],
+      "hash": "62c8e878148a2a19",
+      "id": "check-whether-your-trade-is-regulated.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Plumbers issuing plumbing certificates need the relevant registration, and some municipalities maintain their own lists."
+        }
+      ],
+      "hash": "5443ee7da4c96e69",
+      "id": "check-whether-your-trade-is-regulated.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Builders doing residential work for sale need NHBRC registration. Construction contractors bidding for public work need CIDB registration and grading."
+        }
+      ],
+      "hash": "93be83e32c083b33",
+      "id": "check-whether-your-trade-is-regulated.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Security services require PSIRA registration. This is strictly enforced."
+        }
+      ],
+      "hash": "7f2e5563a8f5003c",
+      "id": "check-whether-your-trade-is-regulated.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Pest control operators handling scheduled chemicals need registration under the relevant agricultural and health legislation."
+        }
+      ],
+      "hash": "8aeb38105d83121b",
+      "id": "check-whether-your-trade-is-regulated.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If your trade has a professional or statutory body, assume registration is compulsory until you confirm otherwise. Search the body's site, or phone them. One call is cheaper than a disputed job."
+        }
+      ],
+      "hash": "b730c3e3d92148fa",
+      "id": "check-whether-your-trade-is-regulated.9",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Occupational health and safety"
+        }
+      ],
+      "depth": 2,
+      "hash": "500f0dccc7482a4f",
+      "id": "occupational-health-and-safety",
+      "kind": "heading",
+      "text": "Occupational health and safety"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The Occupational Health and Safety Act applies to you even with no employees. You work on other people's property and around other people, so their safety is your responsibility."
+        }
+      ],
+      "hash": "157e77e29a83a6db",
+      "id": "occupational-health-and-safety.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For construction work specifically, the Construction Regulations bring extra duties, and a client may require a safety file before you may start on site. Corporate and government clients will always ask. Build a basic safety file once and reuse it."
+        }
+      ],
+      "hash": "ff8d796e63e64eec",
+      "id": "occupational-health-and-safety.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Consumer law on services"
+        }
+      ],
+      "depth": 2,
+      "hash": "6232b32f80f7a96b",
+      "id": "consumer-law-on-services",
+      "kind": "heading",
+      "text": "Consumer law on services"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A service must be performed with reasonable skill, care and diligence, and within a reasonable time. If it is not, the customer can require it to be put right or refunded."
+        }
+      ],
+      "hash": "9501f569ea3655ed",
+      "id": "consumer-law-on-services.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Goods you install carry the six-month implied warranty separately from your workmanship."
+        }
+      ],
+      "hash": "20a6ad3f929adcf4",
+      "id": "consumer-law-on-services.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Quoting: where trades lose money"
+        }
+      ],
+      "depth": 2,
+      "hash": "0de086dd9f3e3ec9",
+      "id": "quoting-where-trades-lose-money",
+      "kind": "heading",
+      "text": "Quoting: where trades lose money"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most disputes in trade work are not about quality. They are about scope."
+        }
+      ],
+      "hash": "d91d4664da24ca99",
+      "id": "quoting-where-trades-lose-money.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use the quote template in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Which template to use when"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " and fill in both lists. What is included, and what is not included. The second list is the one that saves you."
+        }
+      ],
+      "hash": "1549c867b238bfb7",
+      "id": "quoting-where-trades-lose-money.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Write down:"
+        }
+      ],
+      "hash": "af5154a63825fbea",
+      "id": "quoting-where-trades-lose-money.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "1205a84ebe51691b",
+      "id": "quoting-where-trades-lose-money.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Exactly what work is covered"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "What is excluded, in plain words"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Who supplies materials"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Who removes rubble and waste"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "What happens if you open a wall and find something unexpected"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "What a variation costs, and that it must be agreed in writing before you do it"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Whether the price includes travel, and how far"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "\"Additional work will be quoted separately and must be approved in writing before it starts\" is one sentence that prevents most arguments."
+        }
+      ],
+      "hash": "d7c9e4a38ca302b2",
+      "id": "quoting-where-trades-lose-money.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deposits and payment"
+        }
+      ],
+      "depth": 2,
+      "hash": "2e01fa2275d4ccdf",
+      "id": "deposits-and-payment",
+      "kind": "heading",
+      "text": "Deposits and payment"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Take a deposit before you buy materials. A signed quote plus a deposit is a contract."
+        }
+      ],
+      "hash": "9b18c6edb9d16d68",
+      "id": "deposits-and-payment.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For longer jobs, use progress payments tied to stages, not to dates. \"50% on completion of first fix\" is enforceable and clear. \"50% after two weeks\" invites a fight about whether you were on site."
+        }
+      ],
+      "hash": "191977dd6e0f25f8",
+      "id": "deposits-and-payment.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Send the invoice the day you finish. Trades that invoice weekly get paid weekly. Trades that invoice monthly get paid whenever."
+        }
+      ],
+      "hash": "3171d0f3d988736e",
+      "id": "deposits-and-payment.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Insurance"
+        }
+      ],
+      "depth": 2,
+      "hash": "99bdab3738b5ebcd",
+      "id": "insurance",
+      "kind": "heading",
+      "text": "Insurance"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Public liability cover. If you flood a house, burn a roof, or drop a tool on a car, this is what stands between you and personal bankruptcy. It is not expensive for a one-person trade."
+        }
+      ],
+      "hash": "50a3999bb3ce6fce",
+      "id": "insurance.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tell your vehicle insurer the vehicle is used for business, and ask about goods in transit cover if you carry customer property or expensive tools. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Vehicles for your business"
+            }
+          ],
+          "doc": "core/vehicles",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "2ced487ef1387b6e",
+      "id": "insurance.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tool insurance is worth it once your tools are worth more than a few months of profit."
+        }
+      ],
+      "hash": "3baa8638ee9bc1b1",
+      "id": "insurance.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vehicles"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e3a81843d12212e",
+      "id": "vehicles",
+      "kind": "heading",
+      "text": "Vehicles"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most trades need one. Read "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Vehicles for your business"
+            }
+          ],
+          "doc": "core/vehicles",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " before deciding whether to put it in a business name. For a single owner-operator, personal ownership plus a logbook is usually the better answer."
+        }
+      ],
+      "hash": "41477169d4b29484",
+      "id": "vehicles.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Extra rules apply if your vehicle weighs over 3,500 kg fully loaded, or if you carry passengers for money. You need a Professional Driving Permit and a roadworthy test every year. For passenger transport you also need an operating licence."
+        }
+      ],
+      "hash": "69ad90d6b2ee7c49",
+      "id": "vehicles.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vehicle signage is usually the cheapest advertising a local trade can buy, and it is a deductible expense."
+        }
+      ],
+      "hash": "a7e781d3382cb543",
+      "id": "vehicles.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Branding and marketing notes"
+        }
+      ],
+      "depth": 2,
+      "hash": "cf2e2a9a2f4c9c97",
+      "id": "branding-and-marketing-notes",
+      "kind": "heading",
+      "text": "Branding and marketing notes"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use "
+        },
+        {
+          "label": "02-branding-and-marketing/",
+          "section": "branding",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ". For a local trade, priority order is:"
+        }
+      ],
+      "hash": "0697e5885df885ee",
+      "id": "branding-and-marketing-notes.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "699210569ac01119",
+      "id": "branding-and-marketing-notes.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Google Business Profile, filled in completely, with photos of real work"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Reviews from every happy customer"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "WhatsApp Business with quick replies and a catalogue of common jobs with prices"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Local Facebook community groups"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Vehicle signage"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Social media is fifth, not first. A plumber with 40 Google reviews beats a plumber with 4,000 Instagram followers."
+        }
+      ],
+      "hash": "f0ced3dd961773a4",
+      "id": "branding-and-marketing-notes.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Photograph every completed job before you leave. Two photos, before and after, taken in daylight. That is your entire content strategy."
+        }
+      ],
+      "hash": "a121cf30bbaa08ce",
+      "id": "branding-and-marketing-notes.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your checklist"
+        }
+      ],
+      "depth": 2,
+      "hash": "44586aab28889f46",
+      "id": "your-checklist",
+      "kind": "heading",
+      "text": "Your checklist"
+    },
+    {
+      "hash": "fbd60cb2055ec4d4",
+      "id": "your-checklist.1",
+      "items": [
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Confirm whether your trade requires professional or statutory registration"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:7aeedd49",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Get public liability insurance"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:6b14de08",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Tell your vehicle insurer you use the vehicle for work"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:06447813",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Build your quote template with a proper exclusions list"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:3e62bd56",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Set your deposit and progress payment terms in writing"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:4931924a",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Set up a vehicle logbook"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:6fa9b54e",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Claim and complete your Google Business Profile"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:92e8509e",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Set up WhatsApp Business with quick replies"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:a9a8c6bf",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist"
+    }
+  ],
+  "contentHash": "d6062c4a15ed8794",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Business type: services and trades",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "check-whether-your-trade-is-regulated",
+      "text": "Check whether your trade is regulated"
+    },
+    {
+      "depth": 2,
+      "id": "occupational-health-and-safety",
+      "text": "Occupational health and safety"
+    },
+    {
+      "depth": 2,
+      "id": "consumer-law-on-services",
+      "text": "Consumer law on services"
+    },
+    {
+      "depth": 2,
+      "id": "quoting-where-trades-lose-money",
+      "text": "Quoting: where trades lose money"
+    },
+    {
+      "depth": 2,
+      "id": "deposits-and-payment",
+      "text": "Deposits and payment"
+    },
+    {
+      "depth": 2,
+      "id": "insurance",
+      "text": "Insurance"
+    },
+    {
+      "depth": 2,
+      "id": "vehicles",
+      "text": "Vehicles"
+    },
+    {
+      "depth": 2,
+      "id": "branding-and-marketing-notes",
+      "text": "Branding and marketing notes"
+    },
+    {
+      "depth": 2,
+      "id": "your-checklist",
+      "text": "Your checklist"
+    }
+  ],
+  "id": "business-types/services-trades",
+  "kind": "guide",
+  "lang": "en",
+  "order": 6,
+  "readingTime": 5,
+  "related": [
+    "core/vehicles",
+    "paperwork/which-template-to-use-when"
+  ],
+  "route": "business-types/services-trades/",
+  "section": "business-types",
+  "slug": "services-trades",
+  "sourcePath": "04 Your kind of business/05-services-and-trades.md",
+  "sources": {
+    "acts": [
+      "consumer-protection-act-68-of-2008",
+      "occupational-health-and-safety-act-85-of-1993"
+    ],
+    "entries": [
+      "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
+      "hanekom-attorneys-webuycars-consent-order"
+    ]
+  },
+  "summary": "Plumbers, electricians, builders, cleaners, couriers and other trades: registration, safety, quoting, deposits and insurance.",
+  "tags": [
+    "business-types"
+  ],
+  "terms": [
+    {
+      "meaning": "Certificate of Compliance. The document an electrician or gas installer signs. Only registered people may sign one.",
+      "term": "CoC"
+    },
+    {
+      "meaning": "Insurance for damage you cause to other people or their property.",
+      "term": "Public liability"
+    },
+    {
+      "meaning": "Exactly what work is included in the price, and what is not.",
+      "term": "Scope"
+    },
+    {
+      "meaning": "Extra work outside the original scope. Agree it in writing before doing it.",
+      "term": "Variation"
+    },
+    {
+      "meaning": "Being paid in stages as the job goes along.",
+      "term": "Progress payment"
+    }
+  ],
+  "title": "Services and trades",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

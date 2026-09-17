@@ -1,0 +1,762 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How to use this: make a copy, rename it to the quote number, replace everything in [SQUARE BRACKETS], then export to PDF and send the PDF. Never send the editable file to a customer."
+        }
+      ],
+      "hash": "d871e32ec2e5c14b",
+      "id": "intro.1",
+      "kind": "note"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "key": "businessName",
+              "style": "identity",
+              "t": "placeholder",
+              "v": "YOUR BUSINESS NAME"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "ownerName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Your name"
+        },
+        {
+          "t": "text",
+          "v": " | "
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Phone"
+        },
+        {
+          "t": "text",
+          "v": " | "
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Email"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Physical address"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "nested": true,
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "If a company: Trading as a name of [REGISTERED NAME] (Pty) Ltd, Reg. No. [NUMBER] — this is required by law"
+        }
+      ],
+      "hash": "3812845ee2a23704",
+      "id": "intro.3",
+      "kind": "paragraph"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "086a151eb99263cf",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Field"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Detail"
+          }
+        ]
+      ],
+      "id": "intro.4",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Quote number"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "QUO-0001"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Date"
+            }
+          ],
+          [
+            {
+              "style": "format",
+              "t": "placeholder",
+              "v": "DD Month YYYY"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Valid until"
+            }
+          ],
+          [
+            {
+              "style": "format",
+              "t": "placeholder",
+              "v": "DD Month YYYY"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "To"
+        }
+      ],
+      "depth": 2,
+      "hash": "7cb1cef9ea8a2276",
+      "id": "to",
+      "kind": "heading",
+      "text": "To"
+    },
+    {
+      "c": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Customer name"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Customer address"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "style": "choice",
+          "t": "placeholder",
+          "v": "Customer phone / email"
+        }
+      ],
+      "hash": "128a5a29c755571a",
+      "id": "to.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What I will do"
+        }
+      ],
+      "depth": 2,
+      "hash": "7a8350a4412da93e",
+      "id": "what-i-will-do",
+      "kind": "heading",
+      "text": "What I will do"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "hash": "ef51c3866a1befb7",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Description"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Qty"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Unit price"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Amount"
+          }
+        ]
+      ],
+      "id": "what-i-will-do.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Item or service"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "1"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Item or service"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "1"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Item or service"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "1"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "TOTAL"
+                }
+              ],
+              "t": "strong"
+            }
+          ],
+          [],
+          [],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "R 0.00"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What is included"
+        }
+      ],
+      "depth": 2,
+      "hash": "4259c91d12be499c",
+      "id": "what-is-included",
+      "kind": "heading",
+      "text": "What is included"
+    },
+    {
+      "hash": "c7d4107df01907a1",
+      "id": "what-is-included.1",
+      "items": [
+        [
+          {
+            "style": "instruction",
+            "t": "placeholder",
+            "v": "Be specific"
+          }
+        ],
+        [
+          {
+            "style": "instruction",
+            "t": "placeholder",
+            "v": "Be specific"
+          }
+        ],
+        [
+          {
+            "style": "instruction",
+            "t": "placeholder",
+            "v": "Be specific"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What is NOT included"
+        }
+      ],
+      "depth": 2,
+      "hash": "458a6e2b336f0edf",
+      "id": "what-is-not-included",
+      "kind": "heading",
+      "text": "What is NOT included"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Fill this in. Most disputes are about work the customer assumed was in the price."
+        }
+      ],
+      "hash": "b86c9716a7b7a47c",
+      "id": "what-is-not-included.1",
+      "kind": "note"
+    },
+    {
+      "hash": "c7851f153b91a061",
+      "id": "what-is-not-included.2",
+      "items": [
+        [
+          {
+            "style": "instruction",
+            "t": "placeholder",
+            "v": "List it, or you will be asked to do it free"
+          }
+        ],
+        [
+          {
+            "style": "instruction",
+            "t": "placeholder",
+            "v": "List it"
+          }
+        ],
+        [
+          {
+            "style": "instruction",
+            "t": "placeholder",
+            "v": "List it"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Timing"
+        }
+      ],
+      "depth": 2,
+      "hash": "38bef9462294a2df",
+      "id": "timing",
+      "kind": "heading",
+      "text": "Timing"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Work starts "
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "when"
+        },
+        {
+          "t": "text",
+          "v": " and takes approximately "
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "how long"
+        },
+        {
+          "t": "text",
+          "v": " once the deposit is received."
+        }
+      ],
+      "hash": "a393d693e2d74870",
+      "id": "timing.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Payment"
+        }
+      ],
+      "depth": 2,
+      "hash": "131ba564c8345e6b",
+      "id": "payment",
+      "kind": "heading",
+      "text": "Payment"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deposit of "
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "X"
+        },
+        {
+          "t": "text",
+          "v": "% before work starts. Balance due "
+        },
+        {
+          "style": "choice",
+          "t": "placeholder",
+          "v": "on completion / within X days of invoice"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "32472133e7c580e0",
+      "id": "payment.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This quote is valid for "
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "X"
+        },
+        {
+          "t": "text",
+          "v": " days. Prices may change after that date."
+        }
+      ],
+      "hash": "eb91c6c64b1f47c5",
+      "id": "payment.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Accepting this quote means you accept my terms and conditions, attached or available at "
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "4666a8b9feb1a178",
+      "id": "payment.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Acceptance"
+        }
+      ],
+      "depth": 2,
+      "hash": "adfc9000a4408b28",
+      "id": "acceptance",
+      "kind": "heading",
+      "text": "Acceptance"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Accepted by: "
+        },
+        {
+          "t": "sigline"
+        }
+      ],
+      "hash": "2d8f7c92271f8703",
+      "id": "acceptance.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Name (print): "
+        },
+        {
+          "t": "sigline"
+        }
+      ],
+      "hash": "603c088c6f7d7801",
+      "id": "acceptance.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Date: "
+        },
+        {
+          "t": "sigline"
+        }
+      ],
+      "hash": "630bb172fe3bf13c",
+      "id": "acceptance.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "acceptance.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Three rules that save you money"
+        }
+      ],
+      "depth": 2,
+      "hash": "85b525f475f9f59d",
+      "id": "three-rules-that-save-you-money",
+      "kind": "heading",
+      "text": "Three rules that save you money"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Put a validity date on every quote. Material prices move."
+        }
+      ],
+      "hash": "166d7e9535e72657",
+      "id": "three-rules-that-save-you-money.1",
+      "kind": "callout",
+      "style": "note"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Write down what is not included. This is the section that prevents arguments."
+        }
+      ],
+      "hash": "78c33152e3a2bed3",
+      "id": "three-rules-that-save-you-money.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Get a deposit before you buy materials. A signed quote plus a deposit is a contract."
+        }
+      ],
+      "hash": "989ea9c2004a8a78",
+      "id": "three-rules-that-save-you-money.3",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "f1e80e16a7750b62",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "QUOTATION",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "to",
+      "text": "To"
+    },
+    {
+      "depth": 2,
+      "id": "what-i-will-do",
+      "text": "What I will do"
+    },
+    {
+      "depth": 2,
+      "id": "what-is-included",
+      "text": "What is included"
+    },
+    {
+      "depth": 2,
+      "id": "what-is-not-included",
+      "text": "What is NOT included"
+    },
+    {
+      "depth": 2,
+      "id": "timing",
+      "text": "Timing"
+    },
+    {
+      "depth": 2,
+      "id": "payment",
+      "text": "Payment"
+    },
+    {
+      "depth": 2,
+      "id": "acceptance",
+      "text": "Acceptance"
+    },
+    {
+      "depth": 2,
+      "id": "three-rules-that-save-you-money",
+      "text": "Three rules that save you money"
+    }
+  ],
+  "id": "paperwork/templates/quotation",
+  "kind": "template",
+  "lang": "en",
+  "order": 3,
+  "readingTime": 1,
+  "related": [],
+  "route": "templates/quotation/",
+  "section": "paperwork",
+  "slug": "quotation",
+  "sourcePath": "03 Paperwork and templates/templates-to-fill-in/01-quotation.md",
+  "sources": {
+    "acts": [
+      "companies-act-71-of-2008"
+    ],
+    "entries": []
+  },
+  "summary": "How to use this: make a copy, rename it to the quote number, replace everything in [SQUARE BRACKETS], then export to PDF and send the PDF. Never send the editable file to a customer.",
+  "tags": [
+    "template"
+  ],
+  "terms": [],
+  "title": "Quotation (template)",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

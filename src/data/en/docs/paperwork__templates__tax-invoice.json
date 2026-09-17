@@ -1,0 +1,637 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Only use this once SARS has issued your VAT number."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " If you are not registered, use the other invoice template instead."
+        }
+      ],
+      "hash": "13e1a8383fcc411a",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS checks tax invoices against a fixed list. If one required item is missing, the whole invoice can be disallowed. No tax invoice is required at R50 or less. An abridged tax invoice is allowed from R50 up to R5,000. A full tax invoice is required above R5,000. You must issue it within 21 days of the sale."
+        }
+      ],
+      "hash": "17e3a65936f4af64",
+      "id": "intro.2",
+      "kind": "callout",
+      "style": "note"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "key": "businessName",
+              "style": "identity",
+              "t": "placeholder",
+              "v": "YOUR BUSINESS NAME"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Physical address"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "VAT Registration Number: 4XXXXXXXXX"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Phone"
+        },
+        {
+          "t": "text",
+          "v": " | "
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Email"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "nested": true,
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "If a company: Trading as a name of [REGISTERED NAME] (Pty) Ltd, Reg. No. [NUMBER]"
+        }
+      ],
+      "hash": "6d5ef54926b88b31",
+      "id": "intro.4",
+      "kind": "paragraph"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "a988c2230fa2441d",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Field"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Detail"
+          }
+        ]
+      ],
+      "id": "intro.5",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Invoice number"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "INV-0001"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Date of issue"
+            }
+          ],
+          [
+            {
+              "style": "format",
+              "t": "placeholder",
+              "v": "DD Month YYYY"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "To"
+        }
+      ],
+      "depth": 2,
+      "hash": "7cb1cef9ea8a2276",
+      "id": "to",
+      "kind": "heading",
+      "text": "To"
+    },
+    {
+      "c": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Customer name"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Customer physical address"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Customer VAT number, if they are a vendor — required on invoices over R5,000"
+        }
+      ],
+      "hash": "8eaab89eff3a2ee1",
+      "id": "to.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Supply"
+        }
+      ],
+      "depth": 2,
+      "hash": "f76fda3ba7e215c2",
+      "id": "supply",
+      "kind": "heading",
+      "text": "Supply"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "hash": "2734dac9d70ac04f",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Description"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Qty"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Unit price"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Amount"
+          }
+        ]
+      ],
+      "id": "supply.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "style": "instruction",
+              "t": "placeholder",
+              "v": "Goods or services supplied"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "1"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Subtotal (excl. VAT)"
+            }
+          ],
+          [],
+          [],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "VAT @ 15%"
+            }
+          ],
+          [],
+          [],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "TOTAL (incl. VAT)"
+                }
+              ],
+              "t": "strong"
+            }
+          ],
+          [],
+          [],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "R 0.00"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Payment details"
+        }
+      ],
+      "depth": 2,
+      "hash": "d6bfcb998cd265fc",
+      "id": "payment-details",
+      "kind": "heading",
+      "text": "Payment details"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "ecc08dc2bb244b04",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Field"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Detail"
+          }
+        ]
+      ],
+      "id": "payment-details.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Bank"
+            }
+          ],
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Bank name"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Account name"
+            }
+          ],
+          [
+            {
+              "style": "instruction",
+              "t": "placeholder",
+              "v": "Exactly as it appears on the account"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Account number"
+            }
+          ],
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Number"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Branch code"
+            }
+          ],
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Code"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Reference"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "INV-0001"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "payment-details.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The seven things a full tax invoice must show"
+        }
+      ],
+      "depth": 2,
+      "hash": "10e65380ab1253ac",
+      "id": "the-seven-things-a-full-tax-invoice-must-show",
+      "kind": "heading",
+      "text": "The seven things a full tax invoice must show"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For any supply over R5,000:"
+        }
+      ],
+      "hash": "6bc0120a90e3c185",
+      "id": "the-seven-things-a-full-tax-invoice-must-show.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "40c9e125d3aff4c3",
+      "id": "the-seven-things-a-full-tax-invoice-must-show.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "The words \"Tax Invoice\", \"VAT Invoice\" or \"Invoice\""
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your name, address and VAT registration number"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "The customer's name and address, and their VAT number if they are registered"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A serial number and the date of issue"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A description of the goods or services supplied"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "The quantity or volume supplied"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "The value of the supply, the VAT charged, and the total"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Working with 15%"
+        }
+      ],
+      "depth": 2,
+      "hash": "166b2440c381a8d1",
+      "id": "working-with-15",
+      "kind": "heading",
+      "text": "Working with 15%"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "To add VAT to a price, multiply by 1.15. To find the VAT inside a VAT-inclusive price, multiply by 15/115."
+        }
+      ],
+      "hash": "3da10cd97b9855d0",
+      "id": "working-with-15.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you sell second-hand goods, the description must say so."
+        }
+      ],
+      "hash": "48994a8cbad159b4",
+      "id": "working-with-15.2",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "fba18ce56bc7135d",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "TAX INVOICE",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "to",
+      "text": "To"
+    },
+    {
+      "depth": 2,
+      "id": "supply",
+      "text": "Supply"
+    },
+    {
+      "depth": 2,
+      "id": "payment-details",
+      "text": "Payment details"
+    },
+    {
+      "depth": 2,
+      "id": "the-seven-things-a-full-tax-invoice-must-show",
+      "text": "The seven things a full tax invoice must show"
+    },
+    {
+      "depth": 2,
+      "id": "working-with-15",
+      "text": "Working with 15%"
+    }
+  ],
+  "id": "paperwork/templates/tax-invoice",
+  "kind": "template",
+  "lang": "en",
+  "order": 5,
+  "readingTime": 2,
+  "related": [],
+  "route": "templates/tax-invoice/",
+  "section": "paperwork",
+  "slug": "tax-invoice",
+  "sourcePath": "03 Paperwork and templates/templates-to-fill-in/03-tax-invoice-vat-registered.md",
+  "sources": {
+    "acts": [
+      "value-added-tax-act-89-of-1991"
+    ],
+    "entries": [
+      "sars--tax-invoice-checklist"
+    ]
+  },
+  "summary": "Only use this once SARS has issued your VAT number. If you are not registered, use the other invoice template instead.",
+  "tags": [
+    "template",
+    "vat"
+  ],
+  "terms": [],
+  "title": "Tax invoice, VAT registered (template)",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

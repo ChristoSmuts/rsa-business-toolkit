@@ -1,0 +1,1076 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This toolkit is for one person running a business in South Africa. You are the owner. You are also the only worker. You have little money and little time."
+        }
+      ],
+      "hash": "94a3aede2125f2a4",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Everything here is free or very cheap. Every step tells you if it is required by law, or if it is only a good idea."
+        }
+      ],
+      "hash": "c6a10ac5bd47fca8",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The honest truth first"
+        }
+      ],
+      "depth": 2,
+      "hash": "829b7e177e064737",
+      "id": "the-honest-truth-first",
+      "kind": "heading",
+      "text": "The honest truth first"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You do not need most of the things people tell you to get."
+        }
+      ],
+      "hash": "f9ca494253a008bd",
+      "id": "the-honest-truth-first.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You can legally start selling today, under your own name, with no company registration, no logo, no website, and no accountant. Many people spend R15,000 and three months on setup before they earn one rand. Do not do that."
+        }
+      ],
+      "hash": "0240a09bdc835490",
+      "id": "the-honest-truth-first.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Earn money first. Add the formal parts as the business grows."
+        }
+      ],
+      "hash": "c30301335d8ca696",
+      "id": "the-honest-truth-first.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Order to do things"
+        }
+      ],
+      "depth": 2,
+      "hash": "e80cac3889e9bd0b",
+      "id": "order-to-do-things",
+      "kind": "heading",
+      "text": "Order to do things"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Work through these in order. Do not skip ahead."
+        }
+      ],
+      "hash": "b4579c2dc5dc4ae7",
+      "id": "order-to-do-things.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "1a68678b84d74654",
+      "id": "order-to-do-things.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Sell something and get paid. Even once. This proves people want it."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Open a separate bank account for business money. Keep business money and home money apart from day one. Ask the bank what your instant payment limits are; you will need them."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you will work from home with no shop, read "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Working from home and meeting safely"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " before your first sale. It is short and it covers the habits that stop you being scammed."
+        }
+      ],
+      "hash": "2f2e074c75144c3d",
+      "id": "order-to-do-things.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "2a3368367387208e",
+      "id": "order-to-do-things.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Pick a name and a simple look. Use file "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Branding prompts"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Make your quote and invoice templates. Use file "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Which template to use when"
+              }
+            ],
+            "doc": "paperwork/which-template-to-use-when",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Check if your kind of business needs a licence to sell. Read "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "What you need to sell things"
+              }
+            ],
+            "doc": "core/what-you-need-to-sell-things",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ", then open your business type in "
+          },
+          {
+            "label": "04-business-types/",
+            "section": "business-types",
+            "t": "docref"
+          },
+          {
+            "t": "text",
+            "v": ". Some businesses may not trade without a licence."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Sort out SARS. Use file "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Tax and SARS"
+              }
+            ],
+            "doc": "core/tax-and-sars",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ". Do this even if you earn nothing."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Decide if you need a registered company. Use file "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Register: what you actually need"
+              }
+            ],
+            "doc": "core/register",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ". Most solo businesses do not need one in year one. If you decide yes, read "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Running a Pty Ltd"
+              }
+            ],
+            "doc": "core/running-a-pty-ltd",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " before you register, not after."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 3
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Steps 5 and 6 are the two that get people fined. Do not leave them for later."
+        }
+      ],
+      "hash": "0d619fe5ec712e5a",
+      "id": "order-to-do-things.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What is in this toolkit"
+        }
+      ],
+      "depth": 2,
+      "hash": "0fb44e766c7d9949",
+      "id": "what-is-in-this-toolkit",
+      "kind": "heading",
+      "text": "What is in this toolkit"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Applies to everyone, in this folder:"
+        }
+      ],
+      "hash": "8739ec63877976c6",
+      "id": "what-is-in-this-toolkit.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "a54fdacb47d2b7e6",
+      "id": "what-is-in-this-toolkit.2",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Register: what you actually need"
+              }
+            ],
+            "doc": "core/register",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — company registration, bank, B-BBEE, POPIA. What is required and what is not."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Tax and SARS"
+              }
+            ],
+            "doc": "core/tax-and-sars",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — SARS, turnover tax, VAT, and how to pay no tax legally when you earn little."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "What you need to sell things"
+              }
+            ],
+            "doc": "core/what-you-need-to-sell-things",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — licences and permits overview, and consumer law."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Vehicles for your business"
+              }
+            ],
+            "doc": "core/vehicles",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — putting a vehicle in the business name, and when that is a bad idea."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Only if you registered a company:"
+        }
+      ],
+      "hash": "8653df33c985e515",
+      "id": "what-is-in-this-toolkit.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "5cead6ed6556ca2e",
+      "id": "what-is-in-this-toolkit.4",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Running a Pty Ltd"
+              }
+            ],
+            "doc": "core/running-a-pty-ltd",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — what a company costs you every year, and what happens when you stop filing."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Paying yourself from a Pty Ltd"
+              }
+            ],
+            "doc": "core/paying-yourself",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — the three legal ways to take money out, and the tax on each."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Adding new lines of business"
+              }
+            ],
+            "doc": "core/adding-new-lines",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — growing sideways under one company: trading names, licences per line, and why a second company can cost you your tax rate."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "You are the business"
+              }
+            ],
+            "doc": "core/you-are-the-business",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — what happens if you cannot work, how to chase an unpaid invoice, and who can run the business if you are not there. The one document that is about you rather than the business."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Working from home and meeting safely"
+              }
+            ],
+            "doc": "core/working-from-home-and-safety",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — running it from home with no shop or yard, trading by phone and WhatsApp, getting paid safely, the common scams, and meeting customers to inspect or test drive without risk."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompts and templates:"
+        }
+      ],
+      "hash": "2df94a9439a2ca8d",
+      "id": "what-is-in-this-toolkit.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "52438aac2587ae4d",
+      "id": "what-is-in-this-toolkit.6",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Already have your name (shortcut)"
+              }
+            ],
+            "doc": "branding/already-have-your-name",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — the shortcut path if your name is already settled: which prompts to skip, and the three checks still worth doing."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Mood and materials (use after Prompt 4)"
+              }
+            ],
+            "doc": "branding/mood-and-materials",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — settle the overall mood and the physical materials before choosing a logo, so the logo, colours and photos agree. Includes what South African sun does to signage."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Branding prompts"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — 11 AI prompts for the brief, name, logo, colours, type, photography, voice and about text. Each gives you 5 options. Opens with how to avoid branding that looks AI-made, and what the AI cannot do for you."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Brand applications and polish"
+              }
+            ],
+            "doc": "branding/brand-applications-and-polish",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — the logo files you actually need, signage and print basics, and tests to run before you spend money."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Marketing prompts"
+              }
+            ],
+            "doc": "branding/marketing-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — AI prompts for social media, WhatsApp, and Google Business Profile."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Which template to use when"
+              }
+            ],
+            "doc": "paperwork/which-template-to-use-when",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — quote, invoice, terms, privacy notice, logbook, cash book."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Free tools"
+              }
+            ],
+            "doc": "paperwork/free-tools",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — which free office software to use, and why."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Rules for your kind of business:"
+        }
+      ],
+      "hash": "c8e1ec1da6df4fb6",
+      "id": "what-is-in-this-toolkit.7",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "c2eff2b92d222265",
+      "id": "what-is-in-this-toolkit.8",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Pick your business type"
+              }
+            ],
+            "doc": "business-types/pick-your-business-type",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — find yourself in the table, then open that file. Covers vehicle dealing, food, beauty, retail and online, trades, and professional or creative work."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Reference:"
+        }
+      ],
+      "hash": "45c3dc1c7731c618",
+      "id": "what-is-in-this-toolkit.9",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "e32c8b74a685b1f1",
+      "id": "what-is-in-this-toolkit.10",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Sources and verification register"
+              }
+            ],
+            "doc": "lookup/sources",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — every fact in this toolkit mapped to its law and its official link"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Glossary"
+              }
+            ],
+            "doc": "lookup/glossary",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — every abbreviation explained"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Master checklist"
+              }
+            ],
+            "doc": "lookup/checklist",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — one printable checklist"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How to use the AI prompts"
+        }
+      ],
+      "depth": 2,
+      "hash": "31b34bde4f6dcc7c",
+      "id": "how-to-use-the-ai-prompts",
+      "kind": "heading",
+      "text": "How to use the AI prompts"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The prompts are written for any AI chat tool. They work in Claude, ChatGPT, Gemini, or Copilot. The free versions are fine."
+        }
+      ],
+      "hash": "545f1388d9423ebc",
+      "id": "how-to-use-the-ai-prompts.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Rules for using them:"
+        }
+      ],
+      "hash": "aeb32be14b37a24d",
+      "id": "how-to-use-the-ai-prompts.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Copy one prompt at a time. Paste it. Wait for the answer. Do not paste the next prompt until you are happy with the current one."
+        }
+      ],
+      "hash": "2a09618bf08ed95c",
+      "id": "how-to-use-the-ai-prompts.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Every branding prompt gives you 5 options. Read all 5. Pick the one closest to what you want, even if it is not perfect. Then tell the AI what you like and what you do not like, and ask for 5 new versions. Do this two or three times. The third round is usually much better than the first."
+        }
+      ],
+      "hash": "a153c1fcd6991d3c",
+      "id": "how-to-use-the-ai-prompts.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Never accept the first answer. The first answer is the average answer."
+        }
+      ],
+      "hash": "b0cb05d45ae9aa79",
+      "id": "how-to-use-the-ai-prompts.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Start a new chat for each big task. A chat that is too long makes the AI forget things."
+        }
+      ],
+      "hash": "cb9710735f50e058",
+      "id": "how-to-use-the-ai-prompts.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The AI will sometimes be wrong about South African law, prices, and forms. It is a writing helper, not a lawyer. Check anything legal against the official website named in this toolkit."
+        }
+      ],
+      "hash": "6a15c664bf7d0af4",
+      "id": "how-to-use-the-ai-prompts.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If the legal words are hard"
+        }
+      ],
+      "depth": 2,
+      "hash": "84f135491991db80",
+      "id": "if-the-legal-words-are-hard",
+      "kind": "heading",
+      "text": "If the legal words are hard"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Some paragraphs are written close to the law so you can check them. Each one is followed by a line starting "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "In plain words:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " that says the same thing simply. Read that one instead if you need to."
+        }
+      ],
+      "hash": "6a889a97da533620",
+      "id": "if-the-legal-words-are-hard.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Each heavy file also starts with a table of the words it uses. And "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " explains every abbreviation."
+        }
+      ],
+      "hash": "451f7823b706c8e8",
+      "id": "if-the-legal-words-are-hard.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "About the numbers in this toolkit"
+        }
+      ],
+      "depth": 2,
+      "hash": "eb3c617e217eac99",
+      "id": "about-the-numbers-in-this-toolkit",
+      "kind": "heading",
+      "text": "About the numbers in this toolkit"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tax rules, fees, and thresholds were checked in September 2026. The tax year running now is 1 March 2026 to 28 February 2027."
+        }
+      ],
+      "hash": "4eb08d1c131ae81d",
+      "id": "about-the-numbers-in-this-toolkit.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "South African tax thresholds changed a lot in the 2026 Budget. Older blogs and older AI answers still use the old numbers. If a website tells you the VAT threshold is R1 million, that site is out of date."
+        }
+      ],
+      "hash": "2faa56137304be73",
+      "id": "about-the-numbers-in-this-toolkit.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Before you pay anything or file anything, check the current figure on the official site:"
+        }
+      ],
+      "hash": "16216f6bf7a4d706",
+      "id": "about-the-numbers-in-this-toolkit.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "79f496d9517e96c0",
+      "id": "about-the-numbers-in-this-toolkit.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "SARS: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.sars.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.sars.gov.za",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Company registration: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.bizportal.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.bizportal.gov.za",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Data protection: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "inforegulator.org.za"
+              }
+            ],
+            "external": true,
+            "href": "https://inforegulator.org.za/",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Vehicles: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.natis.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.natis.gov.za",
+            "t": "link"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This toolkit is general information. It is not legal advice or tax advice. For anything large or unusual, pay a registered tax practitioner for one hour of their time. One hour is cheaper than one penalty."
+        }
+      ],
+      "hash": "ebfa64872b5baedd",
+      "id": "about-the-numbers-in-this-toolkit.5",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "fe00f5b7e670c3d0",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Start here",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "the-honest-truth-first",
+      "text": "The honest truth first"
+    },
+    {
+      "depth": 2,
+      "id": "order-to-do-things",
+      "text": "Order to do things"
+    },
+    {
+      "depth": 2,
+      "id": "what-is-in-this-toolkit",
+      "text": "What is in this toolkit"
+    },
+    {
+      "depth": 2,
+      "id": "how-to-use-the-ai-prompts",
+      "text": "How to use the AI prompts"
+    },
+    {
+      "depth": 2,
+      "id": "if-the-legal-words-are-hard",
+      "text": "If the legal words are hard"
+    },
+    {
+      "depth": 2,
+      "id": "about-the-numbers-in-this-toolkit",
+      "text": "About the numbers in this toolkit"
+    }
+  ],
+  "id": "core/start-here",
+  "kind": "guide",
+  "lang": "en",
+  "order": 1,
+  "readingTime": 6,
+  "related": [
+    "core/working-from-home-and-safety",
+    "branding/branding-prompts",
+    "paperwork/which-template-to-use-when",
+    "core/what-you-need-to-sell-things",
+    "core/tax-and-sars"
+  ],
+  "route": "core/start-here/",
+  "section": "core",
+  "slug": "start-here",
+  "sourcePath": "01 Core - applies to everyone/01-core-start-here.md",
+  "sources": {
+    "acts": [],
+    "entries": [
+      "sars--what-is-the-new-threshold-for-vat-registration"
+    ]
+  },
+  "summary": "This toolkit is for one person running a business in South Africa. You are the owner. You are also the only worker. You have little money and little time.",
+  "tags": [
+    "orientation"
+  ],
+  "terms": [],
+  "title": "Core: start here",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

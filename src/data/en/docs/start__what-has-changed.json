@@ -1,0 +1,1906 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Last updated: 13 September 2026"
+        }
+      ],
+      "hash": "4e837719de26e3c1",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This records what has changed in the toolkit, and where the Google Drive copy and this markdown copy differ."
+        }
+      ],
+      "hash": "fc43c981fac7676c",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "There are two copies of this toolkit:"
+        }
+      ],
+      "hash": "40c639a91358a33a",
+      "id": "intro.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "03d87cbabf4c6e9b",
+      "id": "intro.4",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "This markdown set"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " (the zip). The source of truth. Plain text, nothing lost in conversion."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "The Google Drive set."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " 34 documents and 2 spreadsheets, fully interlinked."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The Drive connector can create documents but cannot edit an existing one. So when the markdown changes, the Drive copy needs a manual paste. This file tracks that gap."
+        }
+      ],
+      "hash": "7a9045fed5712aec",
+      "id": "intro.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.6",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Change 1: shortcut path for people whose name is already decided"
+        }
+      ],
+      "depth": 2,
+      "hash": "414a5a7113cb2778",
+      "id": "change-1-shortcut-path-for-people-whose-name-is-already-decided",
+      "kind": "heading",
+      "text": "Change 1: shortcut path for people whose name is already decided"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Date:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " 13 September 2026"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Reason:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " The branding sequence assumed every reader was starting from nothing. Someone with a registered name was being sent through a naming prompt and a naming-focused competitor scan they did not need."
+        }
+      ],
+      "hash": "5d972578e8525e59",
+      "id": "change-1-shortcut-path-for-people-whose-name-is-already-decided.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Added"
+        }
+      ],
+      "depth": 3,
+      "hash": "f1ad429536dd7fe4",
+      "id": "added",
+      "kind": "heading",
+      "text": "Added"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Already have your name (shortcut)"
+            }
+          ],
+          "doc": "branding/already-have-your-name",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " — new file, about 1,200 words."
+        }
+      ],
+      "hash": "85169cf8ad410c0d",
+      "id": "added.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What it does:"
+        }
+      ],
+      "hash": "1f8ec9add66fff28",
+      "id": "added.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "6a7ecc453fa11184",
+      "id": "added.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Maps all 12 branding prompts to skip / modify / still do. The answer is: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "skip one, modify one, do the other nine."
+              }
+            ],
+            "t": "strong"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Supplies a replacement for Prompt 2 that drops naming patterns and adds two questions the original never asked: what does my name already suggest visually, and does it create visual constraints (too long for a vehicle door, awkward at small sizes, hard to set in type)."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Records the three checks still worth doing when a company name is registered: domain and handles, CIPC trade mark search, and saying the name aloud to speakers of the relevant languages."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Explains that a CIPC company name protects nothing in the market."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Repeats the section 32 requirement, which now applies because the name is registered."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Status in Drive:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " DONE. Created as \"00 Already have your name - start here in this folder\" in the 02 Branding and marketing folder."
+        }
+      ],
+      "hash": "3fdb7410a18803be",
+      "id": "added.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Changed: signposts pointing at the new file"
+        }
+      ],
+      "depth": 3,
+      "hash": "e09ef5f235c1f569",
+      "id": "changed-signposts-pointing-at-the-new-file",
+      "kind": "heading",
+      "text": "Changed: signposts pointing at the new file"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "8037e5e2e736c691",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "File"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "What was added"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "In Drive?"
+          }
+        ]
+      ],
+      "id": "changed-signposts-pointing-at-the-new-file.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Branding prompts"
+                }
+              ],
+              "doc": "branding/branding-prompts",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "One line at the top: \"Already have your name? ... read "
+            },
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Already have your name (shortcut)"
+                }
+              ],
+              "doc": "branding/already-have-your-name",
+              "t": "link"
+            },
+            {
+              "t": "text",
+              "v": " first.\""
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NO — needs paste"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Register: what you actually need"
+                }
+              ],
+              "doc": "core/register",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "One line under \"Choosing the name\""
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NO — needs paste"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "How to use this toolkit"
+                }
+              ],
+              "doc": "start/how-to-use",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "New row in the Path 3 lookup table"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NO — needs paste"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Core: start here"
+                }
+              ],
+              "doc": "core/start-here",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "New entry in the file index"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NO — see note below"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Start here"
+                }
+              ],
+              "doc": "start/start-here",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "New line in the folder tree"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NO — see note below"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "How this was made and how to check it"
+                }
+              ],
+              "doc": "start/how-this-was-made",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Ninth pass entry in the corrections log"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NO — needs paste"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "changed-signposts-pointing-at-the-new-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Change 2: mood and materials step"
+        }
+      ],
+      "depth": 2,
+      "hash": "1ea6904eaee049b9",
+      "id": "change-2-mood-and-materials-step",
+      "kind": "heading",
+      "text": "Change 2: mood and materials step"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Date:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " 13 September 2026"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Reason:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Nothing in the branding sequence established the overall visual direction. Prompts 5, 7 and 8 each made their own aesthetic call, so the logo, palette and photography could contradict each other. Materials were also absent everywhere except as constraints."
+        }
+      ],
+      "hash": "1d37fed6caccfe0e",
+      "id": "change-2-mood-and-materials-step.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Added"
+        }
+      ],
+      "depth": 3,
+      "hash": "f1ad429536dd7fe4",
+      "id": "added-1",
+      "kind": "heading",
+      "text": "Added"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Mood and materials (use after Prompt 4)"
+            }
+          ],
+          "doc": "branding/mood-and-materials",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " — new file, about 1,300 words. Prompt A sets a visual territory; Prompt B sets signage, print, vehicle and clothing materials. Includes a line to paste into Prompts 5, 7 and 8 that forces them to agree."
+        }
+      ],
+      "hash": "da2cb850981d38d8",
+      "id": "added-1.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Two things were verified before writing it:"
+        }
+      ],
+      "hash": "c6d2c2bb360229af",
+      "id": "added-1.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "46fafeb365b9ca58",
+      "id": "added-1.3",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Colour psychology is weak."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Elliot and Maier (2014) find no universal colour meaning. The famous \"62 to 90% of snap judgment is colour\" figure traces to a 2006 literature review, not an experiment. What holds up is colour-to-personality fit (Labrecque and Milne, 2012). The prompts therefore ask about fit and difference, and instruct the AI not to give colour meanings."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "South African UV is a real design constraint."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Zone 3 UV, vinyl fading in roughly a third of its European life, horizontal installs losing 50 to 70%. Cast versus calendered guidance added. Sources and their limitations recorded."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Status in Drive:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " DONE. Created as \"01a Mood and materials - decide this before the logo\"."
+        }
+      ],
+      "hash": "96e74c7fdd57f687",
+      "id": "added-1.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Changed: signposts"
+        }
+      ],
+      "depth": 3,
+      "hash": "25e1bf45bcaf900a",
+      "id": "changed-signposts",
+      "kind": "heading",
+      "text": "Changed: signposts"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "a9917c673c60ab61",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "File"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "What was added"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "In Drive?"
+          }
+        ]
+      ],
+      "id": "changed-signposts.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Branding prompts"
+                }
+              ],
+              "doc": "branding/branding-prompts",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "\"Before Prompt 5\" line at the top"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NO — needs paste"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Already have your name (shortcut)"
+                }
+              ],
+              "doc": "branding/already-have-your-name",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Mood step inserted in \"Where to go next\""
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NO — needs paste"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Core: start here"
+                }
+              ],
+              "doc": "core/start-here",
+              "t": "link"
+            },
+            {
+              "t": "text",
+              "v": " and "
+            },
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Start here"
+                }
+              ],
+              "doc": "start/start-here",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Index entry"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NO — paste into START HERE"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "How to use this toolkit"
+                }
+              ],
+              "doc": "start/how-to-use",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Two rows in the Path 3 table"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NO — needs paste"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Sources and verification register"
+                }
+              ],
+              "doc": "lookup/sources",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "New section: colour research and signage materials"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NO — needs paste"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "How this was made and how to check it"
+                }
+              ],
+              "doc": "start/how-this-was-made",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Tenth pass entry"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NO — needs paste"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "changed-signposts.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Change 3: missing entry document in the Core folder (fix)"
+        }
+      ],
+      "depth": 2,
+      "hash": "ef121f8d093a17ce",
+      "id": "change-3-missing-entry-document-in-the-core-folder-fix",
+      "kind": "heading",
+      "text": "Change 3: missing entry document in the Core folder (fix)"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Date:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " 14 September 2026"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Reason:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " A numbering error, spotted by the user. In Drive the 01 Core folder ran 02 to 09 with no 01, because "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Core: start here"
+            }
+          ],
+          "doc": "core/start-here",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " had been folded into the root START HERE when Drive was built. The result looked like a missing file, and it left Core as the only folder without its own entry document. Every other folder has one."
+        }
+      ],
+      "hash": "abf6f25be5dee74d",
+      "id": "change-3-missing-entry-document-in-the-core-folder-fix.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Added"
+        }
+      ],
+      "depth": 3,
+      "hash": "f1ad429536dd7fe4",
+      "id": "added-2",
+      "kind": "heading",
+      "text": "Added"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Drive document \"01 Start here - what is in this folder\" in the 01 Core folder. It carries the reading order, a table of the eight core documents with when to read each, which ones apply to which readers, and a short note explaining that the numbering starts at 02 because this document is 01."
+        }
+      ],
+      "hash": "fc75dcc02abd4b10",
+      "id": "added-2.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "It is deliberately not a copy of the root START HERE. Root START HERE indexes the whole toolkit; this one orients you inside the Core folder."
+        }
+      ],
+      "hash": "f584d5bb4111bcd9",
+      "id": "added-2.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Status in Drive:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " DONE."
+        },
+        {
+          "t": "br"
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Status in markdown:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " No change needed. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Core: start here"
+            }
+          ],
+          "doc": "core/start-here",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " already existed and already served this role."
+        }
+      ],
+      "hash": "1eff920c9fb2bb34",
+      "id": "added-2.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lesson"
+        }
+      ],
+      "depth": 3,
+      "hash": "0b11e417176e57a6",
+      "id": "lesson",
+      "kind": "heading",
+      "text": "Lesson"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The root START HERE absorbed two markdown files, "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Start here"
+            }
+          ],
+          "doc": "start/start-here",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " and "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Core: start here"
+            }
+          ],
+          "doc": "core/start-here",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Merging the README was right, because a Drive folder listing does what a README does. Merging the Core start-here was wrong, because it was a folder entry document, not a repository readme. They looked like the same kind of file and were not."
+        }
+      ],
+      "hash": "1a56cb070014ddf5",
+      "id": "lesson.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "lesson.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Change 4: you are the business, plus three corrections"
+        }
+      ],
+      "depth": 2,
+      "hash": "bcdb06daaac15ef4",
+      "id": "change-4-you-are-the-business-plus-three-corrections",
+      "kind": "heading",
+      "text": "Change 4: you are the business, plus three corrections"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Date:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " 14 September 2026"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Reason:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Re-reading the toolkit as a sole-director, sole-employee Pty Ltd exposed a missing subject and three factual errors."
+        }
+      ],
+      "hash": "d173f8497d262db5",
+      "id": "change-4-you-are-the-business-plus-three-corrections.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Added"
+        }
+      ],
+      "depth": 3,
+      "hash": "f1ad429536dd7fe4",
+      "id": "added-3",
+      "kind": "heading",
+      "text": "Added"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "You are the business"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " — no safety net if you cannot work, the escalation ladder for an unpaid invoice, and continuity if you are not there."
+        }
+      ],
+      "hash": "e131fc7f9ca0eb71",
+      "id": "added-3.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Corrected"
+        }
+      ],
+      "depth": 3,
+      "hash": "d73476ab3c29300b",
+      "id": "corrected",
+      "kind": "heading",
+      "text": "Corrected"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "b0aa9c1df64429a5",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Where"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Was"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Now"
+          }
+        ]
+      ],
+      "id": "corrected.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Running a Pty Ltd"
+                }
+              ],
+              "doc": "core/running-a-pty-ltd",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "\"If the company employs anyone else, COIDA registration applies\""
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Wrong. COIDA's definition of employee includes a working director under a contract of service. A director drawing a salary must register and submit a Return of Earnings even as the only person in the company."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Register: what you actually need"
+                }
+              ],
+              "doc": "core/register",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "UIF and COIDA framed as a cost triggered by paying yourself"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "A sole proprietor is barred from both, so has no illness benefit and no injury cover at all. For a company it is a trade, not a catch."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Glossary"
+                }
+              ],
+              "doc": "lookup/glossary",
+              "t": "link"
+            },
+            {
+              "t": "text",
+              "v": " and "
+            },
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Vehicle dealer"
+                }
+              ],
+              "doc": "business-types/vehicle-dealer",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Small Claims Court cited without saying who may use it"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Section 7(1) of the Small Claims Courts Act allows only natural persons to institute a claim. A company can be sued there but cannot sue."
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Status in Drive:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " NOT YET. The new document and all four corrections need to be carried across."
+        }
+      ],
+      "hash": "971eb7ddd943b4f1",
+      "id": "corrected.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "corrected.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What you need to paste into Drive"
+        }
+      ],
+      "depth": 2,
+      "hash": "0a76fa7898a1b400",
+      "id": "what-you-need-to-paste-into-drive",
+      "kind": "heading",
+      "text": "What you need to paste into Drive"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Five edits. Each is one line or one short block. Open the document, paste, done."
+        }
+      ],
+      "hash": "b0aa657b28e66819",
+      "id": "what-you-need-to-paste-into-drive.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "1. \"01 Branding prompts\" — paste at the very top, under the title"
+        }
+      ],
+      "depth": 3,
+      "hash": "04e7dda1373b3145",
+      "id": "1-01-branding-prompts--paste-at-the-very-top-under-the-title",
+      "kind": "heading",
+      "text": "1. \"01 Branding prompts\" — paste at the very top, under the title"
+    },
+    {
+      "hash": "03b8ebaf8919e732",
+      "id": "1-01-branding-prompts--paste-at-the-very-top-under-the-title.1",
+      "kind": "code",
+      "text": "Already have your name? If your business name is settled and you know\nwhat you trade as, read \"00 Already have your name\" in this folder\nfirst. It tells you which of these prompts to skip.",
+      "variant": "snippet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "2. \"02 Register - what you actually need\" — paste under the heading \"Choosing the name\""
+        }
+      ],
+      "depth": 3,
+      "hash": "fb80af5784824f69",
+      "id": "2-02-register---what-you-actually-need--paste-under-the-heading-choosing-the-name",
+      "kind": "heading",
+      "text": "2. \"02 Register - what you actually need\" — paste under the heading \"Choosing the name\""
+    },
+    {
+      "hash": "b75f879e1f9295a1",
+      "id": "2-02-register---what-you-actually-need--paste-under-the-heading-choosing-the-name.1",
+      "kind": "code",
+      "text": "If your name is already registered and decided, see \"00 Already have\nyour name\" in the Branding and marketing folder. It lists the three\nchecks still worth doing.",
+      "variant": "snippet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "3. \"01 How to use this toolkit\" — add a row to the Path 3 table"
+        }
+      ],
+      "depth": 3,
+      "hash": "f322182f72db576d",
+      "id": "3-01-how-to-use-this-toolkit--add-a-row-to-the-path-3-table",
+      "kind": "heading",
+      "text": "3. \"01 How to use this toolkit\" — add a row to the Path 3 table"
+    },
+    {
+      "hash": "55e29d40ad40bd85",
+      "id": "3-01-how-to-use-this-toolkit--add-a-row-to-the-path-3-table.1",
+      "kind": "code",
+      "text": "My name is already decided, what do I skip?  →  00 Already have your name",
+      "variant": "snippet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "4. \"00 START HERE\" — add a row to the Branding and marketing table"
+        }
+      ],
+      "depth": 3,
+      "hash": "f30e5cae0223786f",
+      "id": "4-00-start-here--add-a-row-to-the-branding-and-marketing-table",
+      "kind": "heading",
+      "text": "4. \"00 START HERE\" — add a row to the Branding and marketing table"
+    },
+    {
+      "hash": "e3ea16d420192b75",
+      "id": "4-00-start-here--add-a-row-to-the-branding-and-marketing-table.1",
+      "kind": "code",
+      "text": "00 Already have your name   |   Shortcut path if the name is settled:\nwhich prompts to skip, and the three checks still worth doing",
+      "variant": "snippet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "5. \"02 AI disclosure and how this was checked\" — paste into the corrections log, before the line beginning \"The lesson generalises\""
+        }
+      ],
+      "depth": 3,
+      "hash": "3dd0df75dbd71fe0",
+      "id": "5-02-ai-disclosure-and-how-this-was-checked--paste-into-the-corrections-log-before-the-line-beginning-the-lesson-generalises",
+      "kind": "heading",
+      "text": "5. \"02 AI disclosure and how this was checked\" — paste into the corrections log, before the line beginning \"The lesson generalises\""
+    },
+    {
+      "hash": "5736379ce15f3404",
+      "id": "5-02-ai-disclosure-and-how-this-was-checked--paste-into-the-corrections-log-before-the-line-beginning-the-lesson-generalises.1",
+      "kind": "code",
+      "text": "Ninth pass: a shortcut path for people whose name is already decided.\nThe branding sequence assumed every reader was starting from nothing,\nand sent someone with a registered name through a naming prompt and a\nnaming-focused competitor scan they did not need. A new document maps\nwhich prompts to skip, supplies a visual-only replacement for the\ncompetitor scan that also asks whether the existing name creates visual\nconstraints, and records the three checks still worth doing when a\ncompany name is registered. The point it turns on is that a registered\ncompany name protects nothing in the market.",
+      "variant": "snippet"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "5-02-ai-disclosure-and-how-this-was-checked--paste-into-the-corrections-log-before-the-line-beginning-the-lesson-generalises.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Known structural differences between the two copies"
+        }
+      ],
+      "depth": 2,
+      "hash": "5cc626442a37a768",
+      "id": "known-structural-differences-between-the-two-copies",
+      "kind": "heading",
+      "text": "Known structural differences between the two copies"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "These are deliberate, not errors."
+        }
+      ],
+      "hash": "99ccb8e7f3a018c3",
+      "id": "known-structural-differences-between-the-two-copies.1",
+      "kind": "paragraph"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "349c1fcb4d8ab78c",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Markdown"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Drive"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Why"
+          }
+        ]
+      ],
+      "id": "known-structural-differences-between-the-two-copies.2",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Start here"
+                }
+              ],
+              "doc": "start/start-here",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Merged into \"00 START HERE\""
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "A Drive folder listing does the job a README does, so a separate one was redundant."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Core: start here"
+                }
+              ],
+              "doc": "core/start-here",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Now exists in Drive as \"01 Start here\" in the Core folder"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Was wrongly merged into START HERE when Drive was built, leaving the Core folder numbered 02 to 09. Corrected 14 September 2026."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Which template to use when"
+                }
+              ],
+              "doc": "paperwork/which-template-to-use-when",
+              "t": "link"
+            },
+            {
+              "t": "text",
+              "v": " contains the templates as text"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Split into a guide plus 5 fill-in Google Docs"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Templates you copy and fill in are more useful than templates printed inside a guide."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Cash book and logbook are tables inside a markdown file"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Two Google Sheets"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "A logbook you fill in on your phone beats one printed in a document."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Plain markdown blockquotes for \"In plain words\""
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Grey shaded single-cell tables"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Google Docs silently flattens blockquotes, so they would have been invisible."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Fenced code blocks for prompts"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Grey shaded boxes in Courier"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Makes the start and end of each prompt obvious for copying."
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "known-structural-differences-between-the-two-copies.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How to keep the two copies in sync"
+        }
+      ],
+      "depth": 2,
+      "hash": "4703d00e7ad49c1c",
+      "id": "how-to-keep-the-two-copies-in-sync",
+      "kind": "heading",
+      "text": "How to keep the two copies in sync"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a small change, edit the Google Doc directly. The document ID stays the same, so every link pointing at it keeps working."
+        }
+      ],
+      "hash": "f1e05caa50e1ad35",
+      "id": "how-to-keep-the-two-copies-in-sync.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a full rewrite of one document, open the existing Google Doc, select all, delete, and paste the new content. The ID survives because the file does."
+        }
+      ],
+      "hash": "80a3b748dc3b463e",
+      "id": "how-to-keep-the-two-copies-in-sync.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Never download, edit and re-upload."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " That creates a new file with a new ID, and every link in the toolkit would still point at the old one."
+        }
+      ],
+      "hash": "f8a8fc9a518e9c91",
+      "id": "how-to-keep-the-two-copies-in-sync.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Update this changelog whenever you change either copy."
+        }
+      ],
+      "hash": "facc1da44d972127",
+      "id": "how-to-keep-the-two-copies-in-sync.4",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "38ecec2bd767cc44",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Changelog and redline",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "change-1-shortcut-path-for-people-whose-name-is-already-decided",
+      "text": "Change 1: shortcut path for people whose name is already decided"
+    },
+    {
+      "depth": 3,
+      "id": "added",
+      "text": "Added"
+    },
+    {
+      "depth": 3,
+      "id": "changed-signposts-pointing-at-the-new-file",
+      "text": "Changed: signposts pointing at the new file"
+    },
+    {
+      "depth": 2,
+      "id": "change-2-mood-and-materials-step",
+      "text": "Change 2: mood and materials step"
+    },
+    {
+      "depth": 3,
+      "id": "added-1",
+      "text": "Added"
+    },
+    {
+      "depth": 3,
+      "id": "changed-signposts",
+      "text": "Changed: signposts"
+    },
+    {
+      "depth": 2,
+      "id": "change-3-missing-entry-document-in-the-core-folder-fix",
+      "text": "Change 3: missing entry document in the Core folder (fix)"
+    },
+    {
+      "depth": 3,
+      "id": "added-2",
+      "text": "Added"
+    },
+    {
+      "depth": 3,
+      "id": "lesson",
+      "text": "Lesson"
+    },
+    {
+      "depth": 2,
+      "id": "change-4-you-are-the-business-plus-three-corrections",
+      "text": "Change 4: you are the business, plus three corrections"
+    },
+    {
+      "depth": 3,
+      "id": "added-3",
+      "text": "Added"
+    },
+    {
+      "depth": 3,
+      "id": "corrected",
+      "text": "Corrected"
+    },
+    {
+      "depth": 2,
+      "id": "what-you-need-to-paste-into-drive",
+      "text": "What you need to paste into Drive"
+    },
+    {
+      "depth": 3,
+      "id": "1-01-branding-prompts--paste-at-the-very-top-under-the-title",
+      "text": "1. \"01 Branding prompts\" — paste at the very top, under the title"
+    },
+    {
+      "depth": 3,
+      "id": "2-02-register---what-you-actually-need--paste-under-the-heading-choosing-the-name",
+      "text": "2. \"02 Register - what you actually need\" — paste under the heading \"Choosing the name\""
+    },
+    {
+      "depth": 3,
+      "id": "3-01-how-to-use-this-toolkit--add-a-row-to-the-path-3-table",
+      "text": "3. \"01 How to use this toolkit\" — add a row to the Path 3 table"
+    },
+    {
+      "depth": 3,
+      "id": "4-00-start-here--add-a-row-to-the-branding-and-marketing-table",
+      "text": "4. \"00 START HERE\" — add a row to the Branding and marketing table"
+    },
+    {
+      "depth": 3,
+      "id": "5-02-ai-disclosure-and-how-this-was-checked--paste-into-the-corrections-log-before-the-line-beginning-the-lesson-generalises",
+      "text": "5. \"02 AI disclosure and how this was checked\" — paste into the corrections log, before the line beginning \"The lesson generalises\""
+    },
+    {
+      "depth": 2,
+      "id": "known-structural-differences-between-the-two-copies",
+      "text": "Known structural differences between the two copies"
+    },
+    {
+      "depth": 2,
+      "id": "how-to-keep-the-two-copies-in-sync",
+      "text": "How to keep the two copies in sync"
+    }
+  ],
+  "id": "start/what-has-changed",
+  "kind": "guide",
+  "lang": "en",
+  "order": 4,
+  "readingTime": 9,
+  "related": [
+    "core/start-here",
+    "start/start-here",
+    "branding/already-have-your-name",
+    "branding/branding-prompts",
+    "core/register"
+  ],
+  "route": "start/what-has-changed/",
+  "section": "start",
+  "slug": "what-has-changed",
+  "sourceNote": {
+    "reason": "A change log of the toolkit; the facts it mentions are sourced in the documents it names.",
+    "see": [
+      "lookup/sources",
+      "start/how-this-was-made"
+    ]
+  },
+  "sourcePath": "00 Start here/03-what-has-changed.md",
+  "sources": {
+    "acts": [],
+    "entries": []
+  },
+  "summary": "What changed in the toolkit, and where the Google Drive copy and the markdown copy still differ.",
+  "tags": [
+    "orientation",
+    "changelog"
+  ],
+  "terms": [],
+  "title": "What has changed",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

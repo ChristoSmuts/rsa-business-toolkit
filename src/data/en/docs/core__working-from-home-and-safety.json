@@ -1,0 +1,2309 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Many one-person businesses have no shop, no yard and no office. The business lives on a phone. Customers find you online, talk to you on WhatsApp, and if they need to see the product, you meet them somewhere."
+        }
+      ],
+      "hash": "b6d431a0ae324b2c",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This works well. It is cheap, it is legal for most businesses, and it is how a large share of South African small businesses operate. It just needs a few habits that a shop does not."
+        }
+      ],
+      "hash": "26d366fcb4985f87",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This file covers three things: what the rules allow when you work from home, how to handle money when you never see the customer, and how to meet a stranger to hand over a product or a vehicle without putting yourself at risk."
+        }
+      ],
+      "hash": "56dce6a7b92f0aa5",
+      "id": "intro.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The risks are real. They are also manageable with a handful of habits. Nothing here should stop you trading."
+        }
+      ],
+      "hash": "e7b35257c3517004",
+      "id": "intro.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "3d52897c7b613be4",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The municipal category that allows small, quiet businesses in a house without special permission."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Home enterprise / home occupation"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Municipal permission for a business use that goes beyond what your zoning allows by default."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Consent use"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The management body of a complex or estate. It has its own rules on top of the municipality's."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Body corporate / HOA"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Proof of payment. A screenshot or PDF showing a transfer was made. Easy to fake."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "POP"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The money is actually in your account balance, not just \"pending\"."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Reflected / cleared"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "An instant bank-to-bank payment that arrives in seconds and cannot be reversed."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "PayShap"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Other fast payment options. Also arrive quickly."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Instant EFT / RTC"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A \"buyer\" pays too much on purpose, then asks for the difference back. The original payment was never real."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Overpayment scam"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Location data hidden inside a photo. It can reveal where you live."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Geotag"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "One-time PIN. The code your bank sends you. Never share it with anyone."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "OTP"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The banking industry's fraud body."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "SABRIC"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The short version"
+        }
+      ],
+      "depth": 2,
+      "hash": "67354f8180841866",
+      "id": "the-short-version",
+      "kind": "heading",
+      "text": "The short version"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You can run most businesses from home without any special permission, as long as the house still looks and behaves like a house."
+        }
+      ],
+      "hash": "7af3fd3078864ad3",
+      "id": "the-short-version.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Never hand over anything until the money is in your account balance. A screenshot is not money."
+        }
+      ],
+      "hash": "9e80142311e25d4e",
+      "id": "the-short-version.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Meet strangers in busy, public places with cameras. Take someone with you. Keep the keys."
+        }
+      ],
+      "hash": "915a89174ae97377",
+      "id": "the-short-version.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you are a vehicle dealer working from home, storing stock at the house is the one thing that usually breaks the zoning rules. Read the vehicle section below."
+        }
+      ],
+      "hash": "40552c00966dcac6",
+      "id": "the-short-version.4",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "the-short-version.5",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 1: what the rules allow when you work from home"
+        }
+      ],
+      "depth": 2,
+      "hash": "7c4f81797a2b8e1b",
+      "id": "part-1-what-the-rules-allow-when-you-work-from-home",
+      "kind": "heading",
+      "text": "Part 1: what the rules allow when you work from home"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Zoning"
+        }
+      ],
+      "depth": 3,
+      "hash": "087c056f5a6c24d7",
+      "id": "zoning",
+      "kind": "heading",
+      "text": "Zoning"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Every property has a zoning. Most houses are zoned for living, not for business. But every municipality allows some business use in a home."
+        }
+      ],
+      "hash": "8b4888f25ba1f1b4",
+      "id": "zoning.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Working alone from home in a home office is highly unlikely to cause any issues legally or practically, and you are likely to be allowed to run small-scale business activities without consent where they fall into your municipality's \"micro-business\" or \"home enterprise\" category. As soon as your activities go further, with limits on the type of business, number of staff, share of the house used, parking, noise and nuisance, you will probably have to apply for municipal consent."
+        }
+      ],
+      "hash": "96386564416ef2af",
+      "id": "zoning.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If it is just you, a phone, a laptop and a spare room, you almost certainly need no permission. If customers start arriving, staff start working there, or the house starts looking like a business, you need to ask."
+        }
+      ],
+      "hash": "8cb8fd8a864a1da0",
+      "id": "zoning.3",
+      "kind": "callout",
+      "pairsWith": "zoning.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The usual conditions for a home enterprise, which differ between municipalities:"
+        }
+      ],
+      "hash": "5b06556ff57f45ba",
+      "id": "zoning.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The business must stay secondary to living there. No more than one or two non-resident employees. No signage beyond a small nameplate. No storage of goods, materials or vehicles that gives the property a commercial appearance."
+        }
+      ],
+      "hash": "0d13c3996c0eaa07",
+      "id": "zoning.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Typically such exceptions permit no more than a quarter of the home's floor area to be used for business, provided the activity stays unobtrusive and does not generate excessive traffic, noise or risk."
+        }
+      ],
+      "hash": "bff985f9dd5f717c",
+      "id": "zoning.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The activities that usually push past a home enterprise and need consent use: a salon or personal services business with a steady stream of clients, a guesthouse, food production or catering with significant preparation or storage, or more staff than allowed."
+        }
+      ],
+      "hash": "b93d9249cda109c9",
+      "id": "zoning.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A business with no customers at the house, where everything happens by phone and at meeting points, is the easiest case. It is the model this file assumes."
+        }
+      ],
+      "hash": "5e433ca6023ba007",
+      "id": "zoning.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Two extra layers"
+        }
+      ],
+      "depth": 3,
+      "hash": "31bc53a43aa2a10c",
+      "id": "two-extra-layers",
+      "kind": "heading",
+      "text": "Two extra layers"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Complexes and estates."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Courts have repeatedly confirmed that body corporate conduct rules are enforceable, even when they are stricter than municipal zoning. Read your scheme's conduct rules before you start. In sectional title schemes, business activities can be allowed if written consent is given by all owners of the section."
+        }
+      ],
+      "hash": "38f84d81b3a924d2",
+      "id": "two-extra-layers.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Title deed."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Check your title deed for restrictive conditions and the zoning certificate of the property. A visit to a municipal or private town planner gives you certainty. Some older title deeds forbid any trade from the property. That is separate from zoning."
+        }
+      ],
+      "hash": "4cdd4229ad625df8",
+      "id": "two-extra-layers.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Using your home address officially"
+        }
+      ],
+      "depth": 3,
+      "hash": "2bcc9af797491918",
+      "id": "using-your-home-address-officially",
+      "kind": "heading",
+      "text": "Using your home address officially"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You can use your home as the registered address for a company, as the address on your SARS profile, as the premises on your SAPS second-hand goods registration, and as the proof of address for a BRNC. A utility bill or bank statement in your name, under three months old, is what each of these wants."
+        }
+      ],
+      "hash": "fad9fac4e43e94f0",
+      "id": "using-your-home-address-officially.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The address will then appear on public records and on every invoice. If that worries you, a PO box does not solve it, because most registrations require a physical address. Accept it, and manage the safety side with the habits in Part 3."
+        }
+      ],
+      "hash": "a8c7b3b7fce860e9",
+      "id": "using-your-home-address-officially.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Insurance"
+        }
+      ],
+      "depth": 3,
+      "hash": "a2f6de42f9f4aee9",
+      "id": "insurance",
+      "kind": "heading",
+      "text": "Insurance"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If there is a fire caused by business equipment, or a client trips and falls on your property, your standard household policy might not cover you at all. Tell your household insurer you run a business from home and what equipment or stock is there. Ask specifically about public liability and about stock cover. It usually costs little to add and it is a claim refusal waiting to happen if you do not."
+        }
+      ],
+      "hash": "201c51f419f97864",
+      "id": "insurance.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Home office deduction"
+        }
+      ],
+      "depth": 3,
+      "hash": "4d511f7e722f32ab",
+      "id": "home-office-deduction",
+      "kind": "heading",
+      "text": "Home office deduction"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you have a room used only for the business, you may be able to claim a share of your home costs against tax. The rules are strict. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Tax and SARS"
+            }
+          ],
+          "doc": "core/tax-and-sars",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "1ef8f9aa84cda65d",
+      "id": "home-office-deduction.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "home-office-deduction.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 2: doing business by phone, WhatsApp and voice note"
+        }
+      ],
+      "depth": 2,
+      "hash": "a85a24c226368b8c",
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note",
+      "kind": "heading",
+      "text": "Part 2: doing business by phone, WhatsApp and voice note"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most of your customer contact will be messages, calls and voice notes. That is fine. It needs three habits."
+        }
+      ],
+      "hash": "fa1fd1bfa8d5d15e",
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Confirm everything that matters in writing."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " A voice note that says \"R4,500 including delivery, Thursday\" is easy to misremember and impossible to search. After a voice note or a call, send a short text summary: what, how much, when, where. Ask them to reply \"yes\". That text is your agreement."
+        }
+      ],
+      "hash": "311fac59e55b90d8",
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Use one business number."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " WhatsApp Business on a separate SIM, not your personal number. Your personal number stays private, your business chats stay in one place, and you can hand the number to someone else one day. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Marketing prompts"
+            }
+          ],
+          "doc": "branding/marketing-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " for setting it up."
+        }
+      ],
+      "hash": "100c2a2d960ede6b",
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Keep the records."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Export or back up WhatsApp chats for any sale worth arguing about. Voice notes about a deal are business records too. Under POPIA you must also be careful with what you keep: customer ID copies and addresses should be stored somewhere safe, kept only as long as you need them, and never forwarded. Your privacy notice in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Which template to use when"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " tells customers what you keep and why."
+        }
+      ],
+      "hash": "2bf188115f26cc63",
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Do not put your home address in adverts or photos."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Be careful not to give out too much information in the advert or on the phone. Make sure photos posted online do not have geotag data embedded in them, which could give away your home address. Most phones let you switch off location in the camera settings. Do that before you photograph stock at home. Give your area, not your street."
+        }
+      ],
+      "hash": "c61b35591c9b28f3",
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.6",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 3: money, when you never see the customer"
+        }
+      ],
+      "depth": 2,
+      "hash": "6851d1e6e01e4a94",
+      "id": "part-3-money-when-you-never-see-the-customer",
+      "kind": "heading",
+      "text": "Part 3: money, when you never see the customer"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is where most losses happen, and almost all of them are avoidable with one rule."
+        }
+      ],
+      "hash": "a3ccb0d01c9f8517",
+      "id": "part-3-money-when-you-never-see-the-customer.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The one rule"
+        }
+      ],
+      "depth": 3,
+      "hash": "87603a99f079977b",
+      "id": "the-one-rule",
+      "kind": "heading",
+      "text": "The one rule"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Nothing leaves your hands until the money is in your account balance."
+        }
+      ],
+      "hash": "9048e83327606a11",
+      "id": "the-one-rule.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Release nothing, deliver nothing, and start nothing that costs you money until the funds reflect in your account balance, not \"pending\". If your bank app has not shown the money in your balance, you have not been paid."
+        }
+      ],
+      "hash": "c78daf2f03b50cb4",
+      "id": "the-one-rule.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Not a screenshot. Not an SMS. Not a PDF on a bank letterhead. Not a phone call from \"the bank\". Your own banking app, showing the balance has gone up."
+        }
+      ],
+      "hash": "0477dddc275019ca",
+      "id": "the-one-rule.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A screenshot, SMS or notification a customer shows you is never proof that a payment has gone through. Only your own portal or app can confirm that."
+        }
+      ],
+      "hash": "fe17e25b9d5feb6e",
+      "id": "the-one-rule.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Why this rule exists"
+        }
+      ],
+      "depth": 3,
+      "hash": "56ca0d90376c7bfd",
+      "id": "why-this-rule-exists",
+      "kind": "heading",
+      "text": "Why this rule exists"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Fake proof of payment is the most common scam aimed at small sellers in South Africa. It is not new and it is not rare."
+        }
+      ],
+      "hash": "256da5878ce5f233",
+      "id": "why-this-rule-exists.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Fake proof of payment is becoming more common as scammers up the ante. Gumtree South Africa described a seller who was sent a fake proof of payment, and the scammer even sent an Uber to collect the goods. The account behind it had been opened two days earlier and had done the same thing 24 times in those two days."
+        }
+      ],
+      "hash": "488f3d52faab0595",
+      "id": "why-this-rule-exists.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "According to SABRIC's 2024 crime statistics, digital banking fraud incidents rose 86%, with losses up 74% to R1.888 billion."
+        }
+      ],
+      "hash": "53aa84df95473ef0",
+      "id": "why-this-rule-exists.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is a normal business risk, like shoplifting is for a shop. The habit above defeats nearly all of it."
+        }
+      ],
+      "hash": "07fd9127dfd9c9a3",
+      "id": "why-this-rule-exists.4",
+      "kind": "callout",
+      "pairsWith": "why-this-rule-exists.3",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use instant payment methods"
+        }
+      ],
+      "depth": 3,
+      "hash": "b1ab315006ac434a",
+      "id": "use-instant-payment-methods",
+      "kind": "heading",
+      "text": "Use instant payment methods"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ordinary EFT can take a day or two to reflect, which is exactly the gap scammers use. South Africa now has instant options that remove the gap."
+        }
+      ],
+      "hash": "64892cf53e3badad",
+      "id": "use-instant-payment-methods.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "PayShap supports single payments up to R50,000, raised from R3,000 in November 2024, but each bank sets its own per-transaction and daily limits inside that ceiling. Payments clear in under ten seconds, 24 hours a day, with no cut-off times. You do not need the customer to have a ShapID; they can pay to your normal account number and it still clears in seconds."
+        }
+      ],
+      "hash": "27178932115ff06e",
+      "id": "use-instant-payment-methods.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "PayShap and Real-Time Clearing give you immediate confirmation and cannot be reversed."
+        }
+      ],
+      "hash": "06ebc32aa88cce3d",
+      "id": "use-instant-payment-methods.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a sale under your bank's PayShap limit, ask the customer to pay by PayShap or immediate payment while you watch your app. The money arrives before they leave. For larger amounts, an immediate payment through their banking app does the same job at a higher fee, or you meet at a bank branch and the transfer is done at the counter."
+        }
+      ],
+      "hash": "eaee5f58f5d088b4",
+      "id": "use-instant-payment-methods.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ask your bank what your own PayShap limit is. It differs by bank and by account."
+        }
+      ],
+      "hash": "dcd3df05a7bfe6c4",
+      "id": "use-instant-payment-methods.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The scams, plainly"
+        }
+      ],
+      "depth": 3,
+      "hash": "172c0a48b927c168",
+      "id": "the-scams-plainly",
+      "kind": "heading",
+      "text": "The scams, plainly"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You will meet some of these. Knowing the shape of them is most of the defence."
+        }
+      ],
+      "hash": "9c505dbe5b96b758",
+      "id": "the-scams-plainly.1",
+      "kind": "paragraph"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "84b1305a42a50cb9",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "What it looks like"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "What is really happening"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "What to do"
+          }
+        ]
+      ],
+      "id": "the-scams-plainly.2",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "A convincing proof of payment arrives. Buyer is in a hurry."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "The transfer was never made, or was made and will be reversed."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Wait for your balance. Never release on a POP."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Buyer \"accidentally\" pays too much and asks for the difference back."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "The original payment later fails, reverses, or never existed."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Refund nothing until the original has cleared for days. Refund only to the account it came from."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Buyer cannot come, sends a driver, courier or Uber to collect."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "The pattern SAPS warns about: a fake proof of purchase, a fake ID, then a driver sent to collect."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "No collection by third party until money has reflected. Then it is fine."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "A call or voice note from \"your bank\" about a suspicious payment, asking you to approve something in your app."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Social engineering. They talk you into approving a payment yourself."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Hang up. Phone your bank on the number on your card. Never approve anything on someone's instruction."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "A payment link or \"delivery fee\" link arrives by message."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "A phishing page. One login and your account is theirs."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Never log in through a link someone sent. Open your app yourself."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Someone asks for the OTP the bank just sent you, for any reason."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "The OTP authorises a payment out of your account."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Never. Not to a customer, not to \"the bank\", not to anyone."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Payment by cheque."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Cheques take time to clear; the buyer collects the goods and then cancels the cheque."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Do not accept cheques. South African banks stopped accepting them at the end of 2020, so a \"cheque\" today is a red flag on its own."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Buyer agrees your full price instantly, asks no questions, is overseas, or wants to move the chat to a different number."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Classic red flags for a fake buyer."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Slow down. Real buyers negotiate and ask things."
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Losing a sale to caution costs you nothing. Losing the goods costs you everything."
+        }
+      ],
+      "hash": "5b126414ad1350ad",
+      "id": "the-scams-plainly.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you take cash"
+        }
+      ],
+      "depth": 3,
+      "hash": "2a5ecc85311876c5",
+      "id": "if-you-take-cash",
+      "kind": "heading",
+      "text": "If you take cash"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Cash is legal and for small amounts it is simple. For large amounts it carries two risks: fake notes, and being robbed on the way to the bank."
+        }
+      ],
+      "hash": "dc4377a158eacbd1",
+      "id": "if-you-take-cash.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The South African Reserve Bank teaches a three-step check."
+        }
+      ],
+      "hash": "1e9760b3f4301149",
+      "id": "if-you-take-cash.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Look, feel and tilt. Feel: the portrait and the words SOUTH AFRICAN RESERVE BANK feel slightly raised or rough. The raised lines at the bottom corners count up with the value, one line on a R10 up to five on a R200. Tilt: the metallic thread reflects light and shifts colour, and the numerals at the bottom right are printed in colour-changing ink."
+        }
+      ],
+      "hash": "8ae8a0f36de47648",
+      "id": "if-you-take-cash.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Look: held up to the light, the security thread becomes a continuous solid line, and the watermark is an embedded image of Nelson Mandela to the left of the front of the note."
+        }
+      ],
+      "hash": "492335ecd9ea5d7d",
+      "id": "if-you-take-cash.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Fake notes can be surprisingly convincing. Even if the person paying you thinks they are genuine and you accept them in good faith, you still suffer the loss. By law counterfeit money cannot be exchanged for real money."
+        }
+      ],
+      "hash": "bd30f2d0ac98780d",
+      "id": "if-you-take-cash.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Anyone who comes into possession of counterfeit notes must report it to their nearest police station. The SARB also has a free Currency App that shows the security features."
+        }
+      ],
+      "hash": "d48d9c8d3a37c4ed",
+      "id": "if-you-take-cash.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For any amount worth worrying about, the simplest protection: do the cash transaction inside a bank branch, where the money can be checked for authenticity before you deposit it. The buyer deposits directly into your account at the counter. You watch it reflect. Nobody walks around with an envelope."
+        }
+      ],
+      "hash": "9c7e0e542a390a8a",
+      "id": "if-you-take-cash.7",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "For a vehicle dealer"
+        }
+      ],
+      "depth": 3,
+      "hash": "6edeb05a5c4d2b1b",
+      "id": "for-a-vehicle-dealer",
+      "kind": "heading",
+      "text": "For a vehicle dealer"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vehicle sales are large. PayShap limits will often be too low. The options that work:"
+        }
+      ],
+      "hash": "fed4cfea6d5da307",
+      "id": "for-a-vehicle-dealer.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "65ac584b844d15c9",
+      "id": "for-a-vehicle-dealer.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Immediate payment from the buyer's banking app while you watch your balance"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Meet at the buyer's bank; the transfer is done at the counter"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A bank-to-bank transfer the day before, with collection only once it has reflected"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Never hand over keys, the registration certificate, or a signed NCO until the full amount is in your balance. Do not hand over the keys or documents until full payment clears."
+        }
+      ],
+      "hash": "d84de3c921b05806",
+      "id": "for-a-vehicle-dealer.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "for-a-vehicle-dealer.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 4: meeting a customer to inspect or test drive"
+        }
+      ],
+      "depth": 2,
+      "hash": "df7bc508aff0b810",
+      "id": "part-4-meeting-a-customer-to-inspect-or-test-drive",
+      "kind": "heading",
+      "text": "Part 4: meeting a customer to inspect or test drive"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "At some point a customer needs to see the product before paying, or drive the vehicle. That means meeting a stranger. The habits below are what the security industry and the motoring industry both recommend. Follow them and this is a routine part of doing business."
+        }
+      ],
+      "hash": "af7ae410a0844b2c",
+      "id": "part-4-meeting-a-customer-to-inspect-or-test-drive.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Choose the place"
+        }
+      ],
+      "depth": 3,
+      "hash": "9a32a7d424ed0064",
+      "id": "choose-the-place",
+      "kind": "heading",
+      "text": "Choose the place"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Meet in a public place. Never meet in quiet or deserted locations. A well-lit public location, like a petrol station or a police station."
+        }
+      ],
+      "hash": "e07a3422541d8287",
+      "id": "choose-the-place.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Good choices: the parking area of a police station, a bank, a busy petrol station with cameras, or a shopping centre car park during trading hours. Choose somewhere you know, with people around and cameras present."
+        }
+      ],
+      "hash": "2f107e7023c72bcf",
+      "id": "choose-the-place.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Not at your home. You would not normally invite strangers to your home, so do not do it while selling. Rather take the vehicle to a public place."
+        }
+      ],
+      "hash": "6a606931c2db78fb",
+      "id": "choose-the-place.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Not at their home, for a first meeting."
+        }
+      ],
+      "hash": "d19c6b9ecd38028d",
+      "id": "choose-the-place.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daylight. Not after dark."
+        }
+      ],
+      "hash": "6d06859c8cfd269b",
+      "id": "choose-the-place.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "South Africa does not have a formal \"safe exchange zone\" scheme at police stations. Many stations are happy for people to meet in the visitor parking. Ask at your local station before you rely on it."
+        }
+      ],
+      "hash": "b28c415b88e7c37b",
+      "id": "choose-the-place.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Before you go"
+        }
+      ],
+      "depth": 3,
+      "hash": "e2281c817fae1f8a",
+      "id": "before-you-go",
+      "kind": "heading",
+      "text": "Before you go"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Get their details first."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Get a copy of their ID or driver's licence sent to you before meeting, \"to draw up paperwork so the transaction goes quicker on the day.\" A real buyer sends it. Under POPIA, keep it safely and delete it once the deal is done or abandoned."
+        }
+      ],
+      "hash": "83d42a5246de7e40",
+      "id": "before-you-go.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Tell someone."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Let a friend or relative know where you will be and whom you will be meeting. Share your live location on WhatsApp with them for the duration."
+        }
+      ],
+      "hash": "159b7afc2eea3744",
+      "id": "before-you-go.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Take someone."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Have a friend or family member accompany you, both when meeting the buyer and on the test drive. Two people change the whole calculation for anyone with bad intentions."
+        }
+      ],
+      "hash": "80d890fdb9a6fe74",
+      "id": "before-you-go.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Trust the feeling."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " If something does not seem right, or it feels unsafe, trust your gut and remove yourself from the situation. That can mean not meeting them at all, or leaving the moment something feels wrong. Have a back-up plan."
+        }
+      ],
+      "hash": "cc78275827e3274b",
+      "id": "before-you-go.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "During a test drive"
+        }
+      ],
+      "depth": 3,
+      "hash": "6c6cb5ae13107b8e",
+      "id": "during-a-test-drive",
+      "kind": "heading",
+      "text": "During a test drive"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is where vehicles are stolen from sellers, and every one of these rules exists because of a real case."
+        }
+      ],
+      "hash": "46febf7553543a1e",
+      "id": "during-a-test-drive.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "They will be driving your vehicle, so they must bring their driver's licence. Ask for a copy or take a photo. A legitimate buyer will not mind; a criminal is deterred. Check that the face on the licence is the person in front of you, and matches the ID they sent."
+        }
+      ],
+      "hash": "8e0b5d5f8741dac5",
+      "id": "during-a-test-drive.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do not hand over the keys until you are actually in the vehicle, and get them back before you get out. Otherwise they can simply drive off."
+        }
+      ],
+      "hash": "ceaf41c13aa23ddb",
+      "id": "during-a-test-drive.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Never let a buyer test drive alone, because they may never come back. Watch your keys at all times. Some thieves do a key swap during the viewing and return later to steal the vehicle."
+        }
+      ],
+      "hash": "4cb3e240be7518b2",
+      "id": "during-a-test-drive.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Keep the fuel low. A near-empty tank limits how far anyone can go."
+        }
+      ],
+      "hash": "61304e31021b11c4",
+      "id": "during-a-test-drive.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your companion stays with the buyer's own vehicle and their companion, if they brought one. It is your vehicle; you decide who rides."
+        }
+      ],
+      "hash": "dc7982916a89fb5c",
+      "id": "during-a-test-drive.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Check your insurance covers a prospective buyer driving. For a dealer, that is motor trade insurance with test drive cover, covered in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Vehicle dealer"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". For a private seller, phone your insurer and ask."
+        }
+      ],
+      "hash": "0a93d806d26f440a",
+      "id": "during-a-test-drive.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "After the meeting"
+        }
+      ],
+      "depth": 3,
+      "hash": "9d122fcc516095ab",
+      "id": "after-the-meeting",
+      "kind": "heading",
+      "text": "After the meeting"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If the deal goes ahead: payment reflects first, then keys and papers, then the NCO is lodged the same day. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Vehicle dealer"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " for the full paperwork."
+        }
+      ],
+      "hash": "b39cbfe75750e8a0",
+      "id": "after-the-meeting.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If it does not: delete the ID copies you were sent. You have no reason to keep them."
+        }
+      ],
+      "hash": "9cc8f892c49e0e0f",
+      "id": "after-the-meeting.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For products other than vehicles"
+        }
+      ],
+      "depth": 3,
+      "hash": "891545094d1f4aa3",
+      "id": "for-products-other-than-vehicles",
+      "kind": "heading",
+      "text": "For products other than vehicles"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The same rules, simplified. Meet in public, in daylight, with someone. Let the customer inspect. They pay by instant transfer while you watch your app. Then you hand it over. A customer who insists on taking the item \"to show someone\" before paying is not a customer."
+        }
+      ],
+      "hash": "faf40e35e2ba72f3",
+      "id": "for-products-other-than-vehicles.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "for-products-other-than-vehicles.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Part 5: if something goes wrong"
+        }
+      ],
+      "depth": 2,
+      "hash": "b50c90aad166d1bb",
+      "id": "part-5-if-something-goes-wrong",
+      "kind": "heading",
+      "text": "Part 5: if something goes wrong"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "A fake payment, and the goods are gone."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Open a case at your nearest SAPS station and get the case number. Report it to your bank's fraud line. Report the buyer's account or profile to the platform they contacted you on. Keep every message. Recovery is unlikely, but the case number matters for insurance and for the bank's investigation."
+        }
+      ],
+      "hash": "f1ce6969b66def57",
+      "id": "part-5-if-something-goes-wrong.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "A fake note."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Report it to your nearest police station. Do not try to pass it on; that is a crime."
+        }
+      ],
+      "hash": "f7f90d7f09203a28",
+      "id": "part-5-if-something-goes-wrong.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Someone got into your banking."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Phone your bank's fraud line immediately, from the number on the back of your card. Change passwords. Report to SABRIC at "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.sabric.co.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.sabric.co.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "742c1b9cc59c94ea",
+      "id": "part-5-if-something-goes-wrong.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "A test drive that ended in theft."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " SAPS immediately, then your insurer and your tracking company if fitted. The licence photo you took is now the most important thing you have."
+        }
+      ],
+      "hash": "c9d2cf3e454a731a",
+      "id": "part-5-if-something-goes-wrong.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "You feel threatened at a meeting."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Leave. Do not argue over the product. Nothing you are selling is worth it."
+        }
+      ],
+      "hash": "e0cad79e55ba767b",
+      "id": "part-5-if-something-goes-wrong.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "part-5-if-something-goes-wrong.6",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your checklist"
+        }
+      ],
+      "depth": 2,
+      "hash": "44586aab28889f46",
+      "id": "your-checklist",
+      "kind": "heading",
+      "text": "Your checklist"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Setup"
+        }
+      ],
+      "depth": 4,
+      "hash": "f2326246a4d6f360",
+      "id": "setup",
+      "kind": "heading",
+      "pseudo": true,
+      "text": "Setup"
+    },
+    {
+      "hash": "dc49901ac4a6f01f",
+      "id": "setup.1",
+      "items": [
+        {
+          "block": "setup.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Checked my zoning, title deed, and complex rules allow what I do at home"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:bbeb1c8a"
+        },
+        {
+          "block": "setup.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Told my household insurer about the business and its stock"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:1a704bb5"
+        },
+        {
+          "block": "setup.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Location switched off in my phone camera before photographing stock at home"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:8a10fb7e"
+        },
+        {
+          "block": "setup.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Separate WhatsApp Business number"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:98801a6b"
+        },
+        {
+          "block": "setup.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Asked my bank what my PayShap and immediate payment limits are"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:b77d1f44"
+        }
+      ],
+      "kind": "tasklist"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Every sale"
+        }
+      ],
+      "depth": 4,
+      "hash": "6971ebca57a6b41d",
+      "id": "every-sale",
+      "kind": "heading",
+      "pseudo": true,
+      "text": "Every sale"
+    },
+    {
+      "hash": "95e887522605922b",
+      "id": "every-sale.1",
+      "items": [
+        {
+          "block": "every-sale.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Deal confirmed in a text message the customer replied \"yes\" to"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:bfe6c798"
+        },
+        {
+          "block": "every-sale.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Money reflected in my balance before anything left my hands"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:cad4290c"
+        },
+        {
+          "block": "every-sale.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "No refund of any \"overpayment\" until the original cleared and only to the same account"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:70251e55"
+        },
+        {
+          "block": "every-sale.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Cash checked with look, feel, tilt, or deposited at a bank counter"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:6bd83244"
+        }
+      ],
+      "kind": "tasklist"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Every meeting"
+        }
+      ],
+      "depth": 4,
+      "hash": "859f9e44e84779e6",
+      "id": "every-meeting",
+      "kind": "heading",
+      "pseudo": true,
+      "text": "Every meeting"
+    },
+    {
+      "hash": "94ab969df7ca2072",
+      "id": "every-meeting.1",
+      "items": [
+        {
+          "block": "every-meeting.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Public place, daylight, cameras"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:288efaaa"
+        },
+        {
+          "block": "every-meeting.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "ID or licence received before the meeting"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:a5d45d69"
+        },
+        {
+          "block": "every-meeting.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Someone told, location shared, someone with me"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:05820320"
+        },
+        {
+          "block": "every-meeting.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Keys in my hand until I am in the vehicle, and back in my hand before I get out"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:9c2a1aaa"
+        },
+        {
+          "block": "every-meeting.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "ID copies deleted afterwards if no deal"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:10807585"
+        }
+      ],
+      "kind": "tasklist"
+    }
+  ],
+  "contentHash": "8b6b40f572709fce",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Running it from home, and meeting customers safely",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "the-short-version",
+      "text": "The short version"
+    },
+    {
+      "depth": 2,
+      "id": "part-1-what-the-rules-allow-when-you-work-from-home",
+      "text": "Part 1: what the rules allow when you work from home"
+    },
+    {
+      "depth": 3,
+      "id": "zoning",
+      "text": "Zoning"
+    },
+    {
+      "depth": 3,
+      "id": "two-extra-layers",
+      "text": "Two extra layers"
+    },
+    {
+      "depth": 3,
+      "id": "using-your-home-address-officially",
+      "text": "Using your home address officially"
+    },
+    {
+      "depth": 3,
+      "id": "insurance",
+      "text": "Insurance"
+    },
+    {
+      "depth": 3,
+      "id": "home-office-deduction",
+      "text": "Home office deduction"
+    },
+    {
+      "depth": 2,
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note",
+      "text": "Part 2: doing business by phone, WhatsApp and voice note"
+    },
+    {
+      "depth": 2,
+      "id": "part-3-money-when-you-never-see-the-customer",
+      "text": "Part 3: money, when you never see the customer"
+    },
+    {
+      "depth": 3,
+      "id": "the-one-rule",
+      "text": "The one rule"
+    },
+    {
+      "depth": 3,
+      "id": "why-this-rule-exists",
+      "text": "Why this rule exists"
+    },
+    {
+      "depth": 3,
+      "id": "use-instant-payment-methods",
+      "text": "Use instant payment methods"
+    },
+    {
+      "depth": 3,
+      "id": "the-scams-plainly",
+      "text": "The scams, plainly"
+    },
+    {
+      "depth": 3,
+      "id": "if-you-take-cash",
+      "text": "If you take cash"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      },
+      "depth": 3,
+      "id": "for-a-vehicle-dealer",
+      "text": "For a vehicle dealer"
+    },
+    {
+      "depth": 2,
+      "id": "part-4-meeting-a-customer-to-inspect-or-test-drive",
+      "text": "Part 4: meeting a customer to inspect or test drive"
+    },
+    {
+      "depth": 3,
+      "id": "choose-the-place",
+      "text": "Choose the place"
+    },
+    {
+      "depth": 3,
+      "id": "before-you-go",
+      "text": "Before you go"
+    },
+    {
+      "depth": 3,
+      "id": "during-a-test-drive",
+      "text": "During a test drive"
+    },
+    {
+      "depth": 3,
+      "id": "after-the-meeting",
+      "text": "After the meeting"
+    },
+    {
+      "depth": 3,
+      "id": "for-products-other-than-vehicles",
+      "text": "For products other than vehicles"
+    },
+    {
+      "depth": 2,
+      "id": "part-5-if-something-goes-wrong",
+      "text": "Part 5: if something goes wrong"
+    },
+    {
+      "depth": 2,
+      "id": "your-checklist",
+      "text": "Your checklist"
+    },
+    {
+      "depth": 4,
+      "id": "setup",
+      "pseudo": true,
+      "text": "Setup"
+    },
+    {
+      "depth": 4,
+      "id": "every-sale",
+      "pseudo": true,
+      "text": "Every sale"
+    },
+    {
+      "depth": 4,
+      "id": "every-meeting",
+      "pseudo": true,
+      "text": "Every meeting"
+    }
+  ],
+  "id": "core/working-from-home-and-safety",
+  "kind": "guide",
+  "lang": "en",
+  "order": 9,
+  "readingTime": 17,
+  "related": [
+    "business-types/vehicle-dealer",
+    "core/tax-and-sars",
+    "branding/marketing-prompts",
+    "paperwork/which-template-to-use-when"
+  ],
+  "route": "core/working-from-home-and-safety/",
+  "section": "core",
+  "slug": "working-from-home-and-safety",
+  "sourcePath": "01 Core - applies to everyone/09-working-from-home-and-safety.md",
+  "sources": {
+    "acts": [],
+    "entries": [
+      "south-african-reserve-bank--banknote-security-features",
+      "iol--the-mercury",
+      "the-citizen-local-titles",
+      "sabric--south-african-banking-risk-information-centre",
+      "techcentral",
+      "solmate",
+      "netcash",
+      "ewn-gumtree-flags-fake-payment-scam",
+      "cape-argus",
+      "flip-the-market",
+      "bizcommunity--gumtree",
+      "tracker-south-africa",
+      "carscoza",
+      "motorhappy",
+      "ashersons-attorneys",
+      "yebo-business-1",
+      "findanattorney",
+      "looksee-standard-bank",
+      "leapfrog"
+    ]
+  },
+  "summary": "Many one-person businesses have no shop, no yard and no office. The business lives on a phone.",
+  "tags": [
+    "home",
+    "safety",
+    "payments"
+  ],
+  "terms": [
+    {
+      "meaning": "The municipal category that allows small, quiet businesses in a house without special permission.",
+      "term": "Home enterprise / home occupation"
+    },
+    {
+      "meaning": "Municipal permission for a business use that goes beyond what your zoning allows by default.",
+      "term": "Consent use"
+    },
+    {
+      "meaning": "The management body of a complex or estate. It has its own rules on top of the municipality's.",
+      "term": "Body corporate / HOA"
+    },
+    {
+      "meaning": "Proof of payment. A screenshot or PDF showing a transfer was made. Easy to fake.",
+      "term": "POP"
+    },
+    {
+      "meaning": "The money is actually in your account balance, not just \"pending\".",
+      "term": "Reflected / cleared"
+    },
+    {
+      "meaning": "An instant bank-to-bank payment that arrives in seconds and cannot be reversed.",
+      "term": "PayShap"
+    },
+    {
+      "meaning": "Other fast payment options. Also arrive quickly.",
+      "term": "Instant EFT / RTC"
+    },
+    {
+      "meaning": "A \"buyer\" pays too much on purpose, then asks for the difference back. The original payment was never real.",
+      "term": "Overpayment scam"
+    },
+    {
+      "meaning": "Location data hidden inside a photo. It can reveal where you live.",
+      "term": "Geotag"
+    },
+    {
+      "meaning": "One-time PIN. The code your bank sends you. Never share it with anyone.",
+      "term": "OTP"
+    },
+    {
+      "meaning": "The banking industry's fraud body.",
+      "term": "SABRIC"
+    }
+  ],
+  "title": "Working from home and meeting safely",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

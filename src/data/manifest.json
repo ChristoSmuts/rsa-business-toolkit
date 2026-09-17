@@ -1,0 +1,740 @@
+{
+  "contentHash": "271e97a2de2ddacd",
+  "docs": {
+    "branding/already-have-your-name": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 1,
+      "route": "branding/already-have-your-name/",
+      "section": "branding",
+      "slug": "already-have-your-name",
+      "titles": {
+        "en": "Already have your name (shortcut)"
+      }
+    },
+    "branding/brand-applications-and-polish": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 4,
+      "route": "branding/brand-applications-and-polish/",
+      "section": "branding",
+      "slug": "brand-applications-and-polish",
+      "titles": {
+        "en": "Brand applications and polish"
+      }
+    },
+    "branding/branding-prompts": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 2,
+      "route": "branding/branding-prompts/",
+      "section": "branding",
+      "slug": "branding-prompts",
+      "titles": {
+        "en": "Branding prompts"
+      }
+    },
+    "branding/marketing-prompts": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 5,
+      "route": "branding/marketing-prompts/",
+      "section": "branding",
+      "slug": "marketing-prompts",
+      "titles": {
+        "en": "Marketing prompts"
+      }
+    },
+    "branding/mood-and-materials": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 3,
+      "route": "branding/mood-and-materials/",
+      "section": "branding",
+      "slug": "mood-and-materials",
+      "titles": {
+        "en": "Mood and materials (use after Prompt 4)"
+      }
+    },
+    "business-types/beauty": {
+      "appliesTo": {
+        "businessTypes": [
+          "beauty"
+        ],
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 4,
+      "route": "business-types/beauty/",
+      "section": "business-types",
+      "slug": "beauty",
+      "titles": {
+        "en": "Beauty and personal care"
+      }
+    },
+    "business-types/food": {
+      "appliesTo": {
+        "businessTypes": [
+          "food"
+        ],
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 3,
+      "route": "business-types/food/",
+      "section": "business-types",
+      "slug": "food",
+      "titles": {
+        "en": "Food business"
+      }
+    },
+    "business-types/pick-your-business-type": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 1,
+      "route": "business-types/",
+      "section": "business-types",
+      "slug": "pick-your-business-type",
+      "titles": {
+        "en": "Pick your business type"
+      }
+    },
+    "business-types/professional-creative": {
+      "appliesTo": {
+        "businessTypes": [
+          "professional-creative"
+        ],
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 7,
+      "route": "business-types/professional-creative/",
+      "section": "business-types",
+      "slug": "professional-creative",
+      "titles": {
+        "en": "Professional and creative work"
+      }
+    },
+    "business-types/retail-online": {
+      "appliesTo": {
+        "businessTypes": [
+          "retail-online"
+        ],
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 5,
+      "route": "business-types/retail-online/",
+      "section": "business-types",
+      "slug": "retail-online",
+      "titles": {
+        "en": "Retail and online shop"
+      }
+    },
+    "business-types/services-trades": {
+      "appliesTo": {
+        "businessTypes": [
+          "services-trades"
+        ],
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 6,
+      "route": "business-types/services-trades/",
+      "section": "business-types",
+      "slug": "services-trades",
+      "titles": {
+        "en": "Services and trades"
+      }
+    },
+    "business-types/vehicle-dealer": {
+      "appliesTo": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ],
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 2,
+      "route": "business-types/vehicle-dealer/",
+      "section": "business-types",
+      "slug": "vehicle-dealer",
+      "titles": {
+        "en": "Vehicle dealer"
+      }
+    },
+    "core/adding-new-lines": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "pty"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 8,
+      "route": "core/adding-new-lines/",
+      "section": "core",
+      "slug": "adding-new-lines",
+      "titles": {
+        "en": "Adding new lines of business"
+      }
+    },
+    "core/paying-yourself": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "pty"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 7,
+      "route": "core/paying-yourself/",
+      "section": "core",
+      "slug": "paying-yourself",
+      "titles": {
+        "en": "Paying yourself from a Pty Ltd"
+      }
+    },
+    "core/register": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 2,
+      "route": "core/register/",
+      "section": "core",
+      "slug": "register",
+      "titles": {
+        "en": "Register: what you actually need"
+      }
+    },
+    "core/running-a-pty-ltd": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "pty"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 6,
+      "route": "core/running-a-pty-ltd/",
+      "section": "core",
+      "slug": "running-a-pty-ltd",
+      "titles": {
+        "en": "Running a Pty Ltd"
+      }
+    },
+    "core/start-here": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 1,
+      "route": "core/start-here/",
+      "section": "core",
+      "slug": "start-here",
+      "titles": {
+        "en": "Core: start here"
+      }
+    },
+    "core/tax-and-sars": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 3,
+      "route": "core/tax-and-sars/",
+      "section": "core",
+      "slug": "tax-and-sars",
+      "titles": {
+        "en": "Tax and SARS"
+      }
+    },
+    "core/vehicles": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 5,
+      "route": "core/vehicles/",
+      "section": "core",
+      "slug": "vehicles",
+      "titles": {
+        "en": "Vehicles for your business"
+      }
+    },
+    "core/what-you-need-to-sell-things": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 4,
+      "route": "core/what-you-need-to-sell-things/",
+      "section": "core",
+      "slug": "what-you-need-to-sell-things",
+      "titles": {
+        "en": "What you need to sell things"
+      }
+    },
+    "core/working-from-home-and-safety": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 9,
+      "route": "core/working-from-home-and-safety/",
+      "section": "core",
+      "slug": "working-from-home-and-safety",
+      "titles": {
+        "en": "Working from home and meeting safely"
+      }
+    },
+    "core/you-are-the-business": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 10,
+      "route": "core/you-are-the-business/",
+      "section": "core",
+      "slug": "you-are-the-business",
+      "titles": {
+        "en": "You are the business"
+      }
+    },
+    "lookup/checklist": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "checklist",
+      "langs": [
+        "en"
+      ],
+      "order": 2,
+      "route": "checklist/",
+      "section": "lookup",
+      "slug": "checklist",
+      "titles": {
+        "en": "Master checklist"
+      }
+    },
+    "lookup/glossary": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "glossary",
+      "langs": [
+        "en"
+      ],
+      "order": 1,
+      "route": "glossary/",
+      "section": "lookup",
+      "slug": "glossary",
+      "titles": {
+        "en": "Glossary"
+      }
+    },
+    "lookup/sources": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "sources",
+      "langs": [
+        "en"
+      ],
+      "order": 3,
+      "route": "sources/",
+      "section": "lookup",
+      "slug": "sources",
+      "titles": {
+        "en": "Sources and verification register"
+      }
+    },
+    "paperwork/free-tools": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 2,
+      "route": "paperwork/free-tools/",
+      "section": "paperwork",
+      "slug": "free-tools",
+      "titles": {
+        "en": "Free tools"
+      }
+    },
+    "paperwork/templates/invoice": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "template",
+      "langs": [
+        "en"
+      ],
+      "order": 4,
+      "route": "templates/invoice/",
+      "section": "paperwork",
+      "slug": "invoice",
+      "titles": {
+        "en": "Invoice, NOT VAT registered (template)"
+      }
+    },
+    "paperwork/templates/privacy-notice": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "template",
+      "langs": [
+        "en"
+      ],
+      "order": 7,
+      "route": "templates/privacy-notice/",
+      "section": "paperwork",
+      "slug": "privacy-notice",
+      "titles": {
+        "en": "Privacy notice, POPIA (template)"
+      }
+    },
+    "paperwork/templates/quotation": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "template",
+      "langs": [
+        "en"
+      ],
+      "order": 3,
+      "route": "templates/quotation/",
+      "section": "paperwork",
+      "slug": "quotation",
+      "titles": {
+        "en": "Quotation (template)"
+      }
+    },
+    "paperwork/templates/receipt": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "template",
+      "langs": [
+        "en"
+      ],
+      "order": 6,
+      "route": "templates/receipt/",
+      "section": "paperwork",
+      "slug": "receipt",
+      "titles": {
+        "en": "Receipt (template)"
+      }
+    },
+    "paperwork/templates/tax-invoice": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "template",
+      "langs": [
+        "en"
+      ],
+      "order": 5,
+      "route": "templates/tax-invoice/",
+      "section": "paperwork",
+      "slug": "tax-invoice",
+      "titles": {
+        "en": "Tax invoice, VAT registered (template)"
+      }
+    },
+    "paperwork/which-template-to-use-when": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 1,
+      "route": "paperwork/which-template-to-use-when/",
+      "section": "paperwork",
+      "slug": "which-template-to-use-when",
+      "titles": {
+        "en": "Which template to use when"
+      }
+    },
+    "start/how-this-was-made": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 3,
+      "route": "start/how-this-was-made/",
+      "section": "start",
+      "slug": "how-this-was-made",
+      "titles": {
+        "en": "How this was made and how to check it"
+      }
+    },
+    "start/how-to-use": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 2,
+      "route": "start/how-to-use/",
+      "section": "start",
+      "slug": "how-to-use",
+      "titles": {
+        "en": "How to use this toolkit"
+      }
+    },
+    "start/start-here": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 1,
+      "route": "start/start-here/",
+      "section": "start",
+      "slug": "start-here",
+      "titles": {
+        "en": "Start here"
+      }
+    },
+    "start/what-has-changed": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "kind": "guide",
+      "langs": [
+        "en"
+      ],
+      "order": 4,
+      "route": "start/what-has-changed/",
+      "section": "start",
+      "slug": "what-has-changed",
+      "titles": {
+        "en": "What has changed"
+      }
+    }
+  },
+  "langs": {
+    "en": {
+      "docCount": 36,
+      "status": "source"
+    }
+  },
+  "sections": [
+    {
+      "docs": [
+        "start/start-here",
+        "start/how-to-use",
+        "start/how-this-was-made",
+        "start/what-has-changed"
+      ],
+      "id": "start",
+      "order": 1,
+      "route": "start/",
+      "titles": {
+        "af": "Begin hier",
+        "en": "Start here"
+      }
+    },
+    {
+      "docs": [
+        "core/start-here",
+        "core/register",
+        "core/tax-and-sars",
+        "core/what-you-need-to-sell-things",
+        "core/vehicles",
+        "core/running-a-pty-ltd",
+        "core/paying-yourself",
+        "core/adding-new-lines",
+        "core/working-from-home-and-safety",
+        "core/you-are-the-business"
+      ],
+      "id": "core",
+      "order": 2,
+      "route": "core/",
+      "titles": {
+        "af": "Kern: geld vir almal",
+        "en": "Core: applies to everyone"
+      }
+    },
+    {
+      "docs": [
+        "branding/already-have-your-name",
+        "branding/branding-prompts",
+        "branding/mood-and-materials",
+        "branding/brand-applications-and-polish",
+        "branding/marketing-prompts"
+      ],
+      "id": "branding",
+      "order": 3,
+      "route": "branding/",
+      "titles": {
+        "af": "Handelsmerk en bemarking",
+        "en": "Branding and marketing"
+      }
+    },
+    {
+      "docs": [
+        "paperwork/which-template-to-use-when",
+        "paperwork/free-tools",
+        "paperwork/templates/quotation",
+        "paperwork/templates/invoice",
+        "paperwork/templates/tax-invoice",
+        "paperwork/templates/receipt",
+        "paperwork/templates/privacy-notice"
+      ],
+      "id": "paperwork",
+      "order": 4,
+      "route": "paperwork/",
+      "titles": {
+        "af": "Papierwerk en sjablone",
+        "en": "Paperwork and templates"
+      }
+    },
+    {
+      "docs": [
+        "business-types/pick-your-business-type",
+        "business-types/vehicle-dealer",
+        "business-types/food",
+        "business-types/beauty",
+        "business-types/retail-online",
+        "business-types/services-trades",
+        "business-types/professional-creative"
+      ],
+      "id": "business-types",
+      "order": 5,
+      "route": "business-types/",
+      "titles": {
+        "af": "Jou soort besigheid",
+        "en": "Your kind of business"
+      }
+    },
+    {
+      "docs": [
+        "lookup/glossary",
+        "lookup/checklist",
+        "lookup/sources"
+      ],
+      "id": "lookup",
+      "order": 6,
+      "route": "look-it-up/",
+      "titles": {
+        "af": "Slaan dit na",
+        "en": "Look it up"
+      }
+    }
+  ],
+  "version": 1
+}

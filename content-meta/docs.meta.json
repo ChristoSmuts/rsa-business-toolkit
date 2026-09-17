@@ -1,0 +1,654 @@
+{
+  "version": 1,
+  "sourceRoots": {
+    "en": "docs/rsa-business-toolkit",
+    "af": "docs/rsa-business-toolkit-af"
+  },
+  "ignore": ["INDEX.md", "README.md", "SA-Business-Toolkit-complete.md", "TRANSLATION-NOTES.md"],
+  "linkify": {
+    "ignoreDomains": [
+      "a.co.za",
+      "yourname.co.za",
+      "yourbusiness.co.za",
+      "mokoenamotors.co.za",
+      "mokoenamotorssa.co.za"
+    ],
+    "allowDomains": [
+      "business.google.com",
+      "cars.co.za",
+      "fonts.google.com",
+      "fsca.co.za",
+      "gov.za",
+      "government.co.za",
+      "inforegulator.org.za",
+      "libreoffice.org",
+      "miosa.co.za",
+      "ncr.org.za",
+      "onlyoffice.com",
+      "sars.gov.za",
+      "thencc.org.za",
+      "webaim.org"
+    ]
+  },
+  "sections": [
+    {
+      "id": "start",
+      "order": 1,
+      "folder": "00 Start here",
+      "route": "start/",
+      "titles": {
+        "en": "Start here",
+        "af": "Begin hier"
+      }
+    },
+    {
+      "id": "core",
+      "order": 2,
+      "folder": "01 Core - applies to everyone",
+      "route": "core/",
+      "titles": {
+        "en": "Core: applies to everyone",
+        "af": "Kern: geld vir almal"
+      }
+    },
+    {
+      "id": "branding",
+      "order": 3,
+      "folder": "02 Branding and marketing",
+      "route": "branding/",
+      "titles": {
+        "en": "Branding and marketing",
+        "af": "Handelsmerk en bemarking"
+      }
+    },
+    {
+      "id": "paperwork",
+      "order": 4,
+      "folder": "03 Paperwork and templates",
+      "route": "paperwork/",
+      "titles": {
+        "en": "Paperwork and templates",
+        "af": "Papierwerk en sjablone"
+      }
+    },
+    {
+      "id": "business-types",
+      "order": 5,
+      "folder": "04 Your kind of business",
+      "route": "business-types/",
+      "titles": {
+        "en": "Your kind of business",
+        "af": "Jou soort besigheid"
+      }
+    },
+    {
+      "id": "lookup",
+      "order": 6,
+      "folder": "05 Look it up",
+      "route": "look-it-up/",
+      "titles": {
+        "en": "Look it up",
+        "af": "Slaan dit na"
+      }
+    }
+  ],
+  "docs": [
+    {
+      "source": "00 Start here/00-start-here.md",
+      "id": "start/start-here",
+      "route": "start/start-here/",
+      "section": "start",
+      "order": 1,
+      "kind": "guide",
+      "title": {
+        "en": "Start here"
+      },
+      "tags": ["orientation"],
+      "blockOverrides": {
+        "what-is-in-here.1": {
+          "replaceWith": "toc"
+        }
+      }
+    },
+    {
+      "source": "00 Start here/01-how-to-use-this-toolkit.md",
+      "id": "start/how-to-use",
+      "route": "start/how-to-use/",
+      "section": "start",
+      "order": 2,
+      "kind": "guide",
+      "title": {
+        "en": "How to use this toolkit"
+      },
+      "tags": ["orientation"],
+      "hideSections": ["making-the-files-easier-to-use"],
+      "special": {
+        "quickAnswers": {
+          "heading": "path-3-i-need-one-specific-answer"
+        }
+      }
+    },
+    {
+      "source": "00 Start here/02-how-this-was-made.md",
+      "id": "start/how-this-was-made",
+      "route": "start/how-this-was-made/",
+      "section": "start",
+      "order": 3,
+      "kind": "guide",
+      "title": {
+        "en": "How this was made and how to check it"
+      },
+      "tags": ["orientation", "ai-disclosure"]
+    },
+    {
+      "source": "00 Start here/03-what-has-changed.md",
+      "id": "start/what-has-changed",
+      "route": "start/what-has-changed/",
+      "section": "start",
+      "order": 4,
+      "kind": "guide",
+      "title": {
+        "en": "What has changed"
+      },
+      "summary": {
+        "en": "What changed in the toolkit, and where the Google Drive copy and the markdown copy still differ."
+      },
+      "tags": ["orientation", "changelog"],
+      "fenceVariant": "snippet"
+    },
+    {
+      "source": "01 Core - applies to everyone/01-core-start-here.md",
+      "id": "core/start-here",
+      "route": "core/start-here/",
+      "section": "core",
+      "order": 1,
+      "kind": "guide",
+      "title": {
+        "en": "Core: start here"
+      },
+      "tags": ["orientation"],
+      "sourceFixes": [
+        {
+          "lang": "en",
+          "find": "the habits that stop you being scammed.\n3. Pick a name",
+          "replace": "the habits that stop you being scammed.\n\n3. Pick a name",
+          "reason": "The one-space-indented note after step 2 is not part of the list item, so CommonMark treats steps 3 to 7 as lazy continuation lines of that paragraph. A blank line restores the ordered list (start 3) after the note."
+        },
+        {
+          "lang": "translations",
+          "pattern": "^(2\\. [^\\n]*\\n\\n?)( ?[^\\s\\d-][^\\n]*)\\n(3\\. )",
+          "replace": "$1$2\n\n$3",
+          "optional": true,
+          "reason": "Same quirk as the English fix above, in translated wording: the note under step 2, followed by \"3. \" on the next line, makes steps 3 to 7 part of that paragraph. A blank line restores the ordered list. Anchored to the \"2. \" line so it can only ever fix the note under step 2, never another line that happens to sit above a \"3. \". A translation that already has the blank line needs no fix."
+        }
+      ]
+    },
+    {
+      "source": "01 Core - applies to everyone/02-register.md",
+      "id": "core/register",
+      "route": "core/register/",
+      "section": "core",
+      "order": 2,
+      "kind": "guide",
+      "title": {
+        "en": "Register: what you actually need"
+      },
+      "tags": ["registration"]
+    },
+    {
+      "source": "01 Core - applies to everyone/03-tax-and-sars.md",
+      "id": "core/tax-and-sars",
+      "route": "core/tax-and-sars/",
+      "section": "core",
+      "order": 3,
+      "kind": "guide",
+      "title": {
+        "en": "Tax and SARS"
+      },
+      "tags": ["tax"]
+    },
+    {
+      "source": "01 Core - applies to everyone/04-what-you-need-to-sell-things.md",
+      "id": "core/what-you-need-to-sell-things",
+      "route": "core/what-you-need-to-sell-things/",
+      "section": "core",
+      "order": 4,
+      "kind": "guide",
+      "title": {
+        "en": "What you need to sell things"
+      },
+      "tags": ["licensing", "consumer-law"]
+    },
+    {
+      "source": "01 Core - applies to everyone/05-vehicles.md",
+      "id": "core/vehicles",
+      "route": "core/vehicles/",
+      "section": "core",
+      "order": 5,
+      "kind": "guide",
+      "title": {
+        "en": "Vehicles for your business"
+      },
+      "tags": ["vehicles"]
+    },
+    {
+      "source": "01 Core - applies to everyone/06-running-a-pty-ltd.md",
+      "id": "core/running-a-pty-ltd",
+      "route": "core/running-a-pty-ltd/",
+      "section": "core",
+      "order": 6,
+      "kind": "guide",
+      "title": {
+        "en": "Running a Pty Ltd"
+      },
+      "summary": {
+        "en": "What a company costs you in time and duties every year, what goes wrong when you stop filing, and when the company does not protect you."
+      },
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "tags": ["pty"]
+    },
+    {
+      "source": "01 Core - applies to everyone/07-paying-yourself.md",
+      "id": "core/paying-yourself",
+      "route": "core/paying-yourself/",
+      "section": "core",
+      "order": 7,
+      "kind": "guide",
+      "title": {
+        "en": "Paying yourself from a Pty Ltd"
+      },
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "tags": ["pty", "tax"]
+    },
+    {
+      "source": "01 Core - applies to everyone/08-adding-new-lines.md",
+      "id": "core/adding-new-lines",
+      "route": "core/adding-new-lines/",
+      "section": "core",
+      "order": 8,
+      "kind": "guide",
+      "title": {
+        "en": "Adding new lines of business"
+      },
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "tags": ["pty", "growth"]
+    },
+    {
+      "source": "01 Core - applies to everyone/09-working-from-home-and-safety.md",
+      "id": "core/working-from-home-and-safety",
+      "route": "core/working-from-home-and-safety/",
+      "section": "core",
+      "order": 9,
+      "kind": "guide",
+      "title": {
+        "en": "Working from home and meeting safely"
+      },
+      "tags": ["home", "safety", "payments"]
+    },
+    {
+      "source": "01 Core - applies to everyone/10-you-are-the-business.md",
+      "id": "core/you-are-the-business",
+      "route": "core/you-are-the-business/",
+      "section": "core",
+      "order": 10,
+      "kind": "guide",
+      "title": {
+        "en": "You are the business"
+      },
+      "tags": ["continuity", "getting-paid"]
+    },
+    {
+      "source": "02 Branding and marketing/00-already-have-your-name.md",
+      "id": "branding/already-have-your-name",
+      "route": "branding/already-have-your-name/",
+      "section": "branding",
+      "order": 1,
+      "kind": "guide",
+      "title": {
+        "en": "Already have your name (shortcut)"
+      },
+      "tags": ["prompts"],
+      "fenceVariant": "prompt",
+      "fenceOverrides": {
+        "the-rule-that-applies-to-you-because-the-name-is-registered.3": "example"
+      }
+    },
+    {
+      "source": "02 Branding and marketing/01-branding-prompts.md",
+      "id": "branding/branding-prompts",
+      "route": "branding/branding-prompts/",
+      "section": "branding",
+      "order": 2,
+      "kind": "guide",
+      "title": {
+        "en": "Branding prompts"
+      },
+      "summary": {
+        "en": "Eleven AI prompts, in order, for your brief, name, tagline, logo, colours, type, photographs, voice and about text. Each prompt gives you 5 options to refine."
+      },
+      "tags": ["prompts"],
+      "fenceVariant": "prompt",
+      "fenceOverrides": {
+        "prompt-0-answers.1": "snippet",
+        "what-a-good-brief-looks-like.1": "snippet",
+        "what-good-name-options-look-like.1": "snippet"
+      }
+    },
+    {
+      "source": "02 Branding and marketing/02-mood-and-materials.md",
+      "id": "branding/mood-and-materials",
+      "route": "branding/mood-and-materials/",
+      "section": "branding",
+      "order": 3,
+      "kind": "guide",
+      "title": {
+        "en": "Mood and materials (use after Prompt 4)"
+      },
+      "summary": {
+        "en": "Settle the overall mood and the physical materials before the logo, so your logo, colours and photographs agree. Includes what South African sun does to signage."
+      },
+      "tags": ["prompts"],
+      "fenceVariant": "prompt"
+    },
+    {
+      "source": "02 Branding and marketing/03-brand-applications-and-polish.md",
+      "id": "branding/brand-applications-and-polish",
+      "route": "branding/brand-applications-and-polish/",
+      "section": "branding",
+      "order": 4,
+      "kind": "guide",
+      "title": {
+        "en": "Brand applications and polish"
+      },
+      "tags": ["prompts"],
+      "fenceVariant": "prompt"
+    },
+    {
+      "source": "02 Branding and marketing/04-marketing-prompts.md",
+      "id": "branding/marketing-prompts",
+      "route": "branding/marketing-prompts/",
+      "section": "branding",
+      "order": 5,
+      "kind": "guide",
+      "title": {
+        "en": "Marketing prompts"
+      },
+      "summary": {
+        "en": "Where South African small businesses actually find customers, plus AI prompts for content pillars, posts, WhatsApp messages and your Google Business Profile."
+      },
+      "tags": ["prompts", "marketing"],
+      "fenceVariant": "prompt"
+    },
+    {
+      "source": "03 Paperwork and templates/01-which-template-to-use-when.md",
+      "id": "paperwork/which-template-to-use-when",
+      "route": "paperwork/which-template-to-use-when/",
+      "section": "paperwork",
+      "order": 1,
+      "kind": "guide",
+      "title": {
+        "en": "Which template to use when"
+      },
+      "tags": ["templates"],
+      "fenceOverrides": {
+        "template-4-receipt.2": "template-preview",
+        "template-5-privacy-notice-popia.2": "template-preview"
+      }
+    },
+    {
+      "source": "03 Paperwork and templates/02-free-tools.md",
+      "id": "paperwork/free-tools",
+      "route": "paperwork/free-tools/",
+      "section": "paperwork",
+      "order": 2,
+      "kind": "guide",
+      "title": {
+        "en": "Free tools"
+      },
+      "tags": ["tools"],
+      "fenceOverrides": {
+        "set-up-google-drive-properly-on-day-one.2": "listing"
+      }
+    },
+    {
+      "source": "03 Paperwork and templates/templates-to-fill-in/01-quotation.md",
+      "id": "paperwork/templates/quotation",
+      "route": "templates/quotation/",
+      "section": "paperwork",
+      "order": 3,
+      "kind": "template",
+      "title": {
+        "en": "Quotation (template)"
+      },
+      "tags": ["template"]
+    },
+    {
+      "source": "03 Paperwork and templates/templates-to-fill-in/02-invoice-not-vat-registered.md",
+      "id": "paperwork/templates/invoice",
+      "route": "templates/invoice/",
+      "section": "paperwork",
+      "order": 4,
+      "kind": "template",
+      "title": {
+        "en": "Invoice, NOT VAT registered (template)"
+      },
+      "tags": ["template"]
+    },
+    {
+      "source": "03 Paperwork and templates/templates-to-fill-in/03-tax-invoice-vat-registered.md",
+      "id": "paperwork/templates/tax-invoice",
+      "route": "templates/tax-invoice/",
+      "section": "paperwork",
+      "order": 5,
+      "kind": "template",
+      "title": {
+        "en": "Tax invoice, VAT registered (template)"
+      },
+      "tags": ["template", "vat"]
+    },
+    {
+      "source": "03 Paperwork and templates/templates-to-fill-in/04-receipt.md",
+      "id": "paperwork/templates/receipt",
+      "route": "templates/receipt/",
+      "section": "paperwork",
+      "order": 6,
+      "kind": "template",
+      "title": {
+        "en": "Receipt (template)"
+      },
+      "tags": ["template"]
+    },
+    {
+      "source": "03 Paperwork and templates/templates-to-fill-in/05-privacy-notice-popia.md",
+      "id": "paperwork/templates/privacy-notice",
+      "route": "templates/privacy-notice/",
+      "section": "paperwork",
+      "order": 7,
+      "kind": "template",
+      "title": {
+        "en": "Privacy notice, POPIA (template)"
+      },
+      "tags": ["template", "popia"]
+    },
+    {
+      "source": "04 Your kind of business/00-pick-your-business-type.md",
+      "id": "business-types/pick-your-business-type",
+      "route": "business-types/",
+      "section": "business-types",
+      "order": 1,
+      "kind": "guide",
+      "title": {
+        "en": "Pick your business type"
+      },
+      "summary": {
+        "en": "Find your kind of business in one table, see how much setup work each type carries, and what everyone needs regardless of type."
+      },
+      "tags": ["business-types"]
+    },
+    {
+      "source": "04 Your kind of business/01-vehicle-dealer.md",
+      "id": "business-types/vehicle-dealer",
+      "route": "business-types/vehicle-dealer/",
+      "section": "business-types",
+      "order": 2,
+      "kind": "guide",
+      "title": {
+        "en": "Vehicle dealer"
+      },
+      "summary": {
+        "en": "Vehicle dealing has three registration layers other businesses do not have, and one legal risk that can destroy a small dealer in a single transaction."
+      },
+      "appliesTo": {
+        "businessTypes": ["vehicle-dealer"]
+      },
+      "tags": ["business-types", "vehicles"]
+    },
+    {
+      "source": "04 Your kind of business/02-food-business.md",
+      "id": "business-types/food",
+      "route": "business-types/food/",
+      "section": "business-types",
+      "order": 3,
+      "kind": "guide",
+      "title": {
+        "en": "Food business"
+      },
+      "summary": {
+        "en": "For anyone who handles, prepares, stores, transports or sells food for money: what you need before you may open, and how long it really takes."
+      },
+      "appliesTo": {
+        "businessTypes": ["food"]
+      },
+      "tags": ["business-types"]
+    },
+    {
+      "source": "04 Your kind of business/03-beauty-and-personal-care.md",
+      "id": "business-types/beauty",
+      "route": "business-types/beauty/",
+      "section": "business-types",
+      "order": 4,
+      "kind": "guide",
+      "title": {
+        "en": "Beauty and personal care"
+      },
+      "summary": {
+        "en": "Hairdressing, barbering, nails, beauty therapy, lashes, massage, tattooing and piercing: the licence, inspection, insurance and booking rules."
+      },
+      "appliesTo": {
+        "businessTypes": ["beauty"]
+      },
+      "tags": ["business-types"]
+    },
+    {
+      "source": "04 Your kind of business/04-retail-and-online-shop.md",
+      "id": "business-types/retail-online",
+      "route": "business-types/retail-online/",
+      "section": "business-types",
+      "order": 5,
+      "kind": "guide",
+      "title": {
+        "en": "Retail and online shop"
+      },
+      "summary": {
+        "en": "Selling physical products in a shop, at a market or online: licences, second-hand goods, online selling law, warranties and importing."
+      },
+      "appliesTo": {
+        "businessTypes": ["retail-online"]
+      },
+      "tags": ["business-types"]
+    },
+    {
+      "source": "04 Your kind of business/05-services-and-trades.md",
+      "id": "business-types/services-trades",
+      "route": "business-types/services-trades/",
+      "section": "business-types",
+      "order": 6,
+      "kind": "guide",
+      "title": {
+        "en": "Services and trades"
+      },
+      "summary": {
+        "en": "Plumbers, electricians, builders, cleaners, couriers and other trades: registration, safety, quoting, deposits and insurance."
+      },
+      "appliesTo": {
+        "businessTypes": ["services-trades"]
+      },
+      "tags": ["business-types"]
+    },
+    {
+      "source": "04 Your kind of business/06-professional-and-creative.md",
+      "id": "business-types/professional-creative",
+      "route": "business-types/professional-creative/",
+      "section": "business-types",
+      "order": 7,
+      "kind": "guide",
+      "title": {
+        "en": "Professional and creative work"
+      },
+      "summary": {
+        "en": "Consultants, designers, developers, writers, tutors and other freelancers: the turnover tax trap, contracts, intellectual property and getting paid."
+      },
+      "appliesTo": {
+        "businessTypes": ["professional-creative"]
+      },
+      "tags": ["business-types"]
+    },
+    {
+      "source": "05 Look it up/01-glossary.md",
+      "id": "lookup/glossary",
+      "route": "glossary/",
+      "section": "lookup",
+      "order": 1,
+      "kind": "glossary",
+      "title": {
+        "en": "Glossary"
+      },
+      "tags": ["reference"]
+    },
+    {
+      "source": "05 Look it up/02-master-checklist.md",
+      "id": "lookup/checklist",
+      "route": "checklist/",
+      "section": "lookup",
+      "order": 2,
+      "kind": "checklist",
+      "title": {
+        "en": "Master checklist"
+      },
+      "summary": {
+        "en": "One printable checklist: everyone's steps in order, extra steps for a Pty Ltd, additions per business type, a recurring calendar and the four things that cause real trouble."
+      },
+      "tags": ["reference", "checklist"]
+    },
+    {
+      "source": "05 Look it up/03-sources-and-verification-register.md",
+      "id": "lookup/sources",
+      "route": "sources/",
+      "section": "lookup",
+      "order": 3,
+      "kind": "sources",
+      "title": {
+        "en": "Sources and verification register"
+      },
+      "tags": ["reference"],
+      "special": {
+        "acts": {
+          "heading": "legislation-this-toolkit-relies-on"
+        },
+        "sourceGroupsSkip": ["how-to-use-this-file", "where-to-go-when-this-toolkit-is-not-enough"],
+        "citationsWithoutUrl": {
+          "sars--budget-2026-faq": "The register says (as above): it is the SARS Budget 2026 FAQ page already listed under Tax and SARS, so the link is not repeated.",
+          "businesses-act-71-of-1991": "An Act that municipalities apply through their own by-laws; the register points readers to their municipality instead of a link.",
+          "elliot-a-j-and-maier-m-a-color-psychology-effects-of-perceiving-color-on-psychological-functioning-in": "A journal article cited by authors, title, journal and year; the register links only to summaries, which are listed after it.",
+          "labrecque-l-i-and-milne-g-r-exciting-red-and-competent-blue-the-importance-of-color-in-marketing-journal-of": "A journal article cited by authors, title, journal and year; the register links only to summaries, which are listed after it."
+        }
+      }
+    }
+  ]
+}

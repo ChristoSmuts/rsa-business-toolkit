@@ -1,0 +1,597 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A free toolkit for one person starting and running a business in South Africa. You are the owner. You are also the only worker."
+        }
+      ],
+      "hash": "4a0fa76e8b118f31",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Written in simple English for readers who do not speak English as a first language, and for people who have never run a business before."
+        }
+      ],
+      "hash": "ebfab643c555cbc0",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Read this first"
+        }
+      ],
+      "depth": 2,
+      "hash": "f613515d00119b8c",
+      "id": "read-this-first",
+      "kind": "heading",
+      "text": "Read this first"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "This toolkit was written by an AI assistant (Claude, made by Anthropic)."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Every fee, threshold, form number and legal requirement in it was checked against official South African sources on 13 September 2026, and those sources are listed with links in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Sources and verification register"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "311f9e41a79e7b43",
+      "id": "read-this-first.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "AI can still be wrong, and South African rules change often. Before you pay money, sign something, or file something, open the official link in the sources file and confirm the number yourself."
+        }
+      ],
+      "hash": "40e15c1596e89aa3",
+      "id": "read-this-first.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is general information. It is not legal advice, tax advice, or financial advice. Full details are in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "How this was made and how to check it"
+            }
+          ],
+          "doc": "start/how-this-was-made",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "0024d23010bc41e2",
+      "id": "read-this-first.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "read-this-first.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Where to start"
+        }
+      ],
+      "depth": 2,
+      "hash": "814c4fe7786140d0",
+      "id": "where-to-start",
+      "kind": "heading",
+      "text": "Where to start"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you have 5 minutes: read "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Core: start here"
+            }
+          ],
+          "doc": "core/start-here",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "6d6c6e4788001187",
+      "id": "where-to-start.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you have an hour: read all of "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ", then open your business type in "
+        },
+        {
+          "label": "04-business-types/",
+          "section": "business-types",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "3c200e071590ce7a",
+      "id": "where-to-start.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you already know what you need and just want to do it: open "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Master checklist"
+            }
+          ],
+          "doc": "lookup/checklist",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "30f5272589d6d2cb",
+      "id": "where-to-start.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you do not understand a word or an abbreviation: "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "bd54a38c505110d6",
+      "id": "where-to-start.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Full instructions are in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "How to use this toolkit"
+            }
+          ],
+          "doc": "start/how-to-use",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "c847f6e22cf836c7",
+      "id": "where-to-start.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "where-to-start.6",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What is in here"
+        }
+      ],
+      "depth": 2,
+      "hash": "f4cf83f639a3d532",
+      "id": "what-is-in-here",
+      "kind": "heading",
+      "text": "What is in here"
+    },
+    {
+      "hash": "2b4ea101ce637a32",
+      "id": "what-is-in-here.1",
+      "kind": "toc"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "what-is-in-here.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The short version of the whole toolkit"
+        }
+      ],
+      "depth": 2,
+      "hash": "4221055bf935a6f8",
+      "id": "the-short-version-of-the-whole-toolkit",
+      "kind": "heading",
+      "text": "The short version of the whole toolkit"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You do not need most of what people tell you to get."
+        }
+      ],
+      "hash": "aba80cca9448ebf5",
+      "id": "the-short-version-of-the-whole-toolkit.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You can legally start selling today, as yourself, with no company registration, no logo, and no website. Earn money first. Add the formal parts as the business grows."
+        }
+      ],
+      "hash": "c0475096793d5bd6",
+      "id": "the-short-version-of-the-whole-toolkit.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The four things that actually matter early:"
+        }
+      ],
+      "hash": "1524d6145092c707",
+      "id": "the-short-version-of-the-whole-toolkit.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "9d8d8f4a674cf3ac",
+      "id": "the-short-version-of-the-whole-toolkit.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "A separate bank account for business money"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Filing with SARS, even at zero income"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A licence, if your business type needs one, before you trade"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Records kept for five years"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Three numbers changed in 2026 and most websites still have them wrong:"
+        }
+      ],
+      "hash": "2884abbae48997e1",
+      "id": "the-short-version-of-the-whole-toolkit.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "32627a6aa5641c24",
+      "id": "the-short-version-of-the-whole-toolkit.6",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Compulsory VAT registration: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "R2.3 million"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", not R1 million, from 1 April 2026"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Voluntary VAT registration: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "R120,000"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", not R50,000"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Turnover tax: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "R2.3 million"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " threshold, with "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "0% on the first R600,000"
+              }
+            ],
+            "t": "strong"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "the-short-version-of-the-whole-toolkit.7",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Licence"
+        }
+      ],
+      "depth": 2,
+      "hash": "cf503560f03e932c",
+      "id": "licence",
+      "kind": "heading",
+      "text": "Licence"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use it, copy it, change it, give it to someone else. No attribution required."
+        }
+      ],
+      "hash": "b1a7b28f861206ec",
+      "id": "licence.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you pass it on, keep "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "How this was made and how to check it"
+            }
+          ],
+          "doc": "start/how-this-was-made",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " and "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Sources and verification register"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " with it, so the next person knows how it was made and can check the facts."
+        }
+      ],
+      "hash": "24ae72fac342dccb",
+      "id": "licence.2",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "5bbcddca3a33acff",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "South African small business toolkit",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "read-this-first",
+      "text": "Read this first"
+    },
+    {
+      "depth": 2,
+      "id": "where-to-start",
+      "text": "Where to start"
+    },
+    {
+      "depth": 2,
+      "id": "what-is-in-here",
+      "text": "What is in here"
+    },
+    {
+      "depth": 2,
+      "id": "the-short-version-of-the-whole-toolkit",
+      "text": "The short version of the whole toolkit"
+    },
+    {
+      "depth": 2,
+      "id": "licence",
+      "text": "Licence"
+    }
+  ],
+  "id": "start/start-here",
+  "kind": "guide",
+  "lang": "en",
+  "order": 1,
+  "readingTime": 2,
+  "related": [
+    "start/how-this-was-made",
+    "core/start-here",
+    "start/how-to-use"
+  ],
+  "route": "start/start-here/",
+  "section": "start",
+  "slug": "start-here",
+  "sourceNote": {
+    "reason": "An orientation page: its headline figures are stated and sourced in the documents it points to.",
+    "see": [
+      "lookup/sources",
+      "start/how-this-was-made"
+    ]
+  },
+  "sourcePath": "00 Start here/00-start-here.md",
+  "sources": {
+    "acts": [],
+    "entries": []
+  },
+  "summary": "A free toolkit for one person starting and running a business in South Africa. You are the owner. You are also the only worker.",
+  "tags": [
+    "orientation"
+  ],
+  "terms": [],
+  "title": "Start here",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

@@ -1,0 +1,985 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "pty"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You started with one thing. Now you want to add another: a vehicle dealer adding a tyre shop, a mechanic adding parts sales, a designer adding printing."
+        }
+      ],
+      "hash": "4e280cc992649b1a",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This file answers the questions that come up when a one-person company grows sideways. Most of them have cheaper answers than people expect, and one of them has an expensive trap."
+        }
+      ],
+      "hash": "c6ceca511384ad0c",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "624191c0a8f04634",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The company's legal name on its CIPC certificate."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Registered name"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A different name you market under."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Trading name"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Memorandum of Incorporation. The company's rulebook."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "MOI"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Lower company tax rates for small businesses that meet strict conditions."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "SBC rates"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Keeping one risky activity separate so its problems cannot reach the rest."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Ring-fence"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Can one company trade in more than one thing"
+        }
+      ],
+      "depth": 2,
+      "hash": "6933dd6636765b69",
+      "id": "can-one-company-trade-in-more-than-one-thing",
+      "kind": "heading",
+      "text": "Can one company trade in more than one thing"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Yes. A private company registered on BizPortal with the standard Memorandum of Incorporation has unrestricted objects. It may carry on any lawful business. You do not need to amend anything at CIPC to start a new activity."
+        }
+      ],
+      "hash": "4fc14b12c324383e",
+      "id": "can-one-company-trade-in-more-than-one-thing.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What does change is everything that attaches to the activity rather than to the company:"
+        }
+      ],
+      "hash": "ddd012ea12393b40",
+      "id": "can-one-company-trade-in-more-than-one-thing.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "c83e64e510a019b2",
+      "id": "can-one-company-trade-in-more-than-one-thing.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Licences. Each new line needs its own licences and permits. Open the matching file in "
+          },
+          {
+            "label": "04-business-types/",
+            "section": "business-types",
+            "t": "docref"
+          },
+          {
+            "t": "text",
+            "v": ". A vehicle dealer adding a café is now also a food business and needs a Certificate of Acceptability."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Insurance. Tell your insurer. Cover bought for one activity does not respond to claims from another."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Zoning. Your premises may be zoned for motor trade but not for food preparation, or for retail but not for workshop noise. Ask town planning before you start."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "SAPS second-hand goods registration, if you deal in used goods. The holder of a certificate of registration must notify the National Commissioner in writing within 30 days if there is any change to the information submitted in the application, or any change that affects the dealer's ability to meet the registration requirements. Adding a new category of used goods, or a new premises, is such a change."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If anything on your SAPS dealer registration changes, including what you deal in or where, you must tell SAPS in writing within 30 days."
+        }
+      ],
+      "hash": "e790a3610a5cb9e1",
+      "id": "can-one-company-trade-in-more-than-one-thing.4",
+      "kind": "callout",
+      "pairsWith": "can-one-company-trade-in-more-than-one-thing.3",
+      "style": "plain"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "can-one-company-trade-in-more-than-one-thing.5",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Registered name and trading names"
+        }
+      ],
+      "depth": 2,
+      "hash": "74e2652dd159fe21",
+      "id": "registered-name-and-trading-names",
+      "kind": "heading",
+      "text": "Registered name and trading names"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your company has one registered name, the one on the CoR 14.3. You can market under other names."
+        }
+      ],
+      "hash": "5effc99855244ed9",
+      "id": "registered-name-and-trading-names.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is where a decision made at registration pays off or costs you. A company registered as \"Mokoena Motors (Pty) Ltd\" that now sells solar panels has an awkward name on every invoice. A company registered as \"Mokoena Holdings (Pty) Ltd\" or simply under its registration number can trade as \"Mokoena Motors\" and \"Mokoena Solar\" without friction."
+        }
+      ],
+      "hash": "bba5fe2882478065",
+      "id": "registered-name-and-trading-names.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you have not registered yet: register a neutral name, or no name at all, and put the specific brand in the trading name. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Branding prompts"
+            }
+          ],
+          "doc": "branding/branding-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "ac447dc519771d18",
+      "id": "registered-name-and-trading-names.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you have already registered a narrow name: a name change at CIPC is possible and not expensive, but not urgent. Trading names solve most of it."
+        }
+      ],
+      "hash": "7a03bc08a03b2023",
+      "id": "registered-name-and-trading-names.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What the law requires either way"
+        }
+      ],
+      "depth": 3,
+      "hash": "69bf0a102c447112",
+      "id": "what-the-law-requires-either-way",
+      "kind": "heading",
+      "text": "What the law requires either way"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Section 32 of the Companies Act says the company's registered name and registration number must appear on all its documents. That means invoices, receipts, delivery notes, letters, orders and notices, including emails and your website."
+        }
+      ],
+      "hash": "b66ec23cb8ff6184",
+      "id": "what-the-law-requires-either-way.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "So the rule is simple. Use the trading name for marketing. Then put \"Trading as\" with the full registered name and number on every quote, invoice, contract, website footer and email signature. Something like:"
+        }
+      ],
+      "hash": "13f2ac7570806915",
+      "id": "what-the-law-requires-either-way.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "f49fbb35120d45df",
+      "id": "what-the-law-requires-either-way.3",
+      "kind": "code",
+      "text": "Mokoena Solar\nA trading name of Mokoena Holdings (Pty) Ltd, Reg. No. 2026/123456/07",
+      "variant": "example"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Be aware the Consumer Protection Act also expects a supplier to trade under its registered name or under a business name registered under section 80 of that Act, and the section 80 register has never been brought into operation. The universal practice is the \"trading as\" disclosure above, which gives the customer the information the law is trying to protect. Do it consistently and you are in the strongest position available."
+        }
+      ],
+      "hash": "3ca3f25578177537",
+      "id": "what-the-law-requires-either-way.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Each trading name should have its own domain, social handles and, if it matters, its own trade mark search. The company name protects nothing in the market."
+        }
+      ],
+      "hash": "4f94819109ac7189",
+      "id": "what-the-law-requires-either-way.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "what-the-law-requires-either-way.6",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tax: one company, several activities"
+        }
+      ],
+      "depth": 2,
+      "hash": "9ad3f82dbaa2f37a",
+      "id": "tax-one-company-several-activities",
+      "kind": "heading",
+      "text": "Tax: one company, several activities"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For income tax, the company has one taxable income. All activities go on one ITR14. Profits from one line offset losses in another. That is an advantage of a single company."
+        }
+      ],
+      "hash": "841664a17dab7c4e",
+      "id": "tax-one-company-several-activities.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For VAT, one registration covers every activity the company carries on. If you registered because of vehicle sales, your tyre sales are also VAT sales, and you can claim VAT on the tyres you buy in."
+        }
+      ],
+      "hash": "2be3b580b960a485",
+      "id": "tax-one-company-several-activities.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Two traps."
+        }
+      ],
+      "hash": "930f26d157712edc",
+      "id": "tax-one-company-several-activities.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Turnover tax."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " If the company is on turnover tax, adding a professional-services line can push it out. A business is excluded where more than 20% of income comes from professional services. A dealer adding a consulting arm is at risk. Also, turnover tax is charged on total sales across everything the company does. A line with small margins gets taxed on its sales just like a line with big margins. That usually hurts the low-margin one."
+        }
+      ],
+      "hash": "d69cf17c3b64015b",
+      "id": "tax-one-company-several-activities.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Small Business Corporation status."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " SBC rates depend on every shareholder being a natural person, and no shareholder may hold shares in another company, apart from limited exceptions. This matters when you consider the next question."
+        }
+      ],
+      "hash": "9dce1247cbfbc18f",
+      "id": "tax-one-company-several-activities.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "tax-one-company-several-activities.6",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Should the new line be a separate company"
+        }
+      ],
+      "depth": 2,
+      "hash": "560f1712859856b0",
+      "id": "should-the-new-line-be-a-separate-company",
+      "kind": "heading",
+      "text": "Should the new line be a separate company"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The instinct is often yes: keep the risky business away from the safe one. Sometimes that is right. But the costs are real and one of them is hidden."
+        }
+      ],
+      "hash": "fff666f2a13f2e4f",
+      "id": "should-the-new-line-be-a-separate-company.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What a second company costs"
+        }
+      ],
+      "depth": 3,
+      "hash": "01bb0cf6bf5c9827",
+      "id": "what-a-second-company-costs",
+      "kind": "heading",
+      "text": "What a second company costs"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Everything in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Running a Pty Ltd"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", twice. Two annual returns, two beneficial ownership filings, two sets of financial statements, two ITR14s, two sets of provisional returns, two bank accounts. If you found one company's admin heavy, two will not be lighter."
+        }
+      ],
+      "hash": "4546ae820d66ecd9",
+      "id": "what-a-second-company-costs.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The hidden cost: you may lose SBC rates on both"
+        }
+      ],
+      "depth": 3,
+      "hash": "e1c8c8de635b288c",
+      "id": "the-hidden-cost-you-may-lose-sbc-rates-on-both",
+      "kind": "heading",
+      "text": "The hidden cost: you may lose SBC rates on both"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The condition that disqualifies most companies from Small Business Corporation status is a shareholder holding shares in another company."
+        }
+      ],
+      "hash": "5b9fb051a4fea177",
+      "id": "the-hidden-cost-you-may-lose-sbc-rates-on-both.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You are the shareholder of Company A. You form Company B and hold its shares. You now hold shares in another company. Depending on the exact exceptions, Company A may lose SBC status, and Company B may never qualify. Both then pay the flat 27% instead of a scale that starts at 0%."
+        }
+      ],
+      "hash": "09c88906d09dff26",
+      "id": "the-hidden-cost-you-may-lose-sbc-rates-on-both.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "On R300,000 of taxable income the difference is tens of thousands of rand a year. Get a tax practitioner to run your specific structure before forming a second company. This is not a question to guess at."
+        }
+      ],
+      "hash": "aa730be2b263fff2",
+      "id": "the-hidden-cost-you-may-lose-sbc-rates-on-both.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "When splitting is still worth it"
+        }
+      ],
+      "depth": 3,
+      "hash": "d8d143ab5302a498",
+      "id": "when-splitting-is-still-worth-it",
+      "kind": "heading",
+      "text": "When splitting is still worth it"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A separate company makes sense when the new line could sink the first one if something goes badly wrong, and when that risk is bigger than the extra tax you would pay by losing SBC rates. A vehicle dealer adding a transport or logistics operation with heavy vehicles on the road is the kind of case where separation can be justified. A vehicle dealer adding tyre fitment usually is not."
+        }
+      ],
+      "hash": "1fd738fc6e415b54",
+      "id": "when-splitting-is-still-worth-it.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Remember too that a bank or landlord will ask you to sign surety for the new company anyway. That takes away much of the protection you were splitting for. See the \"When the company does not protect you\" section in "
+        },
+        {
+          "doc": "core/running-a-pty-ltd",
+          "label": "01-core/06",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "fb57a7745155934e",
+      "id": "when-splitting-is-still-worth-it.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The middle route"
+        }
+      ],
+      "depth": 3,
+      "hash": "413289f19fbad029",
+      "id": "the-middle-route",
+      "kind": "heading",
+      "text": "The middle route"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "One company, separate trading names, separate bank sub-accounts or clearly labelled transactions, separate insurance schedules. You get the marketing separation and the records separation without the double compliance. Most one-person businesses adding a second line should start here."
+        }
+      ],
+      "hash": "72bce38e19be3670",
+      "id": "the-middle-route.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "the-middle-route.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Records when you have more than one line"
+        }
+      ],
+      "depth": 2,
+      "hash": "1a68960515840e5e",
+      "id": "records-when-you-have-more-than-one-line",
+      "kind": "heading",
+      "text": "Records when you have more than one line"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Add a \"Line\" column to your cash book. Vehicles, Tyres, Workshop. Tag every transaction."
+        }
+      ],
+      "hash": "464a581cea523cf8",
+      "id": "records-when-you-have-more-than-one-line.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This costs nothing and it tells you, within three months, which line is actually making money. Owners routinely discover that the line they enjoy most is the one losing money, and the boring one is paying for it."
+        }
+      ],
+      "hash": "e6aeafa929eecb81",
+      "id": "records-when-you-have-more-than-one-line.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "It also makes the trading stock calculation at year end far easier if stock belongs to more than one line."
+        }
+      ],
+      "hash": "1dca0dac1b7ed447",
+      "id": "records-when-you-have-more-than-one-line.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "records-when-you-have-more-than-one-line.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Checklist before you add a line"
+        }
+      ],
+      "depth": 2,
+      "hash": "edbd133e12ab0231",
+      "id": "checklist-before-you-add-a-line",
+      "kind": "heading",
+      "text": "Checklist before you add a line"
+    },
+    {
+      "hash": "db3a15341570de7b",
+      "id": "checklist-before-you-add-a-line.1",
+      "items": [
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Checked the matching file in "
+            },
+            {
+              "label": "04-business-types/",
+              "section": "business-types",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": " for licences the new line needs"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:8febf321",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Confirmed zoning allows the new activity at my premises"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:b3d4e816",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Told my insurer and received written confirmation of cover"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:7342bbc4",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Notified SAPS within 30 days if it changes my second-hand goods registration"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:1f424128",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Decided the trading name, and checked domain, handles and trade marks"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:47e5c318",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Put \"trading as\" plus the registered name and number on the new line's documents"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:57d2420f",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Checked whether the new line affects my turnover tax or SBC position"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:7cc8050d",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Decided against a second company, or got advice on the SBC consequence first"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:a12236e9",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Added a Line column to the cash book"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:6b8d242c",
+          "when": {
+            "entity": "pty"
+          }
+        }
+      ],
+      "kind": "tasklist"
+    }
+  ],
+  "contentHash": "c5b8e3e1aa85c0d1",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Adding new lines of business to your Pty",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "can-one-company-trade-in-more-than-one-thing",
+      "text": "Can one company trade in more than one thing"
+    },
+    {
+      "depth": 2,
+      "id": "registered-name-and-trading-names",
+      "text": "Registered name and trading names"
+    },
+    {
+      "depth": 3,
+      "id": "what-the-law-requires-either-way",
+      "text": "What the law requires either way"
+    },
+    {
+      "depth": 2,
+      "id": "tax-one-company-several-activities",
+      "text": "Tax: one company, several activities"
+    },
+    {
+      "depth": 2,
+      "id": "should-the-new-line-be-a-separate-company",
+      "text": "Should the new line be a separate company"
+    },
+    {
+      "depth": 3,
+      "id": "what-a-second-company-costs",
+      "text": "What a second company costs"
+    },
+    {
+      "depth": 3,
+      "id": "the-hidden-cost-you-may-lose-sbc-rates-on-both",
+      "text": "The hidden cost: you may lose SBC rates on both"
+    },
+    {
+      "depth": 3,
+      "id": "when-splitting-is-still-worth-it",
+      "text": "When splitting is still worth it"
+    },
+    {
+      "depth": 3,
+      "id": "the-middle-route",
+      "text": "The middle route"
+    },
+    {
+      "depth": 2,
+      "id": "records-when-you-have-more-than-one-line",
+      "text": "Records when you have more than one line"
+    },
+    {
+      "depth": 2,
+      "id": "checklist-before-you-add-a-line",
+      "text": "Checklist before you add a line"
+    }
+  ],
+  "id": "core/adding-new-lines",
+  "kind": "guide",
+  "lang": "en",
+  "order": 8,
+  "readingTime": 7,
+  "related": [
+    "core/running-a-pty-ltd",
+    "branding/branding-prompts"
+  ],
+  "route": "core/adding-new-lines/",
+  "section": "core",
+  "slug": "adding-new-lines",
+  "sourcePath": "01 Core - applies to everyone/08-adding-new-lines.md",
+  "sources": {
+    "acts": [
+      "companies-act-71-of-2008",
+      "consumer-protection-act-68-of-2008"
+    ],
+    "entries": [
+      "sars--turnover-tax",
+      "bizportal-cipc--company-registration",
+      "nada-saps-dealer-inspections"
+    ]
+  },
+  "summary": "You started with one thing. Now you want to add another: a vehicle dealer adding a tyre shop, a mechanic adding parts sales, a designer adding printing.",
+  "tags": [
+    "pty",
+    "growth"
+  ],
+  "terms": [
+    {
+      "meaning": "The company's legal name on its CIPC certificate.",
+      "term": "Registered name"
+    },
+    {
+      "meaning": "A different name you market under.",
+      "term": "Trading name"
+    },
+    {
+      "meaning": "Memorandum of Incorporation. The company's rulebook.",
+      "term": "MOI"
+    },
+    {
+      "meaning": "Lower company tax rates for small businesses that meet strict conditions.",
+      "term": "SBC rates"
+    },
+    {
+      "meaning": "Keeping one risky activity separate so its problems cannot reach the rest.",
+      "term": "Ring-fence"
+    }
+  ],
+  "title": "Adding new lines of business",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

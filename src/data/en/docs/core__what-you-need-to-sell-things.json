@@ -1,0 +1,1458 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Some businesses may not trade until they hold a licence. Others need nothing. This file tells you which one you are."
+        }
+      ],
+      "hash": "123e0bae1dbe2e29",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Start with your municipality, not with Google. Rules differ between Cape Town, Johannesburg, eThekwini, and every small town. The person you want is the Environmental Health Practitioner or the Business Licensing Officer at your local municipal office."
+        }
+      ],
+      "hash": "83064cfafb2cf664",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "1f51c644371e945b",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Your local council. It issues business licences."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Municipality"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Official permission to trade from a specific building."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Licence"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Certificate of Acceptability. The permit every food business must have."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "COA"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The municipal health inspector."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "EHP"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Consumer Protection Act. The law giving customers rights you cannot remove."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "CPA"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The law for selling online."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "ECTA"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The customer's right to cancel and get a refund without a reason."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Cooling-off"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A guarantee the law adds to every sale, even if you never wrote one."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Implied warranty"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The general rule"
+        }
+      ],
+      "depth": 2,
+      "hash": "47fa7c311e2750fa",
+      "id": "the-general-rule",
+      "kind": "heading",
+      "text": "The general rule"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Business and trade licence requirements are governed by the Businesses Act 71 of 1991. No person may carry on certain service-related businesses unless they hold a licence issued by the council, local authority, or municipality where the business premises are situated."
+        }
+      ],
+      "hash": "05b77d914a3d467f",
+      "id": "the-general-rule.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Some kinds of business need a licence from the local municipality before they may open. The licence is for the building where you trade, not for you personally."
+        }
+      ],
+      "hash": "c98fcfba4b282ba4",
+      "id": "the-general-rule.2",
+      "kind": "callout",
+      "pairsWith": "the-general-rule.1",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The licence is tied to the premises, not to you. If you move, you apply again."
+        }
+      ],
+      "hash": "96f64200ada19360",
+      "id": "the-general-rule.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You may not begin trading in a business that requires a licence before the licence has been issued. Trading without a valid licence is punishable with a fine."
+        }
+      ],
+      "hash": "0587fcf86be90a21",
+      "id": "the-general-rule.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You cannot open until the licence is in your hand. Opening early can get you fined."
+        }
+      ],
+      "hash": "450cb3b023a20879",
+      "id": "the-general-rule.5",
+      "kind": "callout",
+      "pairsWith": "the-general-rule.4",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The categories that typically require a municipal trading licence include food retail and food service (restaurants, take-aways, cafés, street food vendors, catering, spaza shops) and health establishments (health, beauty, or body treatment services, including hairdressers, barbers, beauty salons, nail salons, and tattoo studios)."
+        }
+      ],
+      "hash": "3e833788bb2013e9",
+      "id": "the-general-rule.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The two big groups that need a municipal licence are anyone selling or preparing food, and anyone working on people's bodies: hair, nails, beauty, massage, tattoos."
+        }
+      ],
+      "hash": "13c88c011e976efb",
+      "id": "the-general-rule.7",
+      "kind": "callout",
+      "pairsWith": "the-general-rule.6",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Entertainment venues, cinemas, night clubs, and businesses that hire out equipment also usually fall under it. Check your local by-laws."
+        }
+      ],
+      "hash": "f1bc397c266be2b8",
+      "id": "the-general-rule.8",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "food"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "If you sell food"
+        }
+      ],
+      "depth": 2,
+      "hash": "5417783ec78c27ce",
+      "id": "if-you-sell-food",
+      "kind": "heading",
+      "text": "If you sell food"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is the most regulated area for small businesses, and the one people most often get wrong."
+        }
+      ],
+      "hash": "2a002488c6667b00",
+      "id": "if-you-sell-food.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You need a Certificate of Acceptability (COA)."
+        }
+      ],
+      "hash": "6eb38681bee9340a",
+      "id": "if-you-sell-food.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Regulation R638 of 2018 sets general hygiene requirements for food premises and requires all processed food handling businesses that sell food for profit to hold a Certificate of Acceptability."
+        }
+      ],
+      "hash": "0ba7cc9b013aa8d8",
+      "id": "if-you-sell-food.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The COA applies to any food premises where food is handled, prepared, stored, transported, or sold to the public. It applies to a restaurant, a spaza shop, a catering company, and a lodge kitchen equally."
+        }
+      ],
+      "hash": "8873e3a0560e0c64",
+      "id": "if-you-sell-food.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How to get it:"
+        }
+      ],
+      "hash": "dec09352b0730fa0",
+      "id": "if-you-sell-food.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Contact the Environmental Health Department of the municipality where your premises are located and request the COA application form. An Environmental Health Practitioner (EHP) will inspect the premises to check compliance with R638. If you comply, the COA is issued. If not, the EHP gives you a list of required improvements."
+        }
+      ],
+      "hash": "3c0b8f80350c68cc",
+      "id": "if-you-sell-food.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ask your municipality's health department for the food certificate form. A health inspector will visit. If your kitchen passes, you get the certificate. If not, they give you a list of things to fix."
+        }
+      ],
+      "hash": "13c263e46f529acc",
+      "id": "if-you-sell-food.7",
+      "kind": "callout",
+      "pairsWith": "if-you-sell-food.6",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The thing that fails most applications: training under R638 Regulation 10 is not optional. You cannot get a COA without accredited food safety training for the person in charge and every food handler."
+        }
+      ],
+      "hash": "d086b740c2751715",
+      "id": "if-you-sell-food.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Other things a food business may need, depending on what you do:"
+        }
+      ],
+      "hash": "ce99d77e93db29f8",
+      "id": "if-you-sell-food.9",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "29670f119f4ebccc",
+      "id": "if-you-sell-food.10",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "A business licence under the Businesses Act 71 of 1991"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A zoning certificate, if your premises are not zoned for business use"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A fire compliance certificate (SANS 10400-T)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A gas certificate of compliance, if you cook with gas"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A liquor licence, if you sell alcohol"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Realistically, expect two to six months depending on how quickly your municipality moves and how ready your premises are. CIPC registration takes days, training one to three weeks, premises preparation two to eight weeks, and the COA application two to eight weeks. A liquor licence alone can add three to twelve months."
+        }
+      ],
+      "hash": "14f03145317d04b5",
+      "id": "if-you-sell-food.11",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Getting a food business legal takes two to six months from start to finish. Alcohol takes much longer. Do not sign a lease expecting to open next month."
+        }
+      ],
+      "hash": "f8dcbbca58553fee",
+      "id": "if-you-sell-food.12",
+      "kind": "callout",
+      "pairsWith": "if-you-sell-food.11",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Selling from home is possible but watched closely. You generally need zoning approval and a kitchen area separated from the family living space."
+        }
+      ],
+      "hash": "abc301d490823118",
+      "id": "if-you-sell-food.13",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The COA is specific to the premises and cannot be transferred to a new location or a new owner. It has no fixed expiry under R638, but it becomes void when key conditions change."
+        }
+      ],
+      "hash": "5821b66be3b0dd4f",
+      "id": "if-you-sell-food.14",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Food labels are a separate rule set. Regulation R146 of 2012 governs the labelling and advertising of foodstuffs, including allergen warnings. If you package anything, read R146 before you print labels."
+        }
+      ],
+      "hash": "feb2f67a6fd3a506",
+      "id": "if-you-sell-food.15",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "One exception worth knowing: unprocessed agricultural products sold as they come out of the ground are treated differently from processed food. If you only sell raw produce, confirm your position with your municipality rather than assuming."
+        }
+      ],
+      "hash": "a93c89171c695763",
+      "id": "if-you-sell-food.16",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "beauty"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "If you sell beauty or body treatments"
+        }
+      ],
+      "depth": 2,
+      "hash": "fe21d2dcecf7b06c",
+      "id": "if-you-sell-beauty-or-body-treatments",
+      "kind": "heading",
+      "text": "If you sell beauty or body treatments"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hairdressing, nails, beauty therapy, massage, and tattooing are health establishments under the Businesses Act. You need a municipal licence and usually a health inspection."
+        }
+      ],
+      "hash": "0908c721e1654a6b",
+      "id": "if-you-sell-beauty-or-body-treatments.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tattoo and piercing studios face extra scrutiny on sharps disposal and sterilisation. Speak to your EHP before you sign a lease."
+        }
+      ],
+      "hash": "a2e27730f1d2baf2",
+      "id": "if-you-sell-beauty-or-body-treatments.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you make or import cosmetics, the Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 applies to the product itself. Labelling and ingredient claims are regulated. Do not claim a product treats a medical condition unless you are prepared for it to be classified as a medicine."
+        }
+      ],
+      "hash": "8bd2fd607a3fa70d",
+      "id": "if-you-sell-beauty-or-body-treatments.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you sell alcohol"
+        }
+      ],
+      "depth": 2,
+      "hash": "c062cbfd2a2d2e7e",
+      "id": "if-you-sell-alcohol",
+      "kind": "heading",
+      "text": "If you sell alcohol"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You need a liquor licence from your provincial liquor authority, not from the municipality. Each province has its own board and its own forms."
+        }
+      ],
+      "hash": "857afd482eac0fdd",
+      "id": "if-you-sell-alcohol.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is slow and it is not cheap. Budget months, not weeks. You cannot sell alcohol while the application is pending."
+        }
+      ],
+      "hash": "ff1687cac8f9e4c5",
+      "id": "if-you-sell-alcohol.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you sell medicines, supplements, or health products"
+        }
+      ],
+      "depth": 2,
+      "hash": "c4bd0897b55d7994",
+      "id": "if-you-sell-medicines-supplements-or-health-products",
+      "kind": "heading",
+      "text": "If you sell medicines, supplements, or health products"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SAHPRA regulates medicines, complementary medicines, and medical devices. Selling scheduled medicines requires a licensed pharmacy or a licensed dispenser."
+        }
+      ],
+      "hash": "b2af1c22df3519c0",
+      "id": "if-you-sell-medicines-supplements-or-health-products.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Health supplements are in a grey area that is getting stricter. If your product makes a health claim, check SAHPRA's position before you launch."
+        }
+      ],
+      "hash": "c17d0052186e8b09",
+      "id": "if-you-sell-medicines-supplements-or-health-products.2",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "vehicle-dealer",
+          "retail-online"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "If you sell second-hand goods"
+        }
+      ],
+      "depth": 2,
+      "hash": "a540336eb629a7fc",
+      "id": "if-you-sell-second-hand-goods",
+      "kind": "heading",
+      "text": "If you sell second-hand goods"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The Second-Hand Goods Act 6 of 2009 applies. Dealers in used goods, including scrap metal and used electronics, must register with SAPS and keep a register of what they buy, from whom, and when."
+        }
+      ],
+      "hash": "fef05c9007dcef0e",
+      "id": "if-you-sell-second-hand-goods.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This catches more people than expected. If you buy used phones to resell, this applies to you."
+        }
+      ],
+      "hash": "cf019f6945436091",
+      "id": "if-you-sell-second-hand-goods.2",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "If you sell online"
+        }
+      ],
+      "depth": 2,
+      "hash": "2b514941fd925809",
+      "id": "if-you-sell-online",
+      "kind": "heading",
+      "text": "If you sell online"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Two laws apply on top of everything above: the Consumer Protection Act 68 of 2008 and the Electronic Communications and Transactions Act 25 of 2002 (ECTA)."
+        }
+      ],
+      "hash": "5bc4120e338e1110",
+      "id": "if-you-sell-online.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your website or online shop must show the information listed in ECTA section 43. Section 43 requires suppliers to disclose the full price of goods or services including additional costs, and to provide information on their legal status and physical address."
+        }
+      ],
+      "hash": "67887f0ca5ef8300",
+      "id": "if-you-sell-online.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "At minimum, put this on your site:"
+        }
+      ],
+      "hash": "706db7c6d536952c",
+      "id": "if-you-sell-online.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "e36010b8fa07e4d4",
+      "id": "if-you-sell-online.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Your full legal name and, if registered, your company registration number"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A physical address (not only a PO box)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "An email address and phone number"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "The full price, including delivery and any other cost"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your returns and refund policy"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your privacy notice"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your checkout must include a step where the customer can review the entire order, including products, quantities, pricing, delivery costs, and terms, and correct any errors before finalising. This satisfies section 43(2). Failing to provide it gives the consumer a 14-day cancellation right under section 43(3)."
+        }
+      ],
+      "hash": "801d9c4efdaadb59",
+      "id": "if-you-sell-online.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Before the customer pays, your website must show them a summary of everything they are buying, with all costs, and let them fix mistakes. If you skip this step, the customer gets 14 days to cancel."
+        }
+      ],
+      "hash": "1f2e0f08202841ad",
+      "id": "if-you-sell-online.6",
+      "kind": "callout",
+      "pairsWith": "if-you-sell-online.5",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The cooling-off right:"
+        }
+      ],
+      "hash": "42b58e31b92d2461",
+      "id": "if-you-sell-online.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Section 44 of ECTA lets a consumer cancel an electronic transaction without reason and without penalty within seven days after receiving the goods, or after the agreement for services was concluded. It applies where the consumer is a natural person, regardless of the transaction value, subject to the exclusions in section 42(2)."
+        }
+      ],
+      "hash": "ec3e8117e693c770",
+      "id": "if-you-sell-online.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A person who buys from your website can change their mind and send it back within seven days for a full refund. They do not need a reason. This applies to any amount."
+        }
+      ],
+      "hash": "ebcb3ce94e5b23cb",
+      "id": "if-you-sell-online.9",
+      "kind": "callout",
+      "pairsWith": "if-you-sell-online.8",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The only charge you may pass to the consumer for the cancellation is the direct cost of returning the goods."
+        }
+      ],
+      "hash": "544e116cec24fbbf",
+      "id": "if-you-sell-online.10",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The seven-day window is statutory and cannot be contracted out of. A \"no refunds\" sign on an online store is unenforceable against a cooling-off claim. Do not copy a shop-front returns policy onto a website."
+        }
+      ],
+      "hash": "20b17cfaa66d13a9",
+      "id": "if-you-sell-online.11",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "There are exceptions. For services the cooling-off right lapses as soon as the services are used, and certain transactions are excluded, including some financial services and auctions."
+        }
+      ],
+      "hash": "8688d065a47245c1",
+      "id": "if-you-sell-online.12",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Delivery timing: under section 46, you must execute the order within 30 days of receiving it unless you agreed otherwise with the customer. If you cannot perform because the goods are unavailable, you must notify the customer immediately and refund any payment within 30 days of that notification."
+        }
+      ],
+      "hash": "c5b4e48b7d0edd07",
+      "id": "if-you-sell-online.13",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You must deliver within 30 days unless you agreed a different time with the customer. If you cannot deliver at all, tell them immediately and refund them within 30 days."
+        }
+      ],
+      "hash": "9f5f960502343c28",
+      "id": "if-you-sell-online.14",
+      "kind": "callout",
+      "pairsWith": "if-you-sell-online.13",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Practical point: if you promise delivery in 3 days on your product page, that promise becomes your agreement. Promise what you can actually do."
+        }
+      ],
+      "hash": "7e98a8e7bb38f886",
+      "id": "if-you-sell-online.15",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "If you import anything"
+        }
+      ],
+      "depth": 2,
+      "hash": "2e5dccf23b52cb26",
+      "id": "if-you-import-anything",
+      "kind": "heading",
+      "text": "If you import anything"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You need an importer's code from SARS Customs. Applying is free through the SARS website, and it is separate from your income tax registration."
+        }
+      ],
+      "hash": "fba86de89c537120",
+      "id": "if-you-import-anything.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You will pay import duty plus 15% VAT on the landed value at the border, even if you are not VAT registered. That VAT is a real cost to you if you cannot claim it back, so build it into your pricing before you order."
+        }
+      ],
+      "hash": "fafdc53db7b61e21",
+      "id": "if-you-import-anything.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Some goods need a Letter of Authority from the National Regulator for Compulsory Specifications (NRCS) before they may be sold in South Africa. This covers many electrical products, lighting, and some automotive parts. Importers get caught by this constantly. Check before you order a container."
+        }
+      ],
+      "hash": "adcd801cb2e6fd59",
+      "id": "if-you-import-anything.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you sell to government"
+        }
+      ],
+      "depth": 2,
+      "hash": "53dfdcacd8fb9f57",
+      "id": "if-you-sell-to-government",
+      "kind": "heading",
+      "text": "If you sell to government"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You need to register on the Central Supplier Database at "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.csd.gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.csd.gov.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". It is free."
+        }
+      ],
+      "hash": "494b0721d9d6f82f",
+      "id": "if-you-sell-to-government.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You also need a valid tax compliance status with SARS, and a B-BBEE affidavit or certificate (see "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Register: what you actually need"
+            }
+          ],
+          "doc": "core/register",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ")."
+        }
+      ],
+      "hash": "645904aca77f756a",
+      "id": "if-you-sell-to-government.2",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "services-trades",
+          "professional-creative"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "If you provide professional or regulated services"
+        }
+      ],
+      "depth": 2,
+      "hash": "b644a4c55394cccc",
+      "id": "if-you-provide-professional-or-regulated-services",
+      "kind": "heading",
+      "text": "If you provide professional or regulated services"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Some work may only be done by registered professionals. Common examples: electricians issuing certificates of compliance, plumbers, gas installers, engineers, estate agents, financial advisors, security services, and health professionals."
+        }
+      ],
+      "hash": "feba5fd255c8044a",
+      "id": "if-you-provide-professional-or-regulated-services.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If your trade has a professional body, registration with that body is usually not optional. Working without it can void your customer's insurance as well as expose you."
+        }
+      ],
+      "hash": "ac4f0a9f6f6030af",
+      "id": "if-you-provide-professional-or-regulated-services.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If none of the above applies"
+        }
+      ],
+      "depth": 2,
+      "hash": "17c16badf740a2dc",
+      "id": "if-none-of-the-above-applies",
+      "kind": "heading",
+      "text": "If none of the above applies"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Many businesses need no licence at all. Consulting, design, writing, software, tutoring, photography, admin services, bookkeeping, cleaning, gardening, and most crafts fall here."
+        }
+      ],
+      "hash": "28bd21a374f2e227",
+      "id": "if-none-of-the-above-applies.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You still need the general obligations: SARS, POPIA, and honest advertising under the Consumer Protection Act."
+        }
+      ],
+      "hash": "dbdd067dd42e61e3",
+      "id": "if-none-of-the-above-applies.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Rules that apply to everyone selling anything"
+        }
+      ],
+      "depth": 2,
+      "hash": "201f3c1f97cd5c1f",
+      "id": "rules-that-apply-to-everyone-selling-anything",
+      "kind": "heading",
+      "text": "Rules that apply to everyone selling anything"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The Consumer Protection Act gives your customers rights you cannot sign away."
+        }
+      ],
+      "hash": "3e07d9f024de0755",
+      "id": "rules-that-apply-to-everyone-selling-anything.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Consumers are entitled to goods that are reasonably suitable for their ordinary purpose, of good quality and in good working order, free from defects, reasonably durable, and compliant with applicable standards."
+        }
+      ],
+      "hash": "b5cbb8838b4a552c",
+      "id": "rules-that-apply-to-everyone-selling-anything.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "There is a six-month implied warranty on goods. If goods fail within six months, the customer can generally demand a repair, replacement, or refund, and the choice is usually theirs, not yours."
+        }
+      ],
+      "hash": "02e078e76524f3f5",
+      "id": "rules-that-apply-to-everyone-selling-anything.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your advertising must be true. Do not claim a result you cannot deliver."
+        }
+      ],
+      "hash": "eb04d2bae6c97638",
+      "id": "rules-that-apply-to-everyone-selling-anything.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your prices must be displayed. If two prices are displayed, the lower one generally applies."
+        }
+      ],
+      "hash": "23126943bb2f009e",
+      "id": "rules-that-apply-to-everyone-selling-anything.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your licence checklist"
+        }
+      ],
+      "depth": 2,
+      "hash": "22a9850f09216a8d",
+      "id": "your-licence-checklist",
+      "kind": "heading",
+      "text": "Your licence checklist"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Work through these questions before you take your first order"
+        }
+      ],
+      "hash": "c3b1fdb1280507f5",
+      "id": "your-licence-checklist.1",
+      "items": [
+        {
+          "block": "your-licence-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Does my business type appear in the Businesses Act categories? If yes, apply for the municipal licence first."
+            }
+          ],
+          "doc": "core/what-you-need-to-sell-things",
+          "id": "core/what-you-need-to-sell-things:11a093c7"
+        },
+        {
+          "block": "your-licence-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Do I handle food? If yes, get accredited training, then apply for the COA."
+            }
+          ],
+          "doc": "core/what-you-need-to-sell-things",
+          "id": "core/what-you-need-to-sell-things:f92fd7a6"
+        },
+        {
+          "block": "your-licence-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Is my premises zoned for this activity? Ask the municipal town planning department."
+            }
+          ],
+          "doc": "core/what-you-need-to-sell-things",
+          "id": "core/what-you-need-to-sell-things:d7735147"
+        },
+        {
+          "block": "your-licence-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Does my product need a Letter of Authority or SAHPRA approval?"
+            }
+          ],
+          "doc": "core/what-you-need-to-sell-things",
+          "id": "core/what-you-need-to-sell-things:1f881041"
+        },
+        {
+          "block": "your-licence-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Am I selling online? If yes, put the ECTA section 43 information on the site and write a returns policy that respects the seven-day rule."
+            }
+          ],
+          "doc": "core/what-you-need-to-sell-things",
+          "id": "core/what-you-need-to-sell-things:965f9d12"
+        },
+        {
+          "block": "your-licence-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Does my trade have a professional body I must register with?"
+            }
+          ],
+          "doc": "core/what-you-need-to-sell-things",
+          "id": "core/what-you-need-to-sell-things:249c67a5"
+        }
+      ],
+      "kind": "tasklist"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you answered no to all six, you can trade today."
+        }
+      ],
+      "hash": "0f6bf7e5d95d8cee",
+      "id": "your-licence-checklist.2",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "8592539876bd6b11",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "What you need to sell things",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "the-general-rule",
+      "text": "The general rule"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "food"
+        ]
+      },
+      "depth": 2,
+      "id": "if-you-sell-food",
+      "text": "If you sell food"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "beauty"
+        ]
+      },
+      "depth": 2,
+      "id": "if-you-sell-beauty-or-body-treatments",
+      "text": "If you sell beauty or body treatments"
+    },
+    {
+      "depth": 2,
+      "id": "if-you-sell-alcohol",
+      "text": "If you sell alcohol"
+    },
+    {
+      "depth": 2,
+      "id": "if-you-sell-medicines-supplements-or-health-products",
+      "text": "If you sell medicines, supplements, or health products"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "vehicle-dealer",
+          "retail-online"
+        ]
+      },
+      "depth": 2,
+      "id": "if-you-sell-second-hand-goods",
+      "text": "If you sell second-hand goods"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      },
+      "depth": 2,
+      "id": "if-you-sell-online",
+      "text": "If you sell online"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      },
+      "depth": 2,
+      "id": "if-you-import-anything",
+      "text": "If you import anything"
+    },
+    {
+      "depth": 2,
+      "id": "if-you-sell-to-government",
+      "text": "If you sell to government"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "services-trades",
+          "professional-creative"
+        ]
+      },
+      "depth": 2,
+      "id": "if-you-provide-professional-or-regulated-services",
+      "text": "If you provide professional or regulated services"
+    },
+    {
+      "depth": 2,
+      "id": "if-none-of-the-above-applies",
+      "text": "If none of the above applies"
+    },
+    {
+      "depth": 2,
+      "id": "rules-that-apply-to-everyone-selling-anything",
+      "text": "Rules that apply to everyone selling anything"
+    },
+    {
+      "depth": 2,
+      "id": "your-licence-checklist",
+      "text": "Your licence checklist"
+    }
+  ],
+  "id": "core/what-you-need-to-sell-things",
+  "kind": "guide",
+  "lang": "en",
+  "order": 4,
+  "readingTime": 10,
+  "related": [
+    "core/register"
+  ],
+  "route": "core/what-you-need-to-sell-things/",
+  "section": "core",
+  "slug": "what-you-need-to-sell-things",
+  "sourcePath": "01 Core - applies to everyone/04-what-you-need-to-sell-things.md",
+  "sources": {
+    "acts": [
+      "consumer-protection-act-68-of-2008",
+      "electronic-communications-and-transactions-act-25-of-2002",
+      "businesses-act-71-of-1991",
+      "foodstuffs-cosmetics-and-disinfectants-act-54-of-1972",
+      "second-hand-goods-act-6-of-2009"
+    ],
+    "entries": [
+      "national-consumer-commission--consumer-protection-in-e-commerce",
+      "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
+      "dommisse-attorneys",
+      "mj-kotze-inc-what-is-ecta",
+      "lawtons-africa",
+      "saps--second-hand-goods-act-6-of-2009-full-text",
+      "hanekom-attorneys-webuycars-consent-order",
+      "regulation-r638-of-2018",
+      "regulation-r146-of-2012",
+      "food-focus",
+      "asc-food-safety",
+      "businesses-act-71-of-1991"
+    ]
+  },
+  "summary": "Some businesses may not trade until they hold a licence. Others need nothing. This file tells you which one you are.",
+  "tags": [
+    "licensing",
+    "consumer-law"
+  ],
+  "terms": [
+    {
+      "meaning": "Your local council. It issues business licences.",
+      "term": "Municipality"
+    },
+    {
+      "meaning": "Official permission to trade from a specific building.",
+      "term": "Licence"
+    },
+    {
+      "meaning": "Certificate of Acceptability. The permit every food business must have.",
+      "term": "COA"
+    },
+    {
+      "meaning": "The municipal health inspector.",
+      "term": "EHP"
+    },
+    {
+      "meaning": "Consumer Protection Act. The law giving customers rights you cannot remove.",
+      "term": "CPA"
+    },
+    {
+      "meaning": "The law for selling online.",
+      "term": "ECTA"
+    },
+    {
+      "meaning": "The customer's right to cancel and get a refund without a reason.",
+      "term": "Cooling-off"
+    },
+    {
+      "meaning": "A guarantee the law adds to every sale, even if you never wrote one.",
+      "term": "Implied warranty"
+    }
+  ],
+  "title": "What you need to sell things",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

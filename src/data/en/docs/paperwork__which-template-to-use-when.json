@@ -1,0 +1,1850 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You need six documents to run a small business properly. Everything else can wait."
+        }
+      ],
+      "hash": "93820633b614a195",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "3f87de353673b1ce",
+      "id": "intro.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "A quote"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "An invoice"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A receipt"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Terms and conditions"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A privacy notice"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A cash book"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "9fa0f4b713acf038",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A price you offer before the work. Not yet a sale."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Quote / quotation"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The bill you send after the work, asking for payment."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Invoice"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Proof you received the money."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Receipt"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A document that cancels or reduces an invoice you already sent. Use it instead of deleting an invoice."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Credit note"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Quantity. How many."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Qty"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The price for one."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Unit price"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The total before VAT is added."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Subtotal"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Excluding VAT (before it is added) / including VAT (after)."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "excl. / incl. VAT"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The last day the customer may pay without being late."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Due date"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Electronic funds transfer. A bank payment."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "EFT"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The number that identifies your bank branch. Ask your bank."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Branch code"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A shorter VAT invoice allowed for sales between R50 and R5,000."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Abridged tax invoice"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The customer. The person or business receiving the goods."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Recipient"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Check that your records and your bank statement agree."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Reconcile"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The kilometre counter on the dashboard."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Odometer"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Money paid up front before work starts."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Deposit"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Build these once, in the tool you chose in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Free tools"
+            }
+          ],
+          "doc": "paperwork/free-tools",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", and reuse them."
+        }
+      ],
+      "hash": "43b3e49ad4a11242",
+      "id": "words-used-in-this-file.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Invoice numbering"
+        }
+      ],
+      "depth": 2,
+      "hash": "b288d225f84e7cce",
+      "id": "invoice-numbering",
+      "kind": "heading",
+      "text": "Invoice numbering"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Number invoices in order with no gaps: INV-0001, INV-0002, INV-0003."
+        }
+      ],
+      "hash": "63731d744ce88b51",
+      "id": "invoice-numbering.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A gap in the sequence looks like a hidden sale to SARS. If you cancel an invoice, do not delete it. Issue a credit note against it and keep both."
+        }
+      ],
+      "hash": "82db360f1d0a8b9d",
+      "id": "invoice-numbering.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use the same idea for quotes: QUO-0001."
+        }
+      ],
+      "hash": "ca779f7799761d7f",
+      "id": "invoice-numbering.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "invoice-numbering.4",
+      "kind": "hr"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "If you are a Pty Ltd: the header line that is required by law"
+        }
+      ],
+      "depth": 2,
+      "hash": "6710b6b59de1f7eb",
+      "id": "if-you-are-a-pty-ltd-the-header-line-that-is-required-by-law",
+      "kind": "heading",
+      "text": "If you are a Pty Ltd: the header line that is required by law"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Every quote, invoice, receipt, delivery note and letter must carry the company's full registered name and registration number, under section 32 of the Companies Act. If you use a trading name, show both:"
+        }
+      ],
+      "hash": "4f2b6bc471a58fce",
+      "id": "if-you-are-a-pty-ltd-the-header-line-that-is-required-by-law.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "4d5040d95389165c",
+      "id": "if-you-are-a-pty-ltd-the-header-line-that-is-required-by-law.2",
+      "kind": "code",
+      "text": "MOKOENA MOTORS\nA trading name of Mokoena Holdings (Pty) Ltd | Reg. No. 2026/123456/07",
+      "variant": "example"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The templates below show "
+        },
+        {
+          "t": "code",
+          "v": "[Company registration number, if you have one]"
+        },
+        {
+          "t": "text",
+          "v": ". For a company it is not optional."
+        }
+      ],
+      "hash": "f6beacdcf6d61633",
+      "id": "if-you-are-a-pty-ltd-the-header-line-that-is-required-by-law.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Template 1: quotation"
+        }
+      ],
+      "depth": 2,
+      "hash": "ad2304f87b2d40f5",
+      "id": "template-1-quotation",
+      "kind": "heading",
+      "text": "Template 1: quotation"
+    },
+    {
+      "hash": "ac74a9fcf3370276",
+      "id": "template-1-quotation.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "YOUR BUSINESS NAME"
+        },
+        {
+          "key": "ownerName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Your name"
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Phone"
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Email"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Physical address"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Company registration number, if you have one"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Month YYYY"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Month YYYY"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Customer name"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Customer address"
+        },
+        {
+          "style": "choice",
+          "t": "placeholder",
+          "v": "Customer phone / email"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Item or service"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Item or service"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Be specific"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Be specific"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "List it, or you will be asked to do it free"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "when"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "how long"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "X"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "X"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "link"
+        }
+      ],
+      "text": "[YOUR BUSINESS NAME]\n[Your name] | [Phone] | [Email]\n[Physical address]\n[Company registration number, if you have one]\n\nQUOTATION\n\nQuote number: QUO-0001\nDate: [DD Month YYYY]\nValid until: [DD Month YYYY]\n\nTO\n[Customer name]\n[Customer address]\n[Customer phone / email]\n\n-------------------------------------------------------------\nDescription Qty Unit price Amount\n-------------------------------------------------------------\n[Item or service] 1 R 0.00 R 0.00\n[Item or service] 1 R 0.00 R 0.00\n-------------------------------------------------------------\n TOTAL R 0.00\n-------------------------------------------------------------\n\nWHAT IS INCLUDED\n- [Be specific]\n- [Be specific]\n\nWHAT IS NOT INCLUDED\n- [List it, or you will be asked to do it free]\n\nTIMING\nWork starts [when] and takes approximately [how long] once the deposit\nis received.\n\nPAYMENT\nDeposit of [X]% before work starts. Balance due [on completion / within\nX days of invoice].\n\nThis quote is valid for [X] days. Prices may change after that date.\nAccepting this quote means you accept my terms and conditions, attached\nor available at [link].\n\nAccepted by: ______________________ Date: ______________",
+      "variant": "template-preview"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Three rules that save you money:"
+        }
+      ],
+      "hash": "f12276a9604e4676",
+      "id": "template-1-quotation.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Put a validity date on every quote. Material prices move."
+        }
+      ],
+      "hash": "74a7efcf30af5444",
+      "id": "template-1-quotation.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Write down what is not included. Most disputes are about work the customer assumed was in the price."
+        }
+      ],
+      "hash": "5642651de9eb67ef",
+      "id": "template-1-quotation.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Get a deposit before you buy materials. A signed quote plus a deposit is a contract."
+        }
+      ],
+      "hash": "989ea9c2004a8a78",
+      "id": "template-1-quotation.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "template-1-quotation.6",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Template 2: invoice if you are NOT registered for VAT"
+        }
+      ],
+      "depth": 2,
+      "hash": "11613b9a5b43d4fe",
+      "id": "template-2-invoice-if-you-are-not-registered-for-vat",
+      "kind": "heading",
+      "text": "Template 2: invoice if you are NOT registered for VAT"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most small businesses are here. Turnover under R2.3 million a year means you are not required to register."
+        }
+      ],
+      "hash": "3e18d660d9c162a5",
+      "id": "template-2-invoice-if-you-are-not-registered-for-vat.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Rules you must follow: do not use the words \"Tax Invoice\". Do not show a VAT line. Do not show a VAT number. Do not add 15% to anything."
+        }
+      ],
+      "hash": "fe1af4dc1e3f4061",
+      "id": "template-2-invoice-if-you-are-not-registered-for-vat.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you are not registered for VAT, issue a regular invoice showing your total price. Do not mention VAT, do not include a VAT line, and do not use the words \"Tax Invoice\"."
+        }
+      ],
+      "hash": "eced663f740f6f19",
+      "id": "template-2-invoice-if-you-are-not-registered-for-vat.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "d98f402fc888dcee",
+      "id": "template-2-invoice-if-you-are-not-registered-for-vat.4",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "YOUR BUSINESS NAME"
+        },
+        {
+          "key": "ownerName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Your name"
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Phone"
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Email"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Physical address"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Company registration number, if you have one"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Month YYYY"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Month YYYY"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Customer name"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Customer address"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Item or service"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Bank name"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Exactly as it appears on the account"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Number"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Code"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "date"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "State your late payment terms here."
+        }
+      ],
+      "text": "[YOUR BUSINESS NAME]\n[Your name] | [Phone] | [Email]\n[Physical address]\n[Company registration number, if you have one]\n\nINVOICE\n\nInvoice number: INV-0001\nDate: [DD Month YYYY]\nDue date: [DD Month YYYY]\n\nTO\n[Customer name]\n[Customer address]\n\n-------------------------------------------------------------\nDescription Qty Unit price Amount\n-------------------------------------------------------------\n[Item or service] 1 R 0.00 R 0.00\n-------------------------------------------------------------\n AMOUNT DUE R 0.00\n-------------------------------------------------------------\n\nPAYMENT DETAILS\nBank: [Bank name]\nAccount name: [Exactly as it appears on the account]\nAccount number: [Number]\nBranch code: [Code]\nReference: INV-0001\n\nPlease use the invoice number as your payment reference.\nPayment is due by [date]. [State your late payment terms here.]",
+      "variant": "template-preview"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "template-2-invoice-if-you-are-not-registered-for-vat.5",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Template 3: invoice if you ARE registered for VAT"
+        }
+      ],
+      "depth": 2,
+      "hash": "435ec3454d208257",
+      "id": "template-3-invoice-if-you-are-registered-for-vat",
+      "kind": "heading",
+      "text": "Template 3: invoice if you ARE registered for VAT"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Only use this once SARS has issued your VAT number."
+        }
+      ],
+      "hash": "cf00d3cec2403e7b",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "There are three levels, based on the total including VAT."
+        }
+      ],
+      "hash": "5a3922549e7669cd",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A tax invoice is not required where the amount is R50 or less, although you still need supporting documentation for an input tax deduction."
+        }
+      ],
+      "hash": "8adbf49c6f633cc7",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For supplies from R50 up to R5,000, an abridged tax invoice is allowed. It needs most of the same information, but you do not have to include the recipient's details."
+        }
+      ],
+      "hash": "1cac6162defd4224",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a supply of more than R5,000, a full tax invoice must contain: the words \"Tax Invoice\", \"VAT Invoice\" or \"Invoice\"; the supplier's name, address and VAT registration number; the recipient's name, address and, where they are registered, their VAT registration number; a serial number and the date of issue; and a description of the goods or services supplied and the quantity or volume. It must also show the value of the supply, the VAT charged, and the total."
+        }
+      ],
+      "hash": "ec7677e3cc770236",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For any sale over R5,000, your invoice must show: the words \"Tax Invoice\", your name, address and VAT number, the customer's name and address (and their VAT number if they have one), an invoice number and date, what you sold and how much of it, the price before VAT, the VAT, and the total."
+        }
+      ],
+      "hash": "dafd274e36d65d20",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.6",
+      "kind": "callout",
+      "pairsWith": "template-3-invoice-if-you-are-registered-for-vat.5",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You must issue the document within 21 days of completing the sale or delivering the service."
+        }
+      ],
+      "hash": "75660c7b9122d86a",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "All the required criteria must be met. SARS checks invoices against these criteria, and if a single one is missing the entire invoice is disallowed."
+        }
+      ],
+      "hash": "0619eea58d90b1d1",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.8",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "4ede1ac14310e162",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.9",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "YOUR BUSINESS NAME"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Physical address"
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Phone"
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Email"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Month YYYY"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Customer name"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Customer physical address"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Customer VAT number, if they are a vendor"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Goods or services"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Banking details"
+        }
+      ],
+      "text": "[YOUR BUSINESS NAME]\n[Physical address]\nVAT Registration Number: 4XXXXXXXXX\n[Phone] | [Email]\n\nTAX INVOICE\n\nInvoice number: INV-0001\nDate: [DD Month YYYY]\n\nTO\n[Customer name]\n[Customer physical address]\n[Customer VAT number, if they are a vendor]\n\n-------------------------------------------------------------\nDescription Qty Unit price Amount\n-------------------------------------------------------------\n[Goods or services] 1 R 0.00 R 0.00\n-------------------------------------------------------------\n Subtotal (excl. VAT) R 0.00\n VAT @ 15% R 0.00\n TOTAL (incl. VAT) R 0.00\n-------------------------------------------------------------\n\n[Banking details]",
+      "variant": "template-preview"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Working with 15%: to add VAT, multiply by 1.15. To find the VAT inside a VAT-inclusive price, multiply by 15/115."
+        }
+      ],
+      "hash": "d43f3be887bc5faa",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.10",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you sell second-hand goods, the description must say so."
+        }
+      ],
+      "hash": "48994a8cbad159b4",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.11",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.12",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Template 4: receipt"
+        }
+      ],
+      "depth": 2,
+      "hash": "58d5793963ca9ebe",
+      "id": "template-4-receipt",
+      "kind": "heading",
+      "text": "Template 4: receipt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Send this when money arrives. It stops the \"did you get my payment?\" message."
+        }
+      ],
+      "hash": "3d0a6147c6297e0c",
+      "id": "template-4-receipt.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "72ac2da5548a1d32",
+      "id": "template-4-receipt.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "YOUR BUSINESS NAME"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Month YYYY"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Customer name"
+        },
+        {
+          "style": "choice",
+          "t": "placeholder",
+          "v": "EFT / Cash / Card"
+        }
+      ],
+      "text": "[YOUR BUSINESS NAME]\n\nRECEIPT\n\nReceipt number: REC-0001\nDate received: [DD Month YYYY]\nReceived from: [Customer name]\nAmount received: R 0.00\nMethod: [EFT / Cash / Card]\nFor invoice: INV-0001\n\nBalance still owing: R 0.00\n\nThank you.",
+      "variant": "template-preview"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "template-4-receipt.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Template 5: privacy notice (POPIA)"
+        }
+      ],
+      "depth": 2,
+      "hash": "bef623c342f6864c",
+      "id": "template-5-privacy-notice-popia",
+      "kind": "heading",
+      "text": "Template 5: privacy notice (POPIA)"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Put this on your website, or send it as a PDF when a customer asks. It is short on purpose."
+        }
+      ],
+      "hash": "8e38d858160f014a",
+      "id": "template-5-privacy-notice-popia.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "28e33ab95bdabb22",
+      "id": "template-5-privacy-notice-popia.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Business name"
+        },
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Business name"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Physical address"
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Email"
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Phone"
+        },
+        {
+          "key": "ownerName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Your full name"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Add or remove lines so this is true for your business"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Add any supplier or courier who receives customer details"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Month YYYY"
+        }
+      ],
+      "text": "PRIVACY NOTICE\n\n[Business name] (\"we\", \"us\") respects your privacy. This notice explains\nwhat personal information we collect and what we do with it.\n\nWHO WE ARE\n[Business name]\n[Physical address]\n[Email] | [Phone]\nInformation Officer: [Your full name]\n\nWHAT WE COLLECT\n- Your name\n- Your contact details (phone, email, address)\n- Details of what you bought or asked about\n- Payment information (we do not store card numbers)\n[Add or remove lines so this is true for your business]\n\nWHY WE COLLECT IT\n- To give you a quote and do the work you asked for\n- To send you an invoice and receive payment\n- To keep records that SARS requires by law\n- To contact you about your order\n\nWHO WE SHARE IT WITH\nWe do not sell your information. We share it only with:\n- Our bank, to receive payment\n- Our accountant, if we use one\n- SARS or another authority, where the law requires it\n[Add any supplier or courier who receives customer details]\n\nHOW LONG WE KEEP IT\nWe keep records for five years, as tax law requires. After that we\ndelete them.\n\nMARKETING\nWe will only send you marketing messages if you agreed to receive them.\nYou can tell us to stop at any time by replying STOP or emailing us.\n\nYOUR RIGHTS\nYou may ask us what information we hold about you, ask us to correct it,\nor ask us to delete it where the law allows. Contact us using the\ndetails above.\n\nIf you are unhappy with how we handled your information, you may\ncomplain to the Information Regulator at inforegulator.org.za.\n\nLast updated: [DD Month YYYY]",
+      "variant": "template-preview"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Register yourself as the Information Officer at "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "inforegulator.org.za"
+            }
+          ],
+          "external": true,
+          "href": "https://inforegulator.org.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". It is free. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Register: what you actually need"
+            }
+          ],
+          "doc": "core/register",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "9837eb1a9ebd2b8c",
+      "id": "template-5-privacy-notice-popia.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "template-5-privacy-notice-popia.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Template 6: cash book"
+        }
+      ],
+      "depth": 2,
+      "hash": "13e09b6f3d5cbf21",
+      "id": "template-6-cash-book",
+      "kind": "heading",
+      "text": "Template 6: cash book"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "One spreadsheet. Seven columns. This is your whole accounting system in year one."
+        }
+      ],
+      "hash": "ca02ebe1e8c99be8",
+      "id": "template-6-cash-book.1",
+      "kind": "paragraph"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "hash": "b32bdc57cd0e946d",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Date"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Description"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Customer or supplier"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Money in"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Money out"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Category"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Slip?"
+          }
+        ]
+      ],
+      "id": "template-6-cash-book.2",
+      "kind": "table",
+      "rows": []
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Categories to use: Sales, Stock, Materials, Fuel, Data and airtime, Tools and equipment, Rent, Bank charges, Advertising, Insurance, Other."
+        }
+      ],
+      "hash": "cd903949a714f00f",
+      "id": "template-6-cash-book.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Rules:"
+        }
+      ],
+      "hash": "d6ae0c8a03b925dc",
+      "id": "template-6-cash-book.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Enter every transaction. Every one, including the R38 you spent on cable ties."
+        }
+      ],
+      "hash": "77cf206d64bd4c7a",
+      "id": "template-6-cash-book.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Take a photo of every slip the day you get it. Put it in a folder named by month. Tick the \"Slip?\" column."
+        }
+      ],
+      "hash": "8aa50fe3630bd458",
+      "id": "template-6-cash-book.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Reconcile against your bank statement once a month. If the spreadsheet total and the bank balance disagree, find out why that same day."
+        }
+      ],
+      "hash": "3c6dbd2eea946cb1",
+      "id": "template-6-cash-book.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you use turnover tax, your records are lighter. You only track amounts received, dividends declared, and assets or liabilities over R10,000."
+        }
+      ],
+      "hash": "fea87dd4b2d1a9d9",
+      "id": "template-6-cash-book.8",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "template-6-cash-book.9",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Template 7: vehicle logbook"
+        }
+      ],
+      "depth": 2,
+      "hash": "2cce730c7b5f45d4",
+      "id": "template-7-vehicle-logbook",
+      "kind": "heading",
+      "text": "Template 7: vehicle logbook"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Required by SARS for any travel claim. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Vehicles for your business"
+            }
+          ],
+          "doc": "core/vehicles",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "311cde214b26f49b",
+      "id": "template-7-vehicle-logbook.1",
+      "kind": "paragraph"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "hash": "901dfb055feccfcb",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Date"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Odometer start"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Odometer end"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Km"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Destination"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Business reason"
+          }
+        ]
+      ],
+      "id": "template-7-vehicle-logbook.2",
+      "kind": "table",
+      "rows": []
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Record your odometer on 1 March and again on 28 or 29 February so you have total kilometres for the tax year."
+        }
+      ],
+      "hash": "efb10761ac961c7f",
+      "id": "template-7-vehicle-logbook.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Fill it in when you park, not at the end of the month."
+        }
+      ],
+      "hash": "cb247f620ae082a7",
+      "id": "template-7-vehicle-logbook.4",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "template-7-vehicle-logbook.5",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompts to generate the rest"
+        }
+      ],
+      "depth": 2,
+      "hash": "779c7b12a2b04e48",
+      "id": "prompts-to-generate-the-rest",
+      "kind": "heading",
+      "text": "Prompts to generate the rest"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Terms and conditions"
+        }
+      ],
+      "depth": 3,
+      "hash": "4c44a7b130808080",
+      "id": "terms-and-conditions",
+      "kind": "heading",
+      "text": "Terms and conditions"
+    },
+    {
+      "hash": "d2d0db5f89524b54",
+      "id": "terms-and-conditions.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BUSINESS TYPE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "WHAT"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "WHO"
+        },
+        {
+          "style": "choice",
+          "t": "placeholder",
+          "v": "a sole proprietor / a registered company"
+        },
+        {
+          "style": "choice",
+          "t": "placeholder",
+          "v": "I sell online / I sell in person / both."
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "If selling online, add:"
+        }
+      ],
+      "text": "I am a [BUSINESS TYPE] in South Africa. I sell [WHAT] to [WHO].\nI am [a sole proprietor / a registered company].\n[I sell online / I sell in person / both.]\n\nWrite terms and conditions for my business in simple English that a\nGrade 8 learner can read.\n\nCover:\n- What I will do and what the customer must do\n- Quotes, deposits, and payment terms\n- What happens if a customer cancels\n- What happens if I have to cancel\n- Delivery or completion timing\n- Returns, refunds, and faults\n- Limits on what I am responsible for\n- How disputes get resolved\n\nMake sure it complies with the Consumer Protection Act 68 of 2008.\nWhere the Act gives the customer a right I cannot remove, say so in the\ndocument rather than trying to remove it.\n\n[If selling online, add:] I sell online, so also comply with sections 43,\n44, and 46 of the Electronic Communications and Transactions Act 25 of\n2002, including the seven-day cooling-off right.\n\nAfter the document, list every clause where you are unsure and where I\nshould check with a lawyer.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The Consumer Protection Act requires plain language. A document your customer cannot understand can be unenforceable, so do not ask the AI to make it sound legal."
+        }
+      ],
+      "hash": "f9a6e49a95521a2d",
+      "id": "terms-and-conditions.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A simple service agreement"
+        }
+      ],
+      "depth": 3,
+      "hash": "b428147e32caca58",
+      "id": "a-simple-service-agreement",
+      "kind": "heading",
+      "text": "A simple service agreement"
+    },
+    {
+      "hash": "d4cd32f19241f460",
+      "id": "a-simple-service-agreement.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BUSINESS TYPE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "AMOUNT"
+        }
+      ],
+      "text": "I am a [BUSINESS TYPE] in South Africa. I need a short written agreement\nfor jobs over R[AMOUNT].\n\nWrite a one-page agreement in simple English covering:\n- Who the parties are\n- Exactly what work I will do\n- Exactly what is not included\n- Price, deposit, and payment dates\n- Start date and expected finish date\n- What happens if the customer changes the scope\n- What happens if the customer does not pay\n- Who owns the work when it is done\n- How either side can cancel\n- Which South African law applies\n\nUse [SQUARE BRACKETS] for anything I fill in per job.\nKeep it to one page. Do not use legal words where a plain word works.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Delivery note (only if you deliver physical goods)"
+        }
+      ],
+      "depth": 3,
+      "hash": "b2c0c08892b5366d",
+      "id": "delivery-note-only-if-you-deliver-physical-goods",
+      "kind": "heading",
+      "text": "Delivery note (only if you deliver physical goods)"
+    },
+    {
+      "hash": "dd2e88cdbbe2b4b1",
+      "id": "delivery-note-only-if-you-deliver-physical-goods.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "WHAT"
+        }
+      ],
+      "text": "Write a simple delivery note template for a South African small business\ndelivering [WHAT] to customers. Include fields for delivery number, date,\ncustomer details, items and quantities, condition on arrival, and a\nsignature block for the person receiving the goods. Keep it to one page.",
+      "variant": "prompt"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "delivery-note-only-if-you-deliver-physical-goods.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Documents you probably do not need yet"
+        }
+      ],
+      "depth": 2,
+      "hash": "abba6dfaafedf09b",
+      "id": "documents-you-probably-do-not-need-yet",
+      "kind": "heading",
+      "text": "Documents you probably do not need yet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A business plan. Only needed to raise money from a bank or investor."
+        }
+      ],
+      "hash": "de9619b6079e865a",
+      "id": "documents-you-probably-do-not-need-yet.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "An employment contract. Only when you hire someone. When you do, get a proper one, because the Basic Conditions of Employment Act is strict and mistakes are expensive."
+        }
+      ],
+      "hash": "8c9792108b4ea4cf",
+      "id": "documents-you-probably-do-not-need-yet.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A non-disclosure agreement. Rarely needed by a small supplier. Most clients who need one will send you theirs."
+        }
+      ],
+      "hash": "57fee80c3f75fee4",
+      "id": "documents-you-probably-do-not-need-yet.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A shareholders agreement. Only if you have more than one shareholder. If you ever take a partner, get this before you take their money, not after."
+        }
+      ],
+      "hash": "10609be1b726cbff",
+      "id": "documents-you-probably-do-not-need-yet.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A company stamp. It has no legal meaning in South Africa."
+        }
+      ],
+      "hash": "8b3b366c3229bddd",
+      "id": "documents-you-probably-do-not-need-yet.5",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "b7845de41503c389",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Documents and templates",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "invoice-numbering",
+      "text": "Invoice numbering"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 2,
+      "id": "if-you-are-a-pty-ltd-the-header-line-that-is-required-by-law",
+      "text": "If you are a Pty Ltd: the header line that is required by law"
+    },
+    {
+      "depth": 2,
+      "id": "template-1-quotation",
+      "text": "Template 1: quotation"
+    },
+    {
+      "depth": 2,
+      "id": "template-2-invoice-if-you-are-not-registered-for-vat",
+      "text": "Template 2: invoice if you are NOT registered for VAT"
+    },
+    {
+      "depth": 2,
+      "id": "template-3-invoice-if-you-are-registered-for-vat",
+      "text": "Template 3: invoice if you ARE registered for VAT"
+    },
+    {
+      "depth": 2,
+      "id": "template-4-receipt",
+      "text": "Template 4: receipt"
+    },
+    {
+      "depth": 2,
+      "id": "template-5-privacy-notice-popia",
+      "text": "Template 5: privacy notice (POPIA)"
+    },
+    {
+      "depth": 2,
+      "id": "template-6-cash-book",
+      "text": "Template 6: cash book"
+    },
+    {
+      "depth": 2,
+      "id": "template-7-vehicle-logbook",
+      "text": "Template 7: vehicle logbook"
+    },
+    {
+      "depth": 2,
+      "id": "prompts-to-generate-the-rest",
+      "text": "Prompts to generate the rest"
+    },
+    {
+      "depth": 3,
+      "id": "terms-and-conditions",
+      "text": "Terms and conditions"
+    },
+    {
+      "depth": 3,
+      "id": "a-simple-service-agreement",
+      "text": "A simple service agreement"
+    },
+    {
+      "depth": 3,
+      "id": "delivery-note-only-if-you-deliver-physical-goods",
+      "text": "Delivery note (only if you deliver physical goods)"
+    },
+    {
+      "depth": 2,
+      "id": "documents-you-probably-do-not-need-yet",
+      "text": "Documents you probably do not need yet"
+    }
+  ],
+  "id": "paperwork/which-template-to-use-when",
+  "kind": "guide",
+  "lang": "en",
+  "order": 1,
+  "readingTime": 11,
+  "related": [
+    "paperwork/free-tools",
+    "core/register",
+    "core/vehicles"
+  ],
+  "route": "paperwork/which-template-to-use-when/",
+  "section": "paperwork",
+  "slug": "which-template-to-use-when",
+  "sourcePath": "03 Paperwork and templates/01-which-template-to-use-when.md",
+  "sources": {
+    "acts": [
+      "value-added-tax-act-89-of-1991",
+      "companies-act-71-of-2008",
+      "consumer-protection-act-68-of-2008",
+      "electronic-communications-and-transactions-act-25-of-2002",
+      "protection-of-personal-information-act-4-of-2013"
+    ],
+    "entries": [
+      "sars--turnover-tax",
+      "sars--what-is-the-new-threshold-for-vat-registration",
+      "sars--tax-invoice-checklist",
+      "information-regulator-of-south-africa",
+      "national-consumer-commission--consumer-protection-in-e-commerce"
+    ]
+  },
+  "summary": "You need six documents to run a small business properly. Everything else can wait.",
+  "tags": [
+    "templates"
+  ],
+  "terms": [
+    {
+      "meaning": "A price you offer before the work. Not yet a sale.",
+      "term": "Quote / quotation"
+    },
+    {
+      "meaning": "The bill you send after the work, asking for payment.",
+      "term": "Invoice"
+    },
+    {
+      "meaning": "Proof you received the money.",
+      "term": "Receipt"
+    },
+    {
+      "meaning": "A document that cancels or reduces an invoice you already sent. Use it instead of deleting an invoice.",
+      "term": "Credit note"
+    },
+    {
+      "meaning": "Quantity. How many.",
+      "term": "Qty"
+    },
+    {
+      "meaning": "The price for one.",
+      "term": "Unit price"
+    },
+    {
+      "meaning": "The total before VAT is added.",
+      "term": "Subtotal"
+    },
+    {
+      "meaning": "Excluding VAT (before it is added) / including VAT (after).",
+      "term": "excl. / incl. VAT"
+    },
+    {
+      "meaning": "The last day the customer may pay without being late.",
+      "term": "Due date"
+    },
+    {
+      "meaning": "Electronic funds transfer. A bank payment.",
+      "term": "EFT"
+    },
+    {
+      "meaning": "The number that identifies your bank branch. Ask your bank.",
+      "term": "Branch code"
+    },
+    {
+      "meaning": "A shorter VAT invoice allowed for sales between R50 and R5,000.",
+      "term": "Abridged tax invoice"
+    },
+    {
+      "meaning": "The customer. The person or business receiving the goods.",
+      "term": "Recipient"
+    },
+    {
+      "meaning": "Check that your records and your bank statement agree.",
+      "term": "Reconcile"
+    },
+    {
+      "meaning": "The kilometre counter on the dashboard.",
+      "term": "Odometer"
+    },
+    {
+      "meaning": "Money paid up front before work starts.",
+      "term": "Deposit"
+    }
+  ],
+  "title": "Which template to use when",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

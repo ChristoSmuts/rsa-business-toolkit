@@ -1,0 +1,1003 @@
+{
+  "appliesTo": {
+    "businessTypes": [
+      "professional-creative"
+    ],
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Read "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " first. This file adds the rules that apply when you sell your skill or your time."
+        }
+      ],
+      "hash": "dc068fcce107dd2d",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This covers consultants, designers, developers, copywriters, photographers, videographers, tutors, bookkeepers, virtual assistants, translators, and marketers."
+        }
+      ],
+      "hash": "18dcadbfd8593c9c",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "ace9a9c3c0b31a28",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A simple tax on sales. Many professionals are not allowed to use it."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Turnover tax"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Claiming a share of your home costs because you work from a dedicated room."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Home office deduction"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Intellectual property. Who owns the work you create."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "IP"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "SARS's term for someone who looks like an employee of one client. Loses most deductions."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Personal service provider"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "How many times a client may ask for changes before paying extra."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Revision rounds"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is the lightest-regulation business type in South Africa. You can usually invoice tomorrow."
+        }
+      ],
+      "hash": "946b4a4cc397bfc3",
+      "id": "words-used-in-this-file.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What you need"
+        }
+      ],
+      "depth": 2,
+      "hash": "58821a0791c46f92",
+      "id": "what-you-need",
+      "kind": "heading",
+      "text": "What you need"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Almost certainly nothing beyond the core files. No municipal licence, no health inspection, no product regulation."
+        }
+      ],
+      "hash": "6861e900c266d8ce",
+      "id": "what-you-need.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Two exceptions."
+        }
+      ],
+      "hash": "e6f90228500037f9",
+      "id": "what-you-need.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Some professions are statutorily regulated and may not be practised without registration: accountants signing off certain work, auditors, financial advisors under FAIS, estate agents, engineers signing designs, architects, attorneys, and health professionals. If you hold a professional title, check your body's rules on practising independently."
+        }
+      ],
+      "hash": "18eeb08305088974",
+      "id": "what-you-need.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you give financial advice or sell financial products, you need an FSP licence under FAIS or you must be a representative of a licensed FSP. Calling it \"coaching\" does not change the legal position."
+        }
+      ],
+      "hash": "4a7e219c5ba27492",
+      "id": "what-you-need.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The turnover tax trap"
+        }
+      ],
+      "depth": 2,
+      "hash": "d8806676b58f30c1",
+      "id": "the-turnover-tax-trap",
+      "kind": "heading",
+      "text": "The turnover tax trap"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is the most important tax point for this group, and it is easy to miss."
+        }
+      ],
+      "hash": "069990814347006f",
+      "id": "the-turnover-tax-trap.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Turnover tax looks attractive: 0% on the first R600,000 of turnover. But most of this group cannot use it."
+        }
+      ],
+      "hash": "f283a91bcc010027",
+      "id": "the-turnover-tax-trap.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Certain businesses are excluded, such as professional service providers, labour brokers, personal service providers, and businesses carrying on other excluded activities."
+        }
+      ],
+      "hash": "bf0d83b8fae7a6b6",
+      "id": "the-turnover-tax-trap.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A business is excluded where more than 20% of income comes from professional services."
+        }
+      ],
+      "hash": "c1953ea13d408ad2",
+      "id": "the-turnover-tax-trap.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The exclusion catches accountants, lawyers, engineers, architects, consultants and similar. Whether a designer, developer, or copywriter falls inside the exclusion is not always obvious."
+        }
+      ],
+      "hash": "0cf9441f0ac8ccd9",
+      "id": "the-turnover-tax-trap.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Check the SARS list for your exact trade before you elect turnover tax. Electing it wrongly and having SARS reverse it later is expensive."
+        }
+      ],
+      "hash": "9f810942ecd81a44",
+      "id": "the-turnover-tax-trap.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you cannot use turnover tax, your levers are the ones in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Tax and SARS"
+            }
+          ],
+          "doc": "core/tax-and-sars",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ": claim every real expense, stay below the threshold while you are small, and consider the home office deduction if you qualify."
+        }
+      ],
+      "hash": "bca721c097d05024",
+      "id": "the-turnover-tax-trap.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The home office deduction"
+        }
+      ],
+      "depth": 2,
+      "hash": "bb53ceeeeca3c461",
+      "id": "the-home-office-deduction",
+      "kind": "heading",
+      "text": "The home office deduction"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This group qualifies more often than others, because the work genuinely happens at home."
+        }
+      ],
+      "hash": "8102da3e038f7380",
+      "id": "the-home-office-deduction.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS generally expects a specific part of the home used regularly and exclusively for the trade, and properly equipped for it. A dedicated room qualifies. The kitchen table does not."
+        }
+      ],
+      "hash": "dca480df2fc29c6e",
+      "id": "the-home-office-deduction.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you qualify, you can claim a share of rent or bond interest, rates, and electricity based on floor area. Measure the room, measure the house, keep a photo and the calculation on file."
+        }
+      ],
+      "hash": "bf7d42e1c78b430a",
+      "id": "the-home-office-deduction.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Contracts matter more here than anywhere else"
+        }
+      ],
+      "depth": 2,
+      "hash": "bd0231aaca44057c",
+      "id": "contracts-matter-more-here-than-anywhere-else",
+      "kind": "heading",
+      "text": "Contracts matter more here than anywhere else"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your risk is not a faulty product. It is scope creep and non-payment."
+        }
+      ],
+      "hash": "6f4fe4fca091c29f",
+      "id": "contracts-matter-more-here-than-anywhere-else.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use the service agreement prompt in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Which template to use when"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Make sure it covers:"
+        }
+      ],
+      "hash": "a9e3b1d794349d8f",
+      "id": "contracts-matter-more-here-than-anywhere-else.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What is included, in specific deliverables, not vague descriptions."
+        }
+      ],
+      "hash": "ca18238e1cb31ace",
+      "id": "contracts-matter-more-here-than-anywhere-else.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How many rounds of revision are included, and what an extra round costs. \"Two rounds of revisions included\" is the single most valuable line in a creative contract."
+        }
+      ],
+      "hash": "6d010fd67486c816",
+      "id": "contracts-matter-more-here-than-anywhere-else.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Who owns the work when it is finished, and when ownership transfers. Standard practice: ownership transfers on full payment, not on delivery. This is your leverage when an invoice goes unpaid."
+        }
+      ],
+      "hash": "b7affaabc689a378",
+      "id": "contracts-matter-more-here-than-anywhere-else.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What happens if the client cancels midway, and what you are owed for work already done."
+        }
+      ],
+      "hash": "c7ade88bb843b1c6",
+      "id": "contracts-matter-more-here-than-anywhere-else.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Payment terms, and what happens when they are missed."
+        }
+      ],
+      "hash": "40bd6f7fc0233def",
+      "id": "contracts-matter-more-here-than-anywhere-else.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Intellectual property"
+        }
+      ],
+      "depth": 2,
+      "hash": "f43680c34dec8a01",
+      "id": "intellectual-property",
+      "kind": "heading",
+      "text": "Intellectual property"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "By default in South African law, the person who creates a work generally owns the copyright, unless it was made by an employee in the course of employment or the contract says otherwise."
+        }
+      ],
+      "hash": "bb44aa3ab0d703fe",
+      "id": "intellectual-property.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "That means your client does not automatically own what you made for them, unless your contract transfers it. Most clients assume they do."
+        }
+      ],
+      "hash": "fa5209c91366b92b",
+      "id": "intellectual-property.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deal with it explicitly. Either transfer ownership on full payment, or licence the work for a defined use. Say which, in writing, before you start."
+        }
+      ],
+      "hash": "a539256bcbf184a4",
+      "id": "intellectual-property.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you use AI tools to produce client work, say so in your contract, and understand that the copyright position for AI-generated material is unsettled. Do not promise a client exclusive ownership of something you cannot guarantee."
+        }
+      ],
+      "hash": "893cf87e81c2f326",
+      "id": "intellectual-property.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Getting paid"
+        }
+      ],
+      "depth": 2,
+      "hash": "76aaf7e2563d04bb",
+      "id": "getting-paid",
+      "kind": "heading",
+      "text": "Getting paid"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Freelancers in South Africa lose more money to late payment than to low rates."
+        }
+      ],
+      "hash": "87cd76db15507e83",
+      "id": "getting-paid.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deposit up front. 50% is normal for project work. No deposit, no start."
+        }
+      ],
+      "hash": "87c927691a1c74b1",
+      "id": "getting-paid.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Invoice on a fixed day, every month, with clear due dates. See "
+        },
+        {
+          "doc": "paperwork/which-template-to-use-when",
+          "label": "03-documents/01",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "7461f3d3dee39db1",
+      "id": "getting-paid.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "State your late payment terms in the contract, and apply them. Interest on overdue amounts is enforceable if it was agreed in advance."
+        }
+      ],
+      "hash": "20507fa6e8b13be9",
+      "id": "getting-paid.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Withhold final files until final payment. This only works if your contract says ownership transfers on payment, which is why that clause matters."
+        }
+      ],
+      "hash": "f7acb86df228dfcd",
+      "id": "getting-paid.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tax point most freelancers miss"
+        }
+      ],
+      "depth": 2,
+      "hash": "edf9ab4526c4ed22",
+      "id": "tax-point-most-freelancers-miss",
+      "kind": "heading",
+      "text": "Tax point most freelancers miss"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you work mainly for one client, who controls your hours and how you work, SARS may treat you as a personal service provider or as an employee. That changes your tax treatment significantly and removes most of your deductions."
+        }
+      ],
+      "hash": "8d9f9b18371a4426",
+      "id": "tax-point-most-freelancers-miss.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Signs of risk: one client providing most of your income, working set hours at their premises, using their equipment, having a manager."
+        }
+      ],
+      "hash": "7193c00ca4504ae9",
+      "id": "tax-point-most-freelancers-miss.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If that describes you, get advice. It is fixable, but not after an assessment."
+        }
+      ],
+      "hash": "67b329559cb5472a",
+      "id": "tax-point-most-freelancers-miss.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Branding and marketing notes"
+        }
+      ],
+      "depth": 2,
+      "hash": "cf2e2a9a2f4c9c97",
+      "id": "branding-and-marketing-notes",
+      "kind": "heading",
+      "text": "Branding and marketing notes"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use "
+        },
+        {
+          "label": "02-branding-and-marketing/",
+          "section": "branding",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ". For this group, the priority order is different from a local trade:"
+        }
+      ],
+      "hash": "68c2f5f6509cbc8f",
+      "id": "branding-and-marketing-notes.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "c23092a860bdd02d",
+      "id": "branding-and-marketing-notes.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Portfolio of actual work, even two or three pieces"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A clear description of what you do and who you do it for"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "LinkedIn, if you sell to businesses"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Referrals from past clients, asked for directly"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A simple website"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The naming prompt in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Branding prompts"
+            }
+          ],
+          "doc": "branding/branding-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " works, but consider trading under your own name. For a solo consultant or creative, \"Naledi Mokoena Design\" often builds more trust than an invented agency name, and it never becomes a lie when someone asks how big the team is."
+        }
+      ],
+      "hash": "fcda45f1b3b97b7a",
+      "id": "branding-and-marketing-notes.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your checklist"
+        }
+      ],
+      "depth": 2,
+      "hash": "44586aab28889f46",
+      "id": "your-checklist",
+      "kind": "heading",
+      "text": "Your checklist"
+    },
+    {
+      "hash": "577e0d64887649de",
+      "id": "your-checklist.1",
+      "items": [
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Confirm whether your profession requires statutory registration"
+            }
+          ],
+          "doc": "business-types/professional-creative",
+          "id": "business-types/professional-creative:4e99d003",
+          "when": {
+            "businessTypes": [
+              "professional-creative"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Check whether you are excluded from turnover tax before electing it"
+            }
+          ],
+          "doc": "business-types/professional-creative",
+          "id": "business-types/professional-creative:fc5121e3",
+          "when": {
+            "businessTypes": [
+              "professional-creative"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Build a service agreement covering scope, revisions, IP and payment"
+            }
+          ],
+          "doc": "business-types/professional-creative",
+          "id": "business-types/professional-creative:4c50b1ae",
+          "when": {
+            "businessTypes": [
+              "professional-creative"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Decide your deposit and revision policy, and stick to it"
+            }
+          ],
+          "doc": "business-types/professional-creative",
+          "id": "business-types/professional-creative:8afe75e0",
+          "when": {
+            "businessTypes": [
+              "professional-creative"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Set up the home office calculation if you qualify"
+            }
+          ],
+          "doc": "business-types/professional-creative",
+          "id": "business-types/professional-creative:1c124945",
+          "when": {
+            "businessTypes": [
+              "professional-creative"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Register as a provisional taxpayer and diarise the IRP6 dates"
+            }
+          ],
+          "doc": "business-types/professional-creative",
+          "id": "business-types/professional-creative:66134f08",
+          "when": {
+            "businessTypes": [
+              "professional-creative"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Assess whether you look like an employee of one client, and fix it if so"
+            }
+          ],
+          "doc": "business-types/professional-creative",
+          "id": "business-types/professional-creative:09f007d9",
+          "when": {
+            "businessTypes": [
+              "professional-creative"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist"
+    }
+  ],
+  "contentHash": "21bb0ca4dde3e042",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Business type: professional and creative work",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "what-you-need",
+      "text": "What you need"
+    },
+    {
+      "depth": 2,
+      "id": "the-turnover-tax-trap",
+      "text": "The turnover tax trap"
+    },
+    {
+      "depth": 2,
+      "id": "the-home-office-deduction",
+      "text": "The home office deduction"
+    },
+    {
+      "depth": 2,
+      "id": "contracts-matter-more-here-than-anywhere-else",
+      "text": "Contracts matter more here than anywhere else"
+    },
+    {
+      "depth": 2,
+      "id": "intellectual-property",
+      "text": "Intellectual property"
+    },
+    {
+      "depth": 2,
+      "id": "getting-paid",
+      "text": "Getting paid"
+    },
+    {
+      "depth": 2,
+      "id": "tax-point-most-freelancers-miss",
+      "text": "Tax point most freelancers miss"
+    },
+    {
+      "depth": 2,
+      "id": "branding-and-marketing-notes",
+      "text": "Branding and marketing notes"
+    },
+    {
+      "depth": 2,
+      "id": "your-checklist",
+      "text": "Your checklist"
+    }
+  ],
+  "id": "business-types/professional-creative",
+  "kind": "guide",
+  "lang": "en",
+  "order": 7,
+  "readingTime": 5,
+  "related": [
+    "paperwork/which-template-to-use-when",
+    "core/tax-and-sars",
+    "branding/branding-prompts"
+  ],
+  "route": "business-types/professional-creative/",
+  "section": "business-types",
+  "slug": "professional-creative",
+  "sourcePath": "04 Your kind of business/06-professional-and-creative.md",
+  "sources": {
+    "acts": [
+      "consumer-protection-act-68-of-2008",
+      "financial-advisory-and-intermediary-services-act-37-of-2002"
+    ],
+    "entries": [
+      "sars--turnover-tax"
+    ]
+  },
+  "summary": "Consultants, designers, developers, writers, tutors and other freelancers: the turnover tax trap, contracts, intellectual property and getting paid.",
+  "tags": [
+    "business-types"
+  ],
+  "terms": [
+    {
+      "meaning": "A simple tax on sales. Many professionals are not allowed to use it.",
+      "term": "Turnover tax"
+    },
+    {
+      "meaning": "Claiming a share of your home costs because you work from a dedicated room.",
+      "term": "Home office deduction"
+    },
+    {
+      "meaning": "Intellectual property. Who owns the work you create.",
+      "term": "IP"
+    },
+    {
+      "meaning": "SARS's term for someone who looks like an employee of one client. Loses most deductions.",
+      "term": "Personal service provider"
+    },
+    {
+      "meaning": "How many times a client may ask for changes before paying extra.",
+      "term": "Revision rounds"
+    }
+  ],
+  "title": "Professional and creative work",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

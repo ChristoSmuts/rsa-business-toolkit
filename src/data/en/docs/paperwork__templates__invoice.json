@@ -1,0 +1,632 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Use this one if you are NOT registered for VAT."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " That is most small businesses. You are not required to register until your turnover passes R2.3 million in any rolling 12 months."
+        }
+      ],
+      "hash": "9f9df21d38816dc4",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Three rules you must follow on this invoice. Do NOT use the words \"Tax Invoice\". Do NOT show a VAT line. Do NOT show a VAT number. Do NOT add 15% to anything. Charging VAT when you are not registered is fraud, not a paperwork mistake."
+        }
+      ],
+      "hash": "ba1396f383b9e33a",
+      "id": "intro.2",
+      "kind": "callout",
+      "style": "note"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Make a copy, rename it to the invoice number, replace everything in [SQUARE BRACKETS], then export to PDF."
+        }
+      ],
+      "hash": "0d887478b7732b07",
+      "id": "intro.3",
+      "kind": "note"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "key": "businessName",
+              "style": "identity",
+              "t": "placeholder",
+              "v": "YOUR BUSINESS NAME"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "ownerName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Your name"
+        },
+        {
+          "t": "text",
+          "v": " | "
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Phone"
+        },
+        {
+          "t": "text",
+          "v": " | "
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Email"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Physical address"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "nested": true,
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "If a company: Trading as a name of [REGISTERED NAME] (Pty) Ltd, Reg. No. [NUMBER]"
+        }
+      ],
+      "hash": "3435c11f916517f9",
+      "id": "intro.5",
+      "kind": "paragraph"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "d6b372fd908b5032",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Field"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Detail"
+          }
+        ]
+      ],
+      "id": "intro.6",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Invoice number"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "INV-0001"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Date"
+            }
+          ],
+          [
+            {
+              "style": "format",
+              "t": "placeholder",
+              "v": "DD Month YYYY"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Due date"
+            }
+          ],
+          [
+            {
+              "style": "format",
+              "t": "placeholder",
+              "v": "DD Month YYYY"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "To"
+        }
+      ],
+      "depth": 2,
+      "hash": "7cb1cef9ea8a2276",
+      "id": "to",
+      "kind": "heading",
+      "text": "To"
+    },
+    {
+      "c": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Customer name"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Customer address"
+        }
+      ],
+      "hash": "09d05ddd3549be88",
+      "id": "to.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What this is for"
+        }
+      ],
+      "depth": 2,
+      "hash": "808aa3786a3c5284",
+      "id": "what-this-is-for",
+      "kind": "heading",
+      "text": "What this is for"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "hash": "f5ae3e901ef5adc5",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Description"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Qty"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Unit price"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Amount"
+          }
+        ]
+      ],
+      "id": "what-this-is-for.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Item or service"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "1"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Item or service"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "1"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "AMOUNT DUE"
+                }
+              ],
+              "t": "strong"
+            }
+          ],
+          [],
+          [],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "R 0.00"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Payment details"
+        }
+      ],
+      "depth": 2,
+      "hash": "d6bfcb998cd265fc",
+      "id": "payment-details",
+      "kind": "heading",
+      "text": "Payment details"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "ecc08dc2bb244b04",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Field"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Detail"
+          }
+        ]
+      ],
+      "id": "payment-details.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Bank"
+            }
+          ],
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Bank name"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Account name"
+            }
+          ],
+          [
+            {
+              "style": "instruction",
+              "t": "placeholder",
+              "v": "Exactly as it appears on the account"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Account number"
+            }
+          ],
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Number"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Branch code"
+            }
+          ],
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Code"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Reference"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "INV-0001"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Please use the invoice number as your payment reference."
+        }
+      ],
+      "hash": "1b9893c005831cc1",
+      "id": "payment-details.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Payment is due by "
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "date"
+        },
+        {
+          "t": "text",
+          "v": ". "
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "State your late payment terms here."
+        }
+      ],
+      "hash": "401df3bb4a4941dd",
+      "id": "payment-details.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "payment-details.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Invoice numbering"
+        }
+      ],
+      "depth": 2,
+      "hash": "b288d225f84e7cce",
+      "id": "invoice-numbering",
+      "kind": "heading",
+      "text": "Invoice numbering"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Number invoices in order with no gaps: INV-0001, INV-0002, INV-0003."
+        }
+      ],
+      "hash": "63731d744ce88b51",
+      "id": "invoice-numbering.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A gap in the sequence looks like a hidden sale to SARS. If you cancel an invoice, do not delete it. Issue a credit note against it and keep both."
+        }
+      ],
+      "hash": "94e00e2a928aab69",
+      "id": "invoice-numbering.2",
+      "kind": "callout",
+      "style": "note"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Before you hand anything over"
+        }
+      ],
+      "depth": 2,
+      "hash": "4b951497892f2cd7",
+      "id": "before-you-hand-anything-over",
+      "kind": "heading",
+      "text": "Before you hand anything over"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wait until the money reflects in your account balance, not \"pending\". A screenshot, an SMS or a PDF proof of payment is not money."
+        }
+      ],
+      "hash": "5a00e94426e6e682",
+      "id": "before-you-hand-anything-over.1",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "b33d54d3be99f4e0",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "INVOICE",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "to",
+      "text": "To"
+    },
+    {
+      "depth": 2,
+      "id": "what-this-is-for",
+      "text": "What this is for"
+    },
+    {
+      "depth": 2,
+      "id": "payment-details",
+      "text": "Payment details"
+    },
+    {
+      "depth": 2,
+      "id": "invoice-numbering",
+      "text": "Invoice numbering"
+    },
+    {
+      "depth": 2,
+      "id": "before-you-hand-anything-over",
+      "text": "Before you hand anything over"
+    }
+  ],
+  "id": "paperwork/templates/invoice",
+  "kind": "template",
+  "lang": "en",
+  "order": 4,
+  "readingTime": 1,
+  "related": [],
+  "route": "templates/invoice/",
+  "section": "paperwork",
+  "slug": "invoice",
+  "sourcePath": "03 Paperwork and templates/templates-to-fill-in/02-invoice-not-vat-registered.md",
+  "sources": {
+    "acts": [],
+    "entries": [
+      "sars--what-is-the-new-threshold-for-vat-registration",
+      "flip-the-market"
+    ]
+  },
+  "summary": "Use this one if you are NOT registered for VAT. That is most small businesses. You are not required to register until your turnover passes R2.3 million in any rolling 12 months.",
+  "tags": [
+    "template"
+  ],
+  "terms": [],
+  "title": "Invoice, NOT VAT registered (template)",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

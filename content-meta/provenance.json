@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "generated": { "date": "2026-09-13", "tool": "Claude, Anthropic" },
+  "sourceNoteExemptions": {
+    "branding/marketing-prompts": "Owner decision (WP-10): the page holds AI prompts and marketing advice and makes no factual claim that a register entry supports, so it carries a source note instead of an invented source list."
+  },
+  "verification": {
+    "core/you-are-the-business": {
+      "status": "ai-checked",
+      "checkedOn": "2026-09-14",
+      "reason": "Written and checked on 14 September 2026, a day after the register's own check date, so the register date would say the page was checked before it existed. Its footer is dated 14 September and states that the facts in it were checked against official sources; \"What has changed\" change 4 and the twelfth pass in \"How this was made\" record that day's work, including the register section for this page."
+    }
+  }
+}

@@ -1,0 +1,826 @@
+{
+  "appliesTo": {
+    "businessTypes": [
+      "beauty"
+    ],
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Read "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " first. This file adds the rules that apply only to businesses that work on people's bodies."
+        }
+      ],
+      "hash": "d77cb98f1250cd52",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This covers hairdressing, barbering, nails, beauty therapy, lashes, massage, tattooing and piercing."
+        }
+      ],
+      "hash": "ed6acb4157298704",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "37f706eab9732729",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The legal category for hair, beauty, massage and tattoo businesses."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Health establishment"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The municipal health inspector."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "EHP"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Whether your address is allowed to be used for business."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Zoning"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Cover for when a treatment harms a client."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Treatment liability insurance"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A small skin test before a chemical treatment. Record it."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Patch test"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You need a municipal licence"
+        }
+      ],
+      "depth": 2,
+      "hash": "f1179cdfad91261d",
+      "id": "you-need-a-municipal-licence",
+      "kind": "heading",
+      "text": "You need a municipal licence"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "These are health establishments under the Businesses Act."
+        }
+      ],
+      "hash": "f2756c4e7fce31e3",
+      "id": "you-need-a-municipal-licence.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The categories that typically require a municipal trading licence under the Businesses Act include health establishments: businesses providing health, beauty, or body treatment services, including hairdressers, barbers, beauty salons, nail salons, tattoo studios, and similar premises."
+        }
+      ],
+      "hash": "1fe7ce03e8b7c5fd",
+      "id": "you-need-a-municipal-licence.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "No person may carry on certain service-related businesses unless they hold a licence issued by the council, local authority or municipality where the business premises are situated."
+        }
+      ],
+      "hash": "e034040ed4da416e",
+      "id": "you-need-a-municipal-licence.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You may not begin trading in a business that requires a licence before the licence has been issued. Trading without a valid licence is punishable with a fine."
+        }
+      ],
+      "hash": "0587fcf86be90a21",
+      "id": "you-need-a-municipal-licence.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Apply through your municipal Business Licensing office. An Environmental Health Practitioner will inspect the premises."
+        }
+      ],
+      "hash": "71273b188daadc6a",
+      "id": "you-need-a-municipal-licence.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What the inspector usually looks at: hand washing facilities, ventilation, surface cleanability, waste disposal, storage of chemicals, and separation from living space if you work from home."
+        }
+      ],
+      "hash": "2e55e6030e8d15cf",
+      "id": "you-need-a-municipal-licence.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tattoo and piercing studios"
+        }
+      ],
+      "depth": 2,
+      "hash": "00fb0f54df70611f",
+      "id": "tattoo-and-piercing-studios",
+      "kind": "heading",
+      "text": "Tattoo and piercing studios"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "These face the strictest inspection in this category, because they break the skin."
+        }
+      ],
+      "hash": "d73730eeb9895b2f",
+      "id": "tattoo-and-piercing-studios.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Expect questions about sterilisation equipment, single-use needles, sharps containers, waste removal contracts, and record keeping of clients and batch numbers."
+        }
+      ],
+      "hash": "076abb35fa7189a9",
+      "id": "tattoo-and-piercing-studios.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Talk to your Environmental Health Practitioner before you sign a lease. The premises requirements can make a cheap space unusable."
+        }
+      ],
+      "hash": "f6897a7e4c715e62",
+      "id": "tattoo-and-piercing-studios.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Working from home"
+        }
+      ],
+      "depth": 2,
+      "hash": "f76f2a0064715587",
+      "id": "working-from-home",
+      "kind": "heading",
+      "text": "Working from home"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is common and usually legal. But you need zoning approval, and usually a separate treatment room with its own basin."
+        }
+      ],
+      "hash": "c7125a3461b05d4d",
+      "id": "working-from-home.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ask town planning about your zoning before you spend money on a room. Some residential zonings allow a home occupation with limits on client numbers, parking and signage."
+        }
+      ],
+      "hash": "744d0f062b97af43",
+      "id": "working-from-home.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you make or sell products"
+        }
+      ],
+      "depth": 2,
+      "hash": "8d2dad5d0c183740",
+      "id": "if-you-make-or-sell-products",
+      "kind": "heading",
+      "text": "If you make or sell products"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Selling retail products someone else manufactures is ordinary retail. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Retail and online shop"
+            }
+          ],
+          "doc": "business-types/retail-online",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "f86fa306d29ff135",
+      "id": "if-you-make-or-sell-products.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Making your own oils, creams, scrubs or hair products changes things. The Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 regulates cosmetics, including labelling and ingredient claims."
+        }
+      ],
+      "hash": "f52dc29fa1cb37a7",
+      "id": "if-you-make-or-sell-products.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do not claim a product treats a medical condition. \"Clears eczema\" or \"cures acne\" can reclassify your product as a medicine, which brings SAHPRA into your life. \"Soothes dry skin\" is a cosmetic claim. \"Treats dermatitis\" is not."
+        }
+      ],
+      "hash": "7fc6d20459a716ea",
+      "id": "if-you-make-or-sell-products.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Insurance you actually need"
+        }
+      ],
+      "depth": 2,
+      "hash": "361323082b2bf9ff",
+      "id": "insurance-you-actually-need",
+      "kind": "heading",
+      "text": "Insurance you actually need"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Professional indemnity or treatment liability cover. One burn from a relaxer, one infected piercing, or one bad reaction to a product can cost you more than a year of profit."
+        }
+      ],
+      "hash": "172a14364a7d0eb8",
+      "id": "insurance-you-actually-need.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ask a broker for cover appropriate to the treatments you actually perform, and tell them everything you do. Cover bought for \"hairdressing\" will not respond to a lash lift claim."
+        }
+      ],
+      "hash": "46e864a7215232e3",
+      "id": "insurance-you-actually-need.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Consumer law applies to services too"
+        }
+      ],
+      "depth": 2,
+      "hash": "a4908024ea917a1d",
+      "id": "consumer-law-applies-to-services-too",
+      "kind": "heading",
+      "text": "Consumer law applies to services too"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A service must be performed with reasonable skill and care. If a treatment goes wrong, the customer has a right to have it put right or refunded."
+        }
+      ],
+      "hash": "8c13d6ef3b7e6d52",
+      "id": "consumer-law-applies-to-services-too.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Protect yourself with a consultation record: what the client asked for, what you advised, any allergy or patch test, and what was agreed. Have them sign it. For colour, chemical and skin treatments, a patch test record is the difference between a defensible position and a settlement."
+        }
+      ],
+      "hash": "3241b1788313c053",
+      "id": "consumer-law-applies-to-services-too.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bookings, deposits and no-shows"
+        }
+      ],
+      "depth": 2,
+      "hash": "9a1a44156a95c08c",
+      "id": "bookings-deposits-and-no-shows",
+      "kind": "heading",
+      "text": "Bookings, deposits and no-shows"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "No-shows are the biggest hidden cost in this industry."
+        }
+      ],
+      "hash": "5b15286d25e88c38",
+      "id": "bookings-deposits-and-no-shows.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A deposit is legal and enforceable if the terms are clear and reasonable before booking. Under the Consumer Protection Act a customer may cancel a booking. You may charge a cancellation fee, but it must be reasonable. Reasonable depends on how much notice they gave, and whether you could fill the slot with someone else."
+        }
+      ],
+      "hash": "ca2c77fcc9c014d0",
+      "id": "bookings-deposits-and-no-shows.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Put your cancellation terms in writing, send them with the booking confirmation, and apply them consistently. Terms you only mention when someone misses an appointment are hard to enforce."
+        }
+      ],
+      "hash": "09dceee8d64c7a7c",
+      "id": "bookings-deposits-and-no-shows.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Branding and marketing notes"
+        }
+      ],
+      "depth": 2,
+      "hash": "cf2e2a9a2f4c9c97",
+      "id": "branding-and-marketing-notes",
+      "kind": "heading",
+      "text": "Branding and marketing notes"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use "
+        },
+        {
+          "label": "02-branding-and-marketing/",
+          "section": "branding",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ". Two things matter more in this industry than in most:"
+        }
+      ],
+      "hash": "6a0a2641dd0ff04e",
+      "id": "branding-and-marketing-notes.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Before-and-after photos are your most effective marketing, but you need permission. Ask every client, in writing, before posting their face. This is a POPIA requirement as well as basic courtesy. Keep the permission on file."
+        }
+      ],
+      "hash": "1e93d6317b589dc0",
+      "id": "branding-and-marketing-notes.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Google Business Profile reviews drive local bookings more than any social post. Ask every happy client. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Marketing prompts"
+            }
+          ],
+          "doc": "branding/marketing-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "a2701504475bcfb3",
+      "id": "branding-and-marketing-notes.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your checklist"
+        }
+      ],
+      "depth": 2,
+      "hash": "44586aab28889f46",
+      "id": "your-checklist",
+      "kind": "heading",
+      "text": "Your checklist"
+    },
+    {
+      "hash": "77666b6831b263a2",
+      "id": "your-checklist.1",
+      "items": [
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Confirm zoning for your premises, including home premises"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:92352a66",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Apply for the municipal health establishment licence"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:4154a207",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Prepare the premises for the health inspection"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:3e9fa384",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Get treatment liability insurance appropriate to your services"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:acd577dc",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Build a consultation and patch test record template"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:78e1ef6f",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Write your booking, deposit and cancellation terms"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:1ee82848",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Get written photo permission from clients before posting"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:3f035f6f",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Register your POPIA information officer, since you hold client health information"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:22a2e898",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist"
+    }
+  ],
+  "contentHash": "fc217d1136d78b4d",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Business type: beauty and personal care",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "you-need-a-municipal-licence",
+      "text": "You need a municipal licence"
+    },
+    {
+      "depth": 2,
+      "id": "tattoo-and-piercing-studios",
+      "text": "Tattoo and piercing studios"
+    },
+    {
+      "depth": 2,
+      "id": "working-from-home",
+      "text": "Working from home"
+    },
+    {
+      "depth": 2,
+      "id": "if-you-make-or-sell-products",
+      "text": "If you make or sell products"
+    },
+    {
+      "depth": 2,
+      "id": "insurance-you-actually-need",
+      "text": "Insurance you actually need"
+    },
+    {
+      "depth": 2,
+      "id": "consumer-law-applies-to-services-too",
+      "text": "Consumer law applies to services too"
+    },
+    {
+      "depth": 2,
+      "id": "bookings-deposits-and-no-shows",
+      "text": "Bookings, deposits and no-shows"
+    },
+    {
+      "depth": 2,
+      "id": "branding-and-marketing-notes",
+      "text": "Branding and marketing notes"
+    },
+    {
+      "depth": 2,
+      "id": "your-checklist",
+      "text": "Your checklist"
+    }
+  ],
+  "id": "business-types/beauty",
+  "kind": "guide",
+  "lang": "en",
+  "order": 4,
+  "readingTime": 4,
+  "related": [
+    "business-types/retail-online",
+    "branding/marketing-prompts"
+  ],
+  "route": "business-types/beauty/",
+  "section": "business-types",
+  "slug": "beauty",
+  "sourcePath": "04 Your kind of business/03-beauty-and-personal-care.md",
+  "sources": {
+    "acts": [
+      "consumer-protection-act-68-of-2008",
+      "businesses-act-71-of-1991",
+      "foodstuffs-cosmetics-and-disinfectants-act-54-of-1972"
+    ],
+    "entries": [
+      "information-regulator-of-south-africa",
+      "businesses-act-71-of-1991"
+    ]
+  },
+  "summary": "Hairdressing, barbering, nails, beauty therapy, lashes, massage, tattooing and piercing: the licence, inspection, insurance and booking rules.",
+  "tags": [
+    "business-types"
+  ],
+  "terms": [
+    {
+      "meaning": "The legal category for hair, beauty, massage and tattoo businesses.",
+      "term": "Health establishment"
+    },
+    {
+      "meaning": "The municipal health inspector.",
+      "term": "EHP"
+    },
+    {
+      "meaning": "Whether your address is allowed to be used for business.",
+      "term": "Zoning"
+    },
+    {
+      "meaning": "Cover for when a treatment harms a client.",
+      "term": "Treatment liability insurance"
+    },
+    {
+      "meaning": "A small skin test before a chemical treatment. Record it.",
+      "term": "Patch test"
+    }
+  ],
+  "title": "Beauty and personal care",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

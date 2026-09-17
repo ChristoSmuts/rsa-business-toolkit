@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "langs": {
+    "af": {
+      "defaultStatus": "machine-unreviewed",
+      "docs": {
+        "start/start-here": { "status": "machine-unreviewed" },
+        "start/how-to-use": { "status": "machine-unreviewed" },
+        "start/how-this-was-made": { "status": "machine-unreviewed" },
+        "start/what-has-changed": { "status": "machine-unreviewed" },
+        "core/start-here": { "status": "machine-unreviewed" },
+        "core/register": { "status": "machine-unreviewed" },
+        "core/tax-and-sars": { "status": "machine-unreviewed" },
+        "core/what-you-need-to-sell-things": { "status": "machine-unreviewed" },
+        "core/vehicles": { "status": "machine-unreviewed" },
+        "core/running-a-pty-ltd": { "status": "machine-unreviewed" },
+        "core/paying-yourself": { "status": "machine-unreviewed" },
+        "core/adding-new-lines": { "status": "machine-unreviewed" },
+        "core/working-from-home-and-safety": { "status": "machine-unreviewed" },
+        "core/you-are-the-business": { "status": "machine-unreviewed" },
+        "branding/already-have-your-name": { "status": "machine-unreviewed" },
+        "branding/branding-prompts": { "status": "machine-unreviewed" },
+        "branding/mood-and-materials": { "status": "machine-unreviewed" },
+        "branding/brand-applications-and-polish": { "status": "machine-unreviewed" },
+        "branding/marketing-prompts": { "status": "machine-unreviewed" },
+        "paperwork/which-template-to-use-when": { "status": "machine-unreviewed" },
+        "paperwork/free-tools": { "status": "machine-unreviewed" },
+        "paperwork/templates/quotation": { "status": "machine-unreviewed" },
+        "paperwork/templates/invoice": { "status": "machine-unreviewed" },
+        "paperwork/templates/tax-invoice": { "status": "machine-unreviewed" },
+        "paperwork/templates/receipt": { "status": "machine-unreviewed" },
+        "paperwork/templates/privacy-notice": { "status": "machine-unreviewed" },
+        "business-types/pick-your-business-type": { "status": "machine-unreviewed" },
+        "business-types/vehicle-dealer": { "status": "machine-unreviewed" },
+        "business-types/food": { "status": "machine-unreviewed" },
+        "business-types/beauty": { "status": "machine-unreviewed" },
+        "business-types/retail-online": { "status": "machine-unreviewed" },
+        "business-types/services-trades": { "status": "machine-unreviewed" },
+        "business-types/professional-creative": { "status": "machine-unreviewed" },
+        "lookup/glossary": { "status": "machine-unreviewed" },
+        "lookup/checklist": { "status": "machine-unreviewed" },
+        "lookup/sources": { "status": "machine-unreviewed" }
+      }
+    }
+  }
+}

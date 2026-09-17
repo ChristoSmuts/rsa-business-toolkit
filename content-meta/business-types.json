@@ -1,0 +1,77 @@
+{
+  "types": [
+    {
+      "id": "vehicle-dealer",
+      "doc": "business-types/vehicle-dealer",
+      "order": 1,
+      "effort": "high",
+      "masterChecklistGroup": "vehicle-dealer",
+      "titles": { "en": "Vehicle dealer", "af": "Voertuighandelaar" }
+    },
+    {
+      "id": "food",
+      "doc": "business-types/food",
+      "order": 2,
+      "effort": "high",
+      "masterChecklistGroup": "food",
+      "titles": { "en": "Food", "af": "Kos" }
+    },
+    {
+      "id": "beauty",
+      "doc": "business-types/beauty",
+      "order": 3,
+      "effort": "medium-high",
+      "masterChecklistGroup": "beauty-and-personal-care",
+      "titles": { "en": "Beauty and personal care", "af": "Skoonheid en persoonlike versorging" }
+    },
+    {
+      "id": "retail-online",
+      "doc": "business-types/retail-online",
+      "order": 4,
+      "effort": "medium",
+      "masterChecklistGroup": "retail-and-online",
+      "titles": { "en": "Retail and online", "af": "Kleinhandel en aanlyn" }
+    },
+    {
+      "id": "services-trades",
+      "doc": "business-types/services-trades",
+      "order": 5,
+      "effort": "low-medium",
+      "masterChecklistGroup": "services-and-trades",
+      "titles": { "en": "Services and trades", "af": "Dienste en ambagte" }
+    },
+    {
+      "id": "professional-creative",
+      "doc": "business-types/professional-creative",
+      "order": 6,
+      "effort": "lowest",
+      "masterChecklistGroup": "professional-and-creative",
+      "titles": { "en": "Professional and creative", "af": "Professioneel en kreatief" }
+    }
+  ],
+  "effortScale": ["lowest", "low-medium", "medium", "medium-high", "high"],
+  "pickTable": {
+    "heading": "how-much-regulation-each-type-carries",
+    "rows": {
+      "Professional and creative": "professional-creative",
+      "Services and trades": "services-trades",
+      "Retail and online": "retail-online",
+      "Beauty and personal care": "beauty",
+      "Food": "food",
+      "Vehicle dealing": "vehicle-dealer"
+    },
+    "effortLabels": {
+      "Lowest": "lowest",
+      "Low to medium": "low-medium",
+      "Medium": "medium",
+      "Medium to high": "medium-high",
+      "High": "high"
+    }
+  },
+  "presets": {
+    "general": {
+      "expandsTo": ["retail-online", "services-trades", "professional-creative"],
+      "requireExplicit": ["vehicle-dealer", "food", "beauty"]
+    }
+  }
+}

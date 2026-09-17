@@ -1,0 +1,579 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The core files in "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " apply to everyone. This folder adds the rules that apply only to your kind of business."
+        }
+      ],
+      "hash": "de5b21f17475270c",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Find yourself in the table, then open that file."
+        }
+      ],
+      "hash": "1bdbb369b84d47d8",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "7010f8a82d67d87e",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "If you..."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Open"
+          }
+        ]
+      ],
+      "id": "intro.3",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Buy and sell vehicles"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Vehicle dealer"
+                }
+              ],
+              "doc": "business-types/vehicle-dealer",
+              "t": "link"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Make, cook, package or sell food or drinks"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Food business"
+                }
+              ],
+              "doc": "business-types/food",
+              "t": "link"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Do hair, nails, beauty, massage, tattoos or piercings"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Beauty and personal care"
+                }
+              ],
+              "doc": "business-types/beauty",
+              "t": "link"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Sell physical products, in a shop, at markets, or online"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Retail and online shop"
+                }
+              ],
+              "doc": "business-types/retail-online",
+              "t": "link"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Fix, build, install, clean or deliver"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Services and trades"
+                }
+              ],
+              "doc": "business-types/services-trades",
+              "t": "link"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Sell your skill or your time: design, consulting, coding, tutoring, writing, photography"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Professional and creative work"
+                }
+              ],
+              "doc": "business-types/professional-creative",
+              "t": "link"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If two files apply to you, read both. A food truck is a food business and a vehicle owner. An online clothing brand is retail and online."
+        }
+      ],
+      "hash": "e3437a8dd389e3dc",
+      "id": "intro.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How much regulation each type carries"
+        }
+      ],
+      "depth": 2,
+      "hash": "e826feb4cb916579",
+      "id": "how-much-regulation-each-type-carries",
+      "kind": "heading",
+      "text": "How much regulation each type carries"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is a rough guide to how much setup work to expect before you can legally trade."
+        }
+      ],
+      "hash": "dc6bc8f24c2f3473",
+      "id": "how-much-regulation-each-type-carries.1",
+      "kind": "paragraph"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "42adedfbddc5826d",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Business type"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Setup effort"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Main reason"
+          }
+        ]
+      ],
+      "id": "how-much-regulation-each-type-carries.2",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Professional and creative"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Lowest"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Usually no licence at all"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Services and trades"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Low to medium"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Some trades need professional registration"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Retail and online"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Medium"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Consumer law, and product rules for some goods"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Beauty and personal care"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Medium to high"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Health inspection and municipal licence"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Food"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "High"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Certificate of Acceptability, training, inspections"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Vehicle dealing"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "High"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Three separate registration layers"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you are choosing between business ideas and money is tight, the left column of this table is worth reading as a cost comparison. A food business can take two to six months before it may legally open. A consulting business can invoice tomorrow."
+        }
+      ],
+      "hash": "1b40b778e4800b98",
+      "id": "how-much-regulation-each-type-carries.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What everyone needs, regardless of type"
+        }
+      ],
+      "depth": 2,
+      "hash": "1e50218f1338e26b",
+      "id": "what-everyone-needs-regardless-of-type",
+      "kind": "heading",
+      "text": "What everyone needs, regardless of type"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "From "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ":"
+        }
+      ],
+      "hash": "39c05a2f18397156",
+      "id": "what-everyone-needs-regardless-of-type.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "ccde106bd324adbf",
+      "id": "what-everyone-needs-regardless-of-type.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "A separate bank account for business money"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "SARS registration and filing, even at zero income"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "POPIA information officer registration, free, at "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "inforegulator.org.za"
+              }
+            ],
+            "external": true,
+            "href": "https://inforegulator.org.za/",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Honest advertising and Consumer Protection Act compliance"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Records kept for five years"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What nobody needs on day one"
+        }
+      ],
+      "depth": 2,
+      "hash": "4ba05e7f66862cc2",
+      "id": "what-nobody-needs-on-day-one",
+      "kind": "heading",
+      "text": "What nobody needs on day one"
+    },
+    {
+      "hash": "271ba8d70ca1c3cc",
+      "id": "what-nobody-needs-on-day-one.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "A registered company, unless a customer demands it"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "VAT registration, unless turnover passes R2.3 million or the maths favours it"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A paid B-BBEE certificate, since the affidavit is free under R10 million turnover"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A business plan, unless you are asking someone for money"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A website, before you have customers"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    }
+  ],
+  "contentHash": "1ccca76ed9195706",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Pick your business type",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "how-much-regulation-each-type-carries",
+      "text": "How much regulation each type carries"
+    },
+    {
+      "depth": 2,
+      "id": "what-everyone-needs-regardless-of-type",
+      "text": "What everyone needs, regardless of type"
+    },
+    {
+      "depth": 2,
+      "id": "what-nobody-needs-on-day-one",
+      "text": "What nobody needs on day one"
+    }
+  ],
+  "id": "business-types/pick-your-business-type",
+  "kind": "guide",
+  "lang": "en",
+  "order": 1,
+  "readingTime": 2,
+  "related": [
+    "business-types/vehicle-dealer",
+    "business-types/food",
+    "business-types/beauty",
+    "business-types/retail-online",
+    "business-types/services-trades"
+  ],
+  "route": "business-types/",
+  "section": "business-types",
+  "slug": "pick-your-business-type",
+  "sourcePath": "04 Your kind of business/00-pick-your-business-type.md",
+  "sources": {
+    "acts": [
+      "consumer-protection-act-68-of-2008"
+    ],
+    "entries": [
+      "sars--what-is-the-new-threshold-for-vat-registration",
+      "b-bbee-commission--frequently-asked-questions",
+      "information-regulator-of-south-africa",
+      "asc-food-safety"
+    ]
+  },
+  "summary": "Find your kind of business in one table, see how much setup work each type carries, and what everyone needs regardless of type.",
+  "tags": [
+    "business-types"
+  ],
+  "terms": [],
+  "title": "Pick your business type",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

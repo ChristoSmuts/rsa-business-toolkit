@@ -1,0 +1,891 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is for you if your business name is already settled — registered at CIPC, or simply decided and in use — and you know what you want to trade as."
+        }
+      ],
+      "hash": "28d00357987d24ea",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Branding prompts"
+            }
+          ],
+          "doc": "branding/branding-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " assumes you are starting from nothing. You are not. This tells you which parts to skip, which parts you still need, and the three checks that are still worth doing even though the name is chosen."
+        }
+      ],
+      "hash": "f99f1ec785eb6d6f",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The short answer"
+        }
+      ],
+      "depth": 2,
+      "hash": "af31a779f739eba8",
+      "id": "the-short-answer",
+      "kind": "heading",
+      "text": "The short answer"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "8dec49055fb60e38",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Step"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "You"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Why"
+          }
+        ]
+      ],
+      "id": "the-short-answer.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Prompt 0: the brief"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Still do it"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Everything downstream is built on it. Do not skip."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Prompt 1: one-sentence description"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Still do it"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Your name does not explain what you do. This sentence does."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Prompt 2: competitor scan"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Modified"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Use the version below. You need the visual half, not the naming half."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Prompt 3: the name"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Skip"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Already decided."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Prompt 4: tagline"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Maybe"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Only if your name does not say what you do. See below."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Prompt 5: logo direction"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Still do it"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "This is where your real work starts."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Prompt 6: make the logo"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Still do it"
+            }
+          ],
+          []
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Prompt 7: colours and type"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Still do it"
+            }
+          ],
+          []
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Prompt 8: photography"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Still do it"
+            }
+          ],
+          []
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Prompt 9: voice"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Still do it"
+            }
+          ],
+          []
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Prompt 10: about paragraph"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Still do it"
+            }
+          ],
+          []
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Prompt 11: brand guide"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Still do it"
+            }
+          ],
+          []
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "So: skip one prompt, modify one, do the other nine. Open "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Branding prompts"
+            }
+          ],
+          "doc": "branding/branding-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " and work through it, jumping past Prompt 3."
+        }
+      ],
+      "hash": "f97abad21864c29e",
+      "id": "the-short-answer.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Three checks still worth doing"
+        }
+      ],
+      "depth": 2,
+      "hash": "654821be573f7174",
+      "id": "three-checks-still-worth-doing",
+      "kind": "heading",
+      "text": "Three checks still worth doing"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A registered company name is not the same as owning a brand. These take twenty minutes."
+        }
+      ],
+      "hash": "2794ceb2170e9131",
+      "id": "three-checks-still-worth-doing.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "1. The domain and the handles."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Check your trading name at two or three South African domain sellers, and on Instagram, Facebook and TikTok. If they are taken, you do not have to change your name, but you need to know now, before it goes on a vehicle. You may end up trading as \"Mokoena Motors\" with the domain mokoenamotors.co.za taken and mokoenamotorssa.co.za free. Decide that before you print."
+        }
+      ],
+      "hash": "9d64b834598d67bf",
+      "id": "three-checks-still-worth-doing.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "2. The trade mark."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Search the CIPC trade marks database for your trading name in your class of goods or services."
+        }
+      ],
+      "hash": "fec216528aad709e",
+      "id": "three-checks-still-worth-doing.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A CIPC company name protects nothing in the market. It stops another company registering the same company name. It does not stop anyone trading under your brand, and it does not stop someone else trade-marking it and objecting to you."
+        }
+      ],
+      "hash": "4fe1f6a9611b1193",
+      "id": "three-checks-still-worth-doing.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You do not need to register a trade mark in year one. You do need to know whether someone else already holds one."
+        }
+      ],
+      "hash": "b096fbd68779924f",
+      "id": "three-checks-still-worth-doing.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "3. Say it out loud."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Say the trading name to a native speaker of every language your customers use, and ask what it sounds like to them. Do this even if the name is already registered. It is cheaper to find out now than after the signage."
+        }
+      ],
+      "hash": "09fa6f73b8823124",
+      "id": "three-checks-still-worth-doing.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If the name is registered but you are having second thoughts"
+        }
+      ],
+      "depth": 2,
+      "hash": "bcde209b13abb81e",
+      "id": "if-the-name-is-registered-but-you-are-having-second-thoughts",
+      "kind": "heading",
+      "text": "If the name is registered but you are having second thoughts"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Changing a registered company name at CIPC is possible and not expensive. But it is usually unnecessary, because the registered name and the trading name are two different things."
+        }
+      ],
+      "hash": "ae167a4d6eed347e",
+      "id": "if-the-name-is-registered-but-you-are-having-second-thoughts.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You can register as one thing and trade as another. \"Mokoena Holdings (Pty) Ltd\" can trade as \"Mokoena Motors\" and later add \"Mokoena Solar\", with no name change at CIPC."
+        }
+      ],
+      "hash": "d427b00bd4b3f946",
+      "id": "if-the-name-is-registered-but-you-are-having-second-thoughts.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Full detail, including when a name change is worth it, is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Adding new lines of business"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "9db1ed42d71e1409",
+      "id": "if-the-name-is-registered-but-you-are-having-second-thoughts.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The rule that applies to you because the name is registered"
+        }
+      ],
+      "depth": 2,
+      "hash": "05e07c8349c1e7ea",
+      "id": "the-rule-that-applies-to-you-because-the-name-is-registered",
+      "kind": "heading",
+      "text": "The rule that applies to you because the name is registered"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Section 32 of the Companies Act requires the company's registered name and registration number on all its documents: invoices, receipts, delivery notes, letters, orders and notices, including emails and your website."
+        }
+      ],
+      "hash": "c9960646b91948a2",
+      "id": "the-rule-that-applies-to-you-because-the-name-is-registered.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "So if you market under a trading name, show both:"
+        }
+      ],
+      "hash": "250595acb39d5d00",
+      "id": "the-rule-that-applies-to-you-because-the-name-is-registered.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "4d5040d95389165c",
+      "id": "the-rule-that-applies-to-you-because-the-name-is-registered.3",
+      "kind": "code",
+      "text": "MOKOENA MOTORS\nA trading name of Mokoena Holdings (Pty) Ltd | Reg. No. 2026/123456/07",
+      "variant": "example"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The templates in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Which template to use when"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " have a place for this. For a company it is not optional."
+        }
+      ],
+      "hash": "55c721cc9119ebee",
+      "id": "the-rule-that-applies-to-you-because-the-name-is-registered.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do you need a tagline?"
+        }
+      ],
+      "depth": 2,
+      "hash": "007a3dcf4e5b7e1a",
+      "id": "do-you-need-a-tagline",
+      "kind": "heading",
+      "text": "Do you need a tagline?"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Only if your name does not explain what you do."
+        }
+      ],
+      "hash": "9f440c90adee7fa7",
+      "id": "do-you-need-a-tagline.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "\"Mokoena Plumbing\" needs no tagline. \"Kumba\" does. \"Clipboard Motors\" does, because the name is memorable but not self-explanatory."
+        }
+      ],
+      "hash": "e4d83f285b42aaf2",
+      "id": "do-you-need-a-tagline.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you need one, run Prompt 4 in the main branding file. If your name already says the trade, skip it and put the space to better use."
+        }
+      ],
+      "hash": "88395ae17db2604b",
+      "id": "do-you-need-a-tagline.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Modified Prompt 2: competitor scan, visual only"
+        }
+      ],
+      "depth": 2,
+      "hash": "493d5bb376c0fb99",
+      "id": "modified-prompt-2-competitor-scan-visual-only",
+      "kind": "heading",
+      "text": "Modified Prompt 2: competitor scan, visual only"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The original Prompt 2 asks about naming patterns, which you no longer need. Use this version instead. It does the same job for the visual side and adds one thing the original does not: whether your existing name suits the directions you are considering."
+        }
+      ],
+      "hash": "e6c92e1ab1155437",
+      "id": "modified-prompt-2-competitor-scan-visual-only.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "97e482b418d30a65",
+      "id": "modified-prompt-2-competitor-scan-visual-only.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE YOUR BRAND BRIEF"
+        },
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "NAME"
+        },
+        {
+          "key": "tradingName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "TRADING NAME, if different"
+        },
+        {
+          "key": "town",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "TOWN/CITY"
+        },
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BUSINESS TYPE"
+        }
+      ],
+      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF]\n\nMy business name is already decided: [NAME]\nI trade as: [TRADING NAME, if different]\n\nI am not changing the name. Do not suggest alternatives.\n\nI want to understand what branding already exists in my market in\n[TOWN/CITY], South Africa, for [BUSINESS TYPE].\n\nBased on what is typical for this kind of business in South Africa,\ndescribe:\n\n1. The colours most competitors in this trade use, and why\n2. The logo styles they use\n3. The claims they all make\n4. The three most common visual clichés in this industry\n\nBe clear that this is your general knowledge of the industry, not a\nsurvey of my actual town. I will check real competitors myself.\n\nThen answer two questions about my existing name:\n\n5. What does my name already suggest visually? Does it point to a\n   picture, a letter shape, or nothing in particular?\n6. Is there anything about my name that would work against me visually:\n   too long for a vehicle door, hard to set in type, easily confused\n   with a competitor, or awkward at small sizes? Be honest.\n\nThen give me 5 specific ways I could look deliberately different from\nthe rest of the trade, without looking unprofessional and without\nchanging the name. For each, say what the risk of that choice is.\n\nNumber the 5 ways 1 to 5. Then tell me which is weakest and why.\nThen stop.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Question 6 is the useful one. A name you cannot change is a constraint the logo has to work around, and it is better to know about it before you choose a direction than after."
+        }
+      ],
+      "hash": "1baa23aa796bcf5f",
+      "id": "modified-prompt-2-competitor-scan-visual-only.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Then check reality yourself. Search your trade plus your town on Google and Facebook and look at ten competitors. Note their colours. Paste what you find into Prompt 5."
+        }
+      ],
+      "hash": "367a65c35363419e",
+      "id": "modified-prompt-2-competitor-scan-visual-only.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Where to go next"
+        }
+      ],
+      "depth": 2,
+      "hash": "a562d24ed79df7ba",
+      "id": "where-to-go-next",
+      "kind": "heading",
+      "text": "Where to go next"
+    },
+    {
+      "hash": "0623d147e6d58f5d",
+      "id": "where-to-go-next.1",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Branding prompts"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — Prompt 0, Prompt 1, the modified Prompt 2 above"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Mood and materials (use after Prompt 4)"
+              }
+            ],
+            "doc": "branding/mood-and-materials",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — settle the mood before the logo"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Branding prompts"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — Prompt 5 onwards"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Brand applications and polish"
+              }
+            ],
+            "doc": "branding/brand-applications-and-polish",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — the files you need and the quality tests"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Marketing prompts"
+              }
+            ],
+            "doc": "branding/marketing-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — Google Business Profile and WhatsApp Business"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you have not yet decided whether you needed the company at all, or you registered one and are unsure what it now costs you, read "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Register: what you actually need"
+            }
+          ],
+          "doc": "core/register",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "60dca965e4a3fb61",
+      "id": "where-to-go-next.2",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "017c88798bb860c5",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Already have your name? Start here",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "the-short-answer",
+      "text": "The short answer"
+    },
+    {
+      "depth": 2,
+      "id": "three-checks-still-worth-doing",
+      "text": "Three checks still worth doing"
+    },
+    {
+      "depth": 2,
+      "id": "if-the-name-is-registered-but-you-are-having-second-thoughts",
+      "text": "If the name is registered but you are having second thoughts"
+    },
+    {
+      "depth": 2,
+      "id": "the-rule-that-applies-to-you-because-the-name-is-registered",
+      "text": "The rule that applies to you because the name is registered"
+    },
+    {
+      "depth": 2,
+      "id": "do-you-need-a-tagline",
+      "text": "Do you need a tagline?"
+    },
+    {
+      "depth": 2,
+      "id": "modified-prompt-2-competitor-scan-visual-only",
+      "text": "Modified Prompt 2: competitor scan, visual only"
+    },
+    {
+      "depth": 2,
+      "id": "where-to-go-next",
+      "text": "Where to go next"
+    }
+  ],
+  "id": "branding/already-have-your-name",
+  "kind": "guide",
+  "lang": "en",
+  "order": 1,
+  "readingTime": 6,
+  "related": [
+    "branding/branding-prompts",
+    "core/adding-new-lines",
+    "paperwork/which-template-to-use-when",
+    "branding/mood-and-materials",
+    "branding/brand-applications-and-polish"
+  ],
+  "route": "branding/already-have-your-name/",
+  "section": "branding",
+  "slug": "already-have-your-name",
+  "sourcePath": "02 Branding and marketing/00-already-have-your-name.md",
+  "sources": {
+    "acts": [
+      "companies-act-71-of-2008"
+    ],
+    "entries": [
+      "cipc-trade-mark-search"
+    ]
+  },
+  "summary": "This is for you if your business name is already settled — registered at CIPC, or simply decided and in use — and you know what you want to trade as.",
+  "tags": [
+    "prompts"
+  ],
+  "terms": [],
+  "title": "Already have your name (shortcut)",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

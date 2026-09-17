@@ -1,0 +1,3185 @@
+{
+  "acts": [
+    {
+      "appearsIn": [
+        "core/tax-and-sars"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Income tax, provisional tax, turnover tax (Sixth Schedule), small business corporations (s12E), assessed loss ring-fencing (s20A)"
+        }
+      ],
+      "id": "income-tax-act-58-of-1962",
+      "name": "Income Tax Act 58 of 1962"
+    },
+    {
+      "appearsIn": [
+        "core/tax-and-sars",
+        "paperwork/which-template-to-use-when",
+        "business-types/vehicle-dealer"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "VAT registration, tax invoices (s20), notional input tax on second-hand goods (s20(8))"
+        }
+      ],
+      "id": "value-added-tax-act-89-of-1991",
+      "name": "Value-Added Tax Act 89 of 1991"
+    },
+    {
+      "appearsIn": [
+        "core/register"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Company registration, directors, annual returns, beneficial ownership"
+        }
+      ],
+      "id": "companies-act-71-of-2008",
+      "name": "Companies Act 71 of 2008"
+    },
+    {
+      "appearsIn": [
+        "core/what-you-need-to-sell-things",
+        "business-types/vehicle-dealer",
+        "business-types/food",
+        "business-types/beauty",
+        "business-types/retail-online",
+        "business-types/services-trades",
+        "business-types/professional-creative"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Consumer rights, implied warranty of quality (s55, s56), plain language, cancellation (s16, s17)"
+        }
+      ],
+      "id": "consumer-protection-act-68-of-2008",
+      "name": "Consumer Protection Act 68 of 2008"
+    },
+    {
+      "appearsIn": [
+        "core/what-you-need-to-sell-things",
+        "business-types/retail-online"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Online selling: disclosure (s43), cooling-off (s44), performance (s46), scope (s42)"
+        }
+      ],
+      "id": "electronic-communications-and-transactions-act-25-of-2002",
+      "name": "Electronic Communications and Transactions Act 25 of 2002"
+    },
+    {
+      "appearsIn": [
+        "core/register",
+        "paperwork/which-template-to-use-when"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Data protection, information officer registration (s55)"
+        }
+      ],
+      "id": "protection-of-personal-information-act-4-of-2013",
+      "name": "Protection of Personal Information Act 4 of 2013"
+    },
+    {
+      "appearsIn": [
+        "core/what-you-need-to-sell-things",
+        "business-types/food",
+        "business-types/beauty"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Municipal trading licences for food, health and entertainment businesses"
+        }
+      ],
+      "id": "businesses-act-71-of-1991",
+      "name": "Businesses Act 71 of 1991"
+    },
+    {
+      "appearsIn": [
+        "business-types/food",
+        "business-types/beauty"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Food hygiene (R638 of 2018), food labelling (R146 of 2012), cosmetics"
+        }
+      ],
+      "id": "foodstuffs-cosmetics-and-disinfectants-act-54-of-1972",
+      "name": "Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972"
+    },
+    {
+      "appearsIn": [
+        "business-types/vehicle-dealer",
+        "business-types/retail-online"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Dealer registration with SAPS, transaction registers, motor vehicle records"
+        }
+      ],
+      "id": "second-hand-goods-act-6-of-2009",
+      "name": "Second-Hand Goods Act 6 of 2009"
+    },
+    {
+      "appearsIn": [
+        "core/vehicles",
+        "business-types/vehicle-dealer"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Vehicle registration, business register numbers, motor trade numbers, roadworthiness"
+        }
+      ],
+      "id": "national-road-traffic-act-93-of-1996",
+      "name": "National Road Traffic Act 93 of 1996"
+    },
+    {
+      "appearsIn": [
+        "business-types/vehicle-dealer"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Credit provider registration with the NCR"
+        }
+      ],
+      "id": "national-credit-act-34-of-2005",
+      "name": "National Credit Act 34 of 2005"
+    },
+    {
+      "appearsIn": [
+        "business-types/vehicle-dealer",
+        "business-types/professional-creative"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "FSP licensing for financial products and advice"
+        }
+      ],
+      "id": "financial-advisory-and-intermediary-services-act-37-of-2002",
+      "name": "Financial Advisory and Intermediary Services Act 37 of 2002"
+    },
+    {
+      "appearsIn": [
+        "core/register"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "EME and QSE thresholds, sworn affidavits"
+        }
+      ],
+      "id": "broad-based-black-economic-empowerment-act-53-of-2003",
+      "name": "Broad-Based Black Economic Empowerment Act 53 of 2003"
+    },
+    {
+      "appearsIn": [
+        "business-types/services-trades"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Workplace and construction safety duties"
+        }
+      ],
+      "id": "occupational-health-and-safety-act-85-of-1993",
+      "name": "Occupational Health and Safety Act 85 of 1993"
+    }
+  ],
+  "checkedOn": "2026-09-13",
+  "doc": "lookup/sources",
+  "entries": [
+    {
+      "block": "tax-and-sars.1",
+      "group": "Tax and SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--turnover-tax",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "micro business qualification, the R2.3 million threshold for years of assessment ending between 1 March 2026 and 28 February 2027, reduced record-keeping."
+        }
+      ],
+      "title": "SARS — Turnover Tax",
+      "type": "web",
+      "url": "https://www.sars.gov.za/types-of-tax/turnover-tax/",
+      "urls": [
+        "https://www.sars.gov.za/types-of-tax/turnover-tax/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.2",
+      "group": "Tax and SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--budget-2026-frequently-asked-questions",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "turnover tax threshold increase to R2.3 million; turnover tax replacing income tax, VAT, provisional tax, capital gains tax and dividends tax; VAT thresholds of R2.3 million compulsory and R120,000 voluntary from 1 April 2026; SARS interest rate of 10.25% on late payment from 2 March 2026."
+        }
+      ],
+      "title": "SARS — Budget 2026 Frequently Asked Questions",
+      "type": "web",
+      "url": "https://www.sars.gov.za/about/sars-tax-and-customs-system/budget/budget-2026-frequently-asked-questions/",
+      "urls": [
+        "https://www.sars.gov.za/about/sars-tax-and-customs-system/budget/budget-2026-frequently-asked-questions/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.3",
+      "group": "Tax and SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--what-is-the-new-threshold-for-vat-registration",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "compulsory VAT registration threshold rose from R1 million to R2.3 million on 1 April 2026."
+        }
+      ],
+      "title": "SARS — What is the new threshold for VAT registration?",
+      "type": "web",
+      "url": "https://www.sars.gov.za/faq/what-is-the-new-threshold-for-vat-registration/",
+      "urls": [
+        "https://www.sars.gov.za/faq/what-is-the-new-threshold-for-vat-registration/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.4",
+      "group": "Tax and SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--tax-calendar",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "IRP6 dates of 31 August, 28 February and 30 September; EMP201 due by the 7th of the following month or the business day before if the 7th falls on a weekend or public holiday; EMP501 interim season 1 September to 31 October and annual season 1 April to 31 May."
+        }
+      ],
+      "title": "SARS — Tax calendar",
+      "type": "web",
+      "url": "https://www.sars.gov.za/individuals/i-need-help-with-my-tax/calendar/",
+      "urls": [
+        "https://www.sars.gov.za/individuals/i-need-help-with-my-tax/calendar/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.6",
+      "group": "Tax and SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--guide-to-provisional-tax",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "two provisional payments per year, the optional third top-up payment, and that a nil IRP6 can still be submitted."
+        }
+      ],
+      "title": "SARS — Guide to Provisional Tax",
+      "type": "web",
+      "url": "https://www.sars.gov.za/guide-to-provisional-tax/",
+      "urls": [
+        "https://www.sars.gov.za/guide-to-provisional-tax/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.7",
+      "group": "Tax and SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--tax-invoice-checklist",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the seven criteria for a full tax invoice above R5,000 and the five criteria for an abridged tax invoice between R50 and R5,000."
+        }
+      ],
+      "title": "SARS — Tax Invoice Checklist",
+      "type": "web",
+      "url": "https://www.sars.gov.za/wp-content/uploads/Docs/Government/Tax-Invoice-Checklist-Version-2-29032016.pdf",
+      "urls": [
+        "https://www.sars.gov.za/wp-content/uploads/Docs/Government/Tax-Invoice-Checklist-Version-2-29032016.pdf"
+      ]
+    },
+    {
+      "block": "tax-and-sars.8",
+      "group": "Tax and SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--vat-420-guide-for-motor-dealers",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "notional input tax calculation for motor dealers, the VAT264 requirement, and Binding General Ruling 12 on over-allowances. Read this in full before registering a dealership for VAT."
+        }
+      ],
+      "title": "SARS — VAT 420 Guide for Motor Dealers",
+      "type": "web",
+      "url": "https://www.sars.gov.za/wp-content/uploads/Ops/Guides/Legal-Pub-Guide-VAT420-VAT-420-Guide-for-Motor-Dealers.pdf",
+      "urls": [
+        "https://www.sars.gov.za/wp-content/uploads/Ops/Guides/Legal-Pub-Guide-VAT420-VAT-420-Guide-for-Motor-Dealers.pdf"
+      ]
+    },
+    {
+      "block": "tax-and-sars.9",
+      "group": "Tax and SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--vat-connect-issue-20-october-2025",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the worked notional input tax example (R115,000 purchase, R15,000 notional input, R3,000 VAT on a R20,000 margin)."
+        }
+      ],
+      "title": "SARS — VAT Connect Issue 20, October 2025",
+      "type": "web",
+      "url": "https://www.sars.gov.za/businesses-and-employers/my-business-and-tax/vat-connect-issue-20-october-2025/",
+      "urls": [
+        "https://www.sars.gov.za/businesses-and-employers/my-business-and-tax/vat-connect-issue-20-october-2025/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.10",
+      "group": "Tax and SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--vat-264-declaration-for-the-supply-of-second-hand-goods",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the declaration form required from both buyer and seller for a notional input tax claim."
+        }
+      ],
+      "title": "SARS — VAT 264 declaration for the supply of second-hand goods",
+      "type": "web",
+      "url": "https://www.sars.gov.za/wp-content/uploads/Docs/VAT/VAT-264-declaration-for-the-supply-of-second-hand-goods-external-form.pdf",
+      "urls": [
+        "https://www.sars.gov.za/wp-content/uploads/Docs/VAT/VAT-264-declaration-for-the-supply-of-second-hand-goods-external-form.pdf"
+      ]
+    },
+    {
+      "block": "tax-and-sars.12",
+      "group": "Tax and SARS",
+      "groupId": "tax-and-sars",
+      "id": "xero-za-sars-tax-tables-20262027",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "tax thresholds of R99,000 (under 65), R153,250 (65 to 74), R171,300 (75+); retirement contribution cap of R430,000."
+        }
+      ],
+      "title": "Xero ZA, SARS Tax Tables 2026/2027",
+      "type": "web",
+      "url": "https://www.xero.com/za/guides/sars-tax-tables-2026/",
+      "urls": [
+        "https://www.xero.com/za/guides/sars-tax-tables-2026/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.12",
+      "group": "Tax and SARS",
+      "groupId": "tax-and-sars",
+      "id": "sait-turnover-tax-vs-sbc",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "worked example of R800,000 turnover producing R2,000 turnover tax."
+        }
+      ],
+      "title": "SAIT, Turnover Tax vs SBC",
+      "type": "web",
+      "url": "https://thesait.org.za/small-business-tax-in-south-africa-turnover-tax-vs-sbc/",
+      "urls": [
+        "https://thesait.org.za/small-business-tax-in-south-africa-turnover-tax-vs-sbc/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.12",
+      "group": "Tax and SARS",
+      "groupId": "tax-and-sars",
+      "id": "cliffe-dekker-hofmeyr-2026-budget-summary-vat",
+      "item": 2,
+      "official": false,
+      "title": "Cliffe Dekker Hofmeyr, 2026 Budget summary VAT",
+      "type": "web",
+      "url": "https://www.cliffedekkerhofmeyr.com/en/news/publications/2026/South-Africa/Tax-Exchange-Control/Tax-and-Exchange-Control-25-February-2026-Budget-summary-VAT",
+      "urls": [
+        "https://www.cliffedekkerhofmeyr.com/en/news/publications/2026/South-Africa/Tax-Exchange-Control/Tax-and-Exchange-Control-25-February-2026-Budget-summary-VAT"
+      ]
+    },
+    {
+      "block": "company-registration.1",
+      "group": "Company registration",
+      "groupId": "company-registration",
+      "id": "bizportal-cipc--company-registration",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "R125 private company registration, R50 for one to four proposed names, automatic tax registration, registration-number-as-name option."
+        }
+      ],
+      "title": "BizPortal (CIPC) — Company registration",
+      "type": "web",
+      "url": "https://www.bizportal.gov.za/company_reg.aspx",
+      "urls": [
+        "https://www.bizportal.gov.za/company_reg.aspx"
+      ]
+    },
+    {
+      "block": "company-registration.2",
+      "group": "Company registration",
+      "groupId": "company-registration",
+      "id": "cipc",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "registration fee range of R125 to R475 depending on company type."
+        }
+      ],
+      "title": "CIPC",
+      "type": "web",
+      "url": "https://www.cipc.co.za/",
+      "urls": [
+        "https://www.cipc.co.za/"
+      ]
+    },
+    {
+      "block": "company-registration.4",
+      "group": "Company registration",
+      "groupId": "company-registration",
+      "id": "govchain-how-to-register-a-company-directly-with-cipc",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the R175 total, the CoR 14.3 and MOI arriving by email, and the Home Affairs ID check failing on a single wrong digit."
+        }
+      ],
+      "title": "Govchain, How to register a company directly with CIPC",
+      "type": "web",
+      "url": "https://www.govchain.co.za/blog/how-to-register-a-company-directly-with-cipc",
+      "urls": [
+        "https://www.govchain.co.za/blog/how-to-register-a-company-directly-with-cipc"
+      ]
+    },
+    {
+      "block": "company-registration.4",
+      "group": "Company registration",
+      "groupId": "company-registration",
+      "id": "smartbook-cost-to-register-a-company",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the realistic first-year and ongoing compliance cost estimates. Treat these as one firm's estimate, not a fixed figure."
+        }
+      ],
+      "title": "Smartbook, cost to register a company",
+      "type": "web",
+      "url": "https://www.smartbookie.co.za/blog/cost-to-register-a-company-south-africa",
+      "urls": [
+        "https://www.smartbookie.co.za/blog/cost-to-register-a-company-south-africa"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.1",
+      "group": "Running a Pty Ltd: annual returns, financial statements, directors",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "cipc--annual-returns-filing-system",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Where annual returns are filed. You need a CIPC customer code."
+        }
+      ],
+      "supportsFrom": "note",
+      "title": "CIPC — Annual Returns filing system",
+      "type": "web",
+      "url": "https://annualreturns.cipc.co.za",
+      "urls": [
+        "https://annualreturns.cipc.co.za"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.2",
+      "group": "Running a Pty Ltd: annual returns, financial statements, directors",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "cipc--financial-statements-and-independent-reviews",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "which companies require an audit, which require an independent review, and the role of the Public Interest Score and of internal versus independent compilation."
+        }
+      ],
+      "title": "CIPC — Financial statements and independent reviews",
+      "type": "web",
+      "url": "https://www.cipc.co.za/?page_id=11891",
+      "urls": [
+        "https://www.cipc.co.za/?page_id=11891"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.3",
+      "group": "Running a Pty Ltd: annual returns, financial statements, directors",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "saica--independent-reviews",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "independent reviews are not required for owner-managed profit companies, and who may perform a review at each PIS level."
+        }
+      ],
+      "title": "SAICA — Independent Reviews",
+      "type": "web",
+      "url": "https://www.saica.org.za/resources/audit-and-assurance/technical-resource/video-and-recording/other-assurance-and-related-services/independent-reviews/",
+      "urls": [
+        "https://www.saica.org.za/resources/audit-and-assurance/technical-resource/video-and-recording/other-assurance-and-related-services/independent-reviews/"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
+      "group": "Running a Pty Ltd: annual returns, financial statements, directors",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "govchain-company-annual-returns",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the 30-business-day window from the incorporation anniversary, and that fees are legislated under table CR 2B."
+        }
+      ],
+      "title": "Govchain, Company annual returns",
+      "type": "web",
+      "url": "https://www.govchain.co.za/services/company-annual-returns",
+      "urls": [
+        "https://www.govchain.co.za/services/company-annual-returns"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
+      "group": "Running a Pty Ltd: annual returns, financial statements, directors",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "admin-boss",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the R100 to R3,000 on-time fee range and R150 to R4,000 late range, and the SARS deregistration sequence and timeline estimate."
+        }
+      ],
+      "title": "Admin Boss",
+      "type": "web",
+      "url": "https://www.adminboss.co.za/cipc-compliance-south-africa-annual-returns-beneficial-ownership-sars-deregistration/",
+      "urls": [
+        "https://www.adminboss.co.za/cipc-compliance-south-africa-annual-returns-beneficial-ownership-sars-deregistration/"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
+      "group": "Running a Pty Ltd: annual returns, financial statements, directors",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "ourpower",
+      "item": 2,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the beneficial ownership hard stop since 1 July 2024, the two-year deregistration trigger, and the difference in cost between AR reinstatement and final-deregistration reinstatement."
+        }
+      ],
+      "title": "OurPower",
+      "type": "web",
+      "url": "https://www.ourpower.co.za/tools/company-registration/annual-return-cipc-explained",
+      "urls": [
+        "https://www.ourpower.co.za/tools/company-registration/annual-return-cipc-explained"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
+      "group": "Running a Pty Ltd: annual returns, financial statements, directors",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "thrivecfo",
+      "item": 3,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "consequences of deregistration including bona vacantia, and form CoR 40.5 reinstatement."
+        }
+      ],
+      "title": "ThriveCFO",
+      "type": "web",
+      "url": "https://thrivecfo.co.za/cipc-annual-returns-avoid-deregistration-2026/",
+      "urls": [
+        "https://thrivecfo.co.za/cipc-annual-returns-avoid-deregistration-2026/"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
+      "group": "Running a Pty Ltd: annual returns, financial statements, directors",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "clearcomply-public-interest-score",
+      "item": 4,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the owner-managed boundary, and why one non-director shareholder changes the obligation."
+        }
+      ],
+      "title": "ClearComply, Public Interest Score",
+      "type": "web",
+      "url": "https://www.clearcomply.co.za/blog/public-interest-score-south-africa",
+      "urls": [
+        "https://www.clearcomply.co.za/blog/public-interest-score-south-africa"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
+      "group": "Running a Pty Ltd: annual returns, financial statements, directors",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "cfo360-pis-calculator",
+      "item": 5,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "how the points are counted and the under-100 owner-managed exemption."
+        }
+      ],
+      "title": "CFO360, PIS calculator",
+      "type": "web",
+      "url": "https://cfo360.co.za/public-interest-score-calculator/",
+      "urls": [
+        "https://cfo360.co.za/public-interest-score-calculator/"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
+      "group": "Running a Pty Ltd: annual returns, financial statements, directors",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "elyforma",
+      "item": 6,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the Financial Accountability Supplement alternative to statements."
+        }
+      ],
+      "title": "ElyForma",
+      "type": "web",
+      "url": "https://www.elyforma.com/blog/company-annual-returns-guide-2026",
+      "urls": [
+        "https://www.elyforma.com/blog/company-annual-returns-guide-2026"
+      ]
+    },
+    {
+      "block": "paying-yourself-from-a-company.1",
+      "group": "Paying yourself from a company",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "sars--comprehensive-guide-to-dividends-tax",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the section 64E(4) deemed dividend provisions, including the nature and amount of the deemed dividend and its deemed date of payment. Read this before acting on any debit loan account."
+        }
+      ],
+      "title": "SARS — Comprehensive Guide to Dividends Tax",
+      "type": "web",
+      "url": "https://www.sars.gov.za/wp-content/uploads/Ops/Guides/LAPD-IT-G19-Comprehensive-Guide-to-Dividends-Tax.pdf",
+      "urls": [
+        "https://www.sars.gov.za/wp-content/uploads/Ops/Guides/LAPD-IT-G19-Comprehensive-Guide-to-Dividends-Tax.pdf"
+      ]
+    },
+    {
+      "block": "paying-yourself-from-a-company.2",
+      "group": "Paying yourself from a company",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "sars--budget-2026-faq",
+      "noUrlReason": "The register says (as above): it is the SARS Budget 2026 FAQ page already listed under Tax and SARS, so the link is not repeated.",
+      "official": true,
+      "qualifier": [
+        {
+          "t": "text",
+          "v": "(as above)"
+        }
+      ],
+      "supports": [
+        {
+          "t": "text",
+          "v": "the official interest rate for the fringe benefit on interest-free or low-interest loans, 7.75% per annum from 1 December 2025."
+        }
+      ],
+      "title": "SARS — Budget 2026 FAQ",
+      "type": "citation",
+      "urls": []
+    },
+    {
+      "block": "paying-yourself-from-a-company.6",
+      "group": "Paying yourself from a company",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "polity--ensafrica-directors-of-private-companies-and-paye",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "confirms paragraph 11C was repealed with effect from 1 March 2017, and that section 7B governs the timing of variable remuneration."
+        }
+      ],
+      "title": "Polity / ENSafrica, Directors of private companies and PAYE",
+      "type": "web",
+      "url": "https://www.polity.org.za/article/directors-of-private-companies-are-no-longer-subject-to-paye---true-or-false-2018-09-25",
+      "urls": [
+        "https://www.polity.org.za/article/directors-of-private-companies-are-no-longer-subject-to-paye---true-or-false-2018-09-25"
+      ]
+    },
+    {
+      "block": "paying-yourself-from-a-company.6",
+      "group": "Paying yourself from a company",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "simplepay-deemed-remuneration",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "confirms deemed remuneration should no longer be used from 1 March 2017 and that directors are taxed on actual remuneration."
+        }
+      ],
+      "title": "SimplePay, Deemed Remuneration",
+      "type": "web",
+      "url": "https://www.simplepay.co.za/help/payroll-concepts/deemed-remuneration/",
+      "urls": [
+        "https://www.simplepay.co.za/help/payroll-concepts/deemed-remuneration/"
+      ]
+    },
+    {
+      "block": "paying-yourself-from-a-company.6",
+      "group": "Paying yourself from a company",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "the-tax-faculty-dividends-interest-on-loan",
+      "item": 3,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "that the capital of a debit loan is not itself a deemed dividend, only the interest shortfall."
+        }
+      ],
+      "title": "The Tax Faculty, Dividends interest on loan",
+      "type": "web",
+      "url": "https://taxfaculty.ac.za/news/read/dividends-interest-on-loan",
+      "urls": [
+        "https://taxfaculty.ac.za/news/read/dividends-interest-on-loan"
+      ]
+    },
+    {
+      "block": "paying-yourself-from-a-company.6",
+      "group": "Paying yourself from a company",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "mms-cloud-accounting",
+      "item": 4,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the three ways to clear a debit loan account before year end."
+        }
+      ],
+      "title": "MMS Cloud Accounting",
+      "type": "web",
+      "url": "https://www.mmscloudaccounting.co.za/on-the-right-side-of-directors-loan-accounts/",
+      "urls": [
+        "https://www.mmscloudaccounting.co.za/on-the-right-side-of-directors-loan-accounts/"
+      ]
+    },
+    {
+      "block": "paying-yourself-from-a-company.6",
+      "group": "Paying yourself from a company",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "the-beancounter",
+      "item": 5,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "practical timing, and why waiting for the financial statements is too late."
+        }
+      ],
+      "title": "The Beancounter",
+      "type": "web",
+      "url": "https://thebeancounter.co.za/dear-director-hows-your-loan-account-looking/",
+      "urls": [
+        "https://thebeancounter.co.za/dear-director-hows-your-loan-account-looking/"
+      ]
+    },
+    {
+      "block": "paying-yourself-from-a-company.6",
+      "group": "Paying yourself from a company",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "govchain",
+      "item": 6,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the risk when a loan is written off."
+        }
+      ],
+      "title": "Govchain",
+      "type": "web",
+      "url": "https://www.govchain.co.za/blog/the-best-way-to-pay-yourself-as-a-company-owner",
+      "urls": [
+        "https://www.govchain.co.za/blog/the-best-way-to-pay-yourself-as-a-company-owner"
+      ]
+    },
+    {
+      "block": "b-bbee.1",
+      "group": "B-BBEE",
+      "groupId": "b-bbee",
+      "id": "b-bbee-commission--frequently-asked-questions",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "EME threshold below R10 million, automatic Level 4, Level 2 at 51% black ownership, Level 1 at 100%, sworn affidavit or CIPC certificate as sufficient proof."
+        }
+      ],
+      "title": "B-BBEE Commission — Frequently Asked Questions",
+      "type": "web",
+      "url": "https://www.bbbeecommission.co.za/frequently-asked-questions/category/general-principles/",
+      "urls": [
+        "https://www.bbbeecommission.co.za/frequently-asked-questions/category/general-principles/"
+      ]
+    },
+    {
+      "block": "b-bbee.3",
+      "group": "B-BBEE",
+      "groupId": "b-bbee",
+      "id": "rsm-south-africa",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "sector codes may set different thresholds."
+        }
+      ],
+      "title": "RSM South Africa",
+      "type": "web",
+      "url": "https://www.rsm.global/southafrica/insights/legal-insights/determining-validity-sworn-affidavit-b-bbee-compliance",
+      "urls": [
+        "https://www.rsm.global/southafrica/insights/legal-insights/determining-validity-sworn-affidavit-b-bbee-compliance"
+      ]
+    },
+    {
+      "block": "popia.1",
+      "group": "POPIA",
+      "groupId": "popia",
+      "id": "information-regulator-of-south-africa",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Register your information officer here. Free."
+        }
+      ],
+      "supportsFrom": "note",
+      "title": "Information Regulator of South Africa",
+      "type": "web",
+      "url": "https://inforegulator.org.za",
+      "urls": [
+        "https://inforegulator.org.za"
+      ]
+    },
+    {
+      "block": "popia.3",
+      "group": "POPIA",
+      "groupId": "popia",
+      "id": "serr-synergy",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "registration is compulsory for all private and public bodies with no exemption, and the officer may only take up duties after registration (s55(2))."
+        }
+      ],
+      "title": "SERR Synergy",
+      "type": "web",
+      "url": "https://serr.co.za/practical-guidance-in-respect-of-the-mandatory-appointment-of-information-officers",
+      "urls": [
+        "https://serr.co.za/practical-guidance-in-respect-of-the-mandatory-appointment-of-information-officers"
+      ]
+    },
+    {
+      "block": "popia.3",
+      "group": "POPIA",
+      "groupId": "popia",
+      "id": "michalsons",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "practical portal guidance."
+        }
+      ],
+      "title": "Michalsons",
+      "type": "web",
+      "url": "https://www.michalsons.com/blog/faq-items/how-do-i-register-my-information-officer-with-the-regulator",
+      "urls": [
+        "https://www.michalsons.com/blog/faq-items/how-do-i-register-my-information-officer-with-the-regulator"
+      ]
+    },
+    {
+      "block": "consumer-law-and-online-selling.1",
+      "group": "Consumer law and online selling",
+      "groupId": "consumer-law-and-online-selling",
+      "id": "national-consumer-commission--consumer-protection-in-e-commerce",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the seven working day cooling-off period under ECTA s44, refund within 30 days, and the interaction with CPA s11 and s16."
+        }
+      ],
+      "title": "National Consumer Commission — Consumer Protection in e-Commerce",
+      "type": "web",
+      "url": "https://thencc.org.za/wp-content/uploads/2026/03/Consumer-Protection-in-e-Commerce.pdf",
+      "urls": [
+        "https://thencc.org.za/wp-content/uploads/2026/03/Consumer-Protection-in-e-Commerce.pdf"
+      ]
+    },
+    {
+      "block": "consumer-law-and-online-selling.2",
+      "group": "Consumer law and online selling",
+      "groupId": "consumer-law-and-online-selling",
+      "id": "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "interpretation of CPA s55 and s56, including how specifically a defect must be disclosed for the supplier to escape liability."
+        }
+      ],
+      "title": "Consumer Goods and Services Ombud — Advisory Note 1: Implied Warranty of Quality",
+      "type": "web",
+      "url": "https://www.saflii.org/za/cases/ZACGSO/2021/1.pdf",
+      "urls": [
+        "https://www.saflii.org/za/cases/ZACGSO/2021/1.pdf"
+      ]
+    },
+    {
+      "block": "consumer-law-and-online-selling.4",
+      "group": "Consumer law and online selling",
+      "groupId": "consumer-law-and-online-selling",
+      "id": "dommisse-attorneys",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "ECTA s42 scope and s44 exclusions."
+        }
+      ],
+      "title": "Dommisse Attorneys",
+      "type": "web",
+      "url": "https://dommisseattorneys.co.za/blog/your-service-agreements/",
+      "urls": [
+        "https://dommisseattorneys.co.za/blog/your-service-agreements/"
+      ]
+    },
+    {
+      "block": "consumer-law-and-online-selling.4",
+      "group": "Consumer law and online selling",
+      "groupId": "consumer-law-and-online-selling",
+      "id": "mj-kotze-inc-what-is-ecta",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the s43(2) order review requirement and the 14-day cancellation right under s43(3)."
+        }
+      ],
+      "title": "MJ Kotze Inc, What is ECTA",
+      "type": "web",
+      "url": "https://mjkinc.co.za/software-technology-law/ecta-electronic-contracts",
+      "urls": [
+        "https://mjkinc.co.za/software-technology-law/ecta-electronic-contracts"
+      ]
+    },
+    {
+      "block": "consumer-law-and-online-selling.4",
+      "group": "Consumer law and online selling",
+      "groupId": "consumer-law-and-online-selling",
+      "id": "lawtons-africa",
+      "item": 2,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "s46 thirty-day performance rule and the direct-return-cost limit."
+        }
+      ],
+      "title": "Lawtons Africa",
+      "type": "web",
+      "url": "https://www.lawtonsafrica.com/post/e-commerce-and-consumer-protection",
+      "urls": [
+        "https://www.lawtonsafrica.com/post/e-commerce-and-consumer-protection"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.1",
+      "group": "Vehicle dealing and vehicles generally",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "enatis--natis--faqs-and-forms",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "registration requirements, police clearance (form RPC), imported vehicle requirements including SAPS clearance and an SABS letter of authority."
+        }
+      ],
+      "title": "eNaTIS / NaTIS — FAQs and forms",
+      "type": "web",
+      "url": "https://www.natis.gov.za/index.php/faqs",
+      "urls": [
+        "https://www.natis.gov.za/index.php/faqs"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.2",
+      "group": "Vehicle dealing and vehicles generally",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "rlv-form--application-for-registration-and-licensing-of-motor-vehicle",
+      "official": true,
+      "title": "RLV form — Application for Registration and Licensing of Motor Vehicle",
+      "type": "web",
+      "url": "https://www.natis.gov.za/index.php/downloads/forms/road-traffic-related-forms",
+      "urls": [
+        "https://www.natis.gov.za/index.php/downloads/forms/road-traffic-related-forms"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.3",
+      "group": "Vehicle dealing and vehicles generally",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "govza--apply-for-a-motor-trade-number-and-permit",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the MTN1 form, who may hold motor trade numbers, and same-day processing."
+        }
+      ],
+      "title": "gov.za — Apply for a motor trade number and permit",
+      "type": "web",
+      "url": "https://www.gov.za/services/services-organisations/driving-and-transport/apply-motor-trade-number-and-permit",
+      "urls": [
+        "https://gov.za/",
+        "https://www.gov.za/services/services-organisations/driving-and-transport/apply-motor-trade-number-and-permit"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.4",
+      "group": "Vehicle dealing and vehicles generally",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "western-cape-government--motor-trade-number-applications",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the published tariffs (R102 application, R762 licensing for a vehicle, R168 for a motorcycle or transport contractor). These are Western Cape figures. Check your own province."
+        }
+      ],
+      "title": "Western Cape Government — Motor trade number applications",
+      "type": "web",
+      "url": "https://www.westerncape.gov.za/mobility/service/motor-trade-number-applications",
+      "urls": [
+        "https://www.westerncape.gov.za/mobility/service/motor-trade-number-applications"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.5",
+      "group": "Vehicle dealing and vehicles generally",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "govza--register-a-motor-vehicle",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the 21-day registration deadline after change of ownership and the penalty for missing it."
+        }
+      ],
+      "title": "gov.za — Register a motor vehicle",
+      "type": "web",
+      "url": "https://www.gov.za/services/register-motor-vehicle/register-motor-vehicle",
+      "urls": [
+        "https://gov.za/",
+        "https://www.gov.za/services/register-motor-vehicle/register-motor-vehicle"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.6",
+      "group": "Vehicle dealing and vehicles generally",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "department-of-transport--register-motor-vehicle",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "NCO requirement and supporting documents for used vehicle registration."
+        }
+      ],
+      "title": "Department of Transport — Register motor vehicle",
+      "type": "web",
+      "url": "https://www.transport.gov.za/?page_id=1182",
+      "urls": [
+        "https://www.transport.gov.za/?page_id=1182"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.7",
+      "group": "Vehicle dealing and vehicles generally",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "governmentcoza--apply-for-a-traffic-register-number",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "that non-legal persons including a one-man business, partnership, trust or church must apply for a traffic register number to register vehicles."
+        }
+      ],
+      "title": "government.co.za — Apply for a traffic register number",
+      "type": "web",
+      "url": "https://government.co.za/apply-for-a-traffic-register-number",
+      "urls": [
+        "https://government.co.za/",
+        "https://government.co.za/apply-for-a-traffic-register-number"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.9",
+      "group": "Vehicle dealing and vehicles generally",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "govchain-brnc-certificate-guide",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "what a BRNC is, the in-person-only process, certification requirements, and the absence of a published national fee."
+        }
+      ],
+      "title": "Govchain, BRNC certificate guide",
+      "type": "web",
+      "url": "https://www.govchain.co.za/guides/brnc-certificate",
+      "urls": [
+        "https://www.govchain.co.za/guides/brnc-certificate"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.9",
+      "group": "Vehicle dealing and vehicles generally",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "trafico",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the ABR document list and common failure reasons."
+        }
+      ],
+      "title": "Trafico",
+      "type": "web",
+      "url": "https://trafico.co.za/unravelling-the-brnc/",
+      "urls": [
+        "https://trafico.co.za/unravelling-the-brnc/"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.9",
+      "group": "Vehicle dealing and vehicles generally",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "bloemq4u-faq",
+      "item": 2,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "proxy recording on eNaTIS and the trust/TRN distinction."
+        }
+      ],
+      "title": "BloemQ4U FAQ",
+      "type": "web",
+      "url": "https://www.bloemq4u.co.za/faq",
+      "urls": [
+        "https://www.bloemq4u.co.za/faq"
+      ]
+    },
+    {
+      "block": "second-hand-goods-dealing.1",
+      "group": "Second-hand goods dealing",
+      "groupId": "second-hand-goods-dealing",
+      "id": "saps--second-hand-goods-act-6-of-2009-full-text",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "dealer registration duty, identity verification, five-year record retention, motor vehicle register particulars."
+        }
+      ],
+      "title": "SAPS — Second-Hand Goods Act 6 of 2009 (full text)",
+      "type": "web",
+      "url": "https://www.saps.gov.za/resource_centre/acts/downloads/juta/shg_act_6_2009.pdf",
+      "urls": [
+        "https://www.saps.gov.za/resource_centre/acts/downloads/juta/shg_act_6_2009.pdf"
+      ]
+    },
+    {
+      "block": "second-hand-goods-dealing.2",
+      "group": "Second-hand goods dealing",
+      "groupId": "second-hand-goods-dealing",
+      "id": "saps--national-instruction-2-of-2016-second-hand-goods-dealers-and-recyclers",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the SAPS 601 application form, that no payment is required, and the list of business activities that must register including Motor Vehicle Dealer."
+        }
+      ],
+      "title": "SAPS — National Instruction 2 of 2016: Second-Hand Goods Dealers and Recyclers",
+      "type": "web",
+      "url": "https://www.saps.gov.za/services/flash/shg/second_hand_goods_ni_2_of_2016.pdf",
+      "urls": [
+        "https://www.saps.gov.za/services/flash/shg/second_hand_goods_ni_2_of_2016.pdf"
+      ]
+    },
+    {
+      "block": "second-hand-goods-dealing.3",
+      "group": "Second-hand goods dealing",
+      "groupId": "second-hand-goods-dealing",
+      "id": "saps--standard-operating-procedure-dealer-application-process",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "where to obtain and lodge the application form."
+        }
+      ],
+      "title": "SAPS — Standard Operating Procedure, dealer application process",
+      "type": "web",
+      "url": "https://www.saps.gov.za/services/flash/shg/sop_1_1_application_process_dealer.pdf",
+      "urls": [
+        "https://www.saps.gov.za/services/flash/shg/sop_1_1_application_process_dealer.pdf"
+      ]
+    },
+    {
+      "block": "second-hand-goods-dealing.4",
+      "group": "Second-hand goods dealing",
+      "groupId": "second-hand-goods-dealing",
+      "id": "saflii--second-hand-goods-act-consolidated-text",
+      "official": true,
+      "title": "SAFLII — Second-Hand Goods Act consolidated text",
+      "type": "web",
+      "url": "https://www.saflii.org/za/legis/consol_act/sga2009153/",
+      "urls": [
+        "https://www.saflii.org/za/legis/consol_act/sga2009153/"
+      ]
+    },
+    {
+      "block": "second-hand-goods-dealing.6",
+      "group": "Second-hand goods dealing",
+      "groupId": "second-hand-goods-dealing",
+      "id": "nada-saps-dealer-inspections",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the 30-day notification duty, the SAPS 604 form for a change of responsible person, and inspection rights."
+        }
+      ],
+      "title": "NADA, SAPS dealer inspections",
+      "type": "web",
+      "url": "https://nada.co.za/saps-dealer-inspections-rights-and-obligations-in-terms-of-the-second-hand-goods-act/",
+      "urls": [
+        "https://nada.co.za/saps-dealer-inspections-rights-and-obligations-in-terms-of-the-second-hand-goods-act/"
+      ]
+    },
+    {
+      "block": "second-hand-goods-dealing.6",
+      "group": "Second-hand goods dealing",
+      "groupId": "second-hand-goods-dealing",
+      "id": "sme-south-africa",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "required documents and the motor vehicle register particulars."
+        }
+      ],
+      "title": "SME South Africa",
+      "type": "web",
+      "url": "https://smesouthafrica.co.za/what-you-need-to-know-about-the-second-hand-goods-act/",
+      "urls": [
+        "https://smesouthafrica.co.za/what-you-need-to-know-about-the-second-hand-goods-act/"
+      ]
+    },
+    {
+      "block": "used-vehicle-sales-and-the-consumer-protection-act.2",
+      "group": "Used vehicle sales and the Consumer Protection Act",
+      "groupId": "used-vehicle-sales-and-the-consumer-protection-act",
+      "id": "hanekom-attorneys-webuycars-consent-order",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "six-month implied warranty, three-month re-repair rule, and the end of voetstoots in CPA sales."
+        }
+      ],
+      "title": "Hanekom Attorneys, WeBuyCars consent order",
+      "type": "web",
+      "url": "https://www.hanekomattorneys.co.za/post/what-the-webuycars-consent-order-teaches-us-about-consumer-rights-in-south-africa-s-pre-owned-vehicl",
+      "urls": [
+        "https://www.hanekomattorneys.co.za/post/what-the-webuycars-consent-order-teaches-us-about-consumer-rights-in-south-africa-s-pre-owned-vehicl"
+      ]
+    },
+    {
+      "block": "used-vehicle-sales-and-the-consumer-protection-act.2",
+      "group": "Used vehicle sales and the Consumer Protection Act",
+      "groupId": "used-vehicle-sales-and-the-consumer-protection-act",
+      "id": "the-citizen",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Consumer Tribunal ruling that voetstoots does not apply to CPA transactions, and CPA s2(10) and s56(4)."
+        }
+      ],
+      "title": "The Citizen",
+      "type": "web",
+      "url": "https://www.citizen.co.za/business/personal-finance/even-old-car-cannot-be-bought-voetstoots-used-car-dealer/",
+      "urls": [
+        "https://www.citizen.co.za/business/personal-finance/even-old-car-cannot-be-bought-voetstoots-used-car-dealer/"
+      ]
+    },
+    {
+      "block": "used-vehicle-sales-and-the-consumer-protection-act.2",
+      "group": "Used vehicle sales and the Consumer Protection Act",
+      "groupId": "used-vehicle-sales-and-the-consumer-protection-act",
+      "id": "moonstone",
+      "item": 2,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the December 2025 Western Cape High Court decision requiring a R175,000 refund, and that buyers need not exhaust ombud processes first."
+        }
+      ],
+      "title": "Moonstone",
+      "type": "web",
+      "url": "https://www.moonstone.co.za/ruling-confirms-consumers-may-go-straight-to-court-under-the-cpa/",
+      "urls": [
+        "https://www.moonstone.co.za/ruling-confirms-consumers-may-go-straight-to-court-under-the-cpa/"
+      ]
+    },
+    {
+      "block": "used-vehicle-sales-and-the-consumer-protection-act.2",
+      "group": "Used vehicle sales and the Consumer Protection Act",
+      "groupId": "used-vehicle-sales-and-the-consumer-protection-act",
+      "id": "changecars",
+      "item": 3,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the National Consumer Commission case against Western Car Sales, and the Renault v Windsor position on minor defects."
+        }
+      ],
+      "title": "ChangeCars",
+      "type": "web",
+      "url": "https://www.changecars.co.za/blogs/your-rights-when-buying-a-used-car",
+      "urls": [
+        "https://www.changecars.co.za/blogs/your-rights-when-buying-a-used-car"
+      ]
+    },
+    {
+      "block": "used-vehicle-sales-and-the-consumer-protection-act.4",
+      "group": "Used vehicle sales and the Consumer Protection Act",
+      "groupId": "used-vehicle-sales-and-the-consumer-protection-act",
+      "id": "department-of-justice--small-claims-courts",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the R30,000 limit, determined in Government Gazette 55038, Government Notice 7717 of 20 July 2026, effective 1 August 2026."
+        }
+      ],
+      "title": "Department of Justice — Small Claims Courts",
+      "type": "web",
+      "url": "https://www.justice.gov.za/scc/scc.htm",
+      "urls": [
+        "https://www.justice.gov.za/scc/scc.htm"
+      ]
+    },
+    {
+      "block": "used-vehicle-sales-and-the-consumer-protection-act.5",
+      "group": "Used vehicle sales and the Consumer Protection Act",
+      "groupId": "used-vehicle-sales-and-the-consumer-protection-act",
+      "id": "department-of-justice--media-statement-22-july-2026",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "that R30,000 replaced the R20,000 limit set in 2019, and that further increases are under consideration."
+        }
+      ],
+      "title": "Department of Justice — media statement, 22 July 2026",
+      "type": "web",
+      "url": "https://www.justice.gov.za/m_statements/2026/20260722-SCC-Monetary-Jurisdiction-R30000.html",
+      "urls": [
+        "https://www.justice.gov.za/m_statements/2026/20260722-SCC-Monetary-Jurisdiction-R30000.html"
+      ]
+    },
+    {
+      "block": "food-businesses.1",
+      "group": "Food businesses",
+      "groupId": "food-businesses",
+      "id": "regulation-r638-of-2018",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "under the Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 — General Hygiene Requirements for Food Premises, the Transport of Food and Related Matters. Replaced R962. Available through "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://gov.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "Regulation R638 of 2018",
+      "type": "web",
+      "url": "https://gov.za/",
+      "urls": [
+        "https://gov.za/"
+      ]
+    },
+    {
+      "block": "food-businesses.2",
+      "group": "Food businesses",
+      "groupId": "food-businesses",
+      "id": "regulation-r146-of-2012",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Labelling and Advertising of Foodstuffs. Available through "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://gov.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "Regulation R146 of 2012",
+      "type": "web",
+      "url": "https://gov.za/",
+      "urls": [
+        "https://gov.za/"
+      ]
+    },
+    {
+      "block": "food-businesses.4",
+      "group": "Food businesses",
+      "groupId": "food-businesses",
+      "id": "food-focus",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the COA process and the Businesses Act licensing position."
+        }
+      ],
+      "title": "Food Focus",
+      "type": "web",
+      "url": "https://www.foodfocus.co.za/home/whats-hot/Starting-a-new-food-business/How-do-I-get-a-Certificate-of-Acceptability",
+      "urls": [
+        "https://www.foodfocus.co.za/home/whats-hot/Starting-a-new-food-business/How-do-I-get-a-Certificate-of-Acceptability"
+      ]
+    },
+    {
+      "block": "food-businesses.4",
+      "group": "Food businesses",
+      "groupId": "food-businesses",
+      "id": "asc-food-safety",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "the nine-document list and realistic timelines. This is a commercial training provider, so treat the timelines as a guide and confirm with your municipality."
+        }
+      ],
+      "title": "ASC Food Safety",
+      "type": "web",
+      "url": "https://ascfoodsafety.com/steps-to-starting-a-food-business-in-south-africa/",
+      "urls": [
+        "https://ascfoodsafety.com/steps-to-starting-a-food-business-in-south-africa/"
+      ]
+    },
+    {
+      "block": "business-licensing.1",
+      "group": "Business licensing",
+      "groupId": "business-licensing",
+      "id": "businesses-act-71-of-1991",
+      "noUrlReason": "An Act that municipalities apply through their own by-laws; the register points readers to their municipality instead of a link.",
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Administered by your local municipality, not by national government. There is no single national list of licensable businesses, because municipalities apply the Act through their own by-laws."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "Businesses Act 71 of 1991",
+      "type": "citation",
+      "urls": []
+    },
+    {
+      "block": "business-licensing.3",
+      "group": "Business licensing",
+      "groupId": "business-licensing",
+      "id": "sme-south-africa-1",
+      "item": 0,
+      "official": false,
+      "title": "SME South Africa",
+      "type": "web",
+      "url": "https://smesouthafrica.co.za/sme-guides/business-licences-in-south-africa/",
+      "urls": [
+        "https://smesouthafrica.co.za/sme-guides/business-licences-in-south-africa/"
+      ]
+    },
+    {
+      "block": "business-licensing.3",
+      "group": "Business licensing",
+      "groupId": "business-licensing",
+      "id": "yebo-business",
+      "item": 1,
+      "official": false,
+      "title": "Yebo Business",
+      "type": "web",
+      "url": "https://www.yebobusiness.co.za/business-licenses-required-south-africa",
+      "urls": [
+        "https://www.yebobusiness.co.za/business-licenses-required-south-africa"
+      ]
+    },
+    {
+      "block": "credit-and-financial-services.2",
+      "group": "Credit and financial services",
+      "groupId": "credit-and-financial-services",
+      "id": "mj-kotze-inc-credit-provider-registration",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "that the monetary threshold for NCR registration no longer applies and any credit provider must register."
+        }
+      ],
+      "title": "MJ Kotze Inc, Credit provider registration",
+      "type": "web",
+      "url": "https://mjkinc.co.za/finance-credit-law/credit-provider-registration",
+      "urls": [
+        "https://mjkinc.co.za/finance-credit-law/credit-provider-registration"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.1",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "south-african-reserve-bank--banknote-security-features",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "The SARB's \"look, feel, tilt\" method is published on "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.resbank.co.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.resbank.co.za",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " and in the SARB Currency App. The toolkit's description of the raised print, the visual-aid lines, the security thread, the watermark and the colour-changing ink is drawn from SARB material as reported by:"
+          }
+        ]
+      ],
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "that counterfeit notes cannot be exchanged and must be reported to SAPS; that the SARB alone may issue currency under section 14 of the SARB Act."
+        }
+      ],
+      "title": "South African Reserve Bank — banknote security features",
+      "type": "web",
+      "url": "https://www.resbank.co.za",
+      "urls": [
+        "https://www.resbank.co.za"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.2",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "iol--the-mercury",
+      "item": 0,
+      "official": false,
+      "subgroupId": "south-african-reserve-bank--banknote-security-features",
+      "title": "IOL / The Mercury",
+      "type": "web",
+      "url": "https://iol.co.za/mercury/news/2022-11-02-how-to-spot-counterfeit-money-warning-issued-after-fake-r200-notes-were-used-at-a-durban-north-restaurant/",
+      "urls": [
+        "https://iol.co.za/mercury/news/2022-11-02-how-to-spot-counterfeit-money-warning-issued-after-fake-r200-notes-were-used-at-a-durban-north-restaurant/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.2",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "the-citizen-local-titles",
+      "item": 1,
+      "official": false,
+      "qualifier": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.citizen.co.za/brakpan-herald/news-headlines/2023/03/13/know-your-money/"
+            }
+          ],
+          "external": true,
+          "href": "https://www.citizen.co.za/brakpan-herald/news-headlines/2023/03/13/know-your-money/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " and "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.citizen.co.za/south-coast-herald/news-headlines/local-news/2023/04/12/take-note-of-banknote-security-features/"
+            }
+          ],
+          "external": true,
+          "href": "https://www.citizen.co.za/south-coast-herald/news-headlines/local-news/2023/04/12/take-note-of-banknote-security-features/",
+          "t": "link"
+        }
+      ],
+      "subgroupId": "south-african-reserve-bank--banknote-security-features",
+      "title": "The Citizen (local titles)",
+      "type": "web",
+      "url": "https://www.citizen.co.za/brakpan-herald/news-headlines/2023/03/13/know-your-money/",
+      "urls": [
+        "https://www.citizen.co.za/brakpan-herald/news-headlines/2023/03/13/know-your-money/",
+        "https://www.citizen.co.za/south-coast-herald/news-headlines/local-news/2023/04/12/take-note-of-banknote-security-features/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.3",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "sabric--south-african-banking-risk-information-centre",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "fraud reporting. The 2024 figures (digital banking fraud incidents up 86%, losses up 74% to R1.888 billion) are from SABRIC's 2024 Annual Crime Statistics as reported by Zapper — "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.zapper.com/2026/07/28/how-to-protect-your-business-from-payment-fraud/"
+            }
+          ],
+          "external": true,
+          "href": "https://www.zapper.com/2026/07/28/how-to-protect-your-business-from-payment-fraud/",
+          "t": "link"
+        }
+      ],
+      "title": "SABRIC — South African Banking Risk Information Centre",
+      "type": "web",
+      "url": "https://www.sabric.co.za",
+      "urls": [
+        "https://www.sabric.co.za",
+        "https://www.zapper.com/2026/07/28/how-to-protect-your-business-from-payment-fraud/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.5",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "techcentral",
+      "item": 0,
+      "official": false,
+      "subgroupId": "payshap-limits",
+      "supports": [
+        {
+          "t": "text",
+          "v": "BankservAfrica raised the system limit from R3,000 to R50,000."
+        }
+      ],
+      "title": "TechCentral",
+      "type": "web",
+      "url": "https://techcentral.co.za/payshap-payment-limit-raised-to-r50-000/254663/",
+      "urls": [
+        "https://techcentral.co.za/payshap-payment-limit-raised-to-r50-000/254663/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.5",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "solmate",
+      "item": 1,
+      "official": false,
+      "subgroupId": "payshap-limits",
+      "supports": [
+        {
+          "t": "text",
+          "v": "that banks set their own lower per-transaction and daily limits, and that payments clear in seconds and can go to a normal account number."
+        }
+      ],
+      "title": "Solmate",
+      "type": "web",
+      "url": "https://solmate.co.za/blog/payshap-instant-payments-south-africa/",
+      "urls": [
+        "https://solmate.co.za/blog/payshap-instant-payments-south-africa/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.5",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "netcash",
+      "item": 2,
+      "official": false,
+      "subgroupId": "payshap-limits",
+      "supports": [
+        {
+          "t": "text",
+          "v": "per-bank limit examples. Bank limits change; check your own app."
+        }
+      ],
+      "title": "Netcash",
+      "type": "web",
+      "url": "https://netcash.co.za/blog/how-businesses-can-use-payshap-for-payroll-creditor-payments/",
+      "urls": [
+        "https://netcash.co.za/blog/how-businesses-can-use-payshap-for-payroll-creditor-payments/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.7",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "ewn-gumtree-flags-fake-payment-scam",
+      "item": 0,
+      "official": false,
+      "subgroupId": "fake-proof-of-payment-and-marketplace-scams",
+      "supports": [
+        {
+          "t": "text",
+          "v": "the case of a fake POP with an Uber sent to collect, from an account two days old."
+        }
+      ],
+      "title": "EWN, Gumtree flags fake payment scam",
+      "type": "web",
+      "url": "https://www.ewn.co.za/2026/07/10/gumtree-flags-fake-payment-scam-targeting-sellers-on-online-marketplace",
+      "urls": [
+        "https://www.ewn.co.za/2026/07/10/gumtree-flags-fake-payment-scam-targeting-sellers-on-online-marketplace"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.7",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "cape-argus",
+      "item": 1,
+      "official": false,
+      "subgroupId": "fake-proof-of-payment-and-marketplace-scams",
+      "supports": [
+        {
+          "t": "text",
+          "v": "the SAPS-described pattern of fake proof of purchase, fake ID, and a driver sent to collect; overpayment scams."
+        }
+      ],
+      "title": "Cape Argus",
+      "type": "web",
+      "url": "https://capeargus.co.za/personal-finance/2026-03-07-the-message-looks-real-it-isnt/",
+      "urls": [
+        "https://capeargus.co.za/personal-finance/2026-03-07-the-message-looks-real-it-isnt/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.7",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "flip-the-market",
+      "item": 2,
+      "official": false,
+      "subgroupId": "fake-proof-of-payment-and-marketplace-scams",
+      "supports": [
+        {
+          "t": "text",
+          "v": "the \"reflected, not pending\" rule, the bank-reversal voice note, phishing links."
+        }
+      ],
+      "title": "Flip the Market",
+      "type": "web",
+      "url": "https://flipthemarket.co.za/side-hustle-payments-and-avoiding-chargebacks-scams-and-proof-of-payment-bullsh-t/",
+      "urls": [
+        "https://flipthemarket.co.za/side-hustle-payments-and-avoiding-chargebacks-scams-and-proof-of-payment-bullsh-t/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.7",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "bizcommunity--gumtree",
+      "item": 3,
+      "official": false,
+      "subgroupId": "fake-proof-of-payment-and-marketplace-scams",
+      "supports": [
+        {
+          "t": "text",
+          "v": "the cheque deposit and cancel scam."
+        }
+      ],
+      "title": "Bizcommunity / Gumtree",
+      "type": "web",
+      "url": "https://www.bizcommunity.com/Article/196/357/129785.html",
+      "urls": [
+        "https://www.bizcommunity.com/Article/196/357/129785.html"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.9",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "tracker-south-africa",
+      "item": 0,
+      "official": false,
+      "subgroupId": "meeting-buyers-and-test-drives",
+      "supports": [
+        {
+          "t": "text",
+          "v": "licence copy, keys handed over only once seated, geotag removal, not meeting at home, trusting instinct."
+        }
+      ],
+      "title": "Tracker South Africa",
+      "type": "web",
+      "url": "https://www.tracker.co.za/news/news-room/test-drive-robbery",
+      "urls": [
+        "https://www.tracker.co.za/news/news-room/test-drive-robbery"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.9",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "carscoza",
+      "item": 1,
+      "official": false,
+      "subgroupId": "meeting-buyers-and-test-drives",
+      "supports": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.cars.co.za/motoring-news/sell-your-used-car-to-a-private-buyer/73097/"
+            }
+          ],
+          "external": true,
+          "href": "https://www.cars.co.za/motoring-news/sell-your-used-car-to-a-private-buyer/73097/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " and "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.cars.co.za/motoring-news/selling-your-car-in-south-africa/251983/"
+            }
+          ],
+          "external": true,
+          "href": "https://www.cars.co.za/motoring-news/selling-your-car-in-south-africa/251983/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " — public place, bring someone, tell someone, licence check, key-swap warning, no solo test drives."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "Cars.co.za",
+      "type": "web",
+      "url": "https://cars.co.za/",
+      "urls": [
+        "https://cars.co.za/",
+        "https://www.cars.co.za/motoring-news/sell-your-used-car-to-a-private-buyer/73097/",
+        "https://www.cars.co.za/motoring-news/selling-your-car-in-south-africa/251983/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.9",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "motorhappy",
+      "item": 2,
+      "official": false,
+      "subgroupId": "meeting-buyers-and-test-drives",
+      "supports": [
+        {
+          "t": "text",
+          "v": "petrol station or police station as meeting places; cash handled inside a bank branch; no keys or documents until payment clears."
+        }
+      ],
+      "title": "MotorHappy",
+      "type": "web",
+      "url": "https://www.motorhappy.co.za/motorhappyblog/car-tips/selling-a-car-privately-in-south-africa",
+      "urls": [
+        "https://www.motorhappy.co.za/motorhappyblog/car-tips/selling-a-car-privately-in-south-africa"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.12",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "ashersons-attorneys",
+      "item": 0,
+      "official": false,
+      "subgroupId": "home-based-business-zoning",
+      "supports": [
+        {
+          "t": "text",
+          "v": "micro-business and home enterprise categories, and when consent or rezoning is needed."
+        }
+      ],
+      "title": "Ashersons Attorneys",
+      "type": "web",
+      "url": "https://www.ashersons.co.za/articles/home-businesses-is-yours-legal/",
+      "urls": [
+        "https://www.ashersons.co.za/articles/home-businesses-is-yours-legal/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.12",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "yebo-business-1",
+      "item": 1,
+      "official": false,
+      "subgroupId": "home-based-business-zoning",
+      "supports": [
+        {
+          "t": "text",
+          "v": "the usual home enterprise conditions, including no visible storage of goods or vehicles, and which activities need consent use."
+        }
+      ],
+      "title": "Yebo Business",
+      "type": "web",
+      "url": "https://www.yebobusiness.co.za/how-to-start-business-from-home-south-africa/",
+      "urls": [
+        "https://www.yebobusiness.co.za/how-to-start-business-from-home-south-africa/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.12",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "findanattorney",
+      "item": 2,
+      "official": false,
+      "subgroupId": "home-based-business-zoning",
+      "supports": [
+        {
+          "t": "text",
+          "v": "the quarter-of-floor-area rule of thumb and the enforceability of body corporate conduct rules."
+        }
+      ],
+      "title": "FindAnAttorney",
+      "type": "web",
+      "url": "https://www.findanattorney.co.za/content_working-from-home-in-sectional-title-schemes",
+      "urls": [
+        "https://www.findanattorney.co.za/content_working-from-home-in-sectional-title-schemes"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.12",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "looksee-standard-bank",
+      "item": 3,
+      "official": false,
+      "subgroupId": "home-based-business-zoning",
+      "supports": [
+        {
+          "t": "text",
+          "v": "checking the title deed and zoning certificate; sectional title consent."
+        }
+      ],
+      "title": "LookSee (Standard Bank)",
+      "type": "web",
+      "url": "https://www.looksee.co.za/looksee/home/knowledge-hub/articles/the-legalities-of-running-a-business-from-home",
+      "urls": [
+        "https://www.looksee.co.za/looksee/home/knowledge-hub/articles/the-legalities-of-running-a-business-from-home"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.12",
+      "group": "Working from home, payments and personal safety",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "leapfrog",
+      "item": 4,
+      "official": false,
+      "subgroupId": "home-based-business-zoning",
+      "supports": [
+        {
+          "t": "text",
+          "v": "household insurance may not cover business equipment or visitors."
+        }
+      ],
+      "title": "Leapfrog",
+      "type": "web",
+      "url": "https://leapfrog.co.za/news/the-home-business-rulebook-zoning-insurance-and-municipal-compliance/",
+      "urls": [
+        "https://leapfrog.co.za/news/the-home-business-rulebook-zoning-insurance-and-municipal-compliance/"
+      ]
+    },
+    {
+      "block": "you-are-the-business-uif-coida-courts-and-continuity.1",
+      "group": "You are the business: UIF, COIDA, courts and continuity",
+      "groupId": "you-are-the-business-uif-coida-courts-and-continuity",
+      "id": "uif-and-the-self-employed",
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Unemployment Insurance Contributions Act 2002, section 1 — \"employee\" means a natural person receiving remuneration for services rendered, excluding an independent contractor. The Tax Faculty applies this directly: "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://taxfaculty.ac.za/faq/general_faqs/solution/1170"
+            }
+          ],
+          "external": true,
+          "href": "https://taxfaculty.ac.za/faq/general_faqs/solution/1170",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " — a sole proprietor cannot contribute to the UIF because a sole proprietor cannot be an employee who becomes unemployed."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "UIF and the self-employed",
+      "type": "web",
+      "url": "https://taxfaculty.ac.za/faq/general_faqs/solution/1170",
+      "urls": [
+        "https://taxfaculty.ac.za/faq/general_faqs/solution/1170"
+      ]
+    },
+    {
+      "block": "you-are-the-business-uif-coida-courts-and-continuity.2",
+      "group": "You are the business: UIF, COIDA, courts and continuity",
+      "groupId": "you-are-the-business-uif-coida-courts-and-continuity",
+      "id": "coida-and-working-directors",
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "The Act's definition of employee includes a director or member of a body corporate who has entered into a contract of service, in so far as they act within the scope of that employment, and excludes shareholders or silent partners who only receive dividends or profit share. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.eohcb.co.za/post/coida-who-must-register-for-coida"
+            }
+          ],
+          "external": true,
+          "href": "https://www.eohcb.co.za/post/coida-who-must-register-for-coida",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " and "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.mdacc.co.za/do-i-need-to-register-for-workmens-compensation/"
+            }
+          ],
+          "external": true,
+          "href": "https://www.mdacc.co.za/do-i-need-to-register-for-workmens-compensation/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". That a working director paid a monthly salary must be registered and submit a Return of Earnings even as the only employee is from ClearComply's 2026 guide: "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.clearcomply.co.za/blog/coida-compensation-fund-south-africa"
+            }
+          ],
+          "external": true,
+          "href": "https://www.clearcomply.co.za/blog/coida-compensation-fund-south-africa",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Sole proprietors and partners are not employees under COIDA: "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://labourguide.co.za/coid/compensation-fund-registrations/compensation-fund-registration"
+            }
+          ],
+          "external": true,
+          "href": "https://labourguide.co.za/coid/compensation-fund-registrations/compensation-fund-registration",
+          "t": "link"
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "COIDA and working directors",
+      "type": "web",
+      "url": "https://www.eohcb.co.za/post/coida-who-must-register-for-coida",
+      "urls": [
+        "https://www.eohcb.co.za/post/coida-who-must-register-for-coida",
+        "https://www.mdacc.co.za/do-i-need-to-register-for-workmens-compensation/",
+        "https://www.clearcomply.co.za/blog/coida-compensation-fund-south-africa",
+        "https://labourguide.co.za/coid/compensation-fund-registrations/compensation-fund-registration"
+      ]
+    },
+    {
+      "block": "you-are-the-business-uif-coida-courts-and-continuity.3",
+      "group": "You are the business: UIF, COIDA, courts and continuity",
+      "groupId": "you-are-the-business-uif-coida-courts-and-continuity",
+      "id": "small-claims-court-who-may-sue",
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Small Claims Courts Act 61 of 1984, section 7(1) — only a natural person may institute an action, and a juristic person may become a party only as defendant. Consolidated text: "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.saflii.org/za/legis/consol_act/scca1984214/"
+            }
+          ],
+          "external": true,
+          "href": "https://www.saflii.org/za/legis/consol_act/scca1984214/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Confirmed by Legal Aid South Africa ("
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://legal-aid.co.za/2018/09/26/instituting-action-in-the-small-claims-court-guide/"
+            }
+          ],
+          "external": true,
+          "href": "https://legal-aid.co.za/2018/09/26/instituting-action-in-the-small-claims-court-guide/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "), Werksmans Attorneys ("
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://werksmans.com/a-brief-overview-of-the-small-claims-court-2026-update/"
+            }
+          ],
+          "external": true,
+          "href": "https://werksmans.com/a-brief-overview-of-the-small-claims-court-2026-update/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ") and the Department of Justice ("
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.justice.gov.za/scc/scc_info.htm"
+            }
+          ],
+          "external": true,
+          "href": "https://www.justice.gov.za/scc/scc_info.htm",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "). A nominated director or officer may appear for a juristic person that is a defendant. The three-year prescription period is from the Werksmans overview."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "Small Claims Court, who may sue",
+      "type": "web",
+      "url": "https://www.saflii.org/za/legis/consol_act/scca1984214/",
+      "urls": [
+        "https://www.saflii.org/za/legis/consol_act/scca1984214/",
+        "https://legal-aid.co.za/2018/09/26/instituting-action-in-the-small-claims-court-guide/",
+        "https://werksmans.com/a-brief-overview-of-the-small-claims-court-2026-update/",
+        "https://www.justice.gov.za/scc/scc_info.htm"
+      ]
+    },
+    {
+      "block": "you-are-the-business-uif-coida-courts-and-continuity.4",
+      "group": "You are the business: UIF, COIDA, courts and continuity",
+      "groupId": "you-are-the-business-uif-coida-courts-and-continuity",
+      "id": "death-of-a-sole-director-and-shareholder",
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Companies Act 71 of 2008 — a person ceases to be a director on death; directors are appointed by shareholders. Administration of Estates Act 66 of 1965, section 13(1) — a deceased estate must be reported to the Master of the High Court within 14 days. South African commentary on the resulting paralysis, the dependence on the MOI, and the Saga Wines matter: Al Baraka Bank legal services ("
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.albaraka.co.za/blogs/legalease-3-2023/business-owners-beware-your-death-could-result-in-the-closure-of-your-business"
+            }
+          ],
+          "external": true,
+          "href": "https://www.albaraka.co.za/blogs/legalease-3-2023/business-owners-beware-your-death-could-result-in-the-closure-of-your-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "), Shandu Attorneys ("
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://shanduattorneys.co.za/2019/11/27/business-continuity-risk-death-of-a-companys-sole-shareholder-and-sole-director/"
+            }
+          ],
+          "external": true,
+          "href": "https://shanduattorneys.co.za/2019/11/27/business-continuity-risk-death-of-a-companys-sole-shareholder-and-sole-director/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "), FindAnAttorney ("
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.findanattorney.co.za/content_company-law-deceased-estate"
+            }
+          ],
+          "external": true,
+          "href": "https://www.findanattorney.co.za/content_company-law-deceased-estate",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ") and Iota ("
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.iota.co.za/news-1/business-continuity-of-sole-shareholder-and-director-dying"
+            }
+          ],
+          "external": true,
+          "href": "https://www.iota.co.za/news-1/business-continuity-of-sole-shareholder-and-director-dying",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "), which gives the two-weeks-to-three-months estimate for appointing an executor."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "Death of a sole director and shareholder",
+      "type": "web",
+      "url": "https://www.albaraka.co.za/blogs/legalease-3-2023/business-owners-beware-your-death-could-result-in-the-closure-of-your-business",
+      "urls": [
+        "https://www.albaraka.co.za/blogs/legalease-3-2023/business-owners-beware-your-death-could-result-in-the-closure-of-your-business",
+        "https://shanduattorneys.co.za/2019/11/27/business-continuity-risk-death-of-a-companys-sole-shareholder-and-sole-director/",
+        "https://www.findanattorney.co.za/content_company-law-deceased-estate",
+        "https://www.iota.co.za/news-1/business-continuity-of-sole-shareholder-and-director-dying"
+      ]
+    },
+    {
+      "block": "colour-research-and-signage-materials.2",
+      "group": "Colour research and signage materials",
+      "groupId": "colour-research-and-signage-materials",
+      "id": "elliot-a-j-and-maier-m-a-color-psychology-effects-of-perceiving-color-on-psychological-functioning-in",
+      "item": 0,
+      "noUrlReason": "A journal article cited by authors, title, journal and year; the register links only to summaries, which are listed after it.",
+      "official": false,
+      "subgroupId": "colour-psychology",
+      "supports": [
+        {
+          "t": "text",
+          "v": "no universal meaning for any colour; effects are context-dependent and vary with saturation, brightness, product category and culture."
+        }
+      ],
+      "title": "Elliot, A. J. and Maier, M. A., \"Color Psychology: Effects of Perceiving Color on Psychological Functioning in Humans\", Annual Review of Psychology (2014)",
+      "type": "citation",
+      "urls": []
+    },
+    {
+      "block": "colour-research-and-signage-materials.2",
+      "group": "Colour research and signage materials",
+      "groupId": "colour-research-and-signage-materials",
+      "id": "labrecque-l-i-and-milne-g-r-exciting-red-and-competent-blue-the-importance-of-color-in-marketing-journal-of",
+      "item": 1,
+      "noUrlReason": "A journal article cited by authors, title, journal and year; the register links only to summaries, which are listed after it.",
+      "official": false,
+      "subgroupId": "colour-psychology",
+      "supports": [
+        {
+          "t": "text",
+          "v": "consistency between brand colour and perceived brand personality predicts preference better than the colour itself."
+        }
+      ],
+      "title": "Labrecque, L. I. and Milne, G. R., \"Exciting Red and Competent Blue: The Importance of Color in Marketing\", Journal of the Academy of Marketing Science (2012)",
+      "type": "citation",
+      "urls": []
+    },
+    {
+      "block": "colour-research-and-signage-materials.5",
+      "group": "Colour research and signage materials",
+      "groupId": "colour-research-and-signage-materials",
+      "id": "sytech-supplies-south-africa",
+      "item": 0,
+      "official": false,
+      "subgroupId": "signage-vinyl-and-south-african-uv",
+      "supports": [
+        {
+          "t": "text",
+          "v": "that South Africa sits in a Zone 3 UV climate; that vertical vinyl lasting up to ten years in Europe can fade in three years locally; that horizontal installations can lose 50 to 70% of expected lifespan. This is a supplier's blog, not an independent test. Treat the figures as an order of magnitude."
+        }
+      ],
+      "title": "Sytech Supplies (South Africa)",
+      "type": "web",
+      "url": "https://www.sytech.co.za/2025/10/14/understanding-common-vinyl-failures-in-south-africas-climate-and-how-to-prevent-them/",
+      "urls": [
+        "https://www.sytech.co.za/2025/10/14/understanding-common-vinyl-failures-in-south-africas-climate-and-how-to-prevent-them/"
+      ]
+    },
+    {
+      "block": "colour-research-and-signage-materials.5",
+      "group": "Colour research and signage materials",
+      "groupId": "colour-research-and-signage-materials",
+      "id": "cast-versus-calendered-lifespans-cast-roughly-5-to-10-years-outdoors-calendered-roughly-1-to-5-are-consistent",
+      "item": 1,
+      "official": false,
+      "subgroupId": "signage-vinyl-and-south-african-uv",
+      "supports": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.craftsmenind.com/blog/fleet-graphics-lifespan"
+            }
+          ],
+          "external": true,
+          "href": "https://www.craftsmenind.com/blog/fleet-graphics-lifespan",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " and "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://swiftsignquote.com/blog/cast-vs-calendered-vinyl"
+            }
+          ],
+          "external": true,
+          "href": "https://swiftsignquote.com/blog/cast-vs-calendered-vinyl",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Local conditions and installation quality move these figures substantially."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "Cast versus calendered lifespans (cast roughly 5 to 10 years outdoors, calendered roughly 1 to 5) are consistent across several independent trade sources, including",
+      "type": "web",
+      "url": "https://www.craftsmenind.com/blog/fleet-graphics-lifespan",
+      "urls": [
+        "https://www.craftsmenind.com/blog/fleet-graphics-lifespan",
+        "https://swiftsignquote.com/blog/cast-vs-calendered-vinyl"
+      ]
+    },
+    {
+      "block": "branding-tools-referenced.1",
+      "group": "Branding tools referenced",
+      "groupId": "branding-tools-referenced",
+      "id": "webaim-contrast-checker",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "used to verify text and background colour pairs against WCAG AA. The toolkit tells readers to do this themselves because language models cannot reliably compute contrast ratios."
+        }
+      ],
+      "title": "WebAIM contrast checker",
+      "type": "web",
+      "url": "https://webaim.org/resources/contrastchecker/",
+      "urls": [
+        "https://webaim.org/resources/contrastchecker/"
+      ]
+    },
+    {
+      "block": "branding-tools-referenced.1",
+      "group": "Branding tools referenced",
+      "groupId": "branding-tools-referenced",
+      "id": "google-fonts",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "fonts licensed under the SIL Open Font Licence, which permits commercial use. Check the licence page of any font before use."
+        }
+      ],
+      "title": "Google Fonts",
+      "type": "web",
+      "url": "https://fonts.google.com",
+      "urls": [
+        "https://fonts.google.com"
+      ]
+    },
+    {
+      "block": "branding-tools-referenced.1",
+      "group": "Branding tools referenced",
+      "groupId": "branding-tools-referenced",
+      "id": "inkscape",
+      "item": 2,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "free vector editor. The toolkit's recommended tool for producing the final logo file."
+        }
+      ],
+      "title": "Inkscape",
+      "type": "web",
+      "url": "https://inkscape.org",
+      "urls": [
+        "https://inkscape.org"
+      ]
+    },
+    {
+      "block": "branding-tools-referenced.1",
+      "group": "Branding tools referenced",
+      "groupId": "branding-tools-referenced",
+      "id": "cipc-trade-mark-search",
+      "item": 3,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "via the CIPC eServices portal at "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.cipc.co.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.cipc.co.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". The toolkit tells readers to search this themselves before committing to a name."
+        }
+      ],
+      "title": "CIPC trade mark search",
+      "type": "web",
+      "url": "https://www.cipc.co.za",
+      "urls": [
+        "https://www.cipc.co.za"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "tax-and-sars",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Filing-season closing dates for the 2026 year (23 October 2026 non-provisional, 22 January 2027 provisional) are from SARS Government Gazette No. 54598, Notice 7422, 30 April 2026, as reported by Accounter — "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "https://accounter.co.za/tools/tax-calendar"
+              }
+            ],
+            "external": true,
+            "href": "https://accounter.co.za/tools/tax-calendar",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ". Confirm on "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "sars.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://sars.gov.za/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " each year."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Secondary, used to cross-check the 2026/2027 tables:"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Note on a discrepancy found: two secondary sources gave different primary rebate figures (R17,235 and R17,820). The R99,000 threshold at an 18% first bracket implies R17,820. This toolkit quotes the threshold rather than the rebate for that reason. Confirm on the SARS tax rates page before relying on either."
+          }
+        ]
+      ],
+      "order": 1,
+      "subgroups": [],
+      "title": "Tax and SARS"
+    },
+    {
+      "id": "company-registration",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Secondary:"
+          }
+        ]
+      ],
+      "order": 2,
+      "subgroups": [],
+      "title": "Company registration"
+    },
+    {
+      "id": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Underlying law: Companies Act 71 of 2008 — s4 (solvency and liquidity test), s22 (reckless trading), s32 (company name and registration number on documents), s33 (annual returns), s76 (director duties), s77 (director liability), s218(2) (liability for contraventions). Consumer Protection Act 68 of 2008 — s79 and s80 (business names; the s80 register has not been brought into operation). Income Tax Act 58 of 1962 — s22 (trading stock brought into account at year end), s12E (small business corporations, including the restriction on holding shares in another company). Companies Regulations 2011 — regulation 26 (Public Interest Score), regulation 28 and 29 (audit and independent review), table CR 2B (annual return fees)."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Secondary, for fees, deadlines and deregistration mechanics:"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Note on the 800,000 deregistration figure: this comes from a secondary source describing CIPC action begun in January 2025. Treat it as an indication of scale, not a precise official statistic."
+          }
+        ]
+      ],
+      "order": 3,
+      "subgroups": [],
+      "title": "Running a Pty Ltd: annual returns, financial statements, directors"
+    },
+    {
+      "id": "paying-yourself-from-a-company",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Underlying law: Income Tax Act 58 of 1962 — s64E(4) (deemed dividends on low-interest loans to shareholders), the Seventh Schedule (fringe benefits), paragraph 11C of the Fourth Schedule (deemed remuneration for private company directors). Companies Act 71 of 2008 — s4 and s46 (distributions and the solvency and liquidity test)."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Case law: Cohen NO v Segal, Witwatersrand Local Division, judgment 28 April 1970 — a dividend may generally only be declared out of profits, not capital. Confirm the law report citation with an attorney before relying on it in correspondence."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Secondary:"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Not used:"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " TaxTim's article on a director's PAYE and UIF deductions, and PATC's equivalent, both still describe the repealed deemed remuneration formula as current. They were checked and rejected. This is a good example of why the official position matters more than a well-ranked article."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Two conflicts recorded, both flagged in the toolkit text:"
+              }
+            ],
+            "t": "strong"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Scope of the deemed dividend."
+              }
+            ],
+            "t": "em"
+          },
+          {
+            "t": "text",
+            "v": " Some sources state the deemed dividend is 20% of the entire debit loan balance. The Tax Faculty and the wording of s64E(4) support the narrower position that only the foregone interest is deemed a dividend. The toolkit takes the narrower position and says so."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "UIF for a sole director."
+              }
+            ],
+            "t": "em"
+          },
+          {
+            "t": "text",
+            "v": " ClearComply and eqeight indicate UIF applies to a director paid through payroll even as the only employee. Other sources indicate UIF and SDL do not apply where the director receives director's fees and is not an employee under an employment contract. The toolkit presents both and advises getting advice rather than picking one."
+          }
+        ]
+      ],
+      "order": 4,
+      "subgroups": [],
+      "title": "Paying yourself from a company"
+    },
+    {
+      "id": "b-bbee",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Secondary:"
+          }
+        ]
+      ],
+      "order": 5,
+      "subgroups": [],
+      "title": "B-BBEE"
+    },
+    {
+      "id": "popia",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Secondary:"
+          }
+        ]
+      ],
+      "order": 6,
+      "subgroups": [],
+      "title": "POPIA"
+    },
+    {
+      "id": "consumer-law-and-online-selling",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Secondary:"
+          }
+        ]
+      ],
+      "order": 7,
+      "subgroups": [],
+      "title": "Consumer law and online selling"
+    },
+    {
+      "id": "vehicle-dealing-and-vehicles-generally",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Secondary:"
+          }
+        ]
+      ],
+      "order": 8,
+      "subgroups": [],
+      "title": "Vehicle dealing and vehicles generally"
+    },
+    {
+      "id": "second-hand-goods-dealing",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Secondary:"
+          }
+        ]
+      ],
+      "order": 9,
+      "subgroups": [],
+      "title": "Second-hand goods dealing"
+    },
+    {
+      "id": "used-vehicle-sales-and-the-consumer-protection-act",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Secondary sources, all pointing back to CPA s55 and s56:"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Dispute forums: Motor Industry Ombudsman of South Africa, "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "miosa.co.za"
+              }
+            ],
+            "external": true,
+            "href": "https://miosa.co.za/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ". National Consumer Commission, "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "thencc.org.za"
+              }
+            ],
+            "external": true,
+            "href": "https://thencc.org.za/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Magistrates' court civil jurisdiction (district R200,000, regional R200,000 to R400,000) is from a secondary summary. Confirm with an attorney before choosing a forum."
+          }
+        ]
+      ],
+      "order": 10,
+      "subgroups": [],
+      "title": "Used vehicle sales and the Consumer Protection Act"
+    },
+    {
+      "id": "food-businesses",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Secondary:"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your actual authority is your municipal Environmental Health Practitioner. Contact them before relying on any web source."
+          }
+        ]
+      ],
+      "order": 11,
+      "subgroups": [],
+      "title": "Food businesses"
+    },
+    {
+      "id": "business-licensing",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Secondary:"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "The only reliable source for your situation is your municipal Business Licensing office."
+          }
+        ]
+      ],
+      "order": 12,
+      "subgroups": [],
+      "title": "Business licensing"
+    },
+    {
+      "id": "credit-and-financial-services",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Secondary:"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Official regulators: National Credit Regulator, "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "ncr.org.za"
+              }
+            ],
+            "external": true,
+            "href": "https://ncr.org.za/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ". Financial Sector Conduct Authority, "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "fsca.co.za"
+              }
+            ],
+            "external": true,
+            "href": "https://fsca.co.za/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ]
+      ],
+      "order": 13,
+      "subgroups": [],
+      "title": "Credit and financial services"
+    },
+    {
+      "id": "working-from-home-payments-and-personal-safety",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Note: South Africa has no formal national \"safe exchange zone\" programme at police stations. The suggestion to use police station parking is common practice, not an official scheme. Ask your local station."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Zoning rules are set by each municipality. The only reliable source for your property is your municipal town planning office."
+          }
+        ]
+      ],
+      "order": 14,
+      "subgroups": [
+        {
+          "block": "working-from-home-payments-and-personal-safety.1",
+          "entry": "south-african-reserve-bank--banknote-security-features",
+          "id": "south-african-reserve-bank--banknote-security-features",
+          "notes": [],
+          "title": "South African Reserve Bank — banknote security features"
+        },
+        {
+          "block": "working-from-home-payments-and-personal-safety.4",
+          "id": "payshap-limits",
+          "notes": [],
+          "title": "PayShap limits"
+        },
+        {
+          "block": "working-from-home-payments-and-personal-safety.6",
+          "id": "fake-proof-of-payment-and-marketplace-scams",
+          "notes": [],
+          "title": "Fake proof of payment and marketplace scams"
+        },
+        {
+          "block": "working-from-home-payments-and-personal-safety.8",
+          "id": "meeting-buyers-and-test-drives",
+          "notes": [],
+          "title": "Meeting buyers and test drives"
+        },
+        {
+          "block": "working-from-home-payments-and-personal-safety.11",
+          "id": "home-based-business-zoning",
+          "notes": [],
+          "title": "Home-based business zoning"
+        }
+      ],
+      "title": "Working from home, payments and personal safety"
+    },
+    {
+      "id": "you-are-the-business-uif-coida-courts-and-continuity",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Caution: several widely-read articles on this topic are written for the UK Model Articles or Australia's section 201F. "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Neither applies in South Africa."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " The position here depends on your own MOI. Ask an attorney."
+          }
+        ]
+      ],
+      "order": 15,
+      "subgroups": [],
+      "title": "You are the business: UIF, COIDA, courts and continuity"
+    },
+    {
+      "id": "colour-research-and-signage-materials",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Summaries consulted: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "https://www.deepmarketing.it/en/blog/color-science-marketing-evidence-2026"
+              }
+            ],
+            "external": true,
+            "href": "https://www.deepmarketing.it/en/blog/color-science-marketing-evidence-2026",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " and "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "https://howbrandsarebuilt.com/branding-color-psychology/"
+              }
+            ],
+            "external": true,
+            "href": "https://howbrandsarebuilt.com/branding-color-psychology/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ". The underlying papers were not read in full; if a decision turns on this, read Elliot and Maier directly."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Get your own sign maker to confirm what they are quoting before you order."
+          }
+        ]
+      ],
+      "order": 16,
+      "subgroups": [
+        {
+          "block": "colour-research-and-signage-materials.1",
+          "id": "colour-psychology",
+          "notes": [
+            [
+              {
+                "t": "text",
+                "v": "The toolkit deliberately avoids colour-meaning charts. The position is based on:"
+              }
+            ],
+            [
+              {
+                "t": "text",
+                "v": "The frequently quoted claim that 62 to 90% of a snap product judgment comes from colour traces to a 2006 literature review by Satyendra Singh, not to a controlled buying experiment. The toolkit does not use it."
+              }
+            ]
+          ],
+          "title": "Colour psychology"
+        },
+        {
+          "block": "colour-research-and-signage-materials.4",
+          "id": "signage-vinyl-and-south-african-uv",
+          "notes": [],
+          "title": "Signage vinyl and South African UV"
+        }
+      ],
+      "title": "Colour research and signage materials"
+    },
+    {
+      "id": "branding-tools-referenced",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "The position that AI-generated images may be difficult to own or register as a trade mark is unsettled law and is presented in the toolkit as a risk to manage, not a rule."
+          }
+        ]
+      ],
+      "order": 17,
+      "subgroups": [],
+      "title": "Branding tools referenced"
+    }
+  ],
+  "lang": "en"
+}

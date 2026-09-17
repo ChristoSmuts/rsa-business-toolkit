@@ -1,0 +1,871 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Which office software to use"
+        }
+      ],
+      "depth": 2,
+      "hash": "0d9a2341fcafe230",
+      "id": "which-office-software-to-use",
+      "kind": "heading",
+      "text": "Which office software to use"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Three free options are worth considering. They are not equally good for a South African one-person business."
+        }
+      ],
+      "hash": "0ed779d774276179",
+      "id": "which-office-software-to-use.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "337e46c557be1d7d",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The app you use to open websites: Chrome, Safari, Firefox."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Browser"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Working with no internet."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Offline"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Your files copy themselves to the cloud automatically. If you delete one, it deletes everywhere."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Sync"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A separate copy you make on purpose, kept somewhere else."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Backup"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A file format that looks the same on every device and cannot easily be changed. Send customers PDFs."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "PDF"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A logo file that can be made any size without going blurry. SVG is a vector format."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Vector"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Using your phone's data to give your laptop internet."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Hotspot"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A battery box that keeps your router on during load shedding."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "UPS"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Your website address, like yourname.co.za."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Domain"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Google Docs, Sheets and Slides"
+        }
+      ],
+      "depth": 3,
+      "hash": "9d7968bd9c40d1b0",
+      "id": "google-docs-sheets-and-slides",
+      "kind": "heading",
+      "text": "Google Docs, Sheets and Slides"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Free with any Gmail account. Runs in a browser and on a phone."
+        }
+      ],
+      "hash": "6d682d72c6f6805f",
+      "id": "google-docs-sheets-and-slides.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Strengths: works on a cheap phone, saves automatically, easy to share a link with a customer, easy to work from a tablet at a job site, and your files survive if your laptop is stolen. Templates are easy to duplicate."
+        }
+      ],
+      "hash": "f142b46bddb8fbff",
+      "id": "google-docs-sheets-and-slides.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Weaknesses: needs internet for most things. Weaker at exact page layout than the others. Complex Word files from clients can shift when opened."
+        }
+      ],
+      "hash": "2bb0ef116d827d09",
+      "id": "google-docs-sheets-and-slides.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "LibreOffice"
+        }
+      ],
+      "depth": 3,
+      "hash": "fc04be02683ba5a8",
+      "id": "libreoffice",
+      "kind": "heading",
+      "text": "LibreOffice"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Free desktop software. Download from "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "libreoffice.org"
+            }
+          ],
+          "external": true,
+          "href": "https://libreoffice.org/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Runs on Windows, Mac, and Linux."
+        }
+      ],
+      "hash": "239ea5c80a93f64d",
+      "id": "libreoffice.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Strengths: fully offline, so no data cost and no problem during load shedding if your laptop is charged. Strong at exact page layout. Good mail merge for sending the same letter to many customers. Excellent PDF export."
+        }
+      ],
+      "hash": "7c3bdd96d8199296",
+      "id": "libreoffice.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Weaknesses: no practical mobile editing. There is an Android viewer, but you will not run your admin from a phone on it. The menus look different from Microsoft Office and take a week to get used to. Nothing is backed up unless you do it."
+        }
+      ],
+      "hash": "ebe7b76cd1b38ff1",
+      "id": "libreoffice.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "OnlyOffice"
+        }
+      ],
+      "depth": 3,
+      "hash": "7d98e6854b39c8ee",
+      "id": "onlyoffice",
+      "kind": "heading",
+      "text": "OnlyOffice"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Free desktop editors from "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "onlyoffice.com"
+            }
+          ],
+          "external": true,
+          "href": "https://onlyoffice.com/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", plus a free personal cloud tier."
+        }
+      ],
+      "hash": "6fa1debf19c611af",
+      "id": "onlyoffice.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Strengths: the closest match to Microsoft Office. If a client sends you a.docx with tricky formatting and it must come back looking identical, OnlyOffice usually handles it best. The interface looks like Microsoft Office, so there is almost nothing to learn."
+        }
+      ],
+      "hash": "4caf3b7233623ea8",
+      "id": "onlyoffice.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Weaknesses: smaller community, so fewer free templates and less help online. The free cloud tier has limits."
+        }
+      ],
+      "hash": "bb058e16fe428d26",
+      "id": "onlyoffice.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The recommendation"
+        }
+      ],
+      "depth": 2,
+      "hash": "cb71a3e190b3cb86",
+      "id": "the-recommendation",
+      "kind": "heading",
+      "text": "The recommendation"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use Google Docs and Google Sheets as your daily tools. Install LibreOffice on your laptop as a backup."
+        }
+      ],
+      "hash": "128eb53bed2c535d",
+      "id": "the-recommendation.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Why:"
+        }
+      ],
+      "hash": "01bb3cc1876bfa59",
+      "id": "the-recommendation.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You will do most of your admin on your phone, between jobs. Google works there. LibreOffice does not."
+        }
+      ],
+      "hash": "a9b59e9a03eed3e6",
+      "id": "the-recommendation.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your quote and invoice templates live in one place and you duplicate them for each job. That is easier in Google Drive than in folders on a laptop."
+        }
+      ],
+      "hash": "ca18634fb8410c74",
+      "id": "the-recommendation.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If your laptop is stolen or the hard drive dies, your business does not stop. This matters more than any feature."
+        }
+      ],
+      "hash": "9753292441ad7794",
+      "id": "the-recommendation.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "LibreOffice covers you when there is no data and no signal, and it makes better PDFs for anything you print."
+        }
+      ],
+      "hash": "759390950b7d8dfd",
+      "id": "the-recommendation.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Add OnlyOffice only if you regularly receive Word documents from corporate clients that must be edited and returned without any change in formatting. If that is not your situation, skip it."
+        }
+      ],
+      "hash": "60dc2b052c097be6",
+      "id": "the-recommendation.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Set up Google Drive properly on day one"
+        }
+      ],
+      "depth": 2,
+      "hash": "4bacc8ec41348fd3",
+      "id": "set-up-google-drive-properly-on-day-one",
+      "kind": "heading",
+      "text": "Set up Google Drive properly on day one"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Folders, in this structure:"
+        }
+      ],
+      "hash": "1b4e444edb4e9b98",
+      "id": "set-up-google-drive-properly-on-day-one.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "de12852c72468392",
+      "id": "set-up-google-drive-properly-on-day-one.2",
+      "kind": "code",
+      "text": "01 Admin (registration documents, tax documents, licences)\n02 Templates (quote, invoice, terms, privacy notice)\n03 Quotes (one file per quote, named QUO-0001 Customer Name)\n04 Invoices (one file per invoice, named INV-0001 Customer Name)\n05 Slips (one sub-folder per month: 2026-03, 2026-04,...)\n06 Customers (one folder per regular customer)\n07 Brand (logo files, colours, fonts, brand guide)",
+      "variant": "listing"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Name files so they sort correctly. Put the number first, and use dates as YYYY-MM-DD. "
+        },
+        {
+          "t": "code",
+          "v": "2026-09-13 Invoice Nkosi.pdf"
+        },
+        {
+          "t": "text",
+          "v": " sorts properly. "
+        },
+        {
+          "t": "code",
+          "v": "13 Sept invoice.pdf"
+        },
+        {
+          "t": "text",
+          "v": " does not."
+        }
+      ],
+      "hash": "6bd7740f82f04396",
+      "id": "set-up-google-drive-properly-on-day-one.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Always send a PDF to customers, never the editable file. In Google Docs: File, then Download, then PDF. In LibreOffice there is a PDF button on the toolbar."
+        }
+      ],
+      "hash": "e04887ce766423a4",
+      "id": "set-up-google-drive-properly-on-day-one.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Other free tools worth having"
+        }
+      ],
+      "depth": 2,
+      "hash": "cedea3d09bd60c19",
+      "id": "other-free-tools-worth-having",
+      "kind": "heading",
+      "text": "Other free tools worth having"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Email with your own domain. A "
+        },
+        {
+          "t": "code",
+          "v": "@gmail.com"
+        },
+        {
+          "t": "text",
+          "v": " address on a quote looks less established than "
+        },
+        {
+          "t": "code",
+          "v": "you@yourbusiness.co.za"
+        },
+        {
+          "t": "text",
+          "v": ". Google Workspace charges per user per month. Zoho Mail has offered a free tier for a small number of users on a custom domain, so check whether it is still available before you pay for anything. Your domain seller may also include basic email with the domain, which is often enough."
+        }
+      ],
+      "hash": "6739a2e5a99effbc",
+      "id": "other-free-tools-worth-having.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Invoicing software. You do not need it in year one. A Google Sheets template is fine. When you outgrow that, Wave and Zoho Invoice both have free tiers, and several South African bank business accounts include basic invoicing."
+        }
+      ],
+      "hash": "0323cb3b7bb8596d",
+      "id": "other-free-tools-worth-having.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "E-signatures. A signed PDF is legally valid in South Africa for most ordinary business contracts under ECTA. For simple agreements, a typed name plus a returned email is usually sufficient. Some documents, such as property transfers and wills, require a real handwritten signature. Do not use electronic signatures for those."
+        }
+      ],
+      "hash": "0a169efacf215f85",
+      "id": "other-free-tools-worth-having.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Password manager. Bitwarden has a free plan. Use it. You will have logins for SARS, CIPC, your bank, your domain, and every social account. Writing them in a notebook is how businesses get robbed."
+        }
+      ],
+      "hash": "b3a9f5e5ce85759b",
+      "id": "other-free-tools-worth-having.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Backups. Google Drive is a sync, not a backup. If you delete a file by mistake, it deletes everywhere. Once a month, download your key folders to a USB drive and keep it somewhere else."
+        }
+      ],
+      "hash": "aa412d2b68a86466",
+      "id": "other-free-tools-worth-having.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Design. Canva free plan for social images. Inkscape for logo vector files. Photopea in the browser for editing photos."
+        }
+      ],
+      "hash": "12c9594b0f9124d3",
+      "id": "other-free-tools-worth-having.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Fonts. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "fonts.google.com"
+            }
+          ],
+          "external": true,
+          "href": "https://fonts.google.com/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Free and free for commercial use."
+        }
+      ],
+      "hash": "e48bedee77808813",
+      "id": "other-free-tools-worth-having.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Practical notes for South African conditions"
+        }
+      ],
+      "depth": 2,
+      "hash": "38f3a10dd59bbd8b",
+      "id": "practical-notes-for-south-african-conditions",
+      "kind": "heading",
+      "text": "Practical notes for South African conditions"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Load shedding. Keep your phone charged as a hotspot. Keep a copy of today's quote or invoice offline. A small UPS for a router costs a few hundred rand and saves hours."
+        }
+      ],
+      "hash": "c3c38a5272dfdada",
+      "id": "practical-notes-for-south-african-conditions.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Data cost. Turn off automatic photo backup on mobile data. Set Google Drive to sync on Wi-Fi only. Export images for social media under 500 KB."
+        }
+      ],
+      "hash": "5781fb8a6f825337",
+      "id": "practical-notes-for-south-african-conditions.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Working offline. Google Docs has an offline mode, but you must switch it on before you lose signal, on each device. Do it now, not on the day you need it."
+        }
+      ],
+      "hash": "813549d9301c5a7c",
+      "id": "practical-notes-for-south-african-conditions.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What to avoid"
+        }
+      ],
+      "depth": 2,
+      "hash": "0ae819cd9218dead",
+      "id": "what-to-avoid",
+      "kind": "heading",
+      "text": "What to avoid"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Cracked Microsoft Office. It is illegal, it carries malware, and it will fail at the worst time. LibreOffice and OnlyOffice do the same job legally and free."
+        }
+      ],
+      "hash": "349bdf7cc05acc86",
+      "id": "what-to-avoid.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Paying for accounting software in year one. A spreadsheet and a folder of photographed slips is enough until you are past about R500,000 turnover or have stock to track."
+        }
+      ],
+      "hash": "46385c6097d654a6",
+      "id": "what-to-avoid.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Buying a website builder subscription before you have a customer. A Google Business Profile and a WhatsApp catalogue cost nothing and often convert better."
+        }
+      ],
+      "hash": "754347a6a95eb3c4",
+      "id": "what-to-avoid.3",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "d25e2f054e050355",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Free tools",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "which-office-software-to-use",
+      "text": "Which office software to use"
+    },
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 3,
+      "id": "google-docs-sheets-and-slides",
+      "text": "Google Docs, Sheets and Slides"
+    },
+    {
+      "depth": 3,
+      "id": "libreoffice",
+      "text": "LibreOffice"
+    },
+    {
+      "depth": 3,
+      "id": "onlyoffice",
+      "text": "OnlyOffice"
+    },
+    {
+      "depth": 2,
+      "id": "the-recommendation",
+      "text": "The recommendation"
+    },
+    {
+      "depth": 2,
+      "id": "set-up-google-drive-properly-on-day-one",
+      "text": "Set up Google Drive properly on day one"
+    },
+    {
+      "depth": 2,
+      "id": "other-free-tools-worth-having",
+      "text": "Other free tools worth having"
+    },
+    {
+      "depth": 2,
+      "id": "practical-notes-for-south-african-conditions",
+      "text": "Practical notes for South African conditions"
+    },
+    {
+      "depth": 2,
+      "id": "what-to-avoid",
+      "text": "What to avoid"
+    }
+  ],
+  "id": "paperwork/free-tools",
+  "kind": "guide",
+  "lang": "en",
+  "order": 2,
+  "readingTime": 5,
+  "related": [],
+  "route": "paperwork/free-tools/",
+  "section": "paperwork",
+  "slug": "free-tools",
+  "sourcePath": "03 Paperwork and templates/02-free-tools.md",
+  "sources": {
+    "acts": [
+      "electronic-communications-and-transactions-act-25-of-2002"
+    ],
+    "entries": [
+      "google-fonts",
+      "inkscape"
+    ]
+  },
+  "summary": "Three free options are worth considering. They are not equally good for a South African one-person business.",
+  "tags": [
+    "tools"
+  ],
+  "terms": [
+    {
+      "meaning": "The app you use to open websites: Chrome, Safari, Firefox.",
+      "term": "Browser"
+    },
+    {
+      "meaning": "Working with no internet.",
+      "term": "Offline"
+    },
+    {
+      "meaning": "Your files copy themselves to the cloud automatically. If you delete one, it deletes everywhere.",
+      "term": "Sync"
+    },
+    {
+      "meaning": "A separate copy you make on purpose, kept somewhere else.",
+      "term": "Backup"
+    },
+    {
+      "meaning": "A file format that looks the same on every device and cannot easily be changed. Send customers PDFs.",
+      "term": "PDF"
+    },
+    {
+      "meaning": "A logo file that can be made any size without going blurry. SVG is a vector format.",
+      "term": "Vector"
+    },
+    {
+      "meaning": "Using your phone's data to give your laptop internet.",
+      "term": "Hotspot"
+    },
+    {
+      "meaning": "A battery box that keeps your router on during load shedding.",
+      "term": "UPS"
+    },
+    {
+      "meaning": "Your website address, like yourname.co.za.",
+      "term": "Domain"
+    }
+  ],
+  "title": "Free tools",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

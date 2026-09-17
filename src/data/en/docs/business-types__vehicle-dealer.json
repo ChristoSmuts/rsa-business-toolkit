@@ -1,0 +1,3558 @@
+{
+  "appliesTo": {
+    "businessTypes": [
+      "vehicle-dealer"
+    ],
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Read "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " first. This file adds the rules that apply only to a vehicle dealer."
+        }
+      ],
+      "hash": "105ed9a9549be34c",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vehicle dealing is one of the most regulated small businesses in South Africa. It has three registration layers that other businesses do not have, and one legal risk that can destroy a small dealer in a single transaction."
+        }
+      ],
+      "hash": "7c45314aabbd8927",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "d56f28584767a17b",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The free form to register as a second-hand goods dealer with the police."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "SAPS 601"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The book or spreadsheet where you record every vehicle bought and sold."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Register (noun)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The vehicle identification number, stamped on the vehicle."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "VIN"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The certificate that lets a company own vehicles on eNaTIS."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "BRNC"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A special number that lets a dealer drive unregistered stock on public roads."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Motor trade number"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Afrikaans for \"as is\". Selling with no responsibility for faults. No longer works when a dealer sells to the public."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Voetstoots"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The six-month guarantee the law adds to every dealer sale."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Implied warranty"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "VAT you can claim back on a vehicle bought from a private person, even though they charged no VAT."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Notional input tax"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The form you and the seller sign so you can claim that VAT."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "VAT264"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Whoever has the right to sell the vehicle. If it is financed, that is the bank."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Title holder"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The form the seller lodges to say the vehicle has changed hands."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "NCO"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The form the buyer lodges to register the vehicle."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "RLV"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A certificate from a testing station that the vehicle is safe. Needed on every sale."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Roadworthy"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Read the Consumer Protection Act section before you buy your first vehicle. It is the part that costs people money."
+        }
+      ],
+      "hash": "dbe0d7c28aeac39a",
+      "id": "words-used-in-this-file.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Quick answer: what you must have"
+        }
+      ],
+      "depth": 2,
+      "hash": "5c41cc006fe0046f",
+      "id": "quick-answer-what-you-must-have",
+      "kind": "heading",
+      "text": "Quick answer: what you must have"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Required, in this order:"
+        }
+      ],
+      "hash": "60b6b1c2624f00bd",
+      "id": "quick-answer-what-you-must-have.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "2888b113904ed591",
+      "id": "quick-answer-what-you-must-have.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "A registered business, if you want to hold vehicles in a business name (see "
+          },
+          {
+            "doc": "core/register",
+            "label": "01-core/02",
+            "t": "docref"
+          },
+          {
+            "t": "text",
+            "v": ")"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A Business Register Number Certificate or Traffic Register Number, so vehicles can be registered to the business"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Registration as a second-hand goods dealer with SAPS (free, but compulsory)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A municipal business licence, in most municipalities"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Correct trading premises zoning"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A written sale agreement that complies with the Consumer Protection Act"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Insurance covering stock vehicles and test drives"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Optional but often needed:"
+        }
+      ],
+      "hash": "db92693d0e62176a",
+      "id": "quick-answer-what-you-must-have.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "f20d8109c6b978bf",
+      "id": "quick-answer-what-you-must-have.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Motor trade numbers, if you drive unregistered stock on public roads"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "VAT registration, which becomes valuable earlier than for most businesses"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "NCR registration, if you ever extend credit yourself"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "An FSP licence, if you sell insurance, warranties, or finance products"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 8
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "quick-answer-what-you-must-have.5",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Layer 1: SAPS second-hand goods dealer registration"
+        }
+      ],
+      "depth": 2,
+      "hash": "1e95957e9a0df466",
+      "id": "layer-1-saps-second-hand-goods-dealer-registration",
+      "kind": "heading",
+      "text": "Layer 1: SAPS second-hand goods dealer registration"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is compulsory and most small dealers do not know about it."
+        }
+      ],
+      "hash": "dcb093d31bd2c9fb",
+      "id": "layer-1-saps-second-hand-goods-dealer-registration.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The Second-Hand Goods Act 6 of 2009 sits under the Minister of Police. Its purpose is to stop trade in stolen goods."
+        }
+      ],
+      "hash": "45f247094c76fdcf",
+      "id": "layer-1-saps-second-hand-goods-dealer-registration.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The principal business activities that must register include an Auctioneer, General Dealer, Jeweller, Motor Vehicle Dealer and Scrap metal Dealer. The Act applies to a person who carries on a business of dealing in second-hand goods."
+        }
+      ],
+      "hash": "26ff3ecaf88d6dbb",
+      "id": "layer-1-saps-second-hand-goods-dealer-registration.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Second-hand goods are items worth over R100 that have been in use by a person other than the manufacturer or producer. Dealers must register with SAPS, keep detailed registers of transactions for five years, verify supplier identities, and report suspected stolen items."
+        }
+      ],
+      "hash": "8f37f5e8c538e6dc",
+      "id": "layer-1-saps-second-hand-goods-dealer-registration.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you buy and sell used goods, you must register with the police, write down every item you buy and sell, keep those records for five years, check who you are buying from, and report anything that looks stolen."
+        }
+      ],
+      "hash": "b62ad63e7b7319fc",
+      "id": "layer-1-saps-second-hand-goods-dealer-registration.5",
+      "kind": "callout",
+      "pairsWith": "layer-1-saps-second-hand-goods-dealer-registration.4",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How to register"
+        }
+      ],
+      "depth": 3,
+      "hash": "ecece8fca71f0f2c",
+      "id": "how-to-register",
+      "kind": "heading",
+      "text": "How to register"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Obtain the application form from the office of the Designated Police Officer or from the SAPS website at "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.saps.gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.saps.gov.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", complete and sign it, and lodge the completed form and all required documents with the office of the Designated Police Officer."
+        }
+      ],
+      "hash": "71f36b462424efab",
+      "id": "how-to-register.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Get the form from your police station or the SAPS website, fill it in, sign it, and hand it in at the station with the documents they ask for."
+        }
+      ],
+      "hash": "2574012326b5d138",
+      "id": "how-to-register.2",
+      "kind": "callout",
+      "pairsWith": "how-to-register.1",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The form is the SAPS 601. No payment is required. Registration is free."
+        }
+      ],
+      "hash": "42475b4b25793f75",
+      "id": "how-to-register.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Required documents: two colour ID photos of the applicant no older than 3 months, and a certified copy of the RSA ID document or foreign passport of the applicant and of every person responsible for the day-to-day management of the business."
+        }
+      ],
+      "hash": "34e1f036484ea752",
+      "id": "how-to-register.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bring two recent colour ID photos and a certified copy of the ID of everyone who runs the business day to day."
+        }
+      ],
+      "hash": "ed441ff9d2db45b6",
+      "id": "how-to-register.5",
+      "kind": "callout",
+      "pairsWith": "how-to-register.4",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Any person other than a natural person may only be registered if a natural person who is not disqualified under the Act is appointed to manage the business. For a company, you name yourself as the responsible person."
+        }
+      ],
+      "hash": "e24e3b0cbe7ddbab",
+      "id": "how-to-register.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "After considering the application, the National Commissioner may issue a certificate of registration or a temporary registration, depending on the circumstances."
+        }
+      ],
+      "hash": "e4ea12a9a83e7691",
+      "id": "how-to-register.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Apply at the SAPS station in the area where your business premises are situated."
+        }
+      ],
+      "hash": "ea2f460b4b20344f",
+      "id": "how-to-register.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The register you must keep"
+        }
+      ],
+      "depth": 3,
+      "hash": "e3050410eeb50d87",
+      "id": "the-register-you-must-keep",
+      "kind": "heading",
+      "text": "The register you must keep"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is the part that gets dealers in trouble during an inspection."
+        }
+      ],
+      "hash": "12348ebc1575e67e",
+      "id": "the-register-you-must-keep.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A dealer dealing in second-hand motor vehicles must record in the prescribed register the particulars of every acquisition and disposal of a motor vehicle, including: the vehicle identification number (VIN) and the chassis and engine number; the odometer reading; the exterior and trim colour; and any distinguishing mark or feature, such as microdot particulars."
+        }
+      ],
+      "hash": "68c026ecedbbdaa0",
+      "id": "the-register-you-must-keep.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For every vehicle you buy or sell, write down in your register: the VIN, the chassis number, the engine number, the mileage, the colours inside and out, and any special marks like microdots."
+        }
+      ],
+      "hash": "72a905b388def330",
+      "id": "the-register-you-must-keep.3",
+      "kind": "callout",
+      "pairsWith": "the-register-you-must-keep.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You also record who you bought from and who you sold to."
+        }
+      ],
+      "hash": "4d356c1577e2eaac",
+      "id": "the-register-you-must-keep.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A person acquiring or disposing of a motor vehicle from or to a dealer must furnish the dealer with proof of identity. The dealer must obtain and keep a copy of the identity document or passport, and must obtain and keep proof of registration or deregistration. The dealer must retain these copies for not less than five years from the date of the transaction."
+        }
+      ],
+      "hash": "ac6a2608d224063e",
+      "id": "the-register-you-must-keep.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Anyone you buy a vehicle from, or sell one to, must show you their ID. You keep a copy of it, plus proof of the vehicle's registration, for five years."
+        }
+      ],
+      "hash": "e55ddb9c27ee15fa",
+      "id": "the-register-you-must-keep.6",
+      "kind": "callout",
+      "pairsWith": "the-register-you-must-keep.5",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Practical rule: never take a vehicle in without a photocopy of the seller's ID and the registration certificate. Never. A vehicle bought from someone who will not show ID is either stolen or about to become your problem."
+        }
+      ],
+      "hash": "8274821bec59a9cf",
+      "id": "the-register-you-must-keep.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Keeping your registration valid"
+        }
+      ],
+      "depth": 3,
+      "hash": "cf883ee2afef4a5a",
+      "id": "keeping-your-registration-valid",
+      "kind": "heading",
+      "text": "Keeping your registration valid"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The holder of a certificate of registration must notify the National Commissioner in writing within 30 days if there is any change to the information submitted in the application, a change in the control or ownership of the dealer, or any change that affects the dealer's ability to meet the requirements for registration."
+        }
+      ],
+      "hash": "5459add7d4bd9631",
+      "id": "keeping-your-registration-valid.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If anything on your SAPS dealer registration changes, including what you deal in or where, you must tell SAPS in writing within 30 days."
+        }
+      ],
+      "hash": "e790a3610a5cb9e1",
+      "id": "keeping-your-registration-valid.2",
+      "kind": "callout",
+      "pairsWith": "keeping-your-registration-valid.1",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If the responsible person recorded on the certificate changes, the dealer must complete a SAPS 604 form and submit it to the SAPS station where the original application was made, even if the certificate has not expired."
+        }
+      ],
+      "hash": "c83a1a73890b60ca",
+      "id": "keeping-your-registration-valid.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If the person named on your certificate as running the business changes, fill in form SAPS 604 and hand it in at the same station, even if your certificate has not expired."
+        }
+      ],
+      "hash": "00dbfeb52b06dc80",
+      "id": "keeping-your-registration-valid.4",
+      "kind": "callout",
+      "pairsWith": "keeping-your-registration-valid.3",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If an application for renewal is lodged within the required period, the registration remains valid until the renewal is decided. Diarise your renewal date."
+        }
+      ],
+      "hash": "2ecd37dba013afb0",
+      "id": "keeping-your-registration-valid.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Inspections"
+        }
+      ],
+      "depth": 3,
+      "hash": "d51756b2155c8114",
+      "id": "inspections",
+      "kind": "heading",
+      "text": "Inspections"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A police official may require the dealer or the person in control of the premises to produce the certificate of registration relating to those premises for inspection."
+        }
+      ],
+      "hash": "bbd87d1afde98397",
+      "id": "inspections.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Keep the certificate on the wall at the premises, not in a drawer at home."
+        }
+      ],
+      "hash": "798ba22e4cbb6b4c",
+      "id": "inspections.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "inspections.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Layer 2: getting vehicles registered to the business"
+        }
+      ],
+      "depth": 2,
+      "hash": "702a9dacbdfc4b13",
+      "id": "layer-2-getting-vehicles-registered-to-the-business",
+      "kind": "heading",
+      "text": "Layer 2: getting vehicles registered to the business"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A vehicle you hold as stock has to sit somewhere on the national system."
+        }
+      ],
+      "hash": "bd59398b7c3f7764",
+      "id": "layer-2-getting-vehicles-registered-to-the-business.1",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "If you trade as a company"
+        }
+      ],
+      "depth": 3,
+      "hash": "8c15936efb2ec76f",
+      "id": "if-you-trade-as-a-company",
+      "kind": "heading",
+      "text": "If you trade as a company"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You need a Business Register Number Certificate (BRNC). Full process, documents, costs, and the proxy rules are in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Vehicles for your business"
+            }
+          ],
+          "doc": "core/vehicles",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "463e1f7e8fd68c5d",
+      "id": "if-you-trade-as-a-company.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Short version: eNaTIS identifies every vehicle owner by an identity number. A company does not have one, so the registering authority issues it a business register number the first time it needs to own a vehicle. You apply in person at your local traffic department with form ABR, and you nominate a proxy."
+        }
+      ],
+      "hash": "f380f652a6553196",
+      "id": "if-you-trade-as-a-company.2",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "If you trade as a sole proprietor"
+        }
+      ],
+      "depth": 3,
+      "hash": "40793be091c060af",
+      "id": "if-you-trade-as-a-sole-proprietor",
+      "kind": "heading",
+      "text": "If you trade as a sole proprietor"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You have two routes."
+        }
+      ],
+      "hash": "9d923f498af0d39c",
+      "id": "if-you-trade-as-a-sole-proprietor.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Register vehicles against your own ID number. Simple, and legal."
+        }
+      ],
+      "hash": "4d8eb474cddf2617",
+      "id": "if-you-trade-as-a-sole-proprietor.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Or apply for a Traffic Register Number. If you are an organisation that serves as a non-legal person, for example a partnership, a one-man business, a church, a trust, or a statutory body, you must apply for a traffic register number to register motor vehicles in South Africa."
+        }
+      ],
+      "hash": "e8088e340b97ce58",
+      "id": "if-you-trade-as-a-sole-proprietor.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you trade under a business name but are not a registered company, you can get a traffic register number so vehicles can be registered under that name."
+        }
+      ],
+      "hash": "d0df8e59362922c7",
+      "id": "if-you-trade-as-a-sole-proprietor.4",
+      "kind": "callout",
+      "pairsWith": "if-you-trade-as-a-sole-proprietor.3",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A traffic register number lets a trading name appear on the vehicle record rather than only your personal ID. Apply at your registering authority. Bring proof of address, ID photographs, and the prescribed fee."
+        }
+      ],
+      "hash": "8fa0ae4fc192acbc",
+      "id": "if-you-trade-as-a-sole-proprietor.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a dealer, a TRN or BRNC is worth having. It separates stock vehicles from your personal vehicle on the system, which matters when fines arrive."
+        }
+      ],
+      "hash": "16041ebc84eaff44",
+      "id": "if-you-trade-as-a-sole-proprietor.6",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "if-you-trade-as-a-sole-proprietor.7",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Layer 3: motor trade numbers"
+        }
+      ],
+      "depth": 2,
+      "hash": "f09cb61af46f816c",
+      "id": "layer-3-motor-trade-numbers",
+      "kind": "heading",
+      "text": "Layer 3: motor trade numbers"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you drive an unregistered or unlicensed vehicle on a public road as part of your business, you need this."
+        }
+      ],
+      "hash": "fc99ae88e7edd33e",
+      "id": "layer-3-motor-trade-numbers.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "To drive an unregistered vehicle on a public road in South Africa you must have a motor trade permit and number. A motor trade number is used by registered manufacturers, builders or importers, motor transport contractors, motor dealers or financial institutions to operate an unregistered and unlicensed motor vehicle on a public road in the course of their business."
+        }
+      ],
+      "hash": "402aa3cdf32bb9c7",
+      "id": "layer-3-motor-trade-numbers.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You may not drive an unregistered or unlicensed vehicle on a public road unless you have a motor trade number. Dealers, manufacturers, importers, transporters and banks can get them for business use."
+        }
+      ],
+      "hash": "d6577d7589cbb443",
+      "id": "layer-3-motor-trade-numbers.3",
+      "kind": "callout",
+      "pairsWith": "layer-3-motor-trade-numbers.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A motor dealer may use it to deliver, sell, exchange or repair a motor vehicle."
+        }
+      ],
+      "hash": "4d3a7525563aa278",
+      "id": "layer-3-motor-trade-numbers.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How to apply"
+        }
+      ],
+      "depth": 3,
+      "hash": "c6b64a567f88a031",
+      "id": "how-to-apply",
+      "kind": "heading",
+      "text": "How to apply"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Complete the Application for motor trade number (MTN1) form. Indicate why you need trade numbers and how many you need. The application is processed on the same day. Get the fees from your local registering authority."
+        }
+      ],
+      "hash": "44f099b7d664e43a",
+      "id": "how-to-apply.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The applicant must apply for a motor trade number and then license the motor trade number. You need the identification of the company, which is the business registration certificate or traffic register number."
+        }
+      ],
+      "hash": "9962c4df8f82cffd",
+      "id": "how-to-apply.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Cost"
+        }
+      ],
+      "depth": 3,
+      "hash": "478b06be1972d45c",
+      "id": "cost",
+      "kind": "heading",
+      "text": "Cost"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Fees are set per province. As published by the Western Cape Government:"
+        }
+      ],
+      "hash": "fa380a5b9ca274b8",
+      "id": "cost.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Application for each motor trade number: R102. Licensing of a motor trade number for a motor vehicle other than a motor cycle, by a motor dealer, manufacturer, builder, importer or deposit-taking institution: R762. Licensing for a motor cycle: R168. Licensing by a motor transport contractor: R168."
+        }
+      ],
+      "hash": "74763af3a877b640",
+      "id": "cost.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "In the Western Cape: R102 to apply for each number, then R762 a year to licence it for a car or bakkie, or R168 for a motorcycle. Other provinces charge differently."
+        }
+      ],
+      "hash": "7432513923e95e80",
+      "id": "cost.3",
+      "kind": "callout",
+      "pairsWith": "cost.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Confirm the current figure with your own province. Fees differ."
+        }
+      ],
+      "hash": "3c2180b0f5bb4dac",
+      "id": "cost.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do you actually need one"
+        }
+      ],
+      "depth": 3,
+      "hash": "a5c32b00f1ac8c61",
+      "id": "do-you-actually-need-one",
+      "kind": "heading",
+      "text": "Do you actually need one"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Only if you move unlicensed stock on public roads. If every vehicle you buy is already registered and licensed, and you only move it after transfer, you can trade without trade numbers."
+        }
+      ],
+      "hash": "170e7e74e9abfef5",
+      "id": "do-you-actually-need-one.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most working dealers end up needing at least one, because you will buy a vehicle with an expired licence at some point."
+        }
+      ],
+      "hash": "dbe0b575a1b02576",
+      "id": "do-you-actually-need-one.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "do-you-actually-need-one.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The legal risk that matters most: the Consumer Protection Act"
+        }
+      ],
+      "depth": 2,
+      "hash": "fb095b9bacb063db",
+      "id": "the-legal-risk-that-matters-most-the-consumer-protection-act",
+      "kind": "heading",
+      "text": "The legal risk that matters most: the Consumer Protection Act"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is the section to read twice. Get this wrong once on a R200,000 vehicle and the profit from ten deals disappears."
+        }
+      ],
+      "hash": "af150c81edad818c",
+      "id": "the-legal-risk-that-matters-most-the-consumer-protection-act.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voetstoots does not protect you"
+        }
+      ],
+      "depth": 3,
+      "hash": "2535d9d7ff2b1513",
+      "id": "voetstoots-does-not-protect-you",
+      "kind": "heading",
+      "text": "Voetstoots does not protect you"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Section 56 provides an implied six-month warranty of quality, allowing consumers to return defective goods within six months and choose a repair, replacement, or refund. As a result of this implied warranty, dealers can no longer rely on \"voetstoots\" or \"as-is\" clauses in CPA-governed sales. Such clauses remain relevant only in private sales under common law."
+        }
+      ],
+      "hash": "71a1fa2e3bb93821",
+      "id": "voetstoots-does-not-protect-you.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Every vehicle you sell to a private person comes with a six-month guarantee, whether you write it down or not. If it breaks, the customer chooses: fix it, replace it, or refund. If your repair fails within three months, you must replace or refund. \"Sold as is\" does nothing in a dealer sale."
+        }
+      ],
+      "hash": "a6edac7f6346f0d7",
+      "id": "voetstoots-does-not-protect-you.2",
+      "kind": "callout",
+      "pairsWith": "voetstoots-does-not-protect-you.1",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The Consumer Tribunal has ruled that a voetstoots sale does not apply to any transaction falling under the CPA, and that this kind of sale is also not allowed in terms of section 5 of the CPA."
+        }
+      ],
+      "hash": "112823f6875d2545",
+      "id": "voetstoots-does-not-protect-you.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Section 2(10) provides that no provision of the CPA may be interpreted as excluding a right a consumer would have under the common law, and section 56(4) states that the implied warranty of quality is in addition to any other warranty under common law. So a used car dealer cannot say he already guarantees the car for two years and that the terms of that guarantee apply instead."
+        }
+      ],
+      "hash": "2a5bf1423998ac04",
+      "id": "voetstoots-does-not-protect-you.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The six-month guarantee is added on top of any other guarantee. You cannot replace it with your own warranty terms, even a longer one."
+        }
+      ],
+      "hash": "303d275332c44183",
+      "id": "voetstoots-does-not-protect-you.5",
+      "kind": "callout",
+      "pairsWith": "voetstoots-does-not-protect-you.4",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Putting \"sold voetstoots\" on your invoice does nothing. It will not save you."
+        }
+      ],
+      "hash": "aabf7f62540bfd29",
+      "id": "voetstoots-does-not-protect-you.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What the warranty actually says"
+        }
+      ],
+      "depth": 3,
+      "hash": "bccfbdce999aa168",
+      "id": "what-the-warranty-actually-says",
+      "kind": "heading",
+      "text": "What the warranty actually says"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Section 56 of the CPA provides an implied warranty of quality on all goods sold to a consumer by a supplier in the ordinary course of business. Even though the vehicle is second-hand, it must be reasonably suitable for the purposes for which it is generally intended, of good quality, in good working order, and free of any defects."
+        }
+      ],
+      "hash": "63bccf45ede15ef1",
+      "id": "what-the-warranty-actually-says.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Even a used vehicle must work as a vehicle should, be in good condition, and have no hidden faults. That is the law, not a promise you choose to make."
+        }
+      ],
+      "hash": "aa78214883355a22",
+      "id": "what-the-warranty-actually-says.2",
+      "kind": "callout",
+      "pairsWith": "what-the-warranty-actually-says.1",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If the vehicle fails to meet these standards within six months of delivery, section 56(2) gives the buyer the right to demand, at the buyer's choice, that you repair the vehicle, replace the vehicle, or refund the price paid."
+        }
+      ],
+      "hash": "6f94156c9c48378a",
+      "id": "what-the-warranty-actually-says.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If something goes wrong within six months, the buyer picks the fix. Not you."
+        }
+      ],
+      "hash": "a826bb6851cee5bb",
+      "id": "what-the-warranty-actually-says.4",
+      "kind": "callout",
+      "pairsWith": "what-the-warranty-actually-says.3",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The choice is the customer's, not yours. You cannot insist on repairing when they have asked for a refund."
+        }
+      ],
+      "hash": "a240a6369f990a17",
+      "id": "what-the-warranty-actually-says.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If defects recur after a repair within three months, the supplier must replace or refund. You get one attempt at a repair."
+        }
+      ],
+      "hash": "f3b24644152c6604",
+      "id": "what-the-warranty-actually-says.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The one defence that works"
+        }
+      ],
+      "depth": 3,
+      "hash": "fb15e4d52315b049",
+      "id": "the-one-defence-that-works",
+      "kind": "heading",
+      "text": "The one defence that works"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The implied warranty does not apply if you specifically informed the buyer of the defects and they expressly or tacitly agreed to accept the goods in that condition. A general \"voetstoots\" clause is not sufficient. Specific defects must have been disclosed. It also does not apply where the breakdown is due to ordinary wear and tear, having regard to the age and mileage of the vehicle. However, a sudden major mechanical failure typically goes beyond ordinary wear and tear."
+        }
+      ],
+      "hash": "c25a2fbb912f82d8",
+      "id": "the-one-defence-that-works.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your one defence: tell the buyer about each specific fault before the sale, in writing, and have them agree to buy anyway. A general \"sold as is\" is not enough. Normal wear for the car's age and mileage is also not covered, but a sudden big failure usually is."
+        }
+      ],
+      "hash": "808c53d401837740",
+      "id": "the-one-defence-that-works.2",
+      "kind": "callout",
+      "pairsWith": "the-one-defence-that-works.1",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "So your protection is disclosure, in writing, defect by defect."
+        }
+      ],
+      "hash": "74f85365933e3e02",
+      "id": "the-one-defence-that-works.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Practical system for a small dealer:"
+        }
+      ],
+      "hash": "0cc1cd52ec4e543d",
+      "id": "the-one-defence-that-works.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Before you list any vehicle, have it inspected. Write down every fault you find. Photograph each one."
+        }
+      ],
+      "hash": "9a229821ac179c9a",
+      "id": "the-one-defence-that-works.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Put a defect schedule in your sale agreement. Not \"sold as is\". A numbered list: \"1. Air conditioning does not cool. 2. Driver's door trim is loose. 3. Rear tyres at 3mm and will need replacing within 6 months. 4. Oil weep at the rocker cover gasket.\""
+        }
+      ],
+      "hash": "aa3870192faa2310",
+      "id": "the-one-defence-that-works.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Have the buyer initial each line and sign the schedule."
+        }
+      ],
+      "hash": "6cd444efff937aea",
+      "id": "the-one-defence-that-works.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Keep the signed schedule for five years alongside your SAPS register entry."
+        }
+      ],
+      "hash": "89634a77683a5230",
+      "id": "the-one-defence-that-works.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This single document is the difference between a disclosed defect and a section 56 refund claim."
+        }
+      ],
+      "hash": "1758dff26d631ad7",
+      "id": "the-one-defence-that-works.9",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Where disputes go"
+        }
+      ],
+      "depth": 3,
+      "hash": "b2395f749bbcccaf",
+      "id": "where-disputes-go",
+      "kind": "heading",
+      "text": "Where disputes go"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The Motor Industry Ombudsman of South Africa (MIOSA) provides independent dispute resolution for the motor industry and is free to consumers. Below that, the Small Claims Court needs no lawyer. Its limit is R30,000, determined in Government Gazette 55038, Government Notice 7717 of 20 July 2026, effective 1 August 2026. That replaced the R20,000 limit in place since 2019. Many websites still quote R20,000."
+        }
+      ],
+      "hash": "a211c1dbf0900063",
+      "id": "where-disputes-go.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Note which way that runs. If you trade through a company, you cannot bring a claim in the Small Claims Court yourself: only a natural person may institute an action there. Your company can be taken there by a buyer, and a nominated director may appear for it, but to chase a customer who has not paid you will need the magistrates' court and an attorney."
+        }
+      ],
+      "hash": "701e67ece1fc615e",
+      "id": "where-disputes-go.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Above that, the magistrates' courts. A district court has civil jurisdiction where the claim is R200,000 or less, and a regional court between R200,000 and R400,000. Larger claims go to the High Court."
+        }
+      ],
+      "hash": "7926f520c2e66a81",
+      "id": "where-disputes-go.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A December 2025 Western Cape High Court ruling reinforced that buyers do not have to exhaust ombud or commission processes before approaching a court under the CPA, and that dealerships cannot hide behind voetstoots clauses or limited warranties when selling defective vehicles. The court upheld an order requiring a dealership to refund R175,000 against return of a defective vehicle."
+        }
+      ],
+      "hash": "1dc07af19f440753",
+      "id": "where-disputes-go.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A court confirmed in late 2025 that a buyer can go straight to court, and that a dealer's \"as is\" clause or limited warranty does not protect it. That dealer had to refund R175,000."
+        }
+      ],
+      "hash": "2ae8b68e88acade8",
+      "id": "where-disputes-go.5",
+      "kind": "callout",
+      "pairsWith": "where-disputes-go.4",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Build the cost of the occasional refund into your margin. A dealer who prices for zero returns is pricing wrong."
+        }
+      ],
+      "hash": "0475f5fccd9e4550",
+      "id": "where-disputes-go.6",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "where-disputes-go.7",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "VAT: register earlier than other businesses"
+        }
+      ],
+      "depth": 2,
+      "hash": "e10184db623aa844",
+      "id": "vat-register-earlier-than-other-businesses",
+      "kind": "heading",
+      "text": "VAT: register earlier than other businesses"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The general advice in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Tax and SARS"
+            }
+          ],
+          "doc": "core/tax-and-sars",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " says do not register for VAT voluntarily. For a vehicle dealer, that advice flips, and the reason is notional input tax."
+        }
+      ],
+      "hash": "72be7c0940c7b617",
+      "id": "vat-register-earlier-than-other-businesses.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How notional input tax works"
+        }
+      ],
+      "depth": 3,
+      "hash": "b6519408f1473ad6",
+      "id": "how-notional-input-tax-works",
+      "kind": "heading",
+      "text": "How notional input tax works"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most of your stock comes from private individuals who are not VAT vendors. They charge you no VAT. Normally that would mean you pay VAT on the full selling price with nothing to claim back."
+        }
+      ],
+      "hash": "fefd0d41f48b0bd9",
+      "id": "how-notional-input-tax-works.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The VAT Act solves this."
+        }
+      ],
+      "hash": "f954b9594980f2a0",
+      "id": "how-notional-input-tax-works.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "When a non-vendor acquires goods, that non-vendor is the final consumer and bears the VAT. When those goods are later sold as second-hand goods to a vendor, there is a tax element included in the selling price which must be unlocked. The vendor accounts for VAT on the margin, which is the difference between the selling price and the cost of the goods. To achieve this, the vendor is allowed a notional input tax deduction on acquisition of the second-hand goods."
+        }
+      ],
+      "hash": "d25db9c21733fac5",
+      "id": "how-notional-input-tax-works.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "When a private person bought a car new, they paid VAT and could not claim it back. When you buy that car from them, the law lets you claim a piece of VAT back as if they had charged it, so you only pay VAT on your profit, not on the whole price."
+        }
+      ],
+      "hash": "956f81a71102a3de",
+      "id": "how-notional-input-tax-works.4",
+      "kind": "callout",
+      "pairsWith": "how-notional-input-tax-works.3",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The notional input tax is calculated by multiplying the tax fraction (15/115) by the actual purchase price or the open market value of the goods, whichever is the lesser."
+        }
+      ],
+      "hash": "8ad4f09582d26f3d",
+      "id": "how-notional-input-tax-works.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS worked example:"
+        }
+      ],
+      "hash": "da9986e5e6739dfd",
+      "id": "how-notional-input-tax-works.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "X, a non-vendor, sells a second-hand vehicle to a motor dealer and registered VAT vendor for R115,000, which is also the open market value. If the motor dealer paid the full purchase price and meets all conditions, it may claim R15,000 as notional input tax (15/115 × R115,000). If the dealer sells it for R120,000, the dealer's mark-up of R20,000 is correctly taxed at 15%, which is R3,000."
+        }
+      ],
+      "hash": "b078f67808dfd0f0",
+      "id": "how-notional-input-tax-works.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Example: you buy a car from a private person for R115,000. You can claim R15,000 back as VAT. You sell it for R120,000 plus VAT. The VAT you actually pay to SARS is R3,000, which is 15% of your R20,000 profit."
+        }
+      ],
+      "hash": "aa3b1b5f474ea28f",
+      "id": "how-notional-input-tax-works.8",
+      "kind": "callout",
+      "pairsWith": "how-notional-input-tax-works.7",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Without this mechanism, VAT on the R120,000 sale would be around R15,650. With it, you pay R3,000. That difference is your entire margin on a small deal."
+        }
+      ],
+      "hash": "fe8da0f10e225be8",
+      "id": "how-notional-input-tax-works.9",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The conditions you must meet"
+        }
+      ],
+      "depth": 3,
+      "hash": "d9c2a0c185502bdb",
+      "id": "the-conditions-you-must-meet",
+      "kind": "heading",
+      "text": "The conditions you must meet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You must be a VAT-registered vendor, and you must acquire the goods under a non-taxable transaction in the course or furtherance of an enterprise."
+        }
+      ],
+      "hash": "75c747f016edadaa",
+      "id": "the-conditions-you-must-meet.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS requires that the amount must actually be paid, in full or in part, before you can claim. The payment must be traceable and verifiable. Cash deals with no bank trail put the claim at risk."
+        }
+      ],
+      "hash": "ed149fada8cc2e64",
+      "id": "the-conditions-you-must-meet.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The dealer is required to be in possession of a completed VAT264 form declaring that the supply of the motor vehicle is not a taxable supply."
+        }
+      ],
+      "hash": "f887ba456d033c99",
+      "id": "the-conditions-you-must-meet.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The VAT264 form must be completed by both the purchaser and the seller. Get it signed at the same moment you take the vehicle, not later."
+        }
+      ],
+      "hash": "c5ed62a7ca02e5ed",
+      "id": "the-conditions-you-must-meet.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS publishes a dedicated guide: VAT 420 Guide for Motor Dealers. Read it before you register for VAT. The link is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Sources and verification register"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "cbdaa0edcd058e7a",
+      "id": "the-conditions-you-must-meet.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The decision"
+        }
+      ],
+      "depth": 3,
+      "hash": "4d6fb07787d0a067",
+      "id": "the-decision",
+      "kind": "heading",
+      "text": "The decision"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Below R2.3 million turnover you are not required to register. But a dealer turning over R900,000 a year buying mostly from private sellers is probably losing money by staying out of the VAT system, because notional input tax is worth more than the compliance cost."
+        }
+      ],
+      "hash": "833415b9aaef1414",
+      "id": "the-decision.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Also understand how fast a dealer reaches the compulsory threshold. Turnover is gross sales, not margin. Sixteen vehicles sold at an average of R150,000 is R2.4 million. A dealer moving two cars a month crosses R2.3 million within the year, and you must register within 21 business days from the date you exceed R2.3 million, or from the date it becomes clear that you will. Track your rolling 12-month sales from month one."
+        }
+      ],
+      "hash": "b620e3a47d546ab4",
+      "id": "the-decision.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Model it on your actual numbers, or pay a tax practitioner for one hour. This is the single highest-value hour a small dealer can buy."
+        }
+      ],
+      "hash": "4d81aa2f09485736",
+      "id": "the-decision.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Turnover tax is almost certainly wrong for a dealer"
+        }
+      ],
+      "depth": 3,
+      "hash": "24c7c482a257e342",
+      "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer",
+      "kind": "heading",
+      "text": "Turnover tax is almost certainly wrong for a dealer"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The core tax file describes turnover tax, with 0% on the first R600,000. It looks attractive. For a vehicle dealer it is usually a mistake, for two reasons."
+        }
+      ],
+      "hash": "88d66d4ce3a5bf5a",
+      "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "It taxes turnover, not profit. A car bought for R140,000 and sold for R155,000 adds R155,000 to your turnover and R15,000 to your profit. At 1% on the band above R600,000, you would pay R1,550 in turnover tax on that deal against a R15,000 margin. Under normal tax, with SBC rates starting at 0%, a small dealer's actual profit is often taxed at nothing."
+        }
+      ],
+      "hash": "f54d8ebe20d1af99",
+      "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "It removes you from the VAT system. Turnover tax replaces income tax, VAT, provisional tax, capital gains tax and dividends tax. That means no notional input tax, which is the single most valuable tax mechanism a used vehicle dealer has."
+        }
+      ],
+      "hash": "f74a8531b3679931",
+      "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Stay on normal tax, check whether the company qualifies for SBC rates, and register for VAT when the numbers say so."
+        }
+      ],
+      "hash": "8f76719d9b965ee3",
+      "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer.4",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer.5",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Paperwork on every deal"
+        }
+      ],
+      "depth": 2,
+      "hash": "dff57b16a83594f1",
+      "id": "paperwork-on-every-deal",
+      "kind": "heading",
+      "text": "Paperwork on every deal"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "When you buy a vehicle in"
+        }
+      ],
+      "depth": 3,
+      "hash": "3038c64278aca2a8",
+      "id": "when-you-buy-a-vehicle-in",
+      "kind": "heading",
+      "text": "When you buy a vehicle in"
+    },
+    {
+      "hash": "d815eab101a5f05a",
+      "id": "when-you-buy-a-vehicle-in.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Copy of the seller's ID, kept for five years"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "The original registration certificate (RC1)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Confirm the seller's name on the RC1 matches the ID. If it does not, stop."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Confirm the title holder. If the vehicle is financed, the title holder will be the financing institution. If the title holder is not the seller named in the paperwork, pause before paying, and ask which documents prove authority to sell. A settlement letter from the bank is required."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A signed NCO (Notification of Change of Ownership) from the seller"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A signed VAT264, if you are VAT registered"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your SAPS register entry, with VIN, chassis, engine number, odometer, colour, and distinguishing marks"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Photographs of the vehicle and of every defect"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Possession of the keys is not the same as clear title. Never pay before the paperwork matches."
+        }
+      ],
+      "hash": "1f84db0e412c27bc",
+      "id": "when-you-buy-a-vehicle-in.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "When you sell a vehicle out"
+        }
+      ],
+      "depth": 3,
+      "hash": "a3545e23a02bad82",
+      "id": "when-you-sell-a-vehicle-out",
+      "kind": "heading",
+      "text": "When you sell a vehicle out"
+    },
+    {
+      "hash": "490b8d0abe97b8b5",
+      "id": "when-you-sell-a-vehicle-out.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "A valid roadworthy certificate. The Department of Transport vehicle registration page says used vehicle registration requires the certificate of roadworthiness if the current certificate is older than 60 days. Western Cape Government says a roadworthy test must be conducted every time a vehicle changes ownership."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your NCO, submitted so the vehicle stops being linked to you"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "The buyer has 21 days to complete registration by submitting the RLV form with the RC1, roadworthy certificate, certified documentation, and the required fees."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "The signed defect schedule"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your written sale agreement"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A tax invoice, or a normal invoice if you are not VAT registered (see "
+          },
+          {
+            "doc": "paperwork/which-template-to-use-when",
+            "label": "03-documents/01",
+            "t": "docref"
+          },
+          {
+            "t": "text",
+            "v": ")"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Copy of the buyer's ID for your SAPS register"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "When a vehicle changes hands, it needs a roadworthy certificate that is less than 60 days old."
+        }
+      ],
+      "hash": "646c8114c49f8993",
+      "id": "when-you-sell-a-vehicle-out.2",
+      "kind": "callout",
+      "pairsWith": "when-you-sell-a-vehicle-out.1",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Failing to meet the 21-day deadline carries penalties."
+        }
+      ],
+      "hash": "37498a3ac15912ba",
+      "id": "when-you-sell-a-vehicle-out.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do not hand over keys before the NCO is lodged. A vehicle still linked to you collects fines, e-tolls, and liability that are yours until the record changes."
+        }
+      ],
+      "hash": "2b7b945d3e477b41",
+      "id": "when-you-sell-a-vehicle-out.4",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "when-you-sell-a-vehicle-out.5",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Two things about stock that surprise new dealers"
+        }
+      ],
+      "depth": 2,
+      "hash": "884187d3f4e27fe4",
+      "id": "two-things-about-stock-that-surprise-new-dealers",
+      "kind": "heading",
+      "text": "Two things about stock that surprise new dealers"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Unsold vehicles at year end are taxed as trading stock"
+        }
+      ],
+      "depth": 3,
+      "hash": "ec3c06f1f27514a0",
+      "id": "unsold-vehicles-at-year-end-are-taxed-as-trading-stock",
+      "kind": "heading",
+      "text": "Unsold vehicles at year end are taxed as trading stock"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Income tax is calculated on profit, and profit includes the value of stock you still hold at financial year end. Section 22 of the Income Tax Act requires closing trading stock to be brought into account, generally at cost."
+        }
+      ],
+      "hash": "b8ae6783a690c711",
+      "id": "unsold-vehicles-at-year-end-are-taxed-as-trading-stock.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "In plain terms: if you bought four vehicles in February and have not sold them by your 28 February year end, their cost is not simply an expense that reduces this year's profit. It is carried as stock and only becomes cost of sales when each vehicle is sold."
+        }
+      ],
+      "hash": "aeb2b0e6fe9052c8",
+      "id": "unsold-vehicles-at-year-end-are-taxed-as-trading-stock.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This catches dealers who buy heavily before year end expecting a tax deduction. Keep a stock list with cost price per vehicle, dated, and give it to your accountant at year end."
+        }
+      ],
+      "hash": "e3caeb1c43ea4ce4",
+      "id": "unsold-vehicles-at-year-end-are-taxed-as-trading-stock.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If a bank finances your stock, the bank holds title"
+        }
+      ],
+      "depth": 3,
+      "hash": "7f7251df9504fbcd",
+      "id": "if-a-bank-finances-your-stock-the-bank-holds-title",
+      "kind": "heading",
+      "text": "If a bank finances your stock, the bank holds title"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dealers who grow often use floor plan finance, where a lender funds the purchase of stock. On eNaTIS the lender then appears as the title holder and you as the owner. If the vehicle is financed, the title holder will be the financing institution."
+        }
+      ],
+      "hash": "0eb499787d312e72",
+      "id": "if-a-bank-finances-your-stock-the-bank-holds-title.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You cannot transfer a financed vehicle to a buyer until the lender's interest on that vehicle is settled and the lender releases title. Build the settlement step into your sales process, or a sale will stall at the registering authority with an unhappy buyer waiting."
+        }
+      ],
+      "hash": "378eb913aab24a9d",
+      "id": "if-a-bank-finances-your-stock-the-bank-holds-title.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Holding deposits"
+        }
+      ],
+      "depth": 2,
+      "hash": "f3bd356f7c9122c0",
+      "id": "holding-deposits",
+      "kind": "heading",
+      "text": "Holding deposits"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Customers will ask to \"put down a deposit to hold the car\"."
+        }
+      ],
+      "hash": "0dc1479b2190c2bb",
+      "id": "holding-deposits.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Take it, but understand the Consumer Protection Act position. A consumer who makes a booking or reservation may cancel it, and you may charge a reasonable cancellation fee. What is reasonable takes into account the notice given and whether you could have sold the vehicle to someone else in the meantime."
+        }
+      ],
+      "hash": "1c8038bfa26d30c4",
+      "id": "holding-deposits.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A written deposit receipt stating the amount, the vehicle by VIN, the hold period, and the cancellation terms is what makes the fee enforceable. A WhatsApp saying \"deposit non-refundable\" is not."
+        }
+      ],
+      "hash": "02a68bbc44a2103e",
+      "id": "holding-deposits.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Other registrations that may apply"
+        }
+      ],
+      "depth": 2,
+      "hash": "3a6055c40c4f64aa",
+      "id": "other-registrations-that-may-apply",
+      "kind": "heading",
+      "text": "Other registrations that may apply"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Municipal business licence and zoning"
+        }
+      ],
+      "depth": 3,
+      "hash": "3252c965c3b6469e",
+      "id": "municipal-business-licence-and-zoning",
+      "kind": "heading",
+      "text": "Municipal business licence and zoning"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vehicle sales premises almost always need zoning approval for motor trade. Residential zoning does not permit a car lot. Check with municipal town planning before you sign a lease, because you cannot fix this afterwards."
+        }
+      ],
+      "hash": "1d84054777dd3165",
+      "id": "municipal-business-licence-and-zoning.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Many municipalities also require a trading licence under the Businesses Act 71 of 1991. Ask your Business Licensing Officer."
+        }
+      ],
+      "hash": "deba12c812dad535",
+      "id": "municipal-business-licence-and-zoning.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you extend credit yourself"
+        }
+      ],
+      "depth": 3,
+      "hash": "6e04b94e069130cf",
+      "id": "if-you-extend-credit-yourself",
+      "kind": "heading",
+      "text": "If you extend credit yourself"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you let a buyer pay you in instalments, you are a credit provider under the National Credit Act."
+        }
+      ],
+      "hash": "de17e540b683d8ec",
+      "id": "if-you-extend-credit-yourself.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Any person who is a credit provider under a credit agreement to which the Act applies must register with the National Credit Regulator before extending credit. The number or size of the loans no longer matters."
+        }
+      ],
+      "hash": "503bf3fc064e492b",
+      "id": "if-you-extend-credit-yourself.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The old monetary threshold is gone. There is no small-dealer exemption. Registering as a credit provider is a serious undertaking with ongoing reporting duties."
+        }
+      ],
+      "hash": "f78ebb28649c9d66",
+      "id": "if-you-extend-credit-yourself.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The simple answer for a small dealer: do not offer your own instalment terms. Refer the buyer to a bank or a registered finance house. Take full payment before delivery."
+        }
+      ],
+      "hash": "5e5ac0f74594c042",
+      "id": "if-you-extend-credit-yourself.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you sell warranties, insurance, or arrange finance"
+        }
+      ],
+      "depth": 3,
+      "hash": "096a48e45d4dd8c9",
+      "id": "if-you-sell-warranties-insurance-or-arrange-finance",
+      "kind": "heading",
+      "text": "If you sell warranties, insurance, or arrange finance"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "That is financial services. It requires an FSP licence under FAIS, or you must operate as a representative of a licensed FSP. Selling a service plan or a warranty product off your own bat, unlicensed, is an offence."
+        }
+      ],
+      "hash": "fbf99bef4feecff9",
+      "id": "if-you-sell-warranties-insurance-or-arrange-finance.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Partner with a licensed provider instead. They will appoint you correctly."
+        }
+      ],
+      "hash": "a1398b97ec287e23",
+      "id": "if-you-sell-warranties-insurance-or-arrange-finance.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Imported vehicles"
+        }
+      ],
+      "depth": 3,
+      "hash": "4d9cc0c3c2c29a7a",
+      "id": "imported-vehicles",
+      "kind": "heading",
+      "text": "Imported vehicles"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Imported vehicles bring a separate stack of requirements: SARS customs clearance and proof of duty paid, a SAPS clearance, a letter of authority from the SABS, and correct eNaTIS entry."
+        }
+      ],
+      "hash": "89e4e7be7badb39c",
+      "id": "imported-vehicles.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If a motor vehicle is registered outside the Republic, you need the registration and licensing documents issued in the country where the vehicle is registered, a South African Police Service clearance of the motor vehicle, and a letter of authority issued by the South African Bureau of Standards. The Customs and Excise Division of SARS provides the required proof of compliance with their regulations."
+        }
+      ],
+      "hash": "43d6f8a110a24b34",
+      "id": "imported-vehicles.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For an imported vehicle you need its foreign registration papers, a police clearance, a letter of authority from the SABS, and proof from SARS Customs that the duty was paid."
+        }
+      ],
+      "hash": "5b51510515ef24cf",
+      "id": "imported-vehicles.3",
+      "kind": "callout",
+      "pairsWith": "imported-vehicles.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do not import as your first move. Learn the local trade first."
+        }
+      ],
+      "hash": "bd3ef257e64857bc",
+      "id": "imported-vehicles.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voluntary industry membership"
+        }
+      ],
+      "depth": 3,
+      "hash": "741fcf23a6a26384",
+      "id": "voluntary-industry-membership",
+      "kind": "heading",
+      "text": "Voluntary industry membership"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The Retail Motor Industry Organisation (RMI) and its used car division are not compulsory. Membership signals credibility to buyers and gives you access to dispute support and industry guidance. Worth considering once you are established, not on day one."
+        }
+      ],
+      "hash": "1c65d7f82a7cc9ec",
+      "id": "voluntary-industry-membership.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "voluntary-industry-membership.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dealing from home, with no yard"
+        }
+      ],
+      "depth": 2,
+      "hash": "4689fb399cbfa2e0",
+      "id": "dealing-from-home-with-no-yard",
+      "kind": "heading",
+      "text": "Dealing from home, with no yard"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Many small dealers start this way: stock is advertised online, the conversation happens on WhatsApp, and viewings and test drives happen at an agreed public place. It is a workable model. Three things are different from a dealer with a yard."
+        }
+      ],
+      "hash": "bd843039235ba1f3",
+      "id": "dealing-from-home-with-no-yard.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Zoning is the sticking point."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " A home enterprise normally allows a quiet business run by you from a room. The usual conditions include no storage of goods, materials or vehicles on the premises that creates a commercial appearance. Three bakkies for sale on the verge will breach that in most municipalities and will bring a complaint from a neighbour. Options: keep only one or two vehicles at home and rotate; rent a bay at a secure storage yard; or apply for consent use with the municipality. Ask town planning before you buy your first stock, not after the complaint."
+        }
+      ],
+      "hash": "08cc6797c3fe0ec3",
+      "id": "dealing-from-home-with-no-yard.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Your home becomes the registered premises."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Your SAPS second-hand goods registration, your BRNC, and your company address all sit at your home. A police official may inspect the premises and your register there. That is normal. Keep the register and certificate at hand."
+        }
+      ],
+      "hash": "fb2ea5b08244dca9",
+      "id": "dealing-from-home-with-no-yard.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Every viewing is a meeting with a stranger."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Read "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Working from home and meeting safely"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " in full. It covers where to meet, what to get from the buyer before the meeting, how to run a test drive without losing the vehicle, why a proof-of-payment screenshot is never enough, how to check cash, and the common scams aimed at sellers. For a dealer, the amounts involved make those habits mandatory, not optional."
+        }
+      ],
+      "hash": "37c367da45e84cba",
+      "id": "dealing-from-home-with-no-yard.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The short version for a dealer:"
+        }
+      ],
+      "hash": "852ad65998e51022",
+      "id": "dealing-from-home-with-no-yard.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "96771488ccaa233a",
+      "id": "dealing-from-home-with-no-yard.6",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Licence copy and ID copy received on WhatsApp before you agree to meet"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Meet in daylight at a police station, bank, or busy petrol station car park"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Someone with you; keys in your hand until you are in the passenger seat"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Full payment reflected in your balance before keys, papers or a signed NCO change hands"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Large amounts: immediate payment while you watch, or at a bank counter"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Growing beyond vehicles"
+        }
+      ],
+      "depth": 2,
+      "hash": "4b1a7fe9e6087d90",
+      "id": "growing-beyond-vehicles",
+      "kind": "heading",
+      "text": "Growing beyond vehicles"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most dealers add lines: tyres, servicing, parts, detailing, sometimes an unrelated business under the same company."
+        }
+      ],
+      "hash": "9ca7d3645b66ce8f",
+      "id": "growing-beyond-vehicles.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Before you do, read "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Adding new lines of business"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". It covers trading names, and which documents must still carry the registered company name. It covers what licences each new line needs. And it explains the tax trap that catches people who form a second company: owning shares in more than one company can cost you the lower Small Business Corporation tax rates on both."
+        }
+      ],
+      "hash": "98f5887186268f83",
+      "id": "growing-beyond-vehicles.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The short advice for a dealer: keep one company, use trading names, and only split into a second company for a line whose liability risk is large enough to justify losing SBC rates."
+        }
+      ],
+      "hash": "4018453157c5081c",
+      "id": "growing-beyond-vehicles.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Insurance"
+        }
+      ],
+      "depth": 2,
+      "hash": "99bdab3738b5ebcd",
+      "id": "insurance",
+      "kind": "heading",
+      "text": "Insurance"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is where small dealers are most often underinsured."
+        }
+      ],
+      "hash": "39c78bce0e288cd8",
+      "id": "insurance.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You need cover that a normal motor policy does not give you:"
+        }
+      ],
+      "hash": "25c4da9ff0fe7721",
+      "id": "insurance.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "3667ce0afecab3a1",
+      "id": "insurance.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Stock cover for vehicles you own but have not sold, parked on your premises"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Cover for test drives, including damage caused by a prospective buyer"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Cover for vehicles driven under motor trade numbers"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Public liability for people on your premises"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Theft cover appropriate to how secure the premises actually are"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ask a broker specifically for motor trade insurance. A private vehicle policy will not respond to a claim involving stock."
+        }
+      ],
+      "hash": "96a028c01f4c77c9",
+      "id": "insurance.4",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "insurance.5",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your startup checklist"
+        }
+      ],
+      "depth": 2,
+      "hash": "147cd4f60378df66",
+      "id": "your-startup-checklist",
+      "kind": "heading",
+      "text": "Your startup checklist"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first purchase"
+        }
+      ],
+      "hash": "6d4478da9a8f1b1d",
+      "id": "your-startup-checklist.1",
+      "items": [
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Decide sole proprietor or company ("
+            },
+            {
+              "doc": "core/register",
+              "label": "01-core/02",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ")"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:81105d14",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Get BRNC or Traffic Register Number ("
+            },
+            {
+              "doc": "core/vehicles",
+              "label": "01-core/05",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ")"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:ddf401f6",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Apply for SAPS second-hand goods dealer registration, form SAPS 601, free"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:9df05312",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Check zoning for your premises, before signing any lease"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:85d9f1a4",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Apply for a municipal business licence if required"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:e5ee625b",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Get motor trade insurance quotes"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:9d53e703",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Work out whether VAT registration pays, given notional input tax, and confirm you are NOT on turnover tax"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:96c81d0e",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Build your sale agreement and defect schedule template"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:621643ad",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Set up your SAPS acquisition and disposal register"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:70c5bd63",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Decide your inspection process, and who does it"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:4e32d6ab",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first sale"
+        }
+      ],
+      "hash": "1dea83eb26e2c4d3",
+      "id": "your-startup-checklist.2",
+      "items": [
+        {
+          "block": "your-startup-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "Roadworthy certificate in hand"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:45b57985",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "Defect schedule signed and initialled"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:0f979ec9",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "Written sale agreement signed"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:5391018c",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "NCO lodged the same day"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:c0b079e3",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "Buyer's ID copied into your register"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:0735f705",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Ongoing"
+        }
+      ],
+      "hash": "3cbbad0d8e4dd749",
+      "id": "your-startup-checklist.3",
+      "items": [
+        {
+          "block": "your-startup-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "SAPS register updated on the day of every transaction"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:2af36b16",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "VAT264 for every purchase from a non-vendor"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:856d737a",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "SAPS registration renewal diarised"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:9f301304",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "Five years of records kept for SAPS and SARS"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:16c1d991",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "Rolling 12-month sales tracked against the R2.3 million VAT threshold"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:b2a0d33d",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "Stock list with cost per vehicle, ready for year end"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:dbcc89dc",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "If working from home: zoning checked for storing stock, and the meeting-safety habits in "
+            },
+            {
+              "doc": "core/working-from-home-and-safety",
+              "label": "01-core/09",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": " in use on every viewing"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:5dfe11f3",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ],
+            "tags": [
+              "home"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist"
+    }
+  ],
+  "contentHash": "6160bf4f2e09836c",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Business type: buying and selling vehicles",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "quick-answer-what-you-must-have",
+      "text": "Quick answer: what you must have"
+    },
+    {
+      "depth": 2,
+      "id": "layer-1-saps-second-hand-goods-dealer-registration",
+      "text": "Layer 1: SAPS second-hand goods dealer registration"
+    },
+    {
+      "depth": 3,
+      "id": "how-to-register",
+      "text": "How to register"
+    },
+    {
+      "depth": 3,
+      "id": "the-register-you-must-keep",
+      "text": "The register you must keep"
+    },
+    {
+      "depth": 3,
+      "id": "keeping-your-registration-valid",
+      "text": "Keeping your registration valid"
+    },
+    {
+      "depth": 3,
+      "id": "inspections",
+      "text": "Inspections"
+    },
+    {
+      "depth": 2,
+      "id": "layer-2-getting-vehicles-registered-to-the-business",
+      "text": "Layer 2: getting vehicles registered to the business"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 3,
+      "id": "if-you-trade-as-a-company",
+      "text": "If you trade as a company"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "depth": 3,
+      "id": "if-you-trade-as-a-sole-proprietor",
+      "text": "If you trade as a sole proprietor"
+    },
+    {
+      "depth": 2,
+      "id": "layer-3-motor-trade-numbers",
+      "text": "Layer 3: motor trade numbers"
+    },
+    {
+      "depth": 3,
+      "id": "how-to-apply",
+      "text": "How to apply"
+    },
+    {
+      "depth": 3,
+      "id": "cost",
+      "text": "Cost"
+    },
+    {
+      "depth": 3,
+      "id": "do-you-actually-need-one",
+      "text": "Do you actually need one"
+    },
+    {
+      "depth": 2,
+      "id": "the-legal-risk-that-matters-most-the-consumer-protection-act",
+      "text": "The legal risk that matters most: the Consumer Protection Act"
+    },
+    {
+      "depth": 3,
+      "id": "voetstoots-does-not-protect-you",
+      "text": "Voetstoots does not protect you"
+    },
+    {
+      "depth": 3,
+      "id": "what-the-warranty-actually-says",
+      "text": "What the warranty actually says"
+    },
+    {
+      "depth": 3,
+      "id": "the-one-defence-that-works",
+      "text": "The one defence that works"
+    },
+    {
+      "depth": 3,
+      "id": "where-disputes-go",
+      "text": "Where disputes go"
+    },
+    {
+      "depth": 2,
+      "id": "vat-register-earlier-than-other-businesses",
+      "text": "VAT: register earlier than other businesses"
+    },
+    {
+      "depth": 3,
+      "id": "how-notional-input-tax-works",
+      "text": "How notional input tax works"
+    },
+    {
+      "depth": 3,
+      "id": "the-conditions-you-must-meet",
+      "text": "The conditions you must meet"
+    },
+    {
+      "depth": 3,
+      "id": "the-decision",
+      "text": "The decision"
+    },
+    {
+      "depth": 3,
+      "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer",
+      "text": "Turnover tax is almost certainly wrong for a dealer"
+    },
+    {
+      "depth": 2,
+      "id": "paperwork-on-every-deal",
+      "text": "Paperwork on every deal"
+    },
+    {
+      "depth": 3,
+      "id": "when-you-buy-a-vehicle-in",
+      "text": "When you buy a vehicle in"
+    },
+    {
+      "depth": 3,
+      "id": "when-you-sell-a-vehicle-out",
+      "text": "When you sell a vehicle out"
+    },
+    {
+      "depth": 2,
+      "id": "two-things-about-stock-that-surprise-new-dealers",
+      "text": "Two things about stock that surprise new dealers"
+    },
+    {
+      "depth": 3,
+      "id": "unsold-vehicles-at-year-end-are-taxed-as-trading-stock",
+      "text": "Unsold vehicles at year end are taxed as trading stock"
+    },
+    {
+      "depth": 3,
+      "id": "if-a-bank-finances-your-stock-the-bank-holds-title",
+      "text": "If a bank finances your stock, the bank holds title"
+    },
+    {
+      "depth": 2,
+      "id": "holding-deposits",
+      "text": "Holding deposits"
+    },
+    {
+      "depth": 2,
+      "id": "other-registrations-that-may-apply",
+      "text": "Other registrations that may apply"
+    },
+    {
+      "depth": 3,
+      "id": "municipal-business-licence-and-zoning",
+      "text": "Municipal business licence and zoning"
+    },
+    {
+      "depth": 3,
+      "id": "if-you-extend-credit-yourself",
+      "text": "If you extend credit yourself"
+    },
+    {
+      "depth": 3,
+      "id": "if-you-sell-warranties-insurance-or-arrange-finance",
+      "text": "If you sell warranties, insurance, or arrange finance"
+    },
+    {
+      "depth": 3,
+      "id": "imported-vehicles",
+      "text": "Imported vehicles"
+    },
+    {
+      "depth": 3,
+      "id": "voluntary-industry-membership",
+      "text": "Voluntary industry membership"
+    },
+    {
+      "depth": 2,
+      "id": "dealing-from-home-with-no-yard",
+      "text": "Dealing from home, with no yard"
+    },
+    {
+      "depth": 2,
+      "id": "growing-beyond-vehicles",
+      "text": "Growing beyond vehicles"
+    },
+    {
+      "depth": 2,
+      "id": "insurance",
+      "text": "Insurance"
+    },
+    {
+      "depth": 2,
+      "id": "your-startup-checklist",
+      "text": "Your startup checklist"
+    }
+  ],
+  "id": "business-types/vehicle-dealer",
+  "kind": "guide",
+  "lang": "en",
+  "order": 2,
+  "readingTime": 28,
+  "related": [
+    "core/vehicles",
+    "core/working-from-home-and-safety",
+    "core/register",
+    "core/tax-and-sars",
+    "core/adding-new-lines"
+  ],
+  "route": "business-types/vehicle-dealer/",
+  "section": "business-types",
+  "slug": "vehicle-dealer",
+  "sourcePath": "04 Your kind of business/01-vehicle-dealer.md",
+  "sources": {
+    "acts": [
+      "income-tax-act-58-of-1962",
+      "value-added-tax-act-89-of-1991",
+      "consumer-protection-act-68-of-2008",
+      "businesses-act-71-of-1991",
+      "second-hand-goods-act-6-of-2009",
+      "national-road-traffic-act-93-of-1996",
+      "national-credit-act-34-of-2005",
+      "financial-advisory-and-intermediary-services-act-37-of-2002"
+    ],
+    "entries": [
+      "sars--budget-2026-frequently-asked-questions",
+      "sars--what-is-the-new-threshold-for-vat-registration",
+      "sars--vat-420-guide-for-motor-dealers",
+      "sars--vat-connect-issue-20-october-2025",
+      "sars--vat-264-declaration-for-the-supply-of-second-hand-goods",
+      "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
+      "enatis--natis--faqs-and-forms",
+      "rlv-form--application-for-registration-and-licensing-of-motor-vehicle",
+      "govza--apply-for-a-motor-trade-number-and-permit",
+      "western-cape-government--motor-trade-number-applications",
+      "govza--register-a-motor-vehicle",
+      "department-of-transport--register-motor-vehicle",
+      "governmentcoza--apply-for-a-traffic-register-number",
+      "govchain-brnc-certificate-guide",
+      "saps--second-hand-goods-act-6-of-2009-full-text",
+      "saps--national-instruction-2-of-2016-second-hand-goods-dealers-and-recyclers",
+      "saps--standard-operating-procedure-dealer-application-process",
+      "saflii--second-hand-goods-act-consolidated-text",
+      "nada-saps-dealer-inspections",
+      "sme-south-africa",
+      "hanekom-attorneys-webuycars-consent-order",
+      "the-citizen",
+      "moonstone",
+      "department-of-justice--small-claims-courts",
+      "department-of-justice--media-statement-22-july-2026",
+      "businesses-act-71-of-1991",
+      "mj-kotze-inc-credit-provider-registration",
+      "flip-the-market",
+      "tracker-south-africa",
+      "carscoza",
+      "motorhappy",
+      "yebo-business-1",
+      "small-claims-court-who-may-sue"
+    ]
+  },
+  "summary": "Vehicle dealing has three registration layers other businesses do not have, and one legal risk that can destroy a small dealer in a single transaction.",
+  "tags": [
+    "business-types",
+    "vehicles"
+  ],
+  "terms": [
+    {
+      "meaning": "The free form to register as a second-hand goods dealer with the police.",
+      "term": "SAPS 601"
+    },
+    {
+      "meaning": "The book or spreadsheet where you record every vehicle bought and sold.",
+      "term": "Register (noun)"
+    },
+    {
+      "meaning": "The vehicle identification number, stamped on the vehicle.",
+      "term": "VIN"
+    },
+    {
+      "meaning": "The certificate that lets a company own vehicles on eNaTIS.",
+      "term": "BRNC"
+    },
+    {
+      "meaning": "A special number that lets a dealer drive unregistered stock on public roads.",
+      "term": "Motor trade number"
+    },
+    {
+      "meaning": "Afrikaans for \"as is\". Selling with no responsibility for faults. No longer works when a dealer sells to the public.",
+      "term": "Voetstoots"
+    },
+    {
+      "meaning": "The six-month guarantee the law adds to every dealer sale.",
+      "term": "Implied warranty"
+    },
+    {
+      "meaning": "VAT you can claim back on a vehicle bought from a private person, even though they charged no VAT.",
+      "term": "Notional input tax"
+    },
+    {
+      "meaning": "The form you and the seller sign so you can claim that VAT.",
+      "term": "VAT264"
+    },
+    {
+      "meaning": "Whoever has the right to sell the vehicle. If it is financed, that is the bank.",
+      "term": "Title holder"
+    },
+    {
+      "meaning": "The form the seller lodges to say the vehicle has changed hands.",
+      "term": "NCO"
+    },
+    {
+      "meaning": "The form the buyer lodges to register the vehicle.",
+      "term": "RLV"
+    },
+    {
+      "meaning": "A certificate from a testing station that the vehicle is safe. Needed on every sale.",
+      "term": "Roadworthy"
+    }
+  ],
+  "title": "Vehicle dealer",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

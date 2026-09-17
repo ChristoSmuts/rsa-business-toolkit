@@ -1,0 +1,989 @@
+{
+  "appliesTo": {
+    "businessTypes": [
+      "food"
+    ],
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Read "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " first. This file adds the rules that apply only to food."
+        }
+      ],
+      "hash": "0dfa1db9d3b70efa",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This covers anyone who handles, prepares, stores, transports or sells food for money: a home baker, a caterer, a food truck, a spaza shop, a takeaway, a market stall, a small manufacturer."
+        }
+      ],
+      "hash": "5373f68c95cb1f0a",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "169a9340c63eee7c",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Certificate of Acceptability. The permit you cannot open without."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "COA"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The 2018 food hygiene rules."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "R638"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The 2012 food labelling rules."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "R146"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The municipal health inspector who checks your premises."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "EHP"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Whoever runs the kitchen day to day. Must have accredited training."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Person in charge"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Whether the municipality allows your kind of business at that address."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Zoning"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Food is the most regulated small business in South Africa after vehicles. Budget two to six months before you may legally open."
+        }
+      ],
+      "hash": "bfc497aaec0e4e61",
+      "id": "words-used-in-this-file.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The one document you cannot trade without"
+        }
+      ],
+      "depth": 2,
+      "hash": "07a45501369c8802",
+      "id": "the-one-document-you-cannot-trade-without",
+      "kind": "heading",
+      "text": "The one document you cannot trade without"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A Certificate of Acceptability, usually called a COA."
+        }
+      ],
+      "hash": "f8fcd351cd0c7210",
+      "id": "the-one-document-you-cannot-trade-without.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Regulation R638 of 2018 sets general hygiene requirements for food premises and requires all processed food handling businesses that sell food for profit to hold a Certificate of Acceptability."
+        }
+      ],
+      "hash": "0ba7cc9b013aa8d8",
+      "id": "the-one-document-you-cannot-trade-without.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "It applies to a restaurant in Sandton, a spaza shop in Khayelitsha, a catering company in Durban, and a game lodge kitchen in Limpopo equally. It is sometimes called the R638 certificate, an environmental health permit, or a food business licence."
+        }
+      ],
+      "hash": "43eb47205d8c1f08",
+      "id": "the-one-document-you-cannot-trade-without.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Every food business needs this certificate, big or small. People also call it the R638 certificate, a health permit, or a food licence. Same thing."
+        }
+      ],
+      "hash": "e9778befef1405a1",
+      "id": "the-one-document-you-cannot-trade-without.4",
+      "kind": "callout",
+      "pairsWith": "the-one-document-you-cannot-trade-without.3",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "R638 governs the structure and cleanliness of premises, how food is transported, the duties of the person in charge, the training of food handlers, and the issuing of the COA by your local municipality. If you handle, store, transport or sell food to the public, R638 applies to you."
+        }
+      ],
+      "hash": "36b0802a93915fcd",
+      "id": "the-one-document-you-cannot-trade-without.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "R638 is the set of rules for how a food place is built and kept clean, how food is moved, what the person in charge must do, what training staff need, and how the certificate is issued. If you sell food, it applies to you."
+        }
+      ],
+      "hash": "f78a79838a9ba9da",
+      "id": "the-one-document-you-cannot-trade-without.6",
+      "kind": "callout",
+      "pairsWith": "the-one-document-you-cannot-trade-without.5",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Why applications fail"
+        }
+      ],
+      "depth": 3,
+      "hash": "eb60678193784156",
+      "id": "why-applications-fail",
+      "kind": "heading",
+      "text": "Why applications fail"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Training under R638 Regulation 10 is not optional. You cannot get a COA without accredited food safety training for the person in charge and every food handler."
+        }
+      ],
+      "hash": "6ae4d5a1d4d908e8",
+      "id": "why-applications-fail.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The single most common reason COA applications fail is the person in charge not holding an accredited training certificate when the Environmental Health Practitioner arrives."
+        }
+      ],
+      "hash": "048f490b9b611262",
+      "id": "why-applications-fail.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do the training before you book the inspection. Not after."
+        }
+      ],
+      "hash": "1305873a5eccb1bc",
+      "id": "why-applications-fail.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How to get it"
+        }
+      ],
+      "depth": 3,
+      "hash": "102f101a1ae682c7",
+      "id": "how-to-get-it",
+      "kind": "heading",
+      "text": "How to get it"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Contact the Environmental Health Department of the municipality where your premises are located and request the COA application form. An Environmental Health Practitioner will inspect the premises to verify compliance with R638. If compliant, the COA is issued. If not, the EHP provides a list of required improvements."
+        }
+      ],
+      "hash": "d27a83e9c856a384",
+      "id": "how-to-get-it.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ask your municipality's health department for the food certificate form. A health inspector will visit. If your kitchen passes, you get the certificate. If not, they give you a list of things to fix."
+        }
+      ],
+      "hash": "13c263e46f529acc",
+      "id": "how-to-get-it.2",
+      "kind": "callout",
+      "pairsWith": "how-to-get-it.1",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Once issued, the COA must be displayed prominently on your premises. Periodic inspections will follow."
+        }
+      ],
+      "hash": "8d3a158ecfc5e4ce",
+      "id": "how-to-get-it.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The COA is specific to the premises and cannot be transferred to new premises or a new owner. It has no fixed expiry under R638, but becomes void when key conditions change."
+        }
+      ],
+      "hash": "d7abcbd958489ea8",
+      "id": "how-to-get-it.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you move, you apply again. If you buy an existing café, the previous owner's COA does not come with it."
+        }
+      ],
+      "hash": "feb91ada9c9ab661",
+      "id": "how-to-get-it.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Everything else you may need"
+        }
+      ],
+      "depth": 2,
+      "hash": "b064a9111a214f1b",
+      "id": "everything-else-you-may-need",
+      "kind": "heading",
+      "text": "Everything else you may need"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Nine documents cover most food businesses: CIPC registration, SARS tax, a Business Licence under the Businesses Act 71 of 1991, a Certificate of Acceptability under R638, a Zoning Certificate if the premises are not zoned for business, a Fire Compliance Certificate (SANS 10400-T), a Gas Certificate of Compliance if using gas, a Liquor Licence if selling alcohol, and accredited food safety training certificates for the person in charge and all food handlers."
+        }
+      ],
+      "hash": "727b909e382dae3c",
+      "id": "everything-else-you-may-need.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most food businesses need: company or tax registration, a municipal business licence, the food certificate (COA), zoning approval, a fire certificate, a gas certificate if you use gas, a liquor licence if you sell alcohol, and food safety training certificates for everyone who handles food."
+        }
+      ],
+      "hash": "de967bb7c8c378f2",
+      "id": "everything-else-you-may-need.2",
+      "kind": "callout",
+      "pairsWith": "everything-else-you-may-need.1",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You may not begin trading in a business that requires a licence before the licence has been issued. Trading without a valid licence is punishable with a fine. Licensing is governed by the Businesses Act 71 of 1991."
+        }
+      ],
+      "hash": "df58f46dab44a9e5",
+      "id": "everything-else-you-may-need.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You cannot open until the licence is in your hand. Opening early can get you fined."
+        }
+      ],
+      "hash": "450cb3b023a20879",
+      "id": "everything-else-you-may-need.4",
+      "kind": "callout",
+      "pairsWith": "everything-else-you-may-need.3",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you comply with all requirements a licence is issued. If not, you can apply for a 14-day grace period during which you make the changes needed."
+        }
+      ],
+      "hash": "b49f7d4bd9bdcf8a",
+      "id": "everything-else-you-may-need.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Realistic timing"
+        }
+      ],
+      "depth": 2,
+      "hash": "5ce0d346bbbc7c0d",
+      "id": "realistic-timing",
+      "kind": "heading",
+      "text": "Realistic timing"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Expect two to six months depending on municipality responsiveness and premises readiness. CIPC registration takes days, training one to three weeks, premises preparation two to eight weeks, and the COA application two to eight weeks. A liquor licence alone can add three to twelve months."
+        }
+      ],
+      "hash": "e15532fcba773140",
+      "id": "realistic-timing.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Realistic timing: a few days for company registration, one to three weeks for training, two to eight weeks to get the kitchen ready, two to eight weeks for the certificate. Alcohol adds three months to a year."
+        }
+      ],
+      "hash": "655952c92a133772",
+      "id": "realistic-timing.2",
+      "kind": "callout",
+      "pairsWith": "realistic-timing.1",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Plan your lease around this. Paying rent on premises you may not legally trade from is how food startups run out of money before they open."
+        }
+      ],
+      "hash": "d75e1cd0d5bbd4d4",
+      "id": "realistic-timing.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Working from home"
+        }
+      ],
+      "depth": 2,
+      "hash": "f76f2a0064715587",
+      "id": "working-from-home",
+      "kind": "heading",
+      "text": "Working from home"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Home food businesses are legal but scrutinised closely during inspection. You need a COA, zoning approval, an R638-compliant kitchen area separated from family living space, R638 training, a business licence, and possibly neighbour consent."
+        }
+      ],
+      "hash": "63a6848dc3b5d2a2",
+      "id": "working-from-home.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A shared family kitchen will usually not pass. Budget for a separate prep area."
+        }
+      ],
+      "hash": "1fe401deee2ab06a",
+      "id": "working-from-home.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Labelling"
+        }
+      ],
+      "depth": 2,
+      "hash": "17ce3476d77835be",
+      "id": "labelling",
+      "kind": "heading",
+      "text": "Labelling"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Regulation R146 of 2012 governs the labelling and advertising of foodstuffs, including allergen warnings."
+        }
+      ],
+      "hash": "6a4c01efbe3556f2",
+      "id": "labelling.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Read R146 before you print anything. Reprinting labels because the allergen declaration is wrong is a common and avoidable cost."
+        }
+      ],
+      "hash": "01b3fcc53a9e678c",
+      "id": "labelling.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do not make health claims. \"Boosts immunity\" or \"helps with diabetes\" can push your product into being regulated as a medicine."
+        }
+      ],
+      "hash": "c5fc19b2c2daa015",
+      "id": "labelling.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The wider law"
+        }
+      ],
+      "depth": 2,
+      "hash": "6e4ae8178decadb4",
+      "id": "the-wider-law",
+      "kind": "heading",
+      "text": "The wider law"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Food businesses are governed by the Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972, the Consumer Protection Act 68 of 2008, the Businesses Act 71 of 1991, the Agricultural Products Standards Act 119 of 1990, the Occupational Health and Safety Act 85 of 1993, and the Standards Act 8 of 2008."
+        }
+      ],
+      "hash": "c8858b9e4b1615ed",
+      "id": "the-wider-law.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Several laws apply to food. The important ones for a small business are the food hygiene rules (R638), the labelling rules (R146), consumer law, and the municipal licence."
+        }
+      ],
+      "hash": "e3e86e8c54a4f393",
+      "id": "the-wider-law.2",
+      "kind": "callout",
+      "pairsWith": "the-wider-law.1",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "One exception worth checking: to legally sell any foodstuff in South Africa, except unprocessed agricultural products, you must apply for a Certificate of Acceptability from the local authority. If you only sell raw produce as it comes out of the ground, confirm your position with your municipality rather than assuming."
+        }
+      ],
+      "hash": "8652ec1bda7374a2",
+      "id": "the-wider-law.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Branding and marketing notes"
+        }
+      ],
+      "depth": 2,
+      "hash": "cf2e2a9a2f4c9c97",
+      "id": "branding-and-marketing-notes",
+      "kind": "heading",
+      "text": "Branding and marketing notes"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Branding prompts"
+            }
+          ],
+          "doc": "branding/branding-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", with two additions."
+        }
+      ],
+      "hash": "1f5c31593df8dd10",
+      "id": "branding-and-marketing-notes.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "When you run the naming prompt, add this line:"
+        }
+      ],
+      "hash": "c783e2baaceacacb",
+      "id": "branding-and-marketing-notes.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "901c2ce00681d87f",
+      "id": "branding-and-marketing-notes.3",
+      "kind": "code",
+      "text": "My business sells food. Check that no name implies a health benefit,\na medical claim, or a protected term like \"organic\" or \"free range\"\nthat I would have to prove.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For photography, daylight and a plain background beat any filter. Photograph the food the moment it is plated."
+        }
+      ],
+      "hash": "3782fd993a6b988e",
+      "id": "branding-and-marketing-notes.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your checklist"
+        }
+      ],
+      "depth": 2,
+      "hash": "44586aab28889f46",
+      "id": "your-checklist",
+      "kind": "heading",
+      "text": "Your checklist"
+    },
+    {
+      "hash": "25a94b545bf37b09",
+      "id": "your-checklist.1",
+      "items": [
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Confirm zoning for food preparation at your premises"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:c251f427",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Book accredited R638 training for yourself and anyone who will handle food"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:c239e886",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Prepare the premises to R638 standards"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:4d4cb4db",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Apply for the COA through your municipal Environmental Health Department"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:a7fe56ab",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Apply for the municipal business licence"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:0f8340c3",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Get fire compliance and a gas CoC if relevant"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:7ee08e59",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Check R146 for your labels before printing"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:02658eb1",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Display the COA on the wall"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:690c42ea",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Only then, open"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:eb4fb487",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist"
+    }
+  ],
+  "contentHash": "76a9026669b38a6b",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Business type: food and drinks",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "the-one-document-you-cannot-trade-without",
+      "text": "The one document you cannot trade without"
+    },
+    {
+      "depth": 3,
+      "id": "why-applications-fail",
+      "text": "Why applications fail"
+    },
+    {
+      "depth": 3,
+      "id": "how-to-get-it",
+      "text": "How to get it"
+    },
+    {
+      "depth": 2,
+      "id": "everything-else-you-may-need",
+      "text": "Everything else you may need"
+    },
+    {
+      "depth": 2,
+      "id": "realistic-timing",
+      "text": "Realistic timing"
+    },
+    {
+      "depth": 2,
+      "id": "working-from-home",
+      "text": "Working from home"
+    },
+    {
+      "depth": 2,
+      "id": "labelling",
+      "text": "Labelling"
+    },
+    {
+      "depth": 2,
+      "id": "the-wider-law",
+      "text": "The wider law"
+    },
+    {
+      "depth": 2,
+      "id": "branding-and-marketing-notes",
+      "text": "Branding and marketing notes"
+    },
+    {
+      "depth": 2,
+      "id": "your-checklist",
+      "text": "Your checklist"
+    }
+  ],
+  "id": "business-types/food",
+  "kind": "guide",
+  "lang": "en",
+  "order": 3,
+  "readingTime": 6,
+  "related": [
+    "branding/branding-prompts"
+  ],
+  "route": "business-types/food/",
+  "section": "business-types",
+  "slug": "food",
+  "sourcePath": "04 Your kind of business/02-food-business.md",
+  "sources": {
+    "acts": [
+      "consumer-protection-act-68-of-2008",
+      "businesses-act-71-of-1991",
+      "foodstuffs-cosmetics-and-disinfectants-act-54-of-1972",
+      "occupational-health-and-safety-act-85-of-1993"
+    ],
+    "entries": [
+      "regulation-r638-of-2018",
+      "regulation-r146-of-2012",
+      "food-focus",
+      "asc-food-safety",
+      "businesses-act-71-of-1991"
+    ]
+  },
+  "summary": "For anyone who handles, prepares, stores, transports or sells food for money: what you need before you may open, and how long it really takes.",
+  "tags": [
+    "business-types"
+  ],
+  "terms": [
+    {
+      "meaning": "Certificate of Acceptability. The permit you cannot open without.",
+      "term": "COA"
+    },
+    {
+      "meaning": "The 2018 food hygiene rules.",
+      "term": "R638"
+    },
+    {
+      "meaning": "The 2012 food labelling rules.",
+      "term": "R146"
+    },
+    {
+      "meaning": "The municipal health inspector who checks your premises.",
+      "term": "EHP"
+    },
+    {
+      "meaning": "Whoever runs the kitchen day to day. Must have accredited training.",
+      "term": "Person in charge"
+    },
+    {
+      "meaning": "Whether the municipality allows your kind of business at that address.",
+      "term": "Zoning"
+    }
+  ],
+  "title": "Food business",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

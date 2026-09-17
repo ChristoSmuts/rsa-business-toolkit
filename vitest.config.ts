@@ -30,6 +30,25 @@ export default getViteConfig({
       provider: 'v8',
       include: ['src/lib/**/*.ts', 'src/i18n/**/*.ts', 'scripts/**/*.ts'],
       exclude: ['**/*.test.ts', 'scripts/ci/**'],
+      /**
+       * The content pipeline decides what ships, so every file it owns has a floor just under the
+       * measurement: a floor with slack in it lets code stop being covered without the gate noticing.
+       * Branches sit lower than the C5 target of 90 because of `report.ts`, a developer report that is
+       * not shipped; `docs/reviews/backlog.md` records that shortfall.
+       *
+       * The two CLI entry modules are floored at 0 rather than excluded, so they stay measured and
+       * visible in the report. Neither can be unit-tested as it stands: importing the module runs
+       * `main()` against the whole real corpus at import time, and `content:build` writes `src/data`.
+       * Everything they call is covered — `cli.ts` at 100%, `build.ts`, `write.ts` and `report.ts`
+       * under the floors above — and `gate:fast` runs both CLIs end to end through `content:check`
+       * and `content:drift`. `docs/reviews/backlog.md` records the gap.
+       */
+      thresholds: {
+        'scripts/content/**': { statements: 97, branches: 85, functions: 98, lines: 97 },
+        'src/lib/content/**': { statements: 85, branches: 72, functions: 100, lines: 85 },
+        'scripts/build-content.ts': { statements: 0, branches: 0, functions: 0, lines: 0 },
+        'scripts/translate/status.ts': { statements: 0, branches: 0, functions: 0, lines: 0 },
+      },
     },
   },
 });

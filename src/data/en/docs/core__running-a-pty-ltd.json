@@ -1,0 +1,1913 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "pty"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Read "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Register: what you actually need"
+            }
+          ],
+          "doc": "core/register",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " first. That file helps you decide whether to register a company at all."
+        }
+      ],
+      "hash": "84ee79d532d6efa3",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This file is for people who already have one, or who have decided to get one. It covers what a company costs you in time and duties every year, and what goes wrong when you ignore it."
+        }
+      ],
+      "hash": "200ffd3c8fe30568",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "4faadebfe5e742a7",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A yearly form telling CIPC your company still exists. Not a tax return."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Annual return"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A free filing naming the real people who own the company."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Beneficial ownership"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The yearly summary of what the company earned, spent, owns and owes."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Financial statements"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A points calculation that decides whether anyone must check your financial statements."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Public Interest Score"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A full independent check of the financial statements. Expensive. Rarely needed for a small company."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Audit"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "CIPC closing your company because you stopped filing."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Deregistration"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The check a company must pass before paying out a dividend: it owns more than it owes, and can pay its bills for the next year."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Solvency and liquidity test"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A written record of a decision. Needed even if you are the only director."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Resolution"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The short version: registering a company takes one afternoon and R175. Keeping it alive and clean is the real work, and it never stops."
+        }
+      ],
+      "hash": "15c76a0c6e9c72f2",
+      "id": "words-used-in-this-file.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What changes the moment you have a company"
+        }
+      ],
+      "depth": 2,
+      "hash": "df2fd6eb73ef480f",
+      "id": "what-changes-the-moment-you-have-a-company",
+      "kind": "heading",
+      "text": "What changes the moment you have a company"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The company is a separate legal person. That is the whole point, and it has consequences in both directions."
+        }
+      ],
+      "hash": "6c1905e4b24040fc",
+      "id": "what-changes-the-moment-you-have-a-company.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The company owns the money, not you. Money in the company bank account is company money. You cannot simply spend it. There are three legal ways to take it out, and each has a tax consequence. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Paying yourself from a Pty Ltd"
+            }
+          ],
+          "doc": "core/paying-yourself",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "bdd894135773df07",
+      "id": "what-changes-the-moment-you-have-a-company.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The company signs contracts, not you. Sign as \"for and on behalf of [Company Name] (Pty) Ltd\", with your name and \"Director\" underneath. If you sign your own name with no company reference, you may have bound yourself personally."
+        }
+      ],
+      "hash": "def01844c3af1737",
+      "id": "what-changes-the-moment-you-have-a-company.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The company's name and registration number must appear on its documents. Section 32 of the Companies Act requires the registered name and registration number on invoices, receipts, delivery notes, letters, orders and notices, including electronic ones. If you market under a trading name, add \"a trading name of [Registered Name] (Pty) Ltd, Reg. No. [number]\". See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Adding new lines of business"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "7d8ec5d2c2948301",
+      "id": "what-changes-the-moment-you-have-a-company.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The company's debts are generally the company's. That protection is real but it is not absolute. It breaks in three common ways, covered below."
+        }
+      ],
+      "hash": "9d70f7da1dd8f276",
+      "id": "what-changes-the-moment-you-have-a-company.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You now have two separate regulators. CIPC handles the company register. SARS handles tax. They do not talk to each other about your filings. Filing with one does not satisfy the other."
+        }
+      ],
+      "hash": "3dfafb42bc2ad580",
+      "id": "what-changes-the-moment-you-have-a-company.6",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "what-changes-the-moment-you-have-a-company.7",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your annual duties, in order of how often they are missed"
+        }
+      ],
+      "depth": 2,
+      "hash": "021ff60f9e6e41dc",
+      "id": "your-annual-duties-in-order-of-how-often-they-are-missed",
+      "kind": "heading",
+      "text": "Your annual duties, in order of how often they are missed"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "1. CIPC annual return"
+        }
+      ],
+      "depth": 3,
+      "hash": "b0303f76b8d098a0",
+      "id": "1-cipc-annual-return",
+      "kind": "heading",
+      "text": "1. CIPC annual return"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This confirms the company still exists. It is not a tax return."
+        }
+      ],
+      "hash": "d9034c552ee5f0d4",
+      "id": "1-cipc-annual-return.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Companies file within 30 business days of their registration anniversary. It confirms the company is still active and is separate from your SARS tax return."
+        }
+      ],
+      "hash": "e8d515fb828e8148",
+      "id": "1-cipc-annual-return.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Unlike SARS deadlines which have fixed dates, CIPC annual returns are due on a rolling basis tied to your company's anniversary date, the date it was originally incorporated."
+        }
+      ],
+      "hash": "db7181e828df76b0",
+      "id": "1-cipc-annual-return.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The fee scales with turnover. For companies the fee ranges from R100 for turnover under R1 million to R3,000 at R25 million or more when filed on time, with late filings costing R150 to R4,000."
+        }
+      ],
+      "hash": "7adeac66a891e8f7",
+      "id": "1-cipc-annual-return.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "All registered companies must file annually regardless of trading activity or turnover. A dormant company with zero turnover files at R100."
+        }
+      ],
+      "hash": "966e5829d4620f8a",
+      "id": "1-cipc-annual-return.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "File at "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://annualreturns.cipc.co.za"
+            }
+          ],
+          "external": true,
+          "href": "https://annualreturns.cipc.co.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". You need a CIPC customer code and an eServices login."
+        }
+      ],
+      "hash": "e8080ce22d4b3fad",
+      "id": "1-cipc-annual-return.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Keep the confirmation. Banks, tender adjudicators, and suppliers sometimes request it as proof of good standing."
+        }
+      ],
+      "hash": "e210d31c3ef7f1a1",
+      "id": "1-cipc-annual-return.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "2. Beneficial ownership filing"
+        }
+      ],
+      "depth": 3,
+      "hash": "0181aa163e2a25e8",
+      "id": "2-beneficial-ownership-filing",
+      "kind": "heading",
+      "text": "2. Beneficial ownership filing"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This names the real humans behind the company. It came in as part of South Africa's response to the FATF grey listing."
+        }
+      ],
+      "hash": "00fcfdecbbfa7ca3",
+      "id": "2-beneficial-ownership-filing.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "It is free, and it blocks everything else if you skip it."
+        }
+      ],
+      "hash": "6c5bc244414d9876",
+      "id": "2-beneficial-ownership-filing.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Since 1 July 2024, CIPC has hard-stopped annual return filing if beneficial ownership has not been filed. You cannot file your annual return without first filing beneficial ownership."
+        }
+      ],
+      "hash": "452f5339370b45a0",
+      "id": "2-beneficial-ownership-filing.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Non-compliance with beneficial ownership filing is now treated alongside annual return non-compliance and can independently trigger deregistration."
+        }
+      ],
+      "hash": "dfc36d47e876e0c7",
+      "id": "2-beneficial-ownership-filing.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a one-person company this takes minutes: you are the sole beneficial owner. Do it before you sit down to file the annual return, not during."
+        }
+      ],
+      "hash": "ece3915c37f1f031",
+      "id": "2-beneficial-ownership-filing.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "3. Financial statements"
+        }
+      ],
+      "depth": 3,
+      "hash": "002ea61e47d8babd",
+      "id": "3-financial-statements",
+      "kind": "heading",
+      "text": "3. Financial statements"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You must prepare annual financial statements. Whether anyone independent has to check them depends on your Public Interest Score."
+        }
+      ],
+      "hash": "950335aeb3f01643",
+      "id": "3-financial-statements.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The PIS is a points calculation done at each financial year end. You get one point per employee averaged over the year, one point per R1 million or part thereof of turnover, one point per R1 million or part thereof of third-party liabilities, and points for the number of shareholders."
+        }
+      ],
+      "hash": "b2f5c080d576e6d1",
+      "id": "3-financial-statements.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Add up points: one for each employee, one for each R1 million of sales, one for each R1 million you owe to others, and some for how many shareholders you have. A one-person company with modest sales scores very low."
+        }
+      ],
+      "hash": "f4f95cec67254e70",
+      "id": "3-financial-statements.3",
+      "kind": "callout",
+      "pairsWith": "3-financial-statements.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a one-person company with modest turnover, the score will be well under 100."
+        }
+      ],
+      "hash": "ef12cd98746e7396",
+      "id": "3-financial-statements.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What that means:"
+        }
+      ],
+      "hash": "c4a0994d36f21aa1",
+      "id": "3-financial-statements.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A company with a Public Interest Score under 100 is exempt from both audit and independent review if every person who holds a beneficial interest in its shares is also a director. That is what \"owner-managed\" means."
+        }
+      ],
+      "hash": "27571c489dbdccaf",
+      "id": "3-financial-statements.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If your score is under 100 and every shareholder is also a director, nobody outside the company has to check your financial statements. You still have to prepare them."
+        }
+      ],
+      "hash": "883ef6864da00474",
+      "id": "3-financial-statements.7",
+      "kind": "callout",
+      "pairsWith": "3-financial-statements.6",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Owner-managed companies with 100 points or less are exempt completely from audit or review if they so choose, but they are still required to prepare financial statements."
+        }
+      ],
+      "hash": "8c08e0995cad6f06",
+      "id": "3-financial-statements.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "So if you are the only shareholder and the only director, you almost certainly need a compilation, not an audit, and not an independent review."
+        }
+      ],
+      "hash": "6dee8e88e68f6227",
+      "id": "3-financial-statements.9",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Watch the boundary. If your company has even one shareholder who does not serve as a director, or if a trust, another company, or any other juristic person holds shares, the stricter non-owner-managed rules apply. Giving a family member 10% of your shares without making them a director can change your reporting obligation."
+        }
+      ],
+      "hash": "ca55845be9618070",
+      "id": "3-financial-statements.10",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Above 100 points it gets stricter. Between 100 and 349, internally compiled statements trigger a mandatory audit, while independently compiled statements may only require an independent review. At 350 or more an audit is required regardless of ownership structure or how the statements were compiled."
+        }
+      ],
+      "hash": "ef6c454556374278",
+      "id": "3-financial-statements.11",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Once your score passes 100, the rules tighten. Who prepares the statements starts to matter. From 350, an audit is required no matter what."
+        }
+      ],
+      "hash": "97b004065a860043",
+      "id": "3-financial-statements.12",
+      "kind": "callout",
+      "pairsWith": "3-financial-statements.11",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What you file with CIPC: annual returns must be filed with the latest beneficial ownership declaration and either audited financial statements, reviewed financial statements, or a Financial Accountability Supplement, depending on what applies to the company."
+        }
+      ],
+      "hash": "ad88bd304cee158e",
+      "id": "3-financial-statements.13",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a small owner-managed company, the Financial Accountability Supplement is the usual route. It is a short form of key financial information, not a full set of statements."
+        }
+      ],
+      "hash": "60c8b5a692e4d6b4",
+      "id": "3-financial-statements.14",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Cost reality: even without an audit, most one-person companies pay an accountant a few thousand rand a year to compile the statements and file the ITR14. Budget for it before you register."
+        }
+      ],
+      "hash": "cb0b8f241c25d06b",
+      "id": "3-financial-statements.15",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "4. SARS company tax"
+        }
+      ],
+      "depth": 3,
+      "hash": "e5711d5ad2585d16",
+      "id": "4-sars-company-tax",
+      "kind": "heading",
+      "text": "4. SARS company tax"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A company is automatically a provisional taxpayer. Two IRP6 returns a year, plus one ITR14 annual return within 12 months of financial year end."
+        }
+      ],
+      "hash": "bf13b96a8a13b30a",
+      "id": "4-sars-company-tax.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A dormant company still files a nil ITR14."
+        }
+      ],
+      "hash": "6a0f13a5a1cd9be6",
+      "id": "4-sars-company-tax.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Full detail is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Tax and SARS"
+            }
+          ],
+          "doc": "core/tax-and-sars",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", including Small Business Corporation rates, which start at 0% on the first R99,000 of taxable income if the company qualifies."
+        }
+      ],
+      "hash": "68d0b16af2fc9467",
+      "id": "4-sars-company-tax.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "5. Registered representative and company details"
+        }
+      ],
+      "depth": 3,
+      "hash": "75b5eb32d495d5c0",
+      "id": "5-registered-representative-and-company-details",
+      "kind": "heading",
+      "text": "5. Registered representative and company details"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Confirm the registered representative (the public officer) with SARS after registration. Without it you cannot transact for the company on eFiling."
+        }
+      ],
+      "hash": "95feb1eec3d939f3",
+      "id": "5-registered-representative-and-company-details.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tell CIPC within the required period if the registered address, directors, or auditors change. Director changes are free to file."
+        }
+      ],
+      "hash": "76609ec2737c1aa4",
+      "id": "5-registered-representative-and-company-details.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "5-registered-representative-and-company-details.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What happens if you stop filing"
+        }
+      ],
+      "depth": 2,
+      "hash": "e9e82ea43749185d",
+      "id": "what-happens-if-you-stop-filing",
+      "kind": "heading",
+      "text": "What happens if you stop filing"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is the most common way small South African companies die, and it is entirely avoidable."
+        }
+      ],
+      "hash": "bdf3e305f72f5446",
+      "id": "what-happens-if-you-stop-filing.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you miss the annual return for two consecutive years, CIPC starts the deregistration process. After enough missed years the company status moves from AR Deregistration Process to Final Deregistration."
+        }
+      ],
+      "hash": "8a3a99fc1d0cd4d3",
+      "id": "what-happens-if-you-stop-filing.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Once two or more successive annual returns are outstanding, the company is automatically placed into the AR deregistration process. Banks, SARS and the Central Supplier Database may refuse to deal with it in this status."
+        }
+      ],
+      "hash": "0d466cf39f975cb5",
+      "id": "what-happens-if-you-stop-filing.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Miss two years of annual returns and CIPC starts closing your company. While that is happening, banks and SARS may refuse to deal with you."
+        }
+      ],
+      "hash": "15e71a4729f98ef7",
+      "id": "what-happens-if-you-stop-filing.4",
+      "kind": "callout",
+      "pairsWith": "what-happens-if-you-stop-filing.3",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "While non-compliant you cannot lodge any other CIPC documents. No director changes, no name changes, no address updates, and no special resolutions can be processed."
+        }
+      ],
+      "hash": "45b85fc46ba9d503",
+      "id": "what-happens-if-you-stop-filing.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Once deregistered, the company loses its legal standing, bank accounts can be frozen, and assets can pass to the state as bona vacantia. Directors may face personal exposure for trading through a deregistered entity."
+        }
+      ],
+      "hash": "377424340d42c1d3",
+      "id": "what-happens-if-you-stop-filing.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If CIPC finishes closing the company, it stops existing. The bank account can be frozen and anything the company owns can go to the state. If you keep trading anyway, you can be personally liable."
+        }
+      ],
+      "hash": "d075b65bdb14a70c",
+      "id": "what-happens-if-you-stop-filing.7",
+      "kind": "callout",
+      "pairsWith": "what-happens-if-you-stop-filing.6",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The scale of this is not theoretical. In January 2025 CIPC began deregistering more than 800,000 companies for missed annual returns and beneficial ownership filings."
+        }
+      ],
+      "hash": "b9b11fc0898c3302",
+      "id": "what-happens-if-you-stop-filing.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Getting it back:"
+        }
+      ],
+      "hash": "8fb17a86109cbc3d",
+      "id": "what-happens-if-you-stop-filing.9",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "AR-deregistered companies can be reinstated relatively cheaply, around R200 plus the catch-up annual returns. Finally deregistered companies need a high-court reinstatement order, which is significantly more expensive."
+        }
+      ],
+      "hash": "6a668629f32c5e9d",
+      "id": "what-happens-if-you-stop-filing.10",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A company deregistered for non-compliance can usually be reinstated by applying to CIPC on form CoR 40.5, proving it was trading or held assets, and settling all outstanding annual returns and fees."
+        }
+      ],
+      "hash": "5b8d299b4f9a13a7",
+      "id": "what-happens-if-you-stop-filing.11",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You can usually bring a closed company back, but you must prove it was really trading, file everything you missed, and pay all the fees."
+        }
+      ],
+      "hash": "e34252fe2d8ca272",
+      "id": "what-happens-if-you-stop-filing.12",
+      "kind": "callout",
+      "pairsWith": "what-happens-if-you-stop-filing.11",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Two calendar reminders prevent all of this. Set them today."
+        }
+      ],
+      "hash": "c07650b8b596b9b0",
+      "id": "what-happens-if-you-stop-filing.13",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "what-happens-if-you-stop-filing.14",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "When the company does not protect you"
+        }
+      ],
+      "depth": 2,
+      "hash": "5b804f85cbbe16ca",
+      "id": "when-the-company-does-not-protect-you",
+      "kind": "heading",
+      "text": "When the company does not protect you"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "People register a Pty believing their house is now safe. Three things break that."
+        }
+      ],
+      "hash": "a14064cbb9ff8f2a",
+      "id": "when-the-company-does-not-protect-you.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Personal surety."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Banks, landlords, and many suppliers will require you to sign personally as surety for the company's debt. Once you do, that specific debt is yours regardless of the company. Read what you sign, and negotiate limits where you can. A surety capped at R100,000 is very different from an unlimited one."
+        }
+      ],
+      "hash": "08f15b1dbd995056",
+      "id": "when-the-company-does-not-protect-you.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Mixing money."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " If you run personal expenses through the company account and treat company money as your own, you weaken the argument that the company is genuinely separate. It also creates the loan account tax problem in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Paying yourself from a Pty Ltd"
+            }
+          ],
+          "doc": "core/paying-yourself",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "72a247ae21b0bda4",
+      "id": "when-the-company-does-not-protect-you.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Reckless or negligent trading."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " The Companies Act 71 of 2008 places real duties on directors. Section 22 prohibits carrying on business recklessly, with gross negligence, or with intent to defraud. Section 76 sets out the duty to act in good faith, in the company's best interests, and with the care and skill reasonably expected. Section 77 makes directors personally liable for loss caused by breaching those duties, and section 218(2) allows anyone who suffers loss from a contravention of the Act to claim it."
+        }
+      ],
+      "hash": "0420aa8cdbdd4d3c",
+      "id": "when-the-company-does-not-protect-you.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "In plain terms: continuing to take customer deposits when you know the company cannot deliver, or trading on while insolvent, can make the debt yours personally. The company is protection against ordinary business failure, not against knowing misconduct."
+        }
+      ],
+      "hash": "82324d8e7446af08",
+      "id": "when-the-company-does-not-protect-you.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "The solvency and liquidity test."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Before the company distributes money to you as a dividend, the board must be satisfied the company passes the section 4 solvency and liquidity test: assets exceed liabilities, and the company can pay its debts as they fall due for the next 12 months. A one-person board still has to apply this, and record that it did."
+        }
+      ],
+      "hash": "cea32ae66e47a5fc",
+      "id": "when-the-company-does-not-protect-you.6",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "when-the-company-does-not-protect-you.7",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Records the company must keep"
+        }
+      ],
+      "depth": 2,
+      "hash": "89ea677be20935e4",
+      "id": "records-the-company-must-keep",
+      "kind": "heading",
+      "text": "Records the company must keep"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Separate from your tax records, the Companies Act requires the company to keep:"
+        }
+      ],
+      "hash": "08fe6c7f83d803ce",
+      "id": "records-the-company-must-keep.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "509d80cd81c5cb6c",
+      "id": "records-the-company-must-keep.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "The Memorandum of Incorporation"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A record of directors, past and present"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "The securities register, meaning who owns the shares"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "The beneficial interest register"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Board and shareholder resolutions"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Annual financial statements"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Notices and minutes of meetings"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a one-person company most of these are one page each, and most people never create them. Do it once, keep it in a folder called \"Company records\", and add to it as things change."
+        }
+      ],
+      "hash": "2219a6bb18d4f5d3",
+      "id": "records-the-company-must-keep.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The two you will actually be asked for: your share certificate, and a resolution authorising you to open a bank account or sign a particular contract. Banks and corporate clients ask for these routinely."
+        }
+      ],
+      "hash": "6739a8713ce02afa",
+      "id": "records-the-company-must-keep.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Resolutions matter even when you are the only director. If you declare a dividend, write a one-paragraph resolution recording the date, the amount, and that the solvency and liquidity test was considered. It costs five minutes and it is the difference between a dividend and an unexplained withdrawal when SARS looks."
+        }
+      ],
+      "hash": "384ebe14b1262050",
+      "id": "records-the-company-must-keep.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "records-the-company-must-keep.6",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Employees, including yourself"
+        }
+      ],
+      "depth": 2,
+      "hash": "f6c12ccbe8dcd31a",
+      "id": "employees-including-yourself",
+      "kind": "heading",
+      "text": "Employees, including yourself"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If the company pays you a salary, the company becomes an employer. That brings PAYE, and usually UIF, and possibly SDL. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Paying yourself from a Pty Ltd"
+            }
+          ],
+          "doc": "core/paying-yourself",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", which covers the detail and one point where sources genuinely disagree."
+        }
+      ],
+      "hash": "1c55753fdc07f83f",
+      "id": "employees-including-yourself.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "COIDA almost certainly applies to you too, and this is widely misunderstood. The Act's definition of employee includes a working director of a company who has entered into a contract of service, in so far as they act within the scope of that employment. It excludes shareholders or silent partners who only receive dividends or a profit share."
+        }
+      ],
+      "hash": "0da31902cafd2b59",
+      "id": "employees-including-yourself.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "So a working director paid a monthly salary qualifies as an employee, must be registered, and must submit a Return of Earnings, even where that director is the only person in the company. A sole proprietor, by contrast, is not an employee under COIDA and cannot register."
+        }
+      ],
+      "hash": "829f07db9acd9f04",
+      "id": "employees-including-yourself.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The Compensation Fund guidance says an employer must register within seven days after appointing employees, and that all employers with one or more part-time, casual, temporary, or full-time employees must register under section 80(1)."
+        }
+      ],
+      "hash": "6ef2112b57f5fee7",
+      "id": "employees-including-yourself.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The Letter of Good Standing proving your COIDA account is current expires every year, and you need a valid one to tender for government work."
+        }
+      ],
+      "hash": "a9217112f101b6d9",
+      "id": "employees-including-yourself.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The moment you employ anyone, even part-time or casual, you have seven days to register with the Compensation Fund for workplace injury cover."
+        }
+      ],
+      "hash": "7dc58e862d03999d",
+      "id": "employees-including-yourself.6",
+      "kind": "callout",
+      "pairsWith": "employees-including-yourself.5",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do not read COIDA purely as a cost. It pays out for injury on duty, which is cover a sole proprietor cannot buy at any price through this route. For a one-person company it is part of the only safety net you have. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "You are the business"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "39abe66152558cc8",
+      "id": "employees-including-yourself.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Employment law is outside the scope of this toolkit. Before your first hire, get proper advice. The Basic Conditions of Employment Act and the Labour Relations Act are strict, and mistakes are expensive to unwind."
+        }
+      ],
+      "hash": "f3e5d9219375bc73",
+      "id": "employees-including-yourself.8",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "employees-including-yourself.9",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What happens if you are not there"
+        }
+      ],
+      "depth": 2,
+      "hash": "ab810852c255cfa8",
+      "id": "what-happens-if-you-are-not-there",
+      "kind": "heading",
+      "text": "What happens if you are not there"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A company has perpetual succession, but it can only act through its directors, and under the Companies Act a person ceases to be a director on death."
+        }
+      ],
+      "hash": "c4d7216309547d34",
+      "id": "what-happens-if-you-are-not-there.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a sole director who is also the sole shareholder, that is a serious problem. There is nobody left who can appoint a replacement, because directors are appointed by shareholders and the shares have fallen into a deceased estate. The Master of the High Court must appoint an executor, commonly two weeks to three months, and whether that executor can then appoint a director depends on what your MOI says. If it does not allow it, the remedy is a court application."
+        }
+      ],
+      "hash": "c68de58e50e7a0fa",
+      "id": "what-happens-if-you-are-not-there.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Meanwhile nobody can sign, the bank account is stuck, and SARS and CIPC deadlines keep running."
+        }
+      ],
+      "hash": "82a0d7ea5096316f",
+      "id": "what-happens-if-you-are-not-there.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The cheapest fix is to appoint a second director. Filing a director change with CIPC is free. Full detail, including the MOI check and the one-page record to leave behind, is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "You are the business"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "ec7386f43f30fbba",
+      "id": "what-happens-if-you-are-not-there.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Closing a company properly"
+        }
+      ],
+      "depth": 2,
+      "hash": "e1407e807b60a318",
+      "id": "closing-a-company-properly",
+      "kind": "heading",
+      "text": "Closing a company properly"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you no longer need the company, deregister it deliberately. Do not just stop filing."
+        }
+      ],
+      "hash": "2ac480feac0a4397",
+      "id": "closing-a-company-properly.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Unless it is formally deregistered, the filing requirement remains. If you no longer need the company, the correct route is voluntary deregistration, not simply stopping all filings."
+        }
+      ],
+      "hash": "43622010ae373faf",
+      "id": "closing-a-company-properly.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The sequence, roughly: file all outstanding returns, settle all tax debt, get tax clearance, apply to CIPC for voluntary deregistration, then deregister each SARS tax type separately supporting the request with the CIPC deregistration notice."
+        }
+      ],
+      "hash": "d11fc2c7c50f7423",
+      "id": "closing-a-company-properly.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Expect it to be slow. One South African compliance firm estimates 12 to 18 months at SARS, and advises continuing to file until deregistration is confirmed in writing. Treat that as an estimate, not a promise."
+        }
+      ],
+      "hash": "c2f95f2c433c0ede",
+      "id": "closing-a-company-properly.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is the strongest practical argument for not registering a company before you need one. Getting in costs R175. Getting out properly costs a year of admin."
+        }
+      ],
+      "hash": "6fbc8a3cea6adab4",
+      "id": "closing-a-company-properly.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "closing-a-company-properly.6",
+      "kind": "hr"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Your Pty Ltd annual checklist"
+        }
+      ],
+      "depth": 2,
+      "hash": "106069535b953c1e",
+      "id": "your-pty-ltd-annual-checklist",
+      "kind": "heading",
+      "text": "Your Pty Ltd annual checklist"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Every year"
+        }
+      ],
+      "hash": "7236783223a83a30",
+      "id": "your-pty-ltd-annual-checklist.1",
+      "items": [
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Beneficial ownership declaration filed and current"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:44c17e09",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "CIPC annual return filed within 30 business days of the registration anniversary"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:b79af9c6",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Annual financial statements prepared"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:00f5fc24",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Public Interest Score calculated at year end"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:b0853b54",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Financial Accountability Supplement or statements filed with the annual return"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:95b86e75",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "ITR14 filed with SARS within 12 months of financial year end"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:724ea4bf",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Two IRP6 provisional returns filed"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:60d623d8",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Company records folder updated with any resolutions passed"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:7ec2806c",
+          "when": {
+            "entity": "pty"
+          }
+        }
+      ],
+      "kind": "tasklist"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Every month, if the company pays you or anyone else a salary"
+        }
+      ],
+      "hash": "f99b289be2cdd108",
+      "id": "your-pty-ltd-annual-checklist.2",
+      "items": [
+        {
+          "block": "your-pty-ltd-annual-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "EMP201 submitted and paid by the 7th of the following month"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:2f83b8dc",
+          "when": {
+            "entity": "pty"
+          }
+        }
+      ],
+      "kind": "tasklist"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Twice a year, if registered as an employer"
+        }
+      ],
+      "hash": "4e4e15ec3c7591ff",
+      "id": "your-pty-ltd-annual-checklist.3",
+      "items": [
+        {
+          "block": "your-pty-ltd-annual-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "EMP501 reconciliation submitted"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:7debec73",
+          "when": {
+            "entity": "pty"
+          }
+        }
+      ],
+      "kind": "tasklist"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Ongoing"
+        }
+      ],
+      "hash": "a53f3ad7f9cbd13c",
+      "id": "your-pty-ltd-annual-checklist.4",
+      "items": [
+        {
+          "block": "your-pty-ltd-annual-checklist.4",
+          "c": [
+            {
+              "t": "text",
+              "v": "Company money kept strictly separate from personal money"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:adba8c60",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.4",
+          "c": [
+            {
+              "t": "text",
+              "v": "Contracts signed on behalf of the company, not in your own name"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:c2f17e61",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.4",
+          "c": [
+            {
+              "t": "text",
+              "v": "Loan account balance checked before each financial year end"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:295a6e78",
+          "when": {
+            "entity": "pty"
+          }
+        }
+      ],
+      "kind": "tasklist"
+    }
+  ],
+  "contentHash": "935673781e2f70cb",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Running a Pty Ltd",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "what-changes-the-moment-you-have-a-company",
+      "text": "What changes the moment you have a company"
+    },
+    {
+      "depth": 2,
+      "id": "your-annual-duties-in-order-of-how-often-they-are-missed",
+      "text": "Your annual duties, in order of how often they are missed"
+    },
+    {
+      "depth": 3,
+      "id": "1-cipc-annual-return",
+      "text": "1. CIPC annual return"
+    },
+    {
+      "depth": 3,
+      "id": "2-beneficial-ownership-filing",
+      "text": "2. Beneficial ownership filing"
+    },
+    {
+      "depth": 3,
+      "id": "3-financial-statements",
+      "text": "3. Financial statements"
+    },
+    {
+      "depth": 3,
+      "id": "4-sars-company-tax",
+      "text": "4. SARS company tax"
+    },
+    {
+      "depth": 3,
+      "id": "5-registered-representative-and-company-details",
+      "text": "5. Registered representative and company details"
+    },
+    {
+      "depth": 2,
+      "id": "what-happens-if-you-stop-filing",
+      "text": "What happens if you stop filing"
+    },
+    {
+      "depth": 2,
+      "id": "when-the-company-does-not-protect-you",
+      "text": "When the company does not protect you"
+    },
+    {
+      "depth": 2,
+      "id": "records-the-company-must-keep",
+      "text": "Records the company must keep"
+    },
+    {
+      "depth": 2,
+      "id": "employees-including-yourself",
+      "text": "Employees, including yourself"
+    },
+    {
+      "depth": 2,
+      "id": "what-happens-if-you-are-not-there",
+      "text": "What happens if you are not there"
+    },
+    {
+      "depth": 2,
+      "id": "closing-a-company-properly",
+      "text": "Closing a company properly"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 2,
+      "id": "your-pty-ltd-annual-checklist",
+      "text": "Your Pty Ltd annual checklist"
+    }
+  ],
+  "id": "core/running-a-pty-ltd",
+  "kind": "guide",
+  "lang": "en",
+  "order": 6,
+  "readingTime": 14,
+  "related": [
+    "core/paying-yourself",
+    "core/you-are-the-business",
+    "core/register",
+    "core/adding-new-lines",
+    "core/tax-and-sars"
+  ],
+  "route": "core/running-a-pty-ltd/",
+  "section": "core",
+  "slug": "running-a-pty-ltd",
+  "sourcePath": "01 Core - applies to everyone/06-running-a-pty-ltd.md",
+  "sources": {
+    "acts": [
+      "companies-act-71-of-2008"
+    ],
+    "entries": [
+      "sars--tax-calendar",
+      "sars--guide-to-provisional-tax",
+      "govchain-how-to-register-a-company-directly-with-cipc",
+      "cipc--annual-returns-filing-system",
+      "cipc--financial-statements-and-independent-reviews",
+      "saica--independent-reviews",
+      "govchain-company-annual-returns",
+      "admin-boss",
+      "ourpower",
+      "thrivecfo",
+      "clearcomply-public-interest-score",
+      "cfo360-pis-calculator",
+      "elyforma",
+      "coida-and-working-directors",
+      "death-of-a-sole-director-and-shareholder"
+    ]
+  },
+  "summary": "What a company costs you in time and duties every year, what goes wrong when you stop filing, and when the company does not protect you.",
+  "tags": [
+    "pty"
+  ],
+  "terms": [
+    {
+      "meaning": "A yearly form telling CIPC your company still exists. Not a tax return.",
+      "term": "Annual return"
+    },
+    {
+      "meaning": "A free filing naming the real people who own the company.",
+      "term": "Beneficial ownership"
+    },
+    {
+      "meaning": "The yearly summary of what the company earned, spent, owns and owes.",
+      "term": "Financial statements"
+    },
+    {
+      "meaning": "A points calculation that decides whether anyone must check your financial statements.",
+      "term": "Public Interest Score"
+    },
+    {
+      "meaning": "A full independent check of the financial statements. Expensive. Rarely needed for a small company.",
+      "term": "Audit"
+    },
+    {
+      "meaning": "CIPC closing your company because you stopped filing.",
+      "term": "Deregistration"
+    },
+    {
+      "meaning": "The check a company must pass before paying out a dividend: it owns more than it owes, and can pay its bills for the next year.",
+      "term": "Solvency and liquidity test"
+    },
+    {
+      "meaning": "A written record of a decision. Needed even if you are the only director.",
+      "term": "Resolution"
+    }
+  ],
+  "title": "Running a Pty Ltd",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

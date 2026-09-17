@@ -1,0 +1,511 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Put this on your website, or send it as a PDF when a customer asks. It is short on purpose. Make a copy, replace the [SQUARE BRACKETS], delete any line that is not true for your business."
+        }
+      ],
+      "hash": "a7f3cad382aa1bb5",
+      "id": "intro.1",
+      "kind": "note"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Before you use this, register yourself as the Information Officer at "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "inforegulator.org.za"
+            }
+          ],
+          "external": true,
+          "href": "https://inforegulator.org.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". It is free. POPIA makes registration compulsory for all private and public bodies. There is no small-business exemption. For a one-person business, the Information Officer is you."
+        }
+      ],
+      "hash": "ac06475297fdb054",
+      "id": "intro.2",
+      "kind": "callout",
+      "style": "note"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Business name"
+        },
+        {
+          "t": "text",
+          "v": " (\"we\", \"us\") respects your privacy. This notice explains what personal information we collect and what we do with it."
+        }
+      ],
+      "hash": "1b520ec9600f2f5c",
+      "id": "intro.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Who we are"
+        }
+      ],
+      "depth": 2,
+      "hash": "161286bfb2b8497d",
+      "id": "who-we-are",
+      "kind": "heading",
+      "text": "Who we are"
+    },
+    {
+      "c": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Business name"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Physical address"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Email"
+        },
+        {
+          "t": "text",
+          "v": " | "
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Phone"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "t": "text",
+          "v": "Information Officer: "
+        },
+        {
+          "key": "ownerName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Your full name"
+        }
+      ],
+      "hash": "e32427e5482e0a3b",
+      "id": "who-we-are.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What we collect"
+        }
+      ],
+      "depth": 2,
+      "hash": "e348b5dc1e1a6002",
+      "id": "what-we-collect",
+      "kind": "heading",
+      "text": "What we collect"
+    },
+    {
+      "hash": "9bb973ab3c2cb7dc",
+      "id": "what-we-collect.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Your name"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your contact details (phone, email, address)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Details of what you bought or asked about"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Payment information (we do not store card numbers)"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Add or remove lines so this is true for your business."
+        }
+      ],
+      "hash": "6c638901a1c5ed15",
+      "id": "what-we-collect.2",
+      "kind": "note"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Why we collect it"
+        }
+      ],
+      "depth": 2,
+      "hash": "270407cb2c3fdeb5",
+      "id": "why-we-collect-it",
+      "kind": "heading",
+      "text": "Why we collect it"
+    },
+    {
+      "hash": "6e83ff7081c0d1cb",
+      "id": "why-we-collect-it.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "To give you a quote and do the work you asked for"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "To send you an invoice and receive payment"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "To keep records that SARS requires by law"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "To contact you about your order"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Who we share it with"
+        }
+      ],
+      "depth": 2,
+      "hash": "37c680d5ff60a8d9",
+      "id": "who-we-share-it-with",
+      "kind": "heading",
+      "text": "Who we share it with"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "We do not sell your information. We share it only with:"
+        }
+      ],
+      "hash": "65f64c86e8268f84",
+      "id": "who-we-share-it-with.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "a392f3543a7a8625",
+      "id": "who-we-share-it-with.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Our bank, to receive payment"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Our accountant, if we use one"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "SARS or another authority, where the law requires it"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How long we keep it"
+        }
+      ],
+      "depth": 2,
+      "hash": "f5eb6793a32e0ab7",
+      "id": "how-long-we-keep-it",
+      "kind": "heading",
+      "text": "How long we keep it"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "We keep records for five years, as tax law requires. After that we delete them."
+        }
+      ],
+      "hash": "aaeae6bd7164729f",
+      "id": "how-long-we-keep-it.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Marketing"
+        }
+      ],
+      "depth": 2,
+      "hash": "2de4b8abdd446f8e",
+      "id": "marketing",
+      "kind": "heading",
+      "text": "Marketing"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "We will only send you marketing messages if you agreed to receive them. You can tell us to stop at any time by replying STOP or emailing us."
+        }
+      ],
+      "hash": "06f355610e4d4880",
+      "id": "marketing.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your rights"
+        }
+      ],
+      "depth": 2,
+      "hash": "91127c8f50600805",
+      "id": "your-rights",
+      "kind": "heading",
+      "text": "Your rights"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You may ask us what information we hold about you, ask us to correct it, or ask us to delete it where the law allows. Contact us using the details above."
+        }
+      ],
+      "hash": "d408f9c235d460f7",
+      "id": "your-rights.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you are unhappy with how we handled your information, you may complain to the Information Regulator at "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "inforegulator.org.za"
+            }
+          ],
+          "external": true,
+          "href": "https://inforegulator.org.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "24ce396f92caa18f",
+      "id": "your-rights.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Last updated: "
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Month YYYY"
+        }
+      ],
+      "hash": "9e7b56853f2f171f",
+      "id": "your-rights.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "your-rights.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you take ID copies"
+        }
+      ],
+      "depth": 2,
+      "hash": "2f62a00d06956933",
+      "id": "if-you-take-id-copies",
+      "kind": "heading",
+      "text": "If you take ID copies"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vehicle dealers, second-hand goods dealers and anyone who checks a buyer's identity will hold ID copies. Keep them somewhere safe, keep them only as long as you need them, and never forward them. If a deal does not go ahead, delete the copies."
+        }
+      ],
+      "hash": "e49a61df006e3ed8",
+      "id": "if-you-take-id-copies.1",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "651c3208aa8a0dbc",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "PRIVACY NOTICE",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "who-we-are",
+      "text": "Who we are"
+    },
+    {
+      "depth": 2,
+      "id": "what-we-collect",
+      "text": "What we collect"
+    },
+    {
+      "depth": 2,
+      "id": "why-we-collect-it",
+      "text": "Why we collect it"
+    },
+    {
+      "depth": 2,
+      "id": "who-we-share-it-with",
+      "text": "Who we share it with"
+    },
+    {
+      "depth": 2,
+      "id": "how-long-we-keep-it",
+      "text": "How long we keep it"
+    },
+    {
+      "depth": 2,
+      "id": "marketing",
+      "text": "Marketing"
+    },
+    {
+      "depth": 2,
+      "id": "your-rights",
+      "text": "Your rights"
+    },
+    {
+      "depth": 2,
+      "id": "if-you-take-id-copies",
+      "text": "If you take ID copies"
+    }
+  ],
+  "id": "paperwork/templates/privacy-notice",
+  "kind": "template",
+  "lang": "en",
+  "order": 7,
+  "readingTime": 2,
+  "related": [],
+  "route": "templates/privacy-notice/",
+  "section": "paperwork",
+  "slug": "privacy-notice",
+  "sourcePath": "03 Paperwork and templates/templates-to-fill-in/05-privacy-notice-popia.md",
+  "sources": {
+    "acts": [
+      "protection-of-personal-information-act-4-of-2013"
+    ],
+    "entries": [
+      "information-regulator-of-south-africa",
+      "serr-synergy"
+    ]
+  },
+  "summary": "Put this on your website, or send it as a PDF when a customer asks. It is short on purpose. Make a copy, replace the [SQUARE BRACKETS], delete any line that is not true for your business.",
+  "tags": [
+    "template",
+    "popia"
+  ],
+  "terms": [],
+  "title": "Privacy notice, POPIA (template)",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

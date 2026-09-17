@@ -1,0 +1,640 @@
+{
+  "version": 1,
+  "notes": {
+    "see": ["lookup/sources", "start/how-this-was-made"],
+    "docs": {
+      "start/start-here": "An orientation page: its headline figures are stated and sourced in the documents it points to.",
+      "start/how-to-use": "Explains how to use the toolkit and makes no factual claim of its own.",
+      "start/how-this-was-made": "Describes how the toolkit was generated and checked; the full register lists every source.",
+      "start/what-has-changed": "A change log of the toolkit; the facts it mentions are sourced in the documents it names.",
+      "branding/marketing-prompts": "This page contains AI prompts and marketing advice. It makes no factual claims from the sources register.",
+      "lookup/sources": "This is the full register: every source is listed on this page."
+    }
+  },
+  "groups": [
+    {
+      "group": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "docs": ["core/running-a-pty-ltd"],
+      "reason": "Topic doc: states annual return portal, 30-business-day window, R100-R3,000 fees, BO hard stop, PIS audit/review rules, FAS, CoR 40.5 and deregistration"
+    },
+    {
+      "group": "paying-yourself-from-a-company",
+      "docs": ["core/paying-yourself"],
+      "reason": "Topic doc: states s64E(4) deemed dividend, 7.75% official rate, 11C repeal from 1 March 2017, three debit-loan fixes, timing and write-off risk"
+    },
+    {
+      "group": "b-bbee",
+      "docs": ["core/register"],
+      "reason": "States EME under R10 million, automatic Level 4/2/1, affidavit or CIPC certificate as proof, and that sector codes set different rules"
+    },
+    {
+      "group": "consumer-law-and-online-selling",
+      "docs": ["core/what-you-need-to-sell-things", "business-types/retail-online"],
+      "reason": "Both state ECTA s42(2) exclusions, s43(2) review and 14-day right, s44 seven-day cooling-off, s46 30-day rule, return-cost limit and CPA quality"
+    },
+    {
+      "group": "second-hand-goods-dealing",
+      "docs": ["business-types/vehicle-dealer"],
+      "reason": "States SAPS 601 (free), where to lodge, required documents, 5-year records, MV register particulars, 30-day notice, SAPS 604 and inspections"
+    },
+    {
+      "group": "food-businesses",
+      "docs": ["business-types/food", "core/what-you-need-to-sell-things"],
+      "reason": "Both state the R638 COA requirement and Regulation 10 training, R146 labelling, the COA process, Businesses Act licensing and 2-6 month timelines"
+    },
+    {
+      "group": "working-from-home-payments-and-personal-safety",
+      "docs": ["core/working-from-home-and-safety"],
+      "reason": "Topic doc: states look-feel-tilt and counterfeit rules, SABRIC 2024 figures, PayShap R50,000 limit, POP scams, test-drive safety and home zoning"
+    },
+    {
+      "group": "you-are-the-business-uif-coida-courts-and-continuity",
+      "docs": ["core/you-are-the-business"],
+      "reason": "Topic doc: states sole proprietor UIF/COIDA exclusion, working-director COIDA, s7(1) Small Claims rule, 3-year prescription, 14-day estate report"
+    },
+    {
+      "group": "colour-research-and-signage-materials",
+      "docs": ["branding/mood-and-materials"],
+      "reason": "States Elliot and Maier and Labrecque and Milne findings, Sytech Zone 3 UV fade figures, and cast 5-10 vs calendered 1-5 year vinyl lifespans"
+    },
+    {
+      "group": "branding-tools-referenced",
+      "docs": ["branding/branding-prompts"],
+      "reason": "Tells readers to check contrast at WebAIM, use OFL Google Fonts, build the logo in Inkscape, and search the CIPC trade marks database"
+    }
+  ],
+  "entries": [
+    {
+      "entry": "sars--turnover-tax",
+      "docs": ["core/tax-and-sars", "paperwork/which-template-to-use-when"],
+      "reason": "Tax doc states electing micro business status and the R2.3 million limit; both state the reduced turnover tax records (receipts, dividends, assets over R10,000)"
+    },
+    {
+      "entry": "sars--turnover-tax",
+      "docs": ["core/adding-new-lines", "business-types/professional-creative"],
+      "reason": "Both state the turnover tax qualification exclusion where more than 20% of income comes from professional services"
+    },
+    {
+      "entry": "sars--turnover-tax",
+      "docs": ["lookup/glossary"],
+      "reason": "Defines turnover tax as a simplified tax for micro businesses charged on sales"
+    },
+    {
+      "entry": "sars--budget-2026-frequently-asked-questions",
+      "docs": ["core/tax-and-sars", "business-types/vehicle-dealer"],
+      "reason": "Both state turnover tax replaces income tax, VAT, provisional, CGT and dividends tax, and the R2.3m VAT threshold; tax doc adds R120,000 voluntary"
+    },
+    {
+      "entry": "sars--what-is-the-new-threshold-for-vat-registration",
+      "docs": [
+        "core/start-here",
+        "core/register",
+        "core/tax-and-sars",
+        "paperwork/which-template-to-use-when",
+        "paperwork/templates/invoice",
+        "business-types/pick-your-business-type",
+        "business-types/vehicle-dealer"
+      ],
+      "reason": "Each states compulsory VAT registration applies only over R2.3 million turnover; start-here says an R1 million figure is out of date"
+    },
+    {
+      "entry": "sars--tax-calendar",
+      "docs": ["core/tax-and-sars", "lookup/checklist"],
+      "reason": "Both list IRP6 dates of 31 August, 28/29 February and the optional 30 September payment; the checklist also lists EMP201 by the 7th and the EMP501"
+    },
+    {
+      "entry": "sars--tax-calendar",
+      "docs": ["core/running-a-pty-ltd", "core/paying-yourself", "lookup/glossary"],
+      "reason": "Each states the EMP201 is due by the 7th of the following month; Pty and paying-yourself add the twice-yearly EMP501"
+    },
+    {
+      "entry": "sars--guide-to-provisional-tax",
+      "docs": [
+        "core/tax-and-sars",
+        "core/running-a-pty-ltd",
+        "lookup/glossary",
+        "lookup/checklist"
+      ],
+      "reason": "Each states two IRP6 provisional returns a year; tax doc and checklist add the optional third payment, tax doc the nil IRP6"
+    },
+    {
+      "entry": "sars--tax-invoice-checklist",
+      "docs": ["paperwork/which-template-to-use-when", "paperwork/templates/tax-invoice"],
+      "reason": "Both list the seven full tax invoice fields above R5,000 and allow an abridged tax invoice from R50 to R5,000"
+    },
+    {
+      "entry": "sars--vat-420-guide-for-motor-dealers",
+      "docs": ["business-types/vehicle-dealer"],
+      "reason": "Explains notional input tax for dealers at 15/115 of the lesser of price or market value, the VAT264 requirement, and names the VAT 420 guide"
+    },
+    {
+      "entry": "sars--vat-connect-issue-20-october-2025",
+      "docs": ["business-types/vehicle-dealer"],
+      "reason": "Gives the SARS worked example: R115,000 purchase, R15,000 notional input tax, R3,000 VAT on a R20,000 mark-up"
+    },
+    {
+      "entry": "sars--vat-264-declaration-for-the-supply-of-second-hand-goods",
+      "docs": ["business-types/vehicle-dealer", "lookup/glossary", "lookup/checklist"],
+      "reason": "Each states the VAT264 is the declaration both buyer and seller sign for a notional input tax claim"
+    },
+    {
+      "entry": "xero-za-sars-tax-tables-20262027",
+      "docs": ["core/tax-and-sars"],
+      "reason": "States the 2026/2027 thresholds of R99,000, R153,250 and R171,300 and the R430,000 retirement contribution cap"
+    },
+    {
+      "entry": "xero-za-sars-tax-tables-20262027",
+      "docs": ["core/paying-yourself", "lookup/glossary"],
+      "reason": "Both state the R99,000 personal tax threshold for people under 65"
+    },
+    {
+      "entry": "sait-turnover-tax-vs-sbc",
+      "docs": ["core/tax-and-sars"],
+      "reason": "Gives the worked example of R800,000 turnover producing R2,000 turnover tax"
+    },
+    {
+      "entry": "bizportal-cipc--company-registration",
+      "docs": ["core/register"],
+      "reason": "States R125 BizPortal registration, R50 name reservation for up to four names, automatic income tax number, and naming by registration number"
+    },
+    {
+      "entry": "bizportal-cipc--company-registration",
+      "docs": ["core/adding-new-lines", "branding/branding-prompts"],
+      "reason": "Both state a company can be registered under its registration number instead of a name, with the brand used as a trading name"
+    },
+    {
+      "entry": "govchain-how-to-register-a-company-directly-with-cipc",
+      "docs": ["core/register"],
+      "reason": "States the R175 total, CoR 14.3 and MOI arriving by email, and the Home Affairs ID check failing on one wrong digit"
+    },
+    {
+      "entry": "govchain-how-to-register-a-company-directly-with-cipc",
+      "docs": ["core/running-a-pty-ltd", "core/you-are-the-business"],
+      "reason": "Both state registering a company costs R175"
+    },
+    {
+      "entry": "smartbook-cost-to-register-a-company",
+      "docs": ["core/register"],
+      "reason": "States one firm's estimate of R2,500 to R3,500 first-year cost and R15,000 to R40,000 a year ongoing compliance"
+    },
+    {
+      "entry": "cipc--annual-returns-filing-system",
+      "docs": ["lookup/glossary"],
+      "reason": "Defines the CIPC customer code needed before filing anything with CIPC"
+    },
+    {
+      "entry": "cipc--financial-statements-and-independent-reviews",
+      "docs": ["lookup/glossary"],
+      "reason": "Defines the Public Interest Score as deciding whether a company needs an audit, an independent review, or neither"
+    },
+    {
+      "entry": "govchain-company-annual-returns",
+      "docs": ["lookup/checklist"],
+      "reason": "States the CIPC annual return is due within 30 business days of the registration anniversary"
+    },
+    {
+      "entry": "ourpower",
+      "docs": ["lookup/checklist"],
+      "reason": "States the annual return is blocked unless the beneficial ownership declaration is filed first"
+    },
+    {
+      "entry": "thrivecfo",
+      "docs": ["lookup/glossary"],
+      "reason": "Defines CoR 40.5 as the reinstatement form and bona vacantia as what can happen to a deregistered company's assets"
+    },
+    {
+      "entry": "clearcomply-public-interest-score",
+      "docs": ["core/you-are-the-business"],
+      "reason": "States adding a shareholder who is not a director can cost the owner-managed exemption from audit and independent review"
+    },
+    {
+      "entry": "elyforma",
+      "docs": ["lookup/glossary", "lookup/checklist"],
+      "reason": "Both state a Financial Accountability Supplement can be filed with the annual return instead of full statements"
+    },
+    {
+      "entry": "sars--comprehensive-guide-to-dividends-tax",
+      "docs": ["lookup/glossary"],
+      "reason": "Defines the deemed dividend on interest-free or below-official-rate loans to shareholders, taxed at 20%"
+    },
+    {
+      "entry": "sars--budget-2026-faq",
+      "docs": ["lookup/glossary"],
+      "reason": "States the official rate of interest of 7.75% per annum from 1 December 2025"
+    },
+    {
+      "entry": "polity--ensafrica-directors-of-private-companies-and-paye",
+      "docs": ["lookup/glossary"],
+      "reason": "States deemed remuneration was repealed with effect from 1 March 2017"
+    },
+    {
+      "entry": "simplepay-deemed-remuneration",
+      "docs": ["lookup/glossary"],
+      "reason": "States deemed remuneration no longer applies and directors' PAYE is now based on actual remuneration"
+    },
+    {
+      "entry": "the-tax-faculty-dividends-interest-on-loan",
+      "docs": ["lookup/glossary"],
+      "reason": "Defines the deemed dividend as the interest shortfall below the official rate, not the loan capital"
+    },
+    {
+      "entry": "b-bbee-commission--frequently-asked-questions",
+      "docs": ["business-types/pick-your-business-type", "lookup/glossary"],
+      "reason": "Both state an EME under R10 million turnover uses a free affidavit instead of a paid B-BBEE certificate"
+    },
+    {
+      "entry": "information-regulator-of-south-africa",
+      "docs": [
+        "core/register",
+        "paperwork/which-template-to-use-when",
+        "paperwork/templates/privacy-notice",
+        "business-types/pick-your-business-type",
+        "business-types/beauty",
+        "lookup/glossary",
+        "lookup/checklist"
+      ],
+      "reason": "Each tells readers to register the Information Officer with the Information Regulator; most add that it is free at inforegulator.org.za"
+    },
+    {
+      "entry": "serr-synergy",
+      "docs": ["core/register", "paperwork/templates/privacy-notice"],
+      "reason": "Both state Information Officer registration is compulsory for all bodies with no exemption; register adds duties start only after registration"
+    },
+    {
+      "entry": "michalsons",
+      "docs": ["core/register"],
+      "reason": "Tells readers to register the Information Officer on the Information Regulator portal, the process Michalsons' portal guidance covers"
+    },
+    {
+      "entry": "national-consumer-commission--consumer-protection-in-e-commerce",
+      "docs": ["paperwork/which-template-to-use-when", "lookup/glossary", "lookup/checklist"],
+      "reason": "Each states the seven-day ECTA cooling-off right for online purchases"
+    },
+    {
+      "entry": "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
+      "docs": ["business-types/vehicle-dealer"],
+      "reason": "States the s56 warranty is excluded only where specific defects were disclosed and accepted; a general voetstoots clause is not enough"
+    },
+    {
+      "entry": "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
+      "docs": ["lookup/glossary"],
+      "reason": "Defines the implied warranty as a guarantee the law puts into every sale under CPA s56"
+    },
+    {
+      "entry": "mj-kotze-inc-what-is-ecta",
+      "docs": ["lookup/checklist"],
+      "reason": "Lists the ECTA s43 information and the order review step before checkout"
+    },
+    {
+      "entry": "enatis--natis--faqs-and-forms",
+      "docs": ["business-types/vehicle-dealer"],
+      "reason": "States imported vehicles need foreign registration papers, a SAPS clearance and an SABS letter of authority"
+    },
+    {
+      "entry": "rlv-form--application-for-registration-and-licensing-of-motor-vehicle",
+      "docs": ["core/vehicles", "business-types/vehicle-dealer", "lookup/glossary"],
+      "reason": "Each names form RLV, the Application for Registration and Licensing of Motor Vehicle, as the form used to register the vehicle"
+    },
+    {
+      "entry": "govza--apply-for-a-motor-trade-number-and-permit",
+      "docs": ["business-types/vehicle-dealer", "lookup/glossary"],
+      "reason": "Both state the MTN1 form and that a motor trade number lets a dealer drive unregistered stock; dealer doc adds who may hold one and same-day processing"
+    },
+    {
+      "entry": "western-cape-government--motor-trade-number-applications",
+      "docs": ["business-types/vehicle-dealer"],
+      "reason": "States the Western Cape tariffs: R102 application, R762 vehicle licensing, R168 for a motorcycle or transport contractor"
+    },
+    {
+      "entry": "govza--register-a-motor-vehicle",
+      "docs": ["business-types/vehicle-dealer"],
+      "reason": "States the buyer has 21 days to register the vehicle after change of ownership and that missing it carries penalties"
+    },
+    {
+      "entry": "department-of-transport--register-motor-vehicle",
+      "docs": ["business-types/vehicle-dealer"],
+      "reason": "States the NCO and the used-vehicle registration documents, including a roadworthy certificate if the current one is older than 60 days"
+    },
+    {
+      "entry": "governmentcoza--apply-for-a-traffic-register-number",
+      "docs": ["core/vehicles", "business-types/vehicle-dealer", "lookup/glossary"],
+      "reason": "Each states non-legal persons such as a one-man business, partnership, trust or church use a traffic register number to register vehicles"
+    },
+    {
+      "entry": "govchain-brnc-certificate-guide",
+      "docs": ["core/vehicles"],
+      "reason": "States what a BRNC is, the in-person-only process, certified copies within 3 months, and that there is no published national fee"
+    },
+    {
+      "entry": "govchain-brnc-certificate-guide",
+      "docs": ["business-types/vehicle-dealer", "lookup/glossary"],
+      "reason": "Both state what a BRNC is: the business register number that lets a company own vehicles; dealer doc adds the in-person application"
+    },
+    {
+      "entry": "trafico",
+      "docs": ["core/vehicles"],
+      "reason": "Lists the ABR application documents and the common reasons BRNC applications fail"
+    },
+    {
+      "entry": "bloemq4u-faq",
+      "docs": ["core/vehicles"],
+      "reason": "States the proxy's details are recorded on eNaTIS and that a trust uses a Traffic Register Number Certificate instead"
+    },
+    {
+      "entry": "saps--second-hand-goods-act-6-of-2009-full-text",
+      "docs": ["core/what-you-need-to-sell-things", "business-types/retail-online"],
+      "reason": "Both state second-hand goods dealers must register with SAPS and keep a transaction register; retail adds 5-year records and ID checks"
+    },
+    {
+      "entry": "saps--national-instruction-2-of-2016-second-hand-goods-dealers-and-recyclers",
+      "docs": ["business-types/retail-online", "lookup/checklist"],
+      "reason": "Both state registration uses the free SAPS 601 form; retail doc also lists the principal business activities that must register"
+    },
+    {
+      "entry": "nada-saps-dealer-inspections",
+      "docs": ["core/adding-new-lines"],
+      "reason": "States a registered second-hand goods dealer must notify SAPS in writing within 30 days of any change"
+    },
+    {
+      "entry": "hanekom-attorneys-webuycars-consent-order",
+      "docs": ["business-types/vehicle-dealer"],
+      "reason": "States the six-month implied warranty, replace or refund if a repair fails within three months, and that voetstoots no longer works"
+    },
+    {
+      "entry": "hanekom-attorneys-webuycars-consent-order",
+      "docs": [
+        "core/what-you-need-to-sell-things",
+        "business-types/retail-online",
+        "business-types/services-trades"
+      ],
+      "reason": "Each states goods carry a six-month implied warranty under the Consumer Protection Act"
+    },
+    {
+      "entry": "hanekom-attorneys-webuycars-consent-order",
+      "docs": ["lookup/glossary"],
+      "reason": "Defines the six-month implied warranty and states voetstoots no longer protects a business selling to a consumer"
+    },
+    {
+      "entry": "the-citizen",
+      "docs": ["business-types/vehicle-dealer"],
+      "reason": "States the Consumer Tribunal ruling that voetstoots does not apply to CPA transactions, and CPA s2(10) and s56(4)"
+    },
+    {
+      "entry": "moonstone",
+      "docs": ["business-types/vehicle-dealer"],
+      "reason": "States the December 2025 Western Cape High Court R175,000 refund order and that buyers need not exhaust ombud processes first"
+    },
+    {
+      "entry": "department-of-justice--small-claims-courts",
+      "docs": ["core/you-are-the-business", "business-types/vehicle-dealer", "lookup/glossary"],
+      "reason": "Each states the R30,000 Small Claims Court limit effective 1 August 2026; the guides cite Government Notice 7717 in Gazette 55038"
+    },
+    {
+      "entry": "department-of-justice--media-statement-22-july-2026",
+      "docs": ["core/you-are-the-business", "business-types/vehicle-dealer", "lookup/glossary"],
+      "reason": "Each states the R30,000 limit replaced the earlier R20,000 limit (in place since 2019)"
+    },
+    {
+      "entry": "regulation-r638-of-2018",
+      "docs": ["lookup/glossary", "lookup/checklist"],
+      "reason": "Glossary defines R638 as the 2018 food premises hygiene rules replacing R962; checklist requires R638 training and premises"
+    },
+    {
+      "entry": "regulation-r146-of-2012",
+      "docs": ["branding/brand-applications-and-polish", "lookup/glossary", "lookup/checklist"],
+      "reason": "Each states food labelling is regulated under R146 of 2012 and labels must be checked against it"
+    },
+    {
+      "entry": "asc-food-safety",
+      "docs": ["business-types/pick-your-business-type"],
+      "reason": "States a food business can take two to six months before it may legally open"
+    },
+    {
+      "entry": "businesses-act-71-of-1991",
+      "docs": [
+        "core/what-you-need-to-sell-things",
+        "business-types/food",
+        "business-types/beauty",
+        "business-types/vehicle-dealer",
+        "business-types/retail-online",
+        "lookup/glossary"
+      ],
+      "reason": "Each states municipal trading licences are issued under the Businesses Act 71 of 1991 by the local municipality"
+    },
+    {
+      "entry": "mj-kotze-inc-credit-provider-registration",
+      "docs": ["business-types/vehicle-dealer", "lookup/glossary"],
+      "reason": "Both state a credit provider must register with the NCR before extending credit; dealer doc adds that the monetary threshold is gone"
+    },
+    {
+      "entry": "south-african-reserve-bank--banknote-security-features",
+      "docs": ["lookup/glossary"],
+      "reason": "Defines look, feel, tilt as the Reserve Bank's three-step banknote check"
+    },
+    {
+      "entry": "sabric--south-african-banking-risk-information-centre",
+      "docs": ["lookup/glossary"],
+      "reason": "Defines SABRIC as the banking industry's fraud body, with its website"
+    },
+    {
+      "entry": "techcentral",
+      "docs": ["lookup/glossary"],
+      "reason": "States the PayShap system limit is R50,000 per payment"
+    },
+    {
+      "entry": "solmate",
+      "docs": ["lookup/glossary"],
+      "reason": "States PayShap arrives in seconds and each bank sets its own lower limits"
+    },
+    {
+      "entry": "cape-argus",
+      "docs": ["lookup/glossary"],
+      "reason": "Defines the overpayment scam: a buyer pays too much and asks for the difference back"
+    },
+    {
+      "entry": "flip-the-market",
+      "docs": [
+        "paperwork/templates/invoice",
+        "paperwork/templates/receipt",
+        "core/you-are-the-business",
+        "business-types/vehicle-dealer",
+        "lookup/glossary",
+        "lookup/checklist"
+      ],
+      "reason": "Each states the reflected-not-pending rule: hand nothing over, or receipt nothing, until money is in your balance, not on a POP"
+    },
+    {
+      "entry": "tracker-south-africa",
+      "docs": ["business-types/vehicle-dealer", "lookup/checklist"],
+      "reason": "Both state get a licence copy before meeting and keep the keys until you are seated in the vehicle; checklist adds geotag removal"
+    },
+    {
+      "entry": "tracker-south-africa",
+      "docs": ["lookup/glossary"],
+      "reason": "Defines geotag and says to switch it off before photographing stock at home"
+    },
+    {
+      "entry": "carscoza",
+      "docs": ["business-types/vehicle-dealer", "lookup/checklist"],
+      "reason": "Both state meet in a public place with someone with you; checklist adds tell someone and no solo test drive"
+    },
+    {
+      "entry": "motorhappy",
+      "docs": ["business-types/vehicle-dealer"],
+      "reason": "States meet at a police station, bank or petrol station, use a bank counter for large amounts, and no keys or papers until payment reflects"
+    },
+    {
+      "entry": "ashersons-attorneys",
+      "docs": ["lookup/glossary"],
+      "reason": "Defines the home enterprise category and consent use for business beyond default zoning"
+    },
+    {
+      "entry": "yebo-business-1",
+      "docs": ["business-types/vehicle-dealer"],
+      "reason": "States home enterprise conditions bar storing goods or vehicles that give a commercial appearance, so options include consent use"
+    },
+    {
+      "entry": "looksee-standard-bank",
+      "docs": ["lookup/checklist"],
+      "reason": "Lists checking zoning, title deed and complex rules before working from home"
+    },
+    {
+      "entry": "uif-and-the-self-employed",
+      "docs": ["core/register", "core/paying-yourself"],
+      "reason": "Both state a sole proprietor cannot contribute to UIF; register cites the UIC Act excluding independent contractors from employee"
+    },
+    {
+      "entry": "coida-and-working-directors",
+      "docs": ["core/register", "core/running-a-pty-ltd"],
+      "reason": "Both state a sole proprietor is not a COIDA employee but a salaried working director is; Pty doc adds registration and Return of Earnings"
+    },
+    {
+      "entry": "small-claims-court-who-may-sue",
+      "docs": ["core/register", "business-types/vehicle-dealer", "lookup/glossary"],
+      "reason": "Each states only a natural person may bring a Small Claims Court action, and a company may take part only as defendant"
+    },
+    {
+      "entry": "death-of-a-sole-director-and-shareholder",
+      "docs": ["core/running-a-pty-ltd"],
+      "reason": "States a director ceases on death, shareholders appoint directors, executor appointment takes two weeks to three months, and the MOI decides"
+    },
+    {
+      "entry": "webaim-contrast-checker",
+      "docs": ["branding/brand-applications-and-polish"],
+      "reason": "Tells readers to check contrast ratios themselves at webaim.org because the AI cannot calculate them"
+    },
+    {
+      "entry": "google-fonts",
+      "docs": ["paperwork/free-tools"],
+      "reason": "States fonts from fonts.google.com are free for commercial use"
+    },
+    {
+      "entry": "inkscape",
+      "docs": ["paperwork/free-tools"],
+      "reason": "Recommends Inkscape as the free tool for logo vector files"
+    },
+    {
+      "entry": "cipc-trade-mark-search",
+      "docs": ["branding/already-have-your-name", "business-types/retail-online"],
+      "reason": "Both tell readers to search the CIPC trade marks database themselves for their trading or product name"
+    },
+    {
+      "entry": "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
+      "docs": ["business-types/services-trades"],
+      "reason": "States that goods you install carry the six-month implied warranty separately from your workmanship, which is the reading of CPA sections 55 and 56 that the Ombud advisory note sets out"
+    }
+  ],
+  "acts": [
+    {
+      "act": "companies-act-71-of-2008",
+      "docs": [
+        "core/adding-new-lines",
+        "branding/already-have-your-name",
+        "paperwork/templates/quotation",
+        "core/running-a-pty-ltd",
+        "paperwork/which-template-to-use-when"
+      ],
+      "reason": "Each states that a company must show its registered name and registration number on its documents, which is section 32 of the Companies Act"
+    },
+    {
+      "act": "consumer-protection-act-68-of-2008",
+      "docs": ["core/adding-new-lines"],
+      "reason": "States that a supplier must trade under its registered name or under a business name registered under section 80 of that Act, and that the section 80 register was never brought into operation"
+    },
+    {
+      "act": "consumer-protection-act-68-of-2008",
+      "docs": ["paperwork/which-template-to-use-when"],
+      "reason": "States that the Consumer Protection Act requires plain language, so a document the customer cannot understand can be unenforceable, and its terms and conditions prompt asks for terms that comply with that Act"
+    },
+    {
+      "act": "electronic-communications-and-transactions-act-25-of-2002",
+      "docs": ["paperwork/free-tools"],
+      "reason": "States that a signed PDF is legally valid for ordinary business contracts under ECTA, and which documents still need a handwritten signature"
+    },
+    {
+      "act": "electronic-communications-and-transactions-act-25-of-2002",
+      "docs": ["paperwork/which-template-to-use-when"],
+      "reason": "Its terms and conditions prompt states that an online seller must comply with sections 43, 44 and 46 of ECTA, including the seven-day cooling-off right"
+    },
+    {
+      "act": "income-tax-act-58-of-1962",
+      "docs": ["business-types/vehicle-dealer"],
+      "reason": "States that section 22 of the Income Tax Act requires closing trading stock, such as unsold vehicles at year end, to be brought into account, generally at cost"
+    },
+    {
+      "act": "income-tax-act-58-of-1962",
+      "docs": ["core/paying-yourself"],
+      "reason": "States that section 7B of the Income Tax Act taxes variable remuneration when it is actually paid, and that section 64E(4) turns a low-interest loan to a shareholder into a deemed dividend"
+    },
+    {
+      "act": "companies-act-71-of-2008",
+      "docs": ["core/paying-yourself"],
+      "reason": "States that the board must be satisfied the company passes the section 4 solvency and liquidity test before declaring a dividend"
+    },
+    {
+      "act": "companies-act-71-of-2008",
+      "docs": ["core/you-are-the-business"],
+      "reason": "States that under the Companies Act a person ceases to be a director on death, so a company can only act through its directors"
+    },
+    {
+      "act": "companies-act-71-of-2008",
+      "docs": ["branding/branding-prompts"],
+      "reason": "States that every quote, invoice and contract must carry the full registered name and registration number, which is a Companies Act requirement and not a style choice"
+    },
+    {
+      "act": "foodstuffs-cosmetics-and-disinfectants-act-54-of-1972",
+      "docs": ["core/what-you-need-to-sell-things"],
+      "reason": "States that the Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 applies to a cosmetic product itself, and that labelling and ingredient claims are regulated"
+    },
+    {
+      "act": "second-hand-goods-act-6-of-2009",
+      "docs": ["core/what-you-need-to-sell-things"],
+      "reason": "States that dealers in used goods must register with SAPS and keep a register of what they buy, from whom and when, under the Second-Hand Goods Act 6 of 2009"
+    },
+    {
+      "act": "businesses-act-71-of-1991",
+      "docs": ["business-types/vehicle-dealer", "business-types/retail-online"],
+      "reason": "Each states that a municipal trading licence is required under the Businesses Act: for many municipalities in the dealer file, and for food retail in the retail and online shop file"
+    },
+    {
+      "act": "occupational-health-and-safety-act-85-of-1993",
+      "docs": ["business-types/food"],
+      "reason": "Lists the Occupational Health and Safety Act 85 of 1993 among the Acts that govern a food business"
+    },
+    {
+      "act": "consumer-protection-act-68-of-2008",
+      "docs": ["business-types/pick-your-business-type"],
+      "reason": "Lists honest advertising and Consumer Protection Act compliance among the things every business needs, regardless of type"
+    },
+    {
+      "act": "protection-of-personal-information-act-4-of-2013",
+      "docs": ["paperwork/templates/privacy-notice"],
+      "reason": "The notice states that POPIA makes information officer registration compulsory for every private body, with no small-business exemption"
+    },
+    {
+      "act": "value-added-tax-act-89-of-1991",
+      "docs": ["paperwork/templates/tax-invoice"],
+      "reason": "Lists the seven particulars a full tax invoice must show, plus the R50 and R5,000 thresholds and the 21-day issue rule, which are the tax-invoice requirements of section 20 of the VAT Act"
+    }
+  ]
+}

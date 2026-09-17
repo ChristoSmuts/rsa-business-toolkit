@@ -1,0 +1,3761 @@
+{
+  "lang": "en",
+  "tasks": [
+    {
+      "block": "your-licence-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Does my business type appear in the Businesses Act categories? If yes, apply for the municipal licence first."
+        }
+      ],
+      "doc": "core/what-you-need-to-sell-things",
+      "group": [
+        {
+          "t": "text",
+          "v": "Work through these questions before you take your first order"
+        }
+      ],
+      "heading": "your-licence-checklist",
+      "id": "core/what-you-need-to-sell-things:11a093c7",
+      "order": 0
+    },
+    {
+      "block": "your-licence-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Do I handle food? If yes, get accredited training, then apply for the COA."
+        }
+      ],
+      "doc": "core/what-you-need-to-sell-things",
+      "group": [
+        {
+          "t": "text",
+          "v": "Work through these questions before you take your first order"
+        }
+      ],
+      "heading": "your-licence-checklist",
+      "id": "core/what-you-need-to-sell-things:f92fd7a6",
+      "order": 1
+    },
+    {
+      "block": "your-licence-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Is my premises zoned for this activity? Ask the municipal town planning department."
+        }
+      ],
+      "doc": "core/what-you-need-to-sell-things",
+      "group": [
+        {
+          "t": "text",
+          "v": "Work through these questions before you take your first order"
+        }
+      ],
+      "heading": "your-licence-checklist",
+      "id": "core/what-you-need-to-sell-things:d7735147",
+      "order": 2
+    },
+    {
+      "block": "your-licence-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Does my product need a Letter of Authority or SAHPRA approval?"
+        }
+      ],
+      "doc": "core/what-you-need-to-sell-things",
+      "group": [
+        {
+          "t": "text",
+          "v": "Work through these questions before you take your first order"
+        }
+      ],
+      "heading": "your-licence-checklist",
+      "id": "core/what-you-need-to-sell-things:1f881041",
+      "order": 3
+    },
+    {
+      "block": "your-licence-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Am I selling online? If yes, put the ECTA section 43 information on the site and write a returns policy that respects the seven-day rule."
+        }
+      ],
+      "doc": "core/what-you-need-to-sell-things",
+      "group": [
+        {
+          "t": "text",
+          "v": "Work through these questions before you take your first order"
+        }
+      ],
+      "heading": "your-licence-checklist",
+      "id": "core/what-you-need-to-sell-things:965f9d12",
+      "order": 4
+    },
+    {
+      "block": "your-licence-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Does my trade have a professional body I must register with?"
+        }
+      ],
+      "doc": "core/what-you-need-to-sell-things",
+      "group": [
+        {
+          "t": "text",
+          "v": "Work through these questions before you take your first order"
+        }
+      ],
+      "heading": "your-licence-checklist",
+      "id": "core/what-you-need-to-sell-things:249c67a5",
+      "order": 5
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Beneficial ownership declaration filed and current"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Every year"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:44c17e09",
+      "order": 6,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "CIPC annual return filed within 30 business days of the registration anniversary"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Every year"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:b79af9c6",
+      "order": 7,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Annual financial statements prepared"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Every year"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:00f5fc24",
+      "order": 8,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Public Interest Score calculated at year end"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Every year"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:b0853b54",
+      "order": 9,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Financial Accountability Supplement or statements filed with the annual return"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Every year"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:95b86e75",
+      "order": 10,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "ITR14 filed with SARS within 12 months of financial year end"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Every year"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:724ea4bf",
+      "order": 11,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Two IRP6 provisional returns filed"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Every year"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:60d623d8",
+      "order": 12,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Company records folder updated with any resolutions passed"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Every year"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:7ec2806c",
+      "order": 13,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "EMP201 submitted and paid by the 7th of the following month"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Every month, if the company pays you or anyone else a salary"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:2f83b8dc",
+      "order": 14,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "EMP501 reconciliation submitted"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Twice a year, if registered as an employer"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:7debec73",
+      "order": 15,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.4",
+      "c": [
+        {
+          "t": "text",
+          "v": "Company money kept strictly separate from personal money"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Ongoing"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:adba8c60",
+      "order": 16,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.4",
+      "c": [
+        {
+          "t": "text",
+          "v": "Contracts signed on behalf of the company, not in your own name"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Ongoing"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:c2f17e61",
+      "order": 17,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.4",
+      "c": [
+        {
+          "t": "text",
+          "v": "Loan account balance checked before each financial year end"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Ongoing"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:295a6e78",
+      "order": 18,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Checked the matching file in "
+        },
+        {
+          "label": "04-business-types/",
+          "section": "business-types",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " for licences the new line needs"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:8febf321",
+      "order": 19,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Confirmed zoning allows the new activity at my premises"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:b3d4e816",
+      "order": 20,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Told my insurer and received written confirmation of cover"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:7342bbc4",
+      "order": 21,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Notified SAPS within 30 days if it changes my second-hand goods registration"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:1f424128",
+      "order": 22,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Decided the trading name, and checked domain, handles and trade marks"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:47e5c318",
+      "order": 23,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Put \"trading as\" plus the registered name and number on the new line's documents"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:57d2420f",
+      "order": 24,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Checked whether the new line affects my turnover tax or SBC position"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:7cc8050d",
+      "order": 25,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Decided against a second company, or got advice on the SBC consequence first"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:a12236e9",
+      "order": 26,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Added a Line column to the cash book"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:6b8d242c",
+      "order": 27,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "setup.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Checked my zoning, title deed, and complex rules allow what I do at home"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "setup",
+      "id": "core/working-from-home-and-safety:bbeb1c8a",
+      "order": 28
+    },
+    {
+      "block": "setup.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Told my household insurer about the business and its stock"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "setup",
+      "id": "core/working-from-home-and-safety:1a704bb5",
+      "order": 29
+    },
+    {
+      "block": "setup.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Location switched off in my phone camera before photographing stock at home"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "setup",
+      "id": "core/working-from-home-and-safety:8a10fb7e",
+      "order": 30
+    },
+    {
+      "block": "setup.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Separate WhatsApp Business number"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "setup",
+      "id": "core/working-from-home-and-safety:98801a6b",
+      "order": 31
+    },
+    {
+      "block": "setup.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Asked my bank what my PayShap and immediate payment limits are"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "setup",
+      "id": "core/working-from-home-and-safety:b77d1f44",
+      "order": 32
+    },
+    {
+      "block": "every-sale.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Deal confirmed in a text message the customer replied \"yes\" to"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-sale",
+      "id": "core/working-from-home-and-safety:bfe6c798",
+      "order": 33
+    },
+    {
+      "block": "every-sale.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Money reflected in my balance before anything left my hands"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-sale",
+      "id": "core/working-from-home-and-safety:cad4290c",
+      "order": 34
+    },
+    {
+      "block": "every-sale.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "No refund of any \"overpayment\" until the original cleared and only to the same account"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-sale",
+      "id": "core/working-from-home-and-safety:70251e55",
+      "order": 35
+    },
+    {
+      "block": "every-sale.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Cash checked with look, feel, tilt, or deposited at a bank counter"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-sale",
+      "id": "core/working-from-home-and-safety:6bd83244",
+      "order": 36
+    },
+    {
+      "block": "every-meeting.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Public place, daylight, cameras"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-meeting",
+      "id": "core/working-from-home-and-safety:288efaaa",
+      "order": 37
+    },
+    {
+      "block": "every-meeting.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "ID or licence received before the meeting"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-meeting",
+      "id": "core/working-from-home-and-safety:a5d45d69",
+      "order": 38
+    },
+    {
+      "block": "every-meeting.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Someone told, location shared, someone with me"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-meeting",
+      "id": "core/working-from-home-and-safety:05820320",
+      "order": 39
+    },
+    {
+      "block": "every-meeting.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Keys in my hand until I am in the vehicle, and back in my hand before I get out"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-meeting",
+      "id": "core/working-from-home-and-safety:9c2a1aaa",
+      "order": 40
+    },
+    {
+      "block": "every-meeting.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "ID copies deleted afterwards if no deal"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-meeting",
+      "id": "core/working-from-home-and-safety:10807585",
+      "order": 41
+    },
+    {
+      "block": "protection.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "I know whether I can contribute to UIF, and have decided deliberately rather than by accident"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "protection",
+      "id": "core/you-are-the-business:277f7921",
+      "order": 42
+    },
+    {
+      "block": "protection.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "If I have a company and pay myself a salary: registered for COIDA, Return of Earnings submitted, Letter of Good Standing current"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "protection",
+      "id": "core/you-are-the-business:69e6fedf",
+      "order": 43,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "protection.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Got a quote for income protection, and checked the waiting period before it pays"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "protection",
+      "id": "core/you-are-the-business:6be42aa2",
+      "order": 44
+    },
+    {
+      "block": "protection.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Have a cash buffer in a separate account, sized in months I could not work"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "protection",
+      "id": "core/you-are-the-business:84889f74",
+      "order": 45
+    },
+    {
+      "block": "getting-paid.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Deposit taken before I buy materials or start work"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "getting-paid",
+      "id": "core/you-are-the-business:80860154",
+      "order": 46
+    },
+    {
+      "block": "getting-paid.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Late payment terms agreed in writing before the work, not after"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "getting-paid",
+      "id": "core/you-are-the-business:91c38f5a",
+      "order": 47
+    },
+    {
+      "block": "getting-paid.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "I know which court I may use, given how I am structured"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "getting-paid",
+      "id": "core/you-are-the-business:21970149",
+      "order": 48
+    },
+    {
+      "block": "getting-paid.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Nothing owed to me is close to three years old"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "getting-paid",
+      "id": "core/you-are-the-business:b6fe6cfd",
+      "order": 49
+    },
+    {
+      "block": "continuity.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "A second director appointed, or a deliberate decision not to"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "continuity",
+      "id": "core/you-are-the-business:8e6615a6",
+      "order": 50
+    },
+    {
+      "block": "continuity.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Checked whether my MOI allows an executor to appoint a director"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "continuity",
+      "id": "core/you-are-the-business:b554cb87",
+      "order": 51
+    },
+    {
+      "block": "continuity.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "A will that deals with the shares, consistent with the MOI"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "continuity",
+      "id": "core/you-are-the-business:b5a8d0d2",
+      "order": 52
+    },
+    {
+      "block": "continuity.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "The one-page record written, and someone knows where it is"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "continuity",
+      "id": "core/you-are-the-business:c7f7b0fd",
+      "order": 53
+    },
+    {
+      "block": "continuity.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Record reviewed within the last twelve months"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "continuity",
+      "id": "core/you-are-the-business:e3e2729b",
+      "order": 54
+    },
+    {
+      "block": "checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Chosen one visual territory and written it down in one sentence"
+        }
+      ],
+      "doc": "branding/mood-and-materials",
+      "heading": "checklist",
+      "id": "branding/mood-and-materials:a94accc0",
+      "order": 55
+    },
+    {
+      "block": "checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Pasted it into Prompts 5, 7 and 8 with the \"must sit inside\" line"
+        }
+      ],
+      "doc": "branding/mood-and-materials",
+      "heading": "checklist",
+      "id": "branding/mood-and-materials:3028bd4e",
+      "order": 56
+    },
+    {
+      "block": "checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Chosen a material direction, cheap version"
+        }
+      ],
+      "doc": "branding/mood-and-materials",
+      "heading": "checklist",
+      "id": "branding/mood-and-materials:e3bf4881",
+      "order": 57
+    },
+    {
+      "block": "checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Asked the sign maker: cast or calendered, and is the print laminated"
+        }
+      ],
+      "doc": "branding/mood-and-materials",
+      "heading": "checklist",
+      "id": "branding/mood-and-materials:81c3b913",
+      "order": 58
+    },
+    {
+      "block": "checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Checked that my logo still works as one or two flat colours, so cut vinyl is an option"
+        }
+      ],
+      "doc": "branding/mood-and-materials",
+      "heading": "checklist",
+      "id": "branding/mood-and-materials:cd1a4491",
+      "order": 59
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Decide sole proprietor or company ("
+        },
+        {
+          "doc": "core/register",
+          "label": "01-core/02",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ")"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first purchase"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:81105d14",
+      "order": 60,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Get BRNC or Traffic Register Number ("
+        },
+        {
+          "doc": "core/vehicles",
+          "label": "01-core/05",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ")"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first purchase"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:ddf401f6",
+      "order": 61,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Apply for SAPS second-hand goods dealer registration, form SAPS 601, free"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first purchase"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:9df05312",
+      "order": 62,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Check zoning for your premises, before signing any lease"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first purchase"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:85d9f1a4",
+      "order": 63,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Apply for a municipal business licence if required"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first purchase"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:e5ee625b",
+      "order": 64,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Get motor trade insurance quotes"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first purchase"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:9d53e703",
+      "order": 65,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Work out whether VAT registration pays, given notional input tax, and confirm you are NOT on turnover tax"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first purchase"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:96c81d0e",
+      "order": 66,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Build your sale agreement and defect schedule template"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first purchase"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:621643ad",
+      "order": 67,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Set up your SAPS acquisition and disposal register"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first purchase"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:70c5bd63",
+      "order": 68,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Decide your inspection process, and who does it"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first purchase"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:4e32d6ab",
+      "order": 69,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "Roadworthy certificate in hand"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first sale"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:45b57985",
+      "order": 70,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "Defect schedule signed and initialled"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first sale"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:0f979ec9",
+      "order": 71,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "Written sale agreement signed"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first sale"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:5391018c",
+      "order": 72,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "NCO lodged the same day"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first sale"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:c0b079e3",
+      "order": 73,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "Buyer's ID copied into your register"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Before your first sale"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:0735f705",
+      "order": 74,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "SAPS register updated on the day of every transaction"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Ongoing"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:2af36b16",
+      "order": 75,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "VAT264 for every purchase from a non-vendor"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Ongoing"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:856d737a",
+      "order": 76,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "SAPS registration renewal diarised"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Ongoing"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:9f301304",
+      "order": 77,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "Five years of records kept for SAPS and SARS"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Ongoing"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:16c1d991",
+      "order": 78,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "Rolling 12-month sales tracked against the R2.3 million VAT threshold"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Ongoing"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:b2a0d33d",
+      "order": 79,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "Stock list with cost per vehicle, ready for year end"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Ongoing"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:dbcc89dc",
+      "order": 80,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "If working from home: zoning checked for storing stock, and the meeting-safety habits in "
+        },
+        {
+          "doc": "core/working-from-home-and-safety",
+          "label": "01-core/09",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " in use on every viewing"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Ongoing"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:5dfe11f3",
+      "order": 81,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ],
+        "tags": [
+          "home"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Confirm zoning for food preparation at your premises"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:c251f427",
+      "order": 82,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Book accredited R638 training for yourself and anyone who will handle food"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:c239e886",
+      "order": 83,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Prepare the premises to R638 standards"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:4d4cb4db",
+      "order": 84,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Apply for the COA through your municipal Environmental Health Department"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:a7fe56ab",
+      "order": 85,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Apply for the municipal business licence"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:0f8340c3",
+      "order": 86,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Get fire compliance and a gas CoC if relevant"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:7ee08e59",
+      "order": 87,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Check R146 for your labels before printing"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:02658eb1",
+      "order": 88,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Display the COA on the wall"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:690c42ea",
+      "order": 89,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Only then, open"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:eb4fb487",
+      "order": 90,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Confirm zoning for your premises, including home premises"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:92352a66",
+      "order": 91,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Apply for the municipal health establishment licence"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:4154a207",
+      "order": 92,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Prepare the premises for the health inspection"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:3e9fa384",
+      "order": 93,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Get treatment liability insurance appropriate to your services"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:acd577dc",
+      "order": 94,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Build a consultation and patch test record template"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:78e1ef6f",
+      "order": 95,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Write your booking, deposit and cancellation terms"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:1ee82848",
+      "order": 96,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Get written photo permission from clients before posting"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:3f035f6f",
+      "order": 97,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Register your POPIA information officer, since you hold client health information"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:22a2e898",
+      "order": 98,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Check whether your municipality requires a trader's licence"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:05b6a4b6",
+      "order": 99,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "If you sell used goods, register with SAPS under the Second-Hand Goods Act"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:51431599",
+      "order": 100,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ],
+        "tags": [
+          "second-hand"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "If you import, get a SARS importer's code and check NRCS requirements"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:7606eb50",
+      "order": 101,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ],
+        "tags": [
+          "import"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Put ECTA section 43 information on your site"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:3f057ea5",
+      "order": 102,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Add an order review step before checkout"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:857a560f",
+      "order": 103,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Write a returns policy that respects the seven-day cooling-off right"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:3997af12",
+      "order": 104,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Publish your privacy notice"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:eead27a2",
+      "order": 105,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Set up stock tracking alongside your cash book"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:46751df3",
+      "order": 106,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Confirm whether your trade requires professional or statutory registration"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:7aeedd49",
+      "order": 107,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Get public liability insurance"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:6b14de08",
+      "order": 108,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Tell your vehicle insurer you use the vehicle for work"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:06447813",
+      "order": 109,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Build your quote template with a proper exclusions list"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:3e62bd56",
+      "order": 110,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Set your deposit and progress payment terms in writing"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:4931924a",
+      "order": 111,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Set up a vehicle logbook"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:6fa9b54e",
+      "order": 112,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Claim and complete your Google Business Profile"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:92e8509e",
+      "order": 113,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Set up WhatsApp Business with quick replies"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:a9a8c6bf",
+      "order": 114,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Confirm whether your profession requires statutory registration"
+        }
+      ],
+      "doc": "business-types/professional-creative",
+      "heading": "your-checklist",
+      "id": "business-types/professional-creative:4e99d003",
+      "order": 115,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Check whether you are excluded from turnover tax before electing it"
+        }
+      ],
+      "doc": "business-types/professional-creative",
+      "heading": "your-checklist",
+      "id": "business-types/professional-creative:fc5121e3",
+      "order": 116,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Build a service agreement covering scope, revisions, IP and payment"
+        }
+      ],
+      "doc": "business-types/professional-creative",
+      "heading": "your-checklist",
+      "id": "business-types/professional-creative:4c50b1ae",
+      "order": 117,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Decide your deposit and revision policy, and stick to it"
+        }
+      ],
+      "doc": "business-types/professional-creative",
+      "heading": "your-checklist",
+      "id": "business-types/professional-creative:8afe75e0",
+      "order": 118,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Set up the home office calculation if you qualify"
+        }
+      ],
+      "doc": "business-types/professional-creative",
+      "heading": "your-checklist",
+      "id": "business-types/professional-creative:1c124945",
+      "order": 119,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Register as a provisional taxpayer and diarise the IRP6 dates"
+        }
+      ],
+      "doc": "business-types/professional-creative",
+      "heading": "your-checklist",
+      "id": "business-types/professional-creative:66134f08",
+      "order": 120,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Assess whether you look like an employee of one client, and fix it if so"
+        }
+      ],
+      "doc": "business-types/professional-creative",
+      "heading": "your-checklist",
+      "id": "business-types/professional-creative:09f007d9",
+      "order": 121,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "before-you-trade.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Sold something once and got paid, to prove people want it"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "before-you-trade",
+      "id": "lookup/checklist:5cce7722",
+      "order": 122
+    },
+    {
+      "block": "before-you-trade.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Opened a separate bank account for business money only, and asked the bank my instant payment limits"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "before-you-trade",
+      "id": "lookup/checklist:1c9a465a",
+      "order": 123
+    },
+    {
+      "block": "before-you-trade.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "If working from home: checked zoning, title deed and complex rules; told my household insurer"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "before-you-trade",
+      "id": "lookup/checklist:53e717ac",
+      "order": 124,
+      "when": {
+        "tags": [
+          "home"
+        ]
+      }
+    },
+    {
+      "block": "before-you-trade.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Location switched off in my phone camera before photographing stock at home"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "before-you-trade",
+      "id": "lookup/checklist:8a10fb7e",
+      "order": 125
+    },
+    {
+      "block": "before-you-trade.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Checked whether my business type needs a licence ("
+        },
+        {
+          "doc": "core/what-you-need-to-sell-things",
+          "label": "01-core/04",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " and "
+        },
+        {
+          "label": "04-business-types/",
+          "section": "business-types",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ")"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "before-you-trade",
+      "id": "lookup/checklist:5dfc9c4d",
+      "order": 126
+    },
+    {
+      "block": "before-you-trade.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Applied for that licence, if needed, and waited for it to be issued"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "before-you-trade",
+      "id": "lookup/checklist:eb465a87",
+      "order": 127
+    },
+    {
+      "block": "before-you-trade.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Checked zoning, if I work from home or from fixed premises"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "before-you-trade",
+      "id": "lookup/checklist:88cba814",
+      "order": 128
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Chosen a name, and checked it on CIPC, as a.co.za domain, and on social media"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:bcf0f339",
+      "order": 129
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bought the domain, even if there is no website yet"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:02efde59",
+      "order": 130
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Built a brand one-pager ("
+        },
+        {
+          "doc": "branding/branding-prompts",
+          "label": "02-branding-and-marketing/01",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ")"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:32e2d4af",
+      "order": 131
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Built a quote template"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:8dae9274",
+      "order": 132
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Built an invoice template, with correct VAT wording for my situation"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:f9ae9c72",
+      "order": 133
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Written terms and conditions"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:25f043c4",
+      "order": 134
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Written a privacy notice"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:1b7c3802",
+      "order": 135
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Set up a cash book spreadsheet"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:48e229b7",
+      "order": 136
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Set up folders in Drive with a consistent naming system ("
+        },
+        {
+          "doc": "paperwork/free-tools",
+          "label": "03-documents/02",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ")"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:1687e0b9",
+      "order": 137
+    },
+    {
+      "block": "compliance.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Registered my Information Officer at "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "inforegulator.org.za"
+            }
+          ],
+          "external": true,
+          "href": "https://inforegulator.org.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " (free)"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "compliance",
+      "id": "lookup/checklist:a036463c",
+      "order": 138
+    },
+    {
+      "block": "compliance.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Confirmed I have a SARS income tax number"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "compliance",
+      "id": "lookup/checklist:9488b9de",
+      "order": 139
+    },
+    {
+      "block": "compliance.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Registered as a provisional taxpayer"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "compliance",
+      "id": "lookup/checklist:afe2d3be",
+      "order": 140
+    },
+    {
+      "block": "compliance.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Decided sole proprietor or company, and registered if needed"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "compliance",
+      "id": "lookup/checklist:5d35feb9",
+      "order": 141
+    },
+    {
+      "block": "compliance.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "If a company: confirmed the SARS registered representative"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "compliance",
+      "id": "lookup/checklist:025df418",
+      "order": 142,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "compliance.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "If a company: filed beneficial ownership information (free)"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "compliance",
+      "id": "lookup/checklist:e7aada86",
+      "order": 143,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "compliance.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Got a B-BBEE affidavit signed, if a customer has asked (free)"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "compliance",
+      "id": "lookup/checklist:efcec13d",
+      "order": 144
+    },
+    {
+      "block": "marketing.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Claimed and completed my Google Business Profile"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "marketing",
+      "id": "lookup/checklist:22905c13",
+      "order": 145
+    },
+    {
+      "block": "marketing.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Set up WhatsApp Business with a catalogue and quick replies"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "marketing",
+      "id": "lookup/checklist:f77f50f7",
+      "order": 146
+    },
+    {
+      "block": "marketing.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Asked my first three customers for reviews"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "marketing",
+      "id": "lookup/checklist:111fd9c5",
+      "order": 147
+    },
+    {
+      "block": "every-sale-where-i-never-meet-the-customer-or-meet-them-once.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Money reflected in my balance, not \"pending\", before anything is handed over"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-sale-where-i-never-meet-the-customer-or-meet-them-once",
+      "id": "lookup/checklist:057de8cb",
+      "order": 148
+    },
+    {
+      "block": "every-sale-where-i-never-meet-the-customer-or-meet-them-once.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "No goods released on a screenshot, SMS, or PDF proof of payment"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-sale-where-i-never-meet-the-customer-or-meet-them-once",
+      "id": "lookup/checklist:9aecec2a",
+      "order": 149
+    },
+    {
+      "block": "every-sale-where-i-never-meet-the-customer-or-meet-them-once.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Meeting in a public, busy, daylight place with cameras; someone told; someone with me"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-sale-where-i-never-meet-the-customer-or-meet-them-once",
+      "id": "lookup/checklist:b620b7df",
+      "order": 150
+    },
+    {
+      "block": "every-sale-where-i-never-meet-the-customer-or-meet-them-once.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "For a vehicle: licence and ID copy received first, keys kept in my hand, no solo test drive"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-sale-where-i-never-meet-the-customer-or-meet-them-once",
+      "id": "lookup/checklist:8a68f28a",
+      "order": 151,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "money-hygiene.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Photographing every slip on the day I get it"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "money-hygiene",
+      "id": "lookup/checklist:99fc0864",
+      "order": 152
+    },
+    {
+      "block": "money-hygiene.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Reconciling the cash book against the bank statement monthly"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "money-hygiene",
+      "id": "lookup/checklist:34453e8d",
+      "order": 153
+    },
+    {
+      "block": "money-hygiene.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Invoice numbers running in order with no gaps"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "money-hygiene",
+      "id": "lookup/checklist:f3ff7fdb",
+      "order": 154
+    },
+    {
+      "block": "money-hygiene.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Recording enquiries and sales each month, not likes and followers"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "money-hygiene",
+      "id": "lookup/checklist:59e1a146",
+      "order": 155
+    },
+    {
+      "block": "once-after-registration.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS registered representative (public officer) confirmed on eFiling"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "once-after-registration",
+      "id": "lookup/checklist:c2850f49",
+      "order": 156,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "once-after-registration.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Beneficial ownership filed with CIPC (free)"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "once-after-registration",
+      "id": "lookup/checklist:0694d50e",
+      "order": 157,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "once-after-registration.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Company records folder created: MOI, share certificate, director record, securities register"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "once-after-registration",
+      "id": "lookup/checklist:eb8bf210",
+      "order": 158,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "once-after-registration.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bank account opened in the company name, used only for company money"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "once-after-registration",
+      "id": "lookup/checklist:3e92283b",
+      "order": 159,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "once-after-registration.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Decided how I will pay myself, and why"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "once-after-registration",
+      "id": "lookup/checklist:d16ddfb9",
+      "order": 160,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "once-after-registration.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Registered name and registration number on every document, with \"trading as\" if I use a brand name"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "once-after-registration",
+      "id": "lookup/checklist:d21f5efe",
+      "order": 161,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "once-after-registration.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "If planning to add lines later: registered a neutral company name, brand in the trading name"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "once-after-registration",
+      "id": "lookup/checklist:64fdeec3",
+      "order": 162,
+      "when": {
+        "entity": "pty",
+        "tags": [
+          "adding-lines"
+        ]
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Beneficial ownership declaration current"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:a39426e1",
+      "order": 163,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "CIPC annual return filed within 30 business days of the registration anniversary"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:b79af9c6",
+      "order": 164,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Annual financial statements prepared"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:00f5fc24",
+      "order": 165,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Public Interest Score calculated at year end"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:b0853b54",
+      "order": 166,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Financial Accountability Supplement or statements filed with the annual return"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:95b86e75",
+      "order": 167,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "ITR14 filed within 12 months of financial year end"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:63d6082e",
+      "order": 168,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Two IRP6 provisional returns filed"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:60d623d8",
+      "order": 169,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Loan account checked and cleared BEFORE financial year end"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:12b6eab2",
+      "order": 170,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-month-if-the-company-pays-anyone-a-salary-including-me.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "EMP201 submitted and paid by the 7th"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-month-if-the-company-pays-anyone-a-salary-including-me",
+      "id": "lookup/checklist:fe35c42c",
+      "order": 171,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "never.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Pay a personal expense from the company account"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "never",
+      "id": "lookup/checklist:c7242bd4",
+      "order": 172,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "never.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Move money out without recording it as salary, dividend, or loan"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "never",
+      "id": "lookup/checklist:27055304",
+      "order": 173,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "never.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Declare a dividend without a written resolution"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "never",
+      "id": "lookup/checklist:8a008594",
+      "order": 174,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "BRNC or Traffic Register Number"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:57a8c2a4",
+      "order": 175,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "SAPS second-hand goods dealer registration (SAPS 601, free)"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:9aefc6b4",
+      "order": 176,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Acquisition and disposal register set up with VIN, engine, odometer, colour fields"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:b196800c",
+      "order": 177,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Motor trade numbers, if I move unregistered stock"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:744d13d6",
+      "order": 178,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Motor trade insurance including stock and test drives"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:8dbe5551",
+      "order": 179,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Sale agreement with a numbered defect schedule the buyer initials"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:cdc31934",
+      "order": 180,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "VAT decision made, with notional input tax modelled"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:8ef76a00",
+      "order": 181,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "VAT264 process in place, if registered"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:e441a4c4",
+      "order": 182,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "food.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Accredited R638 training for me and every food handler"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "food",
+      "id": "lookup/checklist:32e8d8b8",
+      "order": 183,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "food.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Premises prepared to R638 standards"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "food",
+      "id": "lookup/checklist:527a8410",
+      "order": 184,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "food.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "COA applied for through the municipal Environmental Health Department"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "food",
+      "id": "lookup/checklist:b857c0d6",
+      "order": 185,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "food.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "COA displayed on the wall"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "food",
+      "id": "lookup/checklist:1f166d50",
+      "order": 186,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "food.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Municipal business licence"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "food",
+      "id": "lookup/checklist:8b8c0d43",
+      "order": 187,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "food.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Fire compliance and gas CoC, if relevant"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "food",
+      "id": "lookup/checklist:58836809",
+      "order": 188,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "food.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Labels checked against R146 before printing"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "food",
+      "id": "lookup/checklist:09952c25",
+      "order": 189,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "beauty-and-personal-care.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Municipal health establishment licence"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "beauty-and-personal-care",
+      "id": "lookup/checklist:08c14d32",
+      "order": 190,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "beauty-and-personal-care.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Premises ready for health inspection"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "beauty-and-personal-care",
+      "id": "lookup/checklist:5ddbfd24",
+      "order": 191,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "beauty-and-personal-care.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Treatment liability insurance matching what I actually do"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "beauty-and-personal-care",
+      "id": "lookup/checklist:4f9e60d7",
+      "order": 192,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "beauty-and-personal-care.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Consultation and patch test record template"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "beauty-and-personal-care",
+      "id": "lookup/checklist:23f8909e",
+      "order": 193,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "beauty-and-personal-care.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Booking, deposit and cancellation terms in writing"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "beauty-and-personal-care",
+      "id": "lookup/checklist:796521bf",
+      "order": 194,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "beauty-and-personal-care.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Written photo permission from clients before posting"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "beauty-and-personal-care",
+      "id": "lookup/checklist:f7fc2eff",
+      "order": 195,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "retail-and-online.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "SAPS registration, if I deal in second-hand goods"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "retail-and-online",
+      "id": "lookup/checklist:92ad1d52",
+      "order": 196,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "retail-and-online.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS importer's code and NRCS check, if I import"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "retail-and-online",
+      "id": "lookup/checklist:1a0745a3",
+      "order": 197,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "retail-and-online.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "ECTA s43 information published on my site"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "retail-and-online",
+      "id": "lookup/checklist:eea37d29",
+      "order": 198,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "retail-and-online.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Order review step before checkout"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "retail-and-online",
+      "id": "lookup/checklist:3b8c77ff",
+      "order": 199,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "retail-and-online.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Returns policy respecting the seven-day cooling-off right"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "retail-and-online",
+      "id": "lookup/checklist:5a7f3f39",
+      "order": 200,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "retail-and-online.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Stock tracking alongside the cash book"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "retail-and-online",
+      "id": "lookup/checklist:63f5e0ad",
+      "order": 201,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "services-and-trades.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Professional or statutory registration for my trade, if required"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "services-and-trades",
+      "id": "lookup/checklist:c835f118",
+      "order": 202,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "services-and-trades.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Public liability insurance"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "services-and-trades",
+      "id": "lookup/checklist:aa9275cd",
+      "order": 203,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "services-and-trades.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Vehicle insurer told I use the vehicle for business"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "services-and-trades",
+      "id": "lookup/checklist:bac9170c",
+      "order": 204,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "services-and-trades.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Quote template with a real exclusions list"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "services-and-trades",
+      "id": "lookup/checklist:2bb7976e",
+      "order": 205,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "services-and-trades.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Deposit and progress payment terms"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "services-and-trades",
+      "id": "lookup/checklist:82477245",
+      "order": 206,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "services-and-trades.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Vehicle logbook running"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "services-and-trades",
+      "id": "lookup/checklist:a448e918",
+      "order": 207,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "professional-and-creative.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Checked whether I am excluded from turnover tax before electing it"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "professional-and-creative",
+      "id": "lookup/checklist:956d9895",
+      "order": 208,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "professional-and-creative.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Service agreement covering scope, revision rounds, IP and payment"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "professional-and-creative",
+      "id": "lookup/checklist:e97fe964",
+      "order": 209,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "professional-and-creative.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Ownership-transfers-on-payment clause in every contract"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "professional-and-creative",
+      "id": "lookup/checklist:4a72e7c9",
+      "order": 210,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "professional-and-creative.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Home office calculation done, if I qualify"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "professional-and-creative",
+      "id": "lookup/checklist:0b186a56",
+      "order": 211,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "professional-and-creative.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Checked I do not look like an employee of one client"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "professional-and-creative",
+      "id": "lookup/checklist:53da774d",
+      "order": 212,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    }
+  ]
+}

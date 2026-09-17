@@ -1,0 +1,2337 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What this toolkit is"
+        }
+      ],
+      "depth": 2,
+      "hash": "fb5a0519d1691fe4",
+      "id": "what-this-toolkit-is",
+      "kind": "heading",
+      "text": "What this toolkit is"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A set of plain text files you read in order, plus a set of prompts you copy into an AI chat tool."
+        }
+      ],
+      "hash": "eb2b92c563f73a00",
+      "id": "what-this-toolkit-is.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "It is not software. There is nothing to install. Every file opens in any text editor, on any phone, or in Google Docs."
+        }
+      ],
+      "hash": "adae9ca42fa8fdca",
+      "id": "what-this-toolkit-is.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "what-this-toolkit-is.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Choose your path"
+        }
+      ],
+      "depth": 2,
+      "hash": "6029afb5210a1ec9",
+      "id": "choose-your-path",
+      "kind": "heading",
+      "text": "Choose your path"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Path 1: I have not started yet"
+        }
+      ],
+      "depth": 3,
+      "hash": "c6b8c9b93f93808d",
+      "id": "path-1-i-have-not-started-yet",
+      "kind": "heading",
+      "text": "Path 1: I have not started yet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Read in this order. Do not skip."
+        }
+      ],
+      "hash": "8b1d6123ba10670f",
+      "id": "path-1-i-have-not-started-yet.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "6ca94142e474ab12",
+      "id": "path-1-i-have-not-started-yet.2",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Core: start here"
+              }
+            ],
+            "doc": "core/start-here",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — the order to do things"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Pick your business type"
+              }
+            ],
+            "doc": "business-types/pick-your-business-type",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — find your business type"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your business type file in "
+          },
+          {
+            "label": "04-business-types/",
+            "section": "business-types",
+            "t": "docref"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "What you need to sell things"
+              }
+            ],
+            "doc": "core/what-you-need-to-sell-things",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — check whether you need a licence"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Branding prompts"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ", then "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Brand applications and polish"
+              }
+            ],
+            "doc": "branding/brand-applications-and-polish",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — build your name and look, then test it"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Free tools"
+              }
+            ],
+            "doc": "paperwork/free-tools",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — set up your free tools"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Which template to use when"
+              }
+            ],
+            "doc": "paperwork/which-template-to-use-when",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — build your quote and invoice"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Tax and SARS"
+              }
+            ],
+            "doc": "core/tax-and-sars",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — sort out SARS"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Register: what you actually need"
+              }
+            ],
+            "doc": "core/register",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — decide about a company"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "If you decide yes, "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Running a Pty Ltd"
+              }
+            ],
+            "doc": "core/running-a-pty-ltd",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " and "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Paying yourself from a Pty Ltd"
+              }
+            ],
+            "doc": "core/paying-yourself",
+            "t": "link"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Expect this to take a weekend of reading and two to four weeks of doing."
+        }
+      ],
+      "hash": "cebcbc4aa6d98395",
+      "id": "path-1-i-have-not-started-yet.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Path 2: I am already trading and want to get compliant"
+        }
+      ],
+      "depth": 3,
+      "hash": "f8717221c78e7d72",
+      "id": "path-2-i-am-already-trading-and-want-to-get-compliant",
+      "kind": "heading",
+      "text": "Path 2: I am already trading and want to get compliant"
+    },
+    {
+      "hash": "2174c42a3aa825e2",
+      "id": "path-2-i-am-already-trading-and-want-to-get-compliant.1",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Master checklist"
+              }
+            ],
+            "doc": "lookup/checklist",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — tick what you already have"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Tax and SARS"
+              }
+            ],
+            "doc": "core/tax-and-sars",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — the highest-risk gap for most people"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Your business type file in "
+          },
+          {
+            "label": "04-business-types/",
+            "section": "business-types",
+            "t": "docref"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Register: what you actually need"
+              }
+            ],
+            "doc": "core/register",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ", specifically the POPIA section"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Path 3: I need one specific answer"
+        }
+      ],
+      "depth": 3,
+      "hash": "a4a23adb2696c271",
+      "id": "path-3-i-need-one-specific-answer",
+      "kind": "heading",
+      "text": "Path 3: I need one specific answer"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use this table."
+        }
+      ],
+      "hash": "2a2506c64e372ac0",
+      "id": "path-3-i-need-one-specific-answer.1",
+      "kind": "paragraph"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "d2420cb5985780c8",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Question"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "File"
+          }
+        ]
+      ],
+      "id": "path-3-i-need-one-specific-answer.2",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Do I need to register a company?"
+            }
+          ],
+          [
+            {
+              "doc": "core/register",
+              "label": "01-core/02",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Do I have to register for VAT?"
+            }
+          ],
+          [
+            {
+              "doc": "core/tax-and-sars",
+              "label": "01-core/03",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "How do I pay less tax legally?"
+            }
+          ],
+          [
+            {
+              "doc": "core/tax-and-sars",
+              "label": "01-core/03",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Do I need a licence to sell this?"
+            }
+          ],
+          [
+            {
+              "doc": "core/what-you-need-to-sell-things",
+              "label": "01-core/04",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": " and your business type file"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Can I put the car in the business name?"
+            }
+          ],
+          [
+            {
+              "doc": "core/vehicles",
+              "label": "01-core/05",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "What does a Pty Ltd cost me every year?"
+            }
+          ],
+          [
+            {
+              "doc": "core/running-a-pty-ltd",
+              "label": "01-core/06",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "My company missed its CIPC filings, what now?"
+            }
+          ],
+          [
+            {
+              "doc": "core/running-a-pty-ltd",
+              "label": "01-core/06",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Do I need an audit?"
+            }
+          ],
+          [
+            {
+              "doc": "core/running-a-pty-ltd",
+              "label": "01-core/06",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "How do I take money out of my own company?"
+            }
+          ],
+          [
+            {
+              "doc": "core/paying-yourself",
+              "label": "01-core/07",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Salary or dividends?"
+            }
+          ],
+          [
+            {
+              "doc": "core/paying-yourself",
+              "label": "01-core/07",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "What is a director's loan account?"
+            }
+          ],
+          [
+            {
+              "doc": "core/paying-yourself",
+              "label": "01-core/07",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Can my company trade under a different name?"
+            }
+          ],
+          [
+            {
+              "doc": "core/adding-new-lines",
+              "label": "01-core/08",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Should my new line be a separate company?"
+            }
+          ],
+          [
+            {
+              "doc": "core/adding-new-lines",
+              "label": "01-core/08",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Which licences does a new activity need?"
+            }
+          ],
+          [
+            {
+              "doc": "core/adding-new-lines",
+              "label": "01-core/08",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": " and "
+            },
+            {
+              "label": "04-business-types/",
+              "section": "business-types",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Can I run this from home?"
+            }
+          ],
+          [
+            {
+              "doc": "core/working-from-home-and-safety",
+              "label": "01-core/09",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "How do I know a payment is real?"
+            }
+          ],
+          [
+            {
+              "doc": "core/working-from-home-and-safety",
+              "label": "01-core/09",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Where should I meet a buyer for a test drive?"
+            }
+          ],
+          [
+            {
+              "doc": "core/working-from-home-and-safety",
+              "label": "01-core/09",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Someone sent a proof of payment, can I release the goods?"
+            }
+          ],
+          [
+            {
+              "doc": "core/working-from-home-and-safety",
+              "label": "01-core/09",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": " (no, not yet)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "What must my invoice show?"
+            }
+          ],
+          [
+            {
+              "doc": "paperwork/which-template-to-use-when",
+              "label": "03-documents/01",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "What do I write in my terms?"
+            }
+          ],
+          [
+            {
+              "doc": "paperwork/which-template-to-use-when",
+              "label": "03-documents/01",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Which free software should I use?"
+            }
+          ],
+          [
+            {
+              "doc": "paperwork/free-tools",
+              "label": "03-documents/02",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "How do I name my business?"
+            }
+          ],
+          [
+            {
+              "doc": "branding/branding-prompts",
+              "label": "02-branding-and-marketing/01",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "My name is already decided, what do I skip?"
+            }
+          ],
+          [
+            {
+              "doc": "branding/already-have-your-name",
+              "label": "02-branding-and-marketing/00",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "What if I get sick and cannot work?"
+            }
+          ],
+          [
+            {
+              "doc": "core/you-are-the-business",
+              "label": "01-core/10",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "A customer will not pay me, what now?"
+            }
+          ],
+          [
+            {
+              "doc": "core/you-are-the-business",
+              "label": "01-core/10",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Can I use the Small Claims Court?"
+            }
+          ],
+          [
+            {
+              "doc": "core/you-are-the-business",
+              "label": "01-core/10",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": " (only if you are not a company)"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "What happens to my company if I die?"
+            }
+          ],
+          [
+            {
+              "doc": "core/you-are-the-business",
+              "label": "01-core/10",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "How do I stop my logo, colours and photos clashing?"
+            }
+          ],
+          [
+            {
+              "doc": "branding/mood-and-materials",
+              "label": "02-branding-and-marketing/01a",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "What should my signage and print be made of?"
+            }
+          ],
+          [
+            {
+              "doc": "branding/mood-and-materials",
+              "label": "02-branding-and-marketing/01a",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "How do I avoid branding that looks AI-made?"
+            }
+          ],
+          [
+            {
+              "doc": "branding/branding-prompts",
+              "label": "02-branding-and-marketing/01",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "What logo files do I actually need?"
+            }
+          ],
+          [
+            {
+              "doc": "branding/brand-applications-and-polish",
+              "label": "02-branding-and-marketing/02",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "What does the sign maker need from me?"
+            }
+          ],
+          [
+            {
+              "doc": "branding/brand-applications-and-polish",
+              "label": "02-branding-and-marketing/02",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Is my branding any good?"
+            }
+          ],
+          [
+            {
+              "doc": "branding/brand-applications-and-polish",
+              "label": "02-branding-and-marketing/02",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ", the critique prompt"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Where do I actually find customers?"
+            }
+          ],
+          [
+            {
+              "doc": "branding/brand-applications-and-polish",
+              "label": "02-branding-and-marketing/02",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "What does this abbreviation mean?"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Glossary"
+                }
+              ],
+              "doc": "lookup/glossary",
+              "t": "link"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Where did this fact come from?"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Sources and verification register"
+                }
+              ],
+              "doc": "lookup/sources",
+              "t": "link"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Path 4: I am a one-person Pty Ltd selling vehicles, and I want to grow"
+        }
+      ],
+      "depth": 3,
+      "hash": "ba8a28025cfad583",
+      "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow",
+      "kind": "heading",
+      "text": "Path 4: I am a one-person Pty Ltd selling vehicles, and I want to grow"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is a worked path for one specific reader. Read in this order."
+        }
+      ],
+      "hash": "598b219cf6ad2f99",
+      "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "6d0556697890f3ce",
+      "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.2",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Core: start here"
+              }
+            ],
+            "doc": "core/start-here",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Running a Pty Ltd"
+              }
+            ],
+            "doc": "core/running-a-pty-ltd",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — what your company already owes each year"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Paying yourself from a Pty Ltd"
+              }
+            ],
+            "doc": "core/paying-yourself",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — before you move a rand out of the company account"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Vehicle dealer"
+              }
+            ],
+            "doc": "business-types/vehicle-dealer",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — the three registration layers, the CPA position, and why VAT and turnover tax work differently for you"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Vehicles for your business"
+              }
+            ],
+            "doc": "core/vehicles",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — the BRNC and proxy process in full"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Tax and SARS"
+              }
+            ],
+            "doc": "core/tax-and-sars",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — read the SBC section; skip the turnover tax section, it is wrong for a dealer"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Which template to use when"
+              }
+            ],
+            "doc": "paperwork/which-template-to-use-when",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — build the VAT-registered invoice and the sale agreement with a defect schedule"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Branding prompts"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — name the trading brand, not the company"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Working from home and meeting safely"
+              }
+            ],
+            "doc": "core/working-from-home-and-safety",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — if you have no yard: zoning for stock at home, and every viewing and test drive"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Adding new lines of business"
+              }
+            ],
+            "doc": "core/adding-new-lines",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — before you add tyres, servicing, or anything else"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The sequence for the first 90 days, roughly:"
+        }
+      ],
+      "hash": "27716071c4fea498",
+      "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Weeks 1 to 2: confirm the SARS registered representative, file beneficial ownership, open the company bank account, apply for the BRNC at the traffic department, lodge the SAPS 601 dealer application."
+        }
+      ],
+      "hash": "7eef23f1d5fcbe92",
+      "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Weeks 2 to 4: zoning confirmation for the premises (or for storing stock at home), motor trade insurance in place, motor trade numbers if needed, sale agreement and defect schedule built, SAPS register set up."
+        }
+      ],
+      "hash": "1508b7e0190e0772",
+      "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Weeks 4 to 8: VAT decision made with a tax practitioner, VAT101 lodged if registering, VAT264 process in place, first stock bought with full paperwork."
+        }
+      ],
+      "hash": "5506eeb6209893d4",
+      "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ongoing from day one: rolling 12-month turnover tracked against R2.3 million, loan account checked monthly, stock list with cost per vehicle maintained."
+        }
+      ],
+      "hash": "9396231e9b64f4d6",
+      "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.7",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.8",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How to use the AI prompts"
+        }
+      ],
+      "depth": 2,
+      "hash": "31b34bde4f6dcc7c",
+      "id": "how-to-use-the-ai-prompts",
+      "kind": "heading",
+      "text": "How to use the AI prompts"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The prompts in "
+        },
+        {
+          "label": "02-branding-and-marketing/",
+          "section": "branding",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " are written to be copied and pasted into an AI chat tool. They work in Claude, ChatGPT, Gemini, or Microsoft Copilot. The free versions are fine."
+        }
+      ],
+      "hash": "594d5ec729f44c85",
+      "id": "how-to-use-the-ai-prompts.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The rules"
+        }
+      ],
+      "depth": 3,
+      "hash": "3f01a98e482025c3",
+      "id": "the-rules",
+      "kind": "heading",
+      "text": "The rules"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "One prompt at a time."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Paste it. Wait for the answer. Do not paste the next prompt until you are happy with the current one."
+        }
+      ],
+      "hash": "934033a669d32890",
+      "id": "the-rules.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Never accept the first answer."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Every branding prompt gives you 5 options. Read all 5. Pick the closest one even if it is not right. Then use the refine prompt to ask for 5 new versions that keep what you liked and fix what you did not. Do this two or three times. The third round is usually much better than the first."
+        }
+      ],
+      "hash": "113ab8495d142100",
+      "id": "the-rules.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Start a new chat for each big task."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " A chat that runs too long makes the AI forget earlier details. Start fresh for naming, then fresh again for social content."
+        }
+      ],
+      "hash": "057271427904e78a",
+      "id": "the-rules.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Keep your answers."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Save the brand brief, the name, the colours and the voice guide in one document. Later prompts ask you to paste them in."
+        }
+      ],
+      "hash": "2c8389ffcecf1505",
+      "id": "the-rules.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Fill in every [SQUARE BRACKET]."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " The prompts have placeholders. If you leave them, the AI invents answers and the output is generic."
+        }
+      ],
+      "hash": "7cf017833761ed25",
+      "id": "the-rules.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "The AI will be wrong about South African law."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " It is a writing helper, not a lawyer or an accountant. Never let it tell you what a fee is, what a form is called, or what a threshold is. Check that in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Sources and verification register"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " and on the official site."
+        }
+      ],
+      "hash": "3a820c215393ad9c",
+      "id": "the-rules.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The refine prompt"
+        }
+      ],
+      "depth": 3,
+      "hash": "79c8ee89c4b2979d",
+      "id": "the-refine-prompt",
+      "kind": "heading",
+      "text": "The refine prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use this after every step in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Branding prompts"
+            }
+          ],
+          "doc": "branding/branding-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ":"
+        }
+      ],
+      "hash": "9bdce63613afe08d",
+      "id": "the-refine-prompt.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "1ddc2b602b4b0cbe",
+      "id": "the-refine-prompt.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "NUMBER"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "say what you like, in your own words"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "say what is wrong"
+        }
+      ],
+      "text": "I like option [NUMBER] best.\n\nWhat works: [say what you like, in your own words]\nWhat does not work: [say what is wrong]\n\nGive me 5 new options that keep what works and fix what does not.\nDo not repeat the options you already gave me.\nNumber them 1 to 5. After the 5 options, stop and ask me again.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If the AI runs ahead"
+        }
+      ],
+      "depth": 3,
+      "hash": "8e830c38a8187b94",
+      "id": "if-the-ai-runs-ahead",
+      "kind": "heading",
+      "text": "If the AI runs ahead"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Some AI tools will answer three steps at once. When that happens, say:"
+        }
+      ],
+      "hash": "b8fe15c4b95c51fa",
+      "id": "if-the-ai-runs-ahead.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "07e99fb46b1b83e9",
+      "id": "if-the-ai-runs-ahead.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "X"
+        }
+      ],
+      "text": "Stop. Go back to step [X] only. Give me 5 options for that step and\nnothing else. Wait for my answer before moving on.",
+      "variant": "prompt"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "if-the-ai-runs-ahead.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How the legal parts are written"
+        }
+      ],
+      "depth": 2,
+      "hash": "03c585da978e6b09",
+      "id": "how-the-legal-parts-are-written",
+      "kind": "heading",
+      "text": "How the legal parts are written"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Some paragraphs in this toolkit stay close to the wording of a law, a regulator, or another source listed in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Sources and verification register"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". They are kept close to the source on purpose, so you can check them. They can be hard to read."
+        }
+      ],
+      "hash": "820c54c3d93540a4",
+      "id": "how-the-legal-parts-are-written.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Every hard one is followed by a line that starts like this:"
+        }
+      ],
+      "hash": "88ce916bef55cf33",
+      "id": "how-the-legal-parts-are-written.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "..."
+        }
+      ],
+      "hash": "50984dd32e5ab648",
+      "id": "how-the-legal-parts-are-written.3",
+      "kind": "callout",
+      "pairsWith": "how-the-legal-parts-are-written.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "That line says the same thing in everyday English. If the legal sentence confuses you, skip it and read the plain line. You lose nothing."
+        }
+      ],
+      "hash": "3706e6589ca74b16",
+      "id": "how-the-legal-parts-are-written.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Each heavy file also opens with a short table called \"Words used in this file\". Read that first. Every abbreviation in the toolkit is also explained in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "c811a9d5e8064587",
+      "id": "how-the-legal-parts-are-written.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How to read the facts in this toolkit"
+        }
+      ],
+      "depth": 2,
+      "hash": "495c3d70110e03c2",
+      "id": "how-to-read-the-facts-in-this-toolkit",
+      "kind": "heading",
+      "text": "How to read the facts in this toolkit"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Anything with a rand figure, a percentage, a date, a form number or a section of an Act came from a source. All of those sources are listed in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Sources and verification register"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " with a link."
+        }
+      ],
+      "hash": "3f60df75089e3445",
+      "id": "how-to-read-the-facts-in-this-toolkit.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sources are marked "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "[Official]"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " when they come from government or a regulator. Those are the ones to trust. Everything else is a pointer."
+        }
+      ],
+      "hash": "bdd3558407a57028",
+      "id": "how-to-read-the-facts-in-this-toolkit.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Before you act on a number"
+        }
+      ],
+      "depth": 3,
+      "hash": "91f921b8f2255339",
+      "id": "before-you-act-on-a-number",
+      "kind": "heading",
+      "text": "Before you act on a number"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Open "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Sources and verification register"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", find the topic, click the official link, and confirm the figure. This takes two minutes and it is worth it, because:"
+        }
+      ],
+      "hash": "ef515733fa0b84c8",
+      "id": "before-you-act-on-a-number.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "de3fbbe1489a9614",
+      "id": "before-you-act-on-a-number.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Tax thresholds change in February and take effect in March or April"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "CIPC and licensing fees change without announcement"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Municipal rules differ between every municipality in the country"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Provincial fees differ between all nine provinces"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If a figure in this toolkit disagrees with the official site, the official site is right."
+        }
+      ],
+      "hash": "e0ae9185f1b30bd5",
+      "id": "before-you-act-on-a-number.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "before-you-act-on-a-number.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What this toolkit deliberately leaves out"
+        }
+      ],
+      "depth": 2,
+      "hash": "2dbb18aeee52c477",
+      "id": "what-this-toolkit-deliberately-leaves-out",
+      "kind": "heading",
+      "text": "What this toolkit deliberately leaves out"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Employment. The moment you hire someone, the Basic Conditions of Employment Act, PAYE, UIF and COIDA all apply, and mistakes there are expensive. Get proper advice before your first hire."
+        }
+      ],
+      "hash": "8d8f746ecbbe01b9",
+      "id": "what-this-toolkit-deliberately-leaves-out.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Raising money. Investors, loans, and grants each have their own rules. Nothing here covers them."
+        }
+      ],
+      "hash": "2d28f7feb4a93f53",
+      "id": "what-this-toolkit-deliberately-leaves-out.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Anything above roughly R2 million turnover. At that point VAT, payroll and formal accounting change the picture, and you need a real accountant rather than a toolkit."
+        }
+      ],
+      "hash": "afe1d939c63c178d",
+      "id": "what-this-toolkit-deliberately-leaves-out.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Trusts, partnerships and non-profits. This toolkit covers sole proprietors and private companies only."
+        }
+      ],
+      "hash": "ac525d4329579936",
+      "id": "what-this-toolkit-deliberately-leaves-out.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Companies with more than one shareholder. The two Pty Ltd files assume you are the sole shareholder and the sole director. With a co-owner you also need a shareholders agreement, and your financial reporting obligation may change, because the owner-managed exemption depends on every shareholder also being a director."
+        }
+      ],
+      "hash": "e306978061b55937",
+      "id": "what-this-toolkit-deliberately-leaves-out.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Pricing. How much to charge is the hardest question a new business faces, and nothing here answers it. The toolkit tells you what a quote must contain, not what number to put on it."
+        }
+      ],
+      "hash": "980f2f70fe1929e1",
+      "id": "what-this-toolkit-deliberately-leaves-out.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Cash flow forecasting. The cash book in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Which template to use when"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " records what already happened. It does not predict whether you can pay next month's bills."
+        }
+      ],
+      "hash": "1df25624f822e3e0",
+      "id": "what-this-toolkit-deliberately-leaves-out.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Insurance detail. Each business type file says what cover to ask for. None of them compares products or prices. Use a broker."
+        }
+      ],
+      "hash": "2092f4061e59290c",
+      "id": "what-this-toolkit-deliberately-leaves-out.8",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "what-this-toolkit-deliberately-leaves-out.9",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Common mistakes this toolkit is trying to prevent"
+        }
+      ],
+      "depth": 2,
+      "hash": "bb0c9f0c6d5fd0eb",
+      "id": "common-mistakes-this-toolkit-is-trying-to-prevent",
+      "kind": "heading",
+      "text": "Common mistakes this toolkit is trying to prevent"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Spending money before earning any."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " The most common failure. R15,000 on registration, logo and website before a single sale."
+        }
+      ],
+      "hash": "66de915c768ef8c6",
+      "id": "common-mistakes-this-toolkit-is-trying-to-prevent.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Trading before a required licence is issued."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " You cannot fix this afterwards."
+        }
+      ],
+      "hash": "426c7613eae86b29",
+      "id": "common-mistakes-this-toolkit-is-trying-to-prevent.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Registering a company you cannot afford to keep compliant."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " R175 to register, far more each year to maintain."
+        }
+      ],
+      "hash": "8c147322f974fffc",
+      "id": "common-mistakes-this-toolkit-is-trying-to-prevent.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Filing nothing because you earned nothing."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Penalties grow monthly on returns you never submitted."
+        }
+      ],
+      "hash": "bc36df4584899d3f",
+      "id": "common-mistakes-this-toolkit-is-trying-to-prevent.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Charging VAT without being registered."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " That is fraud, not an administrative error."
+        }
+      ],
+      "hash": "b4a5e3ba2be65439",
+      "id": "common-mistakes-this-toolkit-is-trying-to-prevent.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Mixing business and personal money."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " It makes every other problem harder to fix."
+        }
+      ],
+      "hash": "f52b9684a44754c1",
+      "id": "common-mistakes-this-toolkit-is-trying-to-prevent.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Using a \"voetstoots\" or \"no refunds\" clause."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " For most consumer sales in South Africa, it does not work."
+        }
+      ],
+      "hash": "0dacfee51d2a8adc",
+      "id": "common-mistakes-this-toolkit-is-trying-to-prevent.7",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "common-mistakes-this-toolkit-is-trying-to-prevent.8",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Making the files easier to use"
+        }
+      ],
+      "depth": 2,
+      "hash": "9cc316e5079d2a23",
+      "hidden": true,
+      "id": "making-the-files-easier-to-use",
+      "kind": "heading",
+      "text": "Making the files easier to use"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "These are markdown files ("
+        },
+        {
+          "t": "code",
+          "v": ".md"
+        },
+        {
+          "t": "text",
+          "v": "). They open as plain text anywhere, but they look better in a markdown reader."
+        }
+      ],
+      "hash": "06a04685ab3425ea",
+      "hidden": true,
+      "id": "making-the-files-easier-to-use.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "On a phone: open them in Google Drive, or any free markdown app."
+        }
+      ],
+      "hash": "d6024d890c150e72",
+      "hidden": true,
+      "id": "making-the-files-easier-to-use.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "On a computer: open them in any text editor, or upload them to Google Drive and open with a markdown viewer."
+        }
+      ],
+      "hash": "725b339dc4fa9a7c",
+      "hidden": true,
+      "id": "making-the-files-easier-to-use.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "To make one printable document: open the file, copy the text, paste it into Google Docs or LibreOffice Writer, then export as PDF."
+        }
+      ],
+      "hash": "5e7bb126b6f5c3e7",
+      "hidden": true,
+      "id": "making-the-files-easier-to-use.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "To edit them for your own use: change anything you like. They are yours now. If you give the edited version to someone else, keep "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "How this was made and how to check it"
+            }
+          ],
+          "doc": "start/how-this-was-made",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " with it."
+        }
+      ],
+      "hash": "99a1bcc95bd04f15",
+      "hidden": true,
+      "id": "making-the-files-easier-to-use.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "hidden": true,
+      "id": "making-the-files-easier-to-use.6",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If something here is wrong"
+        }
+      ],
+      "depth": 2,
+      "hash": "738dd03520122a7f",
+      "id": "if-something-here-is-wrong",
+      "kind": "heading",
+      "text": "If something here is wrong"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "It might be. Rules change, and this was written by an AI."
+        }
+      ],
+      "hash": "850390c6dbec8fca",
+      "id": "if-something-here-is-wrong.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The test is always the same: does the official source in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Sources and verification register"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " agree? If not, follow the official source, and correct the file so the next person who reads your copy gets it right."
+        }
+      ],
+      "hash": "7579b59cd0febf80",
+      "id": "if-something-here-is-wrong.2",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "679bd57e467d6700",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "How to use this toolkit",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "what-this-toolkit-is",
+      "text": "What this toolkit is"
+    },
+    {
+      "depth": 2,
+      "id": "choose-your-path",
+      "text": "Choose your path"
+    },
+    {
+      "depth": 3,
+      "id": "path-1-i-have-not-started-yet",
+      "text": "Path 1: I have not started yet"
+    },
+    {
+      "depth": 3,
+      "id": "path-2-i-am-already-trading-and-want-to-get-compliant",
+      "text": "Path 2: I am already trading and want to get compliant"
+    },
+    {
+      "depth": 3,
+      "id": "path-3-i-need-one-specific-answer",
+      "text": "Path 3: I need one specific answer"
+    },
+    {
+      "depth": 3,
+      "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow",
+      "text": "Path 4: I am a one-person Pty Ltd selling vehicles, and I want to grow"
+    },
+    {
+      "depth": 2,
+      "id": "how-to-use-the-ai-prompts",
+      "text": "How to use the AI prompts"
+    },
+    {
+      "depth": 3,
+      "id": "the-rules",
+      "text": "The rules"
+    },
+    {
+      "depth": 3,
+      "id": "the-refine-prompt",
+      "text": "The refine prompt"
+    },
+    {
+      "depth": 3,
+      "id": "if-the-ai-runs-ahead",
+      "text": "If the AI runs ahead"
+    },
+    {
+      "depth": 2,
+      "id": "how-the-legal-parts-are-written",
+      "text": "How the legal parts are written"
+    },
+    {
+      "depth": 2,
+      "id": "how-to-read-the-facts-in-this-toolkit",
+      "text": "How to read the facts in this toolkit"
+    },
+    {
+      "depth": 3,
+      "id": "before-you-act-on-a-number",
+      "text": "Before you act on a number"
+    },
+    {
+      "depth": 2,
+      "id": "what-this-toolkit-deliberately-leaves-out",
+      "text": "What this toolkit deliberately leaves out"
+    },
+    {
+      "depth": 2,
+      "id": "common-mistakes-this-toolkit-is-trying-to-prevent",
+      "text": "Common mistakes this toolkit is trying to prevent"
+    },
+    {
+      "depth": 2,
+      "hidden": true,
+      "id": "making-the-files-easier-to-use",
+      "text": "Making the files easier to use"
+    },
+    {
+      "depth": 2,
+      "id": "if-something-here-is-wrong",
+      "text": "If something here is wrong"
+    }
+  ],
+  "id": "start/how-to-use",
+  "kind": "guide",
+  "lang": "en",
+  "order": 2,
+  "readingTime": 10,
+  "related": [
+    "branding/branding-prompts",
+    "branding/brand-applications-and-polish",
+    "paperwork/which-template-to-use-when",
+    "core/tax-and-sars",
+    "core/running-a-pty-ltd"
+  ],
+  "route": "start/how-to-use/",
+  "section": "start",
+  "slug": "how-to-use",
+  "sourceNote": {
+    "reason": "Explains how to use the toolkit and makes no factual claim of its own.",
+    "see": [
+      "lookup/sources",
+      "start/how-this-was-made"
+    ]
+  },
+  "sourcePath": "00 Start here/01-how-to-use-this-toolkit.md",
+  "sources": {
+    "acts": [],
+    "entries": []
+  },
+  "summary": "A set of plain text files you read in order, plus a set of prompts you copy into an AI chat tool.",
+  "tags": [
+    "orientation"
+  ],
+  "terms": [],
+  "title": "How to use this toolkit",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

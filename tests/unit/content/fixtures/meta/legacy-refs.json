@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "folders": {
+    "01-core": "core",
+    "03-documents": "paperwork",
+    "04-business-types": "business-types"
+  },
+  "refs": {
+    "01-core/03": "core/tax-fixture",
+    "03-documents/01": "paperwork/which-template-fixture",
+    "03-documents/02": "paperwork/templates/quotation-fixture"
+  }
+}

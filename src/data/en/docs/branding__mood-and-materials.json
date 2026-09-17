@@ -1,0 +1,767 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Run this after Prompt 4 and before Prompt 5 in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Branding prompts"
+            }
+          ],
+          "doc": "branding/branding-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "dc9a85f0e2d1ecf3",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Why this step exists"
+        }
+      ],
+      "depth": 2,
+      "hash": "eb1948e35b139bb3",
+      "id": "why-this-step-exists",
+      "kind": "heading",
+      "text": "Why this step exists"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Without it, three prompts each make their own aesthetic decision and they can disagree."
+        }
+      ],
+      "hash": "8a08f93ccae4031e",
+      "id": "why-this-step-exists.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 5 gives you logo directions. Prompt 7 gives you colours and type. Prompt 8 gives you photography. Each is good on its own. But nothing tells them to agree with each other, so you can end up with a rugged workshop logo, a soft pastel palette, and clinical white-background photography. Three good answers that do not belong to the same business."
+        }
+      ],
+      "hash": "b143f4bdc3fe9a3a",
+      "id": "why-this-step-exists.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A designer sets the mood first, then derives everything from it. This is that missing step."
+        }
+      ],
+      "hash": "624e81216bcfc554",
+      "id": "why-this-step-exists.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "It also covers something the toolkit does not touch anywhere else: what your brand is physically made of. Signage board, print stock, what a shirt feels like, what the vehicle lettering is cut from. For a small South African business those choices cost real money and fail in specific, predictable ways."
+        }
+      ],
+      "hash": "59fd6f0026c8b868",
+      "id": "why-this-step-exists.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Before you start: what the research actually says about colour"
+        }
+      ],
+      "depth": 2,
+      "hash": "c5207a4334cdd6a7",
+      "id": "before-you-start-what-the-research-actually-says-about-colour",
+      "kind": "heading",
+      "text": "Before you start: what the research actually says about colour"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ask an AI about brand colours and it will hand you a meaning chart. Blue is trust, red is urgency, green is nature. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Treat that as decoration, not evidence."
+            }
+          ],
+          "t": "strong"
+        }
+      ],
+      "hash": "fe25f99b2dddb8ad",
+      "id": "before-you-start-what-the-research-actually-says-about-colour.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Elliot and Maier's review in the Annual Review of Psychology (2014) found no universal meaning for any colour. Effects are context-dependent and shift with saturation, brightness, product category and culture."
+        }
+      ],
+      "hash": "08bb5d17f25bf0f2",
+      "id": "before-you-start-what-the-research-actually-says-about-colour.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The widely repeated claim that 62 to 90% of a snap product judgment comes from colour traces back to a 2006 literature review by Satyendra Singh, not to a controlled buying experiment. It is quoted everywhere as though it were a finding. It is not."
+        }
+      ],
+      "hash": "c20d67db19a743fd",
+      "id": "before-you-start-what-the-research-actually-says-about-colour.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What does hold up is narrower and more useful. Labrecque and Milne, in the Journal of the Academy of Marketing Science (2012), found that "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "consistency between a brand's colour and its perceived personality predicts preference better than the colour itself does."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " In other words the question is not \"what does green mean\", it is \"does this colour match what my business actually is, and does it separate me from the shop down the road\"."
+        }
+      ],
+      "hash": "3adfa0d7a634d402",
+      "id": "before-you-start-what-the-research-actually-says-about-colour.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "That is why the prompts below ask about fit and difference, and never about colour meanings. If an AI starts telling you what a colour signifies, ignore that part of the answer."
+        }
+      ],
+      "hash": "defcd62aff447e48",
+      "id": "before-you-start-what-the-research-actually-says-about-colour.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt A: the visual territory"
+        }
+      ],
+      "depth": 2,
+      "hash": "6434d1f7f13ea477",
+      "id": "prompt-a-the-visual-territory",
+      "kind": "heading",
+      "text": "Prompt A: the visual territory"
+    },
+    {
+      "hash": "f5304deaaad68f0e",
+      "id": "prompt-a-the-visual-territory.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE YOUR BRAND BRIEF"
+        },
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "NAME"
+        }
+      ],
+      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF]\n\nMy business name is: [NAME]\n\nBefore I choose a logo, colours or photography, I want to settle the\noverall mood so that all three agree with each other.\n\nGive me 5 different visual territories for this business.\n\nA visual territory is a short description of the world the brand lives\nin. Describe each one in words, as a designer would brief it.\n\nFor each territory give me:\n- A two or three word name for it\n- Three words that describe the feeling\n- What it is made of: two or three real materials, surfaces or textures\n- What it is NOT. Name the nearest thing it could be mistaken for, and\n  say how it differs.\n- One real-world reference a South African would recognise: a kind of\n  shop, a workshop, a market, a place. Not a brand name.\n- What this territory would make my logo look like, in one sentence\n- What it would make my photographs look like, in one sentence\n\nRules:\n- Base at least two territories on the distinctive detail in my brief.\n- Do not tell me what colours mean or what emotions they cause. I am\n  not interested in colour psychology.\n- No mood-board words with no content: elevated, curated, timeless,\n  authentic, premium, bespoke.\n- At least one territory must be deliberately plain, because plain and\n  consistent beats interesting and inconsistent.\n- Each territory must be describable to a sign maker in one sentence.\n\nNumber them 1 to 5. Then tell me which is weakest and why. Then stop.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Pick one. Everything after this is derived from it."
+        }
+      ],
+      "hash": "0e5bf3a0635d899f",
+      "id": "prompt-a-the-visual-territory.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Then paste your chosen territory into Prompt 5 (logo direction), Prompt 7 (colours and type) and Prompt 8 (photography), and add this line to each:"
+        }
+      ],
+      "hash": "a6c402649aa51e6c",
+      "id": "prompt-a-the-visual-territory.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "5dfb8f693f852b73",
+      "id": "prompt-a-the-visual-territory.4",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE THE TERRITORY"
+        }
+      ],
+      "text": "This must sit inside the visual territory I chose: [PASTE THE TERRITORY].\nAnything that contradicts it is wrong, however good it looks on its own.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "That single line is what makes the three prompts agree."
+        }
+      ],
+      "hash": "0cb0990f1326001f",
+      "id": "prompt-a-the-visual-territory.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt B: materials and finishes"
+        }
+      ],
+      "depth": 2,
+      "hash": "f5a8f84e2da65973",
+      "id": "prompt-b-materials-and-finishes",
+      "kind": "heading",
+      "text": "Prompt B: materials and finishes"
+    },
+    {
+      "hash": "542194ecc5c33927",
+      "id": "prompt-b-materials-and-finishes.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE THE ONE YOU CHOSE"
+        },
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BUSINESS TYPE"
+        },
+        {
+          "key": "town",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "TOWN/CITY"
+        }
+      ],
+      "text": "Here is my visual territory:\n\n[PASTE THE ONE YOU CHOSE]\n\nI am a [BUSINESS TYPE] in [TOWN/CITY], South Africa. I am the owner and\nthe only worker, with very little money.\n\nGive me 5 material and finish directions that fit this territory.\n\nFor each one cover:\n- Signage: what the board or panel is made of, and what finish\n- Print: what my quote, invoice and business card are printed on, and\n  at what weight\n- Vehicle: what the lettering or graphics are cut from, and whether it\n  is cut vinyl or printed\n- Clothing: what a work shirt looks like and how the logo goes on it\n- One cheap version and one better version of each, because I will\n  start cheap\n\nFor each direction also tell me:\n- What it costs relative to the others, roughly, not in rands\n- What fails first in strong sun\n- Whether a small sign shop in a South African town can actually make it\n\nRules:\n- South African sun is harsh. Assume high UV.\n- Nothing that needs a specialist supplier in another city.\n- Nothing that needs me to order a minimum quantity of 500.\n- Be honest when the cheap version is good enough. I do not want to be\n  sold the better version of everything.\n\nNumber them 1 to 5. Then tell me which is weakest and why. Then stop.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What the sun does to signage in South Africa"
+        }
+      ],
+      "depth": 2,
+      "hash": "283fd8f1d79b181d",
+      "id": "what-the-sun-does-to-signage-in-south-africa",
+      "kind": "heading",
+      "text": "What the sun does to signage in South Africa"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is the part most branding advice ignores, and it is the part that costs you money twice."
+        }
+      ],
+      "hash": "c70ad323d4f78bbe",
+      "id": "what-the-sun-does-to-signage-in-south-africa.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "South Africa sits in a Zone 3 UV climate, which is among the most intense in the world. One South African vinyl supplier, Sytech, puts the practical effect plainly: vertical vinyl that lasts up to ten years in Europe can fade in three years here, and horizontally installed graphics, like awnings or the roof of a vehicle, can lose 50 to 70% of their expected life."
+        }
+      ],
+      "hash": "79ddaef903836c3e",
+      "id": "what-the-sun-does-to-signage-in-south-africa.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Treat that as an order of magnitude rather than a precise number, but design for it."
+        }
+      ],
+      "hash": "2aa335cefd20fefc",
+      "id": "what-the-sun-does-to-signage-in-south-africa.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Cast vinyl versus calendered vinyl"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " is the choice your sign maker will make for you unless you ask. Cast film is made in a liquid state, has no built-in tension, conforms to curves and rivets, and typically runs 5 to 10 years outdoors. Calendered film is rolled, carries internal stress, shrinks over time, and typically runs 1 to 5 years, often 3 to 5 outdoors."
+        }
+      ],
+      "hash": "5ad48d2285896994",
+      "id": "what-the-sun-does-to-signage-in-south-africa.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The practical rule: cast for anything on a vehicle or on a curve, calendered for flat panels and short-term work. Calendered vinyl on a vehicle commonly lifts at the edges and shrinks within two to three years, and the saving is not worth it."
+        }
+      ],
+      "hash": "698a393ea82a4d0f",
+      "id": "what-the-sun-does-to-signage-in-south-africa.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Pre-coloured film outlasts printed film"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": ", because the colour is part of the film rather than ink sitting on top of it. If your logo is one or two flat colours, cut vinyl will outlive a printed and laminated version of the same thing. This is another argument for a simple, one or two colour logo."
+        }
+      ],
+      "hash": "37179e7df20e8891",
+      "id": "what-the-sun-does-to-signage-in-south-africa.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "A laminate over a printed graphic extends its life."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Ask for it. It is not automatic on a cheap quote."
+        }
+      ],
+      "hash": "c9fd79c1a10a60bb",
+      "id": "what-the-sun-does-to-signage-in-south-africa.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Ask your sign maker two questions"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " before you accept a quote: is this cast or calendered, and is the print laminated. If the quote is unusually cheap, one of those two is why."
+        }
+      ],
+      "hash": "a6ff7c9f024e7b94",
+      "id": "what-the-sun-does-to-signage-in-south-africa.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The cheap version is usually fine"
+        }
+      ],
+      "depth": 2,
+      "hash": "fc9eebd3fa2b9d36",
+      "id": "the-cheap-version-is-usually-fine",
+      "kind": "heading",
+      "text": "The cheap version is usually fine"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The point of Prompt B is not to talk you into expensive materials. For most one-person businesses the cheap version is the right call, because:"
+        }
+      ],
+      "hash": "81a82cb8a12808fb",
+      "id": "the-cheap-version-is-usually-fine.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "97f79ede6f3db2a3",
+      "id": "the-cheap-version-is-usually-fine.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Your brand will probably change something in year two"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "A worn sign on a working business reads as busy, not as poor"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Money spent on a better vehicle graphic earns more than money spent on a better business card"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Spend on the vehicle, because it moves and is seen. Save on the card."
+        }
+      ],
+      "hash": "8a3791f6b62aadff",
+      "id": "the-cheap-version-is-usually-fine.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Where this fits"
+        }
+      ],
+      "depth": 2,
+      "hash": "0632b8822f7cd8a3",
+      "id": "where-this-fits",
+      "kind": "heading",
+      "text": "Where this fits"
+    },
+    {
+      "hash": "f093d132bfb4367c",
+      "id": "where-this-fits.1",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Branding prompts"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " Prompts 0 to 4 — brief, description, competitors, name, tagline"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "This file"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " — territory, then materials"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Branding prompts"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " Prompt 5 onwards, with your territory pasted into each"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Brand applications and polish"
+              }
+            ],
+            "doc": "branding/brand-applications-and-polish",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — the files, the print specs, the quality tests"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If your name is already decided, start at "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Already have your name (shortcut)"
+            }
+          ],
+          "doc": "branding/already-have-your-name",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " instead, then come here."
+        }
+      ],
+      "hash": "58de108b8ce60799",
+      "id": "where-this-fits.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Checklist"
+        }
+      ],
+      "depth": 2,
+      "hash": "fe7899d3da62ca07",
+      "id": "checklist",
+      "kind": "heading",
+      "text": "Checklist"
+    },
+    {
+      "hash": "6e26b5bf02a83490",
+      "id": "checklist.1",
+      "items": [
+        {
+          "block": "checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Chosen one visual territory and written it down in one sentence"
+            }
+          ],
+          "doc": "branding/mood-and-materials",
+          "id": "branding/mood-and-materials:a94accc0"
+        },
+        {
+          "block": "checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Pasted it into Prompts 5, 7 and 8 with the \"must sit inside\" line"
+            }
+          ],
+          "doc": "branding/mood-and-materials",
+          "id": "branding/mood-and-materials:3028bd4e"
+        },
+        {
+          "block": "checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Chosen a material direction, cheap version"
+            }
+          ],
+          "doc": "branding/mood-and-materials",
+          "id": "branding/mood-and-materials:e3bf4881"
+        },
+        {
+          "block": "checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Asked the sign maker: cast or calendered, and is the print laminated"
+            }
+          ],
+          "doc": "branding/mood-and-materials",
+          "id": "branding/mood-and-materials:81c3b913"
+        },
+        {
+          "block": "checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Checked that my logo still works as one or two flat colours, so cut vinyl is an option"
+            }
+          ],
+          "doc": "branding/mood-and-materials",
+          "id": "branding/mood-and-materials:cd1a4491"
+        }
+      ],
+      "kind": "tasklist"
+    }
+  ],
+  "contentHash": "75278f5d81940b7d",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Mood and materials: decide this before the logo",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "why-this-step-exists",
+      "text": "Why this step exists"
+    },
+    {
+      "depth": 2,
+      "id": "before-you-start-what-the-research-actually-says-about-colour",
+      "text": "Before you start: what the research actually says about colour"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-a-the-visual-territory",
+      "text": "Prompt A: the visual territory"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-b-materials-and-finishes",
+      "text": "Prompt B: materials and finishes"
+    },
+    {
+      "depth": 2,
+      "id": "what-the-sun-does-to-signage-in-south-africa",
+      "text": "What the sun does to signage in South Africa"
+    },
+    {
+      "depth": 2,
+      "id": "the-cheap-version-is-usually-fine",
+      "text": "The cheap version is usually fine"
+    },
+    {
+      "depth": 2,
+      "id": "where-this-fits",
+      "text": "Where this fits"
+    },
+    {
+      "depth": 2,
+      "id": "checklist",
+      "text": "Checklist"
+    }
+  ],
+  "id": "branding/mood-and-materials",
+  "kind": "guide",
+  "lang": "en",
+  "order": 3,
+  "readingTime": 7,
+  "related": [
+    "branding/branding-prompts",
+    "branding/brand-applications-and-polish",
+    "branding/already-have-your-name"
+  ],
+  "route": "branding/mood-and-materials/",
+  "section": "branding",
+  "slug": "mood-and-materials",
+  "sourcePath": "02 Branding and marketing/02-mood-and-materials.md",
+  "sources": {
+    "acts": [],
+    "entries": [
+      "elliot-a-j-and-maier-m-a-color-psychology-effects-of-perceiving-color-on-psychological-functioning-in",
+      "labrecque-l-i-and-milne-g-r-exciting-red-and-competent-blue-the-importance-of-color-in-marketing-journal-of",
+      "sytech-supplies-south-africa",
+      "cast-versus-calendered-lifespans-cast-roughly-5-to-10-years-outdoors-calendered-roughly-1-to-5-are-consistent"
+    ]
+  },
+  "summary": "Settle the overall mood and the physical materials before the logo, so your logo, colours and photographs agree. Includes what South African sun does to signage.",
+  "tags": [
+    "prompts"
+  ],
+  "terms": [],
+  "title": "Mood and materials (use after Prompt 4)",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

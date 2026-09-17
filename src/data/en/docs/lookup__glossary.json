@@ -1,0 +1,262 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "South African business is full of abbreviations. Here is what they mean, in plain words."
+        }
+      ],
+      "hash": "3634abb3bf652bae",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Registration and companies"
+        }
+      ],
+      "depth": 2,
+      "hash": "4a592e1616e82f9c",
+      "id": "registration-and-companies",
+      "kind": "heading",
+      "text": "Registration and companies"
+    },
+    {
+      "group": "registration-and-companies",
+      "hash": "0da441d25b1db8cb",
+      "id": "registration-and-companies.1",
+      "kind": "glossary"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tax"
+        }
+      ],
+      "depth": 2,
+      "hash": "7626fa3f2b7b3ca3",
+      "id": "tax",
+      "kind": "heading",
+      "text": "Tax"
+    },
+    {
+      "group": "tax",
+      "hash": "f22ef48e6afd9552",
+      "id": "tax.1",
+      "kind": "glossary"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Compliance"
+        }
+      ],
+      "depth": 2,
+      "hash": "bb84effd8ddf8662",
+      "id": "compliance",
+      "kind": "heading",
+      "text": "Compliance"
+    },
+    {
+      "group": "compliance",
+      "hash": "c05962d5bca9da43",
+      "id": "compliance.1",
+      "kind": "glossary"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Licensing"
+        }
+      ],
+      "depth": 2,
+      "hash": "ad579fe3f90ff1b4",
+      "id": "licensing",
+      "kind": "heading",
+      "text": "Licensing"
+    },
+    {
+      "group": "licensing",
+      "hash": "4514d04f9ee27158",
+      "id": "licensing.1",
+      "kind": "glossary"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vehicles"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e3a81843d12212e",
+      "id": "vehicles",
+      "kind": "heading",
+      "text": "Vehicles"
+    },
+    {
+      "group": "vehicles",
+      "hash": "90d9b4bdaf218937",
+      "id": "vehicles.1",
+      "kind": "glossary"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Working from home and getting paid"
+        }
+      ],
+      "depth": 2,
+      "hash": "813047dd90b90458",
+      "id": "working-from-home-and-getting-paid",
+      "kind": "heading",
+      "text": "Working from home and getting paid"
+    },
+    {
+      "group": "working-from-home-and-getting-paid",
+      "hash": "3d2d2ffb9896f651",
+      "id": "working-from-home-and-getting-paid.1",
+      "kind": "glossary"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Money and documents"
+        }
+      ],
+      "depth": 2,
+      "hash": "e9e89aae2885ea42",
+      "id": "money-and-documents",
+      "kind": "heading",
+      "text": "Money and documents"
+    },
+    {
+      "group": "money-and-documents",
+      "hash": "b29e5b52a607ea06",
+      "id": "money-and-documents.1",
+      "kind": "glossary"
+    }
+  ],
+  "contentHash": "552f56da85989064",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Glossary",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "registration-and-companies",
+      "text": "Registration and companies"
+    },
+    {
+      "depth": 2,
+      "id": "tax",
+      "text": "Tax"
+    },
+    {
+      "depth": 2,
+      "id": "compliance",
+      "text": "Compliance"
+    },
+    {
+      "depth": 2,
+      "id": "licensing",
+      "text": "Licensing"
+    },
+    {
+      "depth": 2,
+      "id": "vehicles",
+      "text": "Vehicles"
+    },
+    {
+      "depth": 2,
+      "id": "working-from-home-and-getting-paid",
+      "text": "Working from home and getting paid"
+    },
+    {
+      "depth": 2,
+      "id": "money-and-documents",
+      "text": "Money and documents"
+    }
+  ],
+  "id": "lookup/glossary",
+  "kind": "glossary",
+  "lang": "en",
+  "order": 1,
+  "readingTime": 1,
+  "related": [],
+  "route": "glossary/",
+  "section": "lookup",
+  "slug": "glossary",
+  "sourcePath": "05 Look it up/01-glossary.md",
+  "sources": {
+    "acts": [],
+    "entries": [
+      "sars--turnover-tax",
+      "sars--tax-calendar",
+      "sars--guide-to-provisional-tax",
+      "sars--vat-264-declaration-for-the-supply-of-second-hand-goods",
+      "xero-za-sars-tax-tables-20262027",
+      "cipc--annual-returns-filing-system",
+      "cipc--financial-statements-and-independent-reviews",
+      "thrivecfo",
+      "elyforma",
+      "sars--comprehensive-guide-to-dividends-tax",
+      "sars--budget-2026-faq",
+      "polity--ensafrica-directors-of-private-companies-and-paye",
+      "simplepay-deemed-remuneration",
+      "the-tax-faculty-dividends-interest-on-loan",
+      "b-bbee-commission--frequently-asked-questions",
+      "information-regulator-of-south-africa",
+      "national-consumer-commission--consumer-protection-in-e-commerce",
+      "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
+      "rlv-form--application-for-registration-and-licensing-of-motor-vehicle",
+      "govza--apply-for-a-motor-trade-number-and-permit",
+      "governmentcoza--apply-for-a-traffic-register-number",
+      "govchain-brnc-certificate-guide",
+      "hanekom-attorneys-webuycars-consent-order",
+      "department-of-justice--small-claims-courts",
+      "department-of-justice--media-statement-22-july-2026",
+      "regulation-r638-of-2018",
+      "regulation-r146-of-2012",
+      "businesses-act-71-of-1991",
+      "mj-kotze-inc-credit-provider-registration",
+      "south-african-reserve-bank--banknote-security-features",
+      "sabric--south-african-banking-risk-information-centre",
+      "techcentral",
+      "solmate",
+      "cape-argus",
+      "flip-the-market",
+      "tracker-south-africa",
+      "ashersons-attorneys",
+      "small-claims-court-who-may-sue"
+    ]
+  },
+  "summary": "South African business is full of abbreviations. Here is what they mean, in plain words.",
+  "tags": [
+    "reference"
+  ],
+  "terms": [],
+  "title": "Glossary",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

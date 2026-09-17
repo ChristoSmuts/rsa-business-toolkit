@@ -1,0 +1,1334 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "pty"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The money in the company bank account is not yours. It belongs to the company."
+        }
+      ],
+      "hash": "2c9af7088d7853f1",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "There are three legal ways to move it to your personal account. Each has a different tax consequence. Choosing badly, or choosing nothing at all, is the most common expensive mistake in one-person companies."
+        }
+      ],
+      "hash": "76b72183472d5f85",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "8e96a1d61c81fd6a",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The company pays you as an employee. PAYE is deducted."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Salary"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The company pays out profit to you as the owner. 20% tax."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Dividend"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The record of money owed between you and the company, outside salary and dividends."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Loan account"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The company owes you. Good."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Credit loan account"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "You owe the company. Creates a tax problem."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Debit loan account"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Tax deducted from a salary every month."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "PAYE"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The monthly form declaring PAYE and UIF."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "EMP201"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The rate SARS uses to decide whether a loan is too cheap. 7.75% from December 2025."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Official rate of interest"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The problem this file solves"
+        }
+      ],
+      "depth": 2,
+      "hash": "eb20f3645181bf48",
+      "id": "the-problem-this-file-solves",
+      "kind": "heading",
+      "text": "The problem this file solves"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is what it looks like when it goes wrong. One South African accounting firm describes the pattern in owner-managed companies:"
+        }
+      ],
+      "hash": "006856f40616614b",
+      "id": "the-problem-this-file-solves.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Personal and living expenses and debit orders are paid through the business account. There is constant cash flow shortage within the business. The director is not paid a monthly salary. The owner spends funds as he or she sees fit, on the basis that as the only shareholder and director, all the funds and profits are theirs to use. The problem is that the owner has used funds out of the entity's account without noting that there are tax consequences."
+        }
+      ],
+      "hash": "3b3109635184a8e4",
+      "id": "the-problem-this-file-solves.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The pattern that causes trouble: paying home expenses from the company account, never paying yourself a proper salary, and spending company money as if it were your own because you are the only owner. Each of those creates a tax bill you did not plan for."
+        }
+      ],
+      "hash": "60909e383132ffee",
+      "id": "the-problem-this-file-solves.3",
+      "kind": "callout",
+      "pairsWith": "the-problem-this-file-solves.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If that describes you, read on. It is fixable, but it is much cheaper to fix before financial year end than after."
+        }
+      ],
+      "hash": "a6982728a2fcefa7",
+      "id": "the-problem-this-file-solves.4",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "the-problem-this-file-solves.5",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Option 1: salary"
+        }
+      ],
+      "depth": 2,
+      "hash": "5de4443a413e2eb9",
+      "id": "option-1-salary",
+      "kind": "heading",
+      "text": "Option 1: salary"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The company puts you on its payroll and pays you a monthly amount."
+        }
+      ],
+      "hash": "8894bfbc68eeb90d",
+      "id": "option-1-salary.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What it triggers"
+        }
+      ],
+      "depth": 3,
+      "hash": "775e957509f217fd",
+      "id": "what-it-triggers",
+      "kind": "heading",
+      "text": "What it triggers"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The company becomes an employer and must register for payroll taxes."
+        }
+      ],
+      "hash": "578a95063879184d",
+      "id": "what-it-triggers.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The company needs to deduct employee's tax (PAYE) from the amounts paid to directors, and make monthly EMP201 submissions to SARS. The same applies in owner-managed businesses where there is only one director and no employees."
+        }
+      ],
+      "hash": "d4fa28b5164c69e0",
+      "id": "what-it-triggers.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The EMP201 is due by the 7th of the following month. An EMP501 reconciliation is submitted twice a year."
+        }
+      ],
+      "hash": "a2947a480b6db576",
+      "id": "what-it-triggers.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ignore anything you read about \"deemed remuneration\""
+        }
+      ],
+      "depth": 3,
+      "hash": "c5cccd5babfa4398",
+      "id": "ignore-anything-you-read-about-deemed-remuneration",
+      "kind": "heading",
+      "text": "Ignore anything you read about \"deemed remuneration\""
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Many South African tax articles still describe a rule where a private company director's PAYE is calculated on a notional monthly salary worked out from last year's earnings."
+        }
+      ],
+      "hash": "6a801c159852537f",
+      "id": "ignore-anything-you-read-about-deemed-remuneration.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "That rule is gone. Paragraph 11C of the Fourth Schedule, which created the deemed remuneration formula, was repealed with effect from 1 March 2017. From 1 March 2017 deemed remuneration should no longer be used, and directors' remuneration is subject to PAYE on actual remuneration, as with normal employees."
+        }
+      ],
+      "hash": "da80c45308cd6f5c",
+      "id": "ignore-anything-you-read-about-deemed-remuneration.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "PAYE is calculated on what the company actually pays you, month by month, the same way it works for any employee."
+        }
+      ],
+      "hash": "8047c104af2227ab",
+      "id": "ignore-anything-you-read-about-deemed-remuneration.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is worth knowing because several widely-read payroll articles still explain the old rule as though it applies. If anyone quotes deemed remuneration at you, ask them to confirm it against the current Fourth Schedule."
+        }
+      ],
+      "hash": "e15b53666af54d0e",
+      "id": "ignore-anything-you-read-about-deemed-remuneration.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What does still apply to irregular pay: section 7B of the Income Tax Act treats variable remuneration such as a bonus or commission as accruing on the date it is actually paid. A lump sum paid in month twelve is taxed in month twelve. You are not penalised for drawing irregularly, but once the company pays you remuneration at all, it must register as an employer and submit an EMP201 for the months in which it pays you."
+        }
+      ],
+      "hash": "d897ec23642a2e67",
+      "id": "ignore-anything-you-read-about-deemed-remuneration.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "UIF: sources disagree"
+        }
+      ],
+      "depth": 3,
+      "hash": "4d6d4c109cd81cd5",
+      "id": "uif-sources-disagree",
+      "kind": "heading",
+      "text": "UIF: sources disagree"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Be careful here, because South African sources genuinely conflict on whether a sole director must contribute to UIF."
+        }
+      ],
+      "hash": "a7bbf2ccf8e6a437",
+      "id": "uif-sources-disagree.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "One position: directors must register even if they are the only employee of their own company. If a director earns a salary, wage, or structured remuneration through the company's payroll, the business must deduct employee's tax, and UIF rules apply to directors who are legally classified as employees."
+        }
+      ],
+      "hash": "ce196c6d8d9cd47b",
+      "id": "uif-sources-disagree.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The other position: where the director is not an employee under an employment contract and receives director's fees rather than a salary, UIF and SDL may not apply."
+        }
+      ],
+      "hash": "ef9c71e4b68180ac",
+      "id": "uif-sources-disagree.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The distinction turns on whether you are an employee of the company under the Unemployment Insurance Act, which depends on how you are actually engaged and paid, not on what you call it."
+        }
+      ],
+      "hash": "3227eeb0cf09b4c6",
+      "id": "uif-sources-disagree.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is a real fork with real money attached. Get an hour with a tax practitioner or payroll specialist rather than guessing. Whichever way it lands, document the basis for the decision."
+        }
+      ],
+      "hash": "d99db0189135225f",
+      "id": "uif-sources-disagree.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SDL generally only applies once annual payroll passes a threshold, so a one-person company usually does not reach it."
+        }
+      ],
+      "hash": "e9e97366e9dedcde",
+      "id": "uif-sources-disagree.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "One point that usually gets lost in this argument. UIF is nearly always presented as a cost to avoid. For a one-person company it may also be the only illness or maternity benefit you will ever have access to, because a sole proprietor is barred from contributing at all. Weigh that before you argue your way out of it. See "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "You are the business"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "735695934f66b9c3",
+      "id": "uif-sources-disagree.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "When salary makes sense"
+        }
+      ],
+      "depth": 3,
+      "hash": "6d389bb8fb52acb8",
+      "id": "when-salary-makes-sense",
+      "kind": "heading",
+      "text": "When salary makes sense"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Salary is deductible for the company, which reduces company taxable income. It is taxed in your hands at your personal marginal rate, and the personal tax threshold means the first R99,000 of your total taxable income attracts no tax if you are under 65."
+        }
+      ],
+      "hash": "a3c9c96a01a1cc23",
+      "id": "when-salary-makes-sense.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a one-person company earning modest profits, a salary up to around the tax threshold is often the cleanest starting point: no tax for you, a deduction for the company, and a clear paper trail."
+        }
+      ],
+      "hash": "708159142ec36f31",
+      "id": "when-salary-makes-sense.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Salary also gives you something dividends do not: proof of regular income, which matters for a bond application or a car finance application."
+        }
+      ],
+      "hash": "e63756f03654cc59",
+      "id": "when-salary-makes-sense.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "when-salary-makes-sense.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Option 2: dividend"
+        }
+      ],
+      "depth": 2,
+      "hash": "df3a5986fc9b6044",
+      "id": "option-2-dividend",
+      "kind": "heading",
+      "text": "Option 2: dividend"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The company declares a dividend out of profits after tax. You receive it as a shareholder."
+        }
+      ],
+      "hash": "1a7c52e0282b4503",
+      "id": "option-2-dividend.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What it costs"
+        }
+      ],
+      "depth": 3,
+      "hash": "61d2096489d19bcc",
+      "id": "what-it-costs",
+      "kind": "heading",
+      "text": "What it costs"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dividends tax is 20%, withheld and paid over by the company."
+        }
+      ],
+      "hash": "5c45066383039f54",
+      "id": "what-it-costs.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dividends are paid from company profits after tax and do not count as salary. You declare them through a board resolution, and they are subject to dividends tax, currently 20%."
+        }
+      ],
+      "hash": "78a27dc08bfb9960",
+      "id": "what-it-costs.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A dividend is not deductible for the company. So the money is taxed twice: once as company profit, then again at 20% in your hands."
+        }
+      ],
+      "hash": "ced0e1899d659457",
+      "id": "what-it-costs.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The two conditions"
+        }
+      ],
+      "depth": 3,
+      "hash": "ce7abb579caa40d5",
+      "id": "the-two-conditions",
+      "kind": "heading",
+      "text": "The two conditions"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Profits must exist."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " A dividend may generally only be declared out of profits, not out of capital. This has been settled South African law since Cohen NO v Segal, decided in the Witwatersrand Local Division in 1970, where two directors divided the proceeds of a company property sale between themselves and then purported to declare it a dividend. The court held that a dividend may generally only be declared out of profits, and that declaring one out of capital is beyond the company's powers."
+        }
+      ],
+      "hash": "aedf560c1634720d",
+      "id": "the-two-conditions.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "The solvency and liquidity test."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Before declaring, the board must be satisfied the company passes the section 4 test in the Companies Act: assets exceed liabilities, and the company can pay its debts as they fall due over the next 12 months. A single-director board still has to apply this and record that it did."
+        }
+      ],
+      "hash": "1ad15f6d1bea6793",
+      "id": "the-two-conditions.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do the paperwork"
+        }
+      ],
+      "depth": 3,
+      "hash": "44dc8fa6706a2d38",
+      "id": "do-the-paperwork",
+      "kind": "heading",
+      "text": "Do the paperwork"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Write a short resolution: the date, the amount, the shareholder, and a statement that the solvency and liquidity test was considered and passed. File it in your company records."
+        }
+      ],
+      "hash": "907ff67630d9acae",
+      "id": "do-the-paperwork.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A transfer with no resolution behind it is not a dividend. It is a loan, which brings you to option 3."
+        }
+      ],
+      "hash": "4e6755ba5b051a96",
+      "id": "do-the-paperwork.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "do-the-paperwork.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Option 3: loan account"
+        }
+      ],
+      "depth": 2,
+      "hash": "a2f0a07b0f486be6",
+      "id": "option-3-loan-account",
+      "kind": "heading",
+      "text": "Option 3: loan account"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The loan account records money flowing between you and the company outside of salary and dividends."
+        }
+      ],
+      "hash": "fe4e0d7e64eb21e8",
+      "id": "option-3-loan-account.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "There are two directions, and they are completely different."
+        }
+      ],
+      "hash": "d917c88061d733fe",
+      "id": "option-3-loan-account.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Credit loan account: the company owes you"
+        }
+      ],
+      "depth": 3,
+      "hash": "d80bed3dcd43ea44",
+      "id": "credit-loan-account-the-company-owes-you",
+      "kind": "heading",
+      "text": "Credit loan account: the company owes you"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This happens when you put your own money into the company, or pay a company expense from your personal card."
+        }
+      ],
+      "hash": "3ca0c207e7da4e89",
+      "id": "credit-loan-account-the-company-owes-you.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is the good direction. If the company owes you money on loan account because you funded your business, the business can repay your loan account with funds available in the business."
+        }
+      ],
+      "hash": "78079a058ac16257",
+      "id": "credit-loan-account-the-company-owes-you.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Repayment of a credit loan account is not income. It is the company returning your own money. No tax."
+        }
+      ],
+      "hash": "7b5dcdf89b1ae9f7",
+      "id": "credit-loan-account-the-company-owes-you.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most one-person companies start here, because the founder funds the first few months personally. Record every rand you put in. Many owners forget, then pay tax on money they could have drawn out tax-free."
+        }
+      ],
+      "hash": "0f45dbd5be1087ae",
+      "id": "credit-loan-account-the-company-owes-you.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Debit loan account: you owe the company"
+        }
+      ],
+      "depth": 3,
+      "hash": "6a3a0bf505acca51",
+      "id": "debit-loan-account-you-owe-the-company",
+      "kind": "heading",
+      "text": "Debit loan account: you owe the company"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This happens when you take money out without calling it salary or a dividend. Personal spending on the company card. A transfer to your personal account \"to be sorted out later\"."
+        }
+      ],
+      "hash": "0455dad2959ef682",
+      "id": "debit-loan-account-you-owe-the-company.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is the expensive direction."
+        }
+      ],
+      "hash": "f570893e7d7f6ae4",
+      "id": "debit-loan-account-you-owe-the-company.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If a director does not carefully keep track of what is recorded against their loan account, it may go into debit. This means the director now owes the company money."
+        }
+      ],
+      "hash": "ef15930952eebec8",
+      "id": "debit-loan-account-you-owe-the-company.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The tax problem: an interest-free or low-interest loan from a company to a shareholder triggers a deemed dividend under section 64E(4) of the Income Tax Act."
+        }
+      ],
+      "hash": "16e638734fe8cd18",
+      "id": "debit-loan-account-you-owe-the-company.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Where a debit loan exists and the interest charged on the outstanding balance is lower than the official interest rate, the difference gives rise to a dividend in specie. The dividend is deemed to have been paid on the last day of the year of assessment and the company is liable for the dividends tax."
+        }
+      ],
+      "hash": "49174b5bb35bcd32",
+      "id": "debit-loan-account-you-owe-the-company.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you owe your company money and are not paying it a proper rate of interest, SARS treats the missing interest as if the company paid you a dividend on the last day of the year. The company then owes 20% tax on it."
+        }
+      ],
+      "hash": "4bb65580a9ff102d",
+      "id": "debit-loan-account-you-owe-the-company.6",
+      "kind": "callout",
+      "pairsWith": "debit-loan-account-you-owe-the-company.5",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The official rate is published by SARS and moves. From 1 December 2025 the official rate for the fringe benefit on interest-free or low-interest loans is 7.75% per annum."
+        }
+      ],
+      "hash": "35df18f50fafbeff",
+      "id": "debit-loan-account-you-owe-the-company.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "A discrepancy worth knowing about."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Some South African sources say the deemed dividend is 20% of the whole loan balance. Others say it is only on the foregone interest, meaning the shortfall between the official rate and what you actually paid. The Tax Faculty states the position clearly: the capital is not deemed a dividend, and the interest will accrue, posing a tax risk should the loan and accrued interest be written off in future."
+        }
+      ],
+      "hash": "a6e8eacd123be83f",
+      "id": "debit-loan-account-you-owe-the-company.8",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This toolkit takes the foregone-interest position, because that is what the wording of section 64E(4) and SARS's own guidance support. But the disagreement in the market is real, so do not rely on this file alone for a material loan account. SARS publishes a Comprehensive Guide to Dividends Tax, linked in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Sources and verification register"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "73699810ecfd90bc",
+      "id": "debit-loan-account-you-owe-the-company.9",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Never let it be written off."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " If the company writes off the loan, the owner is liable for income tax on the entire loan amount. A growing debit loan that can never be repaid is a slow-building tax bill."
+        }
+      ],
+      "hash": "aeee348ad1e1cec9",
+      "id": "debit-loan-account-you-owe-the-company.10",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Fixing a debit loan account"
+        }
+      ],
+      "depth": 3,
+      "hash": "82bf4589d55c63d7",
+      "id": "fixing-a-debit-loan-account",
+      "kind": "heading",
+      "text": "Fixing a debit loan account"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You have three options, and the first two must be done before financial year end:"
+        }
+      ],
+      "hash": "31010a5c936aefab",
+      "id": "fixing-a-debit-loan-account.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Declare a dividend equal to the value of the debit balance and pay the dividends tax to SARS. Declare additional salary or a bonus equal to the net value of the loan account. Or raise interest income on the loan balance at a rate linked to the official rate, to avoid a deemed dividend arising."
+        }
+      ],
+      "hash": "3060b1540864d892",
+      "id": "fixing-a-debit-loan-account.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Three ways to fix it: declare a dividend to cover what you owe and pay the 20% tax; or record it as extra salary and pay PAYE on it; or charge yourself interest at the official rate so there is no missing interest."
+        }
+      ],
+      "hash": "ead0e73d654e6233",
+      "id": "fixing-a-debit-loan-account.3",
+      "kind": "callout",
+      "pairsWith": "fixing-a-debit-loan-account.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The first two options need to be exercised before the end of the financial year, so the dividend is declared in time and the EMP501 for that year reflects the salary."
+        }
+      ],
+      "hash": "27ca71461dcb9c02",
+      "id": "fixing-a-debit-loan-account.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Practical advice from the same source: review your loan account schedule monthly, not annually. By the time the financial statements are prepared, usually six months after year end, it is too late to declare a dividend for the closed year."
+        }
+      ],
+      "hash": "1a6e7a983fae32bd",
+      "id": "fixing-a-debit-loan-account.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "fixing-a-debit-loan-account.6",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Which to use"
+        }
+      ],
+      "depth": 2,
+      "hash": "2e5be24ed53d278d",
+      "id": "which-to-use",
+      "kind": "heading",
+      "text": "Which to use"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "There is no single right answer. It depends on your profit, your other income, and what you need the money for."
+        }
+      ],
+      "hash": "f727d4fbe7498e16",
+      "id": "which-to-use.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A common structure for a one-person company, offered as a starting point and not as advice:"
+        }
+      ],
+      "hash": "4e24fa4a280afa01",
+      "id": "which-to-use.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Draw a modest regular salary, roughly up to the personal tax threshold, so it is deductible for the company and tax-free for you. Take anything further as a declared dividend, with a resolution, once profits and solvency allow. Keep the loan account at zero or in credit, and check it monthly."
+        }
+      ],
+      "hash": "d85beffbaf1d80a5",
+      "id": "which-to-use.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The optimal structure depends on your lifestyle needs, tax bracket, and long-term business goals."
+        }
+      ],
+      "hash": "20f4a80df7bc9d6e",
+      "id": "which-to-use.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Model it on your actual numbers once, with a tax practitioner, in your first year. The difference between a good structure and a careless one on R500,000 of profit is large enough to pay for the advice many times over."
+        }
+      ],
+      "hash": "7c25fa5b36c11f34",
+      "id": "which-to-use.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "which-to-use.6",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The rules that prevent all of this"
+        }
+      ],
+      "depth": 2,
+      "hash": "a8e76f53a5af6a94",
+      "id": "the-rules-that-prevent-all-of-this",
+      "kind": "heading",
+      "text": "The rules that prevent all of this"
+    },
+    {
+      "hash": "3bc06366b14907c6",
+      "id": "the-rules-that-prevent-all-of-this.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Never pay a personal expense from the company account. Not once. Pay yourself, then pay the expense."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Record every rand you put into the company. That is money you can take back out tax-free."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Check the loan account balance before each financial year end, not after."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Write a resolution for every dividend, on the day you declare it."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "If you pay yourself a salary, run it through payroll properly with an EMP201 every month."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Decide the UIF question with a professional rather than assuming either way."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    }
+  ],
+  "contentHash": "aa413acf408df28d",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Paying yourself from a Pty Ltd",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "the-problem-this-file-solves",
+      "text": "The problem this file solves"
+    },
+    {
+      "depth": 2,
+      "id": "option-1-salary",
+      "text": "Option 1: salary"
+    },
+    {
+      "depth": 3,
+      "id": "what-it-triggers",
+      "text": "What it triggers"
+    },
+    {
+      "depth": 3,
+      "id": "ignore-anything-you-read-about-deemed-remuneration",
+      "text": "Ignore anything you read about \"deemed remuneration\""
+    },
+    {
+      "depth": 3,
+      "id": "uif-sources-disagree",
+      "text": "UIF: sources disagree"
+    },
+    {
+      "depth": 3,
+      "id": "when-salary-makes-sense",
+      "text": "When salary makes sense"
+    },
+    {
+      "depth": 2,
+      "id": "option-2-dividend",
+      "text": "Option 2: dividend"
+    },
+    {
+      "depth": 3,
+      "id": "what-it-costs",
+      "text": "What it costs"
+    },
+    {
+      "depth": 3,
+      "id": "the-two-conditions",
+      "text": "The two conditions"
+    },
+    {
+      "depth": 3,
+      "id": "do-the-paperwork",
+      "text": "Do the paperwork"
+    },
+    {
+      "depth": 2,
+      "id": "option-3-loan-account",
+      "text": "Option 3: loan account"
+    },
+    {
+      "depth": 3,
+      "id": "credit-loan-account-the-company-owes-you",
+      "text": "Credit loan account: the company owes you"
+    },
+    {
+      "depth": 3,
+      "id": "debit-loan-account-you-owe-the-company",
+      "text": "Debit loan account: you owe the company"
+    },
+    {
+      "depth": 3,
+      "id": "fixing-a-debit-loan-account",
+      "text": "Fixing a debit loan account"
+    },
+    {
+      "depth": 2,
+      "id": "which-to-use",
+      "text": "Which to use"
+    },
+    {
+      "depth": 2,
+      "id": "the-rules-that-prevent-all-of-this",
+      "text": "The rules that prevent all of this"
+    }
+  ],
+  "id": "core/paying-yourself",
+  "kind": "guide",
+  "lang": "en",
+  "order": 7,
+  "readingTime": 11,
+  "related": [
+    "core/you-are-the-business"
+  ],
+  "route": "core/paying-yourself/",
+  "section": "core",
+  "slug": "paying-yourself",
+  "sourcePath": "01 Core - applies to everyone/07-paying-yourself.md",
+  "sources": {
+    "acts": [
+      "income-tax-act-58-of-1962",
+      "companies-act-71-of-2008"
+    ],
+    "entries": [
+      "sars--tax-calendar",
+      "xero-za-sars-tax-tables-20262027",
+      "sars--comprehensive-guide-to-dividends-tax",
+      "sars--budget-2026-faq",
+      "polity--ensafrica-directors-of-private-companies-and-paye",
+      "simplepay-deemed-remuneration",
+      "the-tax-faculty-dividends-interest-on-loan",
+      "mms-cloud-accounting",
+      "the-beancounter",
+      "govchain",
+      "uif-and-the-self-employed"
+    ]
+  },
+  "summary": "The money in the company bank account is not yours. It belongs to the company.",
+  "tags": [
+    "pty",
+    "tax"
+  ],
+  "terms": [
+    {
+      "meaning": "The company pays you as an employee. PAYE is deducted.",
+      "term": "Salary"
+    },
+    {
+      "meaning": "The company pays out profit to you as the owner. 20% tax.",
+      "term": "Dividend"
+    },
+    {
+      "meaning": "The record of money owed between you and the company, outside salary and dividends.",
+      "term": "Loan account"
+    },
+    {
+      "meaning": "The company owes you. Good.",
+      "term": "Credit loan account"
+    },
+    {
+      "meaning": "You owe the company. Creates a tax problem.",
+      "term": "Debit loan account"
+    },
+    {
+      "meaning": "Tax deducted from a salary every month.",
+      "term": "PAYE"
+    },
+    {
+      "meaning": "The monthly form declaring PAYE and UIF.",
+      "term": "EMP201"
+    },
+    {
+      "meaning": "The rate SARS uses to decide whether a loan is too cheap. 7.75% from December 2025.",
+      "term": "Official rate of interest"
+    }
+  ],
+  "title": "Paying yourself from a Pty Ltd",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

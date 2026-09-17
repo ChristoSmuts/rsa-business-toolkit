@@ -1,0 +1,2600 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Before Prompt 5"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": ", run "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Mood and materials (use after Prompt 4)"
+            }
+          ],
+          "doc": "branding/mood-and-materials",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". It settles the overall mood so that the logo, colour and photography prompts agree with each other, and covers what your signage and print are physically made of."
+        }
+      ],
+      "hash": "ee7e54699546a7cc",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Already have your name?"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " If your business name is settled and you know what you trade as, read "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Already have your name (shortcut)"
+            }
+          ],
+          "doc": "branding/already-have-your-name",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " first. It tells you which of these prompts to skip."
+        }
+      ],
+      "hash": "713e10c31933bdd4",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Work through these in order. Each one gives you 5 options. Pick one, improve it, then move to the next prompt."
+        }
+      ],
+      "hash": "d7ee15f32ec882e7",
+      "id": "intro.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do not skip Prompt 0. Every later prompt uses the answer from Prompt 0."
+        }
+      ],
+      "hash": "983127663faa06ae",
+      "id": "intro.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Keep all your answers in one document. You will need them in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Brand applications and polish"
+            }
+          ],
+          "doc": "branding/brand-applications-and-polish",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "2d0eaf56aabc85fb",
+      "id": "intro.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.6",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "e08fdc4b64c4e7b0",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A short written summary of what your business is and who it is for. Everything else is built on it."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Brief"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The one sentence that says who you help and why you, not a competitor."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Positioning"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A short line under the name that says what you do. Optional."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Tagline"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A logo that is just the name, well set in a typeface, with no picture."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Wordmark"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The picture part of a logo, if there is one."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Mark"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A fixed arrangement of the mark and the name together."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Lockup"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The style of lettering. Google Fonts are free to use in business."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Typeface / font"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A six-character code like #1A4D2E that names an exact colour."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Hex code"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "How easily text can be read against its background. Check it with a free tool."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Contrast"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A logo file that can be made any size without going blurry. SVG is a vector format."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Vector"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A picture made of pixels, like a PNG. Goes blurry when enlarged. Image generators make these."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Raster"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The short prompt you paste after each round to get 5 better options."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Refine prompt"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Read this before you start: why most AI branding looks the same"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8fc919b75b8b28e",
+      "id": "read-this-before-you-start-why-most-ai-branding-looks-the-same",
+      "kind": "heading",
+      "text": "Read this before you start: why most AI branding looks the same"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You will be using an AI tool. So is every competitor in your town. If you accept the first thing it gives you, you will end up with the brand they have."
+        }
+      ],
+      "hash": "8a1532be84c1c4aa",
+      "id": "read-this-before-you-start-why-most-ai-branding-looks-the-same.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "That is not a small problem. A brand that looks like everyone else's gives a customer no reason to choose you, so the only thing left to compete on is price. For a one-person business that is the worst place to be."
+        }
+      ],
+      "hash": "e347cd89f1142b95",
+      "id": "read-this-before-you-start-why-most-ai-branding-looks-the-same.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The visual tells"
+        }
+      ],
+      "depth": 3,
+      "hash": "9187f12207fde3d9",
+      "id": "the-visual-tells",
+      "kind": "heading",
+      "text": "The visual tells"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You can spot AI-generated and template branding by these. Avoid all of them."
+        }
+      ],
+      "hash": "5d5cc19c40a47a6b",
+      "id": "the-visual-tells.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "An abstract mark that could belong to any business: a swoosh, a leaf, an infinity loop, a hexagon, a globe, a person made from a circle and an arc. Cover the name, and nobody could guess the industry."
+        }
+      ],
+      "hash": "c5215b372afea375",
+      "id": "the-visual-tells.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gradients, especially purple into blue or teal into green. Gradients also break the moment you print in one colour or embroider a shirt."
+        }
+      ],
+      "hash": "ed676e99400899b8",
+      "id": "the-visual-tells.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Glossy 3D icons with soft drop shadows."
+        }
+      ],
+      "hash": "f7698f82dd0726c3",
+      "id": "the-visual-tells.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A perfectly symmetrical mark centred above uppercase text with wide letter spacing. That is the default output of almost every logo generator."
+        }
+      ],
+      "hash": "e80ccc64ff64ca2f",
+      "id": "the-visual-tells.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The same four typefaces everyone uses: Montserrat, Poppins, Raleway, Lato. They are good typefaces. They are also the free defaults in every design tool, so they read as \"template\"."
+        }
+      ],
+      "hash": "2bb668cb0fbbf2d3",
+      "id": "the-visual-tells.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bevels, glows, and fake depth of any kind."
+        }
+      ],
+      "hash": "5f07c1ba60af6dc8",
+      "id": "the-visual-tells.7",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The language tells"
+        }
+      ],
+      "depth": 3,
+      "hash": "6e84bcb201103795",
+      "id": "the-language-tells",
+      "kind": "heading",
+      "text": "The language tells"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "\"Empowering\", \"elevating\", \"unlocking\", \"redefining\", \"your trusted partner in\", \"where quality meets service\"."
+        }
+      ],
+      "hash": "8f98a3abaca0d4ff",
+      "id": "the-language-tells.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Three-word slogans with full stops: \"Quality. Service. Trust.\""
+        }
+      ],
+      "hash": "c5d78fea365efd1d",
+      "id": "the-language-tells.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Any benefit with no number, no proof, and no specific detail attached."
+        }
+      ],
+      "hash": "1bbe99e2d6a1254a",
+      "id": "the-language-tells.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What to do instead"
+        }
+      ],
+      "depth": 3,
+      "hash": "642d2ede9cdb235b",
+      "id": "what-to-do-instead",
+      "kind": "heading",
+      "text": "What to do instead"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Use a specific real detail."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Not \"reliability\" but the actual thing you do. A locksmith's mark can be a key bit profile. A welder's can be a weld bead. A baker's can be the shape of the tin. Specific beats abstract every time, and an AI will not suggest it unless you push."
+        }
+      ],
+      "hash": "99159840c61a0a4a",
+      "id": "what-to-do-instead.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Use your own name."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " For a solo business, \"Naledi Mokoena Plumbing\" is harder for a competitor to copy than any invented word, and it never becomes a lie when a customer asks how big the team is."
+        }
+      ],
+      "hash": "2417d7e65e58d4cd",
+      "id": "what-to-do-instead.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Pick one unusual colour and commit."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Most businesses in any given trade use blue. Being the only green one in your town is worth more than a better shade of blue."
+        }
+      ],
+      "hash": "05b7c189dd40a893",
+      "id": "what-to-do-instead.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Choose a typeface with personality."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Free on Google Fonts and far less used than the defaults: Archivo, Space Grotesk, Instrument Sans, Bricolage Grotesque, Fraunces, DM Serif Display, Source Serif 4, Bitter, Lora, Newsreader. Pair one with character for headings against a plain, readable one for body text."
+        }
+      ],
+      "hash": "9099f4721f42aa68",
+      "id": "what-to-do-instead.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Prefer a wordmark."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Your name, well set, with one deliberate detail. It costs nothing, works at any size, never looks amateur, and cannot be generated by the thousand."
+        }
+      ],
+      "hash": "1c6cc1e08bdd1c02",
+      "id": "what-to-do-instead.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Use real photographs of real work."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " This is the strongest asset a small local business has, and no competitor can copy it."
+        }
+      ],
+      "hash": "36071247de7cd13d",
+      "id": "what-to-do-instead.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The test that matters most"
+        }
+      ],
+      "depth": 3,
+      "hash": "145976ae177dab00",
+      "id": "the-test-that-matters-most",
+      "kind": "heading",
+      "text": "The test that matters most"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Take your finished logo, tagline, or description. Swap in a competitor's name."
+        }
+      ],
+      "hash": "5c6571d143abadb3",
+      "id": "the-test-that-matters-most.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Does it still work? If yes, it is generic. Go back a step."
+        }
+      ],
+      "hash": "cdad06bc66e29d3c",
+      "id": "the-test-that-matters-most.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "the-test-that-matters-most.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What the AI cannot do, and what you must do yourself"
+        }
+      ],
+      "depth": 2,
+      "hash": "df154687784936df",
+      "id": "what-the-ai-cannot-do-and-what-you-must-do-yourself",
+      "kind": "heading",
+      "text": "What the AI cannot do, and what you must do yourself"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "AI tools will do these things if you ask, and will sound confident. They are not reliable at any of them."
+        }
+      ],
+      "hash": "bebd6c0c2e2f37ea",
+      "id": "what-the-ai-cannot-do-and-what-you-must-do-yourself.1",
+      "kind": "paragraph"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "d3633e9d8d537212",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "The AI cannot reliably..."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "So you must..."
+          }
+        ]
+      ],
+      "id": "what-the-ai-cannot-do-and-what-you-must-do-yourself.2",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Confirm a name is free at CIPC or as a trade mark"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Search CIPC and the CIPC trade marks database yourself"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Confirm a name has no rude or unlucky meaning in another language"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Ask a native speaker of each language your customers use"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Work out colour contrast ratios"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Paste the hex codes into a free checker: "
+            },
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "webaim.org/resources/contrastchecker"
+                }
+              ],
+              "external": true,
+              "href": "https://webaim.org/resources/contrastchecker",
+              "t": "link"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Check whether a logo already exists"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Do a reverse image search on the final image"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Produce a real logo file"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Set the final logo in a real font in Inkscape or Canva, or pay for a vector redraw"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Know current prices of anything"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Get quotes"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The prompts below are written so the AI gives you material to check, not a verdict to trust."
+        }
+      ],
+      "hash": "29393fba593c566e",
+      "id": "what-the-ai-cannot-do-and-what-you-must-do-yourself.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ownership of what the AI makes"
+        }
+      ],
+      "depth": 3,
+      "hash": "ea324b688c4708f3",
+      "id": "ownership-of-what-the-ai-makes",
+      "kind": "heading",
+      "text": "Ownership of what the AI makes"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Whether you can own, and therefore protect, a logo generated by an AI is not settled in South African law or anywhere else. If your brand is going to matter, have the final logo produced by a human designer working from the direction you chose here, or set it in type yourself. AI is for exploring directions, not for the final file."
+        }
+      ],
+      "hash": "d25e82c31c683a71",
+      "id": "ownership-of-what-the-ai-makes.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Fonts from Google Fonts are free for commercial use under the Open Font Licence. If you use any other font, check its licence before it appears on anything you sell."
+        }
+      ],
+      "hash": "79d357f0238e029d",
+      "id": "ownership-of-what-the-ai-makes.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Which AI tool"
+        }
+      ],
+      "depth": 3,
+      "hash": "76b0944ae8afbff7",
+      "id": "which-ai-tool",
+      "kind": "heading",
+      "text": "Which AI tool"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Any current chat AI works: Claude, ChatGPT, Gemini, Copilot. For naming, competitor analysis and the critique prompts, use the strongest model you have access to, because those steps need judgement. Free tiers are fine for drafts."
+        }
+      ],
+      "hash": "205dd289041be023",
+      "id": "which-ai-tool.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "which-ai-tool.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "How the loop works"
+        }
+      ],
+      "depth": 2,
+      "hash": "99fad54dbb9e53b4",
+      "id": "how-the-loop-works",
+      "kind": "heading",
+      "text": "How the loop works"
+    },
+    {
+      "hash": "b5980afbf357ed5e",
+      "id": "how-the-loop-works.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Paste the prompt."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Read all 5 options."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Pick the closest one, even if it is not right yet."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Paste the refine prompt and say what you like and what you do not."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Repeat once or twice. Round three is usually the good one."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Save the winner. Move on."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Every prompt ends by asking the AI to name its own weakest option. Read that answer. It is often more useful than the options."
+        }
+      ],
+      "hash": "40aa96cc5f96602d",
+      "id": "how-the-loop-works.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The refine prompt (use after every step)"
+        }
+      ],
+      "depth": 3,
+      "hash": "210d63e1226ccb20",
+      "id": "the-refine-prompt-use-after-every-step",
+      "kind": "heading",
+      "text": "The refine prompt (use after every step)"
+    },
+    {
+      "hash": "129398c68d7bee28",
+      "id": "the-refine-prompt-use-after-every-step.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "NUMBER"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "say what you like, in your own words"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "say what is wrong"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Optional"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "anything missing"
+        }
+      ],
+      "text": "I like option [NUMBER] best.\n\nWhat works: [say what you like, in your own words]\nWhat does not work: [say what is wrong]\n[Optional] What I would add: [anything missing]\n\nGive me 5 new options that keep what works and fix what does not.\nDo not repeat the options you already gave me.\nMake each one more specific than the last round, not more general.\n\nNumber them 1 to 5. Then tell me which of the 5 you think is weakest,\nand why. Then stop and ask me again.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The de-generic prompt (use whenever an answer feels bland)"
+        }
+      ],
+      "depth": 3,
+      "hash": "bd0b5ef90ef341dd",
+      "id": "the-de-generic-prompt-use-whenever-an-answer-feels-bland",
+      "kind": "heading",
+      "text": "The de-generic prompt (use whenever an answer feels bland)"
+    },
+    {
+      "hash": "2765ae0a4108846a",
+      "id": "the-de-generic-prompt-use-whenever-an-answer-feels-bland.1",
+      "kind": "code",
+      "text": "That round is too generic. Every option would still work if a competitor\nput their name on it.\n\nDo it again with these rules:\n- Base each option on a specific, concrete detail of what I actually do:\n a tool, a material, a step in my process, or a place.\n- No abstract concepts: trust, quality, excellence, passion, partnership.\n- None of these words: empowering, elevating, unlocking, redefining,\n seamless, innovative, solutions, premium, bespoke, journey.\n- At least two options must be things a template or a logo generator\n would never produce.\n\nNumber them 1 to 5. Then tell me which is weakest and why. Then stop.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If the AI runs ahead"
+        }
+      ],
+      "depth": 3,
+      "hash": "8e830c38a8187b94",
+      "id": "if-the-ai-runs-ahead",
+      "kind": "heading",
+      "text": "If the AI runs ahead"
+    },
+    {
+      "hash": "07e99fb46b1b83e9",
+      "id": "if-the-ai-runs-ahead.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "X"
+        }
+      ],
+      "text": "Stop. Go back to step [X] only. Give me 5 options for that step and\nnothing else. Wait for my answer before moving on.",
+      "variant": "prompt"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "if-the-ai-runs-ahead.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 0: the business brief"
+        }
+      ],
+      "depth": 2,
+      "hash": "df2efb6a2ab6b431",
+      "id": "prompt-0-the-business-brief",
+      "kind": "heading",
+      "text": "Prompt 0: the business brief"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Answer the questions, then paste the whole thing. The AI turns your answers into a brief with fixed headings, so every later prompt gets the same shape of input."
+        }
+      ],
+      "hash": "ac55b109bc0e1628",
+      "id": "prompt-0-the-business-brief.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "1b216c98e7bba94f",
+      "id": "prompt-0-the-business-brief.2",
+      "kind": "code",
+      "text": "I am starting a small business in South Africa. I am the owner and the\nonly worker. Help me build my brand. Judge everything you give me against\nwhat a professional brand studio would present to a paying client.\n\nHere is my business:\n\n1. What I sell:\n2. Who buys it (age, income, where they live, what they care about):\n3. Who it is NOT for (the customer I would rather turn away):\n4. Where I sell it (town/city, online, market, my home, customer's place):\n5. What makes me different from the nearest competitor:\n6. Price level (cheapest / middle / premium):\n7. Languages my customers speak:\n8. What I want customers to feel about my business:\n9. Businesses I admire and why:\n10. Anything I definitely do not want:\n11. One specific, physical detail of my work that an outsider would find\n interesting (a tool I use, a material, a step in the process, a place\n I work):\n\nWrite this back to me as a brand brief using exactly these headings, one\nor two sentences under each, no more than 200 words in total:\n\nOFFER (what I sell, in plain words)\nAUDIENCE (who buys, and who I turn away)\nDIFFERENCE (why me and not the competitor, stated as a fact I can prove)\nTONE (three words for how the brand should feel)\nDISTINCTIVE DETAIL (the physical detail from question 11)\nCONSTRAINTS (languages, price level, things to avoid)\n\nUse simple English. Then tell me the three biggest gaps or weak points in\nwhat I told you, and ask me the questions you need answered to fix them.\n\nDo not suggest names, logos, or colours yet.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Save what it writes. Call it \"Brand brief\". You will paste it into every later prompt."
+        }
+      ],
+      "hash": "26c7544c85bcc851",
+      "id": "prompt-0-the-business-brief.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Question 3 and question 11 are the ones that make the brand yours. Who you turn away defines you as sharply as who you serve. The physical detail is where the visual identity will come from."
+        }
+      ],
+      "hash": "a1da8f76b03093a8",
+      "id": "prompt-0-the-business-brief.4",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prompt-0-the-business-brief.5",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 1: what my business actually is"
+        }
+      ],
+      "depth": 2,
+      "hash": "f9ba0689f377b08b",
+      "id": "prompt-1-what-my-business-actually-is",
+      "kind": "heading",
+      "text": "Prompt 1: what my business actually is"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Get the sentence right before the name. A good name comes from a clear idea."
+        }
+      ],
+      "hash": "c2a6c29cf6bb479a",
+      "id": "prompt-1-what-my-business-actually-is.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "5c31e9d96a220806",
+      "id": "prompt-1-what-my-business-actually-is.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE YOUR BRAND BRIEF"
+        }
+      ],
+      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF]\n\nWrite 5 different one-sentence descriptions of my business. Each must say\nwho I help, what I do for them, and why me and not someone else.\n\nBefore you write them, list 5 different angles you could take (for example\nspeed, price, quality, convenience, local knowledge, specialisation,\nguarantee, who I refuse to serve). Then write one option per angle, so\nthe 5 are genuinely different.\n\nRules:\n- Maximum 20 words each\n- Plain English a Grade 8 learner can read\n- No marketing words: premium, innovative, solutions, passionate,\n bespoke, trusted, seamless\n- Must be true and provable from the brief\n- Must stop working if a competitor swapped their name in\n\nNumber them 1 to 5. Then tell me which is weakest and why. Then stop and\nask me which is closest and what I would change.",
+      "variant": "prompt"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prompt-1-what-my-business-actually-is.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 2: what my competitors already look like"
+        }
+      ],
+      "depth": 2,
+      "hash": "9e7cc54107970466",
+      "id": "prompt-2-what-my-competitors-already-look-like",
+      "kind": "heading",
+      "text": "Prompt 2: what my competitors already look like"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do this before naming. It is the step that keeps you out of the sameness trap."
+        }
+      ],
+      "hash": "691883a3f9a4e915",
+      "id": "prompt-2-what-my-competitors-already-look-like.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "17d4cabb53df35a8",
+      "id": "prompt-2-what-my-competitors-already-look-like.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE YOUR BRAND BRIEF"
+        },
+        {
+          "key": "town",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "TOWN/CITY"
+        },
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BUSINESS TYPE"
+        }
+      ],
+      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF]\n\nI want to understand what branding already exists in my market in\n[TOWN/CITY], South Africa, for [BUSINESS TYPE].\n\nBased on what is typical for this kind of business in South Africa,\ndescribe:\n\n1. The colours most competitors in this trade use, and why\n2. The name patterns they use (surname plus trade, place plus trade,\n invented word, and so on)\n3. The logo styles they use\n4. The claims they all make\n5. The three most common visual clichés in this industry\n\nBe clear that this is your general knowledge of the industry, not a\nsurvey of my actual town. I will check real competitors myself.\n\nThen give me 5 specific ways I could look deliberately different without\nlooking unprofessional or untrustworthy. For each, say what the risk of\nthat choice is.\n\nNumber the 5 ways 1 to 5. Then tell me which is weakest and why. Then stop.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Then check reality yourself. Search your trade plus your town on Google and Facebook and look at ten competitors. Note their colours and name patterns. Paste what you find into the next prompt. The AI was guessing; your eyes are better."
+        }
+      ],
+      "hash": "a3266d2e28cbae4d",
+      "id": "prompt-2-what-my-competitors-already-look-like.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prompt-2-what-my-competitors-already-look-like.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 3: the name"
+        }
+      ],
+      "depth": 2,
+      "hash": "5dcb8a40f795992b",
+      "id": "prompt-3-the-name",
+      "kind": "heading",
+      "text": "Prompt 3: the name"
+    },
+    {
+      "hash": "d92823be14e21479",
+      "id": "prompt-3-the-name.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE YOUR BRAND BRIEF"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE THE ONE YOU CHOSE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE WHAT YOU FOUND"
+        }
+      ],
+      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF]\n\nHere is my one-sentence description:\n\n[PASTE THE ONE YOU CHOSE]\n\nHere is how my competitors actually look, from my own search:\n\n[PASTE WHAT YOU FOUND]\n\nSuggest 5 names for this business in South Africa.\n\nRules:\n- Easy to say out loud over a noisy phone line\n- Easy to spell after hearing it once\n- Works for customers who speak English, Afrikaans, isiZulu, isiXhosa\n or Sesotho\n- Not almost the same as a big South African brand\n- Short enough to fit on a vehicle door and an Instagram handle\n- Not tied to one town, unless I said I only serve that town\n- Not tied to one product, unless I said I only sell that product\n- Not following the naming pattern most of my competitors use\n\nGive me a mix: at least one using my own name, at least one built on the\ndistinctive detail from my brief, and at least one plain and descriptive.\n\nFor each name give me:\n- The name\n- What it means or where it comes from\n- One risk or weakness of this name\n- Any word in any South African language that sounds similar to it, so\n I can check the meaning with a speaker of that language. Do not tell\n me it is safe. List what sounds close and let me check.\n- A suggested.co.za domain\n\nNumber them 1 to 5. Then tell me which is weakest and why. Then stop.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Before you commit to a name"
+        }
+      ],
+      "depth": 3,
+      "hash": "c8bd7169c14c4852",
+      "id": "before-you-commit-to-a-name",
+      "kind": "heading",
+      "text": "Before you commit to a name"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The AI cannot do any of these. You must."
+        }
+      ],
+      "hash": "02a30f3c308f6434",
+      "id": "before-you-commit-to-a-name.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "b2f1b06c95126647",
+      "id": "before-you-commit-to-a-name.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Search the name on "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.bizportal.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.bizportal.gov.za",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " or the CIPC website."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Search the CIPC trade marks database for the same name in your class of goods or services."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Check "
+          },
+          {
+            "t": "code",
+            "v": "yourname.co.za"
+          },
+          {
+            "t": "text",
+            "v": " at two or three South African domain sellers."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Search the name on Instagram, Facebook, TikTok, and Google."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Say the name to a native speaker of each language your customers use, and ask what it sounds like."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If the domain and the handles are taken, pick another. Do this before you print anything."
+        }
+      ],
+      "hash": "03f7fd90b8e11dff",
+      "id": "before-you-commit-to-a-name.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you have, or will have, a Pty Ltd"
+        }
+      ],
+      "depth": 3,
+      "hash": "54f296a5e7c61a84",
+      "id": "if-you-have-or-will-have-a-pty-ltd",
+      "kind": "heading",
+      "text": "If you have, or will have, a Pty Ltd"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Separate two decisions: what the company is registered as, and what you trade as."
+        }
+      ],
+      "hash": "6bf248054ab08a2e",
+      "id": "if-you-have-or-will-have-a-pty-ltd.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Register the company under a neutral name, or under its registration number, and put the specific brand in the trading name. \"Mokoena Holdings (Pty) Ltd\" trading as \"Mokoena Motors\" can add \"Mokoena Solar\" next year without a name change. \"Mokoena Motors (Pty) Ltd\" cannot, without friction on every document. Full detail in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Adding new lines of business"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "a4a82e64719666fa",
+      "id": "if-you-have-or-will-have-a-pty-ltd.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Whichever way you go, every quote, invoice and contract must still carry the full registered name and registration number. That is a Companies Act requirement, not a style choice."
+        }
+      ],
+      "hash": "96ceb0f81fc345f7",
+      "id": "if-you-have-or-will-have-a-pty-ltd.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "if-you-have-or-will-have-a-pty-ltd.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 4: the tagline"
+        }
+      ],
+      "depth": 2,
+      "hash": "c94daf38bc245c81",
+      "id": "prompt-4-the-tagline",
+      "kind": "heading",
+      "text": "Prompt 4: the tagline"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Only do this if you need one. A tagline earns its place when your name does not explain what you do. \"Sibanye Plumbing\" needs no tagline. \"Kumba\" does."
+        }
+      ],
+      "hash": "b271f587cde2ab14",
+      "id": "prompt-4-the-tagline.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "6428eb786cce2299",
+      "id": "prompt-4-the-tagline.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE YOUR BRAND BRIEF"
+        },
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "NAME"
+        }
+      ],
+      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF]\n\nMy business name is: [NAME]\n\nWrite 5 taglines.\n\nRules:\n- Maximum 6 words\n- Says what I do or what the customer gets\n- No rhyming, no puns\n- Banned words: excellence, quality, trusted, passion, empowering,\n elevating, unlocking, journey, solutions, partner\n- No three-word slogans with full stops\n- A stranger should understand it without knowing my business\n- It must stop working if a competitor swaps their name in\n\nFor each, tell me in one line why it works, and what it promises that I\nwould have to deliver.\n\nNumber them 1 to 5. Then tell me which is weakest and why. Then stop.",
+      "variant": "prompt"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prompt-4-the-tagline.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 5: logo direction"
+        }
+      ],
+      "depth": 2,
+      "hash": "1e26ec2d157e8c68",
+      "id": "prompt-5-logo-direction",
+      "kind": "heading",
+      "text": "Prompt 5: logo direction"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do not ask for an image yet. Choose a direction in words first."
+        }
+      ],
+      "hash": "39156b8ed443fa42",
+      "id": "prompt-5-logo-direction.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "8e7a2185543d4279",
+      "id": "prompt-5-logo-direction.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE YOUR BRAND BRIEF"
+        },
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "NAME"
+        }
+      ],
+      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF]\n\nMy business name is: [NAME]\n\nDescribe 5 different logo directions. Do not generate an image.\nDescribe them in words, precisely enough that a designer could draw\neach one without asking me a question.\n\nFor each direction tell me:\n- The idea in one sentence\n- Type only, or type plus a mark\n- If type only: the ONE deliberate modification that makes it ownable\n (a changed letter, a joined pair of letters, one letter in colour, a\n device replacing a letter, unusual spacing). \"Just the name in a nice\n font\" is not a direction.\n- If a mark: exactly what real object or shape it shows, and how it\n relates to the distinctive detail in my brief\n- A suggested typeface from Google Fonts, and why\n- Why it suits my customers\n- Where it would look weak (small on a phone, on a vehicle, in one\n colour, embroidered on a shirt)\n\nRules:\n- At least two directions must be type only\n- At least one must use the distinctive detail from my brief\n- No swooshes, leaves, infinity loops, hexagons, globes, or abstract\n human figures made of circles and arcs\n- No gradients, no 3D, no shadows, no glows\n- Nothing that would make equal sense for a completely different industry\n- Do not suggest Montserrat, Poppins, Raleway or Lato\n\nThis logo must work:\n- Very small, as a profile picture, about thumbnail size\n- In one colour only, for a stamp or embroidery\n- Printed in black and white on a cheap invoice\n- Large on a vehicle, readable from across a road\n\nNumber them 1 to 5. Then tell me which is weakest and why. Then stop.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Advice most people ignore: for a one-person business, a well-set name in a good typeface with one deliberate detail beats a clever picture. It costs nothing, works everywhere, and cannot be produced by the thousand."
+        }
+      ],
+      "hash": "5d71a43860442391",
+      "id": "prompt-5-logo-direction.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prompt-5-logo-direction.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 6: make the logo"
+        }
+      ],
+      "depth": 2,
+      "hash": "dbdc50023c64f863",
+      "id": "prompt-6-make-the-logo",
+      "kind": "heading",
+      "text": "Prompt 6: make the logo"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Which path you take depends on the direction you chose. Read both before you start."
+        }
+      ],
+      "hash": "72c6b8cbd8e675ca",
+      "id": "prompt-6-make-the-logo.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Path A: type only (the recommended path)"
+        }
+      ],
+      "depth": 3,
+      "hash": "f8198aea1e64a14c",
+      "id": "path-a-type-only-the-recommended-path",
+      "kind": "heading",
+      "text": "Path A: type only (the recommended path)"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do not use an image generator for this. Image AI is bad at letters, produces blurry raster files, and gives you a font you cannot identify or reuse. Set the name yourself in a real font."
+        }
+      ],
+      "hash": "7ef2b21f5e6bc54f",
+      "id": "path-a-type-only-the-recommended-path.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "48fe260757825f52",
+      "id": "path-a-type-only-the-recommended-path.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE THE DIRECTION"
+        },
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "NAME"
+        }
+      ],
+      "text": "I chose this type-only logo direction:\n\n[PASTE THE DIRECTION]\n\nMy business name is: [NAME]\n\nGive me step-by-step instructions to build this in Inkscape (free), for\nsomeone who has never used it. Cover:\n- Which Google Font to download and install\n- Typing the name and setting size and letter spacing\n- Converting the text to paths so the font is no longer needed\n- Making the one deliberate modification from the direction\n- Exporting an SVG, a PNG with transparent background at 2000px wide,\n and a one-colour black version\n\nThen give me the same instructions for Canva's free plan, and tell me\nhonestly what Canva cannot do that Inkscape can.\n\nKeep the language simple. Number the steps.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Inkscape gives you a real vector file, which is what every printer and sign maker will ask for. Canva is quicker but its free plan exports raster, so you will still need a vector later."
+        }
+      ],
+      "hash": "45046d07a9eb0d14",
+      "id": "path-a-type-only-the-recommended-path.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Path B: a pictorial mark"
+        }
+      ],
+      "depth": 3,
+      "hash": "ea57415610d8b725",
+      "id": "path-b-a-pictorial-mark",
+      "kind": "heading",
+      "text": "Path B: a pictorial mark"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Use an image generator for the mark only. Never for the text. You will add the name yourself in Path A afterwards."
+        }
+      ],
+      "hash": "d97345519414a52d",
+      "id": "path-b-a-pictorial-mark.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "0919fba18b606947",
+      "id": "path-b-a-pictorial-mark.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE THE DIRECTION"
+        }
+      ],
+      "text": "I chose this logo direction, which includes a mark:\n\n[PASTE THE DIRECTION]\n\nWrite 5 prompts I can paste into an AI image generator to produce the\nMARK ONLY. No text, no letters, no words anywhere in the image.\n\nEach prompt must ask for:\n- A flat, single-colour black symbol on a plain white background\n- Simple geometric shapes, no fine detail, no texture\n- Centred, with empty space around it\n- No gradient, no shadow, no 3D, no glow, no bevel, no reflection\n- Vector-style, like a stencil or a stamp\n\nVary the 5 prompts by construction (geometric, hand-cut, line-only,\nsolid silhouette, negative space). Keep the same object throughout.\n\nThen tell me:\n- Which current image tools handle logo-style marks best, and what\n syntax each one prefers\n- What image tools usually get wrong with this kind of mark\n- The exact things to check in the output before I use it",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Black-on-white, no text, is deliberate. It forces the tool to produce a clean shape you can trace. Colour and type come later, from your own hands."
+        }
+      ],
+      "hash": "bb99203ac200f9ac",
+      "id": "path-b-a-pictorial-mark.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "After the image tool"
+        }
+      ],
+      "depth": 3,
+      "hash": "5077185d3eab3a19",
+      "id": "after-the-image-tool",
+      "kind": "heading",
+      "text": "After the image tool"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "An image generator gives you a picture, not a logo. Three things must happen before you use it anywhere."
+        }
+      ],
+      "hash": "2e2f1da6fc649b48",
+      "id": "after-the-image-tool.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Check it is not someone else's mark."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Do a reverse image search on the result. Image tools reproduce marks they were trained on more often than people expect."
+        }
+      ],
+      "hash": "8a4232b3be11af3e",
+      "id": "after-the-image-tool.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Trace it to vector."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Open the image in Inkscape and use Path > Trace Bitmap, then clean up the result. Or pay a designer to redraw it. Get two or three quotes; a single redraw is usually a few hundred to low thousands of rand. Do this before you order signage, not after."
+        }
+      ],
+      "hash": "23abfb8687fce3fe",
+      "id": "after-the-image-tool.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Combine it with your name, set in a real font."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Follow Path A for the type, then place the mark beside or above it. That combined file is your logo. Save both lockups; see "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Brand applications and polish"
+            }
+          ],
+          "doc": "branding/brand-applications-and-polish",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "ad53cea15fcd0a2f",
+      "id": "after-the-image-tool.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Free tools:"
+        }
+      ],
+      "hash": "8147eac8a6b1cca7",
+      "id": "after-the-image-tool.5",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "50aeb8a5b96d606b",
+      "id": "after-the-image-tool.6",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Inkscape (free, desktop) — real vector files, exports SVG. This is the one that matters."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Canva (free plan) — fast and easy, but everyone uses the same templates and the free plan does not export vector"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Photopea (free, browser) — edits PSD files without Photoshop"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "GIMP (free, desktop) — photo editing"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "after-the-image-tool.7",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 7: colours and type"
+        }
+      ],
+      "depth": 2,
+      "hash": "e4ac3e95ade9d509",
+      "id": "prompt-7-colours-and-type",
+      "kind": "heading",
+      "text": "Prompt 7: colours and type"
+    },
+    {
+      "hash": "894ec42f7b1aa149",
+      "id": "prompt-7-colours-and-type.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE YOUR BRAND BRIEF"
+        },
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "NAME"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE IT"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE FROM YOUR OWN SEARCH"
+        }
+      ],
+      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF]\n\nMy business name is: [NAME]\nMy logo direction is: [PASTE IT]\nMy competitors mostly use these colours: [PASTE FROM YOUR OWN SEARCH]\n\nGive me 5 complete colour and type systems.\n\nFor each one give me:\n- One main colour, with the hex code\n- One supporting colour, with the hex code\n- One accent colour for buttons and highlights, with the hex code\n- A dark colour for text and a light colour for backgrounds\n- One heading typeface and one body typeface, both free on Google Fonts\n- Suggested sizes for heading, subheading, body and small print\n- One sentence on why this suits my customers\n- A warning if any colour prints badly, fades in sunlight, or is hard to\n read\n\nRules:\n- Do not suggest Montserrat, Poppins, Raleway or Lato.\n- At least two systems must avoid the colours my competitors use.\n- Avoid colours strongly linked to South African political parties,\n banks or mobile networks. Tell me if one has that problem.\n- No gradients.\n- For each text-on-background pair, state which pairs you INTEND to be\n readable. Do not claim to have calculated contrast. I will check them.\n\nNumber them 1 to 5. Then tell me which is weakest and why. Then stop.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Then check contrast yourself. Go to "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "webaim.org/resources/contrastchecker"
+            }
+          ],
+          "external": true,
+          "href": "https://webaim.org/resources/contrastchecker",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", paste each text colour and background colour, and confirm it passes \"WCAG AA\" for normal text. Any pair that fails, drop or darken. This takes two minutes and the AI cannot do it for you."
+        }
+      ],
+      "hash": "19f7bbcfb1becd37",
+      "id": "prompt-7-colours-and-type.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Download the fonts free at "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "fonts.google.com"
+            }
+          ],
+          "external": true,
+          "href": "https://fonts.google.com/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " and install them, so your documents match your brand."
+        }
+      ],
+      "hash": "eb7ea114f3fcbe8e",
+      "id": "prompt-7-colours-and-type.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prompt-7-colours-and-type.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 8: how my business looks in photographs"
+        }
+      ],
+      "depth": 2,
+      "hash": "0f75497b0358f10c",
+      "id": "prompt-8-how-my-business-looks-in-photographs",
+      "kind": "heading",
+      "text": "Prompt 8: how my business looks in photographs"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most small businesses skip this, then wonder why their social media looks messy. Photographs are most of what a customer actually sees."
+        }
+      ],
+      "hash": "b3e3e87691139683",
+      "id": "prompt-8-how-my-business-looks-in-photographs.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "2e33d27da995723e",
+      "id": "prompt-8-how-my-business-looks-in-photographs.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE YOUR BRAND BRIEF"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE HEX CODES"
+        }
+      ],
+      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF]\n\nMy colours are: [PASTE HEX CODES]\n\nWrite 5 different photography directions for my business.\n\nFor each one describe:\n- What the photos show (the work, the product, the process, me, the\n customer)\n- Lighting (I only have a phone and daylight)\n- Background and setting\n- What is always in frame, and what is never in frame\n- One rule that makes every photo recognisably mine\n\nRules:\n- I shoot on a phone, alone, while working. Nothing that needs a second\n person, a studio, or equipment I do not have.\n- No stock photos and no AI-generated people.\n- At least one direction must be repeatable in under 2 minutes per photo.\n\nThen give me a short shot list of the 8 photos I should take first.\n\nNumber the directions 1 to 5. Then tell me which is weakest and why.\nThen stop.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "That \"one rule\" is what creates a recognisable feed. It can be as simple as: always shot on the same grey offcut of board, always in morning light, always with my hands in frame."
+        }
+      ],
+      "hash": "e2ea685f2037bd34",
+      "id": "prompt-8-how-my-business-looks-in-photographs.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prompt-8-how-my-business-looks-in-photographs.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 9: how my business speaks"
+        }
+      ],
+      "depth": 2,
+      "hash": "52f0e0e62fb1a4de",
+      "id": "prompt-9-how-my-business-speaks",
+      "kind": "heading",
+      "text": "Prompt 9: how my business speaks"
+    },
+    {
+      "hash": "71f3f5283c5cdc10",
+      "id": "prompt-9-how-my-business-speaks.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE YOUR BRAND BRIEF"
+        },
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "name"
+        }
+      ],
+      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF]\n\nWrite 5 different versions of a brand voice guide for my business.\n\nEach version must include:\n- Three words that describe how my business sounds\n- Do say: 5 example phrases\n- Do not say: 5 example phrases\n- The same message written in that voice, three times, for:\n a) a WhatsApp message to a customer\n b) a quote email\n c) a social media post\n- How the voice changes when a customer is angry\n- How the voice says no to a job I do not want\n\nThe message to use for a), b) and c): I am delayed by two days on\ntheir order.\n\nRules:\n- Simple language. My customers are not all first-language English\n speakers.\n- No corporate filler: \"we strive to\", \"at [name], we believe\",\n \"your satisfaction is our priority\".\n- It must sound like a person, not a company.\n\nNumber them 1 to 5. Then tell me which is weakest and why. Then stop.",
+      "variant": "prompt"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prompt-9-how-my-business-speaks.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 10: the about paragraph"
+        }
+      ],
+      "depth": 2,
+      "hash": "961d84405d6a925f",
+      "id": "prompt-10-the-about-paragraph",
+      "kind": "heading",
+      "text": "Prompt 10: the about paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Every business needs one short paragraph about itself, for Google Business Profile, WhatsApp Business, a website, and a market stall sign. Write it once."
+        }
+      ],
+      "hash": "662bbe4c8db18917",
+      "id": "prompt-10-the-about-paragraph.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "add204cbce64d900",
+      "id": "prompt-10-the-about-paragraph.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE YOUR BRAND BRIEF"
+        },
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "NAME"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE THE THREE WORDS AND THE DO / DO NOT LISTS"
+        }
+      ],
+      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF]\n\nMy business name is: [NAME]\nMy voice is: [PASTE THE THREE WORDS AND THE DO / DO NOT LISTS]\n\nWrite 5 versions of a short \"about\" paragraph for my business.\n\nRules:\n- Maximum 60 words\n- First person (\"I\", not \"we\", because it is only me)\n- Says what I do, who for, where, and the one thing that makes me\n different, stated as a fact\n- Includes the distinctive detail from my brief\n- No banned words: passionate, trusted, quality, solutions, journey\n- Ends with what to do next (message, call, visit)\n\nNumber them 1 to 5. Then tell me which is weakest and why. Then stop.",
+      "variant": "prompt"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prompt-10-the-about-paragraph.3",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 11: put it all together"
+        }
+      ],
+      "depth": 2,
+      "hash": "1d642686b481f09c",
+      "id": "prompt-11-put-it-all-together",
+      "kind": "heading",
+      "text": "Prompt 11: put it all together"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Run this once everything above is chosen."
+        }
+      ],
+      "hash": "2f52c7ffdbbeac56",
+      "id": "prompt-11-put-it-all-together.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "f7e96131e4e23bb9",
+      "id": "prompt-11-put-it-all-together.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "NAME"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "PASTE or write \"none\""
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "PASTE hex codes, after I checked contrast"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "PASTE typefaces and sizes"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PASTE"
+        },
+        {
+          "style": "choice",
+          "t": "placeholder",
+          "v": "PASTE the three words and the do / do not lists"
+        }
+      ],
+      "text": "Here is everything I chose for my brand:\n\nBusiness name: [NAME]\nOne-sentence description: [PASTE]\nTagline: [PASTE or write \"none\"]\nAbout paragraph: [PASTE]\nLogo direction: [PASTE]\nColours: [PASTE hex codes, after I checked contrast]\nType: [PASTE typefaces and sizes]\nPhotography direction: [PASTE]\nVoice: [PASTE the three words and the do / do not lists]\n\nWrite this up as a one-page brand guide I can send to any designer,\nprinter, sign maker or freelancer. Use exactly these headings, in this\norder:\n\n1. WHO WE ARE (the one-sentence description and about paragraph)\n2. NAME AND TAGLINE (with the registered company name if different)\n3. LOGO (the direction, clear space rule, minimum size, and the one-colour\n and reversed versions that exist)\n4. COLOURS (hex codes, and a line saying CMYK values to be confirmed with\n the printer)\n5. TYPE (heading and body typefaces, sizes)\n6. PHOTOGRAPHY (the direction and the one rule)\n7. VOICE (three words, do say, do not say)\n8. RULES FOR ANYONE WORKING ON THIS BRAND (5 rules a printer or sign\n maker can follow without asking me a question)\n\nUse simple English. Keep it to one page.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Save it as a PDF. Send it to anyone who makes anything for you. It stops you paying twice for work that comes back wrong."
+        }
+      ],
+      "hash": "3e5225e016445f67",
+      "id": "prompt-11-put-it-all-together.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prompt-11-put-it-all-together.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A worked example"
+        }
+      ],
+      "depth": 2,
+      "hash": "bc4939edf14eeb25",
+      "id": "a-worked-example",
+      "kind": "heading",
+      "text": "A worked example"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This shows what good output looks like, so you know the standard to hold the AI to. The business is invented."
+        }
+      ],
+      "hash": "2367c7c607b6d61c",
+      "id": "a-worked-example.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Prompt 0 answers"
+        }
+      ],
+      "depth": 3,
+      "hash": "b80dc1dfdeeadf79",
+      "id": "prompt-0-answers",
+      "kind": "heading",
+      "text": "Prompt 0 answers"
+    },
+    {
+      "hash": "783ee184d05d2a47",
+      "id": "prompt-0-answers.1",
+      "kind": "code",
+      "text": "1. What I sell: used bakkies and small vans, 5 to 12 years old, under\n R250,000, mostly to tradespeople.\n2. Who buys it: men and women 28 to 55 who run a trade or a small delivery\n business, buying a work vehicle, not a family car. They care about\n whether it will run, and whether they can trust me.\n3. Who it is NOT for: people wanting a cheap car with no questions asked.\n4. Where I sell it: a small yard on the industrial side of Paarl, plus\n Facebook Marketplace.\n5. What makes me different: I was a diesel mechanic for 14 years. I\n inspect every vehicle myself and write down every fault before I\n list it.\n6. Price level: middle.\n7. Languages: Afrikaans and English, some isiXhosa.\n8. Feel: like buying from a mechanic you already know.\n9. Admire: a local tyre shop where the owner is always on the floor.\n10. Do not want: anything that looks like a big-city dealership, no\n chrome, no \"luxury\".\n11. Physical detail: I keep a clipboard on every vehicle with the fault\n list, and the customer takes the clipboard with them.",
+      "variant": "snippet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What a good brief looks like"
+        }
+      ],
+      "depth": 3,
+      "hash": "5c489de1a607f302",
+      "id": "what-a-good-brief-looks-like",
+      "kind": "heading",
+      "text": "What a good brief looks like"
+    },
+    {
+      "hash": "dee9de048f1ce728",
+      "id": "what-a-good-brief-looks-like.1",
+      "kind": "code",
+      "text": "OFFER: Used bakkies and small vans, 5 to 12 years old, under R250,000,\ninspected and fault-listed before sale.\nAUDIENCE: Tradespeople and small delivery operators in the Paarl area\nbuying a work vehicle. Not for buyers who want cheap and no questions.\nDIFFERENCE: The owner is a diesel mechanic with 14 years' experience who\ninspects every vehicle personally and gives the buyer the written fault\nlist.\nTONE: Straight, practical, unhurried.\nDISTINCTIVE DETAIL: The clipboard fault list that goes with the vehicle.\nCONSTRAINTS: Afrikaans and English first. Middle price. No dealership\ngloss, no chrome, no luxury language.",
+      "variant": "snippet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What good name options look like"
+        }
+      ],
+      "depth": 3,
+      "hash": "adaf4518f21a05b7",
+      "id": "what-good-name-options-look-like",
+      "kind": "heading",
+      "text": "What good name options look like"
+    },
+    {
+      "hash": "18198fb82b166b16",
+      "id": "what-good-name-options-look-like.1",
+      "kind": "code",
+      "text": "1. Van Wyk Bakkies\n From the owner's surname plus what he sells. Plain, honest, local.\n Risk: common surname, so the domain may be taken. Sounds like: nothing\n problematic known, check with an isiXhosa speaker.\n Domain: vanwykbakkies.co.za\n\n2. Clipboard Motors\n From the fault list the buyer takes home. Says \"we write it down\".\n Risk: needs one line of explanation the first time. Sounds like:\n nothing close in Afrikaans; check \"clipboard\" is understood by isiXhosa\n speakers. Domain: clipboardmotors.co.za\n\n3. Fault List Bakkies\n Blunt. Turns the industry's weakness into the selling point.\n Risk: \"fault\" may read as negative to some buyers. Sounds like: \"fout\"\n in Afrikaans means mistake, which reinforces the meaning rather than\n undermining it. Domain: faultlist.co.za\n\n4. Werksbakkie\n Afrikaans for \"work bakkie\". One word, easy on a vehicle door.\n Risk: less clear to English-first buyers. Sounds like: nothing\n problematic in English; check isiXhosa. Domain: werksbakkie.co.za\n\n5. Paarl Diesel Yard\n Place plus trade. Very searchable.\n Risk: tied to Paarl, which the brief allows. Generic pattern, which the\n competitor scan warned against. Domain: paarldieselyard.co.za\n\nWeakest: option 5. It follows the exact naming pattern most competitors\nuse, and \"Diesel Yard\" could belong to any workshop. It would survive a\ncompetitor swapping their name in.",
+      "variant": "snippet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Notice what makes this good. Every name traces back to something in the brief. Each has a stated risk. The language check lists what sounds similar rather than claiming clearance. The AI names its own weakest option and gives the reason. Option 2 came directly from question 11, the physical detail, and it is the one a template would never produce."
+        }
+      ],
+      "hash": "531976b7ec2ea4e6",
+      "id": "what-good-name-options-look-like.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If your output does not look like this, use the de-generic prompt and run again."
+        }
+      ],
+      "hash": "851b6067e52eda9a",
+      "id": "what-good-name-options-look-like.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "what-good-name-options-look-like.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Next"
+        }
+      ],
+      "depth": 2,
+      "hash": "ed869518d38175af",
+      "id": "next",
+      "kind": "heading",
+      "text": "Next"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Go to "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Brand applications and polish"
+            }
+          ],
+          "doc": "branding/brand-applications-and-polish",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". That covers the files you actually need, everywhere the brand gets used, and how to check whether it looks professional before you spend money."
+        }
+      ],
+      "hash": "c785f3fe7de6fafc",
+      "id": "next.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Do not redesign the brand for a year. Customers recognise you through repetition. Consistency is worth more than perfection."
+        }
+      ],
+      "hash": "8f3fc3ce6304deed",
+      "id": "next.2",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "a735c1c11fb15ec3",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Branding prompts",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "read-this-before-you-start-why-most-ai-branding-looks-the-same",
+      "text": "Read this before you start: why most AI branding looks the same"
+    },
+    {
+      "depth": 3,
+      "id": "the-visual-tells",
+      "text": "The visual tells"
+    },
+    {
+      "depth": 3,
+      "id": "the-language-tells",
+      "text": "The language tells"
+    },
+    {
+      "depth": 3,
+      "id": "what-to-do-instead",
+      "text": "What to do instead"
+    },
+    {
+      "depth": 3,
+      "id": "the-test-that-matters-most",
+      "text": "The test that matters most"
+    },
+    {
+      "depth": 2,
+      "id": "what-the-ai-cannot-do-and-what-you-must-do-yourself",
+      "text": "What the AI cannot do, and what you must do yourself"
+    },
+    {
+      "depth": 3,
+      "id": "ownership-of-what-the-ai-makes",
+      "text": "Ownership of what the AI makes"
+    },
+    {
+      "depth": 3,
+      "id": "which-ai-tool",
+      "text": "Which AI tool"
+    },
+    {
+      "depth": 2,
+      "id": "how-the-loop-works",
+      "text": "How the loop works"
+    },
+    {
+      "depth": 3,
+      "id": "the-refine-prompt-use-after-every-step",
+      "text": "The refine prompt (use after every step)"
+    },
+    {
+      "depth": 3,
+      "id": "the-de-generic-prompt-use-whenever-an-answer-feels-bland",
+      "text": "The de-generic prompt (use whenever an answer feels bland)"
+    },
+    {
+      "depth": 3,
+      "id": "if-the-ai-runs-ahead",
+      "text": "If the AI runs ahead"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-0-the-business-brief",
+      "text": "Prompt 0: the business brief"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-1-what-my-business-actually-is",
+      "text": "Prompt 1: what my business actually is"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-2-what-my-competitors-already-look-like",
+      "text": "Prompt 2: what my competitors already look like"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-3-the-name",
+      "text": "Prompt 3: the name"
+    },
+    {
+      "depth": 3,
+      "id": "before-you-commit-to-a-name",
+      "text": "Before you commit to a name"
+    },
+    {
+      "depth": 3,
+      "id": "if-you-have-or-will-have-a-pty-ltd",
+      "text": "If you have, or will have, a Pty Ltd"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-4-the-tagline",
+      "text": "Prompt 4: the tagline"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-5-logo-direction",
+      "text": "Prompt 5: logo direction"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-6-make-the-logo",
+      "text": "Prompt 6: make the logo"
+    },
+    {
+      "depth": 3,
+      "id": "path-a-type-only-the-recommended-path",
+      "text": "Path A: type only (the recommended path)"
+    },
+    {
+      "depth": 3,
+      "id": "path-b-a-pictorial-mark",
+      "text": "Path B: a pictorial mark"
+    },
+    {
+      "depth": 3,
+      "id": "after-the-image-tool",
+      "text": "After the image tool"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-7-colours-and-type",
+      "text": "Prompt 7: colours and type"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-8-how-my-business-looks-in-photographs",
+      "text": "Prompt 8: how my business looks in photographs"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-9-how-my-business-speaks",
+      "text": "Prompt 9: how my business speaks"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-10-the-about-paragraph",
+      "text": "Prompt 10: the about paragraph"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-11-put-it-all-together",
+      "text": "Prompt 11: put it all together"
+    },
+    {
+      "depth": 2,
+      "id": "a-worked-example",
+      "text": "A worked example"
+    },
+    {
+      "depth": 3,
+      "id": "prompt-0-answers",
+      "text": "Prompt 0 answers"
+    },
+    {
+      "depth": 3,
+      "id": "what-a-good-brief-looks-like",
+      "text": "What a good brief looks like"
+    },
+    {
+      "depth": 3,
+      "id": "what-good-name-options-look-like",
+      "text": "What good name options look like"
+    },
+    {
+      "depth": 2,
+      "id": "next",
+      "text": "Next"
+    }
+  ],
+  "id": "branding/branding-prompts",
+  "kind": "guide",
+  "lang": "en",
+  "order": 2,
+  "readingTime": 27,
+  "related": [
+    "branding/brand-applications-and-polish",
+    "branding/mood-and-materials",
+    "branding/already-have-your-name",
+    "core/adding-new-lines"
+  ],
+  "route": "branding/branding-prompts/",
+  "section": "branding",
+  "slug": "branding-prompts",
+  "sourcePath": "02 Branding and marketing/01-branding-prompts.md",
+  "sources": {
+    "acts": [
+      "companies-act-71-of-2008"
+    ],
+    "entries": [
+      "bizportal-cipc--company-registration",
+      "webaim-contrast-checker",
+      "google-fonts",
+      "inkscape",
+      "cipc-trade-mark-search"
+    ]
+  },
+  "summary": "Eleven AI prompts, in order, for your brief, name, tagline, logo, colours, type, photographs, voice and about text. Each prompt gives you 5 options to refine.",
+  "tags": [
+    "prompts"
+  ],
+  "terms": [
+    {
+      "meaning": "A short written summary of what your business is and who it is for. Everything else is built on it.",
+      "term": "Brief"
+    },
+    {
+      "meaning": "The one sentence that says who you help and why you, not a competitor.",
+      "term": "Positioning"
+    },
+    {
+      "meaning": "A short line under the name that says what you do. Optional.",
+      "term": "Tagline"
+    },
+    {
+      "meaning": "A logo that is just the name, well set in a typeface, with no picture.",
+      "term": "Wordmark"
+    },
+    {
+      "meaning": "The picture part of a logo, if there is one.",
+      "term": "Mark"
+    },
+    {
+      "meaning": "A fixed arrangement of the mark and the name together.",
+      "term": "Lockup"
+    },
+    {
+      "meaning": "The style of lettering. Google Fonts are free to use in business.",
+      "term": "Typeface / font"
+    },
+    {
+      "meaning": "A six-character code like #1A4D2E that names an exact colour.",
+      "term": "Hex code"
+    },
+    {
+      "meaning": "How easily text can be read against its background. Check it with a free tool.",
+      "term": "Contrast"
+    },
+    {
+      "meaning": "A logo file that can be made any size without going blurry. SVG is a vector format.",
+      "term": "Vector"
+    },
+    {
+      "meaning": "A picture made of pixels, like a PNG. Goes blurry when enlarged. Image generators make these.",
+      "term": "Raster"
+    },
+    {
+      "meaning": "The short prompt you paste after each round to get 5 better options.",
+      "term": "Refine prompt"
+    }
+  ],
+  "title": "Branding prompts",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

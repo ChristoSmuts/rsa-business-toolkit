@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "inference": {
+    "sections": ["core", "paperwork", "business-types", "lookup"],
+    "kinds": ["guide", "checklist"],
+    "rules": [
+      {
+        "pattern": "^If you (?:are|trade as) a sole proprietor\\b",
+        "appliesTo": {
+          "entity": "sole-prop"
+        }
+      },
+      {
+        "pattern": "\\bregistered company\\b|\\btrade as a company\\b|\\bPty Ltd\\b|^Part A2\\b",
+        "appliesTo": {
+          "entity": "pty"
+        }
+      },
+      {
+        "pattern": "^For a vehicle dealer\\b",
+        "appliesTo": {
+          "businessTypes": ["vehicle-dealer"]
+        }
+      },
+      {
+        "docs": ["core/what-you-need-to-sell-things"],
+        "pattern": "^If you sell food\\b",
+        "appliesTo": {
+          "businessTypes": ["food"]
+        }
+      },
+      {
+        "docs": ["core/what-you-need-to-sell-things"],
+        "pattern": "^If you sell beauty\\b",
+        "appliesTo": {
+          "businessTypes": ["beauty"]
+        }
+      },
+      {
+        "docs": ["core/what-you-need-to-sell-things"],
+        "pattern": "^If you sell online\\b|^If you import\\b",
+        "appliesTo": {
+          "businessTypes": ["retail-online"]
+        }
+      },
+      {
+        "docs": ["core/what-you-need-to-sell-things"],
+        "pattern": "^If you sell second-hand goods\\b",
+        "appliesTo": {
+          "businessTypes": ["retail-online", "vehicle-dealer"]
+        }
+      },
+      {
+        "docs": ["core/what-you-need-to-sell-things"],
+        "pattern": "^If you provide professional or regulated services\\b",
+        "appliesTo": {
+          "businessTypes": ["professional-creative", "services-trades"]
+        }
+      }
+    ]
+  },
+  "headings": {
+    "core/tax-and-sars#what-sars-wants-from-a-sole-proprietor": {
+      "entity": "sole-prop"
+    },
+    "core/tax-and-sars#provisional-tax": {},
+    "core/tax-and-sars#what-sars-wants-from-a-company": {
+      "entity": "pty"
+    },
+    "core/tax-and-sars#route-4-small-business-corporation-rates-companies-only": {
+      "entity": "pty"
+    },
+    "core/you-are-the-business#sole-proprietor-you-have-nothing": {
+      "entity": "sole-prop"
+    },
+    "core/you-are-the-business#sole-proprietor": {
+      "entity": "sole-prop"
+    }
+  },
+  "taskPrefixes": [
+    {
+      "pattern": "^If a company:",
+      "appliesTo": {
+        "entity": "pty"
+      }
+    },
+    {
+      "pattern": "^If I have a company\\b[^:]*:",
+      "appliesTo": {
+        "entity": "pty"
+      }
+    },
+    {
+      "pattern": "^If working from home:",
+      "appliesTo": {
+        "tags": ["home"]
+      }
+    },
+    {
+      "pattern": "^For a vehicle:",
+      "appliesTo": {
+        "businessTypes": ["vehicle-dealer"]
+      }
+    },
+    {
+      "pattern": "^If planning to add lines later:",
+      "appliesTo": {
+        "tags": ["adding-lines"]
+      }
+    },
+    {
+      "pattern": "^If you sell used goods,",
+      "appliesTo": {
+        "tags": ["second-hand"]
+      }
+    },
+    {
+      "pattern": "^If you import,",
+      "appliesTo": {
+        "tags": ["import"]
+      }
+    }
+  ],
+  "tasks": {},
+  "tableRows": [
+    {
+      "docs": ["lookup/checklist"],
+      "headings": ["part-c-recurring-calendar"],
+      "pattern": "\\bif registered\\b",
+      "appliesTo": {
+        "tags": ["vat-registered"]
+      },
+      "reason": "The row says \"if registered\": VAT returns are filed only by VAT vendors."
+    },
+    {
+      "docs": ["lookup/checklist"],
+      "headings": ["part-c-recurring-calendar"],
+      "pattern": "\\bif you run payroll\\b|\\bif an employer\\b",
+      "appliesTo": {
+        "tags": ["employer"]
+      },
+      "reason": "The rows say \"if you run payroll\" or \"if an employer\": EMP201 and EMP501 are employer returns."
+    },
+    {
+      "docs": ["lookup/checklist"],
+      "headings": ["part-c-recurring-calendar"],
+      "pattern": "\\bif (?:you have )?a company\\b|\\bcompany tax return\\b",
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "reason": "The rows say \"if you have a company\" or \"company tax return\": the CIPC annual return and the ITR14 apply to companies only."
+    },
+    {
+      "docs": ["lookup/checklist"],
+      "headings": ["part-c-recurring-calendar"],
+      "pattern": "\\bdirector's loan account\\b",
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "reason": "Only a company has a director's loan account; 01 Core/07-paying-yourself.md covers it as a company duty."
+    },
+    {
+      "docs": ["lookup/checklist"],
+      "headings": ["part-c-recurring-calendar"],
+      "pattern": "\\bbeneficial ownership declaration\\b",
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "reason": "Beneficial ownership filing with CIPC applies to companies; 01 Core/06-running-a-pty-ltd.md covers it as a company duty."
+    }
+  ]
+}

@@ -1,0 +1,1208 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Most one-person businesses should not put the vehicle in the business name. Read the tax section before you do the paperwork."
+        }
+      ],
+      "hash": "faec0a62e3588755",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "2f192c81819ceefc",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The national computer system that records every vehicle and its owner."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "eNaTIS"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The certificate that lets a company own vehicles. Like an ID number for the company on eNaTIS."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "BRNC"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The same idea, for a business that is not a company."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Traffic register number"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The one person allowed to do vehicle paperwork for the company."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Proxy"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The traffic department or licensing office."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Registering authority"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A perk from your company, like private use of a company car, that SARS taxes as income."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Fringe benefit"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Your written record of business kilometres. SARS will not allow a travel claim without it."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Logbook"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "If you are a sole proprietor"
+        }
+      ],
+      "depth": 2,
+      "hash": "ebf867f16e28447a",
+      "id": "if-you-are-a-sole-proprietor",
+      "kind": "heading",
+      "text": "If you are a sole proprietor"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You have two routes, and for most people the first one is correct."
+        }
+      ],
+      "hash": "76d853f12a8fbe4c",
+      "id": "if-you-are-a-sole-proprietor.1",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Route 1: register it against your own ID"
+        }
+      ],
+      "depth": 3,
+      "hash": "e07f511f8fe531bd",
+      "id": "route-1-register-it-against-your-own-id",
+      "kind": "heading",
+      "text": "Route 1: register it against your own ID"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "There is no separate business in law, so the vehicle is registered against your ID number. This is normal and it is not a problem to solve."
+        }
+      ],
+      "hash": "45b248bc5923f840",
+      "id": "route-1-register-it-against-your-own-id.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You still claim the business use of the vehicle against your tax. You do that with a logbook, not with the registration."
+        }
+      ],
+      "hash": "6704541dd95cc9a9",
+      "id": "route-1-register-it-against-your-own-id.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a single owner-operator with one vehicle, stop here. This is the right answer."
+        }
+      ],
+      "hash": "f3159cffa4a281bd",
+      "id": "route-1-register-it-against-your-own-id.3",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Route 2: apply for a traffic register number"
+        }
+      ],
+      "depth": 3,
+      "hash": "fc290aba179fdf00",
+      "id": "route-2-apply-for-a-traffic-register-number",
+      "kind": "heading",
+      "text": "Route 2: apply for a traffic register number"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A traffic register number lets a non-legal person appear on the vehicle record instead of only a personal ID."
+        }
+      ],
+      "hash": "705a3dd602abc0db",
+      "id": "route-2-apply-for-a-traffic-register-number.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you are an organisation that serves as a non-legal person, for example a partnership, a one-man business, a municipal, provincial or government authority, a church, congregation or welfare organisation, a recreational organisation, an educational organisation, a trust or a statutory body, you must apply for a traffic register number to register motor vehicles in South Africa."
+        }
+      ],
+      "hash": "85ec2de4b75aeb8f",
+      "id": "route-2-apply-for-a-traffic-register-number.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you trade under a business name but are not a registered company (for example a one-person business or a partnership), you can still get a special number from the traffic department so vehicles can be registered under that name."
+        }
+      ],
+      "hash": "d9513e85a376924b",
+      "id": "route-2-apply-for-a-traffic-register-number.3",
+      "kind": "callout",
+      "pairsWith": "route-2-apply-for-a-traffic-register-number.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Apply at your registering authority. Bring proof of address, ID photographs, and the prescribed fee."
+        }
+      ],
+      "hash": "f8cf3dfceb183c89",
+      "id": "route-2-apply-for-a-traffic-register-number.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is worth doing if you run several vehicles under a trading name, or if you deal in vehicles. It is unnecessary admin if you have one bakkie."
+        }
+      ],
+      "hash": "bbfd89b38bd10c9a",
+      "id": "route-2-apply-for-a-traffic-register-number.5",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "If you have a registered company"
+        }
+      ],
+      "depth": 2,
+      "hash": "1fdc7e3b2b0b68f0",
+      "id": "if-you-have-a-registered-company",
+      "kind": "heading",
+      "text": "If you have a registered company"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A company has no ID number, so the traffic system needs another way to identify it."
+        }
+      ],
+      "hash": "7a85777eb10cce98",
+      "id": "if-you-have-a-registered-company.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "eNaTIS, the national traffic register, identifies every vehicle owner by an identity number. A person uses their SA ID. A company does not have one, so the registering authority issues it a business register number the first time it needs to own a vehicle. The Business Register Number Certificate (BRNC) is the document recording that number, issued at your local traffic department under the National Road Traffic Act, 1996."
+        }
+      ],
+      "hash": "a9c87908491cf7e6",
+      "id": "if-you-have-a-registered-company.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The vehicle system needs an ID number for every owner. A company has no ID number, so the traffic department gives it one. The certificate showing that number is the BRNC. It is a different document from your CIPC certificate, and you need both."
+        }
+      ],
+      "hash": "6c35855a31143dc8",
+      "id": "if-you-have-a-registered-company.3",
+      "kind": "callout",
+      "pairsWith": "if-you-have-a-registered-company.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "It is not your CIPC registration certificate. The CoR 14.3 proves your company exists. The BRNC lets it own vehicles. The counter will ask for both."
+        }
+      ],
+      "hash": "dca587848456b87f",
+      "id": "if-you-have-a-registered-company.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If a vehicle is to be registered in the name of a business, the business must first apply for a BRNC. A copy of the BRNC must be submitted with all vehicle transactions such as licence renewals and transfers of ownership."
+        }
+      ],
+      "hash": "aa7a316b4c4940e6",
+      "id": "if-you-have-a-registered-company.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Get the BRNC first. After that, every time you renew a disc or sell a vehicle, you bring a copy of the BRNC along."
+        }
+      ],
+      "hash": "3b9ec175be16ebb5",
+      "id": "if-you-have-a-registered-company.6",
+      "kind": "callout",
+      "pairsWith": "if-you-have-a-registered-company.5",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A trust or other non-legal-person organisation uses a Traffic Register Number Certificate instead, following the same idea."
+        }
+      ],
+      "hash": "ac821b33c4676f5f",
+      "id": "if-you-have-a-registered-company.7",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "You must nominate a proxy"
+        }
+      ],
+      "depth": 3,
+      "hash": "1deedf8bbbf2bbef",
+      "id": "you-must-nominate-a-proxy",
+      "kind": "heading",
+      "text": "You must nominate a proxy"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A company cannot stand in a queue. One named human acts for it."
+        }
+      ],
+      "hash": "bd552211b9af1706",
+      "id": "you-must-nominate-a-proxy.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A proxy is a person authorised to act on behalf of a company or trust for vehicle transactions. The proxy's details are recorded on the eNaTIS system, and a copy of their ID must be submitted with the BRNC whenever you renew a licence or change ownership."
+        }
+      ],
+      "hash": "eb49ddf4a604bcf5",
+      "id": "you-must-nominate-a-proxy.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A proxy is the one named human who is allowed to do vehicle paperwork for the company. Their name is recorded on the system, and they bring their ID every time."
+        }
+      ],
+      "hash": "fbc6e52f2b36df88",
+      "id": "you-must-nominate-a-proxy.3",
+      "kind": "callout",
+      "pairsWith": "you-must-nominate-a-proxy.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Only directors, company secretaries, or trustees may act as proxy. For a one-person company, that is you."
+        }
+      ],
+      "hash": "da8fdde01fb3b635",
+      "id": "you-must-nominate-a-proxy.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Consequence to plan for: only the proxy or representative can renew the licence or handle transactions on behalf of the company. If you are away when the disc expires, someone must be formally authorised, or the renewal waits."
+        }
+      ],
+      "hash": "72a61d620917d377",
+      "id": "you-must-nominate-a-proxy.5",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "How to get the BRNC"
+        }
+      ],
+      "depth": 3,
+      "hash": "1ac26114b1ed79fe",
+      "id": "how-to-get-the-brnc",
+      "kind": "heading",
+      "text": "How to get the BRNC"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "There is no online option. eNaTIS has no public portal for business register numbers, so a counter visit is unavoidable. The proxy should go in person with their original ID."
+        }
+      ],
+      "hash": "c6eaa1cc6fc8bcde",
+      "id": "how-to-get-the-brnc.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What to bring:"
+        }
+      ],
+      "hash": "fc2ed09614628bf8",
+      "id": "how-to-get-the-brnc.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The Application for Business Registration (ABR) form, available at your local traffic department. Proof of business address such as a utility bill or bank statement not older than three months. An application letter on your business letterhead, signed by a director. A certified copy of the proxy's ID. Your CIPC incorporation documents. A proxy appointment letter or resolution authorising the proxy to act for the company. Your SARS VAT registration certificate, but only if you are VAT registered."
+        }
+      ],
+      "hash": "276c6e1d4f0c55a1",
+      "id": "how-to-get-the-brnc.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bring: the ABR form (get it at the traffic department), proof of the business address under 3 months old, a signed letter on your letterhead, a certified copy of the proxy's ID, your CIPC documents, a letter or resolution naming the proxy, and your VAT certificate only if you are VAT registered."
+        }
+      ],
+      "hash": "78676fefda12e53b",
+      "id": "how-to-get-the-brnc.4",
+      "kind": "callout",
+      "pairsWith": "how-to-get-the-brnc.3",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The proxy's ID and the CIPC documents need certified copies stamped within the last 3 months. Any police station, post office, or commissioner of oaths does this free."
+        }
+      ],
+      "hash": "5e07f9c93ae57926",
+      "id": "how-to-get-the-brnc.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Two letters on your letterhead trip up most applicants: the proxy nomination and the BRNC request. Write both, sign both, bring both."
+        }
+      ],
+      "hash": "829b638a55e1f373",
+      "id": "how-to-get-the-brnc.6",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Cost and time"
+        }
+      ],
+      "depth": 3,
+      "hash": "ad6f34876c6b3032",
+      "id": "cost-and-time",
+      "kind": "heading",
+      "text": "Cost and time"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "There is no published national fee. Each registering authority sets its own admin charge, and reported figures range from under R100 to around R300 at the counter."
+        }
+      ],
+      "hash": "c979c8a22fe67893",
+      "id": "cost-and-time.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Processing typically takes 2 to 3 weeks, depending on the registering authority. Some offices issue the certificate on the spot, others take up to 3 weeks. Ask before you leave the counter and get a contact number to follow up."
+        }
+      ],
+      "hash": "0befcf5f4f0d7823",
+      "id": "cost-and-time.2",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Common reasons applications fail"
+        }
+      ],
+      "depth": 3,
+      "hash": "b0ebc532de80dfb1",
+      "id": "common-reasons-applications-fail",
+      "kind": "heading",
+      "text": "Common reasons applications fail"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Proof of address that is not FICA compliant. Outdated or uncertified copies. Errors on the ABR form, such as an incorrect registration number or a mismatched address. Appointing someone who is not a director, company secretary, or trustee as proxy. Missing CIPC documents."
+        }
+      ],
+      "hash": "e8d14b3821c4148d",
+      "id": "common-reasons-applications-fail.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The usual reasons for rejection: proof of address the bank would not accept, copies that are old or not certified, mistakes on the form, naming someone who is not a director as proxy, or missing CIPC papers."
+        }
+      ],
+      "hash": "4ec301dc94c5a22c",
+      "id": "common-reasons-applications-fail.2",
+      "kind": "callout",
+      "pairsWith": "common-reasons-applications-fail.1",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Errors on the ABR form cannot be corrected once submitted. You would have to restart the process. Check every field twice before you hand it over."
+        }
+      ],
+      "hash": "ca2cdf45fa4ae7cc",
+      "id": "common-reasons-applications-fail.3",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "After you have the BRNC"
+        }
+      ],
+      "depth": 3,
+      "hash": "d3868c26c67cc0c2",
+      "id": "after-you-have-the-brnc",
+      "kind": "heading",
+      "text": "After you have the BRNC"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Once the BRNC exists, you register the vehicle itself using form RLV (Application for Registration and Licensing of Motor Vehicle), together with the BRNC, the proxy's ID, and the seller's documents."
+        }
+      ],
+      "hash": "471a1f8aec7bdba3",
+      "id": "after-you-have-the-brnc.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "One BRNC covers as many vehicles as the company owns. You do not repeat the process per vehicle."
+        }
+      ],
+      "hash": "eb9b94351f7e1dde",
+      "id": "after-you-have-the-brnc.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Two things to check with your registering authority, because reports differ: whether the BRN is valid only in the province where it was issued, and what happens to registered vehicles if the company is later deregistered. Ask at the counter and write down the answer."
+        }
+      ],
+      "hash": "ba3ee849886a5ca1",
+      "id": "after-you-have-the-brnc.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The decision most people get wrong"
+        }
+      ],
+      "depth": 2,
+      "hash": "7a1d3aa534fc4b27",
+      "id": "the-decision-most-people-get-wrong",
+      "kind": "heading",
+      "text": "The decision most people get wrong"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Putting the vehicle in the company name feels like the professional choice. For a one-person business it is often the more expensive choice."
+        }
+      ],
+      "hash": "c014db7b88f45a44",
+      "id": "the-decision-most-people-get-wrong.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If the company owns the vehicle"
+        }
+      ],
+      "depth": 3,
+      "hash": "3f87bf9e497eecba",
+      "id": "if-the-company-owns-the-vehicle",
+      "kind": "heading",
+      "text": "If the company owns the vehicle"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The company can claim wear and tear on the vehicle, plus fuel, insurance, tyres, licence, and repairs."
+        }
+      ],
+      "hash": "2ff4b060e3cb55b3",
+      "id": "if-the-company-owns-the-vehicle.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "But you are a director, and you will drive that vehicle privately at some point. Private use of a company vehicle is a taxable fringe benefit. SARS adds a monthly amount to your personal income based on the value of the vehicle, and you pay tax on it. The benefit is reduced if you keep a logbook proving business use, but you still have to do the logbook."
+        }
+      ],
+      "hash": "52f9e2f407fe8c61",
+      "id": "if-the-company-owns-the-vehicle.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You also cannot claim a travel deduction on the same vehicle, because you do not own it."
+        }
+      ],
+      "hash": "d207da2e906644b9",
+      "id": "if-the-company-owns-the-vehicle.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you own the vehicle personally"
+        }
+      ],
+      "depth": 3,
+      "hash": "23997efed23f4730",
+      "id": "if-you-own-the-vehicle-personally",
+      "kind": "heading",
+      "text": "If you own the vehicle personally"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You claim business travel against your business income based on the kilometres you actually drove for work. You do this with a logbook."
+        }
+      ],
+      "hash": "31a5bc842c6c39f9",
+      "id": "if-you-own-the-vehicle-personally.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "There is no fringe benefit, because there is no company asset. The admin is one spreadsheet."
+        }
+      ],
+      "hash": "0e01485188803af7",
+      "id": "if-you-own-the-vehicle-personally.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Which is better"
+        }
+      ],
+      "depth": 3,
+      "hash": "7e7f901007b66330",
+      "id": "which-is-better",
+      "kind": "heading",
+      "text": "Which is better"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a single owner-operator who uses one vehicle for both work and home, personal ownership plus a logbook is usually simpler and often cheaper in total tax."
+        }
+      ],
+      "hash": "2e8e0db93b21915d",
+      "id": "which-is-better.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Company ownership starts to win when the vehicle is genuinely a work asset with little private use: a bakkie that lives at the yard, a delivery van, a vehicle with your branding on it that you would not take on holiday."
+        }
+      ],
+      "hash": "df291e277a7cc5f1",
+      "id": "which-is-better.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you are choosing between the two on a vehicle worth more than about R200,000, pay a tax practitioner for one hour to run both scenarios on your actual numbers. The difference over five years is usually much bigger than the fee."
+        }
+      ],
+      "hash": "bc65158ff1da0b71",
+      "id": "which-is-better.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The logbook"
+        }
+      ],
+      "depth": 2,
+      "hash": "5edce5fc2e9a0154",
+      "id": "the-logbook",
+      "kind": "heading",
+      "text": "The logbook"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "This is required by SARS for any vehicle travel claim. Without it, the claim is disallowed. A reconstructed logbook written the night before an audit does not survive."
+        }
+      ],
+      "hash": "94ac9055c26d3357",
+      "id": "the-logbook.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Record for every business trip:"
+        }
+      ],
+      "hash": "858435c0ad93b3eb",
+      "id": "the-logbook.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "d52612a6ff90c9be",
+      "id": "the-logbook.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Date"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Odometer reading at the start"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Odometer reading at the end"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Kilometres travelled"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Where you went"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Why you went (the business reason)"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Record your odometer on 1 March and again on 28 or 29 February so you have total kilometres for the year."
+        }
+      ],
+      "hash": "d52ce7c918e4e847",
+      "id": "the-logbook.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Travel between your home and a fixed place of work is private travel, not business travel. Travel from home to a client site can be business travel. Keep the reason field honest."
+        }
+      ],
+      "hash": "6526b8239828df94",
+      "id": "the-logbook.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The easiest system: a note in your phone, filled in the moment you park. There is a template in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Which template to use when"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "32634d68e122d791",
+      "id": "the-logbook.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Other things to check"
+        }
+      ],
+      "depth": 2,
+      "hash": "2c99a0eebb2e4695",
+      "id": "other-things-to-check",
+      "kind": "heading",
+      "text": "Other things to check"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Insurance. Tell your insurer the vehicle is used for business. Private-use cover can be void on a business claim. \"Business use\" cover costs a little more and is worth it. If you carry goods for customers, ask specifically about goods in transit cover, which is usually separate."
+        }
+      ],
+      "hash": "401c373e3758f52e",
+      "id": "other-things-to-check.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Heavy and passenger vehicles. If the vehicle has a gross vehicle mass over 3,500 kg, or carries passengers for reward, extra rules apply: a Professional Driving Permit for the driver, annual roadworthy testing, and for passenger transport an operating licence from your provincial regulator. Do not start a taxi, shuttle, or courier business without checking these first."
+        }
+      ],
+      "hash": "387fd6a16cf1063a",
+      "id": "other-things-to-check.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Branding your vehicle. Vehicle signage is usually a deductible advertising cost and is often the cheapest advertising a local business can buy. Check your municipal by-laws for restrictions on signage size."
+        }
+      ],
+      "hash": "2e1fcdfb63c776b5",
+      "id": "other-things-to-check.3",
+      "kind": "paragraph"
+    }
+  ],
+  "contentHash": "e22c7a309a0fb637",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Vehicles and your business",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "depth": 2,
+      "id": "if-you-are-a-sole-proprietor",
+      "text": "If you are a sole proprietor"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "depth": 3,
+      "id": "route-1-register-it-against-your-own-id",
+      "text": "Route 1: register it against your own ID"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "depth": 3,
+      "id": "route-2-apply-for-a-traffic-register-number",
+      "text": "Route 2: apply for a traffic register number"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 2,
+      "id": "if-you-have-a-registered-company",
+      "text": "If you have a registered company"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 3,
+      "id": "you-must-nominate-a-proxy",
+      "text": "You must nominate a proxy"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 3,
+      "id": "how-to-get-the-brnc",
+      "text": "How to get the BRNC"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 3,
+      "id": "cost-and-time",
+      "text": "Cost and time"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 3,
+      "id": "common-reasons-applications-fail",
+      "text": "Common reasons applications fail"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 3,
+      "id": "after-you-have-the-brnc",
+      "text": "After you have the BRNC"
+    },
+    {
+      "depth": 2,
+      "id": "the-decision-most-people-get-wrong",
+      "text": "The decision most people get wrong"
+    },
+    {
+      "depth": 3,
+      "id": "if-the-company-owns-the-vehicle",
+      "text": "If the company owns the vehicle"
+    },
+    {
+      "depth": 3,
+      "id": "if-you-own-the-vehicle-personally",
+      "text": "If you own the vehicle personally"
+    },
+    {
+      "depth": 3,
+      "id": "which-is-better",
+      "text": "Which is better"
+    },
+    {
+      "depth": 2,
+      "id": "the-logbook",
+      "text": "The logbook"
+    },
+    {
+      "depth": 2,
+      "id": "other-things-to-check",
+      "text": "Other things to check"
+    }
+  ],
+  "id": "core/vehicles",
+  "kind": "guide",
+  "lang": "en",
+  "order": 5,
+  "readingTime": 9,
+  "related": [
+    "paperwork/which-template-to-use-when"
+  ],
+  "route": "core/vehicles/",
+  "section": "core",
+  "slug": "vehicles",
+  "sourcePath": "01 Core - applies to everyone/05-vehicles.md",
+  "sources": {
+    "acts": [
+      "national-road-traffic-act-93-of-1996"
+    ],
+    "entries": [
+      "rlv-form--application-for-registration-and-licensing-of-motor-vehicle",
+      "governmentcoza--apply-for-a-traffic-register-number",
+      "govchain-brnc-certificate-guide",
+      "trafico",
+      "bloemq4u-faq"
+    ]
+  },
+  "summary": "Most one-person businesses should not put the vehicle in the business name. Read the tax section before you do the paperwork.",
+  "tags": [
+    "vehicles"
+  ],
+  "terms": [
+    {
+      "meaning": "The national computer system that records every vehicle and its owner.",
+      "term": "eNaTIS"
+    },
+    {
+      "meaning": "The certificate that lets a company own vehicles. Like an ID number for the company on eNaTIS.",
+      "term": "BRNC"
+    },
+    {
+      "meaning": "The same idea, for a business that is not a company.",
+      "term": "Traffic register number"
+    },
+    {
+      "meaning": "The one person allowed to do vehicle paperwork for the company.",
+      "term": "Proxy"
+    },
+    {
+      "meaning": "The traffic department or licensing office.",
+      "term": "Registering authority"
+    },
+    {
+      "meaning": "A perk from your company, like private use of a company car, that SARS taxes as income.",
+      "term": "Fringe benefit"
+    },
+    {
+      "meaning": "Your written record of business kilometres. SARS will not allow a travel claim without it.",
+      "term": "Logbook"
+    }
+  ],
+  "title": "Vehicles for your business",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

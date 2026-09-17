@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "sourceRoots": {
+    "en": "tests/unit/content/fixtures/en",
+    "af": "tests/unit/content/fixtures/af"
+  },
+  "ignore": ["README.md", "TRANSLATION-NOTES.md"],
+  "linkify": { "ignoreDomains": ["yourname.co.za"], "allowDomains": [] },
+  "sections": [
+    {
+      "id": "core",
+      "order": 1,
+      "folder": "01 Core - applies to everyone",
+      "route": "core/",
+      "titles": { "en": "Core", "af": "Kern" }
+    },
+    {
+      "id": "paperwork",
+      "order": 2,
+      "folder": "03 Paperwork and templates",
+      "route": "paperwork/",
+      "titles": { "en": "Paperwork", "af": "Papierwerk" }
+    },
+    {
+      "id": "lookup",
+      "order": 3,
+      "folder": "05 Look it up",
+      "route": "look-it-up/",
+      "titles": { "en": "Look it up", "af": "Slaan dit na" }
+    }
+  ],
+  "docs": [
+    {
+      "source": "01 Core - applies to everyone/03-tax-and-sars.md",
+      "id": "core/tax-fixture",
+      "route": "core/tax-fixture/",
+      "section": "core",
+      "order": 1,
+      "kind": "guide",
+      "tags": ["tax"]
+    },
+    {
+      "source": "03 Paperwork and templates/01-which-template-to-use-when.md",
+      "id": "paperwork/which-template-fixture",
+      "route": "paperwork/which-template-fixture/",
+      "section": "paperwork",
+      "order": 1,
+      "kind": "guide"
+    },
+    {
+      "source": "03 Paperwork and templates/templates-to-fill-in/01-quotation.md",
+      "id": "paperwork/templates/quotation-fixture",
+      "route": "templates/quotation-fixture/",
+      "section": "paperwork",
+      "order": 2,
+      "kind": "template",
+      "title": { "en": "Quotation (template)", "af": "Kwotasie (sjabloon)" }
+    },
+    {
+      "source": "05 Look it up/01-glossary.md",
+      "id": "lookup/glossary",
+      "route": "glossary/",
+      "section": "lookup",
+      "order": 1,
+      "kind": "glossary"
+    },
+    {
+      "source": "05 Look it up/03-sources-and-verification-register.md",
+      "id": "lookup/sources",
+      "route": "sources/",
+      "section": "lookup",
+      "order": 2,
+      "kind": "sources",
+      "special": {
+        "acts": { "heading": "legislation-this-toolkit-relies-on" },
+        "sourceGroupsSkip": ["how-to-use-this-file"],
+        "citationsWithoutUrl": {
+          "sars--budget-2026-faq": "The register says (as above): the same SARS page is listed earlier, so the link is not repeated."
+        }
+      }
+    }
+  ]
+}

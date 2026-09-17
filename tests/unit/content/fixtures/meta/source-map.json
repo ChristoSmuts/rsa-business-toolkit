@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "notes": {
+    "see": ["lookup/sources"],
+    "docs": {
+      "lookup/sources": "This is the register itself: every source is listed on this page."
+    }
+  },
+  "groups": [],
+  "acts": [
+    {
+      "act": "companies-act-71-of-2008",
+      "docs": ["paperwork/templates/quotation-fixture"],
+      "reason": "Its header line states that a company's registered name and registration number (Reg. No.) on the quotation are required by law, which is the Companies Act rule for company documents."
+    },
+    {
+      "act": "companies-act-71-of-2008",
+      "docs": ["paperwork/which-template-fixture"],
+      "reason": "Its example header shows a company's trading name with its registered (Pty) Ltd name and Reg. No., the company details the Companies Act requires on company documents."
+    }
+  ],
+  "entries": [
+    {
+      "entry": "sars--turnover-tax",
+      "docs": ["lookup/glossary", "core/tax-fixture"],
+      "reason": "Both state the R2.3 million turnover tax threshold or the turnover tax rate."
+    }
+  ]
+}

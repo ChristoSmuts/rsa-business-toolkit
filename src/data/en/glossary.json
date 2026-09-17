@@ -1,0 +1,1552 @@
+{
+  "doc": "lookup/glossary",
+  "entries": [
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The government website where you register a company yourself. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.bizportal.gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.bizportal.gov.za",
+          "t": "link"
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "bizportal",
+      "term": "BizPortal"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Companies and Intellectual Property Commission. The government body that keeps the register of companies and trade marks."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "cipc",
+      "term": "CIPC"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Your company registration certificate. Proof the company exists."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "cor-143",
+      "term": "CoR 14.3"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Central Supplier Database. The list you must be on to sell to government."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "csd",
+      "term": "CSD"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Memorandum of Incorporation. The rulebook of your company. CIPC gives you a standard one free."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "moi",
+      "term": "MOI"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Private company. A separate legal person from you."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "pty-ltd",
+      "term": "Pty Ltd"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "You, trading as yourself. Not a separate legal person. No company registration needed, but you still need to register with SARS for tax."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "sole-proprietor",
+      "term": "Sole proprietor"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A free CIPC filing naming the real humans behind a company. Compulsory."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "beneficial-ownership-filing",
+      "term": "Beneficial ownership filing"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A yearly filing with CIPC to confirm the company still exists. Not a tax return. Both are required."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "annual-return",
+      "term": "Annual return"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A six-character CIPC account ID you need before you can file anything with CIPC."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "customer-code",
+      "term": "Customer code"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Public Interest Score. A points calculation done each financial year end that decides whether your company needs an audit, an independent review, or neither."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "pis",
+      "term": "PIS"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A company where every shareholder is also a director. It gets the lightest financial reporting obligations."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "owner-managed-company",
+      "term": "Owner-managed company"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Annual Financial Statements."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "afs",
+      "term": "AFS"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Financial Accountability Supplement. A short financial summary filed with the CIPC annual return instead of full statements, where that is allowed."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "fas",
+      "term": "FAS"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Full checking of the financial statements with a positive opinion. Expensive. Rarely required for a one-person company."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "audit",
+      "term": "Audit"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A lighter check giving limited assurance. Cheaper than an audit."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "independent-review",
+      "term": "Independent review"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "An accountant prepares the statements from your records with no opinion on them. Usual route for a small owner-managed company."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "compilation",
+      "term": "Compilation"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The CIPC form used to apply to reinstate a deregistered company."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "cor-405",
+      "term": "CoR 40.5"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Property with no owner, which can pass to the state. What can happen to a deregistered company's assets."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "bona-vacantia",
+      "term": "Bona vacantia"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The section 4 check a board must pass before paying a dividend: assets exceed liabilities, and the company can pay its debts for the next 12 months."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "solvency-and-liquidity-test",
+      "term": "Solvency and liquidity test"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A written record of a decision by the directors or shareholders. Needed even when you are the only one."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "resolution",
+      "term": "Resolution"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The company's legal name on its CoR 14.3. Must appear with the registration number on all company documents."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "registered-name",
+      "term": "Registered name"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A name you market under that is different from the registered name. Allowed, but the registered name and number must still appear on documents, shown as \"trading as\"."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "trading-name",
+      "term": "Trading name"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Goods you hold to sell. Unsold stock at financial year end is brought into account at cost under section 22 of the Income Tax Act, so buying stock does not by itself reduce that year's profit."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "trading-stock",
+      "term": "Trading stock"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A lender funds a dealer's stock. The lender becomes title holder on eNaTIS until each vehicle is settled."
+        }
+      ],
+      "group": "Registration and companies",
+      "groupId": "registration-and-companies",
+      "id": "floor-plan-finance",
+      "term": "Floor plan finance"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "South African Revenue Service. The tax authority."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "sars",
+      "term": "SARS"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "SARS's online system. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.sarsefiling.co.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.sarsefiling.co.za",
+          "t": "link"
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "efiling",
+      "term": "eFiling"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The annual income tax return for individuals, including sole proprietors."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "itr12",
+      "term": "ITR12"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The annual income tax return for companies."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "itr14",
+      "term": "ITR14"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The provisional tax return. Submitted twice a year."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "irp6",
+      "term": "IRP6"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Someone who earns income with no PAYE deducted, so they pay tax in advance during the year. Every business owner is one."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "provisional-taxpayer",
+      "term": "Provisional taxpayer"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Pay As You Earn. Tax deducted from a salary by an employer."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "paye",
+      "term": "PAYE"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The monthly payroll return declaring PAYE, UIF and SDL. Due by the 7th of the following month."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "emp201",
+      "term": "EMP201"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The twice-yearly reconciliation of your EMP201 submissions."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "emp501",
+      "term": "EMP501"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Skills Development Levy. A payroll levy that only applies once your payroll passes a threshold."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "sdl",
+      "term": "SDL"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "20% tax on dividends, withheld and paid over by the company."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "dividends-tax",
+      "term": "Dividends tax"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "An old PAYE rule for private company directors, repealed with effect from 1 March 2017. Many websites still describe it as current. Directors' PAYE is now based on actual remuneration."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "deemed-remuneration",
+      "term": "Deemed remuneration"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The record of money moving between you and your company outside salary and dividends. Credit means the company owes you. Debit means you owe the company."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "loan-account",
+      "term": "Loan account"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Where a company lends money to a shareholder interest-free or below the SARS official rate, the shortfall is treated as a dividend and taxed at 20%."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "deemed-dividend",
+      "term": "Deemed dividend"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The rate SARS publishes for judging whether a loan is low-interest. 7.75% per annum from 1 December 2025."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "official-rate-of-interest",
+      "term": "Official rate of interest"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The income level below which you owe no income tax. R99,000 for people under 65 in 2026/2027."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "tax-threshold",
+      "term": "Tax threshold"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A simplified tax for micro businesses, charged on sales rather than profit. 0% on the first R600,000."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "turnover-tax",
+      "term": "Turnover tax"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Total sales, before any costs. Not profit."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "turnover",
+      "term": "Turnover"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Profit after allowable expenses. This is what income tax is calculated on."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "taxable-income",
+      "term": "Taxable income"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Small Business Corporation. A company that qualifies for reduced tax rates starting at 0%."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "sbc",
+      "term": "SBC"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Value-Added Tax, 15%. Only charged by registered vendors."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "vat",
+      "term": "VAT"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A business registered for VAT."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "vendor",
+      "term": "Vendor"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "VAT you paid on purchases and can claim back. Only if you are a vendor."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "input-tax",
+      "term": "Input tax"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "VAT you charged customers and must pay to SARS."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "output-tax",
+      "term": "Output tax"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A VAT claim allowed when you buy second-hand goods from someone who is not a vendor. Important for vehicle dealers."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "notional-input-tax",
+      "term": "Notional input tax"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The form both buyer and seller sign so a notional input tax claim is valid."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "vat264",
+      "term": "VAT264"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "An invoice issued by a VAT vendor with specific required fields. Only vendors may issue one."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "tax-invoice",
+      "term": "Tax invoice"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A loss carried forward to reduce tax in a future year."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "assessed-loss",
+      "term": "Assessed loss"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A rule that can stop you using a business loss against your salary."
+        }
+      ],
+      "group": "Tax",
+      "groupId": "tax",
+      "id": "ring-fencing-s20a",
+      "term": "Ring-fencing (s20A)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Protection of Personal Information Act. South Africa's data protection law."
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "popia",
+      "term": "POPIA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The person legally responsible for POPIA in your business. For a solo owner, you. Must be registered with the Information Regulator."
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "information-officer",
+      "term": "Information Officer"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The body that enforces POPIA. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "inforegulator.org.za"
+            }
+          ],
+          "external": true,
+          "href": "https://inforegulator.org.za/",
+          "t": "link"
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "information-regulator",
+      "term": "Information Regulator"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Promotion of Access to Information Act. Sits alongside POPIA."
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "paia",
+      "term": "PAIA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Consumer Protection Act 68 of 2008."
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "cpa",
+      "term": "CPA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Electronic Communications and Transactions Act 25 of 2002. Governs online selling."
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "ecta",
+      "term": "ECTA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A guarantee the law puts into every sale, whether you write it down or not. Six months, under CPA s56."
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "implied-warranty",
+      "term": "Implied warranty"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Afrikaans for \"as is\". A clause sellers used to avoid liability for defects. It no longer protects a business selling to a consumer."
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "voetstoots",
+      "term": "Voetstoots"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The right to cancel and get a refund without giving a reason. Seven days for most online purchases."
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "cooling-off-period",
+      "term": "Cooling-off period"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Broad-Based Black Economic Empowerment."
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "b-bbee",
+      "term": "B-BBEE"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Exempted Micro Enterprise. Turnover under R10 million. Uses a free affidavit instead of a paid certificate."
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "eme",
+      "term": "EME"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Qualifying Small Enterprise. Turnover between R10 million and R50 million."
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "qse",
+      "term": "QSE"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A person who can witness a sworn affidavit. Free at any police station."
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "commissioner-of-oaths",
+      "term": "Commissioner of Oaths"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Unemployment Insurance Fund. Only applies once you have employees."
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "uif",
+      "term": "UIF"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Compensation for Occupational Injuries and Diseases Act. Workplace injury cover. Only applies once you have employees."
+        }
+      ],
+      "group": "Compliance",
+      "groupId": "compliance",
+      "id": "coida",
+      "term": "COIDA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Certificate of Acceptability. The compulsory permit for any premises handling food."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "coa",
+      "term": "COA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Environmental Health Practitioner. The municipal official who inspects food and health premises."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "ehp",
+      "term": "EHP"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The 2018 regulation setting hygiene rules for food premises. Replaced R962."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "r638",
+      "term": "R638"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The 2012 regulation on food labelling and advertising."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "r146",
+      "term": "R146"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A municipal trading licence required for food, health and entertainment businesses."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "businesses-act-licence",
+      "term": "Businesses Act licence"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Municipal confirmation that your premises may legally be used for your kind of business."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "zoning-certificate",
+      "term": "Zoning certificate"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "National Regulator for Compulsory Specifications. Issues Letters of Authority for certain imported products."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "nrcs",
+      "term": "NRCS"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Letter of Authority. Permission from the NRCS to sell certain regulated goods."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "loa",
+      "term": "LOA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "South African Health Products Regulatory Authority. Regulates medicines and medical devices."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "sahpra",
+      "term": "SAHPRA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "National Credit Regulator. You must register with them before extending credit."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "ncr",
+      "term": "NCR"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Financial Services Provider. A business licensed under FAIS to give advice on, or sell, financial products. Anyone who does this must hold an FSP licence or work as a representative of a licensed FSP."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "fsp",
+      "term": "FSP"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Financial Advisory and Intermediary Services Act. The law behind FSP licensing."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "fais",
+      "term": "FAIS"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Private Security Industry Regulatory Authority."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "psira",
+      "term": "PSIRA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "National Home Builders Registration Council."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "nhbrc",
+      "term": "NHBRC"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Construction Industry Development Board."
+        }
+      ],
+      "group": "Licensing",
+      "groupId": "licensing",
+      "id": "cidb",
+      "term": "CIDB"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The national traffic information system. Every vehicle and owner is recorded here."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "enatis--natis",
+      "term": "eNaTIS / NaTIS"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Business Register Number Certificate. Lets a company own and register vehicles."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "brnc",
+      "term": "BRNC"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Traffic Register Number. The equivalent for non-legal persons: sole proprietors, trusts, partnerships, churches."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "trn",
+      "term": "TRN"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The named person authorised to handle vehicle transactions for a business."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "proxy",
+      "term": "Proxy"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Application for Business Registration. The form used to apply for a BRNC."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "abr",
+      "term": "ABR"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The vehicle registration certificate."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "rc1",
+      "term": "RC1"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Application for Registration and Licensing of Motor Vehicle. The buyer's form."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "rlv",
+      "term": "RLV"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Notification of Change of Ownership. The seller's form. Lodge it the day you sell."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "nco",
+      "term": "NCO"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Application for a motor trade number."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "mtn1",
+      "term": "MTN1"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Lets a dealer drive unregistered stock on public roads."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "motor-trade-number",
+      "term": "Motor trade number"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The party with the right to sell. If the vehicle is financed, this is the bank, not the seller."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "title-holder",
+      "term": "Title holder"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The party recorded as owner on eNaTIS. Can be different from the title holder."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "owner",
+      "term": "Owner"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Roadworthy Certificate, or Certificate of Roadworthiness. Required when a vehicle changes ownership."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "rwc--cor",
+      "term": "RWC / CoR"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Professional Driving Permit. Needed for heavy vehicles and passenger transport."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "prdp",
+      "term": "PrDP"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Gross Vehicle Mass. Over 3,500 kg brings extra rules."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "gvm",
+      "term": "GVM"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Vehicle Identification Number."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "vin",
+      "term": "VIN"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The record of business kilometres SARS requires before allowing a travel claim."
+        }
+      ],
+      "group": "Vehicles",
+      "groupId": "vehicles",
+      "id": "logbook",
+      "term": "Logbook"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The municipal category allowing a small, quiet business in a house without special permission. Conditions apply."
+        }
+      ],
+      "group": "Working from home and getting paid",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "home-enterprise--home-occupation",
+      "term": "Home enterprise / home occupation"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Municipal permission for a business use beyond what your zoning allows by default."
+        }
+      ],
+      "group": "Working from home and getting paid",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "consent-use",
+      "term": "Consent use"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The management body of a complex or estate, with its own rules on top of the municipality's."
+        }
+      ],
+      "group": "Working from home and getting paid",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "body-corporate--hoa",
+      "term": "Body corporate / HOA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Location data hidden inside a photo. Switch it off in your camera settings before photographing stock at home."
+        }
+      ],
+      "group": "Working from home and getting paid",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "geotag",
+      "term": "Geotag"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Proof of payment. A screenshot or document showing a transfer was made. Easy to fake. Never release goods on one."
+        }
+      ],
+      "group": "Working from home and getting paid",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "pop",
+      "term": "POP"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The money is actually in your account balance. \"Pending\" is not reflected."
+        }
+      ],
+      "group": "Working from home and getting paid",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "reflected--cleared",
+      "term": "Reflected / cleared"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "An instant bank-to-bank payment that arrives in seconds and cannot be reversed. System limit R50,000 per payment; your bank sets its own lower limits."
+        }
+      ],
+      "group": "Working from home and getting paid",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "payshap",
+      "term": "PayShap"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A phone number or ID number linked to a bank account so people can pay you without typing account details."
+        }
+      ],
+      "group": "Working from home and getting paid",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "shapid",
+      "term": "ShapID"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Older instant payment options. Also arrive quickly, usually at a higher fee."
+        }
+      ],
+      "group": "Working from home and getting paid",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "immediate-payment--rtc",
+      "term": "Immediate payment / RTC"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A \"buyer\" pays too much on purpose and asks for the difference back. The original payment was never real."
+        }
+      ],
+      "group": "Working from home and getting paid",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "overpayment-scam",
+      "term": "Overpayment scam"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "One-time PIN from your bank. Never share it with anyone, for any reason."
+        }
+      ],
+      "group": "Working from home and getting paid",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "otp",
+      "term": "OTP"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The banking industry's fraud body. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.sabric.co.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.sabric.co.za",
+          "t": "link"
+        }
+      ],
+      "group": "Working from home and getting paid",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "sabric",
+      "term": "SABRIC"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The Reserve Bank's three-step check for a genuine banknote."
+        }
+      ],
+      "group": "Working from home and getting paid",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "look-feel-tilt",
+      "term": "Look, feel, tilt"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A price offer, valid for a stated period. Not yet a sale."
+        }
+      ],
+      "group": "Money and documents",
+      "groupId": "money-and-documents",
+      "id": "quote--quotation",
+      "term": "Quote / quotation"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A demand for payment after goods or services are supplied."
+        }
+      ],
+      "group": "Money and documents",
+      "groupId": "money-and-documents",
+      "id": "invoice",
+      "term": "Invoice"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A document that cancels or reduces an invoice already issued."
+        }
+      ],
+      "group": "Money and documents",
+      "groupId": "money-and-documents",
+      "id": "credit-note",
+      "term": "Credit note"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The bank confirmation a customer sends. Not the same as money in your account. Wait for the money."
+        }
+      ],
+      "group": "Money and documents",
+      "groupId": "money-and-documents",
+      "id": "proof-of-payment",
+      "term": "Proof of payment"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The spreadsheet recording every rand in and out."
+        }
+      ],
+      "group": "Money and documents",
+      "groupId": "money-and-documents",
+      "id": "cash-book",
+      "term": "Cash book"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "A court for small civil claims where no lawyer is needed. Limit R30,000 from 1 August 2026, up from R20,000. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Only a natural person may bring a claim."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " A company cannot sue here, though it can be sued here."
+        }
+      ],
+      "group": "Money and documents",
+      "groupId": "money-and-documents",
+      "id": "small-claims-court",
+      "term": "Small Claims Court"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "The Financial Intelligence Centre Act. The reason banks demand proof of address."
+        }
+      ],
+      "group": "Money and documents",
+      "groupId": "money-and-documents",
+      "id": "fica",
+      "term": "FICA"
+    }
+  ],
+  "groups": [
+    {
+      "id": "registration-and-companies",
+      "order": 1,
+      "title": "Registration and companies"
+    },
+    {
+      "id": "tax",
+      "order": 2,
+      "title": "Tax"
+    },
+    {
+      "id": "compliance",
+      "order": 3,
+      "title": "Compliance"
+    },
+    {
+      "id": "licensing",
+      "order": 4,
+      "title": "Licensing"
+    },
+    {
+      "id": "vehicles",
+      "order": 5,
+      "title": "Vehicles"
+    },
+    {
+      "id": "working-from-home-and-getting-paid",
+      "order": 6,
+      "title": "Working from home and getting paid"
+    },
+    {
+      "id": "money-and-documents",
+      "order": 7,
+      "title": "Money and documents"
+    }
+  ],
+  "lang": "en"
+}
