@@ -22,6 +22,8 @@ Merge order does not matter for correctness, but merging WP-11 last means re-run
 
 ## When WP-11 (design system) merges
 
+**Merged as `337ae26` on 2026-09-18** after clean passes 5 (Reviewer S) and 6 (Reviewer V). Gate green on merged `main`: lint, typecheck, `tsc --noEmit -p .`, 681 unit and dom tests, 32 content tests, no drift, build complete. Its own Playwright suite was 91 passed / 2 skipped at review. Two minors deferred to `backlog.md` (the 13 blind grid caps, and the WebKit `<select>` overflow).
+
 Superseded on 2026-09-16. Pass 3 was NOT clean: it rated the `Badge` no-wrap overflow a major (a 38-character Afrikaans label makes a 320px page 336px wide, a WCAG 1.4.10 reflow failure), so the diff had to change anyway. Every item below was folded into the WP-11 fix round on branch `worktree-agent-a2273231b664d89f3` instead of a separate WP-11b package, together with the pass-3 findings and the D5 AI-notice and sources demos. The package now needs two fresh consecutive clean passes. Kept here for the record:
 
 - [ ] `Icon` inside prose: `.st-icon { display: inline-block; vertical-align: -0.125em }`; the global `svg { display: block }` rule must not break inline icons in error messages.
@@ -37,6 +39,7 @@ Superseded on 2026-09-16. Pass 3 was NOT clean: it rated the `Badge` no-wrap ove
 ## When WP-11 (design system) and WP-22a have both merged
 
 - [ ] Switch `tests/e2e/design-system.spec.ts` to import from `tests/e2e/fixtures.ts`.
+- [ ] Confirm `pnpm test:e2e` and `pnpm test:a11y` no longer exit 1 with "No tests found". Reviewer V logged this on `main` before WP-22a merged: the `a11y` and `visual` projects come from the scaffold and had no specs, so `pnpm gate` was red through no fault of WP-11. WP-22a brings the specs; verify rather than assume.
 - [ ] Give the placeholder home page a meta description through `Base.astro`, so the Lighthouse SEO assertion passes.
 - [ ] Remove the home-page entry from `tests/e2e/helpers/exceptions.ts` once the home page renders through `Base.astro`; the stale-exception check will fail until it is removed.
 
