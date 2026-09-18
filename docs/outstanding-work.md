@@ -1,8 +1,32 @@
 # Outstanding work
 
-Status on 16 September 2026, when the build was paused and all agents were stopped. `main` is at `f797032`, working tree clean.
+**Status on 18 September 2026**, when work was paused again and the running agent was stopped. `main` is at `1874a60`, working tree clean. Nothing is listening on any preview port.
 
 Read `docs/build-plan.md` first for the design, then this file for where the work stopped. `docs/reviews/merge-checklist.md` holds the tasks that must happen at merge time.
+
+## Where to pick up (18 September)
+
+The foundation is **almost** done: two of the three foundation packages are merged, and the third is fully reviewed and one blocker away from merging.
+
+1. **Finish the WebKit contrast fix** (`fix/ds-contrast-webkit`, worktree `C:\_Projects\Local\bt-wt\ds-contrast`, tip `87de0b0`). This is the only thing blocking the test-harness merge. The commit there is **work in progress, unreviewed and unverified** — it was committed only so it would not be lost. Treat it as a starting point, not an answer.
+   - The bug: on WebKit, `src/scripts/design-system-contrast.ts` sometimes measures all 76 token pairs as the same colour and the live panel reports "76 of 76 pairs fail", never recomputing (it only re-runs on a theme change). `resolveToken()` measures a `<span>` the script creates during style application, and the existing `stylesApplied()` check does not prove that element resolves tokens.
+   - Reproduction: WebKit, 8 loads of `/design-system/` each — with Playwright request interception **2/8** fail; with no interception **0/8**; with a bare `context.route(() => true, r => r.continue())` and no other guards **1/8**. Interception is the trigger, not the cause. It is user-visible: a Safari visitor whose stylesheet lands late sees the page claiming its own contrast fails.
+   - Requirements: reproduce it before fixing; prove the new safeguard fails when the race is re-introduced; add a deterministic regression test instead of relying on the 2-in-8 flake; do not weaken the e2e assertion that caught it.
+2. **Merge WP-22a** (test harness), branch `worktree-agent-adc6b347a89c34014`, tip `341b42c`, worktree `.claude/worktrees/agent-adc6b347a89c34014`. It has **two consecutive clean passes (5 and 6)** and `main` is already merged into it with the `astro.config.ts` conflict resolved. Its integrated gate is green except the WebKit run, which fails only on the contrast bug above. Once that is fixed on `main`, merge `main` into the branch again, re-run WebKit, then squash-merge.
+3. **Then the foundation is done.** Update this file, and stop — the site package and everything after it are still paused (see below).
+
+## What is merged (three foundation packages landed on 17–18 September)
+
+| Package | Commit | Reviews |
+|---|---|---|
+| Content pipeline (WP-10) | `22e14b0` | passes 4 and 5 clean, two different reviewers |
+| Design system (WP-11) | `337ae26` | passes 5 and 6 clean, two different reviewers |
+
+Gate on `main` after each merge: lint, typecheck, `tsc --noEmit -p .`, 681 unit and dom tests, 32 content tests, no content drift, build complete.
+
+Note: `pnpm gate` is currently red on `main` for a known reason — the `a11y` and `visual` Playwright projects have no specs until WP-22a merges. `test:visual` will still have no specs afterwards: there is no `tests/e2e/visual.spec.ts` and no `__screenshots__` baselines, and both arrive with the package that adds pages. CI already conditions its `visual` job on the baselines existing.
+
+**The sections below this point describe the state on 16 September and are superseded for the three foundation packages.** They remain accurate for the unmerged localisation follow-up and Afrikaans glossary branches, and the package-by-package detail is still useful history.
 
 ## How the work is organised
 
@@ -24,9 +48,10 @@ Each has real work in it. Nothing here is throwaway.
 
 | Branch | Tip | Worktree | State |
 |---|---|---|---|
-| `worktree-agent-a57043a283a0c3c96` | `2db7941` | `.claude/worktrees/agent-a57043a283a0c3c96` | Content pipeline (WP-10). Two clean gates, one review pass, mid fix round 2. **40 uncommitted files**, the largest body of unsaved work here. |
-| `worktree-agent-a2273231b664d89f3` | `8710091` | `.claude/worktrees/agent-a2273231b664d89f3` | Design system (WP-11). Pass 2 clean, pass 3 not clean, fix round complete in the tree. **16 uncommitted files**, all of the pass-3 fixes. |
-| `worktree-agent-adc6b347a89c34014` | `e4c122d` | `.claude/worktrees/agent-adc6b347a89c34014` | Test harness (WP-22a). Two commits, verification run interrupted. **1 uncommitted file**, likely a `zz-*` probe or a modified `dist/`; check before rebuilding. |
+| ~~`worktree-agent-a57043a283a0c3c96`~~ | `78d3437` | `.claude/worktrees/agent-a57043a283a0c3c96` | Content pipeline (WP-10). **Merged as `22e14b0`.** The worktree can be removed. |
+| ~~`worktree-agent-a2273231b664d89f3`~~ | `a1cfb09` | `.claude/worktrees/agent-a2273231b664d89f3` | Design system (WP-11). **Merged as `337ae26`.** The worktree can be removed. |
+| `worktree-agent-adc6b347a89c34014` | `341b42c` | `.claude/worktrees/agent-adc6b347a89c34014` | Test harness (WP-22a). Two clean passes, `main` merged in, gate green except the WebKit contrast bug. **Clean.** Ready to merge once that bug is fixed. |
+| `fix/ds-contrast-webkit` | `87de0b0` | `C:\_Projects\Local\bt-wt\ds-contrast` | The WebKit contrast race fix. **Work in progress, unreviewed, unverified** — see "Where to pick up" above. |
 | `wp/wp12b-i18n-followup` | `ed18d52` | `C:\_Projects\Local\bt-wt\wp12b` | Localisation follow-up (WP-12b). Three review passes done, fix round 4 not started. **4 uncommitted files**: a commit was in flight when it was stopped, so check whether those changes were meant for it. |
 | `content/af-glossary` | `864f2f7` | `C:\_Projects\Local\bt-wt\af-glossary` | Afrikaans glossary translation, 121 entries. **Clean.** Needs rebasing onto the fixed pipeline. |
 
