@@ -1,0 +1,84 @@
+---
+/** Empty state: icon, heading, explanation (default slot) and optional `actions` slot. */
+import Icon from './Icon.astro';
+
+interface Props {
+  title: string;
+  icon?: string | undefined;
+  headingLevel?: 2 | 3 | 4 | undefined;
+  class?: string | undefined;
+}
+
+const { title, icon = 'lucide:inbox', headingLevel = 2, class: className } = Astro.props;
+const Heading = `h${headingLevel}` as 'h2' | 'h3' | 'h4';
+---
+
+<div class:list={['st-empty', className]}>
+  <span class="st-empty__icon">
+    <Icon name={icon} size="1.75rem" />
+  </span>
+  <Heading class="st-empty__title">{title}</Heading>
+  <div class="st-empty__body">
+    <slot />
+  </div>
+  {Astro.slots.has('actions') && (
+    <div class="st-empty__actions">
+      <slot name="actions" />
+    </div>
+  )}
+</div>
+
+<style>
+  .st-empty {
+    display: grid;
+
+    /* House rule: cap a text-bearing track with `minmax(0, 1fr)`. An implicit `auto` track sizes
+       to its children's min-content, so one long Afrikaans compound would widen the page at
+       320px. `justify-items: center` still shrink-wraps each item, so the title also lowers its
+       own min-content width below (see `.st-empty__title`). */
+    grid-template-columns: minmax(0, 1fr);
+    min-inline-size: 0;
+    justify-items: center;
+    gap: var(--st-space-3);
+    padding: var(--st-space-7) var(--st-space-5);
+    border: 2px dashed var(--st-border);
+    border-radius: var(--st-radius-lg);
+    background-color: var(--st-surface);
+    text-align: center;
+  }
+
+  .st-empty__icon {
+    display: grid;
+    place-items: center;
+    inline-size: 3.5rem;
+    block-size: 3.5rem;
+    border-radius: 50%;
+    background-color: var(--st-primary-soft);
+    color: var(--st-on-primary-soft);
+  }
+
+  .st-empty__title {
+    /* `break-word` only wraps at render time; `anywhere` also lowers the min-content width, which
+       is what stops a single long compound from overflowing a shrink-wrapped grid item.
+       `hyphens: auto` is a progressive enhancement, never the mechanism: it needs a hyphenation
+       dictionary for the page language, which Chromium has here and WebKit on Windows does not.
+       Both are documented in docs/design-system.md, "Wrapping and min-content". */
+    max-inline-size: 100%;
+    font-size: var(--st-text-xl);
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
+  .st-empty__body {
+    max-inline-size: 48ch;
+    color: var(--st-text-muted);
+  }
+
+  .st-empty__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--st-space-3);
+    margin-block-start: var(--st-space-2);
+  }
+</style>

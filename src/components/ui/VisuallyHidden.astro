@@ -1,0 +1,12 @@
+---
+/** Content for assistive technology only. Uses the global `.st-visually-hidden` utility. */
+interface Props {
+  as?: 'span' | 'div' | 'p' | 'h2' | 'h3' | undefined;
+  id?: string | undefined;
+}
+const { as: Tag = 'span', id }: Props = Astro.props;
+---
+
+<Tag class="st-visually-hidden" id={id}>
+  <slot />
+</Tag>

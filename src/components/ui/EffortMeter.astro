@@ -1,0 +1,109 @@
+---
+/**
+ * Five-step effort meter with the level always written out as text. Default labels follow
+ * the toolkit's own scale in "Pick your business type" (Lowest … High).
+ */
+type Level = 1 | 2 | 3 | 4 | 5;
+type Labels = readonly [string, string, string, string, string];
+
+interface Props {
+  level: Level;
+  /** Lead-in text, for example "Effort" or "Moeite". */
+  label?: string | undefined;
+  levelLabels?: Labels | undefined;
+  /** Screen-reader scale text; defaults to "4 of 5". */
+  scaleText?: string | undefined;
+  class?: string | undefined;
+}
+
+const DEFAULT_LABELS: Labels = ['Lowest', 'Low to medium', 'Medium', 'Medium to high', 'High'];
+
+const {
+  level,
+  label = 'Effort',
+  levelLabels = DEFAULT_LABELS,
+  scaleText,
+  class: className,
+} = Astro.props;
+const steps = [1, 2, 3, 4, 5] as const;
+---
+
+<span class:list={['st-effort', className]} data-level={level}>
+  <span class="st-effort__label">{label}:</span>
+  <span class="st-effort__bars" aria-hidden="true">
+    {steps.map((step) => (
+      <span class="st-effort__bar" data-on={step <= level ? 'true' : 'false'} />
+    ))}
+  </span>
+  <span class="st-effort__value">{levelLabels[level - 1]}</span>
+  <span class="st-visually-hidden">({scaleText ?? `${level} of 5`})</span>
+</span>
+
+<style>
+  .st-effort {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-1) var(--st-space-2);
+    color: var(--st-text);
+    font-size: var(--st-text-sm);
+    line-height: var(--st-leading-snug);
+  }
+
+  .st-effort__label {
+    color: var(--st-text-muted);
+  }
+
+  .st-effort__bars {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 3px;
+    block-size: 1.125rem;
+  }
+
+  .st-effort__bar {
+    inline-size: 0.4375rem;
+    border: 1.5px solid var(--st-border-strong);
+    border-radius: 2px;
+  }
+
+  .st-effort__bar:nth-child(1) {
+    block-size: 40%;
+  }
+
+  .st-effort__bar:nth-child(2) {
+    block-size: 55%;
+  }
+
+  .st-effort__bar:nth-child(3) {
+    block-size: 70%;
+  }
+
+  .st-effort__bar:nth-child(4) {
+    block-size: 85%;
+  }
+
+  .st-effort__bar:nth-child(5) {
+    block-size: 100%;
+  }
+
+  .st-effort__bar[data-on='true'] {
+    border-color: var(--st-section);
+    background-color: var(--st-section);
+  }
+
+  .st-effort__value {
+    font-weight: var(--st-weight-semibold);
+  }
+
+  @media (forced-colors: active) {
+    .st-effort__bar {
+      border-color: CanvasText;
+    }
+
+    .st-effort__bar[data-on='true'] {
+      forced-color-adjust: none;
+      background-color: CanvasText;
+    }
+  }
+</style>

@@ -1,0 +1,433 @@
+# Stoep design system
+
+Stoep is the design system of the SA Business Toolkit web app. A stoep is the porch in front of a South African house: an open, familiar place where neighbours talk plainly. The system should feel the same.
+
+- Source of truth for every colour and scale: `src/styles/tokens.css`.
+- Live reference: `/design-system/` (noindex, excluded from the sitemap). It shows every token, every component and a contrast panel that re-measures colours in the browser.
+- Automated checks (details under [Automated checks](#automated-checks)): `tests/unit/tokens-contrast.test.ts` and `tests/e2e/design-system.spec.ts`.
+
+## Principles
+
+1. **Plain first.** Content is the product. Components get out of the way of the words.
+2. **Warm, not corporate.** Paper, earth and veld: off-white paper, veld green, rooibos accent, section hues taken from the landscape.
+3. **Colour never carries meaning alone.** Every status has an icon and a text label. Links are always underlined. Meters and rings always have written values.
+4. **Fast on a cheap phone.** No raster images, two self-hosted variable fonts, one tiny blocking script per page, CSS-only decoration that switches off under reduced data.
+5. **One source of truth.** Literal colours exist only in `tokens.css` (Stylelint enforces this, including in `.astro` style blocks). Everything else uses `var(--st-*)`.
+
+## Colour
+
+### Rationale
+
+- **Background** is a warm paper white (`#FBF8F3`), not pure white, so long reading is gentle. Cards are pure white (`--st-surface`) to lift off the page.
+- **Primary** is veld green (`#1E5A3C`). It is used for links, primary buttons, checkbox fills and progress. Green reads as "go" and as land, without the saturated look of a bank or a government portal.
+- **Accent** is rooibos (`#B5561A`). It is used for the focus ring and for spoken-aside "In plain words" callouts. The ring colour differs from the link colour, so focus is visible on links.
+- **Section hues** give each part of the toolkit an identity: Start here (ochre `#8A5A00`), Core (veld `#1E5A3C`), Branding (protea `#9C2E63`), Paperwork (teal `#1F6B6B`), Your kind of business (clay `#A3401A`), Look it up (dusk `#4A3F8F`). Use them for text, stripes and icons, and as soft tints (`--st-hue-*-tint`) with `--st-text` on top.
+- **Section tints** mix the hue into the page background. `--st-tint-strength` is the default (**18% light, 22% dark**); plan B4 says 12%, and at a flat 12% Core, Paperwork and Look it up read as the same greige. Four hues use the default and four carry a per-hue strength, because a flat strength leaves some pairs indistinguishable. See [Section tints](#section-tints) for the measured numbers and why the separation stops where it does.
+- **Dark theme** keeps the same roles with lighter, less saturated hues on a warm near-black (`#15130F`).
+- **Decorative border** (`--st-border`) never marks a control boundary. Controls use `--st-border-strong` (at least 3:1).
+
+### Theme mechanics
+
+- Light tokens live on `:root`.
+- Dark overrides live in `@media screen { :root[data-theme='dark'] { … } }` (explicit choice) and `@media screen and (prefers-color-scheme: dark) { :root:not([data-theme='light']) { … } }` (system). Both blocks must be identical; the unit test compares them.
+- The unit test also parses every rule in `tokens.css` and fails if a palette block appears twice, sits under the wrong condition, or if any other rule overrides a colour token. Only the reduced-motion and low-data blocks may override tokens, and only their known motion, font and pattern keys.
+- The dark blocks are wrapped in `@media screen` so **print always uses the light palette**. This is a deliberate addition to plan B4.
+- `src/scripts/theme-init.js` runs as a blocking external script in `<head>`. It applies `st.theme` (`light` or `dark`) before first paint, points both `meta[name=theme-color]` tags at the chosen theme's background, and adds the `js` class to `<html>`. `system`, a missing key or blocked storage leaves `data-theme` unset.
+- Aliases (`--st-link`, `--st-focus`, tints, shadows, `--st-danger-solid-hover`) are defined once on `:root` and resolve against whichever palette is active.
+
+### Token changes and additions compared with plan B4
+
+**No hex value from the plan was changed.** Every plan pair meets its threshold as specified (measured below).
+
+Changes and additions, all documented in `tokens.css`:
+
+| Token | Light | Dark | Why |
+| --- | --- | --- | --- |
+| `--st-danger-solid` / `--st-on-danger-solid` | `#8F2323` / `#FFFFFF` | `#E0736B` / `#1F0806` | Filled background for the danger button. The plan only had danger text and background tints. The dark fill is a stronger coral than the danger text so it reads as destructive next to the mint primary button. Ratio 8.63:1 light, 6.23:1 dark. |
+| `--st-danger-solid-hover` | `color-mix(in oklab, danger-solid 82%, text)` | same formula | Danger button hover, as a token so its contrast is tested (9.97:1 light, 7.55:1 dark). |
+| `--st-shadow-ink`, `--st-shadow-strength-1/2` | `#1E1B16`, 10%, 16% | `#000000`, 40%, 55% | Shadow colour per theme; `--st-shadow-1/2` mix these. |
+| `--st-tint-strength` | 18% | 22% | Default strength of the section tints (plan: 12%, see Rationale). |
+| `--st-tint-strength-*` (six) | 18%, except paperwork 14% and types 12% | 22%, except start 26%, paperwork 28% and branding 16% | Per-hue strength, so tints that would otherwise be twins can be told apart. Each defaults to `var(--st-tint-strength)`. See [Section tints](#section-tints). |
+| `--st-hue-*-tint` | `color-mix(in oklab, hue var(--st-tint-strength-<hue>), bg)` | same formula | The plan's soft section tints, as tokens. |
+| `--st-section`, `--st-section-tint` | primary, primary-soft | same | Default section scope; `[data-section]` overrides them. |
+| `--st-pattern-ink` | 30% | 40% | Shweshwe dot strength (visible at arm's length on a phone). |
+| `--st-pattern-display` | `block` | `block` | `none` under `prefers-reduced-data` and `html[data-low-data]`. |
+| `--st-selection-bg`, `--st-link-hover` | aliases | aliases | Text selection and hovered links. |
+
+### Verified contrast (WCAG 2.x)
+
+Text needs at least 4.5:1. Control borders and focus indicators need at least 3:1. Ratios are truncated to two decimals, never rounded up. The same list (`CONTRAST_PAIRS` in `src/scripts/color.ts`) drives the unit test and the live panel. It holds the plan B4 pairs plus every text, link and focus-ring pair the components render: callout bodies and links on every soft background, links and focus rings on every section tint, the inverse toast and the danger hover.
+
+| Foreground | Background | Use | Needs | Light | Dark |
+| --- | --- | --- | --- | --- | --- |
+| `--st-text` | `--st-bg` | Body text on page | 4.5:1 | 16.20:1 | 15.75:1 |
+| `--st-text` | `--st-surface` | Body text on cards | 4.5:1 | 17.16:1 | 14.42:1 |
+| `--st-text` | `--st-surface-2` | Body text on raised areas | 4.5:1 | 14.85:1 | 12.92:1 |
+| `--st-text-muted` | `--st-bg` | Secondary text on page | 4.5:1 | 6.88:1 | 8.06:1 |
+| `--st-text-muted` | `--st-surface` | Secondary text on cards | 4.5:1 | 7.29:1 | 7.37:1 |
+| `--st-text-muted` | `--st-surface-2` | Secondary text, disabled controls | 4.5:1 | 6.31:1 | 6.61:1 |
+| `--st-link` | `--st-bg` | Links on page | 4.5:1 | 7.67:1 | 9.26:1 |
+| `--st-link` | `--st-surface` | Links on cards | 4.5:1 | 8.13:1 | 8.48:1 |
+| `--st-link-hover` | `--st-bg` | Hovered links | 4.5:1 | 10.00:1 | 12.45:1 |
+| `--st-link-visited` | `--st-bg` | Visited links | 4.5:1 | 8.26:1 | 8.48:1 |
+| `--st-on-primary` | `--st-primary` | Primary button label | 4.5:1 | 8.13:1 | 7.68:1 |
+| `--st-on-primary` | `--st-primary-hover` | Primary button label, hover | 4.5:1 | 10.60:1 | 10.31:1 |
+| `--st-on-primary-soft` | `--st-primary-soft` | Text on soft green | 4.5:1 | 9.03:1 | 8.36:1 |
+| `--st-on-accent` | `--st-accent` | Accent fill label | 4.5:1 | 4.87:1 | 7.80:1 |
+| `--st-accent-text` | `--st-bg` | Accent text on page | 4.5:1 | 5.89:1 | 8.61:1 |
+| `--st-accent-text` | `--st-surface` | Accent text on cards | 4.5:1 | 6.24:1 | 7.88:1 |
+| `--st-on-accent-soft` | `--st-accent-soft` | Text on soft rooibos | 4.5:1 | 7.39:1 | 9.45:1 |
+| `--st-success-text` | `--st-success-bg` | Success message | 4.5:1 | 9.03:1 | 8.36:1 |
+| `--st-warning-text` | `--st-warning-bg` | Warning message | 4.5:1 | 6.71:1 | 8.81:1 |
+| `--st-danger-text` | `--st-danger-bg` | Error message | 4.5:1 | 7.22:1 | 7.86:1 |
+| `--st-info-text` | `--st-info-bg` | Info message | 4.5:1 | 6.73:1 | 8.04:1 |
+| `--st-danger-text` | `--st-bg` | Error text on page | 4.5:1 | 8.14:1 | 9.48:1 |
+| `--st-on-danger-solid` | `--st-danger-solid` | Danger button label | 4.5:1 | 8.63:1 | 6.23:1 |
+| `--st-on-danger-solid` | `--st-danger-solid-hover` | Danger button label, hover | 4.5:1 | 9.97:1 | 7.55:1 |
+| `--st-text` | `--st-mark-bg` | Highlighted search match | 4.5:1 | 14.28:1 | 7.36:1 |
+| `--st-bg` | `--st-text` | Default toast (inverse) | 4.5:1 | 16.20:1 | 15.75:1 |
+| `--st-text` | `--st-primary-soft` | Body text in official callouts and badges | 4.5:1 | 14.62:1 | 10.59:1 |
+| `--st-text` | `--st-accent-soft` | Body text in plain-words callouts | 4.5:1 | 14.73:1 | 12.38:1 |
+| `--st-text` | `--st-warning-bg` | Body text in warning callouts | 4.5:1 | 15.56:1 | 11.77:1 |
+| `--st-text` | `--st-info-bg` | Body text in info callouts | 4.5:1 | 14.53:1 | 11.56:1 |
+| `--st-link` | `--st-surface-2` | Links in note callouts and code | 4.5:1 | 7.03:1 | 7.60:1 |
+| `--st-link` | `--st-primary-soft` | Links in official callouts and badges | 4.5:1 | 6.92:1 | 6.23:1 |
+| `--st-link` | `--st-accent-soft` | Links in plain-words callouts | 4.5:1 | 6.98:1 | 7.28:1 |
+| `--st-link` | `--st-warning-bg` | Links in warning callouts | 4.5:1 | 7.37:1 | 6.92:1 |
+| `--st-link` | `--st-info-bg` | Links in info callouts | 4.5:1 | 6.88:1 | 6.80:1 |
+| `--st-hue-start` | `--st-bg` | Start here hue as text | 4.5:1 | 5.59:1 | 10.04:1 |
+| `--st-hue-core` | `--st-bg` | Core hue as text | 4.5:1 | 7.67:1 | 9.26:1 |
+| `--st-hue-branding` | `--st-bg` | Branding hue as text | 4.5:1 | 6.64:1 | 7.64:1 |
+| `--st-hue-paperwork` | `--st-bg` | Paperwork hue as text | 4.5:1 | 5.87:1 | 9.68:1 |
+| `--st-hue-types` | `--st-bg` | Business types hue as text | 4.5:1 | 5.99:1 | 8.39:1 |
+| `--st-hue-lookup` | `--st-bg` | Look it up hue as text | 4.5:1 | 8.26:1 | 8.48:1 |
+| `--st-hue-start` | `--st-surface` | Start here hue on cards | 4.5:1 | 5.92:1 | 9.19:1 |
+| `--st-hue-core` | `--st-surface` | Core hue on cards | 4.5:1 | 8.13:1 | 8.48:1 |
+| `--st-hue-branding` | `--st-surface` | Branding hue on cards | 4.5:1 | 7.03:1 | 6.99:1 |
+| `--st-hue-paperwork` | `--st-surface` | Paperwork hue on cards | 4.5:1 | 6.22:1 | 8.86:1 |
+| `--st-hue-types` | `--st-surface` | Business types hue on cards | 4.5:1 | 6.35:1 | 7.68:1 |
+| `--st-hue-lookup` | `--st-surface` | Look it up hue on cards | 4.5:1 | 8.75:1 | 7.76:1 |
+| `--st-text` | `--st-hue-start-tint` | Text on Start here tint | 4.5:1 | 12.51:1 | 9.68:1 |
+| `--st-text` | `--st-hue-core-tint` | Text on Core tint | 4.5:1 | 11.99:1 | 10.85:1 |
+| `--st-text` | `--st-hue-branding-tint` | Text on Branding tint | 4.5:1 | 12.22:1 | 12.64:1 |
+| `--st-text` | `--st-hue-paperwork-tint` | Text on Paperwork tint | 4.5:1 | 13.20:1 | 9.33:1 |
+| `--st-text` | `--st-hue-types-tint` | Text on Business types tint | 4.5:1 | 13.58:1 | 11.10:1 |
+| `--st-text` | `--st-hue-lookup-tint` | Text on Look it up tint | 4.5:1 | 11.90:1 | 11.06:1 |
+| `--st-link` | `--st-hue-start-tint` | Links on Start here tint | 4.5:1 | 5.92:1 | 5.69:1 |
+| `--st-link` | `--st-hue-core-tint` | Links on Core tint | 4.5:1 | 5.68:1 | 6.38:1 |
+| `--st-link` | `--st-hue-branding-tint` | Links on Branding tint | 4.5:1 | 5.79:1 | 7.44:1 |
+| `--st-link` | `--st-hue-paperwork-tint` | Links on Paperwork tint | 4.5:1 | 6.25:1 | 5.49:1 |
+| `--st-link` | `--st-hue-types-tint` | Links on Business types tint | 4.5:1 | 6.43:1 | 6.53:1 |
+| `--st-link` | `--st-hue-lookup-tint` | Links on Look it up tint | 4.5:1 | 5.63:1 | 6.51:1 |
+| `--st-border-strong` | `--st-bg` | Control border on page | 3:1 | 4.40:1 | 4.90:1 |
+| `--st-border-strong` | `--st-surface` | Control border on cards | 3:1 | 4.66:1 | 4.48:1 |
+| `--st-border-strong` | `--st-surface-2` | Control border on raised areas | 3:1 | 4.03:1 | 4.01:1 |
+| `--st-focus` | `--st-bg` | Focus ring on page | 3:1 | 4.59:1 | 8.61:1 |
+| `--st-focus` | `--st-surface` | Focus ring on cards | 3:1 | 4.87:1 | 7.88:1 |
+| `--st-focus` | `--st-surface-2` | Focus ring in note callouts and code | 3:1 | 4.21:1 | 7.06:1 |
+| `--st-focus` | `--st-primary-soft` | Focus ring in official callouts and badges | 3:1 | 4.15:1 | 5.79:1 |
+| `--st-focus` | `--st-accent-soft` | Focus ring in plain-words callouts | 3:1 | 4.18:1 | 6.77:1 |
+| `--st-focus` | `--st-warning-bg` | Focus ring in warning callouts | 3:1 | 4.41:1 | 6.43:1 |
+| `--st-focus` | `--st-info-bg` | Focus ring in info callouts | 3:1 | 4.12:1 | 6.32:1 |
+| `--st-focus` | `--st-hue-start-tint` | Focus ring on Start here tint | 3:1 | 3.55:1 | 5.29:1 |
+| `--st-focus` | `--st-hue-core-tint` | Focus ring on Core tint | 3:1 | 3.40:1 | 5.93:1 |
+| `--st-focus` | `--st-hue-branding-tint` | Focus ring on Branding tint | 3:1 | 3.46:1 | 6.91:1 |
+| `--st-focus` | `--st-hue-paperwork-tint` | Focus ring on Paperwork tint | 3:1 | 3.74:1 | 5.10:1 |
+| `--st-focus` | `--st-hue-types-tint` | Focus ring on Business types tint | 3:1 | 3.85:1 | 6.07:1 |
+| `--st-focus` | `--st-hue-lookup-tint` | Focus ring on Look it up tint | 3:1 | 3.37:1 | 6.05:1 |
+| `--st-primary` | `--st-bg` | Primary button edge, checkbox fill | 3:1 | 7.67:1 | 9.26:1 |
+
+These match the plan's quoted ratios to one decimal (text on bg 16.2/15.8, muted 6.9/8.1, on-primary 8.1/7.7, on-accent 4.9/7.8, accent-text 5.9/8.6, focus 4.6/8.6, border-strong 4.4/4.9). Two notes on the plan's figures: dark border-strong on bg measures 4.90:1 (the plan says 4.5), and the Start here hue on light bg measures 5.59:1, which rounds to the plan's 5.6 (the unit test asserts 5.59, not a looser 5.5).
+
+**The light focus ring on a section tint is the tightest pair in the system** (3.37:1 to 3.85:1 against a 3:1 minimum) and it is what caps tint separation. See [Section tints](#section-tints) before changing any `--st-tint-strength-*`.
+
+### Section tints
+
+The six tints must be tellable apart, and separation is measured in **OKLab** (ΔE_OK), not sRGB. Euclidean distance in sRGB flatters dark colours: the two dark pairs that review pass 3 called "near twins" were 6.7 and 8.1 sRGB units apart and passed the old `> 5` test comfortably.
+
+Measured strengths and worst pairs:
+
+| Theme | start | core | branding | paperwork | types | lookup | Worst pair (ΔE_OK) | Worst focus ring |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Light | 18% | 18% | 18% | 14% | 12% | 18% | **0.0280** Start here vs Core | 3.37:1 |
+| Dark | 26% | 22% | 16% | 28% | 22% | 22% | **0.0389** Core vs Your kind of business | 5.10:1 |
+
+Before this round, with a flat strength per theme, the worst pairs were 0.0141 (light Start here vs Your kind of business) and **0.0126** (dark Core vs Paperwork) — the two dark pairs reported in review. The unit test asserts **ΔE_OK ≥ 0.025** for every pair in both themes, which those three pairs fail and the current palette passes.
+
+**Why the separation stops there.** A tint darkens as its strength rises, and the light focus ring on a tint is already the tightest pair in the system. The search found a light configuration reaching ΔE_OK 0.0400, but it puts that ring at **3.02:1** against a 3:1 minimum — a 0.02 margin. Accessibility wins over separation, so the light tints were instead chosen to lose **no margin at all**: every light text, link and focus pair is at least as good as it was at a flat 18%, and Paperwork and Your kind of business are deliberately *weaker* than the default, which both separates them from their neighbours and raises their focus contrast (3.52 → 3.74 and 3.51 → 3.85). Dark has much more headroom, so three hues move there and the worst ring is still 5.10:1.
+
+If you change a hue or a strength, re-run `pnpm test`: the test asserts each tint against its hue, background and strength, so the numbers above can be re-derived rather than trusted.
+
+## Typography
+
+| Role | Family | Details |
+| --- | --- | --- |
+| Headings and display | Fraunces Variable (`@fontsource-variable/fraunces`, `opsz` + `wght` axes) | Weight 600, `font-variation-settings: 'opsz' 48` for headings, `144` for `.st-display` |
+| Body and UI | Instrument Sans Variable (`@fontsource-variable/instrument-sans`, `wght`) | 400 to 700, normal and italic |
+| Code | System monospace stack | `--st-font-mono` |
+
+- Subsets: latin and latin-ext only, with the fontsource `unicode-range` values. Latin-ext covers Afrikaans (ê, ô, ë, ï) and future languages (ḓ, ṱ, ṋ, ṅ). The design-system page shows the test string `Kôsê, sê, môre, ëïü, ḓ ṱ ṋ ṅ` in every family.
+- `font-display: swap`. `Base.astro` preloads only the two latin woff2 files, imported with Vite `?url` so the hashed URLs match the ones in `base.css`.
+- Metric-matched fallbacks keep layout shift low while fonts swap. Values were measured from the font files with `@capsizecss/unpack`:
+  - `Fraunces fallback` = `local('Georgia')`, `size-adjust 116.2%`, `ascent-override 84.17%`, `descent-override 21.95%`, `line-gap-override 0%`.
+  - `Instrument Sans fallback` = `local('Arial')`, `local('Roboto')` …, `size-adjust 102.74%`, `ascent-override 94.42%`, `descent-override 24.33%`, `line-gap-override 0%`.
+- Low data (`prefers-reduced-data: reduce` or `html[data-low-data]`) switches `--st-font-display` and `--st-font-body` to the fallback stacks, so CSS never requests the webfonts. See [Known limits](#known-limits) for the preloads.
+- Display figures use no-break spaces between digit groups (`R 1 234.56` with U+00A0), so an amount never breaks across lines. The decimal separator for rand amounts follows the toolkit markdown (i18n package).
+
+### Fluid scale (320px to 1280px viewport)
+
+| Token | Min → max | Use |
+| --- | --- | --- |
+| `--st-text-display` | 40 → 60px | Display numbers, hero |
+| `--st-text-3xl` | 34 → 48px | h1 |
+| `--st-text-2xl` | 28 → 36px | h2 |
+| `--st-text-xl` | 22 → 26px | h3, card titles |
+| `--st-text-lg` | 18 → 21px | Lead, plain-words callouts |
+| `--st-text-md` | 16 → 18px | Body |
+| `--st-text-sm` | 14 → 15px | Meta, badges, hints |
+| `--st-text-xs` | 13px | Swatch values only |
+
+Body line height 1.6; headings 1.15 (h3 and h4 1.3). Measure `--st-measure: 68ch`, tables and sheets `--st-measure-wide: 90ch`. The pipeline emits no h4 or deeper.
+
+## Other tokens
+
+| Group | Tokens |
+| --- | --- |
+| Spacing | `--st-space-1` … `--st-space-9` = 4, 8, 12, 16, 24, 32, 48, 64, 96px (in rem) |
+| Radius | `--st-radius-sm` 4px, `-md` 8px, `-lg` 14px, `-pill` 999px |
+| Shadow | `--st-shadow-1` (resting card), `--st-shadow-2` (lifted card, toast) |
+| Motion | `--st-duration-fast` 120ms, `-base` 200ms, `-slow` 320ms, `--st-ease`, `--st-lift` −2px. Under `prefers-reduced-motion: reduce` durations become 0ms and the lift 0px; `base.css` also clamps all animations and transitions. |
+| Layers | `--st-z-sticky` 10, `-drawer` 40, `-dialog` 50, `-toast` 60 |
+| Targets | `--st-target` 44px, `--st-target-lg` 52px |
+| Borders and focus | `--st-border-width` 1px, `--st-focus-width` 2px, `--st-focus-offset` 2px, `--st-stripe-width` 4px |
+| Layout | `--st-container` 1360px, `--st-sidebar` 272px, `--st-toc` 240px, `--st-topbar` 56px, `--st-gutter` fluid 16 → 32px |
+
+## Grid and breakpoints
+
+Custom properties cannot be used inside media queries, so breakpoints are literal and must be used consistently, with range syntax (`@media (width >= 768px)`):
+
+| Name | Width | What changes |
+| --- | --- | --- |
+| sm | 480px | Full-width block buttons become inline |
+| md | 768px | Roomier section headers, two-column definition lists |
+| lg | 1024px | Document sidebar column appears (`.st-doc-grid`) |
+| xl | 1280px | In-page TOC column appears |
+| (tables) | 640px | `TableScroll wide` stacks into cards below this width |
+| (theme control) | 560px, 400px | The segmented control drops its tick, then its icons |
+
+The last two are component-level widths, not system breakpoints: they belong to one component each and no layout depends on them.
+
+Layout utilities (`src/styles/utilities.css`): `.st-container`, `.st-measure`, `.st-stack` (+ `-sm`, `-lg`, `-xl`), `.st-flow`, `.st-cluster`, `.st-grid` (`--st-grid-min`), `.st-doc-grid` (`272px | minmax(0,1fr) | 240px`), `.st-visually-hidden`, `.st-link-block` (a stand-alone link with a 44px target; see [Wrapping and min-content](#wrapping-and-min-content)), `.js-only`, `.no-js-only`, `.st-num`, and the `[data-section]` hue scopes.
+
+## Components
+
+All components live in `src/components/ui/` (primitives) and `src/components/illustrations/`. Every interactive target is at least 44×44 CSS px and shows a 2px `--st-focus` ring with a 2px offset on `:focus-visible`.
+
+| Component | Props | States | Accessibility |
+| --- | --- | --- | --- |
+| `Button` | `variant` primary/secondary/ghost/danger, `size` md/lg, `href`, `type`, `iconStart`, `iconEnd`, slots `icon-start`/`icon-end`, `loading`, `loadingText`, `disabled`, `block` | default, hover, active, focus, loading (variant fill, spinner, `cursor: progress`), disabled (dashed, muted, `--st-surface-2`) | `href` renders `<a>`. Disabled and loading use `aria-disabled="true"` (focusable, announced). `theme-init` swallows clicks on `.st-btn[aria-disabled="true"]`, and an inactive `submit`/`reset` renders as `type="button"`, so it cannot submit even without JavaScript. Loading adds `aria-busy`, hides the visible label from assistive technology and exposes only `loadingText` ("Saving", not "Saving Saving"). The spinner stops under reduced motion and keeps its gap in forced colours. The component owns `aria-disabled`, `aria-busy` and, while loading, the accessible name: those are spread **after** the caller's attributes, so a caller cannot undo the inactive state or replace `loadingText`. An inactive `href` button still renders its `icon-end`, so it does not change width when it becomes active. |
+| `Card` | `title`, `href`, `section`, `eyebrow`, `headingLevel`, slots `illustration`, `meta` | static, hover lift, focus (ring on the whole card) | Single tab stop: the title link's `::after` covers the card. The meta row sits above the overlay, so links in it stay usable. The whole-card ring uses `:has()`; browsers without it get the ring on the link itself (`@supports not selector(:has(*))`). |
+| `Callout` | `variant` plain-words/note/warning/official/info, `label`, `icon`, `labelId` | – | `role="note"` named by its own visible label through `aria-labelledby`, so it is announced as "About this page, note" rather than a bare "note". The id is generated (`src/scripts/uid.ts`) unless you pass `labelId`. Icon plus visible text label; the icon stays beside the first line when a long label wraps. Plain-words is never collapsed. |
+| `Badge` | `variant` entity/type/official/status/effort/mt/flag, `icon` (or `null`) | – | Icon plus text; tinted colours are decoration only. `status` (who checked a page, and when) is deliberately neutral — see [Notices and sources](#notices-and-sources-plan-d5). **Badges wrap.** A label longer than the row it sits in breaks onto a second or third line instead of pushing the page sideways, the icon stays beside the first line, and the corner radius is `--st-radius-lg`, which a browser clamps to an exact pill on a one-line badge and leaves as a calm rounded rectangle on a wrapped one. `flag` reuses the verified warning pair for "Not confirmed" and other verification flags. |
+| `EffortMeter` | `level` 1–5, `label`, `levelLabels`, `scaleText` | five levels | Bars are `aria-hidden`; the level is written out ("Medium to high") plus hidden "(4 of 5)". Defaults follow the toolkit's own scale: Lowest, Low to medium, Medium, Medium to high, High. |
+| `ProgressRing` | `value`, `max`, `label`, `size`, `showValue` | empty, partial, complete | SVG `role="img"` with `aria-label` ("Part A: 12 of 34 done"). The percentage text is `aria-hidden` and sized to clear the stroke at 100%. The arc draws in once; reduced motion skips it. |
+| `Icon` | `name` (`lucide:*`), `label`, `size` | – | `aria-hidden` unless `label` is given, then `role="img"` + `aria-label`. Use a label only when the icon is the only content. `.st-icon` is `inline-block` with `vertical-align: -0.125em`, so an icon inside a sentence (an error message, an external-link ↗, an "Official" marker) stays on the line even though the reset makes every other `svg` a block. Flex and grid children are blockified anyway, so icon rows in buttons and badges are unaffected. Icons come from Lucide; `src/icons/` exists (with a README and no SVGs) because astro-icon reads its `iconDir` on every build and otherwise logged `Failed to load icons from "src/icons": ENOENT` into every build and CI log. |
+| `Kbd` | – | – | Native `<kbd>`. Keeps `white-space: nowrap`: a key name is short by definition, and breaking `Shift` across two lines would read as two keys. Do not put a sentence in a `Kbd`. |
+| `VisuallyHidden` | `as`, `id` | – | Uses `.st-visually-hidden`. |
+| `SectionHeader` | `section`, `title`, `eyebrow`, `level` 1–4 (default 1), `id` | six section hues | Hue stripe, tint, CSS-only shweshwe-inspired dot pattern (`aria-hidden`, removed under reduced data, low data and forced colours). Use `level` 3 or 4 when the header sits inside another page's outline. The eyebrow uses `--st-text` with a hue dot, never hue-coloured text on the tint. Code in the lead gets a light surface veil instead of beige `surface-2`. Under 768px the header is only as wide as the reading column, so the pattern moves from the inline end to a 3rem band along the bottom, out from behind the lead text. The header itself does **not** clip (`overflow: hidden` sits on the pattern's own box): clipping hid a lead paragraph that held a long URL instead of wrapping it, which is loss of content under WCAG 1.4.10 and which no `scrollWidth` test can see. The inner grid states `minmax(0, 1fr)` for the same reason. |
+| `EmptyState` | `title`, `icon`, `headingLevel`, slot `actions` | – | Real heading; icon decorative. Its grid states `minmax(0, 1fr)` and the title lowers its own min-content width (`overflow-wrap: anywhere`), because `justify-items: center` shrink-wraps every item. `hyphens: auto` on the title is a progressive enhancement only — Chromium hyphenates here, WebKit on Windows has no dictionary and breaks mid-word — so it may never be the mechanism that stops an overflow. |
+| `ToastRegion` | `id`, `label`, `static` | neutral (inverse), success, info, warning, danger | One `role="status"` region per page (implies polite; `aria-atomic="false"` so each toast is read on its own). Toasts need an icon plus text. Remove them after about 4 seconds. |
+| `TableScroll` | `labelledby`, `wide` | overflow shadows, stacked cards < 640px | Renders `<st-table-scroll role="region" tabindex="0" aria-labelledby>`. The element (`src/scripts/table-scroll.ts`) removes the tab stop, role and label while nothing overflows and restores them on resize; without JS the region always stays focusable. For `wide`, set `data-label` on every body cell. Each stacked cell is a two-column grid (label, value), so a wrapped label makes the row taller and never overlaps the next row. **Wrap cell content that mixes text and elements in one element** (for example `<span>`), otherwise each text run becomes its own grid row. The generated label uses `content: attr(data-label) / ''`, so screen readers hear the column header once. The element never removes the tab stop from itself while it holds focus (rotating the phone or closing a sidebar would otherwise drop focus to `<body>`); it re-checks on `blur`. |
+| `Logo` (illustrations) | `name`, `markOnly`, `label` | – | Original stoep mark (roof over three steps) plus the name as real text. No flags or insignia. |
+
+Form controls, links, tables, `mark`, `code` and prose are styled globally in `src/styles/base.css`. Use `.st-field` (label, control, `.st-hint`, `.st-error-text`) and `.st-check` (a checkbox or radio inside its label, as a 44px row). Invalid fields use `aria-invalid="true"` plus an error message linked with `aria-describedby` that starts with an icon; `.st-error-text` needs no layout of its own, because `.st-icon` is inline. The error border rule is scoped to `input` (not checkbox or radio), `select` and `textarea` and carries no `!important`, so a `fieldset` or a radio-group wrapper with `aria-invalid` does not grow a red box it cannot show. Disabled fields get a dashed border, `--st-surface-2` and muted text.
+
+The theme control on `/design-system/` is `<st-theme-toggle>` (`src/scripts/theme-control.ts`) around System/Light/Dark radios. The segments are equal width on one row at every width; under **560px** the tick is dropped and under 400px the icons, because the filled segment already shows the choice. (560px and 640px are component-level widths, not system breakpoints; see [Grid and breakpoints](#grid-and-breakpoints).) In forced colours the selected segment is opted out with `forced-color-adjust: none` and filled with `Highlight`/`HighlightText`, so it differs from the others by fill and text colour and not by border colour alone — which mattered below 560px, where the tick is hidden. Every toggle on a page stays in sync, including ones connected later. The ThemeToggle component in the navigation package should reuse this element, including the forced-colour rule.
+
+### Illustrations
+
+Seven inline SVGs: `VehicleDealer` (bakkie), `FoodBusiness` (pot with steam), `BeautyCare` (comb and scissors), `RetailOnline` (shop awning with parcel), `ServicesTrades` (spanner and ladder), `ProfessionalCreative` (pencil and laptop), `General` (row of small shapes).
+
+- Hand-authored geometric shapes, each under 2 KB, `aria-hidden="true"`, `focusable="false"`.
+- Business-type art belongs to "Your kind of business" (`data-section="types"`). The design-system page adds a separate, labelled hue demo row.
+- Two tone: strokes use `currentColor` (the section hue through `.st-illustration { color: var(--st-section) }`); shapes with `.st-illo-fill` use `--st-illustration-fill`, which defaults to `--st-section-tint` (right on `--st-bg` or `--st-surface`). On a tinted background, set `--st-illustration-fill: var(--st-surface)` so the fill stays visible. `Card` already does this in its illustration area. Set `--st-illustration-size` to resize.
+- Components have no `<style>` block, so no scope attributes are added to every path.
+
+## Notices and sources (plan D5)
+
+Every content page carries an AI notice near the top and a "Sources for this page" section. Both compose from primitives that already exist. **No new colour tokens and no new components are needed**, so do not invent a notice style per page package. `/design-system/` shows all of it under [Notices and sources](/design-system/#notices), in English and in Afrikaans.
+
+### AI notice
+
+`Callout variant="info"` with `icon="lucide:bot"` and `label={t('trust.aiNotice.label')}`. Inside, in this order, and nowhere else on the page:
+
+1. **The notice sentence** (`trust.aiNotice.body`, or the `…HumanChecked` / `…NoPageSources` variant). It names who checked: an AI, or the named reviewer.
+2. **The verification status**, as a `Badge` **and** as words: `trust.status.aiChecked` ("AI-checked") or `trust.status.humanChecked` ("Checked by {reviewer}"). Use `variant="status"` with an `icon` override (`lucide:bot`, `lucide:user-check`). `status` is the neutral surface-2 chip, **not** the info tint that marks an official source: a status says who looked at the page, officialness says who wrote the rule, and the two carry very different weight. Rendering "AI-checked" in the same teal chip as "Official source" teaches at a glance that an AI check is as good as the regulator, which is the conflation ADR 0006 exists to prevent — and in forced colours and in greyscale print the chip is gone, so only the words are left to carry it. No new colour: `status` reuses the `--st-text` on `--st-surface-2` pair that is already verified.
+3. **Its one-sentence explanation** (`trust.status.aiCheckedMeans` / `humanCheckedMeans`), immediately beside the status.
+4. **The link** to `start/how-this-was-made`, as `.st-link-block` so it is a 44px target.
+
+On an **Afrikaans page** the Afrikaans AI notice comes first in the article header and says the *English* text was checked, and the machine-translation notice (`Callout variant="warning"`, `icon="lucide:languages"`) sits directly under it, in the same header. Neither notice is dismissible. Put the link to the English version inside the MT notice with `lang="en"` on the link text.
+
+`Callout` names its own `role="note"` from its label, so a screen reader announces "About this page, note" rather than a bare "note".
+
+### Sources for this page
+
+A heading plus `<ul role="list">` (`.st-stack`). Each entry has:
+
+- the **title as a link**, with `.st-link-block` and an external-link `Icon` (`lucide:external-link`) inside the link text, plus `rel="noopener"`. The icon belongs in the last text run, and `.st-link-block` is inline layout, so it stays there when a long translated title wraps;
+- `Badge variant="official"` when the source is official, or `Badge variant="flag"` ("Not an official source") when it is not — never silence, and never colour alone;
+- a `.st-hint` line beginning "What this source supports: …", so a reader can tell which fact rests on which source.
+
+Acts and regulations go in a nested `<ul role="list">` under an "Acts and regulations" entry, each with its section numbers in a `.st-hint`. Pages with no sources of their own (start pages, the register itself) render `doc.sourceNote` as a `.st-hint` sentence, followed by the two links — to the full register and to how-this-was-made — as `.st-link-block` in a `.st-cluster`. Do **not** hang them off the end of the sentence separated by a middot: two link phrases side by side are stand-alone links, not inline links in a sentence, so the 44px rule applies to them and the e2e target test only measures them once they say so.
+
+### Dated and unconfirmed facts
+
+- A dated fact: the claim, then `Badge variant="status" icon="lucide:calendar-check"` reading "AI-checked {date}" with the date in words, then the link to the one source that supports it.
+- An unconfirmed fact: `Badge variant="flag"` reading `trust.unverified.label` ("Not confirmed"), followed by `trust.unverified.body`, the sentence that says what to do about it.
+
+**A number in a demo is a number that ships.** `/design-system/` is built and deployed, and every page package copies this section, so a figure in an example is held to the same standard as one on a content page: it comes from the verification register, and its "checked" date is the register's own (`docs/rsa-business-toolkit/05 Look it up/03-sources-and-verification-register.md`). A stale figure wearing a verification badge is worse than one with no badge at all. Review pass 4 found the dated-fact demo stating the superseded R1 million VAT threshold — the exact number the toolkit's own content warns readers about — with an "AI-checked" badge next to it. `tests/unit/forbidden-strings.test.ts` now scans `src/pages/**`, `src/layouts/**` and `src/components/**` for that class of mistake; the content pipeline's check only sees the generated JSON. Add a pattern there whenever a fact goes stale, and never restate a superseded figure in a demo to make a point about it.
+
+### What must never be colour-only
+
+Verification status, officialness and "not confirmed" are the three places a page package will be tempted to use a coloured chip on its own. All three must carry an icon **and** words, and the status must carry its explanation sentence next to it. The reason is not only WCAG 1.4.1:
+
+- **In print** the light palette is forced and callouts are `break-inside: avoid`, but a reader may print in greyscale. Words survive; a tint does not.
+- **In forced colours** every badge and callout keeps only a `CanvasText` border, and all tints collapse to `Canvas`. An "Official" badge and a "Not confirmed" badge are then distinguishable by their icon and their text, and by nothing else.
+- Under `prefers-reduced-data` the shweshwe pattern goes and fonts fall back, but none of this text does.
+
+## Scripts, CSP and JavaScript budget
+
+- CSP (meta, production builds only, because the dev server injects inline scripts): `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'`. It comes before the first script in `<head>`.
+- **Blocking theme init.** `src/scripts/theme-init.js` is plain JavaScript (checked with `// @ts-check`). `Base.astro` imports it with `?url`; Vite copies the file unchanged with a hashed name (it does not compile `?url` imports, which is why the file is `.js` and not `.ts`) and Base loads it with `<script is:inline src={url}>`, a classic render-blocking script right after the theme-color metas. About 1.2 KB unminified.
+- **Everything else** is a normal Astro `<script>`: bundled as an ES module, deduplicated per page, able to share chunks and use `import()`. Component scripts (for example `TableScroll`) and page scripts (the design-system page imports `theme-control` and `design-system-contrast`) work the same way.
+- `astro.config.ts` sets `vite.build.assetsInlineLimit` to a **function**, not to `0`. Astro inlines a processed script bundle, and Vite a `?url` asset (as a `data:` URI), when it is under that limit, and `script-src 'self'` would block both; but a flat `0` also switched off Astro's `inlineStylesheets: 'auto'`, so a page with a few hundred bytes of scoped CSS paid for an extra render-blocking request. The function returns `false` for everything except `.css`, where it returns `undefined` and the default size limit applies. Result: zero inline `<script>` on any page, and small stylesheets inline again (`style-src` already allows `'unsafe-inline'`). E2e tests check both on `/` and `/design-system/`.
+- Only the CSS chunk that carries the design tokens is named `stoep.[hash].css`; page CSS keeps Rollup's own name (`assetFileNames` matches on `originalFileNames`). Three files all called `stoep.*` could not be told apart in DevTools or a budget report.
+- Module scripts run after parsing but, in WebKit, **before stylesheets that come later in `<head>`** have applied (Astro emits page CSS links after its scripts). Scripts that read computed styles must check that the tokens resolve and otherwise wait for `load`, as `design-system-contrast.ts` does.
+- `localStorage` is allowed in `src/scripts/**` (ESLint allow-list), because `theme-init` must run before any module loads. Other code uses `src/lib/store.ts`.
+- In `astro dev` the same imports work: `?url` returns the source path of `theme-init.js`, which Vite serves as JavaScript, and processed scripts load as dev modules.
+
+## Automated checks
+
+- **Unit** (`tests/unit/forbidden-strings.test.ts`): stale facts and unfinished markers in hand-written source (`src/pages/**`, `src/layouts/**`, `src/components/**`), with a mutation self-test. The content pipeline's forbidden-string check only sees the generated JSON, so a number typed into a page was unguarded until now. See [Dated and unconfirmed facts](#dated-and-unconfirmed-facts).
+- **Unit** (`tests/unit/tokens-contrast.test.ts`): plan B4 hex values; dark blocks identical; the token structure test (one of each palette block, no other colour overrides, with a mutation self-test); every `CONTRAST_PAIRS` entry in both themes; tint strength and tint separation; favicon colours; and the computed-colour parser (`rgb()`, `color(srgb …)`, `oklab()`, `oklch()`, hex with alpha, `none`, compositing), including the exact strings WebKit and Chromium return.
+- **e2e** (`tests/e2e/design-system.spec.ts`, projects chromium, webkit and mobile):
+  - no inline scripts and the exact C4 CSP on `/` and `/design-system/`;
+  - a saved dark theme is on `<html>` (with `js`) before `<body>` exists, and theme-color follows it;
+  - no horizontal scrolling at 320px, on both pages;
+  - **long labels**: the longest real Afrikaans status label ("Masjienvertaling, nog nie nagegaan nie", 38 characters) is injected into every badge, callout label, effort value, card title and table heading, and an unbreakable compound (`Maatskappyregistrasienommer`, a real `af.json` value, plus `eenpersoonsondernemings` in the headings) into every button label, stand-alone link, toast, theme segment and section-header title, then `document.documentElement.scrollWidth` is measured against the viewport at 320px. **The compound is the point**: a label with spaces only proves a component can wrap between words, which is why the pass-3 version of this test passed while `Button`, `.st-link-block` and `.st-toast` were still 327–362px wide. Anything sized by its own content gets the compound;
+  - **a long URL in a section header lead** is wrapped and not clipped: every text node's right edge is compared with the header's, because `scrollWidth` cannot see content an `overflow: hidden` ancestor has cut off;
+  - **verification status badges are neutral** (`data-variant="status"`) and the sources list keeps `official`, so an AI check never renders in the chip that marks an official source;
+  - forced colours (Chromium only, which is all Playwright can emulate): the contrast panel pauses instead of reporting every pair as FAIL, and the selected theme segment differs from the others by fill and text colour, not by border colour alone;
+  - stand-alone targets are at least 44px (inline links in sentences and the card overlay are exempt);
+  - the theme control (pointer, keyboard, persistence, theme-color, one row at 320px);
+  - the live contrast panel reports zero FAIL, and its "Now" ratios equal the build-time ratios for the active theme;
+  - axe (wcag2a/aa, 21a/aa) has no serious or critical violations in light and dark;
+  - **rendered text contrast**: the computed text and background colours of about 80 component elements in both themes are composited and must reach 4.5:1. Two limits worth knowing: it samples the **first** match of each selector, not every match, and it composites `background-color` layers only, so text over the table-scroll gradients or the section pattern is not measured. A mutation run (breaking one component colour in a copy of `dist/`) confirmed it fails as it should;
+  - the stacked table uses grid cells that never overlap and keeps its table, row header and cell semantics;
+  - table regions are tab stops only while they scroll;
+  - focus rings are visible on key controls;
+  - disabled and loading buttons ignore clicks and announce only their status.
+- **axe and colour contrast.** axe marks `color-contrast` as *incomplete* on most of this page (tints, gradients, overlays, inline swatches), so an axe pass is **not** contrast verification here. The contrast gate is the unit test, the live panel and the rendered-text e2e check.
+- **Timeouts.** This page is large and axe is slow on it in WebKit, so the spec sets its own describe timeout. `test.describe.configure` overrides the CLI `--timeout`, so the value is **configurable**: set `PW_DS_TIMEOUT` in milliseconds (default 120000) on a loaded machine or a slow CI runner. The two axe tests also call `test.slow()`, which triples whatever is configured. A loaded machine should no longer turn the gate red without a product change.
+
+## Known limits
+
+- **Low data and preloads.** The two `<link rel="preload">` font files (about 97 KB) are still fetched in low-data mode; a meta-level preload cannot react to a runtime toggle, and `prefers-reduced-data` ships in no stable browser. Revisit when the footer toggle lands.
+- **Safari table semantics.** Stacked cells are `display: grid`. Playwright's accessibility snapshot keeps table, rowheader and cell roles in Chromium and WebKit, but that is computed from the DOM. Real VoiceOver on Safari has not been checked; the Table component can add explicit ARIA table roles if needed.
+- **`:has()`** drives the card ring and the segmented control's checked style. Browsers without `:has()` get the ring on the card link; the checked segment then shows only the native radio state to assistive technology, not the fill.
+- **Print** rules (sheet-only printing, hidden chrome) have no automated check yet. The templates package must verify sheet-only printing with `emulateMedia('print')` once a template page exists.
+- **Manual assistive-technology checks** (NVDA with Firefox, TalkBack with Chrome, plan B5) were not run for this package; there are no real pages yet. They are deferred to the pages packages, which own the six B5 journeys.
+- **WebKit heading weight (port artifact, to confirm on real Safari).** Playwright's Windows WebKit draws Fraunces heavy at every weight: an explicit `"wght" 300` still renders black. It is the rasteriser, not the CSS — measured advance widths are identical to Chromium (600: 369.5px, 900: 395.5px, 300: 343.7px), so the variation axis *is* being applied, and Chromium at the same weights looks right. **The type tokens were deliberately not changed for it.** Check once on real Safari (macOS and iOS) before assuming anything is wrong with the font setup; if it reproduces there, it belongs in a bug against the font or the engine, not in `tokens.css`.
+
+## Do and don't
+
+| Do | Don't |
+| --- | --- |
+| Use `var(--st-*)` for every colour, size and duration | Write hex, `rgb()`, `hsl()` or named colours outside `tokens.css` |
+| Pair every status colour with an icon and words | Use colour, position or shape alone to mean something |
+| Keep links underlined | Remove underlines to "clean up" a list of links |
+| Use `--st-border-strong` for control edges | Use `--st-border` for inputs, checkboxes or buttons |
+| Put hue-coloured text on `--st-bg` or `--st-surface` | Put hue text on its own tint (not verified) |
+| Give icon-only buttons a `label` | Put meaning in an `aria-hidden` icon |
+| Use `Card` with one link for the whole card | Nest several full-card links or buttons in one card |
+| Use `.st-link-block` for a link that stands alone | Leave a lone footer link at text height |
+| Test at 320px, 200% zoom, dark, forced colours and print | Assume the desktop light theme is representative |
+| Test at 320px with the longest real Afrikaans label, not the English one | Ship a component whose demo strings are all short |
+| Let a badge, a callout label or a button label wrap | Add `white-space: nowrap` to anything translated |
+| Cap text-bearing grid tracks with `minmax(0, 1fr)` | Leave an implicit `auto` track around a heading |
+| Lower min-content (`overflow-wrap: anywhere`) on text in a box that is sized by its own content | Assume `min-inline-size: 0` or `hyphens: auto` fixed it |
+| Let the header wrap a long URL | Hide it with `overflow: hidden` |
+| Use the current figure, from the register, in a demo | Print a superseded number under a verification badge |
+| Give a `role="note"` an accessible name from its visible label | Ship a bare "note" that is announced with no name |
+| Say what a status means in words, next to the status | Let a coloured chip be the whole verification story |
+
+## Internationalisation
+
+- Allow **+25% string length** in every button, badge, tile and heading. Afrikaans is often longer than English. Components wrap instead of truncating; never set fixed widths on text containers.
+- +25% is the *average*, not the worst case. Status labels are far worse: "Machine translated" (18) becomes "Masjienvertaling, nog nie nagegaan nie" (38), and "AI-checked" becomes "KI-nagegaan (Engelse teks)". `/design-system/` has a [Long labels](/design-system/#long-labels) section built from the real `trust.*` Afrikaans strings, and an e2e test injects the longest of them into every component at 320px and measures the document width. Add new components to that section.
+- **Never use `white-space: nowrap` on a translated string.** It is the one declaration that turns a long label into a horizontally scrolling page, because a nowrap box is never narrower than its text and that width propagates out through every ancestor. `nowrap` is correct only for content that is short by definition and meaningless when broken: a key in `Kbd`, a table heading inside a scroll region, a `--st-token-name`, a ratio like "✓ PASS".
+- Two separate things have to be right, and they are easy to confuse: **wrapping** (what the text does inside its box) and **min-content** (how wide the box insists on being). See [Wrapping and min-content](#wrapping-and-min-content).
+- **No text in images.** Illustrations and the logo mark contain no words; the wordmark is real text.
+- Every visible default in a component (`Callout` labels, `EffortMeter` labels, `Button` `loadingText`, `ToastRegion` label) is a prop. Pages must pass strings from `src/i18n/*.json`.
+- Set `lang` on content in another language (`lang="en"` on English fallback blocks inside Afrikaans pages).
+- Use logical properties (`inline-size`, `margin-inline`, `inset-inline-start`) so a future right-to-left language needs no rewrite.
+- Numbers use tabular figures in tables (`.st-num`).
+
+### Wrapping and min-content
+
+One unbreakable Afrikaans compound — `Maatskappyregistrasienommer` (27), `voorlopigebelastingbetalers` (27) — is the load every component has to carry at 320px. Two different mechanisms are involved, and fixing the wrong one looks like a fix without being one.
+
+| | What it does | What it does **not** do |
+| --- | --- | --- |
+| `overflow-wrap: break-word` (the global default on `body`) | Breaks a word at render time when it cannot fit on a line by itself | Lower the box's min-content width |
+| `overflow-wrap: anywhere` | The same, **and** lowers the min-content width | Change anything while the text fits |
+| `min-inline-size: 0` on a flex item | Lets the item shrink below its automatic minimum | Lower the item's min-content **contribution**, which is what sizes its container |
+| `grid-template-columns: minmax(0, 1fr)` | Stops a track growing to its children's min-content | Help when the child is shrink-wrapped inside the track (`justify-items: center`, `inline-flex`, `inline-block`) |
+| `max-inline-size: 100%` | Caps the used width | Cap anything while an ancestor is being sized intrinsically — a percentage resolves to `none` there |
+| `hyphens: auto` | Adds hyphenation where the engine has a dictionary for the page language | Work at all in WebKit on Windows (no Afrikaans or English patterns). **Progressive enhancement only** |
+
+So: **cap the containers, and lower min-content on the text inside any box that is sized by its own content.** A block-level box in a capped track needs nothing beyond the global `break-word`. A box that shrink-wraps — a button, a stand-alone link, a toast, a badge, a heading under `justify-items: center` — is never narrower than its longest word unless that word can break, which is what `overflow-wrap: anywhere` buys.
+
+Where the system states it:
+
+- `.ds-page`, `.ds-section`, `.st-doc-grid`, `.st-section-header__inner`, `.st-empty` and every single-column grid on `/design-system/` cap their track with `minmax(0, 1fr)`.
+- `.st-btn__label`, `.st-link-block`, `.st-toast`, `.st-empty__title` and `.ds-segmented__option` set `overflow-wrap: anywhere`. Each of the five is measured on its own by the "no shrink-wrapped component is sized by its longest word" e2e test, which compares the component's own min-content width on a 2-character word against a 27-character compound. The page-level `scrollWidth` test cannot do that job: with the containers capped as well, deleting one of these declarations — or one `minmax(0, 1fr)` cap — leaves the document at 320px, because the two mechanisms mask each other at page level. Both are still wanted; only the per-component measurement can tell you which one you just deleted. On `.st-toast` it sits on the container, because the toast text is an anonymous flex item that nothing can select — `overflow-wrap` is inherited, so it reaches it. Measured at 320px before these rules, in **both** Chromium and WebKit: button label 362px, a real `af.json` string in an `EmptyState` action button 343px, `.st-link-block` 337px, `.st-toast` 327px, a theme segment 360px, a type specimen 485px.
+- `base.css` sets `overflow-wrap: anywhere` on `h1`–`h6`. It is a safety net for headings that land in a container a future package forgot to cap; the containers are still capped. On a capped container the two values render **identically** — measured on `.st-section-header__title` at 320px in both engines, `break-word` and `anywhere` produce the same lines, the same 234px box and the same 320px document, including the mid-word break of "Responsibilities," that neither value can avoid once the heading is wider than its line. The only difference `anywhere` can make is one soft-wrap opportunity earlier (before a comma, say) when the word plus its punctuation does not fit but the word does.
+- `.st-link-block` is `display: inline-block` with padding-based height, not `inline-flex`. A flex box makes a trailing `↗` its own item: the space before it collapses and, on a wrapped title, it floats away from the last word to the far right of the block. Inline layout keeps it in the text run, and it is what allows the link to be narrower than its longest word.
+
+**Never** rely on `hyphens: auto`, `min-inline-size: 0` or a percentage `max-inline-size` alone to stop an overflow. Each of them can make the failure look fixed in Chromium, or in one container, while the page still scrolls sideways somewhere else.
+
+## Print
+
+`src/styles/print.css`, plus the light palette forced by `tokens.css`:
+
+- A4 with 15mm margins, 11pt base size.
+- Hidden: skip link, `body > header`, `body > footer`, `nav`, `dialog`, buttons and `.st-btn` links, `.js-only`, `.st-no-print`, `[data-print='hide']`, search, toasts.
+- `<details>` content is expanded where the browser supports `::details-content`. JavaScript should also open `<details>` on `beforeprint`.
+- External links print their URL after the text. The generated `::after` is an `inline-block`, because text decoration propagates from the inline parent into generated content: without it the printed "(https://…)" was underlined along with the link. It carries `max-inline-size: 100%` and `overflow-wrap: anywhere` so a long URL still wraps inside the page.
+- Checkboxes print as empty boxes, unless `<html data-print-ticks>` is set.
+- When an element has `data-print-sheet`, only that element prints (templates). Everything that is not the sheet, inside it or one of its ancestors gets `display: none`, so no blank pages are left behind and the sheet stays in normal flow.
+- Headings avoid breaks after; table rows, figures, callouts and code avoid breaks inside; table headers repeat.
+- Not yet verified automatically (see Known limits).
+
+## Forced colours and preferences
+
+- `forced-colors: active`: focus rings become 3px `CanvasText`, cards, callouts, badges and toasts get visible borders, native checkboxes keep system rendering, the loading spinner keeps its gap, and illustration fills and the shweshwe pattern are removed.
+- The selected theme segment is filled with `Highlight`/`HighlightText` behind `forced-color-adjust: none`. A selected state must never come down to border colour alone, which is what happens if you let forced colours paint a transparent border as `CanvasText` and the fill as `Canvas`.
+- The live contrast panel **pauses** in forced colours and says so. The system palette replaces every author colour, so `getComputedStyle` returns the same forced value for every token and each pair would read "1.00:1 ✗ FAIL". Reporting 76 failures would tell a high-contrast user the design system is broken when nothing has drifted. The panel resumes when the override is turned off; the build-time Light and Dark columns stay visible throughout.
+- `prefers-reduced-motion: reduce`: durations 0ms, no lift, no spinner rotation, no ring draw.
+- `prefers-reduced-data: reduce` or `html[data-low-data]`: system fonts, no decorative pattern.
+
+## Contribution checklist
+
+1. New colour? Add it to all three palette blocks in `tokens.css` (light, explicit dark, system dark). Add every pair a component renders with it to `CONTRAST_PAIRS` in `src/scripts/color.ts`, then run `pnpm test`.
+2. No literal colours outside `tokens.css`; `pnpm lint` must pass (ESLint, Prettier, Stylelint).
+3. Every interactive element is at least 44×44px, keyboard reachable, and has a visible `:focus-visible` ring.
+4. Meaning never relies on colour alone: add an icon and text.
+5. Check light, dark, forced colours, reduced motion, 320px width, 200% zoom and print.
+6. Add the component, in every state, to `/design-system/`, and add its text elements to the rendered-contrast e2e list.
+7. No inline `<script>`: use a normal Astro `<script>` (module). Only render-blocking code goes in a plain `.js` file imported with `?url`.
+8. Scripts that read computed styles wait until the tokens resolve (see Scripts).
+9. Strings come from props (i18n), with room for +25% length. Then check the component again at 320px with a 38-character Afrikaans label **and** with one unbreakable 27-character compound, in Chromium **and** WebKit — several of these rules behave differently per engine. Read [Wrapping and min-content](#wrapping-and-min-content) before reaching for a fix, add the component to the Long labels section of `/design-system/`, and add its selector to the long-label e2e injection. If the component's box is sized by its own content, add it to `SHRINK_WRAPPED` in the same spec as well — the page-level injection alone will not fail when its declaration is deleted.
+10. Any real number in an example comes from the verification register, with the register's date. If a figure can go stale, add it to `tests/unit/forbidden-strings.test.ts` when it does.
+11. Run `pnpm typecheck`, `pnpm test`, `pnpm build` and `pnpm exec playwright test tests/e2e/design-system.spec.ts --project chromium --project webkit --project mobile`.

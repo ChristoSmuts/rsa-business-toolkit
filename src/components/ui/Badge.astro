@@ -1,0 +1,122 @@
+---
+/**
+ * Small non-interactive label. Always an icon plus text, never colour alone.
+ * Badges wrap: an Afrikaans label is often far longer than its English original
+ * ("Masjienvertaling, nog nie nagegaan nie"), and at 320px a badge that cannot wrap
+ * pushes the whole page sideways (WCAG 1.4.10). See docs/design-system.md, Badge.
+ */
+import Icon from './Icon.astro';
+
+type Variant = 'entity' | 'type' | 'official' | 'status' | 'effort' | 'mt' | 'flag';
+
+interface Props {
+  variant?: Variant | undefined;
+  /** Icon name, or `null` for text only. Defaults per variant. */
+  icon?: string | null | undefined;
+  class?: string | undefined;
+}
+
+const ICONS: Record<Variant, string> = {
+  entity: 'lucide:building-2',
+  type: 'lucide:store',
+  official: 'lucide:badge-check',
+  status: 'lucide:calendar-check',
+  effort: 'lucide:gauge',
+  mt: 'lucide:languages',
+  flag: 'lucide:circle-alert',
+};
+
+const { variant = 'entity', icon, class: className } = Astro.props;
+const iconName = icon === null ? undefined : (icon ?? ICONS[variant]);
+---
+
+<span class:list={['st-badge', className]} data-variant={variant}>
+  {iconName && (
+    <span class="st-badge__icon">
+      <Icon name={iconName} size="1.1em" />
+    </span>
+  )}
+  <span class="st-badge__text">
+    <slot />
+  </span>
+</span>
+
+<style>
+  .st-badge {
+    --st-badge-bg: var(--st-primary-soft);
+    --st-badge-fg: var(--st-on-primary-soft);
+
+    display: inline-flex;
+
+    /* Top-aligned, so the icon stays beside the first line of a wrapped label. */
+    align-items: flex-start;
+    gap: 0.35em;
+
+    /* Never wider than the row it sits in, and long compounds break instead of overflowing. */
+    max-inline-size: 100%;
+    padding: 0.125em 0.625em;
+    border: var(--st-border-width) solid color-mix(in oklab, var(--st-badge-fg) 30%, transparent);
+
+    /*
+     * Not --st-radius-pill: on two or three lines a pill curves into its own text. At
+     * --st-text-sm with line-height 1.5 a one-line badge is about 26px high, so the browser
+     * clamps this 14px radius to half the height and still draws an exact pill; a wrapped
+     * badge gets a calm rounded rectangle instead.
+     */
+    border-radius: var(--st-radius-lg);
+    background-color: var(--st-badge-bg);
+    color: var(--st-badge-fg);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-semibold);
+    line-height: 1.5;
+  }
+
+  /* Centre the 1.1em icon on the first 1.5em line box: (1.5 − 1.1) / 2. */
+  .st-badge__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    margin-block-start: 0.2em;
+  }
+
+  .st-badge__text {
+    min-inline-size: 0;
+    overflow-wrap: break-word;
+    text-wrap: pretty;
+  }
+
+  .st-badge[data-variant='type'] {
+    --st-badge-bg: var(--st-accent-soft);
+    --st-badge-fg: var(--st-on-accent-soft);
+  }
+
+  .st-badge[data-variant='official'] {
+    --st-badge-bg: var(--st-info-bg);
+    --st-badge-fg: var(--st-info-text);
+  }
+
+  /*
+    * `status` (who checked a page, and when) and `effort` are deliberately neutral. A
+    * verification status must not borrow the info tint that marks an official source: at a
+    * glance that teaches that an AI check carries the same weight as the regulator, which is
+    * the one conflation ADR 0006 exists to prevent. The words and the icon carry the status;
+    * the chip is only a chip. See docs/design-system.md, "Notices and sources".
+    */
+  .st-badge[data-variant='status'],
+  .st-badge[data-variant='effort'] {
+    --st-badge-bg: var(--st-surface-2);
+    --st-badge-fg: var(--st-text);
+  }
+
+  /* Machine translation and "not confirmed" share the verified warning pair. */
+  .st-badge[data-variant='mt'],
+  .st-badge[data-variant='flag'] {
+    --st-badge-bg: var(--st-warning-bg);
+    --st-badge-fg: var(--st-warning-text);
+  }
+
+  @media (forced-colors: active) {
+    .st-badge {
+      border-color: CanvasText;
+    }
+  }
+</style>

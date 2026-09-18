@@ -1,0 +1,376 @@
+/*
+ * Stoep design tokens. This is the ONLY file allowed to contain literal colours
+ * (Stylelint enforces it). Everything else uses var(--st-*).
+ *
+ * Structure (tests/unit/tokens-contrast.test.ts parses this file, keep the shape):
+ *   1. :root                                   light palette + every non-colour token
+ *   2. @media screen :root[data-theme="dark"]  explicit dark choice
+ *   3. @media screen and (prefers-color-scheme: dark) :root:not([data-theme="light"])
+ *                                              system dark; must equal block 2 exactly
+ *   4. preference blocks (reduced motion, reduced data, low-data toggle)
+ *
+ * The dark blocks are wrapped in `@media screen` so print always uses the light
+ * palette (dark ink on white paper), whatever theme is active on screen.
+ *
+ * Breakpoints cannot be custom properties inside media queries. Use these literal
+ * values everywhere: sm 480px, md 768px, lg 1024px, xl 1280px (and 640px only for
+ * stacked wide tables).
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces and text */
+  --st-bg: #fbf8f3;
+  --st-surface: #fff;
+  --st-surface-2: #f3eee5;
+  --st-text: #1e1b16;
+  --st-text-muted: #5c5648;
+  --st-border: #ddd5c7;
+  --st-border-strong: #7d7362;
+
+  /* Primary: veld green */
+  --st-primary: #1e5a3c;
+  --st-primary-hover: #174730;
+  --st-on-primary: #fff;
+  --st-primary-soft: #e3f0e8;
+  --st-on-primary-soft: #174730;
+
+  /* Accent: rooibos */
+  --st-accent: #b5561a;
+  --st-accent-text: #9a4a10;
+  --st-on-accent: #fff;
+  --st-accent-soft: #fbebdd;
+  --st-on-accent-soft: #7a3a0c;
+
+  /* Links and focus */
+  --st-link-visited: #4a3f8f;
+
+  /* Status (background + text pairs) */
+  --st-success-bg: #e3f0e8;
+  --st-success-text: #174730;
+  --st-warning-bg: #fff3d6;
+  --st-warning-text: #7a4b00;
+  --st-danger-bg: #fce6e4;
+  --st-danger-text: #8f2323;
+  --st-info-bg: #ddf0ef;
+  --st-info-text: #155a5a;
+
+  /* Solid danger for destructive buttons (addition to plan B4, see docs/design-system.md) */
+  --st-danger-solid: #8f2323;
+  --st-on-danger-solid: #fff;
+
+  /* Search and placeholder highlight */
+  --st-mark-bg: #ffe9a8;
+
+  /* Section hues */
+  --st-hue-start: #8a5a00;
+  --st-hue-core: #1e5a3c;
+  --st-hue-branding: #9c2e63;
+  --st-hue-paperwork: #1f6b6b;
+  --st-hue-types: #a3401a;
+  --st-hue-lookup: #4a3f8f;
+
+  /* Shadow ink */
+  --st-shadow-ink: #1e1b16;
+  --st-shadow-strength-1: 10%;
+  --st-shadow-strength-2: 16%;
+
+  /* Aliases (resolve against the active palette, never redefine per theme) */
+  --st-link: var(--st-primary);
+  --st-link-hover: var(--st-primary-hover);
+  --st-focus: var(--st-accent);
+  --st-selection-bg: var(--st-primary-soft);
+  --st-danger-solid-hover: color-mix(in oklab, var(--st-danger-solid) 82%, var(--st-text));
+
+  /*
+   * Soft section tints: a percentage of the hue mixed into the page background, with
+   * --st-text on top. Plan B4 said a flat 12%; at 12% Core, Paperwork and Look it up could not
+   * be told apart, so --st-tint-strength is the default (18% light, 22% dark).
+   *
+   * A hue gets its own strength only where the six tints would otherwise be too close to tell
+   * apart. Separation is measured in OKLab (ΔE_OK) by tests/unit/tokens-contrast.test.ts,
+   * which requires >= 0.025 for every pair in both themes.
+   *
+   * The ceiling is accessibility, not taste: the light focus ring on a tint is the tightest
+   * pair in the whole system (3.37:1 to 3.85:1 against a 3:1 minimum), and a tint gets darker
+   * as its strength rises. The light values below were chosen so that no text, link or focus
+   * pair loses any margin at all compared with a flat 18%; Paperwork and Your kind of business
+   * are *weaker* than the default, which both separates them and raises their focus contrast.
+   * Dark has far more headroom (worst focus pair 5.10:1), so three hues move there.
+   * Measured worst pairs: light 0.0280 (Start here vs Core), dark 0.0389 (Core vs types).
+   * See docs/design-system.md, "Section tints".
+   */
+  --st-tint-strength: 18%;
+  --st-tint-strength-start: var(--st-tint-strength);
+  --st-tint-strength-core: var(--st-tint-strength);
+  --st-tint-strength-branding: var(--st-tint-strength);
+  --st-tint-strength-paperwork: 14%;
+  --st-tint-strength-types: 12%;
+  --st-tint-strength-lookup: var(--st-tint-strength);
+  --st-hue-start-tint: color-mix(
+    in oklab,
+    var(--st-hue-start) var(--st-tint-strength-start),
+    var(--st-bg)
+  );
+  --st-hue-core-tint: color-mix(
+    in oklab,
+    var(--st-hue-core) var(--st-tint-strength-core),
+    var(--st-bg)
+  );
+  --st-hue-branding-tint: color-mix(
+    in oklab,
+    var(--st-hue-branding) var(--st-tint-strength-branding),
+    var(--st-bg)
+  );
+  --st-hue-paperwork-tint: color-mix(
+    in oklab,
+    var(--st-hue-paperwork) var(--st-tint-strength-paperwork),
+    var(--st-bg)
+  );
+  --st-hue-types-tint: color-mix(
+    in oklab,
+    var(--st-hue-types) var(--st-tint-strength-types),
+    var(--st-bg)
+  );
+  --st-hue-lookup-tint: color-mix(
+    in oklab,
+    var(--st-hue-lookup) var(--st-tint-strength-lookup),
+    var(--st-bg)
+  );
+
+  /* Default section (used when no data-section is set) */
+  --st-section: var(--st-primary);
+  --st-section-tint: var(--st-primary-soft);
+
+  /* Shweshwe-inspired dot pattern: ink strength, and `none` under reduced or low data */
+  --st-pattern-ink: 30%;
+  --st-pattern-display: block;
+
+  /* Shadows */
+  --st-shadow-1:
+    0 1px 2px color-mix(in oklab, var(--st-shadow-ink) var(--st-shadow-strength-1), transparent),
+    0 1px 1px color-mix(in oklab, var(--st-shadow-ink) var(--st-shadow-strength-1), transparent);
+  --st-shadow-2:
+    0 2px 4px color-mix(in oklab, var(--st-shadow-ink) var(--st-shadow-strength-1), transparent),
+    0 8px 24px color-mix(in oklab, var(--st-shadow-ink) var(--st-shadow-strength-2), transparent);
+
+  /* Typography */
+  --st-font-display: 'Fraunces Variable', 'Fraunces fallback', georgia, serif;
+  --st-font-body:
+    'Instrument Sans Variable', 'Instrument Sans fallback', system-ui, 'Segoe UI', roboto, arial,
+    sans-serif;
+  --st-font-display-fallback: 'Fraunces fallback', georgia, serif;
+  --st-font-body-fallback:
+    'Instrument Sans fallback', system-ui, 'Segoe UI', roboto, arial, sans-serif;
+  --st-font-mono:
+    ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', 'Liberation Mono', menlo, consolas, monospace;
+
+  /* Fluid type scale: min at 320px viewport, max at 1280px viewport */
+  --st-text-xs: 0.8125rem;
+  --st-text-sm: clamp(0.875rem, 0.8542rem + 0.1042vw, 0.9375rem);
+  --st-text-md: clamp(1rem, 0.9583rem + 0.2083vw, 1.125rem);
+  --st-text-lg: clamp(1.125rem, 1.0625rem + 0.3125vw, 1.3125rem);
+  --st-text-xl: clamp(1.375rem, 1.2917rem + 0.4167vw, 1.625rem);
+  --st-text-2xl: clamp(1.75rem, 1.5833rem + 0.8333vw, 2.25rem);
+  --st-text-3xl: clamp(2.125rem, 1.8333rem + 1.4583vw, 3rem);
+  --st-text-display: clamp(2.5rem, 2.0833rem + 2.0833vw, 3.75rem);
+  --st-leading-body: 1.6;
+  --st-leading-tight: 1.15;
+  --st-leading-snug: 1.3;
+  --st-weight-regular: 400;
+  --st-weight-medium: 500;
+  --st-weight-semibold: 600;
+  --st-weight-bold: 700;
+  --st-opsz-display: 144;
+  --st-opsz-heading: 48;
+  --st-measure: 68ch;
+  --st-measure-wide: 90ch;
+
+  /* Spacing (4/8/12/16/24/32/48/64/96 px) */
+  --st-space-1: 0.25rem;
+  --st-space-2: 0.5rem;
+  --st-space-3: 0.75rem;
+  --st-space-4: 1rem;
+  --st-space-5: 1.5rem;
+  --st-space-6: 2rem;
+  --st-space-7: 3rem;
+  --st-space-8: 4rem;
+  --st-space-9: 6rem;
+
+  /* Radii */
+  --st-radius-sm: 4px;
+  --st-radius-md: 8px;
+  --st-radius-lg: 14px;
+  --st-radius-pill: 999px;
+
+  /* Borders and focus */
+  --st-border-width: 1px;
+  --st-focus-width: 2px;
+  --st-focus-offset: 2px;
+  --st-stripe-width: 4px;
+
+  /* Motion */
+  --st-duration-fast: 120ms;
+  --st-duration-base: 200ms;
+  --st-duration-slow: 320ms;
+  --st-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --st-lift: -2px;
+
+  /* Layers */
+  --st-z-sticky: 10;
+  --st-z-drawer: 40;
+  --st-z-dialog: 50;
+  --st-z-toast: 60;
+
+  /* Targets and layout */
+  --st-target: 44px;
+  --st-target-lg: 52px;
+  --st-container: 1360px;
+  --st-sidebar: 272px;
+  --st-toc: 240px;
+  --st-topbar: 56px;
+  --st-gutter: clamp(1rem, 0.6667rem + 1.6667vw, 2rem);
+}
+
+@media screen {
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+
+    --st-bg: #15130f;
+    --st-surface: #1f1c17;
+    --st-surface-2: #292520;
+    --st-text: #f1ece2;
+    --st-text-muted: #b3aa99;
+    --st-border: #3a342b;
+    --st-border-strong: #8c8271;
+    --st-primary: #7cc79a;
+    --st-primary-hover: #a9e0be;
+    --st-on-primary: #0e2a1b;
+    --st-primary-soft: #1b3a29;
+    --st-on-primary-soft: #a9e0be;
+    --st-accent: #e8a25c;
+    --st-accent-text: #e8a25c;
+    --st-on-accent: #2a1a08;
+    --st-accent-soft: #3a2410;
+    --st-on-accent-soft: #f5c89a;
+    --st-link-visited: #b3a6ee;
+    --st-success-bg: #1b3a29;
+    --st-success-text: #a9e0be;
+    --st-warning-bg: #3a2a08;
+    --st-warning-text: #f5c86a;
+    --st-danger-bg: #3e1a18;
+    --st-danger-text: #f4a5a0;
+    --st-info-bg: #0f3333;
+    --st-info-text: #8fd3d0;
+    --st-danger-solid: #e0736b;
+    --st-on-danger-solid: #1f0806;
+    --st-mark-bg: #5a4a12;
+    --st-hue-start: #e6b85a;
+    --st-hue-core: #7cc79a;
+    --st-hue-branding: #e48bb4;
+    --st-hue-paperwork: #79c9c4;
+    --st-hue-types: #ee9a72;
+    --st-hue-lookup: #b3a6ee;
+    --st-shadow-ink: #000;
+    --st-shadow-strength-1: 40%;
+    --st-shadow-strength-2: 55%;
+    --st-tint-strength: 22%;
+
+    /*
+     * Per-hue tint strengths for dark. At a flat 22% the Start here tint was a twin of Your
+     * kind of business (ΔE_OK 0.0194) and Paperwork a twin of Core (0.0126). Raising Start and
+     * Paperwork and easing Branding lifts the worst pair to 0.0389, with the worst focus ring
+     * still 5.10:1 against a 3:1 minimum. Types returns to the default here: its 12% is a
+     * light-only value.
+     */
+    --st-tint-strength-start: 26%;
+    --st-tint-strength-branding: 16%;
+    --st-tint-strength-paperwork: 28%;
+    --st-tint-strength-types: var(--st-tint-strength);
+    --st-pattern-ink: 40%;
+  }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    --st-bg: #15130f;
+    --st-surface: #1f1c17;
+    --st-surface-2: #292520;
+    --st-text: #f1ece2;
+    --st-text-muted: #b3aa99;
+    --st-border: #3a342b;
+    --st-border-strong: #8c8271;
+    --st-primary: #7cc79a;
+    --st-primary-hover: #a9e0be;
+    --st-on-primary: #0e2a1b;
+    --st-primary-soft: #1b3a29;
+    --st-on-primary-soft: #a9e0be;
+    --st-accent: #e8a25c;
+    --st-accent-text: #e8a25c;
+    --st-on-accent: #2a1a08;
+    --st-accent-soft: #3a2410;
+    --st-on-accent-soft: #f5c89a;
+    --st-link-visited: #b3a6ee;
+    --st-success-bg: #1b3a29;
+    --st-success-text: #a9e0be;
+    --st-warning-bg: #3a2a08;
+    --st-warning-text: #f5c86a;
+    --st-danger-bg: #3e1a18;
+    --st-danger-text: #f4a5a0;
+    --st-info-bg: #0f3333;
+    --st-info-text: #8fd3d0;
+    --st-danger-solid: #e0736b;
+    --st-on-danger-solid: #1f0806;
+    --st-mark-bg: #5a4a12;
+    --st-hue-start: #e6b85a;
+    --st-hue-core: #7cc79a;
+    --st-hue-branding: #e48bb4;
+    --st-hue-paperwork: #79c9c4;
+    --st-hue-types: #ee9a72;
+    --st-hue-lookup: #b3a6ee;
+    --st-shadow-ink: #000;
+    --st-shadow-strength-1: 40%;
+    --st-shadow-strength-2: 55%;
+    --st-tint-strength: 22%;
+
+    /*
+     * Per-hue tint strengths for dark. At a flat 22% the Start here tint was a twin of Your
+     * kind of business (ΔE_OK 0.0194) and Paperwork a twin of Core (0.0126). Raising Start and
+     * Paperwork and easing Branding lifts the worst pair to 0.0389, with the worst focus ring
+     * still 5.10:1 against a 3:1 minimum. Types returns to the default here: its 12% is a
+     * light-only value.
+     */
+    --st-tint-strength-start: 26%;
+    --st-tint-strength-branding: 16%;
+    --st-tint-strength-paperwork: 28%;
+    --st-tint-strength-types: var(--st-tint-strength);
+    --st-pattern-ink: 40%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --st-duration-fast: 0ms;
+    --st-duration-base: 0ms;
+    --st-duration-slow: 0ms;
+    --st-lift: 0px;
+  }
+}
+
+/* Low data: no webfonts (preference or the footer toggle, which sets data-low-data). */
+@media (prefers-reduced-data: reduce) {
+  :root {
+    --st-font-display: var(--st-font-display-fallback);
+    --st-font-body: var(--st-font-body-fallback);
+    --st-pattern-display: none;
+  }
+}
+
+:root[data-low-data] {
+  --st-font-display: var(--st-font-display-fallback);
+  --st-font-body: var(--st-font-body-fallback);
+  --st-pattern-display: none;
+}

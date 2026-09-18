@@ -1,0 +1,324 @@
+---
+/**
+ * Stoep button. Renders <button>, or <a> when `href` is set.
+ * - `disabled` uses aria-disabled (stays focusable and discoverable). theme-init swallows
+ *   clicks on `.st-btn[aria-disabled="true"]`, and an inactive submit/reset button renders
+ *   as `type="button"`, so it cannot submit a form even without JavaScript.
+ * - `loading` keeps the variant colours, sets aria-busy + aria-disabled, shows a spinner and
+ *   exposes only `loadingText` as the accessible name (the visible label is aria-hidden).
+ * Slots: default (label), `icon-start`, `icon-end`. Or pass `iconStart` / `iconEnd` names.
+ */
+import type { HTMLAttributes } from 'astro/types';
+import Icon from './Icon.astro';
+
+type Variant = 'primary' | 'secondary' | 'ghost' | 'danger';
+type Size = 'md' | 'lg';
+
+type Props = Omit<HTMLAttributes<'button'>, 'type' | 'disabled' | 'class'> & {
+  variant?: Variant | undefined;
+  size?: Size | undefined;
+  href?: string | undefined;
+  type?: 'button' | 'submit' | 'reset' | undefined;
+  target?: string | undefined;
+  rel?: string | undefined;
+  loading?: boolean | undefined;
+  loadingText?: string | undefined;
+  disabled?: boolean | undefined;
+  iconStart?: string | undefined;
+  iconEnd?: string | undefined;
+  /** Full-width on small screens. */
+  block?: boolean | undefined;
+  class?: string | undefined;
+};
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  target,
+  rel,
+  loading = false,
+  loadingText = 'Loading',
+  disabled = false,
+  iconStart,
+  iconEnd,
+  block = false,
+  class: className,
+  // The component owns these: a caller must not undo the inactive or busy state, and while
+  // loading it must not replace `loadingText` as the accessible name.
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
+  'aria-disabled': _callerAriaDisabled,
+  'aria-busy': _callerAriaBusy,
+  ...rest
+} = Astro.props;
+
+const inactive = disabled || loading;
+const naming = loading ? {} : { 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledby };
+const classes = ['st-btn', className];
+const common = {
+  'data-variant': variant,
+  'data-size': size,
+  'data-block': block ? 'true' : undefined,
+  'aria-disabled': inactive ? ('true' as const) : undefined,
+  'aria-busy': loading ? ('true' as const) : undefined,
+};
+const buttonType = inactive ? 'button' : type;
+const labelHidden = loading ? ('true' as const) : undefined;
+const safeRel = target === '_blank' ? (rel ?? 'noopener') : rel;
+const hasStart = Astro.slots.has('icon-start') || Boolean(iconStart) || loading;
+const hasEnd = Astro.slots.has('icon-end') || Boolean(iconEnd);
+---
+
+{href !== undefined && !inactive ? (
+  <a
+    class:list={classes}
+    href={href}
+    target={target}
+    rel={safeRel}
+    {...(rest as HTMLAttributes<'a'>)}
+    {...naming}
+    {...common}
+  >
+    {hasStart && (
+      <span class="st-btn__icon">
+        <slot name="icon-start">{iconStart && <Icon name={iconStart} />}</slot>
+      </span>
+    )}
+    <span class="st-btn__label">
+      <slot />
+    </span>
+    {hasEnd && (
+      <span class="st-btn__icon">
+        <slot name="icon-end">{iconEnd && <Icon name={iconEnd} />}</slot>
+      </span>
+    )}
+  </a>
+) : href !== undefined ? (
+  <a
+    class:list={classes}
+    role="link"
+    tabindex="0"
+    {...(rest as HTMLAttributes<'a'>)}
+    {...naming}
+    {...common}
+  >
+    {hasStart && (
+      <span class="st-btn__icon">
+        {loading ? (
+          <span class="st-btn__spinner" aria-hidden="true" />
+        ) : (
+          <slot name="icon-start">{iconStart && <Icon name={iconStart} />}</slot>
+        )}
+      </span>
+    )}
+    <span class="st-btn__label" aria-hidden={labelHidden}>
+      <slot />
+    </span>
+    {hasEnd && !loading && (
+      <span class="st-btn__icon">
+        <slot name="icon-end">{iconEnd && <Icon name={iconEnd} />}</slot>
+      </span>
+    )}
+    {loading && <span class="st-visually-hidden">{loadingText}</span>}
+  </a>
+) : (
+  <button class:list={classes} type={buttonType} {...rest} {...naming} {...common}>
+    {hasStart && (
+      <span class="st-btn__icon">
+        {loading ? (
+          <span class="st-btn__spinner" aria-hidden="true" />
+        ) : (
+          <slot name="icon-start">{iconStart && <Icon name={iconStart} />}</slot>
+        )}
+      </span>
+    )}
+    <span class="st-btn__label" aria-hidden={labelHidden}>
+      <slot />
+    </span>
+    {hasEnd && !loading && (
+      <span class="st-btn__icon">
+        <slot name="icon-end">{iconEnd && <Icon name={iconEnd} />}</slot>
+      </span>
+    )}
+    {loading && <span class="st-visually-hidden">{loadingText}</span>}
+  </button>
+)}
+
+<style>
+  .st-btn {
+    --st-btn-bg: var(--st-primary);
+    --st-btn-fg: var(--st-on-primary);
+    --st-btn-border: var(--st-primary);
+    --st-btn-bg-hover: var(--st-primary-hover);
+    --st-btn-fg-hover: var(--st-on-primary);
+    --st-btn-border-hover: var(--st-primary-hover);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--st-space-2);
+    min-block-size: var(--st-target);
+    min-inline-size: var(--st-target);
+    padding: var(--st-space-2) var(--st-space-5);
+    border: 2px solid var(--st-btn-border);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-btn-bg);
+    color: var(--st-btn-fg);
+    font-family: var(--st-font-body);
+    font-size: var(--st-text-md);
+    font-weight: var(--st-weight-semibold);
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+    transition:
+      background-color var(--st-duration-fast) var(--st-ease),
+      border-color var(--st-duration-fast) var(--st-ease),
+      color var(--st-duration-fast) var(--st-ease),
+      transform var(--st-duration-fast) var(--st-ease);
+  }
+
+  .st-btn:visited {
+    color: var(--st-btn-fg);
+  }
+
+  .st-btn:hover {
+    border-color: var(--st-btn-border-hover);
+    background-color: var(--st-btn-bg-hover);
+    color: var(--st-btn-fg-hover);
+    text-decoration: none;
+  }
+
+  .st-btn:active:not([aria-disabled='true']) {
+    transform: translateY(1px);
+  }
+
+  .st-btn[data-variant='secondary'] {
+    --st-btn-bg: var(--st-surface);
+    --st-btn-fg: var(--st-link);
+    --st-btn-border: var(--st-border-strong);
+    --st-btn-bg-hover: var(--st-primary-soft);
+    --st-btn-fg-hover: var(--st-on-primary-soft);
+    --st-btn-border-hover: var(--st-primary);
+  }
+
+  .st-btn[data-variant='ghost'] {
+    --st-btn-bg: transparent;
+    --st-btn-fg: var(--st-link);
+    --st-btn-border: transparent;
+    --st-btn-bg-hover: var(--st-primary-soft);
+    --st-btn-fg-hover: var(--st-on-primary-soft);
+    --st-btn-border-hover: transparent;
+
+    padding-inline: var(--st-space-3);
+  }
+
+  .st-btn[data-variant='danger'] {
+    --st-btn-bg: var(--st-danger-solid);
+    --st-btn-fg: var(--st-on-danger-solid);
+    --st-btn-border: var(--st-danger-solid);
+    --st-btn-bg-hover: var(--st-danger-solid-hover);
+    --st-btn-fg-hover: var(--st-on-danger-solid);
+    --st-btn-border-hover: var(--st-danger-solid-hover);
+  }
+
+  .st-btn[data-size='lg'] {
+    min-block-size: var(--st-target-lg);
+    padding-inline: var(--st-space-6);
+    font-size: var(--st-text-lg);
+  }
+
+  .st-btn[data-block='true'] {
+    inline-size: 100%;
+  }
+
+  @media (width >= 480px) {
+    .st-btn[data-block='true'] {
+      inline-size: auto;
+    }
+  }
+
+  /* Disabled: dashed, muted, no hover change. */
+  .st-btn[aria-disabled='true']:not([aria-busy='true']),
+  .st-btn[aria-disabled='true']:not([aria-busy='true']):hover {
+    border-style: dashed;
+    border-color: var(--st-border-strong);
+    background-color: var(--st-surface-2);
+    color: var(--st-text-muted);
+    cursor: not-allowed;
+  }
+
+  /* Loading: keeps the variant colours (the action is happening), spinner carries the state. */
+  .st-btn[aria-busy='true'],
+  .st-btn[aria-busy='true']:hover {
+    border-color: var(--st-btn-border);
+    background-color: var(--st-btn-bg);
+    color: var(--st-btn-fg);
+    cursor: progress;
+  }
+
+  .st-btn__icon {
+    display: inline-flex;
+    margin-inline: -0.125em;
+  }
+
+  /*
+   * `min-inline-size: 0` lets the label shrink inside the button, but it does not lower the
+   * label's min-content contribution, which is what sizes the button itself inside a cluster,
+   * a grid track or any shrink-to-fit box. One unbreakable Afrikaans compound
+   * ("Maatskappyregistrasienommer") therefore still pushed the page to 343-362px at 320px.
+   * `overflow-wrap: anywhere` lowers that contribution; it changes nothing while the label
+   * fits, and only breaks a word when the button is narrower than the word anyway.
+   * See docs/design-system.md, "Wrapping and min-content".
+   */
+  .st-btn__label {
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .st-btn__spinner {
+    display: inline-block;
+    inline-size: 1.1em;
+    block-size: 1.1em;
+    border: 2px solid currentcolor;
+    border-inline-end-color: transparent;
+    border-radius: 50%;
+    animation: st-spin 0.8s linear infinite;
+  }
+
+  @keyframes st-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .st-btn__spinner {
+      animation: none;
+      border-inline-end-color: currentcolor;
+      border-block-end-color: transparent;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .st-btn {
+      border-color: ButtonText;
+    }
+
+    .st-btn[aria-disabled='true']:not([aria-busy='true']) {
+      border-color: GrayText;
+      color: GrayText;
+    }
+
+    /* Keep the gap in the ring; forced colours would otherwise paint it into a full circle. */
+    .st-btn__spinner {
+      forced-color-adjust: none;
+      border-color: ButtonText;
+      border-inline-end-color: transparent;
+    }
+  }
+</style>

@@ -1,15 +1,41 @@
 ---
+import Base from '../layouts/Base.astro';
+import Logo from '../components/illustrations/Logo.astro';
+import { href } from '../lib/paths';
 ---
 
-<html lang="en-ZA">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SA Business Toolkit</title>
-  </head>
-  <body>
-    <main>
-      <h1>SA Business Toolkit</h1>
-    </main>
-  </body>
-</html>
+<Base
+  lang="en"
+  title="SA Business Toolkit"
+  description="A plain-language guide for one-person South African businesses."
+>
+  <header slot="header" class="st-container home-header">
+    <Logo />
+  </header>
+  <div class="st-container st-stack home">
+    <h1>SA Business Toolkit</h1>
+    <p class="st-lead">
+      A plain-language guide for starting and running a one-person business in South Africa.
+    </p>
+  </div>
+  <footer slot="footer" class="st-container home-footer">
+    <a class="st-link-block" href={href('en', 'design-system/')}>
+      Design system
+    </a>
+  </footer>
+</Base>
+
+<style>
+  .home-header {
+    padding-block: var(--st-space-4);
+  }
+
+  .home {
+    padding-block: var(--st-space-7);
+  }
+
+  .home-footer {
+    padding-block: var(--st-space-5);
+    font-size: var(--st-text-sm);
+  }
+</style>

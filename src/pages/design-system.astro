@@ -1,0 +1,1747 @@
+---
+/**
+ * /design-system/ — live Stoep reference (noindex; excluded from the sitemap in astro.config).
+ * Static token values come from tokens.css at build time; the contrast panel re-measures the
+ * computed colours in the browser so drift shows as FAIL.
+ */
+import Base from '../layouts/Base.astro';
+import Badge from '../components/ui/Badge.astro';
+import Button from '../components/ui/Button.astro';
+import Callout from '../components/ui/Callout.astro';
+import Card from '../components/ui/Card.astro';
+import EffortMeter from '../components/ui/EffortMeter.astro';
+import EmptyState from '../components/ui/EmptyState.astro';
+import Icon from '../components/ui/Icon.astro';
+import Kbd from '../components/ui/Kbd.astro';
+import ProgressRing from '../components/ui/ProgressRing.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import TableScroll from '../components/ui/TableScroll.astro';
+import ToastRegion from '../components/ui/ToastRegion.astro';
+import VisuallyHidden from '../components/ui/VisuallyHidden.astro';
+import Logo from '../components/illustrations/Logo.astro';
+import VehicleDealer from '../components/illustrations/VehicleDealer.astro';
+import FoodBusiness from '../components/illustrations/FoodBusiness.astro';
+import BeautyCare from '../components/illustrations/BeautyCare.astro';
+import RetailOnline from '../components/illustrations/RetailOnline.astro';
+import ServicesTrades from '../components/illustrations/ServicesTrades.astro';
+import ProfessionalCreative from '../components/illustrations/ProfessionalCreative.astro';
+import General from '../components/illustrations/General.astro';
+import tokensSource from '../styles/tokens.css?raw';
+import {
+  CONTRAST_PAIRS,
+  contrastRatio,
+  darkTheme,
+  formatRatio,
+  parseTokenBlocks,
+  resolveColor,
+  toHex,
+} from '../scripts/color';
+import { href } from '../lib/paths';
+
+const blocks = parseTokenBlocks(tokensSource);
+const light = blocks.light;
+const dark = darkTheme(blocks);
+
+const swatchGroups: { title: string; tokens: string[] }[] = [
+  {
+    title: 'Surfaces and borders',
+    tokens: ['bg', 'surface', 'surface-2', 'border', 'border-strong'],
+  },
+  {
+    title: 'Text, links and focus',
+    tokens: ['text', 'text-muted', 'link', 'link-hover', 'link-visited', 'focus'],
+  },
+  {
+    title: 'Primary (veld green)',
+    tokens: ['primary', 'primary-hover', 'on-primary', 'primary-soft', 'on-primary-soft'],
+  },
+  {
+    title: 'Accent (rooibos)',
+    tokens: ['accent', 'accent-text', 'on-accent', 'accent-soft', 'on-accent-soft'],
+  },
+  {
+    title: 'Status',
+    tokens: [
+      'success-bg',
+      'success-text',
+      'warning-bg',
+      'warning-text',
+      'danger-bg',
+      'danger-text',
+      'info-bg',
+      'info-text',
+      'danger-solid',
+      'on-danger-solid',
+      'mark-bg',
+    ],
+  },
+  {
+    title: 'Section hues',
+    tokens: ['hue-start', 'hue-core', 'hue-branding', 'hue-paperwork', 'hue-types', 'hue-lookup'],
+  },
+  {
+    title: 'Section tints (hue over the page background, per-hue strength)',
+    tokens: [
+      'hue-start-tint',
+      'hue-core-tint',
+      'hue-branding-tint',
+      'hue-paperwork-tint',
+      'hue-types-tint',
+      'hue-lookup-tint',
+    ],
+  },
+];
+
+const ratio = (fg: string, bg: string, theme: Record<string, string>) =>
+  formatRatio(contrastRatio(resolveColor(fg, theme), resolveColor(bg, theme)));
+
+const spacing = [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => ({
+  name: `space-${n}`,
+  value: light[`space-${n}`] ?? '',
+}));
+const radii = ['radius-sm', 'radius-md', 'radius-lg', 'radius-pill'];
+const motion = ['duration-fast', 'duration-base', 'duration-slow', 'ease'];
+const layout = [
+  'target',
+  'target-lg',
+  'container',
+  'sidebar',
+  'toc',
+  'topbar',
+  'measure',
+  'measure-wide',
+  'z-sticky',
+  'z-drawer',
+  'z-dialog',
+  'z-toast',
+];
+const typeScale = [
+  ['text-display', 'Display numbers and hero'],
+  ['text-3xl', 'h1'],
+  ['text-2xl', 'h2'],
+  ['text-xl', 'h3'],
+  ['text-lg', 'Lead, plain-words callouts'],
+  ['text-md', 'Body'],
+  ['text-sm', 'Meta, badges, hints'],
+] as const;
+
+const sections = [
+  { id: 'start', title: 'Start here' },
+  { id: 'core', title: 'Core: applies to everyone' },
+  { id: 'branding', title: 'Branding and marketing' },
+  { id: 'paperwork', title: 'Paperwork and templates' },
+  { id: 'types', title: 'Your kind of business' },
+  { id: 'lookup', title: 'Look it up' },
+] as const;
+
+// Business-type art always belongs to "Your kind of business".
+const illustrations = [
+  { title: 'Vehicle dealer', Component: VehicleDealer },
+  { title: 'Food business', Component: FoodBusiness },
+  { title: 'Beauty and personal care', Component: BeautyCare },
+  { title: 'Retail and online shop', Component: RetailOnline },
+  { title: 'Services and trades', Component: ServicesTrades },
+  { title: 'Professional and creative', Component: ProfessionalCreative },
+  { title: 'General', Component: General },
+] as const;
+
+const diacritics = 'Kôsê, sê, môre, ëïü, ḓ ṱ ṋ ṅ';
+// No-break spaces keep the rand amount on one line.
+const displayFigure = 'R 1 234.56';
+const toc = [
+  ['theme', 'Theme'],
+  ['colour', 'Colour'],
+  ['contrast', 'Contrast'],
+  ['typography', 'Typography'],
+  ['tokens', 'Spacing, radius, shadow, motion'],
+  ['components', 'Components'],
+  ['long-labels', 'Long labels'],
+  ['notices', 'Notices and sources'],
+  ['forms', 'Form controls'],
+  ['illustrations', 'Illustrations'],
+] as const;
+
+/*
+ * Real Afrikaans strings, for the long-label and D5 demos. The `trust.*` ones are the
+ * WP-12b dictionary values (branch wp/wp12b-i18n-followup, src/i18n/af.json); the rest are
+ * headings from the toolkit's own Afrikaans markdown. Afrikaans runs far past the +25%
+ * i18n budget on status labels, so these are what components must survive at 320px.
+ */
+const af = {
+  mtBadge: 'Masjienvertaling, nog nie nagegaan nie',
+  aiChecked: 'KI-nagegaan (Engelse teks)',
+  humanChecked: 'Engelse teks deur {reviewer} nagegaan',
+  notConfirmed: 'Nie bevestig nie',
+  officialSource: 'Amptelike bron',
+  compound: 'Kernverpligtinge vir alle eenpersoonsondernemings',
+  cardTitle: 'Registreer jou besigheid by CIPC en by SARS',
+  buttonLabel: 'Vind my pad deur die registrasieproses',
+  warningLabel: 'Laat indienings lei tot boetes en rente wat vinnig oploop',
+  effortLabel: 'Moeite om te begin',
+  tableHeading: 'Hoofrede waarom hierdie stap nodig is',
+};
+
+const afEffortLabels = [
+  'Laagste',
+  'Laag tot middelmatig',
+  'Middelmatig',
+  'Middelmatig tot hoog',
+  'Hoog',
+] as const;
+
+/*
+ * D5 demo copy: the English and Afrikaans `trust.*` strings.
+ * `{reviewer}` stays a placeholder on purpose. D5 reserves a named human reviewer for a real
+ * one, and a screenshot of this page would otherwise read as a claim that a person checked it.
+ * The date is the date the toolkit's own register was last checked
+ * (docs/rsa-business-toolkit/05 Look it up/03-sources-and-verification-register.md), so the
+ * demo never states a verification date the project cannot stand behind.
+ */
+const checkedDate = '13 September 2026';
+const trust = {
+  en: {
+    label: 'About this page',
+    body: `Written by AI (Claude, Anthropic). An AI checked it against the sources below on ${checkedDate}. No person has checked it yet. Rules change: check the official source before you act. Not legal, tax or financial advice.`,
+    bodyHuman: `Written by AI (Claude, Anthropic). {reviewer} checked it against the sources below on ${checkedDate}. Rules change: check the official source before you act. Not legal, tax or financial advice.`,
+    status: 'AI-checked',
+    statusHuman: 'Checked by {reviewer}',
+    means: 'An AI compared the facts on this page with the sources. An AI can miss mistakes.',
+    meansHuman:
+      '{reviewer} checked the facts on this page against the sources. Mistakes are still possible, and rules can change after that date.',
+    link: 'How this was made',
+  },
+  af: {
+    label: 'Oor hierdie bladsy',
+    body: `Deur KI geskryf (Claude, Anthropic). ’n KI het die Engelse teks op ${checkedDate} teen die bronne hieronder nagegaan. Geen mens het dit nog nagegaan nie. Reëls verander: kontroleer die amptelike bron voordat jy iets doen. Dit is nie regs-, belasting- of finansiële advies nie.`,
+    status: af.aiChecked,
+    means:
+      '’n KI het die feite in die Engelse teks met die bronne vergelyk. ’n KI kan foute oorsien.',
+    link: 'Hoe dit gemaak is',
+  },
+};
+---
+
+<Base
+  lang="en"
+  title="Stoep design system · SA Business Toolkit"
+  description="Live reference for the Stoep design system: tokens, contrast, type and components."
+  noindex
+>
+  <header slot="header" class="ds-topbar">
+    <div class="st-container ds-topbar__inner">
+      <a class="ds-topbar__home" href={href('en')}>
+        <Logo />
+      </a>
+      <span class="ds-topbar__tag">Design system</span>
+    </div>
+  </header>
+
+  <div class="st-container ds-page">
+    <SectionHeader section="start" title="Stoep design system" eyebrow="Reference">
+      <p>
+        Plain first. Warm, not corporate. Colour never carries meaning alone. Fast on a cheap phone.
+        One source of truth: <code>src/styles/tokens.css</code>.
+      </p>
+    </SectionHeader>
+
+    <nav class="ds-toc" aria-label="On this page">
+      <ul class="st-cluster" role="list">
+        {toc.map(([id, label]) => (
+          <li>
+            <a href={`#${id}`}>{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <section class="ds-section">
+      <h2 id="theme">Theme</h2>
+      <st-theme-toggle class="js-only">
+        <fieldset class="ds-theme">
+          <legend>Colour theme</legend>
+          <div class="ds-segmented">
+            {(
+              [
+                ['system', 'System', 'lucide:monitor'],
+                ['light', 'Light', 'lucide:sun'],
+                ['dark', 'Dark', 'lucide:moon'],
+              ] as const
+            ).map(([value, text, icon]) => (
+              <label class="ds-segmented__option">
+                <input type="radio" name="st-theme" value={value} checked={value === 'system'} />
+                <span class="ds-segmented__icon">
+                  <Icon name={icon} />
+                </span>
+                <span>{text}</span>
+                <span class="ds-segmented__tick">
+                  <Icon name="lucide:check" />
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </st-theme-toggle>
+      <p class="no-js-only st-hint">
+        The theme control needs JavaScript. Without it the page follows your device setting.
+      </p>
+      <p class="st-hint">
+        Saved on this device only, as <code>st.theme</code>.
+      </p>
+    </section>
+
+    <section class="ds-section">
+      <h2 id="colour">Colour</h2>
+      <p class="ds-intro">
+        Every colour is a <code>--st-</code> custom property. Light and dark values below are read
+        from <code>tokens.css</code> at build time; “Now” is measured in your browser.
+      </p>
+      {swatchGroups.map((group) => (
+        <div class="ds-swatch-group">
+          <h3>{group.title}</h3>
+          <ul class="ds-swatches" role="list">
+            {group.tokens.map((token) => (
+              <li class="ds-swatch" data-swatch-token={token}>
+                <span class="ds-swatch__chip" style={`background-color: var(--st-${token})`} />
+                <span class="ds-swatch__meta">
+                  <code class="ds-swatch__name">--st-{token}</code>
+                  <span class="ds-swatch__values">
+                    Light {toHex(resolveColor(token, light))} · Dark{' '}
+                    {toHex(resolveColor(token, dark))}
+                  </span>
+                  <span class="ds-swatch__values js-only">
+                    Now <span data-swatch-value>…</span>
+                  </span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+
+    <section class="ds-section">
+      <h2 id="contrast">Contrast</h2>
+      <p class="ds-intro">
+        WCAG 2.x ratios. Text needs at least 4.5:1; control borders and focus rings at least 3:1.
+        Ratios are truncated, never rounded up.
+      </p>
+      <p class="ds-contrast-summary" data-contrast-summary aria-live="polite">
+        <span class="js-only">Measuring…</span>
+        <span class="no-js-only">Live checks need JavaScript; build-time ratios are shown.</span>
+      </p>
+      <TableScroll labelledby="contrast-caption">
+        <table class="ds-contrast">
+          <caption id="contrast-caption">Verified colour pairs</caption>
+          <thead>
+            <tr>
+              <th scope="col">Pair</th>
+              <th scope="col">Sample</th>
+              <th scope="col">Use</th>
+              <th scope="col" class="st-num">
+                Needs
+              </th>
+              <th scope="col" class="st-num">
+                Light
+              </th>
+              <th scope="col" class="st-num">
+                Dark
+              </th>
+              <th scope="col" class="st-num">
+                Now
+              </th>
+              <th scope="col">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            {CONTRAST_PAIRS.map((pair) => (
+              <tr
+                data-contrast-fg={pair.fg}
+                data-contrast-bg={pair.bg}
+                data-contrast-min={pair.min}
+              >
+                <th scope="row" data-label="Pair">
+                  <code>{pair.fg}</code> on <code>{pair.bg}</code>
+                </th>
+                <td data-label="Sample">
+                  {pair.min === 4.5 ? (
+                    <span
+                      class="ds-sample"
+                      style={`color: var(--st-${pair.fg}); background-color: var(--st-${pair.bg})`}
+                    >
+                      Aa
+                    </span>
+                  ) : (
+                    <span class="ds-sample" style={`background-color: var(--st-${pair.bg})`}>
+                      <span class="ds-sample__ui" style={`border-color: var(--st-${pair.fg})`} />
+                    </span>
+                  )}
+                </td>
+                <td data-label="Use">{pair.use}</td>
+                <td data-label="Needs" class="st-num">
+                  {pair.min}:1
+                </td>
+                <td data-label="Light" class="st-num">
+                  {ratio(pair.fg, pair.bg, light)}
+                </td>
+                <td data-label="Dark" class="st-num">
+                  {ratio(pair.fg, pair.bg, dark)}
+                </td>
+                <td data-label="Now" class="st-num" data-contrast-ratio>
+                  –
+                </td>
+                <td data-label="Result">
+                  <span class="ds-result" data-contrast-result data-result="pending">
+                    Not checked
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </TableScroll>
+    </section>
+
+    <section class="ds-section">
+      <h2 id="typography">Typography</h2>
+      <p class="ds-intro">
+        Headings: Fraunces (variable, weight 600, optical size 48; 144 for display). Body and UI:
+        Instrument Sans (variable). Code: system monospace. Self-hosted latin and latin-ext subsets.
+      </p>
+      <div class="ds-type">
+        <p class="st-display">{displayFigure}</p>
+        <p class="ds-type__h1">Register your business</p>
+        <p class="ds-type__h2">Tax and SARS</p>
+        <p class="ds-type__h3">What you need to sell things</p>
+        <p class="st-lead">
+          Lead text introduces a page in one or two sentences, in the reader’s own words.
+        </p>
+        <p>
+          Body text is set at 16 to 18 pixels with a line height of 1.6 and a measure of about 68
+          characters, so long guides stay comfortable on a phone and on a desktop.
+        </p>
+        <p>
+          <small>Small text for meta information such as “8 min read”.</small>
+        </p>
+        <p>
+          <code>const total = subtotal + vat;</code>
+        </p>
+      </div>
+      <h3>Diacritics</h3>
+      <dl class="ds-diacritics">
+        <dt>Fraunces</dt>
+        <dd class="ds-diacritics__display" lang="af">
+          {diacritics}
+        </dd>
+        <dt>Instrument Sans</dt>
+        <dd class="ds-diacritics__body" lang="af">
+          {diacritics}
+        </dd>
+        <dt>Instrument Sans bold</dt>
+        <dd class="ds-diacritics__bold" lang="af">
+          {diacritics}
+        </dd>
+        <dt>Monospace</dt>
+        <dd class="ds-diacritics__mono" lang="af">
+          {diacritics}
+        </dd>
+      </dl>
+      <TableScroll labelledby="type-caption">
+        <table>
+          <caption id="type-caption">Fluid type scale (320px to 1280px viewport)</caption>
+          <thead>
+            <tr>
+              <th scope="col">Token</th>
+              <th scope="col">Value</th>
+              <th scope="col">Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            {typeScale.map(([token, use]) => (
+              <tr>
+                <th scope="row">
+                  <code>--st-{token}</code>
+                </th>
+                <td>
+                  <code>{light[token]}</code>
+                </td>
+                <td>{use}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </TableScroll>
+    </section>
+
+    <section class="ds-section">
+      <h2 id="tokens">Spacing, radius, shadow, motion</h2>
+      <h3>Spacing</h3>
+      <ul class="ds-spacing" role="list">
+        {spacing.map((s) => (
+          <li>
+            <code>--st-{s.name}</code>
+            <span class="ds-spacing__value">{s.value}</span>
+            <span class="ds-spacing__bar" style={`inline-size: var(--st-${s.name})`} />
+          </li>
+        ))}
+      </ul>
+      <h3>Radius</h3>
+      <ul class="ds-tiles" role="list">
+        {radii.map((r) => (
+          <li class="ds-tile" style={`border-radius: var(--st-${r})`}>
+            <code>--st-{r}</code>
+            <span>{light[r]}</span>
+          </li>
+        ))}
+      </ul>
+      <h3>Shadow</h3>
+      <ul class="ds-tiles" role="list">
+        <li class="ds-tile" style="box-shadow: var(--st-shadow-1)">
+          <code>--st-shadow-1</code>
+        </li>
+        <li class="ds-tile" style="box-shadow: var(--st-shadow-2)">
+          <code>--st-shadow-2</code>
+        </li>
+      </ul>
+      <h3>Motion, layers and layout</h3>
+      <TableScroll labelledby="layout-caption">
+        <table>
+          <caption id="layout-caption">Motion, z-index and layout tokens</caption>
+          <thead>
+            <tr>
+              <th scope="col">Token</th>
+              <th scope="col">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[...motion, ...layout].map((token) => (
+              <tr>
+                <th scope="row">
+                  <code>--st-{token}</code>
+                </th>
+                <td>
+                  <code>{light[token]}</code>
+                </td>
+              </tr>
+            ))}
+            <tr>
+              <th scope="row">Breakpoints</th>
+              <td>sm 480px · md 768px · lg 1024px (sidebar) · xl 1280px (TOC)</td>
+            </tr>
+          </tbody>
+        </table>
+      </TableScroll>
+      <p class="st-hint">
+        With reduced motion, all durations collapse to 0ms and hover lifts are removed.
+      </p>
+    </section>
+
+    <section class="ds-section">
+      <h2 id="components">Components</h2>
+
+      <h3>Button</h3>
+      <div class="ds-demo">
+        {(['primary', 'secondary', 'ghost', 'danger'] as const).map((variant) => (
+          <div class="st-cluster">
+            <Button variant={variant}>{variant.charAt(0).toUpperCase() + variant.slice(1)}</Button>
+            <Button variant={variant} iconStart="lucide:download">
+              With icon
+            </Button>
+            <Button variant={variant} loading loadingText="Saving">
+              Saving
+            </Button>
+            <Button variant={variant} disabled>
+              Disabled
+            </Button>
+          </div>
+        ))}
+        <div class="st-cluster">
+          <Button size="lg" iconEnd="lucide:arrow-right">
+            Find my path
+          </Button>
+          <Button size="lg" variant="secondary" href={href('en')}>
+            Link as button
+          </Button>
+          <Button variant="ghost" iconStart="lucide:printer">
+            Print
+          </Button>
+        </div>
+        <p class="st-hint">
+          Tab through the buttons to see the 2px rooibos focus ring. Loading keeps the button colour
+          and shows a spinner; disabled is dashed and muted. Both stay focusable, use
+          <code>aria-disabled</code> and ignore clicks.
+        </p>
+      </div>
+
+      <h3>Card</h3>
+      <div class="st-grid ds-demo">
+        <Card
+          title="Register your business"
+          href={href('en')}
+          section="core"
+          eyebrow="Core · 2"
+          headingLevel={4}
+        >
+          <p>Choose between sole proprietor and Pty Ltd, then register with CIPC and SARS.</p>
+          <Fragment slot="meta">
+            <span>8 min read</span>
+            <Badge variant="entity">Everyone</Badge>
+          </Fragment>
+        </Card>
+        <Card title="Food business" href={href('en')} section="types" headingLevel={4}>
+          <FoodBusiness slot="illustration" />
+          <p>Certificate of Acceptability, training and inspections.</p>
+          <Fragment slot="meta">
+            <EffortMeter level={5} />
+          </Fragment>
+        </Card>
+        <Card title="Static card (no link)" section="lookup" headingLevel={4}>
+          <p>
+            Cards without <code>href</code> have no tab stop and no hover lift.
+          </p>
+        </Card>
+      </div>
+
+      <h3>Callout</h3>
+      <div class="st-stack ds-demo">
+        <Callout variant="plain-words">
+          <p>You and the business are the same person for tax. Its income is your income.</p>
+        </Callout>
+        <Callout variant="note">
+          <p>Keep every invoice for five years.</p>
+        </Callout>
+        <Callout variant="warning">
+          <p>Late submissions attract penalties and interest.</p>
+        </Callout>
+        <Callout variant="official">
+          <p>Check the current threshold on the SARS website.</p>
+        </Callout>
+        <Callout variant="info">
+          <p>You can change your answers at any time.</p>
+        </Callout>
+      </div>
+
+      <h3>Badge</h3>
+      <div class="st-cluster ds-demo">
+        <Badge variant="entity">Pty Ltd only</Badge>
+        <Badge variant="type">Food</Badge>
+        <Badge variant="official">Official</Badge>
+        <Badge variant="status" icon="lucide:bot">
+          AI-checked
+        </Badge>
+        <Badge variant="effort">Effort: medium</Badge>
+        <Badge variant="mt">Machine translated</Badge>
+        <Badge variant="flag">Not confirmed</Badge>
+        <Badge variant="entity" icon={null}>
+          Text only
+        </Badge>
+      </div>
+      <p class="st-hint">
+        Badges wrap. A label longer than the row it sits in breaks onto a second or third line and
+        keeps its shape; it never widens the page. See <a href="#long-labels">Long labels</a>.
+      </p>
+
+      <h3>Effort meter</h3>
+      <ul class="st-stack st-stack-sm ds-demo" role="list" data-section="types">
+        {([1, 2, 3, 4, 5] as const).map((level) => (
+          <li>
+            <EffortMeter level={level} />
+          </li>
+        ))}
+      </ul>
+
+      <h3>Progress ring</h3>
+      <div class="st-cluster ds-demo">
+        <ProgressRing value={0} max={34} label="Part A: 0 of 34 done" />
+        <ProgressRing value={12} max={34} label="Part A: 12 of 34 done" />
+        <ProgressRing value={34} max={34} label="Part A: 34 of 34 done" />
+        <ProgressRing value={3} max={4} size={36} showValue={false} label="3 of 4 steps done" />
+      </div>
+
+      <h3>Section header</h3>
+      <div class="st-stack ds-demo">
+        {sections.map((s) => (
+          <SectionHeader section={s.id} title={s.title} level={4} eyebrow="Section">
+            <p>Hue stripe, soft tint and a shweshwe-inspired dot pattern.</p>
+          </SectionHeader>
+        ))}
+      </div>
+
+      <h3>Empty state</h3>
+      <div class="ds-demo">
+        <EmptyState title="No results for “zzz”" icon="lucide:search" headingLevel={4}>
+          <p>Try a shorter word, or browse the full contents.</p>
+          <Fragment slot="actions">
+            <Button variant="secondary" href={href('en')}>
+              Browse contents
+            </Button>
+          </Fragment>
+        </EmptyState>
+      </div>
+
+      <h3>Toast</h3>
+      <div class="ds-demo">
+        <ToastRegion id="st-toasts-demo" label="Example notifications" static>
+          <div class="st-toast" data-variant="success">
+            <Icon name="lucide:circle-check" />
+            <span>Copied</span>
+          </div>
+          <div class="st-toast">
+            <Icon name="lucide:info" />
+            <span>Saved on this device</span>
+          </div>
+          <div class="st-toast" data-variant="info">
+            <Icon name="lucide:info" />
+            <span>Answers updated</span>
+          </div>
+          <div class="st-toast" data-variant="warning">
+            <Icon name="lucide:triangle-alert" />
+            <span>Storage is unavailable</span>
+          </div>
+          <div class="st-toast" data-variant="danger">
+            <Icon name="lucide:triangle-alert" />
+            <span>Could not copy</span>
+          </div>
+        </ToastRegion>
+      </div>
+
+      <h3>Table scroll</h3>
+      <div class="ds-demo">
+        <TableScroll labelledby="table-demo-caption" wide>
+          <table>
+            <caption id="table-demo-caption">
+              Business types by effort (wide: stacks under 640px)
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Business type</th>
+                <th scope="col">Effort</th>
+                <th scope="col">Main extra step</th>
+                <th scope="col">Section</th>
+                <th scope="col" class="st-num">
+                  Layers
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-label="Business type">
+                  Professional and creative
+                </th>
+                <td data-label="Effort">Lowest</td>
+                <td data-label="Main extra step">Usually no licence at all</td>
+                <td data-label="Section">Your kind of business</td>
+                <td data-label="Layers" class="st-num">
+                  1
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Business type">
+                  Food
+                </th>
+                <td data-label="Effort">High</td>
+                <td data-label="Main extra step">
+                  Certificate of Acceptability, training, inspections
+                </td>
+                <td data-label="Section">Your kind of business</td>
+                <td data-label="Layers" class="st-num">
+                  3
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" data-label="Business type">
+                  Vehicle dealing
+                </th>
+                <td data-label="Effort">High</td>
+                <td data-label="Main extra step">
+                  <span>
+                    Three <strong>separate</strong> registration layers
+                  </span>
+                </td>
+                <td data-label="Section">Your kind of business</td>
+                <td data-label="Layers" class="st-num">
+                  3
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </TableScroll>
+      </div>
+
+      <h3>Icon, Kbd, visually hidden, logo</h3>
+      <div class="st-cluster ds-demo">
+        <span class="st-cluster">
+          <Icon name="lucide:info" />
+          <Icon name="lucide:check" />
+          <Icon name="lucide:search" />
+          <Icon name="lucide:printer" label="Print (icon with its own label)" />
+        </span>
+        <span>
+          Press <Kbd>/</Kbd> to search, <Kbd>?</Kbd> for shortcuts.
+        </span>
+        <span>
+          Visible text<VisuallyHidden>, plus text only screen readers hear</VisuallyHidden>.
+        </span>
+        <Logo />
+        <Logo markOnly label="SA Business Toolkit" />
+      </div>
+      <h4>Icons in running text</h4>
+      <div class="ds-demo">
+        <p>
+          An <Icon name="lucide:info" size="1em" /> icon sits on the line with the words around it,
+          because <code>.st-icon</code> is <code>inline-block</code> with a small baseline nudge. An
+          external link <Icon name="lucide:external-link" size="1em" /> marker, an “Official” marker
+          in a sentence and the icon that starts an error message therefore never break the
+          paragraph, even though the reset makes every other <code>svg</code> a block.
+        </p>
+        <p class="st-error-text">
+          <Icon name="lucide:triangle-alert" size="1em" /> A VAT number has 10 digits.
+        </p>
+      </div>
+    </section>
+
+    <section class="ds-section">
+      <h2 id="long-labels">Long labels</h2>
+      <p class="ds-intro">
+        Every string in this section is a real one: the <code>trust.*</code> values from the
+        Afrikaans dictionary, or headings from the toolkit’s own Afrikaans markdown. Afrikaans runs
+        well past the +25% budget on status labels, so this is the load every shared component has
+        to carry. Nothing here may widen the page at 320px, and an e2e test injects the longest of
+        them into every component and measures
+        <code>scrollWidth</code> against the viewport.
+      </p>
+
+      <h3>Badges wrap instead of overflowing</h3>
+      <div class="st-cluster ds-demo">
+        <Badge variant="mt">{af.mtBadge}</Badge>
+        <Badge variant="status" icon="lucide:bot">
+          {af.aiChecked}
+        </Badge>
+        <Badge variant="status" icon="lucide:user-check">
+          {af.humanChecked}
+        </Badge>
+        <Badge variant="flag">{af.notConfirmed}</Badge>
+      </div>
+      <p class="st-hint">
+        The icon stays beside the first line, the pill keeps its shape on two or three lines, and
+        the badge is never wider than the row it sits in.
+      </p>
+
+      <h3>The same label in a card meta row</h3>
+      <div class="st-grid ds-demo">
+        <Card
+          title={af.cardTitle}
+          href={href('af')}
+          section="core"
+          eyebrow="Kern · 2"
+          headingLevel={4}
+        >
+          <p lang="af">{af.compound}</p>
+          <Fragment slot="meta">
+            <span>8 min lees</span>
+            <Badge variant="mt">{af.mtBadge}</Badge>
+          </Fragment>
+        </Card>
+      </div>
+
+      <h3>Callout, button, effort meter and keys</h3>
+      <div class="st-stack ds-demo" lang="af">
+        <Callout variant="warning" label={af.warningLabel}>
+          <p>{af.compound}</p>
+        </Callout>
+        <div class="st-cluster">
+          <Button size="lg" iconEnd="lucide:arrow-right">
+            {af.buttonLabel}
+          </Button>
+          <Button variant="secondary" disabled iconEnd="lucide:arrow-right">
+            {af.buttonLabel}
+          </Button>
+        </div>
+        <div data-section="types">
+          <EffortMeter level={4} label={af.effortLabel} levelLabels={afEffortLabels} />
+        </div>
+        <p>
+          Druk <Kbd>Ctrl</Kbd> + <Kbd>Shift</Kbd> + <Kbd>P</Kbd> om die opdragpaneel oop te maak.
+        </p>
+      </div>
+      <p class="st-hint">
+        A disabled link-styled button keeps its end icon, so it does not change width when it
+        becomes active.
+      </p>
+
+      <h3>Table headings</h3>
+      <div class="ds-demo">
+        <TableScroll labelledby="long-table-caption">
+          <table>
+            <caption id="long-table-caption" lang="af">
+              Stappe om te begin, met die hoofrede vir elkeen
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" lang="af">
+                  Stap in die registrasieproses
+                </th>
+                <th scope="col" lang="af">
+                  {af.tableHeading}
+                </th>
+                <th scope="col" lang="af">
+                  Wie dit hanteer
+                </th>
+              </tr>
+            </thead>
+            <tbody lang="af">
+              <tr>
+                <th scope="row">Registreer by CIPC</th>
+                <td>Sonder registrasie kan jy nie ’n maatskappybankrekening open nie</td>
+                <td>CIPC</td>
+              </tr>
+              <tr>
+                <th scope="row">Registreer vir belasting</th>
+                <td>{af.compound}</td>
+                <td>SARS</td>
+              </tr>
+            </tbody>
+          </table>
+        </TableScroll>
+        <p class="st-hint">
+          Long headings keep <code>white-space: nowrap</code> inside a scroll region, which plan B5
+          allows: only table regions may scroll sideways. Below 640px a <code>wide</code> table
+          stacks into cards instead, and the label column wraps.
+        </p>
+      </div>
+    </section>
+
+    <section class="ds-section">
+      <h2 id="notices">Notices and sources</h2>
+      <p class="ds-intro">
+        Build plan D5 asks every content page for an AI notice near the top, and for a “Sources for
+        this page” section. Both compose from primitives that already exist:
+        <code>Callout</code>, <code>Badge</code>, <code>.st-link-block</code> and
+        <code>.st-hint</code>. No new colours and no new components. Copy the order shown here so
+        every page package builds the same thing.
+      </p>
+
+      <h3>AI notice</h3>
+      <div class="st-stack ds-demo">
+        <Callout variant="info" label={trust.en.label} icon="lucide:bot">
+          <p>{trust.en.body}</p>
+          <p class="ds-status">
+            <Badge variant="status" icon="lucide:bot">
+              {trust.en.status}
+            </Badge>
+            <span>{trust.en.means}</span>
+          </p>
+          <p>
+            <a class="st-link-block" href={href('en', 'start/how-this-was-made/')}>
+              {trust.en.link}
+            </a>
+          </p>
+        </Callout>
+        <Callout variant="info" label={trust.en.label} icon="lucide:bot">
+          <p>{trust.en.bodyHuman}</p>
+          <p class="ds-status">
+            <Badge variant="status" icon="lucide:user-check">
+              {trust.en.statusHuman}
+            </Badge>
+            <span>{trust.en.meansHuman}</span>
+          </p>
+          <p>
+            <a class="st-link-block" href={href('en', 'start/how-this-was-made/')}>
+              {trust.en.link}
+            </a>
+          </p>
+        </Callout>
+      </div>
+      <p class="st-hint">
+        Order, always: label, the notice sentence, the verification status, its one-sentence
+        explanation, then the link. The status is a badge <strong>and</strong> words; the
+        explanation sits next to the notice, never further down the page. Once a named person has
+        checked the page, their name replaces the AI sentence in both the body and the status.
+      </p>
+
+      <h3>Afrikaans page: AI notice first, machine-translation notice directly under it</h3>
+      <div class="st-stack ds-demo" lang="af">
+        <Callout variant="info" label={trust.af.label} icon="lucide:bot">
+          <p>{trust.af.body}</p>
+          <p class="ds-status">
+            <Badge variant="status" icon="lucide:bot">
+              {trust.af.status}
+            </Badge>
+            <span>{trust.af.means}</span>
+          </p>
+          <p>
+            <a class="st-link-block" href={href('af', 'start/how-this-was-made/')}>
+              {trust.af.link}
+            </a>
+          </p>
+        </Callout>
+        <Callout variant="warning" label="Masjienvertaling" icon="lucide:languages">
+          <p>
+            Hierdie bladsy is deur ’n masjien vertaal. Die Engelse teks bly die bron van waarheid.
+          </p>
+          <p>
+            <a class="st-link-block" href={href('en')} lang="en">
+              Read this page in English
+            </a>
+          </p>
+        </Callout>
+      </div>
+      <p class="st-hint">
+        Both notices live in the article header, in this order. The Afrikaans notice says the
+        <em>English</em> text was checked, because that is what a reviewer read. Neither notice is
+        dismissible.
+      </p>
+
+      <h3>Sources for this page</h3>
+      <div class="ds-demo">
+        <h4 id="ds-sources">Sources for this page</h4>
+        <ul class="st-stack" role="list">
+          <li class="ds-source">
+            <p class="ds-source__title">
+              <a class="st-link-block" href="https://www.sars.gov.za/" rel="noopener">
+                Register for tax <Icon name="lucide:external-link" size="0.9em" />
+              </a>
+              <Badge variant="official">Official source</Badge>
+            </p>
+            <p class="st-hint">
+              What this source supports: the turnover figure above which VAT registration is
+              compulsory, and the deadline for registering.
+            </p>
+          </li>
+          <li class="ds-source">
+            <p class="ds-source__title">
+              <a class="st-link-block" href="https://www.cipc.co.za/" rel="noopener">
+                Register a company <Icon name="lucide:external-link" size="0.9em" />
+              </a>
+              <Badge variant="official">Official source</Badge>
+            </p>
+            <p class="st-hint">
+              What this source supports: the registration fee and the documents CIPC asks for.
+            </p>
+          </li>
+          <li class="ds-source">
+            <p class="ds-source__title">
+              <a class="st-link-block" href="https://www.smesouthafrica.co.za/" rel="noopener">
+                Starting a small business, step by step
+                <Icon name="lucide:external-link" size="0.9em" />
+              </a>
+              <Badge variant="flag">Not an official source</Badge>
+            </p>
+            <p class="st-hint">
+              What this source supports: the order most people do these steps in. Nothing on this
+              page relies on it for a number, a fee or a date.
+            </p>
+          </li>
+          <li class="ds-source">
+            <p class="ds-source__title">Acts and regulations</p>
+            <ul class="st-stack st-stack-sm" role="list">
+              <li>
+                <a
+                  class="st-link-block"
+                  href="https://www.saflii.org/za/legis/consol_act/ca2008107/"
+                  rel="noopener"
+                >
+                  Companies Act 71 of 2008 <Icon name="lucide:external-link" size="0.9em" />
+                </a>
+                <span class="st-hint">Sections 13 and 23</span>
+              </li>
+              <li>
+                <a
+                  class="st-link-block"
+                  href="https://www.saflii.org/za/legis/consol_act/cpa2008204/"
+                  rel="noopener"
+                >
+                  Consumer Protection Act 68 of 2008
+                  <Icon name="lucide:external-link" size="0.9em" />
+                </a>
+                <span class="st-hint">Section 41</span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <p class="st-hint">
+        Pages without sources of their own (start pages, the register itself) show the note instead
+        of an empty list:
+      </p>
+      <div class="ds-demo">
+        <p class="st-hint">
+          This page has no sources of its own. Everything it says rests on the sources listed for
+          the pages it links to.
+        </p>
+        <p class="st-cluster">
+          <a class="st-link-block" href={href('en', 'lookup/sources/')}>
+            See the full sources register
+          </a>
+          <a class="st-link-block" href={href('en', 'start/how-this-was-made/')}>
+            See how this guide was made
+          </a>
+        </p>
+      </div>
+
+      <h3>Dated facts and unconfirmed facts</h3>
+      <div class="st-stack ds-demo">
+        <p>
+          You must register for VAT once your turnover passes
+          <strong>R 2 300 000</strong> in any 12 months. This threshold changed on 1 April 2026.
+          <Badge variant="status" icon="lucide:calendar-check">
+            AI-checked {checkedDate}
+          </Badge>
+          <a
+            href="https://www.sars.gov.za/faq/what-is-the-new-threshold-for-vat-registration/"
+            rel="noopener"
+          >
+            SARS: What is the new threshold for VAT registration?
+            <Icon name="lucide:external-link" size="0.9em" />
+          </a>
+        </p>
+        <p>
+          Some municipalities charge a separate yearly trading licence fee.
+          <Badge variant="flag">Not confirmed</Badge>
+          An AI could not confirm this in an official source. Before you act, ask the office that is
+          responsible for it, for example SARS or CIPC.
+        </p>
+      </div>
+      <p class="st-hint">
+        A dated fact is a badge plus the date in words, followed by the link to the one source that
+        supports it. An unconfirmed fact keeps the flag <strong>and</strong> the sentence that says
+        what to do about it: the badge colour never carries that on its own, and in forced colours
+        or in print only the words and the icon survive.
+      </p>
+      <p class="st-hint">
+        The numbers in a demo are real numbers, so they are held to the same standard as a content
+        page: the VAT threshold above is the current one (R 2 300 000 from 1 April 2026), taken from
+        the toolkit’s own verification register. A unit test scans <code>src/pages/**</code>
+        for the stale figures the toolkit warns about, because a wrong number wearing a verification
+        badge is worse than no badge at all.
+      </p>
+    </section>
+
+    <section class="ds-section">
+      <h2 id="forms">Form controls</h2>
+      <div class="ds-form">
+        <div class="st-field">
+          <label for="ds-name">Business name</label>
+          <input
+            id="ds-name"
+            name="name"
+            type="text"
+            autocomplete="organization"
+            aria-describedby="ds-name-hint"
+          />
+          <p class="st-hint" id="ds-name-hint">
+            As registered with CIPC, if you have registered.
+          </p>
+        </div>
+        <div class="st-field">
+          <label for="ds-vat">VAT number</label>
+          <input
+            id="ds-vat"
+            name="vat"
+            type="text"
+            inputmode="numeric"
+            value="12345"
+            aria-invalid="true"
+            aria-describedby="ds-vat-error"
+          />
+          <p class="st-error-text" id="ds-vat-error">
+            <Icon name="lucide:triangle-alert" size="1em" /> A VAT number has 10 digits.
+          </p>
+        </div>
+        <div class="st-field">
+          <label for="ds-type">Business type</label>
+          <select id="ds-type" name="type">
+            <option>Food</option>
+            <option>Retail and online</option>
+            <option>Services and trades</option>
+          </select>
+        </div>
+        <div class="st-field">
+          <label for="ds-notes">Notes</label>
+          <textarea id="ds-notes" name="notes" placeholder="Anything else to remember"></textarea>
+        </div>
+        <div class="st-field">
+          <label for="ds-disabled">Invoice number (set automatically)</label>
+          <input id="ds-disabled" name="invoice" type="text" value="INV-0007" disabled />
+        </div>
+        <fieldset class="st-field">
+          <legend>Checklist</legend>
+          <label class="st-check">
+            <input type="checkbox" name="task" checked /> Registered with CIPC
+          </label>
+          <label class="st-check">
+            <input type="checkbox" name="task" /> Registered for tax with SARS
+          </label>
+        </fieldset>
+        <fieldset class="st-field">
+          <legend>Entity</legend>
+          <label class="st-check">
+            <input type="radio" name="entity" checked /> Sole proprietor
+          </label>
+          <label class="st-check">
+            <input type="radio" name="entity" /> Pty Ltd
+          </label>
+        </fieldset>
+        <p>
+          Search results highlight <mark>matched words</mark>.
+        </p>
+      </div>
+    </section>
+
+    <section class="ds-section">
+      <h2 id="illustrations">Illustrations</h2>
+      <p class="ds-intro">
+        Inline SVG, under 2 KB each, <code>aria-hidden</code>. Lines use <code>currentColor</code>{' '}
+        (the section hue); fills use <code>--st-section-tint</code>.
+      </p>
+      <ul class="ds-illustrations" role="list">
+        {illustrations.map(({ title, Component }) => (
+          <li class="ds-illustration" data-section="types">
+            <Component />
+            <span>{title}</span>
+          </li>
+        ))}
+      </ul>
+      <h3>Hue demo</h3>
+      <p class="ds-intro">
+        The same art follows whatever section it sits in. This row only demonstrates the six hues;
+        business-type art belongs to “Your kind of business”.
+      </p>
+      <ul class="ds-illustrations" role="list">
+        {sections.map((s) => (
+          <li class="ds-illustration" data-section={s.id}>
+            <General />
+            <span>{s.title}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+
+  <footer slot="footer" class="ds-footer">
+    <div class="st-container">
+      <p>
+        Stoep design system. Documentation: <code>docs/design-system.md</code>.
+        <a class="st-link-block" href={href('en')}>
+          Back to the toolkit
+        </a>
+      </p>
+    </div>
+  </footer>
+</Base>
+
+<script>
+  import '../scripts/theme-control';
+  import '../scripts/design-system-contrast';
+</script>
+
+<style>
+  .ds-topbar {
+    border-block-end: var(--st-border-width) solid var(--st-border);
+    background-color: var(--st-surface);
+  }
+
+  .ds-topbar__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--st-space-3);
+    min-block-size: var(--st-topbar);
+  }
+
+  .ds-topbar__home {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--st-target);
+    color: var(--st-text);
+    text-decoration: none;
+  }
+
+  .ds-topbar__home:visited {
+    color: var(--st-text);
+  }
+
+  .ds-topbar__home:hover {
+    text-decoration: underline;
+  }
+
+  .ds-topbar__tag {
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-semibold);
+  }
+
+  /*
+   * `minmax(0, 1fr)`, not the implicit `auto` track: an implicit track sizes to its children's
+   * min-content, so one unbreakable Afrikaans compound in a heading would widen the whole page
+   * at 320px. Page packages copy this layout, so both grids state the cap.
+   */
+  .ds-page {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-8);
+    padding-block: var(--st-space-6) var(--st-space-9);
+  }
+
+  .ds-toc ul {
+    padding: 0;
+    list-style: none;
+
+    --st-cluster-gap: var(--st-space-1) var(--st-space-4);
+  }
+
+  .ds-toc a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--st-target);
+  }
+
+  .ds-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-5);
+    min-inline-size: 0;
+  }
+
+  .ds-section > h3 {
+    margin-block-start: var(--st-space-5);
+  }
+
+  .ds-intro {
+    max-inline-size: var(--st-measure);
+  }
+
+  .ds-intro code {
+    white-space: nowrap;
+  }
+
+  .ds-demo {
+    padding: var(--st-space-5);
+    border: var(--st-border-width) solid var(--st-border);
+    border-radius: var(--st-radius-lg);
+    background-color: var(--st-bg);
+    gap: var(--st-space-4);
+  }
+
+  @media (width < 480px) {
+    .ds-demo {
+      padding: var(--st-space-3);
+    }
+  }
+
+  /*
+   * Every single-column grid on this page states `minmax(0, 1fr)`, not only the two outer
+   * ones: an implicit `auto` track sizes to its children's min-content, so one unbreakable
+   * Afrikaans compound in a type specimen widened the page to 485px at 320px. Page packages
+   * copy this page, so the cap has to be visible everywhere it is needed.
+   */
+  div.ds-demo:not(.st-grid, .st-cluster, .st-stack) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  ul.ds-demo {
+    padding-inline: var(--st-space-5);
+    list-style: none;
+  }
+
+  /* Theme control */
+  .ds-theme {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-2);
+  }
+
+  /* Equal-width segments on one row at every width (320px included). */
+  .ds-segmented {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    max-inline-size: 30rem;
+    padding: var(--st-space-1);
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface);
+    gap: var(--st-space-1);
+  }
+
+  .ds-segmented__option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--st-space-2);
+
+    /* The label is a flex item, so `min-inline-size: 0` lets it shrink but leaves its
+       min-content contribution — and the segment's — at the width of its longest word. */
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+    min-block-size: var(--st-target);
+    padding-inline: var(--st-space-3);
+    border: 2px solid transparent;
+    border-radius: calc(var(--st-radius-md) - 2px);
+    color: var(--st-text);
+    font-weight: var(--st-weight-semibold);
+    cursor: pointer;
+  }
+
+  .ds-segmented__option input {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    margin: 0;
+    opacity: 0;
+    pointer-events: none; /* clicks land on the label, which checks the radio */
+  }
+
+  .ds-segmented__option:hover {
+    background-color: var(--st-primary-soft);
+    color: var(--st-on-primary-soft);
+  }
+
+  .ds-segmented__option:has(input:checked) {
+    border-color: var(--st-primary);
+    background-color: var(--st-primary);
+    color: var(--st-on-primary);
+  }
+
+  .ds-segmented__option:has(input:focus-visible) {
+    outline: var(--st-focus-width) solid var(--st-focus);
+    outline-offset: var(--st-focus-offset);
+  }
+
+  .ds-segmented__icon,
+  .ds-segmented__tick {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .ds-segmented__tick {
+    display: none;
+  }
+
+  .ds-segmented__option:has(input:checked) .ds-segmented__tick {
+    display: inline-flex;
+  }
+
+  /* Below 560px the filled segment already shows the choice, so drop the tick, then the icons. */
+  @media (width < 560px) {
+    .ds-segmented__option:has(input:checked) .ds-segmented__tick {
+      display: none;
+    }
+  }
+
+  @media (width < 400px) {
+    .ds-segmented__icon {
+      display: none;
+    }
+  }
+
+  /*
+   * Forced colours paints a transparent border as CanvasText and the fill as Canvas, so the
+   * selected segment used to differ from the others by border colour alone: below 560px, where
+   * the tick is hidden, colour was the only cue left. Opt the selected segment out and fill it.
+   */
+  @media (forced-colors: active) {
+    .ds-segmented__option {
+      border-color: Canvas;
+    }
+
+    .ds-segmented__option:has(input:checked) {
+      forced-color-adjust: none;
+      border-color: Highlight;
+      background-color: Highlight;
+      color: HighlightText;
+    }
+  }
+
+  /* Swatches */
+  .ds-swatch-group {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-3);
+  }
+
+  .ds-swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    gap: var(--st-space-3);
+    padding: 0;
+    list-style: none;
+  }
+
+  .ds-swatch {
+    display: flex;
+    align-items: center;
+    gap: var(--st-space-3);
+    min-inline-size: 0;
+  }
+
+  .ds-swatch__chip {
+    inline-size: 3rem;
+    block-size: 3rem;
+    flex-shrink: 0;
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-md);
+  }
+
+  .ds-swatch__meta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    min-inline-size: 0;
+    line-height: var(--st-leading-snug);
+  }
+
+  /* Token names read as one word: never break `--st-hue-paperwork-tint` at its hyphens. */
+  .ds-swatch__name {
+    font-size: var(--st-text-sm);
+    overflow-wrap: normal;
+    word-break: keep-all;
+  }
+
+  .ds-swatch__values {
+    color: var(--st-text-muted);
+    font-size: var(--st-text-xs);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Contrast */
+  .ds-contrast-summary {
+    font-weight: var(--st-weight-semibold);
+  }
+
+  /* Wide enough that token names never break; the region scrolls on small screens. */
+  .ds-contrast {
+    min-inline-size: 58rem;
+  }
+
+  .ds-contrast code {
+    font-size: var(--st-text-sm);
+    white-space: nowrap;
+  }
+
+  .ds-sample {
+    display: inline-grid;
+    place-items: center;
+    inline-size: 3rem;
+    block-size: 2rem;
+    border: var(--st-border-width) solid var(--st-border);
+    border-radius: var(--st-radius-sm);
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .ds-sample__ui {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    border: 3px solid;
+    border-radius: var(--st-radius-sm);
+  }
+
+  /* "✓ PASS" is one token; breaking it doubled the height of every row in the table. */
+  .ds-result {
+    font-weight: var(--st-weight-bold);
+    white-space: nowrap;
+  }
+
+  .ds-result[data-result='paused'] {
+    color: var(--st-text-muted);
+    font-weight: var(--st-weight-regular);
+  }
+
+  .ds-result[data-result='pass']::before {
+    content: '✓ ';
+  }
+
+  .ds-result[data-result='fail'] {
+    color: var(--st-danger-text);
+  }
+
+  .ds-result[data-result='fail']::before {
+    content: '✗ ';
+  }
+
+  /* Typography */
+  .ds-type {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-4);
+    padding: var(--st-space-5);
+    border: var(--st-border-width) solid var(--st-border);
+    border-radius: var(--st-radius-lg);
+    background-color: var(--st-surface);
+  }
+
+  .ds-type > :not(.st-display) {
+    max-inline-size: var(--st-measure);
+  }
+
+  .ds-type__h1,
+  .ds-type__h2,
+  .ds-type__h3 {
+    font-family: var(--st-font-display);
+    font-weight: var(--st-weight-semibold);
+    font-variation-settings: 'opsz' var(--st-opsz-heading);
+    line-height: var(--st-leading-tight);
+  }
+
+  .ds-type__h1 {
+    font-size: var(--st-text-3xl);
+  }
+
+  .ds-type__h2 {
+    font-size: var(--st-text-2xl);
+  }
+
+  .ds-type__h3 {
+    font-size: var(--st-text-xl);
+  }
+
+  .ds-diacritics {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-1) var(--st-space-5);
+  }
+
+  @media (width >= 768px) {
+    .ds-diacritics {
+      grid-template-columns: 12rem minmax(0, 1fr);
+      align-items: baseline;
+    }
+  }
+
+  .ds-diacritics dt {
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+  }
+
+  .ds-diacritics dd {
+    margin-block-end: var(--st-space-3);
+    font-size: var(--st-text-xl);
+  }
+
+  .ds-diacritics__display {
+    font-family: var(--st-font-display);
+    font-variation-settings: 'opsz' var(--st-opsz-heading);
+  }
+
+  .ds-diacritics__bold {
+    font-weight: var(--st-weight-bold);
+  }
+
+  .ds-diacritics__mono {
+    font-family: var(--st-font-mono);
+  }
+
+  /* Tokens */
+  .ds-spacing {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-2);
+    padding: 0;
+    list-style: none;
+  }
+
+  .ds-spacing li {
+    display: grid;
+    grid-template-columns: max-content 4rem minmax(0, 1fr);
+    align-items: center;
+    gap: var(--st-space-3);
+  }
+
+  .ds-spacing code {
+    white-space: nowrap;
+  }
+
+  .ds-spacing__value {
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+  }
+
+  .ds-spacing__bar {
+    block-size: 1rem;
+    border-radius: 2px;
+    background-color: var(--st-accent);
+  }
+
+  .ds-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--st-space-5);
+    padding: 0;
+    list-style: none;
+  }
+
+  .ds-tile {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: var(--st-space-1);
+    inline-size: 9rem;
+    block-size: 6rem;
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface);
+    font-size: var(--st-text-sm);
+  }
+
+  /* Forms */
+  .ds-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-5);
+    max-inline-size: 36rem;
+  }
+
+  /* Notices and sources (plan D5) */
+  .ds-status,
+  .ds-source__title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--st-space-1) var(--st-space-3);
+  }
+
+  .ds-source__title {
+    align-items: center;
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .ds-source + .ds-source {
+    padding-block-start: var(--st-space-2);
+  }
+
+  /* Illustrations */
+  .ds-illustrations {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr));
+    gap: var(--st-space-4);
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Custom properties inherit into the illustration SVG (a child component). */
+  .ds-illustration {
+    --st-illustration-size: 7.5rem;
+    --st-illustration-fill: var(--st-surface);
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: var(--st-space-2);
+    padding: var(--st-space-4);
+    border-radius: var(--st-radius-lg);
+    background-color: var(--st-section-tint);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-semibold);
+    text-align: center;
+  }
+
+  .ds-footer {
+    padding-block: var(--st-space-5);
+    border-block-start: var(--st-border-width) solid var(--st-border);
+    background-color: var(--st-surface);
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+  }
+</style>

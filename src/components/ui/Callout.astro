@@ -1,0 +1,115 @@
+---
+/**
+ * Callout with an icon and a visible text label, so meaning never relies on colour.
+ * `plain-words` is the spoken-aside style for "In plain words" and is never collapsed.
+ */
+import Icon from './Icon.astro';
+import { uid } from '../../scripts/uid';
+
+type Variant = 'plain-words' | 'note' | 'warning' | 'official' | 'info';
+
+interface Props {
+  variant?: Variant | undefined;
+  /** Visible label. Defaults to an English label per variant; pass the translated string. */
+  label?: string | undefined;
+  icon?: string | undefined;
+  /** Id given to the visible label, which names the note. Generated when omitted. */
+  labelId?: string | undefined;
+  class?: string | undefined;
+}
+
+const DEFAULTS: Record<Variant, { label: string; icon: string }> = {
+  'plain-words': { label: 'In plain words', icon: 'lucide:message-circle' },
+  note: { label: 'Note', icon: 'lucide:notebook-pen' },
+  warning: { label: 'Warning', icon: 'lucide:triangle-alert' },
+  official: { label: 'Official source', icon: 'lucide:landmark' },
+  info: { label: 'Good to know', icon: 'lucide:info' },
+};
+
+const { variant = 'note', label, icon, labelId, class: className } = Astro.props;
+const defaults = DEFAULTS[variant];
+// `role="note"` is announced as a bare "note" without a name, so the visible label names it.
+const nameId = labelId ?? uid('st-callout');
+---
+
+<div
+  class:list={['st-callout', className]}
+  data-variant={variant}
+  role="note"
+  aria-labelledby={nameId}
+>
+  <p class="st-callout__label" id={nameId}>
+    <Icon name={icon ?? defaults.icon} />
+    <span>{label ?? defaults.label}</span>
+  </p>
+  <div class="st-callout__body st-flow">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .st-callout {
+    --st-callout-bg: var(--st-surface-2);
+    --st-callout-edge: var(--st-border-strong);
+    --st-callout-label: var(--st-text);
+
+    display: grid;
+    gap: var(--st-space-2);
+    max-inline-size: var(--st-measure);
+    padding: var(--st-space-4) var(--st-space-5);
+    border-inline-start: var(--st-stripe-width) solid var(--st-callout-edge);
+    border-radius: var(--st-radius-sm) var(--st-radius-lg) var(--st-radius-lg) var(--st-radius-sm);
+    background-color: var(--st-callout-bg);
+    color: var(--st-text);
+  }
+
+  .st-callout__label {
+    display: flex;
+
+    /* A long Afrikaans label wraps; the icon stays beside its first line. */
+    align-items: flex-start;
+    gap: var(--st-space-2);
+    color: var(--st-callout-label);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-bold);
+    line-height: var(--st-leading-snug);
+  }
+
+  .st-callout[data-variant='plain-words'] {
+    --st-callout-bg: var(--st-accent-soft);
+    --st-callout-edge: var(--st-accent);
+    --st-callout-label: var(--st-on-accent-soft);
+
+    border-end-start-radius: 0;
+  }
+
+  .st-callout[data-variant='plain-words'] .st-callout__body {
+    font-size: var(--st-text-lg);
+    line-height: 1.5;
+  }
+
+  .st-callout[data-variant='warning'] {
+    --st-callout-bg: var(--st-warning-bg);
+    --st-callout-edge: var(--st-warning-text);
+    --st-callout-label: var(--st-warning-text);
+  }
+
+  .st-callout[data-variant='official'] {
+    --st-callout-bg: var(--st-primary-soft);
+    --st-callout-edge: var(--st-primary);
+    --st-callout-label: var(--st-on-primary-soft);
+  }
+
+  .st-callout[data-variant='info'] {
+    --st-callout-bg: var(--st-info-bg);
+    --st-callout-edge: var(--st-info-text);
+    --st-callout-label: var(--st-info-text);
+  }
+
+  @media (forced-colors: active) {
+    .st-callout {
+      border: 1px solid CanvasText;
+      border-inline-start-width: var(--st-stripe-width);
+    }
+  }
+</style>

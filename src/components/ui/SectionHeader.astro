@@ -1,0 +1,165 @@
+---
+/**
+ * Section landing header: hue stripe, soft hue tint (`--st-tint-strength`) and a CSS-only
+ * shweshwe-inspired dot pattern (decorative, removed under prefers-reduced-data, the low-data
+ * toggle and forced colours). Default slot: lead paragraph(s).
+ * `level` defaults to 1 (landing pages); use 3 or 4 when the header sits inside a page outline.
+ */
+type Section = 'start' | 'core' | 'branding' | 'paperwork' | 'types' | 'lookup';
+
+interface Props {
+  section: Section;
+  title: string;
+  eyebrow?: string | undefined;
+  level?: 1 | 2 | 3 | 4 | undefined;
+  id?: string | undefined;
+  class?: string | undefined;
+}
+
+const { section, title, eyebrow, level = 1, id, class: className } = Astro.props;
+const Heading = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4';
+---
+
+<div class:list={['st-section-header', className]} data-section={section} data-level={level}>
+  <div class="st-section-header__pattern" aria-hidden="true"></div>
+  <div class="st-section-header__inner">
+    {eyebrow && <p class="st-section-header__eyebrow">{eyebrow}</p>}
+    <Heading class="st-section-header__title" id={id}>
+      {title}
+    </Heading>
+    {Astro.slots.has('default') && (
+      <div class="st-section-header__lead">
+        <slot />
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  .st-section-header {
+    --st-shweshwe-ink: color-mix(in oklab, var(--st-section) var(--st-pattern-ink), transparent);
+
+    /*
+     * No `overflow: hidden` here. The header used to clip, which hid a lead paragraph that
+     * held a long URL or file path instead of wrapping it — silent loss of content, which
+     * WCAG 1.4.10 forbids and no `scrollWidth` test can see. Only the decorative pattern
+     * needs clipping, and it clips itself (see `__pattern`).
+     */
+    position: relative;
+    padding: var(--st-space-6) var(--st-space-5);
+    border-inline-start: calc(var(--st-stripe-width) * 1.5) solid var(--st-section);
+    border-radius: var(--st-radius-sm) var(--st-radius-lg) var(--st-radius-lg) var(--st-radius-sm);
+    background-color: var(--st-section-tint);
+  }
+
+  @media (width >= 768px) {
+    .st-section-header {
+      padding: var(--st-space-7) var(--st-space-6);
+    }
+  }
+
+  .st-section-header__pattern {
+    /* --st-pattern-display is none under prefers-reduced-data and the low-data toggle. */
+    display: var(--st-pattern-display);
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    inline-size: min(60%, 28rem);
+
+    /* The header no longer clips, so the pattern carries the header's own end radii. */
+    border-start-end-radius: var(--st-radius-lg);
+    border-end-end-radius: var(--st-radius-lg);
+    background-image:
+      radial-gradient(circle, var(--st-shweshwe-ink) 0 1.8px, transparent 2.4px),
+      radial-gradient(circle, var(--st-shweshwe-ink) 0 1.1px, transparent 1.7px),
+      radial-gradient(
+        circle,
+        transparent 0 4.5px,
+        var(--st-shweshwe-ink) 5px 6.2px,
+        transparent 6.7px
+      );
+    background-position:
+      0 0,
+      9px 9px,
+      18px 18px;
+    background-size:
+      18px 18px,
+      18px 18px,
+      36px 36px;
+    mask-image: linear-gradient(to left, currentcolor 35%, transparent);
+    pointer-events: none;
+  }
+
+  /*
+   * On a phone the header is only as wide as the reading column, so a pattern on the inline
+   * end sits behind the lead text. Move it to a band along the bottom, below the words.
+   */
+  @media (width < 768px) {
+    .st-section-header {
+      padding-block-end: var(--st-space-7);
+    }
+
+    .st-section-header__pattern {
+      inset-block: auto 0;
+      inset-inline: 0;
+      inline-size: auto;
+      block-size: 3rem;
+      border-start-end-radius: 0;
+      border-end-start-radius: var(--st-radius-sm);
+      mask-image: linear-gradient(to top, currentcolor 20%, transparent);
+    }
+  }
+
+  /*
+   * `minmax(0, 1fr)`, not the implicit `auto` track: an `auto` track sizes to its children's
+   * min-content, so a lead paragraph holding a long URL widened the header past the page.
+   */
+  .st-section-header__inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-3);
+    max-inline-size: var(--st-measure);
+  }
+
+  .st-section-header__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--st-space-2);
+    color: var(--st-text);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-section-header__eyebrow::before {
+    content: '';
+    inline-size: 0.625rem;
+    block-size: 0.625rem;
+    border-radius: 50%;
+    background-color: var(--st-section);
+  }
+
+  .st-section-header__title {
+    color: var(--st-text);
+  }
+
+  .st-section-header[data-level='3'] .st-section-header__title,
+  .st-section-header[data-level='4'] .st-section-header__title {
+    font-size: var(--st-text-2xl);
+  }
+
+  .st-section-header__lead {
+    font-size: var(--st-text-lg);
+  }
+
+  @media (forced-colors: active) {
+    .st-section-header {
+      border: 1px solid CanvasText;
+      border-inline-start-width: calc(var(--st-stripe-width) * 1.5);
+    }
+
+    .st-section-header__pattern {
+      display: none;
+    }
+  }
+</style>

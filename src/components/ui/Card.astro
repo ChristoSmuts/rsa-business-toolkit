@@ -1,0 +1,165 @@
+---
+/**
+ * Card with a single tab stop: the title link's ::after covers the whole card, so the
+ * card is clickable while the accessible name stays the title. Other links or buttons
+ * placed in the meta slot are lifted above the overlay and remain separately usable.
+ * Slots: default (summary), `illustration`, `meta`.
+ */
+type Section = 'start' | 'core' | 'branding' | 'paperwork' | 'types' | 'lookup';
+
+interface Props {
+  title: string;
+  href?: string | undefined;
+  section?: Section | undefined;
+  eyebrow?: string | undefined;
+  headingLevel?: 2 | 3 | 4 | undefined;
+  class?: string | undefined;
+}
+
+const { title, href, section, eyebrow, headingLevel = 3, class: className } = Astro.props;
+const Heading = `h${headingLevel}` as 'h2' | 'h3' | 'h4';
+const hasArt = Astro.slots.has('illustration');
+const hasMeta = Astro.slots.has('meta');
+---
+
+<article
+  class:list={['st-card', className]}
+  data-section={section}
+  data-interactive={href ? 'true' : undefined}
+>
+  {hasArt && (
+    <div class="st-card__art">
+      <slot name="illustration" />
+    </div>
+  )}
+  <div class="st-card__body">
+    {eyebrow && <p class="st-card__eyebrow">{eyebrow}</p>}
+    <Heading class="st-card__title">
+      {href ? (
+        <a class="st-card__link" href={href}>
+          {title}
+        </a>
+      ) : (
+        title
+      )}
+    </Heading>
+    <div class="st-card__summary">
+      <slot />
+    </div>
+    {hasMeta && (
+      <div class="st-card__meta">
+        <slot name="meta" />
+      </div>
+    )}
+  </div>
+</article>
+
+<style>
+  .st-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: var(--st-border-width) solid var(--st-border);
+    border-block-start: var(--st-stripe-width) solid var(--st-section);
+    border-radius: var(--st-radius-lg);
+    background-color: var(--st-surface);
+    box-shadow: var(--st-shadow-1);
+    transition:
+      transform var(--st-duration-base) var(--st-ease),
+      box-shadow var(--st-duration-base) var(--st-ease);
+  }
+
+  .st-card[data-interactive='true']:hover,
+  .st-card:has(.st-card__link:focus-visible) {
+    box-shadow: var(--st-shadow-2);
+    transform: translateY(var(--st-lift));
+  }
+
+  .st-card:has(.st-card__link:focus-visible) {
+    outline: var(--st-focus-width) solid var(--st-focus);
+    outline-offset: var(--st-focus-offset);
+  }
+
+  .st-card__art {
+    /* The art area is tinted, so illustration fills use the card surface to stay two-tone. */
+    --st-illustration-fill: var(--st-surface);
+
+    display: flex;
+    justify-content: center;
+    padding: var(--st-space-4);
+    border-start-start-radius: calc(var(--st-radius-lg) - var(--st-stripe-width));
+    border-start-end-radius: calc(var(--st-radius-lg) - var(--st-stripe-width));
+    background-color: var(--st-section-tint);
+  }
+
+  .st-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--st-space-2);
+    padding: var(--st-space-5);
+  }
+
+  .st-card__eyebrow {
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-card__title {
+    font-size: var(--st-text-xl);
+  }
+
+  .st-card__link {
+    color: var(--st-text);
+    text-decoration-color: var(--st-section);
+  }
+
+  .st-card__link:visited {
+    color: var(--st-text);
+  }
+
+  .st-card__link:focus-visible {
+    outline: none;
+  }
+
+  /* Without :has() the card ring cannot appear, so keep the link's own ring. */
+  @supports not selector(:has(*)) {
+    .st-card__link:focus-visible {
+      outline: var(--st-focus-width) solid var(--st-focus);
+      outline-offset: var(--st-focus-offset);
+    }
+  }
+
+  .st-card__link::after {
+    content: '';
+    position: absolute;
+    inset: calc(var(--st-stripe-width) * -1) calc(var(--st-border-width) * -1)
+      calc(var(--st-border-width) * -1);
+    border-radius: var(--st-radius-lg);
+  }
+
+  .st-card__summary {
+    color: var(--st-text);
+  }
+
+  /* Meta sits above the link overlay so links or buttons placed in it stay usable. */
+  .st-card__meta {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-2) var(--st-space-3);
+    margin-block-start: auto;
+    padding-block-start: var(--st-space-3);
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+  }
+
+  @media (forced-colors: active) {
+    .st-card {
+      border-color: CanvasText;
+    }
+  }
+</style>

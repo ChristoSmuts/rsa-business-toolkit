@@ -1,0 +1,153 @@
+/*
+ * Stoep layout and helper utilities. Breakpoints (literal, cannot be tokens):
+ * sm 480px, md 768px, lg 1024px, xl 1280px.
+ */
+
+/* Visually hidden but available to assistive technology. */
+.st-visually-hidden:not(:focus, :active) {
+  position: absolute !important;
+  inline-size: 1px !important;
+  block-size: 1px !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+/* Shown only once theme-init has set the `js` class on <html>. */
+html:not(.js) .js-only {
+  display: none !important;
+}
+
+/* Shown only when JavaScript is unavailable. */
+html.js .no-js-only {
+  display: none !important;
+}
+
+/* Custom elements that wrap server-rendered blocks are inline by default. */
+st-theme-toggle,
+st-table-scroll {
+  display: block;
+}
+
+/*
+ * A link that stands on its own (not inside a sentence): a full 44px target.
+ *
+ * `inline-block`, not `inline-flex`. A flex box makes every child its own item, so a trailing
+ * external-link icon lost the space before it and floated away from the last word when a long
+ * translated title wrapped; and the box could never be narrower than its longest word, so one
+ * Afrikaans compound pushed the page sideways at 320px. Inline layout keeps the icon in the
+ * text run, and `overflow-wrap: anywhere` lowers the min-content width so the link can be
+ * capped by its container. The target height comes from padding, so a wrapped link grows
+ * instead of centring its lines in a fixed 44px box.
+ */
+.st-link-block {
+  display: inline-block;
+  min-block-size: var(--st-target);
+  padding-block: max(0px, calc((var(--st-target) - 1lh) / 2));
+  overflow-wrap: anywhere;
+}
+
+/* Page container: max 1360px with fluid side gutters. */
+.st-container {
+  inline-size: 100%;
+  max-inline-size: var(--st-container);
+  margin-inline: auto;
+  padding-inline: var(--st-gutter);
+}
+
+.st-measure {
+  max-inline-size: var(--st-measure);
+}
+
+/* Vertical rhythm: direct children spaced by --st-stack-gap. */
+.st-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-stack-gap, var(--st-space-4));
+}
+
+.st-stack-sm {
+  --st-stack-gap: var(--st-space-2);
+}
+
+.st-stack-lg {
+  --st-stack-gap: var(--st-space-6);
+}
+
+.st-stack-xl {
+  --st-stack-gap: var(--st-space-8);
+}
+
+/* Flow content (paragraphs, lists): space between siblings, none before the first. */
+.st-flow > * + * {
+  margin-block-start: var(--st-flow-gap, var(--st-space-3));
+}
+
+/* Horizontal group that wraps. */
+.st-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--st-cluster-gap, var(--st-space-3));
+}
+
+/* Responsive auto-fit grid; set --st-grid-min to change the column minimum. */
+.st-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--st-grid-min, 16rem)), 1fr));
+  gap: var(--st-grid-gap, var(--st-space-5));
+}
+
+/* Document layout: sidebar | content | TOC. Columns appear at lg and xl. */
+.st-doc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--st-space-6);
+}
+
+@media (width >= 1024px) {
+  .st-doc-grid {
+    grid-template-columns: var(--st-sidebar) minmax(0, 1fr);
+  }
+}
+
+@media (width >= 1280px) {
+  .st-doc-grid {
+    grid-template-columns: var(--st-sidebar) minmax(0, 1fr) var(--st-toc);
+  }
+}
+
+.st-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Section hue scope: sets --st-section and --st-section-tint for descendants. */
+[data-section='start'] {
+  --st-section: var(--st-hue-start);
+  --st-section-tint: var(--st-hue-start-tint);
+}
+
+[data-section='core'] {
+  --st-section: var(--st-hue-core);
+  --st-section-tint: var(--st-hue-core-tint);
+}
+
+[data-section='branding'] {
+  --st-section: var(--st-hue-branding);
+  --st-section-tint: var(--st-hue-branding-tint);
+}
+
+[data-section='paperwork'] {
+  --st-section: var(--st-hue-paperwork);
+  --st-section-tint: var(--st-hue-paperwork-tint);
+}
+
+[data-section='types'] {
+  --st-section: var(--st-hue-types);
+  --st-section-tint: var(--st-hue-types-tint);
+}
+
+[data-section='lookup'] {
+  --st-section: var(--st-hue-lookup);
+  --st-section-tint: var(--st-hue-lookup-tint);
+}

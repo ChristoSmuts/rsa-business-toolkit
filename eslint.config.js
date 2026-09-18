@@ -37,7 +37,7 @@ export default defineConfig(
     },
   },
   {
-    files: ['src/lib/store.ts', 'src/lib/storage/**', 'tests/**'],
+    files: ['src/lib/store.ts', 'src/lib/storage/**', 'src/scripts/**', 'tests/**'],
     rules: { 'no-restricted-globals': 'off' },
   },
   {

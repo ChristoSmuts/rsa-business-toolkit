@@ -1,0 +1,29 @@
+---
+/** Keyboard key, for shortcut hints such as `/` and `?`. */
+interface Props {
+  class?: string | undefined;
+}
+const { class: className } = Astro.props;
+---
+
+<kbd class:list={['st-kbd', className]}>
+  <slot />
+</kbd>
+
+<style>
+  .st-kbd {
+    display: inline-block;
+    min-inline-size: 1.75em;
+    padding: 0.05em 0.45em;
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-block-end-width: 2px;
+    border-radius: var(--st-radius-sm);
+    background-color: var(--st-surface);
+    color: var(--st-text);
+    font-family: var(--st-font-mono);
+    font-size: 0.85em;
+    line-height: 1.4;
+    text-align: center;
+    white-space: nowrap;
+  }
+</style>

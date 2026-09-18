@@ -1,0 +1,92 @@
+---
+/**
+ * Original "SA Business Toolkit" wordmark: a stoep (porch) mark, a roof over three steps,
+ * followed by the name as real text (no text in images, so it translates and scales).
+ * Contains no flags or government insignia.
+ */
+interface Props {
+  /** Visible name. Defaults to the product name. */
+  name?: string | undefined;
+  /** Hide the text and keep only the mark (then pass `label` for an accessible name). */
+  markOnly?: boolean | undefined;
+  /** Accessible name when `markOnly` is set. */
+  label?: string | undefined;
+  class?: string | undefined;
+}
+
+const { name = 'SA Business Toolkit', markOnly = false, label, class: className } = Astro.props;
+---
+
+<span class:list={['st-logo', className]}>
+  <svg
+    class="st-logo__mark"
+    viewBox="0 0 32 32"
+    width="32"
+    height="32"
+    focusable="false"
+    {...(markOnly && label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': 'true' })}
+  >
+    <rect class="st-logo__tile" width="32" height="32" rx="7"></rect>
+    <path
+      class="st-logo__roof"
+      d="M6.5 13.5 16 6l9.5 7.5"
+      fill="none"
+      stroke-width="2.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    ></path>
+    <rect class="st-logo__step" x="11" y="15.5" width="10" height="3" rx="1"></rect>
+    <rect class="st-logo__step" x="8.5" y="20" width="15" height="3" rx="1"></rect>
+    <rect class="st-logo__step" x="6" y="24.5" width="20" height="3" rx="1"></rect>
+  </svg>
+  {!markOnly && <span class="st-logo__text">{name}</span>}
+</span>
+
+<style>
+  .st-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--st-space-2);
+    color: var(--st-text);
+  }
+
+  .st-logo__mark {
+    inline-size: 1.75em;
+    block-size: 1.75em;
+  }
+
+  .st-logo__tile {
+    fill: var(--st-primary);
+  }
+
+  .st-logo__roof {
+    stroke: var(--st-bg);
+  }
+
+  .st-logo__step {
+    fill: var(--st-bg);
+  }
+
+  .st-logo__text {
+    font-family: var(--st-font-display);
+    font-size: 1.125em;
+    font-weight: var(--st-weight-semibold);
+    font-variation-settings: 'opsz' var(--st-opsz-heading);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  @media (forced-colors: active) {
+    .st-logo__tile {
+      fill: CanvasText;
+    }
+
+    .st-logo__roof {
+      stroke: Canvas;
+    }
+
+    .st-logo__step {
+      fill: Canvas;
+    }
+  }
+</style>

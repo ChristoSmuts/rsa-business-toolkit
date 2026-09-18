@@ -1,0 +1,29 @@
+---
+/** Vehicle dealer: a bakkie. Decorative; colour from --st-section, fill from --st-section-tint. */
+interface Props {
+  class?: string | undefined;
+}
+const { class: className } = Astro.props;
+---
+
+<svg
+  class:list={['st-illustration', className]}
+  viewBox="0 0 96 72"
+  width="96"
+  height="72"
+  aria-hidden="true"
+  focusable="false"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path class="st-illo-fill" d="M6 46h18l9-16h22l7 16h28v10H6z"></path>
+  <path d="M36 34h8v12H29zM48 34h5l5 12H48z"></path>
+  <path d="M62 46v10M4 64h88"></path>
+  <circle class="st-illo-fill" cx="24" cy="56" r="7"></circle>
+  <circle class="st-illo-fill" cx="72" cy="56" r="7"></circle>
+  <circle class="st-illo-ink" cx="24" cy="56" r="2"></circle>
+  <circle class="st-illo-ink" cx="72" cy="56" r="2"></circle>
+</svg>

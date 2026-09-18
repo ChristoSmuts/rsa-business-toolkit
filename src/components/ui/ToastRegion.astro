@@ -1,0 +1,122 @@
+---
+/**
+ * Polite live region for toasts. Render once per page (empty); scripts append
+ * `<div class="st-toast" data-variant="success|info|warning|danger">icon + text</div>`
+ * and remove it after about 4 seconds. No `data-variant` gives the neutral inverse toast.
+ * `static` renders in flow (design-system demo).
+ *
+ * `role="status"` already implies `aria-live="polite"`; `aria-atomic="false"` makes each
+ * added toast read on its own rather than the whole region.
+ *
+ * Styles are global (toasts are added at runtime, so they carry no scope attribute) but
+ * every selector is prefixed with `.st-toast-region`.
+ */
+interface Props {
+  id?: string | undefined;
+  /** Accessible name for the region, for example "Notifications". */
+  label?: string | undefined;
+  static?: boolean | undefined;
+}
+
+const { id = 'st-toasts', label = 'Notifications', static: isStatic = false } = Astro.props;
+---
+
+<div
+  id={id}
+  class="st-toast-region"
+  data-static={isStatic ? 'true' : undefined}
+  role="status"
+  aria-atomic="false"
+  aria-label={label}
+>
+  <slot />
+</div>
+
+<style is:global>
+  .st-toast-region {
+    position: fixed;
+    inset-block-end: var(--st-space-4);
+    inset-inline: var(--st-space-4);
+    z-index: var(--st-z-toast);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--st-space-2);
+    pointer-events: none;
+  }
+
+  .st-toast-region[data-static='true'] {
+    position: static;
+    align-items: flex-start;
+  }
+
+  .st-toast-region .st-toast {
+    --st-toast-bg: var(--st-text);
+    --st-toast-fg: var(--st-bg);
+
+    display: inline-flex;
+    align-items: center;
+    gap: var(--st-space-2);
+
+    /*
+     * The toast text is an anonymous flex item, so nothing can be set on it directly.
+     * `overflow-wrap` is inherited, so it reaches that item from here and lowers its
+     * min-content contribution: without it a toast such as "Maatskappyregistrasienommer
+     * gekopieer" widened the page to 327px at 320px. A percentage `max-inline-size` does not
+     * help, because percentages resolve to none while a container is being sized intrinsically.
+     */
+    overflow-wrap: anywhere;
+    max-inline-size: min(100%, 32rem);
+    min-block-size: var(--st-target);
+    padding: var(--st-space-2) var(--st-space-4);
+    border: var(--st-border-width) solid transparent;
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-toast-bg);
+    box-shadow: var(--st-shadow-2);
+    color: var(--st-toast-fg);
+    font-weight: var(--st-weight-semibold);
+    pointer-events: auto;
+    animation: st-toast-in var(--st-duration-base) var(--st-ease) both;
+  }
+
+  .st-toast-region .st-toast[data-variant='success'] {
+    --st-toast-bg: var(--st-success-bg);
+    --st-toast-fg: var(--st-success-text);
+
+    border-color: var(--st-success-text);
+  }
+
+  .st-toast-region .st-toast[data-variant='info'] {
+    --st-toast-bg: var(--st-info-bg);
+    --st-toast-fg: var(--st-info-text);
+
+    border-color: var(--st-info-text);
+  }
+
+  .st-toast-region .st-toast[data-variant='warning'] {
+    --st-toast-bg: var(--st-warning-bg);
+    --st-toast-fg: var(--st-warning-text);
+
+    border-color: var(--st-warning-text);
+  }
+
+  .st-toast-region .st-toast[data-variant='danger'] {
+    --st-toast-bg: var(--st-danger-bg);
+    --st-toast-fg: var(--st-danger-text);
+
+    border-color: var(--st-danger-text);
+  }
+
+  @keyframes st-toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.5rem);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .st-toast-region .st-toast {
+      border-color: CanvasText;
+    }
+  }
+</style>

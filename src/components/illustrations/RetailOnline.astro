@@ -1,0 +1,30 @@
+---
+/** Retail and online shop: a shop awning with a parcel. Decorative. */
+interface Props {
+  class?: string | undefined;
+}
+const { class: className } = Astro.props;
+---
+
+<svg
+  class:list={['st-illustration', className]}
+  viewBox="0 0 96 72"
+  width="96"
+  height="72"
+  aria-hidden="true"
+  focusable="false"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path
+    class="st-illo-fill"
+    d="M12 12h72v14q-6 9-12 0-6 9-12 0-6 9-12 0-6 9-12 0-6 9-12 0-6 9-12 0z"
+  ></path>
+  <path d="M24 12v14M36 12v14M48 12v14M60 12v14M72 12v14"></path>
+  <path d="M16 34v30h64V34M24 64V46h14v18"></path>
+  <rect class="st-illo-fill" x="48" y="46" width="24" height="18" rx="2"></rect>
+  <path d="M56 46v7l4-2 4 2v-7"></path>
+</svg>

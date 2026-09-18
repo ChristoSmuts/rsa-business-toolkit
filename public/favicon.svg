@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Stoep mark: roof over three porch steps. Colours mirror --st-primary/--st-bg (checked by tests/unit/tokens-contrast.test.ts). -->
+  <style>
+    .tile { fill: #1e5a3c; }
+    .mark { fill: none; stroke: #fbf8f3; }
+    .step { fill: #fbf8f3; }
+    @media (prefers-color-scheme: dark) {
+      .tile { fill: #7cc79a; }
+      .mark { stroke: #15130f; }
+      .step { fill: #15130f; }
+    }
+  </style>
+  <rect class="tile" width="32" height="32" rx="7"/>
+  <path class="mark" d="M6.5 13.5 16 6l9.5 7.5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect class="step" x="11" y="15.5" width="10" height="3" rx="1"/>
+  <rect class="step" x="8.5" y="20" width="15" height="3" rx="1"/>
+  <rect class="step" x="6" y="24.5" width="20" height="3" rx="1"/>
+</svg>

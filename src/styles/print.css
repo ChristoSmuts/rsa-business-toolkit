@@ -1,0 +1,146 @@
+/*
+ * Print stylesheet (plan B5). tokens.css already forces the light palette in print
+ * because its dark blocks are screen-only.
+ *
+ * Hooks for other packages:
+ * - `.st-no-print` / `[data-print='hide']`   never printed
+ * - `[data-print-sheet]`                      when present, only that element prints (templates)
+ * - `html[data-print-ticks]`                  print ticked checkboxes; default prints empty boxes
+ */
+
+@page {
+  size: a4;
+  margin: 15mm;
+}
+
+@media print {
+  html {
+    font-size: 11pt;
+    background: none;
+  }
+
+  body {
+    display: block;
+    min-block-size: 0;
+    font-size: 1rem;
+  }
+
+  /* Chrome and interactive-only UI */
+  .st-skip-link,
+  body > header,
+  body > footer,
+  nav,
+  dialog,
+  button,
+  .st-btn,
+  .js-only,
+  .st-no-print,
+  [data-print='hide'],
+  [role='search'],
+  .st-toast-region {
+    display: none !important;
+  }
+
+  /* Expand collapsed disclosure content. */
+  details::details-content {
+    content-visibility: visible;
+    block-size: auto;
+  }
+
+  details > summary {
+    list-style: none;
+    font-weight: 700;
+  }
+
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /*
+   * Full URLs after external links. `text-decoration` propagates from the inline parent into
+   * generated content, so `text-decoration: none` here does nothing. An inline-block stops the
+   * propagation; it then needs its own width cap so a long URL still wraps inside the page.
+   */
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    display: inline-block;
+    max-inline-size: 100%;
+    font-size: 0.85em;
+    overflow-wrap: anywhere;
+    text-decoration: none;
+  }
+
+  a {
+    color: var(--st-text);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
+  }
+
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  tr,
+  img,
+  svg,
+  figure,
+  pre,
+  blockquote,
+  [role='note'] {
+    break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  /* Wide tables print whole, not as scroll regions or stacked cards. */
+  .st-table-scroll {
+    overflow: visible !important;
+    background: none !important;
+  }
+
+  /* Checklists: empty boxes unless the reader asked to print ticks. */
+  html:not([data-print-ticks]) input[type='checkbox'] {
+    appearance: none;
+    inline-size: 1em;
+    block-size: 1em;
+    border: 1.5px solid var(--st-text);
+    border-radius: 2px;
+    background: none;
+  }
+
+  /*
+   * Template sheet-only printing. Remove (display: none, not visibility) every element that is
+   * neither the sheet, inside it, nor one of its ancestors, so nothing leaves blank pages and
+   * the sheet stays in normal flow and can break across pages.
+   */
+  body:has([data-print-sheet])
+    *:not([data-print-sheet], [data-print-sheet] *, :has([data-print-sheet])) {
+    display: none !important;
+  }
+
+  body:has([data-print-sheet]) :has([data-print-sheet]) {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: none !important;
+  }
+
+  body:has([data-print-sheet]) [data-print-sheet] {
+    box-shadow: none !important;
+    border: 0 !important;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}

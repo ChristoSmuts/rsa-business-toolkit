@@ -1,0 +1,30 @@
+---
+/**
+ * Lucide icon wrapper. Decorative by default (`aria-hidden`); pass `label` only when the
+ * icon is the sole content of its control, which makes it `role="img"` with that name.
+ */
+import { Icon as AstroIcon } from 'astro-icon/components';
+
+interface Props {
+  /** Icon name, for example `lucide:info`. A bare name gets the `lucide:` prefix. */
+  name: string;
+  label?: string | undefined;
+  /** CSS length; defaults to 1.25em so icons scale with text. */
+  size?: string | undefined;
+  class?: string | undefined;
+}
+
+const { name, label, size = '1.25em', class: className } = Astro.props;
+const fullName = name.includes(':') ? name : `lucide:${name}`;
+const a11y = label
+  ? { role: 'img' as const, 'aria-label': label }
+  : { 'aria-hidden': 'true' as const, focusable: 'false' };
+---
+
+<AstroIcon
+  name={fullName}
+  class:list={['st-icon', className]}
+  width={size}
+  height={size}
+  {...a11y}
+/>

@@ -1,0 +1,150 @@
+---
+/**
+ * Keyboard-scrollable, labelled region around a table, with edge shadows that appear only
+ * when there is more to scroll (pure CSS, background-attachment trick).
+ * `<st-table-scroll>` (src/scripts/table-scroll.ts) removes the tab stop and region role
+ * while nothing overflows; without JS the region always stays focusable.
+ *
+ * `wide`: under 640px the table stacks into labelled cards. Give each body cell a
+ * `data-label` with its column heading. Each stacked cell is a two-column grid (label | value),
+ * so put cell content that mixes text and elements inside one wrapper element (for example a
+ * `<span>`); otherwise every text run and element becomes its own grid row.
+ * Use `wide` for tables with 5 or more columns.
+ *
+ * Styles are global (the table is slotted markup, which scoped styles cannot reach) but
+ * every selector is prefixed with `.st-table-scroll`.
+ */
+interface Props {
+  /** id of the table caption or of a heading that names the table. */
+  labelledby: string;
+  wide?: boolean | undefined;
+  class?: string | undefined;
+}
+
+const { labelledby, wide = false, class: className } = Astro.props;
+---
+
+<st-table-scroll
+  class:list={['st-table-scroll', className]}
+  role="region"
+  tabindex="0"
+  aria-labelledby={labelledby}
+  data-labelledby={labelledby}
+  data-wide={wide ? 'true' : undefined}
+>
+  <slot />
+</st-table-scroll>
+
+<script>
+  import '../../scripts/table-scroll';
+</script>
+
+<style is:global>
+  .st-table-scroll {
+    --st-table-scroll-bg: var(--st-bg);
+    --st-table-edge: color-mix(
+      in oklab,
+      var(--st-shadow-ink) var(--st-shadow-strength-2),
+      transparent
+    );
+
+    display: block;
+    max-inline-size: 100%;
+    overflow-x: auto;
+
+    /*
+     * Keeps the caption clear of the focus ring. Block padding only: inline padding makes
+     * WebKit report a few pixels of horizontal overflow around a 100%-wide table.
+     */
+    padding-block: var(--st-space-1);
+    border-radius: var(--st-radius-sm);
+    background:
+      linear-gradient(to right, var(--st-table-scroll-bg) 30%, transparent) left center / 2.5rem
+        100% no-repeat local,
+      linear-gradient(to left, var(--st-table-scroll-bg) 30%, transparent) right center / 2.5rem
+        100% no-repeat local,
+      radial-gradient(farthest-side at 0 50%, var(--st-table-edge), transparent) left center /
+        0.875rem 100% no-repeat scroll,
+      radial-gradient(farthest-side at 100% 50%, var(--st-table-edge), transparent) right center /
+        0.875rem 100% no-repeat scroll;
+    overscroll-behavior-x: contain;
+  }
+
+  .st-table-scroll > table {
+    min-inline-size: 36rem;
+  }
+
+  .st-table-scroll thead th {
+    white-space: nowrap;
+  }
+
+  @media (width < 640px) {
+    .st-table-scroll[data-wide='true'] {
+      overflow: visible;
+      background: none;
+    }
+
+    .st-table-scroll[data-wide='true'] > table {
+      min-inline-size: 0;
+    }
+
+    .st-table-scroll[data-wide='true'] :is(table, caption, tbody, tr, td, th) {
+      display: block;
+    }
+
+    .st-table-scroll[data-wide='true'] thead {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .st-table-scroll[data-wide='true'] tbody tr {
+      margin-block-end: var(--st-space-3);
+      padding: var(--st-space-2) var(--st-space-3);
+      border: var(--st-border-width) solid var(--st-border);
+      border-radius: var(--st-radius-md);
+      background-color: var(--st-surface);
+    }
+
+    .st-table-scroll[data-wide='true'] tbody :is(td, th) {
+      padding-inline: 0;
+      border-block-end: var(--st-border-width) solid var(--st-border);
+      text-align: start;
+    }
+
+    .st-table-scroll[data-wide='true'] tbody tr > :last-child {
+      border-block-end: 0;
+    }
+
+    /*
+     * Two-column grid: the label is a real grid item, so a label that wraps to two lines
+     * makes the row taller instead of drawing over the next row (Afrikaans labels are longer).
+     */
+    .st-table-scroll[data-wide='true'] tbody :is(td, th)[data-label] {
+      display: grid;
+      grid-template-columns: minmax(5.5rem, 36%) minmax(0, 1fr);
+      align-items: start;
+      column-gap: var(--st-space-3);
+
+      /* Long words (and Afrikaans compounds) hyphenate instead of breaking mid-word. */
+      hyphens: auto;
+    }
+
+    .st-table-scroll[data-wide='true'] tbody :is(td, th)[data-label]::before {
+      /* The cell is still announced with its column header, so hide the visual label from AT. */
+      content: attr(data-label);
+      content: attr(data-label) / '';
+      color: var(--st-text-muted);
+      font-weight: var(--st-weight-semibold);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .st-table-scroll {
+      background: none;
+    }
+  }
+</style>

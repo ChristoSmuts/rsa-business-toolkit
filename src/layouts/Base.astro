@@ -1,0 +1,119 @@
+---
+/**
+ * Document shell for every page. Ships no JavaScript except the blocking theme-init file
+ * (plus the processed module scripts of any component or page that needs one).
+ *
+ * Scripts (CSP is `script-src 'self'`, so nothing may be inline):
+ * - theme-init must block rendering, so it is a plain JavaScript file imported with Vite
+ *   `?url` (copied as-is with a hashed name) and loaded as a classic external <script src>.
+ * - Everything else is a normal Astro-processed <script> (bundled ES module, shared chunks).
+ *   `vite.build.assetsInlineLimit` in astro.config.ts is a function: it refuses inlining for
+ *   everything except CSS, so no bundle is ever inlined as a <script> or a `data:` URI, while
+ *   Astro can still inline a few hundred bytes of page CSS.
+ */
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/utilities.css';
+import '../styles/print.css';
+import tokensSource from '../styles/tokens.css?raw';
+import themeInitUrl from '../scripts/theme-init.js?url';
+import frauncesLatin from '@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2?url';
+import instrumentLatin from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
+import { href } from '../lib/paths';
+import { parseTokenBlocks } from '../scripts/color';
+
+interface Alternate {
+  hreflang: string;
+  href: string;
+}
+
+interface Props {
+  lang: 'en' | 'af';
+  title: string;
+  description?: string | undefined;
+  canonical?: string | undefined;
+  alternates?: Alternate[] | undefined;
+  noindex?: boolean | undefined;
+  skipLinkLabel?: string | undefined;
+  bodyClass?: string | undefined;
+}
+
+const {
+  lang,
+  title,
+  description,
+  canonical,
+  alternates = [],
+  noindex = false,
+  skipLinkLabel = 'Skip to content',
+  bodyClass,
+} = Astro.props;
+
+const htmlLang = lang === 'af' ? 'af-ZA' : 'en-ZA';
+
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data:",
+  "font-src 'self'",
+  "connect-src 'self'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+].join('; ');
+
+// The dev server injects inline module scripts and a websocket, so the CSP is production only.
+const withCsp = import.meta.env.PROD;
+
+const tokens = parseTokenBlocks(tokensSource);
+const themeColorLight = tokens.light['bg'];
+const themeColorDark = tokens.dark['bg'];
+---
+
+<html lang={htmlLang} dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {withCsp && <meta http-equiv="Content-Security-Policy" content={CSP} />}
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="color-scheme" content="light dark" />
+    {/* Before theme-init, which points both at the saved theme's colour. */}
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content={themeColorLight}
+      data-st-scheme="light"
+      data-st-colour={themeColorLight}
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content={themeColorDark}
+      data-st-scheme="dark"
+      data-st-colour={themeColorDark}
+    />
+    <script is:inline src={themeInitUrl}></script>
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    {alternates.map((alt) => (
+      <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+    ))}
+    <link rel="icon" type="image/svg+xml" href={href('en', 'favicon.svg')} />
+    <link rel="preload" href={frauncesLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={instrumentLatin} as="font" type="font/woff2" crossorigin />
+    <slot name="head" />
+  </head>
+  <body class={bodyClass}>
+    <a class="st-skip-link" href="#main">
+      {skipLinkLabel}
+    </a>
+    <slot name="header" />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>
