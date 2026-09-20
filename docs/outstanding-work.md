@@ -1,12 +1,40 @@
 # Outstanding work
 
-**Status on 20 September 2026. The foundation is complete.** All three foundation packages are merged into `main`, the working tree is clean, and `pnpm gate:fast` is green.
+**Status on 20 September 2026. All three foundation packages are merged, but `pnpm gate` is RED and must be resolved before the foundation can be called done.** The working tree is clean and `pnpm gate:fast` is green.
+
+## Read this first: the full gate fails
+
+`pnpm gate:fast` passes, and every Playwright project passes when run **one at a time** with `--workers=1` (that is how each package was reviewed and how each merge was gated). `pnpm gate` runs `pnpm test:e2e`, which runs chromium, webkit, mobile and nojs **concurrently against one preview server**, and in that configuration it fails:
+
+```
+8 failed
+  [chromium] › csp-and-network.spec.ts:73 › page contract › /
+  [chromium] › csp-and-network.spec.ts:73 › page contract › /design-system/
+  [chromium] › design-system.spec.ts:223 › stand-alone interactive targets are at least 44px
+  [chromium] › design-system.spec.ts:279 › long Afrikaans labels never widen the page at 320px
+  [mobile]   › csp-and-network.spec.ts:73 › page contract › /
+  [mobile]   › csp-and-network.spec.ts:73 › page contract › /design-system/
+  [nojs]     › nojs.spec.ts:19 › readable without JavaScript › /
+  [nojs]     › nojs.spec.ts:19 › readable without JavaScript › /design-system/
+12 skipped, 99 passed (9.8m)
+```
+
+**The failure messages have not been read yet** — the diagnostic run was stopped before it finished, so the cause is unknown. Do not assume it is contention. The two possibilities matter differently:
+
+- if the projects are contending for one preview server, then the harness produces **false failures under exactly the configuration CI uses**, which is a defect in the harness and makes `pnpm gate` untrustworthy rather than merely red;
+- if these are real failures, then something is genuinely wrong on `/` or `/design-system/` that the serialised per-project runs did not surface.
+
+Start by capturing the actual error text (`pnpm test:e2e` and read the failure bodies, not the summary), then decide. Note that the same two pages fail across three different projects and specs, which is a clue worth following.
+
+This does not change the review status of the merged packages — each had two clean passes, and each was gated green on merge — but the foundation should not be reported as finished until `pnpm gate` is green or the failures are understood and consciously accepted.
 
 Read `docs/build-plan.md` first for the design, then this file for where the work stopped. `docs/reviews/merge-checklist.md` holds the tasks that must happen at merge time.
 
 ## Where to pick up
 
-Nothing in the foundation is outstanding. The next step is **the site package, `docs/work-packages/WP-20-site.md`** — but it is **paused pending the user's go-ahead**, along with the interactive packages, the Afrikaans document translations and the accuracy review phase. Do not start any of them until the user says so.
+**First**, resolve the red `pnpm gate` described above. That is the only outstanding foundation work.
+
+After that, the next step is **the site package, `docs/work-packages/WP-20-site.md`** — but it is **paused pending the user's go-ahead**, along with the interactive packages, the Afrikaans document translations and the accuracy review phase. Do not start any of them until the user says so.
 
 When work does resume, the suggested order is the one in the build plan Part D: the site package (rendering and navigation, then pages and routes), then the interactive packages, with the Afrikaans translations able to run alongside.
 
