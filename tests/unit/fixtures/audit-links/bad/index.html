@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en-ZA">
+  <head>
+    <meta charset="utf-8" />
+    <title>Broken</title>
+    <link rel="stylesheet" href="/_astro/site.css" />
+  </head>
+  <body>
+    <main id="main">
+      <h1>Broken</h1>
+      <a href="core/">Relative</a>
+      <a href="/bt/missing/">Missing page</a>
+      <a href="/bt/core/#nope">Missing fragment</a>
+      <a href="#also-nope">Missing same-page fragment</a>
+      <a href="https://www.sars.gov.za/" target="_blank">No noopener</a>
+      <a href="http://www.cipc.co.za/">Plain http</a>
+      <img src="/bt/logo.png" srcset="/bt/core/ 1x, /elsewhere.png 2x" alt="" />
+      <form action="/bt/nowhere/"></form>
+    </main>
+  </body>
+</html>

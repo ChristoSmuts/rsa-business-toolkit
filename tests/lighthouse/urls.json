@@ -1,0 +1,4 @@
+{
+  "description": "Site-relative paths that pnpm lhci audits in both presets. Add a page in the package that builds it (see docs/testing.md).",
+  "paths": ["/"]
+}

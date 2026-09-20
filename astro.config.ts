@@ -1,13 +1,8 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
+import { normaliseBase } from './scripts/base-path';
 import { DEFAULT_LOCALE, ENABLED_LOCALES, sitemapLocales } from './src/i18n/locales';
-
-function normaliseBase(raw: string | undefined): string {
-  const value = (raw ?? '/business-toolkit/').trim();
-  if (value === '' || value === '/') return '/';
-  return `/${value.replace(/^\/+|\/+$/g, '')}/`;
-}
 
 const site = process.env.SITE_URL ?? 'https://example.github.io';
 const base = normaliseBase(process.env.BASE_PATH);

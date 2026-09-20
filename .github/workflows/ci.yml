@@ -182,13 +182,14 @@ jobs:
         with:
           name: dist
           path: dist
-      - name: Run Lighthouse CI
-        run: |
-          if node -e "process.exit(require('./package.json').scripts.lhci ? 0 : 1)"; then
-            pnpm lhci
-          else
-            echo "lhci script not defined yet"
-          fi
+      - uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
+      - name: Install Chromium for Lighthouse (CHROME_PATH comes from scripts/ci/chrome-path.mjs)
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Run Lighthouse CI (desktop and mobile)
+        run: pnpm lhci
       - if: always()
         uses: actions/upload-artifact@v7
         with:

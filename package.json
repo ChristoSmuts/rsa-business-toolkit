@@ -10,7 +10,9 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pnpm dist:audit",
+    "dist:audit": "tsx scripts/dist/audit-links.ts",
+    "lhci": "node scripts/ci/run-lhci.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint . && prettier --check . && stylelint \"src/**/*.{css,astro}\" --allow-empty-input",
@@ -52,6 +54,7 @@
     "@commitlint/cli": "21.2.2",
     "@commitlint/config-conventional": "21.2.2",
     "@eslint/js": "10.0.1",
+    "@lhci/cli": "0.15.1",
     "@playwright/test": "1.63.0",
     "@types/mdast": "4.0.4",
     "@types/node": "26.5.1",

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en-ZA">
+  <head>
+    <meta charset="utf-8" />
+    <title>Home</title>
+    <link rel="canonical" href="https://example.github.io/bt/" />
+    <link rel="stylesheet" href="/bt/_astro/site.css" />
+    <script type="module" src="/bt/_astro/page.js"></script>
+    <script type="application/ld+json">
+      { "url": "/not-a-link/", "html": "<a href='/also-not-a-link/'>" }
+    </script>
+  </head>
+  <body>
+    <a href="#main" class="skip">Skip to content</a>
+    <!-- <a href="/commented-out/">ignored</a> -->
+    <main id="main">
+      <h1>Home</h1>
+      <a href="/bt/core/">Core</a>
+      <a href="/bt/core/#register">Register</a>
+      <a href="/bt/core/#legacy">Legacy anchor</a>
+      <a href="https://www.sars.gov.za/" target="_blank" rel="noopener noreferrer">SARS</a>
+      <a href="mailto:hello@example.com">Mail</a>
+      <a href="#top">Back to top</a>
+      <a href="?q=tax">Search this page</a>
+      <img
+        src="/bt/_astro/logo.svg"
+        srcset="/bt/_astro/logo.svg 1x, /bt/_astro/logo.svg 2x"
+        alt="Logo"
+      />
+      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" />
+      <svg aria-hidden="true"><use href="#icon-check"></use></svg>
+      <svg hidden><symbol id="icon-check"></symbol></svg>
+      <form action="/bt/search/" method="get"><input name="q" /></form>
+    </main>
+  </body>
+</html>
