@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 import {
@@ -6,6 +8,8 @@ import {
   contrastRatio,
   formatRatio,
   parseCssColor,
+  parseTokenBlocks,
+  resolveColor,
   type Rgb,
 } from '../../src/scripts/color';
 
@@ -30,6 +34,27 @@ const PANEL = { timeout: 30_000 };
  * triples whatever is configured here.
  */
 const DESCRIBE_TIMEOUT = Number(process.env['PW_DS_TIMEOUT'] ?? 120_000);
+
+/** The light palette exactly as `tokens.css` declares it. */
+const LIGHT_TOKENS = parseTokenBlocks(
+  readFileSync(resolve(import.meta.dirname, '../../src/styles/tokens.css'), 'utf8'),
+).light;
+
+/**
+ * Every `--st-*` token reset to its guaranteed-invalid value on the measuring element and on
+ * nothing else, so the page stays styled while the probe goes blind — the shape of the WebKit
+ * race. The list comes from the real file, so it cannot drift away from the palette it imitates.
+ *
+ * Both selectors name the probe and nothing else on this page (no other element carries the
+ * boolean `hidden` attribute, let alone as a child of `<body>`). The second one is deliberate:
+ * it also matches the probe as it was written *before* the fix, so the tests below are red
+ * against the original file and not only against a mutated copy of the new one. If neither
+ * selector ever matched, the panel would measure normally and `data-live` would come back `on`,
+ * so a blunted instrument fails those tests rather than passing them.
+ */
+const BLIND_PROBE_CSS = `[data-st-contrast-probe], body > span[hidden] {${Object.keys(LIGHT_TOKENS)
+  .map((name) => `--st-${name}:initial`)
+  .join(';')}}`;
 
 /** The longest real Afrikaans status label the page packages will render (38 characters). */
 const LONGEST_LABEL = 'Masjienvertaling, nog nie nagegaan nie';
@@ -118,11 +143,13 @@ test.describe('design system page', () => {
     ).toBeVisible();
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
     await expect(page.locator('html')).toHaveClass(/\bjs\b/);
+    // `data-live="on"` as well as the count: only a real measurement sets both.
     await expect(page.locator('[data-contrast-summary]')).toHaveAttribute(
       'data-failures',
       '0',
       PANEL,
     );
+    await expect(page.locator('[data-contrast-summary]')).toHaveAttribute('data-live', 'on');
     await page.evaluate(() => document.fonts.ready);
 
     expect(errors).toEqual([]);
@@ -457,6 +484,94 @@ test.describe('design system page', () => {
     await expect(summary).toContainText('paused');
     await expect(page.locator('[data-result="fail"]')).toHaveCount(0);
     await expect(page.locator('[data-result="paused"]')).toHaveCount(CONTRAST_PAIRS.length);
+    // Paused is not a measurement either, so it claims no failure count.
+    expect(await summary.getAttribute('data-failures')).toBeNull();
+  });
+
+  /**
+   * The WebKit race, made deterministic. On a cold cache WebKit handed the span the panel
+   * measures through none of the `--st-*` properties, while `documentElement` already resolved
+   * them; every pair then read 1.00:1 and the panel claimed "76 of 76 pairs fail" for the life
+   * of the page. It reproduced on 10 of 24 cold loads driven through Playwright request
+   * interception and 0 of 12 without it — a race, and far too unreliable to gate on, so the
+   * same state is forced here: every token from `tokens.css` is reset to its guaranteed-invalid
+   * value on the probe and on the probe only. The list comes from the real file, so this cannot
+   * drift away from the palette it is imitating.
+   *
+   * The panel must say it cannot measure. Both gates in `measure` fire on this state, so it
+   * takes removing both to turn this red — measured: it then reports `data-failures="76"` and
+   * "76 of 76 pairs fail", the original bug verbatim. `tests/unit/design-system-contrast.test.ts`
+   * separates the two gates and fails on either one alone.
+   */
+  test('the contrast panel never reports failures it could not measure', async ({ page }) => {
+    expect(Object.keys(LIGHT_TOKENS).length).toBeGreaterThan(50);
+    await page.addInitScript((css: string) => {
+      const apply = (): void => {
+        if (!document.documentElement) {
+          setTimeout(apply, 0);
+          return;
+        }
+        const style = document.createElement('style');
+        style.textContent = css;
+        document.documentElement.append(style);
+      };
+      apply();
+    }, BLIND_PROBE_CSS);
+
+    await page.goto(DS);
+    // The page itself is styled; only the measuring element is blind. That is the bug's shape.
+    const [r, g, b] = resolveColor('bg', LIGHT_TOKENS);
+    await expect(page.locator('html')).toHaveCSS('background-color', `rgb(${r}, ${g}, ${b})`);
+
+    const summary = page.locator('[data-contrast-summary]');
+    await expect(summary).toHaveAttribute('data-live', 'unavailable', PANEL);
+    await expect(summary).toContainText('unavailable');
+    await expect(page.locator('[data-result="fail"]')).toHaveCount(0);
+    // Nothing was written over the server-rendered state, so no false FAIL ever flashed.
+    await expect(page.locator('[data-result="pending"]')).toHaveCount(CONTRAST_PAIRS.length);
+    /*
+     * And `data-failures` is absent, not "0". Three tests in this file read `data-failures="0"`
+     * as "the panel measured all 76 pairs and none failed"; if a panel that measured nothing
+     * wrote a 0, every one of them would pass on the very load this test exists to catch.
+     */
+    expect(await summary.getAttribute('data-failures')).toBeNull();
+  });
+
+  /**
+   * Review pass 1, minor 3. The state above is the panel giving up before it ever measured, so
+   * the table is untouched. This is the other way in: a good reading, then a re-measure the
+   * panel cannot make. `unavailable()` used to write only the summary, which left all 76 rows
+   * on `pass` with the *previous* theme's ratios under a paragraph saying the checks are
+   * unavailable — a live-looking measurement of a theme that was never measured. The summary
+   * and the table have to agree, because a designer reads the table.
+   */
+  test('going unavailable after a good reading clears the measurement behind it', async ({
+    page,
+  }) => {
+    await openWithTheme(page, 'light');
+    const summary = page.locator('[data-contrast-summary]');
+    await expect(summary).toHaveAttribute('data-failures', '0', PANEL);
+    await expect(summary).toHaveAttribute('data-live', 'on');
+    await expect(page.locator('[data-result="pass"]')).toHaveCount(CONTRAST_PAIRS.length);
+
+    // Blind the measuring element, then ask for the re-measure it can no longer make.
+    await page.addStyleTag({ content: BLIND_PROBE_CSS });
+    await page.evaluate(() => {
+      document.documentElement.dataset['theme'] = 'dark';
+    });
+
+    await expect(summary).toHaveAttribute('data-live', 'unavailable', PANEL);
+    expect(await summary.getAttribute('data-failures')).toBeNull();
+    // Nothing in the table still claims a measurement the summary has withdrawn.
+    await expect(page.locator('[data-result="pass"]')).toHaveCount(0);
+    await expect(page.locator('[data-result="fail"]')).toHaveCount(0);
+    await expect(page.locator('[data-result="pending"]')).toHaveCount(CONTRAST_PAIRS.length);
+    const ratios = await page.locator('[data-contrast-ratio]').allTextContents();
+    expect(ratios.length).toBe(CONTRAST_PAIRS.length);
+    expect([...new Set(ratios.map((text) => text.trim()))]).toEqual(['–']);
+    const swatches = await page.locator('[data-swatch-value]').allTextContents();
+    expect(swatches.length).toBeGreaterThan(0);
+    expect([...new Set(swatches.map((text) => text.trim()))]).toEqual(['…']);
   });
 
   test('forced colours: the selected theme segment differs by more than its border', async ({
@@ -612,6 +727,7 @@ test.describe('design system page', () => {
       await openWithTheme(page, theme);
       const summary = page.locator('[data-contrast-summary]');
       await expect(summary).toHaveAttribute('data-failures', '0', PANEL);
+      await expect(summary).toHaveAttribute('data-live', 'on');
       await expect(page.locator('[data-result="fail"]')).toHaveCount(0);
       await expect(page.locator('[data-result="pass"]')).toHaveCount(CONTRAST_PAIRS.length);
       await expect(summary).toContainText(`theme: ${theme}`);
@@ -645,6 +761,7 @@ test.describe('design system page', () => {
         '0',
         PANEL,
       );
+      await expect(page.locator('[data-contrast-summary]')).toHaveAttribute('data-live', 'on');
       const results = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
         .analyze();
