@@ -17,8 +17,10 @@ Merge order does not matter for correctness, but merging WP-11 last means re-run
 
 ## When WP-22a (test harness) merges
 
-- [ ] Switch `tests/e2e/smoke.spec.ts` to import `test` and `expect` from `tests/e2e/fixtures.ts`, and remove its entry from `KNOWN_DIRECT_PLAYWRIGHT_IMPORTS` in `tests/unit/e2e-harness.test.ts`.
-- [ ] Check that `pnpm test` passes after the merge; the "no direct `@playwright/test` import" check must stay green.
+**Merged as `fd8bbe7` on 2026-09-20** after clean passes 5 (Reviewer U) and 6 (Reviewer W), plus an integration round against the merged content pipeline and design system. `pnpm gate:fast` green on `main`.
+
+- [x] Switch `tests/e2e/smoke.spec.ts` to import `test` and `expect` from `tests/e2e/fixtures.ts`, and remove its entry from `KNOWN_DIRECT_PLAYWRIGHT_IMPORTS` in `tests/unit/e2e-harness.test.ts`. — done in the integration round; the list (renamed `KNOWN_UNGUARDED_SPECS`) is now empty and a unit test asserts it stays empty.
+- [x] Check that `pnpm test` passes after the merge; the "no direct `@playwright/test` import" check must stay green. — 808 unit and dom tests green on `main`.
 
 ## When WP-11 (design system) merges
 
@@ -38,8 +40,12 @@ Superseded on 2026-09-16. Pass 3 was NOT clean: it rated the `Badge` no-wrap ove
 
 ## When WP-11 (design system) and WP-22a have both merged
 
-- [ ] Switch `tests/e2e/design-system.spec.ts` to import from `tests/e2e/fixtures.ts`.
-- [ ] Confirm `pnpm test:e2e` and `pnpm test:a11y` no longer exit 1 with "No tests found". Reviewer V logged this on `main` before WP-22a merged: the `a11y` and `visual` projects come from the scaffold and had no specs, so `pnpm gate` was red through no fault of WP-11. WP-22a brings the specs; verify rather than assume.
+All done in the WP-22a integration round (`341b42c`) unless noted.
+
+- [x] Switch `tests/e2e/design-system.spec.ts` to import from `tests/e2e/fixtures.ts`. Running it guarded for the first time found no console error, CSP violation or off-origin request on `/design-system/` — but the WebKit run did expose a real contrast-panel bug, fixed separately in `da6dcb0`.
+- [x] Confirm `pnpm test:e2e` and `pnpm test:a11y` no longer exit 1 with "No tests found". Verified: `test:a11y` is 4 passed, and every `test:e2e` project runs. `test:visual` still has no specs or baselines, which is expected until a package adds pages.
+- [x] Give the placeholder home page a meta description through `Base.astro` — already done by WP-11.
+- [x] Remove the home-page entry from `tests/e2e/helpers/exceptions.ts`. Done: the stale-exception check caught it as soon as the home page started rendering through `Base.astro`, and `PAGE_CHECK_EXCEPTIONS` is now empty.
 - [ ] Give the placeholder home page a meta description through `Base.astro`, so the Lighthouse SEO assertion passes.
 - [ ] Remove the home-page entry from `tests/e2e/helpers/exceptions.ts` once the home page renders through `Base.astro`; the stale-exception check will fail until it is removed.
 
