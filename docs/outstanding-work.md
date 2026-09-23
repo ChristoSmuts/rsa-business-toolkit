@@ -22,7 +22,21 @@ Read `docs/build-plan.md` first for the design, then this file for where the wor
 
 ## Where to pick up
 
-The foundation has no outstanding work. The next step is **the site package, `docs/work-packages/WP-20-site.md`** — but it is **paused pending the user's go-ahead**, along with the interactive packages, the Afrikaans document translations and the accuracy review phase. Do not start any of them until the user says so.
+**WP-20 milestone 1 (rendering and navigation) is built on `wp/site` and awaiting review.** It adds
+`src/components/content/`, `src/components/trust/`, `src/components/navigation/`, the pure helpers in
+`src/lib/content/` and `src/lib/nav.ts`, and one page: `/design-system/content/` and its Afrikaans
+twin, the live reference for all of it, made only of real data from `src/data/`. Milestone 2 (pages
+and routes) has not started, and takes three things with it:
+
+1. every route in build plan B1 under `src/pages/[...locale]/`, and `src/layouts/Doc.astro`, which
+   the article half of the reference page is the working draft of;
+2. removing the generated `KNOWN_FUTURE_ROUTES` block (see the known limits below), which the audit
+   will insist on as soon as the routes exist;
+3. `tests/lighthouse/urls.json`, which still lists only `/`: the reference page is `noindex` and not
+   a page type a reader visits, so the real page types go in with milestone 2.
+
+The interactive packages, the Afrikaans document translations and the accuracy review phase are
+still **paused pending the user's go-ahead**. Do not start any of them until the user says so.
 
 When work does resume, the suggested order is the one in the build plan Part D: the site package (rendering and navigation, then pages and routes), then the interactive packages, with the Afrikaans translations able to run alongside.
 
@@ -48,7 +62,7 @@ Merging the harness and the design system into one tree exposed a real, user-vis
 ### Known limits carried forward
 
 - `pnpm test:visual` exits 1 with "No tests found": there is no `tests/e2e/visual.spec.ts` and no `__screenshots__` baselines. Both arrive with the package that adds pages; `test:visual` is not part of `pnpm gate`, and CI already conditions its `visual` job on the baselines existing.
-- `tests/e2e/helpers/exceptions.ts` declares four routes in `KNOWN_FUTURE_ROUTES` that the D5 demo links to and no page package has built yet (`af/`, `af/start/how-this-was-made/`, `lookup/sources/`, `start/how-this-was-made/`). Each fails the audit once its route exists, so the site package will be told to remove them.
+- `tests/e2e/helpers/exceptions.ts` declares the routes in `KNOWN_FUTURE_ROUTES` that `/design-system/` and `/design-system/content/` link to and no page package has built yet. Since WP-20 milestone 1 the list is derived from `src/data/manifest.json` rather than typed out: `af/` plus every section, document and tool route of build plan B1 in both languages. Each fails the audit once its route exists, so **WP-20 milestone 2 removes the generated block in the same change that builds the routes**. The `lookup/sources/` entry is gone: the register's route is `sources/`, and the design-system link that pointed at the document id was wrong.
 - `docs/reviews/backlog.md` holds every deferred minor, with the reason each can wait.
 
 **The sections below this point describe the state on 16 September and are kept as history.** They are superseded for the three foundation packages, and remain accurate for the unmerged localisation follow-up and Afrikaans glossary branches.
