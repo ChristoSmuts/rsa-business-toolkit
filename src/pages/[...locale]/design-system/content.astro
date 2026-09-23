@@ -1,0 +1,292 @@
+---
+/**
+ * `/design-system/content/` and `/af/design-system/content/` — the live reference for content
+ * rendering and navigation (WP-20 milestone 1). `noindex`, and excluded from the sitemap by the
+ * `/design-system/` filter in `astro.config.ts`, like the rest of the design-system reference.
+ *
+ * Everything on it is **real**: one whole document from `src/data/`, rendered exactly as the
+ * document pages will render it, and then the first real block in the corpus for every block
+ * kind, every fence variant and every inline-run kind (`selectCoverage`). Nothing is a fixture,
+ * so the page fails when the corpus renders badly, not when a made-up example does.
+ *
+ * The Afrikaans twin has no Afrikaans content yet (`manifest.langs` lists `en` only), so it shows
+ * the English document with `lang="en"` on the blocks and the "not translated yet" notice, which
+ * is the fallback path build plan D5 asks for. The machine-translation notice is shown below, in
+ * a section that says it is a demonstration, so the wording is checked before Afrikaans lands.
+ *
+ * Milestone 2 turns the article half of this page into `src/layouts/Doc.astro` and the real
+ * routes; this page keeps rendering the same components from the same data.
+ */
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Badge from '../../../components/ui/Badge.astro';
+import Blocks from '../../../components/content/Blocks.astro';
+import Breadcrumb from '../../../components/navigation/Breadcrumb.astro';
+import Inline from '../../../components/content/Inline.astro';
+import SectionSidebar from '../../../components/navigation/SectionSidebar.astro';
+import SiteFooter from '../../../components/navigation/SiteFooter.astro';
+import SiteHeader from '../../../components/navigation/SiteHeader.astro';
+import TableOfContents from '../../../components/navigation/TableOfContents.astro';
+import AiNotice from '../../../components/trust/AiNotice.astro';
+import SourcesForPage from '../../../components/trust/SourcesForPage.astro';
+import TranslationNotice from '../../../components/trust/TranslationNotice.astro';
+import { useTranslations } from '../../../i18n';
+import { DEFAULT_LOCALE, type Locale } from '../../../i18n/locales';
+import { createContentContext } from '../../../lib/content/context';
+import { selectCoverage } from '../../../lib/content/coverage';
+import { loadDoc, loadGlossary, loadManifest, loadSources } from '../../../lib/content/collections';
+import { docTitle, hasTranslation, sectionTitle } from '../../../lib/content/manifest';
+import type { Block } from '../../../lib/content/schema';
+import { documentCrumbs } from '../../../lib/nav';
+import { href } from '../../../lib/paths';
+import { localeStaticPaths } from '../../../lib/i18n-routes';
+
+export function getStaticPaths() {
+  return localeStaticPaths();
+}
+
+interface Props {
+  locale: Locale;
+}
+
+/** The document rendered in full: small, and it has both register entries and an Act. */
+const DEMO_DOC_ID = 'business-types/pick-your-business-type';
+/** A document with no sources of its own, for the second half of the D5 sources pattern. */
+const NOTE_DOC_ID = 'start/how-to-use';
+const ROUTE = 'design-system/content/';
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const manifest = await loadManifest();
+
+// No language has its own copy of a document yet except English, so this is the fallback path.
+const contentLang: Locale = hasTranslation(manifest, DEMO_DOC_ID, locale) ? locale : DEFAULT_LOCALE;
+const doc = await loadDoc(contentLang, DEMO_DOC_ID);
+if (!doc) throw new Error(`${DEMO_DOC_ID} is missing from src/data. Run \`pnpm content:build\`.`);
+const noteDoc = await loadDoc(contentLang, NOTE_DOC_ID);
+const glossary = await loadGlossary(contentLang);
+const sources = await loadSources(contentLang);
+
+const context = createContentContext({
+  locale,
+  contentLang,
+  manifest,
+  glossary,
+  sources,
+  docId: doc.id,
+});
+
+const translationStatus = contentLang === locale ? doc.translation.status : 'fallback';
+const englishHref = href(DEFAULT_LOCALE, ROUTE);
+const crumbs = documentCrumbs(manifest, doc.id, locale, t);
+const section = sectionTitle(manifest, doc.section, locale);
+const hasPageSources = doc.sources.entries.length + doc.sources.acts.length > 0;
+
+/*
+ * The coverage set, from every other document in the corpus. The demo document is left out so a
+ * block cannot be rendered twice on one page, and each picked block's id is prefixed, because two
+ * documents can slug a heading the same way and two elements may not share an id.
+ */
+const corpus = (await getCollection('docs', (entry) => entry.data.lang === contentLang))
+  .map((entry) => ({ id: entry.data.id, blocks: entry.data.blocks }))
+  .filter((entry) => entry.id !== DEMO_DOC_ID)
+  .sort((a, b) => a.id.localeCompare(b.id));
+const coverage = selectCoverage(corpus).map((item) => ({
+  ...item,
+  block: { ...item.block, id: `demo-${item.block.id}` } as Block,
+}));
+const coveredFeatures = [...new Set(coverage.flatMap((item) => item.features))].sort();
+---
+
+<Base
+  lang={locale}
+  title={`${t('designSystem.title')}: ${doc.title}`}
+  description={doc.summary}
+  noindex
+  skipLinkLabel={t('nav.skipLink')}
+>
+  <SiteHeader slot="header" locale={locale} manifest={manifest} route={ROUTE} />
+
+  <div class="st-container st-doc-grid dsc-page">
+    <SectionSidebar
+      manifest={manifest}
+      sectionId={doc.section}
+      currentDocId={doc.id}
+      locale={locale}
+    />
+
+    <div class="st-stack st-stack-lg dsc-main">
+      <Breadcrumb crumbs={crumbs} locale={locale} />
+
+      <article class="st-stack st-stack-lg" data-doc={doc.id}>
+        <header class="st-stack">
+          <p class="st-hint">
+            {t('doc.sectionLabel')}: {section}
+          </p>
+          <h1>{doc.h1}</h1>
+          <p class="st-lead">{doc.summary}</p>
+          <p class="st-cluster">
+            <Badge variant="status" icon="lucide:clock">
+              {t('doc.readTime', { minutes: doc.readingTime })}
+            </Badge>
+            {doc.appliesTo.entity !== 'all' && (
+              <Badge variant="entity">
+                {doc.appliesTo.entity === 'pty' ? t('doc.ptyOnly') : t('doc.soleProprietorOnly')}
+              </Badge>
+            )}
+          </p>
+          <AiNotice
+            verification={doc.verification}
+            hasPageSources={hasPageSources}
+            locale={locale}
+            manifest={manifest}
+          />
+          <TranslationNotice
+            status={translationStatus}
+            locale={locale}
+            englishHref={locale === DEFAULT_LOCALE ? undefined : englishHref}
+          />
+        </header>
+
+        {doc.terms.length > 0 && (
+          <details class="dsc-terms" open>
+            <summary>{t('doc.wordsUsed')}</summary>
+            <dl class="st-terms">
+              {doc.terms.map((term) => (
+                <Fragment>
+                  <dt>{term.term}</dt>
+                  <dd>{term.meaning}</dd>
+                </Fragment>
+              ))}
+            </dl>
+          </details>
+        )}
+
+        <TableOfContents headings={doc.headings} locale={locale} variant="details" />
+
+        <Blocks blocks={doc.blocks} context={context} fallbackCaption={doc.title} />
+
+        <SourcesForPage
+          sources={doc.sources}
+          sourceNote={doc.sourceNote}
+          context={context}
+          locale={locale}
+          id="dsc-sources"
+        />
+      </article>
+
+      <section class="st-stack dsc-section" aria-labelledby="dsc-coverage">
+        <h2 id="dsc-coverage">Every block kind and every inline run</h2>
+        <p class="st-hint">
+          The first real block in the corpus for each rendering feature, with the document it came
+          from. {coveredFeatures.length} features, from {corpus.length} documents.
+        </p>
+        <ol class="dsc-coverage" role="list" data-all-features={coveredFeatures.join(' ')}>
+          {coverage.map((item) => (
+            <li class="dsc-item" data-features={item.features.join(' ')} data-doc={item.docId}>
+              <p class="st-hint">
+                <code>{item.docId}</code> — {item.features.join(', ')}
+              </p>
+              <Blocks
+                blocks={[item.block]}
+                context={context}
+                fallbackCaption={docTitle(manifest, item.docId, locale)}
+              />
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="st-stack dsc-section" aria-labelledby="dsc-notices">
+        <h2 id="dsc-notices">Notices that need content this build does not have yet</h2>
+        <p class="st-hint">
+          The machine-translation notice appears once a document has an Afrikaans translation. No
+          document has one yet, so it is shown here to keep its wording under test.
+        </p>
+        <div class="dsc-item" data-demo="mt-notice">
+          <TranslationNotice
+            status="machine-unreviewed"
+            locale={locale}
+            englishHref={englishHref}
+          />
+        </div>
+        {noteDoc && (
+          <div class="dsc-item" data-demo="source-note">
+            <p class="st-hint">
+              A page with no sources of its own shows its note and the two links instead of an empty
+              list. This one is <code>{noteDoc.id}</code>.
+            </p>
+            <SourcesForPage
+              sources={noteDoc.sources}
+              sourceNote={noteDoc.sourceNote}
+              context={context}
+              locale={locale}
+              headingLevel={3}
+              id="dsc-source-note"
+            />
+          </div>
+        )}
+        <div class="dsc-item" data-demo="inline-runs">
+          <p class="st-hint">Inline runs inside one sentence, from the document above:</p>
+          <p>
+            <Inline
+              runs={doc.blocks[1]?.kind === 'paragraph' ? doc.blocks[1].c : []}
+              context={context}
+            />
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <TableOfContents headings={doc.headings} locale={locale} variant="column" />
+  </div>
+
+  <SiteFooter slot="footer" locale={locale} manifest={manifest} route={ROUTE} />
+</Base>
+
+<style>
+  .dsc-page {
+    padding-block: var(--st-space-5) var(--st-space-8);
+  }
+
+  .dsc-main {
+    min-inline-size: 0;
+  }
+
+  .dsc-section {
+    padding-block-start: var(--st-space-6);
+    border-block-start: var(--st-border-width) solid var(--st-border);
+  }
+
+  .dsc-coverage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-5);
+    padding: 0;
+    list-style: none;
+  }
+
+  .dsc-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-2);
+    padding: var(--st-space-4);
+    border: var(--st-border-width) dashed var(--st-border);
+    border-radius: var(--st-radius-md);
+  }
+
+  .dsc-terms summary {
+    min-block-size: var(--st-target);
+    display: flex;
+    align-items: center;
+    font-weight: var(--st-weight-semibold);
+    cursor: pointer;
+  }
+
+  @media (forced-colors: active) {
+    .dsc-item,
+    .dsc-section {
+      border-color: CanvasText;
+    }
+  }
+</style>
