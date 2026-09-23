@@ -7,3 +7,11 @@ playwright-report/
 test-results/
 tests/e2e/__screenshots__/
 .claude/
+
+# The inline renderer glues runs of text, emphasis and links together inside a sentence, so a
+# newline between `<em>` and its child is a text node the reader sees: the formatter's version of
+# this file renders "in Glossary ." with a space before the full stop. prettier-plugin-astro does
+# not honour `<!-- prettier-ignore -->` or `{/* prettier-ignore */}`, so the file is excluded here
+# and kept formatted by hand. `tests/e2e/content.spec.ts` compares the rendered text of every
+# paragraph with the text in `src/data`, so a reformat fails the suite rather than shipping.
+src/components/content/Inline.astro

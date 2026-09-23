@@ -1,0 +1,42 @@
+---
+/**
+ * A checklist inside a document: native checkboxes in labels, grouped in a `<fieldset>`.
+ *
+ * Each checkbox carries the task id the pipeline generated (`core/register:1a2b3c4d`), which is
+ * the same id `/checklist/` uses, so WP-30 can persist a tick once and both places agree. Nothing
+ * here needs JavaScript: the boxes tick, and without the store the ticks simply do not persist.
+ *
+ * A `<fieldset>` must be named, and 29 of the 37 tasklists in the corpus have no group line of
+ * their own, so those get a visually hidden legend instead of an empty one.
+ */
+import Inline from './Inline.astro';
+import { useTranslations } from '../../i18n';
+import type { ContentContext } from '../../lib/content/context';
+import type { Block } from '../../lib/content/schema';
+
+interface Props {
+  block: Extract<Block, { kind: 'tasklist' }>;
+  context: ContentContext;
+}
+
+const { block, context } = Astro.props;
+const t = useTranslations(context.locale);
+---
+
+<fieldset class="st-tasklist">
+  {block.group ? (
+    <legend>
+      <Inline runs={block.group} context={context} />
+    </legend>
+  ) : (
+    <legend class="st-visually-hidden">{t('doc.yourChecklist')}</legend>
+  )}
+  {block.items.map((task) => (
+    <label class="st-check">
+      <input type="checkbox" id={task.id} value={task.id} data-task={task.id} />
+      <span>
+        <Inline runs={task.c} context={context} />
+      </span>
+    </label>
+  ))}
+</fieldset>

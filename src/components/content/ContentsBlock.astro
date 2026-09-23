@@ -1,0 +1,47 @@
+---
+/**
+ * A `toc` block: the contents of the whole guide, built from the manifest.
+ *
+ * The markdown marks the spot ("What is in here"); the list itself is generated, so it cannot
+ * fall behind the documents that exist. Section and document titles come from the manifest in
+ * the reader's language, and every link goes through `href()`.
+ */
+import { useTranslations } from '../../i18n';
+import type { ContentContext } from '../../lib/content/context';
+import { docHref, docTitle, orderedSections, sectionHref } from '../../lib/content/manifest';
+import type { Block } from '../../lib/content/schema';
+import { DEFAULT_LOCALE } from '../../i18n/locales';
+
+interface Props {
+  block: Extract<Block, { kind: 'toc' }>;
+  context: ContentContext;
+}
+
+const { context } = Astro.props;
+const t = useTranslations(context.locale);
+const sections = orderedSections(context.manifest).map((section) => ({
+  id: section.id,
+  title: section.titles[context.locale] ?? section.titles[DEFAULT_LOCALE] ?? section.id,
+  href: sectionHref(context.manifest, section.id, context.locale),
+  docs: section.docs.map((id) => ({
+    id,
+    title: docTitle(context.manifest, id, context.locale),
+    href: docHref(context.manifest, id, context.locale),
+  })),
+}));
+---
+
+<nav class="st-contents" aria-label={t('contents.title')}>
+  <ul class="st-contents-list" role="list">
+    {sections.map((section) => (
+      <li>
+        {section.href ? <a href={section.href}>{section.title}</a> : section.title}
+        <ul role="list">
+          {section.docs.map((doc) => (
+            <li>{doc.href ? <a href={doc.href}>{doc.title}</a> : doc.title}</li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ul>
+</nav>

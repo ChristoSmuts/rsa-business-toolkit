@@ -1,0 +1,206 @@
+/*
+ * Rendered document content: the classes `src/components/content/` puts on the generated blocks.
+ *
+ * These are global rather than component-scoped because they cross component boundaries: a
+ * placeholder is marked by `Inline.astro` inside a paragraph and by `CodeBlock.astro` inside a
+ * `<pre>`, and the cell utilities are used by the table renderer on slotted markup that scoped
+ * styles cannot reach. Colours come only from `var(--st-*)`.
+ */
+
+/* ---------- The article body ---------- */
+
+.st-blocks {
+  max-inline-size: var(--st-measure);
+}
+
+.st-blocks > * + * {
+  margin-block-start: var(--st-space-4);
+}
+
+.st-blocks > :is(h2, h3) {
+  margin-block-start: var(--st-space-7);
+}
+
+.st-blocks > :is(h2, h3) + * {
+  margin-block-start: var(--st-space-3);
+}
+
+.st-blocks > h4 {
+  margin-block-start: var(--st-space-5);
+}
+
+.st-blocks > h4 + * {
+  margin-block-start: var(--st-space-2);
+}
+
+/* Tables and the sheet-like previews may use the wider measure. */
+.st-blocks > :is(.st-table-scroll, .st-code) {
+  max-inline-size: var(--st-measure-wide);
+}
+
+.st-blocks :is(ul, ol) {
+  padding-inline-start: var(--st-space-5);
+}
+
+.st-blocks li + li {
+  margin-block-start: var(--st-space-2);
+}
+
+.st-blocks li::marker {
+  color: var(--st-text-muted);
+}
+
+.st-blocks hr {
+  margin-block: var(--st-space-6);
+}
+
+/*
+ * A pseudo heading: a bold lead-in line in the markdown. It keeps heading semantics so the
+ * outline stays complete, but it is set as a strong label rather than as another title.
+ */
+.st-pseudo-heading {
+  font-family: var(--st-font-body);
+  font-size: var(--st-text-md);
+  font-weight: var(--st-weight-bold);
+  letter-spacing: normal;
+}
+
+/*
+ * An italic instruction line in a template ("Make a copy, rename it…"). The pipeline keeps it as
+ * its own block kind and drops the emphasis marks, so the slant is restored here.
+ */
+.st-note-line {
+  padding-inline-start: var(--st-space-4);
+  border-inline-start: var(--st-stripe-width) solid var(--st-border-strong);
+  color: var(--st-text-muted);
+  font-style: italic;
+}
+
+/* ---------- Blanks to fill in ---------- */
+
+/*
+ * `mark` already carries the verified highlight pair. The dashed edge and the monospace face say
+ * "this is a slot to replace", so the meaning never rests on the highlight colour alone.
+ */
+.st-placeholder {
+  border-block-end: var(--st-border-width) dashed var(--st-border-strong);
+  font-family: var(--st-font-mono);
+  font-size: 0.925em;
+}
+
+/* A line to sign on: an image of a blank, named for assistive technology. */
+.st-sigline {
+  display: inline-block;
+  inline-size: min(14rem, 60%);
+  border-block-end: var(--st-border-width) solid var(--st-border-strong);
+  vertical-align: -0.1em;
+}
+
+/* ---------- Fenced blocks ---------- */
+
+.st-code {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--st-space-2);
+  margin: 0;
+}
+
+.st-code pre {
+  padding: var(--st-space-4);
+  border: var(--st-border-width) solid var(--st-border);
+  border-radius: var(--st-radius-md);
+  background-color: var(--st-surface-2);
+}
+
+.st-code figcaption {
+  color: var(--st-text-muted);
+  font-size: var(--st-text-sm);
+}
+
+/* A prompt is meant to be copied whole, so it is set apart from a worked example. */
+.st-code[data-variant='prompt'] pre {
+  border-inline-start: var(--st-stripe-width) solid var(--st-accent);
+}
+
+/* ---------- Tables ---------- */
+
+.st-cell-center {
+  text-align: center;
+}
+
+.st-cell-end {
+  text-align: end;
+}
+
+/* ---------- Terms and glossary ---------- */
+
+.st-terms {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--st-space-2);
+}
+
+.st-terms dt {
+  font-weight: var(--st-weight-bold);
+}
+
+.st-terms dd {
+  margin-inline-start: 0;
+  padding-inline-start: var(--st-space-4);
+  border-inline-start: var(--st-border-width) solid var(--st-border);
+  color: var(--st-text);
+}
+
+@media (width >= 768px) {
+  .st-terms {
+    grid-template-columns: minmax(8rem, 15ch) minmax(0, 1fr);
+    column-gap: var(--st-space-5);
+  }
+
+  .st-terms dt {
+    grid-column: 1;
+  }
+
+  .st-terms dd {
+    grid-column: 2;
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
+}
+
+/* ---------- Checklists inside a document ---------- */
+
+.st-tasklist {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--st-space-1);
+  padding: var(--st-space-4) var(--st-space-5);
+  border: var(--st-border-width) solid var(--st-border);
+  border-radius: var(--st-radius-lg);
+  background-color: var(--st-surface);
+}
+
+.st-tasklist legend {
+  padding-block-end: var(--st-space-2);
+}
+
+/* ---------- Contents list (a `toc` block) ---------- */
+
+.st-contents-list > li + li {
+  margin-block-start: var(--st-space-4);
+}
+
+.st-contents-list ul {
+  margin-block-start: var(--st-space-2);
+}
+
+@media (forced-colors: active) {
+  .st-placeholder,
+  .st-sigline {
+    border-block-end-color: CanvasText;
+  }
+
+  .st-tasklist {
+    border-color: CanvasText;
+  }
+}

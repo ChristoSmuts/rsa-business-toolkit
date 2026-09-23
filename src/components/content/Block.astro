@@ -1,0 +1,95 @@
+---
+/**
+ * One generated block. Every kind in `BlockSchema` has a branch here; a kind with no branch would
+ * render nothing, so `tests/e2e/content.spec.ts` renders one real block of every kind and
+ * `tests/unit/content-render.test.ts` asserts the set of kinds is complete.
+ *
+ * Two rules the corpus forced:
+ * - A block marked `hidden` was hidden on purpose by the content configuration (`hideSections`).
+ *   Its content is not rendered, but its id still is, because the schema keeps the block "so
+ *   anchors keep resolving" and a link elsewhere may point at it.
+ * - A thematic break directly above a heading is dropped (`isRedundantRule`): the corpus has one
+ *   above almost every `##`, and a rule plus a heading says the same thing twice.
+ */
+import Callout from '../ui/Callout.astro';
+import CodeBlock from './CodeBlock.astro';
+import ContentsBlock from './ContentsBlock.astro';
+import GlossaryBlock from './GlossaryBlock.astro';
+import Inline from './Inline.astro';
+import TableBlock from './TableBlock.astro';
+import TaskListBlock from './TaskListBlock.astro';
+import TermsBlock from './TermsBlock.astro';
+import { useTranslations } from '../../i18n';
+import type { ContentContext } from '../../lib/content/context';
+import { headingTag } from '../../lib/content/render';
+import type { Block } from '../../lib/content/schema';
+
+interface Props {
+  block: Block;
+  context: ContentContext;
+  /** Name for a table's scroll region: the heading above it, or the page title. */
+  caption: string;
+}
+
+const { block, context, caption } = Astro.props;
+const t = useTranslations(context.locale);
+const Heading = block.kind === 'heading' ? headingTag(block.depth) : 'h2';
+---
+
+{block.hidden ? (
+  <span id={block.id} hidden />
+) : block.kind === 'heading' ? (
+  <Heading id={block.id} tabindex="-1" class:list={[block.pseudo && 'st-pseudo-heading']}>
+    <Inline runs={block.c} context={context} />
+  </Heading>
+) : block.kind === 'paragraph' ? (
+  <p>
+    <Inline runs={block.c} context={context} />
+  </p>
+) : block.kind === 'note' ? (
+  <p class="st-note-line">
+    <Inline runs={block.c} context={context} />
+  </p>
+) : block.kind === 'callout' ? (
+  <Callout
+    variant={block.style === 'plain' ? 'plain-words' : 'note'}
+    label={block.style === 'plain' ? t('doc.plainWords') : t('doc.note')}
+    icon={block.style === 'plain' ? 'lucide:message-circle' : 'lucide:notebook-pen'}
+  >
+    <p>
+      <Inline runs={block.c} context={context} />
+    </p>
+  </Callout>
+) : block.kind === 'list' ? (
+  block.ordered ? (
+    <ol start={block.start}>
+      {block.items.map((item) => (
+        <li>
+          <Inline runs={item} context={context} />
+        </li>
+      ))}
+    </ol>
+  ) : (
+    <ul>
+      {block.items.map((item) => (
+        <li>
+          <Inline runs={item} context={context} />
+        </li>
+      ))}
+    </ul>
+  )
+) : block.kind === 'tasklist' ? (
+  <TaskListBlock block={block} context={context} />
+) : block.kind === 'table' ? (
+  <TableBlock block={block} context={context} caption={caption} />
+) : block.kind === 'code' ? (
+  <CodeBlock block={block} context={context} />
+) : block.kind === 'terms' ? (
+  <TermsBlock block={block} context={context} />
+) : block.kind === 'glossary' ? (
+  <GlossaryBlock block={block} context={context} />
+) : block.kind === 'toc' ? (
+  <ContentsBlock block={block} context={context} />
+) : (
+  <hr />
+)}

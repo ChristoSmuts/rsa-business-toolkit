@@ -1,0 +1,81 @@
+---
+/**
+ * Every `InlineRun` kind, rendered recursively through `Astro.self`.
+ *
+ * Three decisions worth knowing:
+ * - **Internal links and docrefs resolve through the manifest**, never through the id. `href()`
+ *   adds the base path and the locale prefix, so one document id becomes the same URL in both
+ *   languages. A docref carries the *markdown* label (`01-core/02`, a folder name), which is not
+ *   readable, so the document's own title from the manifest is shown instead and the label is
+ *   only a fallback for an id the manifest does not know.
+ * - **Placeholders keep their brackets.** The pipeline stores `NAME`; templates are written,
+ *   copied and explained as `[NAME]`, so the brackets are put back here (`placeholderLabel`).
+ * - **External links** get `rel="noopener noreferrer"`, a `↗` and a hidden "(external link)", and
+ *   the `Official` badge when the register marks that exact URL as official.
+ *
+ * Runs are emitted with no whitespace between them: a newline in an HTML template is a text node
+ * and would put a space before a comma or inside bold text. Each branch below is one expression.
+ */
+import Badge from '../ui/Badge.astro';
+import Icon from '../ui/Icon.astro';
+import '../../styles/content.css';
+import { useTranslations } from '../../i18n';
+import type { ContentContext } from '../../lib/content/context';
+import { docHref, docrefText as docrefTitle, sectionHref } from '../../lib/content/manifest';
+import { placeholderLabel } from '../../lib/content/render';
+import type { InlineRun } from '../../lib/content/schema';
+
+interface Props {
+  runs: readonly InlineRun[];
+  context: ContentContext;
+}
+
+const { runs, context } = Astro.props;
+const Self = Astro.self;
+const t = useTranslations(context.locale);
+const externalLabel = t('a11y.externalLink');
+const officialLabel = t('sources.official');
+
+/** The URL of an internal link or docref, or `undefined` when the manifest does not know the id. */
+function targetHref(run: InlineRun): string | undefined {
+  if (run.t === 'link' && 'doc' in run)
+    return docHref(context.manifest, run.doc, context.locale, run.anchor);
+  if (run.t === 'docref' && 'doc' in run) return docHref(context.manifest, run.doc, context.locale);
+  if (run.t === 'docref' && 'section' in run)
+    return sectionHref(context.manifest, run.section, context.locale);
+  return undefined;
+}
+
+/** A docref's visible text: the title the manifest holds, falling back to the markdown label. */
+function docrefText(run: Extract<InlineRun, { t: 'docref' }>): string {
+  return docrefTitle(context.manifest, run, context.locale);
+}
+
+function isOfficial(url: string): boolean {
+  return context.officialUrls.has(url);
+}
+---
+
+{/*
+  Every branch below is one line on purpose, and this file is listed in `.prettierignore`.
+
+  Astro templates keep their whitespace (they are HTML-first, not JSX), so breaking
+  `<em><Self/></em>` over three lines puts a text node either side of the emphasis and the
+  sentence renders as "in Glossary ." — a space before the full stop. Two such defects appeared
+  in the real corpus the moment the formatter reflowed this block, which is why it is excluded.
+  `tests/e2e/content.spec.ts` compares rendered paragraphs with the text in `src/data`, so the
+  same mistake fails the suite instead of shipping.
+*/}
+{runs.map((run) =>
+  run.t === 'text' ? run.v
+  : run.t === 'br' ? <br />
+  : run.t === 'code' ? <code>{run.v}</code>
+  : run.t === 'strong' ? <strong><Self runs={run.c} context={context} /></strong>
+  : run.t === 'em' ? <em><Self runs={run.c} context={context} /></em>
+  : run.t === 'placeholder' ? <mark class="st-placeholder" data-placeholder={run.style}>{placeholderLabel(run)}</mark>
+  : run.t === 'sigline' ? <span class="st-sigline" role="img" aria-label={t('templates.fields.signature')} />
+  : run.t === 'link' && 'external' in run ? <Fragment><a href={run.href} rel="noopener noreferrer"><Self runs={run.c} context={context} /><Icon name="lucide:external-link" size="0.9em" /><span class="st-visually-hidden">{externalLabel}</span></a>{isOfficial(run.href) && <Fragment> <Badge variant="official">{officialLabel}</Badge></Fragment>}</Fragment>
+  : run.t === 'link' ? (targetHref(run) === undefined ? <Self runs={run.c} context={context} /> : <a href={targetHref(run)}><Self runs={run.c} context={context} /></a>)
+  : targetHref(run) === undefined ? docrefText(run)
+  : <a href={targetHref(run)}>{docrefText(run)}</a>
+)}

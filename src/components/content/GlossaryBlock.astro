@@ -1,0 +1,36 @@
+---
+/**
+ * One glossary group, rendered from `glossary.json` rather than from the document body: the
+ * glossary document holds a `glossary` block per group, and the entries live in the generated
+ * glossary file so search and the term links can share them.
+ *
+ * Each `<dt>` carries the entry id, because `/glossary/#<term>` is a published anchor (plan B1).
+ */
+import Inline from './Inline.astro';
+import type { ContentContext } from '../../lib/content/context';
+import { glossaryGroupEntries } from '../../lib/content/render';
+import type { Block } from '../../lib/content/schema';
+
+interface Props {
+  block: Extract<Block, { kind: 'glossary' }>;
+  context: ContentContext;
+}
+
+const { block, context } = Astro.props;
+const entries = glossaryGroupEntries(context.glossary, block.group);
+---
+
+{entries.length > 0 && (
+  <dl class="st-terms" data-glossary-group={block.group}>
+    {entries.map((entry) => (
+      <Fragment>
+        <dt id={entry.id} tabindex="-1">
+          {entry.term}
+        </dt>
+        <dd>
+          <Inline runs={entry.definition} context={context} />
+        </dd>
+      </Fragment>
+    ))}
+  </dl>
+)}

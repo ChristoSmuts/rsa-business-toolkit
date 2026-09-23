@@ -1,0 +1,69 @@
+---
+/**
+ * A generated table inside a labelled, keyboard-scrollable region (`TableScroll`).
+ *
+ * The markdown has no captions, so the region is named by a visually hidden `<caption>` built
+ * from the heading the table sits under and the `doc.tableRegion` sentence, which also tells a
+ * screen-reader user that the region scrolls sideways. Plan B5 allows exactly one thing to scroll
+ * sideways at 320px, and it is this region.
+ *
+ * Five columns or more (`tableIsWide`) stack into labelled cards under 640px, so every body cell
+ * carries `data-label` with its column heading, and each cell's content is wrapped in one element
+ * — otherwise every text run becomes its own grid row in the stacked layout.
+ */
+import TableScroll from '../ui/TableScroll.astro';
+import Inline from './Inline.astro';
+import { useTranslations } from '../../i18n';
+import type { ContentContext } from '../../lib/content/context';
+import { alignClass, plainText, tableIsWide } from '../../lib/content/render';
+import type { Block } from '../../lib/content/schema';
+import { uid } from '../../scripts/uid';
+
+interface Props {
+  block: Extract<Block, { kind: 'table' }>;
+  context: ContentContext;
+  /** What names the table: the heading above it, or the page title. */
+  caption: string;
+}
+
+const { block, context, caption } = Astro.props;
+const t = useTranslations(context.locale);
+const captionId = uid('st-table');
+const wide = tableIsWide(block);
+const headerText = block.header.map((cell) => plainText(cell));
+---
+
+<TableScroll labelledby={captionId} wide={wide}>
+  <table>
+    <caption class="st-visually-hidden" id={captionId}>
+      {t('doc.tableRegion', { caption })}
+    </caption>
+    <thead>
+      <tr>
+        {block.header.map((cell, column) => (
+          <th scope="col" class:list={[alignClass(block.align[column])]}>
+            <Inline runs={cell} context={context} />
+          </th>
+        ))}
+      </tr>
+    </thead>
+    {block.rows.length > 0 && (
+      <tbody>
+        {block.rows.map((row) => (
+          <tr>
+            {row.map((cell, column) => (
+              <td
+                class:list={[alignClass(block.align[column])]}
+                data-label={wide ? headerText[column] : undefined}
+              >
+                <span>
+                  <Inline runs={cell} context={context} />
+                </span>
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    )}
+  </table>
+</TableScroll>

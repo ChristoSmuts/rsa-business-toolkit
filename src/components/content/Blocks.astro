@@ -1,0 +1,41 @@
+---
+/**
+ * A document's body: every block in order.
+ *
+ * When the blocks are not in the page's language (an English document shown on an Afrikaans
+ * route), the wrapper carries `lang` so a screen reader switches voice, per plan B5.
+ */
+import Block from './Block.astro';
+import '../../styles/content.css';
+import type { ContentContext } from '../../lib/content/context';
+import { isFallbackContent } from '../../lib/content/context';
+import { isRedundantRule, nearestHeadingText } from '../../lib/content/render';
+import type { Block as ContentBlock } from '../../lib/content/schema';
+import { getLocale } from '../../i18n/locales';
+
+interface Props {
+  blocks: readonly ContentBlock[];
+  context: ContentContext;
+  /** Names a table that has no heading above it. */
+  fallbackCaption: string;
+  class?: string | undefined;
+}
+
+const { blocks, context, fallbackCaption, class: className } = Astro.props;
+const lang = isFallbackContent(context)
+  ? (getLocale(context.contentLang)?.hreflang ?? context.contentLang)
+  : undefined;
+const visible = blocks
+  .map((block, index) => ({
+    block,
+    caption: nearestHeadingText(blocks, index) ?? fallbackCaption,
+    redundant: isRedundantRule(blocks, index),
+  }))
+  .filter((entry) => !entry.redundant);
+---
+
+<div class:list={['st-blocks', className]} lang={lang}>
+  {visible.map((entry) => (
+    <Block block={entry.block} context={context} caption={entry.caption} />
+  ))}
+</div>

@@ -1,0 +1,36 @@
+---
+/**
+ * "Words used in this file": the short definition list a document carries near its top.
+ *
+ * The pipeline always emits this block directly under its own `## Words used in this file`
+ * heading, so no heading is added here; the block renders its intro sentence and the list.
+ */
+import Inline from './Inline.astro';
+import type { ContentContext } from '../../lib/content/context';
+import type { Block } from '../../lib/content/schema';
+
+interface Props {
+  block: Extract<Block, { kind: 'terms' }>;
+  context: ContentContext;
+}
+
+const { block, context } = Astro.props;
+---
+
+<div class="st-flow">
+  <p>
+    <Inline runs={block.intro} context={context} />
+  </p>
+  <dl class="st-terms">
+    {block.items.map((item) => (
+      <Fragment>
+        <dt>
+          <Inline runs={item.term} context={context} />
+        </dt>
+        <dd>
+          <Inline runs={item.meaning} context={context} />
+        </dd>
+      </Fragment>
+    ))}
+  </dl>
+</div>

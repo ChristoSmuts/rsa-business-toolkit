@@ -1,0 +1,33 @@
+---
+/**
+ * A fenced block: an AI prompt, a template preview, a worked example, a listing or a snippet.
+ *
+ * Every variant renders as preformatted text that is complete and readable on its own. The copy
+ * button is WP-30 and must only ever be an enhancement: nothing here depends on JavaScript, and
+ * the full text is always in the page, never clamped away.
+ *
+ * Where the pipeline recorded placeholders (prompts and template previews), they are marked in
+ * place with `splitPlaceholders`, so the blanks a reader has to replace are visible. The marks
+ * are inside the `<pre>`, so selecting and copying the block by hand still yields the text with
+ * its `[BRACKETS]`.
+ */
+import { useTranslations } from '../../i18n';
+import type { ContentContext } from '../../lib/content/context';
+import { splitPlaceholders } from '../../lib/content/render';
+import type { Block } from '../../lib/content/schema';
+
+interface Props {
+  block: Extract<Block, { kind: 'code' }>;
+  context: ContentContext;
+}
+
+const { block, context } = Astro.props;
+const t = useTranslations(context.locale);
+const segments = splitPlaceholders(block.text, block.placeholders);
+const hasPlaceholders = segments.some((segment) => segment.kind === 'placeholder');
+---
+
+<figure class="st-code" data-variant={block.variant}>
+  <pre><code>{segments.map((segment) => (segment.kind === 'text' ? segment.value : <mark class="st-placeholder" data-placeholder={segment.run.style}>{segment.value}</mark>))}</code></pre>
+  {hasPlaceholders && <figcaption>{t('prompts.placeholderHint')}</figcaption>}
+</figure>
