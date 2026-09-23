@@ -1069,7 +1069,9 @@ const trust = {
           the pages it links to.
         </p>
         <p class="st-cluster">
-          <a class="st-link-block" href={href('en', 'lookup/sources/')}>
+          {/* The sources register's document id is `lookup/sources`; the manifest serves it at
+              `sources/` (build plan B1). Link to the route, not to the id. */}
+          <a class="st-link-block" href={href('en', 'sources/')}>
             See the full sources register
           </a>
           <a class="st-link-block" href={href('en', 'start/how-this-was-made/')}>
