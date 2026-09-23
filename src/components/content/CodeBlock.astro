@@ -10,6 +10,12 @@
  * place with `splitPlaceholders`, so the blanks a reader has to replace are visible. The marks
  * are inside the `<pre>`, so selecting and copying the block by hand still yields the text with
  * its `[BRACKETS]`.
+ *
+ * The `<pre>` keeps `white-space: pre` — a template preview is a layout, and wrapping it would
+ * garble it — so it scrolls sideways on a phone and is therefore a scrollable region, which WCAG
+ * 2.1.1 says a keyboard must reach. `tabindex="0"` is that access; axe reported every fenced
+ * block as `scrollable-region-focusable` without it. `TableScroll` drops its tab stop while
+ * nothing overflows, and WP-30's prompt toolbar should do the same here.
  */
 import { useTranslations } from '../../i18n';
 import type { ContentContext } from '../../lib/content/context';
@@ -28,6 +34,6 @@ const hasPlaceholders = segments.some((segment) => segment.kind === 'placeholder
 ---
 
 <figure class="st-code" data-variant={block.variant}>
-  <pre><code>{segments.map((segment) => (segment.kind === 'text' ? segment.value : <mark class="st-placeholder" data-placeholder={segment.run.style}>{segment.value}</mark>))}</code></pre>
+  <pre tabindex="0"><code>{segments.map((segment) => (segment.kind === 'text' ? segment.value : <mark class="st-placeholder" data-placeholder={segment.run.style}>{segment.value}</mark>))}</code></pre>
   {hasPlaceholders && <figcaption>{t('prompts.placeholderHint')}</figcaption>}
 </figure>
