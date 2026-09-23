@@ -121,7 +121,8 @@
     "label": "Tema",
     "system": "Stelsel",
     "light": "Lig",
-    "dark": "Donker"
+    "dark": "Donker",
+    "noJs": "Die tema volg jou toestel se instelling. Om ’n keuse te stoor, is JavaScript nodig."
   },
   "home": {
     "heroTitle": "Begin en bestuur jou besigheid in Suid-Afrika",
@@ -289,6 +290,7 @@
         "other": "{count} bronne"
       },
       "officialLabel": "Amptelike bron",
+      "notOfficialLabel": "Nie ’n amptelike bron nie",
       "supportsLabel": "Wat hierdie bron ondersteun",
       "externalLink": "Maak die amptelike webwerf oop",
       "externalLinkOther": "Maak ’n webwerf oop wat nie amptelik is nie",

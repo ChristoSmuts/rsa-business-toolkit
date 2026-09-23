@@ -121,7 +121,8 @@
     "label": "Theme",
     "system": "System",
     "light": "Light",
-    "dark": "Dark"
+    "dark": "Dark",
+    "noJs": "The theme follows your device setting. Saving a choice needs JavaScript."
   },
   "home": {
     "heroTitle": "Start and run your business in South Africa",
@@ -289,6 +290,7 @@
         "other": "{count} sources"
       },
       "officialLabel": "Official source",
+      "notOfficialLabel": "Not an official source",
       "supportsLabel": "What this source supports",
       "externalLink": "Opens the official website",
       "externalLinkOther": "Opens a website that is not official",
