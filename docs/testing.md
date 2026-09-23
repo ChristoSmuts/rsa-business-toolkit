@@ -14,7 +14,7 @@ pnpm build          # astro build + pnpm dist:audit
 | ------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `pnpm test`         | `tests/unit`, `tests/dom`                    | Pure functions (Vitest), including the link audit and the harness rules below                                 |
 | `pnpm dist:audit`   | `scripts/dist/audit-links.ts`                | Every HTML file in `dist/`: base path, broken targets and `#fragments`, `<base>`, third-party resources and hints, external forms and meta refresh, inline `on*` handlers, `noopener`, `http:`, `javascript:` |
-| `pnpm test:e2e`     | `tests/e2e` (chromium, webkit, mobile, nojs) | Page contract, CSP, no third-party requests, 404 page, no-JS reading                                          |
+| `pnpm test:e2e`     | `tests/e2e` (chromium, webkit, mobile, nojs) | Page contract, CSP, no third-party requests, 404 page, no-JS reading, content rendering and navigation        |
 | `pnpm test:a11y`    | `tests/e2e/a11y.spec.ts`                     | axe (WCAG 2.0/2.1 A and AA) on every page in light and dark themes                                            |
 | `pnpm test:visual`  | `tests/e2e/visual.spec.ts`                   | Screenshot comparison (added in a later package)                                                              |
 | `pnpm lhci`         | `tests/lighthouse/lighthouserc.cjs`          | Lighthouse scores and size budgets, desktop and mobile                                                        |
@@ -69,6 +69,37 @@ Every built page must pass `csp-meta`, `referrer-meta`, `no-base-element`, `no-i
 - Exempt tests carry an `exception:<check>` annotation with the reason and the current problems.
 
 Current list: **empty**. The one entry it held (the placeholder home page, with no meta CSP, no referrer meta and a 19-character `<main>`) was removed when the design system merged and `src/pages/index.astro` started rendering through `Base.astro` — the stale-exception check failed until it went, which is what that check is for.
+
+### Content, trust and navigation: `content.spec.ts`
+
+Projects `chromium`, `webkit` and `mobile`. It runs against `/design-system/content/` and its
+Afrikaans twin, the live reference the site package renders from `src/data/`:
+
+- every block kind, fence variant and inline-run kind in `ALL_FEATURES` (`src/lib/content/coverage.ts`)
+  is claimed by a demo item on the page **and** produced the markup its renderer promises. The
+  expected selector per feature is in the spec, and a feature with no entry fails the test, so
+  widening the feature list cannot widen the claim;
+- the rendered text of every paragraph in the demo document equals `plainText` of the same runs. The
+  inline renderer glues runs together inside a sentence, so this is what catches a stray newline in
+  its template rendering "in Glossary ." with a space before the full stop;
+- the D5 pieces: the AI notice in its fixed order, its status as the neutral `status` badge with the
+  explanation next to it, the sources list with its official labels and "what this source supports",
+  the source-note form for a page with no sources of its own, and the Afrikaans fallback notice with
+  `lang="en"` on the content;
+- navigation: the section and tool links, a `<details>` menu opened from the keyboard, the drawer
+  opening and closing on Escape, the breadcrumb, the sidebar, one table of contents at any width, the
+  language switcher keeping the `#fragment`, and the footer;
+- reflow at 320px in both languages. When the page does scroll sideways the failure **names the
+  element responsible**: it hides one element at a time, deepest first, and reports the ones whose
+  removal stops the scrolling. A bounding box cannot answer that — the first cause found this way was
+  a 1px visually hidden span, absolutely positioned, escaping an unpositioned scroll region;
+- the min-content width of every shrink-wrapped component the package adds, each at a width where it
+  is on screen. A box that measures zero fails, so a component hidden by a media query cannot satisfy
+  the test without being tested.
+
+`nojs.spec.ts` adds the other half of the navigation contract: with scripting off the header's
+`<details>` menus are shown at every width and the drawer button is not, so a phone without
+JavaScript still reaches every section and tool.
 
 ### 404: `not-found.spec.ts`
 
@@ -325,12 +356,14 @@ Do not add an entry to silence a link that is simply wrong. A link to a route no
 
 Current list:
 
-| Route                        | Links from                     | Removed when                                          |
-| ---------------------------- | ------------------------------ | ----------------------------------------------------- |
-| `af/`                        | `/design-system/` Card demo    | The page package builds the Afrikaans home page (P2)  |
-| `start/how-this-was-made/`   | `/design-system/` AI notice    | The page package renders the `start/` documents (P2)  |
-| `af/start/how-this-was-made/` | `/design-system/` AI notice   | The page package renders the `start/` documents (P2)  |
-| `lookup/sources/`            | `/design-system/` sources demo | The page package renders the `lookup/` documents (P2) |
+| Route                                       | Links from                         | Removed when                                                     |
+| ------------------------------------------- | ---------------------------------- | ---------------------------------------------------------------- |
+| `af/`                                       | `/design-system/` Card demo, and the wordmark on `/af/design-system/content/` | The page package builds the Afrikaans home page (P2) |
+| every section, document and tool route in both languages (derived from `src/data/manifest.json`) | `/design-system/content/`: the site header, the footer, the `toc` block and the body of the document it renders | WP-20 milestone 2 builds the routes under `src/pages/[...locale]/` |
+
+The second row is generated in `exceptions.ts` from the manifest rather than typed out, so a document
+the content pipeline adds cannot be silently missing from it, and every entry still deletes itself the
+moment its route is built. `pnpm dist:audit` prints the full list on a green run.
 
 Absolute URLs on `SITE_URL` (canonical, hreflang and `og:url`) count as internal. The scanner is a small tokenizer in the script itself (no parser dependency). It ignores comments (including the empty `<!-->` form) and the contents of `<script>`, `<style>`, `<textarea>` and `<title>`.
 
