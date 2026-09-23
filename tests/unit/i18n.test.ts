@@ -165,12 +165,19 @@ describe('locale metadata', () => {
     expect(sitemapLocales()).toEqual({ en: 'en-ZA', af: 'af-ZA' });
   });
 
-  // Importing the Astro config loads Vite and the integrations, which can take over 5 s.
+  /**
+   * Importing the Astro config loads Vite and every integration. Measured on the Windows machine
+   * this package is gated on: 5.7 s for the whole file with the module graph warm, 23.2 s cold, and
+   * it exceeded a 30 s budget during `pnpm gate`, where 22 test files import in parallel. That cost
+   * is the toolchain's, not this assertion's — the two `expect`s below are instant — so the budget
+   * is set from the measurement rather than left one bad run away from a false failure. It still
+   * fails if loading the config genuinely hangs.
+   */
   it('drives astro.config.ts', async () => {
     const { default: config } = await import('../../astro.config');
     expect(config.i18n?.defaultLocale).toBe(DEFAULT_LOCALE);
     expect(config.i18n?.locales).toEqual([...ENABLED_LOCALES]);
-  }, 30_000);
+  }, 120_000);
 });
 
 /* ------------------------------------------------------------------ dictionaries */

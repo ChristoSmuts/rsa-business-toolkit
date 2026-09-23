@@ -42,6 +42,7 @@ import {
 import { cspDifferences, EXPECTED_CSP, EXPECTED_REFERRER, parseCsp } from '../e2e/helpers/policy';
 import { previewBaseUrl, previewOrigin, previewPort } from '../e2e/helpers/preview-url';
 import { isNoindex } from '../e2e/helpers/routes';
+import { a11yTimeout, pageSetupTimeout } from '../e2e/helpers/timeouts';
 import { buildOutputProblem } from '../e2e/helpers/web-server';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -632,20 +633,30 @@ describe('e2e test files', () => {
     ).toEqual([]);
   });
 
-  it('every Playwright project only matches *.spec.ts and the guard reporter is configured', async () => {
-    const config = (await import('../../playwright.config')).default;
-    const reporters = JSON.stringify(config.reporter);
-    expect(reporters).toContain('guard-reporter.ts');
-    expect(config.globalTeardown).toContain('guard-teardown.ts');
-    for (const project of config.projects ?? []) {
-      const match = project.testMatch;
-      expect(match, `${project.name} testMatch`).toBeInstanceOf(RegExp);
-      const regex = match as RegExp;
-      for (const file of ['zz-plain.test.ts', 'zz.spec.js', 'a11y.spec.ts.bak', 'zz.spec.tsx']) {
-        expect(regex.test(file), `${project.name} must not match ${file}`).toBe(false);
+  /**
+   * Importing the Playwright config pulls in `@playwright/test`, which costs several seconds cold
+   * and has exceeded Vitest's 5 s default during `pnpm gate`, where every test file imports in
+   * parallel. Same reasoning as the `page` fixture budget above: the cost is the toolchain's, not
+   * this assertion's, so it gets a budget of its own rather than sharing the default one.
+   */
+  it(
+    'every Playwright project only matches *.spec.ts and the guard reporter is configured',
+    { timeout: 120_000 },
+    async () => {
+      const config = (await import('../../playwright.config')).default;
+      const reporters = JSON.stringify(config.reporter);
+      expect(reporters).toContain('guard-reporter.ts');
+      expect(config.globalTeardown).toContain('guard-teardown.ts');
+      for (const project of config.projects ?? []) {
+        const match = project.testMatch;
+        expect(match, `${project.name} testMatch`).toBeInstanceOf(RegExp);
+        const regex = match as RegExp;
+        for (const file of ['zz-plain.test.ts', 'zz.spec.js', 'a11y.spec.ts.bak', 'zz.spec.tsx']) {
+          expect(regex.test(file), `${project.name} must not match ${file}`).toBe(false);
+        }
       }
-    }
-  });
+    },
+  );
 });
 
 describe('ESLint rules for tests/e2e (eslint.config.js)', () => {
@@ -827,6 +838,57 @@ describe('preview URL (tests/e2e/helpers/preview-url.ts)', () => {
     for (const bad of ['0', '-1', '99999', 'abc', '80.5']) {
       expect(() => previewPort({ PW_PORT: bad }), bad).toThrow(/PW_PORT/);
     }
+  });
+});
+
+/**
+ * Creating a page is host cost, not test work: it costs 22-44 s of Chromium renderer spawn on the
+ * machine this package is gated on, and while it shared the test's 30 s budget the suites reported
+ * page-contract failures in which no assertion had run. These pin the separate budget in place, so
+ * an edit that drops the `timeout` from the `page` fixture — and silently puts page creation back
+ * inside the test timeout — fails here rather than months later as an unreproducible flake.
+ */
+describe('timeout policy (tests/e2e/helpers/timeouts.ts)', () => {
+  it('reads PW_PAGE_SETUP_TIMEOUT and PW_A11Y_TIMEOUT, and rejects anything that is not one', () => {
+    expect(pageSetupTimeout({})).toBe(120_000);
+    expect(pageSetupTimeout({ PW_PAGE_SETUP_TIMEOUT: '1' })).toBe(1);
+    expect(a11yTimeout({})).toBe(90_000);
+    expect(a11yTimeout({ CI: 'true' })).toBe(60_000);
+    expect(a11yTimeout({ CI: 'true', PW_A11Y_TIMEOUT: '5000' })).toBe(5000);
+    for (const bad of ['0', '-1', 'abc', '1.5']) {
+      expect(() => pageSetupTimeout({ PW_PAGE_SETUP_TIMEOUT: bad }), bad).toThrow(
+        /PW_PAGE_SETUP_TIMEOUT must be a positive integer/,
+      );
+    }
+    // A blank value is "unset", not an error; only a non-empty, non-integer value throws.
+    expect(pageSetupTimeout({ PW_PAGE_SETUP_TIMEOUT: '' })).toBe(120_000);
+  });
+
+  it('gives the page fixture a setup budget outside the test timeout', () => {
+    const source = readFileSync(path.join(e2eDir, 'fixtures.ts'), 'utf8');
+    expect(source).toMatch(/import \{ pageSetupTimeout \} from '\.\/helpers\/timeouts';/);
+    // The tuple form with `timeout` is what moves setup into its own slot; a plain function shares
+    // the test's budget again (playwright/lib/worker/workerProcessEntry.js).
+    expect(
+      source,
+      'the page fixture must keep its own `timeout`, or creating a page spends the test timeout again',
+    ).toMatch(/page: \[[\s\S]*?\{ scope: 'test', timeout: pageSetupTimeout\(\) \},\s*\],/);
+    expect(source).toMatch(/context\.newPage\(\)/);
+  });
+
+  it('is where playwright.config.ts gets the a11y timeout, with no second copy of the parser', () => {
+    const source = readFileSync(path.join(repoRoot, 'playwright.config.ts'), 'utf8');
+    expect(source).toMatch(/import \{ a11yTimeout \} from '\.\/tests\/e2e\/helpers\/timeouts';/);
+    expect(source).toMatch(/const A11Y_TIMEOUT = a11yTimeout\(\);/);
+    expect(source).not.toMatch(/process\.env\.PW_A11Y_TIMEOUT/);
+    // A11Y_TIMEOUT belongs to the a11y project only. The default test timeout stays Playwright's
+    // 30 s, because page setup no longer spends it; raising it instead of separating the budgets
+    // would hand every assertion a longer rope for a cost that is not the site's.
+    const a11yUses = source.match(/(?<![A-Z_])A11Y_TIMEOUT/g) ?? [];
+    expect(a11yUses).toHaveLength(2);
+    expect(source).toMatch(
+      /testMatch: \/\(\^\|\[\\\\\/\]\)a11y\\\.spec\\\.ts\$\/,[\s\S]{0,120}?timeout: A11Y_TIMEOUT,/,
+    );
   });
 });
 

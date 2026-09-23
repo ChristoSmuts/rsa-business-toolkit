@@ -74,6 +74,7 @@ import {
   type OptOut,
 } from './helpers/guard-policy';
 import { previewOrigin } from './helpers/preview-url';
+import { pageSetupTimeout } from './helpers/timeouts';
 
 export { expect };
 export {
@@ -573,6 +574,25 @@ export const test = base.extend<Fixtures, WorkerFixtures>({
       }
     },
     { scope: 'worker', auto: true },
+  ],
+
+  /**
+   * Playwright's own `page` fixture, with a setup budget of its own.
+   *
+   * The body is what Playwright does (`playwright/lib/index.js`: `await use(await
+   * context.newPage())`, reusing an existing page when one is there, which only happens under
+   * `PW_TEST_REUSE_CONTEXT` in UI mode). The `timeout` is the change: without it this fixture shares
+   * the test's 30 s, and spawning a Chromium renderer costs 22-44 s on the machine this package is
+   * gated on, so the run reported page-contract failures in which no assertion had run. See
+   * `helpers/timeouts.ts` for the measurements. The test timeout is untouched and still covers
+   * everything a spec does.
+   */
+  page: [
+    async ({ context }, use) => {
+      const [existing] = context.pages();
+      await use(existing ?? (await context.newPage()));
+    },
+    { scope: 'test', timeout: pageSetupTimeout() },
   ],
 
   /**
