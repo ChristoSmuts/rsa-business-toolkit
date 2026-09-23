@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import { normaliseBase } from './scripts/base-path';
 import { previewOrigin, previewPort } from './tests/e2e/helpers/preview-url';
+import { a11yTimeout } from './tests/e2e/helpers/timeouts';
 
 const BASE = normaliseBase(process.env.BASE_PATH);
 // The worker half of the guards runs before any test-scoped option exists, so it reads the preview
@@ -23,16 +24,13 @@ const special = /(^|[\\/])(a11y|visual|nojs)\.spec\.ts$/;
  */
 const GUARD_REPORTER = ['./tests/e2e/helpers/guard-reporter.ts'] as const;
 
-/** Per-test timeout of the a11y project: `PW_A11Y_TIMEOUT` (ms), default 60 s in CI, 90 s locally. */
-const A11Y_TIMEOUT = (() => {
-  const raw = process.env.PW_A11Y_TIMEOUT?.trim();
-  if (!raw) return isCI ? 60_000 : 90_000;
-  const value = Number(raw);
-  if (!Number.isInteger(value) || value <= 0) {
-    throw new Error(`PW_A11Y_TIMEOUT must be a positive integer (milliseconds), got "${raw}".`);
-  }
-  return value;
-})();
+/**
+ * Per-test timeout of the a11y project: `PW_A11Y_TIMEOUT` (ms), default 60 s in CI, 90 s locally.
+ * The default test timeout is deliberately left at Playwright's 30 s: creating a page no longer
+ * spends it (`tests/e2e/helpers/timeouts.ts` explains what that cost is and why it has its own
+ * budget), so the 30 s is the budget for what a spec actually does.
+ */
+const A11Y_TIMEOUT = a11yTimeout();
 
 export default defineConfig({
   testDir: 'tests/e2e',
@@ -104,7 +102,7 @@ export default defineConfig({
       name: 'a11y',
       use: { ...devices['Desktop Chrome'], reducedMotion: 'reduce' },
       testMatch: /(^|[\\/])a11y\.spec\.ts$/,
-      // Each analysis also opens a page for axe's report step. `--timeout` on the command line wins.
+      // `--timeout` on the command line wins.
       timeout: A11Y_TIMEOUT,
     },
     {

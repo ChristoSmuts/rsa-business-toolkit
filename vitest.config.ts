@@ -1,8 +1,32 @@
 /// <reference types="vitest/config" />
+import { availableParallelism } from 'node:os';
 import { getViteConfig } from 'astro/config';
+
+/**
+ * Starting and reaping processes is slow on the Windows machine this package is gated on: spawning
+ * a Chromium renderer there costs 22 s (see `tests/e2e/helpers/timeouts.ts`), and a Node fork that
+ * loads Vite is not cheap either. Vitest's defaults assume otherwise — one fork per core less one
+ * (15 here) and 10 s to reap each — and with 22 test files importing at once that produced
+ * `[vitest-pool]: Timeout terminating forks worker`, and `Timeout starting forks runner` (Vitest's
+ * own hard-coded 90 s), on runs where **nine of the twenty-two files were dropped** and the summary
+ * read "13 passed (13)". Such a run does exit non-zero, so it never went green with tests missing,
+ * but it failed on the host rather than on the code.
+ *
+ * So bound the pool rather than trust the host to keep up, and allow a slow machine time to reap a
+ * worker. The cap only binds on a many-core machine: a 2- or 4-core CI runner is already below it
+ * and keeps Vitest's own value, so this does not change how CI runs.
+ *
+ * `maxWorkers` and `teardownTimeout` are the Vitest 5 spellings. The `poolOptions.forks` form of
+ * earlier versions is not in the Vitest 5 config type: it is accepted silently at run time and does
+ * nothing, so `pnpm typecheck` (`astro check`) is what catches a stale spelling here.
+ */
+const maxWorkers = Math.max(1, Math.min(availableParallelism() - 1, 8));
 
 export default getViteConfig({
   test: {
+    pool: 'forks',
+    maxWorkers,
+    teardownTimeout: 60_000,
     projects: [
       {
         extends: true,

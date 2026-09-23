@@ -1,40 +1,28 @@
 # Outstanding work
 
-**Status on 20 September 2026. All three foundation packages are merged, but `pnpm gate` is RED and must be resolved before the foundation can be called done.** The working tree is clean and `pnpm gate:fast` is green.
+**Status on 23 September 2026. All three foundation packages are merged and `pnpm gate` is GREEN.** The working tree is clean.
 
-## Read this first: the full gate fails
+## Resolved: the full gate failed on a harness defect, not on the pages
 
-`pnpm gate:fast` passes, and every Playwright project passes when run **one at a time** with `--workers=1` (that is how each package was reviewed and how each merge was gated). `pnpm gate` runs `pnpm test:e2e`, which runs chromium, webkit, mobile and nojs **concurrently against one preview server**, and in that configuration it fails:
+`pnpm gate` was red because `pnpm test:e2e` reported eight failures on `/` and `/design-system/` across chromium, mobile and nojs, while every project passed when run one at a time with `--workers=1`. All eight carried the same message:
 
 ```
-8 failed
-  [chromium] › csp-and-network.spec.ts:73 › page contract › /
-  [chromium] › csp-and-network.spec.ts:73 › page contract › /design-system/
-  [chromium] › design-system.spec.ts:223 › stand-alone interactive targets are at least 44px
-  [chromium] › design-system.spec.ts:279 › long Afrikaans labels never widen the page at 320px
-  [mobile]   › csp-and-network.spec.ts:73 › page contract › /
-  [mobile]   › csp-and-network.spec.ts:73 › page contract › /design-system/
-  [nojs]     › nojs.spec.ts:19 › readable without JavaScript › /
-  [nojs]     › nojs.spec.ts:19 › readable without JavaScript › /design-system/
-12 skipped, 99 passed (9.8m)
+Test timeout of 30000ms exceeded while setting up "page".
 ```
 
-**The failure messages have not been read yet** — the diagnostic run was stopped before it finished, so the cause is unknown. Do not assume it is contention. The two possibilities matter differently:
+No assertion ever ran in any of them, and the failing set moved from run to run (a second run failed `[webkit] smoke` and `[webkit] not-found` instead of two of the chromium ones). `/` and `/design-system/` were not implicated: they are simply the first two tests in file order, so they are what each worker pays cold-start cost on. The site is fine.
 
-- if the projects are contending for one preview server, then the harness produces **false failures under exactly the configuration CI uses**, which is a defect in the harness and makes `pnpm gate` untrustworthy rather than merely red;
-- if these are real failures, then something is genuinely wrong on `/` or `/design-system/` that the serialised per-project runs did not surface.
+The cause is host cost charged to the wrong budget. Playwright charges **test-scoped fixture setup to the test timeout**, and spawning a Chromium renderer costs 22.6 s on this machine with nothing else running (up to 44.2 s with eight browsers starting at once; `newContext` costs 10 ms, WebKit about 4.6 s, which is why WebKit rarely failed). A 30 s test therefore had about 7 s of real budget, and any extra load spent it. The serialised runs every review relied on were green by that same 7 s margin, so **the serialised green was not trustworthy either** — the fix was needed regardless of how the projects are scheduled.
 
-Start by capturing the actual error text (`pnpm test:e2e` and read the failure bodies, not the summary), then decide. Note that the same two pages fail across three different projects and specs, which is a clue worth following.
+`.github/workflows/ci.yml` runs one project per matrix job, so CI never ran the four-project shape at all; on a two-core runner Playwright would have used one worker. The failing configuration was local only.
 
-This does not change the review status of the merged packages — each had two clean passes, and each was gated green on merge — but the foundation should not be reported as finished until `pnpm gate` is green or the failures are understood and consciously accepted.
+Fixed by giving the `page` fixture a setup budget of its own (`tests/e2e/helpers/timeouts.ts`, `PW_PAGE_SETUP_TIMEOUT`, 120 s), so the 30 s test timeout is the budget for what a spec does. Nothing was serialised, no test timeout was raised and no test was skipped. `tests/unit/e2e-harness.test.ts` fails if the fixture loses its `timeout`, and `docs/testing.md` records how to prove the new budget can still fail.
 
 Read `docs/build-plan.md` first for the design, then this file for where the work stopped. `docs/reviews/merge-checklist.md` holds the tasks that must happen at merge time.
 
 ## Where to pick up
 
-**First**, resolve the red `pnpm gate` described above. That is the only outstanding foundation work.
-
-After that, the next step is **the site package, `docs/work-packages/WP-20-site.md`** — but it is **paused pending the user's go-ahead**, along with the interactive packages, the Afrikaans document translations and the accuracy review phase. Do not start any of them until the user says so.
+The foundation has no outstanding work. The next step is **the site package, `docs/work-packages/WP-20-site.md`** — but it is **paused pending the user's go-ahead**, along with the interactive packages, the Afrikaans document translations and the accuracy review phase. Do not start any of them until the user says so.
 
 When work does resume, the suggested order is the one in the build plan Part D: the site package (rendering and navigation, then pages and routes), then the interactive packages, with the Afrikaans translations able to run alongside.
 
