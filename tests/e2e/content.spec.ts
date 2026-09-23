@@ -6,12 +6,12 @@
  * real block in the corpus for every block kind, fence variant and inline-run kind, and this spec
  * asserts that each of those really produced the markup its renderer promises.
  */
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
-import { ALL_FEATURES } from '../../src/lib/content/coverage';
+import { ALL_FEATURES, selectCoverage } from '../../src/lib/content/coverage';
 import { docrefText } from '../../src/lib/content/manifest';
 import { normaliseText, plainText } from '../../src/lib/content/render';
 import { ManifestSchema, type Block, type Doc } from '../../src/lib/content/schema';
@@ -37,6 +37,32 @@ const DEMO_DOC: Doc = JSON.parse(
 const MANIFEST = ManifestSchema.parse(
   JSON.parse(readFileSync(path.join(REPO_ROOT, 'src', 'data', 'manifest.json'), 'utf8')),
 );
+
+/**
+ * The same corpus and the same selection the page makes, so the spec knows which real block each
+ * demo item on the page is showing. Only the *selection* is shared with the page; what the page
+ * rendered from it is what the tests below check.
+ */
+const DOCS_DIR = path.join(REPO_ROOT, 'src', 'data', 'en', 'docs');
+const CORPUS = readdirSync(DOCS_DIR)
+  .filter((file) => file.endsWith('.json'))
+  .map((file) => JSON.parse(readFileSync(path.join(DOCS_DIR, file), 'utf8')) as Doc)
+  .map((doc) => ({ id: doc.id, blocks: doc.blocks }))
+  .filter((doc) => doc.id !== DEMO_DOC.id)
+  .sort((a, b) => a.id.localeCompare(b.id));
+const COVERAGE = selectCoverage(CORPUS);
+
+/**
+ * The source text of a block that carries inline runs, as the page should render it. A block the
+ * content configuration hid renders no text at all, on purpose, so it has none to compare.
+ */
+function blockText(block: Block): string | undefined {
+  if (block.hidden) return undefined;
+  const runs = block.kind === 'terms' ? block.intro : 'c' in block ? block.c : undefined;
+  if (!runs) return undefined;
+  const text = normaliseText(plainText(runs, { docref: (run) => docrefText(MANIFEST, run, 'en') }));
+  return text.length > 0 ? text : undefined;
+}
 
 /**
  * What each rendering feature must put on the page, inside the demo item that claims it. A
@@ -184,6 +210,43 @@ test.describe('content rendering', () => {
     }
   });
 
+  /*
+   * The same comparison over the coverage items, which is where the constructs that break live:
+   * one document's paragraphs happen to hold no emphasis and no docref inside a link, so the test
+   * above passed while the formatter's version of `Inline.astro` was rendering "in Glossary ."
+   * elsewhere on the page. These items are one real block each, from a different document, chosen
+   * precisely because they exercise a construct nothing else does.
+   */
+  test('every demo block renders exactly the text its data holds', async ({ page }) => {
+    await open(page, EN);
+    const wanted = COVERAGE.map((item) => ({
+      features: item.features,
+      text: blockText(item.block),
+    })).filter(
+      (item): item is { features: readonly string[]; text: string } => item.text !== undefined,
+    );
+    expect(wanted.length, 'no demo item carries inline runs to compare').toBeGreaterThan(8);
+
+    const problems: string[] = [];
+    for (const item of wanted) {
+      const rendered = await page
+        .locator(`.dsc-item[data-features~="${item.features[0] ?? ''}"] .st-blocks`)
+        .evaluate((node) => {
+          const clone = node.cloneNode(true) as HTMLElement;
+          for (const extra of clone.querySelectorAll('.st-visually-hidden, .st-badge')) {
+            extra.remove();
+          }
+          return clone.textContent ?? '';
+        });
+      if (!normaliseText(rendered).includes(item.text)) {
+        problems.push(
+          `${item.features.join(' ')}\n  data:     ${item.text}\n  rendered: ${normaliseText(rendered)}`,
+        );
+      }
+    }
+    expect(problems.join('\n'), 'blocks not rendered as written').toBe('');
+  });
+
   test('a docref shows the document title, not the folder name the markdown used', async ({
     page,
   }) => {
@@ -247,6 +310,8 @@ test.describe('content rendering', () => {
     await expect(figure).toBeVisible();
     await expect(figure.locator('button')).toHaveCount(0);
     await expect(figure.locator('mark.st-placeholder').first()).toBeVisible();
+    // A preformatted block scrolls sideways on a phone, so a keyboard has to reach it (WCAG 2.1.1).
+    await expect(figure.locator('pre')).toHaveAttribute('tabindex', '0');
     const clipped = await figure.locator('pre').evaluate((node) => {
       const style = getComputedStyle(node);
       return style.maxHeight !== 'none' || style.overflowY === 'hidden';
