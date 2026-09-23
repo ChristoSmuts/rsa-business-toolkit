@@ -1,0 +1,162 @@
+---
+/**
+ * "Sources for this page" (build plan D5, ADR 0006): the register entries and Acts the pipeline
+ * mapped to this document.
+ *
+ * Every entry shows its title as a link, an "Official source" badge or a "Not an official source"
+ * flag — never silence, and never colour alone — and the register's own sentence about what the
+ * source supports, so a reader can tell which fact rests on which source.
+ *
+ * Three shapes, all from the data:
+ * - a **web** source: the title is the link, with the external-link icon inside the link text so
+ *   it stays in the run when a long translated title wraps;
+ * - a **citation**: the register gives no link and says why, so the title is text and the reason
+ *   is the hint;
+ * - a page with **no sources of its own** (a start page, the register itself): `doc.sourceNote`
+ *   as a sentence, then the links it names as stand-alone 44px targets in a cluster, not hung off
+ *   the end of the sentence.
+ */
+import Badge from '../ui/Badge.astro';
+import Icon from '../ui/Icon.astro';
+import Inline from '../content/Inline.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { ContentContext } from '../../lib/content/context';
+import { docHref, docTitle } from '../../lib/content/manifest';
+import { actsFor, sourceEntriesFor } from '../../lib/content/render';
+import type { DocSources, SourceNote } from '../../lib/content/schema';
+import { uid } from '../../scripts/uid';
+
+interface Props {
+  sources: DocSources;
+  sourceNote?: SourceNote | undefined;
+  context: ContentContext;
+  locale: Locale;
+  headingLevel?: 2 | 3 | undefined;
+  id?: string | undefined;
+}
+
+const { sources, sourceNote, context, locale, headingLevel = 2, id } = Astro.props;
+const t = useTranslations(locale);
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+const headingId = id ?? uid('st-sources');
+const entries = sourceEntriesFor(context.sources, sources.entries);
+const acts = actsFor(context.sources, sources.acts);
+const count = entries.length + acts.length;
+
+/** The two links a source note names, with the wording each one has in the dictionary. */
+const NOTE_LINK_LABELS: Record<string, 'trust.sources.seeRegister' | 'trust.sources.seeHowMade'> = {
+  'lookup/sources': 'trust.sources.seeRegister',
+  'start/how-this-was-made': 'trust.sources.seeHowMade',
+};
+
+const noteLinks = (sourceNote?.see ?? [])
+  .map((docId) => {
+    const key = NOTE_LINK_LABELS[docId];
+    return {
+      href: docHref(context.manifest, docId, locale),
+      label: key ? t(key) : docTitle(context.manifest, docId, locale),
+    };
+  })
+  .filter((link) => link.href !== undefined);
+---
+
+<section class="st-sources" aria-labelledby={headingId}>
+  <Heading id={headingId}>{t('trust.sources.heading')}</Heading>
+  {count > 0 ? (
+    <Fragment>
+      <p class="st-hint">{t('trust.sources.count', { count })}</p>
+      <ul class="st-stack" role="list">
+        {entries.map((entry) => (
+          <li class="st-source">
+            <p class="st-source__title">
+              {entry.url ? (
+                <a class="st-link-block" href={entry.url} rel="noopener noreferrer">
+                  {entry.title} <Icon name="lucide:external-link" size="0.9em" />
+                  <span class="st-visually-hidden">
+                    {entry.official
+                      ? t('trust.sources.externalLink')
+                      : t('trust.sources.externalLinkOther')}
+                  </span>
+                </a>
+              ) : (
+                <span class="st-source__name">{entry.title}</span>
+              )}
+              {entry.official ? (
+                <Badge variant="official">{t('trust.sources.officialLabel')}</Badge>
+              ) : (
+                <Badge variant="flag">{t('trust.sources.notOfficialLabel')}</Badge>
+              )}
+            </p>
+            {entry.supports && (
+              <p class="st-hint">
+                {t('trust.sources.supportsLabel')}:{' '}
+                <Inline runs={entry.supports} context={context} />
+              </p>
+            )}
+            {entry.noUrlReason && <p class="st-hint">{entry.noUrlReason}</p>}
+          </li>
+        ))}
+        {acts.length > 0 && (
+          <li class="st-source">
+            <p class="st-source__title">{t('trust.sources.actsHeading')}</p>
+            <ul class="st-stack st-stack-sm" role="list">
+              {acts.map((act) => (
+                <li>
+                  <span class="st-source__name">{act.name}</span>
+                  <span class="st-hint">
+                    <Inline runs={act.governs} context={context} />
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </li>
+        )}
+      </ul>
+    </Fragment>
+  ) : (
+    <Fragment>
+      <p class="st-hint">{sourceNote ? sourceNote.reason : t('trust.sources.noPageSources')}</p>
+      {noteLinks.length > 0 && (
+        <p class="st-cluster">
+          {noteLinks.map((link) => (
+            <a class="st-link-block" href={link.href}>
+              {link.label}
+            </a>
+          ))}
+        </p>
+      )}
+    </Fragment>
+  )}
+</section>
+
+<style>
+  .st-sources {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-3);
+    max-inline-size: var(--st-measure);
+  }
+
+  /*
+   * The title and its badge sit on one line while they fit and wrap when they do not. The badge
+   * is `inline-flex`, so it stays beside the end of the title text rather than starting a block.
+   */
+  .st-source__title {
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-source__name {
+    overflow-wrap: anywhere;
+  }
+
+  .st-source ul {
+    padding-inline-start: var(--st-space-4);
+    border-inline-start: var(--st-border-width) solid var(--st-border);
+    margin-block-start: var(--st-space-2);
+  }
+
+  .st-source li > .st-hint {
+    display: block;
+  }
+</style>

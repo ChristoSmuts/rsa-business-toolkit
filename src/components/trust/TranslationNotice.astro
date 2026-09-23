@@ -1,0 +1,54 @@
+---
+/**
+ * The notice that sits directly under the AI notice on a page that is not in its source language
+ * (build plan D5, ADR 0006). Neither notice is dismissible.
+ *
+ * - `machine-unreviewed`: an AI translated this page and no person has checked the translation.
+ * - `fallback`: there is no translation yet, so the English document is shown. The blocks
+ *   themselves carry `lang="en"` (see `Blocks.astro`).
+ * - `source` and `reviewed` need no notice, and the component renders nothing.
+ *
+ * The link to the English version carries `lang="en"` on its own text, because the link text is
+ * English while the notice around it is not.
+ */
+import Callout from '../ui/Callout.astro';
+import { useTranslations, type TranslationKey } from '../../i18n';
+import { DEFAULT_LOCALE, getLocale, type Locale } from '../../i18n/locales';
+import type { TranslationStatus } from '../../lib/content/schema';
+
+interface Props {
+  status: TranslationStatus;
+  locale: Locale;
+  /** The same page in English. Omitted on the English page itself. */
+  englishHref?: string | undefined;
+}
+
+const { status, locale, englishHref } = Astro.props;
+const t = useTranslations(locale);
+const language = t(`lang.names.${locale}` as TranslationKey);
+const englishLang = getLocale(DEFAULT_LOCALE)?.hreflang ?? DEFAULT_LOCALE;
+---
+
+{status === 'machine-unreviewed' ? (
+  <Callout variant="warning" label={t('lang.mtNotice.title')} icon="lucide:languages">
+    <p>{t('lang.mtNotice.body')}</p>
+    {englishHref && (
+      <p>
+        <a class="st-link-block" href={englishHref} lang={englishLang}>
+          {t('lang.mtNotice.link')}
+        </a>
+      </p>
+    )}
+  </Callout>
+) : status === 'fallback' ? (
+  <Callout variant="warning" label={t('lang.fallbackNotice.title')} icon="lucide:languages">
+    <p>{t('lang.fallbackNotice.body', { language })}</p>
+    {englishHref && (
+      <p>
+        <a class="st-link-block" href={englishHref} lang={englishLang}>
+          {t('lang.mtNotice.link')}
+        </a>
+      </p>
+    )}
+  </Callout>
+) : null}

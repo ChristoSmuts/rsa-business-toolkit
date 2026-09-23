@@ -1,0 +1,76 @@
+---
+/**
+ * The AI notice every content page shows near the top (build plan D5, ADR 0006).
+ *
+ * The order is fixed and is the same on every page, because `/design-system/` documents it and
+ * because a reader should find the same four things in the same place:
+ * 1. the notice sentence, naming who checked the page and on which date;
+ * 2. the verification status, as a neutral `status` badge **and** as words;
+ * 3. its one-sentence explanation, immediately beside the status;
+ * 4. the link to "How this was made".
+ *
+ * The status badge is deliberately the neutral `status` chip, never the `official` one: a status
+ * says who looked at the page, officialness says who wrote the rule. In forced colours and in
+ * greyscale print the chip is gone, so the words carry it either way.
+ *
+ * Which sentence is used is decided by `trustNotice()`, which reserves the "checked by" wording
+ * for a record that really names a person.
+ */
+import Badge from '../ui/Badge.astro';
+import Callout from '../ui/Callout.astro';
+import { formatDate, useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { docHref } from '../../lib/content/manifest';
+import type { Manifest, Verification } from '../../lib/content/schema';
+import { trustNotice } from '../../lib/content/trust';
+
+interface Props {
+  verification: Verification;
+  /** True when the page renders its own "Sources for this page" list. */
+  hasPageSources: boolean;
+  locale: Locale;
+  manifest: Manifest;
+}
+
+const { verification, hasPageSources, locale, manifest } = Astro.props;
+const t = useTranslations(locale);
+const notice = trustNotice(verification, hasPageSources);
+const checkedOn = formatDate(locale, verification.checkedOn);
+const howMade = docHref(manifest, 'start/how-this-was-made', locale);
+---
+
+<Callout variant="info" label={t('trust.aiNotice.label')} icon="lucide:bot" class="st-ai-notice">
+  <p>{t(notice.bodyKey, { date: checkedOn, reviewer: notice.reviewer })}</p>
+  <p class="st-ai-notice__status">
+    <Badge variant="status" icon={notice.icon}>
+      {t(notice.statusKey, { reviewer: notice.reviewer })}
+    </Badge>
+    <span>{t(notice.meansKey, { reviewer: notice.reviewer })}</span>
+  </p>
+  {howMade && (
+    <p>
+      <a class="st-link-block" href={howMade}>
+        {t('trust.aiNotice.link')}
+      </a>
+    </p>
+  )}
+</Callout>
+
+<style>
+  /*
+   * The status and its explanation are one line of text on a wide screen and two on a phone.
+   * `minmax(0, 1fr)` is not needed here because the row is inline flow, not a grid track: the
+   * badge already caps itself at 100% and wraps its own label.
+   */
+  .st-ai-notice__status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--st-space-2);
+  }
+
+  .st-ai-notice__status > span {
+    min-inline-size: 0;
+    flex: 1 1 18ch;
+  }
+</style>
