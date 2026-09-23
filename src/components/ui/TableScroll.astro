@@ -48,6 +48,17 @@ const { labelledby, wide = false, class: className } = Astro.props;
       transparent
     );
 
+    /*
+     * The region is the containing block for anything inside it that is positioned. An
+     * `overflow` ancestor only clips descendants it is the containing block for, so without
+     * this every `position: absolute` element in the table escapes the scroll region and widens
+     * the whole page: a `.st-visually-hidden` span in a cell (the "(external link)" text a
+     * content link renders) and the `thead` that the stacked mode hides both did, measured at
+     * 320px as a document 581px wide. Neither is visible, and neither could be seen in a
+     * bounding box — only `documentElement.scrollWidth` showed it. See
+     * tests/e2e/content.spec.ts, "no horizontal scrolling at 320px".
+     */
+    position: relative;
     display: block;
     max-inline-size: 100%;
     overflow-x: auto;
