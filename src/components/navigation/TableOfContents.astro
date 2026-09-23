@@ -1,0 +1,124 @@
+---
+/**
+ * "On this page" (build plan B2, B6). Two presentations of the same headings:
+ *
+ * - `variant="details"`: a native `<details>` under the article header, shown below 1280px;
+ * - `variant="column"`: the third grid column, shown from 1280px.
+ *
+ * Only one of the two is displayed at any width, so a screen reader is never offered the list
+ * twice. Scroll-spy and the reading-progress ring are later packages; the list itself is plain
+ * links to heading ids, which work with no JavaScript at all.
+ *
+ * Pseudo headings (depth 4, a bold lead-in line) and hidden headings are left out: the contents
+ * of a page should be its sections, not every bold line in it.
+ */
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { DocHeading } from '../../lib/content/schema';
+
+interface Props {
+  headings: readonly DocHeading[];
+  locale: Locale;
+  variant: 'details' | 'column';
+  class?: string | undefined;
+}
+
+const { headings, locale, variant, class: className } = Astro.props;
+const t = useTranslations(locale);
+const items = headings.filter(
+  (heading) => heading.depth <= 3 && !heading.pseudo && !heading.hidden,
+);
+const label = t('nav.onThisPageCount', { count: items.length });
+---
+
+{items.length > 0 &&
+  (variant === 'details' ? (
+    <details class:list={['st-toc', 'st-toc--details', className]}>
+      <summary class="st-toc__summary">{label}</summary>
+      <nav aria-label={t('nav.onThisPage')}>
+        <ul class="st-toc__list" role="list">
+          {items.map((heading) => (
+            <li data-depth={heading.depth}>
+              <a href={`#${heading.id}`}>{heading.text}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </details>
+  ) : (
+    <nav class:list={['st-toc', 'st-toc--column', className]} aria-label={t('nav.onThisPage')}>
+      <p class="st-toc__title">{t('nav.onThisPage')}</p>
+      <ul class="st-toc__list" role="list">
+        {items.map((heading) => (
+          <li data-depth={heading.depth}>
+            <a href={`#${heading.id}`}>{heading.text}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  ))}
+
+<style>
+  .st-toc__summary {
+    display: flex;
+    align-items: center;
+    min-block-size: var(--st-target);
+    font-weight: var(--st-weight-semibold);
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
+
+  .st-toc__title {
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-toc__list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0;
+    list-style: none;
+  }
+
+  .st-toc__list a {
+    display: block;
+    min-block-size: var(--st-target);
+    padding-block: max(0px, calc((var(--st-target) - 1lh) / 2));
+    color: var(--st-text);
+    overflow-wrap: anywhere;
+  }
+
+  .st-toc__list a:visited {
+    color: var(--st-text);
+  }
+
+  .st-toc__list li[data-depth='3'] a {
+    padding-inline-start: var(--st-space-4);
+  }
+
+  /* Exactly one of the two presentations is shown at any width. */
+  @media (width >= 1280px) {
+    .st-toc--details {
+      display: none;
+    }
+  }
+
+  @media (width < 1280px) {
+    .st-toc--column {
+      display: none;
+    }
+  }
+
+  @media (width >= 1280px) {
+    .st-toc--column {
+      position: sticky;
+      inset-block-start: calc(var(--st-topbar) + var(--st-space-4));
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--st-space-2);
+      max-block-size: calc(100vh - var(--st-topbar) - var(--st-space-6));
+      overflow-y: auto;
+    }
+  }
+</style>

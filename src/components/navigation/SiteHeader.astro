@@ -1,0 +1,181 @@
+---
+/**
+ * The top bar (build plan B2): wordmark, the Read and Tools menus, search, the language switcher,
+ * the theme control, and — below 1024px — the drawer button.
+ *
+ * How it works without JavaScript, which is the rule for every surface here:
+ * - the menus are native `<details>`, so they open and close with no script;
+ * - below 1024px the menus are normally hidden in favour of the drawer button, **except** when
+ *   the page has no `js` class, where the same menus are shown stacked instead. So a phone with
+ *   JavaScript off reaches every section and tool through the header itself, and there is no
+ *   second copy of the links to keep in step;
+ * - the search control is a link to `/search/`, which is a real page, not a dialog opener. The
+ *   `/` hint is `js-only`, because the shortcut is.
+ */
+import Icon from '../ui/Icon.astro';
+import Kbd from '../ui/Kbd.astro';
+import Logo from '../illustrations/Logo.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import NavDrawer from './NavDrawer.astro';
+import NavMenu from './NavMenu.astro';
+import ThemeControl from './ThemeControl.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { sectionLinks, toolLinks } from '../../lib/nav';
+import { href } from '../../lib/paths';
+import type { Manifest } from '../../lib/content/schema';
+import { APP_ROUTES } from '../../lib/routes';
+
+interface Props {
+  locale: Locale;
+  manifest: Manifest;
+  /** Site-relative route of the current page, without locale prefix and base (`''` is home). */
+  route: string;
+}
+
+const { locale, manifest, route } = Astro.props;
+const t = useTranslations(locale);
+const sections = sectionLinks(manifest, locale, t);
+const tools = toolLinks(manifest, locale, t);
+const homeHref = href(locale, APP_ROUTES.home);
+const searchHref = href(locale, APP_ROUTES.search);
+const wizardHref = href(locale, APP_ROUTES.wizard);
+---
+
+<header class="st-topbar">
+  <div class="st-container st-topbar__inner">
+    <a
+      class="st-topbar__home"
+      href={homeHref}
+      aria-current={route === APP_ROUTES.home ? 'page' : undefined}
+    >
+      <Logo />
+    </a>
+    <nav class="st-topbar__menus" aria-label={t('nav.mainLabel')}>
+      <NavMenu label={t('nav.read')} links={sections} route={route} />
+      <NavMenu label={t('nav.tools')} links={tools} route={route} />
+    </nav>
+    <a class="st-topbar__search" href={searchHref}>
+      <Icon name="lucide:search" size="1em" />
+      <span>{t('nav.search')}</span>
+      <span class="js-only st-topbar__kbd">
+        <Kbd>/</Kbd>
+      </span>
+    </a>
+    <LanguageSwitcher class="st-topbar__lang" locale={locale} route={route} />
+    <ThemeControl class="st-topbar__theme" locale={locale} />
+    <button
+      type="button"
+      class="st-topbar__menu-button js-only"
+      data-drawer-open="st-nav-drawer"
+      aria-haspopup="dialog"
+    >
+      <Icon name="lucide:menu" size="1.25em" />
+      <span>{t('nav.menu')}</span>
+    </button>
+  </div>
+  <NavDrawer
+    id="st-nav-drawer"
+    locale={locale}
+    route={route}
+    sections={sections}
+    tools={tools}
+    searchHref={searchHref}
+    wizardHref={wizardHref}
+  />
+</header>
+
+<style>
+  .st-topbar {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--st-z-sticky);
+    border-block-end: var(--st-border-width) solid var(--st-border);
+    background-color: var(--st-surface);
+  }
+
+  .st-topbar__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-2);
+    min-block-size: var(--st-topbar);
+    padding-block: var(--st-space-2);
+  }
+
+  .st-topbar__home {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--st-target);
+    margin-inline-end: auto;
+    text-decoration: none;
+  }
+
+  .st-topbar__menus {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-1);
+    min-inline-size: 0;
+  }
+
+  .st-topbar__search {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--st-space-2);
+    min-block-size: var(--st-target);
+    padding-inline: var(--st-space-3);
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-pill);
+    color: var(--st-text);
+    overflow-wrap: anywhere;
+  }
+
+  .st-topbar__search:visited {
+    color: var(--st-text);
+  }
+
+  .st-topbar__menu-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--st-space-2);
+    min-block-size: var(--st-target);
+    padding-inline: var(--st-space-3);
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface);
+    color: var(--st-text);
+    font-weight: var(--st-weight-semibold);
+    overflow-wrap: anywhere;
+  }
+
+  /*
+   * Below the sidebar breakpoint the drawer takes over — unless there is no JavaScript, and then
+   * the same `<details>` menus are shown stacked, so the header alone still reaches every page.
+   */
+  @media (width < 1024px) {
+    .st-topbar__menus,
+    .st-topbar__theme {
+      display: none;
+    }
+
+    html:not(.js) .st-topbar__menus {
+      display: flex;
+      flex-basis: 100%;
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  @media (width >= 1024px) {
+    .st-topbar__menu-button {
+      display: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .st-topbar {
+      border-block-end: 1px solid CanvasText;
+    }
+  }
+</style>

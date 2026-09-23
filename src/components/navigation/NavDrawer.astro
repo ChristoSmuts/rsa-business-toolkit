@@ -1,0 +1,140 @@
+---
+/**
+ * The phone menu (build plan B2): a full-height native `<dialog>` with the sections and tools as
+ * accordions, the search link, the language switcher and the theme control.
+ *
+ * A native `<dialog>` gives Escape, the backdrop and focus handling for free (plan B5).
+ * `<st-nav-drawer>` (src/scripts/navigation.ts) only opens and closes it.
+ *
+ * **Without JavaScript nothing here is reachable, and nothing needs to be**: the same menus are
+ * rendered in the top bar itself, where `SiteHeader` shows them below 1024px whenever the page
+ * has no `js` class. The drawer is the enhancement, not the only way through the site.
+ */
+import Icon from '../ui/Icon.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import NavMenu from './NavMenu.astro';
+import ThemeControl from './ThemeControl.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { NavLink } from '../../lib/nav';
+
+interface Props {
+  id: string;
+  locale: Locale;
+  route: string;
+  sections: readonly NavLink[];
+  tools: readonly NavLink[];
+  searchHref: string;
+  wizardHref: string;
+}
+
+const { id, locale, route, sections, tools, searchHref, wizardHref } = Astro.props;
+const t = useTranslations(locale);
+const titleId = `${id}-title`;
+---
+
+<st-nav-drawer id={id} class="st-drawer-host js-only">
+  <dialog class="st-drawer" aria-labelledby={titleId}>
+    <div class="st-drawer__inner">
+      <div class="st-drawer__head">
+        <h2 class="st-drawer__title" id={titleId}>
+          {t('nav.menu')}
+        </h2>
+        <button type="button" class="st-drawer__close" data-drawer-close>
+          <Icon name="lucide:x" label={t('nav.menuClose')} />
+        </button>
+      </div>
+      <nav class="st-drawer__nav" aria-label={t('nav.menu')}>
+        <a class="st-link-block" href={wizardHref}>
+          {t('nav.findMyPath')}
+        </a>
+        <a class="st-link-block" href={searchHref}>
+          {t('nav.search')}
+        </a>
+        <NavMenu label={t('nav.read')} links={sections} route={route} descriptions open />
+        <NavMenu label={t('nav.tools')} links={tools} route={route} descriptions />
+      </nav>
+      <LanguageSwitcher locale={locale} route={route} />
+      <ThemeControl locale={locale} />
+    </div>
+  </dialog>
+</st-nav-drawer>
+
+<script>
+  import '../../scripts/navigation';
+</script>
+
+<style>
+  .st-drawer-host {
+    display: block;
+  }
+
+  .st-drawer {
+    inline-size: min(22rem, 100%);
+    max-inline-size: 100%;
+    block-size: 100%;
+    max-block-size: 100%;
+    margin-inline: auto 0;
+    margin-block: 0;
+    padding: 0;
+    border: 0;
+    border-inline-start: var(--st-border-width) solid var(--st-border);
+    background-color: var(--st-surface);
+    color: var(--st-text);
+    overflow: auto;
+  }
+
+  .st-drawer::backdrop {
+    background-color: color-mix(in oklab, var(--st-shadow-ink) 55%, transparent);
+  }
+
+  .st-drawer__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-4);
+    padding: var(--st-space-4);
+  }
+
+  .st-drawer__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--st-space-3);
+  }
+
+  .st-drawer__title {
+    min-inline-size: 0;
+    font-size: var(--st-text-xl);
+  }
+
+  .st-drawer__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--st-target);
+    min-block-size: var(--st-target);
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface);
+    color: var(--st-text);
+  }
+
+  .st-drawer__nav {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-2);
+  }
+
+  /* The drawer is the phone menu; above the sidebar breakpoint the top bar holds everything. */
+  @media (width >= 1024px) {
+    .st-drawer-host {
+      display: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .st-drawer {
+      border: 1px solid CanvasText;
+    }
+  }
+</style>

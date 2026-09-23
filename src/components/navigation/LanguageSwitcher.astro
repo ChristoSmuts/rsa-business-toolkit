@@ -1,0 +1,109 @@
+---
+/**
+ * The language switcher (build plan B2, B3 flow 7): plain links to the same page under the other
+ * language prefix. It never redirects and never depends on JavaScript.
+ *
+ * `<st-lang-switch>` adds the current `#fragment` to the links once JavaScript runs, so a reader
+ * who switches language halfway down a page lands on the same heading. Heading ids are English
+ * slugs in every language, so the anchor is valid in both.
+ */
+import { useTranslations } from '../../i18n';
+import { ENABLED_LOCALES, getLocale, type Locale } from '../../i18n/locales';
+import { href } from '../../lib/paths';
+
+interface Props {
+  locale: Locale;
+  /** Site-relative route without the locale prefix and without the base, e.g. `core/register/`. */
+  route: string;
+  class?: string | undefined;
+}
+
+const { locale, route, class: className } = Astro.props;
+const t = useTranslations(locale);
+const options = ENABLED_LOCALES.map((code) => {
+  const meta = getLocale(code);
+  return {
+    code,
+    href: href(code, route),
+    name: meta?.nativeName ?? code,
+    hreflang: meta?.hreflang ?? code,
+  };
+});
+---
+
+<st-lang-switch class:list={['st-lang', className]}>
+  <nav aria-label={t('lang.switcherLabel')}>
+    <ul class="st-lang__list" role="list">
+      {options.map((option) => (
+        <li>
+          <a
+            class="st-lang__link"
+            href={option.href}
+            hreflang={option.hreflang}
+            lang={option.hreflang}
+            data-locale={option.code}
+            aria-current={option.code === locale ? 'true' : undefined}
+            aria-label={
+              option.code === locale ? undefined : t('lang.switchTo', { language: option.name })
+            }
+          >
+            {option.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</st-lang-switch>
+
+<script>
+  import '../../scripts/navigation';
+</script>
+
+<style>
+  /* A custom element is inline by default. */
+  .st-lang {
+    display: block;
+  }
+
+  .st-lang__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-1);
+    padding: 0;
+    list-style: none;
+  }
+
+  .st-lang__link {
+    display: inline-block;
+    min-block-size: var(--st-target);
+    padding-block: max(0px, calc((var(--st-target) - 1lh) / 2));
+    padding-inline: var(--st-space-2);
+    border-radius: var(--st-radius-md);
+    color: var(--st-text);
+    font-weight: var(--st-weight-semibold);
+    overflow-wrap: anywhere;
+  }
+
+  .st-lang__link:visited {
+    color: var(--st-text);
+  }
+
+  /*
+   * The current language is marked by a filled chip and by `aria-current`. The underline stays:
+   * a link that looks like a link is the house rule, and the chip is the extra cue, not the only
+   * one.
+   */
+  .st-lang__link[aria-current='true'] {
+    background-color: var(--st-primary-soft);
+    color: var(--st-on-primary-soft);
+  }
+
+  @media (forced-colors: active) {
+    .st-lang__link[aria-current='true'] {
+      forced-color-adjust: none;
+      background-color: Highlight;
+      color: HighlightText;
+    }
+  }
+</style>

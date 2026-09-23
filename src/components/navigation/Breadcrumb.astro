@@ -1,0 +1,75 @@
+---
+/**
+ * The trail on every page that is not the home page (build plan B2).
+ * The last crumb is the current page: it is text, not a link, and carries `aria-current="page"`.
+ * On a phone only the parent crumb is shown, so the trail never wraps to three lines.
+ */
+import Icon from '../ui/Icon.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { Crumb } from '../../lib/nav';
+
+interface Props {
+  crumbs: readonly Crumb[];
+  locale: Locale;
+  class?: string | undefined;
+}
+
+const { crumbs, locale, class: className } = Astro.props;
+const t = useTranslations(locale);
+const last = crumbs.length - 1;
+---
+
+{crumbs.length > 1 && (
+  <nav class:list={['st-breadcrumb', className]} aria-label={t('nav.breadcrumbLabel')}>
+    <ol class="st-breadcrumb__list" role="list">
+      {crumbs.map((crumb, index) => (
+        <li
+          class="st-breadcrumb__item"
+          data-position={index === last ? 'current' : index === last - 1 ? 'parent' : 'ancestor'}
+        >
+          {index > 0 && (
+            <Icon name="lucide:chevron-right" size="0.9em" class="st-breadcrumb__sep" />
+          )}
+          {index === last || crumb.href === undefined ? (
+            <span aria-current={index === last ? 'page' : undefined}>{crumb.label}</span>
+          ) : (
+            <a href={crumb.href}>{crumb.label}</a>
+          )}
+        </li>
+      ))}
+    </ol>
+  </nav>
+)}
+
+<style>
+  .st-breadcrumb__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-1);
+    padding: 0;
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+    list-style: none;
+  }
+
+  .st-breadcrumb__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--st-space-1);
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+
+  /* On a phone the trail is "‹ parent" only; the current page is the heading right below it. */
+  @media (width < 768px) {
+    .st-breadcrumb__item:not([data-position='parent']) {
+      display: none;
+    }
+
+    .st-breadcrumb__item[data-position='parent'] .st-breadcrumb__sep {
+      display: none;
+    }
+  }
+</style>

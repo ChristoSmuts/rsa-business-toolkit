@@ -1,0 +1,138 @@
+---
+/**
+ * The section sidebar on document pages (build plan B2): the section's documents in order, with
+ * their number and an applies-to badge where one applies.
+ *
+ * It appears from 1024px (the `.st-doc-grid` breakpoint). Below that it is `display: none` for
+ * everyone, assistive technology included, because the same links are in the header menus and in
+ * the drawer and a second, invisible copy would only be read out twice. The tick for a completed
+ * checklist and the "Only what applies to me" switch are WP-30 and WP-31 and are not faked here.
+ */
+import Badge from '../ui/Badge.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { docHref, docTitle, sectionDocIds, sectionTitle } from '../../lib/content/manifest';
+import type { Manifest } from '../../lib/content/schema';
+
+interface Props {
+  manifest: Manifest;
+  sectionId: string;
+  currentDocId?: string | undefined;
+  locale: Locale;
+  class?: string | undefined;
+}
+
+const { manifest, sectionId, currentDocId, locale, class: className } = Astro.props;
+const t = useTranslations(locale);
+const title = sectionTitle(manifest, sectionId, locale);
+const docs = sectionDocIds(manifest, sectionId)
+  .map((id, index) => {
+    const entry = manifest.docs[id];
+    return {
+      id,
+      number: index + 1,
+      title: docTitle(manifest, id, locale),
+      href: docHref(manifest, id, locale),
+      entity: entry?.appliesTo.entity ?? 'all',
+    };
+  })
+  .filter((doc) => doc.href !== undefined);
+---
+
+{docs.length > 0 && (
+  <nav
+    class:list={['st-sidebar', className]}
+    aria-label={t('section.pagesLabel', { section: title })}
+  >
+    <p class="st-sidebar__title">{title}</p>
+    <ol class="st-sidebar__list" role="list">
+      {docs.map((doc) => (
+        <li>
+          <a
+            class="st-sidebar__link"
+            href={doc.href}
+            aria-current={doc.id === currentDocId ? 'page' : undefined}
+          >
+            <span class="st-sidebar__number st-num" aria-hidden="true">
+              {doc.number}
+            </span>
+            <span class="st-sidebar__label">{doc.title}</span>
+          </a>
+          {doc.entity !== 'all' && (
+            <Badge variant="entity">
+              {doc.entity === 'pty' ? t('doc.ptyOnly') : t('doc.soleProprietorOnly')}
+            </Badge>
+          )}
+        </li>
+      ))}
+    </ol>
+  </nav>
+)}
+
+<style>
+  .st-sidebar {
+    display: none;
+  }
+
+  .st-sidebar__title {
+    padding-inline: var(--st-space-2);
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-sidebar__list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-1);
+    padding: 0;
+    list-style: none;
+  }
+
+  .st-sidebar__link {
+    display: flex;
+    align-items: baseline;
+    gap: var(--st-space-2);
+    min-block-size: var(--st-target);
+    padding: var(--st-space-2);
+    border-radius: var(--st-radius-md);
+    color: var(--st-text);
+  }
+
+  .st-sidebar__link:visited {
+    color: var(--st-text);
+  }
+
+  .st-sidebar__link[aria-current='page'] {
+    background-color: var(--st-primary-soft);
+    color: var(--st-on-primary-soft);
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-sidebar__number {
+    flex-shrink: 0;
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+  }
+
+  .st-sidebar__link[aria-current='page'] .st-sidebar__number {
+    color: inherit;
+  }
+
+  .st-sidebar__label {
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+
+  @media (width >= 1024px) {
+    .st-sidebar {
+      position: sticky;
+      inset-block-start: calc(var(--st-topbar) + var(--st-space-4));
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--st-space-2);
+      max-block-size: calc(100vh - var(--st-topbar) - var(--st-space-6));
+      overflow-y: auto;
+    }
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+/**
+ * The footer (build plan B2, B4 FooterDisclaimer): the short disclaimer every page carries, plus
+ * Contents, About and "How this was made".
+ *
+ * The disclaimer is the short form (`site.disclaimerShort`). It does not replace the D5 AI notice
+ * near the top of a content page — ADR 0006 is explicit that the notice must not live only in the
+ * footer — and it never says more than the sources support.
+ */
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { footerLinks, isCurrent } from '../../lib/nav';
+import type { Manifest } from '../../lib/content/schema';
+
+interface Props {
+  locale: Locale;
+  manifest: Manifest;
+  route: string;
+}
+
+const { locale, manifest, route } = Astro.props;
+const t = useTranslations(locale);
+const links = footerLinks(manifest, locale, t);
+---
+
+<footer class="st-footer">
+  <div class="st-container st-footer__inner">
+    <p class="st-footer__disclaimer">{t('site.disclaimerShort')}</p>
+    <nav aria-label={t('site.footerLabel')}>
+      <ul class="st-footer__links" role="list">
+        {links.map((link) => (
+          <li>
+            <a
+              class="st-link-block"
+              href={link.href}
+              aria-current={isCurrent(link, route) ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .st-footer {
+    border-block-start: var(--st-border-width) solid var(--st-border);
+    background-color: var(--st-surface-2);
+  }
+
+  .st-footer__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-3);
+    padding-block: var(--st-space-6);
+  }
+
+  .st-footer__disclaimer {
+    max-inline-size: var(--st-measure);
+    color: var(--st-text);
+    font-size: var(--st-text-sm);
+  }
+
+  .st-footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-2) var(--st-space-4);
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (forced-colors: active) {
+    .st-footer {
+      border-block-start: 1px solid CanvasText;
+    }
+  }
+</style>

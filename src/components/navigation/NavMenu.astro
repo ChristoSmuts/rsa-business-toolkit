@@ -1,0 +1,133 @@
+---
+/**
+ * The Read and Tools menus (build plan B2), and the accordions inside the mobile drawer.
+ *
+ * A native `<details>`, not a scripted popup: it opens, closes and is keyboard reachable with no
+ * JavaScript at all, which is what the whole site is held to. `aria-current="page"` marks the
+ * page the reader is on.
+ */
+import Icon from '../ui/Icon.astro';
+import { isCurrent, type NavLink } from '../../lib/nav';
+
+interface Props {
+  label: string;
+  links: readonly NavLink[];
+  /** Site-relative route of the current page, for `aria-current`. */
+  route: string;
+  /** Show each link's one-line description (the drawer does, the top bar does not). */
+  descriptions?: boolean | undefined;
+  open?: boolean | undefined;
+  class?: string | undefined;
+}
+
+const { label, links, route, descriptions = false, open = false, class: className } = Astro.props;
+---
+
+<details class:list={['st-menu', className]} open={open}>
+  <summary class="st-menu__summary">
+    <span>{label}</span>
+    <Icon name="lucide:chevron-down" class="st-menu__chevron" size="1em" />
+  </summary>
+  <ul class="st-menu__list" role="list">
+    {links.map((link) => (
+      <li>
+        <a
+          class="st-menu__link"
+          href={link.href}
+          aria-current={isCurrent(link, route) ? 'page' : undefined}
+        >
+          <span class="st-menu__label">{link.label}</span>
+          {descriptions && link.description && <span class="st-hint">{link.description}</span>}
+        </a>
+      </li>
+    ))}
+  </ul>
+</details>
+
+<style>
+  .st-menu {
+    min-inline-size: 0;
+  }
+
+  .st-menu__summary {
+    display: flex;
+    align-items: center;
+    gap: var(--st-space-2);
+    min-block-size: var(--st-target);
+    padding-inline: var(--st-space-3);
+    border-radius: var(--st-radius-md);
+    color: var(--st-text);
+    font-weight: var(--st-weight-semibold);
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
+
+  .st-menu__summary:hover {
+    background-color: var(--st-primary-soft);
+    color: var(--st-on-primary-soft);
+  }
+
+  .st-menu[open] .st-menu__chevron {
+    transform: rotate(180deg);
+  }
+
+  .st-menu__list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-1);
+    padding: var(--st-space-2);
+    list-style: none;
+  }
+
+  .st-menu__link {
+    display: block;
+    min-block-size: var(--st-target);
+    padding: var(--st-space-2) var(--st-space-3);
+    border-radius: var(--st-radius-md);
+    color: var(--st-text);
+    overflow-wrap: anywhere;
+  }
+
+  .st-menu__link:visited {
+    color: var(--st-text);
+  }
+
+  .st-menu__link[aria-current='page'] {
+    background-color: var(--st-primary-soft);
+    color: var(--st-on-primary-soft);
+  }
+
+  .st-menu__label {
+    display: block;
+    font-weight: var(--st-weight-semibold);
+  }
+
+  /*
+   * On a wide screen the menu is a disclosure in the top bar, so its list floats over the page
+   * rather than pushing it down. Below the sidebar breakpoint the same markup is a plain stacked
+   * list, which is what a phone without JavaScript gets instead of the drawer.
+   */
+  @media (width >= 1024px) {
+    .st-menu {
+      position: relative;
+    }
+
+    .st-menu__list {
+      position: absolute;
+      z-index: var(--st-z-sticky);
+      inset-block-start: 100%;
+      inset-inline-start: 0;
+      inline-size: max(16rem, 100%);
+      border: var(--st-border-width) solid var(--st-border);
+      border-radius: var(--st-radius-md);
+      background-color: var(--st-surface);
+      box-shadow: var(--st-shadow-2);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .st-menu__list {
+      border: 1px solid CanvasText;
+    }
+  }
+</style>

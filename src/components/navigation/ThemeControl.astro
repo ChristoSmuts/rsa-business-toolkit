@@ -1,0 +1,154 @@
+---
+/**
+ * System / Light / Dark, as a segmented group of native radios inside `<st-theme-toggle>`
+ * (`src/scripts/theme-control.ts`), which is the element `/design-system/` already uses; the
+ * design system asks the navigation package to reuse it, including its forced-colour rule.
+ *
+ * The control needs JavaScript to save a choice, so it is `.js-only` and a `.no-js-only` line
+ * says the page follows the device setting instead. The page itself is readable either way.
+ */
+import Icon from '../ui/Icon.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { uid } from '../../scripts/uid';
+
+interface Props {
+  locale: Locale;
+  class?: string | undefined;
+}
+
+const { locale, class: className } = Astro.props;
+const t = useTranslations(locale);
+// One radio group per control: two controls on a page (header and drawer) must not share a name.
+const name = uid('st-theme');
+const options = [
+  { value: 'system', label: t('theme.system'), icon: 'lucide:monitor' },
+  { value: 'light', label: t('theme.light'), icon: 'lucide:sun' },
+  { value: 'dark', label: t('theme.dark'), icon: 'lucide:moon' },
+] as const;
+---
+
+<div class:list={['st-theme-control', className]}>
+  <st-theme-toggle class="js-only">
+    <fieldset>
+      <legend class="st-visually-hidden">{t('theme.label')}</legend>
+      <div class="st-segmented">
+        {options.map((option) => (
+          <label class="st-segmented__option">
+            <input
+              type="radio"
+              name={name}
+              value={option.value}
+              checked={option.value === 'system'}
+            />
+            <span class="st-segmented__icon">
+              <Icon name={option.icon} />
+            </span>
+            <span>{option.label}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  </st-theme-toggle>
+  <p class="no-js-only st-hint">{t('theme.noJs')}</p>
+</div>
+
+<script>
+  import '../../scripts/theme-control';
+</script>
+
+<style>
+  .st-theme-control {
+    min-inline-size: 0;
+  }
+
+  /* Equal-width segments on one row at every width, 320px included. */
+  .st-segmented {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    max-inline-size: 22rem;
+    padding: var(--st-space-1);
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface);
+    gap: var(--st-space-1);
+  }
+
+  /*
+   * `min-inline-size: 0` lets the label shrink but leaves its min-content contribution at the
+   * width of its longest word, so `overflow-wrap: anywhere` is what keeps a long translated
+   * label from widening the page. See docs/design-system.md, "Wrapping and min-content".
+   */
+  .st-segmented__option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--st-space-2);
+    min-inline-size: 0;
+    min-block-size: var(--st-target);
+    padding-inline: var(--st-space-2);
+    border: 2px solid transparent;
+    border-radius: calc(var(--st-radius-md) - 2px);
+    color: var(--st-text);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-semibold);
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
+
+  .st-segmented__option input {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    margin: 0;
+    opacity: 0;
+    pointer-events: none; /* clicks land on the label, which checks the radio */
+  }
+
+  .st-segmented__option:hover {
+    background-color: var(--st-primary-soft);
+    color: var(--st-on-primary-soft);
+  }
+
+  .st-segmented__option:has(input:checked) {
+    border-color: var(--st-primary);
+    background-color: var(--st-primary);
+    color: var(--st-on-primary);
+  }
+
+  .st-segmented__option:has(input:focus-visible) {
+    outline: var(--st-focus-width) solid var(--st-focus);
+    outline-offset: var(--st-focus-offset);
+  }
+
+  .st-segmented__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  @media (width < 400px) {
+    .st-segmented__icon {
+      display: none;
+    }
+  }
+
+  /*
+   * Forced colours paints a transparent border as CanvasText and the fill as Canvas, so without
+   * this the selected segment would differ from the others by border colour alone.
+   */
+  @media (forced-colors: active) {
+    .st-segmented__option {
+      border-color: Canvas;
+    }
+
+    .st-segmented__option:has(input:checked) {
+      forced-color-adjust: none;
+      border-color: Highlight;
+      background-color: Highlight;
+      color: HighlightText;
+    }
+  }
+</style>
