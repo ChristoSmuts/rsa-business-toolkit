@@ -40,7 +40,7 @@ Bou dit een keer, in die program wat jy in [Gratis gereedskap](02-free-tools.md)
 
 Nommer fakture in volgorde, sonder gapings: INV-0001, INV-0002, INV-0003.
 
-Vir SARS lyk ’n gaping in die reeks soos ’n verborge verkoping. As jy ’n faktuur kanselleer, moet dit nie uitvee nie. Reik ’n kredietnota daarteen uit en hou albei.
+Vir SARS lyk ’n gaping in die reeks soos ’n verborge verkoping. As jy ’n faktuur kanselleer, moenie dit uitvee nie. Reik ’n kredietnota daarteen uit en hou albei.
 
 Gebruik dieselfde idee vir kwotasies: QUO-0001.
 
@@ -111,7 +111,7 @@ Drie reëls wat jou geld spaar:
 
 Sit ’n geldigheidsdatum op elke kwotasie. Materiaalpryse verander.
 
-Skryf neer wat nie ingesluit is nie. Die meeste geskille gaan oor werk wat die kliënt aangeneem het by die prys ingesluit is.
+Skryf neer wat nie ingesluit is nie. Die meeste geskille gaan oor werk waarvan die kliënt aangeneem het dat dit by die prys ingesluit is.
 
 Kry ’n deposito voordat jy materiaal koop. ’n Getekende kwotasie plus ’n deposito is ’n kontrak.
 
@@ -170,7 +170,7 @@ Daar is drie vlakke, gebaseer op die totaal met BTW ingesluit.
 
 ’n Belastingfaktuur word nie vereis waar die bedrag R50 of minder is nie, hoewel jy steeds stawende dokumentasie nodig het vir ’n aftrekking van insetbelasting.
 
-Vir leverings van R50 tot R5,000 word ’n verkorte belastingfaktuur toegelaat. Dit het meestal dieselfde inligting nodig, maar jy hoef nie die ontvanger se besonderhede in te sluit nie.
+Vir leverings van R50 tot R5,000 word ’n verkorte belastingfaktuur toegelaat. Dit het die meeste van dieselfde inligting nodig, maar jy hoef nie die ontvanger se besonderhede in te sluit nie.
 
 Vir ’n lewering van meer as R5,000 moet ’n volledige belastingfaktuur die volgende bevat: die woorde "Belastingfaktuur" ("Tax Invoice"), "BTW-faktuur" ("VAT Invoice") of "Faktuur" ("Invoice"); die verskaffer se naam, adres en BTW-registrasienommer; die ontvanger se naam, adres en, waar hulle geregistreer is, hulle BTW-registrasienommer; ’n volgnommer en die uitreikdatum; en ’n beskrywing van die goedere of dienste wat gelewer is en die hoeveelheid of volume. Dit moet ook die waarde van die lewering, die BTW wat gehef is, en die totaal wys.
 
@@ -257,14 +257,14 @@ Inligtingsbeampte: [Jou volle naam]
 WAT ONS INSAMEL
 - Jou naam
 - Jou kontakbesonderhede (foon, e-pos, adres)
-- Besonderhede van wat jy gekoop het of oor navraag gedoen het
+- Besonderhede van wat jy gekoop het of waaroor jy navraag gedoen het
 - Betalingsinligting (ons stoor nie kaartnommers nie)
 [Voeg reëls by of verwyder reëls sodat dit vir jou besigheid waar is]
 
 WAAROM ONS DIT INSAMEL
 - Om vir jou ’n kwotasie te gee en die werk te doen waarvoor jy gevra het
 - Om vir jou ’n faktuur te stuur en betaling te ontvang
-- Om rekords te hou wat SARS volgens wet vereis
+- Om rekords te hou wat SARS volgens die wet vereis
 - Om jou oor jou bestelling te kontak
 
 MET WIE ONS DIT DEEL
@@ -340,7 +340,7 @@ Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika. Ek verkoop [WAT] aan [WIE].
 Ek is [’n eenmansaak / ’n geregistreerde maatskappy].
 [Ek verkoop aanlyn / Ek verkoop persoonlik / albei.]
 
-Skryf bepalings en voorwaardes vir my besigheid in eenvoudige Engels wat
+Skryf bepalings en voorwaardes vir my besigheid in eenvoudige taal wat
 ’n graad 8-leerder kan lees.
 
 Dek:
@@ -365,7 +365,7 @@ Lys ná die dokument elke klousule waaroor jy onseker is en waaroor ek
 met ’n prokureur behoort te gaan praat.
 ```
 
-Die Consumer Protection Act vereis eenvoudige taal. ’n Dokument wat jou kliënt nie kan verstaan nie, kan onafdwingbaar wees, so moenie die KI vra om dit regsgeleerd te laat klink nie.
+Die Consumer Protection Act vereis eenvoudige taal. ’n Dokument wat jou kliënt nie kan verstaan nie, kan onafdwingbaar wees, so moenie die KI vra om dit soos regstaal te laat klink nie.
 
 ### ’n Eenvoudige diensooreenkoms
 
@@ -373,7 +373,7 @@ Die Consumer Protection Act vereis eenvoudige taal. ’n Dokument wat jou kliën
 Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika. Ek het ’n kort skriftelike ooreenkoms
 nodig vir werk bo R[BEDRAG].
 
-Skryf ’n ooreenkoms van een bladsy in eenvoudige Engels wat die volgende dek:
+Skryf ’n ooreenkoms van een bladsy in eenvoudige taal wat die volgende dek:
 - Wie die partye is
 - Presies watter werk ek sal doen
 - Presies wat nie ingesluit is nie
@@ -382,7 +382,7 @@ Skryf ’n ooreenkoms van een bladsy in eenvoudige Engels wat die volgende dek:
 - Wat gebeur as die kliënt die omvang verander
 - Wat gebeur as die kliënt nie betaal nie
 - Wie die werk besit wanneer dit klaar is
-- Hoe enige kant kan kanselleer
+- Hoe enige party kan kanselleer
 - Watter Suid-Afrikaanse reg van toepassing is
 
 Gebruik [VIERKANTIGE HAKIES] vir enigiets wat ek per werk invul.
@@ -402,7 +402,7 @@ handtekeningblok vir die persoon wat die goedere ontvang. Hou dit by een bladsy.
 
 ## Dokumente wat jy waarskynlik nog nie nodig het nie
 
-’n Sakeplan. Net nodig om geld by ’n bank of belegger in te samel.
+’n Sakeplan. Net nodig om geld by ’n bank of belegger te kry.
 
 ’n Dienskontrak. Net wanneer jy iemand in diens neem. Wanneer jy dit doen, kry ’n behoorlike een, want die Basic Conditions of Employment Act is streng en foute is duur.
 

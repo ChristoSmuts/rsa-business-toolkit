@@ -36,7 +36,7 @@ Gratis rekenaarsagteware. Laai dit af van libreoffice.org. Dit werk op Windows, 
 
 Sterk punte: heeltemal vanlyn, so geen datakoste nie en geen probleem tydens beurtkrag as jou skootrekenaar gelaai is nie. Sterk met presiese bladsyuitleg. Goeie briefsamevoeging (mail merge) om dieselfde brief aan baie kliënte te stuur. Uitstekende PDF-uitvoer.
 
-Swak punte: geen praktiese redigering op ’n selfoon nie. Daar is ’n Android-leser, maar jy sal nie jou administrasie daarop van ’n foon af doen nie. Die spyskaarte lyk anders as Microsoft Office en dit neem ’n week om daaraan gewoond te raak. Niks word gerugsteun tensy jy dit doen nie.
+Swak punte: geen praktiese redigering op ’n selfoon nie. Daar is ’n Android-leser, maar jy sal nie jou administrasie daarop van ’n foon af doen nie. Die kieslyste lyk anders as Microsoft Office en dit neem ’n week om daaraan gewoond te raak. Niks word gerugsteun tensy jy dit doen nie.
 
 ### OnlyOffice
 
@@ -52,11 +52,11 @@ Gebruik Google Docs en Google Sheets as jou daaglikse gereedskap. Installeer Lib
 
 Waarom:
 
-Jy sal die meeste van jou administrasie op jou foon doen, tussen werke. Google werk daar. LibreOffice nie.
+Jy sal die meeste van jou administrasie op jou foon doen, tussen werke. Google werk daar. LibreOffice werk nie daar nie.
 
 Jou kwotasie- en faktuursjablone is op een plek en jy dupliseer hulle vir elke werk. Dit is makliker in Google Drive as in vouers op ’n skootrekenaar.
 
-As jou skootrekenaar gesteel word of die hardeskyf gaan dood, stop jou besigheid nie. Dit is belangriker as enige funksie.
+As jou skootrekenaar gesteel word of die hardeskyf doodgaan, stop jou besigheid nie. Dit is belangriker as enige funksie.
 
 LibreOffice help jou wanneer daar geen data en geen sein is nie, en dit maak beter PDF’s vir enigiets wat jy druk.
 
@@ -108,7 +108,7 @@ Vanlyn werk. Google Docs het ’n vanlyn modus, maar jy moet dit aanskakel voord
 
 Gekraakte Microsoft Office. Dit is onwettig, dit dra kwaadwillige sagteware, en dit sal op die slegste tyd faal. LibreOffice en OnlyOffice doen dieselfde werk wettig en gratis.
 
-Om in die eerste jaar vir rekeningkundige sagteware te betaal. ’n Sigblad en ’n vouer met gefotografeerde strokies is genoeg totdat jy verby ongeveer R500,000 omset is of voorraad het om by te hou.
+Om in die eerste jaar vir rekeningkundige sagteware te betaal. ’n Sigblad en ’n vouer met gefotografeerde strokies is genoeg totdat jou omset verby ongeveer R500,000 is of jy voorraad het om by te hou.
 
 Om ’n intekening op ’n webwerfbouer te koop voordat jy ’n kliënt het. ’n Google Business Profile en ’n WhatsApp-katalogus kos niks nie en lei dikwels beter tot verkope.
 

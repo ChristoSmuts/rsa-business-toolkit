@@ -47,7 +47,7 @@ Hierdie bladsy is bedoel om uitgedruk te word, so die afkortings word hier verdu
 
 - [ ] ’n Naam gekies en dit nagegaan by CIPC, as ’n .co.za-domein, en op sosiale media
 - [ ] Die domein gekoop, selfs al is daar nog nie ’n webwerf nie
-- [ ] ’n Handelsmerkopsomming van een bladsy gemaak (`02-branding-and-marketing/01`)
+- [ ] ’n Handelsmerkgids van een bladsy gemaak (`02-branding-and-marketing/01`)
 - [ ] ’n Kwotasiesjabloon gemaak
 - [ ] ’n Faktuursjabloon gemaak, met die korrekte BTW-bewoording vir my situasie
 - [ ] Bepalings en voorwaardes geskryf
@@ -60,7 +60,7 @@ Hierdie bladsy is bedoel om uitgedruk te word, so die afkortings word hier verdu
 - [ ] My inligtingsbeampte (Information Officer) by inforegulator.org.za geregistreer (gratis)
 - [ ] Bevestig dat ek ’n SARS-inkomstebelastingnommer het
 - [ ] As voorlopige belastingbetaler (provisional taxpayer) geregistreer
-- [ ] Besluit tussen eenmansaak of maatskappy, en geregistreer as dit nodig is
+- [ ] Besluit tussen ’n eenmansaak en ’n maatskappy, en geregistreer as dit nodig is
 - [ ] As ’n maatskappy: die geregistreerde verteenwoordiger (registered representative) by SARS bevestig
 - [ ] As ’n maatskappy: inligting oor voordelige eienaarskap (beneficial ownership) ingedien (gratis)
 - [ ] ’n B-BBEE-beëdigde verklaring laat teken, as ’n kliënt daarvoor gevra het (gratis)
@@ -72,7 +72,7 @@ Hierdie bladsy is bedoel om uitgedruk te word, so die afkortings word hier verdu
 - [ ] My eerste drie kliënte vir resensies gevra
 
 **Elke verkoping waar ek die kliënt nooit ontmoet nie, of net een keer**
-- [ ] Geld is in my saldo weerspieël (reflected), nie "hangend" nie, voordat enigiets oorhandig word
+- [ ] Die geld is in my saldo, nie "hangend" ("pending") nie, voordat enigiets oorhandig word
 - [ ] Geen goedere vrygestel op grond van ’n skermskoot, SMS of PDF-betalingsbewys nie
 - [ ] Ontmoet op ’n openbare, besige plek met kameras, in daglig; iemand ingelig; iemand by my
 - [ ] Vir ’n voertuig: eers ’n afskrif van die lisensie en ID ontvang, sleutels in my hand gehou, geen toetsrit alleen nie
@@ -99,7 +99,7 @@ Sien [Bestuur van ’n Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/06-ru
 
 **Elke jaar**
 - [ ] Verklaring oor voordelige eienaarskap is op datum
-- [ ] CIPC se jaarlikse opgawe binne 30 werksdae ná die herdenking van registrasie ingedien
+- [ ] CIPC se jaarlikse opgawe binne 30 werksdae ná die herdenkingsdatum van registrasie ingedien
 - [ ] Jaarlikse finansiële state opgestel
 - [ ] Public Interest Score (openbare-belangtelling) aan die einde van die jaar bereken
 - [ ] Financial Accountability Supplement of state saam met die jaarlikse opgawe ingedien
@@ -125,12 +125,12 @@ Sien [Bestuur van ’n Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/06-ru
 - [ ] Motorhandelversekering wat voorraad en toetsritte insluit
 - [ ] Verkoopooreenkoms met ’n genommerde lys van gebreke wat die koper parafeer
 - [ ] Besluit oor BTW geneem, met nosionele insetbelasting deurgewerk
-- [ ] VAT264-proses in plek, as jy geregistreer is
+- [ ] VAT264-proses in plek, as ek geregistreer is
 
 **Kos** (`04-business-types/02`)
 - [ ] Geakkrediteerde R638-opleiding vir my en elke voedselhanteerder
 - [ ] Perseel volgens R638-standaarde voorberei
-- [ ] Aansoek om ’n COA gedoen deur die munisipaliteit se afdeling vir omgewingsgesondheid
+- [ ] Aansoek om ’n COA gedoen by die munisipaliteit se afdeling vir omgewingsgesondheid
 - [ ] COA teen die muur vertoon
 - [ ] Munisipale besigheidslisensie
 - [ ] Brandnakoming en gas-CoC, waar van toepassing
@@ -162,7 +162,7 @@ Sien [Bestuur van ’n Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/06-ru
 
 **Professionele en kreatiewe werk** (`04-business-types/06`)
 - [ ] Nagegaan of ek van omsetbelasting uitgesluit is voordat ek dit kies
-- [ ] Diensooreenkoms wat omvang, rondtes van wysigings, IE en betaling dek
+- [ ] Diensooreenkoms wat omvang, rondtes van wysigings, IP en betaling dek
 - [ ] Klousule dat eienaarskap by betaling oorgaan in elke kontrak
 - [ ] Berekening vir ’n tuiskantoor gedoen, as ek kwalifiseer
 - [ ] Nagegaan dat ek nie soos ’n werknemer van een kliënt lyk nie
@@ -184,7 +184,7 @@ Sit elkeen hiervan in jou foon met ’n waarskuwing twee weke vooruit.
 | Maandeliks, as jy ’n betaalstaat het | EMP201 teen die 7de, of die werksdag daarvoor as die 7de op ’n naweek val |
 | Voor die einde van die finansiële jaar | Gaan die direkteur se leningsrekening na en vereffen dit |
 | Twee keer per jaar, as jy ’n werkgewer is | EMP501-rekonsiliasie |
-| Herdenking van registrasie | CIPC se jaarlikse opgawe, binne 30 werksdae, as jy ’n maatskappy het |
+| Herdenkingsdatum van registrasie | CIPC se jaarlikse opgawe, binne 30 werksdae, as jy ’n maatskappy het |
 | Voor die jaarlikse opgawe | Verklaring oor voordelige eienaarskap, anders word die opgawe geblokkeer |
 | Binne 12 maande ná die einde van die jaar | ITR14-belastingopgawe vir die maatskappy |
 | 12 maande ná ondertekening | Hernu die B-BBEE-beëdigde verklaring |

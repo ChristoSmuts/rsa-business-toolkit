@@ -53,7 +53,7 @@ Die volledige teks van enige Suid-Afrikaanse wet is gratis beskikbaar by www.gov
 
 **[Amptelik] SARS — Omsetbelasting**
 https://www.sars.gov.za/types-of-tax/turnover-tax/
-Ondersteun: wanneer ’n mikrobesigheid kwalifiseer, die drempel van R2.3 miljoen vir jare van aanslag wat tussen 1 Maart 2026 en 28 Februarie 2027 eindig, ligter rekordhouding.
+Ondersteun: wanneer ’n besigheid as ’n mikrobesigheid kwalifiseer, die drempel van R2.3 miljoen vir jare van aanslag wat tussen 1 Maart 2026 en 28 Februarie 2027 eindig, ligter rekordhouding.
 
 **[Amptelik] SARS — Begroting 2026: gereelde vrae**
 https://www.sars.gov.za/about/sars-tax-and-customs-system/budget/budget-2026-frequently-asked-questions/
@@ -131,7 +131,7 @@ Ondersteun: onafhanklike oorsigte word nie vir eienaarbestuurde winsmaatskappye 
 Onderliggende wetgewing: Companies Act 71 of 2008 — s4 (solvensie- en likiditeitstoets), s22 (roekelose handeldrywing), s32 (maatskappynaam en registrasienommer op dokumente), s33 (jaarlikse opgawes), s76 (pligte van direkteure), s77 (aanspreeklikheid van direkteure), s218(2) (aanspreeklikheid vir oortredings). Consumer Protection Act 68 of 2008 — s79 en s80 (besigheidsname; die s80-register is nog nie in werking gestel nie). Income Tax Act 58 of 1962 — s22 (handelsvoorraad wat aan die einde van die jaar in berekening gebring word), s12E (kleinsakekorporasies, insluitend die beperking op die besit van aandele in ’n ander maatskappy). Companies Regulations 2011 — regulasie 26 (Public Interest Score), regulasies 28 en 29 (oudit en onafhanklike oorsig), tabel CR 2B (fooie vir jaarlikse opgawes).
 
 Sekondêr, vir fooie, sperdatums en hoe deregistrasie werk:
-- Govchain, Company annual returns — https://www.govchain.co.za/services/company-annual-returns — die tydperk van 30 werksdae vanaf die herdenking van inlywing, en dat fooie kragtens tabel CR 2B by wet vasgestel is.
+- Govchain, Company annual returns — https://www.govchain.co.za/services/company-annual-returns — die tydperk van 30 werksdae vanaf die herdenkingsdatum van inlywing, en dat fooie kragtens tabel CR 2B by wet vasgestel is.
 - Admin Boss — https://www.adminboss.co.za/cipc-compliance-south-africa-annual-returns-beneficial-ownership-sars-deregistration/ — die fooie van R100 tot R3,000 as jy betyds is en R150 tot R4,000 as jy laat is, en die volgorde en skatting van die tydlyn vir deregistrasie by SARS.
 - OurPower — https://www.ourpower.co.za/tools/company-registration/annual-return-cipc-explained — die harde stop vir voordelige eienaarskap sedert 1 Julie 2024, die sneller vir deregistrasie ná twee jaar, en die verskil in koste tussen herstel ná deregistrasie weens jaarlikse opgawes (AR) en herstel ná finale deregistrasie.
 - ThriveCFO — https://thrivecfo.co.za/cipc-annual-returns-avoid-deregistration-2026/ — die gevolge van deregistrasie, insluitend bona vacantia, en herstel met vorm CoR 40.5.
@@ -297,9 +297,9 @@ Die siviele jurisdiksie van die landdroshof (distrik R200,000, streek R200,000 t
 
 ## Kosbesighede
 
-**[Amptelik] Regulation R638 of 2018** kragtens die Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 — General Hygiene Requirements for Food Premises, the Transport of Food and Related Matters. Dit het R962 vervang. Beskikbaar deur gov.za.
+**[Amptelik] Regulation R638 of 2018** kragtens die Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 — General Hygiene Requirements for Food Premises, the Transport of Food and Related Matters. Dit het R962 vervang. Beskikbaar op gov.za.
 
-**[Amptelik] Regulation R146 of 2012** — Labelling and Advertising of Foodstuffs. Beskikbaar deur gov.za.
+**[Amptelik] Regulation R146 of 2012** — Labelling and Advertising of Foodstuffs. Beskikbaar op gov.za.
 
 Sekondêr:
 - Food Focus — https://www.foodfocus.co.za/home/whats-hot/Starting-a-new-food-business/How-do-I-get-a-Certificate-of-Acceptability — die proses vir ’n COA en die posisie oor lisensiëring kragtens die Businesses Act.
@@ -336,7 +336,7 @@ Amptelike reguleerders: National Credit Regulator, ncr.org.za. Financial Sector 
 Die SARB se metode "kyk, voel, kantel" ("look, feel, tilt") word op www.resbank.co.za en in die SARB Currency App gepubliseer. Die gereedskapstel se beskrywing van die verhewe druk, die lyne vir visueel gestremdes, die sekuriteitsdraad, die watermerk en die ink wat van kleur verander, kom uit SARB-materiaal soos gerapporteer deur:
 - IOL / The Mercury — https://iol.co.za/mercury/news/2022-11-02-how-to-spot-counterfeit-money-warning-issued-after-fake-r200-notes-were-used-at-a-durban-north-restaurant/
 - The Citizen (plaaslike koerante) — https://www.citizen.co.za/brakpan-herald/news-headlines/2023/03/13/know-your-money/ en https://www.citizen.co.za/south-coast-herald/news-headlines/local-news/2023/04/12/take-note-of-banknote-security-features/
-Ondersteun: dat vals note nie omgeruil kan word nie en by SAPS aangemeld moet word; dat net die SARB geldeenhede mag uitreik, kragtens artikel 14 van die SARB Act.
+Ondersteun: dat vals note nie omgeruil kan word nie en by SAPS aangemeld moet word; dat net die SARB geld mag uitreik, kragtens artikel 14 van die SARB Act.
 
 **[Amptelik] SABRIC — South African Banking Risk Information Centre**
 https://www.sabric.co.za
@@ -344,7 +344,7 @@ Ondersteun: die aanmelding van bedrog. Die syfers vir 2024 (voorvalle van digita
 
 **PayShap-limiete**
 - TechCentral — https://techcentral.co.za/payshap-payment-limit-raised-to-r50-000/254663/ — BankservAfrica het die stelsellimiet van R3,000 na R50,000 verhoog.
-- Solmate — https://solmate.co.za/blog/payshap-instant-payments-south-africa/ — dat banke hulle eie, laer limiete per transaksie en per dag stel, en dat betalings binne sekondes verreken word en na ’n gewone rekeningnommer kan gaan.
+- Solmate — https://solmate.co.za/blog/payshap-instant-payments-south-africa/ — dat banke hulle eie, laer limiete per transaksie en per dag stel, en dat betalings binne sekondes verreken word (clear) en na ’n gewone rekeningnommer kan gaan.
 - Netcash — https://netcash.co.za/blog/how-businesses-can-use-payshap-for-payroll-creditor-payments/ — voorbeelde van limiete per bank. Banklimiete verander; kyk in jou eie app.
 
 **Vals betalingsbewyse en swendelary op aanlyn markplekke**
@@ -375,7 +375,7 @@ Soneringsreëls word deur elke munisipaliteit bepaal. Die enigste betroubare bro
 
 **COIDA en werkende direkteure.** Die wet se omskrywing van werknemer sluit ’n direkteur of lid van ’n regspersoon in wat ’n dienskontrak aangegaan het, vir sover hulle binne die bestek van daardie diens optree, en sluit aandeelhouers of stil vennote uit wat net dividende of ’n winsaandeel ontvang. Sien https://www.eohcb.co.za/post/coida-who-must-register-for-coida en https://www.mdacc.co.za/do-i-need-to-register-for-workmens-compensation/. Dat ’n werkende direkteur wat ’n maandelikse salaris kry, geregistreer moet word en ’n Return of Earnings (verdiensteopgawe) moet indien, selfs as die enigste werknemer, kom uit ClearComply se gids van 2026: https://www.clearcomply.co.za/blog/coida-compensation-fund-south-africa. Eienaars van eenmansake en vennote is nie werknemers kragtens COIDA nie: https://labourguide.co.za/coid/compensation-fund-registrations/compensation-fund-registration
 
-**Small Claims Court (Kleineisehof): wie ’n eis mag instel.** Small Claims Courts Act 61 of 1984, artikel 7(1) — net ’n natuurlike persoon mag ’n eis instel, en ’n regspersoon kan net as verweerder ’n party word. Gekonsolideerde teks: https://www.saflii.org/za/legis/consol_act/scca1984214/. Bevestig deur Legal Aid South Africa (https://legal-aid.co.za/2018/09/26/instituting-action-in-the-small-claims-court-guide/), Werksmans Attorneys (https://werksmans.com/a-brief-overview-of-the-small-claims-court-2026-update/) en die Department of Justice (https://www.justice.gov.za/scc/scc_info.htm). ’n Aangewese direkteur of beampte mag verskyn vir ’n regspersoon wat ’n verweerder is. Die verjaringstermyn van drie jaar kom uit die oorsig van Werksmans.
+**Small Claims Court (Kleineisehof): wie ’n eis mag instel.** Small Claims Courts Act 61 of 1984, artikel 7(1) — net ’n natuurlike persoon mag ’n eis instel, en ’n regspersoon mag net as verweerder ’n party word. Gekonsolideerde teks: https://www.saflii.org/za/legis/consol_act/scca1984214/. Bevestig deur Legal Aid South Africa (https://legal-aid.co.za/2018/09/26/instituting-action-in-the-small-claims-court-guide/), Werksmans Attorneys (https://werksmans.com/a-brief-overview-of-the-small-claims-court-2026-update/) en die Department of Justice (https://www.justice.gov.za/scc/scc_info.htm). ’n Benoemde direkteur of beampte mag verskyn vir ’n regspersoon wat ’n verweerder is. Die verjaringstermyn van drie jaar kom uit die oorsig van Werksmans.
 
 **Dood van ’n enigste direkteur en aandeelhouer.** Companies Act 71 of 2008 — ’n persoon hou op om ’n direkteur te wees wanneer hy of sy sterf; direkteure word deur aandeelhouers aangestel. Administration of Estates Act 66 of 1965, artikel 13(1) — ’n bestorwe boedel moet binne 14 dae by die Master of the High Court (Meester van die Hooggeregshof) aangemeld word. Suid-Afrikaanse kommentaar oor die verlamming wat volg, die afhanklikheid van die akte van oprigting (MOI), en die Saga Wines-saak: Al Baraka Bank se regsdienste (https://www.albaraka.co.za/blogs/legalease-3-2023/business-owners-beware-your-death-could-result-in-the-closure-of-your-business), Shandu Attorneys (https://shanduattorneys.co.za/2019/11/27/business-continuity-risk-death-of-a-companys-sole-shareholder-and-sole-director/), FindAnAttorney (https://www.findanattorney.co.za/content_company-law-deceased-estate) en Iota (https://www.iota.co.za/news-1/business-continuity-of-sole-shareholder-and-director-dying), wat die skatting van twee weke tot drie maande gee om ’n eksekuteur aan te stel.
 
