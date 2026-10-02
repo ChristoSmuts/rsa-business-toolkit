@@ -1,45 +1,37 @@
 # Outstanding work
 
-**Status on 23 September 2026. All three foundation packages are merged and `pnpm gate` is GREEN.** The working tree is clean.
+**Status on 2 October 2026. WP-20 (the site) is built and has passed review: passes 8 and 9 were clean, which meets the two-consecutive-clean-pass rule. It is ready to merge, on branch `claude/lucid-bell-t5acdn`; it is not merged yet.** `main` is unchanged at `b010d5b` with `pnpm gate` green.
 
-## Resolved: the full gate failed on a harness defect, not on the pages
+Read `docs/build-plan.md` first for the design, then this file for where the work stopped. `docs/reviews/merge-checklist.md` holds the tasks that must happen at merge time, including WP-20's.
 
-`pnpm gate` was red because `pnpm test:e2e` reported eight failures on `/` and `/design-system/` across chromium, mobile and nojs, while every project passed when run one at a time with `--workers=1`. All eight carried the same message:
+## Where to pick up (2 October 2026)
 
-```
-Test timeout of 30000ms exceeded while setting up "page".
-```
+### WP-20, the site: ready to merge
 
-No assertion ever ran in any of them, and the failing set moved from run to run (a second run failed `[webkit] smoke` and `[webkit] not-found` instead of two of the chromium ones). `/` and `/design-system/` were not implicated: they are simply the first two tests in file order, so they are what each worker pays cold-start cost on. The site is fine.
+Branch `claude/lucid-bell-t5acdn` (pushed). It carries `wp/site` (milestone 1, built on the Windows machine, tip `9de5fa2`), a merge of `main`, milestone 2, nine review passes and their fixes.
 
-The cause is host cost charged to the wrong budget. Playwright charges **test-scoped fixture setup to the test timeout**, and spawning a Chromium renderer costs 22.6 s on this machine with nothing else running (up to 44.2 s with eight browsers starting at once; `newContext` costs 10 ms, WebKit about 4.6 s, which is why WebKit rarely failed). A 30 s test therefore had about 7 s of real budget, and any extra load spent it. The serialised runs every review relied on were green by that same 7 s margin, so **the serialised green was not trustworthy either** — the fix was needed regardless of how the projects are scheduled.
+What it gives you: 96 pages, every route in build plan B1 in English and Afrikaans except the wizard and My path (WP-31): home, five section landings, all 36 documents, the business-types hub with tiles, contents, templates, about, a search page, and a bilingual 404. The Afrikaans routes show the English documents with the "not translated yet" notice until translations land.
 
-`.github/workflows/ci.yml` runs one project per matrix job, so CI never ran the four-project shape at all; on a two-core runner Playwright would have used one worker. The failing configuration was local only.
+Guards that now fail `pnpm build` (`scripts/dist/check-trust.ts`, run after the link audit):
+- every document page, in both languages, must show the AI notice with its status, its "How this was made" link and the sentence that matches what the page shows, and a "Sources for this page" section that lists sources or gives a note with a link to the register;
+- every Afrikaans page is checked for language of parts both ways: English text marked as Afrikaans, and Afrikaans text marked as English.
 
-Fixed by giving the `page` fixture a setup budget of its own (`tests/e2e/helpers/timeouts.ts`, `PW_PAGE_SETUP_TIMEOUT`, 120 s), so the 30 s test timeout is the budget for what a spec does. Nothing was serialised, no test timeout was raised and no test was skipped. `tests/unit/e2e-harness.test.ts` fails if the fixture loses its `timeout`, and `docs/testing.md` records how to prove the new budget can still fail.
+Four flags in `src/lib/routes.ts` keep the site from offering what is not built: `WIZARD_AVAILABLE` (WP-31), `SEARCH_AVAILABLE` (WP-33), `TEMPLATES_FILLABLE` (WP-32) and `CHECKLIST_SAVES` (WP-30). Each later package sets its flag to `true` in the change that builds the feature.
 
-Read `docs/build-plan.md` first for the design, then this file for where the work stopped. `docs/reviews/merge-checklist.md` holds the tasks that must happen at merge time.
+Gate on the last commit: `pnpm gate:fast` green (unit and dom tests, 32 content tests, no drift); `pnpm build` green; Playwright chromium, mobile and nojs green (512 passed, 85 skipped, the skips being chromium-only loops); `pnpm test:a11y` 192 passed; Lighthouse passed both presets on nine page types. WebKit could not be run in the cloud environment (only Chromium was installed), so run it locally before or at merge; it is on the merge checklist.
 
-## Where to pick up (23 September, work stopped on the user's instruction)
+The review record is `docs/reviews/WP-20-m1-pass1.md` and `WP-20-pass2.md` to `WP-20-pass9.md`. Passes 3, 4, 6 and 7 found blockers or majors and reset the count; two of those were introduced by fixes for the pass before, which the next whole-diff pass caught. The minors from pass 9 were fixed afterwards under the 17 September amendment; the integrated review of `main` after merge verifies them. Deferred minors, with reasons, are in `docs/reviews/backlog.md`.
 
-The foundation has no outstanding work and `pnpm gate` is green on `main`.
+How the cloud session ran the browser tests, in case it is needed again: Playwright 1.63 expects Chromium build 1243 and the container had 1194, so a symlink shim in the session scratchpad mapped one onto the other. On the Windows machine, the installed browsers are used as before.
 
-**The site package has started.** Branch `wp/site`, worktree `C:\_Projects\Local\bt-wt\site`, tip `9de5fa2`, clean, based on `main` at `b69fd76`.
+### Decided on 2 October 2026
 
-- **Milestone 1 (rendering and navigation) is built and its own gate is green**: all 12 block kinds and 10 inline-run kinds rendered from the real corpus, the D5 trust components (`AiNotice`, `TranslationNotice`, `SourcesForPage`), the full navigation set, and one `noindex` reference page at `/design-system/content/`. 886 unit tests across 27 files; chromium, webkit, mobile, nojs and a11y all green run one at a time. The branch's own handover commit is `9de5fa2`.
-- **Milestone 1 has NOT been reviewed.** A review pass was running and was stopped part-way, during guard-mutation testing. **No report was written**, so there are no findings to act on and nothing was concluded. It left one deliberate mutation in `src/lib/content/manifest.ts` (a `docrefText` branch), which has been reverted — the worktree is clean and matches `9de5fa2`.
-- **Next step: re-run the Milestone 1 review from the start** (`docs/reviews/WP-20-m1-pass1.md` does not exist yet), then the fix round it calls for, then Milestone 2 (pages and routes) per the brief, which wants a review after each milestone and a whole-package pass at the end.
+- **Licence:** MIT for the code (`LICENSE`), and the guide's text dedicated to the public domain under CC0 1.0 (`docs/rsa-business-toolkit/LICENSE.md`). The guide's Licence section, its combined edition, the about page and the README say so. This change is commit `1d68b74` on the WP-20 branch and touches shared files; keep it as its own commit at merge (merge checklist).
+- **Hosting:** GitHub Pages, set up by the owner once WP-20 is on `main`. `.github/workflows/deploy.yml` is ready; set the Pages source to GitHub Actions. `BASE_PATH` and `SITE_URL` default to the Pages values when the repository variables are unset.
 
-While building Milestone 1 the author found and fixed three real defects in already-merged, already-reviewed code, which is worth knowing when reviewing it:
-- `TableScroll` was not `position: relative`, so absolutely positioned descendants escaped the scroll region and the document measured 581px wide at a 320px viewport with nothing visibly out of place. That had survived six design-system review passes.
-- `/design-system/` linked `lookup/sources/`, which is a document id and not a route (the route is `sources/`), so that `KNOWN_FUTURE_ROUTES` entry could never self-delete.
-- `pnpm test:a11y` caught a defect the author had just shipped: fenced code blocks were focusable scrollable regions.
+### Still paused pending the owner's go-ahead
 
-The interactive packages, the Afrikaans document translations and the accuracy review phase remain **paused pending the user's go-ahead**. The suggested order after the site package is the one in the build plan Part D.
-
-Two things need a decision from the user before anything is published:
-- the licence (MIT for code, the toolkit's own terms for content);
-- the GitHub remote, the `BASE_PATH` and `SITE_URL` repository variables, and setting the Pages source to GitHub Actions.
+The interactive packages (WP-30 to WP-33), the Afrikaans document translations (the glossary branch `content/af-glossary` and the other 35 documents), and the accuracy review (P4a). The suggested order is the one in the build plan Part D. Before public launch the build plan also wants the accuracy review done and the whole-app review (P6).
 
 ## What is merged (the three foundation packages, 17–20 September)
 
@@ -163,7 +155,7 @@ Before starting them:
 - **Accuracy review (P4a).** Defined in the build plan. Every fact checked against an official source, with the URL, the supporting quote and the date recorded. This is the phase that turns "AI-checked" into something a reader can rely on, and it has not begun.
 - **Human expert review.** Recommended before public launch for the core tax, company and vehicle-dealer documents. No page may be marked `human-verified` without a named reviewer and a date.
 - **GitHub remote.** Not created. The deploy workflow is written and needs repository variables `BASE_PATH` and `SITE_URL`, with the Pages source set to GitHub Actions.
-- **Licence.** The plan assumes MIT for code and the toolkit's own terms for content. Not confirmed.
+- **Licence.** Decided on 2 October 2026: MIT for code, CC0 1.0 for the guide's text (see the top of this file).
 
 ## Suggested order when picking this up
 

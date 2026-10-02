@@ -252,7 +252,7 @@ pnpm 11 (`packageManager`, `engines.node ">=22.12 <25"`, `.npmrc` engine-strict 
 
 ### C8. Git setup (first step of execution)
 `git init -b main`; `git config core.autocrlf false`; add `.gitattributes`, `.editorconfig`, `.gitignore` first; commit `chore: import RSA business toolkit markdown source (2026-09-14 edition)`. Then one commit per phase/package (`chore(scaffold)`, `feat(content)`, `feat(design)`, `feat(components)`, `feat(pages)`, `feat(i18n)`, `feat(af): translate <doc>` per doc, `feat(wizard)`, `feat(search)`, `feat(templates)`, `test(e2e)`, `ci:`, `docs:`). Tags `v0.1.0-scaffold`, `v0.2.0-content`, `v0.3.0-ui`, `v0.4.0-interactive`, `v0.5.0-af`, `v0.9.0-rc`, `v1.0.0`. Never commit `dist`, reports, `.env`; `src/data` and screenshots are committed.
-Licence assumption (flag to user at delivery): MIT for code; content keeps the toolkit's own "use it, copy it, change it, no attribution required" terms with the AI disclosure retained.
+Licence assumption (flag to user at delivery): MIT for code; content keeps the toolkit's own "use it, copy it, change it, no attribution required" terms with the AI disclosure retained. Decided by the owner on 2026-10-02: MIT for code (`LICENSE`), CC0 1.0 for the guide's text (`docs/rsa-business-toolkit/LICENSE.md`); keeping the AI disclosure with copies is a request, not a condition.
 
 ## Part D — Multi-agent execution and review protocol
 
