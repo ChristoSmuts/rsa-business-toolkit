@@ -540,8 +540,8 @@ Reëls:
 - Vermy kleure wat sterk met Suid-Afrikaanse politieke partye,
  banke of selfoonnetwerke verbind word. Sê vir my as een daardie probleem het.
 - Geen kleurverlope nie.
-- Sê vir elke paar van teks op agtergrond watter pare jy BEDOEL om
- leesbaar te wees. Moenie beweer dat jy die kontras bereken het nie. Ek sal dit self nagaan.
+- Sê by elke paar van teks op agtergrond of jy BEDOEL dat dit
+ leesbaar moet wees. Moenie beweer dat jy die kontras bereken het nie. Ek sal dit self nagaan.
 
 Nommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.
 ```
@@ -742,7 +742,7 @@ motorhandelaar nie, geen chroom, geen luukse taal nie.
 1. Van Wyk Bakkies
  Van die eienaar se van plus wat hy verkoop. Eenvoudig, eerlik, plaaslik.
  Risiko: algemene van, so die domein is dalk reeds in gebruik. Klink soos: niks
- bekend wat problematies is nie, kyk by iemand wat isiXhosa praat.
+ bekend wat problematies is nie, vra iemand wat isiXhosa praat.
  Domein: vanwykbakkies.co.za
 
 2. Clipboard Motors
