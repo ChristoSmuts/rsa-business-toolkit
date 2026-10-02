@@ -296,9 +296,9 @@
     { "en": "licence", "af": "lisensie", "note": "", "keepVerbatim": false },
     { "en": "trading licence", "af": "handelslisensie", "note": "", "keepVerbatim": false },
     {
-      "en": "Business Act licence",
-      "af": "Business Act-lisensie",
-      "note": "Change to 'Businesses Act-lisensie' only if the English source changes.",
+      "en": "Businesses Act licence",
+      "af": "Businesses Act-lisensie",
+      "note": "The English source says 'Businesses Act licence' (the Businesses Act 71 of 1991).",
       "keepVerbatim": false
     },
     {

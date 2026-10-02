@@ -340,10 +340,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Ons sal jou net bemarkingsboodskappe stuur as jy ingestem het om dit te ontvang. Jy kan ons enige tyd vra om op te hou deur STOP te antwoord of vir ons ’n e-pos te stuur."
+          "v": "Ons sal jou net bemarkingsboodskappe stuur as jy ingestem het om dit te ontvang. Jy kan enige tyd vir ons sê om op te hou deur STOP te antwoord of vir ons ’n e-pos te stuur."
         }
       ],
-      "hash": "32f0b8fd5b3b8998",
+      "hash": "93e04d3d8ac36ecf",
       "id": "marketing.1",
       "kind": "paragraph",
       "sourceHash": "06f355610e4d4880"
@@ -451,7 +451,7 @@
       "sourceHash": "e49a61df006e3ed8"
     }
   ],
-  "contentHash": "523238bc19fbc844",
+  "contentHash": "d1332667c4ce1b7a",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

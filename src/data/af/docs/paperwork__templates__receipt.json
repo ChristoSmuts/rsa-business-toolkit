@@ -218,17 +218,17 @@
       "c": [
         {
           "t": "text",
-          "v": "Stuur net ’n kwitansie sodra die geld in jou rekeningsaldo is. Nie \"hangend\" (\"pending\") nie. ’n Kwitansie wat jy op grond van ’n skermskoot van ’n betalingsbewys stuur, is ’n kwitansie vir geld wat jy dalk nooit sal kry nie."
+          "v": "Stuur ’n kwitansie eers wanneer die geld in jou rekeningsaldo is. Nie \"hangend\" (\"pending\") nie. ’n Kwitansie wat jy op grond van ’n skermskoot van ’n betalingsbewys stuur, is ’n kwitansie vir geld wat jy dalk nooit sal kry nie."
         }
       ],
-      "hash": "54a59bc6e3dfa889",
+      "hash": "88844004ec330332",
       "id": "intro.7",
       "kind": "callout",
       "sourceHash": "d57b82f4ed2b8081",
       "style": "note"
     }
   ],
-  "contentHash": "fb3863099d053d30",
+  "contentHash": "80386f7df8d2b405",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

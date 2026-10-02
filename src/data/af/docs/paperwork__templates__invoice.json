@@ -17,10 +17,10 @@
         },
         {
           "t": "text",
-          "v": " Dit is die meeste klein besighede. Jy hoef nie te registreer voordat jou omset in enige deurlopende 12 maande R2.3 miljoen oorskry nie."
+          "v": " Dit geld vir die meeste klein besighede. Jy hoef nie te registreer voordat jou omset in enige deurlopende 12 maande R2.3 miljoen oorskry nie."
         }
       ],
-      "hash": "d4f9a7b81a343d10",
+      "hash": "4197a371ff7a8708",
       "id": "intro.1",
       "kind": "paragraph",
       "sourceHash": "9f9df21d38816dc4"
@@ -585,7 +585,7 @@
       "sourceHash": "5a00e94426e6e682"
     }
   ],
-  "contentHash": "c85ee1d3207be211",
+  "contentHash": "bd9ff729e9549952",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -635,7 +635,7 @@
       "flip-the-market"
     ]
   },
-  "summary": "Gebruik hierdie een as jy NIE vir BTW geregistreer is nie. Dit is die meeste klein besighede. Jy hoef nie te registreer voordat jou omset in enige deurlopende 12 maande R2.3 miljoen oorskry nie.",
+  "summary": "Gebruik hierdie een as jy NIE vir BTW geregistreer is nie. Dit geld vir die meeste klein besighede. Jy hoef nie te registreer voordat jou omset in enige deurlopende 12 maande R2.3 miljoen oorskry nie.",
   "tags": [
     "template"
   ],

@@ -8,10 +8,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Hoe om dit te gebruik: maak ’n afskrif, hernoem dit na die kwotasienommer, vervang alles in [VIERKANTIGE HAKIES], voer dit dan na PDF uit en stuur die PDF. Moet nooit die lêer wat geredigeer kan word, vir ’n kliënt stuur nie."
+          "v": "Hoe om dit te gebruik: maak ’n afskrif, hernoem dit na die kwotasienommer, vervang alles in [VIERKANTIGE HAKIES], voer dit dan na PDF uit en stuur die PDF. Moet nooit die redigeerbare lêer vir ’n kliënt stuur nie."
         }
       ],
-      "hash": "6cfd73934b5028fa",
+      "hash": "fef706f03c72615c",
       "id": "intro.1",
       "kind": "note",
       "sourceHash": "d871e32ec2e5c14b"
@@ -709,7 +709,7 @@
       "sourceHash": "989ea9c2004a8a78"
     }
   ],
-  "contentHash": "5cd5e31a175d5dee",
+  "contentHash": "d5d917894d274d0f",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
