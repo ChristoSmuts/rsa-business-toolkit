@@ -58,6 +58,37 @@ describe('A7 ranking cases', () => {
     }
   });
 
+  // Review WP-33 pass 1, major 1: a spaced code made the query stricter (1 result), not looser.
+  it.each(['VAT 264', 'vat 264', 'VAT 264 form'])(
+    '"%s" finds what VAT264 finds: the glossary entry and the conditions section',
+    (query) => {
+      const hrefs = runSearch(en.index, query, 'en', {}, BASE).map((result) => result.href);
+      expect(hrefs).toContain(`${BASE}glossary/#vat264`);
+      expect(hrefs).toContain(`${BASE}business-types/vehicle-dealer/#the-conditions-you-must-meet`);
+    },
+  );
+
+  it('e-filing, eFiling and efiling find the eFiling glossary entry first', () => {
+    for (const query of ['e-filing', 'eFiling', 'efiling']) {
+      expect(runSearch(en.index, query, 'en', {}, BASE)[0]?.href, query).toBe(
+        `${BASE}glossary/#efiling`,
+      );
+    }
+  });
+
+  it('spaced and joined codes find the same checklist items', () => {
+    for (const query of ['VAT 264', 'vat 264', 'VAT264']) {
+      expect(
+        runSearch(en.index, query, 'en', {}, BASE).map((r) => r.href),
+        query,
+      ).toContain(`${BASE}checklist/#vehicle-dealer`);
+    }
+  });
+
+  it('an unknown word with a lone number finds nothing, not every "Prompt 1"', () => {
+    expect(runSearch(en.index, 'zzzzqq 1', 'en', {}, BASE)).toEqual([]);
+  });
+
   it('notional prefix-matches "notional input tax"', () => {
     const results = runSearch(en.index, 'notion', 'en', { limit: 5 }, BASE);
     expect(results[0]?.href).toBe(`${BASE}glossary/#notional-input-tax`);
@@ -127,11 +158,25 @@ describe('the index content', () => {
     }
   });
 
-  it('marks English fallback entries in the Afrikaans index, and none in the English one', () => {
+  it('marks no entry as English: every document, glossary entry, task and question is translated', () => {
     expect(en.entries.every((entry) => entry.lang === undefined)).toBe(true);
-    const english = af.entries.filter((entry) => entry.lang === 'en');
-    // Until WP-40 translates the documents, every Afrikaans entry is English.
-    expect(english.length).toBe(af.entries.length);
+    // WP-40 translated all 36 documents. The English-fallback mark is tested on fixtures
+    // (tests/unit/search/entries.test.ts and client.test.ts, tests/dom/search.test.ts).
+    expect(af.entries.filter((entry) => entry.lang !== undefined)).toEqual([]);
+  });
+
+  it('finds an Afrikaans typo on the real data (A7: belastng → belasting)', () => {
+    const results = runSearch(af.index, 'belastng', 'af', { limit: 10 }, BASE);
+    expect(results.length).toBeGreaterThan(0);
+    expect(results.some((result) => /belasting/i.test(result.title))).toBe(true);
+    expect(results.every((result) => result.href.startsWith(`${BASE}af/`))).toBe(true);
+  });
+
+  it('finds Afrikaans words: omsetbelasting and BTW', () => {
+    expect(runSearch(af.index, 'omsetbelasting', 'af', {}, BASE)[0]?.href).toBe(
+      `${BASE}af/glossary/#turnover-tax`,
+    );
+    expect(runSearch(af.index, 'BTW', 'af', {}, BASE).length).toBeGreaterThan(0);
   });
 
   it('links Afrikaans results under /af/ with the shared English anchors', () => {

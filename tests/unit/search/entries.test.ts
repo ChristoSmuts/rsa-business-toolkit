@@ -2,7 +2,7 @@
  * `scripts/search/entries.ts` and friends on small fixtures: what becomes an entry, with which
  * title, breadcrumb, anchor, language and applicability.
  */
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
@@ -17,9 +17,10 @@ import {
   sectionEntries,
   taskEntries,
   termEntries,
+  usesWords,
   type IndexInput,
 } from '../../../scripts/search/entries';
-import { docFileName, loadIndexInput } from '../../../scripts/search/load';
+import { DATA_DIR, docFileName, loadIndexInput } from '../../../scripts/search/load';
 import type { Block, Doc, Manifest } from '../../../src/lib/content/schema';
 import { searchIndexUrl } from '../../../src/lib/search/files';
 import { INDEX_VERSION } from '../../../src/lib/search/options';
@@ -234,6 +235,22 @@ describe('text helpers', () => {
   });
 });
 
+describe('usesWords', () => {
+  // Review WP-33 pass 1, minor 5: "IP" opened the section that says "municipal".
+  it('matches whole words and plurals, never inside another word', () => {
+    expect(usesWords('Ask the municipal office', 'ip')).toBe(false);
+    expect(usesWords('Your income and POPIA', 'nco')).toBe(false);
+    expect(usesWords('Your income and POPIA', 'pop')).toBe(false);
+    expect(usesWords('Keep backups', 'ups')).toBe(false);
+    expect(usesWords('Protect your IP early', 'ip')).toBe(true);
+    expect(usesWords('Dividends are paid', 'dividend')).toBe(true);
+    expect(usesWords('Two lockups', 'lockup')).toBe(true);
+    expect(usesWords('Sê dit', 'se')).toBe(true);
+    expect(usesWords('anything', '')).toBe(false);
+    expect(usesWords('a (b) c', '(b)')).toBe(true);
+  });
+});
+
 describe('sectionEntries', () => {
   const entries = sectionEntries(input, doc);
 
@@ -351,10 +368,28 @@ describe('build and load', () => {
     expect(docFileName('paperwork/templates/invoice')).toBe('paperwork__templates__invoice.json');
   });
 
-  it('loads the Afrikaans input with English fallbacks from a data directory', () => {
+  it('loads the translated Afrikaans input', () => {
     const real = loadIndexInput('af');
     expect(real.docs.length).toBe(Object.keys(real.manifest.docs).length);
-    expect(real.glossary?.lang).toBe('en');
+    expect(real.docs.every((d) => d.lang === 'af')).toBe(true);
+    expect(real.glossary?.lang).toBe('af');
+    expect(real.tasks?.lang).toBe('af');
+  });
+
+  it('falls back to English, and marks it, where an Afrikaans file is missing', () => {
+    const dir = mkdtempSync(path.join(tmpdir(), 'st-search-fallback-'));
+    try {
+      cpSync(path.join(DATA_DIR, 'en'), path.join(dir, 'en'), { recursive: true });
+      cpSync(path.join(DATA_DIR, 'manifest.json'), path.join(dir, 'manifest.json'));
+      const input = loadIndexInput('af', dir);
+      expect(input.docs.every((d) => d.lang === 'en')).toBe(true);
+      expect(input.glossary?.lang).toBe('en');
+      const entries = buildEntries(input);
+      expect(entries.length).toBeGreaterThan(0);
+      expect(entries.every((e) => e.lang === 'en')).toBe(true);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 
   it('fails when a document has no JSON at all', () => {

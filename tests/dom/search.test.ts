@@ -294,6 +294,7 @@ describe('<st-search>', () => {
     opener.focus();
     host.open(opener);
     const controller = (await host.controller()) as SearchDialogController;
+    (document.getElementById('q') as HTMLInputElement).value = 'statements';
     await controller.search('statements');
     const option = document.querySelector<HTMLAnchorElement>('[role="option"]')!;
     // Stay on the result's page, so choosing it moves to the heading instead of loading a page.
@@ -316,6 +317,20 @@ describe('<st-search>', () => {
     expect(document.querySelector<HTMLElement>('[data-search-empty]')!.hidden).toBe(true);
     // Back to the class's own method for the shared teardown.
     Reflect.deleteProperty(failing, 'controller');
+  });
+
+  // Review WP-33 pass 1, minor 3: Escape in a search field first cleared it.
+  it('closes on Escape in the field even with text in it', () => {
+    host.open();
+    const field = document.getElementById('q') as HTMLInputElement;
+    field.value = 'VAT';
+    expect(key(field, { key: 'Escape' }).defaultPrevented).toBe(true);
+    expect(document.querySelector('dialog')!.open).toBe(false);
+  });
+
+  it('shows the shortcut setting on its openers', () => {
+    host.applySettings({ shortcuts: false, lowData: false });
+    expect(document.getElementById('opener')!.getAttribute('aria-keyshortcuts')).toBe('Control+K');
   });
 
   it('stops listening when it is removed', () => {
@@ -346,6 +361,7 @@ describe('the results listbox', () => {
   const options = () => [...document.querySelectorAll<HTMLAnchorElement>('[role="option"]')];
 
   it('groups results by section as options with marked matches, built without HTML parsing', async () => {
+    (document.getElementById('q') as HTMLInputElement).value = 'PIS';
     await controller.search('PIS');
     const groups = [...document.querySelectorAll('[role="group"]')];
     expect(groups.map((g) => g.getAttribute('aria-label'))).toEqual([
@@ -367,6 +383,7 @@ describe('the results listbox', () => {
   });
 
   it('marks an English result on an Afrikaans page in its language', async () => {
+    (document.getElementById('q') as HTMLInputElement).value = 'statements';
     await controller.search('statements');
     const english = options()[0]!;
     expect(english.querySelector('.st-search-result__title')?.getAttribute('lang')).toBe('en-ZA');
@@ -374,6 +391,7 @@ describe('the results listbox', () => {
   });
 
   it('moves through the options with the arrow keys, wrapping, and opens one with Enter', async () => {
+    (document.getElementById('q') as HTMLInputElement).value = 'PIS';
     await controller.search('PIS');
     key(input(), { key: 'ArrowDown' });
     expect(input().getAttribute('aria-activedescendant')).toBe(options()[0]!.id);
@@ -390,7 +408,33 @@ describe('the results listbox', () => {
     expect(opened).toEqual([options()[2]!.href]);
   });
 
+  // Review WP-33 pass 1, major 2: Enter inside the debounce opened the previous query's result.
+  it('opens a result of the current text when Enter comes before the search has run', async () => {
+    input().value = 'PIS';
+    await controller.search('PIS');
+    expect(options()[0]!.getAttribute('href')).toBe('/glossary/#pis');
+    input().value = 'statements';
+    input().dispatchEvent(new Event('input'));
+    expect(key(input(), { key: 'Enter' }).defaultPrevented).toBe(true);
+    await vi.waitFor(() => expect(opened).toHaveLength(1));
+    expect(opened[0]).toMatch(/\/core\/running-a-pty-ltd\/#financial-statements$/);
+  });
+
+  it('names each option by its title and describes it with the rest', async () => {
+    input().value = 'statements';
+    await controller.search('statements');
+    const option = options()[0]!;
+    const title = document.getElementById(option.getAttribute('aria-labelledby')!);
+    expect(title?.textContent).toBe('Financial statements');
+    const described = option.getAttribute('aria-describedby')!.split(' ');
+    expect(described.length).toBeGreaterThanOrEqual(2);
+    expect(described.map((id) => document.getElementById(id)?.textContent).join(' ')).toContain(
+      'Running a Pty Ltd',
+    );
+  });
+
   it('opens the first result on Enter when none is active, and an option on a click', async () => {
+    (document.getElementById('q') as HTMLInputElement).value = 'PIS';
     await controller.search('PIS');
     key(input(), { key: 'Enter' });
     expect(opened).toEqual([options()[0]!.href]);
@@ -434,6 +478,7 @@ describe('the results listbox', () => {
     const saved = indexBody;
     indexBody = JSON.parse(serialiseIndex('en', ['lookup'], many).json) as unknown;
     try {
+      (document.getElementById('q') as HTMLInputElement).value = 'levy';
       await controller.search('levy');
     } finally {
       indexBody = saved;
@@ -443,11 +488,15 @@ describe('the results listbox', () => {
     expect(all.hidden).toBe(false);
     expect(all.querySelector('a')?.getAttribute('href')).toBe('/search/?q=levy');
     expect(all.textContent).toBe('See all 5 results on the search page');
+    // Review WP-33 pass 1, minor 2: announce what the arrow keys can reach.
+    expect(document.querySelector('[role="status"]')?.textContent).toBe('3 of 5 results shown');
+    (document.getElementById('q') as HTMLInputElement).value = 'PIS';
     await controller.search('PIS');
     expect(all.hidden).toBe(true);
   });
 
   it('says when nothing matched and keeps the common questions', async () => {
+    (document.getElementById('q') as HTMLInputElement).value = 'zzzzzz';
     await controller.search('zzzzzz');
     expect(options()).toHaveLength(0);
     expect(document.querySelector('[role="status"]')?.textContent).toContain(
@@ -458,7 +507,9 @@ describe('the results listbox', () => {
   });
 
   it('goes back to the common questions when the field is cleared', async () => {
+    (document.getElementById('q') as HTMLInputElement).value = 'PIS';
     await controller.search('PIS');
+    (document.getElementById('q') as HTMLInputElement).value = '  ';
     await controller.search('  ');
     expect(options()).toHaveLength(0);
     expect(document.querySelector('[role="status"]')?.textContent).toBe('');
@@ -467,6 +518,7 @@ describe('the results listbox', () => {
 
   it('shows the failed state, with the contents link, when the index cannot load', async () => {
     stubFetch(false);
+    (document.getElementById('q') as HTMLInputElement).value = 'PIS';
     await controller.search('PIS');
     expect(document.querySelector<HTMLElement>('[data-search-failed]')!.hidden).toBe(false);
     expect(document.querySelector('[role="status"]')?.textContent).toBe('Search could not load.');
@@ -631,8 +683,8 @@ describe('<st-search-page>', () => {
     mountHtml(`
       <st-search-page ${dataAttributes()}>
         <form action="/search/" method="get"><input name="q" type="search" /><button>Search</button></form>
-        <section data-search-region hidden>
-          <h2 data-search-title>Search results</h2>
+        <section data-search-region>
+          <h2 data-search-title hidden>Search results</h2>
           <p role="status"></p>
           <div data-search-list></div>
           <div data-search-failed hidden></div>
@@ -640,7 +692,7 @@ describe('<st-search-page>', () => {
       </st-search-page>`);
   }
 
-  const region = () => document.querySelector<HTMLElement>('[data-search-region]')!;
+  const title = () => document.querySelector<HTMLElement>('[data-search-title]')!;
 
   it('runs ?q= in place and echoes the query', async () => {
     stubFetch();
@@ -649,7 +701,7 @@ describe('<st-search-page>', () => {
     await vi.waitFor(() =>
       expect(document.querySelectorAll('[data-search-result]')).toHaveLength(3),
     );
-    expect(region().hidden).toBe(false);
+    expect(title().hidden).toBe(false);
     expect(document.querySelector('[data-search-title]')?.textContent).toBe('Results for “PIS”');
     expect([...document.querySelectorAll('h3')].map((h) => h.textContent)).toEqual([
       'Look it up',
@@ -660,7 +712,7 @@ describe('<st-search-page>', () => {
   it('loads nothing without a query, and updates ?q= on a new search', async () => {
     const fetch = stubFetch();
     mount('/search/');
-    expect(region().hidden).toBe(true);
+    expect(title().hidden).toBe(true);
     expect(fetch).not.toHaveBeenCalled();
     (document.querySelector('input') as HTMLInputElement).value = 'statements';
     document.querySelector('form')!.dispatchEvent(new Event('submit', { cancelable: true }));
@@ -676,7 +728,7 @@ describe('<st-search-page>', () => {
     expect(window.sessionStorage.getItem(ARRIVAL_KEY)).toContain('#financial-statements');
     (document.querySelector('input') as HTMLInputElement).value = '';
     document.querySelector('form')!.dispatchEvent(new Event('submit', { cancelable: true }));
-    expect(region().hidden).toBe(true);
+    expect(title().hidden).toBe(true);
   });
 
   it('follows the history back to an earlier query', async () => {

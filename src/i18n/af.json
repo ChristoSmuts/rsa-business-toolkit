@@ -698,6 +698,7 @@
       "one": "{count} resultaat",
       "other": "{count} resultate"
     },
+    "resultsShown": "{shown} van {count} resultate gewys",
     "seeAll": {
       "one": "Sien die {count} resultaat op die soekbladsy",
       "other": "Sien al {count} resultate op die soekbladsy"

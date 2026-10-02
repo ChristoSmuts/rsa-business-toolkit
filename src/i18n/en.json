@@ -698,6 +698,7 @@
       "one": "{count} result",
       "other": "{count} results"
     },
+    "resultsShown": "{shown} of {count} results shown",
     "seeAll": {
       "one": "See the {count} result on the search page",
       "other": "See all {count} results on the search page"

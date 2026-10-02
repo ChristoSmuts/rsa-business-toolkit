@@ -123,7 +123,10 @@ export class StSearchPage extends HTMLElement {
     window.removeEventListener('popstate', this.#onPopState);
   }
 
-  /** Run `query` and show it in place. An empty query hides the results region. */
+  /**
+   * Run `query` and show it in place. An empty query hides the heading and empties the list. The
+   * region itself is never hidden, so its live status line is always in the accessibility tree.
+   */
   async run(query: string): Promise<void> {
     const context = this.#context;
     const client = this.#client;
@@ -135,12 +138,13 @@ export class StSearchPage extends HTMLElement {
     const list = region.querySelector<HTMLElement>('[data-search-list]');
     const failed = region.querySelector<HTMLElement>('[data-search-failed]');
     if (query === '') {
-      region.hidden = true;
+      if (title) title.hidden = true;
+      if (failed) failed.hidden = true;
       list?.replaceChildren();
       if (status) status.textContent = '';
       return;
     }
-    region.hidden = false;
+    if (title) title.hidden = false;
     if (title) title.textContent = context.tr('search.resultsFor', { query });
     if (failed) failed.hidden = true;
     if (status && !client.ready) status.textContent = context.tr('search.loading');

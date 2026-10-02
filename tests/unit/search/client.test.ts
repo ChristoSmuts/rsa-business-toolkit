@@ -10,6 +10,7 @@ import {
   highlight,
   loadIndex,
   markTerms,
+  queryTree,
   resultHref,
   runSearch,
   SearchIndexError,
@@ -21,8 +22,10 @@ import {
   fuzzy,
   INDEX_VERSION,
   KIND_WEIGHT,
+  MAX_QUERY_TERMS,
   prefix,
   processTerm,
+  queryParts,
   tokenize,
 } from '../../../src/lib/search/options';
 import type { SearchEntry } from '../../../src/lib/search/types';
@@ -122,6 +125,54 @@ describe('options', () => {
       'and',
       'R120,000',
     ]);
+  });
+
+  it('joins a hyphenated word as well', () => {
+    expect(tokenize('Use e-filing and second‑hand')).toEqual([
+      'Use',
+      'e',
+      'efiling',
+      'filing',
+      'and',
+      'second',
+      'secondhand',
+      'hand',
+    ]);
+  });
+
+  it('turns a spaced code or a hyphenated word in a query into a pair, in any case', () => {
+    expect(queryParts('VAT 264 form')).toEqual([
+      { pair: ['vat', '264'], joined: 'vat264' },
+      'form',
+    ]);
+    expect(queryParts('saps 601')).toEqual([{ pair: ['saps', '601'], joined: 'saps601' }]);
+    expect(queryParts('the e-filing')).toEqual([{ pair: ['e', 'filing'], joined: 'efiling' }]);
+    expect(queryParts('page 2 of the guide')).toEqual([
+      { pair: ['page', '2'], joined: 'page2' },
+      'guide',
+    ]);
+    // A stop word in a pair leaves only the joined form.
+    expect(queryParts('the-end')).toEqual(['theend']);
+    expect(queryParts('VAT264')).toEqual(['vat264']);
+    expect(queryParts('   ')).toEqual([]);
+  });
+
+  it('cuts a pasted paragraph to the first twelve words', () => {
+    const words = Array.from(
+      { length: 40 },
+      (_, i) => `word${String.fromCharCode(97 + (i % 26))}x`,
+    );
+    expect(queryParts(words.join(' '))).toHaveLength(MAX_QUERY_TERMS);
+  });
+
+  it('searches a pair as both words or the joined form', () => {
+    expect(queryTree([{ pair: ['vat', '264'], joined: 'vat264' }, 'form'], 'AND')).toEqual({
+      combineWith: 'AND',
+      queries: [
+        { combineWith: 'OR', queries: [{ combineWith: 'AND', queries: ['vat', '264'] }, 'vat264'] },
+        'form',
+      ],
+    });
   });
 
   it('adds no alias to ordinary words followed by a number', () => {

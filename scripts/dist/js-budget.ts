@@ -96,7 +96,7 @@ function main(): void {
   }
   const lazySize = [...lazy].reduce((sum, file) => sum + gzipSize(readFileSync(file)), 0);
   console.log(
-    `dist:budget: imported when search opens: ${kb(lazySize)} gzip (shared chunks counted once).`,
+    `dist:budget: loaded on demand (dynamic import(); today only the search dialog): ${kb(lazySize)} gzip (shared chunks counted once).`,
   );
   const searchDir = path.join(dist, 'search');
   if (existsSync(searchDir)) {

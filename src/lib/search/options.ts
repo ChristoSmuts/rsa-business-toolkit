@@ -120,23 +120,83 @@ const TOKEN = /[\p{L}\p{N}]+(?:[.,]\p{N}+)*/gu;
 const CODE_PREFIX = /^(?=(?:[^A-Z]*[A-Z]){2})[A-Za-z]{2,6}$/;
 const STARTS_WITH_DIGIT = /^\p{N}/u;
 
+/** A hyphen (or a non-breaking hyphen) and nothing else between two tokens: `e-filing`. */
+const HYPHEN = /^[-\u2010\u2011]$/;
+
+interface RawToken {
+  readonly text: string;
+  /** The characters between the previous token and this one. */
+  readonly gap: string;
+}
+
+function rawTokens(text: string): RawToken[] {
+  const out: RawToken[] = [];
+  let end = 0;
+  for (const match of text.matchAll(TOKEN)) {
+    out.push({ text: match[0], gap: text.slice(end, match.index) });
+    end = match.index + match[0].length;
+  }
+  return out;
+}
+
 /**
- * Split text into raw tokens, adding a joined alias for a form code written with a space:
- * `SAPS 601` gives `SAPS`, `601` and `SAPS601`, so `saps601` finds it too. The alias is added
- * only where the letters are a code (two or more capitals), so ordinary prose (`page 2`) does not
- * grow the index. A query is tokenised the same way, so `SAPS 601` typed in capitals carries the
- * alias as well, and a lower-case `saps 601` still finds both words.
+ * Split text into raw tokens, adding a joined alias in two cases:
+ * - a form code written with a space: `SAPS 601` gives `SAPS`, `601` and `SAPS601`, so `saps601`
+ *   finds it too. Only where the letters are a code (two or more capitals), so ordinary prose
+ *   (`page 2`) does not grow the index;
+ * - a hyphenated word: `e-filing` gives `e`, `filing` and `efiling`, so `eFiling` and `e-filing`
+ *   meet.
+ * A query is not tokenised this way: `queryParts` makes each such pair an alternative instead.
  */
 export function tokenize(text: string): string[] {
-  const tokens = text.match(TOKEN) ?? [];
+  const tokens = rawTokens(text);
   const out: string[] = [];
   tokens.forEach((token, index) => {
-    out.push(token);
+    out.push(token.text);
     const next = tokens[index + 1];
-    if (next !== undefined && CODE_PREFIX.test(token) && STARTS_WITH_DIGIT.test(next)) {
-      out.push(`${token}${next}`);
-    }
+    if (next === undefined) return;
+    const code = CODE_PREFIX.test(token.text) && STARTS_WITH_DIGIT.test(next.text);
+    if (code || HYPHEN.test(next.gap)) out.push(`${token.text}${next.text}`);
   });
+  return out;
+}
+
+/** Most query words searched; a pasted paragraph is cut here so a search stays fast. */
+export const MAX_QUERY_TERMS = 12;
+
+/** One word of a query, or a pair that may also be written joined. */
+export type QueryPart =
+  string | { readonly pair: readonly [string, string]; readonly joined: string };
+
+const LETTERS = /^\p{L}{2,6}$/u;
+
+/**
+ * The words of a query, folded, without stop words, at most `MAX_QUERY_TERMS`. Two neighbours
+ * that are one thing written two ways become a pair: letters followed by a number (`vat 264`,
+ * `SAPS 601`, in any case) or a hyphenated word (`e-filing`). The client searches a pair as
+ * "both words, or the joined form", so `VAT 264` finds every page that writes `VAT264`.
+ */
+export function queryParts(text: string): QueryPart[] {
+  const tokens = rawTokens(text).slice(0, MAX_QUERY_TERMS);
+  const out: QueryPart[] = [];
+  for (let index = 0; index < tokens.length; index++) {
+    const token = tokens[index]!;
+    const next = tokens[index + 1];
+    const first = processTerm(token.text);
+    if (next !== undefined) {
+      const isCode = LETTERS.test(token.text) && STARTS_WITH_DIGIT.test(next.text);
+      if (isCode || HYPHEN.test(next.gap)) {
+        const second = processTerm(next.text);
+        const joined = processTerm(`${token.text}${next.text}`);
+        if (joined !== null) {
+          out.push(first !== null && second !== null ? { pair: [first, second], joined } : joined);
+          index++;
+          continue;
+        }
+      }
+    }
+    if (first !== null) out.push(first);
+  }
   return out;
 }
 

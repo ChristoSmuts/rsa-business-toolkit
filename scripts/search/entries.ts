@@ -225,6 +225,18 @@ function termWords(term: string): string {
 }
 
 /**
+ * `true` when `text` uses `words` as words, not inside other words: `IP` is not in "municipal",
+ * `POP` is not in "popia". A plural (`s` or `es`) still counts.
+ */
+export function usesWords(text: string, words: string): boolean {
+  if (words === '') return false;
+  const escaped = words.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?:e?s)?(?![\\p{L}\\p{N}])`, 'u').test(
+    foldTerm(text),
+  );
+}
+
+/**
  * "Words used in this file": one entry per term. It opens the first part of the page whose text
  * uses the term, because that is where the term is explained in context; the word list itself
  * (a `<details>`, not a heading) is the fallback when no part uses it.
@@ -241,8 +253,7 @@ export function termEntries(
   return doc.terms.map((term, index) => {
     const words = termWords(term.term);
     const usedIn = sections.find(
-      (section) =>
-        section.anchor !== undefined && words !== '' && foldTerm(section.text).includes(words),
+      (section) => section.anchor !== undefined && usesWords(section.text, words),
     );
     return entry(
       'term',

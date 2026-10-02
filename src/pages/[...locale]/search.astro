@@ -97,6 +97,7 @@ const sections = orderedSections(manifest).map((section) => ({
             name="q"
             placeholder={t('search.placeholder')}
             autocomplete="off"
+            maxlength="200"
             enterkeyhint="search"
           />
           <Button type="submit" variant="primary">
@@ -108,15 +109,13 @@ const sections = orderedSections(manifest).map((section) => ({
         class="st-stack st-search__results js-only"
         aria-labelledby="search-results-title"
         data-search-region
-        hidden
       >
-        <h2 id="search-results-title" data-search-title>
+        <h2 id="search-results-title" data-search-title hidden>
           {t('search.resultsLabel')}
         </h2>
         <p class="st-search__status" role="status" aria-live="polite"></p>
         <div class="st-stack" data-search-list></div>
         <div class="st-stack" data-search-failed hidden>
-          <p>{t('search.failed')}</p>
           <p>
             <a class="st-link-block" href={contentsHref}>
               {t('search.failedFallback')}
@@ -216,13 +215,21 @@ const sections = orderedSections(manifest).map((section) => ({
     max-inline-size: var(--st-measure);
   }
 
-  .st-search__results[hidden],
   [data-search-failed][hidden] {
     display: none;
   }
 
   .st-search__status:empty {
-    display: none;
+    /*
+     * Empty, it stays in the accessibility tree (only out of sight), so the first count is
+     * announced as a change to a live region that already existed (B5).
+     */
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   .st-search__answers,

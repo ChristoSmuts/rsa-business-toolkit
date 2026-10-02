@@ -60,6 +60,8 @@ export class SearchDialogController implements DialogController {
   #timer: ReturnType<typeof setTimeout> | undefined;
   /** Increases with every query, so a slow answer to an old query is dropped. */
   #sequence = 0;
+  /** The query the options on screen belong to; Enter never opens an option of another one. */
+  #shownQuery = '';
 
   constructor(host: HTMLElement, deps: DialogDeps, client?: SearchClient) {
     this.#host = host;
@@ -92,8 +94,25 @@ export class SearchDialogController implements DialogController {
   readonly #onInput = (): void => {
     clearTimeout(this.#timer);
     const query = this.#input.value;
-    this.#timer = setTimeout(() => this.search(query), DEBOUNCE_MS);
+    // The options on screen now belong to an older query: none of them is active any more.
+    if (query.trim() !== this.#shownQuery) this.setActive(-1);
+    this.#timer = setTimeout(() => void this.search(query), DEBOUNCE_MS);
   };
+
+  /**
+   * Enter while the options on screen belong to an older query (the reader typed and pressed
+   * Enter within the debounce, or before the answer came): search the current text now and open
+   * its first result.
+   */
+  async enterCurrent(): Promise<void> {
+    clearTimeout(this.#timer);
+    const query = this.#input.value.trim();
+    await this.search(query);
+    const first = this.#options[0];
+    if (first && this.#shownQuery === query && this.#input.value.trim() === query) {
+      this.activate(first);
+    }
+  }
 
   readonly #onKeydown = (event: KeyboardEvent): void => {
     if (event.isComposing) return;
@@ -107,6 +126,11 @@ export class SearchDialogController implements DialogController {
         this.move(-1);
         break;
       case 'Enter': {
+        if (this.#input.value.trim() !== this.#shownQuery) {
+          event.preventDefault();
+          void this.enterCurrent();
+          break;
+        }
         const option = this.#options[this.#active] ?? this.#options[0];
         if (option) {
           event.preventDefault();
@@ -209,6 +233,7 @@ export class SearchDialogController implements DialogController {
   }
 
   #showEmpty(): void {
+    this.#shownQuery = '';
     this.#clearOptions();
     this.#setStatus('');
     if (this.#failed) this.#failed.hidden = true;
@@ -216,6 +241,7 @@ export class SearchDialogController implements DialogController {
   }
 
   #showFailed(): void {
+    this.#shownQuery = this.#input.value.trim();
     this.#clearOptions();
     if (this.#empty) this.#empty.hidden = true;
     if (this.#failed) this.#failed.hidden = false;
@@ -225,6 +251,7 @@ export class SearchDialogController implements DialogController {
   #render(results: readonly SearchResult[], query: string): void {
     const { tr } = this.#context;
     const doc = this.#host.ownerDocument;
+    this.#shownQuery = query;
     this.#clearOptions();
     if (this.#failed) this.#failed.hidden = true;
     if (results.length === 0) {
@@ -258,6 +285,22 @@ export class SearchDialogController implements DialogController {
         option.setAttribute('role', 'option');
         option.setAttribute('aria-selected', 'false');
         option.append(resultBody(doc, result, this.#context));
+        // The name is the title alone; the page, kind and excerpt are the description, so arrowing
+        // through the list reads one short name per option.
+        const title = option.querySelector<HTMLElement>('.st-search-result__title');
+        const details = [
+          ...option.querySelectorAll<HTMLElement>(':scope > span:not(.st-search-result__title)'),
+        ];
+        if (title) {
+          title.id = `${option.id}-title`;
+          option.setAttribute('aria-labelledby', title.id);
+        }
+        details.forEach((detail, index) => {
+          detail.id = `${option.id}-detail-${String(index)}`;
+        });
+        if (details.length > 0) {
+          option.setAttribute('aria-describedby', details.map((detail) => detail.id).join(' '));
+        }
         element.append(option);
         this.#options.push(option);
       }
@@ -265,7 +308,11 @@ export class SearchDialogController implements DialogController {
     }
     this.#listbox.hidden = false;
     this.#input.setAttribute('aria-expanded', 'true');
-    this.#setStatus(tr('search.results', { count: results.length }));
+    this.#setStatus(
+      shown < results.length
+        ? tr('search.resultsShown', { shown, count: results.length })
+        : tr('search.results', { count: results.length }),
+    );
     const link = this.#all?.querySelector('a');
     if (this.#all && link && shown < results.length) {
       const url = new URL(this.#context.page, this.#host.ownerDocument.baseURI);

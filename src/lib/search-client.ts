@@ -17,6 +17,8 @@ import {
   INDEX_VERSION,
   indexOptions,
   prefix,
+  queryParts,
+  type QueryPart,
 } from './search/options';
 import type { SearchEntryKind, SerialisedIndex, StoredFields } from './search/types';
 
@@ -151,9 +153,39 @@ function toResult(hit: MiniSearchResult, locale: Locale, base: string | undefine
   };
 }
 
+type Query = Parameters<MiniSearch['search']>[0];
+
+/** A word that says too little to be searched on its own: one character, or only digits. */
+function weak(part: QueryPart): boolean {
+  return typeof part === 'string' && (part.length < 2 || /^[\d.,]+$/.test(part));
+}
+
+/**
+ * The MiniSearch query for a list of parts. A pair is "both words, or the joined form", so a
+ * spaced code (`VAT 264`) and a joined one (`VAT264`) find the same pages.
+ */
+export function queryTree(
+  parts: readonly QueryPart[],
+  combineWith: 'AND' | 'OR',
+): Exclude<Query, string> {
+  return {
+    combineWith,
+    queries: parts.map((part) =>
+      typeof part === 'string'
+        ? part
+        : {
+            combineWith: 'OR',
+            queries: [{ combineWith: 'AND', queries: [...part.pair] }, part.joined],
+          },
+    ),
+  };
+}
+
 /**
  * Run a query on a loaded index. Every word must match first (`AND`); when that finds nothing,
- * any word may (`OR`), so a long question still finds the pages that answer part of it.
+ * any word may (`OR`), so a long question still finds the pages that answer part of it. The `OR`
+ * pass leaves out lone numbers and single letters: matched alone they would turn a junk query into
+ * a list of every "Prompt 1" and "Option 1", where "nothing found" is the honest answer.
  */
 export function runSearch(
   index: LoadedIndex,
@@ -162,8 +194,8 @@ export function runSearch(
   options: SearchOptions = {},
   base?: string,
 ): SearchResult[] {
-  const q = query.trim();
-  if (q === '') return [];
+  const parts = queryParts(query);
+  if (parts.length === 0) return [];
   const searchOptions = {
     bm25: BM25,
     prefix,
@@ -174,8 +206,11 @@ export function runSearch(
     filter: (hit: MiniSearchResult): boolean =>
       matchesFilters(hit as unknown as StoredFields, options),
   };
-  let hits = index.search.search(q, { ...searchOptions, combineWith: 'AND' });
-  if (hits.length === 0) hits = index.search.search(q, { ...searchOptions, combineWith: 'OR' });
+  let hits = index.search.search(queryTree(parts, 'AND'), searchOptions);
+  const strong = parts.filter((part) => !weak(part));
+  if (hits.length === 0 && strong.length > 0) {
+    hits = index.search.search(queryTree(strong, 'OR'), searchOptions);
+  }
   // Two entries can open the same place (a term and the section that explains it): keep the
   // better one, so the list never offers the same destination twice.
   const limit = options.limit ?? DEFAULT_LIMIT;

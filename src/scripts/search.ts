@@ -100,21 +100,35 @@ export function focusTarget(target: HTMLElement, win: Window = window): void {
   win.setTimeout(() => target.classList.remove(HIGHLIGHT_CLASS), HIGHLIGHT_MS);
 }
 
-function sessionStore(win: Window): Storage | undefined {
-  try {
-    return win.sessionStorage;
-  } catch {
-    return undefined;
-  }
-}
+/**
+ * The one place search touches browser storage: a single `sessionStorage` value under the `st.`
+ * key `ARRIVAL_KEY`, living for one page load. Every access survives blocked storage (private
+ * mode, disabled site data): the result then still opens at its heading, only without the focus.
+ * TODO(WP-30 integration): move behind `src/lib/storage/` if it gains a session adapter, so
+ * `clearAll()` sees it (docs/reviews/backlog.md).
+ */
+export const arrivalStore = {
+  read(win: Window = window): string | null {
+    try {
+      const value = win.sessionStorage.getItem(ARRIVAL_KEY);
+      win.sessionStorage.removeItem(ARRIVAL_KEY);
+      return value;
+    } catch {
+      return null;
+    }
+  },
+  write(url: string, win: Window = window): void {
+    try {
+      win.sessionStorage.setItem(ARRIVAL_KEY, url);
+    } catch {
+      // Blocked: see above.
+    }
+  },
+};
 
 /** Remember, for the next page load, that a result opened `url`. */
 export function rememberArrival(url: string, win: Window = window): void {
-  try {
-    sessionStore(win)?.setItem(ARRIVAL_KEY, url);
-  } catch {
-    // Storage blocked: the page still opens at the heading, it just does not take focus.
-  }
+  arrivalStore.write(url, win);
 }
 
 /**
@@ -122,14 +136,7 @@ export function rememberArrival(url: string, win: Window = window): void {
  * the key is removed on any page load, so a later visit to the same URL is left alone.
  */
 export function consumeArrival(win: Window = window): HTMLElement | null {
-  const store = sessionStore(win);
-  let expected: string | null;
-  try {
-    expected = store?.getItem(ARRIVAL_KEY) ?? null;
-    store?.removeItem(ARRIVAL_KEY);
-  } catch {
-    return null;
-  }
+  const expected = arrivalStore.read(win);
   if (expected === null) return null;
   const here = new URL(win.location.href);
   const wanted = new URL(expected, here);
@@ -179,6 +186,17 @@ export class StSearch extends HTMLElement {
     this.open(document.activeElement instanceof HTMLElement ? document.activeElement : null);
   };
 
+  /**
+   * Escape in the field closes the dialog straight away. A search field's own Escape would
+   * first clear the text and leave the dialog open, while the instructions promise "Press Escape
+   * to close search" (B5).
+   */
+  readonly #onFieldKeydown = (event: KeyboardEvent): void => {
+    if (event.key !== 'Escape' || event.isComposing) return;
+    event.preventDefault();
+    this.close();
+  };
+
   readonly #onClick = (event: Event): void => {
     const target = event.target;
     if (target instanceof Element && target.closest('[data-search-close]')) this.close();
@@ -217,16 +235,25 @@ export class StSearch extends HTMLElement {
     this.#dialog = this.querySelector('dialog');
     this.addEventListener('click', this.#onClick);
     this.#dialog?.addEventListener('close', this.#onClose);
+    this.#field()?.addEventListener('keydown', this.#onFieldKeydown);
     document.addEventListener('click', this.#onDocumentClick);
     document.addEventListener('keydown', this.#onKeydown);
-    const { shortcuts } = searchSettings();
-    const keys = shortcuts ? '/ Control+K' : 'Control+K';
+    this.applySettings();
+  }
+
+  /**
+   * Show the shortcut setting on the openers: `aria-keyshortcuts` and the `/` hint. Called on
+   * connect. TODO(WP-30 integration): also call it when the store's `shortcuts` changes, so
+   * switching it on `/about/` updates the header without a reload (docs/reviews/backlog.md).
+   */
+  applySettings(settings: SearchSettings = searchSettings()): void {
+    const keys = settings.shortcuts ? '/ Control+K' : 'Control+K';
     for (const opener of document.querySelectorAll('[data-search-open]')) {
       opener.setAttribute('aria-haspopup', 'dialog');
       opener.setAttribute('aria-keyshortcuts', keys);
       // The `/` hint promises a key that is switched off.
       for (const hint of opener.querySelectorAll<HTMLElement>('[data-search-key-hint]')) {
-        hint.hidden = !shortcuts;
+        hint.hidden = !settings.shortcuts;
       }
     }
   }
@@ -234,8 +261,13 @@ export class StSearch extends HTMLElement {
   disconnectedCallback(): void {
     this.removeEventListener('click', this.#onClick);
     this.#dialog?.removeEventListener('close', this.#onClose);
+    this.#field()?.removeEventListener('keydown', this.#onFieldKeydown);
     document.removeEventListener('click', this.#onDocumentClick);
     document.removeEventListener('keydown', this.#onKeydown);
+  }
+
+  #field(): HTMLInputElement | null {
+    return this.#dialog?.querySelector<HTMLInputElement>('input[type="search"]') ?? null;
   }
 
   /** The results half, imported once. */

@@ -88,6 +88,7 @@ const ids = {
             aria-describedby={ids.help}
             placeholder={t('search.placeholder')}
             autocomplete="off"
+            maxlength="200"
             autocapitalize="off"
             spellcheck="false"
             enterkeyhint="search"
@@ -112,7 +113,6 @@ const ids = {
           </a>
         </p>
         <div class="st-search-dialog__failed" data-search-failed hidden>
-          <p>{t('search.failed')}</p>
           <p>
             <a class="st-link-block" href={data.contents}>
               {t('search.failedFallback')}
@@ -235,7 +235,16 @@ const ids = {
   }
 
   .st-search-dialog__status:empty {
-    display: none;
+    /*
+     * Empty, it stays in the accessibility tree (only out of sight), so the first count is
+     * announced as a change to a live region that already existed (B5).
+     */
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   .st-search-dialog__status {
