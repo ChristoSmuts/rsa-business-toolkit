@@ -33,7 +33,7 @@ Jy mag nie begin handel dryf in ’n besigheid wat ’n lisensie vereis voordat 
 
 > **In gewone taal:** Jy kan nie oopmaak voordat die lisensie in jou hand is nie. As jy vroeg oopmaak, kan jy beboet word.
 
-Die kategorieë wat gewoonlik ’n munisipale handelslisensie vereis, sluit in kleinhandel en diens van kos (restaurante, wegneemetes, kafees, straatkosverkopers, spyseniering, spaza-winkels) en gesondheidsinstellings (gesondheids-, skoonheids- of liggaamsbehandelingsdienste, insluitend haarkappers, barbiers, skoonheidsalonne, naelsalonne en tatoeëerateljees).
+Die kategorieë wat gewoonlik ’n munisipale handelslisensie vereis, sluit in kleinhandel in kos en kosdienste (restaurante, wegneemetes, kafees, straatkosverkopers, spyseniering, spaza-winkels) en gesondheidsinstellings (gesondheids-, skoonheids- of liggaamsbehandelingsdienste, insluitend haarkappers, barbiers, skoonheidsalonne, naelsalonne en tatoeëerateljees).
 
 > **In gewone taal:** Die twee groot groepe wat ’n munisipale lisensie nodig het, is enigiemand wat kos verkoop of voorberei, en enigiemand wat aan mense se liggame werk: hare, naels, skoonheid, masserings, tatoeëermerke.
 
@@ -83,7 +83,7 @@ Haarkappery, naels, skoonheidsterapie, masserings en tatoeëring is gesondheidsi
 
 Tatoeëer- en lyfringateljees word ekstra fyn dopgehou oor die wegdoen van skerp voorwerpe en sterilisasie. Praat met jou EHP voordat jy ’n huurkontrak teken.
 
-As jy skoonheidsmiddels maak of invoer, geld die Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 vir die produk self. Etikettering en bewerings oor bestanddele word gereguleer. Moenie beweer dat ’n produk ’n mediese toestand behandel nie, tensy jy gereed is dat dit as ’n medisyne geklassifiseer word.
+As jy skoonheidsmiddels maak of invoer, geld die Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 vir die produk self. Etikettering en bewerings oor bestanddele word gereguleer. Moenie beweer dat ’n produk ’n mediese toestand behandel nie, tensy jy daarop voorbereid is dat dit as ’n medisyne geklassifiseer word.
 
 ## As jy alkohol verkoop
 
@@ -144,7 +144,7 @@ Praktiese punt: as jy op jou produkbladsy aflewering binne 3 dae belowe, word da
 
 Jy het ’n invoerderskode van SARS Doeane (SARS Customs) nodig. Aansoek is gratis deur die SARS-webwerf, en dit is apart van jou inkomstebelastingregistrasie.
 
-Jy sal invoerbelasting plus 15% BTW op die gelande waarde by die grens betaal, selfs as jy nie vir BTW geregistreer is nie. Daardie BTW is ’n werklike koste vir jou as jy dit nie kan terugeis nie, so bou dit in jou pryse in voordat jy bestel.
+Jy sal invoerreg plus 15% BTW op die gelande waarde by die grens betaal, selfs as jy nie vir BTW geregistreer is nie. Daardie BTW is ’n werklike koste vir jou as jy dit nie kan terugeis nie, so bou dit in jou pryse in voordat jy bestel.
 
 Sommige goedere het ’n magtigingsbrief (Letter of Authority) van die National Regulator for Compulsory Specifications (NRCS) nodig voordat hulle in Suid-Afrika verkoop mag word. Dit dek baie elektriese produkte, beligting en sommige motoronderdele. Invoerders word heeltyd hierdeur gevang. Kontroleer voordat jy ’n houer bestel.
 
@@ -172,7 +172,7 @@ Die Consumer Protection Act gee jou kliënte regte wat jy nie kan wegteken nie.
 
 Verbruikers is geregtig op goedere wat redelik geskik is vir hulle gewone doel, van goeie gehalte en in goeie werkende toestand is, vry van gebreke is, redelik duursaam is, en aan toepaslike standaarde voldoen.
 
-Daar is ’n geïmpliseerde waarborg van ses maande op goedere. As goedere binne ses maande breek, kan die kliënt oor die algemeen ’n herstel, vervanging of terugbetaling eis, en die keuse is gewoonlik syne of hare, nie joune nie.
+Daar is ’n geïmpliseerde waarborg van ses maande op goedere. As goedere binne ses maande faal, kan die kliënt oor die algemeen ’n herstel, vervanging of terugbetaling eis, en die keuse is gewoonlik syne of hare, nie joune nie.
 
 Jou advertensies moet waar wees. Moenie ’n resultaat beweer wat jy nie kan lewer nie.
 

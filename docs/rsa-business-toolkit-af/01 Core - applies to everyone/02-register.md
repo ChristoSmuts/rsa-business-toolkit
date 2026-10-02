@@ -35,7 +35,7 @@ Koste om op te stel: R0.
 
 ### Privaat maatskappy (Pty) Ltd
 
-Die maatskappy is ’n aparte regspersoon. Dit het sy eie registrasienommer. Dit kan dinge besit en kontrakte teken, en ’n eis kan op sy eie teen dit ingestel word.
+Die maatskappy is ’n aparte regspersoon. Dit het sy eie registrasienommer. Dit kan dinge besit en kontrakte teken, en ’n eis kan teen die maatskappy self ingestel word.
 
 As die maatskappy geld skuld, skuld die maatskappy dit oor die algemeen, nie jy nie. Dit is die hoofrede om een te registreer. Maar hierdie beskerming val weg as jy persoonlik borg staan (die meeste banke en verhuurders sal dit eis) of as jy handel dryf terwyl jy nie jou skuld kan betaal nie.
 
@@ -58,7 +58,7 @@ Registreer ’n Pty as:
 
 - Korporatiewe kliënte of die regering weier om van ’n individu te koop (dit is algemeen)
 - Jy op tenders wil bie
-- Jou werk ernstige verlies of besering kan veroorsaak, sodat jy ’n regsmuur tussen die besigheid en jou huis wil hê
+- Jou werk ernstige verlies of besering kan veroorsaak, en jy dus ’n regsmuur tussen die besigheid en jou huis wil hê
 - Jy ’n voertuig in die besigheid se naam moet registreer (sien [Voertuie vir jou besigheid](05-vehicles.md))
 - Jy later ’n vennoot of belegger gaan inbring
 
@@ -76,7 +76,7 @@ Jy kan as ’n eenmansaak begin en later ’n maatskappy registreer. Dit is norm
 
 ## Hoe om self ’n maatskappy te registreer
 
-Moenie ’n agent hiervoor betaal nie. Agente vra ’n paar keer die CIPC-fooi vir ’n vorm wat jy self in een middag kan voltooi.
+Moenie ’n agent hiervoor betaal nie. Agente vra ’n paar keer soveel as die CIPC-fooi vir ’n vorm wat jy self in een middag kan voltooi.
 
 Gaan na www.bizportal.gov.za. Jy het ’n geldige Suid-Afrikaanse ID-nommer nodig.
 
@@ -95,7 +95,7 @@ Jou registrasiesertifikaat, vorm CoR 14.3, en jou akte van oprigting (MOI) kom p
 
 Ná registrasie is twee dinge maklik om te mis, en albei is gratis:
 
-- Bevestig die geregistreerde verteenwoordiger by SARS (die openbare amptenaar, "public officer"). Daarsonder kan jy nie eFiling vir die maatskappy gebruik nie.
+- Bevestig die geregistreerde verteenwoordiger by SARS (die openbare beampte, "public officer"). Daarsonder kan jy nie eFiling vir die maatskappy gebruik nie.
 - Dien die inligting oor voordelige eienaarskap by CIPC in. Dit is ’n wetlike vereiste en dit is gratis.
 
 ## Die naam kies
@@ -165,7 +165,7 @@ UIF en COIDA. ’n Eenmansaak sonder personeel registreer nie, en kan in werklik
 
 Met ’n maatskappy is dit anders. As jou Pty vir jou as direkteur ’n salaris betaal, is jy oor die algemeen ’n werknemer van jou eie maatskappy, en PAYE-, UIF- en COIDA-verpligtinge begin. Sien dit eerder as ’n ruil as ’n strik: jy neem die administrasie op jou, en jy kry dekking wat ’n eenmansaak nie langs hierdie roete kan koop nie. Sien [Jy is die besigheid](10-you-are-the-business.md). Daar is drie wettige maniere om geld uit ’n maatskappy te haal, en elkeen word anders belas. Sien [Betaal jouself uit ’n Pty Ltd](07-paying-yourself.md) voordat jy jouself die eerste keer betaal.
 
-’n Sakeplan. Jy het net een nodig om geld by ’n bank of belegger te kry. Om vir jouself ’n plan van 30 bladsye te skryf, is uitstel wat soos werk aangetrek is.
+’n Sakeplan. Jy het net een nodig om geld by ’n bank of belegger te kry. Om vir jouself ’n plan van 30 bladsye te skryf, is uitstel wat as werk vermom is.
 
 ’n Webwerf. ’n Google Business Profile plus ’n WhatsApp Business-nommer kry vir die meeste plaaslike besighede hulle eerste honderd kliënte. Bou die webwerf wanneer jy iets het om daarop te sit.
 

@@ -157,7 +157,7 @@ Versekering. Sê vir jou versekeraar die voertuig word vir besigheid gebruik. De
 
 Swaar voertuie en passasiersvoertuie. As die voertuig ’n bruto voertuigmassa van meer as 3,500 kg het, of passasiers teen vergoeding vervoer, geld ekstra reëls: ’n professionele bestuurspermit (Professional Driving Permit) vir die bestuurder, jaarlikse padwaardigheidstoetse, en vir passasiersvervoer ’n bedryfslisensie van jou provinsiale reguleerder. Moenie ’n taxi-, pendeldiens- of koeriersbesigheid begin sonder om dit eers na te gaan nie.
 
-Om jou voertuig te brandmerk. Voertuigtekens is gewoonlik ’n aftrekbare advertensiekoste en is dikwels die goedkoopste advertensies wat ’n plaaslike besigheid kan koop. Kontroleer jou munisipale verordeninge vir beperkings op die grootte van tekens.
+Jou handelsmerk op jou voertuig. Voertuigtekens is gewoonlik ’n aftrekbare advertensiekoste en is dikwels die goedkoopste advertensies wat ’n plaaslike besigheid kan koop. Kontroleer jou munisipale verordeninge vir beperkings op die grootte van tekens.
 
 
 ---

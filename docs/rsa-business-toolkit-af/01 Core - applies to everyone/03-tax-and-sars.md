@@ -14,7 +14,7 @@ Eenvoudige betekenisse van die terme wat in hierdie lêer gebruik word. Die voll
 | IRP6 | Die kort vorm wat jy vir elke betaling van voorlopige belasting invul. |
 | ITR12 / ITR14 | Die jaarlikse belastingopgawe. ITR12 vir mense, ITR14 vir maatskappye. |
 | Omsetbelasting (turnover tax) | ’n Eenvoudige belasting vir klein besighede, wat op verkope in plaas van op wins gehef word. |
-| BTW | 15% belasting wat by verkope bygevoeg word, net deur besighede wat daarvoor geregistreer is. |
+| BTW (VAT) | 15% belasting wat by verkope bygevoeg word, net deur besighede wat daarvoor geregistreer is. |
 | Aftrekking (deduction) | ’n Koste wat jy van inkomste mag aftrek voordat belasting bereken word. |
 
 ---
@@ -43,7 +43,7 @@ Omdat niemand PAYE van jou besigheidsinkomste aftrek nie, wil SARS gedurende die
 
 As jy ’n besigheid besit, sê die Income Tax Act jy moet as ’n voorlopige belastingbetaler (provisional taxpayer) registreer. Dit geld vir die eienaar van ’n eenmansaak, ’n vennoot in ’n vennootskap, ’n lid van ’n beslote korporasie (CC) en ’n direkteur van ’n maatskappy.
 
-> **In gewone taal:** As jy enige soort besigheid bedryf, moet jy twee keer per jaar belasting vooruit betaal. Dit word genoem om ’n voorlopige belastingbetaler te wees. Dit geld of jy as jouself of deur ’n maatskappy handel dryf.
+> **In gewone taal:** As jy enige soort besigheid bedryf, moet jy twee keer per jaar belasting vooruit betaal. Iemand wat dit moet doen, word ’n voorlopige belastingbetaler genoem. Dit geld of jy as jouself of deur ’n maatskappy handel dryf.
 
 Voorlopige belastingbetalers dien gedurende die belastingjaar twee IRP6-opgawes in. Die eerste is binne die eerste ses maande van die jaar verskuldig en die tweede aan die einde van die jaar van aanslag. Daar is ook ’n opsionele derde aanvullende betaling voordat jy jou jaarlikse ITR12 indien.
 
@@ -66,7 +66,7 @@ Om ’n nulopgawe in te dien, kos niks. Om nie in te dien nie, skep boetes wat e
 
 ’n Maatskappy is outomaties ’n voorlopige belastingbetaler. Dit dien twee IRP6-opgawes en een ITR14-jaaropgawe in.
 
-Dit geld selfs as die maatskappy niks verdien het nie. ’n Dormante maatskappy dien steeds ’n nul-ITR14 by SARS en ’n jaarlikse nulopgawe by CIPC in. Dit is die enkele mees algemene manier waarop klein eienaars skuld by die staat opbou sonder om dit agter te kom.
+Dit geld selfs as die maatskappy niks verdien het nie. ’n Dormante maatskappy dien steeds ’n nul-ITR14 by SARS en ’n jaarlikse nulopgawe by CIPC in. Dit is die algemeenste manier waarop klein eienaars skuld by die staat opbou sonder om dit agter te kom.
 
 ## Hoe om wettig min of geen belasting te betaal
 
@@ -92,7 +92,7 @@ Dinge wat jy gewoonlik kan eis as hulle werklik vir die besigheid is:
 - Besigheidsreise, met ’n logboek (sien [Voertuie vir jou besigheid](05-vehicles.md))
 - Bankkoste op die besigheidsrekening
 - Advertensies, drukwerk en webwerfkoste
-- Rekenkundige en regsfooie
+- Rekenmeesters- en regsfooie
 - Huur van besigheidspersele
 - ’n Deel van huiskoste as jy ’n deel van jou huis vir werk gebruik
 
