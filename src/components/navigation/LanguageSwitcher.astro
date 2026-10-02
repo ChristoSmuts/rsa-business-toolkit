@@ -7,6 +7,7 @@
  * who switches language halfway down a page lands on the same heading. Heading ids are English
  * slugs in every language, so the anchor is valid in both.
  */
+import { splitAroundParam } from '../../lib/pages';
 import { useTranslations } from '../../i18n';
 import { ENABLED_LOCALES, getLocale, type Locale } from '../../i18n/locales';
 import { href } from '../../lib/paths';
@@ -20,6 +21,13 @@ interface Props {
 
 const { locale, route, class: className } = Astro.props;
 const t = useTranslations(locale);
+/*
+ * The link's name is "Read this page in Afrikaans": the sentence is in the page's language and only
+ * the language's own name is in the other language. So the name is built from visible and visually
+ * hidden text, and `lang` sits on the name alone. An `aria-label` would replace the whole name and
+ * be read in whichever single language the link carried (review WP-20 pass 3).
+ */
+const switchParts = splitAroundParam((language) => t('lang.switchTo', { language }));
 const options = ENABLED_LOCALES.map((code) => {
   const meta = getLocale(code);
   return {
@@ -40,14 +48,14 @@ const options = ENABLED_LOCALES.map((code) => {
             class="st-lang__link"
             href={option.href}
             hreflang={option.hreflang}
-            lang={option.hreflang}
             data-locale={option.code}
             aria-current={option.code === locale ? 'true' : undefined}
-            aria-label={
-              option.code === locale ? undefined : t('lang.switchTo', { language: option.name })
-            }
           >
-            {option.name}
+            {option.code !== locale && <span class="st-visually-hidden">{switchParts[0]}</span>}
+            <span lang={option.code === locale ? undefined : option.hreflang}>{option.name}</span>
+            {option.code !== locale && switchParts[1] && (
+              <span class="st-visually-hidden">{switchParts[1]}</span>
+            )}
           </a>
         </li>
       ))}

@@ -43,6 +43,19 @@ const headingId = id ?? uid('st-sources');
 const entries = sourceEntriesFor(context.sources, sources.entries);
 const acts = actsFor(context.sources, sources.acts);
 const count = entries.length + acts.length;
+/*
+ * The AI notice says "checked against the sources below" whenever the data lists sources, so every
+ * listed id must resolve in the register this page was given. A missing or partial register (an
+ * Afrikaans `sources.json` that lags the English one, say) would otherwise render "This page has no
+ * sources of its own" under that sentence. Fail the build instead (review WP-20 pass 3).
+ */
+const listed = sources.entries.length + sources.acts.length;
+if (count !== listed) {
+  throw new Error(
+    `${context.docId ?? 'A page'} lists ${listed} source(s) but the ${context.contentLang} register ` +
+      `resolves ${count}. Add the missing entries to src/data/${context.contentLang}/sources.json.`,
+  );
+}
 /**
  * The register and the note are in the content's language. On an English fallback page that is
  * not the page's language, so their text is marked, while the labels around it are not.

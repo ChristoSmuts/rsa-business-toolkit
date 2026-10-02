@@ -14,7 +14,7 @@ import { docHref, sectionDocIds } from '../../../lib/content/manifest';
 import { localeStaticPaths } from '../../../lib/i18n-routes';
 import { docContentLang, pageTitle } from '../../../lib/pages';
 import { href } from '../../../lib/paths';
-import { APP_ROUTES, NAV_DOC_IDS } from '../../../lib/routes';
+import { APP_ROUTES, NAV_DOC_IDS, TEMPLATES_FILLABLE } from '../../../lib/routes';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -28,6 +28,7 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const manifest = await loadManifest();
 const sources = await loadSources(docContentLang(manifest, NAV_DOC_IDS.sources, locale));
+const intro = t(TEMPLATES_FILLABLE ? 'templates.indexIntro' : 'templates.indexIntroStatic');
 const howMadeHref = docHref(manifest, NAV_DOC_IDS.howThisWasMade, locale);
 const whichHref = docHref(manifest, 'paperwork/which-template-to-use-when', locale);
 
@@ -50,7 +51,7 @@ const templates = sectionDocIds(manifest, 'paperwork')
   manifest={manifest}
   route={APP_ROUTES.templates}
   title={pageTitle(t, t('templates.indexTitle'))}
-  description={t('templates.indexIntro')}
+  description={intro}
 >
   <div class="st-container st-stack st-stack-lg st-templates" data-section="paperwork">
     <Breadcrumb
@@ -61,7 +62,7 @@ const templates = sectionDocIds(manifest, 'paperwork')
       locale={locale}
     />
     <SectionHeader section="paperwork" title={t('templates.indexTitle')} level={1} />
-    <p class="st-lead">{t('templates.indexIntro')}</p>
+    <p class="st-lead">{intro}</p>
     {whichHref && (
       <p>
         <a class="st-link-block" href={whichHref}>

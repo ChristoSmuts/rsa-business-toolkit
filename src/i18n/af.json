@@ -51,6 +51,7 @@
       "myPath": "Jou stappe, in volgorde",
       "checklist": "Merk elke item af wanneer jy klaar is",
       "templates": "Vul in en druk",
+      "templatesStatic": "Wat elke dokument moet wys",
       "glossary": "Kort woorde verduidelik",
       "sources": "Die bronne agter die feite in hierdie gids"
     },
@@ -127,6 +128,7 @@
   "home": {
     "heroTitle": "Begin en bestuur jou besigheid in Suid-Afrika",
     "heroLead": "’n Gratis gids vir een persoon wat die eienaar en die enigste werker is. Gewone taal, feite wat ’n KI in die Engelse teks nagegaan het, en net die stappe wat vir jou geld.",
+    "heroLeadStatic": "’n Gratis gids vir een persoon wat die eienaar en die enigste werker is. Gewone taal en feite wat ’n KI in die Engelse teks nagegaan het.",
     "heroVerify": "Deur KI geskryf. ’n KI het die feite in die Engelse teks op {date} teen die bronne in die bronneregister nagegaan. Geen mens het hulle nog nagegaan nie. Kontroleer die amptelike skakel voordat jy betaal of teken.",
     "findMyPath": "Vind my roete",
     "findMyPathHint": "Beantwoord {total} kort vrae",
@@ -450,6 +452,7 @@
   "templates": {
     "indexTitle": "Sjablone",
     "indexIntro": "Vul ’n vorm in, kyk na die bladsy, en druk dit dan of stoor dit as ’n PDF.",
+    "indexIntroStatic": "Wat elke dokument moet wys, met ’n voorbeelduitleg wat jy kan oorneem.",
     "whichOne": "Watter een het ek nodig?",
     "items": {
       "quotation": {

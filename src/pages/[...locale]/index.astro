@@ -9,7 +9,6 @@
  */
 import { getCollection } from 'astro:content';
 import Page from '../../layouts/Page.astro';
-import Badge from '../../components/ui/Badge.astro';
 import Button from '../../components/ui/Button.astro';
 import Card from '../../components/ui/Card.astro';
 import BusinessTypeTiles from '../../components/pages/BusinessTypeTiles.astro';
@@ -18,11 +17,11 @@ import { formatDate, useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
 import { loadManifest, loadSources } from '../../lib/content/collections';
 import { docHref, sectionHref } from '../../lib/content/manifest';
-import { HOME_NUMBERS_YEAR, resolveHomeNumbers } from '../../lib/home';
+import { HOME_FOUR_THINGS, HOME_NUMBERS_YEAR, resolveHomeNumbers } from '../../lib/home';
 import { localeStaticPaths } from '../../lib/i18n-routes';
 import { docContentLang } from '../../lib/pages';
 import { href } from '../../lib/paths';
-import { APP_ROUTES, NAV_DOC_IDS, WIZARD_AVAILABLE } from '../../lib/routes';
+import { APP_ROUTES, NAV_DOC_IDS, SEARCH_AVAILABLE, WIZARD_AVAILABLE } from '../../lib/routes';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -83,7 +82,7 @@ const whereToStart = [
   <div class="st-container st-stack st-home">
     <section class="st-home__hero st-stack" aria-labelledby="home-title">
       <h1 id="home-title">{t('home.heroTitle')}</h1>
-      <p class="st-lead">{t('home.heroLead')}</p>
+      <p class="st-lead">{t(WIZARD_AVAILABLE ? 'home.heroLead' : 'home.heroLeadStatic')}</p>
       <p class="st-hint">
         {t('home.heroVerify', { date: checkedOn })}{' '}
         {howMadeHref && <a href={howMadeHref}>{t('home.trust.howThisWasMade')}</a>}
@@ -94,13 +93,26 @@ const whereToStart = [
             {t('home.findMyPath')}
           </Button>
         )}
-        <Button
-          href={href(locale, APP_ROUTES.search)}
-          variant={WIZARD_AVAILABLE ? 'secondary' : 'primary'}
-          size="lg"
-        >
-          {t('home.knowWhatINeed')}
-        </Button>
+        {SEARCH_AVAILABLE ? (
+          <Button
+            href={href(locale, APP_ROUTES.search)}
+            variant={WIZARD_AVAILABLE ? 'secondary' : 'primary'}
+            size="lg"
+          >
+            {t('home.knowWhatINeed')}
+          </Button>
+        ) : (
+          <Fragment>
+            {!WIZARD_AVAILABLE && coreStartHref && (
+              <Button href={coreStartHref} variant="primary" size="lg">
+                {t('home.whereToStart.fiveMinutes.action')}
+              </Button>
+            )}
+            <Button href={href(locale, APP_ROUTES.contents)} variant="secondary" size="lg">
+              {t('search.browseContents')}
+            </Button>
+          </Fragment>
+        )}
       </p>
     </section>
 
@@ -136,10 +148,13 @@ const whereToStart = [
     <section class="st-stack" aria-labelledby="home-four">
       <h2 id="home-four">{t('home.fourThings.heading')}</h2>
       <ol class="st-home__four">
-        <li>{t('home.fourThings.bank')}</li>
-        <li>{t('home.fourThings.sars')}</li>
-        <li>{t('home.fourThings.licence')}</li>
-        <li>{t('home.fourThings.records')}</li>
+        {HOME_FOUR_THINGS.map((item) => (
+          <li>
+            <a class="st-link-block" href={docHref(manifest, item.doc, locale, item.anchor)}>
+              {t(item.labelKey)}
+            </a>
+          </li>
+        ))}
       </ol>
     </section>
 
@@ -168,6 +183,7 @@ const whereToStart = [
               </p>
             )}
             <p class="st-hint">{t('trust.fact.checked', { date: checkedOn })}</p>
+            {/* The link says "Official source"; home.test.ts guarantees every cited source is. */}
             <p class="st-cluster">
               <a class="st-link-block" href={item.sourceUrl} rel="noopener noreferrer">
                 {t('home.threeNumbers.officialSource')}
@@ -176,9 +192,6 @@ const whereToStart = [
                   {t('home.threeNumbers.officialSourceFor', { name: t(item.labelKey) })}
                 </span>
               </a>
-              {item.official && (
-                <Badge variant="official">{t('trust.sources.officialLabel')}</Badge>
-              )}
             </p>
           </li>
         ))}

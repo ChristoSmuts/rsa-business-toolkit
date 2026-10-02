@@ -3,8 +3,9 @@
  * "facts are shown with their date"). Every other fact on the site comes from the markdown.
  *
  * Each figure names the register entry that supports it. `tests/unit/site/home.test.ts` fails
- * when a figure is not in that entry's own "supports" text, or when the old figure is not the
- * one `start/start-here` names, so these strings cannot drift from the sourced content. Rand
+ * when the figure, the old figure or the date it applies from is not in that entry's own
+ * "supports" text: the guide's text is never enough, because the card shows these under the
+ * source's link and its Official badge (D5, reviews WP-20 passes 2 and 3). Rand
  * amounts are written exactly as the English markdown writes them; Afrikaans keeps them
  * byte-identical (CLAUDE.md).
  */
@@ -39,7 +40,8 @@ export const HOME_NUMBERS: readonly HomeNumber[] = [
     id: 'vat-voluntary',
     labelKey: 'home.threeNumbers.vatVoluntary',
     amount: 'R120,000',
-    oldAmount: 'R50,000',
+    // "Not R50,000" is left out: the guide says it, but no register entry does (review WP-20 pass 3).
+    from: '2026-04-01',
     sourceId: 'sars--budget-2026-frequently-asked-questions',
   },
   {
@@ -77,3 +79,23 @@ export function resolveHomeNumbers(sources: SourcesFile | undefined): ResolvedHo
     return { ...item, sourceUrl: entry.url, sourceTitle: entry.title, official: entry.official };
   });
 }
+
+/**
+ * "Four things that matter early" (build plan B6). Each item states a rule, so each links to the
+ * section of the guide that states it with its sources (D5; review WP-20 pass 3).
+ * `tests/unit/site/home.test.ts` fails when an anchor is gone or the page lists no sources.
+ */
+export const HOME_FOUR_THINGS: readonly {
+  readonly labelKey: TranslationKey;
+  readonly doc: string;
+  readonly anchor: string;
+}[] = [
+  { labelKey: 'home.fourThings.bank', doc: 'core/register', anchor: 'business-bank-account' },
+  { labelKey: 'home.fourThings.sars', doc: 'core/tax-and-sars', anchor: 'provisional-tax' },
+  {
+    labelKey: 'home.fourThings.licence',
+    doc: 'core/what-you-need-to-sell-things',
+    anchor: 'the-general-rule',
+  },
+  { labelKey: 'home.fourThings.records', doc: 'core/tax-and-sars', anchor: 'records' },
+];

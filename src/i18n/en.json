@@ -51,6 +51,7 @@
       "myPath": "Your steps, in order",
       "checklist": "Tick each item when you finish it",
       "templates": "Fill in and print",
+      "templatesStatic": "What each document must show",
       "glossary": "Short words explained",
       "sources": "The sources behind the facts in this guide"
     },
@@ -127,6 +128,7 @@
   "home": {
     "heroTitle": "Start and run your business in South Africa",
     "heroLead": "A free guide for one person who is the owner and the only worker. Plain words, AI-checked facts, and only the steps that apply to you.",
+    "heroLeadStatic": "A free guide for one person who is the owner and the only worker. Plain words and AI-checked facts.",
     "heroVerify": "Written by AI. An AI checked the facts against the sources in the sources register on {date}. No person has checked them yet. Check the official link before you pay or sign.",
     "findMyPath": "Find my path",
     "findMyPathHint": "Answer {total} short questions",
@@ -450,6 +452,7 @@
   "templates": {
     "indexTitle": "Templates",
     "indexIntro": "Fill in a form, check the page, then print it or save it as a PDF.",
+    "indexIntroStatic": "What each document must show, with a sample layout you can copy.",
     "whichOne": "Which one do I need?",
     "items": {
       "quotation": {

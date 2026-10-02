@@ -244,16 +244,20 @@ const relatedTypes = businessType
         <nav class="st-pager" aria-label={t('nav.pagerLabel')}>
           {pager.previous && (
             <a class="st-pager__link" href={pager.previous.href} rel="prev">
-              {previousParts[0]}
-              <span lang={pager.previous.lang}>{pager.previous.title}</span>
-              {previousParts[1]}
+              <span>
+                {previousParts[0]}
+                <span lang={pager.previous.lang}>{pager.previous.title}</span>
+                {previousParts[1]}
+              </span>
             </a>
           )}
           {pager.next && (
             <a class="st-pager__link st-pager__next" href={pager.next.href} rel="next">
-              {nextParts[0]}
-              <span lang={pager.next.lang}>{pager.next.title}</span>
-              {nextParts[1]}
+              <span>
+                {nextParts[0]}
+                <span lang={pager.next.lang}>{pager.next.title}</span>
+                {nextParts[1]}
+              </span>
             </a>
           )}
         </nav>
@@ -303,6 +307,11 @@ const relatedTypes = businessType
     border-block-start: var(--st-border-width) solid var(--st-border);
   }
 
+  /*
+   * One inline <span> holds the whole sentence ("Previous: {title}", the title in its own
+   * `<span lang>`), so it flows as one flex item: as separate items the space after the colon
+   * collapsed and the label broke mid-word (review WP-20 pass 3).
+   */
   .st-pager__link {
     display: flex;
     align-items: center;

@@ -60,7 +60,9 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
       <span>{t('nav.search')}</span>
     </a>
     <LanguageSwitcher class="st-topbar__lang" locale={locale} route={route} />
-    <ThemeControl class="st-topbar__theme" locale={locale} />
+    <div class="st-topbar__theme">
+      <ThemeControl locale={locale} />
+    </div>
     <button
       type="button"
       class="st-topbar__menu-button js-only"
@@ -151,6 +153,22 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
    * the same `<details>` menus are shown stacked, so the header alone still reaches every page.
    */
   @media (width < 1024px) {
+    /*
+     * Not sticky on a phone: the bar wraps to two or three rows (wordmark, search and language,
+     * menu) and, with JavaScript off, carries every menu stacked. Pinned, it covered up to 40% of
+     * a 320px screen and every anchor target under it (review WP-20 pass 3). `base.css` drops the
+     * matching scroll padding at the same breakpoint.
+     */
+    .st-topbar {
+      position: static;
+    }
+
+    /*
+     * The theme control is wrapped in an element this component owns. As a class passed to
+     * <ThemeControl> it landed on that component's element with *its* scope attribute, this scoped
+     * rule never matched, and the full control stayed in the bar, 227px tall at 320px (review
+     * WP-20 pass 3). The drawer has its own theme control.
+     */
     .st-topbar__menus,
     .st-topbar__theme {
       display: none;

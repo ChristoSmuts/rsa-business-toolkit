@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
+import { formatDate } from '../../../src/i18n';
 import { plainText } from '../../../src/lib/content/render';
-import { HOME_NUMBERS, resolveHomeNumbers } from '../../../src/lib/home';
+import { HOME_FOUR_THINGS, HOME_NUMBERS, resolveHomeNumbers } from '../../../src/lib/home';
 import { realDoc, realSources } from './data';
 
 const sources = realSources();
@@ -25,22 +26,23 @@ describe('the home page figures', () => {
     }
   });
 
-  it('state only figures their own source supports', () => {
+  it('state only figures and dates their own source supports', () => {
     for (const item of HOME_NUMBERS) {
       const text = supports(item.sourceId);
       expect(text, item.sourceId).toContain(item.amount);
-      // Only the cited entry counts. The guide's own text is not a source (review WP-20 pass 2).
+      // Only the cited entry counts. The guide's own text is not a source (reviews WP-20 p2, p3).
+      if (item.oldAmount) expect(text, `${item.id} old figure`).toContain(item.oldAmount);
+      if (item.from) expect(text, `${item.id} date`).toContain(formatDate('en', item.from));
       if (item.zeroBand) expect(text, item.sourceId).toContain(item.zeroBand.amount);
     }
   });
 
-  it('name the same out-of-date figures and date as "Start here"', () => {
+  it('agree with "Start here", which states the same figures', () => {
     const startHere = plainTextOf('start/start-here');
     for (const item of HOME_NUMBERS) {
       expect(startHere).toContain(item.amount);
       if (item.oldAmount) expect(startHere, item.id).toContain(`not ${item.oldAmount}`);
     }
-    expect(startHere).toContain('from 1 April 2026');
   });
 
   it('fail the build when a cited entry has no link', () => {
@@ -65,3 +67,16 @@ function plainTextOf(docId: string): string {
   walk(realDoc(docId).blocks);
   return parts.join('');
 }
+
+describe('"Four things that matter early"', () => {
+  it('links each rule to a section that exists on a page with its own sources', () => {
+    for (const item of HOME_FOUR_THINGS) {
+      const doc = realDoc(item.doc);
+      expect(
+        doc.headings.map((heading) => heading.id),
+        item.labelKey,
+      ).toContain(item.anchor);
+      expect(doc.sources.entries.length + doc.sources.acts.length, item.doc).toBeGreaterThan(0);
+    }
+  });
+});

@@ -226,7 +226,7 @@ All components live in `src/components/ui/` (primitives) and `src/components/ill
 | Component | Props | States | Accessibility |
 | --- | --- | --- | --- |
 | `Button` | `variant` primary/secondary/ghost/danger, `size` md/lg, `href`, `type`, `iconStart`, `iconEnd`, slots `icon-start`/`icon-end`, `loading`, `loadingText`, `disabled`, `block` | default, hover, active, focus, loading (variant fill, spinner, `cursor: progress`), disabled (dashed, muted, `--st-surface-2`) | `href` renders `<a>`. Disabled and loading use `aria-disabled="true"` (focusable, announced). `theme-init` swallows clicks on `.st-btn[aria-disabled="true"]`, and an inactive `submit`/`reset` renders as `type="button"`, so it cannot submit even without JavaScript. Loading adds `aria-busy`, hides the visible label from assistive technology and exposes only `loadingText` ("Saving", not "Saving Saving"). The spinner stops under reduced motion and keeps its gap in forced colours. The component owns `aria-disabled`, `aria-busy` and, while loading, the accessible name: those are spread **after** the caller's attributes, so a caller cannot undo the inactive state or replace `loadingText`. An inactive `href` button still renders its `icon-end`, so it does not change width when it becomes active. |
-| `Card` | `title`, `href`, `section`, `eyebrow`, `headingLevel`, slots `illustration`, `meta` | static, hover lift, focus (ring on the whole card) | Single tab stop: the title link's `::after` covers the card. The meta row sits above the overlay, so links in it stay usable. The whole-card ring uses `:has()`; browsers without it get the ring on the link itself (`@supports not selector(:has(*))`). |
+| `Card` | `title`, `titleLang`, `href`, `section`, `eyebrow`, `headingLevel`, slots `illustration`, `meta` | static, hover lift, focus (ring on the whole card) | Single tab stop: the title link's `::after` covers the card. The meta row sits above the overlay, so links in it stay usable. The whole-card ring uses `:has()`; browsers without it get the ring on the link itself (`@supports not selector(:has(*))`). |
 | `Callout` | `variant` plain-words/note/warning/official/info, `label`, `icon`, `labelId` | – | `role="note"` named by its own visible label through `aria-labelledby`, so it is announced as "About this page, note" rather than a bare "note". The id is generated (`src/scripts/uid.ts`) unless you pass `labelId`. Icon plus visible text label; the icon stays beside the first line when a long label wraps. Plain-words is never collapsed. |
 | `Badge` | `variant` entity/type/official/status/effort/mt/flag, `icon` (or `null`) | – | Icon plus text; tinted colours are decoration only. `status` (who checked a page, and when) is deliberately neutral — see [Notices and sources](#notices-and-sources-plan-d5). **Badges wrap.** A label longer than the row it sits in breaks onto a second or third line instead of pushing the page sideways, the icon stays beside the first line, and the corner radius is `--st-radius-lg`, which a browser clamps to an exact pill on a one-line badge and leaves as a calm rounded rectangle on a wrapped one. `flag` reuses the verified warning pair for "Not confirmed" and other verification flags. |
 | `EffortMeter` | `level` 1–5, `label`, `levelLabels`, `scaleText` | five levels | Bars are `aria-hidden`; the level is written out ("Medium to high") plus hidden "(4 of 5)". Defaults follow the toolkit's own scale: Lowest, Low to medium, Medium, Medium to high, High. |
@@ -288,9 +288,21 @@ step. The language switcher is plain links either way; `<st-lang-switch>` only a
 | `src/pages/404.astro` | `/404.html` | Both languages on one page, because the server cannot know which one the reader wanted. |
 | `src/layouts/Page.astro` | all of the above | Canonical, `hreflang` with `x-default`, Open Graph and a description. Every page is listed in every enabled locale, matching the sitemap; an Afrikaans fallback page is the Afrikaans page for its URL. |
 
-The wizard and My path are WP-31. Until `WIZARD_AVAILABLE` in `src/lib/routes.ts` is `true`, no page
-links to them: the Tools menu, the drawer, the home page's primary button and the trust line about
-"your answers" are left out, and the home page's primary action is search.
+Three flags in `src/lib/routes.ts` keep the site from offering what is not built:
+
+- `WIZARD_AVAILABLE` (WP-31): no page links to the wizard or My path. The Tools menu, the drawer, the
+  "Find my path" button, the trust line about "your answers" and the hero's "only the steps that
+  apply to you" are left out.
+- `SEARCH_AVAILABLE` (WP-33): `/search/` and the 404 page show no search form, the header shows no
+  `/` hint, and the home page's actions are "Read Core: start here" and the contents.
+- `TEMPLATES_FILLABLE` (WP-32): the templates index and the drawer describe what the template pages
+  are now, what each document must show with a sample layout, not a form to fill in.
+
+Each package sets its flag to `true` in the change that builds the feature.
+
+Below 1024px the top bar is not sticky: on a phone it wraps to two or three rows, and with
+JavaScript off it carries every menu stacked, so pinned it would cover anchor targets and focus.
+`base.css` drops the scroll padding to match.
 
 On an Afrikaans route that falls back to the English document, the English text is marked
 `lang="en-ZA"` wherever it appears: the blocks, the `<h1>`, the summary, the terms, the table of

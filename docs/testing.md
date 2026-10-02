@@ -109,14 +109,22 @@ in every project.
   each of those links resolves. Two checks make `pnpm build` itself fail first: `Doc.astro` calls
   `assertDocTrust`, so a document whose data has no sources and no note never renders, and
   `pnpm dist:trust` (`scripts/dist/check-trust.ts`, run by `pnpm build` after the link audit)
-  fails any built page with an `<article data-kind>` that lacks the AI notice in its header or the
-  "Sources for this page" section, so a layout that stops rendering them cannot ship.
+  fails any built page with an `<article data-kind>` whose header lacks the AI notice with its
+  status and its "How this was made" link, or whose "Sources for this page" lists no source and has
+  no note with a link to the register. It also fails when the number of document pages is not every
+  manifest document in every enabled locale. `SourcesForPage` throws when a page's data lists
+  sources that its register does not resolve, so "the sources below" can never sit over an empty
+  list.
 - **The head of every built page**, read from `dist/` with no browser: a canonical URL that is the
   page itself, `hreflang` with `x-default`, `og:title`, `og:description`, `og:url`, `og:locale`,
   `og:type`, a description of at least 20 characters, and `theme-color`. The `hreflang` set in
   every page's head must equal the one `sitemap-0.xml` gives the same URL. An Afrikaans page that
   shows the English document is still the Afrikaans page for its URL (Afrikaans `<html lang>`,
   navigation and notices), so it is self-canonical and listed in both.
+- **The top bar never hides what a link scrolls to.** At 320×568, 375×667 and 1280×800, in both
+  languages, following a contents link must leave the heading below the bar's bottom edge. Below
+  1024px the bar is not sticky (it wraps to several rows on a phone, and stacks every menu without
+  JavaScript); from 1024px it is one row inside the 72px scroll padding.
 - **Navigation only real routes can show:** the breadcrumb through a section, the pager crossing
   from one section into the next, a section landing's cards in order, switching language on a real
   document with an anchor that exists on the other side, the Afrikaans fallback with `lang="en-ZA"`

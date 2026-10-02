@@ -89,8 +89,9 @@ export function contentStaticPaths(manifest: Manifest): ContentStaticPath[] {
 }
 
 /**
- * The languages a document really exists in, in `ENABLED_LOCALES` order. An Afrikaans page that
- * shows the English text is not an Afrikaans version, so it is not offered as one in `hreflang`.
+ * The languages a document has its own text in, in `ENABLED_LOCALES` order. Used to choose the
+ * language the blocks render in (`docContentLang`). It does not decide `hreflang`: every page is
+ * listed in every enabled locale, as the sitemap lists it (see `Page.astro`).
  */
 export function docLocales(manifest: Manifest, docId: string): Locale[] {
   const langs = new Set(manifest.docs[docId]?.langs ?? []);

@@ -27,6 +27,20 @@ export type AppRoute = (typeof APP_ROUTES)[keyof typeof APP_ROUTES];
  */
 export const WIZARD_AVAILABLE: boolean = false;
 
+/**
+ * Whether the search client (WP-33) is built. Until then `/search/` and the 404 page show no search
+ * form, because a form whose submission only reloads the page is a control that does nothing, and
+ * the home page does not offer search as its main action (review WP-20 pass 3). The search page
+ * still lists the common questions and links the contents.
+ */
+export const SEARCH_AVAILABLE: boolean = false;
+
+/**
+ * Whether the templates can be filled in and printed (WP-32). Until then every description says
+ * what the template pages are now: what each document must show, with a sample layout.
+ */
+export const TEMPLATES_FILLABLE: boolean = false;
+
 /** Document ids that the navigation links to by name. */
 export const NAV_DOC_IDS = {
   checklist: 'lookup/checklist',

@@ -144,12 +144,76 @@ test.describe('navigation between real pages', () => {
     await open(page, 'start/what-has-changed/');
     const next = page.locator('.st-pager a[rel="next"]');
     await expect(next).toHaveAttribute('href', `${basePath}core/start-here/`);
+    // As rendered, not as markup: the label and the title read as one sentence with one space.
+    expect(await next.evaluate((node) => (node as HTMLElement).innerText.trim())).toBe(
+      'Next: Core: start here',
+    );
     await next.click();
     await expect(page.locator('h1')).toBeVisible();
     await expect(page.locator('.st-pager a[rel="prev"]')).toHaveAttribute(
       'href',
       `${basePath}start/what-has-changed/`,
     );
+  });
+
+  for (const [width, height] of [
+    [320, 568],
+    [375, 667],
+    [1280, 800],
+  ] as const) {
+    test(`a heading reached by a link is not hidden under the top bar at ${width}px`, async ({
+      page,
+    }, testInfo) => {
+      test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewports.');
+      await page.setViewportSize({ width, height });
+      // Smooth scrolling would let the check run mid-scroll; a reader's end position is the same.
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      for (const prefix of ['', 'af/']) {
+        await open(page, `${prefix}core/register/`);
+        // Follow a real in-page link, the way a reader does, from the contents.
+        const toc = page.locator(width >= 1280 ? '.st-toc--column' : '.st-toc--details');
+        if (width < 1280) await toc.locator('summary').click();
+        const link = toc.locator('a[href="#how-to-register-a-company-yourself"]');
+        await link.click();
+        await expect(page).toHaveURL(/#how-to-register-a-company-yourself$/);
+        // Wait for the scroll position to settle: two animation frames with no movement.
+        await page.waitForFunction(
+          () =>
+            new Promise<boolean>((resolve) => {
+              const before = window.scrollY;
+              requestAnimationFrame(() =>
+                requestAnimationFrame(() => resolve(window.scrollY === before && before > 0)),
+              );
+            }),
+        );
+        const { barBottom, targetTop } = await page.evaluate(() => ({
+          barBottom: document.querySelector('.st-topbar')?.getBoundingClientRect().bottom ?? 0,
+          targetTop:
+            document.getElementById('how-to-register-a-company-yourself')?.getBoundingClientRect()
+              .top ?? -1,
+        }));
+        expect(
+          targetTop,
+          `/${prefix}: heading top vs bar bottom ${barBottom}`,
+        ).toBeGreaterThanOrEqual(Math.max(0, barBottom));
+      }
+    });
+  }
+
+  test('the language switcher names each language in its own language, inside a sentence in the page language', async ({
+    page,
+  }) => {
+    for (const [route, other, name, tag] of [
+      ['core/register/', 'af', 'Read this page in Afrikaans', 'af-ZA'],
+      ['af/core/register/', 'en', 'Lees hierdie bladsy in English', 'en-ZA'],
+    ] as const) {
+      await open(page, route);
+      const link = page.locator(`.st-topbar__lang a[data-locale="${other}"]`);
+      await expect(link).toHaveAccessibleName(name);
+      await expect(link).not.toHaveAttribute('lang', /.*/);
+      await expect(link).not.toHaveAttribute('aria-label', /.*/);
+      await expect(link.locator(`span[lang="${tag}"]`)).toHaveCount(1);
+    }
   });
 
   test('a section landing lists its documents in order', async ({ page, basePath }) => {
@@ -188,7 +252,10 @@ test.describe('navigation between real pages', () => {
     // The chrome around the content is Afrikaans.
     await expect(page.locator('.st-topbar')).toContainText('Lees');
     // English titles in Afrikaans sentences carry their own lang (review WP-20 pass 2).
-    await expect(page.locator('.st-pager a[rel="next"] span')).toHaveAttribute('lang', 'en-ZA');
+    await expect(page.locator('.st-pager a[rel="next"] span[lang]')).toHaveAttribute(
+      'lang',
+      'en-ZA',
+    );
     await expect(page.locator('.st-pager a[rel="next"]')).toContainText('Volgende');
   });
 

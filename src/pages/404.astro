@@ -11,7 +11,7 @@ import Button from '../components/ui/Button.astro';
 import { useTranslations } from '../i18n';
 import { DEFAULT_LOCALE, ENABLED_LOCALES, getLocale } from '../i18n/locales';
 import { href } from '../lib/paths';
-import { APP_ROUTES } from '../lib/routes';
+import { APP_ROUTES, SEARCH_AVAILABLE } from '../lib/routes';
 
 const blocks = ENABLED_LOCALES.map((locale) => {
   const t = useTranslations(locale);
@@ -48,21 +48,23 @@ const t = useTranslations(DEFAULT_LOCALE);
           <h2 id={`notfound-${block.locale}`}>{block.t('notFound.title')}</h2>
         )}
         <p>{block.t('notFound.body')}</p>
-        <form class="st-notfound__search" action={block.search} method="get" role="search">
-          <label for={`notfound-q-${block.locale}`}>{block.t('search.label')}</label>
-          <div class="st-notfound__row">
-            <input
-              id={`notfound-q-${block.locale}`}
-              type="search"
-              name="q"
-              placeholder={block.t('search.placeholder')}
-              autocomplete="off"
-            />
-            <Button type="submit" variant="secondary">
-              {block.t('search.button')}
-            </Button>
-          </div>
-        </form>
+        {SEARCH_AVAILABLE && (
+          <form class="st-notfound__search" action={block.search} method="get" role="search">
+            <label for={`notfound-q-${block.locale}`}>{block.t('search.label')}</label>
+            <div class="st-notfound__row">
+              <input
+                id={`notfound-q-${block.locale}`}
+                type="search"
+                name="q"
+                placeholder={block.t('search.placeholder')}
+                autocomplete="off"
+              />
+              <Button type="submit" variant="secondary">
+                {block.t('search.button')}
+              </Button>
+            </div>
+          </form>
+        )}
         <p class="st-cluster">
           <a class="st-link-block" href={block.home}>
             {block.t('notFound.home')}

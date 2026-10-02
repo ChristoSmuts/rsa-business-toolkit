@@ -10,7 +10,7 @@ import type { Locale } from '../i18n/locales';
 import { docHref, docTitle, docTitleLang, orderedSections, sectionHref } from './content/manifest';
 import type { Manifest, SectionId } from './content/schema';
 import { href } from './paths';
-import { APP_ROUTES, NAV_DOC_IDS, WIZARD_AVAILABLE } from './routes';
+import { APP_ROUTES, NAV_DOC_IDS, TEMPLATES_FILLABLE, WIZARD_AVAILABLE } from './routes';
 import { DEFAULT_LOCALE } from '../i18n/locales';
 
 export interface NavLink {
@@ -72,7 +72,11 @@ export function toolLinks(manifest: Manifest, locale: Locale, t: Translator): Na
       href: href(locale, APP_ROUTES.templates),
       route: APP_ROUTES.templates,
       label: t('nav.templates'),
-      description: t('nav.toolDescriptions.templates'),
+      description: t(
+        TEMPLATES_FILLABLE
+          ? 'nav.toolDescriptions.templates'
+          : 'nav.toolDescriptions.templatesStatic',
+      ),
     },
     fromDoc(NAV_DOC_IDS.glossary, 'nav.glossary', 'nav.toolDescriptions.glossary'),
     fromDoc(NAV_DOC_IDS.sources, 'nav.sources', 'nav.toolDescriptions.sources'),
