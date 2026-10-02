@@ -7,6 +7,9 @@ import MiniSearch from 'minisearch';
 import { indexOptions, INDEX_VERSION } from '../../src/lib/search/options';
 import type { SearchEntry, SerialisedIndex, StoredFields } from '../../src/lib/search/types';
 
+/** ADR 0003: each language's index stays under 400 KB gzipped. */
+export const INDEX_BUDGET_GZIP = 400 * 1024;
+
 /** The document MiniSearch indexes: searchable fields plus the stored ones. */
 export interface IndexedDocument extends StoredFields {
   readonly id: number;

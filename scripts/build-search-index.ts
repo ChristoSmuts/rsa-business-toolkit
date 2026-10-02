@@ -15,12 +15,9 @@ import { ENABLED_LOCALES } from '../src/i18n/locales';
 import { INDEX_VERSION } from '../src/lib/search/options';
 import type { SearchIndexRecord } from '../src/lib/search/types';
 import { RECORD_FILE } from '../src/lib/search/files';
-import { serialiseIndex } from './search/build';
+import { INDEX_BUDGET_GZIP, serialiseIndex } from './search/build';
 import { buildEntries } from './search/entries';
 import { loadIndexInput } from './search/load';
-
-/** ADR 0003: each language's index stays under 400 KB gzipped. */
-export const INDEX_BUDGET_GZIP = 400 * 1024;
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const OUT_DIR = path.join(ROOT, 'public', 'search');

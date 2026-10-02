@@ -72,6 +72,11 @@ export default getViteConfig({
         'src/lib/content/**': { statements: 85, branches: 72, functions: 100, lines: 85 },
         'scripts/build-content.ts': { statements: 0, branches: 0, functions: 0, lines: 0 },
         'scripts/translate/status.ts': { statements: 0, branches: 0, functions: 0, lines: 0 },
+        // Search (WP-33): the client is held to the brief's 90% and more; the index builder and
+        // the shared options sit just under their measurement, like the content pipeline above.
+        'src/lib/search-client.ts': { statements: 97, branches: 95, functions: 100, lines: 97 },
+        'src/lib/search/**': { statements: 97, branches: 85, functions: 100, lines: 97 },
+        'scripts/search/**': { statements: 99, branches: 90, functions: 100, lines: 99 },
       },
     },
   },

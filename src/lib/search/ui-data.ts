@@ -47,10 +47,14 @@ export function searchStrings(locale: Locale, manifest: Manifest): SearchStrings
   };
 }
 
-export function searchElementData(locale: Locale, manifest: Manifest): SearchElementData {
+export function searchElementData(
+  locale: Locale,
+  manifest: Manifest,
+  recordFile?: string,
+): SearchElementData {
   return {
     locale,
-    index: searchIndexUrl(locale),
+    index: recordFile === undefined ? searchIndexUrl(locale) : searchIndexUrl(locale, recordFile),
     page: href(locale, APP_ROUTES.search),
     contents: href(locale, APP_ROUTES.contents),
     strings: JSON.stringify(searchStrings(locale, manifest)),
