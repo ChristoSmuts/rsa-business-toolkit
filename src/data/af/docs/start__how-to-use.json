@@ -1533,10 +1533,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Sommige KI-programme sal drie stappe gelyk beantwoord. Wanneer dit gebeur, sê:"
+          "v": "Sommige KI-programme sal drie stappe tegelyk beantwoord. Wanneer dit gebeur, sê:"
         }
       ],
-      "hash": "d6f7b2da9a8461e9",
+      "hash": "fe85cfaa1e8a76b2",
       "id": "if-the-ai-runs-ahead.1",
       "kind": "paragraph",
       "sourceHash": "b8fe15c4b95c51fa"
@@ -1632,10 +1632,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Daardie reël sê dieselfde ding in alledaagse taal. As die regsin jou verwar, slaan dit oor en lees die gewone reël. Jy verloor niks."
+          "v": "Daardie reël sê dieselfde ding in alledaagse taal. As die sin in regstaal jou verwar, slaan dit oor en lees die gewone reël. Jy verloor niks."
         }
       ],
-      "hash": "4a324a60cd376ddc",
+      "hash": "d4e2d128c90aba13",
       "id": "how-the-legal-parts-are-written.4",
       "kind": "paragraph",
       "sourceHash": "3706e6589ca74b16"
@@ -2281,7 +2281,7 @@
       "sourceHash": "7579b59cd0febf80"
     }
   ],
-  "contentHash": "1175f40ef57edf4d",
+  "contentHash": "5471511d70cf91c1",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

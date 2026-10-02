@@ -20,10 +20,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Geskryf in eenvoudige Engels vir lesers wat nie Engels as eerste taal praat nie, en vir mense wat nog nooit ’n besigheid bestuur het nie."
+          "v": "Geskryf in eenvoudige taal vir lesers wat nie Engels as eerste taal praat nie, en vir mense wat nog nooit ’n besigheid bestuur het nie."
         }
       ],
-      "hash": "8be29e647b847ba8",
+      "hash": "a6bd205985951534",
       "id": "intro.2",
       "kind": "paragraph",
       "sourceHash": "ebfab643c555cbc0"
@@ -566,7 +566,7 @@
       "sourceHash": "362e5b12722137bc"
     }
   ],
-  "contentHash": "fe88bd64325a6e97",
+  "contentHash": "59262acdd9cd5a49",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

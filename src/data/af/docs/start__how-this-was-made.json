@@ -1415,10 +1415,10 @@
         },
         {
           "t": "text",
-          "v": " Die gebruiker het opgemerk dat die Core-vouer in Google Drive by 02 begin het. Toe die Drive-weergawe gebou is, is twee markdown-lêers saamgevoeg in die hoof-START HERE: die bewaarplek se README en die Core-vouer se eie begin-hier-dokument. Om die README saam te voeg, was korrek. Om die Core se begin-hier saam te voeg, was nie, want dit was ’n intreedokument vir die vouer eerder as ’n readme, en om dit te verwyder het die vouer gelaat asof sy eerste lêer ontbreek, en sonder die oriënteringsdokument wat elke ander vouer het. ’n Intreedokument vir Core is in Drive geskep. Die markdown-kopie was reeds korrek en het geen verandering nodig gehad nie."
+          "v": " Die gebruiker het opgemerk dat die Core-vouer in Google Drive by 02 begin het. Toe die Drive-weergawe gebou is, is twee markdown-lêers saamgevoeg in die hoof-START HERE: die bewaarplek se README en die Core-vouer se eie begin-hier-dokument. Om die README saam te voeg, was korrek. Om die Core se begin-hier saam te voeg, was nie, want dit was ’n intreedokument vir die vouer eerder as ’n readme, en omdat dit verwyder is, het dit gelyk asof die vouer sy eerste lêer kort, en was die vouer sonder die oriënteringsdokument wat elke ander vouer het. ’n Intreedokument vir Core is in Drive geskep. Die markdown-kopie was reeds korrek en het geen verandering nodig gehad nie."
         }
       ],
-      "hash": "b8751ea16b3afd5b",
+      "hash": "c95cc60f3243def0",
       "id": "corrections-log.13",
       "kind": "paragraph",
       "sourceHash": "b081b3c2cb6afba0"
@@ -1547,7 +1547,7 @@
       "sourceHash": "110f8219592071cb"
     }
   ],
-  "contentHash": "c261141568f4c5a6",
+  "contentHash": "841668255215ec99",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

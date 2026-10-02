@@ -1348,10 +1348,10 @@
       "c": [
         {
           "t": "text",
-          "v": "’n Werkende direkteur wat ’n maandelikse salaris kry, kwalifiseer dus as ’n werknemer, moet geregistreer word, en moet ’n Return of Earnings (opgawe van verdienste) indien, selfs waar daardie direkteur die enigste persoon in die maatskappy is. ’n Eenmansaak (sole proprietor) se eienaar, daarenteen, is nie ’n werknemer kragtens COIDA nie en kan nie registreer nie."
+          "v": "’n Werkende direkteur wat ’n maandelikse salaris kry, kwalifiseer dus as ’n werknemer, moet geregistreer word, en moet ’n Return of Earnings (verdiensteopgawe) indien, selfs waar daardie direkteur die enigste persoon in die maatskappy is. ’n Eenmansaak (sole proprietor) se eienaar, daarenteen, is nie ’n werknemer kragtens COIDA nie en kan nie registreer nie."
         }
       ],
-      "hash": "a288dd6234b7b3d2",
+      "hash": "5352c4a6e2a8d349",
       "id": "employees-including-yourself.3",
       "kind": "paragraph",
       "sourceHash": "829f07db9acd9f04"
@@ -1850,7 +1850,7 @@
       "sourceHash": "a53f3ad7f9cbd13c"
     }
   ],
-  "contentHash": "6204fc9f67f0cdff",
+  "contentHash": "e7c932598f6a5e78",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

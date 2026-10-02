@@ -29,7 +29,7 @@
       "sourceHash": "946e23d63ba91184"
     },
     {
-      "hash": "54000d56c4b15319",
+      "hash": "d97200d533b1df13",
       "id": "intro.3",
       "items": [
         [
@@ -41,7 +41,7 @@
         [
           {
             "t": "text",
-            "v": "As ’n kliënt nie betaal nie, hang dit ook van jou struktuur af hoe jy agter die geld aan gaan. Een struktuur het ’n gratis hof. Die ander een nie."
+            "v": "As ’n kliënt nie betaal nie, hang dit ook van jou struktuur af hoe jy agter die geld aan gaan. Een struktuur het ’n gratis hof. Die ander een het nie."
           }
         ],
         [
@@ -1523,7 +1523,7 @@
       "text": "Beskerming"
     },
     {
-      "hash": "012ad7204e9833ee",
+      "hash": "a8225b836ae89964",
       "id": "protection.1",
       "items": [
         {
@@ -1567,7 +1567,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Het ’n kontantbuffer in ’n aparte rekening, bereken in maande wat ek nie kan werk nie"
+              "v": "Het ’n kontantbuffer in ’n aparte rekening, bereken in maande wat ek nie sou kan werk nie"
             }
           ],
           "doc": "core/you-are-the-business",
@@ -1723,7 +1723,7 @@
       "sourceHash": "79ab900f53dc5dc7"
     }
   ],
-  "contentHash": "1965f327b3c6b86e",
+  "contentHash": "6b583385a8e88f84",
   "generated": {
     "date": "2026-09-14",
     "tool": "Claude, Anthropic"

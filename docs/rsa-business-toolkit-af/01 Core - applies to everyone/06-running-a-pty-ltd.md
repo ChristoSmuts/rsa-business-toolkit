@@ -191,7 +191,7 @@ As die maatskappy jou ’n salaris betaal, word die maatskappy ’n werkgewer. D
 
 COIDA geld byna seker ook vir jou, en dit word wyd verkeerd verstaan. Die Wet se definisie van werknemer sluit ’n werkende direkteur van ’n maatskappy in wat ’n dienskontrak aangegaan het, vir sover hy of sy binne die omvang van daardie diens optree. Dit sluit aandeelhouers of stil vennote uit wat net dividende of ’n winsaandeel ontvang.
 
-’n Werkende direkteur wat ’n maandelikse salaris kry, kwalifiseer dus as ’n werknemer, moet geregistreer word, en moet ’n Return of Earnings (opgawe van verdienste) indien, selfs waar daardie direkteur die enigste persoon in die maatskappy is. ’n Eenmansaak (sole proprietor) se eienaar, daarenteen, is nie ’n werknemer kragtens COIDA nie en kan nie registreer nie.
+’n Werkende direkteur wat ’n maandelikse salaris kry, kwalifiseer dus as ’n werknemer, moet geregistreer word, en moet ’n Return of Earnings (verdiensteopgawe) indien, selfs waar daardie direkteur die enigste persoon in die maatskappy is. ’n Eenmansaak (sole proprietor) se eienaar, daarenteen, is nie ’n werknemer kragtens COIDA nie en kan nie registreer nie.
 
 Die Compensation Fund (Vergoedingsfonds) se riglyne sê dat ’n werkgewer binne sewe dae nadat hy werknemers aangestel het, moet registreer, en dat alle werkgewers met een of meer deeltydse, los, tydelike of voltydse werknemers kragtens artikel 80(1) moet registreer.
 

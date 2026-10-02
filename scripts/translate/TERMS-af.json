@@ -641,6 +641,18 @@
       "af": "gebruikersnaam",
       "note": "Not 'handvatsel' (WP-40 batch 3 review).",
       "keepVerbatim": false
+    },
+    {
+      "en": "Return of Earnings",
+      "af": "Return of Earnings (verdiensteopgawe)",
+      "note": "Official name kept in English with the Afrikaans gloss on first use (WP-40 batch 3 review).",
+      "keepVerbatim": false
+    },
+    {
+      "en": "simple English (describing the page)",
+      "af": "eenvoudige taal",
+      "note": "Where a sentence describes the language of the page the reader sees, say \"taal\"; where it records work on the English source, keep \"Engels\" (WP-40 batch 3 review).",
+      "keepVerbatim": false
     }
   ]
 }

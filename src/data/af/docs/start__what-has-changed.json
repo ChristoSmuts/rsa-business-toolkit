@@ -987,10 +987,10 @@
         },
         {
           "t": "text",
-          "v": " is by die hoof-START HERE ingevou toe Drive gebou is. Die resultaat het gelyk soos ’n ontbrekende lêer, en dit het Core gelaat as die enigste vouer sonder sy eie intreedokument. Elke ander vouer het een."
+          "v": " was by die hoof-START HERE ingevou toe Drive gebou is. Die resultaat het gelyk soos ’n ontbrekende lêer, en daardeur was Core die enigste vouer sonder sy eie intreedokument. Elke ander vouer het een."
         }
       ],
-      "hash": "aa92f00d184901ed",
+      "hash": "569ea7710a072268",
       "id": "change-3-missing-entry-document-in-the-core-folder-fix.1",
       "kind": "paragraph",
       "sourceHash": "abf6f25be5dee74d"
@@ -1013,10 +1013,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Drive-dokument \"01 Start here - what is in this folder\" in die vouer 01 Core. Dit bevat die leesvolgorde, ’n tabel van die agt kerndokumente met wanneer om elkeen te lees, watter een op watter lesers van toepassing is, en ’n kort nota wat verduidelik dat die nommering by 02 begin omdat hierdie dokument 01 is."
+          "v": "Drive-dokument \"01 Start here - what is in this folder\" in die vouer 01 Core. Dit bevat die leesvolgorde, ’n tabel van die agt kerndokumente met wanneer om elkeen te lees, watter dokumente op watter lesers van toepassing is, en ’n kort nota wat verduidelik dat die nommering by 02 begin omdat hierdie dokument 01 is."
         }
       ],
-      "hash": "12d5e5947d28fd8d",
+      "hash": "c1d6948f1339ca20",
       "id": "added-2.1",
       "kind": "paragraph",
       "sourceHash": "fc75dcc02abd4b10"
@@ -1797,10 +1797,10 @@
         },
         {
           "t": "text",
-          "v": " Dit skep ’n nuwe lêer met ’n nuwe ID, en elke skakel in die gereedskapstel sal steeds na die ou een wys."
+          "v": " Dit skep ’n nuwe lêer met ’n nuwe ID, en elke skakel in die gereedskapstel sou steeds na die ou een wys."
         }
       ],
-      "hash": "df6b867dc6fea550",
+      "hash": "4f8649ba8be6a26a",
       "id": "how-to-keep-the-two-copies-in-sync.3",
       "kind": "paragraph",
       "sourceHash": "f8a8fc9a518e9c91"
@@ -1818,7 +1818,7 @@
       "sourceHash": "facc1da44d972127"
     }
   ],
-  "contentHash": "47fd26c116ce1c5e",
+  "contentHash": "9a4c8d5bab829f81",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

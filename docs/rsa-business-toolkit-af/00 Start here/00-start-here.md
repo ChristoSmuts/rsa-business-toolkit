@@ -2,7 +2,7 @@
 
 ’n Gratis gereedskapstel vir een persoon wat ’n besigheid in Suid-Afrika begin en bestuur. Jy is die eienaar. Jy is ook die enigste werker.
 
-Geskryf in eenvoudige Engels vir lesers wat nie Engels as eerste taal praat nie, en vir mense wat nog nooit ’n besigheid bestuur het nie.
+Geskryf in eenvoudige taal vir lesers wat nie Engels as eerste taal praat nie, en vir mense wat nog nooit ’n besigheid bestuur het nie.
 
 ---
 
