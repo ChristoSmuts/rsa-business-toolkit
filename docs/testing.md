@@ -151,6 +151,69 @@ in every project.
 `<details>` menus are shown at every width and the drawer button is not, so a phone without
 JavaScript still reaches every section and tool.
 
+### The store and the interactive pieces (WP-30)
+
+`tests/e2e/interactive.spec.ts` (projects `chromium`, `webkit` and `mobile`) drives the built site:
+
+- **Checklists.** A tick on `core/what-you-need-to-sell-things/` survives a reload, is counted under
+  "Checklists on other pages" on `/checklist/`, and is ticked on the Afrikaans twin. On `/checklist/`
+  the ring, the part bars and the group lines count ticks; "Not done yet" hides ticked items and
+  "Everything" brings them back; "Remove ticks" opens its dialog with "Keep my ticks" focused,
+  Escape cancels and returns focus to the button, and confirming empties `st.checks.v1` and says so.
+- **Storage that throws.** An init script makes `window.localStorage` throw before any page script
+  runs: the storage warning shows, and ticks and progress still work for the page view. With working
+  storage the warning stays hidden.
+- **Copy** (Chromium only, which is where Playwright can grant clipboard permissions): the clipboard
+  holds the first prompt on `branding/branding-prompts/` **byte for byte** equal to that block's
+  `text` in `src/data`, so `compressHTML` or a template change that alters whitespace inside the
+  `<pre>` fails here. The button says "Copied", the status line "Prompt 1 copied", and
+  `st.prompts.v1` records it. A refusing clipboard (stubbed) leaves the whole prompt selected.
+- **Scroll-spy.** At 1280px, following a contents link gives exactly that link
+  `aria-current="location"`. At 375px the "Now reading" pill names the section, sits above the
+  heading (never over it), and opens the list.
+- **Settings.** "Clear all my data" with seeded `st.theme`, `st.lang`, `st.checks.v1`,
+  `st.shortcuts` and a WP-31 style `st.profile.v1` leaves **no `st.` key** and keeps a key another app
+  owns; the theme and the switches are back to their defaults. Low data sets `data-low-data`, keeps it
+  on the next page before paint, and the body no longer uses the web font.
+- **Shortcuts.** `?` goes to `/about/#keyboard-shortcuts`, and does nothing once single-key
+  shortcuts are off; Alt+→ and Alt+← follow the pager.
+- **Language.** Following "Afrikaans" in the switcher saves `st.lang`; the English home page then
+  shows the banner in Afrikaans (`lang="af-ZA"`) with a link to `/af/` and no redirect; "Bly op
+  hierdie bladsy" saves English and the banner does not come back; closing it hides it for that page
+  view only.
+
+`nojs.spec.ts` checks the other side: the checklist ticks and says, once, that ticks are not saved,
+with no progress, summary, tools or dialog; prompts have no copy button; the contents have no pill
+and no `aria-current`; `/about/` offers no switch and no "Clear all my data", only the line that
+some tools need JavaScript; the home page shows no banner. `pages.spec.ts` reads every built page
+with a checklist and checks its saving line for whichever value `CHECKLIST_SAVES` has.
+
+`a11y.spec.ts` also runs axe, in both themes, with the "Remove all ticks?" dialog open, with the
+"Clear all your data?" dialog open, with the language banner showing and with the storage warning
+showing.
+
+**Dom tests** (`tests/dom/`, happy-dom): every element connects, round-trips through the store,
+disconnects cleanly (a control used after `disconnectedCallback` changes nothing) and is driven by
+its native keyboard control; `tests/dom/store.test.ts` loads a fresh store over seeded, corrupt and
+throwing `localStorage`. Mount markup with `mount()` from `tests/dom/helpers.ts`: happy-dom connects
+elements set through `innerHTML` before their children are parsed, which no real page does.
+**Unit tests** (`tests/unit/storage/`, `tests/unit/shortcuts.test.ts`,
+`tests/unit/site/checklist.test.ts`) cover the adapter with every way storage fails, migrations,
+the per-key reset, `clearAll`, the shortcut matcher and the checklist helpers.
+
+**Coverage floor.** `vitest.config.ts` sets `src/lib/store.ts` and `src/lib/storage/**` to 95%
+statements and lines, 90% branches and 100% functions, measured with the unit and dom projects
+together: `pnpm exec vitest run --project unit --project dom --coverage`. On the WP-30 build:
+`store.ts` 100 / 96.97 / 100 / 100, `storage/` 98.4 / 93.9 / 100 / 100. `pnpm test` does not collect
+coverage, so the floors bind only when coverage is run. (That run also reports the `src/lib/content/**`
+functions floor at 89%, short of its 100%, because `collections.ts` and `context.ts` are not loaded
+by any unit test; this predates WP-30 and is the same at `2744d07`.)
+
+**JavaScript budget.** Plan B3 allows 25 KB gzipped on a document page. To measure, take every
+`<script src>` of a built page and the chunks they import, gzip each and add them up. On the WP-30
+build the heaviest document pages are 15.9 KB (14 files, 39.9 KB raw); see
+[design-system.md](design-system.md#scripts-csp-and-javascript-budget) for the split.
+
 ### 404: `not-found.spec.ts`
 
 Requests `nonexistent-<random>/` and `af/nonexistent-<random>/` under the base path and expects status 404, a visible `<h1>` and no URL problems (`documentUrlProblems`). The tests skip, with the reason shown, until `dist/404.html` exists. The browser's own "status of 404" console message is allowed in these tests. `/404.html` itself also goes through the page contract, the no-JS check and axe.
@@ -162,6 +225,7 @@ Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, r
 - `serious` and `critical` violations fail the test.
 - `moderate` and `minor` violations are recorded as annotations (`a11y-moderate`, `a11y-minor`); they do not fail the test.
 - The per-test timeout is `PW_A11Y_TIMEOUT` (milliseconds): 60 s in CI, 90 s locally. `--timeout` on the command line overrides it.
+- `axe with the interactive states open` (WP-30) runs the same tags with each confirm dialog open, the language banner showing and the storage warning showing, in both themes.
 - Build plan C6 also lists the `best-practice` tag. The package brief left it out on purpose. Add it in the package that adds the search dialog, where rules such as `aria-dialog-name` start to matter.
 
 ## Fixtures
