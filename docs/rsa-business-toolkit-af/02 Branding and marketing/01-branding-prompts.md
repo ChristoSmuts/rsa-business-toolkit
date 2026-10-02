@@ -161,7 +161,7 @@ Nommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop d
 ### As die KI vooruit hardloop
 
 ```
-Stop. Gaan net terug na stap [X]. Gee my 5 opsies vir daardie stap en
+Stop. Gaan terug na stap [X], en net daarheen. Gee my 5 opsies vir daardie stap en
 niks anders nie. Wag vir my antwoord voordat jy aangaan.
 ```
 
@@ -300,7 +300,7 @@ Stel 5 name voor vir hierdie besigheid in Suid-Afrika.
 
 Reëls:
 - Maklik om hardop oor ’n raserige telefoonlyn te sê
-- Maklik om te spel nadat jy dit een keer gehoor het
+- Maklik om te spel nadat ’n mens dit een keer gehoor het
 - Werk vir kliënte wat Engels, Afrikaans, isiZulu, isiXhosa
  of Sesotho praat
 - Nie byna dieselfde as ’n groot Suid-Afrikaanse handelsmerk nie
@@ -760,7 +760,7 @@ motorhandelaar nie, geen chroom, geen luukse taal nie.
 4. Werksbakkie
  Afrikaans vir "work bakkie". Een woord, maklik op ’n voertuigdeur.
  Risiko: minder duidelik vir kopers wie se eerste taal Engels is. Klink soos: niks
- problematies in Engels nie; kyk by isiXhosa. Domein: werksbakkie.co.za
+ problematies in Engels nie; gaan isiXhosa na. Domein: werksbakkie.co.za
 
 5. Paarl Diesel Yard
  Plek plus vak. Baie maklik om te vind wanneer mense soek.
