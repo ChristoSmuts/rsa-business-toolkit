@@ -76,7 +76,7 @@ Een punt wat gewoonlik in hierdie argument verlore raak. UIF word byna altyd voo
 
 ### Wanneer salaris sin maak
 
-Salaris is aftrekbaar vir die maatskappy, wat die maatskappy se belasbare inkomste verminder. Dit word in jou hande belas teen jou persoonlike marginale koers, en die persoonlike belastingdrempel beteken dat die eerste R99,000 van jou totale belasbare inkomste geen belasting lok nie as jy jonger as 65 is.
+Salaris is aftrekbaar vir die maatskappy, wat die maatskappy se belasbare inkomste verminder. Dit word in jou hande belas teen jou persoonlike marginale koers, en die persoonlike belastingdrempel beteken dat die eerste R99,000 van jou totale belasbare inkomste belastingvry is as jy jonger as 65 is.
 
 Vir ’n eenpersoonmaatskappy met beskeie wins is ’n salaris tot omtrent by die belastingdrempel dikwels die skoonste beginpunt: geen belasting vir jou nie, ’n aftrekking vir die maatskappy, en ’n duidelike papierspoor.
 
@@ -132,7 +132,7 @@ Dit gebeur wanneer jy geld uithaal sonder om dit salaris of ’n dividend te noe
 
 Dit is die duur rigting.
 
-As ’n direkteur nie noukeurig hou by wat teen sy of haar leningsrekening aangeteken word nie, kan dit in debiet beland. Dit beteken dat die direkteur nou die maatskappy geld skuld.
+As ’n direkteur nie noukeurig rekord hou van wat teen sy of haar leningsrekening aangeteken word nie, kan dit in debiet beland. Dit beteken dat die direkteur nou die maatskappy geld skuld.
 
 Die belastingprobleem: ’n rentevrye lening, of ’n lening teen lae rente, van ’n maatskappy aan ’n aandeelhouer lei tot ’n geagte dividend kragtens artikel 64E(4) van die Income Tax Act.
 
@@ -142,7 +142,7 @@ Waar ’n lening in debiet bestaan en die rente wat op die uitstaande saldo gehe
 
 Die amptelike koers word deur SARS gepubliseer en verander. Vanaf 1 Desember 2025 is die amptelike koers vir die byvoordeel op rentevrye lenings of lenings teen lae rente 7.75% per jaar.
 
-**’n Teenstrydigheid wat jy moet ken.** Party Suid-Afrikaanse bronne sê die geagte dividend is 20% van die hele leningsaldo. Ander sê dit is net op die rente wat prysgegee is, met ander woorde die tekort tussen die amptelike koers en wat jy werklik betaal het. The Tax Faculty stel die standpunt duidelik: die kapitaal word nie as ’n dividend geag nie, en die rente sal oploop, wat ’n belastingrisiko inhou as die lening en die opgeloopte rente in die toekoms afgeskryf word.
+**’n Teenstrydigheid wat die moeite werd is om van te weet.** Party Suid-Afrikaanse bronne sê die geagte dividend is 20% van die hele leningsaldo. Ander sê dit is net op die rente wat prysgegee is, met ander woorde die tekort tussen die amptelike koers en wat jy werklik betaal het. The Tax Faculty stel die standpunt duidelik: die kapitaal word nie as ’n dividend geag nie, en die rente sal oploop, wat ’n belastingrisiko inhou as die lening en die opgeloopte rente in die toekoms afgeskryf word.
 
 Hierdie gereedskapstel neem die standpunt dat dit net die prysgegewe rente is, want dit is wat die bewoording van artikel 64E(4) en SARS se eie riglyne ondersteun. Maar die meningsverskil in die mark is werklik, so moenie net op hierdie lêer staatmaak vir ’n wesenlike leningsrekening nie. SARS publiseer ’n Comprehensive Guide to Dividends Tax (omvattende gids oor dividendbelasting), met ’n skakel in die [Bronne- en verifikasieregister](../05%20Look%20it%20up/03-sources-and-verification-register.md).
 
@@ -154,7 +154,7 @@ Jy het drie opsies, en die eerste twee moet voor die einde van die finansiële j
 
 Verklaar ’n dividend gelyk aan die waarde van die debietsaldo en betaal die dividendbelasting aan SARS. Verklaar addisionele salaris of ’n bonus gelyk aan die netto waarde van die leningsrekening. Of hef rente-inkomste op die leningsaldo teen ’n koers wat aan die amptelike koers gekoppel is, om te verhoed dat ’n geagte dividend ontstaan.
 
-> **In gewone taal:** Drie maniere om dit reg te stel: verklaar ’n dividend om te dek wat jy skuld en betaal die 20% belasting; of teken dit aan as ekstra salaris en betaal PAYE daarop; of hef op jouself rente teen die amptelike koers sodat daar geen ontbrekende rente is nie.
+> **In gewone taal:** Drie maniere om dit reg te stel: verklaar ’n dividend om te dek wat jy skuld en betaal die 20% belasting; of teken dit aan as ekstra salaris en betaal PAYE daarop; of hef rente op jou lening teen die amptelike koers sodat daar geen ontbrekende rente is nie.
 
 Die eerste twee opsies moet voor die einde van die finansiële jaar uitgeoefen word, sodat die dividend betyds verklaar word en die EMP501 vir daardie jaar die salaris weerspieël.
 

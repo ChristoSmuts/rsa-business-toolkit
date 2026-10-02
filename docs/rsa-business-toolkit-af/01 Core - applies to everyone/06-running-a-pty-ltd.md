@@ -61,7 +61,7 @@ Hou die bevestiging. Banke, tenderbeoordelaars en verskaffers vra dit soms as be
 
 ### 2. Indiening van voordelige eienaarskap
 
-Dit noem die werklike mense agter die maatskappy. Dit is ingestel as deel van Suid-Afrika se reaksie op die FATF se grys lys.
+Dit noem die werklike mense agter die maatskappy. Dit is ingestel as deel van Suid-Afrika se reaksie op sy plasing op die FATF se grys lys.
 
 Dit is gratis, en dit blokkeer alles anders as jy dit oorslaan.
 
@@ -113,7 +113,7 @@ Die volle besonderhede is in [Belasting en SARS](03-tax-and-sars.md), ook die ko
 
 ### 5. Geregistreerde verteenwoordiger en maatskappybesonderhede
 
-Bevestig die geregistreerde verteenwoordiger (registered representative, die "public officer") ná registrasie by SARS. Daarsonder kan jy nie op eFiling namens die maatskappy transaksies doen nie.
+Bevestig ná registrasie die geregistreerde verteenwoordiger (registered representative, die "public officer") by SARS. Daarsonder kan jy nie op eFiling namens die maatskappy transaksies doen nie.
 
 Laat weet CIPC binne die vereiste tydperk as die geregistreerde adres, die direkteure of die ouditeure verander. Dit is gratis om ’n verandering van direkteure in te dien.
 
@@ -141,11 +141,11 @@ Om dit terug te kry:
 
 Maatskappye wat weens die jaarlikse opgawe (AR) gederegistreer is, kan relatief goedkoop herstel word, omtrent R200 plus die agterstallige jaarlikse opgawes. Maatskappye wat finaal gederegistreer is, het ’n herstelbevel van die hooggeregshof nodig, wat aansienlik duurder is.
 
-’n Maatskappy wat weens nienakoming gederegistreer is, kan gewoonlik herstel word deur by CIPC aansoek te doen op vorm CoR 40.5, te bewys dat dit handel gedryf het of bates gehou het, en alle uitstaande jaarlikse opgawes en fooie te betaal.
+’n Maatskappy wat weens nienakoming gederegistreer is, kan gewoonlik herstel word deur by CIPC aansoek te doen op vorm CoR 40.5, te bewys dat dit handel gedryf het of bates gehou het, en alle uitstaande jaarlikse opgawes en fooie af te handel.
 
 > **In gewone taal:** Jy kan gewoonlik ’n geslote maatskappy terugbring, maar jy moet bewys dat dit regtig handel gedryf het, alles indien wat jy gemis het, en al die fooie betaal.
 
-Twee herinneringe in jou kalender keer dit alles. Stel hulle vandag.
+Twee herinneringe in jou kalender voorkom dit alles. Stel hulle vandag.
 
 ---
 
@@ -159,7 +159,7 @@ Mense registreer ’n Pty omdat hulle glo hulle huis is nou veilig. Drie dinge b
 
 **Roekelose of nalatige handeldryf.** Die Companies Act 71 of 2008 lê werklike pligte op direkteure. Artikel 22 verbied dat besigheid roekeloos, met growwe nalatigheid of met die opset om te bedrieg gedryf word. Artikel 76 beskryf die plig om in goeie trou op te tree, in die maatskappy se beste belang, en met die sorg en vaardigheid wat redelikerwys verwag word. Artikel 77 maak direkteure persoonlik aanspreeklik vir verlies wat veroorsaak word deur daardie pligte te verbreek, en artikel 218(2) laat enigiemand wat verlies ly weens ’n oortreding van die Wet, toe om dit te eis.
 
-In gewone woorde: as jy aanhou om deposito’s van kliënte te neem terwyl jy weet die maatskappy kan nie lewer nie, of aanhou handel dryf terwyl die maatskappy insolvent is, kan die skuld persoonlik joune word. Die maatskappy beskerm jou teen gewone besigheidsmislukking, nie teen wangedrag waarvan jy weet nie.
+In gewone woorde: as jy aanhou om deposito’s van kliënte te neem terwyl jy weet die maatskappy kan nie lewer nie, of aanhou handel dryf terwyl die maatskappy insolvent is, kan die skuld persoonlik joune word. Die maatskappy beskerm jou teen gewone besigheidsmislukking, nie teen wangedrag wat jy wetend pleeg nie.
 
 **Die solvensie- en likiditeitstoets.** Voordat die maatskappy geld as ’n dividend aan jou uitkeer, moet die direksie tevrede wees dat die maatskappy die artikel 4-solvensie- en likiditeitstoets slaag: die bates is meer as die laste, en die maatskappy kan sy skuld vir die volgende 12 maande betaal soos dit betaalbaar word. ’n Direksie van een persoon moet dit steeds toepas, en aanteken dat dit gedoen is.
 
@@ -209,7 +209,7 @@ Arbeidsreg val buite die bestek van hierdie gereedskapstel. Kry behoorlike advie
 
 ’n Maatskappy het ewigdurende opvolging, maar dit kan net deur sy direkteure optree, en kragtens die Companies Act hou ’n persoon op om ’n direkteur te wees wanneer hy of sy sterf.
 
-Vir ’n enigste direkteur wat ook die enigste aandeelhouer is, is dit ’n ernstige probleem. Daar is niemand oor wat ’n plaasvervanger kan aanstel nie, want direkteure word deur aandeelhouers aangestel, en die aandele het in ’n bestorwe boedel beland. Die Meester van die Hooggeregshof (Master of the High Court) moet ’n eksekuteur aanstel, wat gewoonlik twee weke tot drie maande neem, en of daardie eksekuteur dan ’n direkteur kan aanstel, hang af van wat jou akte van oprigting (MOI) sê. As dit dit nie toelaat nie, is die oplossing ’n hofaansoek.
+Vir ’n enigste direkteur wat ook die enigste aandeelhouer is, is dit ’n ernstige probleem. Daar is niemand oor wat ’n plaasvervanger kan aanstel nie, want direkteure word deur aandeelhouers aangestel, en die aandele het in ’n bestorwe boedel beland. Die Master of the High Court (Meester van die Hooggeregshof) moet ’n eksekuteur aanstel, wat gewoonlik twee weke tot drie maande neem, en of daardie eksekuteur dan ’n direkteur kan aanstel, hang af van wat jou akte van oprigting (MOI) sê. As dit dit nie toelaat nie, is die oplossing ’n hofaansoek.
 
 Intussen kan niemand teken nie, die bankrekening is vas, en die sperdatums van SARS en CIPC loop aan.
 
@@ -239,7 +239,7 @@ Elke jaar:
 - [ ] Public Interest Score aan die einde van die jaar bereken
 - [ ] Financial Accountability Supplement of state saam met die jaarlikse opgawe ingedien
 - [ ] ITR14 by SARS ingedien binne 12 maande ná die einde van die finansiële jaar
-- [ ] Twee IRP6-voorlopige opgawes ingedien
+- [ ] Twee voorlopige IRP6-opgawes ingedien
 - [ ] Vouer met maatskappyrekords bygewerk met alle besluite wat geneem is
 
 Elke maand, as die maatskappy jou of iemand anders ’n salaris betaal:

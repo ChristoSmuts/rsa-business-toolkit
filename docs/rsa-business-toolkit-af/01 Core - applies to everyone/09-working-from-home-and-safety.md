@@ -90,7 +90,7 @@ Die meeste van jou kontak met kliënte sal boodskappe, oproepe en stemboodskappe
 
 **Gebruik een besigheidsnommer.** WhatsApp Business op ’n aparte SIM, nie jou persoonlike nommer nie. Jou persoonlike nommer bly privaat, jou besigheidsgesprekke bly op een plek, en jy kan die nommer eendag aan iemand anders oorgee. Sien [Bemarkingsopdragte](../02%20Branding%20and%20marketing/04-marketing-prompts.md) oor hoe om dit op te stel.
 
-**Hou die rekords.** Voer WhatsApp-gesprekke uit of maak ’n rugsteun daarvan vir enige verkoping waaroor daar ’n argument kan kom. Stemboodskappe oor ’n transaksie is ook besigheidsrekords. Kragtens POPIA moet jy ook versigtig wees met wat jy hou: afskrifte van kliënte se ID’s en hulle adresse behoort op ’n veilige plek gebêre te word, net so lank gehou te word as wat jy hulle nodig het, en nooit aangestuur te word nie. Jou privaatheidskennisgewing in [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) sê vir kliënte wat jy hou en waarom.
+**Hou die rekords.** Voer WhatsApp-gesprekke uit of maak ’n rugsteun daarvan vir enige verkoping wat groot genoeg is om oor te stry. Stemboodskappe oor ’n transaksie is ook besigheidsrekords. Kragtens POPIA moet jy ook versigtig wees met wat jy hou: afskrifte van kliënte se ID’s en hulle adresse behoort op ’n veilige plek gebêre te word, net so lank gehou te word as wat jy hulle nodig het, en nooit aangestuur te word nie. Jou privaatheidskennisgewing in [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) sê vir kliënte wat jy hou en waarom.
 
 **Moenie jou huisadres in advertensies of foto’s sit nie.** Wees versigtig om nie te veel inligting in die advertensie of oor die foon te gee nie. Maak seker dat foto’s wat jy aanlyn plaas nie liggingsmerkerdata (geotag) bevat nie, wat jou huisadres kan verklap. Die meeste fone laat jou die ligging in die kamera-instellings afskakel. Doen dit voordat jy by die huis foto’s van voorraad neem. Gee jou area, nie jou straat nie.
 
@@ -104,7 +104,7 @@ Dit is waar die meeste verliese gebeur, en byna almal is vermybaar met een reël
 
 Niks verlaat jou hande voordat die geld in jou rekeningsaldo is nie.
 
-Moet niks vrystel nie, niks aflewer nie, en niks begin wat jou geld kos nie, totdat die geld in jou rekeningsaldo weerspieël word (reflected), nie "hangend" nie. As jou bank se toep nie die geld in jou saldo gewys het nie, is jy nie betaal nie.
+Moet niks vrystel nie, niks aflewer nie, en niks begin wat jou geld kos nie, totdat die geld in jou rekeningsaldo weerspieël (reflected), nie "hangend" nie. As jou bank se toep nie die geld in jou saldo gewys het nie, is jy nie betaal nie.
 
 Nie ’n skermskoot nie. Nie ’n SMS nie. Nie ’n PDF op ’n bank se briefhoof nie. Nie ’n oproep van "die bank" nie. Jou eie banktoep wat wys dat die saldo gestyg het.
 
@@ -114,7 +114,7 @@ Nie ’n skermskoot nie. Nie ’n SMS nie. Nie ’n PDF op ’n bank se briefhoo
 
 Vals betalingsbewyse is die algemeenste swendelary wat op klein verkopers in Suid-Afrika gemik is. Dit is nie nuut nie en dit is nie skaars nie.
 
-Vals betalingsbewyse word algemener namate swendelaars die spel opstoot. Gumtree South Africa het ’n verkoper beskryf wat ’n vals betalingsbewys gestuur is, en die swendelaar het selfs ’n Uber gestuur om die goedere te gaan haal. Die rekening daaragter is twee dae vroeër oopgemaak en het in daardie twee dae 24 keer dieselfde ding gedoen.
+Vals betalingsbewyse word algemener namate swendelaars die spel opskerp. Gumtree South Africa het ’n verkoper beskryf aan wie ’n vals betalingsbewys gestuur is, en die swendelaar het selfs ’n Uber gestuur om die goedere te gaan haal. Die rekening daaragter is twee dae vroeër oopgemaak en het in daardie twee dae 24 keer dieselfde ding gedoen.
 
 Volgens SABRIC se misdaadstatistiek vir 2024 het voorvalle van digitale bankbedrog met 86% gestyg, en die verliese met 74% tot R1.888 miljard.
 
@@ -141,7 +141,7 @@ Jy sal sommige hiervan teëkom. As jy weet hoe hulle lyk, is dit die grootste de
 | ’n Oortuigende betalingsbewys kom aan. Die koper is haastig. | Die oordrag is nooit gedoen nie, of is gedoen en sal teruggedraai word. | Wag vir jou saldo. Moet nooit goedere op grond van ’n POP vrystel nie. |
 | Die koper betaal "per ongeluk" te veel en vra die verskil terug. | Die oorspronklike betaling misluk later, word teruggedraai, of het nooit bestaan nie. | Betaal niks terug voordat die oorspronklike betaling al dae lank verreken is nie. Betaal net terug na die rekening waarvandaan dit gekom het. |
 | Die koper kan nie kom nie, en stuur ’n bestuurder, koerier of Uber om dit te gaan haal. | Die patroon waarteen SAPS waarsku: ’n vals aankoopbewys, ’n vals ID, en dan ’n bestuurder wat gestuur word om dit te gaan haal. | Geen afhaal deur ’n derde party voordat die geld weerspieël nie. Daarna is dit reg. |
-| ’n Oproep of stemboodskap van "jou bank" oor ’n verdagte betaling, wat jou vra om iets in jou toep goed te keur. | Sosiale manipulasie. Hulle praat jou om om self ’n betaling goed te keur. | Sit die foon neer. Bel jou bank op die nommer op jou kaart. Keur nooit iets goed op iemand anders se opdrag nie. |
+| ’n Oproep of stemboodskap van "jou bank" oor ’n verdagte betaling, wat jou vra om iets in jou toep goed te keur. | Sosiale manipulasie. Hulle haal jou oor om self ’n betaling goed te keur. | Sit die foon neer. Bel jou bank op die nommer op jou kaart. Keur nooit iets goed op iemand anders se opdrag nie. |
 | ’n Betaalskakel of ’n skakel vir ’n "afleweringsfooi" kom per boodskap aan. | ’n Uitvissingsblad (phishing). Een aanmelding, en jou rekening is hulle s’n. | Meld nooit aan deur ’n skakel wat iemand vir jou gestuur het nie. Maak jou toep self oop. |
 | Iemand vra vir die OTP wat die bank pas vir jou gestuur het, om watter rede ook al. | Die OTP magtig ’n betaling uit jou rekening. | Nooit. Nie aan ’n kliënt nie, nie aan "die bank" nie, nie aan enigiemand nie. |
 | Betaling per tjek. | Tjeks neem tyd om verreken te word; die koper haal die goedere en kanselleer dan die tjek. | Moenie tjeks aanvaar nie. Suid-Afrikaanse banke het aan die einde van 2020 opgehou om hulle te aanvaar, so ’n "tjek" vandag is op sigself ’n rooi vlag. |
@@ -153,17 +153,17 @@ Om ’n verkoping weens versigtigheid te verloor, kos jou niks. Om die goedere t
 
 Kontant is wettig, en vir klein bedrae is dit eenvoudig. Vir groot bedrae hou dit twee risiko’s in: vals note, en dat jy op pad na die bank beroof word.
 
-Die Suid-Afrikaanse Reserwebank (South African Reserve Bank) leer ’n toets in drie stappe.
+Die South African Reserve Bank (Suid-Afrikaanse Reserwebank) leer ’n toets in drie stappe.
 
 Kyk, voel en kantel. Voel: die portret en die woorde SOUTH AFRICAN RESERVE BANK voel effens verhewe of grof. Die verhewe lyne in die onderste hoeke tel op saam met die waarde, een lyn op ’n R10 tot vyf op ’n R200. Kantel: die metaaldraad weerkaats lig en verander van kleur, en die syfers regs onder is met ink gedruk wat van kleur verander.
 
 Kyk: wanneer jy die noot teen die lig hou, word die sekuriteitsdraad ’n aaneenlopende soliede lyn, en die watermerk is ’n ingebedde beeld van Nelson Mandela links op die voorkant van die noot.
 
-Vals note kan verbasend oortuigend wees. Selfs as die persoon wat jou betaal dink hulle is eg en jy aanvaar hulle in goeie trou, ly jy steeds die verlies. Volgens wet kan vals geld nie vir regte geld omgeruil word nie.
+Vals note kan verbasend oortuigend wees. Selfs as die persoon wat jou betaal dink hulle is eg en jy aanvaar hulle in goeie trou, ly jy steeds die verlies. Volgens die wet kan vals geld nie vir regte geld omgeruil word nie.
 
 Enigiemand wat vals note in hulle besit kry, moet dit by die naaste polisiestasie aanmeld. Die SARB het ook ’n gratis Currency App wat die sekuriteitskenmerke wys.
 
-Vir enige bedrag waaroor jy jou moet bekommer, is die eenvoudigste beskerming: doen die kontanttransaksie binne-in ’n banktak, waar die geld nagegaan kan word om te sien of dit eg is voordat jy dit deponeer. Die koper deponeer direk by die toonbank in jou rekening. Jy kyk hoe dit weerspieël. Niemand loop met ’n koevert rond nie.
+Vir enige bedrag wat groot genoeg is om jou te bekommer, is die eenvoudigste beskerming: doen die kontanttransaksie binne-in ’n banktak, waar die geld nagegaan kan word om te sien of dit eg is voordat jy dit deponeer. Die koper deponeer direk by die toonbank in jou rekening. Jy kyk hoe dit weerspieël. Niemand loop met ’n koevert rond nie.
 
 ### Vir ’n voertuighandelaar
 
@@ -193,7 +193,7 @@ Nie by hulle huis nie, vir ’n eerste ontmoeting.
 
 Daglig. Nie ná donker nie.
 
-Suid-Afrika het nie ’n formele skema vir ’n "veilige ruilsone" ("safe exchange zone") by polisiestasies nie. Baie stasies is gelukkig dat mense in die besoekersparkering ontmoet. Vra by jou plaaslike stasie voordat jy daarop staatmaak.
+Suid-Afrika het nie ’n formele skema vir ’n "veilige ruilsone" ("safe exchange zone") by polisiestasies nie. Baie stasies laat mense graag in die besoekersparkering ontmoet. Vra by jou plaaslike stasie voordat jy daarop staatmaak.
 
 ### Voordat jy gaan
 
@@ -203,7 +203,7 @@ Suid-Afrika het nie ’n formele skema vir ’n "veilige ruilsone" ("safe exchan
 
 **Neem iemand saam.** Laat ’n vriend of familielid jou vergesel, sowel wanneer jy die koper ontmoet as op die toetsrit. Twee mense verander die hele berekening vir enigiemand met slegte bedoelings.
 
-**Vertrou die gevoel.** As iets nie reg lyk nie, of dit onveilig voel, vertrou jou instink en verwyder jouself uit die situasie. Dit kan beteken dat jy hulle glad nie ontmoet nie, of dat jy loop sodra iets verkeerd voel. Hê ’n rugsteunplan.
+**Vertrou die gevoel.** As iets nie reg lyk nie, of dit onveilig voel, vertrou jou instink en verwyder jouself uit die situasie. Dit kan beteken dat jy hulle glad nie ontmoet nie, of dat jy loop sodra iets verkeerd voel. Hou ’n uitwykplan gereed.
 
 ### Tydens ’n toetsrit
 

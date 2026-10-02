@@ -20,7 +20,7 @@ Eenvoudige betekenisse van die terme wat in hierdie lêer gebruik word. Die voll
 
 ## Kan een maatskappy in meer as een ding handel dryf
 
-Ja. ’n Privaat maatskappy wat op BizPortal met die standaard-akte van oprigting geregistreer is, het onbeperkte oogmerke. Dit mag enige wettige besigheid bedryf. Jy hoef niks by CIPC te wysig om ’n nuwe bedrywigheid te begin nie.
+Ja. ’n Privaat maatskappy wat op BizPortal met die standaard-akte van oprigting (MOI) geregistreer is, het onbeperkte oogmerke. Dit mag enige wettige besigheid bedryf. Jy hoef niks by CIPC te wysig om ’n nuwe bedrywigheid te begin nie.
 
 Wat wel verander, is alles wat aan die bedrywigheid gekoppel is eerder as aan die maatskappy:
 
@@ -54,7 +54,7 @@ Mokoena Solar
 A trading name of Mokoena Holdings (Pty) Ltd, Reg. No. 2026/123456/07
 ```
 
-Wees bewus daarvan dat die Consumer Protection Act ook verwag dat ’n verskaffer onder sy geregistreerde naam handel dryf, of onder ’n besigheidsnaam wat kragtens artikel 80 van daardie Wet geregistreer is, en die artikel 80-register is nog nooit in werking gestel nie. Die algemene praktyk is die "handeldrywende as"-vermelding hierbo, wat die kliënt die inligting gee wat die wet probeer beskerm. Doen dit konsekwent, en jy is in die sterkste posisie wat beskikbaar is.
+Wees bewus daarvan dat die Consumer Protection Act ook verwag dat ’n verskaffer onder sy geregistreerde naam handel dryf, of onder ’n besigheidsnaam wat kragtens artikel 80 van daardie Wet geregistreer is, en die artikel 80-register is nog nooit in werking gestel nie. Die universele praktyk is die "handeldrywende as"-vermelding hierbo, wat die kliënt die inligting gee wat die wet probeer beskerm. Doen dit konsekwent, en jy is in die sterkste posisie wat beskikbaar is.
 
 Elke handelsnaam behoort sy eie domein en sosiale-media-name te hê, en, as dit saak maak, sy eie soektog na handelsmerke. Die maatskappynaam beskerm niks in die mark nie.
 
@@ -92,7 +92,7 @@ Op R300,000 belasbare inkomste is die verskil tienduisende rande per jaar. Kry �
 
 ### Wanneer dit steeds die moeite werd is om te verdeel
 
-’n Aparte maatskappy maak sin wanneer die nuwe lyn die eerste een kan laat sink as iets erg skeefloop, en wanneer daardie risiko groter is as die ekstra belasting wat jy sou betaal as jy die SBC-koerse verloor. ’n Voertuighandelaar wat ’n vervoer- of logistieke bedryf met swaar voertuie op die pad byvoeg, is die soort geval waar skeiding geregverdig kan wees. ’n Voertuighandelaar wat bandmontering byvoeg, is gewoonlik nie.
+’n Aparte maatskappy maak sin wanneer die nuwe lyn die eerste een kan laat sink as iets erg skeefloop, en wanneer daardie risiko groter is as die ekstra belasting wat jy sou betaal as jy die SBC-koerse verloor. ’n Voertuighandelaar wat ’n vervoer- of logistieke bedryf met swaar voertuie op die pad byvoeg, is die soort geval waar skeiding geregverdig kan wees. ’n Voertuighandelaar wat bandmontering byvoeg, is gewoonlik nie so ’n geval nie.
 
 Onthou ook dat ’n bank of verhuurder jou in elk geval sal vra om borg te teken vir die nuwe maatskappy. Dit neem baie van die beskerming weg waarvoor jy verdeel het. Sien die afdeling "Wanneer die maatskappy jou nie beskerm nie" in `01-core/06`.
 
