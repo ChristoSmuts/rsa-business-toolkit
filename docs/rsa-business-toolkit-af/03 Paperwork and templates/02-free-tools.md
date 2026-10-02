@@ -76,7 +76,7 @@ Vouers, in hierdie struktuur:
 07 Brand (logo files, colours, fonts, brand guide)
 ```
 
-Gee lêers name sodat hulle reg sorteer. Sit die nommer eerste, en skryf datums as JJJJ-MM-DD. `2026-09-13 Invoice Nkosi.pdf` sorteer reg. `13 Sept invoice.pdf` nie.
+Gee lêers name sodat hulle reg sorteer. Sit die nommer eerste, en skryf datums as JJJJ-MM-DD. `2026-09-13 Invoice Nkosi.pdf` sorteer reg. `13 Sept invoice.pdf` sorteer nie reg nie.
 
 Stuur altyd ’n PDF vir kliënte, nooit die lêer wat geredigeer kan word nie. In Google Docs: File, dan Download, dan PDF. In LibreOffice is daar ’n PDF-knoppie op die nutsbalk.
 

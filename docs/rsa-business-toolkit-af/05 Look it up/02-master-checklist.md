@@ -89,7 +89,7 @@ Hierdie bladsy is bedoel om uitgedruk te word, so die afkortings word hier verdu
 Sien [Bestuur van ’n Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/06-running-a-pty-ltd.md) en [Betaal jouself uit ’n Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/07-paying-yourself.md).
 
 **Een keer, ná registrasie**
-- [ ] Geregistreerde verteenwoordiger by SARS (public officer) op eFiling bevestig
+- [ ] Geregistreerde verteenwoordiger by SARS (openbare beampte, "public officer") op eFiling bevestig
 - [ ] Voordelige eienaarskap by CIPC ingedien (gratis)
 - [ ] Vouer vir maatskappyrekords geskep: akte van oprigting (MOI), aandeelsertifikaat, rekord van direkteure, effekteregister
 - [ ] Bankrekening in die maatskappy se naam oopgemaak, net vir maatskappygeld gebruik

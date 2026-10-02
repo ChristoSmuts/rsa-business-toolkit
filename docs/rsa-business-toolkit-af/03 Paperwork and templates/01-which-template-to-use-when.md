@@ -349,7 +349,7 @@ Dek:
 - Wat gebeur as ’n kliënt kanselleer
 - Wat gebeur as ek moet kanselleer
 - Tydsberekening van aflewering of voltooiing
-- Terugsendings, terugbetalings en foute
+- Terugsendings, terugbetalings en gebreke
 - Beperkings op waarvoor ek verantwoordelik is
 - Hoe geskille opgelos word
 
