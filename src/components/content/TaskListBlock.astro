@@ -3,13 +3,21 @@
  * A checklist inside a document: native checkboxes in labels, grouped in a `<fieldset>`.
  *
  * Each checkbox carries the task id the pipeline generated (`core/register:1a2b3c4d`), which is
- * the same id `/checklist/` uses, so WP-30 can persist a tick once and both places agree. Nothing
- * here needs JavaScript: the boxes tick, and without the store the ticks simply do not persist.
+ * the same id `/checklist/` uses, so a tick is saved once and every page showing the task agrees.
+ * Nothing here needs JavaScript: the boxes tick, and without the store the ticks simply do not
+ * persist.
+ *
+ * While `CHECKLIST_SAVES` is on (WP-30), `<st-checklist>` (`src/scripts/checklist.ts`) saves each
+ * tick in the `checks` store and the group gets a "3 of 7 done" line. The first checklist on a
+ * page then says, once: with JavaScript, that ticks are saved on this device only (plus a warning,
+ * shown by `<st-storage-notice>`, when the device will not keep them); without JavaScript, that
+ * ticks are not saved. While the flag is off it says ticks are not saved yet, as before.
  *
  * A `<fieldset>` must be named, and 29 of the 37 tasklists in the corpus have no group line of
  * their own, so those get a visually hidden legend instead of an empty one.
  */
 import Inline from './Inline.astro';
+import Callout from '../ui/Callout.astro';
 import { useTranslations } from '../../i18n';
 import { isFallbackContent, type ContentContext } from '../../lib/content/context';
 import { getLocale } from '../../i18n/locales';
@@ -20,8 +28,8 @@ interface Props {
   block: Extract<Block, { kind: 'tasklist' }>;
   context: ContentContext;
   /**
-   * The first checklist on the page says, once, that ticks are not saved yet, until WP-30 saves
-   * them (`CHECKLIST_SAVES`). Every checklist page gets it, not only `/checklist/` (review p5).
+   * The first checklist on the page carries the one line about saving (see above). Every
+   * checklist page gets it, not only `/checklist/` (review WP-20 pass 5).
    */
   first?: boolean | undefined;
 }
@@ -36,6 +44,8 @@ const siteT = useTranslations(context.locale);
 const siteLang = isFallbackContent(context)
   ? (getLocale(context.locale)?.hreflang ?? context.locale)
   : undefined;
+const ids = block.items.map((task) => task.id);
+const progressTemplate = siteT('checklist.progress', { done: '{done}', total: '{total}' });
 ---
 
 {first && !CHECKLIST_SAVES && (
@@ -43,20 +53,70 @@ const siteLang = isFallbackContent(context)
     {siteT('checklist.notSaved')}
   </p>
 )}
-<fieldset class="st-tasklist">
-  {block.group ? (
-    <legend>
-      <Inline runs={block.group} context={context} />
-    </legend>
-  ) : (
-    <legend class="st-visually-hidden">{t('doc.yourChecklist')}</legend>
+{first && CHECKLIST_SAVES && (
+  <div class="st-stack st-stack-sm st-tasklist__notes st-no-print" lang={siteLang}>
+    <p class="st-hint st-tasklist__no-js no-js-only">{siteT('checklist.noJs')}</p>
+    <p class="st-hint st-tasklist__saved js-only">{siteT('checklist.saved')}</p>
+    <st-storage-notice class="st-storage-notice" hidden>
+      <Callout variant="warning" label={siteT('doc.warning')}>
+        <p>{siteT('checklist.storageUnavailable')}</p>
+      </Callout>
+    </st-storage-notice>
+  </div>
+)}
+<st-checklist class="st-tasklist-host">
+  <fieldset class="st-tasklist">
+    {block.group ? (
+      <legend>
+        <Inline runs={block.group} context={context} />
+      </legend>
+    ) : (
+      <legend class="st-visually-hidden">{t('doc.yourChecklist')}</legend>
+    )}
+    {block.items.map((task) => (
+      <label class="st-check">
+        <input type="checkbox" id={task.id} value={task.id} data-task={task.id} />
+        <span>
+          <Inline runs={task.c} context={context} />
+        </span>
+      </label>
+    ))}
+  </fieldset>
+  {CHECKLIST_SAVES && (
+    <st-checklist-progress
+      class="st-tasklist__progress js-only st-no-print"
+      data-tasks={ids.join(' ')}
+      data-template={progressTemplate}
+      lang={siteLang}
+    >
+      <progress max={ids.length} value="0" aria-hidden="true"></progress>
+      <span data-progress-text>{siteT('checklist.progress', { done: 0, total: ids.length })}</span>
+    </st-checklist-progress>
   )}
-  {block.items.map((task) => (
-    <label class="st-check">
-      <input type="checkbox" id={task.id} value={task.id} data-task={task.id} />
-      <span>
-        <Inline runs={task.c} context={context} />
-      </span>
-    </label>
-  ))}
-</fieldset>
+</st-checklist>
+
+<script>
+  import '../../scripts/checklist';
+</script>
+
+<style>
+  st-checklist,
+  st-storage-notice {
+    display: block;
+  }
+
+  .st-tasklist__progress {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-2) var(--st-space-3);
+    margin-block-start: var(--st-space-2);
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+  }
+
+  .st-tasklist__progress progress {
+    inline-size: min(12rem, 100%);
+    accent-color: var(--st-primary);
+  }
+</style>

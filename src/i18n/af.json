@@ -450,7 +450,12 @@
     "keyMeans": "Beteken",
     "calendarWhen": "Wanneer",
     "calendarWhat": "Wat",
-    "tickedOn": "Afgemerk op {date}"
+    "tickedOn": "Afgemerk op {date}",
+    "summaryHeading": "Jou vordering",
+    "elsewhere": {
+      "heading": "Kontrolelyste op ander bladsye",
+      "lead": "Party bladsye het ’n kort kontrolelys van hul eie. ’n Merkie daar word ook gestoor en hier getel."
+    }
   },
   "templates": {
     "indexTitle": "Sjablone",

@@ -1,0 +1,88 @@
+---
+/**
+ * "Checklists on other pages", at the end of `/checklist/`. Several documents carry a short
+ * checklist of their own, with task ids that are theirs alone, so a tick there could never show
+ * in the master list's boxes. This section is where it does show: a link to each of those pages
+ * with "2 of 6 done" counted from the same `checks` store. The links work without JavaScript; the
+ * counts are `.js-only`.
+ */
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { checklistsByDoc } from '../../lib/checklist';
+import { loadTasks } from '../../lib/content/collections';
+import { docHref, docTitle, docTitleLang } from '../../lib/content/manifest';
+import type { Manifest } from '../../lib/content/schema';
+
+interface Props {
+  locale: Locale;
+  manifest: Manifest;
+  /** The master checklist's own id, which is left out. */
+  docId: string;
+}
+
+const { locale, manifest, docId } = Astro.props;
+const t = useTranslations(locale);
+// Task ids are copied from English by position, so the English list is right for every language.
+const tasks = await loadTasks('en');
+const docs = tasks ? checklistsByDoc(manifest, tasks, docId) : [];
+const template = t('checklist.progress', { done: '{done}', total: '{total}' });
+---
+
+{docs.length > 0 && (
+  <section class="st-stack" aria-labelledby="st-checklist-elsewhere">
+    <h2 id="st-checklist-elsewhere">{t('checklist.elsewhere.heading')}</h2>
+    <p>{t('checklist.elsewhere.lead')}</p>
+    <ul class="st-checklist-elsewhere" role="list">
+      {docs.map((entry) => (
+        <li>
+          <a class="st-link-block" href={docHref(manifest, entry.docId, locale)}>
+            <span lang={docTitleLang(manifest, entry.docId, locale)}>
+              {docTitle(manifest, entry.docId, locale)}
+            </span>
+          </a>
+          <st-checklist-progress
+            class="st-checklist-elsewhere__count js-only"
+            data-tasks={entry.taskIds.join(' ')}
+            data-template={template}
+          >
+            <span data-progress-text>
+              {t('checklist.progress', { done: 0, total: entry.taskIds.length })}
+            </span>
+          </st-checklist-progress>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+<script>
+  import '../../scripts/checklist';
+</script>
+
+<style>
+  .st-checklist-elsewhere {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-2);
+    padding: 0;
+    list-style: none;
+  }
+
+  .st-checklist-elsewhere li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 var(--st-space-3);
+  }
+
+  .st-checklist-elsewhere__count {
+    display: block;
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+  }
+
+  .st-checklist-elsewhere__count[data-complete] {
+    color: var(--st-success-text);
+    font-weight: var(--st-weight-semibold);
+  }
+</style>

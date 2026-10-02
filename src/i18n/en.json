@@ -450,7 +450,12 @@
     "keyMeans": "Means",
     "calendarWhen": "When",
     "calendarWhat": "What",
-    "tickedOn": "Ticked on {date}"
+    "tickedOn": "Ticked on {date}",
+    "summaryHeading": "Your progress",
+    "elsewhere": {
+      "heading": "Checklists on other pages",
+      "lead": "Some pages have a short checklist of their own. A tick there is saved too, and counted here."
+    }
   },
   "templates": {
     "indexTitle": "Templates",

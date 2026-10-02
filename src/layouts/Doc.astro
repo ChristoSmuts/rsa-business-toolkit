@@ -17,6 +17,8 @@
  */
 import Page from './Page.astro';
 import BusinessTypeTiles from '../components/pages/BusinessTypeTiles.astro';
+import ChecklistElsewhere from '../components/interactive/ChecklistElsewhere.astro';
+import ChecklistSummary from '../components/interactive/ChecklistSummary.astro';
 import Badge from '../components/ui/Badge.astro';
 import Callout from '../components/ui/Callout.astro';
 import EffortMeter from '../components/ui/EffortMeter.astro';
@@ -45,6 +47,7 @@ import {
   splitAroundParam,
 } from '../lib/pages';
 import { href } from '../lib/paths';
+import { CHECKLIST_SAVES } from '../lib/routes';
 
 interface Props {
   locale: Locale;
@@ -178,6 +181,10 @@ const relatedTypes = businessType
           </Callout>
         )}
 
+        {doc.kind === 'checklist' && CHECKLIST_SAVES && (
+          <ChecklistSummary locale={locale} doc={doc} />
+        )}
+
         {doc.kind === 'template' && (
           <Callout variant="note" label={t('doc.note')}>
             <p>
@@ -218,6 +225,10 @@ const relatedTypes = businessType
         />
 
         <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
+
+        {doc.kind === 'checklist' && CHECKLIST_SAVES && (
+          <ChecklistElsewhere locale={locale} manifest={manifest} docId={doc.id} />
+        )}
 
         {relatedTypes.length > 0 && (
           <section class="st-stack" aria-labelledby="st-related-types">

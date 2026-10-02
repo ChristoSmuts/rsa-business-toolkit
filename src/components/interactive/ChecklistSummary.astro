@@ -1,0 +1,173 @@
+---
+/**
+ * The top of `/checklist/` (build plan B6): the overall progress ring, a bar per part, the "Show"
+ * filter (Everything / Not done yet) and "Remove ticks" with its confirm dialog.
+ *
+ * Every number here is counted from the `checks` store by `<st-checklist-progress>`, and the
+ * controls need the store too, so the whole section is `.js-only`: without JavaScript it would
+ * show "0 of 213 done" over boxes the reader has ticked. "Only what applies to me" needs the
+ * profile and arrives with WP-31.
+ */
+import Button from '../ui/Button.astro';
+import ConfirmDialog from '../ui/ConfirmDialog.astro';
+import ProgressRing from '../ui/ProgressRing.astro';
+import { useTranslations } from '../../i18n';
+import { getLocale, type Locale } from '../../i18n/locales';
+import { checklistParts } from '../../lib/checklist';
+import type { Doc } from '../../lib/content/schema';
+
+interface Props {
+  locale: Locale;
+  doc: Doc;
+}
+
+const { locale, doc } = Astro.props;
+const t = useTranslations(locale);
+const contentLang = doc.lang === locale ? undefined : (getLocale(doc.lang)?.hreflang ?? doc.lang);
+const parts = checklistParts(doc.blocks);
+const allIds = parts.flatMap((part) => part.taskIds);
+const template = t('checklist.progress', { done: '{done}', total: '{total}' });
+const zero = (total: number): string => t('checklist.progress', { done: 0, total });
+const filters = [
+  { value: 'all', label: t('checklist.filters.all') },
+  { value: 'not-done', label: t('checklist.filters.notDone') },
+] as const;
+---
+
+<section
+  class="st-checklist-summary st-stack js-only st-no-print"
+  aria-labelledby="st-checklist-summary"
+>
+  <h2 id="st-checklist-summary">{t('checklist.summaryHeading')}</h2>
+  <st-checklist-progress
+    class="st-checklist-summary__overall"
+    data-tasks={allIds.join(' ')}
+    data-template={template}
+  >
+    <ProgressRing value={0} max={allIds.length} label={zero(allIds.length)} size={72} />
+    <span data-progress-text aria-hidden="true">
+      {zero(allIds.length)}
+    </span>
+  </st-checklist-progress>
+
+  <ul class="st-checklist-summary__parts" role="list">
+    {parts.map((part) => (
+      <li>
+        <st-checklist-progress
+          class="st-checklist-summary__part"
+          data-tasks={part.taskIds.join(' ')}
+          data-template={template}
+        >
+          {part.title && (
+            <a
+              class="st-link-block st-checklist-summary__part-name"
+              href={`#${part.id}`}
+              lang={contentLang}
+            >
+              {part.title}
+            </a>
+          )}
+          <progress max={part.taskIds.length} value="0" aria-hidden="true"></progress>
+          <span data-progress-text>{zero(part.taskIds.length)}</span>
+        </st-checklist-progress>
+      </li>
+    ))}
+  </ul>
+
+  <st-checklist-tools class="st-checklist-tools" data-reset-done={t('checklist.resetDone')}>
+    <fieldset class="st-checklist-tools__filter">
+      <legend>{t('checklist.filters.label')}</legend>
+      <div class="st-cluster">
+        {filters.map((filter, index) => (
+          <label class="st-check">
+            <input
+              type="radio"
+              name="st-checklist-filter"
+              value={filter.value}
+              checked={index === 0}
+            />
+            <span>{filter.label}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+    <div class="st-cluster">
+      <Button
+        variant="secondary"
+        iconStart="lucide:rotate-ccw"
+        data-checklist-reset
+        aria-haspopup="dialog"
+      >
+        {t('checklist.reset')}
+      </Button>
+    </div>
+    <p class="st-hint" role="status"></p>
+    <ConfirmDialog
+      id="st-checklist-reset"
+      title={t('checklist.resetDialog.title')}
+      body={t('checklist.resetDialog.body')}
+      confirmLabel={t('checklist.resetDialog.confirm')}
+      cancelLabel={t('checklist.resetDialog.cancel')}
+    />
+  </st-checklist-tools>
+</section>
+
+<script>
+  import '../../scripts/checklist';
+</script>
+
+<style>
+  st-checklist-progress,
+  st-checklist-tools {
+    display: block;
+  }
+
+  .st-checklist-summary {
+    padding: var(--st-space-4);
+    border: var(--st-border-width) solid var(--st-border);
+    border-radius: var(--st-radius-lg);
+    background-color: var(--st-surface);
+  }
+
+  .st-checklist-summary__overall {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-3);
+    font-size: var(--st-text-lg);
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-checklist-summary__parts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-3);
+    padding: 0;
+    list-style: none;
+  }
+
+  .st-checklist-summary__part {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-1);
+  }
+
+  .st-checklist-summary__part-name {
+    overflow-wrap: anywhere;
+  }
+
+  .st-checklist-summary__part progress {
+    inline-size: 100%;
+    accent-color: var(--st-primary);
+  }
+
+  .st-checklist-tools {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-3);
+  }
+
+  .st-checklist-tools__filter legend {
+    font-weight: var(--st-weight-semibold);
+  }
+</style>
