@@ -56,7 +56,7 @@ A trading name of Mokoena Holdings (Pty) Ltd, Reg. No. 2026/123456/07
 
 Wees bewus daarvan dat die Consumer Protection Act ook verwag dat ’n verskaffer onder sy geregistreerde naam handel dryf, of onder ’n besigheidsnaam wat kragtens artikel 80 van daardie Wet geregistreer is, en die artikel 80-register is nog nooit in werking gestel nie. Die universele praktyk is die "handeldrywende as"-vermelding hierbo, wat die kliënt die inligting gee wat die wet probeer beskerm. Doen dit konsekwent, en jy is in die sterkste posisie wat beskikbaar is.
 
-Elke handelsnaam behoort sy eie domein en sosiale-media-name te hê, en, as dit saak maak, sy eie soektog na handelsmerke. Die maatskappynaam beskerm niks in die mark nie.
+Elke handelsnaam behoort sy eie domein en gebruikersname op sosiale media te hê, en, as dit saak maak, sy eie soektog na handelsmerke. Die maatskappynaam beskerm niks in die mark nie.
 
 ---
 
@@ -118,7 +118,7 @@ Dit maak ook die berekening van handelsvoorraad aan die einde van die jaar baie 
 - [ ] Bevestig dat die sonering die nuwe bedrywigheid op my perseel toelaat
 - [ ] My versekeraar laat weet en skriftelike bevestiging van dekking ontvang
 - [ ] SAPS binne 30 dae in kennis gestel as dit my registrasie vir tweedehandse goedere verander
-- [ ] Oor die handelsnaam besluit, en die domein, sosiale-media-name en handelsmerke nagegaan
+- [ ] Oor die handelsnaam besluit, en die domein, gebruikersname en handelsmerke nagegaan
 - [ ] "Handeldrywende as" plus die geregistreerde naam en nommer op die nuwe lyn se dokumente gesit
 - [ ] Nagegaan of die nuwe lyn my posisie vir omsetbelasting of SBC raak
 - [ ] Teen ’n tweede maatskappy besluit, of eers advies oor die SBC-gevolg gekry
