@@ -1,5 +1,6 @@
 import type { Page, Request } from '@playwright/test';
 import { allowConsoleError, expect, test } from './fixtures';
+import { routeSameOrigin } from './helpers/network';
 import { documentUrlProblems } from './helpers/page-checks';
 
 /**
@@ -75,6 +76,8 @@ test.describe('the search dialog', () => {
     await expect(field(page)).toBeFocused();
     // The empty state is the common questions, with a way to the contents.
     await expect(dialog(page).getByRole('heading', { name: 'Common questions' })).toBeVisible();
+    await field(page).fill('VAT');
+    // One Escape closes the dialog, even with text in the field (review WP-33 pass 1, minor 3).
     await page.keyboard.press('Escape');
     await expect(dialog(page)).toBeHidden();
     await expect(skip).toBeFocused();
@@ -104,16 +107,68 @@ test.describe('the search dialog', () => {
     await expect(page.locator('#how-notional-input-tax-works')).toBeFocused();
   });
 
-  test('Afrikaans results stay under /af/ and mark English text', async ({ page, basePath }) => {
+  test('Afrikaans results are Afrikaans and stay under /af/', async ({ page, basePath }) => {
     await open(page, `af/${DOC}`);
     await page.keyboard.press('/');
-    await page.getByRole('combobox').fill('VAT264');
-    const first = page.getByRole('option').first();
-    await expect(first).toBeVisible();
-    expect(await first.getAttribute('href')).toMatch(new RegExp(`^${basePath}af/`));
-    await expect(first.locator('.st-search-result__title')).toHaveAttribute('lang', 'en-ZA');
-    await expect(first.locator('.st-search-result__lang')).toHaveText('Engels');
+    await page.getByRole('combobox').fill('omsetbelasting');
+    const options = page.getByRole('option');
+    await expect(options.first()).toBeVisible();
+    for (const href of await options.evaluateAll((nodes) =>
+      nodes.map((node) => node.getAttribute('href') ?? ''),
+    )) {
+      expect(href).toMatch(new RegExp(`^${basePath}af/`));
+    }
+    // Every document is translated, so no result carries the English mark (the mark itself is
+    // tested on a fixture in tests/dom/search.test.ts).
+    await expect(page.locator('.st-search-result__lang')).toHaveCount(0);
+    await expect(page.locator('.st-search-result [lang="en-ZA"]')).toHaveCount(0);
   });
+
+  // Review WP-33 pass 1, major 1 and major 2, in the browser.
+  test('VAT 264 typed with a space, then Enter at once, opens a VAT264 result', async ({
+    page,
+  }) => {
+    await open(page, DOC);
+    await page.keyboard.press('/');
+    await field(page).fill('PIS');
+    await expect(page.getByRole('option').first()).toBeVisible();
+    await field(page).fill('VAT 264');
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(/#vat264$|#the-conditions-you-must-meet$|#vehicle-dealer$/);
+  });
+
+  test('the status line is in the accessibility tree before any search', async ({ page }) => {
+    await open(page, DOC);
+    await page.keyboard.press('/');
+    await expect(dialog(page).getByRole('status')).toHaveCount(1);
+  });
+
+  test(
+    'a failed index says so once, with the way to the contents',
+    {
+      annotation: allowConsoleError(
+        '/status of 500/',
+        'The test makes the index answer 500 on purpose to show the failed state.',
+      ),
+    },
+    async ({ page, baseURL }) => {
+      await routeSameOrigin(
+        page,
+        baseURL,
+        (url) => /\/search\/[a-z]{2,3}\.[0-9a-f]{10}\.json$/.test(url.pathname),
+        (route) => route.fulfill({ status: 500, body: '' }),
+      );
+      await open(page, DOC);
+      await page.keyboard.press('/');
+      await field(page).fill('PIS');
+      await expect(dialog(page).getByRole('status')).toHaveText('Search could not load.');
+      const text = (await dialog(page).innerText()).split('Search could not load.').length - 1;
+      expect(text, 'the failure sentence appears once').toBe(1);
+      await expect(
+        dialog(page).getByRole('link', { name: 'Use the contents page instead.' }),
+      ).toBeVisible();
+    },
+  );
 
   test('says when nothing matched, with the way to the contents', async ({ page }) => {
     await open(page, '');
