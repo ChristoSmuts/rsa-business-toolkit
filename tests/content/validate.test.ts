@@ -333,7 +333,7 @@ function clauses(sentence: string): string[] {
 /** The old figure is explicitly marked as old or wrong: `not R1 million`, `nie R50,000 nie`, `up from R20,000`. */
 function markedOld(clause: string, figure: string): boolean {
   return new RegExp(
-    `\\b(?:not|nie|old|ou|previous|vorige|was|up from|verhoog van|replaced(?: the)?|vervang(?: die)?)\\s+${figure}|${figure}\\s+nie\\b`,
+    `\\b(?:not|nie|old|ou|previous|vorige|was|up from|verhoog van|replaced(?: the)?|vervang(?: die)?)\\s+${figure}|${figure}\\s+nie\\b|\\b(?:ou|vorige)\\s+[\\p{L}-]+\\s+van\\s+${figure}`,
     'u',
   ).test(clause);
 }
@@ -394,6 +394,9 @@ describe('forbidden stale strings', () => {
     [0, 'The compulsory VAT registration threshold rose from R1 million to R2.3 million.', false],
     [0, 'Jy moet vir BTW registreer sodra jou omset R1 miljoen bereik.', true],
     [0, 'Verpligte BTW-registrasie: R2.3 miljoen, nie R1 miljoen nie, vanaf 1 April 2026', false],
+    // Afrikaans puts the noun between "old" and the figure: "die ou BTW-drempel van R1 miljoen".
+    [0, 'Baie webwerwe noem nog die ou BTW-drempel van R1 miljoen.', false],
+    [0, 'Die BTW-drempel van R1 miljoen geld nou.', true],
     [1, 'Omsetbelasting geld tot R1 miljoen omset.', true],
     [2, 'Vrywillige BTW-registrasie is moontlik vanaf R50,000.', true],
     [2, 'Voluntary VAT registration: R120,000, not R50,000', false],
