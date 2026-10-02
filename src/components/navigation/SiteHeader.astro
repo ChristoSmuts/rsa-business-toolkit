@@ -206,11 +206,16 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
    * sticky then, so 0 is right. A fixed 72px was wrong whenever the bar wrapped: 123px at 1024px
    * with JavaScript, 93px without (review WP-20 pass 4).
    *
+   * `--st-toc-pill-space` is the room the table of contents keeps for its "Now reading" pill below
+   * 1280px (WP-30, `TableOfContents.astro`); 0 on every other page.
+   *
    * This rule owns the scroll padding. `html:root` outranks the `html` rule in WP-11's `base.css`
    * (`calc(var(--st-topbar) + …)`), which therefore never applies on a page with this header.
    */
   html:root {
-    scroll-padding-block-start: calc(var(--st-topbar-offset, 0px) + var(--st-space-4));
+    scroll-padding-block-start: calc(
+      var(--st-topbar-offset, 0px) + var(--st-toc-pill-space, 0px) + var(--st-space-4)
+    );
   }
 
   /*

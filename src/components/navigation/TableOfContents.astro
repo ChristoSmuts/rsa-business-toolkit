@@ -81,6 +81,18 @@ const detailsId = 'st-on-this-page';
   import '../../scripts/toc';
 </script>
 
+<style is:global>
+  /*
+   * Below 1280px, with JavaScript, a page with the "Now reading" pill keeps room for it in the
+   * scroll padding (`SiteHeader.astro` adds `--st-toc-pill-space` to the top bar's offset).
+   */
+  @media (width < 1280px) {
+    html.js:has(.st-toc__pill-track) {
+      --st-toc-pill-space: calc(var(--st-target) + var(--st-space-2));
+    }
+  }
+</style>
+
 <style>
   .st-toc-host {
     display: contents;
@@ -137,7 +149,10 @@ const detailsId = 'st-on-this-page';
 
   /*
    * The "Now reading" pill. Its track is sticky inside the article and has no height, so the pill
-   * hangs below the top bar without moving the text when it appears or goes.
+   * hangs below the top bar without moving the text when it appears or goes. The pill is always
+   * one line (a long title ends in an ellipsis; the link's name is still the whole title), so its
+   * height is known, and the global rule below adds it to the scroll padding: a heading reached by
+   * a contents link, or focus moved by the keyboard, lands below the pill, not under it.
    */
   .st-toc__pill-track {
     position: sticky;
@@ -148,20 +163,18 @@ const detailsId = 'st-on-this-page';
 
   .st-toc__pill {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 0 var(--st-space-2);
+    gap: var(--st-space-2);
     inline-size: fit-content;
     max-inline-size: 100%;
     min-block-size: var(--st-target);
     margin-block-start: var(--st-space-2);
-    padding: var(--st-space-1) var(--st-space-4);
+    padding-inline: var(--st-space-4);
     border: var(--st-border-width) solid var(--st-border-strong);
-    border-radius: var(--st-radius-lg);
+    border-radius: var(--st-radius-pill);
     background-color: var(--st-surface);
     box-shadow: var(--st-shadow-1);
     color: var(--st-text);
-    overflow-wrap: anywhere;
     animation: st-toc-pill-in var(--st-duration-base) var(--st-ease) both;
   }
 
@@ -170,14 +183,22 @@ const detailsId = 'st-on-this-page';
   }
 
   .st-toc__pill-label {
+    flex: none;
     color: var(--st-text-muted);
     font-size: var(--st-text-sm);
     font-weight: var(--st-weight-semibold);
   }
 
+  /*
+   * One line by design, inside a box capped at the column's width, so `nowrap` cannot widen the
+   * page here (see design-system.md, Wrapping and min-content).
+   */
   .st-toc__pill-text {
     min-inline-size: 0;
+    overflow: hidden;
     font-weight: var(--st-weight-semibold);
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   @keyframes st-toc-pill-in {
