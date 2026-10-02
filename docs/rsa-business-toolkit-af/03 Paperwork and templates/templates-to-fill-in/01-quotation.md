@@ -38,7 +38,7 @@
 
 ## Wat NIE ingesluit is nie
 
-*Vul dit in. Die meeste geskille gaan oor werk wat die kliënt aangeneem het by die prys ingesluit is.*
+*Vul dit in. Die meeste geskille gaan oor werk waarvan die kliënt aangeneem het dat dit by die prys ingesluit is.*
 
 - [Lys dit, anders sal jy gevra word om dit gratis te doen]
 - [Lys dit]

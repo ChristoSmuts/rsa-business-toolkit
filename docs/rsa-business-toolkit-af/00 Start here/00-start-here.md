@@ -81,7 +81,7 @@ sa-business-toolkit/
 
 ## Die kort weergawe van die hele gereedskapstel
 
-Jy het nie die meeste van wat mense jou sê om te kry, nodig nie.
+Jy het nie die meeste dinge nodig wat mense vir jou sê om te kry nie.
 
 Jy kan vandag wettig begin verkoop, as jouself, sonder maatskappyregistrasie, sonder ’n logo en sonder ’n webwerf. Verdien eers geld. Voeg die formele dele by soos die besigheid groei.
 

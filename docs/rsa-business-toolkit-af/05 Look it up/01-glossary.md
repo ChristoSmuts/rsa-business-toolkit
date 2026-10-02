@@ -24,7 +24,7 @@ Die Suid-Afrikaanse sakewêreld is vol afkortings. Hier is wat hulle beteken, in
 
 **Kliëntkode (customer code)** — ’n CIPC-rekening-ID van ses karakters wat jy nodig het voordat jy enigiets by CIPC kan indien.
 
-**PIS** — Public Interest Score (openbare-belangtelling). ’n Puntberekening wat aan die einde van elke finansiële jaar gedoen word en wat bepaal of jou maatskappy ’n oudit, ’n onafhanklike oorsig of nie een van die twee nie nodig het.
+**PIS** — Public Interest Score (openbare-belangtelling). ’n Puntberekening wat aan die einde van elke finansiële jaar gedoen word en wat bepaal of jou maatskappy ’n oudit, ’n onafhanklike oorsig of geeneen van die twee nodig het nie.
 
 **Eienaarbestuurde maatskappy (owner-managed company)** — ’n Maatskappy waar elke aandeelhouer ook ’n direkteur is. Dit het die ligste verpligtinge vir finansiële verslaggewing.
 

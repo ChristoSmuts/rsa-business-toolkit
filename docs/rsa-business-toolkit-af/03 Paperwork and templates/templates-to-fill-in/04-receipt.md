@@ -22,4 +22,4 @@ Dankie.
 
 ---
 
-> Stuur net ’n kwitansie sodra die geld in jou rekeningsaldo is. Nie "hangend" nie. ’n Kwitansie wat jy op grond van ’n skermskoot van ’n betalingsbewys stuur, is ’n kwitansie vir geld wat jy dalk nooit sal kry nie.
+> Stuur net ’n kwitansie sodra die geld in jou rekeningsaldo is. Nie "hangend" ("pending") nie. ’n Kwitansie wat jy op grond van ’n skermskoot van ’n betalingsbewys stuur, is ’n kwitansie vir geld wat jy dalk nooit sal kry nie.

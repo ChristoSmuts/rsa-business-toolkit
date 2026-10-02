@@ -2,7 +2,7 @@
 
 Hierdie gereedskapstel is vir een persoon wat ’n besigheid in Suid-Afrika bestuur. Jy is die eienaar. Jy is ook die enigste werker. Jy het min geld en min tyd.
 
-Alles hier is gratis of baie goedkoop. Elke stap sê vir jou of dit deur die wet vereis word, of dat dit net ’n goeie idee is.
+Alles hier is gratis of baie goedkoop. Elke stap sê vir jou of dit deur die wet vereis word, of dit net ’n goeie idee is.
 
 ## Eers die eerlike waarheid
 
@@ -84,7 +84,7 @@ Die KI sal soms verkeerd wees oor Suid-Afrikaanse wetgewing, pryse en vorms. Dit
 
 ## As die regstaal moeilik is
 
-Sommige paragrawe is naby aan die wet geskryf sodat jy hulle kan nagaan. Elkeen word gevolg deur ’n reël wat met **In gewone taal:** begin en wat dieselfde ding eenvoudig sê. Lees eerder daardie reël as jy moet.
+Sommige paragrawe is naby aan die wet geskryf sodat jy hulle kan nagaan. Elkeen word gevolg deur ’n reël wat met **In gewone taal:** begin en wat dieselfde ding eenvoudig sê. Lees eerder daardie reël as jy dit nodig het.
 
 Elke swaar lêer begin ook met ’n tabel van die woorde wat dit gebruik. En die [Woordelys](../05%20Look%20it%20up/01-glossary.md) verduidelik elke afkorting.
 

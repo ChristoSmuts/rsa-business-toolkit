@@ -17,7 +17,7 @@
 |---|---|
 | Faktuurnommer | INV-0001 |
 | Datum | [DD Maand JJJJ] |
-| Betaaldatum | [DD Maand JJJJ] |
+| Vervaldatum | [DD Maand JJJJ] |
 
 ## Aan
 
@@ -56,4 +56,4 @@ Nommer fakture in volgorde, sonder gapings: INV-0001, INV-0002, INV-0003.
 
 ## Voordat jy enigiets oorhandig
 
-Wag totdat die geld in jou rekeningsaldo weerspieël word, nie "hangend" ("pending") nie. ’n Skermskoot, ’n SMS of ’n PDF-betalingsbewys is nie geld nie.
+Wag totdat die geld in jou rekeningsaldo is, nie "hangend" ("pending") nie. ’n Skermskoot, ’n SMS of ’n PDF-betalingsbewys is nie geld nie.

@@ -19,7 +19,7 @@ Inligtingsbeampte: [Jou volle naam]
 
 - Jou naam
 - Jou kontakbesonderhede (foon, e-pos, adres)
-- Besonderhede van wat jy gekoop het of oor navraag gedoen het
+- Besonderhede van wat jy gekoop het of waaroor jy navraag gedoen het
 - Betalingsinligting (ons stoor nie kaartnommers nie)
 
 *Voeg reëls by of verwyder reëls sodat dit vir jou besigheid waar is.*
@@ -28,7 +28,7 @@ Inligtingsbeampte: [Jou volle naam]
 
 - Om vir jou ’n kwotasie te gee en die werk te doen waarvoor jy gevra het
 - Om vir jou ’n faktuur te stuur en betaling te ontvang
-- Om rekords te hou wat SARS volgens wet vereis
+- Om rekords te hou wat SARS volgens die wet vereis
 - Om jou oor jou bestelling te kontak
 
 ## Met wie ons dit deel

@@ -7,13 +7,13 @@ Vind jouself in die tabel en maak dan daardie lêer oop.
 | As jy... | Maak oop |
 |---|---|
 | Voertuie koop en verkoop | [Voertuighandelaar](01-vehicle-dealer.md) |
-| Kos of drankies maak, kook, verpak of verkoop | [Kosbesigheid](02-food-business.md) |
+| Kos of drinkgoed maak, kook, verpak of verkoop | [Kosbesigheid](02-food-business.md) |
 | Hare, naels, skoonheidsbehandelings, masserings, tatoeëermerke of lyfringe doen | [Skoonheid en persoonlike versorging](03-beauty-and-personal-care.md) |
 | Fisiese produkte verkoop, in ’n winkel, by markte of aanlyn | [Kleinhandel en aanlynwinkel](04-retail-and-online-shop.md) |
 | Dinge regmaak, bou, installeer, skoonmaak of aflewer | [Dienste en ambagte](05-services-and-trades.md) |
 | Jou vaardigheid of jou tyd verkoop: ontwerp, konsultasie, kodering, privaat onderrig, skryfwerk, fotografie | [Professionele en kreatiewe werk](06-professional-and-creative.md) |
 
-As twee lêers op jou van toepassing is, lees albei. ’n Koskar is ’n kosbesigheid en ’n voertuigeienaar. ’n Aanlynklerehandelsmerk is kleinhandel en aanlyn.
+As twee lêers op jou van toepassing is, lees albei. ’n Kosvragmotor is ’n kosbesigheid en ’n voertuigeienaar. ’n Aanlyn klerehandelsmerk is kleinhandel en aanlyn.
 
 ## Hoeveel regulering elke tipe meebring
 
