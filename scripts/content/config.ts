@@ -14,6 +14,7 @@ import {
   LangSchema,
   namesAPerson,
   SectionIdSchema,
+  TaskIdSchema,
   TranslationStatusSchema,
   type Lang,
 } from '../../src/lib/content/schema';
@@ -342,6 +343,16 @@ export const ProvenanceSchema = z.strictObject({
 });
 export type Provenance = z.infer<typeof ProvenanceSchema>;
 
+/**
+ * `content-meta/task-links.json`: document task id -> the master-checklist task it repeats. Link a
+ * pair only when both ask for the same action under the same condition (WP-30). See `linkTasks`.
+ */
+export const TaskLinksSchema = z.strictObject({
+  version: z.literal(1),
+  links: z.record(TaskIdSchema, TaskIdSchema),
+});
+export type TaskLinks = z.infer<typeof TaskLinksSchema>;
+
 export interface ContentConfig {
   docsMeta: DocsMeta;
   legacyRefs: LegacyRefs;
@@ -351,6 +362,8 @@ export interface ContentConfig {
   translations: Translations;
   sourceMap: SourceMap;
   provenance: Provenance;
+  /** Empty when the file does not exist (the unit-test fixtures have none). */
+  taskLinks: TaskLinks;
 }
 
 export interface ConfigPaths {
@@ -362,6 +375,7 @@ export interface ConfigPaths {
   translations: string;
   sourceMap: string;
   provenance: string;
+  taskLinks?: string | undefined;
 }
 
 export function defaultConfigPaths(metaDir: string): ConfigPaths {
@@ -374,6 +388,7 @@ export function defaultConfigPaths(metaDir: string): ConfigPaths {
     translations: join(metaDir, 'translations.json'),
     sourceMap: join(metaDir, 'source-map.json'),
     provenance: join(metaDir, 'provenance.json'),
+    taskLinks: join(metaDir, 'task-links.json'),
   };
 }
 
@@ -401,6 +416,10 @@ export function loadConfig(paths: ConfigPaths): ContentConfig {
     translations: readJson(paths.translations, TranslationsSchema),
     sourceMap: readJson(paths.sourceMap, SourceMapSchema),
     provenance: readJson(paths.provenance, ProvenanceSchema),
+    taskLinks:
+      paths.taskLinks !== undefined && existsSync(paths.taskLinks)
+        ? readJson(paths.taskLinks, TaskLinksSchema)
+        : { version: 1, links: {} },
   };
 }
 

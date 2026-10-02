@@ -51,7 +51,7 @@ import {
   type DocProvenance,
 } from './provenance';
 import { createDocIndex, type DocIndex } from './refs';
-import { assignTaskIds, collectTaskRecords } from './special/checklist';
+import { assignTaskIds, collectTaskRecords, linkTasks } from './special/checklist';
 import { assignGlossaryIds, buildGlossaryFile } from './special/glossary';
 import { buildQuickAnswers } from './special/quick-answers';
 import { buildSourcesFile } from './special/sources';
@@ -480,6 +480,15 @@ export function buildContent(options: BuildOptions): BuildResult {
 
   const usedOverrides = new Set<string>();
   for (const parsed of enParsed) assignTaskIds(parsed.blocks, parsed.entry.id, issues);
+  linkTasks(
+    enParsed.map((parsed) => ({
+      id: parsed.entry.id,
+      kind: parsed.entry.kind,
+      blocks: parsed.blocks,
+    })),
+    config.taskLinks.links,
+    issues,
+  );
   const applicability = enParsed.flatMap((parsed) =>
     applyApplicability(parsed, config, usedOverrides),
   );

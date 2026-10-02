@@ -735,6 +735,7 @@
           ],
           "doc": "business-types/food",
           "id": "business-types/food:c239e886",
+          "sameAs": "lookup/checklist:32e8d8b8",
           "when": {
             "businessTypes": [
               "food"
@@ -751,6 +752,7 @@
           ],
           "doc": "business-types/food",
           "id": "business-types/food:4d4cb4db",
+          "sameAs": "lookup/checklist:527a8410",
           "when": {
             "businessTypes": [
               "food"
@@ -767,6 +769,7 @@
           ],
           "doc": "business-types/food",
           "id": "business-types/food:a7fe56ab",
+          "sameAs": "lookup/checklist:b857c0d6",
           "when": {
             "businessTypes": [
               "food"
@@ -783,6 +786,7 @@
           ],
           "doc": "business-types/food",
           "id": "business-types/food:0f8340c3",
+          "sameAs": "lookup/checklist:8b8c0d43",
           "when": {
             "businessTypes": [
               "food"
@@ -799,6 +803,7 @@
           ],
           "doc": "business-types/food",
           "id": "business-types/food:7ee08e59",
+          "sameAs": "lookup/checklist:58836809",
           "when": {
             "businessTypes": [
               "food"
@@ -815,6 +820,7 @@
           ],
           "doc": "business-types/food",
           "id": "business-types/food:02658eb1",
+          "sameAs": "lookup/checklist:09952c25",
           "when": {
             "businessTypes": [
               "food"
@@ -831,6 +837,7 @@
           ],
           "doc": "business-types/food",
           "id": "business-types/food:690c42ea",
+          "sameAs": "lookup/checklist:1f166d50",
           "when": {
             "businessTypes": [
               "food"

@@ -182,6 +182,12 @@ export const TaskSchema = z.strictObject({
   when: ApplicabilitySchema.optional(),
   doc: DocIdSchema,
   block: BlockIdSchema,
+  /**
+   * The master-checklist task this one repeats (`content-meta/task-links.json`). A tick is saved
+   * under `sameAs ?? id`, so ticking either copy ticks both. Taken from the English task, so it is
+   * the same in every language.
+   */
+  sameAs: TaskIdSchema.optional(),
 });
 export type Task = z.infer<typeof TaskSchema>;
 
@@ -575,6 +581,8 @@ export const TaskRecordSchema = z.strictObject({
   heading: HeadingIdSchema.optional(),
   group: InlineRunsSchema.optional(),
   order: z.number().int().nonnegative(),
+  /** See `TaskSchema.sameAs`. */
+  sameAs: TaskIdSchema.optional(),
 });
 export type TaskRecord = z.infer<typeof TaskRecordSchema>;
 

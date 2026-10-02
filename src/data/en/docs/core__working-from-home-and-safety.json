@@ -1886,7 +1886,8 @@
             }
           ],
           "doc": "core/working-from-home-and-safety",
-          "id": "core/working-from-home-and-safety:8a10fb7e"
+          "id": "core/working-from-home-and-safety:8a10fb7e",
+          "sameAs": "lookup/checklist:8a10fb7e"
         },
         {
           "block": "setup.1",

@@ -181,6 +181,44 @@ describe('committed content data', () => {
     }
   });
 
+  it('links document tasks to master-checklist tasks: both exist, no chains, none twice, same in every language', () => {
+    const links = (
+      readJson(join(repoRoot, 'content-meta', 'task-links.json')) as {
+        links: Record<string, string>;
+      }
+    ).links;
+    const en = TasksFileSchema.parse(readJson(join(dataDir, 'en', 'tasks.json'))).tasks;
+    const enTask = new Map(en.map((task) => [task.id, task]));
+    const checklistDoc = enDocs.find((doc) => doc.kind === 'checklist')?.id;
+    const problems: string[] = [];
+    const targets = new Set<string>();
+    for (const [from, to] of Object.entries(links)) {
+      const source = enTask.get(from);
+      const target = enTask.get(to);
+      if (!source || !target) problems.push(`${from} -> ${to}: unknown task`);
+      else if (target.doc !== checklistDoc || source.doc === checklistDoc)
+        problems.push(`${from} -> ${to}: not a document task to a master-checklist task`);
+      if (to in links) problems.push(`${from} -> ${to}: chain`);
+      if (targets.has(to)) problems.push(`${to}: linked twice`);
+      targets.add(to);
+      if (source && source.sameAs !== to) problems.push(`${from}: sameAs is ${source.sameAs}`);
+    }
+    // Every emitted link comes from the file, in tasks.json and in the documents, in every language.
+    for (const [lang, docs] of docsByLang) {
+      const tasks = TasksFileSchema.parse(readJson(join(dataDir, lang, 'tasks.json'))).tasks;
+      for (const task of tasks)
+        if (task.sameAs !== links[task.id]) problems.push(`${lang} ${task.id}: ${task.sameAs}`);
+      for (const doc of docs)
+        for (const block of doc.blocks)
+          if (block.kind === 'tasklist')
+            for (const item of block.items)
+              if (item.sameAs !== links[item.id])
+                problems.push(`${lang} ${doc.id} ${item.id}: ${item.sameAs}`);
+    }
+    expect(Object.keys(links).length).toBeGreaterThan(0);
+    expect(problems).toEqual([]);
+  });
+
   it('has 121 glossary entries in 7 groups with unique ids', () => {
     const glossary = GlossaryFileSchema.parse(readJson(join(dataDir, 'en', 'glossary.json')));
     expect(glossary.entries).toHaveLength(121);
