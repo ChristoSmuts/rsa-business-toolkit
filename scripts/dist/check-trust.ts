@@ -1,13 +1,13 @@
 /**
  * `pnpm dist:trust`, run by `pnpm build` after `astro build`: build plan D5 checked on the
- * rendered pages, not only on the data.
+ * rendered pages, not only on the data, and the language-of-parts rule on every Afrikaans page.
  *
  * `Doc.astro` already refuses a document whose data has no sources and no note. That cannot catch a
  * layout that stops *rendering* the notice or the sources section, which would still build. So every
  * built page with a content `<article data-kind="…">` must contain the AI notice inside its header
  * and the "Sources for this page" section, and the build fails naming each page that does not.
  */
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { ENABLED_LOCALES, type Locale } from '../../src/i18n/locales';
@@ -44,10 +44,14 @@ export interface NoticeShape {
   readonly humanChecked: boolean;
 }
 
-/** Turns a dictionary sentence into a pattern with `{date}` and `{reviewer}` as wildcards. */
+/**
+ * Turns a dictionary sentence into a pattern with `{date}` and `{reviewer}` as wildcards. A wildcard
+ * cannot cross a full stop, so "on 13 September 2026. No person has checked it yet" can never pass
+ * for a reviewer's name (review WP-20 pass 6).
+ */
 function sentencePattern(sentence: string): RegExp {
   const escaped = sentence.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return new RegExp(escaped.replace(/\\\{(date|reviewer)\\\}/g, '.+?'));
+  return new RegExp(escaped.replace(/\\\{(date|reviewer)\\\}/g, '[^.]+?'));
 }
 
 /**
@@ -153,6 +157,98 @@ export function trustProblems(html: string): string[] {
   return problems;
 }
 
+const VOID_ELEMENTS = new Set([
+  'area',
+  'base',
+  'br',
+  'col',
+  'embed',
+  'hr',
+  'img',
+  'input',
+  'link',
+  'meta',
+  'source',
+  'track',
+  'wbr',
+]);
+
+export interface LangText {
+  readonly text: string;
+  readonly lang: string;
+}
+
+/**
+ * Every visible text node of a page with the `lang` it inherits. A small walker, not a full parser:
+ * enough for Astro's own output, which closes every element it opens. `<script>`, `<style>`,
+ * `<svg>` and `<head>` contents are skipped.
+ */
+export function textNodesWithLang(html: string): LangText[] {
+  const out: LangText[] = [];
+  const stack: { tag: string; lang: string }[] = [];
+  let skip = 0;
+  const current = (): string => stack.at(-1)?.lang ?? '';
+  for (const match of html.matchAll(/<!--[\s\S]*?-->|<\/?[a-zA-Z][^>]*>|[^<]+/g)) {
+    const token = match[0];
+    if (token.startsWith('<!--')) continue;
+    if (token.startsWith('</')) {
+      const tag = token.slice(2, -1).trim().toLowerCase();
+      const index = stack.map((entry) => entry.tag).lastIndexOf(tag);
+      if (index !== -1) {
+        if (['script', 'style', 'svg', 'head', 'template'].includes(tag))
+          skip = Math.max(0, skip - 1);
+        stack.length = index;
+      }
+      continue;
+    }
+    if (token.startsWith('<')) {
+      const tag = (/^<([a-zA-Z][\w-]*)/.exec(token)?.[1] ?? '').toLowerCase();
+      const lang = /\slang="([^"]*)"/.exec(token)?.[1];
+      const selfClosing = VOID_ELEMENTS.has(tag) || token.endsWith('/>');
+      if (selfClosing) continue;
+      if (['script', 'style', 'svg', 'head', 'template'].includes(tag)) skip++;
+      stack.push({ tag, lang: lang ?? current() });
+      continue;
+    }
+    if (skip > 0) continue;
+    const text = decodeEntities(token).replace(/\s+/g, ' ').trim();
+    if (text !== '') out.push({ text, lang: current() });
+  }
+  return out;
+}
+
+/** Strings both dictionaries spell the same way: names, not words in either language. */
+function sharedStrings(): Set<string> {
+  const values = (tree: unknown, into: Set<string>): Set<string> => {
+    if (typeof tree === 'string') into.add(tree);
+    else if (tree && typeof tree === 'object') for (const v of Object.values(tree)) values(v, into);
+    return into;
+  };
+  const english = values(en, new Set());
+  return new Set([...values(af, new Set())].filter((value) => english.has(value)));
+}
+
+/** Text that is the same in every language: numbers, rand amounts (CLAUDE.md), and punctuation. */
+const LANGUAGE_NEUTRAL = /^(?:[\d\s.,:;()/%–—-]+|R[\d.,]+(?: million)?|[^\p{L}]+)$/u;
+
+/**
+ * Language of parts on an Afrikaans page (build plan B5, WCAG 3.1.2; review WP-20 pass 6): any
+ * text that the page marks as Afrikaans but that also appears, word for word, in its English twin
+ * is English text read with an Afrikaans voice. Names both dictionaries share, numbers and rand
+ * amounts are the same in both languages and are allowed.
+ */
+export function langProblems(afHtml: string, enHtml: string, shared = sharedStrings()): string[] {
+  const english = new Set(textNodesWithLang(enHtml).map((node) => node.text));
+  const found = new Set<string>();
+  for (const node of textNodesWithLang(afHtml)) {
+    if (!node.lang.startsWith('af')) continue;
+    if (!english.has(node.text) || shared.has(node.text) || LANGUAGE_NEUTRAL.test(node.text))
+      continue;
+    found.add(node.text);
+  }
+  return [...found].map((text) => `English text marked as Afrikaans: "${text.slice(0, 60)}"`);
+}
+
 /** Document pages the build must contain: every manifest document in every enabled locale. */
 export function expectedDocumentPages(repoRoot = path.resolve('.')): number {
   const manifest = JSON.parse(
@@ -169,8 +265,20 @@ export function runCli(
   const root = resolveDistRoot(distDir, base);
   const failures: string[] = [];
   let documents = 0;
-  for (const file of listFiles(root).filter((name) => name.endsWith('.html'))) {
+  const files = listFiles(root).filter((name) => name.endsWith('.html'));
+  const shared = sharedStrings();
+  let afPages = 0;
+  for (const file of files) {
     const html = readFileSync(path.join(root, ...file.split('/')), 'utf8');
+    if (file.startsWith('af/') && !file.startsWith('af/design-system/')) {
+      const twin = path.join(root, ...file.slice(3).split('/'));
+      if (existsSync(twin)) {
+        afPages++;
+        for (const problem of langProblems(html, readFileSync(twin, 'utf8'), shared)) {
+          failures.push(`/${routeOfHtmlFile(file)}: ${problem}`);
+        }
+      }
+    }
     if (/<article\b[^>]*\bdata-kind="/.test(html)) documents++;
     for (const problem of trustProblems(html)) {
       failures.push(`/${routeOfHtmlFile(file)}: ${problem}`);
@@ -178,7 +286,7 @@ export function runCli(
   }
   if (failures.length > 0) {
     console.error(
-      `dist:trust: build plan D5 is not met:\n${failures.map((f) => `  - ${f}`).join('\n')}`,
+      `dist:trust: D5 or language-of-parts problems:\n${failures.map((f) => `  - ${f}`).join('\n')}`,
     );
     return 1;
   }
@@ -189,7 +297,10 @@ export function runCli(
     );
     return 1;
   }
-  console.log(`dist:trust: ${documents} document page(s), each with its AI notice and sources.`);
+  console.log(
+    `dist:trust: ${documents} document page(s), each with its AI notice and sources; ` +
+      `${afPages} Afrikaans page(s) with no English text marked as Afrikaans.`,
+  );
   return 0;
 }
 

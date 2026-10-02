@@ -11,7 +11,8 @@
  */
 import Inline from './Inline.astro';
 import { useTranslations } from '../../i18n';
-import type { ContentContext } from '../../lib/content/context';
+import { isFallbackContent, type ContentContext } from '../../lib/content/context';
+import { getLocale } from '../../i18n/locales';
 import type { Block } from '../../lib/content/schema';
 import { CHECKLIST_SAVES } from '../../lib/routes';
 
@@ -27,10 +28,20 @@ interface Props {
 
 const { block, context, first = false } = Astro.props;
 const t = useTranslations(context.contentLang);
+/*
+ * The not-saved line is about the site, not the document, so it is in the reader's language even
+ * inside an English fallback block, and says so with its own `lang` (review WP-20 pass 6).
+ */
+const siteT = useTranslations(context.locale);
+const siteLang = isFallbackContent(context)
+  ? (getLocale(context.locale)?.hreflang ?? context.locale)
+  : undefined;
 ---
 
 {first && !CHECKLIST_SAVES && (
-  <p class="st-hint st-tasklist__not-saved">{t('checklist.notSaved')}</p>
+  <p class="st-hint st-tasklist__not-saved st-no-print" lang={siteLang}>
+    {siteT('checklist.notSaved')}
+  </p>
 )}
 <fieldset class="st-tasklist">
   {block.group ? (

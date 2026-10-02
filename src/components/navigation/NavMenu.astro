@@ -17,13 +17,26 @@ interface Props {
   /** Show each link's one-line description (the drawer does, the top bar does not). */
   descriptions?: boolean | undefined;
   open?: boolean | undefined;
+  /**
+   * Shared `name` for an exclusive group: the browser keeps at most one `<details>` of the group
+   * open, with no script. The top bar's Read and Tools menus use it (review WP-20 pass 6).
+   */
+  group?: string | undefined;
   class?: string | undefined;
 }
 
-const { label, links, route, descriptions = false, open = false, class: className } = Astro.props;
+const {
+  label,
+  links,
+  route,
+  descriptions = false,
+  open = false,
+  group,
+  class: className,
+} = Astro.props;
 ---
 
-<details class:list={['st-menu', className]} open={open}>
+<details class:list={['st-menu', className]} open={open} name={group}>
   <summary class="st-menu__summary">
     <span>{label}</span>
     <Icon name="lucide:chevron-down" class="st-menu__chevron" size="1em" />

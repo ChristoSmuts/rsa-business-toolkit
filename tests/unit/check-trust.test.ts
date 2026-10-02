@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import {
   expectedDocumentPages,
+  langProblems,
   noticeSentences,
+  textNodesWithLang,
   trustProblems,
 } from '../../scripts/dist/check-trust';
 
@@ -109,6 +111,14 @@ describe('the AI notice sentence', () => {
     ]);
     const withStatus = human.replace('<span>AI-checked</span>', '<span>Checked by Jane Doe</span>');
     expect(trustProblems(page('guide', withStatus, listed))).toEqual([]);
+    // The inverse: a status that names a person over the AI sentence ("No person has checked it").
+    const claimsPerson = notice.replace(
+      '<span>AI-checked</span>',
+      '<span>Checked by Jane Doe</span>',
+    );
+    expect(trustProblems(page('guide', claimsPerson, listed))).toEqual([
+      'the AI notice and its status disagree on who checked the page',
+    ]);
   });
 
   it("requires one of the page language's notice sentences, with any date", () => {
@@ -125,6 +135,36 @@ describe('the AI notice sentence', () => {
     const english = `<html lang="af-ZA">${page('guide', notice, listed)}</html>`;
     expect(trustProblems(english)).toEqual([
       'the AI notice does not say who wrote and checked the page',
+    ]);
+  });
+});
+
+describe('language of parts on an Afrikaans page', () => {
+  const en =
+    '<html lang="en-ZA"><body><h1>Register: what you actually need</h1><p>Home</p><p>R2.3 million</p><p>SA Business Toolkit</p></body></html>';
+
+  it('reads each text node with the lang it inherits, skipping scripts and styles', () => {
+    expect(
+      textNodesWithLang(
+        '<html lang="af-ZA"><head><title>T</title></head><body><p>Tuis <span lang="en-ZA">Tax and SARS</span></p><script>x</script><br><p>Klaar</p></body></html>',
+      ),
+    ).toEqual([
+      { text: 'Tuis', lang: 'af-ZA' },
+      { text: 'Tax and SARS', lang: 'en-ZA' },
+      { text: 'Klaar', lang: 'af-ZA' },
+    ]);
+  });
+
+  it('passes English text marked English, Afrikaans text, names and amounts', () => {
+    const af =
+      '<html lang="af-ZA"><body><h1 lang="en-ZA">Register: what you actually need</h1><p>Tuis</p><p>R2.3 million</p><p>SA Business Toolkit</p></body></html>';
+    expect(langProblems(af, en)).toEqual([]);
+  });
+
+  it('fails English text that inherits Afrikaans', () => {
+    const af = '<html lang="af-ZA"><body><h1>Register: what you actually need</h1></body></html>';
+    expect(langProblems(af, en)).toEqual([
+      'English text marked as Afrikaans: "Register: what you actually need"',
     ]);
   });
 });

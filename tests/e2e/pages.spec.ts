@@ -28,6 +28,14 @@ interface ManifestDoc {
 const MANIFEST = JSON.parse(
   readFileSync(path.join(REPO_ROOT, 'src', 'data', 'manifest.json'), 'utf8'),
 ) as { docs: Record<string, ManifestDoc> };
+/** The two dictionaries, read from disk: Playwright's loader will not import JSON modules. */
+type Dictionary = { checklist: { notSaved: string } };
+const readDictionary = (lang: string): Dictionary =>
+  JSON.parse(
+    readFileSync(path.join(REPO_ROOT, 'src', 'i18n', `${lang}.json`), 'utf8'),
+  ) as Dictionary;
+const af = readDictionary('af');
+const en = readDictionary('en');
 const DOCS = Object.entries(MANIFEST.docs).sort(([a], [b]) => a.localeCompare(b));
 const REGISTER_ROUTE = MANIFEST.docs['lookup/sources']?.route ?? 'sources/';
 
@@ -110,6 +118,9 @@ test.describe('the head of every built page', () => {
       if (!html.includes('type="checkbox"')) continue;
       const notes = html.split('st-tasklist__not-saved').length - 1;
       if (notes !== 1) problems.push(`/${route}: ${notes} not-saved line(s)`);
+      // It is about the site, so it is in the reader's language even on an English fallback page.
+      const expected = (route.startsWith('af/') ? af : en).checklist.notSaved;
+      if (!html.includes(expected)) problems.push(`/${route}: the line is not "${expected}"`);
     }
     expect(problems).toEqual([]);
   });
@@ -285,6 +296,50 @@ test.describe('navigation between real pages', () => {
       });
       expect(small, `/${route}`).toEqual([]);
     }
+  });
+
+  test('the desktop menus close on Escape, outside clicks, focus leaving, and each other', async ({
+    page,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await open(page, 'core/register/');
+    const menus = page.locator('.st-topbar__menus details');
+    const read = menus.nth(0);
+    const tools = menus.nth(1);
+    const isOpen = (menu: typeof read) =>
+      menu.evaluate((node) => (node as HTMLDetailsElement).open);
+
+    // Escape closes and returns focus to the summary.
+    await read.locator('summary').focus();
+    await page.keyboard.press('Enter');
+    expect(await isOpen(read)).toBe(true);
+    await read.locator('a').first().focus();
+    await page.keyboard.press('Escape');
+    expect(await isOpen(read)).toBe(false);
+    await expect(read.locator('summary')).toBeFocused();
+
+    // Opening the other closes the first. The shared name does it with no script at all, which
+    // is what a reader without JavaScript gets, so it is checked on its own.
+    const names = await menus.evaluateAll((nodes) =>
+      nodes.map((node) => node.getAttribute('name')),
+    );
+    expect(names[0]).toBeTruthy();
+    expect(new Set(names).size).toBe(1);
+    await read.locator('summary').click();
+    await tools.locator('summary').click();
+    expect(await isOpen(read)).toBe(false);
+    expect(await isOpen(tools)).toBe(true);
+
+    // A click in the article closes it.
+    await page.locator('article h1').click();
+    expect(await isOpen(tools)).toBe(false);
+
+    // Tabbing past the last link closes it.
+    await read.locator('summary').click();
+    await read.locator('a').last().focus();
+    await page.keyboard.press('Tab');
+    expect(await isOpen(read)).toBe(false);
   });
 
   test('a section landing lists its documents in order', async ({ page, basePath }) => {

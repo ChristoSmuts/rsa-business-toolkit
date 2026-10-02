@@ -146,6 +146,10 @@ const relatedTypes = businessType
               level={effortLevel(businessType.effort)}
               label={t('businessTypes.effortLabel')}
               levelLabels={effortLabels}
+              scaleText={t('businessTypes.effortScale', {
+                level: effortLevel(businessType.effort),
+                total: 5,
+              })}
             />
           )}
           <AiNotice

@@ -53,8 +53,8 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
       <Logo />
     </a>
     <nav class="st-topbar__menus" aria-label={t('nav.mainLabel')}>
-      <NavMenu label={t('nav.read')} links={sections} route={route} />
-      <NavMenu label={t('nav.tools')} links={tools} route={route} />
+      <NavMenu label={t('nav.read')} links={sections} route={route} group="st-topbar-menu" />
+      <NavMenu label={t('nav.tools')} links={tools} route={route} group="st-topbar-menu" />
     </nav>
     {searchHref && (
       <a class="st-topbar__search" href={searchHref}>

@@ -69,6 +69,7 @@ const hubHref = sectionHref(manifest, 'business-types', locale);
           level={effortLevel(type.effort)}
           label={t('businessTypes.effortLabel')}
           levelLabels={effortLabels}
+          scaleText={t('businessTypes.effortScale', { level: effortLevel(type.effort), total: 5 })}
         />
       </Card>
     </li>

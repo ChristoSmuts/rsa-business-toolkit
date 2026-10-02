@@ -127,8 +127,17 @@ in every project.
   height, so a bar that wraps to two rows at 1024px still clears its targets.
 - **Prompts wrap on a phone.** At 320px no prompt or snippet on `branding/branding-prompts/` scrolls
   sideways; only layouts (template previews, listings) may.
-- `dist:trust` also requires the AI notice to say one of the page language's `trust.aiNotice.body*`
-  sentences, with any date and reviewer.
+- `dist:trust` also requires the AI notice to say the `trust.aiNotice.body*` sentence that matches
+  what the page shows: "the sources below" only over a list of sources, "{reviewer} checked it"
+  only when the status names a person.
+- `dist:trust` checks language of parts on every Afrikaans page: a text node that inherits
+  `af-ZA` but also appears word for word in the English twin is English read with an Afrikaans
+  voice and fails the build. Strings both dictionaries share (the site name, language names),
+  numbers and rand amounts are allowed. It found the effort meter's English "(5 of 5)" on its
+  first run.
+- **The desktop menus close properly.** Escape returns focus to the summary, opening Tools closes
+  Read (a shared `name`, which works without JavaScript too), and a click or focus outside closes
+  the open one.
 - **Navigation only real routes can show:** the breadcrumb through a section, the pager crossing
   from one section into the next, a section landing's cards in order, switching language on a real
   document with an anchor that exists on the other side, the Afrikaans fallback with `lang="en-ZA"`

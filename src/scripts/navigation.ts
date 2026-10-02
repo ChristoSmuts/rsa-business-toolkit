@@ -100,5 +100,40 @@ export function trackTopbar(doc: Document = document): void {
 
 trackTopbar();
 
+/**
+ * The top bar's Read and Tools menus are native `<details>`, which only close from their own
+ * summary. From 1024px their lists float over the page and, while the bar is sticky, ride along
+ * over the article. So, as an enhancement (review WP-20 pass 6):
+ * - Escape inside an open menu closes it and puts focus back on its summary;
+ * - a pointer press outside it, or focus moving outside it, closes it.
+ * Only one is ever open: they share a `name`, which the browser enforces without this script.
+ */
+export function enhanceTopbarMenus(doc: Document = document): void {
+  const menus = [...doc.querySelectorAll<HTMLDetailsElement>('.st-topbar__menus details')];
+  if (menus.length === 0) return;
+  const closeAll = (except?: Node | null): void => {
+    for (const menu of menus)
+      if (menu.open && !(except && menu.contains(except))) menu.open = false;
+  };
+  for (const menu of menus) {
+    menu.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || !menu.open) return;
+      menu.open = false;
+      menu.querySelector('summary')?.focus();
+      event.stopPropagation();
+    });
+    menu.addEventListener('focusout', (event) => {
+      const next = event.relatedTarget;
+      if (next instanceof Node && menu.contains(next)) return;
+      menu.open = false;
+    });
+  }
+  doc.addEventListener('pointerdown', (event) => {
+    closeAll(event.target instanceof Node ? event.target : null);
+  });
+}
+
+enhanceTopbarMenus();
+
 if (!customElements.get('st-nav-drawer')) customElements.define('st-nav-drawer', StNavDrawer);
 if (!customElements.get('st-lang-switch')) customElements.define('st-lang-switch', StLangSwitch);

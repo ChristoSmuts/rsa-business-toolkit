@@ -178,6 +178,7 @@ interface ParamNames {
   'designSystem.contrast': 'ratio';
   'notFound.suggestion': 'title';
   'a11y.progress': 'percent';
+  'businessTypes.effortScale': 'level' | 'total';
   'date.format': 'day' | 'month' | 'year';
   'common.closeNamed': 'name';
   'common.dismissNamed': 'name';

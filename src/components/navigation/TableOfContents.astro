@@ -35,7 +35,7 @@ const label = t('nav.onThisPageCount', { count: items.length });
 
 {items.length > 0 &&
   (variant === 'details' ? (
-    <details class:list={['st-toc', 'st-toc--details', className]}>
+    <details class:list={['st-toc', 'st-toc--details', 'st-no-print', className]}>
       <summary class="st-toc__summary">{label}</summary>
       <nav aria-label={t('nav.onThisPage')}>
         <ul class="st-toc__list" role="list" lang={contentLang}>

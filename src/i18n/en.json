@@ -892,6 +892,7 @@
       "description": "Shows the rules for retail, services and professional work."
     },
     "effortLabel": "Setup effort",
+    "effortScale": "{level} of {total}",
     "effort": {
       "lowest": "Lowest",
       "low-medium": "Low to medium",

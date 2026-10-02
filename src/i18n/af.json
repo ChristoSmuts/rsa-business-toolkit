@@ -892,6 +892,7 @@
       "description": "Wys die reëls vir kleinhandel, dienste en professionele werk."
     },
     "effortLabel": "Werk om te begin",
+    "effortScale": "{level} van {total}",
     "effort": {
       "lowest": "Laagste",
       "low-medium": "Laag tot matig",
