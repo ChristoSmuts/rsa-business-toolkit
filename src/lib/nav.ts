@@ -95,7 +95,7 @@ export function toolLinks(manifest: Manifest, locale: Locale, t: Translator): Na
   return links.filter((link): link is NavLink => link !== undefined && link !== false);
 }
 
-/** Contents, Common questions (until search is built), About and "How this was made". */
+/** Contents, Common questions (while search is off), About and "How this was made". */
 export function footerLinks(manifest: Manifest, locale: Locale, t: Translator): NavLink[] {
   const howMade = docHref(manifest, NAV_DOC_IDS.howThisWasMade, locale);
   const howMadeRoute = manifest.docs[NAV_DOC_IDS.howThisWasMade]?.route;
@@ -106,8 +106,8 @@ export function footerLinks(manifest: Manifest, locale: Locale, t: Translator): 
       route: APP_ROUTES.contents,
       label: t('nav.contents'),
     },
-    // While search is not built, its page is what it holds: the common questions (WP-33 restores
-    // the header link instead).
+    // While search is switched off, its page is what it holds: the common questions. With search
+    // on, the header links it instead.
     !SEARCH_AVAILABLE && {
       id: 'common-questions',
       href: href(locale, APP_ROUTES.search),

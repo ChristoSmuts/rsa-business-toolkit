@@ -109,25 +109,26 @@ const whereToStart = [
             {t('home.findMyPath')}
           </Button>
         )}
+        {!WIZARD_AVAILABLE && coreStartHref && (
+          <Button href={coreStartHref} variant="primary" size="lg">
+            {t('home.whereToStart.fiveMinutes.action')}
+          </Button>
+        )}
         {SEARCH_AVAILABLE ? (
+          // "I know what I need" (B3 flow 1) opens the search dialog; without JavaScript it is
+          // the link to the search page it always was.
           <Button
             href={href(locale, APP_ROUTES.search)}
-            variant={WIZARD_AVAILABLE ? 'secondary' : 'primary'}
+            variant="secondary"
             size="lg"
+            data-search-open
           >
             {t('home.knowWhatINeed')}
           </Button>
         ) : (
-          <Fragment>
-            {!WIZARD_AVAILABLE && coreStartHref && (
-              <Button href={coreStartHref} variant="primary" size="lg">
-                {t('home.whereToStart.fiveMinutes.action')}
-              </Button>
-            )}
-            <Button href={href(locale, APP_ROUTES.contents)} variant="secondary" size="lg">
-              {t('search.browseContents')}
-            </Button>
-          </Fragment>
+          <Button href={href(locale, APP_ROUTES.contents)} variant="secondary" size="lg">
+            {t('search.browseContents')}
+          </Button>
         )}
       </p>
     </section>

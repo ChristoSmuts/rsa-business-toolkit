@@ -9,11 +9,13 @@
  *   the page has no `js` class, where the same menus are shown stacked instead. So a phone with
  *   JavaScript off reaches every section and tool through the header itself, and there is no
  *   second copy of the links to keep in step;
- * - the search control is a link to `/search/`, which is a real page, not a dialog opener. The
- *   `/` shortcut and its `<Kbd>` hint arrive together with WP-33's search client: a hint for a key
- *   that does nothing would tell the reader something untrue (review WP-20 pass 2).
+ * - the search control is a link to `/search/`, which is a real page. With JavaScript,
+ *   `<st-search>` (SearchDialog.astro) turns a plain click on it into the search dialog, and the
+ *   `/` hint shows (`js-only`: without the script the key does nothing, so no hint).
  */
 import Icon from '../ui/Icon.astro';
+import Kbd from '../ui/Kbd.astro';
+import SearchDialog from '../search/SearchDialog.astro';
 import Logo from '../illustrations/Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import NavDrawer from './NavDrawer.astro';
@@ -38,7 +40,7 @@ const t = useTranslations(locale);
 const sections = sectionLinks(manifest, locale, t);
 const tools = toolLinks(manifest, locale, t);
 const homeHref = href(locale, APP_ROUTES.home);
-// Until WP-33 there is nothing to search with; the page's common questions are in the footer.
+// While search is switched off, the page's common questions are in the footer instead.
 const searchHref = SEARCH_AVAILABLE ? href(locale, APP_ROUTES.search) : undefined;
 const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefined;
 ---
@@ -57,9 +59,13 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
       <NavMenu label={t('nav.tools')} links={tools} route={route} group="st-topbar-menu" />
     </nav>
     {searchHref && (
-      <a class="st-topbar__search" href={searchHref}>
+      <a class="st-topbar__search" href={searchHref} data-search-open>
         <Icon name="lucide:search" size="1em" />
         <span>{t('nav.search')}</span>
+        {/* A visual hint only: the script announces the keys as `aria-keyshortcuts`. */}
+        <span class="st-topbar__kbd js-only" aria-hidden="true">
+          <Kbd>/</Kbd>
+        </span>
       </a>
     )}
     <LanguageSwitcher class="st-topbar__lang" locale={locale} route={route} />
@@ -85,6 +91,7 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
     searchHref={searchHref}
     wizardHref={wizardHref}
   />
+  {searchHref && <SearchDialog locale={locale} manifest={manifest} />}
 </header>
 
 <style>
@@ -131,6 +138,13 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
     border-radius: var(--st-radius-pill);
     color: var(--st-text);
     overflow-wrap: anywhere;
+  }
+
+  /* A key hint is no use on a touch screen. */
+  @media (hover: none) {
+    .st-topbar__kbd {
+      display: none;
+    }
   }
 
   .st-topbar__search:visited {

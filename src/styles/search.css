@@ -1,0 +1,124 @@
+/*
+ * Search results, shared by the dialog (SearchDialog.astro), the search page and the 404 page.
+ * The results are built by script (src/scripts/search-render.ts), so these rules are global.
+ * Every colour pair here is in the verified contrast table (docs/design-system.md): text and muted
+ * text on the surface and on surface-2, and text on the search-match highlight.
+ */
+
+.st-search-results {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--st-space-3);
+}
+
+.st-search-results[hidden] {
+  display: none;
+}
+
+.st-search-results__group {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--st-space-1);
+}
+
+.st-search-results__heading {
+  padding-inline: var(--st-space-3);
+  color: var(--st-text-muted);
+  font-size: var(--st-text-sm);
+  font-weight: var(--st-weight-semibold);
+  overflow-wrap: anywhere;
+}
+
+.st-search-result {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--st-space-1);
+  min-block-size: var(--st-target);
+  padding: var(--st-space-2) var(--st-space-3);
+  border: var(--st-border-width) solid transparent;
+  border-radius: var(--st-radius-md);
+  color: var(--st-text);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.st-search-result:visited {
+  color: var(--st-text);
+}
+
+.st-search-result:hover,
+.st-search-result[aria-selected='true'] {
+  border-color: var(--st-border-strong);
+  background-color: var(--st-surface-2);
+}
+
+/* The active option is where the keyboard is, so it carries the focus ring. */
+.st-search-result[aria-selected='true'] {
+  outline: var(--st-focus-width) solid var(--st-focus);
+  outline-offset: calc(-1 * var(--st-focus-width));
+}
+
+.st-search-result__title {
+  color: var(--st-link);
+  font-weight: var(--st-weight-semibold);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.st-search-result__meta {
+  color: var(--st-text-muted);
+  font-size: var(--st-text-sm);
+}
+
+.st-search-result__excerpt {
+  font-size: var(--st-text-sm);
+}
+
+.st-search-result mark {
+  color: var(--st-text);
+}
+
+.st-search-page__list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--st-space-1);
+  padding: 0;
+  list-style: none;
+}
+
+/*
+ * The heading a result opened: a short highlight that fades (build plan B3, "2s highlight"). With
+ * reduced motion it does not fade; the script removes the class after the same two seconds.
+ */
+.st-search-target {
+  border-radius: var(--st-radius-sm);
+  animation: st-search-flash 2s var(--st-ease) 1;
+}
+
+@keyframes st-search-flash {
+  from {
+    background-color: var(--st-mark-bg);
+  }
+
+  to {
+    background-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-search-target {
+    background-color: var(--st-mark-bg);
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .st-search-result[aria-selected='true'] {
+    outline-color: Highlight;
+  }
+
+  .st-search-target {
+    outline: 2px solid Highlight;
+  }
+}

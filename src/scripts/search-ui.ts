@@ -1,0 +1,260 @@
+/*
+ * The search dialog's results (build plan B3 flow 3), imported the first time the dialog opens.
+ *
+ * The input is a combobox that owns a listbox (ARIA 1.2 combobox pattern): focus stays in the
+ * input, the arrow keys move `aria-activedescendant` through the options, Enter opens the active
+ * option (or the first one), and Escape closes the dialog (native `<dialog>`). Results are grouped
+ * by section, each group a labelled `role="group"`, and each option is a real link
+ * (`<a role="option">`), so a pointer, a middle click and "open in new tab" all still work.
+ *
+ * States: empty (the common questions), loading, results, no results and failed. The failed and
+ * no-results states keep a link to the contents page. A polite live region says what happened.
+ */
+import {
+  createSearchClient,
+  groupResults,
+  type SearchClient,
+  type SearchResult,
+} from '../lib/search-client';
+import type { SearchSettings } from './search';
+import { readContext, resultBody, sectionName, type SearchContext } from './search-render';
+
+export interface DialogController {
+  /** The dialog has just opened. */
+  opened(): void;
+}
+
+export interface DialogDeps {
+  readonly settings: SearchSettings;
+  readonly openResult: (url: string) => void;
+}
+
+/** Wait this long after the last key press before searching. */
+export const DEBOUNCE_MS = 120;
+/** Show "Loading search…" only if loading takes longer than this, to avoid a flash. */
+export const LOADING_DELAY_MS = 150;
+const OPTION_PREFIX = 'st-search-option-';
+
+export class SearchDialogController implements DialogController {
+  readonly #host: HTMLElement;
+  readonly #deps: DialogDeps;
+  readonly #context: SearchContext;
+  readonly #client: SearchClient;
+  readonly #input: HTMLInputElement;
+  readonly #listbox: HTMLElement;
+  readonly #status: HTMLElement;
+  readonly #empty: HTMLElement | null;
+  readonly #failed: HTMLElement | null;
+  #options: HTMLAnchorElement[] = [];
+  #active = -1;
+  #timer: ReturnType<typeof setTimeout> | undefined;
+  /** Increases with every query, so a slow answer to an old query is dropped. */
+  #sequence = 0;
+
+  constructor(host: HTMLElement, deps: DialogDeps, client?: SearchClient) {
+    this.#host = host;
+    this.#deps = deps;
+    this.#context = readContext(host);
+    this.#client =
+      client ?? createSearchClient({ url: this.#context.index, locale: this.#context.locale });
+    const input = host.querySelector<HTMLInputElement>('input[role="combobox"]');
+    const listbox = host.querySelector<HTMLElement>('[role="listbox"]');
+    const status = host.querySelector<HTMLElement>('[role="status"]');
+    if (!input || !listbox || !status) throw new Error('search: the dialog markup is incomplete');
+    this.#input = input;
+    this.#listbox = listbox;
+    this.#status = status;
+    this.#empty = host.querySelector('[data-search-empty]');
+    this.#failed = host.querySelector('[data-search-failed]');
+    input.addEventListener('input', this.#onInput);
+    input.addEventListener('keydown', this.#onKeydown);
+    input.form?.addEventListener('submit', this.#onSubmit);
+    listbox.addEventListener('click', this.#onOptionClick);
+  }
+
+  opened(): void {
+    // Low data: the index is fetched when the reader types, not when the dialog opens.
+    if (!this.#deps.settings.lowData) void this.#client.load().catch(() => undefined);
+    if (this.#input.value.trim() !== '') this.search(this.#input.value);
+  }
+
+  readonly #onInput = (): void => {
+    clearTimeout(this.#timer);
+    const query = this.#input.value;
+    this.#timer = setTimeout(() => this.search(query), DEBOUNCE_MS);
+  };
+
+  readonly #onKeydown = (event: KeyboardEvent): void => {
+    if (event.isComposing) return;
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        this.move(1);
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        this.move(-1);
+        break;
+      case 'Enter': {
+        const option = this.#options[this.#active] ?? this.#options[0];
+        if (option) {
+          event.preventDefault();
+          this.activate(option);
+        }
+        // Without an option, the form submits to `/search/?q=`, which shows the same query.
+        break;
+      }
+    }
+  };
+
+  readonly #onSubmit = (event: SubmitEvent): void => {
+    // Only reached with no results to open; an empty query goes nowhere.
+    if (this.#input.value.trim() === '') event.preventDefault();
+  };
+
+  readonly #onOptionClick = (event: MouseEvent): void => {
+    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
+      return;
+    }
+    const target = event.target;
+    const option =
+      target instanceof Element ? target.closest<HTMLAnchorElement>('a[role="option"]') : null;
+    if (!option) return;
+    event.preventDefault();
+    this.activate(option);
+  };
+
+  /** Open a result: close the dialog, then go to the heading. */
+  activate(option: HTMLAnchorElement): void {
+    this.#host.querySelector('dialog')?.close();
+    this.#deps.openResult(option.href);
+  }
+
+  /** Move the active option by `step`, wrapping at both ends. */
+  move(step: number): void {
+    const count = this.#options.length;
+    if (count === 0) return;
+    const next =
+      this.#active < 0 ? (step > 0 ? 0 : count - 1) : (this.#active + step + count) % count;
+    this.setActive(next);
+  }
+
+  setActive(index: number): void {
+    this.#options[this.#active]?.setAttribute('aria-selected', 'false');
+    this.#active = index;
+    const option = this.#options[index];
+    if (!option) {
+      this.#input.removeAttribute('aria-activedescendant');
+      return;
+    }
+    option.setAttribute('aria-selected', 'true');
+    this.#input.setAttribute('aria-activedescendant', option.id);
+    option.scrollIntoView?.({ block: 'nearest' });
+  }
+
+  get activeIndex(): number {
+    return this.#active;
+  }
+
+  /** Run a query and show its state. Returns when the results (or the failure) are shown. */
+  async search(query: string): Promise<void> {
+    const sequence = ++this.#sequence;
+    const q = query.trim();
+    if (q === '') {
+      this.#showEmpty();
+      return;
+    }
+    const { tr } = this.#context;
+    const loading = this.#client.ready
+      ? undefined
+      : setTimeout(() => {
+          if (sequence === this.#sequence) this.#setStatus(tr('search.loading'));
+        }, LOADING_DELAY_MS);
+    let results: SearchResult[];
+    try {
+      results = await this.#client.search(q);
+    } catch {
+      clearTimeout(loading);
+      if (sequence === this.#sequence) this.#showFailed();
+      return;
+    } finally {
+      clearTimeout(loading);
+    }
+    if (sequence !== this.#sequence) return;
+    this.#render(results, q);
+  }
+
+  #setStatus(text: string): void {
+    this.#status.textContent = text;
+  }
+
+  #clearOptions(): void {
+    this.#listbox.replaceChildren();
+    this.#listbox.hidden = true;
+    this.#options = [];
+    this.#active = -1;
+    this.#input.setAttribute('aria-expanded', 'false');
+    this.#input.removeAttribute('aria-activedescendant');
+  }
+
+  #showEmpty(): void {
+    this.#clearOptions();
+    this.#setStatus('');
+    if (this.#failed) this.#failed.hidden = true;
+    if (this.#empty) this.#empty.hidden = false;
+  }
+
+  #showFailed(): void {
+    this.#clearOptions();
+    if (this.#empty) this.#empty.hidden = true;
+    if (this.#failed) this.#failed.hidden = false;
+    this.#setStatus(this.#context.tr('search.failed'));
+  }
+
+  #render(results: readonly SearchResult[], query: string): void {
+    const { tr } = this.#context;
+    const doc = this.#host.ownerDocument;
+    this.#clearOptions();
+    if (this.#failed) this.#failed.hidden = true;
+    if (results.length === 0) {
+      // No results: the common questions and the contents link stay as the way on.
+      if (this.#empty) this.#empty.hidden = false;
+      this.#setStatus(`${tr('search.noResults', { query })} ${tr('search.suggestions')}`);
+      return;
+    }
+    if (this.#empty) this.#empty.hidden = true;
+    let n = 0;
+    for (const group of groupResults(results)) {
+      const name = sectionName(this.#context, group.section);
+      const element = doc.createElement('div');
+      element.className = 'st-search-results__group';
+      element.setAttribute('role', 'group');
+      element.setAttribute('aria-label', tr('search.groupLabel', { section: name }));
+      const heading = doc.createElement('div');
+      heading.className = 'st-search-results__heading';
+      heading.setAttribute('aria-hidden', 'true');
+      heading.textContent = name;
+      element.append(heading);
+      for (const result of group.results) {
+        const option = doc.createElement('a');
+        option.className = 'st-search-result';
+        option.id = `${OPTION_PREFIX}${String(n++)}`;
+        option.href = result.href;
+        option.tabIndex = -1;
+        option.setAttribute('role', 'option');
+        option.setAttribute('aria-selected', 'false');
+        option.append(resultBody(doc, result, this.#context));
+        element.append(option);
+        this.#options.push(option);
+      }
+      this.#listbox.append(element);
+    }
+    this.#listbox.hidden = false;
+    this.#input.setAttribute('aria-expanded', 'true');
+    this.#setStatus(tr('search.results', { count: results.length }));
+  }
+}
+
+export function createDialogController(host: HTMLElement, deps: DialogDeps): DialogController {
+  return new SearchDialogController(host, deps);
+}

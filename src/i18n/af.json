@@ -719,8 +719,7 @@
     "browseContents": "Blaai deur alle bladsye",
     "clear": "Vee soektog uit",
     "close": "Maak soektog toe",
-    "noJs": "Die soektog het JavaScript nodig. Gebruik die inhoudsbladsy om te vind wat jy nodig het.",
-    "notReady": "Volledige soektog is nog nie gereed nie. Gebruik die algemene vrae hieronder, of blaai deur al die bladsye."
+    "noJs": "Die soektog het JavaScript nodig. Gebruik die inhoudsbladsy om te vind wat jy nodig het."
   },
   "contents": {
     "title": "Inhoud",

@@ -1,0 +1,273 @@
+---
+/**
+ * The search dialog (build plan B3, flow 3): a native `<dialog>` opened by the header's search
+ * control, `/` and Ctrl+K. `<st-search>` (src/scripts/search.ts) opens it; the results code and the
+ * index load only when it opens (src/scripts/search-ui.ts).
+ *
+ * Server-rendered here: the form, the instructions, an empty listbox, the status line, the failed
+ * state and the common questions (the empty state). The script only adds result options.
+ *
+ * Without JavaScript the whole element is hidden (`js-only`): the header control is then an
+ * ordinary link to `/search/`, which works without a script.
+ */
+import { getEntry } from 'astro:content';
+import Icon from '../ui/Icon.astro';
+import { useTranslations } from '../../i18n';
+import { getLocale, type Locale } from '../../i18n/locales';
+import { docHref } from '../../lib/content/manifest';
+import { plainText } from '../../lib/content/render';
+import type { Manifest } from '../../lib/content/schema';
+import { docContentLang } from '../../lib/pages';
+import { searchElementData } from '../../lib/search/ui-data';
+import '../../styles/search.css';
+
+interface Props {
+  locale: Locale;
+  manifest: Manifest;
+}
+
+/** The empty state shows this many common questions (B3: "top 8"). */
+const COMMON_QUESTIONS = 8;
+
+const { locale, manifest } = Astro.props;
+const t = useTranslations(locale);
+const data = searchElementData(locale, manifest);
+const answersLang = docContentLang(manifest, 'start/how-to-use', locale);
+const answers = (await getEntry('quickAnswers', answersLang))?.data;
+const questionsLang =
+  answersLang === locale ? undefined : (getLocale(answersLang)?.hreflang ?? answersLang);
+const questions = (answers?.items ?? [])
+  .flatMap((item) => {
+    const target = item.targets.find((run) => 'doc' in run);
+    const url = target && 'doc' in target ? docHref(manifest, target.doc, locale) : undefined;
+    return url === undefined ? [] : [{ id: item.id, text: plainText(item.question), href: url }];
+  })
+  .slice(0, COMMON_QUESTIONS);
+const ids = {
+  title: 'st-search-title',
+  input: 'st-search-input',
+  help: 'st-search-help',
+  listbox: 'st-search-listbox',
+  status: 'st-search-status',
+  common: 'st-search-common',
+};
+---
+
+<st-search
+  class="st-search-host js-only"
+  data-locale={locale}
+  data-index={data.index}
+  data-page={data.page}
+  data-contents={data.contents}
+  data-strings={data.strings}
+>
+  <dialog class="st-search-dialog" aria-labelledby={ids.title}>
+    <div class="st-search-dialog__inner">
+      <div class="st-search-dialog__head">
+        <h2 class="st-search-dialog__title" id={ids.title}>
+          {t('search.dialogTitle')}
+        </h2>
+        <button type="button" class="st-search-dialog__close" data-search-close>
+          <Icon name="lucide:x" label={t('search.close')} />
+        </button>
+      </div>
+      <form class="st-search-dialog__form" action={data.page} method="get" role="search">
+        <label class="st-search-dialog__label" for={ids.input}>
+          {t('search.label')}
+        </label>
+        <input
+          id={ids.input}
+          class="st-search-dialog__input"
+          type="search"
+          name="q"
+          role="combobox"
+          aria-expanded="false"
+          aria-controls={ids.listbox}
+          aria-autocomplete="list"
+          aria-describedby={ids.help}
+          placeholder={t('search.placeholder')}
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          enterkeyhint="search"
+        />
+        <p class="st-visually-hidden" id={ids.help}>
+          {t('search.instructions')}
+        </p>
+      </form>
+      <p class="st-search-dialog__status" id={ids.status} role="status" aria-live="polite"></p>
+      <div class="st-search-dialog__body">
+        <div
+          class="st-search-results"
+          id={ids.listbox}
+          role="listbox"
+          aria-label={t('search.resultsLabel')}
+          hidden
+        ></div>
+        <div class="st-search-dialog__failed" data-search-failed hidden>
+          <p>{t('search.failed')}</p>
+          <p>
+            <a class="st-link-block" href={data.contents}>
+              {t('search.failedFallback')}
+            </a>
+          </p>
+        </div>
+        <section class="st-search-dialog__empty" data-search-empty aria-labelledby={ids.common}>
+          <h3 class="st-search-dialog__subtitle" id={ids.common}>
+            {t('search.commonQuestions')}
+          </h3>
+          <ul class="st-search-dialog__questions" role="list" lang={questionsLang}>
+            {questions.map((question) => (
+              <li>
+                <a class="st-link-block" href={question.href}>
+                  {question.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p>
+            <a class="st-link-block" href={data.contents}>
+              {t('search.browseContents')}
+            </a>
+          </p>
+        </section>
+      </div>
+    </div>
+  </dialog>
+</st-search>
+
+<script>
+  import '../../scripts/search';
+</script>
+
+<style>
+  .st-search-host {
+    display: contents;
+  }
+
+  .st-search-dialog {
+    inline-size: min(42rem, 100%);
+    max-inline-size: 100%;
+    block-size: 100%;
+    max-block-size: 100%;
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    background-color: var(--st-surface);
+    color: var(--st-text);
+    overflow: hidden;
+  }
+
+  .st-search-dialog[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .st-search-dialog::backdrop {
+    background-color: color-mix(in oklab, var(--st-shadow-ink) 55%, transparent);
+  }
+
+  .st-search-dialog__inner {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: var(--st-space-3);
+    min-block-size: 0;
+    padding: var(--st-space-4);
+  }
+
+  .st-search-dialog__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--st-space-3);
+  }
+
+  .st-search-dialog__title {
+    min-inline-size: 0;
+    font-size: var(--st-text-xl);
+  }
+
+  .st-search-dialog__close {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--st-target);
+    min-block-size: var(--st-target);
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface);
+    color: var(--st-text);
+  }
+
+  .st-search-dialog__form {
+    display: grid;
+    gap: var(--st-space-2);
+  }
+
+  .st-search-dialog__label {
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-search-dialog__input {
+    inline-size: 100%;
+    min-inline-size: 0;
+  }
+
+  .st-search-dialog__status:empty {
+    display: none;
+  }
+
+  .st-search-dialog__status {
+    color: var(--st-text-muted);
+    overflow-wrap: anywhere;
+  }
+
+  .st-search-dialog__body {
+    flex: 1 1 auto;
+    min-block-size: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+
+  .st-search-dialog__subtitle {
+    font-size: var(--st-text-lg);
+  }
+
+  .st-search-dialog__empty,
+  .st-search-dialog__failed {
+    display: grid;
+    gap: var(--st-space-2);
+  }
+
+  .st-search-dialog__empty[hidden],
+  .st-search-dialog__failed[hidden] {
+    display: none;
+  }
+
+  .st-search-dialog__questions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0;
+    list-style: none;
+  }
+
+  /* From 768px the dialog floats over the page rather than filling it. */
+  @media (width >= 768px) {
+    .st-search-dialog {
+      block-size: auto;
+      max-block-size: min(40rem, calc(100% - 2 * var(--st-space-8)));
+      margin-block-start: var(--st-space-8);
+      border: var(--st-border-width) solid var(--st-border-strong);
+      border-radius: var(--st-radius-lg);
+      box-shadow: var(--st-shadow-2);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .st-search-dialog {
+      border: 1px solid CanvasText;
+    }
+  }
+</style>
