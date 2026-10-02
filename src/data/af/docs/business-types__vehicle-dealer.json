@@ -1603,10 +1603,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Let op in watter rigting dit werk. As jy deur ’n maatskappy handel dryf, kan jy nie self ’n eis in die Small Claims Court instel nie: net ’n natuurlike persoon mag daar ’n eis instel. ’n Koper kan wel ’n eis teen jou maatskappy daar instel, en ’n benoemde direkteur mag namens die maatskappy verskyn, maar om ’n kliënt te agtervolg wat jou nie betaal het nie, sal jy die landdroshof en ’n prokureur nodig hê."
+          "v": "Let op in watter rigting dit werk. As jy deur ’n maatskappy handel dryf, kan jy nie self ’n eis in die Small Claims Court instel nie: net ’n natuurlike persoon mag daar ’n eis instel. ’n Koper kan wel ’n eis teen jou maatskappy daar instel, en ’n benoemde direkteur mag namens die maatskappy verskyn, maar om geld te verhaal by ’n kliënt wat jou nie betaal het nie, sal jy die landdroshof en ’n prokureur nodig hê."
         }
       ],
-      "hash": "6fd8182b7aad1a60",
+      "hash": "3db57bc7d1cc8f3f",
       "id": "where-disputes-go.2",
       "kind": "paragraph",
       "sourceHash": "701e67ece1fc615e"
@@ -3406,7 +3406,7 @@
       "sourceHash": "3cbbad0d8e4dd749"
     }
   ],
-  "contentHash": "a88d21dbeee0cd53",
+  "contentHash": "be89bd8e0dc7b30c",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

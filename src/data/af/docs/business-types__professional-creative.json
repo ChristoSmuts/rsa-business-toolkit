@@ -585,10 +585,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Vryskutwerkers in Suid-Afrika verloor meer geld aan laat betaling as aan lae tariewe."
+          "v": "Vryskutwerkers in Suid-Afrika verloor meer geld weens laat betaling as weens lae tariewe."
         }
       ],
-      "hash": "ce29741b37d0cb8a",
+      "hash": "12eb436570c81769",
       "id": "getting-paid.1",
       "kind": "paragraph",
       "sourceHash": "87cd76db15507e83"
@@ -936,7 +936,7 @@
       "sourceHash": "577e0d64887649de"
     }
   ],
-  "contentHash": "e958b583cf031b92",
+  "contentHash": "0b3fa28454bad125",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
