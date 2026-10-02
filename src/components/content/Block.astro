@@ -2,7 +2,7 @@
 /**
  * One generated block. Every kind in `BlockSchema` has a branch here; a kind with no branch would
  * render nothing, so `tests/e2e/content.spec.ts` renders one real block of every kind and
- * `tests/unit/content-render.test.ts` asserts the set of kinds is complete.
+ * `tests/unit/site/render.test.ts` asserts the set of kinds is complete.
  *
  * Two rules the corpus forced:
  * - A block marked `hidden` was hidden on purpose by the content configuration (`hideSections`).
@@ -29,11 +29,13 @@ interface Props {
   context: ContentContext;
   /** Name for a table's scroll region: the heading above it, or the page title. */
   caption: string;
+  /** The heading's tag in its outline, from `headingTags`; `headingTag(depth)` when absent. */
+  headingTag?: 'h2' | 'h3' | 'h4' | undefined;
 }
 
-const { block, context, caption } = Astro.props;
-const t = useTranslations(context.locale);
-const Heading = block.kind === 'heading' ? headingTag(block.depth) : 'h2';
+const { block, context, caption, headingTag: tag } = Astro.props;
+const t = useTranslations(context.contentLang);
+const Heading = tag ?? (block.kind === 'heading' ? headingTag(block.depth) : 'h2');
 ---
 
 {block.hidden ? (
@@ -83,7 +85,7 @@ const Heading = block.kind === 'heading' ? headingTag(block.depth) : 'h2';
 ) : block.kind === 'table' ? (
   <TableBlock block={block} context={context} caption={caption} />
 ) : block.kind === 'code' ? (
-  <CodeBlock block={block} context={context} />
+  <CodeBlock block={block} context={context} caption={caption} />
 ) : block.kind === 'terms' ? (
   <TermsBlock block={block} context={context} />
 ) : block.kind === 'glossary' ? (

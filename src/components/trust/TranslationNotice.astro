@@ -8,8 +8,9 @@
  *   themselves carry `lang="en"` (see `Blocks.astro`).
  * - `source` and `reviewed` need no notice, and the component renders nothing.
  *
- * The link to the English version carries `lang="en"` on its own text, because the link text is
- * English while the notice around it is not.
+ * The link to the English version carries `hreflang`, which names the language of the page it
+ * opens. It must not carry `lang`: its text is in the reader's language ("Lees die Engelse
+ * weergawe"), and `lang="en"` would make a screen reader read Afrikaans with an English voice.
  */
 import Callout from '../ui/Callout.astro';
 import { useTranslations, type TranslationKey } from '../../i18n';
@@ -34,7 +35,7 @@ const englishLang = getLocale(DEFAULT_LOCALE)?.hreflang ?? DEFAULT_LOCALE;
     <p>{t('lang.mtNotice.body')}</p>
     {englishHref && (
       <p>
-        <a class="st-link-block" href={englishHref} lang={englishLang}>
+        <a class="st-link-block" href={englishHref} hreflang={englishLang}>
           {t('lang.mtNotice.link')}
         </a>
       </p>
@@ -45,7 +46,7 @@ const englishLang = getLocale(DEFAULT_LOCALE)?.hreflang ?? DEFAULT_LOCALE;
     <p>{t('lang.fallbackNotice.body', { language })}</p>
     {englishHref && (
       <p>
-        <a class="st-link-block" href={englishHref} lang={englishLang}>
+        <a class="st-link-block" href={englishHref} hreflang={englishLang}>
           {t('lang.mtNotice.link')}
         </a>
       </p>

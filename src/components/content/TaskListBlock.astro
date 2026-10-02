@@ -20,7 +20,7 @@ interface Props {
 }
 
 const { block, context } = Astro.props;
-const t = useTranslations(context.locale);
+const t = useTranslations(context.contentLang);
 ---
 
 <fieldset class="st-tasklist">

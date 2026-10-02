@@ -105,6 +105,12 @@
   margin: 0;
 }
 
+/* The enhancement wrapper around a fenced block's <pre> (src/scripts/code-scroll.ts). */
+.st-code st-code-scroll {
+  display: block;
+  min-inline-size: 0;
+}
+
 .st-code pre {
   padding: var(--st-space-4);
   border: var(--st-border-width) solid var(--st-border);

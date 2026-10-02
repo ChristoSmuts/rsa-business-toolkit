@@ -32,9 +32,13 @@ const last = crumbs.length - 1;
             <Icon name="lucide:chevron-right" size="0.9em" class="st-breadcrumb__sep" />
           )}
           {index === last || crumb.href === undefined ? (
-            <span aria-current={index === last ? 'page' : undefined}>{crumb.label}</span>
+            <span aria-current={index === last ? 'page' : undefined} lang={crumb.lang}>
+              {crumb.label}
+            </span>
           ) : (
-            <a href={crumb.href}>{crumb.label}</a>
+            <a href={crumb.href} lang={crumb.lang}>
+              {crumb.label}
+            </a>
           )}
         </li>
       ))}

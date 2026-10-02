@@ -11,7 +11,13 @@
 import Badge from '../ui/Badge.astro';
 import { useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
-import { docHref, docTitle, sectionDocIds, sectionTitle } from '../../lib/content/manifest';
+import {
+  docHref,
+  docTitle,
+  docTitleLang,
+  sectionDocIds,
+  sectionTitle,
+} from '../../lib/content/manifest';
 import type { Manifest } from '../../lib/content/schema';
 
 interface Props {
@@ -32,6 +38,7 @@ const docs = sectionDocIds(manifest, sectionId)
       id,
       number: index + 1,
       title: docTitle(manifest, id, locale),
+      lang: docTitleLang(manifest, id, locale),
       href: docHref(manifest, id, locale),
       entity: entry?.appliesTo.entity ?? 'all',
     };
@@ -56,7 +63,9 @@ const docs = sectionDocIds(manifest, sectionId)
             <span class="st-sidebar__number st-num" aria-hidden="true">
               {doc.number}
             </span>
-            <span class="st-sidebar__label">{doc.title}</span>
+            <span class="st-sidebar__label" lang={doc.lang}>
+              {doc.title}
+            </span>
           </a>
           {doc.entity !== 'all' && (
             <Badge variant="entity">

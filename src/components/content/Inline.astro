@@ -11,7 +11,7 @@
  * - **Placeholders keep their brackets.** The pipeline stores `NAME`; templates are written,
  *   copied and explained as `[NAME]`, so the brackets are put back here (`placeholderLabel`).
  * - **External links** get `rel="noopener noreferrer"`, a `↗` and a hidden "(external link)", and
- *   the `Official` badge when the register marks that exact URL as official.
+ *   the `Official` badge when the register marks that URL as official (`officialUrlKey`).
  *
  * Runs are emitted with no whitespace between them: a newline in an HTML template is a text node
  * and would put a space before a comma or inside bold text. Each branch below is one expression.
@@ -22,7 +22,7 @@ import '../../styles/content.css';
 import { useTranslations } from '../../i18n';
 import type { ContentContext } from '../../lib/content/context';
 import { docHref, docrefText as docrefTitle, sectionHref } from '../../lib/content/manifest';
-import { placeholderLabel } from '../../lib/content/render';
+import { isOfficialUrl, placeholderLabel } from '../../lib/content/render';
 import type { InlineRun } from '../../lib/content/schema';
 
 interface Props {
@@ -32,7 +32,7 @@ interface Props {
 
 const { runs, context } = Astro.props;
 const Self = Astro.self;
-const t = useTranslations(context.locale);
+const t = useTranslations(context.contentLang);
 const externalLabel = t('a11y.externalLink');
 const officialLabel = t('sources.official');
 
@@ -48,11 +48,11 @@ function targetHref(run: InlineRun): string | undefined {
 
 /** A docref's visible text: the title the manifest holds, falling back to the markdown label. */
 function docrefText(run: Extract<InlineRun, { t: 'docref' }>): string {
-  return docrefTitle(context.manifest, run, context.locale);
+  return docrefTitle(context.manifest, run, context.contentLang);
 }
 
 function isOfficial(url: string): boolean {
-  return context.officialUrls.has(url);
+  return isOfficialUrl(context.officialUrls, url);
 }
 ---
 

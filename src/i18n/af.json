@@ -255,6 +255,7 @@
     "copyLinkTo": "Kopieer skakel na {heading}",
     "linkCopied": "Skakel gekopieer",
     "tableRegion": "Tabel: {caption}. Rol sywaarts om alles te sien.",
+    "codeRegion": "Teksblok: {caption}. Rol sywaarts om alles te sien.",
     "readCoreFirstTitle": "Lees eers Kern",
     "readCoreFirst": "Lees eers die kernafdeling. Dit geld vir elke besigheid.",
     "readCoreFirstAction": "Maak die kernafdeling oop",

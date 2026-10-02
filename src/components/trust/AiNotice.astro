@@ -37,6 +37,12 @@ const t = useTranslations(locale);
 const notice = trustNotice(verification, hasPageSources);
 const checkedOn = formatDate(locale, verification.checkedOn);
 const howMade = docHref(manifest, 'start/how-this-was-made', locale);
+// D5 requires the link. A manifest without the page would otherwise drop it without a word.
+if (howMade === undefined) {
+  throw new Error(
+    'The AI notice must link "How this was made", but the manifest has no start/how-this-was-made.',
+  );
+}
 ---
 
 <Callout variant="info" label={t('trust.aiNotice.label')} icon="lucide:bot" class="st-ai-notice">

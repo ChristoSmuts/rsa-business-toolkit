@@ -76,7 +76,7 @@ const EXPECTED: Readonly<Record<string, string>> = {
   'block:list': 'li',
   'block:tasklist': 'fieldset.st-tasklist input[type="checkbox"]',
   'block:table': 'st-table-scroll > table > caption',
-  'block:code': 'figure.st-code > pre > code',
+  'block:code': 'figure.st-code pre > code',
   'block:terms': 'dl.st-terms > dt',
   'block:note': 'p.st-note-line',
   'block:hr': 'hr',
@@ -99,7 +99,7 @@ const EXPECTED: Readonly<Record<string, string>> = {
   'tasklist:ungrouped': 'fieldset.st-tasklist > legend.st-visually-hidden',
   'heading:2': 'h2[id]',
   'heading:3': 'h3[id]',
-  'heading:4': 'h4.st-pseudo-heading[id]',
+  'heading:4': ':is(h2, h3, h4).st-pseudo-heading[id]',
   'inline:text': 'p, li, td, dd, h2, h3, h4',
   'inline:strong': 'strong',
   'inline:em': 'em',
@@ -408,6 +408,24 @@ test.describe('the D5 trust pieces', () => {
     await expect(notice.first()).toBeVisible();
     await expect(notice.first()).toContainText('Afrikaans');
     await expect(page.locator('article .st-blocks').first()).toHaveAttribute('lang', 'en-ZA');
+    // Everything else that is English text is marked as English too (review WP-20 M1 pass 1).
+    await expect(page.locator('article h1')).toHaveAttribute('lang', 'en-ZA');
+    await expect(page.locator('.st-toc--details .st-toc__list')).toHaveAttribute('lang', 'en-ZA');
+    await expect(page.locator('.st-breadcrumb [aria-current="page"]')).toHaveAttribute(
+      'lang',
+      'en-ZA',
+    );
+    // The link to the English page is in Afrikaans: it names the target's language, not its own.
+    const english = notice.first().locator('a');
+    await expect(english).toHaveAttribute('hreflang', 'en-ZA');
+    await expect(english).not.toHaveAttribute('lang', /.*/);
+    // Inside the English blocks, no label or title is Afrikaans.
+    const afrikaansInBlocks = await page.evaluate(() =>
+      [...document.querySelectorAll('article .st-blocks')].some((node) =>
+        /Kern: geld vir almal|Rol sywaarts/.test(node.textContent ?? ''),
+      ),
+    );
+    expect(afrikaansInBlocks).toBe(false);
     // The AI notice comes first, the translation notice directly under it (build plan D5).
     const order = await page.evaluate(() => {
       const header = document.querySelector('article > header');
@@ -524,6 +542,18 @@ test.describe('navigation', () => {
     await links.nth(1).click();
     await expect(page).toHaveURL(`/business-toolkit/${AF}#how-much-regulation-each-type-carries`);
     await expect(page.locator('html')).toHaveAttribute('lang', 'af-ZA');
+  });
+
+  test('the language switcher drops the anchor when the reader goes back to none', async ({
+    page,
+  }) => {
+    await open(page, EN);
+    const other = page.locator('.st-topbar__lang a').nth(1);
+    await page.goto(`${EN}#how-much-regulation-each-type-carries`);
+    await expect(other).toHaveAttribute('href', /#how-much-regulation-each-type-carries$/);
+    await page.goBack();
+    await expect(page).toHaveURL(new RegExp(`${EN}$`));
+    await expect(other).toHaveAttribute('href', `/business-toolkit/${AF}`);
   });
 
   test('the footer carries the short disclaimer and the standing links', async ({ page }) => {

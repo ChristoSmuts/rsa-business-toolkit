@@ -13,9 +13,11 @@
  *
  * The `<pre>` keeps `white-space: pre` — a template preview is a layout, and wrapping it would
  * garble it — so it scrolls sideways on a phone and is therefore a scrollable region, which WCAG
- * 2.1.1 says a keyboard must reach. `tabindex="0"` is that access; axe reported every fenced
- * block as `scrollable-region-focusable` without it. `TableScroll` drops its tab stop while
- * nothing overflows, and WP-30's prompt toolbar should do the same here.
+ * 2.1.1 says a keyboard must reach. The server renders it as a named region with `tabindex="0"`;
+ * axe reported every fenced block as `scrollable-region-focusable` without it. A block that fits
+ * would then be an unnamed, silent tab stop, so `<st-code-scroll>` drops the stop and the role
+ * while nothing overflows, as `TableScroll` does for tables. With JavaScript off every block keeps
+ * its stop, which costs a Tab press but never strands a keyboard user.
  */
 import { useTranslations } from '../../i18n';
 import type { ContentContext } from '../../lib/content/context';
@@ -25,15 +27,29 @@ import type { Block } from '../../lib/content/schema';
 interface Props {
   block: Extract<Block, { kind: 'code' }>;
   context: ContentContext;
+  /** Names the region: the heading above the block, or the page title. */
+  caption: string;
 }
 
-const { block, context } = Astro.props;
-const t = useTranslations(context.locale);
+const { block, context, caption } = Astro.props;
+const t = useTranslations(context.contentLang);
+const label = t('doc.codeRegion', { caption });
 const segments = splitPlaceholders(block.text, block.placeholders);
 const hasPlaceholders = segments.some((segment) => segment.kind === 'placeholder');
 ---
 
 <figure class="st-code" data-variant={block.variant}>
-  <pre tabindex="0"><code>{segments.map((segment) => (segment.kind === 'text' ? segment.value : <mark class="st-placeholder" data-placeholder={segment.run.style}>{segment.value}</mark>))}</code></pre>
+  <st-code-scroll>
+    <pre
+      role="region"
+      tabindex="0"
+      aria-label={label}
+      data-label={label}
+    ><code>{segments.map((segment) => (segment.kind === 'text' ? segment.value : <mark class="st-placeholder" data-placeholder={segment.run.style}>{segment.value}</mark>))}</code></pre>
+  </st-code-scroll>
   {hasPlaceholders && <figcaption>{t('prompts.placeholderHint')}</figcaption>}
 </figure>
+
+<script>
+  import '../../scripts/code-scroll';
+</script>

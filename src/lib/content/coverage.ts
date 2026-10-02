@@ -6,7 +6,7 @@
  * the corpus renders: the page does not invent a fixture for "a table with five columns" or "a
  * prompt with placeholders", it finds the first real one and shows that. If a future content
  * change removes the last block of some kind, `ALL_FEATURES` stops being covered and
- * `tests/unit/content-coverage.test.ts` says so instead of the page quietly showing one less
+ * `tests/unit/site/coverage.test.ts` says so instead of the page quietly showing one less
  * thing.
  */
 import type { Block, InlineRun } from './schema';

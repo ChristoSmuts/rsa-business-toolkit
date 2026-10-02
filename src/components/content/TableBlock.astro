@@ -27,7 +27,7 @@ interface Props {
 }
 
 const { block, context, caption } = Astro.props;
-const t = useTranslations(context.locale);
+const t = useTranslations(context.contentLang);
 const captionId = uid('st-table');
 const wide = tableIsWide(block);
 const headerText = block.header.map((cell) => plainText(cell));

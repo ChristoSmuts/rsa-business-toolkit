@@ -5,14 +5,19 @@ import {
   glossaryGroupEntries,
   glossaryGroupTitle,
   headingTag,
+  headingTags,
   isRedundantRule,
   nearestHeadingText,
   normaliseText,
+  isOfficialUrl,
+  officialUrlKey,
   officialUrls,
   placeholderLabel,
   placeholdersFound,
   plainText,
   sourceEntriesFor,
+  splitTermsBlocks,
+  TERMS_HEADING_ID,
   splitPlaceholders,
   tableColumnCount,
   tableIsWide,
@@ -212,10 +217,63 @@ describe('nearestHeadingText', () => {
 });
 
 describe('headingTag', () => {
-  it('maps a block depth to its element', () => {
+  it('keeps the level of a real heading', () => {
     expect(headingTag(2)).toBe('h2');
     expect(headingTag(3)).toBe('h3');
-    expect(headingTag(4)).toBe('h4');
+    expect(headingTag(3, 1)).toBe('h3');
+  });
+
+  it('places a pseudo heading one level under the heading above it, never skipping', () => {
+    expect(headingTag(4, 3)).toBe('h4');
+    expect(headingTag(4, 2)).toBe('h3');
+    expect(headingTag(4, 1)).toBe('h2');
+  });
+});
+
+describe('headingTags', () => {
+  const pseudo = (id: string): Block => ({
+    id,
+    hash,
+    kind: 'heading',
+    depth: 4,
+    pseudo: true,
+    c: [],
+    text: id,
+  });
+  const real = (id: string, depth: 2 | 3): Block => ({
+    id,
+    hash,
+    kind: 'heading',
+    depth,
+    c: [],
+    text: id,
+  });
+
+  it('makes pseudo headings siblings under the last real heading', () => {
+    const blocks = [
+      real('a', 2),
+      pseudo('b'),
+      pseudo('c'),
+      real('d', 3),
+      pseudo('e'),
+      paragraph('p', []),
+    ];
+    expect(headingTags(blocks)).toEqual(['h2', 'h3', 'h3', 'h3', 'h4', undefined]);
+  });
+
+  it('never skips a heading level anywhere in the corpus', () => {
+    const skips: string[] = [];
+    for (const doc of realDocs()) {
+      let level = 1;
+      headingTags(doc.blocks).forEach((tag, index) => {
+        if (tag === undefined) return;
+        const next = Number(tag.slice(1));
+        if (next > level + 1)
+          skips.push(`${doc.id}#${doc.blocks[index]?.id ?? ''}: h${level} to ${tag}`);
+        level = next;
+      });
+    }
+    expect(skips).toEqual([]);
   });
 });
 
@@ -226,13 +284,26 @@ describe('sources and glossary lookups', () => {
     const urls = officialUrls(sources);
     const official = sources.entries.filter((entry) => entry.official);
     for (const entry of official) {
-      for (const url of entry.urls) expect(urls.has(url)).toBe(true);
+      for (const url of entry.urls) expect(isOfficialUrl(urls, url)).toBe(true);
     }
     for (const entry of sources.entries) {
       if (entry.official || entry.url === undefined) continue;
-      const alsoOfficial = official.some((other) => other.urls.includes(entry.url ?? ''));
-      if (!alsoOfficial) expect(urls.has(entry.url)).toBe(false);
+      const key = officialUrlKey(entry.url);
+      const alsoOfficial = official.some((other) =>
+        other.urls.some((url) => officialUrlKey(url) === key),
+      );
+      if (!alsoOfficial) expect(isOfficialUrl(urls, entry.url)).toBe(false);
     }
+  });
+
+  it('matches an official URL however the guide spells its host and trailing slash', () => {
+    const urls = officialUrls(sources);
+    // The three spellings review pass 1 found in the corpus without their badge.
+    expect(isOfficialUrl(urls, 'https://inforegulator.org.za')).toBe(true);
+    expect(isOfficialUrl(urls, 'https://www.gov.za')).toBe(true);
+    expect(isOfficialUrl(urls, 'https://www.cipc.co.za')).toBe(true);
+    expect(officialUrlKey('https://WWW.Example.org/a/b/?q=1')).toBe('example.org/a/b?q=1');
+    expect(isOfficialUrl(urls, 'https://www.cipc.co.za.evil.example/')).toBe(false);
   });
 
   it('is empty without a register', () => {
@@ -263,5 +334,29 @@ describe('sources and glossary lookups', () => {
     expect(entries.length).toBeGreaterThan(0);
     for (const entry of entries) expect(entry.groupId).toBe(group?.id);
     expect(glossaryGroupTitle(glossary, group?.id ?? '')).toBe(group?.title);
+  });
+});
+
+describe('splitTermsBlocks', () => {
+  it('lifts "Words used in this file" out of the flow exactly once, keeping every other block', () => {
+    for (const doc of realDocs()) {
+      const { terms, rest } = splitTermsBlocks(doc.blocks);
+      const termsInFlow = doc.blocks.filter((block) => block.kind === 'terms');
+      if (terms === undefined) {
+        expect(rest, doc.id).toBe(doc.blocks);
+        continue;
+      }
+      expect(rest.some((block) => block.kind === 'heading' && block.id === TERMS_HEADING_ID)).toBe(
+        false,
+      );
+      expect(rest.filter((block) => block.kind === 'terms')).toHaveLength(termsInFlow.length - 1);
+      expect(doc.blocks.length - rest.length, doc.id).toBeGreaterThanOrEqual(2);
+      expect(doc.blocks.length - rest.length, doc.id).toBeLessThanOrEqual(3);
+    }
+  });
+
+  it('leaves a document without that heading unchanged', () => {
+    const blocks = [paragraph('a', [])];
+    expect(splitTermsBlocks(blocks)).toEqual({ terms: undefined, rest: blocks });
   });
 });

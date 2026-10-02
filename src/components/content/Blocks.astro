@@ -9,7 +9,7 @@ import Block from './Block.astro';
 import '../../styles/content.css';
 import type { ContentContext } from '../../lib/content/context';
 import { isFallbackContent } from '../../lib/content/context';
-import { isRedundantRule, nearestHeadingText } from '../../lib/content/render';
+import { headingTags, isRedundantRule, nearestHeadingText } from '../../lib/content/render';
 import type { Block as ContentBlock } from '../../lib/content/schema';
 import { getLocale } from '../../i18n/locales';
 
@@ -25,9 +25,11 @@ const { blocks, context, fallbackCaption, class: className } = Astro.props;
 const lang = isFallbackContent(context)
   ? (getLocale(context.contentLang)?.hreflang ?? context.contentLang)
   : undefined;
+const tags = headingTags(blocks);
 const visible = blocks
   .map((block, index) => ({
     block,
+    headingTag: tags[index],
     caption: nearestHeadingText(blocks, index) ?? fallbackCaption,
     redundant: isRedundantRule(blocks, index),
   }))
@@ -36,6 +38,11 @@ const visible = blocks
 
 <div class:list={['st-blocks', className]} lang={lang}>
   {visible.map((entry) => (
-    <Block block={entry.block} context={context} caption={entry.caption} />
+    <Block
+      block={entry.block}
+      context={context}
+      caption={entry.caption}
+      headingTag={entry.headingTag}
+    />
   ))}
 </div>

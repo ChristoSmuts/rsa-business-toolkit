@@ -9,7 +9,7 @@
  * Astro's content layer.
  */
 import type { Locale } from '../../i18n/locales';
-import { DEFAULT_LOCALE } from '../../i18n/locales';
+import { DEFAULT_LOCALE, getLocale } from '../../i18n/locales';
 import type { Manifest, SectionId } from './schema';
 import { href } from '../paths';
 
@@ -48,6 +48,18 @@ function pickTitle(
 
 export function docTitle(manifest: Manifest, id: string, locale: Locale): string {
   return pickTitle(manifest.docs[id]?.titles, locale, id);
+}
+
+/**
+ * The `lang` attribute a document title needs on a page in `locale`: `undefined` when the title
+ * is in that language, otherwise the BCP 47 tag of the language `docTitle` fell back to. Lets a
+ * sidebar or breadcrumb mark an English title on an Afrikaans page (build plan B5).
+ */
+export function docTitleLang(manifest: Manifest, id: string, locale: Locale): string | undefined {
+  const titles = manifest.docs[id]?.titles;
+  if (titles?.[locale] !== undefined) return undefined;
+  if (titles?.[DEFAULT_LOCALE] === undefined) return undefined;
+  return getLocale(DEFAULT_LOCALE)?.hreflang ?? DEFAULT_LOCALE;
 }
 
 export function sectionTitle(manifest: Manifest, id: string, locale: Locale): string {

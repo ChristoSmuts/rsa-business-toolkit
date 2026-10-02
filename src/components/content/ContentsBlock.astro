@@ -18,14 +18,14 @@ interface Props {
 }
 
 const { context } = Astro.props;
-const t = useTranslations(context.locale);
+const t = useTranslations(context.contentLang);
 const sections = orderedSections(context.manifest).map((section) => ({
   id: section.id,
-  title: section.titles[context.locale] ?? section.titles[DEFAULT_LOCALE] ?? section.id,
+  title: section.titles[context.contentLang] ?? section.titles[DEFAULT_LOCALE] ?? section.id,
   href: sectionHref(context.manifest, section.id, context.locale),
   docs: section.docs.map((id) => ({
     id,
-    title: docTitle(context.manifest, id, context.locale),
+    title: docTitle(context.manifest, id, context.contentLang),
     href: docHref(context.manifest, id, context.locale),
   })),
 }));

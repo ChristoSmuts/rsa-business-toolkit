@@ -20,8 +20,8 @@ import Badge from '../ui/Badge.astro';
 import Icon from '../ui/Icon.astro';
 import Inline from '../content/Inline.astro';
 import { useTranslations } from '../../i18n';
-import type { Locale } from '../../i18n/locales';
-import type { ContentContext } from '../../lib/content/context';
+import { getLocale, type Locale } from '../../i18n/locales';
+import { isFallbackContent, type ContentContext } from '../../lib/content/context';
 import { docHref, docTitle } from '../../lib/content/manifest';
 import { actsFor, sourceEntriesFor } from '../../lib/content/render';
 import type { DocSources, SourceNote } from '../../lib/content/schema';
@@ -43,6 +43,18 @@ const headingId = id ?? uid('st-sources');
 const entries = sourceEntriesFor(context.sources, sources.entries);
 const acts = actsFor(context.sources, sources.acts);
 const count = entries.length + acts.length;
+/**
+ * The register and the note are in the content's language. On an English fallback page that is
+ * not the page's language, so their text is marked, while the labels around it are not.
+ */
+const dataLang = isFallbackContent(context)
+  ? (getLocale(context.contentLang)?.hreflang ?? context.contentLang)
+  : undefined;
+/** Build plan D5: every content page links the full register, not only pages without sources. */
+const registerHref =
+  context.docId === 'lookup/sources'
+    ? undefined
+    : docHref(context.manifest, 'lookup/sources', locale);
 
 /** The two links a source note names, with the wording each one has in the dictionary. */
 const NOTE_LINK_LABELS: Record<string, 'trust.sources.seeRegister' | 'trust.sources.seeHowMade'> = {
@@ -72,7 +84,8 @@ const noteLinks = (sourceNote?.see ?? [])
             <p class="st-source__title">
               {entry.url ? (
                 <a class="st-link-block" href={entry.url} rel="noopener noreferrer">
-                  {entry.title} <Icon name="lucide:external-link" size="0.9em" />
+                  <span lang={dataLang}>{entry.title}</span>{' '}
+                  <Icon name="lucide:external-link" size="0.9em" />
                   <span class="st-visually-hidden">
                     {entry.official
                       ? t('trust.sources.externalLink')
@@ -80,7 +93,9 @@ const noteLinks = (sourceNote?.see ?? [])
                   </span>
                 </a>
               ) : (
-                <span class="st-source__name">{entry.title}</span>
+                <span class="st-source__name" lang={dataLang}>
+                  {entry.title}
+                </span>
               )}
               {entry.official ? (
                 <Badge variant="official">{t('trust.sources.officialLabel')}</Badge>
@@ -91,10 +106,16 @@ const noteLinks = (sourceNote?.see ?? [])
             {entry.supports && (
               <p class="st-hint">
                 {t('trust.sources.supportsLabel')}:{' '}
-                <Inline runs={entry.supports} context={context} />
+                <span lang={dataLang}>
+                  <Inline runs={entry.supports} context={context} />
+                </span>
               </p>
             )}
-            {entry.noUrlReason && <p class="st-hint">{entry.noUrlReason}</p>}
+            {entry.noUrlReason && (
+              <p class="st-hint" lang={dataLang}>
+                {entry.noUrlReason}
+              </p>
+            )}
           </li>
         ))}
         {acts.length > 0 && (
@@ -103,8 +124,10 @@ const noteLinks = (sourceNote?.see ?? [])
             <ul class="st-stack st-stack-sm" role="list">
               {acts.map((act) => (
                 <li>
-                  <span class="st-source__name">{act.name}</span>
-                  <span class="st-hint">
+                  <span class="st-source__name" lang={dataLang}>
+                    {act.name}
+                  </span>
+                  <span class="st-hint" lang={dataLang}>
                     <Inline runs={act.governs} context={context} />
                   </span>
                 </li>
@@ -113,10 +136,23 @@ const noteLinks = (sourceNote?.see ?? [])
           </li>
         )}
       </ul>
+      {registerHref && (
+        <p>
+          <a class="st-link-block" href={registerHref}>
+            {t('trust.sources.seeRegister')}
+          </a>
+        </p>
+      )}
     </Fragment>
   ) : (
     <Fragment>
-      <p class="st-hint">{sourceNote ? sourceNote.reason : t('trust.sources.noPageSources')}</p>
+      {sourceNote ? (
+        <p class="st-hint" lang={dataLang}>
+          {sourceNote.reason}
+        </p>
+      ) : (
+        <p class="st-hint">{t('trust.sources.noPageSources')}</p>
+      )}
       {noteLinks.length > 0 && (
         <p class="st-cluster">
           {noteLinks.map((link) => (

@@ -2,12 +2,12 @@
  * The navigation model: the Read menu (the six sections) and the Tools menu (build plan B2).
  *
  * Pure functions over the manifest and a translator, so the header, the mobile drawer and the
- * footer all show the same links and `tests/unit/nav.test.ts` can check them without a browser.
+ * footer all show the same links and `tests/unit/site/nav.test.ts` can check them without a browser.
  * A link whose target the manifest does not know is dropped rather than rendered dead.
  */
 import type { TranslationKey, Translator } from '../i18n';
 import type { Locale } from '../i18n/locales';
-import { docHref, docTitle, orderedSections, sectionHref } from './content/manifest';
+import { docHref, docTitle, docTitleLang, orderedSections, sectionHref } from './content/manifest';
 import type { Manifest, SectionId } from './content/schema';
 import { href } from './paths';
 import { APP_ROUTES, NAV_DOC_IDS } from './routes';
@@ -113,6 +113,8 @@ export function footerLinks(manifest: Manifest, locale: Locale, t: Translator): 
 export interface Crumb {
   readonly href: string | undefined;
   readonly label: string;
+  /** Set when the label is not in the page's language (an untranslated document's title). */
+  readonly lang?: string | undefined;
 }
 
 export function documentCrumbs(
@@ -131,6 +133,10 @@ export function documentCrumbs(
       label: section.titles[locale] ?? section.titles[DEFAULT_LOCALE] ?? section.id,
     });
   }
-  crumbs.push({ href: undefined, label: docTitle(manifest, docId, locale) });
+  crumbs.push({
+    href: undefined,
+    label: docTitle(manifest, docId, locale),
+    lang: docTitleLang(manifest, docId, locale),
+  });
   return crumbs;
 }

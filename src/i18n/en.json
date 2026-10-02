@@ -255,6 +255,7 @@
     "copyLinkTo": "Copy link to {heading}",
     "linkCopied": "Link copied",
     "tableRegion": "Table: {caption}. Scroll sideways to see all of it.",
+    "codeRegion": "Text block: {caption}. Scroll sideways to see all of it.",
     "readCoreFirstTitle": "Read Core first",
     "readCoreFirst": "Read the core section first. It applies to every business.",
     "readCoreFirstAction": "Open the core section",

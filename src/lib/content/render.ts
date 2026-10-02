@@ -152,11 +152,30 @@ export function nearestHeadingText(blocks: readonly Block[], index: number): str
 
 /**
  * Heading level for a block depth. Document headings are `##`/`###` (depth 2 and 3) under the
- * page `<h1>`; depth 4 is a pseudo heading (a bold lead-in line), which keeps heading semantics
- * so the outline stays complete.
+ * page `<h1>` and keep their level. Depth 4 is a pseudo heading (a bold lead-in line); build plan
+ * B4 gives it heading semantics "only where the outline allows", so it sits one level under the
+ * last real heading before it (`previousDepth`, 1 for the page `<h1>`) and never skips a level:
+ * under an `<h2>` it is an `<h3>`, under an `<h3>` an `<h4>`.
  */
-export function headingTag(depth: 2 | 3 | 4): 'h2' | 'h3' | 'h4' {
-  return `h${depth}` as const;
+export function headingTag(depth: 2 | 3 | 4, previousDepth = 3): 'h2' | 'h3' | 'h4' {
+  if (depth !== 4) return `h${depth}`;
+  const level = Math.min(4, Math.max(2, previousDepth + 1));
+  return `h${level}` as 'h2' | 'h3' | 'h4';
+}
+
+/**
+ * The tag of every heading block in a list, in order (`undefined` for other blocks). A pseudo
+ * heading is placed by the last *real* heading above it, so two pseudo headings in a row are
+ * siblings rather than a staircase. Hidden headings render no heading element and are skipped.
+ */
+export function headingTags(blocks: readonly Block[]): ('h2' | 'h3' | 'h4' | undefined)[] {
+  let previous = 1;
+  return blocks.map((block) => {
+    if (block.kind !== 'heading' || block.hidden) return undefined;
+    const tag = headingTag(block.depth, previous);
+    if (!block.pseudo && block.depth !== 4) previous = block.depth;
+    return tag;
+  });
 }
 
 /** Cell alignment class for a column, or `undefined` for the default (start). */
@@ -173,14 +192,37 @@ export function alignClass(
  * gets the "Official" badge (design system, Link), so officialness is shown where the reader
  * clicks and not only in the sources section.
  */
+/**
+ * The form of a URL the Official lookup compares: scheme, a leading `www.` and trailing slashes
+ * dropped, host lower-cased. The register writes `https://www.cipc.co.za/` where the guide links
+ * `https://www.cipc.co.za`, and `https://gov.za/` where it links `https://www.gov.za`; those are
+ * the same official page, and an exact string match left them without their badge.
+ */
+export function officialUrlKey(url: string): string {
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.toLowerCase().replace(/^www\./, '');
+    const path = parsed.pathname.replace(/\/+$/, '');
+    return `${host}${path}${parsed.search}`;
+  } catch {
+    return url;
+  }
+}
+
+/** Every URL the register marks as official, as `officialUrlKey` keys. */
 export function officialUrls(sources: SourcesFile | undefined): ReadonlySet<string> {
   const urls = new Set<string>();
   for (const entry of sources?.entries ?? []) {
     if (!entry.official) continue;
-    for (const url of entry.urls) urls.add(url);
-    if (entry.url !== undefined) urls.add(entry.url);
+    for (const url of entry.urls) urls.add(officialUrlKey(url));
+    if (entry.url !== undefined) urls.add(officialUrlKey(entry.url));
   }
   return urls;
+}
+
+/** True when the register marks this URL, in any of its spellings, as official. */
+export function isOfficialUrl(official: ReadonlySet<string>, url: string): boolean {
+  return official.has(officialUrlKey(url));
 }
 
 /** Source register entries for a document, in the register's own order. Unknown ids are dropped. */
@@ -214,4 +256,31 @@ export function glossaryGroupTitle(
   groupId: string,
 ): string | undefined {
   return glossary?.groups.find((group) => group.id === groupId)?.title;
+}
+
+/** The id the pipeline gives the "Words used in this file" heading in every language. */
+export const TERMS_HEADING_ID = 'words-used-in-this-file';
+
+export interface SplitBlocks {
+  /** The `terms` block that sat under the "Words used in this file" heading, if any. */
+  readonly terms: Extract<Block, { kind: 'terms' }> | undefined;
+  /** Every other block, in order, without that heading, its terms block and a rule right after. */
+  readonly rest: readonly Block[];
+}
+
+/**
+ * Build plan B6 puts "Words used in this file" in a `<details>` under the article header. The
+ * pipeline emits it in the flow as a heading, the `terms` block, and usually a rule, so those are
+ * lifted out here and the page renders them once, in the `<details>` that keeps the heading's id.
+ * A document without that exact shape is returned unchanged.
+ */
+export function splitTermsBlocks(blocks: readonly Block[]): SplitBlocks {
+  const index = blocks.findIndex(
+    (block) => block.kind === 'heading' && block.id === TERMS_HEADING_ID,
+  );
+  const terms = index === -1 ? undefined : blocks[index + 1];
+  if (terms === undefined || terms.kind !== 'terms') return { terms: undefined, rest: blocks };
+  const after = blocks[index + 2];
+  const drop = after?.kind === 'hr' ? 3 : 2;
+  return { terms, rest: [...blocks.slice(0, index), ...blocks.slice(index + drop)] };
 }

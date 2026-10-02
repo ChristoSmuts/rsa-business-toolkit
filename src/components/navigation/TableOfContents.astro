@@ -20,10 +20,12 @@ interface Props {
   headings: readonly DocHeading[];
   locale: Locale;
   variant: 'details' | 'column';
+  /** BCP 47 tag of the headings' language, when it is not the page's (an English fallback). */
+  contentLang?: string | undefined;
   class?: string | undefined;
 }
 
-const { headings, locale, variant, class: className } = Astro.props;
+const { headings, locale, variant, contentLang, class: className } = Astro.props;
 const t = useTranslations(locale);
 const items = headings.filter(
   (heading) => heading.depth <= 3 && !heading.pseudo && !heading.hidden,
@@ -36,7 +38,7 @@ const label = t('nav.onThisPageCount', { count: items.length });
     <details class:list={['st-toc', 'st-toc--details', className]}>
       <summary class="st-toc__summary">{label}</summary>
       <nav aria-label={t('nav.onThisPage')}>
-        <ul class="st-toc__list" role="list">
+        <ul class="st-toc__list" role="list" lang={contentLang}>
           {items.map((heading) => (
             <li data-depth={heading.depth}>
               <a href={`#${heading.id}`}>{heading.text}</a>
@@ -48,7 +50,7 @@ const label = t('nav.onThisPageCount', { count: items.length });
   ) : (
     <nav class:list={['st-toc', 'st-toc--column', className]} aria-label={t('nav.onThisPage')}>
       <p class="st-toc__title">{t('nav.onThisPage')}</p>
-      <ul class="st-toc__list" role="list">
+      <ul class="st-toc__list" role="list" lang={contentLang}>
         {items.map((heading) => (
           <li data-depth={heading.depth}>
             <a href={`#${heading.id}`}>{heading.text}</a>

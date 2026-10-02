@@ -14,6 +14,11 @@ export interface ContentContext {
   /**
    * The language of the blocks themselves. It differs from `locale` when a page falls back to the
    * English document, and the renderers then set `lang` on the content (build plan B5).
+   *
+   * Everything a renderer writes *inside* the content is in this language too: the "In plain
+   * words" label, a table's region name, a docref's document title. A fallback block is then one
+   * English island under one `lang`, instead of English text with Afrikaans labels read in an
+   * English voice. Every URL still uses `locale`, so links keep the reader in their language.
    */
   readonly contentLang: Locale;
   readonly manifest: Manifest;

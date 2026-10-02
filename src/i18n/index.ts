@@ -100,6 +100,7 @@ interface ParamNames {
   'doc.showHiddenNamed': 'title';
   'doc.copyLinkTo': 'heading';
   'doc.tableRegion': 'caption';
+  'doc.codeRegion': 'caption';
   'doc.related.item': 'name';
   'doc.checklistCompleteNamed': 'title';
   'trust.aiNotice.body': 'date';

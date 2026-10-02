@@ -31,7 +31,9 @@ import AiNotice from '../../../components/trust/AiNotice.astro';
 import SourcesForPage from '../../../components/trust/SourcesForPage.astro';
 import TranslationNotice from '../../../components/trust/TranslationNotice.astro';
 import { useTranslations } from '../../../i18n';
-import { DEFAULT_LOCALE, type Locale } from '../../../i18n/locales';
+import { DEFAULT_LOCALE, getLocale, type Locale } from '../../../i18n/locales';
+import { splitTermsBlocks } from '../../../lib/content/render';
+import TermsBlock from '../../../components/content/TermsBlock.astro';
 import { createContentContext } from '../../../lib/content/context';
 import { selectCoverage } from '../../../lib/content/coverage';
 import { loadDoc, loadGlossary, loadManifest, loadSources } from '../../../lib/content/collections';
@@ -76,6 +78,9 @@ const context = createContentContext({
   docId: doc.id,
 });
 
+const contentLangTag =
+  contentLang === locale ? undefined : (getLocale(contentLang)?.hreflang ?? contentLang);
+const { terms, rest } = splitTermsBlocks(doc.blocks);
 const translationStatus = contentLang === locale ? doc.translation.status : 'fallback';
 const englishHref = href(DEFAULT_LOCALE, ROUTE);
 const crumbs = documentCrumbs(manifest, doc.id, locale, t);
@@ -123,8 +128,10 @@ const coveredFeatures = [...new Set(coverage.flatMap((item) => item.features))].
           <p class="st-hint">
             {t('doc.sectionLabel')}: {section}
           </p>
-          <h1>{doc.h1}</h1>
-          <p class="st-lead">{doc.summary}</p>
+          <h1 lang={contentLangTag}>{doc.h1}</h1>
+          <p class="st-lead" lang={contentLangTag}>
+            {doc.summary}
+          </p>
           <p class="st-cluster">
             <Badge variant="status" icon="lucide:clock">
               {t('doc.readTime', { minutes: doc.readingTime })}
@@ -148,23 +155,23 @@ const coveredFeatures = [...new Set(coverage.flatMap((item) => item.features))].
           />
         </header>
 
-        {doc.terms.length > 0 && (
-          <details class="dsc-terms" open>
+        {terms && (
+          <details class="dsc-terms" id="words-used-in-this-file" open>
             <summary>{t('doc.wordsUsed')}</summary>
-            <dl class="st-terms">
-              {doc.terms.map((term) => (
-                <Fragment>
-                  <dt>{term.term}</dt>
-                  <dd>{term.meaning}</dd>
-                </Fragment>
-              ))}
-            </dl>
+            <div lang={contentLangTag}>
+              <TermsBlock block={terms} context={context} />
+            </div>
           </details>
         )}
 
-        <TableOfContents headings={doc.headings} locale={locale} variant="details" />
+        <TableOfContents
+          headings={doc.headings}
+          locale={locale}
+          variant="details"
+          contentLang={contentLangTag}
+        />
 
-        <Blocks blocks={doc.blocks} context={context} fallbackCaption={doc.title} />
+        <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
 
         <SourcesForPage
           sources={doc.sources}
@@ -176,15 +183,17 @@ const coveredFeatures = [...new Set(coverage.flatMap((item) => item.features))].
       </article>
 
       <section class="st-stack dsc-section" aria-labelledby="dsc-coverage">
-        <h2 id="dsc-coverage">Every block kind and every inline run</h2>
-        <p class="st-hint">
+        <h2 id="dsc-coverage" lang="en-ZA">
+          Every block kind and every inline run
+        </h2>
+        <p class="st-hint" lang="en-ZA">
           The first real block in the corpus for each rendering feature, with the document it came
           from. {coveredFeatures.length} features, from {corpus.length} documents.
         </p>
         <ol class="dsc-coverage" role="list" data-all-features={coveredFeatures.join(' ')}>
           {coverage.map((item) => (
             <li class="dsc-item" data-features={item.features.join(' ')} data-doc={item.docId}>
-              <p class="st-hint">
+              <p class="st-hint" lang="en-ZA">
                 <code>{item.docId}</code> — {item.features.join(', ')}
               </p>
               <Blocks
@@ -198,8 +207,10 @@ const coveredFeatures = [...new Set(coverage.flatMap((item) => item.features))].
       </section>
 
       <section class="st-stack dsc-section" aria-labelledby="dsc-notices">
-        <h2 id="dsc-notices">Notices that need content this build does not have yet</h2>
-        <p class="st-hint">
+        <h2 id="dsc-notices" lang="en-ZA">
+          Notices that need content this build does not have yet
+        </h2>
+        <p class="st-hint" lang="en-ZA">
           The machine-translation notice appears once a document has an Afrikaans translation. No
           document has one yet, so it is shown here to keep its wording under test.
         </p>
@@ -212,7 +223,7 @@ const coveredFeatures = [...new Set(coverage.flatMap((item) => item.features))].
         </div>
         {noteDoc && (
           <div class="dsc-item" data-demo="source-note">
-            <p class="st-hint">
+            <p class="st-hint" lang="en-ZA">
               A page with no sources of its own shows its note and the two links instead of an empty
               list. This one is <code>{noteDoc.id}</code>.
             </p>
@@ -227,8 +238,10 @@ const coveredFeatures = [...new Set(coverage.flatMap((item) => item.features))].
           </div>
         )}
         <div class="dsc-item" data-demo="inline-runs">
-          <p class="st-hint">Inline runs inside one sentence, from the document above:</p>
-          <p>
+          <p class="st-hint" lang="en-ZA">
+            Inline runs inside one sentence, from the document above:
+          </p>
+          <p lang={contentLangTag}>
             <Inline
               runs={doc.blocks[1]?.kind === 'paragraph' ? doc.blocks[1].c : []}
               context={context}
@@ -238,7 +251,12 @@ const coveredFeatures = [...new Set(coverage.flatMap((item) => item.features))].
       </section>
     </div>
 
-    <TableOfContents headings={doc.headings} locale={locale} variant="column" />
+    <TableOfContents
+      headings={doc.headings}
+      locale={locale}
+      variant="column"
+      contentLang={contentLangTag}
+    />
   </div>
 
   <SiteFooter slot="footer" locale={locale} manifest={manifest} route={ROUTE} />
