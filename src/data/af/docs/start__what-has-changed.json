@@ -197,7 +197,7 @@
       "sourceHash": "1f8ec9add66fff28"
     },
     {
-      "hash": "d2cc93e9afd455d8",
+      "hash": "a5231f071ccdcda6",
       "id": "added.3",
       "items": [
         [
@@ -224,7 +224,7 @@
         [
           {
             "t": "text",
-            "v": "Dit teken die drie kontroles aan wat steeds die moeite werd is wanneer ’n maatskappynaam geregistreer is: domein en handvatsels, ’n CIPC-handelsmerksoektog, en om die naam hardop te sê vir sprekers van die tale wat ter sake is."
+            "v": "Dit teken die drie kontroles aan wat steeds die moeite werd is wanneer ’n maatskappynaam geregistreer is: domein en gebruikersname, ’n CIPC-handelsmerksoektog, en om die naam hardop te sê vir sprekers van die tale wat ter sake is."
           }
         ],
         [
@@ -285,7 +285,7 @@
         null,
         null
       ],
-      "hash": "6ba930472d1b16f0",
+      "hash": "ac193b154586161b",
       "header": [
         [
           {
@@ -370,7 +370,7 @@
           [
             {
               "t": "text",
-              "v": "Een reël onder \"Kies die naam\""
+              "v": "Een reël onder \"Die naam kies\""
             }
           ],
           [
@@ -1223,10 +1223,10 @@
         },
         {
           "t": "text",
-          "v": " — geen veiligheidsnet as jy nie kan werk nie, die leer van stappe vir ’n onbetaalde faktuur, en kontinuïteit as jy nie daar is nie."
+          "v": " — geen veiligheidsnet as jy nie kan werk nie, die invorderingstappe vir ’n onbetaalde faktuur, en kontinuïteit as jy nie daar is nie."
         }
       ],
-      "hash": "ae08a158e5a1a0a7",
+      "hash": "6250a87ed109e22a",
       "id": "added-3.1",
       "kind": "paragraph",
       "sourceHash": "e131fc7f9ca0eb71"
@@ -1818,7 +1818,7 @@
       "sourceHash": "facc1da44d972127"
     }
   ],
-  "contentHash": "a09ba4205989714c",
+  "contentHash": "47fd26c116ce1c5e",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -31,10 +31,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Dit dek loodgieters, elektrisiëns, bouers, verwers, werktuigkundiges, tuiniers, skoonmakers, handlangers, koeriers en installeerders."
+          "v": "Dit dek loodgieters, elektrisiëns, bouers, verwers, werktuigkundiges, tuiniers, skoonmakers, nutsmanne, koeriers en installeerders."
         }
       ],
-      "hash": "d7e288be82d23705",
+      "hash": "e9d9813a6281948f",
       "id": "intro.2",
       "kind": "paragraph",
       "sourceHash": "c89cfc4cd3f45e87"
@@ -524,10 +524,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Stuur die faktuur op die dag wat jy klaarmaak. Ambagslui wat weekliks faktureer, word weekliks betaal. Ambagslui wat maandeliks faktureer, word betaal wanneer dit die kliënt pas."
+          "v": "Stuur die faktuur op die dag waarop jy klaarmaak. Ambagslui wat weekliks faktureer, word weekliks betaal. Ambagslui wat maandeliks faktureer, word betaal wanneer dit die kliënt pas."
         }
       ],
-      "hash": "a0881207bfc0a8d0",
+      "hash": "612781901cf9fdbb",
       "id": "deposits-and-payment.3",
       "kind": "paragraph",
       "sourceHash": "3171d0f3d988736e"
@@ -910,7 +910,7 @@
       "sourceHash": "fbd60cb2055ec4d4"
     }
   ],
-  "contentHash": "ab30b9b4854e2977",
+  "contentHash": "dbc10fda9d7fce27",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

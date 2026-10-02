@@ -20,10 +20,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Die meeste klein besighede slaan hierdie stap oor en ontdek dan die probleem by die uithangbordmaker, by die drukker, of om drieuur in die oggend wanneer ’n kliënt vra vir \"die logo in vektor\"."
+          "v": "Die meeste klein besighede slaan hierdie stap oor en ontdek dan die probleem by die uithangbordmaker, by die drukker, of om drie-uur in die oggend wanneer ’n kliënt vra vir \"die logo in vektor\"."
         }
       ],
-      "hash": "d2108979715ac67b",
+      "hash": "3d157f6f2a53c865",
       "id": "intro.2",
       "kind": "paragraph",
       "sourceHash": "f99f5bb03372a865"
@@ -733,10 +733,10 @@
         },
         {
           "t": "text",
-          "v": " Hemde en pette het ’n eenvoudige, growwe ontwerp in een kleur nodig. Fyn lyne en klein teks verdwyn in garing. Dit is waarom die weergawe van jou logo in een kleur bestaan."
+          "v": " Hemde en pette het ’n eenvoudige, stewige ontwerp in een kleur nodig. Fyn lyne en klein teks verdwyn in garing. Dit is waarom die weergawe van jou logo in een kleur bestaan."
         }
       ],
-      "hash": "3feeee1b7583ee86",
+      "hash": "cedfab4e851a8f24",
       "id": "part-2-print-basics-that-save-money.6",
       "kind": "paragraph",
       "sourceHash": "f077200309c004bc"
@@ -942,15 +942,15 @@
       "c": [
         {
           "t": "text",
-          "v": "5. Voertuigtekens"
+          "v": "5. Voertuigbelettering"
         }
       ],
       "depth": 3,
-      "hash": "37faa9734c1173b8",
+      "hash": "fa60e575e1ba8b93",
       "id": "5-vehicle-signage",
       "kind": "heading",
       "sourceHash": "2ec5af700df16ff9",
-      "text": "5. Voertuigtekens"
+      "text": "5. Voertuigbelettering"
     },
     {
       "c": [
@@ -1086,10 +1086,10 @@
         },
         {
           "t": "text",
-          "v": ", want etikettering word gereguleer kragtens R146 of 2012, en as jy dit verkeerd kry, moet jy oor druk."
+          "v": ", want etikettering word gereguleer kragtens R146 van 2012, en as jy dit verkeerd kry, moet jy herdruk."
         }
       ],
-      "hash": "ffe05385cc49b5ae",
+      "hash": "93a6d1d7dd0be228",
       "id": "9-packaging-and-labels.1",
       "kind": "paragraph",
       "sourceHash": "281ee9542b293835"
@@ -1135,7 +1135,7 @@
       "text": "Opdrag: beplan jou toepassings"
     },
     {
-      "hash": "d4042dac834b3a47",
+      "hash": "1896bf240d18fc37",
       "id": "prompt-plan-your-applications.1",
       "kind": "code",
       "placeholders": [
@@ -1158,7 +1158,7 @@
         }
       ],
       "sourceHash": "3eb12e8d3e05004d",
-      "text": "My besigheid is: [BESIGHEIDSTIPE] in [DORP/STAD], Suid-Afrika.\nEk is die eienaar en die enigste werker.\nMy handelsmerkgids sê: [PLAK DIE HANDELSMERKGIDS VAN EEN BLADSY]\n\nLys die handelsmerktoepassings wat ek moet maak, in volgorde van hoeveel elkeen\nmy waarskynlik sal verdien, vir my spesifieke soort besigheid.\n\nSê vir my by elkeen:\n- Wat presies daarop kom\n- Wat om weg te laat\n- Die lêerformaat en grootte om aan die verskaffer te gee\n- ’n Rowwe idee of dit ’n doen-dit-self-werk of ’n betaalde werk is\n- Of dit kan wag\n\nWees eerlik oor watter ek nie nodig het nie. Ek het baie min geld.\n\nStop ná die lys. Moenie nog enigiets ontwerp nie.",
+      "text": "My besigheid is: [BESIGHEIDSTIPE] in [DORP/STAD], Suid-Afrika.\nEk is die eienaar en die enigste werker.\nMy handelsmerkgids sê: [PLAK DIE HANDELSMERKGIDS VAN EEN BLADSY]\n\nLys die handelsmerktoepassings wat ek moet maak, in volgorde van hoeveel elkeen\nvir my waarskynlik sal verdien, vir my spesifieke soort besigheid.\n\nSê vir my by elkeen:\n- Wat presies daarop kom\n- Wat om weg te laat\n- Die lêerformaat en grootte om aan die verskaffer te gee\n- ’n Rowwe idee of dit ’n doen-dit-self-werk of ’n betaalde werk is\n- Of dit kan wag\n\nWees eerlik oor watter ek nie nodig het nie. Ek het baie min geld.\n\nStop ná die lys. Moenie nog enigiets ontwerp nie.",
       "variant": "prompt"
     },
     {
@@ -1367,17 +1367,17 @@
           "c": [
             {
               "t": "text",
-              "v": "Die eenvormigheidstoets."
+              "v": "Die konsekwentheidstoets."
             }
           ],
           "t": "strong"
         },
         {
           "t": "text",
-          "v": " Sit jou faktuur, jou besigheidskaartjie, jou WhatsApp-profiel en een plasing op sosiale media langs mekaar. Lyk hulle soos dieselfde besigheid? Gebrek aan eenvormigheid is die algemeenste rede waarom klein handelsmerke amateuragtig lyk, en dit kos niks om reg te maak nie."
+          "v": " Sit jou faktuur, jou besigheidskaartjie, jou WhatsApp-profiel en een plasing op sosiale media langs mekaar. Lyk hulle soos dieselfde besigheid? Gebrek aan konsekwentheid is die algemeenste rede waarom klein handelsmerke amateuragtig lyk, en dit kos niks om reg te maak nie."
         }
       ],
-      "hash": "f612ccf82434bb54",
+      "hash": "bf7b52ea3da7b970",
       "id": "part-4-the-quality-tests.10",
       "kind": "paragraph",
       "sourceHash": "70372cc75e1b1735"
@@ -1415,7 +1415,7 @@
       "sourceHash": "77cdb18857f96cf4"
     },
     {
-      "hash": "f7df638919f7cf8c",
+      "hash": "c66aa7a35515d8a5",
       "id": "part-5-the-critique-prompt.2",
       "kind": "code",
       "placeholders": [
@@ -1457,7 +1457,7 @@
         }
       ],
       "sourceHash": "95cd1f28bdcbf267",
-      "text": "Ek is ’n eenpersoonbesigheid in Suid-Afrika. Hier is my handelsmerk:\n\nBesigheidsnaam: [NAAM]\nSlagspreuk: [SLAGSPREUK of \"geen\"]\nBeskrywing in een sin: [PLAK]\nLogo: [BESKRYF DIT IN DETAIL, of heg die prent aan]\nKleure: [HEKSKODES]\nLettertipes: [NAME]\nStem: [DRIE WOORDE]\n\nKritiseer dit eerlik. Moenie bemoedigend wees nie. Neem aan ek kan dit vat.\n\nGaan deur elkeen van hierdie punte en antwoord reguit:\n\n1. Lyk enige deel hiervan asof dit deur KI gegenereer is of uit ’n sjabloon kom? Wys na\n die spesifieke element en sê waarom.\n2. Sou dit steeds werk as ’n mededinger sy naam daarop sit? Indien wel,\n watter dele?\n3. Watter visuele cliché uit my bedryf herhaal ek sonder om dit te besef?\n4. Waar sal dit breek: klein groottes, een kleur, borduurwerk, ’n voertuig,\n ’n swart-en-wit-drukstuk?\n5. Watter pare van teks op agtergrond lyk riskant vir leesbaarheid? Ek sal\n die presiese kontrasverhoudings self by webaim.org nagaan, so moenie\n beweer dat jy hulle bereken het nie.\n6. Sê die naam, slagspreuk en beskrywing almal dieselfde ding, of\n weerspreek hulle mekaar?\n7. Wat is die enkele swakste element, en waarmee sou jy dit vervang?\n8. Is enige deel hiervan deur ’n beeldhulpmiddel gegenereer eerder as in ’n\n werklike font geset of geteken? Indien wel, sê vir my watter dele ek dalk sukkel om te besit\n of te beskerm, en wat ek met die hand moet oordoen.\n\nEindig met die drie veranderinge wat dit die meeste sou verbeter, in volgorde van\nimpak. Wees spesifiek. Moenie ’n volledige herontwerp voorstel nie.",
+      "text": "Ek is ’n eenpersoonbesigheid in Suid-Afrika. Hier is my handelsmerk:\n\nBesigheidsnaam: [NAAM]\nSlagspreuk: [SLAGSPREUK of \"geen\"]\nBeskrywing in een sin: [PLAK]\nLogo: [BESKRYF DIT IN DETAIL, of heg die prent aan]\nKleure: [HEKSKODES]\nLettertipes: [NAME]\nStem: [DRIE WOORDE]\n\nKritiseer dit eerlik. Moenie bemoedigend wees nie. Neem aan ek kan dit vat.\n\nGaan deur elkeen van hierdie punte en antwoord reguit:\n\n1. Lyk enige deel hiervan asof dit deur KI gegenereer is of uit ’n sjabloon kom? Wys na\n die spesifieke element en sê waarom.\n2. Sou dit steeds werk as ’n mededinger sy naam daarop sit? Indien wel,\n watter dele?\n3. Watter visuele cliché uit my bedryf herhaal ek sonder om dit te besef?\n4. Waar sal dit breek: klein groottes, een kleur, borduurwerk, ’n voertuig,\n ’n swart-en-wit-drukstuk?\n5. Watter pare van teks op agtergrond lyk riskant vir leesbaarheid? Ek sal\n die presiese kontrasverhoudings self by webaim.org nagaan, so moenie\n beweer dat jy hulle bereken het nie.\n6. Sê die naam, slagspreuk en beskrywing almal dieselfde ding, of\n weerspreek hulle mekaar?\n7. Wat is die enkele swakste element, en waarmee sou jy dit vervang?\n8. Is enige deel hiervan deur ’n beeldhulpmiddel gegenereer eerder as in ’n\n werklike font geset of geteken? Indien wel, sê vir my watter dele ek dalk sal sukkel om te besit\n of te beskerm, en wat ek met die hand moet oordoen.\n\nEindig met die drie veranderinge wat dit die meeste sou verbeter, in volgorde van\nimpak. Wees spesifiek. Moenie ’n volledige herontwerp voorstel nie.",
       "variant": "prompt"
     },
     {
@@ -1565,16 +1565,16 @@
       "c": [
         {
           "t": "text",
-          "v": "Die moeite werd om voor te betaal, in hierdie volgorde, wanneer jy geld het:"
+          "v": "Dit is die moeite werd om hiervoor te betaal, in hierdie volgorde, wanneer jy geld het:"
         }
       ],
-      "hash": "c66aa42eae54de20",
+      "hash": "9947f656686c8069",
       "id": "part-6-what-to-pay-for-and-what-to-do-yourself.3",
       "kind": "paragraph",
       "sourceHash": "b9944dfb18547d12"
     },
     {
-      "hash": "f636c63bdebcc8ec",
+      "hash": "b79fb24b3365a46d",
       "id": "part-6-what-to-pay-for-and-what-to-do-yourself.4",
       "items": [
         [
@@ -1597,7 +1597,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Voertuigtekens."
+                "v": "Voertuigbelettering."
               }
             ],
             "t": "strong"
@@ -1634,7 +1634,7 @@
           },
           {
             "t": "text",
-            "v": ", net sodra jy werk het wat die moeite werd is om af te neem."
+            "v": ", eers wanneer jy werk het wat die moeite werd is om af te neem."
           }
         ],
         [
@@ -1662,16 +1662,16 @@
       "c": [
         {
           "t": "text",
-          "v": "Nie die moeite werd om in die eerste jaar voor te betaal nie:"
+          "v": "Dit is nie die moeite werd om in die eerste jaar hiervoor te betaal nie:"
         }
       ],
-      "hash": "b93a317b13d7ae39",
+      "hash": "baab12ee6dea87ce",
       "id": "part-6-what-to-pay-for-and-what-to-do-yourself.5",
       "kind": "paragraph",
       "sourceHash": "ccae69cfb98ee50f"
     },
     {
-      "hash": "5cb457fcf85793e1",
+      "hash": "d470acb7a5ce2702",
       "id": "part-6-what-to-pay-for-and-what-to-do-yourself.6",
       "items": [
         [
@@ -1695,7 +1695,7 @@
         [
           {
             "t": "text",
-            "v": "Handelsware met jou handelsmerk van enige soort"
+            "v": "Enige soort handelsware met jou handelsmerk"
           }
         ]
       ],
@@ -1814,7 +1814,7 @@
       "sourceHash": "5539d16efa242d03"
     }
   ],
-  "contentHash": "e46b9c07f02f9410",
+  "contentHash": "17bfeb3f8b17e064",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -1879,7 +1879,7 @@
     {
       "depth": 3,
       "id": "5-vehicle-signage",
-      "text": "5. Voertuigtekens"
+      "text": "5. Voertuigbelettering"
     },
     {
       "depth": 3,

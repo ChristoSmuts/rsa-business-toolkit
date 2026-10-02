@@ -463,10 +463,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Beskerm jouself met ’n konsultasierekord: wat die kliënt gevra het, wat jy aangeraai het, enige allergie of plektoets, en wat ooreengekom is. Laat hulle dit teken. Vir kleur-, chemiese en velbehandelings is ’n rekord van die plektoets die verskil tussen ’n posisie wat jy kan verdedig en ’n skikking."
+          "v": "Beskerm jouself met ’n konsultasierekord: wat die kliënt gevra het, wat jy aangeraai het, enige allergie of veltoets, en wat ooreengekom is. Laat hulle dit teken. Vir kleur-, chemiese en velbehandelings is ’n rekord van die veltoets die verskil tussen ’n posisie wat jy kan verdedig en ’n skikking."
         }
       ],
-      "hash": "6368bbb02c51a884",
+      "hash": "6427aba428f03578",
       "id": "consumer-law-applies-to-services-too.2",
       "kind": "paragraph",
       "sourceHash": "3241b1788313c053"
@@ -501,10 +501,10 @@
       "c": [
         {
           "t": "text",
-          "v": "’n Deposito is wettig en afdwingbaar as die bepalings voor die bespreking duidelik en redelik is. Onder die Consumer Protection Act mag ’n kliënt ’n bespreking kanselleer. Jy mag ’n kanselleringsfooi hef, maar dit moet redelik wees. Wat redelik is, hang af van hoeveel kennis hulle gegee het, en of jy die tydgleuf met iemand anders kon vul."
+          "v": "’n Deposito is wettig en afdwingbaar as die bepalings voor die bespreking duidelik en redelik is. Onder die Consumer Protection Act mag ’n kliënt ’n bespreking kanselleer. Jy mag ’n kanselleringsfooi hef, maar dit moet redelik wees. Wat redelik is, hang af van hoe lank vooraf hulle jou laat weet het, en of jy die tydgleuf met iemand anders kon vul."
         }
       ],
-      "hash": "ef270c6b46cbd173",
+      "hash": "b4d09f6fec5cac2f",
       "id": "bookings-deposits-and-no-shows.2",
       "kind": "paragraph",
       "sourceHash": "ca2c77fcc9c014d0"
@@ -609,7 +609,7 @@
       "text": "Jou kontrolelys"
     },
     {
-      "hash": "89e99f2db8381c14",
+      "hash": "40543578a4938966",
       "id": "your-checklist.1",
       "items": [
         {
@@ -681,7 +681,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Maak ’n sjabloon vir ’n konsultasie- en plektoetsrekord"
+              "v": "Maak ’n sjabloon vir ’n konsultasie- en veltoetsrekord"
             }
           ],
           "doc": "business-types/beauty",
@@ -745,7 +745,7 @@
       "sourceHash": "77666b6831b263a2"
     }
   ],
-  "contentHash": "5f696b29a825137f",
+  "contentHash": "69a4aa5c85b4a760",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

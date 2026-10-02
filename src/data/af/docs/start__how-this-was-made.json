@@ -1133,10 +1133,10 @@
         },
         {
           "t": "text",
-          "v": " Vier bewerings is verswak omdat hulle nie tot ’n standaard nagegaan kon word wat ’n plat stelling regverdig nie: die jaarlikse koste van ’n .co.za-domein, die koste om ’n logo as vektor oor te teken, LibreOffice se vermoëns op ’n foon, en die hofverslagverwysing vir Cohen NO v Segal. Elkeen gee nou ’n reeks of sê vir jou om dit na te gaan, eerder as om ’n syfer te stel."
+          "v": " Vier bewerings is verswak omdat hulle nie tot ’n standaard nagegaan kon word wat ’n stellige bewering regverdig nie: die jaarlikse koste van ’n .co.za-domein, die koste om ’n logo as vektor oor te teken, LibreOffice se vermoëns op ’n foon, en die hofverslagverwysing vir Cohen NO v Segal. Elkeen gee nou ’n reeks of sê vir jou om dit na te gaan, eerder as om ’n syfer te stel."
         }
       ],
-      "hash": "df59c47e32dfb5e5",
+      "hash": "791da834354f2de5",
       "id": "corrections-log.4",
       "kind": "paragraph",
       "sourceHash": "9adceb825ade0a2a"
@@ -1154,7 +1154,7 @@
         },
         {
           "t": "text",
-          "v": " Die gereedskapstel is weer gelees soos een spesifieke persoon dit sou lees: ’n enigste direkteur van ’n Pty Ltd wat voertuie verkoop en van plan is om ander lyne by te voeg. Geen verdere feitefoute is gevind nie. Vyf gapings is gevind en gevul: omsetbelasting is verkeerd vir ’n herverkoper met ’n lae marge en die handelaarlêer het dit nie gesê nie; ’n handelaar steek die BTW-drempel van R2.3 miljoen baie vinniger oor as ’n diensbesigheid, want omset is bruto verkope; onverkoopte voertuie aan die einde van die jaar is handelsvoorraad, nie ’n uitgawe nie; ’n houdeposito het skriftelike kansellasiebepalings nodig om afdwingbaar te wees; en niks het die byvoeging van ’n tweede besigheidslyn, handelsname, of die Small Business Corporation-strik van aandele in twee maatskappye gedek nie. ’n Nuwe lêer, "
+          "v": " Die gereedskapstel is weer gelees soos een spesifieke persoon dit sou lees: die enigste direkteur van ’n Pty Ltd wat voertuie verkoop en van plan is om ander lyne by te voeg. Geen verdere feitefoute is gevind nie. Vyf gapings is gevind en gevul: omsetbelasting is verkeerd vir ’n herverkoper met ’n lae marge en die handelaarlêer het dit nie gesê nie; ’n handelaar steek die BTW-drempel van R2.3 miljoen baie vinniger oor as ’n diensbesigheid, want omset is bruto verkope; onverkoopte voertuie aan die einde van die jaar is handelsvoorraad, nie ’n uitgawe nie; ’n houdeposito het skriftelike kansellasiebepalings nodig om afdwingbaar te wees; en niks het die byvoeging van ’n tweede besigheidslyn, handelsname, of die Small Business Corporation-strik van aandele in twee maatskappye gedek nie. ’n Nuwe lêer, "
         },
         {
           "c": [
@@ -1185,7 +1185,7 @@
           "v": " dek dit nou."
         }
       ],
-      "hash": "38f026ff9acd38f7",
+      "hash": "8e5d2a0430db640d",
       "id": "corrections-log.5",
       "kind": "paragraph",
       "sourceHash": "346ecdc6eefc90af"
@@ -1359,10 +1359,10 @@
         },
         {
           "t": "text",
-          "v": ", wys watter opdragte om oor te slaan, gee ’n vervanging vir die mededingerskandering wat net oor die visuele gaan en ook vra of die bestaande naam visuele beperkings skep, en teken die drie kontroles aan wat steeds die moeite werd is wanneer ’n maatskappynaam geregistreer is: domein en handvatsels, ’n CIPC-handelsmerksoektog, en om die naam hardop te sê vir sprekers van die tale wat ter sake is. Die punt waarom dit draai, is dat ’n geregistreerde maatskappynaam niks in die mark beskerm nie."
+          "v": ", wys watter opdragte om oor te slaan, gee ’n vervanging vir die mededingerskandering wat net oor die visuele gaan en ook vra of die bestaande naam visuele beperkings skep, en teken die drie kontroles aan wat steeds die moeite werd is wanneer ’n maatskappynaam geregistreer is: domein en gebruikersname, ’n CIPC-handelsmerksoektog, en om die naam hardop te sê vir sprekers van die tale wat ter sake is. Die punt waarom dit draai, is dat ’n geregistreerde maatskappynaam niks in die mark beskerm nie."
         }
       ],
-      "hash": "63a75b5fdb0cd7ed",
+      "hash": "520205454bab93a7",
       "id": "corrections-log.11",
       "kind": "paragraph",
       "sourceHash": "6010341685c411b6"
@@ -1547,7 +1547,7 @@
       "sourceHash": "110f8219592071cb"
     }
   ],
-  "contentHash": "f35d2b3414e24652",
+  "contentHash": "c261141568f4c5a6",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

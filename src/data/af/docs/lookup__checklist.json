@@ -507,7 +507,7 @@
       "text": "Handelsmerk en dokumente"
     },
     {
-      "hash": "e8fa3d4c06a3a079",
+      "hash": "dc82c0255f05ddeb",
       "id": "brand-and-documents.1",
       "items": [
         {
@@ -537,7 +537,7 @@
           "c": [
             {
               "t": "text",
-              "v": "’n Handelsmerkopsomming van een bladsy gemaak ("
+              "v": "’n Handelsmerkgids van een bladsy gemaak ("
             },
             {
               "doc": "branding/branding-prompts",
@@ -647,7 +647,7 @@
       "text": "Nakoming"
     },
     {
-      "hash": "6b07896d65132f84",
+      "hash": "62c9027c84003511",
       "id": "compliance.1",
       "items": [
         {
@@ -703,7 +703,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Besluit tussen eenmansaak of maatskappy, en geregistreer as dit nodig is"
+              "v": "Besluit tussen ’n eenmansaak en ’n maatskappy, en geregistreer as dit nodig is"
             }
           ],
           "doc": "lookup/checklist",
@@ -824,7 +824,7 @@
       "text": "Elke verkoping waar ek die kliënt nooit ontmoet nie, of net een keer"
     },
     {
-      "hash": "4eebf4a10792f98c",
+      "hash": "d3ca8b7c2d68031a",
       "id": "every-sale-where-i-never-meet-the-customer-or-meet-them-once.1",
       "items": [
         {
@@ -832,7 +832,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Geld is in my saldo weerspieël (reflected), nie \"hangend\" nie, voordat enigiets oorhandig word"
+              "v": "Die geld is in my saldo, nie \"hangend\" (\"pending\") nie, voordat enigiets oorhandig word"
             }
           ],
           "doc": "lookup/checklist",
@@ -1150,7 +1150,7 @@
       "text": "Elke jaar"
     },
     {
-      "hash": "c4926db1b7e725cd",
+      "hash": "fe00225b8ebbcca6",
       "id": "every-year.1",
       "items": [
         {
@@ -1172,7 +1172,7 @@
           "c": [
             {
               "t": "text",
-              "v": "CIPC se jaarlikse opgawe binne 30 werksdae ná die herdenking van registrasie ingedien"
+              "v": "CIPC se jaarlikse opgawe binne 30 werksdae ná die herdenkingsdatum van registrasie ingedien"
             }
           ],
           "doc": "lookup/checklist",
@@ -1413,7 +1413,7 @@
       "text": "Voertuighandelaar"
     },
     {
-      "hash": "43b39d512aa89d20",
+      "hash": "1551462ae59b99bc",
       "id": "vehicle-dealer.1",
       "items": [
         {
@@ -1533,7 +1533,7 @@
           "c": [
             {
               "t": "text",
-              "v": "VAT264-proses in plek, as jy geregistreer is"
+              "v": "VAT264-proses in plek, as ek geregistreer is"
             }
           ],
           "doc": "lookup/checklist",
@@ -1570,7 +1570,7 @@
       "text": "Kos"
     },
     {
-      "hash": "138d01c662e85330",
+      "hash": "5e036ba43271ef5a",
       "id": "food.1",
       "items": [
         {
@@ -1610,7 +1610,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Aansoek om ’n COA gedoen deur die munisipaliteit se afdeling vir omgewingsgesondheid"
+              "v": "Aansoek om ’n COA gedoen by die munisipaliteit se afdeling vir omgewingsgesondheid"
             }
           ],
           "doc": "lookup/checklist",
@@ -1711,7 +1711,7 @@
       "text": "Skoonheid en persoonlike versorging"
     },
     {
-      "hash": "1ce3cff60d891d2e",
+      "hash": "7a8d10e7bf040b5b",
       "id": "beauty-and-personal-care.1",
       "items": [
         {
@@ -1767,7 +1767,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Sjabloon vir rekords van konsultasies en pleistertoetse (patch tests)"
+              "v": "Sjabloon vir rekords van konsultasies en veltoetse (patch tests)"
             }
           ],
           "doc": "lookup/checklist",
@@ -2204,7 +2204,7 @@
         null,
         null
       ],
-      "hash": "4c45491869366c8b",
+      "hash": "91e8c4354a9be97a",
       "header": [
         [
           {
@@ -2419,7 +2419,7 @@
           [
             {
               "t": "text",
-              "v": "Herdenking van registrasie"
+              "v": "Herdenkingsdatum van registrasie"
             }
           ],
           [
@@ -2563,7 +2563,7 @@
       "start": 1
     }
   ],
-  "contentHash": "5ee8db8525222462",
+  "contentHash": "b1820aeb4de27f70",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

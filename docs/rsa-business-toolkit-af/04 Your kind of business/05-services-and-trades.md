@@ -80,13 +80,13 @@ Stuur die faktuur op die dag waarop jy klaarmaak. Ambagslui wat weekliks fakture
 
 Dekking vir openbare aanspreeklikheid. As jy ’n huis laat oorstroom, ’n dak aan die brand steek of ’n stuk gereedskap op ’n motor laat val, is dit wat tussen jou en persoonlike bankrotskap staan. Dit is nie duur vir ’n ambagsman wat alleen werk nie.
 
-Sê vir jou voertuigversekeraar dat die voertuig vir besigheid gebruik word, en vra oor dekking vir goedere in transito as jy kliënte se eiendom of duur gereedskap vervoer. Sien [Voertuie en jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
+Sê vir jou voertuigversekeraar dat die voertuig vir besigheid gebruik word, en vra oor dekking vir goedere in transito as jy kliënte se eiendom of duur gereedskap vervoer. Sien [Voertuie vir jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
 
 Gereedskapversekering is die moeite werd sodra jou gereedskap meer werd is as ’n paar maande se wins.
 
 ## Voertuie
 
-Die meeste ambagte het een nodig. Lees [Voertuie en jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md) voordat jy besluit of jy dit in ’n besigheidsnaam wil sit. Vir ’n enkele eienaar wat self die werk doen, is persoonlike eienaarskap plus ’n logboek gewoonlik die beter antwoord.
+Die meeste ambagte het een nodig. Lees [Voertuie vir jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md) voordat jy besluit of jy dit in ’n besigheidsnaam wil sit. Vir ’n enkele eienaar wat self die werk doen, is persoonlike eienaarskap plus ’n logboek gewoonlik die beter antwoord.
 
 Ekstra reëls geld as jou voertuig vol gelaai meer as 3,500 kg weeg, of as jy passasiers vir geld vervoer. Jy het ’n Professional Driving Permit (professionele bestuurspermit) en elke jaar ’n padwaardigheidstoets nodig. Vir passasiersvervoer het jy ook ’n bedryfslisensie nodig.
 

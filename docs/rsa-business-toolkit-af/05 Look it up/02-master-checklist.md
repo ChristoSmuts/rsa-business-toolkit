@@ -140,7 +140,7 @@ Sien [Bestuur van ’n Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/06-ru
 - [ ] Munisipale lisensie vir ’n gesondheidsinstelling
 - [ ] Perseel gereed vir gesondheidsinspeksie
 - [ ] Aanspreeklikheidsversekering vir behandelings wat pas by wat ek werklik doen
-- [ ] Sjabloon vir rekords van konsultasies en pleistertoetse (patch tests)
+- [ ] Sjabloon vir rekords van konsultasies en veltoetse (patch tests)
 - [ ] Bespreking-, deposito- en kansellasievoorwaardes op skrif
 - [ ] Skriftelike toestemming van kliënte vir foto’s voordat ek dit plaas
 
@@ -162,7 +162,7 @@ Sien [Bestuur van ’n Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/06-ru
 
 **Professionele en kreatiewe werk** (`04-business-types/06`)
 - [ ] Nagegaan of ek van omsetbelasting uitgesluit is voordat ek dit kies
-- [ ] Diensooreenkoms wat omvang, rondtes van wysigings, IP en betaling dek
+- [ ] Diensooreenkoms wat omvang, rondtes van wysigings, IE en betaling dek
 - [ ] Klousule dat eienaarskap by betaling oorgaan in elke kontrak
 - [ ] Berekening vir ’n tuiskantoor gedoen, as ek kwalifiseer
 - [ ] Nagegaan dat ek nie soos ’n werknemer van een kliënt lyk nie

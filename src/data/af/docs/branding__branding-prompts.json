@@ -376,10 +376,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Dit is nie ’n klein probleem nie. ’n Handelsmerk wat soos almal s’n lyk, gee ’n kliënt geen rede om jou te kies nie, so die enigste ding wat oorbly om op mee te ding, is prys. Vir ’n eenpersoonbesigheid is dit die slegste plek om te wees."
+          "v": "Dit is nie ’n klein probleem nie. ’n Handelsmerk wat soos almal s’n lyk, gee ’n kliënt geen rede om jou te kies nie, so die enigste ding waarop jy nog kan meeding, is prys. Vir ’n eenpersoonbesigheid is dit die slegste plek om te wees."
         }
       ],
-      "hash": "1d6b34d1bcfd7e73",
+      "hash": "11f902cc5aae9011",
       "id": "read-this-before-you-start-why-most-ai-branding-looks-the-same.2",
       "kind": "paragraph",
       "sourceHash": "e347cd89f1142b95"
@@ -402,10 +402,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Hieraan kan jy handelsmerke herken wat deur KI gegenereer is of uit ’n sjabloon kom. Vermy almal."
+          "v": "Hieraan kan jy handelsmerke herken wat deur KI gegenereer is of uit ’n sjabloon kom. Vermy hulle almal."
         }
       ],
-      "hash": "638b6f5be95baf6a",
+      "hash": "f6d91c0293fc8ce7",
       "id": "the-visual-tells.1",
       "kind": "paragraph",
       "sourceHash": "5d5cc19c40a47a6b"
@@ -500,10 +500,10 @@
       "c": [
         {
           "t": "text",
-          "v": "\"Bemagtig\", \"verhef\", \"ontsluit\", \"herdefinieer\", \"jou betroubare vennoot in\", \"waar gehalte en diens ontmoet\"."
+          "v": "\"Bemagtig\", \"verhef\", \"ontsluit\", \"herdefinieer\", \"jou betroubare vennoot in\", \"waar gehalte en diens mekaar ontmoet\"."
         }
       ],
-      "hash": "20d4e84477c39ac4",
+      "hash": "cb93f2581c629c9d",
       "id": "the-language-tells.1",
       "kind": "paragraph",
       "sourceHash": "8f98a3abaca0d4ff"
@@ -690,10 +690,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Neem jou klaar logo, slagspreuk of beskrywing. Sit ’n mededinger se naam in die plek van joune."
+          "v": "Neem jou voltooide logo, slagspreuk of beskrywing. Sit ’n mededinger se naam in die plek van joune."
         }
       ],
-      "hash": "9eb124cb52340a82",
+      "hash": "ce21fbae4e819f62",
       "id": "the-test-that-matters-most.1",
       "kind": "paragraph",
       "sourceHash": "5c6571d143abadb3"
@@ -747,7 +747,7 @@
         null,
         null
       ],
-      "hash": "5da9453a6a0fc088",
+      "hash": "7a212bff86f39d38",
       "header": [
         [
           {
@@ -789,7 +789,7 @@
           [
             {
               "t": "text",
-              "v": "iemand vra wat elke taal wat jou kliënte praat as moedertaal praat"
+              "v": "’n moedertaalspreker van elke taal wat jou kliënte praat, vra"
             }
           ]
         ],
@@ -931,10 +931,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Enige huidige klets-KI werk: Claude, ChatGPT, Gemini, Copilot. Vir name, die ontleding van mededingers en die kritiekopdragte, gebruik die sterkste model waartoe jy toegang het, want daardie stappe vra oordeel. Gratis vlakke is goed genoeg vir konsepte."
+          "v": "Enige huidige klets-KI werk: Claude, ChatGPT, Gemini, Copilot. Vir naamgewing, die ontleding van mededingers en die kritiekopdragte, gebruik die sterkste model waartoe jy toegang het, want daardie stappe vra oordeel. Gratis weergawes is goed genoeg vir konsepte."
         }
       ],
-      "hash": "9c2c23b3cef79ba3",
+      "hash": "abe5d142b8f6cd84",
       "id": "which-ai-tool.1",
       "kind": "paragraph",
       "sourceHash": "205dd289041be023"
@@ -1261,7 +1261,7 @@
       "sourceHash": "691883a3f9a4e915"
     },
     {
-      "hash": "1ac35b5ea1b4a839",
+      "hash": "8ef1e454c12a6afc",
       "id": "prompt-2-what-my-competitors-already-look-like.2",
       "kind": "code",
       "placeholders": [
@@ -1284,7 +1284,7 @@
         }
       ],
       "sourceHash": "17d4cabb53df35a8",
-      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nEk wil verstaan watter handelsmerke reeds in my mark bestaan in\n[DORP/STAD], Suid-Afrika, vir [BESIGHEIDSTIPE].\n\nGegrond op wat tipies is vir hierdie soort besigheid in Suid-Afrika,\nbeskryf:\n\n1. Die kleure wat die meeste mededingers in hierdie vak gebruik, en waarom\n2. Die patrone in name wat hulle gebruik (van plus vak, plek plus vak,\n versinde woord, ensovoorts)\n3. Die logostyle wat hulle gebruik\n4. Die aansprake wat hulle almal maak\n5. Die drie mees algemene visuele clichés in hierdie bedryf\n\nMaak dit duidelik dat dit jou algemene kennis van die bedryf is, nie ’n\nopname van my werklike dorp nie. Ek sal self na werklike mededingers kyk.\n\nGee my dan 5 spesifieke maniere waarop ek doelbewus anders kan lyk sonder\nom onprofessioneel of onbetroubaar te lyk. Sê by elkeen wat die risiko van\ndaardie keuse is.\n\nNommer die 5 maniere 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
+      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nEk wil verstaan hoe die handelsmerke in my mark reeds lyk in\n[DORP/STAD], Suid-Afrika, vir [BESIGHEIDSTIPE].\n\nGegrond op wat tipies is vir hierdie soort besigheid in Suid-Afrika,\nbeskryf:\n\n1. Die kleure wat die meeste mededingers in hierdie vak gebruik, en waarom\n2. Die patrone in name wat hulle gebruik (van plus vak, plek plus vak,\n versinde woord, ensovoorts)\n3. Die logostyle wat hulle gebruik\n4. Die aansprake wat hulle almal maak\n5. Die drie mees algemene visuele clichés in hierdie bedryf\n\nMaak dit duidelik dat dit jou algemene kennis van die bedryf is, nie ’n\nopname van my werklike dorp nie. Ek sal self na werklike mededingers kyk.\n\nGee my dan 5 spesifieke maniere waarop ek doelbewus anders kan lyk sonder\nom onprofessioneel of onbetroubaar te lyk. Sê by elkeen wat die risiko van\ndaardie keuse is.\n\nNommer die 5 maniere 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
       "variant": "prompt"
     },
     {
@@ -1371,7 +1371,7 @@
       "sourceHash": "02a30f3c308f6434"
     },
     {
-      "hash": "0f2dd10be50bc081",
+      "hash": "923cf9db394d4661",
       "id": "before-you-commit-to-a-name.2",
       "items": [
         [
@@ -1424,7 +1424,7 @@
         [
           {
             "t": "text",
-            "v": "Sê die naam vir iemand wat elke taal wat jou kliënte praat as moedertaal praat, en vra hoe dit klink."
+            "v": "Sê die naam vir ’n moedertaalspreker van elke taal wat jou kliënte praat, en vra hoe dit klink."
           }
         ]
       ],
@@ -1437,10 +1437,10 @@
       "c": [
         {
           "t": "text",
-          "v": "As die domein en die gebruikersname gevat is, kies ’n ander naam. Doen dit voordat jy enigiets druk."
+          "v": "As die domein en die gebruikersname reeds in gebruik is, kies ’n ander naam. Doen dit voordat jy enigiets druk."
         }
       ],
-      "hash": "c3587aae5d84b28d",
+      "hash": "6784f5862b082804",
       "id": "before-you-commit-to-a-name.3",
       "kind": "paragraph",
       "sourceHash": "03f7fd90b8e11dff"
@@ -1595,7 +1595,7 @@
       "sourceHash": "39156b8ed443fa42"
     },
     {
-      "hash": "c6daec86cdc2e8b8",
+      "hash": "c7ce5c71e340eac2",
       "id": "prompt-5-logo-direction.2",
       "kind": "code",
       "placeholders": [
@@ -1612,7 +1612,7 @@
         }
       ],
       "sourceHash": "8e7a2185543d4279",
-      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nMy besigheidsnaam is: [NAAM]\n\nBeskryf 5 verskillende rigtings vir die logo. Moenie ’n prent genereer nie.\nBeskryf hulle in woorde, so presies dat ’n ontwerper elkeen kan teken\nsonder om my ’n vraag te vra.\n\nSê vir elke rigting:\n- Die idee in een sin\n- Net lettertipe, of lettertipe plus ’n beeldmerk\n- As dit net lettertipe is: die EEN doelbewuste aanpassing wat dit eie maak\n (’n veranderde letter, twee letters wat verbind is, een letter in kleur, ’n\n teken in die plek van ’n letter, ongewone spasiëring). \"Net die naam in ’n mooi\n font\" is nie ’n rigting nie.\n- As dit ’n beeldmerk is: presies watter werklike voorwerp of vorm dit wys, en hoe dit\n verband hou met die kenmerkende detail in my kortbeskrywing\n- ’n Voorgestelde lettertipe van Google Fonts, en waarom\n- Waarom dit by my kliënte pas\n- Waar dit swak sou lyk (klein op ’n foon, op ’n voertuig, in een\n kleur, op ’n hemp geborduur)\n\nReëls:\n- Minstens twee rigtings moet net lettertipe wees\n- Minstens een moet die kenmerkende detail uit my kortbeskrywing gebruik\n- Geen swiepe, blare, oneindigheidslusse, seshoeke, aardbolle of abstrakte\n menslike figure wat uit sirkels en boë gemaak is nie\n- Geen kleurverlope, geen 3D, geen skaduwees, geen gloede nie\n- Niks wat net so sin sou maak vir ’n heeltemal ander bedryf nie\n- Moenie Montserrat, Poppins, Raleway of Lato voorstel nie\n\nHierdie logo moet werk:\n- Baie klein, as ’n profielfoto, omtrent so groot soos ’n duimnael\n- In net een kleur, vir ’n stempel of borduurwerk\n- In swart en wit gedruk op ’n goedkoop faktuur\n- Groot op ’n voertuig, leesbaar van oorkant die pad\n\nNommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
+      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nMy besigheidsnaam is: [NAAM]\n\nBeskryf 5 verskillende rigtings vir die logo. Moenie ’n prent genereer nie.\nBeskryf hulle in woorde, so presies dat ’n ontwerper elkeen kan teken\nsonder om my ’n vraag te vra.\n\nSê vir elke rigting:\n- Die idee in een sin\n- Net lettertipe, of lettertipe plus ’n beeldmerk\n- As dit net lettertipe is: die EEN doelbewuste aanpassing wat dit joune maak\n (’n veranderde letter, twee letters wat verbind is, een letter in kleur, ’n\n teken in die plek van ’n letter, ongewone spasiëring). \"Net die naam in ’n mooi\n font\" is nie ’n rigting nie.\n- As dit ’n beeldmerk is: presies watter werklike voorwerp of vorm dit wys, en hoe dit\n verband hou met die kenmerkende detail in my kortbeskrywing\n- ’n Voorgestelde lettertipe van Google Fonts, en waarom\n- Waarom dit by my kliënte pas\n- Waar dit swak sou lyk (klein op ’n foon, op ’n voertuig, in een\n kleur, op ’n hemp geborduur)\n\nReëls:\n- Minstens twee rigtings moet net lettertipe wees\n- Minstens een moet die kenmerkende detail uit my kortbeskrywing gebruik\n- Geen swiepe, blare, oneindigheidslusse, seshoeke, aardbolle of abstrakte\n menslike figure wat uit sirkels en boë gemaak is nie\n- Geen kleurverlope, geen 3D, geen skaduwees, geen gloede nie\n- Niks wat net so sin sou maak vir ’n heeltemal ander bedryf nie\n- Moenie Montserrat, Poppins, Raleway of Lato voorstel nie\n\nHierdie logo moet werk:\n- Baie klein, as ’n profielfoto, omtrent so groot soos ’n duimnael\n- In net een kleur, vir ’n stempel of borduurwerk\n- In swart en wit gedruk op ’n goedkoop faktuur\n- Groot op ’n voertuig, leesbaar van oorkant die pad\n\nNommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
       "variant": "prompt"
     },
     {
@@ -1745,7 +1745,7 @@
       "sourceHash": "d97345519414a52d"
     },
     {
-      "hash": "5170c464f92e3adb",
+      "hash": "a8c55ab58f3fea3e",
       "id": "path-b-a-pictorial-mark.2",
       "kind": "code",
       "placeholders": [
@@ -1756,7 +1756,7 @@
         }
       ],
       "sourceHash": "0919fba18b606947",
-      "text": "Ek het hierdie rigting vir die logo gekies, en dit sluit ’n beeldmerk in:\n\n[PLAK DIE RIGTING]\n\nSkryf 5 opdragte wat ek in ’n KI-beeldgenerator kan plak om NET DIE\nBEELDMERK te maak. Geen teks, geen letters, geen woorde nêrens in die prent nie.\n\nElke opdrag moet vra vir:\n- ’n Plat, swart simbool in een kleur op ’n gewone wit agtergrond\n- Eenvoudige geometriese vorms, geen fyn detail nie, geen tekstuur nie\n- Gesentreer, met leë ruimte rondom\n- Geen kleurverloop, geen skaduwee, geen 3D, geen gloed, geen skuinsrand, geen weerkaatsing nie\n- In vektorstyl, soos ’n stensil of ’n stempel\n\nVerskil die 5 opdragte volgens konstruksie (geometries, met die hand gesny, net lyne,\nsoliede silhoeët, negatiewe ruimte). Hou dieselfde voorwerp regdeur.\n\nSê dan vir my:\n- Watter huidige beeldhulpmiddels beeldmerke in logostyl die beste hanteer, en watter\n sintaksis elkeen verkies\n- Wat beeldhulpmiddels gewoonlik verkeerd doen met hierdie soort beeldmerk\n- Presies wat ek in die resultaat moet nagaan voordat ek dit gebruik",
+      "text": "Ek het hierdie rigting vir die logo gekies, en dit sluit ’n beeldmerk in:\n\n[PLAK DIE RIGTING]\n\nSkryf 5 opdragte wat ek in ’n KI-beeldgenerator kan plak om NET DIE\nBEELDMERK te maak. Geen teks, geen letters, geen woorde enige plek in die prent nie.\n\nElke opdrag moet vra vir:\n- ’n Plat, swart simbool in een kleur op ’n gewone wit agtergrond\n- Eenvoudige geometriese vorms, geen fyn detail nie, geen tekstuur nie\n- Gesentreer, met leë ruimte rondom\n- Geen kleurverloop, geen skaduwee, geen 3D, geen gloed, geen skuinsrand, geen weerkaatsing nie\n- In vektorstyl, soos ’n stensil of ’n stempel\n\nWissel die 5 opdragte af volgens konstruksie (geometries, met die hand gesny, net lyne,\nsoliede silhoeët, negatiewe ruimte). Hou dieselfde voorwerp regdeur.\n\nSê dan vir my:\n- Watter huidige beeldhulpmiddels beeldmerke in logostyl die beste hanteer, en watter\n sintaksis elkeen verkies\n- Wat beeldhulpmiddels gewoonlik verkeerd doen met hierdie soort beeldmerk\n- Presies wat ek in die resultaat moet nagaan voordat ek dit gebruik",
       "variant": "prompt"
     },
     {
@@ -2080,10 +2080,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Daardie \"een reël\" is wat ’n herkenbare voer skep. Dit kan so eenvoudig wees soos: altyd op dieselfde grys stuk afvalplank geneem, altyd in oggendlig, altyd met my hande in die raam."
+          "v": "Daardie \"een reël\" is wat ’n herkenbare voer (feed) skep. Dit kan so eenvoudig wees soos: altyd op dieselfde grys stuk afvalplank geneem, altyd in oggendlig, altyd met my hande in die raam."
         }
       ],
-      "hash": "2bec979216da0cf3",
+      "hash": "a72ff1e0054addc7",
       "id": "prompt-8-how-my-business-looks-in-photographs.3",
       "kind": "paragraph",
       "sourceHash": "e2ea685f2037bd34"
@@ -2162,7 +2162,7 @@
       "sourceHash": "662bbe4c8db18917"
     },
     {
-      "hash": "f5a1bff79803e5d7",
+      "hash": "3feb0b8c40ee3385",
       "id": "prompt-10-the-about-paragraph.2",
       "kind": "code",
       "placeholders": [
@@ -2184,7 +2184,7 @@
         }
       ],
       "sourceHash": "add204cbce64d900",
-      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nMy besigheidsnaam is: [NAAM]\nMy stem is: [PLAK DIE DRIE WOORDE EN DIE LYSTE VAN WAT OM TE SÊ EN NIE TE SÊ NIE]\n\nSkryf 5 weergawes van ’n kort \"oor ons\"-paragraaf vir my besigheid.\n\nReëls:\n- Hoogstens 60 woorde\n- Eerste persoon (\"ek\", nie \"ons\" nie, want dit is net ek)\n- Sê wat ek doen, vir wie, waar, en die een ding wat my\n anders maak, gestel as ’n feit\n- Sluit die kenmerkende detail uit my kortbeskrywing in\n- Geen verbode woorde nie: passievol, betroubaar, gehalte, oplossings, reis\n- Eindig met wat om volgende te doen (stuur ’n boodskap, bel, kom kuier)\n\nNommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
+      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nMy besigheidsnaam is: [NAAM]\nMy stem is: [PLAK DIE DRIE WOORDE EN DIE LYSTE VAN WAT OM TE SÊ EN NIE TE SÊ NIE]\n\nSkryf 5 weergawes van ’n kort \"oor ons\"-paragraaf vir my besigheid.\n\nReëls:\n- Hoogstens 60 woorde\n- Eerste persoon (\"ek\", nie \"ons\" nie, want dit is net ek)\n- Sê wat ek doen, vir wie, waar, en die een ding wat my\n anders maak, gestel as ’n feit\n- Sluit die kenmerkende detail uit my kortbeskrywing in\n- Geen verbode woorde nie: passievol, betroubaar, gehalte, oplossings, reis\n- Eindig met wat om volgende te doen (stuur ’n boodskap, bel, besoek)\n\nNommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
       "variant": "prompt"
     },
     {
@@ -2334,11 +2334,11 @@
       "text": "Antwoorde op Opdrag 0"
     },
     {
-      "hash": "3730efb805323f98",
+      "hash": "8f9322ae640c24ae",
       "id": "prompt-0-answers.1",
       "kind": "code",
       "sourceHash": "783ee184d05d2a47",
-      "text": "1. Wat ek verkoop: gebruikte bakkies en klein bussies, 5 tot 12 jaar oud, onder\n R250,000, meestal aan vakmense.\n2. Wie dit koop: mans en vroue van 28 tot 55 wat ’n vak of ’n klein afleweringsbesigheid\n bedryf, en ’n werkvoertuig koop, nie ’n gesinsmotor nie. Vir hulle is dit belangrik\n of dit sal loop, en of hulle my kan vertrou.\n3. Vir wie dit NIE is nie: mense wat ’n goedkoop motor wil hê sonder dat vrae gevra word.\n4. Waar ek dit verkoop: ’n klein werf aan die nywerheidskant van die Paarl, plus\n Facebook Marketplace.\n5. Wat my anders maak: ek was 14 jaar lank ’n dieselwerktuigkundige. Ek\n inspekteer self elke voertuig en skryf elke fout neer voordat ek\n dit adverteer.\n6. Prysvlak: middel.\n7. Tale: Afrikaans en Engels, ’n bietjie isiXhosa.\n8. Gevoel: soos om by ’n werktuigkundige te koop wat jy reeds ken.\n9. Bewonder: ’n plaaslike bandewinkel waar die eienaar altyd op die vloer is.\n10. Wil nie hê nie: enigiets wat soos ’n groot stadshandelaar lyk, geen\n chroom nie, geen \"luuksheid\" nie.\n11. Fisiese detail: ek hou ’n knipbord met die foutelys op elke voertuig, en die\n kliënt neem die knipbord saam.",
+      "text": "1. Wat ek verkoop: gebruikte bakkies en klein bestelwaens, 5 tot 12 jaar oud, onder\n R250,000, meestal aan vakmense.\n2. Wie dit koop: mans en vroue van 28 tot 55 wat ’n vak of ’n klein afleweringsbesigheid\n bedryf, en ’n werkvoertuig koop, nie ’n gesinsmotor nie. Vir hulle is dit belangrik\n of dit sal loop, en of hulle my kan vertrou.\n3. Vir wie dit NIE is nie: mense wat ’n goedkoop motor wil hê sonder dat vrae gevra word.\n4. Waar ek dit verkoop: ’n klein werf aan die nywerheidskant van die Paarl, plus\n Facebook Marketplace.\n5. Wat my anders maak: ek was 14 jaar lank ’n dieselwerktuigkundige. Ek\n inspekteer self elke voertuig en skryf elke fout neer voordat ek\n dit adverteer.\n6. Prysvlak: middel.\n7. Tale: Afrikaans en Engels, ’n bietjie isiXhosa.\n8. Gevoel: soos om by ’n werktuigkundige te koop wat jy reeds ken.\n9. Bewonder: ’n plaaslike bandewinkel waar die eienaar altyd op die vloer is.\n10. Wil nie hê nie: enigiets wat soos ’n groot stadshandelaar lyk, geen\n chroom nie, geen \"luuksheid\" nie.\n11. Fisiese detail: ek hou ’n knipbord met die foutelys op elke voertuig, en die\n kliënt neem die knipbord saam.",
       "variant": "snippet"
     },
     {
@@ -2356,11 +2356,11 @@
       "text": "Hoe ’n goeie kortbeskrywing lyk"
     },
     {
-      "hash": "ad24b965be27ba73",
+      "hash": "4b3f6fc5da6c76a2",
       "id": "what-a-good-brief-looks-like.1",
       "kind": "code",
       "sourceHash": "dee9de048f1ce728",
-      "text": "AANBOD: Gebruikte bakkies en klein bussies, 5 tot 12 jaar oud, onder R250,000,\ngeïnspekteer en met ’n foutelys voor die verkoop.\nTEIKENMARK: Vakmense en klein afleweringsbedrywe in die Paarl-omgewing\nwat ’n werkvoertuig koop. Nie vir kopers wat goedkoop en geen vrae wil hê nie.\nVERSKIL: Die eienaar is ’n dieselwerktuigkundige met 14 jaar ondervinding wat\nelke voertuig self inspekteer en die koper die geskrewe foutelys\ngee.\nTOON: Reguit, prakties, rustig.\nKENMERKENDE DETAIL: Die foutelys op die knipbord wat saam met die voertuig gaan.\nBEPERKINGS: Afrikaans en Engels eerste. Middelprys. Geen glans van ’n\nmotorhandelaar nie, geen chroom, geen luukse taal nie.",
+      "text": "AANBOD: Gebruikte bakkies en klein bestelwaens, 5 tot 12 jaar oud, onder R250,000,\ngeïnspekteer en met ’n foutelys voor die verkoop.\nTEIKENMARK: Vakmense en klein afleweringsbedrywe in die Paarl-omgewing\nwat ’n werkvoertuig koop. Nie vir kopers wat goedkoop en geen vrae wil hê nie.\nVERSKIL: Die eienaar is ’n dieselwerktuigkundige met 14 jaar ondervinding wat\nelke voertuig self inspekteer en die koper die geskrewe foutelys\ngee.\nTOON: Reguit, prakties, rustig.\nKENMERKENDE DETAIL: Die foutelys op die knipbord wat saam met die voertuig gaan.\nBEPERKINGS: Afrikaans en Engels eerste. Middelprys. Geen glans van ’n\nmotorhandelaar nie, geen chroom, geen luukse taal nie.",
       "variant": "snippet"
     },
     {
@@ -2378,11 +2378,11 @@
       "text": "Hoe goeie naamopsies lyk"
     },
     {
-      "hash": "437ff942e2db3ba7",
+      "hash": "c06ca960138d2c83",
       "id": "what-good-name-options-look-like.1",
       "kind": "code",
       "sourceHash": "18198fb82b166b16",
-      "text": "1. Van Wyk Bakkies\n Van die eienaar se van plus wat hy verkoop. Eenvoudig, eerlik, plaaslik.\n Risiko: algemene van, so die domein is dalk gevat. Klink soos: niks\n bekend wat problematies is nie, kyk by iemand wat isiXhosa praat.\n Domein: vanwykbakkies.co.za\n\n2. Clipboard Motors\n Van die foutelys wat die koper huis toe neem. Sê \"ons skryf dit neer\".\n Risiko: het die eerste keer een reël verduideliking nodig. Klink soos:\n niks naby in Afrikaans nie; kyk of mense wat isiXhosa praat \"clipboard\"\n verstaan. Domein: clipboardmotors.co.za\n\n3. Fault List Bakkies\n Reguit. Maak van die bedryf se swakheid die verkoopspunt.\n Risiko: \"fault\" kan vir sommige kopers negatief klink. Klink soos: \"fout\"\n in Afrikaans beteken ’n vergissing, wat die betekenis versterk eerder as om\n dit te ondermyn. Domein: faultlist.co.za\n\n4. Werksbakkie\n Afrikaans vir \"work bakkie\". Een woord, maklik op ’n voertuigdeur.\n Risiko: minder duidelik vir kopers wat eerste Engels praat. Klink soos: niks\n problematies in Engels nie; kyk by isiXhosa. Domein: werksbakkie.co.za\n\n5. Paarl Diesel Yard\n Plek plus vak. Baie maklik om te vind wanneer mense soek.\n Risiko: gekoppel aan die Paarl, wat die kortbeskrywing toelaat. Algemene patroon, waarteen die\n ondersoek na mededingers gewaarsku het. Domein: paarldieselyard.co.za\n\nSwakste: opsie 5. Dit volg presies die patroon van name wat die meeste mededingers\ngebruik, en \"Diesel Yard\" kan aan enige werkswinkel behoort. Dit sou oorleef as ’n\nmededinger sy naam in die plek daarvan sit.",
+      "text": "1. Van Wyk Bakkies\n Van die eienaar se van plus wat hy verkoop. Eenvoudig, eerlik, plaaslik.\n Risiko: algemene van, so die domein is dalk reeds in gebruik. Klink soos: niks\n bekend wat problematies is nie, kyk by iemand wat isiXhosa praat.\n Domein: vanwykbakkies.co.za\n\n2. Clipboard Motors\n Van die foutelys wat die koper huis toe neem. Sê \"ons skryf dit neer\".\n Risiko: het die eerste keer een reël verduideliking nodig. Klink soos:\n niks naby in Afrikaans nie; kyk of mense wat isiXhosa praat \"clipboard\"\n verstaan. Domein: clipboardmotors.co.za\n\n3. Fault List Bakkies\n Padlangs. Maak van die bedryf se swakheid die verkoopspunt.\n Risiko: \"fault\" kan vir sommige kopers negatief klink. Klink soos: \"fout\"\n in Afrikaans beteken ’n vergissing, wat die betekenis versterk eerder as om\n dit te ondermyn. Domein: faultlist.co.za\n\n4. Werksbakkie\n Afrikaans vir \"work bakkie\". Een woord, maklik op ’n voertuigdeur.\n Risiko: minder duidelik vir kopers wie se eerste taal Engels is. Klink soos: niks\n problematies in Engels nie; kyk by isiXhosa. Domein: werksbakkie.co.za\n\n5. Paarl Diesel Yard\n Plek plus vak. Baie maklik om te vind wanneer mense soek.\n Risiko: gekoppel aan die Paarl, wat die kortbeskrywing toelaat. Algemene patroon, waarteen die\n ondersoek na mededingers gewaarsku het. Domein: paarldieselyard.co.za\n\nSwakste: opsie 5. Dit volg presies die patroon van name wat die meeste mededingers\ngebruik, en \"Diesel Yard\" kan aan enige werkswinkel behoort. Dit sou oorleef as ’n\nmededinger sy naam in die plek daarvan sit.",
       "variant": "snippet"
     },
     {
@@ -2468,7 +2468,7 @@
       "sourceHash": "8f3fc3ce6304deed"
     }
   ],
-  "contentHash": "ecd704b27b641a6c",
+  "contentHash": "76ab47fd3607a97b",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -538,10 +538,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Salaris is aftrekbaar vir die maatskappy, wat die maatskappy se belasbare inkomste verminder. Dit word in jou hande belas teen jou persoonlike marginale koers, en die persoonlike belastingdrempel beteken dat die eerste R99,000 van jou totale belasbare inkomste geen belasting lok nie as jy jonger as 65 is."
+          "v": "Salaris is aftrekbaar vir die maatskappy, wat die maatskappy se belasbare inkomste verminder. Dit word in jou hande belas teen jou persoonlike marginale koers, en die persoonlike belastingdrempel beteken dat die eerste R99,000 van jou totale belasbare inkomste belastingvry is as jy jonger as 65 is."
         }
       ],
-      "hash": "b06e8333ddf7a2d3",
+      "hash": "de1899fcba2c58c5",
       "id": "when-salary-makes-sense.1",
       "kind": "paragraph",
       "sourceHash": "a3c9c96a01a1cc23"
@@ -894,10 +894,10 @@
       "c": [
         {
           "t": "text",
-          "v": "As ’n direkteur nie noukeurig hou by wat teen sy of haar leningsrekening aangeteken word nie, kan dit in debiet beland. Dit beteken dat die direkteur nou die maatskappy geld skuld."
+          "v": "As ’n direkteur nie noukeurig rekord hou van wat teen sy of haar leningsrekening aangeteken word nie, kan dit in debiet beland. Dit beteken dat die direkteur nou die maatskappy geld skuld."
         }
       ],
-      "hash": "cc3a7add08de3518",
+      "hash": "54e4116a139b51b8",
       "id": "debit-loan-account-you-owe-the-company.3",
       "kind": "paragraph",
       "sourceHash": "ef15930952eebec8"
@@ -958,7 +958,7 @@
           "c": [
             {
               "t": "text",
-              "v": "’n Teenstrydigheid wat jy moet ken."
+              "v": "’n Teenstrydigheid wat die moeite werd is om van te weet."
             }
           ],
           "t": "strong"
@@ -968,7 +968,7 @@
           "v": " Party Suid-Afrikaanse bronne sê die geagte dividend is 20% van die hele leningsaldo. Ander sê dit is net op die rente wat prysgegee is, met ander woorde die tekort tussen die amptelike koers en wat jy werklik betaal het. The Tax Faculty stel die standpunt duidelik: die kapitaal word nie as ’n dividend geag nie, en die rente sal oploop, wat ’n belastingrisiko inhou as die lening en die opgeloopte rente in die toekoms afgeskryf word."
         }
       ],
-      "hash": "e1c10bbdb3114de1",
+      "hash": "3236982a4ea72077",
       "id": "debit-loan-account-you-owe-the-company.8",
       "kind": "paragraph",
       "sourceHash": "a6e8eacd123be83f"
@@ -1062,10 +1062,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Drie maniere om dit reg te stel: verklaar ’n dividend om te dek wat jy skuld en betaal die 20% belasting; of teken dit aan as ekstra salaris en betaal PAYE daarop; of hef op jouself rente teen die amptelike koers sodat daar geen ontbrekende rente is nie."
+          "v": "Drie maniere om dit reg te stel: verklaar ’n dividend om te dek wat jy skuld en betaal die 20% belasting; of teken dit aan as ekstra salaris en betaal PAYE daarop; of hef rente op jou lening teen die amptelike koers sodat daar geen ontbrekende rente is nie."
         }
       ],
-      "hash": "a4c7da1eb1dcd145",
+      "hash": "cd247b61a6f558de",
       "id": "fixing-a-debit-loan-account.3",
       "kind": "callout",
       "pairsWith": "fixing-a-debit-loan-account.2",
@@ -1243,7 +1243,7 @@
       "start": 1
     }
   ],
-  "contentHash": "36c356707f98a064",
+  "contentHash": "e00d5f66764de3af",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -713,10 +713,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Jy betaal invoerreg plus 15% BTW op die geland waarde by die grens, selfs as jy nie vir BTW geregistreer is nie. Daardie BTW is ’n werklike koste wat jy nie kan terugkry nie, tensy jy ’n ondernemer is. Bou dit in jou geland koste in voordat jy bestel, nie daarna nie."
+          "v": "Jy betaal invoerreg plus 15% BTW op die gelande waarde by die grens, selfs as jy nie vir BTW geregistreer is nie. Daardie BTW is ’n werklike koste wat jy nie kan terugkry nie, tensy jy ’n ondernemer is. Bou dit in jou gelande koste in voordat jy bestel, nie daarna nie."
         }
       ],
-      "hash": "3f680b3de08157a3",
+      "hash": "9d2a08f93850a4a4",
       "id": "importing-stock.2",
       "kind": "paragraph",
       "sourceHash": "559fd684f2f9a29f"
@@ -822,10 +822,10 @@
         },
         {
           "t": "text",
-          "v": " nog een blad nodig: voorraad op hande."
+          "v": " nog een blad nodig: voorraad wat jy het."
         }
       ],
-      "hash": "cbc738d17820ca56",
+      "hash": "7f08d0c656d464bf",
       "id": "stock-records.1",
       "kind": "paragraph",
       "sourceHash": "ee1fe5efc8154ee8"
@@ -1054,7 +1054,7 @@
       "sourceHash": "c8e92c9a6a626a25"
     }
   ],
-  "contentHash": "76ecfb5b8317ae39",
+  "contentHash": "b7770e387ba272e9",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

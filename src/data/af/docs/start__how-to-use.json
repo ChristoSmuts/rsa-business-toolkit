@@ -1030,7 +1030,7 @@
       "sourceHash": "598b219cf6ad2f99"
     },
     {
-      "hash": "49d9bbfb25928f42",
+      "hash": "db7f0f53b84a8cca",
       "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.2",
       "items": [
         [
@@ -1186,7 +1186,7 @@
           },
           {
             "t": "text",
-            "v": " — voordat jy bande, diens of enigiets anders byvoeg"
+            "v": " — voordat jy bande, diensbeurte of enigiets anders byvoeg"
           }
         ]
       ],
@@ -1211,10 +1211,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Weke 1 tot 2: bevestig die geregistreerde verteenwoordiger by SARS, dien voordelige eienaarskap (beneficial ownership) in, open die maatskappy se bankrekening, doen by die verkeersdepartement aansoek om die BRNC, dien die SAPS 601-aansoek as handelaar in."
+          "v": "Weke 1 tot 2: bevestig die geregistreerde verteenwoordiger by SARS, dien inligting oor voordelige eienaarskap (beneficial ownership) in, open die maatskappy se bankrekening, doen by die verkeersdepartement aansoek om die BRNC, dien die SAPS 601-aansoek as handelaar in."
         }
       ],
-      "hash": "784bf30f60fbd4be",
+      "hash": "b10dee3693ef9ad5",
       "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.4",
       "kind": "paragraph",
       "sourceHash": "7eef23f1d5fcbe92"
@@ -2281,7 +2281,7 @@
       "sourceHash": "7579b59cd0febf80"
     }
   ],
-  "contentHash": "219007f352941929",
+  "contentHash": "1175f40ef57edf4d",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

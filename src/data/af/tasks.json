@@ -252,7 +252,7 @@
       "c": [
         {
           "t": "text",
-          "v": "Twee IRP6-voorlopige opgawes ingedien"
+          "v": "Twee voorlopige IRP6-opgawes ingedien"
         }
       ],
       "doc": "core/running-a-pty-ltd",
@@ -1770,7 +1770,7 @@
       "c": [
         {
           "t": "text",
-          "v": "Maak ’n sjabloon vir ’n konsultasie- en plektoetsrekord"
+          "v": "Maak ’n sjabloon vir ’n konsultasie- en veltoetsrekord"
         }
       ],
       "doc": "business-types/beauty",
@@ -2172,7 +2172,7 @@
       "c": [
         {
           "t": "text",
-          "v": "Stel ’n diensooreenkoms op wat omvang, hersienings, IP en betaling dek"
+          "v": "Stel ’n diensooreenkoms op wat omvang, hersienings, IE en betaling dek"
         }
       ],
       "doc": "business-types/professional-creative",
@@ -2402,7 +2402,7 @@
       "c": [
         {
           "t": "text",
-          "v": "’n Handelsmerkopsomming van een bladsy gemaak ("
+          "v": "’n Handelsmerkgids van een bladsy gemaak ("
         },
         {
           "doc": "branding/branding-prompts",
@@ -2565,7 +2565,7 @@
       "c": [
         {
           "t": "text",
-          "v": "Besluit tussen eenmansaak of maatskappy, en geregistreer as dit nodig is"
+          "v": "Besluit tussen ’n eenmansaak en ’n maatskappy, en geregistreer as dit nodig is"
         }
       ],
       "doc": "lookup/checklist",
@@ -2662,7 +2662,7 @@
       "c": [
         {
           "t": "text",
-          "v": "Geld is in my saldo weerspieël (reflected), nie \"hangend\" nie, voordat enigiets oorhandig word"
+          "v": "Die geld is in my saldo, nie \"hangend\" (\"pending\") nie, voordat enigiets oorhandig word"
         }
       ],
       "doc": "lookup/checklist",
@@ -2902,7 +2902,7 @@
       "c": [
         {
           "t": "text",
-          "v": "CIPC se jaarlikse opgawe binne 30 werksdae ná die herdenking van registrasie ingedien"
+          "v": "CIPC se jaarlikse opgawe binne 30 werksdae ná die herdenkingsdatum van registrasie ingedien"
         }
       ],
       "doc": "lookup/checklist",
@@ -3204,7 +3204,7 @@
       "c": [
         {
           "t": "text",
-          "v": "VAT264-proses in plek, as jy geregistreer is"
+          "v": "VAT264-proses in plek, as ek geregistreer is"
         }
       ],
       "doc": "lookup/checklist",
@@ -3258,7 +3258,7 @@
       "c": [
         {
           "t": "text",
-          "v": "Aansoek om ’n COA gedoen deur die munisipaliteit se afdeling vir omgewingsgesondheid"
+          "v": "Aansoek om ’n COA gedoen by die munisipaliteit se afdeling vir omgewingsgesondheid"
         }
       ],
       "doc": "lookup/checklist",
@@ -3402,7 +3402,7 @@
       "c": [
         {
           "t": "text",
-          "v": "Sjabloon vir rekords van konsultasies en pleistertoetse (patch tests)"
+          "v": "Sjabloon vir rekords van konsultasies en veltoetse (patch tests)"
         }
       ],
       "doc": "lookup/checklist",

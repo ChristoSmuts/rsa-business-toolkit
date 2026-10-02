@@ -211,7 +211,7 @@
       "supports": [
         {
           "t": "text",
-          "v": "wanneer ’n mikrobesigheid kwalifiseer, die drempel van R2.3 miljoen vir jare van aanslag wat tussen 1 Maart 2026 en 28 Februarie 2027 eindig, ligter rekordhouding."
+          "v": "wanneer ’n besigheid as ’n mikrobesigheid kwalifiseer, die drempel van R2.3 miljoen vir jare van aanslag wat tussen 1 Maart 2026 en 28 Februarie 2027 eindig, ligter rekordhouding."
         }
       ],
       "title": "SARS — Omsetbelasting",
@@ -573,7 +573,7 @@
       "supports": [
         {
           "t": "text",
-          "v": "die tydperk van 30 werksdae vanaf die herdenking van inlywing, en dat fooie kragtens tabel CR 2B by wet vasgestel is."
+          "v": "die tydperk van 30 werksdae vanaf die herdenkingsdatum van inlywing, en dat fooie kragtens tabel CR 2B by wet vasgestel is."
         }
       ],
       "title": "Govchain, Company annual returns",
@@ -1489,7 +1489,7 @@
       "supports": [
         {
           "t": "text",
-          "v": "kragtens die Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 — General Hygiene Requirements for Food Premises, the Transport of Food and Related Matters. Dit het R962 vervang. Beskikbaar deur "
+          "v": "kragtens die Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 — General Hygiene Requirements for Food Premises, the Transport of Food and Related Matters. Dit het R962 vervang. Beskikbaar op "
         },
         {
           "c": [
@@ -1524,7 +1524,7 @@
       "supports": [
         {
           "t": "text",
-          "v": "Labelling and Advertising of Foodstuffs. Beskikbaar deur "
+          "v": "Labelling and Advertising of Foodstuffs. Beskikbaar op "
         },
         {
           "c": [
@@ -1688,7 +1688,7 @@
       "supports": [
         {
           "t": "text",
-          "v": "dat vals note nie omgeruil kan word nie en by SAPS aangemeld moet word; dat net die SARB geldeenhede mag uitreik, kragtens artikel 14 van die SARB Act."
+          "v": "dat vals note nie omgeruil kan word nie en by SAPS aangemeld moet word; dat net die SARB geld mag uitreik, kragtens artikel 14 van die SARB Act."
         }
       ],
       "title": "South African Reserve Bank — sekuriteitskenmerke van banknote",
@@ -1820,7 +1820,7 @@
       "supports": [
         {
           "t": "text",
-          "v": "dat banke hulle eie, laer limiete per transaksie en per dag stel, en dat betalings binne sekondes verreken word en na ’n gewone rekeningnommer kan gaan."
+          "v": "dat banke hulle eie, laer limiete per transaksie en per dag stel, en dat betalings binne sekondes verreken word (clear) en na ’n gewone rekeningnommer kan gaan."
         }
       ],
       "title": "Solmate",
@@ -2255,7 +2255,7 @@
       "supports": [
         {
           "t": "text",
-          "v": "Small Claims Courts Act 61 of 1984, artikel 7(1) — net ’n natuurlike persoon mag ’n eis instel, en ’n regspersoon kan net as verweerder ’n party word. Gekonsolideerde teks: "
+          "v": "Small Claims Courts Act 61 of 1984, artikel 7(1) — net ’n natuurlike persoon mag ’n eis instel, en ’n regspersoon mag net as verweerder ’n party word. Gekonsolideerde teks: "
         },
         {
           "c": [
@@ -2315,7 +2315,7 @@
         },
         {
           "t": "text",
-          "v": "). ’n Aangewese direkteur of beampte mag verskyn vir ’n regspersoon wat ’n verweerder is. Die verjaringstermyn van drie jaar kom uit die oorsig van Werksmans."
+          "v": "). ’n Benoemde direkteur of beampte mag verskyn vir ’n regspersoon wat ’n verweerder is. Die verjaringstermyn van drie jaar kom uit die oorsig van Werksmans."
         }
       ],
       "supportsFrom": "qualifier",

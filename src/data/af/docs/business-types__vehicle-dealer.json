@@ -573,10 +573,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Vereiste dokumente: twee kleur-ID-foto’s van die aansoeker wat nie ouer as 3 maande is nie, en ’n gesertifiseerde afskrif van die RSA-identiteitsdokument of buitelandse paspoort van die aansoeker en van elke persoon wat vir die daaglikse bestuur van die besigheid verantwoordelik is."
+          "v": "Vereiste dokumente: twee kleur-ID-foto’s van die aansoeker, nie ouer as 3 maande nie, en ’n gesertifiseerde afskrif van die RSA-identiteitsdokument of buitelandse paspoort van die aansoeker en van elke persoon wat vir die daaglikse bestuur van die besigheid verantwoordelik is."
         }
       ],
-      "hash": "76ec6a21ce0312af",
+      "hash": "d8b6d1227dc436f6",
       "id": "how-to-register.4",
       "kind": "paragraph",
       "sourceHash": "34e1f036484ea752"
@@ -1591,10 +1591,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Die Motor Industry Ombudsman of South Africa (MIOSA) bied onafhanklike geskilbeslegting vir die motorbedryf en is gratis vir verbruikers. Onder dit het die Small Claims Court (Kleineisehof) geen prokureur nodig nie. Die limiet daarvan is R30,000, bepaal in Staatskoerant (Government Gazette) 55038, Goewermentskennisgewing 7717 van 20 Julie 2026, van krag vanaf 1 Augustus 2026. Dit het die limiet van R20,000 vervang wat sedert 2019 gegeld het. Baie webwerwe noem nog R20,000."
+          "v": "Die Motor Industry Ombudsman of South Africa (MIOSA) bied onafhanklike geskilbeslegting vir die motorbedryf en is gratis vir verbruikers. Daaronder is die Small Claims Court (Kleineisehof), waar jy geen prokureur nodig het nie. Die limiet daarvan is R30,000, bepaal in Staatskoerant (Government Gazette) 55038, Goewermentskennisgewing 7717 van 20 Julie 2026, van krag vanaf 1 Augustus 2026. Dit het die limiet van R20,000 vervang wat sedert 2019 gegeld het. Baie webwerwe noem nog R20,000."
         }
       ],
-      "hash": "b434d53108c2567f",
+      "hash": "79fcd3bee58e9645",
       "id": "where-disputes-go.1",
       "kind": "paragraph",
       "sourceHash": "a211c1dbf0900063"
@@ -1799,10 +1799,10 @@
       "c": [
         {
           "t": "text",
-          "v": "X, wat nie ’n ondernemer is nie, verkoop ’n tweedehandse voertuig vir R115,000 aan ’n motorhandelaar wat ’n geregistreerde BTW-ondernemer is, en dit is ook die opemarkwaarde. As die motorhandelaar die volle koopprys betaal het en aan alle voorwaardes voldoen, mag hy R15,000 as nosionele insetbelasting eis (15/115 × R115,000). As die handelaar dit vir R120,000 verkoop, word die handelaar se wins van R20,000 korrek teen 15% belas, wat R3,000 is."
+          "v": "X, wat nie ’n ondernemer is nie, verkoop ’n tweedehandse voertuig vir R115,000 aan ’n motorhandelaar wat ’n geregistreerde BTW-ondernemer is, en dit is ook die opemarkwaarde. As die motorhandelaar die volle koopprys betaal het en aan alle voorwaardes voldoen, mag hy R15,000 as nosionele insetbelasting eis (15/115 × R115,000). As die handelaar dit vir R120,000 verkoop, word die handelaar se opslag van R20,000 korrek teen 15% belas, wat R3,000 is."
         }
       ],
-      "hash": "c29db99577bb9945",
+      "hash": "205259442fb25866",
       "id": "how-notional-input-tax-works.7",
       "kind": "paragraph",
       "sourceHash": "b078f67808dfd0f0"
@@ -1887,10 +1887,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Die VAT264-vorm moet deur sowel die koper as die verkoper voltooi word. Laat dit teken op dieselfde oomblik wat jy die voertuig neem, nie later nie."
+          "v": "Die VAT264-vorm moet deur sowel die koper as die verkoper voltooi word. Laat dit teken op dieselfde oomblik waarop jy die voertuig neem, nie later nie."
         }
       ],
-      "hash": "de01e1d83898ffc1",
+      "hash": "1a14f64960e41484",
       "id": "the-conditions-you-must-meet.4",
       "kind": "paragraph",
       "sourceHash": "c5ed62a7ca02e5ed"
@@ -2001,10 +2001,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Dit belas omset, nie wins nie. ’n Motor wat vir R140,000 gekoop en vir R155,000 verkoop word, voeg R155,000 by jou omset en R15,000 by jou wins. Teen 1% op die band bo R600,000 sou jy R1,550 omsetbelasting op daardie transaksie betaal teenoor ’n marge van R15,000. Onder normale belasting, met SBC-koerse wat by 0% begin, word ’n klein handelaar se werklike wins dikwels glad nie belas nie."
+          "v": "Dit belas omset, nie wins nie. ’n Motor wat vir R140,000 gekoop en vir R155,000 verkoop word, voeg R155,000 by jou omset en R15,000 by jou wins. Teen 1% op die gedeelte bo R600,000 sou jy R1,550 omsetbelasting op daardie transaksie betaal teenoor ’n marge van R15,000. Onder normale belasting, met SBC-koerse wat by 0% begin, word ’n klein handelaar se werklike wins dikwels glad nie belas nie."
         }
       ],
-      "hash": "fb77733a63fc987f",
+      "hash": "4bf1c68009faafdc",
       "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer.2",
       "kind": "paragraph",
       "sourceHash": "f54d8ebe20d1af99"
@@ -2140,24 +2140,24 @@
       "c": [
         {
           "t": "text",
-          "v": "Wanneer jy ’n voertuig uitverkoop"
+          "v": "Wanneer jy ’n voertuig verkoop"
         }
       ],
       "depth": 3,
-      "hash": "d236e0eae665d337",
+      "hash": "606bf97f6e9eff26",
       "id": "when-you-sell-a-vehicle-out",
       "kind": "heading",
       "sourceHash": "a3545e23a02bad82",
-      "text": "Wanneer jy ’n voertuig uitverkoop"
+      "text": "Wanneer jy ’n voertuig verkoop"
     },
     {
-      "hash": "8f993e6e678412f7",
+      "hash": "485f657af1565791",
       "id": "when-you-sell-a-vehicle-out.1",
       "items": [
         [
           {
             "t": "text",
-            "v": "’n Geldige padwaardigheidsertifikaat. Die Department of Transport (Departement van Vervoer) se blad oor voertuigregistrasie sê dat die registrasie van ’n gebruikte voertuig die padwaardigheidsertifikaat vereis as die huidige sertifikaat ouer as 60 dae is. Die Wes-Kaapse Regering sê dat ’n padwaardigheidstoets gedoen moet word elke keer wat ’n voertuig van eienaar verander."
+            "v": "’n Geldige padwaardigheidsertifikaat. Die Department of Transport (Departement van Vervoer) se blad oor voertuigregistrasie sê dat die registrasie van ’n gebruikte voertuig die padwaardigheidsertifikaat vereis as die huidige sertifikaat ouer as 60 dae is. Die Wes-Kaapse Regering sê dat ’n padwaardigheidstoets gedoen moet word elke keer wanneer ’n voertuig van eienaar verander."
           }
         ],
         [
@@ -2386,10 +2386,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Neem dit, maar verstaan die posisie onder die Consumer Protection Act. ’n Verbruiker wat ’n bespreking of reservering maak, mag dit kanselleer, en jy mag ’n redelike kanselleringsfooi hef. By wat redelik is, word die kennis wat gegee is in ag geneem, en ook of jy die voertuig intussen aan iemand anders kon verkoop het."
+          "v": "Neem dit, maar verstaan die posisie onder die Consumer Protection Act. ’n Verbruiker wat ’n bespreking of reservering maak, mag dit kanselleer, en jy mag ’n redelike kanselleringsfooi hef. By wat redelik is, word die kennisgewing wat gegee is in ag geneem, en ook of jy die voertuig intussen aan iemand anders kon verkoop het."
         }
       ],
-      "hash": "19bcc615ace23920",
+      "hash": "9debca05dbae9afb",
       "id": "holding-deposits.2",
       "kind": "paragraph",
       "sourceHash": "1c8038bfa26d30c4"
@@ -2626,15 +2626,15 @@
       "c": [
         {
           "t": "text",
-          "v": "Vrywillige lidmaatskap van die bedryf"
+          "v": "Vrywillige lidmaatskap van ’n bedryfsorganisasie"
         }
       ],
       "depth": 3,
-      "hash": "29683d79e73bef4b",
+      "hash": "c2c48fab53c71764",
       "id": "voluntary-industry-membership",
       "kind": "heading",
       "sourceHash": "741fcf23a6a26384",
-      "text": "Vrywillige lidmaatskap van die bedryf"
+      "text": "Vrywillige lidmaatskap van ’n bedryfsorganisasie"
     },
     {
       "c": [
@@ -2770,7 +2770,7 @@
       "sourceHash": "852ad65998e51022"
     },
     {
-      "hash": "ce6bd2211e2bd1f3",
+      "hash": "8b5394a7652be133",
       "id": "dealing-from-home-with-no-yard.6",
       "items": [
         [
@@ -2794,7 +2794,7 @@
         [
           {
             "t": "text",
-            "v": "Die volle betaling weerspieël (reflected) in jou saldo voordat sleutels, papiere of ’n getekende NCO van hande verwissel"
+            "v": "Die volle betaling is in jou saldo (reflected) voordat sleutels, papiere of ’n getekende NCO van hande verwissel"
           }
         ],
         [
@@ -3406,7 +3406,7 @@
       "sourceHash": "3cbbad0d8e4dd749"
     }
   ],
-  "contentHash": "a23bfe7619f34792",
+  "contentHash": "a5afee3a25bbd5bb",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -3552,7 +3552,7 @@
     {
       "depth": 3,
       "id": "when-you-sell-a-vehicle-out",
-      "text": "Wanneer jy ’n voertuig uitverkoop"
+      "text": "Wanneer jy ’n voertuig verkoop"
     },
     {
       "depth": 2,
@@ -3602,7 +3602,7 @@
     {
       "depth": 3,
       "id": "voluntary-industry-membership",
-      "text": "Vrywillige lidmaatskap van die bedryf"
+      "text": "Vrywillige lidmaatskap van ’n bedryfsorganisasie"
     },
     {
       "depth": 2,

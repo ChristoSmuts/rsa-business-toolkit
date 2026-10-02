@@ -54,7 +54,7 @@
       "text": "Woorde wat in hierdie lêer gebruik word"
     },
     {
-      "hash": "a981ba1ea11ea64c",
+      "hash": "36b2ab9444e39437",
       "id": "words-used-in-this-file.1",
       "intro": [
         {
@@ -115,7 +115,7 @@
           "term": [
             {
               "t": "text",
-              "v": "IP"
+              "v": "IE (IP)"
             }
           ]
         },
@@ -668,10 +668,10 @@
       "c": [
         {
           "t": "text",
-          "v": "As jy hoofsaaklik vir een kliënt werk, wat jou ure beheer en hoe jy werk, kan SARS jou dalk as ’n persoonlikedienste-verskaffer of as ’n werknemer behandel. Dit verander jou belastingbehandeling aansienlik en neem die meeste van jou aftrekkings weg."
+          "v": "As jy hoofsaaklik vir een kliënt werk wat jou ure en jou manier van werk beheer, kan SARS jou dalk as ’n persoonlikedienste-verskaffer of as ’n werknemer behandel. Dit verander jou belastingbehandeling aansienlik en neem die meeste van jou aftrekkings weg."
         }
       ],
-      "hash": "14697898852feca0",
+      "hash": "e999bc22dbf6e309",
       "id": "tax-point-most-freelancers-miss.1",
       "kind": "paragraph",
       "sourceHash": "8d9f9b18371a4426"
@@ -816,7 +816,7 @@
       "text": "Jou kontrolelys"
     },
     {
-      "hash": "a9afb4ff77244cac",
+      "hash": "a4818d0d7a4dbe7d",
       "id": "your-checklist.1",
       "items": [
         {
@@ -856,7 +856,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Stel ’n diensooreenkoms op wat omvang, hersienings, IP en betaling dek"
+              "v": "Stel ’n diensooreenkoms op wat omvang, hersienings, IE en betaling dek"
             }
           ],
           "doc": "business-types/professional-creative",
@@ -936,7 +936,7 @@
       "sourceHash": "577e0d64887649de"
     }
   ],
-  "contentHash": "672d8bc6ea1e428d",
+  "contentHash": "e958b583cf031b92",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -1032,7 +1032,7 @@
     },
     {
       "meaning": "Intellektuele eiendom (intellectual property). Wie die werk besit wat jy skep.",
-      "term": "IP"
+      "term": "IE (IP)"
     },
     {
       "meaning": "SARS se term vir iemand wat soos ’n werknemer van een kliënt lyk. Verloor die meeste aftrekkings.",

@@ -54,7 +54,7 @@
       "text": "Woorde wat in hierdie lêer gebruik word"
     },
     {
-      "hash": "524cecd2779facdb",
+      "hash": "98a50f406fddfb83",
       "id": "words-used-in-this-file.1",
       "intro": [
         {
@@ -81,7 +81,7 @@
           "meaning": [
             {
               "t": "text",
-              "v": "Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid). Die permit sonder wat jy nie kan oopmaak nie."
+              "v": "Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid). Die permit waarsonder jy nie kan oopmaak nie."
             }
           ],
           "term": [
@@ -187,15 +187,15 @@
       "c": [
         {
           "t": "text",
-          "v": "Die een dokument sonder wat jy nie kan handel dryf nie"
+          "v": "Die een dokument waarsonder jy nie kan handel dryf nie"
         }
       ],
       "depth": 2,
-      "hash": "4f8ae76fcaa9a88f",
+      "hash": "ab7f58ff6d1363e1",
       "id": "the-one-document-you-cannot-trade-without",
       "kind": "heading",
       "sourceHash": "07a45501369c8802",
-      "text": "Die een dokument sonder wat jy nie kan handel dryf nie"
+      "text": "Die een dokument waarsonder jy nie kan handel dryf nie"
     },
     {
       "c": [
@@ -908,7 +908,7 @@
       "sourceHash": "25a94b545bf37b09"
     }
   ],
-  "contentHash": "a49369ad62cc9240",
+  "contentHash": "07ee4c0118472c0a",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -923,7 +923,7 @@
     {
       "depth": 2,
       "id": "the-one-document-you-cannot-trade-without",
-      "text": "Die een dokument sonder wat jy nie kan handel dryf nie"
+      "text": "Die een dokument waarsonder jy nie kan handel dryf nie"
     },
     {
       "depth": 3,
@@ -1004,7 +1004,7 @@
   ],
   "terms": [
     {
-      "meaning": "Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid). Die permit sonder wat jy nie kan oopmaak nie.",
+      "meaning": "Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid). Die permit waarsonder jy nie kan oopmaak nie.",
       "term": "COA"
     },
     {

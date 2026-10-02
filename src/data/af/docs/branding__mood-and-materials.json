@@ -60,10 +60,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Opdrag 5 gee jou rigtings vir die logo. Opdrag 7 gee jou kleure en lettertipe. Opdrag 8 gee jou fotografie. Elkeen is op sy eie goed. Maar niks sê vir hulle om met mekaar ooreen te stem nie, so jy kan uiteindelik ’n ruwe werkswinkel-logo hê, ’n sagte pastelpalet, en kliniese fotografie teen ’n wit agtergrond. Drie goeie antwoorde wat nie aan dieselfde besigheid behoort nie."
+          "v": "Opdrag 5 gee jou rigtings vir die logo. Opdrag 7 gee jou kleure en lettertipe. Opdrag 8 gee jou fotografie. Elkeen is op sy eie goed. Maar niks sê vir hulle om met mekaar ooreen te stem nie, so jy kan uiteindelik ’n stoere werkswinkellogo hê, ’n sagte pastelpalet, en kliniese fotografie teen ’n wit agtergrond. Drie goeie antwoorde wat nie aan dieselfde besigheid behoort nie."
         }
       ],
-      "hash": "8605d72dca21ae3b",
+      "hash": "8878a89b38fdefb5",
       "id": "why-this-step-exists.2",
       "kind": "paragraph",
       "sourceHash": "b143f4bdc3fe9a3a"
@@ -180,10 +180,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Daarom vra die opdragte hieronder oor pas en verskil, en nooit oor wat kleure beteken nie. As ’n KI begin vertel wat ’n kleur beteken, ignoreer daardie deel van die antwoord."
+          "v": "Daarom vra die opdragte hieronder hoe goed iets pas en hoe dit verskil, en nooit oor wat kleure beteken nie. As ’n KI begin vertel wat ’n kleur beteken, ignoreer daardie deel van die antwoord."
         }
       ],
-      "hash": "5a2ef38f44626261",
+      "hash": "7d5825f60ffd41b9",
       "id": "before-you-start-what-the-research-actually-says-about-colour.5",
       "kind": "paragraph",
       "sourceHash": "defcd62aff447e48"
@@ -203,7 +203,7 @@
       "text": "Opdrag A: die visuele wêreld"
     },
     {
-      "hash": "d1d17bc9018690d4",
+      "hash": "6b53dce3b3db9f7a",
       "id": "prompt-a-the-visual-territory.1",
       "kind": "code",
       "placeholders": [
@@ -220,7 +220,7 @@
         }
       ],
       "sourceHash": "f5304deaaad68f0e",
-      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nMy besigheidsnaam is: [NAAM]\n\nVoordat ek ’n logo, kleure of fotografie kies, wil ek die algehele\nstemming vasstel sodat al drie met mekaar ooreenstem.\n\nGee my 5 verskillende visuele wêrelde vir hierdie besigheid.\n\n’n Visuele wêreld is ’n kort beskrywing van die wêreld waarin die handelsmerk\nleef. Beskryf elkeen in woorde, soos ’n ontwerper dit sou opdra.\n\nGee my vir elke wêreld:\n- ’n Naam van twee of drie woorde\n- Drie woorde wat die gevoel beskryf\n- Waarvan dit gemaak is: twee of drie werklike materiale, oppervlaktes of teksture\n- Wat dit NIE is nie. Noem die naaste ding waarmee dit verwar kan word, en\n  sê hoe dit verskil.\n- Een voorbeeld uit die werklike wêreld wat ’n Suid-Afrikaner sal herken: ’n soort\n  winkel, ’n werkswinkel, ’n mark, ’n plek. Nie ’n handelsmerknaam nie.\n- Hoe hierdie wêreld my logo sou laat lyk, in een sin\n- Hoe dit my foto’s sou laat lyk, in een sin\n\nReëls:\n- Grond minstens twee wêrelde op die kenmerkende detail in my kortbeskrywing.\n- Moenie vir my sê wat kleure beteken of watter emosies hulle veroorsaak nie. Ek stel\n  nie belang in kleursielkunde nie.\n- Geen stemmingsbordwoorde sonder inhoud nie: verhewe, saamgestel, tydloos,\n  outentiek, premium, pasgemaak.\n- Minstens een wêreld moet doelbewus eenvoudig wees, want eenvoudig en\n  konsekwent klop interessant en onkonsekwent.\n- Elke wêreld moet in een sin aan ’n uithangbordmaker beskryf kan word.\n\nNommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
+      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nMy besigheidsnaam is: [NAAM]\n\nVoordat ek ’n logo, kleure of fotografie kies, wil ek die algehele\nstemming vasstel sodat al drie met mekaar ooreenstem.\n\nGee my 5 verskillende visuele wêrelde vir hierdie besigheid.\n\n’n Visuele wêreld is ’n kort beskrywing van die wêreld waarin die handelsmerk\nleef. Beskryf elkeen in woorde, soos ’n ontwerper dit in ’n kortbeskrywing sou uiteensit.\n\nGee my vir elke wêreld:\n- ’n Naam van twee of drie woorde\n- Drie woorde wat die gevoel beskryf\n- Waarvan dit gemaak is: twee of drie werklike materiale, oppervlaktes of teksture\n- Wat dit NIE is nie. Noem die naaste ding waarmee dit verwar kan word, en\n  sê hoe dit verskil.\n- Een voorbeeld uit die werklike wêreld wat ’n Suid-Afrikaner sal herken: ’n soort\n  winkel, ’n werkswinkel, ’n mark, ’n plek. Nie ’n handelsmerknaam nie.\n- Hoe hierdie wêreld my logo sou laat lyk, in een sin\n- Hoe dit my foto’s sou laat lyk, in een sin\n\nReëls:\n- Grond minstens twee wêrelde op die kenmerkende detail in my kortbeskrywing.\n- Moenie vir my sê wat kleure beteken of watter emosies hulle veroorsaak nie. Ek stel\n  nie belang in kleursielkunde nie.\n- Geen stemmingsbordwoorde sonder inhoud nie: verhewe, gekureer, tydloos,\n  outentiek, premium, pasgemaak.\n- Minstens een wêreld moet doelbewus eenvoudig wees, want eenvoudig en\n  konsekwent klop interessant en onkonsekwent.\n- Elke wêreld moet in een sin aan ’n uithangbordmaker beskryf kan word.\n\nNommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
       "variant": "prompt"
     },
     {
@@ -479,10 +479,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Opdrag B is nie daar om jou na duur materiale te praat nie. Vir die meeste eenpersoonbesighede is die goedkoop weergawe die regte keuse, want:"
+          "v": "Opdrag B is nie daar om jou duur materiale aan te praat nie. Vir die meeste eenpersoonbesighede is die goedkoop weergawe die regte keuse, want:"
         }
       ],
-      "hash": "a26ea4c0286349e7",
+      "hash": "2c1307ac598b8143",
       "id": "the-cheap-version-is-usually-fine.1",
       "kind": "paragraph",
       "sourceHash": "81a82cb8a12808fb"
@@ -717,7 +717,7 @@
       "sourceHash": "6e26b5bf02a83490"
     }
   ],
-  "contentHash": "9755d1b8ff2f63ba",
+  "contentHash": "f84c126f9a7be63c",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

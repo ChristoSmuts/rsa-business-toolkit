@@ -318,10 +318,10 @@
       "c": [
         {
           "t": "text",
-          "v": "’n Eenpersoonmaatskappy verander dit, en dit is een van die min werklike voordele van inlywing wat niemand noem wanneer mense praat oor of jy moet registreer of nie."
+          "v": "’n Eenpersoonmaatskappy verander dit, en dit is een van die min werklike voordele van inlywing wat niemand noem nie wanneer mense praat oor of jy moet registreer of nie."
         }
       ],
-      "hash": "3ca41e6a6920b80f",
+      "hash": "dc7ae069ac711290",
       "id": "pty-ltd-paying-you-a-salary-you-may-have-some.1",
       "kind": "paragraph",
       "sourceHash": "f18dfc8f2419f21b"
@@ -351,10 +351,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Dit maak saak, want COIDA is presies die dekking wat ’n eenmansaak-eienaar nie kan kry nie: dit betaal uit vir ’n besering aan diens."
+          "v": "Dit maak saak, want COIDA is presies die dekking wat ’n eenmansaak-eienaar nie kan kry nie: dit betaal uit vir ’n besering op diens."
         }
       ],
-      "hash": "3af750701b5e7c02",
+      "hash": "e143303cca3b9501",
       "id": "pty-ltd-paying-you-a-salary-you-may-have-some.3",
       "kind": "paragraph",
       "sourceHash": "77e84061cdbb8c31"
@@ -423,10 +423,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Die werkloosheidsvoordeel is die vreemde een vir ’n enigste direkteur, want om werkloos te raak by jou eie maatskappy is ’n vreemde gebeurtenis. Die siekte- en kraamvoordele is die realistiese voordele."
+          "v": "Die werkloosheidsvoordeel is die vreemde een vir die enigste direkteur, want om werkloos te raak by jou eie maatskappy is ’n vreemde gebeurtenis. Die siekte- en kraamvoordele is die realistiese voordele."
         }
       ],
-      "hash": "56885c16ff13e224",
+      "hash": "1f9e3a049d237047",
       "id": "pty-ltd-paying-you-a-salary-you-may-have-some.6",
       "kind": "paragraph",
       "sourceHash": "6f2980d1cb196671"
@@ -458,10 +458,10 @@
         },
         {
           "t": "text",
-          "v": " Private versekering wat ’n maandelikse inkomste betaal as jy nie kan werk nie. Vir ’n eenpersoonbesigheid is dit waarskynlik belangriker as die dekking vir openbare aanspreeklikheid wat elders in hierdie gereedskapstel aanbeveel word, want openbare aanspreeklikheid beskerm teen iets wat jy dalk aan iemand anders doen, en inkomstebeskerming beskerm teen die ding wat die waarskynlikste met jou self sal gebeur."
+          "v": " Private versekering wat ’n maandelikse inkomste betaal as jy nie kan werk nie. Vir ’n eenpersoonbesigheid kan ’n mens redeneer dat dit belangriker is as die dekking vir openbare aanspreeklikheid wat elders in hierdie gereedskapstel aanbeveel word, want openbare aanspreeklikheid beskerm teen iets wat jy dalk aan iemand anders doen, en inkomstebeskerming beskerm teen die ding wat die waarskynlikste met jouself sal gebeur."
         }
       ],
-      "hash": "bea611614a7c62a2",
+      "hash": "df0c5f59c2d36607",
       "id": "what-both-structures-still-need.1",
       "kind": "paragraph",
       "sourceHash": "ac3d6f45beb1da02"
@@ -544,15 +544,15 @@
       "c": [
         {
           "t": "text",
-          "v": "Die leer van stappe"
+          "v": "Die invorderingstappe"
         }
       ],
       "depth": 3,
-      "hash": "d86f3902229a4934",
+      "hash": "b5814e06e9d6a603",
       "id": "the-escalation-ladder",
       "kind": "heading",
       "sourceHash": "739fbfe5a511639b",
-      "text": "Die leer van stappe"
+      "text": "Die invorderingstappe"
     },
     {
       "c": [
@@ -567,7 +567,7 @@
       "sourceHash": "591645a580aaa069"
     },
     {
-      "hash": "644c07e8c5bd3064",
+      "hash": "ee9467774a1d68c9",
       "id": "the-escalation-ladder.2",
       "items": [
         [
@@ -627,7 +627,7 @@
           },
           {
             "t": "text",
-            "v": " Dit is die formele stap voor die hof. ’n Prokureur sal een teen ’n redelike fooi skryf, en verbasend baie skulde word op hierdie punt betaal, want die briefhoof verander die gesprek."
+            "v": " Dit is die formele stap voor die hof. ’n Prokureur sal een teen ’n beskeie fooi skryf, en verbasend baie skulde word op hierdie punt betaal, want die briefhoof verander die gesprek."
           }
         ],
         [
@@ -896,10 +896,10 @@
         },
         {
           "t": "text",
-          "v": " As jy ’n maatskappy registreer, verloor jy toegang tot die goedkoopste roete om skuld in die land in te vorder, en niemand wat R175 teen beperkte aanspreeklikheid opweeg, word dit vertel nie."
+          "v": " As jy ’n maatskappy registreer, verloor jy toegang tot die goedkoopste roete in die land om skuld in te vorder, en niemand wat R175 teen beperkte aanspreeklikheid opweeg, word dit vertel nie."
         }
       ],
-      "hash": "5bc9cea5b36dd063",
+      "hash": "c8995a4ed2d49704",
       "id": "small-claims-court-only-if-you-are-a-natural-person.8",
       "kind": "paragraph",
       "sourceHash": "37852f7e2f984471"
@@ -931,7 +931,7 @@
       "sourceHash": "f0553588d9a29fa5"
     },
     {
-      "hash": "9a11a309cc81b6a3",
+      "hash": "0a9c30ed635c6eb6",
       "id": "prevention-beats-collection.2",
       "items": [
         [
@@ -975,7 +975,7 @@
         [
           {
             "t": "text",
-            "v": "Wag totdat die geld in jou saldo weerspieël (reflected) voordat jy enigiets oorhandig. Sien "
+            "v": "Wag totdat die geld in jou saldo is voordat jy enigiets oorhandig. Sien "
           },
           {
             "c": [
@@ -1092,10 +1092,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Wanneer ’n enigste direkteur sterf, is die maatskappy dus magteloos. En omdat direkteure deur aandeelhouers aangestel word, en die enigste aandeelhouer dieselfde persoon is, is daar niemand oor wat ’n plaasvervanger kan aanstel nie."
+          "v": "Wanneer die enigste direkteur sterf, is die maatskappy dus magteloos. En omdat direkteure deur aandeelhouers aangestel word, en die enigste aandeelhouer dieselfde persoon is, is daar niemand oor wat ’n plaasvervanger kan aanstel nie."
         }
       ],
-      "hash": "5d6358ea0b0733e6",
+      "hash": "4c84b0430681e6fa",
       "id": "pty-ltd-this-is-the-serious-one.2",
       "kind": "paragraph",
       "sourceHash": "57cfb4a71875362f"
@@ -1168,10 +1168,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Suid-Afrika het ’n werklike voorbeeld. In die Saga Wines-saak het ’n enigste direkteur en aandeelhouer gesterf sonder ’n testament wat oor haar Suid-Afrikaanse aandele gehandel het, en die maatskappy se finansiële bestuurder moes ’n dringende aansoek in die Hooggeregshof bring om tussentydse bevoegdhede te kry sodat die besigheid kon funksioneer."
+          "v": "Suid-Afrika het ’n werklike voorbeeld. In die Saga Wines-saak het die enigste direkteur en aandeelhouer gesterf sonder ’n testament wat oor haar Suid-Afrikaanse aandele gehandel het, en die maatskappy se finansiële bestuurder moes ’n dringende aansoek in die Hooggeregshof bring om tussentydse bevoegdhede te kry sodat die besigheid kon funksioneer."
         }
       ],
-      "hash": "bea16e2380684bb6",
+      "hash": "cd5196ceacc7b0c0",
       "id": "pty-ltd-this-is-the-serious-one.6",
       "kind": "paragraph",
       "sourceHash": "98ad45fab370fed4"
@@ -1224,10 +1224,10 @@
         },
         {
           "t": "text",
-          "v": " Die enkele doeltreffendste oplossing. ’n Eggenoot, ’n volwasse kind, ’n betroubare sakevennoot. As een direkteur sterf of ongeskik raak, kan die ander dadelik optree en die maatskappy hou aan werk. Om ’n direkteursverandering by CIPC in te dien, is gratis."
+          "v": " Die heel doeltreffendste oplossing. ’n Eggenoot, ’n volwasse kind, ’n betroubare sakevennoot. As een direkteur sterf of ongeskik raak, kan die ander dadelik optree en die maatskappy hou aan werk. Om ’n direkteursverandering by CIPC in te dien, is gratis."
         }
       ],
-      "hash": "4bbeb51353e2400d",
+      "hash": "28c9d5ff673e4112",
       "id": "the-four-fixes-cheapest-first.1",
       "kind": "paragraph",
       "sourceHash": "0be39d0552dadab1"
@@ -1723,7 +1723,7 @@
       "sourceHash": "79ab900f53dc5dc7"
     }
   ],
-  "contentHash": "5bf438b7e4ae2148",
+  "contentHash": "1965f327b3c6b86e",
   "generated": {
     "date": "2026-09-14",
     "tool": "Claude, Anthropic"
@@ -1769,7 +1769,7 @@
     {
       "depth": 3,
       "id": "the-escalation-ladder",
-      "text": "Die leer van stappe"
+      "text": "Die invorderingstappe"
     },
     {
       "depth": 3,

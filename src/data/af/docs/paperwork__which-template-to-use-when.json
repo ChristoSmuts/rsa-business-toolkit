@@ -390,10 +390,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Vir SARS lyk ’n gaping in die reeks soos ’n verborge verkoping. As jy ’n faktuur kanselleer, moet dit nie uitvee nie. Reik ’n kredietnota daarteen uit en hou albei."
+          "v": "Vir SARS lyk ’n gaping in die reeks soos ’n verborge verkoping. As jy ’n faktuur kanselleer, moenie dit uitvee nie. Reik ’n kredietnota daarteen uit en hou albei."
         }
       ],
-      "hash": "c3230464e4b996b7",
+      "hash": "329e65f4c56baf52",
       "id": "invoice-numbering.2",
       "kind": "paragraph",
       "sourceHash": "82db360f1d0a8b9d"
@@ -635,10 +635,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Skryf neer wat nie ingesluit is nie. Die meeste geskille gaan oor werk wat die kliënt aangeneem het by die prys ingesluit is."
+          "v": "Skryf neer wat nie ingesluit is nie. Die meeste geskille gaan oor werk waarvan die kliënt aangeneem het dat dit by die prys ingesluit is."
         }
       ],
-      "hash": "6f3e2e330e0d4bb4",
+      "hash": "2a63de89ef0ca2f5",
       "id": "template-1-quotation.4",
       "kind": "paragraph",
       "sourceHash": "5642651de9eb67ef"
@@ -871,10 +871,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Vir leverings van R50 tot R5,000 word ’n verkorte belastingfaktuur toegelaat. Dit het meestal dieselfde inligting nodig, maar jy hoef nie die ontvanger se besonderhede in te sluit nie."
+          "v": "Vir leverings van R50 tot R5,000 word ’n verkorte belastingfaktuur toegelaat. Dit het die meeste van dieselfde inligting nodig, maar jy hoef nie die ontvanger se besonderhede in te sluit nie."
         }
       ],
-      "hash": "156a118ea761565b",
+      "hash": "2f0a4686980e3d68",
       "id": "template-3-invoice-if-you-are-registered-for-vat.4",
       "kind": "paragraph",
       "sourceHash": "1cac6162defd4224"
@@ -1113,7 +1113,7 @@
       "sourceHash": "8e38d858160f014a"
     },
     {
-      "hash": "c1a0937d33ecb9ca",
+      "hash": "0963f89b47820c2e",
       "id": "template-5-privacy-notice-popia.2",
       "kind": "code",
       "placeholders": [
@@ -1170,7 +1170,7 @@
         }
       ],
       "sourceHash": "28e33ab95bdabb22",
-      "text": "PRIVAATHEIDSKENNISGEWING\n\n[Besigheidsnaam] (\"ons\") respekteer jou privaatheid. Hierdie kennisgewing\nverduidelik watter persoonlike inligting ons insamel en wat ons daarmee doen.\n\nWIE ONS IS\n[Besigheidsnaam]\n[Fisiese adres]\n[E-pos] | [Foon]\nInligtingsbeampte: [Jou volle naam]\n\nWAT ONS INSAMEL\n- Jou naam\n- Jou kontakbesonderhede (foon, e-pos, adres)\n- Besonderhede van wat jy gekoop het of oor navraag gedoen het\n- Betalingsinligting (ons stoor nie kaartnommers nie)\n[Voeg reëls by of verwyder reëls sodat dit vir jou besigheid waar is]\n\nWAAROM ONS DIT INSAMEL\n- Om vir jou ’n kwotasie te gee en die werk te doen waarvoor jy gevra het\n- Om vir jou ’n faktuur te stuur en betaling te ontvang\n- Om rekords te hou wat SARS volgens wet vereis\n- Om jou oor jou bestelling te kontak\n\nMET WIE ONS DIT DEEL\nOns verkoop nie jou inligting nie. Ons deel dit net met:\n- Ons bank, om betaling te ontvang\n- Ons rekenmeester, as ons een gebruik\n- SARS of ’n ander owerheid, waar die wet dit vereis\n[Voeg enige verskaffer of koerier by wat kliëntbesonderhede ontvang]\n\nHOE LANK ONS DIT HOU\nOns hou rekords vir vyf jaar, soos belastingwetgewing vereis. Daarna vee\nons dit uit.\n\nBEMARKING\nOns sal jou net bemarkingsboodskappe stuur as jy ingestem het om dit te ontvang.\nJy kan ons enige tyd vra om op te hou deur STOP te antwoord of vir ons te e-pos.\n\nJOU REGTE\nJy mag ons vra watter inligting ons oor jou hou, ons vra om dit reg te stel,\nof ons vra om dit uit te vee waar die wet dit toelaat. Kontak ons deur die\nbesonderhede hierbo te gebruik.\n\nAs jy ontevrede is met hoe ons jou inligting hanteer het, mag jy by die\nInformation Regulator (Inligtingsreguleerder) by inforegulator.org.za kla.\n\nLaas bygewerk: [DD Maand JJJJ]",
+      "text": "PRIVAATHEIDSKENNISGEWING\n\n[Besigheidsnaam] (\"ons\") respekteer jou privaatheid. Hierdie kennisgewing\nverduidelik watter persoonlike inligting ons insamel en wat ons daarmee doen.\n\nWIE ONS IS\n[Besigheidsnaam]\n[Fisiese adres]\n[E-pos] | [Foon]\nInligtingsbeampte: [Jou volle naam]\n\nWAT ONS INSAMEL\n- Jou naam\n- Jou kontakbesonderhede (foon, e-pos, adres)\n- Besonderhede van wat jy gekoop het of waaroor jy navraag gedoen het\n- Betalingsinligting (ons stoor nie kaartnommers nie)\n[Voeg reëls by of verwyder reëls sodat dit vir jou besigheid waar is]\n\nWAAROM ONS DIT INSAMEL\n- Om vir jou ’n kwotasie te gee en die werk te doen waarvoor jy gevra het\n- Om vir jou ’n faktuur te stuur en betaling te ontvang\n- Om rekords te hou wat SARS volgens die wet vereis\n- Om jou oor jou bestelling te kontak\n\nMET WIE ONS DIT DEEL\nOns verkoop nie jou inligting nie. Ons deel dit net met:\n- Ons bank, om betaling te ontvang\n- Ons rekenmeester, as ons een gebruik\n- SARS of ’n ander owerheid, waar die wet dit vereis\n[Voeg enige verskaffer of koerier by wat kliëntbesonderhede ontvang]\n\nHOE LANK ONS DIT HOU\nOns hou rekords vir vyf jaar, soos belastingwetgewing vereis. Daarna vee\nons dit uit.\n\nBEMARKING\nOns sal jou net bemarkingsboodskappe stuur as jy ingestem het om dit te ontvang.\nJy kan ons enige tyd vra om op te hou deur STOP te antwoord of vir ons te e-pos.\n\nJOU REGTE\nJy mag ons vra watter inligting ons oor jou hou, ons vra om dit reg te stel,\nof ons vra om dit uit te vee waar die wet dit toelaat. Kontak ons deur die\nbesonderhede hierbo te gebruik.\n\nAs jy ontevrede is met hoe ons jou inligting hanteer het, mag jy by die\nInformation Regulator (Inligtingsreguleerder) by inforegulator.org.za kla.\n\nLaas bygewerk: [DD Maand JJJJ]",
       "variant": "template-preview"
     },
     {
@@ -1536,7 +1536,7 @@
       "text": "Bepalings en voorwaardes"
     },
     {
-      "hash": "e2bb5ed46b845b46",
+      "hash": "e8277d7e06159237",
       "id": "terms-and-conditions.1",
       "kind": "code",
       "placeholders": [
@@ -1573,17 +1573,17 @@
         }
       ],
       "sourceHash": "d2d0db5f89524b54",
-      "text": "Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika. Ek verkoop [WAT] aan [WIE].\nEk is [’n eenmansaak / ’n geregistreerde maatskappy].\n[Ek verkoop aanlyn / Ek verkoop persoonlik / albei.]\n\nSkryf bepalings en voorwaardes vir my besigheid in eenvoudige Engels wat\n’n graad 8-leerder kan lees.\n\nDek:\n- Wat ek sal doen en wat die kliënt moet doen\n- Kwotasies, deposito’s en betalingsvoorwaardes\n- Wat gebeur as ’n kliënt kanselleer\n- Wat gebeur as ek moet kanselleer\n- Tydsberekening van aflewering of voltooiing\n- Terugsendings, terugbetalings en foute\n- Beperkings op waarvoor ek verantwoordelik is\n- Hoe geskille opgelos word\n\nMaak seker dat dit aan die Consumer Protection Act 68 of 2008 voldoen.\nWaar die Wet die kliënt ’n reg gee wat ek nie kan wegneem nie, sê dit in die\ndokument eerder as om te probeer om dit weg te neem.\n\n[As jy aanlyn verkoop, voeg by:] Ek verkoop aanlyn, so voldoen ook aan artikels 43,\n44 en 46 van die Electronic Communications and Transactions Act 25 of\n2002, insluitend die reg op ’n afkoelperiode van sewe dae.\n\nLys ná die dokument elke klousule waaroor jy onseker is en waaroor ek\nmet ’n prokureur behoort te gaan praat.",
+      "text": "Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika. Ek verkoop [WAT] aan [WIE].\nEk is [’n eenmansaak / ’n geregistreerde maatskappy].\n[Ek verkoop aanlyn / Ek verkoop persoonlik / albei.]\n\nSkryf bepalings en voorwaardes vir my besigheid in eenvoudige taal wat\n’n graad 8-leerder kan lees.\n\nDek:\n- Wat ek sal doen en wat die kliënt moet doen\n- Kwotasies, deposito’s en betalingsvoorwaardes\n- Wat gebeur as ’n kliënt kanselleer\n- Wat gebeur as ek moet kanselleer\n- Tydsberekening van aflewering of voltooiing\n- Terugsendings, terugbetalings en foute\n- Beperkings op waarvoor ek verantwoordelik is\n- Hoe geskille opgelos word\n\nMaak seker dat dit aan die Consumer Protection Act 68 of 2008 voldoen.\nWaar die Wet die kliënt ’n reg gee wat ek nie kan wegneem nie, sê dit in die\ndokument eerder as om te probeer om dit weg te neem.\n\n[As jy aanlyn verkoop, voeg by:] Ek verkoop aanlyn, so voldoen ook aan artikels 43,\n44 en 46 van die Electronic Communications and Transactions Act 25 of\n2002, insluitend die reg op ’n afkoelperiode van sewe dae.\n\nLys ná die dokument elke klousule waaroor jy onseker is en waaroor ek\nmet ’n prokureur behoort te gaan praat.",
       "variant": "prompt"
     },
     {
       "c": [
         {
           "t": "text",
-          "v": "Die Consumer Protection Act vereis eenvoudige taal. ’n Dokument wat jou kliënt nie kan verstaan nie, kan onafdwingbaar wees, so moenie die KI vra om dit regsgeleerd te laat klink nie."
+          "v": "Die Consumer Protection Act vereis eenvoudige taal. ’n Dokument wat jou kliënt nie kan verstaan nie, kan onafdwingbaar wees, so moenie die KI vra om dit soos regstaal te laat klink nie."
         }
       ],
-      "hash": "ef7a0fa694a155ff",
+      "hash": "41cd932f5a4ecedb",
       "id": "terms-and-conditions.2",
       "kind": "paragraph",
       "sourceHash": "f9a6e49a95521a2d"
@@ -1603,7 +1603,7 @@
       "text": "’n Eenvoudige diensooreenkoms"
     },
     {
-      "hash": "620a9761b4330281",
+      "hash": "cd662988ce0f9c7e",
       "id": "a-simple-service-agreement.1",
       "kind": "code",
       "placeholders": [
@@ -1620,7 +1620,7 @@
         }
       ],
       "sourceHash": "d4cd32f19241f460",
-      "text": "Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika. Ek het ’n kort skriftelike ooreenkoms\nnodig vir werk bo R[BEDRAG].\n\nSkryf ’n ooreenkoms van een bladsy in eenvoudige Engels wat die volgende dek:\n- Wie die partye is\n- Presies watter werk ek sal doen\n- Presies wat nie ingesluit is nie\n- Prys, deposito en betaaldatums\n- Begindatum en verwagte einddatum\n- Wat gebeur as die kliënt die omvang verander\n- Wat gebeur as die kliënt nie betaal nie\n- Wie die werk besit wanneer dit klaar is\n- Hoe enige kant kan kanselleer\n- Watter Suid-Afrikaanse reg van toepassing is\n\nGebruik [VIERKANTIGE HAKIES] vir enigiets wat ek per werk invul.\nHou dit by een bladsy. Moenie regswoorde gebruik waar ’n gewone woord werk nie.",
+      "text": "Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika. Ek het ’n kort skriftelike ooreenkoms\nnodig vir werk bo R[BEDRAG].\n\nSkryf ’n ooreenkoms van een bladsy in eenvoudige taal wat die volgende dek:\n- Wie die partye is\n- Presies watter werk ek sal doen\n- Presies wat nie ingesluit is nie\n- Prys, deposito en betaaldatums\n- Begindatum en verwagte einddatum\n- Wat gebeur as die kliënt die omvang verander\n- Wat gebeur as die kliënt nie betaal nie\n- Wie die werk besit wanneer dit klaar is\n- Hoe enige party kan kanselleer\n- Watter Suid-Afrikaanse reg van toepassing is\n\nGebruik [VIERKANTIGE HAKIES] vir enigiets wat ek per werk invul.\nHou dit by een bladsy. Moenie regswoorde gebruik waar ’n gewone woord werk nie.",
       "variant": "prompt"
     },
     {
@@ -1676,10 +1676,10 @@
       "c": [
         {
           "t": "text",
-          "v": "’n Sakeplan. Net nodig om geld by ’n bank of belegger in te samel."
+          "v": "’n Sakeplan. Net nodig om geld by ’n bank of belegger te kry."
         }
       ],
-      "hash": "073d31d1a89138b0",
+      "hash": "6a630d9c93a49d2f",
       "id": "documents-you-probably-do-not-need-yet.1",
       "kind": "paragraph",
       "sourceHash": "de9619b6079e865a"
@@ -1733,7 +1733,7 @@
       "sourceHash": "8b3b366c3229bddd"
     }
   ],
-  "contentHash": "e3ec553db75461e4",
+  "contentHash": "53ab59aaa8c27870",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

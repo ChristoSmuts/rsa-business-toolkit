@@ -709,7 +709,7 @@
         },
         {
           "t": "text",
-          "v": " Voer WhatsApp-gesprekke uit of maak ’n rugsteun daarvan vir enige verkoping waaroor daar ’n argument kan kom. Stemboodskappe oor ’n transaksie is ook besigheidsrekords. Kragtens POPIA moet jy ook versigtig wees met wat jy hou: afskrifte van kliënte se ID’s en hulle adresse behoort op ’n veilige plek gebêre te word, net so lank gehou te word as wat jy hulle nodig het, en nooit aangestuur te word nie. Jou privaatheidskennisgewing in "
+          "v": " Voer WhatsApp-gesprekke uit of maak ’n rugsteun daarvan vir enige verkoping wat groot genoeg is om oor te stry. Stemboodskappe oor ’n transaksie is ook besigheidsrekords. Kragtens POPIA moet jy ook versigtig wees met wat jy hou: afskrifte van kliënte se ID’s en hulle adresse behoort op ’n veilige plek gebêre te word, net so lank gehou te word as wat jy hulle nodig het, en nooit aangestuur te word nie. Jou privaatheidskennisgewing in "
         },
         {
           "c": [
@@ -726,7 +726,7 @@
           "v": " sê vir kliënte wat jy hou en waarom."
         }
       ],
-      "hash": "58d48943fc1f662a",
+      "hash": "a40b6819518cf455",
       "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.4",
       "kind": "paragraph",
       "sourceHash": "2bf188115f26cc63"
@@ -814,10 +814,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Moet niks vrystel nie, niks aflewer nie, en niks begin wat jou geld kos nie, totdat die geld in jou rekeningsaldo weerspieël word (reflected), nie \"hangend\" nie. As jou bank se toep nie die geld in jou saldo gewys het nie, is jy nie betaal nie."
+          "v": "Moet niks vrystel nie, niks aflewer nie, en niks begin wat jou geld kos nie, totdat die geld in jou rekeningsaldo weerspieël (reflected), nie \"hangend\" nie. As jou bank se toep nie die geld in jou saldo gewys het nie, is jy nie betaal nie."
         }
       ],
-      "hash": "41baf855ee6905ad",
+      "hash": "c7d478a00b4f7b93",
       "id": "the-one-rule.2",
       "kind": "paragraph",
       "sourceHash": "c78daf2f03b50cb4"
@@ -876,10 +876,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Vals betalingsbewyse word algemener namate swendelaars die spel opstoot. Gumtree South Africa het ’n verkoper beskryf wat ’n vals betalingsbewys gestuur is, en die swendelaar het selfs ’n Uber gestuur om die goedere te gaan haal. Die rekening daaragter is twee dae vroeër oopgemaak en het in daardie twee dae 24 keer dieselfde ding gedoen."
+          "v": "Vals betalingsbewyse word algemener namate swendelaars die spel opskerp. Gumtree South Africa het ’n verkoper beskryf aan wie ’n vals betalingsbewys gestuur is, en die swendelaar het selfs ’n Uber gestuur om die goedere te gaan haal. Die rekening daaragter is twee dae vroeër oopgemaak en het in daardie twee dae 24 keer dieselfde ding gedoen."
         }
       ],
-      "hash": "da46006cc73799f6",
+      "hash": "de2550786b48461c",
       "id": "why-this-rule-exists.2",
       "kind": "paragraph",
       "sourceHash": "488f3d52faab0595"
@@ -1016,7 +1016,7 @@
         null,
         null
       ],
-      "hash": "247fd2d6f0c27b05",
+      "hash": "c28fd43cd41fb3e8",
       "header": [
         [
           {
@@ -1110,7 +1110,7 @@
           [
             {
               "t": "text",
-              "v": "Sosiale manipulasie. Hulle praat jou om om self ’n betaling goed te keur."
+              "v": "Sosiale manipulasie. Hulle haal jou oor om self ’n betaling goed te keur."
             }
           ],
           [
@@ -1245,10 +1245,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Die Suid-Afrikaanse Reserwebank (South African Reserve Bank) leer ’n toets in drie stappe."
+          "v": "Die South African Reserve Bank (Suid-Afrikaanse Reserwebank) leer ’n toets in drie stappe."
         }
       ],
-      "hash": "637a88b612caf179",
+      "hash": "7653a464e09300f3",
       "id": "if-you-take-cash.2",
       "kind": "paragraph",
       "sourceHash": "1e9760b3f4301149"
@@ -1281,10 +1281,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Vals note kan verbasend oortuigend wees. Selfs as die persoon wat jou betaal dink hulle is eg en jy aanvaar hulle in goeie trou, ly jy steeds die verlies. Volgens wet kan vals geld nie vir regte geld omgeruil word nie."
+          "v": "Vals note kan verbasend oortuigend wees. Selfs as die persoon wat jou betaal dink hulle is eg en jy aanvaar hulle in goeie trou, ly jy steeds die verlies. Volgens die wet kan vals geld nie vir regte geld omgeruil word nie."
         }
       ],
-      "hash": "aac09c53e9921d6c",
+      "hash": "5dcf26cc5001458a",
       "id": "if-you-take-cash.5",
       "kind": "paragraph",
       "sourceHash": "bd30f2d0ac98780d"
@@ -1305,10 +1305,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Vir enige bedrag waaroor jy jou moet bekommer, is die eenvoudigste beskerming: doen die kontanttransaksie binne-in ’n banktak, waar die geld nagegaan kan word om te sien of dit eg is voordat jy dit deponeer. Die koper deponeer direk by die toonbank in jou rekening. Jy kyk hoe dit weerspieël. Niemand loop met ’n koevert rond nie."
+          "v": "Vir enige bedrag wat groot genoeg is om jou te bekommer, is die eenvoudigste beskerming: doen die kontanttransaksie binne-in ’n banktak, waar die geld nagegaan kan word om te sien of dit eg is voordat jy dit deponeer. Die koper deponeer direk by die toonbank in jou rekening. Jy kyk hoe dit weerspieël. Niemand loop met ’n koevert rond nie."
         }
       ],
-      "hash": "5a9aa44cc34dea63",
+      "hash": "5e8dd584b211426e",
       "id": "if-you-take-cash.7",
       "kind": "paragraph",
       "sourceHash": "9c7e0e542a390a8a"
@@ -1493,10 +1493,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Suid-Afrika het nie ’n formele skema vir ’n \"veilige ruilsone\" (\"safe exchange zone\") by polisiestasies nie. Baie stasies is gelukkig dat mense in die besoekersparkering ontmoet. Vra by jou plaaslike stasie voordat jy daarop staatmaak."
+          "v": "Suid-Afrika het nie ’n formele skema vir ’n \"veilige ruilsone\" (\"safe exchange zone\") by polisiestasies nie. Baie stasies laat mense graag in die besoekersparkering ontmoet. Vra by jou plaaslike stasie voordat jy daarop staatmaak."
         }
       ],
-      "hash": "b789ab19618966c9",
+      "hash": "ea362e8d29f2900f",
       "id": "choose-the-place.6",
       "kind": "paragraph",
       "sourceHash": "b28c415b88e7c37b"
@@ -1591,10 +1591,10 @@
         },
         {
           "t": "text",
-          "v": " As iets nie reg lyk nie, of dit onveilig voel, vertrou jou instink en verwyder jouself uit die situasie. Dit kan beteken dat jy hulle glad nie ontmoet nie, of dat jy loop sodra iets verkeerd voel. Hê ’n rugsteunplan."
+          "v": " As iets nie reg lyk nie, of dit onveilig voel, vertrou jou instink en verwyder jouself uit die situasie. Dit kan beteken dat jy hulle glad nie ontmoet nie, of dat jy loop sodra iets verkeerd voel. Hou ’n uitwykplan gereed."
         }
       ],
-      "hash": "1fb17db79f4ce090",
+      "hash": "b40ed4f4551d60f1",
       "id": "before-you-go.4",
       "kind": "paragraph",
       "sourceHash": "cc78275827e3274b"
@@ -2173,7 +2173,7 @@
       "sourceHash": "94ab969df7ca2072"
     }
   ],
-  "contentHash": "c77944a46dcf6340",
+  "contentHash": "9a5318e6f90a21d9",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

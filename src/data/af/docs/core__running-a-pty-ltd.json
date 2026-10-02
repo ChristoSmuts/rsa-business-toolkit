@@ -485,10 +485,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Dit noem die werklike mense agter die maatskappy. Dit is ingestel as deel van Suid-Afrika se reaksie op die FATF se grys lys."
+          "v": "Dit noem die werklike mense agter die maatskappy. Dit is ingestel as deel van Suid-Afrika se reaksie op sy plasing op die FATF se grys lys."
         }
       ],
-      "hash": "807e00388617e09b",
+      "hash": "db943d754745d0ac",
       "id": "2-beneficial-ownership-filing.1",
       "kind": "paragraph",
       "sourceHash": "00fcfdecbbfa7ca3"
@@ -823,10 +823,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Bevestig die geregistreerde verteenwoordiger (registered representative, die \"public officer\") ná registrasie by SARS. Daarsonder kan jy nie op eFiling namens die maatskappy transaksies doen nie."
+          "v": "Bevestig ná registrasie die geregistreerde verteenwoordiger (registered representative, die \"public officer\") by SARS. Daarsonder kan jy nie op eFiling namens die maatskappy transaksies doen nie."
         }
       ],
-      "hash": "7ecd3543d408f608",
+      "hash": "973af18659f0dcbd",
       "id": "5-registered-representative-and-company-details.1",
       "kind": "paragraph",
       "sourceHash": "95feb1eec3d939f3"
@@ -991,10 +991,10 @@
       "c": [
         {
           "t": "text",
-          "v": "’n Maatskappy wat weens nienakoming gederegistreer is, kan gewoonlik herstel word deur by CIPC aansoek te doen op vorm CoR 40.5, te bewys dat dit handel gedryf het of bates gehou het, en alle uitstaande jaarlikse opgawes en fooie te betaal."
+          "v": "’n Maatskappy wat weens nienakoming gederegistreer is, kan gewoonlik herstel word deur by CIPC aansoek te doen op vorm CoR 40.5, te bewys dat dit handel gedryf het of bates gehou het, en alle uitstaande jaarlikse opgawes en fooie af te handel."
         }
       ],
-      "hash": "fb40647d06990ad6",
+      "hash": "fec53ba9ebcd2117",
       "id": "what-happens-if-you-stop-filing.11",
       "kind": "paragraph",
       "sourceHash": "5b8d299b4f9a13a7"
@@ -1017,10 +1017,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Twee herinneringe in jou kalender keer dit alles. Stel hulle vandag."
+          "v": "Twee herinneringe in jou kalender voorkom dit alles. Stel hulle vandag."
         }
       ],
-      "hash": "6fda3bd97b564f15",
+      "hash": "e33247e915e21236",
       "id": "what-happens-if-you-stop-filing.13",
       "kind": "paragraph",
       "sourceHash": "c07650b8b596b9b0"
@@ -1138,10 +1138,10 @@
       "c": [
         {
           "t": "text",
-          "v": "In gewone woorde: as jy aanhou om deposito’s van kliënte te neem terwyl jy weet die maatskappy kan nie lewer nie, of aanhou handel dryf terwyl die maatskappy insolvent is, kan die skuld persoonlik joune word. Die maatskappy beskerm jou teen gewone besigheidsmislukking, nie teen wangedrag waarvan jy weet nie."
+          "v": "In gewone woorde: as jy aanhou om deposito’s van kliënte te neem terwyl jy weet die maatskappy kan nie lewer nie, of aanhou handel dryf terwyl die maatskappy insolvent is, kan die skuld persoonlik joune word. Die maatskappy beskerm jou teen gewone besigheidsmislukking, nie teen wangedrag wat jy wetend pleeg nie."
         }
       ],
-      "hash": "9891beab91d029a4",
+      "hash": "ecfba0615b6b5feb",
       "id": "when-the-company-does-not-protect-you.5",
       "kind": "paragraph",
       "sourceHash": "82324d8e7446af08"
@@ -1468,10 +1468,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Vir ’n enigste direkteur wat ook die enigste aandeelhouer is, is dit ’n ernstige probleem. Daar is niemand oor wat ’n plaasvervanger kan aanstel nie, want direkteure word deur aandeelhouers aangestel, en die aandele het in ’n bestorwe boedel beland. Die Meester van die Hooggeregshof (Master of the High Court) moet ’n eksekuteur aanstel, wat gewoonlik twee weke tot drie maande neem, en of daardie eksekuteur dan ’n direkteur kan aanstel, hang af van wat jou akte van oprigting (MOI) sê. As dit dit nie toelaat nie, is die oplossing ’n hofaansoek."
+          "v": "Vir ’n enigste direkteur wat ook die enigste aandeelhouer is, is dit ’n ernstige probleem. Daar is niemand oor wat ’n plaasvervanger kan aanstel nie, want direkteure word deur aandeelhouers aangestel, en die aandele het in ’n bestorwe boedel beland. Die Master of the High Court (Meester van die Hooggeregshof) moet ’n eksekuteur aanstel, wat gewoonlik twee weke tot drie maande neem, en of daardie eksekuteur dan ’n direkteur kan aanstel, hang af van wat jou akte van oprigting (MOI) sê. As dit dit nie toelaat nie, is die oplossing ’n hofaansoek."
         }
       ],
-      "hash": "826800ed1b36ca87",
+      "hash": "cd420d5a0ff55247",
       "id": "what-happens-if-you-are-not-there.2",
       "kind": "paragraph",
       "sourceHash": "c68de58e50e7a0fa"
@@ -1618,7 +1618,7 @@
           "v": "Elke jaar"
         }
       ],
-      "hash": "3d26829acaadc396",
+      "hash": "f85996a0d3612ee7",
       "id": "your-pty-ltd-annual-checklist.1",
       "items": [
         {
@@ -1710,7 +1710,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Twee IRP6-voorlopige opgawes ingedien"
+              "v": "Twee voorlopige IRP6-opgawes ingedien"
             }
           ],
           "doc": "core/running-a-pty-ltd",
@@ -1850,7 +1850,7 @@
       "sourceHash": "a53f3ad7f9cbd13c"
     }
   ],
-  "contentHash": "e83f56d6098efe97",
+  "contentHash": "6204fc9f67f0cdff",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

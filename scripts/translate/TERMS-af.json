@@ -599,6 +599,48 @@
     { "en": "Reserve Bank", "af": "Reserwebank", "note": "", "keepVerbatim": false },
     { "en": "banknote", "af": "banknoot", "note": "", "keepVerbatim": false },
     { "en": "Look, feel, tilt", "af": "Kyk, voel, kantel", "note": "", "keepVerbatim": false },
-    { "en": "spreadsheet", "af": "sigblad", "note": "", "keepVerbatim": false }
+    { "en": "spreadsheet", "af": "sigblad", "note": "", "keepVerbatim": false },
+    {
+      "en": "intellectual property (IP)",
+      "af": "intellektuele eiendom (IE)",
+      "note": "Abbreviation IE in Afrikaans text; the words table may show 'IE (IP)' (WP-40 batch 5 and 6 reviews).",
+      "keepVerbatim": false
+    },
+    {
+      "en": "patch test",
+      "af": "veltoets",
+      "note": "Not 'plektoets' or 'pleistertoets' (WP-40 batch 5 review).",
+      "keepVerbatim": false
+    },
+    {
+      "en": "food truck",
+      "af": "kosvragmotor",
+      "note": "Not 'koskar', which can mean a hand cart (WP-40 batch 0 review).",
+      "keepVerbatim": false
+    },
+    {
+      "en": "due date (invoice)",
+      "af": "vervaldatum",
+      "note": "The usual label on Afrikaans invoices (WP-40 batch 0 review).",
+      "keepVerbatim": false
+    },
+    {
+      "en": "public officer",
+      "af": "openbare beampte",
+      "note": "The Income Tax Act's Afrikaans term (WP-40 batch 1 review).",
+      "keepVerbatim": false
+    },
+    {
+      "en": "import duty",
+      "af": "invoerreg",
+      "note": "Not 'invoerbelasting' (WP-40 batch 1 review).",
+      "keepVerbatim": false
+    },
+    {
+      "en": "handle (social media)",
+      "af": "gebruikersnaam",
+      "note": "Not 'handvatsel' (WP-40 batch 3 review).",
+      "keepVerbatim": false
+    }
   ]
 }

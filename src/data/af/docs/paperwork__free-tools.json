@@ -311,10 +311,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Swak punte: geen praktiese redigering op ’n selfoon nie. Daar is ’n Android-leser, maar jy sal nie jou administrasie daarop van ’n foon af doen nie. Die spyskaarte lyk anders as Microsoft Office en dit neem ’n week om daaraan gewoond te raak. Niks word gerugsteun tensy jy dit doen nie."
+          "v": "Swak punte: geen praktiese redigering op ’n selfoon nie. Daar is ’n Android-leser, maar jy sal nie jou administrasie daarop van ’n foon af doen nie. Die kieslyste lyk anders as Microsoft Office en dit neem ’n week om daaraan gewoond te raak. Niks word gerugsteun tensy jy dit doen nie."
         }
       ],
-      "hash": "762df25b1d5856f2",
+      "hash": "f3c36cb60e17fd02",
       "id": "libreoffice.3",
       "kind": "paragraph",
       "sourceHash": "ebe7b76cd1b38ff1"
@@ -426,10 +426,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Jy sal die meeste van jou administrasie op jou foon doen, tussen werke. Google werk daar. LibreOffice nie."
+          "v": "Jy sal die meeste van jou administrasie op jou foon doen, tussen werke. Google werk daar. LibreOffice werk nie daar nie."
         }
       ],
-      "hash": "3b7967fd59ee7177",
+      "hash": "50955c21938fcd25",
       "id": "the-recommendation.3",
       "kind": "paragraph",
       "sourceHash": "a9b59e9a03eed3e6"
@@ -450,10 +450,10 @@
       "c": [
         {
           "t": "text",
-          "v": "As jou skootrekenaar gesteel word of die hardeskyf gaan dood, stop jou besigheid nie. Dit is belangriker as enige funksie."
+          "v": "As jou skootrekenaar gesteel word of die hardeskyf doodgaan, stop jou besigheid nie. Dit is belangriker as enige funksie."
         }
       ],
-      "hash": "967e186c11a5f735",
+      "hash": "c932754883eea927",
       "id": "the-recommendation.5",
       "kind": "paragraph",
       "sourceHash": "9753292441ad7794"
@@ -765,10 +765,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Om in die eerste jaar vir rekeningkundige sagteware te betaal. ’n Sigblad en ’n vouer met gefotografeerde strokies is genoeg totdat jy verby ongeveer R500,000 omset is of voorraad het om by te hou."
+          "v": "Om in die eerste jaar vir rekeningkundige sagteware te betaal. ’n Sigblad en ’n vouer met gefotografeerde strokies is genoeg totdat jou omset verby ongeveer R500,000 is of jy voorraad het om by te hou."
         }
       ],
-      "hash": "0633cc5943fb2678",
+      "hash": "9d4f1888a0293ca5",
       "id": "what-to-avoid.2",
       "kind": "paragraph",
       "sourceHash": "46385c6097d654a6"
@@ -786,7 +786,7 @@
       "sourceHash": "754347a6a95eb3c4"
     }
   ],
-  "contentHash": "193ef1a3d9f895c8",
+  "contentHash": "227037e00f936c47",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -164,10 +164,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Ja. ’n Privaat maatskappy wat op BizPortal met die standaard-akte van oprigting geregistreer is, het onbeperkte oogmerke. Dit mag enige wettige besigheid bedryf. Jy hoef niks by CIPC te wysig om ’n nuwe bedrywigheid te begin nie."
+          "v": "Ja. ’n Privaat maatskappy wat op BizPortal met die standaard-akte van oprigting (MOI) geregistreer is, het onbeperkte oogmerke. Dit mag enige wettige besigheid bedryf. Jy hoef niks by CIPC te wysig om ’n nuwe bedrywigheid te begin nie."
         }
       ],
-      "hash": "b8a33a01ff8b15fb",
+      "hash": "8f242c24688f80d2",
       "id": "can-one-company-trade-in-more-than-one-thing.1",
       "kind": "paragraph",
       "sourceHash": "4fc14b12c324383e"
@@ -372,10 +372,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Wees bewus daarvan dat die Consumer Protection Act ook verwag dat ’n verskaffer onder sy geregistreerde naam handel dryf, of onder ’n besigheidsnaam wat kragtens artikel 80 van daardie Wet geregistreer is, en die artikel 80-register is nog nooit in werking gestel nie. Die algemene praktyk is die \"handeldrywende as\"-vermelding hierbo, wat die kliënt die inligting gee wat die wet probeer beskerm. Doen dit konsekwent, en jy is in die sterkste posisie wat beskikbaar is."
+          "v": "Wees bewus daarvan dat die Consumer Protection Act ook verwag dat ’n verskaffer onder sy geregistreerde naam handel dryf, of onder ’n besigheidsnaam wat kragtens artikel 80 van daardie Wet geregistreer is, en die artikel 80-register is nog nooit in werking gestel nie. Die universele praktyk is die \"handeldrywende as\"-vermelding hierbo, wat die kliënt die inligting gee wat die wet probeer beskerm. Doen dit konsekwent, en jy is in die sterkste posisie wat beskikbaar is."
         }
       ],
-      "hash": "4c03b43bb57e9980",
+      "hash": "d11efc1127fee40a",
       "id": "what-the-law-requires-either-way.4",
       "kind": "paragraph",
       "sourceHash": "3ca3f25578177537"
@@ -630,10 +630,10 @@
       "c": [
         {
           "t": "text",
-          "v": "’n Aparte maatskappy maak sin wanneer die nuwe lyn die eerste een kan laat sink as iets erg skeefloop, en wanneer daardie risiko groter is as die ekstra belasting wat jy sou betaal as jy die SBC-koerse verloor. ’n Voertuighandelaar wat ’n vervoer- of logistieke bedryf met swaar voertuie op die pad byvoeg, is die soort geval waar skeiding geregverdig kan wees. ’n Voertuighandelaar wat bandmontering byvoeg, is gewoonlik nie."
+          "v": "’n Aparte maatskappy maak sin wanneer die nuwe lyn die eerste een kan laat sink as iets erg skeefloop, en wanneer daardie risiko groter is as die ekstra belasting wat jy sou betaal as jy die SBC-koerse verloor. ’n Voertuighandelaar wat ’n vervoer- of logistieke bedryf met swaar voertuie op die pad byvoeg, is die soort geval waar skeiding geregverdig kan wees. ’n Voertuighandelaar wat bandmontering byvoeg, is gewoonlik nie so ’n geval nie."
         }
       ],
-      "hash": "f6f8d349dfb184a1",
+      "hash": "87b20b598365401d",
       "id": "when-splitting-is-still-worth-it.1",
       "kind": "paragraph",
       "sourceHash": "1fd738fc6e415b54"
@@ -905,7 +905,7 @@
       "sourceHash": "db3a15341570de7b"
     }
   ],
-  "contentHash": "f6086f8dd5b7cf5c",
+  "contentHash": "cfaff67177cad9fd",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

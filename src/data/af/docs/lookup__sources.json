@@ -731,10 +731,10 @@
         },
         {
           "t": "text",
-          "v": "Ondersteun: wanneer ’n mikrobesigheid kwalifiseer, die drempel van R2.3 miljoen vir jare van aanslag wat tussen 1 Maart 2026 en 28 Februarie 2027 eindig, ligter rekordhouding."
+          "v": "Ondersteun: wanneer ’n besigheid as ’n mikrobesigheid kwalifiseer, die drempel van R2.3 miljoen vir jare van aanslag wat tussen 1 Maart 2026 en 28 Februarie 2027 eindig, ligter rekordhouding."
         }
       ],
-      "hash": "4e589dd93b4ec747",
+      "hash": "c989f0af5ec9e07d",
       "id": "tax-and-sars.1",
       "kind": "paragraph",
       "sourceHash": "022260e6b47c6bb1"
@@ -1495,7 +1495,7 @@
       "sourceHash": "28846c1b3a7411a9"
     },
     {
-      "hash": "f2a38b5072f071c4",
+      "hash": "89c6a5f6f976f87a",
       "id": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
       "items": [
         [
@@ -1516,7 +1516,7 @@
           },
           {
             "t": "text",
-            "v": " — die tydperk van 30 werksdae vanaf die herdenking van inlywing, en dat fooie kragtens tabel CR 2B by wet vasgestel is."
+            "v": " — die tydperk van 30 werksdae vanaf die herdenkingsdatum van inlywing, en dat fooie kragtens tabel CR 2B by wet vasgestel is."
           }
         ],
         [
@@ -3316,7 +3316,7 @@
         },
         {
           "t": "text",
-          "v": " kragtens die Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 — General Hygiene Requirements for Food Premises, the Transport of Food and Related Matters. Dit het R962 vervang. Beskikbaar deur "
+          "v": " kragtens die Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 — General Hygiene Requirements for Food Premises, the Transport of Food and Related Matters. Dit het R962 vervang. Beskikbaar op "
         },
         {
           "c": [
@@ -3334,7 +3334,7 @@
           "v": "."
         }
       ],
-      "hash": "7d0e7e7d42a5f76f",
+      "hash": "8ae854bddba558b0",
       "id": "food-businesses.1",
       "kind": "paragraph",
       "sourceHash": "d80eeaf7466daa03"
@@ -3352,7 +3352,7 @@
         },
         {
           "t": "text",
-          "v": " — Labelling and Advertising of Foodstuffs. Beskikbaar deur "
+          "v": " — Labelling and Advertising of Foodstuffs. Beskikbaar op "
         },
         {
           "c": [
@@ -3370,7 +3370,7 @@
           "v": "."
         }
       ],
-      "hash": "5e6104da4a43088d",
+      "hash": "b63b03e6b5e4f283",
       "id": "food-businesses.2",
       "kind": "paragraph",
       "sourceHash": "92af0b39978cee1e"
@@ -3722,7 +3722,7 @@
       "sourceHash": "4f59438a81a5557d"
     },
     {
-      "hash": "57a42c29836a6f5d",
+      "hash": "cea19255d0566e86",
       "id": "working-from-home-payments-and-personal-safety.2",
       "items": [
         [
@@ -3778,7 +3778,7 @@
           },
           {
             "t": "text",
-            "v": "Ondersteun: dat vals note nie omgeruil kan word nie en by SAPS aangemeld moet word; dat net die SARB geldeenhede mag uitreik, kragtens artikel 14 van die SARB Act."
+            "v": "Ondersteun: dat vals note nie omgeruil kan word nie en by SAPS aangemeld moet word; dat net die SARB geld mag uitreik, kragtens artikel 14 van die SARB Act."
           }
         ]
       ],
@@ -3853,7 +3853,7 @@
       "sourceHash": "11c7a77e3237a2c2"
     },
     {
-      "hash": "0834416ecc882482",
+      "hash": "c5cf1bdc8044e6ba",
       "id": "working-from-home-payments-and-personal-safety.5",
       "items": [
         [
@@ -3895,7 +3895,7 @@
           },
           {
             "t": "text",
-            "v": " — dat banke hulle eie, laer limiete per transaksie en per dag stel, en dat betalings binne sekondes verreken word en na ’n gewone rekeningnommer kan gaan."
+            "v": " — dat banke hulle eie, laer limiete per transaksie en per dag stel, en dat betalings binne sekondes verreken word (clear) en na ’n gewone rekeningnommer kan gaan."
           }
         ],
         [
@@ -4444,7 +4444,7 @@
         },
         {
           "t": "text",
-          "v": " Small Claims Courts Act 61 of 1984, artikel 7(1) — net ’n natuurlike persoon mag ’n eis instel, en ’n regspersoon kan net as verweerder ’n party word. Gekonsolideerde teks: "
+          "v": " Small Claims Courts Act 61 of 1984, artikel 7(1) — net ’n natuurlike persoon mag ’n eis instel, en ’n regspersoon mag net as verweerder ’n party word. Gekonsolideerde teks: "
         },
         {
           "c": [
@@ -4504,10 +4504,10 @@
         },
         {
           "t": "text",
-          "v": "). ’n Aangewese direkteur of beampte mag verskyn vir ’n regspersoon wat ’n verweerder is. Die verjaringstermyn van drie jaar kom uit die oorsig van Werksmans."
+          "v": "). ’n Benoemde direkteur of beampte mag verskyn vir ’n regspersoon wat ’n verweerder is. Die verjaringstermyn van drie jaar kom uit die oorsig van Werksmans."
         }
       ],
-      "hash": "842175d3d0a566ec",
+      "hash": "c3b9300301ad0a0c",
       "id": "you-are-the-business-uif-coida-courts-and-continuity.3",
       "kind": "paragraph",
       "sourceHash": "b01318d35380c852"
@@ -5113,7 +5113,7 @@
       "sourceHash": "7dd4f142addf9213"
     }
   ],
-  "contentHash": "ce5639dbd9b1ebad",
+  "contentHash": "bcc8eba53e3eb789",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

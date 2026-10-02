@@ -123,7 +123,7 @@ Hou die sertifikaat teen die muur by die perseel, nie in ’n laai by die huis n
 
 ### As jy as ’n maatskappy handel dryf
 
-Jy het ’n Business Register Number Certificate (BRNC) nodig. Die volledige proses, dokumente, koste en die reëls oor die gevolmagtigde is in [Voertuie en jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
+Jy het ’n Business Register Number Certificate (BRNC) nodig. Die volledige proses, dokumente, koste en die reëls oor die gevolmagtigde is in [Voertuie vir jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
 
 Kort weergawe: eNaTIS identifiseer elke voertuigeienaar met ’n identiteitsnommer. ’n Maatskappy het nie een nie, so die registrasie-owerheid reik ’n besigheidsregisternommer aan die maatskappy uit die eerste keer dat dit ’n voertuig moet besit. Jy doen persoonlik aansoek by jou plaaslike verkeersdepartement met vorm ABR, en jy benoem ’n gevolmagtigde (proxy).
 
