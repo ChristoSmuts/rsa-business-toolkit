@@ -1,0 +1,641 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Gratis gereedskapstel vir een persoon wat ’n besigheid in Suid-Afrika begin en bestuur. Jy is die eienaar. Jy is ook die enigste werker."
+        }
+      ],
+      "hash": "28cafb504ff5bc87",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "4a0fa76e8b118f31"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Geskryf in eenvoudige taal vir lesers wat nie Engels as eerste taal praat nie, en vir mense wat nog nooit ’n besigheid bestuur het nie."
+        }
+      ],
+      "hash": "a6bd205985951534",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "ebfab643c555cbc0"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.3",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lees dit eerste"
+        }
+      ],
+      "depth": 2,
+      "hash": "4aa4d8609751479d",
+      "id": "read-this-first",
+      "kind": "heading",
+      "sourceHash": "f613515d00119b8c",
+      "text": "Lees dit eerste"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "’n KI-assistent (Claude, gemaak deur Anthropic) het hierdie gereedskapstel geskryf."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Elke fooi, drempel, vormnommer en wetlike vereiste daarin is op 13 September 2026 teen amptelike Suid-Afrikaanse bronne nagegaan, en daardie bronne word met skakels in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bronne- en verifikasieregister"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " gelys."
+        }
+      ],
+      "hash": "d12d6da6c0a030a9",
+      "id": "read-this-first.1",
+      "kind": "paragraph",
+      "sourceHash": "311f9e41a79e7b43"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "KI kan steeds verkeerd wees, en Suid-Afrikaanse reëls verander dikwels. Voordat jy geld betaal, iets teken of iets indien, maak die amptelike skakel in die bronnelêer oop en bevestig die getal self."
+        }
+      ],
+      "hash": "f029eb12bc69338e",
+      "id": "read-this-first.2",
+      "kind": "paragraph",
+      "sourceHash": "40e15c1596e89aa3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is algemene inligting. Dit is nie regsadvies, belastingadvies of finansiële advies nie. Die volle besonderhede is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Hoe dit gemaak is en hoe om dit na te gaan"
+            }
+          ],
+          "doc": "start/how-this-was-made",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "bcfd71ed359f2c95",
+      "id": "read-this-first.3",
+      "kind": "paragraph",
+      "sourceHash": "0024d23010bc41e2"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "read-this-first.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Waar om te begin"
+        }
+      ],
+      "depth": 2,
+      "hash": "1db3fa434c240aec",
+      "id": "where-to-start",
+      "kind": "heading",
+      "sourceHash": "814c4fe7786140d0",
+      "text": "Waar om te begin"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy 5 minute het: lees "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Kern: begin hier"
+            }
+          ],
+          "doc": "core/start-here",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "50133fd4caaeae46",
+      "id": "where-to-start.1",
+      "kind": "paragraph",
+      "sourceHash": "6d6c6e4788001187"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n uur het: lees die hele "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ", en maak dan jou besigheidstipe in "
+        },
+        {
+          "label": "04-business-types/",
+          "section": "business-types",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " oop."
+        }
+      ],
+      "hash": "4256d745a92a4410",
+      "id": "where-to-start.2",
+      "kind": "paragraph",
+      "sourceHash": "3c200e071590ce7a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy reeds weet wat jy nodig het en dit net wil doen: maak die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Hoofkontrolelys"
+            }
+          ],
+          "doc": "lookup/checklist",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " oop."
+        }
+      ],
+      "hash": "c868e059e00206ae",
+      "id": "where-to-start.3",
+      "kind": "paragraph",
+      "sourceHash": "30f5272589d6d2cb"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n woord of ’n afkorting nie verstaan nie: "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "874f3644b98eb034",
+      "id": "where-to-start.4",
+      "kind": "paragraph",
+      "sourceHash": "bd54a38c505110d6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die volle instruksies is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Hoe om hierdie gereedskapstel te gebruik"
+            }
+          ],
+          "doc": "start/how-to-use",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "ffc403bc4c0880e3",
+      "id": "where-to-start.5",
+      "kind": "paragraph",
+      "sourceHash": "c847f6e22cf836c7"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "where-to-start.6",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat hierin is"
+        }
+      ],
+      "depth": 2,
+      "hash": "7a35a861e3ed64c5",
+      "id": "what-is-in-here",
+      "kind": "heading",
+      "sourceHash": "f4cf83f639a3d532",
+      "text": "Wat hierin is"
+    },
+    {
+      "hash": "2b4ea101ce637a32",
+      "id": "what-is-in-here.1",
+      "kind": "toc",
+      "sourceHash": "2b4ea101ce637a32"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "what-is-in-here.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die kort weergawe van die hele gereedskapstel"
+        }
+      ],
+      "depth": 2,
+      "hash": "dc947379404dcf6c",
+      "id": "the-short-version-of-the-whole-toolkit",
+      "kind": "heading",
+      "sourceHash": "4221055bf935a6f8",
+      "text": "Die kort weergawe van die hele gereedskapstel"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het nie die meeste dinge nodig wat mense vir jou sê om te kry nie."
+        }
+      ],
+      "hash": "f99f890d15d44888",
+      "id": "the-short-version-of-the-whole-toolkit.1",
+      "kind": "paragraph",
+      "sourceHash": "aba80cca9448ebf5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy kan vandag wettig begin verkoop, as jouself, sonder maatskappyregistrasie, sonder ’n logo en sonder ’n webwerf. Verdien eers geld. Voeg die formele dele by soos die besigheid groei."
+        }
+      ],
+      "hash": "5c0e33ad5da634a8",
+      "id": "the-short-version-of-the-whole-toolkit.2",
+      "kind": "paragraph",
+      "sourceHash": "c0475096793d5bd6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die vier dinge wat vroeg regtig saak maak:"
+        }
+      ],
+      "hash": "b81b581c15fa3cec",
+      "id": "the-short-version-of-the-whole-toolkit.3",
+      "kind": "paragraph",
+      "sourceHash": "1524d6145092c707"
+    },
+    {
+      "hash": "8c6390a7740c9ccc",
+      "id": "the-short-version-of-the-whole-toolkit.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "’n Aparte bankrekening vir besigheidsgeld"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Indiening by SARS, selfs met nul inkomste"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Lisensie, as jou besigheidstipe een nodig het, voordat jy handel dryf"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Rekords wat vir vyf jaar gehou word"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "9d8d8f4a674cf3ac",
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Drie getalle het in 2026 verander, en die meeste webwerwe het hulle nog verkeerd:"
+        }
+      ],
+      "hash": "8305a583aaa74c07",
+      "id": "the-short-version-of-the-whole-toolkit.5",
+      "kind": "paragraph",
+      "sourceHash": "2884abbae48997e1"
+    },
+    {
+      "hash": "9fc4c7daba55e991",
+      "id": "the-short-version-of-the-whole-toolkit.6",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Verpligte BTW-registrasie: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "R2.3 miljoen"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", nie R1 miljoen nie, vanaf 1 April 2026"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Vrywillige BTW-registrasie: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "R120,000"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", nie R50,000 nie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Omsetbelasting: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "R2.3 miljoen"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": "-drempel, met "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "0% op die eerste R600,000"
+              }
+            ],
+            "t": "strong"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "32627a6aa5641c24"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "the-short-version-of-the-whole-toolkit.7",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lisensie"
+        }
+      ],
+      "depth": 2,
+      "hash": "c6ea0678af5b943b",
+      "id": "licence",
+      "kind": "heading",
+      "sourceHash": "cf503560f03e932c",
+      "text": "Lisensie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hierdie gids is kragtens "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "CC0 1.0"
+            }
+          ],
+          "external": true,
+          "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " aan die publieke domein toegewy. Gebruik dit, kopieer dit, verander dit, gee dit vir iemand anders, vir enige doel. Geen erkenning word vereis nie."
+        }
+      ],
+      "hash": "63e4094f37b98a20",
+      "id": "licence.1",
+      "kind": "paragraph",
+      "sourceHash": "10f9b244b6f0e356"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy dit aangee, hou asseblief "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Hoe dit gemaak is en hoe om dit na te gaan"
+            }
+          ],
+          "doc": "start/how-this-was-made",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " en die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bronne- en verifikasieregister"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " daarby, sodat die volgende persoon weet hoe dit gemaak is en die feite kan nagaan."
+        }
+      ],
+      "hash": "08943d9ac33b5750",
+      "id": "licence.2",
+      "kind": "paragraph",
+      "sourceHash": "362e5b12722137bc"
+    }
+  ],
+  "contentHash": "59262acdd9cd5a49",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Suid-Afrikaanse gereedskapstel vir klein besighede",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "read-this-first",
+      "text": "Lees dit eerste"
+    },
+    {
+      "depth": 2,
+      "id": "where-to-start",
+      "text": "Waar om te begin"
+    },
+    {
+      "depth": 2,
+      "id": "what-is-in-here",
+      "text": "Wat hierin is"
+    },
+    {
+      "depth": 2,
+      "id": "the-short-version-of-the-whole-toolkit",
+      "text": "Die kort weergawe van die hele gereedskapstel"
+    },
+    {
+      "depth": 2,
+      "id": "licence",
+      "text": "Lisensie"
+    }
+  ],
+  "id": "start/start-here",
+  "kind": "guide",
+  "lang": "af",
+  "order": 1,
+  "readingTime": 2,
+  "related": [
+    "start/how-this-was-made",
+    "core/start-here",
+    "start/how-to-use"
+  ],
+  "route": "start/start-here/",
+  "section": "start",
+  "slug": "start-here",
+  "sourceNote": {
+    "reason": "An orientation page: its headline figures are stated and sourced in the documents it points to.",
+    "see": [
+      "lookup/sources",
+      "start/how-this-was-made"
+    ]
+  },
+  "sourcePath": "00 Start here/00-start-here.md",
+  "sources": {
+    "acts": [],
+    "entries": []
+  },
+  "summary": "’n Gratis gereedskapstel vir een persoon wat ’n besigheid in Suid-Afrika begin en bestuur. Jy is die eienaar. Jy is ook die enigste werker.",
+  "tags": [
+    "orientation"
+  ],
+  "terms": [],
+  "title": "Begin hier",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

@@ -1,0 +1,3185 @@
+{
+  "acts": [
+    {
+      "appearsIn": [
+        "core/tax-and-sars"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Inkomstebelasting, voorlopige belasting, omsetbelasting (Sesde Bylae), kleinsakekorporasies (s12E), omheining van vasgestelde verliese (s20A)"
+        }
+      ],
+      "id": "income-tax-act-58-of-1962",
+      "name": "Income Tax Act 58 of 1962"
+    },
+    {
+      "appearsIn": [
+        "core/tax-and-sars",
+        "paperwork/which-template-to-use-when",
+        "business-types/vehicle-dealer"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "BTW-registrasie, belastingfakture (s20), nosionele insetbelasting op tweedehandse goedere (s20(8))"
+        }
+      ],
+      "id": "value-added-tax-act-89-of-1991",
+      "name": "Value-Added Tax Act 89 of 1991"
+    },
+    {
+      "appearsIn": [
+        "core/register"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Maatskappyregistrasie, direkteure, jaarlikse opgawes, voordelige eienaarskap"
+        }
+      ],
+      "id": "companies-act-71-of-2008",
+      "name": "Companies Act 71 of 2008"
+    },
+    {
+      "appearsIn": [
+        "core/what-you-need-to-sell-things",
+        "business-types/vehicle-dealer",
+        "business-types/food",
+        "business-types/beauty",
+        "business-types/retail-online",
+        "business-types/services-trades",
+        "business-types/professional-creative"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Verbruikersregte, geïmpliseerde waarborg van gehalte (s55, s56), eenvoudige taal, kansellasie (s16, s17)"
+        }
+      ],
+      "id": "consumer-protection-act-68-of-2008",
+      "name": "Consumer Protection Act 68 of 2008"
+    },
+    {
+      "appearsIn": [
+        "core/what-you-need-to-sell-things",
+        "business-types/retail-online"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Aanlynverkope: openbaarmaking (s43), afkoelperiode (s44), nakoming (s46), toepassingsgebied (s42)"
+        }
+      ],
+      "id": "electronic-communications-and-transactions-act-25-of-2002",
+      "name": "Electronic Communications and Transactions Act 25 of 2002"
+    },
+    {
+      "appearsIn": [
+        "core/register",
+        "paperwork/which-template-to-use-when"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Databeskerming, registrasie van die inligtingsbeampte (s55)"
+        }
+      ],
+      "id": "protection-of-personal-information-act-4-of-2013",
+      "name": "Protection of Personal Information Act 4 of 2013"
+    },
+    {
+      "appearsIn": [
+        "core/what-you-need-to-sell-things",
+        "business-types/food",
+        "business-types/beauty"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Munisipale handelslisensies vir kos-, gesondheids- en vermaaklikheidsbesighede"
+        }
+      ],
+      "id": "businesses-act-71-of-1991",
+      "name": "Businesses Act 71 of 1991"
+    },
+    {
+      "appearsIn": [
+        "business-types/food",
+        "business-types/beauty"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Koshigiëne (R638 of 2018), etikettering van kos (R146 of 2012), skoonheidsmiddels"
+        }
+      ],
+      "id": "foodstuffs-cosmetics-and-disinfectants-act-54-of-1972",
+      "name": "Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972"
+    },
+    {
+      "appearsIn": [
+        "business-types/vehicle-dealer",
+        "business-types/retail-online"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Registrasie van handelaars by SAPS, transaksieregisters, rekords van motorvoertuie"
+        }
+      ],
+      "id": "second-hand-goods-act-6-of-2009",
+      "name": "Second-Hand Goods Act 6 of 2009"
+    },
+    {
+      "appearsIn": [
+        "core/vehicles",
+        "business-types/vehicle-dealer"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Voertuigregistrasie, besigheidsregisternommers, motorhandelnommers, padwaardigheid"
+        }
+      ],
+      "id": "national-road-traffic-act-93-of-1996",
+      "name": "National Road Traffic Act 93 of 1996"
+    },
+    {
+      "appearsIn": [
+        "business-types/vehicle-dealer"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Registrasie van kredietverskaffers by die NCR"
+        }
+      ],
+      "id": "national-credit-act-34-of-2005",
+      "name": "National Credit Act 34 of 2005"
+    },
+    {
+      "appearsIn": [
+        "business-types/vehicle-dealer",
+        "business-types/professional-creative"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "FSP-lisensiëring vir finansiële produkte en advies"
+        }
+      ],
+      "id": "financial-advisory-and-intermediary-services-act-37-of-2002",
+      "name": "Financial Advisory and Intermediary Services Act 37 of 2002"
+    },
+    {
+      "appearsIn": [
+        "core/register"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "EME- en QSE-drempels, beëdigde verklarings"
+        }
+      ],
+      "id": "broad-based-black-economic-empowerment-act-53-of-2003",
+      "name": "Broad-Based Black Economic Empowerment Act 53 of 2003"
+    },
+    {
+      "appearsIn": [
+        "business-types/services-trades"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Pligte vir veiligheid by die werkplek en in konstruksie"
+        }
+      ],
+      "id": "occupational-health-and-safety-act-85-of-1993",
+      "name": "Occupational Health and Safety Act 85 of 1993"
+    }
+  ],
+  "checkedOn": "2026-09-13",
+  "doc": "lookup/sources",
+  "entries": [
+    {
+      "block": "tax-and-sars.1",
+      "group": "Belasting en SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--turnover-tax",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "wanneer ’n besigheid as ’n mikrobesigheid kwalifiseer, die drempel van R2.3 miljoen vir jare van aanslag wat tussen 1 Maart 2026 en 28 Februarie 2027 eindig, ligter rekordhouding."
+        }
+      ],
+      "title": "SARS — Omsetbelasting",
+      "type": "web",
+      "url": "https://www.sars.gov.za/types-of-tax/turnover-tax/",
+      "urls": [
+        "https://www.sars.gov.za/types-of-tax/turnover-tax/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.2",
+      "group": "Belasting en SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--budget-2026-frequently-asked-questions",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die verhoging van die omsetbelastingdrempel na R2.3 miljoen; omsetbelasting wat inkomstebelasting, BTW, voorlopige belasting, kapitaalwinsbelasting en dividendbelasting vervang; BTW-drempels van R2.3 miljoen (verpligtend) en R120,000 (vrywillig) vanaf 1 April 2026; SARS se rentekoers van 10.25% op laat betaling vanaf 2 Maart 2026."
+        }
+      ],
+      "title": "SARS — Begroting 2026: gereelde vrae",
+      "type": "web",
+      "url": "https://www.sars.gov.za/about/sars-tax-and-customs-system/budget/budget-2026-frequently-asked-questions/",
+      "urls": [
+        "https://www.sars.gov.za/about/sars-tax-and-customs-system/budget/budget-2026-frequently-asked-questions/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.3",
+      "group": "Belasting en SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--what-is-the-new-threshold-for-vat-registration",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die drempel vir verpligte BTW-registrasie het op 1 April 2026 van R1 miljoen na R2.3 miljoen gestyg."
+        }
+      ],
+      "title": "SARS — Wat is die nuwe drempel vir BTW-registrasie?",
+      "type": "web",
+      "url": "https://www.sars.gov.za/faq/what-is-the-new-threshold-for-vat-registration/",
+      "urls": [
+        "https://www.sars.gov.za/faq/what-is-the-new-threshold-for-vat-registration/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.4",
+      "group": "Belasting en SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--tax-calendar",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "IRP6-datums van 31 Augustus, 28 Februarie en 30 September; EMP201 verskuldig teen die 7de van die volgende maand, of die werksdag daarvoor as die 7de op ’n naweek of openbare vakansiedag val; EMP501 se tussentydse seisoen 1 September tot 31 Oktober en jaarlikse seisoen 1 April tot 31 Mei."
+        }
+      ],
+      "title": "SARS — Belastingkalender",
+      "type": "web",
+      "url": "https://www.sars.gov.za/individuals/i-need-help-with-my-tax/calendar/",
+      "urls": [
+        "https://www.sars.gov.za/individuals/i-need-help-with-my-tax/calendar/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.6",
+      "group": "Belasting en SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--guide-to-provisional-tax",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "twee voorlopige betalings per jaar, die opsionele derde aanvullende betaling, en dat ’n nul-IRP6 steeds ingedien kan word."
+        }
+      ],
+      "title": "SARS — Guide to Provisional Tax",
+      "type": "web",
+      "url": "https://www.sars.gov.za/guide-to-provisional-tax/",
+      "urls": [
+        "https://www.sars.gov.za/guide-to-provisional-tax/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.7",
+      "group": "Belasting en SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--tax-invoice-checklist",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die sewe vereistes vir ’n volledige belastingfaktuur bo R5,000 en die vyf vereistes vir ’n verkorte belastingfaktuur tussen R50 en R5,000."
+        }
+      ],
+      "title": "SARS — Tax Invoice Checklist",
+      "type": "web",
+      "url": "https://www.sars.gov.za/wp-content/uploads/Docs/Government/Tax-Invoice-Checklist-Version-2-29032016.pdf",
+      "urls": [
+        "https://www.sars.gov.za/wp-content/uploads/Docs/Government/Tax-Invoice-Checklist-Version-2-29032016.pdf"
+      ]
+    },
+    {
+      "block": "tax-and-sars.8",
+      "group": "Belasting en SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--vat-420-guide-for-motor-dealers",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die berekening van nosionele insetbelasting vir motorhandelaars, die VAT264-vereiste, en Binding General Ruling 12 oor oorwaardasies (over-allowances). Lees dit volledig voordat jy ’n handelaarsbesigheid vir BTW registreer."
+        }
+      ],
+      "title": "SARS — VAT 420 Guide for Motor Dealers",
+      "type": "web",
+      "url": "https://www.sars.gov.za/wp-content/uploads/Ops/Guides/Legal-Pub-Guide-VAT420-VAT-420-Guide-for-Motor-Dealers.pdf",
+      "urls": [
+        "https://www.sars.gov.za/wp-content/uploads/Ops/Guides/Legal-Pub-Guide-VAT420-VAT-420-Guide-for-Motor-Dealers.pdf"
+      ]
+    },
+    {
+      "block": "tax-and-sars.9",
+      "group": "Belasting en SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--vat-connect-issue-20-october-2025",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die uitgewerkte voorbeeld van nosionele insetbelasting (aankoop van R115,000, nosionele inset van R15,000, R3,000 BTW op ’n marge van R20,000)."
+        }
+      ],
+      "title": "SARS — VAT Connect uitgawe 20, Oktober 2025",
+      "type": "web",
+      "url": "https://www.sars.gov.za/businesses-and-employers/my-business-and-tax/vat-connect-issue-20-october-2025/",
+      "urls": [
+        "https://www.sars.gov.za/businesses-and-employers/my-business-and-tax/vat-connect-issue-20-october-2025/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.10",
+      "group": "Belasting en SARS",
+      "groupId": "tax-and-sars",
+      "id": "sars--vat-264-declaration-for-the-supply-of-second-hand-goods",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die verklaringsvorm wat van die koper en die verkoper albei vereis word vir ’n eis vir nosionele insetbelasting."
+        }
+      ],
+      "title": "SARS — VAT 264-verklaring vir die lewering van tweedehandse goedere",
+      "type": "web",
+      "url": "https://www.sars.gov.za/wp-content/uploads/Docs/VAT/VAT-264-declaration-for-the-supply-of-second-hand-goods-external-form.pdf",
+      "urls": [
+        "https://www.sars.gov.za/wp-content/uploads/Docs/VAT/VAT-264-declaration-for-the-supply-of-second-hand-goods-external-form.pdf"
+      ]
+    },
+    {
+      "block": "tax-and-sars.12",
+      "group": "Belasting en SARS",
+      "groupId": "tax-and-sars",
+      "id": "xero-za-sars-tax-tables-20262027",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "belastingdrempels van R99,000 (jonger as 65), R153,250 (65 tot 74), R171,300 (75+); die perk op aftreebydraes van R430,000."
+        }
+      ],
+      "title": "Xero ZA, SARS Tax Tables 2026/2027",
+      "type": "web",
+      "url": "https://www.xero.com/za/guides/sars-tax-tables-2026/",
+      "urls": [
+        "https://www.xero.com/za/guides/sars-tax-tables-2026/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.12",
+      "group": "Belasting en SARS",
+      "groupId": "tax-and-sars",
+      "id": "sait-turnover-tax-vs-sbc",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "uitgewerkte voorbeeld van ’n omset van R800,000 wat R2,000 omsetbelasting oplewer."
+        }
+      ],
+      "title": "SAIT, Turnover Tax vs SBC",
+      "type": "web",
+      "url": "https://thesait.org.za/small-business-tax-in-south-africa-turnover-tax-vs-sbc/",
+      "urls": [
+        "https://thesait.org.za/small-business-tax-in-south-africa-turnover-tax-vs-sbc/"
+      ]
+    },
+    {
+      "block": "tax-and-sars.12",
+      "group": "Belasting en SARS",
+      "groupId": "tax-and-sars",
+      "id": "cliffe-dekker-hofmeyr-2026-budget-summary-vat",
+      "item": 2,
+      "official": false,
+      "title": "Cliffe Dekker Hofmeyr, 2026 Budget summary VAT",
+      "type": "web",
+      "url": "https://www.cliffedekkerhofmeyr.com/en/news/publications/2026/South-Africa/Tax-Exchange-Control/Tax-and-Exchange-Control-25-February-2026-Budget-summary-VAT",
+      "urls": [
+        "https://www.cliffedekkerhofmeyr.com/en/news/publications/2026/South-Africa/Tax-Exchange-Control/Tax-and-Exchange-Control-25-February-2026-Budget-summary-VAT"
+      ]
+    },
+    {
+      "block": "company-registration.1",
+      "group": "Maatskappyregistrasie",
+      "groupId": "company-registration",
+      "id": "bizportal-cipc--company-registration",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "R125 vir die registrasie van ’n privaat maatskappy, R50 vir een tot vier voorgestelde name, outomatiese belastingregistrasie, die opsie om die registrasienommer as naam te gebruik."
+        }
+      ],
+      "title": "BizPortal (CIPC) — Maatskappyregistrasie",
+      "type": "web",
+      "url": "https://www.bizportal.gov.za/company_reg.aspx",
+      "urls": [
+        "https://www.bizportal.gov.za/company_reg.aspx"
+      ]
+    },
+    {
+      "block": "company-registration.2",
+      "group": "Maatskappyregistrasie",
+      "groupId": "company-registration",
+      "id": "cipc",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "registrasiefooie van R125 tot R475, afhangende van die soort maatskappy."
+        }
+      ],
+      "title": "CIPC",
+      "type": "web",
+      "url": "https://www.cipc.co.za/",
+      "urls": [
+        "https://www.cipc.co.za/"
+      ]
+    },
+    {
+      "block": "company-registration.4",
+      "group": "Maatskappyregistrasie",
+      "groupId": "company-registration",
+      "id": "govchain-how-to-register-a-company-directly-with-cipc",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die totaal van R175, dat die CoR 14.3 en die akte van oprigting (MOI) per e-pos aankom, en dat die ID-kontrole van Home Affairs (Binnelandse Sake) misluk as een syfer verkeerd is."
+        }
+      ],
+      "title": "Govchain, How to register a company directly with CIPC",
+      "type": "web",
+      "url": "https://www.govchain.co.za/blog/how-to-register-a-company-directly-with-cipc",
+      "urls": [
+        "https://www.govchain.co.za/blog/how-to-register-a-company-directly-with-cipc"
+      ]
+    },
+    {
+      "block": "company-registration.4",
+      "group": "Maatskappyregistrasie",
+      "groupId": "company-registration",
+      "id": "smartbook-cost-to-register-a-company",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die realistiese skattings van die nakomingskoste in die eerste jaar en daarna. Behandel dit as een firma se skatting, nie as ’n vaste syfer nie."
+        }
+      ],
+      "title": "Smartbook, cost to register a company",
+      "type": "web",
+      "url": "https://www.smartbookie.co.za/blog/cost-to-register-a-company-south-africa",
+      "urls": [
+        "https://www.smartbookie.co.za/blog/cost-to-register-a-company-south-africa"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.1",
+      "group": "Bestuur van ’n Pty Ltd: jaarlikse opgawes, finansiële state, direkteure",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "cipc--annual-returns-filing-system",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Waar jaarlikse opgawes ingedien word. Jy het ’n CIPC-kliëntkode nodig."
+        }
+      ],
+      "supportsFrom": "note",
+      "title": "CIPC — Stelsel vir die indiening van jaarlikse opgawes",
+      "type": "web",
+      "url": "https://annualreturns.cipc.co.za",
+      "urls": [
+        "https://annualreturns.cipc.co.za"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.2",
+      "group": "Bestuur van ’n Pty Ltd: jaarlikse opgawes, finansiële state, direkteure",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "cipc--financial-statements-and-independent-reviews",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "watter maatskappye ’n oudit nodig het, watter ’n onafhanklike oorsig nodig het, en die rol van die Public Interest Score (openbare-belangtelling) en van interne teenoor onafhanklike samestelling."
+        }
+      ],
+      "title": "CIPC — Finansiële state en onafhanklike oorsigte",
+      "type": "web",
+      "url": "https://www.cipc.co.za/?page_id=11891",
+      "urls": [
+        "https://www.cipc.co.za/?page_id=11891"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.3",
+      "group": "Bestuur van ’n Pty Ltd: jaarlikse opgawes, finansiële state, direkteure",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "saica--independent-reviews",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "onafhanklike oorsigte word nie vir eienaarbestuurde winsmaatskappye vereis nie, en wie ’n oorsig op elke PIS-vlak mag doen."
+        }
+      ],
+      "title": "SAICA — Onafhanklike oorsigte",
+      "type": "web",
+      "url": "https://www.saica.org.za/resources/audit-and-assurance/technical-resource/video-and-recording/other-assurance-and-related-services/independent-reviews/",
+      "urls": [
+        "https://www.saica.org.za/resources/audit-and-assurance/technical-resource/video-and-recording/other-assurance-and-related-services/independent-reviews/"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
+      "group": "Bestuur van ’n Pty Ltd: jaarlikse opgawes, finansiële state, direkteure",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "govchain-company-annual-returns",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die tydperk van 30 werksdae vanaf die herdenkingsdatum van inlywing, en dat fooie kragtens tabel CR 2B by wet vasgestel is."
+        }
+      ],
+      "title": "Govchain, Company annual returns",
+      "type": "web",
+      "url": "https://www.govchain.co.za/services/company-annual-returns",
+      "urls": [
+        "https://www.govchain.co.za/services/company-annual-returns"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
+      "group": "Bestuur van ’n Pty Ltd: jaarlikse opgawes, finansiële state, direkteure",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "admin-boss",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die fooie van R100 tot R3,000 as jy betyds is en R150 tot R4,000 as jy laat is, en die volgorde en skatting van die tydlyn vir deregistrasie by SARS."
+        }
+      ],
+      "title": "Admin Boss",
+      "type": "web",
+      "url": "https://www.adminboss.co.za/cipc-compliance-south-africa-annual-returns-beneficial-ownership-sars-deregistration/",
+      "urls": [
+        "https://www.adminboss.co.za/cipc-compliance-south-africa-annual-returns-beneficial-ownership-sars-deregistration/"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
+      "group": "Bestuur van ’n Pty Ltd: jaarlikse opgawes, finansiële state, direkteure",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "ourpower",
+      "item": 2,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die harde stop vir voordelige eienaarskap sedert 1 Julie 2024, die sneller vir deregistrasie ná twee jaar, en die verskil in koste tussen herstel ná deregistrasie weens jaarlikse opgawes (AR) en herstel ná finale deregistrasie."
+        }
+      ],
+      "title": "OurPower",
+      "type": "web",
+      "url": "https://www.ourpower.co.za/tools/company-registration/annual-return-cipc-explained",
+      "urls": [
+        "https://www.ourpower.co.za/tools/company-registration/annual-return-cipc-explained"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
+      "group": "Bestuur van ’n Pty Ltd: jaarlikse opgawes, finansiële state, direkteure",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "thrivecfo",
+      "item": 3,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die gevolge van deregistrasie, insluitend bona vacantia, en herstel met vorm CoR 40.5."
+        }
+      ],
+      "title": "ThriveCFO",
+      "type": "web",
+      "url": "https://thrivecfo.co.za/cipc-annual-returns-avoid-deregistration-2026/",
+      "urls": [
+        "https://thrivecfo.co.za/cipc-annual-returns-avoid-deregistration-2026/"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
+      "group": "Bestuur van ’n Pty Ltd: jaarlikse opgawes, finansiële state, direkteure",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "clearcomply-public-interest-score",
+      "item": 4,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die grens vir eienaarbestuurde maatskappye, en waarom een aandeelhouer wat nie ’n direkteur is nie, die verpligting verander."
+        }
+      ],
+      "title": "ClearComply, Public Interest Score",
+      "type": "web",
+      "url": "https://www.clearcomply.co.za/blog/public-interest-score-south-africa",
+      "urls": [
+        "https://www.clearcomply.co.za/blog/public-interest-score-south-africa"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
+      "group": "Bestuur van ’n Pty Ltd: jaarlikse opgawes, finansiële state, direkteure",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "cfo360-pis-calculator",
+      "item": 5,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "hoe die punte getel word en die vrystelling vir eienaarbestuurde maatskappye onder 100."
+        }
+      ],
+      "title": "CFO360, PIS calculator",
+      "type": "web",
+      "url": "https://cfo360.co.za/public-interest-score-calculator/",
+      "urls": [
+        "https://cfo360.co.za/public-interest-score-calculator/"
+      ]
+    },
+    {
+      "block": "running-a-pty-ltd-annual-returns-financial-statements-directors.6",
+      "group": "Bestuur van ’n Pty Ltd: jaarlikse opgawes, finansiële state, direkteure",
+      "groupId": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "id": "elyforma",
+      "item": 6,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die Financial Accountability Supplement as alternatief vir state."
+        }
+      ],
+      "title": "ElyForma",
+      "type": "web",
+      "url": "https://www.elyforma.com/blog/company-annual-returns-guide-2026",
+      "urls": [
+        "https://www.elyforma.com/blog/company-annual-returns-guide-2026"
+      ]
+    },
+    {
+      "block": "paying-yourself-from-a-company.1",
+      "group": "Betaal jouself uit ’n maatskappy",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "sars--comprehensive-guide-to-dividends-tax",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die bepalings oor geagte dividende in artikel 64E(4), insluitend die aard en bedrag van die geagte dividend en die datum waarop dit geag word betaal te wees. Lees dit voordat jy op enige debiet-leningsrekening optree."
+        }
+      ],
+      "title": "SARS — Comprehensive Guide to Dividends Tax",
+      "type": "web",
+      "url": "https://www.sars.gov.za/wp-content/uploads/Ops/Guides/LAPD-IT-G19-Comprehensive-Guide-to-Dividends-Tax.pdf",
+      "urls": [
+        "https://www.sars.gov.za/wp-content/uploads/Ops/Guides/LAPD-IT-G19-Comprehensive-Guide-to-Dividends-Tax.pdf"
+      ]
+    },
+    {
+      "block": "paying-yourself-from-a-company.2",
+      "group": "Betaal jouself uit ’n maatskappy",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "sars--budget-2026-faq",
+      "noUrlReason": "The register says (as above): it is the SARS Budget 2026 FAQ page already listed under Tax and SARS, so the link is not repeated.",
+      "official": true,
+      "qualifier": [
+        {
+          "t": "text",
+          "v": "(soos hierbo)"
+        }
+      ],
+      "supports": [
+        {
+          "t": "text",
+          "v": "die amptelike rentekoers vir die byvoordeel op rentevrye lenings of lenings teen ’n lae rente, 7.75% per jaar vanaf 1 Desember 2025."
+        }
+      ],
+      "title": "SARS — Begroting 2026: gereelde vrae",
+      "type": "citation",
+      "urls": []
+    },
+    {
+      "block": "paying-yourself-from-a-company.6",
+      "group": "Betaal jouself uit ’n maatskappy",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "polity--ensafrica-directors-of-private-companies-and-paye",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "bevestig dat paragraaf 11C met ingang van 1 Maart 2017 herroep is, en dat artikel 7B die tydsberekening van veranderlike vergoeding reël."
+        }
+      ],
+      "title": "Polity / ENSafrica, Directors of private companies and PAYE",
+      "type": "web",
+      "url": "https://www.polity.org.za/article/directors-of-private-companies-are-no-longer-subject-to-paye---true-or-false-2018-09-25",
+      "urls": [
+        "https://www.polity.org.za/article/directors-of-private-companies-are-no-longer-subject-to-paye---true-or-false-2018-09-25"
+      ]
+    },
+    {
+      "block": "paying-yourself-from-a-company.6",
+      "group": "Betaal jouself uit ’n maatskappy",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "simplepay-deemed-remuneration",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "bevestig dat geagte vergoeding vanaf 1 Maart 2017 nie meer gebruik behoort te word nie en dat direkteure op hulle werklike vergoeding belas word."
+        }
+      ],
+      "title": "SimplePay, Deemed Remuneration",
+      "type": "web",
+      "url": "https://www.simplepay.co.za/help/payroll-concepts/deemed-remuneration/",
+      "urls": [
+        "https://www.simplepay.co.za/help/payroll-concepts/deemed-remuneration/"
+      ]
+    },
+    {
+      "block": "paying-yourself-from-a-company.6",
+      "group": "Betaal jouself uit ’n maatskappy",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "the-tax-faculty-dividends-interest-on-loan",
+      "item": 3,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "dat die kapitaal van ’n debietlening nie self ’n geagte dividend is nie, net die rentetekort."
+        }
+      ],
+      "title": "The Tax Faculty, Dividends interest on loan",
+      "type": "web",
+      "url": "https://taxfaculty.ac.za/news/read/dividends-interest-on-loan",
+      "urls": [
+        "https://taxfaculty.ac.za/news/read/dividends-interest-on-loan"
+      ]
+    },
+    {
+      "block": "paying-yourself-from-a-company.6",
+      "group": "Betaal jouself uit ’n maatskappy",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "mms-cloud-accounting",
+      "item": 4,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die drie maniere om ’n debiet-leningsrekening voor die einde van die jaar te vereffen."
+        }
+      ],
+      "title": "MMS Cloud Accounting",
+      "type": "web",
+      "url": "https://www.mmscloudaccounting.co.za/on-the-right-side-of-directors-loan-accounts/",
+      "urls": [
+        "https://www.mmscloudaccounting.co.za/on-the-right-side-of-directors-loan-accounts/"
+      ]
+    },
+    {
+      "block": "paying-yourself-from-a-company.6",
+      "group": "Betaal jouself uit ’n maatskappy",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "the-beancounter",
+      "item": 5,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "praktiese tydsberekening, en waarom dit te laat is om vir die finansiële state te wag."
+        }
+      ],
+      "title": "The Beancounter",
+      "type": "web",
+      "url": "https://thebeancounter.co.za/dear-director-hows-your-loan-account-looking/",
+      "urls": [
+        "https://thebeancounter.co.za/dear-director-hows-your-loan-account-looking/"
+      ]
+    },
+    {
+      "block": "paying-yourself-from-a-company.6",
+      "group": "Betaal jouself uit ’n maatskappy",
+      "groupId": "paying-yourself-from-a-company",
+      "id": "govchain",
+      "item": 6,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die risiko wanneer ’n lening afgeskryf word."
+        }
+      ],
+      "title": "Govchain",
+      "type": "web",
+      "url": "https://www.govchain.co.za/blog/the-best-way-to-pay-yourself-as-a-company-owner",
+      "urls": [
+        "https://www.govchain.co.za/blog/the-best-way-to-pay-yourself-as-a-company-owner"
+      ]
+    },
+    {
+      "block": "b-bbee.1",
+      "group": "B-BBEE",
+      "groupId": "b-bbee",
+      "id": "b-bbee-commission--frequently-asked-questions",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die EME-drempel onder R10 miljoen, outomaties Vlak 4, Vlak 2 by 51% swart eienaarskap, Vlak 1 by 100%, ’n beëdigde verklaring of CIPC-sertifikaat as voldoende bewys."
+        }
+      ],
+      "title": "B-BBEE Commission — Gereelde vrae",
+      "type": "web",
+      "url": "https://www.bbbeecommission.co.za/frequently-asked-questions/category/general-principles/",
+      "urls": [
+        "https://www.bbbeecommission.co.za/frequently-asked-questions/category/general-principles/"
+      ]
+    },
+    {
+      "block": "b-bbee.3",
+      "group": "B-BBEE",
+      "groupId": "b-bbee",
+      "id": "rsm-south-africa",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "sektorkodes kan ander drempels stel."
+        }
+      ],
+      "title": "RSM South Africa",
+      "type": "web",
+      "url": "https://www.rsm.global/southafrica/insights/legal-insights/determining-validity-sworn-affidavit-b-bbee-compliance",
+      "urls": [
+        "https://www.rsm.global/southafrica/insights/legal-insights/determining-validity-sworn-affidavit-b-bbee-compliance"
+      ]
+    },
+    {
+      "block": "popia.1",
+      "group": "POPIA",
+      "groupId": "popia",
+      "id": "information-regulator-of-south-africa",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Registreer jou inligtingsbeampte hier. Gratis."
+        }
+      ],
+      "supportsFrom": "note",
+      "title": "Information Regulator of South Africa (Inligtingsreguleerder)",
+      "type": "web",
+      "url": "https://inforegulator.org.za",
+      "urls": [
+        "https://inforegulator.org.za"
+      ]
+    },
+    {
+      "block": "popia.3",
+      "group": "POPIA",
+      "groupId": "popia",
+      "id": "serr-synergy",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "registrasie is verpligtend vir alle private en openbare liggame, sonder vrystelling, en die beampte mag eers ná registrasie sy of haar pligte opneem (s55(2))."
+        }
+      ],
+      "title": "SERR Synergy",
+      "type": "web",
+      "url": "https://serr.co.za/practical-guidance-in-respect-of-the-mandatory-appointment-of-information-officers",
+      "urls": [
+        "https://serr.co.za/practical-guidance-in-respect-of-the-mandatory-appointment-of-information-officers"
+      ]
+    },
+    {
+      "block": "popia.3",
+      "group": "POPIA",
+      "groupId": "popia",
+      "id": "michalsons",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "praktiese leiding oor die portaal."
+        }
+      ],
+      "title": "Michalsons",
+      "type": "web",
+      "url": "https://www.michalsons.com/blog/faq-items/how-do-i-register-my-information-officer-with-the-regulator",
+      "urls": [
+        "https://www.michalsons.com/blog/faq-items/how-do-i-register-my-information-officer-with-the-regulator"
+      ]
+    },
+    {
+      "block": "consumer-law-and-online-selling.1",
+      "group": "Verbruikersreg en aanlynverkope",
+      "groupId": "consumer-law-and-online-selling",
+      "id": "national-consumer-commission--consumer-protection-in-e-commerce",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die afkoelperiode van sewe werksdae kragtens ECTA s44, terugbetaling binne 30 dae, en die wisselwerking met CPA s11 en s16."
+        }
+      ],
+      "title": "National Consumer Commission — Consumer Protection in e-Commerce",
+      "type": "web",
+      "url": "https://thencc.org.za/wp-content/uploads/2026/03/Consumer-Protection-in-e-Commerce.pdf",
+      "urls": [
+        "https://thencc.org.za/wp-content/uploads/2026/03/Consumer-Protection-in-e-Commerce.pdf"
+      ]
+    },
+    {
+      "block": "consumer-law-and-online-selling.2",
+      "group": "Verbruikersreg en aanlynverkope",
+      "groupId": "consumer-law-and-online-selling",
+      "id": "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die uitleg van CPA s55 en s56, insluitend hoe spesifiek ’n gebrek bekend gemaak moet word sodat die verskaffer nie aanspreeklik is nie."
+        }
+      ],
+      "title": "Consumer Goods and Services Ombud — Advisory Note 1: Implied Warranty of Quality",
+      "type": "web",
+      "url": "https://www.saflii.org/za/cases/ZACGSO/2021/1.pdf",
+      "urls": [
+        "https://www.saflii.org/za/cases/ZACGSO/2021/1.pdf"
+      ]
+    },
+    {
+      "block": "consumer-law-and-online-selling.4",
+      "group": "Verbruikersreg en aanlynverkope",
+      "groupId": "consumer-law-and-online-selling",
+      "id": "dommisse-attorneys",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die toepassingsgebied van ECTA s42 en die uitsluitings in s44."
+        }
+      ],
+      "title": "Dommisse Attorneys",
+      "type": "web",
+      "url": "https://dommisseattorneys.co.za/blog/your-service-agreements/",
+      "urls": [
+        "https://dommisseattorneys.co.za/blog/your-service-agreements/"
+      ]
+    },
+    {
+      "block": "consumer-law-and-online-selling.4",
+      "group": "Verbruikersreg en aanlynverkope",
+      "groupId": "consumer-law-and-online-selling",
+      "id": "mj-kotze-inc-what-is-ecta",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die vereiste in s43(2) dat die koper die bestelling kan nagaan, en die reg om binne 14 dae te kanselleer kragtens s43(3)."
+        }
+      ],
+      "title": "MJ Kotze Inc, What is ECTA",
+      "type": "web",
+      "url": "https://mjkinc.co.za/software-technology-law/ecta-electronic-contracts",
+      "urls": [
+        "https://mjkinc.co.za/software-technology-law/ecta-electronic-contracts"
+      ]
+    },
+    {
+      "block": "consumer-law-and-online-selling.4",
+      "group": "Verbruikersreg en aanlynverkope",
+      "groupId": "consumer-law-and-online-selling",
+      "id": "lawtons-africa",
+      "item": 2,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die reël in s46 oor nakoming binne dertig dae, en die beperking tot die direkte koste van terugstuur."
+        }
+      ],
+      "title": "Lawtons Africa",
+      "type": "web",
+      "url": "https://www.lawtonsafrica.com/post/e-commerce-and-consumer-protection",
+      "urls": [
+        "https://www.lawtonsafrica.com/post/e-commerce-and-consumer-protection"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.1",
+      "group": "Voertuighandel en voertuie in die algemeen",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "enatis--natis--faqs-and-forms",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "registrasievereistes, polisieklaring (vorm RPC), vereistes vir ingevoerde voertuie, insluitend SAPS-klaring en ’n SABS-magtigingsbrief (letter of authority)."
+        }
+      ],
+      "title": "eNaTIS / NaTIS — Gereelde vrae en vorms",
+      "type": "web",
+      "url": "https://www.natis.gov.za/index.php/faqs",
+      "urls": [
+        "https://www.natis.gov.za/index.php/faqs"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.2",
+      "group": "Voertuighandel en voertuie in die algemeen",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "rlv-form--application-for-registration-and-licensing-of-motor-vehicle",
+      "official": true,
+      "title": "RLV-vorm — Application for Registration and Licensing of Motor Vehicle",
+      "type": "web",
+      "url": "https://www.natis.gov.za/index.php/downloads/forms/road-traffic-related-forms",
+      "urls": [
+        "https://www.natis.gov.za/index.php/downloads/forms/road-traffic-related-forms"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.3",
+      "group": "Voertuighandel en voertuie in die algemeen",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "govza--apply-for-a-motor-trade-number-and-permit",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die MTN1-vorm, wie motorhandelnommers mag hê, en verwerking op dieselfde dag."
+        }
+      ],
+      "title": "gov.za — Doen aansoek om ’n motorhandelnommer en -permit",
+      "type": "web",
+      "url": "https://www.gov.za/services/services-organisations/driving-and-transport/apply-motor-trade-number-and-permit",
+      "urls": [
+        "https://gov.za/",
+        "https://www.gov.za/services/services-organisations/driving-and-transport/apply-motor-trade-number-and-permit"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.4",
+      "group": "Voertuighandel en voertuie in die algemeen",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "western-cape-government--motor-trade-number-applications",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die gepubliseerde tariewe (R102 vir die aansoek, R762 vir die lisensiëring van ’n voertuig, R168 vir ’n motorfiets of vervoerkontrakteur). Dit is Wes-Kaapse syfers. Kyk na jou eie provinsie."
+        }
+      ],
+      "title": "Western Cape Government — Aansoeke om motorhandelnommers",
+      "type": "web",
+      "url": "https://www.westerncape.gov.za/mobility/service/motor-trade-number-applications",
+      "urls": [
+        "https://www.westerncape.gov.za/mobility/service/motor-trade-number-applications"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.5",
+      "group": "Voertuighandel en voertuie in die algemeen",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "govza--register-a-motor-vehicle",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die sperdatum van 21 dae vir registrasie ná ’n verandering van eienaarskap, en die boete as jy dit mis."
+        }
+      ],
+      "title": "gov.za — Registreer ’n motorvoertuig",
+      "type": "web",
+      "url": "https://www.gov.za/services/register-motor-vehicle/register-motor-vehicle",
+      "urls": [
+        "https://gov.za/",
+        "https://www.gov.za/services/register-motor-vehicle/register-motor-vehicle"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.6",
+      "group": "Voertuighandel en voertuie in die algemeen",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "department-of-transport--register-motor-vehicle",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die NCO-vereiste en die stawende dokumente vir die registrasie van gebruikte voertuie."
+        }
+      ],
+      "title": "Department of Transport — Registreer ’n motorvoertuig",
+      "type": "web",
+      "url": "https://www.transport.gov.za/?page_id=1182",
+      "urls": [
+        "https://www.transport.gov.za/?page_id=1182"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.7",
+      "group": "Voertuighandel en voertuie in die algemeen",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "governmentcoza--apply-for-a-traffic-register-number",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "dat partye wat nie regspersone is nie, insluitend ’n eenmansaak, vennootskap, trust of kerk, aansoek moet doen om ’n verkeersregisternommer (traffic register number) om voertuie te registreer."
+        }
+      ],
+      "title": "government.co.za — Doen aansoek om ’n verkeersregisternommer",
+      "type": "web",
+      "url": "https://government.co.za/apply-for-a-traffic-register-number",
+      "urls": [
+        "https://government.co.za/",
+        "https://government.co.za/apply-for-a-traffic-register-number"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.9",
+      "group": "Voertuighandel en voertuie in die algemeen",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "govchain-brnc-certificate-guide",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "wat ’n BRNC is, die proses wat net persoonlik gedoen kan word, die vereistes vir sertifisering, en dat daar geen gepubliseerde nasionale fooi is nie."
+        }
+      ],
+      "title": "Govchain, BRNC certificate guide",
+      "type": "web",
+      "url": "https://www.govchain.co.za/guides/brnc-certificate",
+      "urls": [
+        "https://www.govchain.co.za/guides/brnc-certificate"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.9",
+      "group": "Voertuighandel en voertuie in die algemeen",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "trafico",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die lys dokumente vir die ABR en die algemene redes waarom aansoeke misluk."
+        }
+      ],
+      "title": "Trafico",
+      "type": "web",
+      "url": "https://trafico.co.za/unravelling-the-brnc/",
+      "urls": [
+        "https://trafico.co.za/unravelling-the-brnc/"
+      ]
+    },
+    {
+      "block": "vehicle-dealing-and-vehicles-generally.9",
+      "group": "Voertuighandel en voertuie in die algemeen",
+      "groupId": "vehicle-dealing-and-vehicles-generally",
+      "id": "bloemq4u-faq",
+      "item": 2,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "hoe ’n gevolmagtigde (proxy) op eNaTIS aangeteken word, en die onderskeid tussen ’n trust en ’n TRN."
+        }
+      ],
+      "title": "BloemQ4U FAQ",
+      "type": "web",
+      "url": "https://www.bloemq4u.co.za/faq",
+      "urls": [
+        "https://www.bloemq4u.co.za/faq"
+      ]
+    },
+    {
+      "block": "second-hand-goods-dealing.1",
+      "group": "Handel in tweedehandse goedere",
+      "groupId": "second-hand-goods-dealing",
+      "id": "saps--second-hand-goods-act-6-of-2009-full-text",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die plig van handelaars om te registreer, die verifikasie van identiteit, die bewaring van rekords vir vyf jaar, die besonderhede in die register van motorvoertuie."
+        }
+      ],
+      "title": "SAPS — Second-Hand Goods Act 6 of 2009 (volledige teks)",
+      "type": "web",
+      "url": "https://www.saps.gov.za/resource_centre/acts/downloads/juta/shg_act_6_2009.pdf",
+      "urls": [
+        "https://www.saps.gov.za/resource_centre/acts/downloads/juta/shg_act_6_2009.pdf"
+      ]
+    },
+    {
+      "block": "second-hand-goods-dealing.2",
+      "group": "Handel in tweedehandse goedere",
+      "groupId": "second-hand-goods-dealing",
+      "id": "saps--national-instruction-2-of-2016-second-hand-goods-dealers-and-recyclers",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die SAPS 601-aansoekvorm, dat geen betaling vereis word nie, en die lys sakebedrywighede wat moet registreer, insluitend Motor Vehicle Dealer."
+        }
+      ],
+      "title": "SAPS — National Instruction 2 of 2016: Second-Hand Goods Dealers and Recyclers",
+      "type": "web",
+      "url": "https://www.saps.gov.za/services/flash/shg/second_hand_goods_ni_2_of_2016.pdf",
+      "urls": [
+        "https://www.saps.gov.za/services/flash/shg/second_hand_goods_ni_2_of_2016.pdf"
+      ]
+    },
+    {
+      "block": "second-hand-goods-dealing.3",
+      "group": "Handel in tweedehandse goedere",
+      "groupId": "second-hand-goods-dealing",
+      "id": "saps--standard-operating-procedure-dealer-application-process",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "waar jy die aansoekvorm kry en indien."
+        }
+      ],
+      "title": "SAPS — Standaard bedryfsprosedure, aansoekproses vir handelaars",
+      "type": "web",
+      "url": "https://www.saps.gov.za/services/flash/shg/sop_1_1_application_process_dealer.pdf",
+      "urls": [
+        "https://www.saps.gov.za/services/flash/shg/sop_1_1_application_process_dealer.pdf"
+      ]
+    },
+    {
+      "block": "second-hand-goods-dealing.4",
+      "group": "Handel in tweedehandse goedere",
+      "groupId": "second-hand-goods-dealing",
+      "id": "saflii--second-hand-goods-act-consolidated-text",
+      "official": true,
+      "title": "SAFLII — Second-Hand Goods Act, gekonsolideerde teks",
+      "type": "web",
+      "url": "https://www.saflii.org/za/legis/consol_act/sga2009153/",
+      "urls": [
+        "https://www.saflii.org/za/legis/consol_act/sga2009153/"
+      ]
+    },
+    {
+      "block": "second-hand-goods-dealing.6",
+      "group": "Handel in tweedehandse goedere",
+      "groupId": "second-hand-goods-dealing",
+      "id": "nada-saps-dealer-inspections",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die plig om binne 30 dae kennis te gee, die SAPS 604-vorm wanneer die verantwoordelike persoon verander, en inspeksieregte."
+        }
+      ],
+      "title": "NADA, SAPS dealer inspections",
+      "type": "web",
+      "url": "https://nada.co.za/saps-dealer-inspections-rights-and-obligations-in-terms-of-the-second-hand-goods-act/",
+      "urls": [
+        "https://nada.co.za/saps-dealer-inspections-rights-and-obligations-in-terms-of-the-second-hand-goods-act/"
+      ]
+    },
+    {
+      "block": "second-hand-goods-dealing.6",
+      "group": "Handel in tweedehandse goedere",
+      "groupId": "second-hand-goods-dealing",
+      "id": "sme-south-africa",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die vereiste dokumente en die besonderhede in die register van motorvoertuie."
+        }
+      ],
+      "title": "SME South Africa",
+      "type": "web",
+      "url": "https://smesouthafrica.co.za/what-you-need-to-know-about-the-second-hand-goods-act/",
+      "urls": [
+        "https://smesouthafrica.co.za/what-you-need-to-know-about-the-second-hand-goods-act/"
+      ]
+    },
+    {
+      "block": "used-vehicle-sales-and-the-consumer-protection-act.2",
+      "group": "Verkoop van gebruikte voertuie en die Consumer Protection Act",
+      "groupId": "used-vehicle-sales-and-the-consumer-protection-act",
+      "id": "hanekom-attorneys-webuycars-consent-order",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die geïmpliseerde waarborg van ses maande, die reël oor herherstel binne drie maande, en die einde van voetstoots by CPA-verkope."
+        }
+      ],
+      "title": "Hanekom Attorneys, WeBuyCars consent order",
+      "type": "web",
+      "url": "https://www.hanekomattorneys.co.za/post/what-the-webuycars-consent-order-teaches-us-about-consumer-rights-in-south-africa-s-pre-owned-vehicl",
+      "urls": [
+        "https://www.hanekomattorneys.co.za/post/what-the-webuycars-consent-order-teaches-us-about-consumer-rights-in-south-africa-s-pre-owned-vehicl"
+      ]
+    },
+    {
+      "block": "used-vehicle-sales-and-the-consumer-protection-act.2",
+      "group": "Verkoop van gebruikte voertuie en die Consumer Protection Act",
+      "groupId": "used-vehicle-sales-and-the-consumer-protection-act",
+      "id": "the-citizen",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die beslissing van die Consumer Tribunal dat voetstoots nie op CPA-transaksies van toepassing is nie, en CPA s2(10) en s56(4)."
+        }
+      ],
+      "title": "The Citizen",
+      "type": "web",
+      "url": "https://www.citizen.co.za/business/personal-finance/even-old-car-cannot-be-bought-voetstoots-used-car-dealer/",
+      "urls": [
+        "https://www.citizen.co.za/business/personal-finance/even-old-car-cannot-be-bought-voetstoots-used-car-dealer/"
+      ]
+    },
+    {
+      "block": "used-vehicle-sales-and-the-consumer-protection-act.2",
+      "group": "Verkoop van gebruikte voertuie en die Consumer Protection Act",
+      "groupId": "used-vehicle-sales-and-the-consumer-protection-act",
+      "id": "moonstone",
+      "item": 2,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die Desember 2025-beslissing van die Western Cape High Court wat ’n terugbetaling van R175,000 gelas het, en dat kopers nie eers die ombudsprosesse hoef af te handel nie."
+        }
+      ],
+      "title": "Moonstone",
+      "type": "web",
+      "url": "https://www.moonstone.co.za/ruling-confirms-consumers-may-go-straight-to-court-under-the-cpa/",
+      "urls": [
+        "https://www.moonstone.co.za/ruling-confirms-consumers-may-go-straight-to-court-under-the-cpa/"
+      ]
+    },
+    {
+      "block": "used-vehicle-sales-and-the-consumer-protection-act.2",
+      "group": "Verkoop van gebruikte voertuie en die Consumer Protection Act",
+      "groupId": "used-vehicle-sales-and-the-consumer-protection-act",
+      "id": "changecars",
+      "item": 3,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die National Consumer Commission se saak teen Western Car Sales, en die standpunt in Renault v Windsor oor klein gebreke."
+        }
+      ],
+      "title": "ChangeCars",
+      "type": "web",
+      "url": "https://www.changecars.co.za/blogs/your-rights-when-buying-a-used-car",
+      "urls": [
+        "https://www.changecars.co.za/blogs/your-rights-when-buying-a-used-car"
+      ]
+    },
+    {
+      "block": "used-vehicle-sales-and-the-consumer-protection-act.4",
+      "group": "Verkoop van gebruikte voertuie en die Consumer Protection Act",
+      "groupId": "used-vehicle-sales-and-the-consumer-protection-act",
+      "id": "department-of-justice--small-claims-courts",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die limiet van R30,000, bepaal in Government Gazette 55038, Government Notice 7717 van 20 Julie 2026, met ingang van 1 Augustus 2026."
+        }
+      ],
+      "title": "Department of Justice — Small Claims Courts (kleineisehowe)",
+      "type": "web",
+      "url": "https://www.justice.gov.za/scc/scc.htm",
+      "urls": [
+        "https://www.justice.gov.za/scc/scc.htm"
+      ]
+    },
+    {
+      "block": "used-vehicle-sales-and-the-consumer-protection-act.5",
+      "group": "Verkoop van gebruikte voertuie en die Consumer Protection Act",
+      "groupId": "used-vehicle-sales-and-the-consumer-protection-act",
+      "id": "department-of-justice--media-statement-22-july-2026",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "dat R30,000 die limiet van R20,000 vervang het wat in 2019 vasgestel is, en dat verdere verhogings oorweeg word."
+        }
+      ],
+      "title": "Department of Justice — mediaverklaring, 22 Julie 2026",
+      "type": "web",
+      "url": "https://www.justice.gov.za/m_statements/2026/20260722-SCC-Monetary-Jurisdiction-R30000.html",
+      "urls": [
+        "https://www.justice.gov.za/m_statements/2026/20260722-SCC-Monetary-Jurisdiction-R30000.html"
+      ]
+    },
+    {
+      "block": "food-businesses.1",
+      "group": "Kosbesighede",
+      "groupId": "food-businesses",
+      "id": "regulation-r638-of-2018",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "kragtens die Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 — General Hygiene Requirements for Food Premises, the Transport of Food and Related Matters. Dit het R962 vervang. Beskikbaar op "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://gov.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "Regulation R638 of 2018",
+      "type": "web",
+      "url": "https://gov.za/",
+      "urls": [
+        "https://gov.za/"
+      ]
+    },
+    {
+      "block": "food-businesses.2",
+      "group": "Kosbesighede",
+      "groupId": "food-businesses",
+      "id": "regulation-r146-of-2012",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Labelling and Advertising of Foodstuffs. Beskikbaar op "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://gov.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "Regulation R146 of 2012",
+      "type": "web",
+      "url": "https://gov.za/",
+      "urls": [
+        "https://gov.za/"
+      ]
+    },
+    {
+      "block": "food-businesses.4",
+      "group": "Kosbesighede",
+      "groupId": "food-businesses",
+      "id": "food-focus",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die proses vir ’n COA en die posisie oor lisensiëring kragtens die Businesses Act."
+        }
+      ],
+      "title": "Food Focus",
+      "type": "web",
+      "url": "https://www.foodfocus.co.za/home/whats-hot/Starting-a-new-food-business/How-do-I-get-a-Certificate-of-Acceptability",
+      "urls": [
+        "https://www.foodfocus.co.za/home/whats-hot/Starting-a-new-food-business/How-do-I-get-a-Certificate-of-Acceptability"
+      ]
+    },
+    {
+      "block": "food-businesses.4",
+      "group": "Kosbesighede",
+      "groupId": "food-businesses",
+      "id": "asc-food-safety",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die lys van nege dokumente en realistiese tydlyne. Dit is ’n kommersiële opleidingsverskaffer, so behandel die tydlyne as ’n riglyn en bevestig dit by jou munisipaliteit."
+        }
+      ],
+      "title": "ASC Food Safety",
+      "type": "web",
+      "url": "https://ascfoodsafety.com/steps-to-starting-a-food-business-in-south-africa/",
+      "urls": [
+        "https://ascfoodsafety.com/steps-to-starting-a-food-business-in-south-africa/"
+      ]
+    },
+    {
+      "block": "business-licensing.1",
+      "group": "Besigheidslisensiëring",
+      "groupId": "business-licensing",
+      "id": "businesses-act-71-of-1991",
+      "noUrlReason": "An Act that municipalities apply through their own by-laws; the register points readers to their municipality instead of a link.",
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Dit word deur jou plaaslike munisipaliteit toegepas, nie deur die nasionale regering nie. Daar is geen enkele nasionale lys van besighede wat ’n lisensie nodig het nie, omdat munisipaliteite die wet deur hulle eie verordeninge toepas."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "Businesses Act 71 of 1991",
+      "type": "citation",
+      "urls": []
+    },
+    {
+      "block": "business-licensing.3",
+      "group": "Besigheidslisensiëring",
+      "groupId": "business-licensing",
+      "id": "sme-south-africa-1",
+      "item": 0,
+      "official": false,
+      "title": "SME South Africa",
+      "type": "web",
+      "url": "https://smesouthafrica.co.za/sme-guides/business-licences-in-south-africa/",
+      "urls": [
+        "https://smesouthafrica.co.za/sme-guides/business-licences-in-south-africa/"
+      ]
+    },
+    {
+      "block": "business-licensing.3",
+      "group": "Besigheidslisensiëring",
+      "groupId": "business-licensing",
+      "id": "yebo-business",
+      "item": 1,
+      "official": false,
+      "title": "Yebo Business",
+      "type": "web",
+      "url": "https://www.yebobusiness.co.za/business-licenses-required-south-africa",
+      "urls": [
+        "https://www.yebobusiness.co.za/business-licenses-required-south-africa"
+      ]
+    },
+    {
+      "block": "credit-and-financial-services.2",
+      "group": "Krediet en finansiële dienste",
+      "groupId": "credit-and-financial-services",
+      "id": "mj-kotze-inc-credit-provider-registration",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "dat die monetêre drempel vir NCR-registrasie nie meer geld nie en dat enige kredietverskaffer moet registreer."
+        }
+      ],
+      "title": "MJ Kotze Inc, Credit provider registration",
+      "type": "web",
+      "url": "https://mjkinc.co.za/finance-credit-law/credit-provider-registration",
+      "urls": [
+        "https://mjkinc.co.za/finance-credit-law/credit-provider-registration"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.1",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "south-african-reserve-bank--banknote-security-features",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Die SARB se metode \"kyk, voel, kantel\" (\"look, feel, tilt\") word op "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.resbank.co.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.resbank.co.za",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " en in die SARB Currency App gepubliseer. Die gereedskapstel se beskrywing van die verhewe druk, die lyne vir visueel gestremdes, die sekuriteitsdraad, die watermerk en die ink wat van kleur verander, kom uit SARB-materiaal soos gerapporteer deur:"
+          }
+        ]
+      ],
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "dat vals note nie omgeruil kan word nie en by SAPS aangemeld moet word; dat net die SARB geld mag uitreik, kragtens artikel 14 van die SARB Act."
+        }
+      ],
+      "title": "South African Reserve Bank — sekuriteitskenmerke van banknote",
+      "type": "web",
+      "url": "https://www.resbank.co.za",
+      "urls": [
+        "https://www.resbank.co.za"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.2",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "iol--the-mercury",
+      "item": 0,
+      "official": false,
+      "subgroupId": "south-african-reserve-bank--banknote-security-features",
+      "title": "IOL / The Mercury",
+      "type": "web",
+      "url": "https://iol.co.za/mercury/news/2022-11-02-how-to-spot-counterfeit-money-warning-issued-after-fake-r200-notes-were-used-at-a-durban-north-restaurant/",
+      "urls": [
+        "https://iol.co.za/mercury/news/2022-11-02-how-to-spot-counterfeit-money-warning-issued-after-fake-r200-notes-were-used-at-a-durban-north-restaurant/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.2",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "the-citizen-local-titles",
+      "item": 1,
+      "official": false,
+      "qualifier": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.citizen.co.za/brakpan-herald/news-headlines/2023/03/13/know-your-money/"
+            }
+          ],
+          "external": true,
+          "href": "https://www.citizen.co.za/brakpan-herald/news-headlines/2023/03/13/know-your-money/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " en "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.citizen.co.za/south-coast-herald/news-headlines/local-news/2023/04/12/take-note-of-banknote-security-features/"
+            }
+          ],
+          "external": true,
+          "href": "https://www.citizen.co.za/south-coast-herald/news-headlines/local-news/2023/04/12/take-note-of-banknote-security-features/",
+          "t": "link"
+        }
+      ],
+      "subgroupId": "south-african-reserve-bank--banknote-security-features",
+      "title": "The Citizen (plaaslike koerante)",
+      "type": "web",
+      "url": "https://www.citizen.co.za/brakpan-herald/news-headlines/2023/03/13/know-your-money/",
+      "urls": [
+        "https://www.citizen.co.za/brakpan-herald/news-headlines/2023/03/13/know-your-money/",
+        "https://www.citizen.co.za/south-coast-herald/news-headlines/local-news/2023/04/12/take-note-of-banknote-security-features/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.3",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "sabric--south-african-banking-risk-information-centre",
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die aanmelding van bedrog. Die syfers vir 2024 (voorvalle van digitale bankbedrog 86% hoër, verliese 74% hoër tot R1.888 miljard) kom uit SABRIC se 2024 Annual Crime Statistics soos deur Zapper gerapporteer — "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.zapper.com/2026/07/28/how-to-protect-your-business-from-payment-fraud/"
+            }
+          ],
+          "external": true,
+          "href": "https://www.zapper.com/2026/07/28/how-to-protect-your-business-from-payment-fraud/",
+          "t": "link"
+        }
+      ],
+      "title": "SABRIC — South African Banking Risk Information Centre",
+      "type": "web",
+      "url": "https://www.sabric.co.za",
+      "urls": [
+        "https://www.sabric.co.za",
+        "https://www.zapper.com/2026/07/28/how-to-protect-your-business-from-payment-fraud/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.5",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "techcentral",
+      "item": 0,
+      "official": false,
+      "subgroupId": "payshap-limits",
+      "supports": [
+        {
+          "t": "text",
+          "v": "BankservAfrica het die stelsellimiet van R3,000 na R50,000 verhoog."
+        }
+      ],
+      "title": "TechCentral",
+      "type": "web",
+      "url": "https://techcentral.co.za/payshap-payment-limit-raised-to-r50-000/254663/",
+      "urls": [
+        "https://techcentral.co.za/payshap-payment-limit-raised-to-r50-000/254663/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.5",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "solmate",
+      "item": 1,
+      "official": false,
+      "subgroupId": "payshap-limits",
+      "supports": [
+        {
+          "t": "text",
+          "v": "dat banke hulle eie, laer limiete per transaksie en per dag stel, en dat betalings binne sekondes verreken word (clear) en na ’n gewone rekeningnommer kan gaan."
+        }
+      ],
+      "title": "Solmate",
+      "type": "web",
+      "url": "https://solmate.co.za/blog/payshap-instant-payments-south-africa/",
+      "urls": [
+        "https://solmate.co.za/blog/payshap-instant-payments-south-africa/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.5",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "netcash",
+      "item": 2,
+      "official": false,
+      "subgroupId": "payshap-limits",
+      "supports": [
+        {
+          "t": "text",
+          "v": "voorbeelde van limiete per bank. Banklimiete verander; kyk in jou eie app."
+        }
+      ],
+      "title": "Netcash",
+      "type": "web",
+      "url": "https://netcash.co.za/blog/how-businesses-can-use-payshap-for-payroll-creditor-payments/",
+      "urls": [
+        "https://netcash.co.za/blog/how-businesses-can-use-payshap-for-payroll-creditor-payments/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.7",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "ewn-gumtree-flags-fake-payment-scam",
+      "item": 0,
+      "official": false,
+      "subgroupId": "fake-proof-of-payment-and-marketplace-scams",
+      "supports": [
+        {
+          "t": "text",
+          "v": "die geval van ’n vals POP waarna ’n Uber gestuur is om die goedere te gaan haal, van ’n rekening wat twee dae oud was."
+        }
+      ],
+      "title": "EWN, Gumtree flags fake payment scam",
+      "type": "web",
+      "url": "https://www.ewn.co.za/2026/07/10/gumtree-flags-fake-payment-scam-targeting-sellers-on-online-marketplace",
+      "urls": [
+        "https://www.ewn.co.za/2026/07/10/gumtree-flags-fake-payment-scam-targeting-sellers-on-online-marketplace"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.7",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "cape-argus",
+      "item": 1,
+      "official": false,
+      "subgroupId": "fake-proof-of-payment-and-marketplace-scams",
+      "supports": [
+        {
+          "t": "text",
+          "v": "die patroon wat SAPS beskryf: ’n vals aankoopbewys, ’n vals ID, en ’n bestuurder wat gestuur word om te gaan haal; oorbetalingswendelary (overpayment scams)."
+        }
+      ],
+      "title": "Cape Argus",
+      "type": "web",
+      "url": "https://capeargus.co.za/personal-finance/2026-03-07-the-message-looks-real-it-isnt/",
+      "urls": [
+        "https://capeargus.co.za/personal-finance/2026-03-07-the-message-looks-real-it-isnt/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.7",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "flip-the-market",
+      "item": 2,
+      "official": false,
+      "subgroupId": "fake-proof-of-payment-and-marketplace-scams",
+      "supports": [
+        {
+          "t": "text",
+          "v": "die reël \"weerspieël, nie hangend nie\" (\"reflected, not pending\"), die stemnota oor ’n bankterugboeking, uitvissingskakels (phishing)."
+        }
+      ],
+      "title": "Flip the Market",
+      "type": "web",
+      "url": "https://flipthemarket.co.za/side-hustle-payments-and-avoiding-chargebacks-scams-and-proof-of-payment-bullsh-t/",
+      "urls": [
+        "https://flipthemarket.co.za/side-hustle-payments-and-avoiding-chargebacks-scams-and-proof-of-payment-bullsh-t/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.7",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "bizcommunity--gumtree",
+      "item": 3,
+      "official": false,
+      "subgroupId": "fake-proof-of-payment-and-marketplace-scams",
+      "supports": [
+        {
+          "t": "text",
+          "v": "die swendelary met ’n tjekdeposito wat gekanselleer word."
+        }
+      ],
+      "title": "Bizcommunity / Gumtree",
+      "type": "web",
+      "url": "https://www.bizcommunity.com/Article/196/357/129785.html",
+      "urls": [
+        "https://www.bizcommunity.com/Article/196/357/129785.html"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.9",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "tracker-south-africa",
+      "item": 0,
+      "official": false,
+      "subgroupId": "meeting-buyers-and-test-drives",
+      "supports": [
+        {
+          "t": "text",
+          "v": "’n afskrif van die lisensie, sleutels eers oorhandig wanneer julle sit, die verwydering van liggingsmerkers (geotags), om nie by die huis te ontmoet nie, om op jou instink te vertrou."
+        }
+      ],
+      "title": "Tracker South Africa",
+      "type": "web",
+      "url": "https://www.tracker.co.za/news/news-room/test-drive-robbery",
+      "urls": [
+        "https://www.tracker.co.za/news/news-room/test-drive-robbery"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.9",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "carscoza",
+      "item": 1,
+      "official": false,
+      "subgroupId": "meeting-buyers-and-test-drives",
+      "supports": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.cars.co.za/motoring-news/sell-your-used-car-to-a-private-buyer/73097/"
+            }
+          ],
+          "external": true,
+          "href": "https://www.cars.co.za/motoring-news/sell-your-used-car-to-a-private-buyer/73097/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " en "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.cars.co.za/motoring-news/selling-your-car-in-south-africa/251983/"
+            }
+          ],
+          "external": true,
+          "href": "https://www.cars.co.za/motoring-news/selling-your-car-in-south-africa/251983/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " — ’n openbare plek, neem iemand saam, sê vir iemand, kontroleer die lisensie, waarskuwing oor die omruil van sleutels, geen toetsritte alleen nie."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "Cars.co.za",
+      "type": "web",
+      "url": "https://cars.co.za/",
+      "urls": [
+        "https://cars.co.za/",
+        "https://www.cars.co.za/motoring-news/sell-your-used-car-to-a-private-buyer/73097/",
+        "https://www.cars.co.za/motoring-news/selling-your-car-in-south-africa/251983/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.9",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "motorhappy",
+      "item": 2,
+      "official": false,
+      "subgroupId": "meeting-buyers-and-test-drives",
+      "supports": [
+        {
+          "t": "text",
+          "v": "’n vulstasie of polisiestasie as ontmoetplek; kontant word binne ’n banktak hanteer; geen sleutels of dokumente voordat die betaling verreken is nie."
+        }
+      ],
+      "title": "MotorHappy",
+      "type": "web",
+      "url": "https://www.motorhappy.co.za/motorhappyblog/car-tips/selling-a-car-privately-in-south-africa",
+      "urls": [
+        "https://www.motorhappy.co.za/motorhappyblog/car-tips/selling-a-car-privately-in-south-africa"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.12",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "ashersons-attorneys",
+      "item": 0,
+      "official": false,
+      "subgroupId": "home-based-business-zoning",
+      "supports": [
+        {
+          "t": "text",
+          "v": "die kategorieë mikrobesigheid en tuisonderneming, en wanneer vergunningsgebruik of hersonering nodig is."
+        }
+      ],
+      "title": "Ashersons Attorneys",
+      "type": "web",
+      "url": "https://www.ashersons.co.za/articles/home-businesses-is-yours-legal/",
+      "urls": [
+        "https://www.ashersons.co.za/articles/home-businesses-is-yours-legal/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.12",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "yebo-business-1",
+      "item": 1,
+      "official": false,
+      "subgroupId": "home-based-business-zoning",
+      "supports": [
+        {
+          "t": "text",
+          "v": "die gewone voorwaardes vir ’n tuisonderneming, insluitend dat goedere of voertuie nie sigbaar gestoor mag word nie, en watter bedrywighede vergunningsgebruik nodig het."
+        }
+      ],
+      "title": "Yebo Business",
+      "type": "web",
+      "url": "https://www.yebobusiness.co.za/how-to-start-business-from-home-south-africa/",
+      "urls": [
+        "https://www.yebobusiness.co.za/how-to-start-business-from-home-south-africa/"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.12",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "findanattorney",
+      "item": 2,
+      "official": false,
+      "subgroupId": "home-based-business-zoning",
+      "supports": [
+        {
+          "t": "text",
+          "v": "die vuistreël van ’n kwart van die vloeroppervlakte en die afdwingbaarheid van ’n beheerliggaam (body corporate) se gedragsreëls."
+        }
+      ],
+      "title": "FindAnAttorney",
+      "type": "web",
+      "url": "https://www.findanattorney.co.za/content_working-from-home-in-sectional-title-schemes",
+      "urls": [
+        "https://www.findanattorney.co.za/content_working-from-home-in-sectional-title-schemes"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.12",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "looksee-standard-bank",
+      "item": 3,
+      "official": false,
+      "subgroupId": "home-based-business-zoning",
+      "supports": [
+        {
+          "t": "text",
+          "v": "om die titelakte en die soneringsertifikaat na te gaan; toestemming in ’n deeltitelskema."
+        }
+      ],
+      "title": "LookSee (Standard Bank)",
+      "type": "web",
+      "url": "https://www.looksee.co.za/looksee/home/knowledge-hub/articles/the-legalities-of-running-a-business-from-home",
+      "urls": [
+        "https://www.looksee.co.za/looksee/home/knowledge-hub/articles/the-legalities-of-running-a-business-from-home"
+      ]
+    },
+    {
+      "block": "working-from-home-payments-and-personal-safety.12",
+      "group": "Tuiswerk, betalings en persoonlike veiligheid",
+      "groupId": "working-from-home-payments-and-personal-safety",
+      "id": "leapfrog",
+      "item": 4,
+      "official": false,
+      "subgroupId": "home-based-business-zoning",
+      "supports": [
+        {
+          "t": "text",
+          "v": "huishoudelike versekering dek dalk nie besigheidstoerusting of besoekers nie."
+        }
+      ],
+      "title": "Leapfrog",
+      "type": "web",
+      "url": "https://leapfrog.co.za/news/the-home-business-rulebook-zoning-insurance-and-municipal-compliance/",
+      "urls": [
+        "https://leapfrog.co.za/news/the-home-business-rulebook-zoning-insurance-and-municipal-compliance/"
+      ]
+    },
+    {
+      "block": "you-are-the-business-uif-coida-courts-and-continuity.1",
+      "group": "Jy is die besigheid: UIF, COIDA, howe en kontinuïteit",
+      "groupId": "you-are-the-business-uif-coida-courts-and-continuity",
+      "id": "uif-and-the-self-employed",
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Unemployment Insurance Contributions Act 2002, artikel 1 — \"werknemer\" (\"employee\") beteken ’n natuurlike persoon wat vergoeding vir gelewerde dienste ontvang, met uitsondering van ’n onafhanklike kontrakteur. The Tax Faculty pas dit direk toe: "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://taxfaculty.ac.za/faq/general_faqs/solution/1170"
+            }
+          ],
+          "external": true,
+          "href": "https://taxfaculty.ac.za/faq/general_faqs/solution/1170",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " — ’n eenmansaak kan nie tot die UIF bydra nie, omdat die eienaar van ’n eenmansaak nie ’n werknemer kan wees wat werkloos word nie."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "UIF en selfstandiges",
+      "type": "web",
+      "url": "https://taxfaculty.ac.za/faq/general_faqs/solution/1170",
+      "urls": [
+        "https://taxfaculty.ac.za/faq/general_faqs/solution/1170"
+      ]
+    },
+    {
+      "block": "you-are-the-business-uif-coida-courts-and-continuity.2",
+      "group": "Jy is die besigheid: UIF, COIDA, howe en kontinuïteit",
+      "groupId": "you-are-the-business-uif-coida-courts-and-continuity",
+      "id": "coida-and-working-directors",
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Die wet se omskrywing van werknemer sluit ’n direkteur of lid van ’n regspersoon in wat ’n dienskontrak aangegaan het, vir sover hulle binne die bestek van daardie diens optree, en sluit aandeelhouers of stil vennote uit wat net dividende of ’n winsaandeel ontvang. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.eohcb.co.za/post/coida-who-must-register-for-coida"
+            }
+          ],
+          "external": true,
+          "href": "https://www.eohcb.co.za/post/coida-who-must-register-for-coida",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " en "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.mdacc.co.za/do-i-need-to-register-for-workmens-compensation/"
+            }
+          ],
+          "external": true,
+          "href": "https://www.mdacc.co.za/do-i-need-to-register-for-workmens-compensation/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Dat ’n werkende direkteur wat ’n maandelikse salaris kry, geregistreer moet word en ’n Return of Earnings (verdiensteopgawe) moet indien, selfs as die enigste werknemer, kom uit ClearComply se gids van 2026: "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.clearcomply.co.za/blog/coida-compensation-fund-south-africa"
+            }
+          ],
+          "external": true,
+          "href": "https://www.clearcomply.co.za/blog/coida-compensation-fund-south-africa",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Eienaars van eenmansake en vennote is nie werknemers kragtens COIDA nie: "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://labourguide.co.za/coid/compensation-fund-registrations/compensation-fund-registration"
+            }
+          ],
+          "external": true,
+          "href": "https://labourguide.co.za/coid/compensation-fund-registrations/compensation-fund-registration",
+          "t": "link"
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "COIDA en werkende direkteure",
+      "type": "web",
+      "url": "https://www.eohcb.co.za/post/coida-who-must-register-for-coida",
+      "urls": [
+        "https://www.eohcb.co.za/post/coida-who-must-register-for-coida",
+        "https://www.mdacc.co.za/do-i-need-to-register-for-workmens-compensation/",
+        "https://www.clearcomply.co.za/blog/coida-compensation-fund-south-africa",
+        "https://labourguide.co.za/coid/compensation-fund-registrations/compensation-fund-registration"
+      ]
+    },
+    {
+      "block": "you-are-the-business-uif-coida-courts-and-continuity.3",
+      "group": "Jy is die besigheid: UIF, COIDA, howe en kontinuïteit",
+      "groupId": "you-are-the-business-uif-coida-courts-and-continuity",
+      "id": "small-claims-court-who-may-sue",
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Small Claims Courts Act 61 of 1984, artikel 7(1) — net ’n natuurlike persoon mag ’n eis instel, en ’n regspersoon mag net as verweerder ’n party word. Gekonsolideerde teks: "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.saflii.org/za/legis/consol_act/scca1984214/"
+            }
+          ],
+          "external": true,
+          "href": "https://www.saflii.org/za/legis/consol_act/scca1984214/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Bevestig deur Legal Aid South Africa ("
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://legal-aid.co.za/2018/09/26/instituting-action-in-the-small-claims-court-guide/"
+            }
+          ],
+          "external": true,
+          "href": "https://legal-aid.co.za/2018/09/26/instituting-action-in-the-small-claims-court-guide/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "), Werksmans Attorneys ("
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://werksmans.com/a-brief-overview-of-the-small-claims-court-2026-update/"
+            }
+          ],
+          "external": true,
+          "href": "https://werksmans.com/a-brief-overview-of-the-small-claims-court-2026-update/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ") en die Department of Justice ("
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.justice.gov.za/scc/scc_info.htm"
+            }
+          ],
+          "external": true,
+          "href": "https://www.justice.gov.za/scc/scc_info.htm",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "). ’n Benoemde direkteur of beampte mag verskyn vir ’n regspersoon wat ’n verweerder is. Die verjaringstermyn van drie jaar kom uit die oorsig van Werksmans."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "Small Claims Court (Kleineisehof): wie ’n eis mag instel",
+      "type": "web",
+      "url": "https://www.saflii.org/za/legis/consol_act/scca1984214/",
+      "urls": [
+        "https://www.saflii.org/za/legis/consol_act/scca1984214/",
+        "https://legal-aid.co.za/2018/09/26/instituting-action-in-the-small-claims-court-guide/",
+        "https://werksmans.com/a-brief-overview-of-the-small-claims-court-2026-update/",
+        "https://www.justice.gov.za/scc/scc_info.htm"
+      ]
+    },
+    {
+      "block": "you-are-the-business-uif-coida-courts-and-continuity.4",
+      "group": "Jy is die besigheid: UIF, COIDA, howe en kontinuïteit",
+      "groupId": "you-are-the-business-uif-coida-courts-and-continuity",
+      "id": "death-of-a-sole-director-and-shareholder",
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "Companies Act 71 of 2008 — ’n persoon hou op om ’n direkteur te wees wanneer hy of sy sterf; direkteure word deur aandeelhouers aangestel. Administration of Estates Act 66 of 1965, artikel 13(1) — ’n bestorwe boedel moet binne 14 dae by die Master of the High Court (Meester van die Hooggeregshof) aangemeld word. Suid-Afrikaanse kommentaar oor die verlamming wat volg, die afhanklikheid van die akte van oprigting (MOI), en die Saga Wines-saak: Al Baraka Bank se regsdienste ("
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.albaraka.co.za/blogs/legalease-3-2023/business-owners-beware-your-death-could-result-in-the-closure-of-your-business"
+            }
+          ],
+          "external": true,
+          "href": "https://www.albaraka.co.za/blogs/legalease-3-2023/business-owners-beware-your-death-could-result-in-the-closure-of-your-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "), Shandu Attorneys ("
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://shanduattorneys.co.za/2019/11/27/business-continuity-risk-death-of-a-companys-sole-shareholder-and-sole-director/"
+            }
+          ],
+          "external": true,
+          "href": "https://shanduattorneys.co.za/2019/11/27/business-continuity-risk-death-of-a-companys-sole-shareholder-and-sole-director/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "), FindAnAttorney ("
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.findanattorney.co.za/content_company-law-deceased-estate"
+            }
+          ],
+          "external": true,
+          "href": "https://www.findanattorney.co.za/content_company-law-deceased-estate",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ") en Iota ("
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.iota.co.za/news-1/business-continuity-of-sole-shareholder-and-director-dying"
+            }
+          ],
+          "external": true,
+          "href": "https://www.iota.co.za/news-1/business-continuity-of-sole-shareholder-and-director-dying",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "), wat die skatting van twee weke tot drie maande gee om ’n eksekuteur aan te stel."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "Dood van ’n enigste direkteur en aandeelhouer",
+      "type": "web",
+      "url": "https://www.albaraka.co.za/blogs/legalease-3-2023/business-owners-beware-your-death-could-result-in-the-closure-of-your-business",
+      "urls": [
+        "https://www.albaraka.co.za/blogs/legalease-3-2023/business-owners-beware-your-death-could-result-in-the-closure-of-your-business",
+        "https://shanduattorneys.co.za/2019/11/27/business-continuity-risk-death-of-a-companys-sole-shareholder-and-sole-director/",
+        "https://www.findanattorney.co.za/content_company-law-deceased-estate",
+        "https://www.iota.co.za/news-1/business-continuity-of-sole-shareholder-and-director-dying"
+      ]
+    },
+    {
+      "block": "colour-research-and-signage-materials.2",
+      "group": "Navorsing oor kleur en materiale vir uithangborde",
+      "groupId": "colour-research-and-signage-materials",
+      "id": "elliot-a-j-and-maier-m-a-color-psychology-effects-of-perceiving-color-on-psychological-functioning-in",
+      "item": 0,
+      "noUrlReason": "A journal article cited by authors, title, journal and year; the register links only to summaries, which are listed after it.",
+      "official": false,
+      "subgroupId": "colour-psychology",
+      "supports": [
+        {
+          "t": "text",
+          "v": "geen kleur het ’n universele betekenis nie; die effekte hang van die konteks af en wissel met versadiging, helderheid, produkkategorie en kultuur."
+        }
+      ],
+      "title": "Elliot, A. J. en Maier, M. A., \"Color Psychology: Effects of Perceiving Color on Psychological Functioning in Humans\", Annual Review of Psychology (2014)",
+      "type": "citation",
+      "urls": []
+    },
+    {
+      "block": "colour-research-and-signage-materials.2",
+      "group": "Navorsing oor kleur en materiale vir uithangborde",
+      "groupId": "colour-research-and-signage-materials",
+      "id": "labrecque-l-i-and-milne-g-r-exciting-red-and-competent-blue-the-importance-of-color-in-marketing-journal-of",
+      "item": 1,
+      "noUrlReason": "A journal article cited by authors, title, journal and year; the register links only to summaries, which are listed after it.",
+      "official": false,
+      "subgroupId": "colour-psychology",
+      "supports": [
+        {
+          "t": "text",
+          "v": "ooreenstemming tussen die handelsmerk se kleur en die waargenome persoonlikheid van die handelsmerk voorspel voorkeur beter as die kleur self."
+        }
+      ],
+      "title": "Labrecque, L. I. en Milne, G. R., \"Exciting Red and Competent Blue: The Importance of Color in Marketing\", Journal of the Academy of Marketing Science (2012)",
+      "type": "citation",
+      "urls": []
+    },
+    {
+      "block": "colour-research-and-signage-materials.5",
+      "group": "Navorsing oor kleur en materiale vir uithangborde",
+      "groupId": "colour-research-and-signage-materials",
+      "id": "sytech-supplies-south-africa",
+      "item": 0,
+      "official": false,
+      "subgroupId": "signage-vinyl-and-south-african-uv",
+      "supports": [
+        {
+          "t": "text",
+          "v": "dat Suid-Afrika in ’n UV-klimaat van Sone 3 lê; dat vertikale viniel wat in Europa tot tien jaar hou, plaaslik in drie jaar kan verbleik; dat horisontale installasies 50 tot 70% van die verwagte leeftyd kan verloor. Dit is ’n verskaffer se blog, nie ’n onafhanklike toets nie. Behandel die syfers as ’n grootte-orde."
+        }
+      ],
+      "title": "Sytech Supplies (Suid-Afrika)",
+      "type": "web",
+      "url": "https://www.sytech.co.za/2025/10/14/understanding-common-vinyl-failures-in-south-africas-climate-and-how-to-prevent-them/",
+      "urls": [
+        "https://www.sytech.co.za/2025/10/14/understanding-common-vinyl-failures-in-south-africas-climate-and-how-to-prevent-them/"
+      ]
+    },
+    {
+      "block": "colour-research-and-signage-materials.5",
+      "group": "Navorsing oor kleur en materiale vir uithangborde",
+      "groupId": "colour-research-and-signage-materials",
+      "id": "cast-versus-calendered-lifespans-cast-roughly-5-to-10-years-outdoors-calendered-roughly-1-to-5-are-consistent",
+      "item": 1,
+      "official": false,
+      "subgroupId": "signage-vinyl-and-south-african-uv",
+      "supports": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://www.craftsmenind.com/blog/fleet-graphics-lifespan"
+            }
+          ],
+          "external": true,
+          "href": "https://www.craftsmenind.com/blog/fleet-graphics-lifespan",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " en "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://swiftsignquote.com/blog/cast-vs-calendered-vinyl"
+            }
+          ],
+          "external": true,
+          "href": "https://swiftsignquote.com/blog/cast-vs-calendered-vinyl",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Plaaslike toestande en die gehalte van die installasie verander hierdie syfers aansienlik."
+        }
+      ],
+      "supportsFrom": "qualifier",
+      "title": "Die leeftyd van gegote teenoor gekalanderde viniel (gegote viniel ongeveer 5 tot 10 jaar buite, gekalanderde viniel ongeveer 1 tot 5) stem ooreen oor verskeie onafhanklike bedryfsbronne, insluitend",
+      "type": "web",
+      "url": "https://www.craftsmenind.com/blog/fleet-graphics-lifespan",
+      "urls": [
+        "https://www.craftsmenind.com/blog/fleet-graphics-lifespan",
+        "https://swiftsignquote.com/blog/cast-vs-calendered-vinyl"
+      ]
+    },
+    {
+      "block": "branding-tools-referenced.1",
+      "group": "Handelsmerkgereedskap waarna verwys word",
+      "groupId": "branding-tools-referenced",
+      "id": "webaim-contrast-checker",
+      "item": 0,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "gebruik om pare teks- en agtergrondkleure teen WCAG AA na te gaan. Die gereedskapstel sê vir lesers om dit self te doen, omdat taalmodelle nie kontrasverhoudings betroubaar kan bereken nie."
+        }
+      ],
+      "title": "WebAIM contrast checker",
+      "type": "web",
+      "url": "https://webaim.org/resources/contrastchecker/",
+      "urls": [
+        "https://webaim.org/resources/contrastchecker/"
+      ]
+    },
+    {
+      "block": "branding-tools-referenced.1",
+      "group": "Handelsmerkgereedskap waarna verwys word",
+      "groupId": "branding-tools-referenced",
+      "id": "google-fonts",
+      "item": 1,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "lettertipes met ’n lisensie onder die SIL Open Font Licence, wat kommersiële gebruik toelaat. Gaan die lisensiebladsy van enige lettertipe na voordat jy dit gebruik."
+        }
+      ],
+      "title": "Google Fonts",
+      "type": "web",
+      "url": "https://fonts.google.com",
+      "urls": [
+        "https://fonts.google.com"
+      ]
+    },
+    {
+      "block": "branding-tools-referenced.1",
+      "group": "Handelsmerkgereedskap waarna verwys word",
+      "groupId": "branding-tools-referenced",
+      "id": "inkscape",
+      "item": 2,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "gratis vektorredigeerder. Die gereedskapstel se aanbevole program om die finale logolêer te maak."
+        }
+      ],
+      "title": "Inkscape",
+      "type": "web",
+      "url": "https://inkscape.org",
+      "urls": [
+        "https://inkscape.org"
+      ]
+    },
+    {
+      "block": "branding-tools-referenced.1",
+      "group": "Handelsmerkgereedskap waarna verwys word",
+      "groupId": "branding-tools-referenced",
+      "id": "cipc-trade-mark-search",
+      "item": 3,
+      "official": false,
+      "supports": [
+        {
+          "t": "text",
+          "v": "deur die CIPC eServices-portaal by "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.cipc.co.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.cipc.co.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Die gereedskapstel sê vir lesers om self hier te soek voordat hulle hulle aan ’n naam verbind."
+        }
+      ],
+      "title": "CIPC se soektog na handelsmerke",
+      "type": "web",
+      "url": "https://www.cipc.co.za",
+      "urls": [
+        "https://www.cipc.co.za"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "tax-and-sars",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Die sluitingsdatums van die indieningseisoen vir die 2026-jaar (23 Oktober 2026 vir nie-voorlopige belastingbetalers, 22 Januarie 2027 vir voorlopige belastingbetalers) kom uit SARS Government Gazette No. 54598, Notice 7422, 30 April 2026, soos deur Accounter gerapporteer — "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "https://accounter.co.za/tools/tax-calendar"
+              }
+            ],
+            "external": true,
+            "href": "https://accounter.co.za/tools/tax-calendar",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ". Bevestig dit elke jaar op "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "sars.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://sars.gov.za/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Sekondêr, gebruik om die 2026/2027-tabelle te kontroleer:"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Nota oor ’n teenstrydigheid wat gevind is: twee sekondêre bronne het verskillende syfers vir die primêre korting gegee (R17,235 en R17,820). Die drempel van R99,000 teen ’n eerste skaal van 18% impliseer R17,820. Om daardie rede noem hierdie gereedskapstel die drempel eerder as die korting. Bevestig dit op SARS se bladsy oor belastingkoerse voordat jy op enigeen staatmaak."
+          }
+        ]
+      ],
+      "order": 1,
+      "subgroups": [],
+      "title": "Belasting en SARS"
+    },
+    {
+      "id": "company-registration",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Sekondêr:"
+          }
+        ]
+      ],
+      "order": 2,
+      "subgroups": [],
+      "title": "Maatskappyregistrasie"
+    },
+    {
+      "id": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Onderliggende wetgewing: Companies Act 71 of 2008 — s4 (solvensie- en likiditeitstoets), s22 (roekelose handeldrywing), s32 (maatskappynaam en registrasienommer op dokumente), s33 (jaarlikse opgawes), s76 (pligte van direkteure), s77 (aanspreeklikheid van direkteure), s218(2) (aanspreeklikheid vir oortredings). Consumer Protection Act 68 of 2008 — s79 en s80 (besigheidsname; die s80-register is nog nie in werking gestel nie). Income Tax Act 58 of 1962 — s22 (handelsvoorraad wat aan die einde van die jaar in berekening gebring word), s12E (kleinsakekorporasies, insluitend die beperking op die besit van aandele in ’n ander maatskappy). Companies Regulations 2011 — regulasie 26 (Public Interest Score), regulasies 28 en 29 (oudit en onafhanklike oorsig), tabel CR 2B (fooie vir jaarlikse opgawes)."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Sekondêr, vir fooie, sperdatums en hoe deregistrasie werk:"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Nota oor die syfer van 800,000 deregistrasies: dit kom van ’n sekondêre bron wat CIPC-optrede beskryf wat in Januarie 2025 begin het. Behandel dit as ’n aanduiding van die omvang, nie as ’n presiese amptelike statistiek nie."
+          }
+        ]
+      ],
+      "order": 3,
+      "subgroups": [],
+      "title": "Bestuur van ’n Pty Ltd: jaarlikse opgawes, finansiële state, direkteure"
+    },
+    {
+      "id": "paying-yourself-from-a-company",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Onderliggende wetgewing: Income Tax Act 58 of 1962 — s64E(4) (geagte dividende op lenings teen ’n lae rente aan aandeelhouers), die Sewende Bylae (byvoordele), paragraaf 11C van die Vierde Bylae (geagte vergoeding vir direkteure van privaat maatskappye). Companies Act 71 of 2008 — s4 en s46 (uitkerings en die solvensie- en likiditeitstoets)."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Regspraak: Cohen NO v Segal, Witwatersrand Local Division, uitspraak 28 April 1970 — ’n dividend mag oor die algemeen net uit wins verklaar word, nie uit kapitaal nie. Bevestig die verwysing na die hofverslag by ’n prokureur voordat jy in korrespondensie daarop staatmaak."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Sekondêr:"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Nie gebruik nie:"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " TaxTim se artikel oor ’n direkteur se PAYE- en UIF-aftrekkings, en PATC se ekwivalent, beskryf albei nog die herroepte formule vir geagte vergoeding asof dit geld. Hulle is nagegaan en verwerp. Dit is ’n goeie voorbeeld van waarom die amptelike standpunt meer saak maak as ’n artikel wat hoog in die soekresultate verskyn."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Twee teenstrydighede aangeteken, albei in die teks van die gereedskapstel uitgewys:"
+              }
+            ],
+            "t": "strong"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Omvang van die geagte dividend."
+              }
+            ],
+            "t": "em"
+          },
+          {
+            "t": "text",
+            "v": " Sommige bronne sê die geagte dividend is 20% van die hele debietsaldo van die lening. The Tax Faculty en die bewoording van s64E(4) ondersteun die enger standpunt dat net die rente wat prysgegee is, as ’n dividend geag word. Die gereedskapstel neem die enger standpunt in en sê so."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "UIF vir ’n enigste direkteur."
+              }
+            ],
+            "t": "em"
+          },
+          {
+            "t": "text",
+            "v": " ClearComply en eqeight dui aan dat UIF geld vir ’n direkteur wat deur die betaalstaat betaal word, selfs as die enigste werknemer. Ander bronne dui aan dat UIF en SDL nie geld waar die direkteur direkteursfooie ontvang en nie ’n werknemer kragtens ’n dienskontrak is nie. Die gereedskapstel gee albei en raai aan dat jy advies kry eerder as om een te kies."
+          }
+        ]
+      ],
+      "order": 4,
+      "subgroups": [],
+      "title": "Betaal jouself uit ’n maatskappy"
+    },
+    {
+      "id": "b-bbee",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Sekondêr:"
+          }
+        ]
+      ],
+      "order": 5,
+      "subgroups": [],
+      "title": "B-BBEE"
+    },
+    {
+      "id": "popia",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Sekondêr:"
+          }
+        ]
+      ],
+      "order": 6,
+      "subgroups": [],
+      "title": "POPIA"
+    },
+    {
+      "id": "consumer-law-and-online-selling",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Sekondêr:"
+          }
+        ]
+      ],
+      "order": 7,
+      "subgroups": [],
+      "title": "Verbruikersreg en aanlynverkope"
+    },
+    {
+      "id": "vehicle-dealing-and-vehicles-generally",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Sekondêr:"
+          }
+        ]
+      ],
+      "order": 8,
+      "subgroups": [],
+      "title": "Voertuighandel en voertuie in die algemeen"
+    },
+    {
+      "id": "second-hand-goods-dealing",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Sekondêr:"
+          }
+        ]
+      ],
+      "order": 9,
+      "subgroups": [],
+      "title": "Handel in tweedehandse goedere"
+    },
+    {
+      "id": "used-vehicle-sales-and-the-consumer-protection-act",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Sekondêre bronne, wat almal terugverwys na CPA s55 en s56:"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Forums vir geskille: Motor Industry Ombudsman of South Africa, "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "miosa.co.za"
+              }
+            ],
+            "external": true,
+            "href": "https://miosa.co.za/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ". National Consumer Commission, "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "thencc.org.za"
+              }
+            ],
+            "external": true,
+            "href": "https://thencc.org.za/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die siviele jurisdiksie van die landdroshof (distrik R200,000, streek R200,000 tot R400,000) kom uit ’n sekondêre opsomming. Bevestig dit by ’n prokureur voordat jy ’n forum kies."
+          }
+        ]
+      ],
+      "order": 10,
+      "subgroups": [],
+      "title": "Verkoop van gebruikte voertuie en die Consumer Protection Act"
+    },
+    {
+      "id": "food-businesses",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Sekondêr:"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jou werklike gesag is jou munisipale omgewingsgesondheidspraktisyn (Environmental Health Practitioner). Kontak hulle voordat jy op enige webbron staatmaak."
+          }
+        ]
+      ],
+      "order": 11,
+      "subgroups": [],
+      "title": "Kosbesighede"
+    },
+    {
+      "id": "business-licensing",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Sekondêr:"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die enigste betroubare bron vir jou situasie is jou munisipaliteit se kantoor vir besigheidslisensiëring."
+          }
+        ]
+      ],
+      "order": 12,
+      "subgroups": [],
+      "title": "Besigheidslisensiëring"
+    },
+    {
+      "id": "credit-and-financial-services",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Sekondêr:"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Amptelike reguleerders: National Credit Regulator, "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "ncr.org.za"
+              }
+            ],
+            "external": true,
+            "href": "https://ncr.org.za/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ". Financial Sector Conduct Authority, "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "fsca.co.za"
+              }
+            ],
+            "external": true,
+            "href": "https://fsca.co.za/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ]
+      ],
+      "order": 13,
+      "subgroups": [],
+      "title": "Krediet en finansiële dienste"
+    },
+    {
+      "id": "working-from-home-payments-and-personal-safety",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Nota: Suid-Afrika het geen formele nasionale program van \"veilige ruilsones\" by polisiestasies nie. Die voorstel om die parkeerterrein van ’n polisiestasie te gebruik, is algemene praktyk, nie ’n amptelike skema nie. Vra by jou plaaslike polisiestasie."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Soneringsreëls word deur elke munisipaliteit bepaal. Die enigste betroubare bron vir jou eiendom is jou munisipaliteit se kantoor vir stadsbeplanning."
+          }
+        ]
+      ],
+      "order": 14,
+      "subgroups": [
+        {
+          "block": "working-from-home-payments-and-personal-safety.1",
+          "entry": "south-african-reserve-bank--banknote-security-features",
+          "id": "south-african-reserve-bank--banknote-security-features",
+          "notes": [],
+          "title": "South African Reserve Bank — sekuriteitskenmerke van banknote"
+        },
+        {
+          "block": "working-from-home-payments-and-personal-safety.4",
+          "id": "payshap-limits",
+          "notes": [],
+          "title": "PayShap-limiete"
+        },
+        {
+          "block": "working-from-home-payments-and-personal-safety.6",
+          "id": "fake-proof-of-payment-and-marketplace-scams",
+          "notes": [],
+          "title": "Vals betalingsbewyse en swendelary op aanlyn markplekke"
+        },
+        {
+          "block": "working-from-home-payments-and-personal-safety.8",
+          "id": "meeting-buyers-and-test-drives",
+          "notes": [],
+          "title": "Ontmoet kopers en toetsritte"
+        },
+        {
+          "block": "working-from-home-payments-and-personal-safety.11",
+          "id": "home-based-business-zoning",
+          "notes": [],
+          "title": "Sonering vir besighede by die huis"
+        }
+      ],
+      "title": "Tuiswerk, betalings en persoonlike veiligheid"
+    },
+    {
+      "id": "you-are-the-business-uif-coida-courts-and-continuity",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Waarskuwing: verskeie artikels oor hierdie onderwerp wat baie gelees word, is geskryf vir die Britse Model Articles of vir Australië se artikel 201F. "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Nie een van die twee geld in Suid-Afrika nie."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Die posisie hier hang af van jou eie akte van oprigting (MOI). Vra ’n prokureur."
+          }
+        ]
+      ],
+      "order": 15,
+      "subgroups": [],
+      "title": "Jy is die besigheid: UIF, COIDA, howe en kontinuïteit"
+    },
+    {
+      "id": "colour-research-and-signage-materials",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Opsommings wat geraadpleeg is: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "https://www.deepmarketing.it/en/blog/color-science-marketing-evidence-2026"
+              }
+            ],
+            "external": true,
+            "href": "https://www.deepmarketing.it/en/blog/color-science-marketing-evidence-2026",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " en "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "https://howbrandsarebuilt.com/branding-color-psychology/"
+              }
+            ],
+            "external": true,
+            "href": "https://howbrandsarebuilt.com/branding-color-psychology/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ". Die onderliggende artikels is nie volledig gelees nie; as ’n besluit hiervan afhang, lees Elliot en Maier self."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Laat jou eie uithangbordmaker bevestig wat hulle kwoteer voordat jy bestel."
+          }
+        ]
+      ],
+      "order": 16,
+      "subgroups": [
+        {
+          "block": "colour-research-and-signage-materials.1",
+          "id": "colour-psychology",
+          "notes": [
+            [
+              {
+                "t": "text",
+                "v": "Die gereedskapstel vermy doelbewus tabelle met die betekenisse van kleure. Die standpunt is gebaseer op:"
+              }
+            ],
+            [
+              {
+                "t": "text",
+                "v": "Die bewering wat dikwels aangehaal word, dat 62 tot 90% van ’n vinnige oordeel oor ’n produk van kleur kom, gaan terug na ’n literatuuroorsig van 2006 deur Satyendra Singh, nie na ’n gekontroleerde koopeksperiment nie. Die gereedskapstel gebruik dit nie."
+              }
+            ]
+          ],
+          "title": "Kleursielkunde"
+        },
+        {
+          "block": "colour-research-and-signage-materials.4",
+          "id": "signage-vinyl-and-south-african-uv",
+          "notes": [],
+          "title": "Viniel vir uithangborde en Suid-Afrikaanse UV"
+        }
+      ],
+      "title": "Navorsing oor kleur en materiale vir uithangborde"
+    },
+    {
+      "id": "branding-tools-referenced",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Die standpunt dat dit moeilik kan wees om beelde wat deur KI gegenereer is, te besit of as handelsmerk te registreer, is onseker reg en word in die gereedskapstel aangebied as ’n risiko om te bestuur, nie as ’n reël nie."
+          }
+        ]
+      ],
+      "order": 17,
+      "subgroups": [],
+      "title": "Handelsmerkgereedskap waarna verwys word"
+    }
+  ],
+  "lang": "af"
+}

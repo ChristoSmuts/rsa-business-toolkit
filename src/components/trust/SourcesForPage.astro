@@ -20,8 +20,8 @@ import Badge from '../ui/Badge.astro';
 import Icon from '../ui/Icon.astro';
 import Inline from '../content/Inline.astro';
 import { useTranslations } from '../../i18n';
-import { getLocale, type Locale } from '../../i18n/locales';
-import { isFallbackContent, type ContentContext } from '../../lib/content/context';
+import { DEFAULT_LOCALE, getLocale, type Locale } from '../../i18n/locales';
+import type { ContentContext } from '../../lib/content/context';
 import { docHref, docTitle } from '../../lib/content/manifest';
 import { actsFor, sourceEntriesFor } from '../../lib/content/render';
 import type { DocSources, SourceNote } from '../../lib/content/schema';
@@ -52,17 +52,25 @@ const count = entries.length + acts.length;
 const listed = sources.entries.length + sources.acts.length;
 if (count !== listed) {
   throw new Error(
-    `${context.docId ?? 'A page'} lists ${listed} source(s) but the ${context.contentLang} register ` +
-      `resolves ${count}. Add the missing entries to src/data/${context.contentLang}/sources.json.`,
+    `${context.docId ?? 'A page'} lists ${listed} source(s) but the ${context.sourcesLang} register ` +
+      `resolves ${count}. Add the missing entries to src/data/${context.sourcesLang}/sources.json.`,
   );
 }
 /**
- * The register and the note are in the content's language. On an English fallback page that is
- * not the page's language, so their text is marked, while the labels around it are not.
+ * Text in another language than the page is marked, while the labels around it are not. The
+ * entries are in the register's language, which can lag the page's: an Afrikaans page carries the
+ * English register until `lookup/sources` is translated. The source note and an entry's reason for
+ * having no link come from `content-meta/` (`provenance.json`, `docs.meta.json`), which is written
+ * in English only (backlog: translate them), so they are English on every page whatever language
+ * the document is in.
  */
-const dataLang = isFallbackContent(context)
-  ? (getLocale(context.contentLang)?.hreflang ?? context.contentLang)
-  : undefined;
+const noteLang = locale === DEFAULT_LOCALE ? undefined : getLocale(DEFAULT_LOCALE)?.hreflang;
+const dataLang =
+  context.sourcesLang === locale
+    ? undefined
+    : (getLocale(context.sourcesLang)?.hreflang ?? context.sourcesLang);
+/** Register text renders as one island in the register's language, labels and docrefs included. */
+const registerContext: ContentContext = { ...context, contentLang: context.sourcesLang };
 /** Build plan D5: every content page links the full register, not only pages without sources. */
 const registerHref =
   context.docId === 'lookup/sources'
@@ -120,12 +128,12 @@ const noteLinks = (sourceNote?.see ?? [])
               <p class="st-hint">
                 {t('trust.sources.supportsLabel')}:{' '}
                 <span lang={dataLang}>
-                  <Inline runs={entry.supports} context={context} />
+                  <Inline runs={entry.supports} context={registerContext} />
                 </span>
               </p>
             )}
             {entry.noUrlReason && (
-              <p class="st-hint" lang={dataLang}>
+              <p class="st-hint" lang={noteLang}>
                 {entry.noUrlReason}
               </p>
             )}
@@ -141,7 +149,7 @@ const noteLinks = (sourceNote?.see ?? [])
                     {act.name}
                   </span>
                   <span class="st-hint" lang={dataLang}>
-                    <Inline runs={act.governs} context={context} />
+                    <Inline runs={act.governs} context={registerContext} />
                   </span>
                 </li>
               ))}
@@ -160,7 +168,7 @@ const noteLinks = (sourceNote?.see ?? [])
   ) : (
     <Fragment>
       {sourceNote ? (
-        <p class="st-hint" lang={dataLang}>
+        <p class="st-hint" lang={noteLang}>
           {sourceNote.reason}
         </p>
       ) : (

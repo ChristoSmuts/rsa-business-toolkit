@@ -13,6 +13,7 @@ import { useTranslations, type TranslationKey } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
 import { loadDoc, loadGlossary, loadManifest, loadSources } from '../../lib/content/collections';
 import { sectionDocIds } from '../../lib/content/manifest';
+import { NAV_DOC_IDS } from '../../lib/routes';
 import type { Doc as ContentDoc } from '../../lib/content/schema';
 import {
   contentPageTitle,
@@ -44,9 +45,9 @@ async function requireDoc(id: string): Promise<ContentDoc> {
 const doc = page.kind === 'doc' ? await requireDoc(page.docId) : undefined;
 const contentLang = doc ? (doc.lang as Locale) : locale;
 const glossary = doc ? await loadGlossary(contentLang) : undefined;
-const sources = await loadSources(
-  doc ? contentLang : docContentLang(manifest, 'lookup/sources', locale),
-);
+/** The register in the page's content language once it is translated, English until then. */
+const sourcesLang = docContentLang(manifest, NAV_DOC_IDS.sources, contentLang);
+const sources = doc ? await loadSources(sourcesLang) : undefined;
 const businessTypes = (await getCollection('businessTypes')).map((entry) => entry.data);
 const sectionDescription =
   page.kind === 'section' ? t(`nav.sections.${page.sectionId}.description` as TranslationKey) : '';
@@ -63,6 +64,7 @@ const sectionDocs =
     doc={doc}
     glossary={glossary}
     sources={sources}
+    sourcesLang={sourcesLang}
     businessTypes={businessTypes}
   />
 ) : (

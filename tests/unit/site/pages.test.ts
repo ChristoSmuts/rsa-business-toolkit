@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { useTranslations } from '../../../src/i18n';
+import type { Locale } from '../../../src/i18n/locales';
 import type { Manifest } from '../../../src/lib/content/schema';
 import {
   assertDocTrust,
@@ -93,17 +94,24 @@ describe('contentStaticPaths', () => {
 });
 
 describe('languages of a document', () => {
+  /** The corpus is translated over time, so these build their own state rather than read it. */
+  function withLangs(langs: Locale[]): typeof manifest {
+    const copy = clone();
+    const entry = copy.docs['core/register'];
+    if (entry) entry.langs = langs;
+    return copy;
+  }
+
   it('offers only the languages a document really exists in', () => {
-    expect(docLocales(manifest, 'core/register')).toEqual(['en']);
+    expect(docLocales(withLangs(['en']), 'core/register')).toEqual(['en']);
+    expect(docLocales(withLangs(['af', 'en']), 'core/register')).toEqual(['en', 'af']);
     expect(docLocales(manifest, 'no/such-doc')).toEqual([]);
   });
 
   it('falls back to English for an untranslated document', () => {
-    expect(docContentLang(manifest, 'core/register', 'af')).toBe('en');
-    expect(docContentLang(manifest, 'core/register', 'en')).toBe('en');
-    const translated = clone();
-    translated.docs['core/register']?.langs.push('af');
-    expect(docContentLang(translated, 'core/register', 'af')).toBe('af');
+    expect(docContentLang(withLangs(['en']), 'core/register', 'af')).toBe('en');
+    expect(docContentLang(withLangs(['en']), 'core/register', 'en')).toBe('en');
+    expect(docContentLang(withLangs(['en', 'af']), 'core/register', 'af')).toBe('af');
   });
 });
 

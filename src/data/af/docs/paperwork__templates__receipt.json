@@ -1,0 +1,268 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Stuur dit wanneer geld inkom. Dit keer die \"het jy my betaling gekry?\"-boodskap. Maak ’n afskrif, vervang die [VIERKANTIGE HAKIES], voer dit na PDF uit."
+        }
+      ],
+      "hash": "a8855e10c698a477",
+      "id": "intro.1",
+      "kind": "note",
+      "sourceHash": "82e6437881ca1220"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "key": "businessName",
+              "style": "identity",
+              "t": "placeholder",
+              "v": "JOU BESIGHEIDSNAAM"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Foon"
+        },
+        {
+          "t": "text",
+          "v": " | "
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "E-pos"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "nested": true,
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "As ’n maatskappy: Handeldrywende as ’n naam van [GEREGISTREERDE NAAM] (Pty) Ltd, Reg. No. [NOMMER]"
+        }
+      ],
+      "hash": "2767ce977b39224b",
+      "id": "intro.3",
+      "kind": "paragraph",
+      "sourceHash": "f9536c7207d0e0bb"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "89d3fbe985947ade",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Veld"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Besonderhede"
+          }
+        ]
+      ],
+      "id": "intro.4",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Kwitansienommer"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "REC-0001"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Datum ontvang"
+            }
+          ],
+          [
+            {
+              "style": "format",
+              "t": "placeholder",
+              "v": "DD Maand JJJJ"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Ontvang van"
+            }
+          ],
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Kliënt se naam"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Bedrag ontvang"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Metode"
+            }
+          ],
+          [
+            {
+              "style": "choice",
+              "t": "placeholder",
+              "v": "EFT / PayShap / Kontant / Kaart"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Vir faktuur"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "INV-0001"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Saldo nog verskuldig"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "ff9687d3efbacfa2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dankie."
+        }
+      ],
+      "hash": "a6a07d04ddadbd09",
+      "id": "intro.5",
+      "kind": "paragraph",
+      "sourceHash": "174534c6b3882921"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.6",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Stuur ’n kwitansie eers wanneer die geld in jou rekeningsaldo is. Nie \"hangend\" (\"pending\") nie. ’n Kwitansie wat jy op grond van ’n skermskoot van ’n betalingsbewys stuur, is ’n kwitansie vir geld wat jy dalk nooit sal kry nie."
+        }
+      ],
+      "hash": "88844004ec330332",
+      "id": "intro.7",
+      "kind": "callout",
+      "sourceHash": "d57b82f4ed2b8081",
+      "style": "note"
+    }
+  ],
+  "contentHash": "80386f7df8d2b405",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "KWITANSIE",
+  "headings": [],
+  "id": "paperwork/templates/receipt",
+  "kind": "template",
+  "lang": "af",
+  "order": 6,
+  "readingTime": 1,
+  "related": [],
+  "route": "templates/receipt/",
+  "section": "paperwork",
+  "slug": "receipt",
+  "sourcePath": "03 Paperwork and templates/templates-to-fill-in/04-receipt.md",
+  "sources": {
+    "acts": [],
+    "entries": [
+      "flip-the-market"
+    ]
+  },
+  "summary": "Stuur dit wanneer geld inkom. Dit keer die \"het jy my betaling gekry?\"-boodskap. Maak ’n afskrif, vervang die [VIERKANTIGE HAKIES], voer dit na PDF uit.",
+  "tags": [
+    "template"
+  ],
+  "terms": [],
+  "title": "Kwitansie (sjabloon)",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

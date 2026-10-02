@@ -21,7 +21,12 @@ import Icon from '../ui/Icon.astro';
 import '../../styles/content.css';
 import { useTranslations } from '../../i18n';
 import type { ContentContext } from '../../lib/content/context';
-import { docHref, docrefText as docrefTitle, sectionHref } from '../../lib/content/manifest';
+import {
+  docHref,
+  docrefLang as docrefTitleLang,
+  docrefText as docrefTitle,
+  sectionHref,
+} from '../../lib/content/manifest';
 import { isOfficialUrl, placeholderLabel } from '../../lib/content/render';
 import type { InlineRun } from '../../lib/content/schema';
 
@@ -51,6 +56,11 @@ function docrefText(run: Extract<InlineRun, { t: 'docref' }>): string {
   return docrefTitle(context.manifest, run, context.contentLang);
 }
 
+/** Its `lang`, when that title is the English one inside translated content. */
+function docrefLang(run: Extract<InlineRun, { t: 'docref' }>): string | undefined {
+  return docrefTitleLang(context.manifest, run, context.contentLang);
+}
+
 function isOfficial(url: string): boolean {
   return isOfficialUrl(context.officialUrls, url);
 }
@@ -76,6 +86,6 @@ function isOfficial(url: string): boolean {
   : run.t === 'sigline' ? <Fragment><span class="st-sigline" aria-hidden="true" /><span class="st-visually-hidden">{t('templates.fields.blankLine')}</span></Fragment>
   : run.t === 'link' && 'external' in run ? <Fragment><a href={run.href} rel="noopener noreferrer"><Self runs={run.c} context={context} /><Icon name="lucide:external-link" size="0.9em" /><span class="st-visually-hidden">{externalLabel}</span></a>{isOfficial(run.href) && <Fragment> <Badge variant="official">{officialLabel}</Badge></Fragment>}</Fragment>
   : run.t === 'link' ? (targetHref(run) === undefined ? <Self runs={run.c} context={context} /> : <a href={targetHref(run)}><Self runs={run.c} context={context} /></a>)
-  : targetHref(run) === undefined ? docrefText(run)
-  : <a href={targetHref(run)}>{docrefText(run)}</a>
+  : targetHref(run) === undefined ? <span lang={docrefLang(run)}>{docrefText(run)}</span>
+  : <a href={targetHref(run)} lang={docrefLang(run)}>{docrefText(run)}</a>
 )}

@@ -56,7 +56,13 @@ export function docTitle(manifest: Manifest, id: string, locale: Locale): string
  * sidebar or breadcrumb mark an English title on an Afrikaans page (build plan B5).
  */
 export function docTitleLang(manifest: Manifest, id: string, locale: Locale): string | undefined {
-  const titles = manifest.docs[id]?.titles;
+  return fallbackTitleLang(manifest.docs[id]?.titles, locale);
+}
+
+function fallbackTitleLang(
+  titles: Partial<Record<string, string>> | undefined,
+  locale: Locale,
+): string | undefined {
   if (titles?.[locale] !== undefined) return undefined;
   if (titles?.[DEFAULT_LOCALE] === undefined) return undefined;
   return getLocale(DEFAULT_LOCALE)?.hreflang ?? DEFAULT_LOCALE;
@@ -115,6 +121,20 @@ export function docrefText(
   }
   const title = sectionTitle(manifest, run.section, locale);
   return title === run.section ? run.label : title;
+}
+
+/**
+ * The `lang` a docref's text needs inside content in `locale`, as `docTitleLang`: a translated
+ * paragraph that names a document not translated yet shows the English title, marked English.
+ */
+export function docrefLang(
+  manifest: Manifest,
+  run: { doc: string } | { section: string },
+  locale: Locale,
+): string | undefined {
+  return 'doc' in run
+    ? fallbackTitleLang(manifest.docs[run.doc]?.titles, locale)
+    : fallbackTitleLang(sectionEntry(manifest, run.section)?.titles, locale);
 }
 
 /** Document ids of a section, in the manifest's order. */

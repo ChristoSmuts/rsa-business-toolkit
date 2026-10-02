@@ -1,0 +1,1705 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die getalle hier is vir die belastingjaar 1 Maart 2026 tot 28 Februarie 2027. Hulle het baie verander in die Februarie 2026-begroting. Kontroleer "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.sars.gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.sars.gov.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " voordat jy indien."
+        }
+      ],
+      "hash": "fc28e44042059826",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "f88d39e7d12c3f73"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "b84d8a4749e7f730",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Eenvoudige betekenisse van die terme wat in hierdie lêer gebruik word. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Totale verkope, voor koste."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Omset (turnover)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Wins ná toegelate koste. Belasting word hierop bereken."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Belasbare inkomste (taxable income)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Om belasting vooruit te betaal, twee keer per jaar, omdat geen werkgewer dit vir jou aftrek nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Voorlopige belasting (provisional tax)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die kort vorm wat jy vir elke betaling van voorlopige belasting invul."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "IRP6"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die jaarlikse belastingopgawe. ITR12 vir mense, ITR14 vir maatskappye."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "ITR12 / ITR14"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Eenvoudige belasting vir klein besighede, wat op verkope in plaas van op wins gehef word."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Omsetbelasting (turnover tax)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "15% belasting wat by verkope bygevoeg word, net deur besighede wat daarvoor geregistreer is."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "BTW (VAT)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Koste wat jy van inkomste mag aftrek voordat belasting bereken word."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Aftrekking (deduction)"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "6183569144a963d2"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die kort weergawe"
+        }
+      ],
+      "depth": 2,
+      "hash": "967cf8f99c158f05",
+      "id": "the-short-version",
+      "kind": "heading",
+      "sourceHash": "67354f8180841866",
+      "text": "Die kort weergawe"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jou besigheid minder as R99,000 wins per jaar maak en jy geen ander inkomste het nie, betaal jy geen inkomstebelasting nie. Jy moet dalk steeds ’n opgawe indien wat nul wys."
+        }
+      ],
+      "hash": "311ea834c4262b9f",
+      "id": "the-short-version.1",
+      "kind": "paragraph",
+      "sourceHash": "0f4986252ed1712c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jou besigheid se omset minder as R2.3 miljoen per jaar is, hoef jy nie vir BTW te registreer nie."
+        }
+      ],
+      "hash": "311156e0693cee74",
+      "id": "the-short-version.2",
+      "kind": "paragraph",
+      "sourceHash": "57cdf918a6a72005"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jou besigheid se omset minder as R600,000 per jaar is, is daar ’n stelsel genaamd omsetbelasting waarin jy 0% betaal."
+        }
+      ],
+      "hash": "a44bbddf556f8372",
+      "id": "the-short-version.3",
+      "kind": "paragraph",
+      "sourceHash": "f22bb92043823242"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Klein eenpersoonbesigheid kan dus wettig glad geen belasting betaal nie. Die gevaar is nie belasting nie. Die gevaar is om nie in te dien nie."
+        }
+      ],
+      "hash": "f99d759cf550737c",
+      "id": "the-short-version.4",
+      "kind": "paragraph",
+      "sourceHash": "44550b26151d8549"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat SARS van ’n eenmansaak wil hê"
+        }
+      ],
+      "depth": 2,
+      "hash": "3ebad1b377a6a92e",
+      "id": "what-sars-wants-from-a-sole-proprietor",
+      "kind": "heading",
+      "sourceHash": "b2d21fe3c235806b",
+      "text": "Wat SARS van ’n eenmansaak wil hê"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy registreer nie die besigheid by SARS nie. Daar is geen besigheid om te registreer nie. Jy registreer jouself."
+        }
+      ],
+      "hash": "808c14d3ec669059",
+      "id": "what-sars-wants-from-a-sole-proprietor.1",
+      "kind": "paragraph",
+      "sourceHash": "c6ae789b53b0f927"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die meeste Suid-Afrikaners het reeds ’n inkomstebelastingnommer van ’n vorige werk. As jy nie een het nie, registreer op SARS eFiling by "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.sarsefiling.co.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.sarsefiling.co.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", of gebruik die SARS MobiApp."
+        }
+      ],
+      "hash": "87bfaf3acdef4b83",
+      "id": "what-sars-wants-from-a-sole-proprietor.2",
+      "kind": "paragraph",
+      "sourceHash": "bb2db78541af1e95"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Besigheidswins gaan op jou gewone persoonlike belastingopgawe, die ITR12, in die afdeling \"plaaslike besigheidsinkomste\" (\"local business income\"). Jy verklaar inkomste en trek uitgawes af. Die antwoord is jou wins, en dit word bygetel by enige salaris of ander inkomste wat jy het."
+        }
+      ],
+      "hash": "97c8859d25339cee",
+      "id": "what-sars-wants-from-a-sole-proprietor.3",
+      "kind": "paragraph",
+      "sourceHash": "e1d5fc6eed0b1960"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voorlopige belasting"
+        }
+      ],
+      "depth": 3,
+      "hash": "b4d60aee69073fa2",
+      "id": "provisional-tax",
+      "kind": "heading",
+      "sourceHash": "9ba2716c26ce940b",
+      "text": "Voorlopige belasting"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Omdat niemand PAYE van jou besigheidsinkomste aftrek nie, wil SARS gedurende die jaar betaal word, nie alles aan die einde nie."
+        }
+      ],
+      "hash": "86fe631c87f83347",
+      "id": "provisional-tax.1",
+      "kind": "paragraph",
+      "sourceHash": "1b6b52b4767703ee"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n besigheid besit, sê die Income Tax Act jy moet as ’n voorlopige belastingbetaler (provisional taxpayer) registreer. Dit geld vir die eienaar van ’n eenmansaak, ’n vennoot in ’n vennootskap, ’n lid van ’n beslote korporasie (CC) en ’n direkteur van ’n maatskappy."
+        }
+      ],
+      "hash": "6dd2e01ad01cded4",
+      "id": "provisional-tax.2",
+      "kind": "paragraph",
+      "sourceHash": "2cafd35c68a559aa"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy enige soort besigheid bedryf, moet jy twee keer per jaar belasting vooruit betaal. Iemand wat dit moet doen, word ’n voorlopige belastingbetaler genoem. Dit geld of jy as jouself of deur ’n maatskappy handel dryf."
+        }
+      ],
+      "hash": "edb7b0a3faa8fa04",
+      "id": "provisional-tax.3",
+      "kind": "callout",
+      "pairsWith": "provisional-tax.2",
+      "sourceHash": "c600b471d924faeb",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voorlopige belastingbetalers dien gedurende die belastingjaar twee IRP6-opgawes in. Die eerste is binne die eerste ses maande van die jaar verskuldig en die tweede aan die einde van die jaar van aanslag. Daar is ook ’n opsionele derde aanvullende betaling voordat jy jou jaarlikse ITR12 indien."
+        }
+      ],
+      "hash": "7ff19d89ed34b334",
+      "id": "provisional-tax.4",
+      "kind": "paragraph",
+      "sourceHash": "32ca44edb2e4a459"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Twee keer per jaar vul jy ’n kort vorm (die IRP6) in wat jou inkomste skat, en jy betaal belasting daarop. Een keer teen die einde van Augustus, een keer teen die einde van Februarie. ’n Derde betaling in September is opsioneel."
+        }
+      ],
+      "hash": "2436b599706b7be8",
+      "id": "provisional-tax.5",
+      "kind": "callout",
+      "pairsWith": "provisional-tax.4",
+      "sourceHash": "88fc9ba521610cdc",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "In die praktyk is jou datums:"
+        }
+      ],
+      "hash": "2ea955b0cd01131e",
+      "id": "provisional-tax.6",
+      "kind": "paragraph",
+      "sourceHash": "da03ac0e6e7a33bb"
+    },
+    {
+      "hash": "e9acd51ece068791",
+      "id": "provisional-tax.7",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Eerste IRP6: teen 31 Augustus"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Tweede IRP6: teen 28 of 29 Februarie, of die werksdag daarvoor as dit ’n naweek is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Opsionele derde betaling: teen 30 September"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jaarlikse ITR12: gedurende die indieningseisoen, wat gewoonlik in Julie oopmaak; SARS publiseer elke jaar die sluitingsdatums"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "3c7b9f49add2c797"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Belangrike verligting: ’n natuurlike persoon wat nie ’n besigheid bedryf nie, hoef nie voorlopige belasting te betaal nie as belasbare inkomste onder die belastingdrempel vir die jaar bly. As jy wel ’n besigheid bedryf en jou totale belasbare inkomste onder die drempel bly, is daar geen belasting om te betaal nie, maar die veilige benadering is steeds om ’n nul-IRP6 in te dien eerder as om niks in te dien nie. ’n IRP6-opgawe kan aangevra en ingedien word selfs al is die betaling van voorlopige belasting nul."
+        }
+      ],
+      "hash": "1f406bb37a025900",
+      "id": "provisional-tax.8",
+      "kind": "paragraph",
+      "sourceHash": "b9469ef9d0bf2243"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om ’n nulopgawe in te dien, kos niks. Om nie in te dien nie, skep boetes wat elke maand groei."
+        }
+      ],
+      "hash": "b757236c9978184b",
+      "id": "provisional-tax.9",
+      "kind": "paragraph",
+      "sourceHash": "0171a35f8a7721f5"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat SARS van ’n maatskappy wil hê"
+        }
+      ],
+      "depth": 2,
+      "hash": "ed8170e58d463c67",
+      "id": "what-sars-wants-from-a-company",
+      "kind": "heading",
+      "sourceHash": "eeaa2ca769e514cb",
+      "text": "Wat SARS van ’n maatskappy wil hê"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Maatskappy word outomaties vir inkomstebelasting geregistreer wanneer CIPC dit registreer. Jy moet steeds die geregistreerde verteenwoordiger op eFiling bevestig voordat jy enigiets kan doen."
+        }
+      ],
+      "hash": "e425ee384db53f68",
+      "id": "what-sars-wants-from-a-company.1",
+      "kind": "paragraph",
+      "sourceHash": "458fbface7f993a1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Maatskappy is outomaties ’n voorlopige belastingbetaler. Dit dien twee IRP6-opgawes en een ITR14-jaaropgawe in."
+        }
+      ],
+      "hash": "7ebac1b6a4439fe6",
+      "id": "what-sars-wants-from-a-company.2",
+      "kind": "paragraph",
+      "sourceHash": "feb5b9f87503aacd"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit geld selfs as die maatskappy niks verdien het nie. ’n Dormante maatskappy dien steeds ’n nul-ITR14 by SARS en ’n jaarlikse nulopgawe by CIPC in. Dit is die algemeenste manier waarop klein eienaars skuld by die staat opbou sonder om dit agter te kom."
+        }
+      ],
+      "hash": "d7919e1a869070c7",
+      "id": "what-sars-wants-from-a-company.3",
+      "kind": "paragraph",
+      "sourceHash": "67ca6bf9178d67e0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoe om wettig min of geen belasting te betaal"
+        }
+      ],
+      "depth": 2,
+      "hash": "65e938be8de691bf",
+      "id": "how-to-pay-little-or-no-tax-legally",
+      "kind": "heading",
+      "sourceHash": "90961e3067783a3b",
+      "text": "Hoe om wettig min of geen belasting te betaal"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daar is vier wettige roetes. Hulle verskil, en jy moet die regte een kies."
+        }
+      ],
+      "hash": "cbe8dc1b0ac15e9a",
+      "id": "how-to-pay-little-or-no-tax-legally.1",
+      "kind": "paragraph",
+      "sourceHash": "781cd3baf6e5bec2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Roete 1: bly onder die belastingdrempel"
+        }
+      ],
+      "depth": 3,
+      "hash": "3bea27d5db4f768e",
+      "id": "route-1-stay-under-the-tax-threshold",
+      "kind": "heading",
+      "sourceHash": "5cdf26d8b41dcfaa",
+      "text": "Roete 1: bly onder die belastingdrempel"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir die 2026/2027-jaar skuld jy, as jy jonger as 65 is, geen inkomstebelasting op verdienste onder R99,000 per jaar nie. Die drempel is R153,250 vir ouderdomme 65 tot 74, en R171,300 vir 75 en ouer."
+        }
+      ],
+      "hash": "3a38409ee8f9f36b",
+      "id": "route-1-stay-under-the-tax-threshold.1",
+      "kind": "paragraph",
+      "sourceHash": "3d0721e406315a74"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is belasbare inkomste, wat wins ná uitgawes beteken, nie verkope nie. ’n Besigheid met R250,000 verkope en R160,000 werklike koste het R90,000 wins en betaal niks."
+        }
+      ],
+      "hash": "502b5145da6228be",
+      "id": "route-1-stay-under-the-tax-threshold.2",
+      "kind": "paragraph",
+      "sourceHash": "55bc96fdfadde9ce"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Pasop: as jy ook ’n salaris het, word die salaris by die wins gevoeg. Die drempel geld vir die totaal, nie net vir die besigheid nie."
+        }
+      ],
+      "hash": "81e2e0af39afc640",
+      "id": "route-1-stay-under-the-tax-threshold.3",
+      "kind": "paragraph",
+      "sourceHash": "6e964357c0e5b4fa"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Roete 2: eis elke werklike uitgawe"
+        }
+      ],
+      "depth": 3,
+      "hash": "7bc22713b850a31e",
+      "id": "route-2-claim-every-real-expense",
+      "kind": "heading",
+      "sourceHash": "ecbc1d65c7c03150",
+      "text": "Roete 2: eis elke werklike uitgawe"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is die grootste en mees geïgnoreerde hefboom vir ’n eenmansaak. Elke rand se regmatige besigheidskoste verminder belasbare wins."
+        }
+      ],
+      "hash": "35bc662cc59408fa",
+      "id": "route-2-claim-every-real-expense.1",
+      "kind": "paragraph",
+      "sourceHash": "f9eb2eec6e2f5937"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dinge wat jy gewoonlik kan eis as hulle werklik vir die besigheid is:"
+        }
+      ],
+      "hash": "75edf71de7d09d62",
+      "id": "route-2-claim-every-real-expense.2",
+      "kind": "paragraph",
+      "sourceHash": "d0a7d19692cee264"
+    },
+    {
+      "hash": "ac0f5a1c70e53a60",
+      "id": "route-2-claim-every-real-expense.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Voorraad en materiaal"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Data, lugtyd en internet wat vir werk gebruik word"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Gereedskap en toerusting, afgeskryf oor hulle nuttige leeftyd"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Besigheidsreise, met ’n logboek (sien "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Voertuie vir jou besigheid"
+              }
+            ],
+            "doc": "core/vehicles",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ")"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Bankkoste op die besigheidsrekening"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Advertensies, drukwerk en webwerfkoste"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Rekenmeesters- en regsfooie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Huur van besigheidspersele"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Deel van huiskoste as jy ’n deel van jou huis vir werk gebruik"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "db1258631b76499c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die aftrekking vir ’n tuiskantoor het streng reëls. SARS verwag oor die algemeen ’n spesifieke deel van die huis wat gereeld en uitsluitlik vir die bedryf gebruik word, en wat behoorlik daarvoor toegerus is. As jy by die kombuistafel werk, kwalifiseer jy nie. As jy ’n omgeboude kamer het wat net vir werk gebruik word, kan jy ’n deel van die huur of verbandrente, eiendomsbelasting en elektrisiteit eis, gebaseer op vloeroppervlakte. Hou ’n foto en ’n vloermeting op lêer."
+        }
+      ],
+      "hash": "65aceb9191834ee7",
+      "id": "route-2-claim-every-real-expense.4",
+      "kind": "paragraph",
+      "sourceHash": "0e6e2af454b39103"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Twee harde reëls: die uitgawe moet vir die besigheid wees, en jy moet dit kan bewys. Geen strokie nie, geen eis nie. Neem ’n foto van elke strokie op die dag wat jy dit kry."
+        }
+      ],
+      "hash": "e69b0590f7b91e6a",
+      "id": "route-2-claim-every-real-expense.5",
+      "kind": "paragraph",
+      "sourceHash": "7b610b063062963f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Roete 3: omsetbelasting"
+        }
+      ],
+      "depth": 3,
+      "hash": "cba2ee3c7787517b",
+      "id": "route-3-turnover-tax",
+      "kind": "heading",
+      "sourceHash": "38cdfa9d3501479b",
+      "text": "Roete 3: omsetbelasting"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit het in 2026 verander en is nou ’n baie goeie opsie vir baie klein besighede."
+        }
+      ],
+      "hash": "ad6438b5aaf0a8ca",
+      "id": "route-3-turnover-tax.1",
+      "kind": "paragraph",
+      "sourceHash": "f28d81b45534098d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS het die jaarlikse omsetlimiet vir omsetbelasting van R1 miljoen na R2.3 miljoen verhoog, met ingang van 1 April 2026, en die belastingvrye band vir 2026/2027 is R0 tot R600,000."
+        }
+      ],
+      "hash": "00d55ec6e093f420",
+      "id": "route-3-turnover-tax.2",
+      "kind": "paragraph",
+      "sourceHash": "dd68a37ee1f222a0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die koerse vir die 2026/2027-jaar:"
+        }
+      ],
+      "hash": "6297874cc2c81be8",
+      "id": "route-3-turnover-tax.3",
+      "kind": "paragraph",
+      "sourceHash": "023311aca3f2f618"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "bb4a7ba341da3cd8",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Omset"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Koers op die bedrag in daardie band"
+          }
+        ]
+      ],
+      "id": "route-3-turnover-tax.4",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "R0 tot R600,000"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "0%"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "R600,001 tot R950,000"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "1%"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "R950,001 tot R1,400,000"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "2%"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "R1,400,001 tot R2,300,000"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "3%"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "1b14de0dc86ec4e8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n besigheid met R800,000 omset: die eerste R600,000 word teen 0% belas, en die volgende R200,000 teen 1%, so die totale omsetbelasting vir die jaar is R2,000."
+        }
+      ],
+      "hash": "c5f72d1967004742",
+      "id": "route-3-turnover-tax.5",
+      "kind": "paragraph",
+      "sourceHash": "b33f33c0fd227153"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat dit aantreklik maak: omsetbelasting vervang inkomstebelasting, BTW, voorlopige belasting, kapitaalwinsbelasting en dividendbelasting, so jy betaal een belasting in plaas van verskeie. Rekordhouding is minimaal. Jy hou net rekord van bedrae ontvang, dividende verklaar, en bates of laste bo R10,000."
+        }
+      ],
+      "hash": "975855f1db789f21",
+      "id": "route-3-turnover-tax.6",
+      "kind": "paragraph",
+      "sourceHash": "7e6d1c822dfc1310"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat dit riskant maak: jy kan geen uitgawes aftrek nie. Koste soos huur, voorraadaankope en toerusting kan nie teen die belaste bedrag verreken word nie, wat kan beteken dat jy meer belasting betaal as onder die gewone stelsel."
+        }
+      ],
+      "hash": "4a7478b783844cd4",
+      "id": "route-3-turnover-tax.7",
+      "kind": "paragraph",
+      "sourceHash": "fbb4e02796e3ecbb"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Omdat belasting op omset en nie op wins is nie, pas omsetbelasting by ’n besigheid met hoë winsmarges en lae koste. ’n Konsultant, ’n diensbesigheid of ’n maker met goedkoop insette doen goed. ’n Besigheid wat goedere koop en teen ’n klein opslag herverkoop, doen sleg. ’n Winkel met R900,000 verkope en R750,000 koste van voorraad het R150,000 wins en sou R3,000 omsetbelasting betaal, wat meer is as die niks wat dit onder gewone belasting sou betaal."
+        }
+      ],
+      "hash": "a622c6b4adb7efd0",
+      "id": "route-3-turnover-tax.8",
+      "kind": "paragraph",
+      "sourceHash": "203931faaef581f8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wie dit nie kan gebruik nie: verskaffers van professionele dienste, arbeidsmakelaars, persoonlikediensverskaffers (personal service providers) en sekere ander uitgeslote aktiwiteite. ’n Besigheid is uitgesluit waar meer as 20% van die inkomste uit professionele dienste kom. Daardie uitsluiting tref rekenmeesters, prokureurs, ingenieurs, argitekte en soortgelyke beroepe. Kontroleer die SARS-lys vir jou bedryf voordat jy hierop staatmaak."
+        }
+      ],
+      "hash": "7ac2e2676b02ec38",
+      "id": "route-3-turnover-tax.9",
+      "kind": "paragraph",
+      "sourceHash": "7df7cccc2f191619"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoe om te registreer: deur SARS eFiling of by ’n SARS-tak. Jy moet aan die begin van jou jaar van aanslag kies om ’n mikrobesigheid te wees, en sodra jy geregistreer is, bly jy in die stelsel tensy jy vrywillig deregistreer of R2.3 miljoen oorskry."
+        }
+      ],
+      "hash": "ff4da438b1f54880",
+      "id": "route-3-turnover-tax.10",
+      "kind": "paragraph",
+      "sourceHash": "5b6121da300fdc25"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy kies omsetbelasting aan die begin van die belastingjaar, op eFiling of by ’n tak. Sodra jy in is, bly jy in totdat jy kies om uit te gaan of jou verkope bo R2.3 miljoen gaan."
+        }
+      ],
+      "hash": "7f957cfef7482741",
+      "id": "route-3-turnover-tax.11",
+      "kind": "callout",
+      "pairsWith": "route-3-turnover-tax.10",
+      "sourceHash": "71b9c2fb1293ccca",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Eenmansake, vennootskappe, beslote korporasies, maatskappye en koöperasies kan almal registreer, so dit werk of jy ’n Pty het of nie."
+        }
+      ],
+      "hash": "7be46200ded0fef5",
+      "id": "route-3-turnover-tax.12",
+      "kind": "paragraph",
+      "sourceHash": "5cf1ca1c6da89dd0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Werk albei opsies op jou werklike getalle uit voordat jy kies. As jou koste meer as omtrent 25% van jou verkope is, is gewone belasting gewoonlik beter."
+        }
+      ],
+      "hash": "69168f1ada4db214",
+      "id": "route-3-turnover-tax.13",
+      "kind": "paragraph",
+      "sourceHash": "36a65f99a32a6945"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Roete 4: koerse vir kleinsakekorporasies (net maatskappye)"
+        }
+      ],
+      "depth": 3,
+      "hash": "a6019383744ac3bb",
+      "id": "route-4-small-business-corporation-rates-companies-only",
+      "kind": "heading",
+      "sourceHash": "17ab0c205446e1c7",
+      "text": "Roete 4: koerse vir kleinsakekorporasies (net maatskappye)"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n Pty geregistreer het, kyk of dit as ’n Small Business Corporation (kleinsakekorporasie) kwalifiseer. ’n SBC wat kwalifiseer, betaal op ’n glyskaal wat by 0% op die eerste R99,000 belasbare inkomste begin, in plaas van die plat maatskappykoers van 27%."
+        }
+      ],
+      "hash": "91892df40964fa7d",
+      "id": "route-4-small-business-corporation-rates-companies-only.1",
+      "kind": "paragraph",
+      "sourceHash": "492696800a5991e8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om te kwalifiseer, elke jaar: alle aandeelhouers moet natuurlike persone wees, bruto inkomste mag nie R20 miljoen oorskry nie, geen aandeelhouer mag aandele in ’n ander maatskappy hou nie, behalwe vir beperkte uitsonderings, hoogstens 20% van bruto inkomste mag uit beleggingsinkomste of persoonlike dienste kom, en die maatskappy mag nie ’n persoonlikediensverskaffer wees nie."
+        }
+      ],
+      "hash": "91e6a7bcd3ac5b70",
+      "id": "route-4-small-business-corporation-rates-companies-only.2",
+      "kind": "paragraph",
+      "sourceHash": "0df6056dd273afb0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n maatskappy om die laer belastingkoerse te kry, elke jaar: alle eienaars moet mense wees, nie ander maatskappye nie. Verkope moet onder R20 miljoen wees. Jy mag nie aandele in ’n ander maatskappy besit nie. En die meeste van die inkomste moet uit werklike handel kom, nie uit beleggings of uit een persoon se persoonlike dienste nie."
+        }
+      ],
+      "hash": "02d4ce023311e947",
+      "id": "route-4-small-business-corporation-rates-companies-only.3",
+      "kind": "callout",
+      "pairsWith": "route-4-small-business-corporation-rates-companies-only.2",
+      "sourceHash": "421ea21203215fd3",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die voorwaarde wat die meeste maatskappye diskwalifiseer, is ’n aandeelhouer wat aandele in ’n ander maatskappy hou. As jy aandele in enige ander Pty besit, selfs ’n dormante een waarvan jy vergeet het, kan jou nuwe maatskappy SBC-status verloor."
+        }
+      ],
+      "hash": "58da222b54df9d8c",
+      "id": "route-4-small-business-corporation-rates-companies-only.4",
+      "kind": "paragraph",
+      "sourceHash": "30e313beb357739f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SBC-status is nie outomaties nie. As enige voorwaarde nie nagekom word nie, geld die standaardkoers van 27% vir daardie jaar. Moenie \"ja\" (\"yes\") op die ITR14 merk net omdat die maatskappy klein voel nie."
+        }
+      ],
+      "hash": "9389ec48d530cb51",
+      "id": "route-4-small-business-corporation-rates-companies-only.5",
+      "kind": "paragraph",
+      "sourceHash": "e118d81870d7aca3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Vyfde opsie as jy ook ’n salaris het"
+        }
+      ],
+      "depth": 3,
+      "hash": "84c8a562e8c47f23",
+      "id": "a-fifth-option-if-you-have-a-salary-as-well",
+      "kind": "heading",
+      "sourceHash": "5d5e24403d991fac",
+      "text": "’n Vyfde opsie as jy ook ’n salaris het"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n werk het en ’n besigheid aan die kant bedryf, kan ’n verlies in die besigheid oor die algemeen jou totale belasbare inkomste in daardie jaar verminder. Dit is werklik en wettig."
+        }
+      ],
+      "hash": "c7b943a8c2f30f0b",
+      "id": "a-fifth-option-if-you-have-a-salary-as-well.1",
+      "kind": "paragraph",
+      "sourceHash": "b6027caedf36c22a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daar is ’n beperking. Artikel 20A van die Income Tax Act kan verliese uit sekere bedrywe \"omhein\" (\"ring-fence\"), veral waar jy ’n hoë verdiener is en die aktiwiteit jaar ná jaar geld verloor, of waar dit soos ’n stokperdjie lyk. As jy beplan om besigheidsverliese teen ’n salaris te gebruik, kry eers ’n uur se advies van ’n belastingpraktisyn."
+        }
+      ],
+      "hash": "1b9e3f37d2f2d581",
+      "id": "a-fifth-option-if-you-have-a-salary-as-well.2",
+      "kind": "paragraph",
+      "sourceHash": "fce8148ab3009a8f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Aftreebydraes"
+        }
+      ],
+      "depth": 3,
+      "hash": "f7a79bb19cf7e43a",
+      "id": "retirement-contributions",
+      "kind": "heading",
+      "sourceHash": "66731587d2fdc0ba",
+      "text": "Aftreebydraes"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bydraes tot ’n aftree-annuïteit is aftrekbaar, oor die algemeen tot 27.5% van die groter van vergoeding of belasbare inkomste, met ’n perk in rand. Die 2026-begroting het die perk op aftreebydraes van R350,000 na R430,000 per jaar verhoog."
+        }
+      ],
+      "hash": "8a55e352836c0e2d",
+      "id": "retirement-contributions.1",
+      "kind": "paragraph",
+      "sourceHash": "a9d4ec66ddd100c8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit help net as jy belasbare inkomste het om te verminder en kontant oor het. Dit is nie nuttig in ’n jaar waarin jy onder die drempel verdien nie."
+        }
+      ],
+      "hash": "60e19643c8afbcea",
+      "id": "retirement-contributions.2",
+      "kind": "paragraph",
+      "sourceHash": "327c762ada179725"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "BTW: waarskynlik nog nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "ff8522a17d895eb9",
+      "id": "vat-probably-not-yet",
+      "kind": "heading",
+      "sourceHash": "386f18e9287b5d15",
+      "text": "BTW: waarskynlik nog nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vanaf 1 April 2026 het die drempel vir verpligte BTW-registrasie van R1 miljoen na R2.3 miljoen gestyg. Klein besighede hoef eers vir BTW te registreer sodra die jaarlikse omset R2.3 miljoen oorskry."
+        }
+      ],
+      "hash": "f4bbb726303423df",
+      "id": "vat-probably-not-yet.1",
+      "kind": "paragraph",
+      "sourceHash": "1b341335c656c449"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die drempel vir vrywillige registrasie het van R50,000 na R120,000 per jaar gestyg."
+        }
+      ],
+      "hash": "2990f8e356d4b84e",
+      "id": "vat-probably-not-yet.2",
+      "kind": "paragraph",
+      "sourceHash": "afea32919d9260b1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy moet binne 21 werksdae registreer vanaf die datum waarop jy R2.3 miljoen oorskry, of vanaf die datum waarop dit duidelik word dat jy dit gaan oorskry. Die drempel word oor enige 12 opeenvolgende maande gemeet, nie oor ’n kalenderjaar nie. Kontroleer elke maand jou laaste 12 maande sodra jy verby omtrent R1.5 miljoen is."
+        }
+      ],
+      "hash": "297cfe51de753649",
+      "id": "vat-probably-not-yet.3",
+      "kind": "paragraph",
+      "sourceHash": "216a09b9df7d55d6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Behoort jy vrywillig te registreer sodra jy verby R120,000 is? Gewoonlik nie."
+        }
+      ],
+      "hash": "dac4601c4e9c02cd",
+      "id": "vat-probably-not-yet.4",
+      "kind": "paragraph",
+      "sourceHash": "45de57dab111779b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jou kliënte die publiek is, maak registrasie jou oornag 15% duurder, of dit sny jou marge met 15% as jy dit self dra. Jy neem ook vir altyd elke twee maande BTW-opgawes op jou."
+        }
+      ],
+      "hash": "ce36659a3a774da6",
+      "id": "vat-probably-not-yet.5",
+      "kind": "paragraph",
+      "sourceHash": "9d0994aca4c04260"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jou kliënte BTW-geregistreerde besighede is, kos die 15% hulle niks, want hulle eis dit terug, en jy kan BTW op jou eie aankope eis. Dan kan dit die moeite werd wees."
+        }
+      ],
+      "hash": "d278a3933712d96e",
+      "id": "vat-probably-not-yet.6",
+      "kind": "paragraph",
+      "sourceHash": "8b1da4e5896c44b0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die eerlike toets: tel die BTW op wat jy in ’n jaar op voorraad, toerusting en huur sou terugeis. As daardie getal kleiner is as die koste van jou tyd om tweemaandelikse opgawes te doen plus die rekenmeestersfooi, moenie registreer nie."
+        }
+      ],
+      "hash": "334cd5eabe1f3ae6",
+      "id": "vat-probably-not-yet.7",
+      "kind": "paragraph",
+      "sourceHash": "06bc4669708708fa"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy geregistreer behoort te wees en jy is nie, sal SARS jou registrasie terugdateer na die datum waarop jy aanspreeklik geword het, en jy sal BTW skuld op alle belasbare leverings vanaf daardie datum, plus ’n boete van 10% vir laat betaling, en rente. Doelbewuste nie-registrasie kan ook ’n misdryf wees."
+        }
+      ],
+      "hash": "f4c592bae94cacf5",
+      "id": "vat-probably-not-yet.8",
+      "kind": "paragraph",
+      "sourceHash": "10fdb9c062e04504"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy vir BTW moes geregistreer het maar dit nie gedoen het nie, sal SARS jou behandel asof jy geregistreer was vanaf die dag wat jy oor die lyn gegaan het. Jy sal 15% skuld op alles wat jy sedertdien verkoop het, al het jy dit nooit gehef nie, plus ’n boete en rente."
+        }
+      ],
+      "hash": "6ce9f0d9ebcbedbe",
+      "id": "vat-probably-not-yet.9",
+      "kind": "callout",
+      "pairsWith": "vat-probably-not-yet.8",
+      "sourceHash": "ec04778f72a34624",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Totdat jy geregistreer is: moenie \"Belastingfaktuur\" (\"Tax Invoice\") op jou fakture skryf nie, moenie ’n BTW-reël wys nie, en moenie BTW hef nie. Om BTW te hef terwyl jy nie daarvoor geregistreer is nie, is bedrog. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Watter sjabloon om wanneer te gebruik"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " vir ’n korrekte faktuur sonder BTW."
+        }
+      ],
+      "hash": "782bbeb22b1054cd",
+      "id": "vat-probably-not-yet.10",
+      "kind": "paragraph",
+      "sourceHash": "b44106edb351f67d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Rekords"
+        }
+      ],
+      "depth": 2,
+      "hash": "452e8d850ddc59fb",
+      "id": "records",
+      "kind": "heading",
+      "sourceHash": "3d7f3fac1461cdf8",
+      "text": "Rekords"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hou alles vir vyf jaar vanaf die datum waarop jy die opgawe indien."
+        }
+      ],
+      "hash": "41ecd1fbd02b8d6d",
+      "id": "records.1",
+      "kind": "paragraph",
+      "sourceHash": "dba14605766628cf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die minimum wat vir ’n eenpersoonbesigheid werk:"
+        }
+      ],
+      "hash": "103d58f99c1ae68f",
+      "id": "records.2",
+      "kind": "paragraph",
+      "sourceHash": "c64524afa233fa40"
+    },
+    {
+      "hash": "4530471ee5502c7b",
+      "id": "records.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Een bankrekening wat net vir die besigheid gebruik word"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Vouer met gefotografeerde strokies, een vouer per maand"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Eenvoudige sigblad met datum, beskrywing, geld in, geld uit, kategorie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Afskrifte van elke faktuur wat jy uitgereik het, in volgorde genommer sonder gapings"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "694b719f03213757"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daardie sigblad is die hele stelsel. Jy het nie in jaar een rekeningkundige sagteware nodig nie."
+        }
+      ],
+      "hash": "60919795cd72d504",
+      "id": "records.4",
+      "kind": "paragraph",
+      "sourceHash": "e4f7aa8296c444fe"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy omsetbelasting gebruik, is die rekords nog ligter. Jy hou rekord van bedrae ontvang, dividende verklaar, en bates of laste bo R10,000."
+        }
+      ],
+      "hash": "c6a033bc46a38115",
+      "id": "records.5",
+      "kind": "paragraph",
+      "sourceHash": "33a22c254d32461c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou belastingjaarkalender"
+        }
+      ],
+      "depth": 2,
+      "hash": "97abcb85c1c66ca9",
+      "id": "your-tax-year-calendar",
+      "kind": "heading",
+      "sourceHash": "6c3a91928bfbdc6f",
+      "text": "Jou belastingjaarkalender"
+    },
+    {
+      "hash": "4ddff025fe039696",
+      "id": "your-tax-year-calendar.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "1 Maart: nuwe belastingjaar begin"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "31 Augustus: eerste voorlopige opgawe (IRP6) verskuldig"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "30 September: opsionele derde voorlopige betaling vir die vorige jaar"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "28/29 Februarie: belastingjaar eindig, tweede voorlopige opgawe (IRP6) verskuldig"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Indieningseisoen vir die jaarlikse opgawe (ITR12): SARS publiseer die datums elke jaar in die Staatskoerant. Vir die 2026-jaar is die sperdatums 23 Oktober 2026 vir mense wat nie voorlopige belastingbetalers is nie, en 22 Januarie 2027 vir voorlopige belastingbetalers. Bevestig elke jaar op "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "sars.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://sars.gov.za/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "1c10daec0f239f68"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Een reël wat mense vang: as ’n SARS-sperdatum op ’n naweek of openbare vakansiedag val, skuif dit na die werksdag daarvoor, nie daarna nie. 28 Februarie 2027 is ’n Sondag, so die tweede voorlopige opgawe vir daardie jaar is op Vrydag 26 Februarie 2027 verskuldig."
+        }
+      ],
+      "hash": "47bee4b6d9863545",
+      "id": "your-tax-year-calendar.2",
+      "kind": "paragraph",
+      "sourceHash": "e377a7f1abc1a253"
+    },
+    {
+      "hash": "b6742acbef8f3a80",
+      "id": "your-tax-year-calendar.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Maatskappy se jaarlikse opgawe by CIPC: elke jaar op die herdenkingsdatum van registrasie verskuldig"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "B-BBEE-beëdigde verklaring: hernu 12 maande nadat jy dit geteken het"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "3c75acc8426cff0c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sit al hierdie datums vandag in jou foon se kalender met ’n waarskuwing twee weke vooraf."
+        }
+      ],
+      "hash": "5663c56510fe9245",
+      "id": "your-tax-year-calendar.4",
+      "kind": "paragraph",
+      "sourceHash": "b202799c053cf90a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Twee dinge wat nie wettig is nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "5e3401bacb1b1d84",
+      "id": "two-things-that-are-not-legal",
+      "kind": "heading",
+      "sourceHash": "1db1698f04ad48ce",
+      "text": "Twee dinge wat nie wettig is nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om kontant te neem en dit nie te verklaar nie. SARS kry data van banke, verskaffers van kaartmasjiene en kripto-beurse. Die risiko is dit nie werd nie."
+        }
+      ],
+      "hash": "ea649c185c2a4026",
+      "id": "two-things-that-are-not-legal.1",
+      "kind": "paragraph",
+      "sourceHash": "b0d918e49e0bbb9a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om persoonlike besteding as besigheidsuitgawes te eis. Kruideniersware, gesinsvakansies en ’n lewensmaat se foon is nie aftrekbaar nie. As SARS ’n oudit doen en dit nie toelaat nie, betaal jy die belasting plus boetes plus rente."
+        }
+      ],
+      "hash": "3e2458e767f91a5a",
+      "id": "two-things-that-are-not-legal.2",
+      "kind": "paragraph",
+      "sourceHash": "cbc3a48ec3dc57e9"
+    }
+  ],
+  "contentHash": "cbfed8c7d6cbb996",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Belasting en SARS",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "the-short-version",
+      "text": "Die kort weergawe"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "depth": 2,
+      "id": "what-sars-wants-from-a-sole-proprietor",
+      "text": "Wat SARS van ’n eenmansaak wil hê"
+    },
+    {
+      "depth": 3,
+      "id": "provisional-tax",
+      "text": "Voorlopige belasting"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 2,
+      "id": "what-sars-wants-from-a-company",
+      "text": "Wat SARS van ’n maatskappy wil hê"
+    },
+    {
+      "depth": 2,
+      "id": "how-to-pay-little-or-no-tax-legally",
+      "text": "Hoe om wettig min of geen belasting te betaal"
+    },
+    {
+      "depth": 3,
+      "id": "route-1-stay-under-the-tax-threshold",
+      "text": "Roete 1: bly onder die belastingdrempel"
+    },
+    {
+      "depth": 3,
+      "id": "route-2-claim-every-real-expense",
+      "text": "Roete 2: eis elke werklike uitgawe"
+    },
+    {
+      "depth": 3,
+      "id": "route-3-turnover-tax",
+      "text": "Roete 3: omsetbelasting"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 3,
+      "id": "route-4-small-business-corporation-rates-companies-only",
+      "text": "Roete 4: koerse vir kleinsakekorporasies (net maatskappye)"
+    },
+    {
+      "depth": 3,
+      "id": "a-fifth-option-if-you-have-a-salary-as-well",
+      "text": "’n Vyfde opsie as jy ook ’n salaris het"
+    },
+    {
+      "depth": 3,
+      "id": "retirement-contributions",
+      "text": "Aftreebydraes"
+    },
+    {
+      "depth": 2,
+      "id": "vat-probably-not-yet",
+      "text": "BTW: waarskynlik nog nie"
+    },
+    {
+      "depth": 2,
+      "id": "records",
+      "text": "Rekords"
+    },
+    {
+      "depth": 2,
+      "id": "your-tax-year-calendar",
+      "text": "Jou belastingjaarkalender"
+    },
+    {
+      "depth": 2,
+      "id": "two-things-that-are-not-legal",
+      "text": "Twee dinge wat nie wettig is nie"
+    }
+  ],
+  "id": "core/tax-and-sars",
+  "kind": "guide",
+  "lang": "af",
+  "order": 3,
+  "readingTime": 13,
+  "related": [
+    "core/vehicles",
+    "paperwork/which-template-to-use-when"
+  ],
+  "route": "core/tax-and-sars/",
+  "section": "core",
+  "slug": "tax-and-sars",
+  "sourcePath": "01 Core - applies to everyone/03-tax-and-sars.md",
+  "sources": {
+    "acts": [
+      "income-tax-act-58-of-1962",
+      "value-added-tax-act-89-of-1991"
+    ],
+    "entries": [
+      "sars--turnover-tax",
+      "sars--budget-2026-frequently-asked-questions",
+      "sars--what-is-the-new-threshold-for-vat-registration",
+      "sars--tax-calendar",
+      "sars--guide-to-provisional-tax",
+      "xero-za-sars-tax-tables-20262027",
+      "sait-turnover-tax-vs-sbc"
+    ]
+  },
+  "summary": "Die getalle hier is vir die belastingjaar 1 Maart 2026 tot 28 Februarie 2027. Hulle het baie verander in die Februarie 2026-begroting. Kontroleer www.sars.gov.za voordat jy indien.",
+  "tags": [
+    "tax"
+  ],
+  "terms": [
+    {
+      "meaning": "Totale verkope, voor koste.",
+      "term": "Omset (turnover)"
+    },
+    {
+      "meaning": "Wins ná toegelate koste. Belasting word hierop bereken.",
+      "term": "Belasbare inkomste (taxable income)"
+    },
+    {
+      "meaning": "Om belasting vooruit te betaal, twee keer per jaar, omdat geen werkgewer dit vir jou aftrek nie.",
+      "term": "Voorlopige belasting (provisional tax)"
+    },
+    {
+      "meaning": "Die kort vorm wat jy vir elke betaling van voorlopige belasting invul.",
+      "term": "IRP6"
+    },
+    {
+      "meaning": "Die jaarlikse belastingopgawe. ITR12 vir mense, ITR14 vir maatskappye.",
+      "term": "ITR12 / ITR14"
+    },
+    {
+      "meaning": "’n Eenvoudige belasting vir klein besighede, wat op verkope in plaas van op wins gehef word.",
+      "term": "Omsetbelasting (turnover tax)"
+    },
+    {
+      "meaning": "15% belasting wat by verkope bygevoeg word, net deur besighede wat daarvoor geregistreer is.",
+      "term": "BTW (VAT)"
+    },
+    {
+      "meaning": "’n Koste wat jy van inkomste mag aftrek voordat belasting bereken word.",
+      "term": "Aftrekking (deduction)"
+    }
+  ],
+  "title": "Belasting en SARS",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

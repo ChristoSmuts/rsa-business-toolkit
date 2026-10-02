@@ -1,0 +1,536 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sit dit op jou webwerf, of stuur dit as ’n PDF wanneer ’n kliënt daarvoor vra. Dit is doelbewus kort. Maak ’n afskrif, vervang die [VIERKANTIGE HAKIES], en vee enige reël uit wat nie vir jou besigheid waar is nie."
+        }
+      ],
+      "hash": "9089b9e7a00232ad",
+      "id": "intro.1",
+      "kind": "note",
+      "sourceHash": "a7f3cad382aa1bb5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voordat jy dit gebruik, registreer jouself as die inligtingsbeampte (Information Officer) by "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "inforegulator.org.za"
+            }
+          ],
+          "external": true,
+          "href": "https://inforegulator.org.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Dit is gratis. POPIA maak registrasie verpligtend vir alle private en openbare liggame. Daar is geen vrystelling vir klein besighede nie. Vir ’n eenpersoonbesigheid is die inligtingsbeampte jy."
+        }
+      ],
+      "hash": "de12aee7a5cbc861",
+      "id": "intro.2",
+      "kind": "callout",
+      "sourceHash": "ac06475297fdb054",
+      "style": "note"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.3",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Besigheidsnaam"
+        },
+        {
+          "t": "text",
+          "v": " (\"ons\") respekteer jou privaatheid. Hierdie kennisgewing verduidelik watter persoonlike inligting ons insamel en wat ons daarmee doen."
+        }
+      ],
+      "hash": "e97559b1827d0daa",
+      "id": "intro.4",
+      "kind": "paragraph",
+      "sourceHash": "1b520ec9600f2f5c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wie ons is"
+        }
+      ],
+      "depth": 2,
+      "hash": "d801c957406ad625",
+      "id": "who-we-are",
+      "kind": "heading",
+      "sourceHash": "161286bfb2b8497d",
+      "text": "Wie ons is"
+    },
+    {
+      "c": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Besigheidsnaam"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Fisiese adres"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "E-pos"
+        },
+        {
+          "t": "text",
+          "v": " | "
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Foon"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "t": "text",
+          "v": "Inligtingsbeampte: "
+        },
+        {
+          "key": "ownerName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Jou volle naam"
+        }
+      ],
+      "hash": "e40c93b081a10f2a",
+      "id": "who-we-are.1",
+      "kind": "paragraph",
+      "sourceHash": "e32427e5482e0a3b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat ons insamel"
+        }
+      ],
+      "depth": 2,
+      "hash": "9391b5a63cedf7be",
+      "id": "what-we-collect",
+      "kind": "heading",
+      "sourceHash": "e348b5dc1e1a6002",
+      "text": "Wat ons insamel"
+    },
+    {
+      "hash": "1edf0927ddebdcb5",
+      "id": "what-we-collect.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Jou naam"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jou kontakbesonderhede (foon, e-pos, adres)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Besonderhede van wat jy gekoop het of waaroor jy navraag gedoen het"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Betalingsinligting (ons stoor nie kaartnommers nie)"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "9bb973ab3c2cb7dc"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voeg reëls by of verwyder reëls sodat dit vir jou besigheid waar is."
+        }
+      ],
+      "hash": "e72e8c448ccb1708",
+      "id": "what-we-collect.2",
+      "kind": "note",
+      "sourceHash": "6c638901a1c5ed15"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Waarom ons dit insamel"
+        }
+      ],
+      "depth": 2,
+      "hash": "d3e68e555562500e",
+      "id": "why-we-collect-it",
+      "kind": "heading",
+      "sourceHash": "270407cb2c3fdeb5",
+      "text": "Waarom ons dit insamel"
+    },
+    {
+      "hash": "cf27b531664c6873",
+      "id": "why-we-collect-it.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Om vir jou ’n kwotasie te gee en die werk te doen waarvoor jy gevra het"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Om vir jou ’n faktuur te stuur en betaling te ontvang"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Om rekords te hou wat SARS volgens die wet vereis"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Om jou oor jou bestelling te kontak"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "6e83ff7081c0d1cb"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Met wie ons dit deel"
+        }
+      ],
+      "depth": 2,
+      "hash": "006109a5cdce87cf",
+      "id": "who-we-share-it-with",
+      "kind": "heading",
+      "sourceHash": "37c680d5ff60a8d9",
+      "text": "Met wie ons dit deel"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ons verkoop nie jou inligting nie. Ons deel dit net met:"
+        }
+      ],
+      "hash": "ae2b557270af90d7",
+      "id": "who-we-share-it-with.1",
+      "kind": "paragraph",
+      "sourceHash": "65f64c86e8268f84"
+    },
+    {
+      "hash": "abd3d58f84bcfd48",
+      "id": "who-we-share-it-with.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Ons bank, om betaling te ontvang"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Ons rekenmeester, as ons een gebruik"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "SARS of ’n ander owerheid, waar die wet dit vereis"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "a392f3543a7a8625"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoe lank ons dit hou"
+        }
+      ],
+      "depth": 2,
+      "hash": "bb0ea326c0bdb6b6",
+      "id": "how-long-we-keep-it",
+      "kind": "heading",
+      "sourceHash": "f5eb6793a32e0ab7",
+      "text": "Hoe lank ons dit hou"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ons hou rekords vir vyf jaar, soos belastingwetgewing vereis. Daarna vee ons dit uit."
+        }
+      ],
+      "hash": "f5d6c8b8a6e1ef5b",
+      "id": "how-long-we-keep-it.1",
+      "kind": "paragraph",
+      "sourceHash": "aaeae6bd7164729f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bemarking"
+        }
+      ],
+      "depth": 2,
+      "hash": "ac55496d47b7a5ab",
+      "id": "marketing",
+      "kind": "heading",
+      "sourceHash": "2de4b8abdd446f8e",
+      "text": "Bemarking"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ons sal jou net bemarkingsboodskappe stuur as jy ingestem het om dit te ontvang. Jy kan enige tyd vir ons sê om op te hou deur STOP te antwoord of vir ons ’n e-pos te stuur."
+        }
+      ],
+      "hash": "93e04d3d8ac36ecf",
+      "id": "marketing.1",
+      "kind": "paragraph",
+      "sourceHash": "06f355610e4d4880"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou regte"
+        }
+      ],
+      "depth": 2,
+      "hash": "e8ce5f7f543d4ab7",
+      "id": "your-rights",
+      "kind": "heading",
+      "sourceHash": "91127c8f50600805",
+      "text": "Jou regte"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy mag ons vra watter inligting ons oor jou hou, ons vra om dit reg te stel, of ons vra om dit uit te vee waar die wet dit toelaat. Kontak ons deur die besonderhede hierbo te gebruik."
+        }
+      ],
+      "hash": "a77d3f732e1969d4",
+      "id": "your-rights.1",
+      "kind": "paragraph",
+      "sourceHash": "d408f9c235d460f7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ontevrede is met hoe ons jou inligting hanteer het, mag jy by die Information Regulator (Inligtingsreguleerder) by "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "inforegulator.org.za"
+            }
+          ],
+          "external": true,
+          "href": "https://inforegulator.org.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " kla."
+        }
+      ],
+      "hash": "af4287d1dce47536",
+      "id": "your-rights.2",
+      "kind": "paragraph",
+      "sourceHash": "24ce396f92caa18f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Laas bygewerk: "
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Maand JJJJ"
+        }
+      ],
+      "hash": "8bb7000c11924864",
+      "id": "your-rights.3",
+      "kind": "paragraph",
+      "sourceHash": "9e7b56853f2f171f"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "your-rights.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy afskrifte van ID’s neem"
+        }
+      ],
+      "depth": 2,
+      "hash": "869e5c9ec9d45de0",
+      "id": "if-you-take-id-copies",
+      "kind": "heading",
+      "sourceHash": "2f62a00d06956933",
+      "text": "As jy afskrifte van ID’s neem"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voertuighandelaars, handelaars in tweedehandse goedere en enigiemand wat ’n koper se identiteit nagaan, sal afskrifte van ID’s hou. Hou hulle op ’n veilige plek, hou hulle net so lank as wat jy hulle nodig het, en stuur hulle nooit aan nie. As ’n transaksie nie deurgaan nie, vee die afskrifte uit."
+        }
+      ],
+      "hash": "ecdc42fe81077d87",
+      "id": "if-you-take-id-copies.1",
+      "kind": "paragraph",
+      "sourceHash": "e49a61df006e3ed8"
+    }
+  ],
+  "contentHash": "d1332667c4ce1b7a",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "PRIVAATHEIDSKENNISGEWING",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "who-we-are",
+      "text": "Wie ons is"
+    },
+    {
+      "depth": 2,
+      "id": "what-we-collect",
+      "text": "Wat ons insamel"
+    },
+    {
+      "depth": 2,
+      "id": "why-we-collect-it",
+      "text": "Waarom ons dit insamel"
+    },
+    {
+      "depth": 2,
+      "id": "who-we-share-it-with",
+      "text": "Met wie ons dit deel"
+    },
+    {
+      "depth": 2,
+      "id": "how-long-we-keep-it",
+      "text": "Hoe lank ons dit hou"
+    },
+    {
+      "depth": 2,
+      "id": "marketing",
+      "text": "Bemarking"
+    },
+    {
+      "depth": 2,
+      "id": "your-rights",
+      "text": "Jou regte"
+    },
+    {
+      "depth": 2,
+      "id": "if-you-take-id-copies",
+      "text": "As jy afskrifte van ID’s neem"
+    }
+  ],
+  "id": "paperwork/templates/privacy-notice",
+  "kind": "template",
+  "lang": "af",
+  "order": 7,
+  "readingTime": 2,
+  "related": [],
+  "route": "templates/privacy-notice/",
+  "section": "paperwork",
+  "slug": "privacy-notice",
+  "sourcePath": "03 Paperwork and templates/templates-to-fill-in/05-privacy-notice-popia.md",
+  "sources": {
+    "acts": [
+      "protection-of-personal-information-act-4-of-2013"
+    ],
+    "entries": [
+      "information-regulator-of-south-africa",
+      "serr-synergy"
+    ]
+  },
+  "summary": "Sit dit op jou webwerf, of stuur dit as ’n PDF wanneer ’n kliënt daarvoor vra. Dit is doelbewus kort.",
+  "tags": [
+    "template",
+    "popia"
+  ],
+  "terms": [],
+  "title": "Privaatheidskennisgewing, POPIA (sjabloon)",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

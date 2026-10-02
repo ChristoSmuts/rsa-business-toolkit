@@ -1,0 +1,917 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Watter kantoorsagteware om te gebruik"
+        }
+      ],
+      "depth": 2,
+      "hash": "f4a5f4df163bd505",
+      "id": "which-office-software-to-use",
+      "kind": "heading",
+      "sourceHash": "0d9a2341fcafe230",
+      "text": "Watter kantoorsagteware om te gebruik"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Drie gratis opsies is die moeite werd om te oorweeg. Hulle is nie ewe goed vir ’n Suid-Afrikaanse eenpersoonbesigheid nie."
+        }
+      ],
+      "hash": "d1f22e9b8a7aada0",
+      "id": "which-office-software-to-use.1",
+      "kind": "paragraph",
+      "sourceHash": "0ed779d774276179"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "9c7f666a4a0f93b9",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Eenvoudige betekenisse van die terme wat in hierdie lêer gebruik word. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die program wat jy gebruik om webwerwe oop te maak: Chrome, Safari, Firefox."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Blaaier (browser)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Werk sonder internet."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Vanlyn (offline)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Jou lêers kopieer hulself outomaties na die wolk. As jy een uitvee, word dit oral uitgevee."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Sinkroniseer (sync)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Aparte afskrif wat jy doelbewus maak en op ’n ander plek hou."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Rugsteun (backup)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Lêerformaat wat op elke toestel dieselfde lyk en nie maklik verander kan word nie. Stuur PDF’s vir kliënte."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "PDF"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Logolêer wat enige grootte gemaak kan word sonder dat dit vaag word. SVG is ’n vektorformaat."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Vektor (vector)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Om jou foon se data te gebruik om vir jou skootrekenaar internet te gee."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Warmkol (hotspot)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Batterykas wat jou roeteerder tydens beurtkrag aan hou."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "UPS"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Jou webwerfadres, soos yourname.co.za."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Domein (domain)"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "337e46c557be1d7d"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Google Docs, Sheets en Slides"
+        }
+      ],
+      "depth": 3,
+      "hash": "832c49cd0bfca432",
+      "id": "google-docs-sheets-and-slides",
+      "kind": "heading",
+      "sourceHash": "9d7968bd9c40d1b0",
+      "text": "Google Docs, Sheets en Slides"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gratis met enige Gmail-rekening. Dit werk in ’n blaaier en op ’n foon."
+        }
+      ],
+      "hash": "6b9ae8ec510de839",
+      "id": "google-docs-sheets-and-slides.1",
+      "kind": "paragraph",
+      "sourceHash": "6d682d72c6f6805f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sterk punte: werk op ’n goedkoop foon, stoor outomaties, maklik om ’n skakel met ’n kliënt te deel, maklik om van ’n tablet af op ’n werkterrein te werk, en jou lêers bly behoue as jou skootrekenaar gesteel word. Sjablone is maklik om te dupliseer."
+        }
+      ],
+      "hash": "4262dbb5f91431fe",
+      "id": "google-docs-sheets-and-slides.2",
+      "kind": "paragraph",
+      "sourceHash": "f142b46bddb8fbff"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Swak punte: het vir die meeste dinge internet nodig. Swakker as die ander met presiese bladsyuitleg. Ingewikkelde Word-lêers van kliënte kan skuif wanneer jy hulle oopmaak."
+        }
+      ],
+      "hash": "040e6d81057adb40",
+      "id": "google-docs-sheets-and-slides.3",
+      "kind": "paragraph",
+      "sourceHash": "2bb0ef116d827d09"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "LibreOffice"
+        }
+      ],
+      "depth": 3,
+      "hash": "fc04be02683ba5a8",
+      "id": "libreoffice",
+      "kind": "heading",
+      "sourceHash": "fc04be02683ba5a8",
+      "text": "LibreOffice"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gratis rekenaarsagteware. Laai dit af van "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "libreoffice.org"
+            }
+          ],
+          "external": true,
+          "href": "https://libreoffice.org/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Dit werk op Windows, Mac en Linux."
+        }
+      ],
+      "hash": "7d4cd9080cc97947",
+      "id": "libreoffice.1",
+      "kind": "paragraph",
+      "sourceHash": "239ea5c80a93f64d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sterk punte: heeltemal vanlyn, so geen datakoste nie en geen probleem tydens beurtkrag as jou skootrekenaar gelaai is nie. Sterk met presiese bladsyuitleg. Goeie briefsamevoeging (mail merge) om dieselfde brief aan baie kliënte te stuur. Uitstekende PDF-uitvoer."
+        }
+      ],
+      "hash": "b4eff8cb104e018c",
+      "id": "libreoffice.2",
+      "kind": "paragraph",
+      "sourceHash": "7c3bdd96d8199296"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Swak punte: geen praktiese redigering op ’n selfoon nie. Daar is ’n Android-leser, maar jy sal nie jou administrasie daarop van ’n foon af doen nie. Die kieslyste lyk anders as Microsoft Office en dit neem ’n week om daaraan gewoond te raak. Niks word gerugsteun tensy jy dit doen nie."
+        }
+      ],
+      "hash": "f3c36cb60e17fd02",
+      "id": "libreoffice.3",
+      "kind": "paragraph",
+      "sourceHash": "ebe7b76cd1b38ff1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "OnlyOffice"
+        }
+      ],
+      "depth": 3,
+      "hash": "7d98e6854b39c8ee",
+      "id": "onlyoffice",
+      "kind": "heading",
+      "sourceHash": "7d98e6854b39c8ee",
+      "text": "OnlyOffice"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gratis rekenaarredigeerders van "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "onlyoffice.com"
+            }
+          ],
+          "external": true,
+          "href": "https://onlyoffice.com/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", plus ’n gratis persoonlike wolkvlak."
+        }
+      ],
+      "hash": "4f64890bb4a112e6",
+      "id": "onlyoffice.1",
+      "kind": "paragraph",
+      "sourceHash": "6fa1debf19c611af"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sterk punte: die naaste aan Microsoft Office. As ’n kliënt vir jou ’n .docx met moeilike formatering stuur en dit presies dieselfde moet lyk wanneer dit teruggaan, hanteer OnlyOffice dit gewoonlik die beste. Die koppelvlak lyk soos Microsoft Office, so daar is amper niks om te leer nie."
+        }
+      ],
+      "hash": "adef82a0badc7560",
+      "id": "onlyoffice.2",
+      "kind": "paragraph",
+      "sourceHash": "4caf3b7233623ea8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Swak punte: kleiner gemeenskap, so minder gratis sjablone en minder hulp aanlyn. Die gratis wolkvlak het beperkings."
+        }
+      ],
+      "hash": "2fa5ec253a3aeebc",
+      "id": "onlyoffice.3",
+      "kind": "paragraph",
+      "sourceHash": "bb058e16fe428d26"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die aanbeveling"
+        }
+      ],
+      "depth": 2,
+      "hash": "1dd5caf40fa6532d",
+      "id": "the-recommendation",
+      "kind": "heading",
+      "sourceHash": "cb71a3e190b3cb86",
+      "text": "Die aanbeveling"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik Google Docs en Google Sheets as jou daaglikse gereedskap. Installeer LibreOffice op jou skootrekenaar as ’n rugsteun."
+        }
+      ],
+      "hash": "6c3b02e4236a3753",
+      "id": "the-recommendation.1",
+      "kind": "paragraph",
+      "sourceHash": "128eb53bed2c535d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Waarom:"
+        }
+      ],
+      "hash": "65ff8598861d0f8d",
+      "id": "the-recommendation.2",
+      "kind": "paragraph",
+      "sourceHash": "01bb3cc1876bfa59"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy sal die meeste van jou administrasie op jou foon doen, tussen werke. Google werk daar. LibreOffice werk nie daar nie."
+        }
+      ],
+      "hash": "50955c21938fcd25",
+      "id": "the-recommendation.3",
+      "kind": "paragraph",
+      "sourceHash": "a9b59e9a03eed3e6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou kwotasie- en faktuursjablone is op een plek en jy dupliseer hulle vir elke werk. Dit is makliker in Google Drive as in vouers op ’n skootrekenaar."
+        }
+      ],
+      "hash": "c02a6cbed3bc90ef",
+      "id": "the-recommendation.4",
+      "kind": "paragraph",
+      "sourceHash": "ca18634fb8410c74"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jou skootrekenaar gesteel word of die hardeskyf doodgaan, stop jou besigheid nie. Dit is belangriker as enige funksie."
+        }
+      ],
+      "hash": "c932754883eea927",
+      "id": "the-recommendation.5",
+      "kind": "paragraph",
+      "sourceHash": "9753292441ad7794"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "LibreOffice help jou wanneer daar geen data en geen sein is nie, en dit maak beter PDF’s vir enigiets wat jy druk."
+        }
+      ],
+      "hash": "fe0a6cd9eaf35d4e",
+      "id": "the-recommendation.6",
+      "kind": "paragraph",
+      "sourceHash": "759390950b7d8dfd"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voeg OnlyOffice net by as jy gereeld Word-dokumente van korporatiewe kliënte ontvang wat geredigeer en teruggestuur moet word sonder enige verandering in formatering. As dit nie jou situasie is nie, slaan dit oor."
+        }
+      ],
+      "hash": "4f412de18286d796",
+      "id": "the-recommendation.7",
+      "kind": "paragraph",
+      "sourceHash": "60dc2b052c097be6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Stel Google Drive op die eerste dag behoorlik op"
+        }
+      ],
+      "depth": 2,
+      "hash": "32d38eaee341e941",
+      "id": "set-up-google-drive-properly-on-day-one",
+      "kind": "heading",
+      "sourceHash": "4bacc8ec41348fd3",
+      "text": "Stel Google Drive op die eerste dag behoorlik op"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vouers, in hierdie struktuur:"
+        }
+      ],
+      "hash": "53c0075136b2ecb5",
+      "id": "set-up-google-drive-properly-on-day-one.1",
+      "kind": "paragraph",
+      "sourceHash": "1b4e444edb4e9b98"
+    },
+    {
+      "hash": "de12852c72468392",
+      "id": "set-up-google-drive-properly-on-day-one.2",
+      "kind": "code",
+      "sourceHash": "de12852c72468392",
+      "text": "01 Admin (registration documents, tax documents, licences)\n02 Templates (quote, invoice, terms, privacy notice)\n03 Quotes (one file per quote, named QUO-0001 Customer Name)\n04 Invoices (one file per invoice, named INV-0001 Customer Name)\n05 Slips (one sub-folder per month: 2026-03, 2026-04,...)\n06 Customers (one folder per regular customer)\n07 Brand (logo files, colours, fonts, brand guide)",
+      "variant": "listing"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gee lêers name sodat hulle reg sorteer. Sit die nommer eerste, en skryf datums as JJJJ-MM-DD. "
+        },
+        {
+          "t": "code",
+          "v": "2026-09-13 Invoice Nkosi.pdf"
+        },
+        {
+          "t": "text",
+          "v": " sorteer reg. "
+        },
+        {
+          "t": "code",
+          "v": "13 Sept invoice.pdf"
+        },
+        {
+          "t": "text",
+          "v": " sorteer nie reg nie."
+        }
+      ],
+      "hash": "2b739f6f6aa35bee",
+      "id": "set-up-google-drive-properly-on-day-one.3",
+      "kind": "paragraph",
+      "sourceHash": "6bd7740f82f04396"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Stuur altyd ’n PDF vir kliënte, nooit die lêer wat geredigeer kan word nie. In Google Docs: File, dan Download, dan PDF. In LibreOffice is daar ’n PDF-knoppie op die nutsbalk."
+        }
+      ],
+      "hash": "b032014f003b1020",
+      "id": "set-up-google-drive-properly-on-day-one.4",
+      "kind": "paragraph",
+      "sourceHash": "e04887ce766423a4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ander gratis gereedskap wat die moeite werd is"
+        }
+      ],
+      "depth": 2,
+      "hash": "fdc117f70914243e",
+      "id": "other-free-tools-worth-having",
+      "kind": "heading",
+      "sourceHash": "cedea3d09bd60c19",
+      "text": "Ander gratis gereedskap wat die moeite werd is"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "E-pos met jou eie domein. ’n "
+        },
+        {
+          "t": "code",
+          "v": "@gmail.com"
+        },
+        {
+          "t": "text",
+          "v": "-adres op ’n kwotasie lyk minder gevestig as "
+        },
+        {
+          "t": "code",
+          "v": "you@yourbusiness.co.za"
+        },
+        {
+          "t": "text",
+          "v": ". Google Workspace vra ’n fooi per gebruiker per maand. Zoho Mail het al ’n gratis vlak vir ’n klein aantal gebruikers op ’n eie domein aangebied, so kyk of dit nog beskikbaar is voordat jy vir enigiets betaal. Die verkoper van jou domein kan ook basiese e-pos by die domein insluit, wat dikwels genoeg is."
+        }
+      ],
+      "hash": "14277f7dbc3ecb67",
+      "id": "other-free-tools-worth-having.1",
+      "kind": "paragraph",
+      "sourceHash": "6739a2e5a99effbc"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Faktureringsagteware. Jy het dit nie in die eerste jaar nodig nie. ’n Google Sheets-sjabloon is goed genoeg. Wanneer jy dit ontgroei, het Wave en Zoho Invoice albei gratis vlakke, en verskeie Suid-Afrikaanse banke se sakerekeninge sluit basiese fakturering in."
+        }
+      ],
+      "hash": "466e97286ed77e5c",
+      "id": "other-free-tools-worth-having.2",
+      "kind": "paragraph",
+      "sourceHash": "0323cb3b7bb8596d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "E-handtekeninge. ’n Getekende PDF is in Suid-Afrika vir die meeste gewone sakekontrakte regsgeldig kragtens ECTA. Vir eenvoudige ooreenkomste is ’n getikte naam plus ’n e-pos wat teruggestuur is, gewoonlik genoeg. Sommige dokumente, soos eiendomsoordragte en testamente, vereis ’n regte handgeskrewe handtekening. Moenie elektroniese handtekeninge daarvoor gebruik nie."
+        }
+      ],
+      "hash": "e8de6dcc2056a6c0",
+      "id": "other-free-tools-worth-having.3",
+      "kind": "paragraph",
+      "sourceHash": "0a169efacf215f85"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wagwoordbestuurder. Bitwarden het ’n gratis plan. Gebruik dit. Jy sal aanmeldings hê vir SARS, CIPC, jou bank, jou domein en elke sosiale rekening. Om hulle in ’n notaboek te skryf, is hoe besighede beroof word."
+        }
+      ],
+      "hash": "9b38c4d6ab3e815c",
+      "id": "other-free-tools-worth-having.4",
+      "kind": "paragraph",
+      "sourceHash": "b3a9f5e5ce85759b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Rugsteun. Google Drive is ’n sinkronisering, nie ’n rugsteun nie. As jy per ongeluk ’n lêer uitvee, word dit oral uitgevee. Laai een keer per maand jou belangrikste vouers af na ’n USB-stokkie en hou dit op ’n ander plek."
+        }
+      ],
+      "hash": "5440e75d10cb2a8e",
+      "id": "other-free-tools-worth-having.5",
+      "kind": "paragraph",
+      "sourceHash": "aa412d2b68a86466"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ontwerp. Canva se gratis plan vir sosiale-media-beelde. Inkscape vir vektorlêers van jou logo. Photopea in die blaaier om foto’s te redigeer."
+        }
+      ],
+      "hash": "53c5cc99a9ecc48e",
+      "id": "other-free-tools-worth-having.6",
+      "kind": "paragraph",
+      "sourceHash": "12c9594b0f9124d3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lettertipes. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "fonts.google.com"
+            }
+          ],
+          "external": true,
+          "href": "https://fonts.google.com/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Gratis, en gratis vir kommersiële gebruik."
+        }
+      ],
+      "hash": "b6e75099543c0e46",
+      "id": "other-free-tools-worth-having.7",
+      "kind": "paragraph",
+      "sourceHash": "e48bedee77808813"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Praktiese wenke vir Suid-Afrikaanse toestande"
+        }
+      ],
+      "depth": 2,
+      "hash": "16a07d172a58591d",
+      "id": "practical-notes-for-south-african-conditions",
+      "kind": "heading",
+      "sourceHash": "38f3a10dd59bbd8b",
+      "text": "Praktiese wenke vir Suid-Afrikaanse toestande"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Beurtkrag. Hou jou foon gelaai om as warmkol te gebruik. Hou ’n vanlyn afskrif van vandag se kwotasie of faktuur. ’n Klein UPS vir ’n roeteerder kos ’n paar honderd rand en spaar ure."
+        }
+      ],
+      "hash": "faad77fdbd7929ba",
+      "id": "practical-notes-for-south-african-conditions.1",
+      "kind": "paragraph",
+      "sourceHash": "c3c38a5272dfdada"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Datakoste. Skakel outomatiese foto-rugsteun op mobiele data af. Stel Google Drive om net op Wi-Fi te sinkroniseer. Voer beelde vir sosiale media onder 500 KB uit."
+        }
+      ],
+      "hash": "07e64597eb729a50",
+      "id": "practical-notes-for-south-african-conditions.2",
+      "kind": "paragraph",
+      "sourceHash": "5781fb8a6f825337"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vanlyn werk. Google Docs het ’n vanlyn modus, maar jy moet dit aanskakel voordat jy sein verloor, op elke toestel. Doen dit nou, nie op die dag dat jy dit nodig het nie."
+        }
+      ],
+      "hash": "70e679e74ef6ba4e",
+      "id": "practical-notes-for-south-african-conditions.3",
+      "kind": "paragraph",
+      "sourceHash": "813549d9301c5a7c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat om te vermy"
+        }
+      ],
+      "depth": 2,
+      "hash": "1e0bc4168383fc33",
+      "id": "what-to-avoid",
+      "kind": "heading",
+      "sourceHash": "0ae819cd9218dead",
+      "text": "Wat om te vermy"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gekraakte Microsoft Office. Dit is onwettig, dit dra kwaadwillige sagteware, en dit sal op die slegste tyd faal. LibreOffice en OnlyOffice doen dieselfde werk wettig en gratis."
+        }
+      ],
+      "hash": "206b9a333b46aeb3",
+      "id": "what-to-avoid.1",
+      "kind": "paragraph",
+      "sourceHash": "349bdf7cc05acc86"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om in die eerste jaar vir rekeningkundige sagteware te betaal. ’n Sigblad en ’n vouer met gefotografeerde strokies is genoeg totdat jou omset verby ongeveer R500,000 is of jy voorraad het om by te hou."
+        }
+      ],
+      "hash": "9d4f1888a0293ca5",
+      "id": "what-to-avoid.2",
+      "kind": "paragraph",
+      "sourceHash": "46385c6097d654a6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om ’n intekening op ’n webwerfbouer te koop voordat jy ’n kliënt het. ’n Google Business Profile en ’n WhatsApp-katalogus kos niks nie en lei dikwels beter tot verkope."
+        }
+      ],
+      "hash": "5ff0630cd59f0e88",
+      "id": "what-to-avoid.3",
+      "kind": "paragraph",
+      "sourceHash": "754347a6a95eb3c4"
+    }
+  ],
+  "contentHash": "b06b181b10f3cc96",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Gratis gereedskap",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "which-office-software-to-use",
+      "text": "Watter kantoorsagteware om te gebruik"
+    },
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 3,
+      "id": "google-docs-sheets-and-slides",
+      "text": "Google Docs, Sheets en Slides"
+    },
+    {
+      "depth": 3,
+      "id": "libreoffice",
+      "text": "LibreOffice"
+    },
+    {
+      "depth": 3,
+      "id": "onlyoffice",
+      "text": "OnlyOffice"
+    },
+    {
+      "depth": 2,
+      "id": "the-recommendation",
+      "text": "Die aanbeveling"
+    },
+    {
+      "depth": 2,
+      "id": "set-up-google-drive-properly-on-day-one",
+      "text": "Stel Google Drive op die eerste dag behoorlik op"
+    },
+    {
+      "depth": 2,
+      "id": "other-free-tools-worth-having",
+      "text": "Ander gratis gereedskap wat die moeite werd is"
+    },
+    {
+      "depth": 2,
+      "id": "practical-notes-for-south-african-conditions",
+      "text": "Praktiese wenke vir Suid-Afrikaanse toestande"
+    },
+    {
+      "depth": 2,
+      "id": "what-to-avoid",
+      "text": "Wat om te vermy"
+    }
+  ],
+  "id": "paperwork/free-tools",
+  "kind": "guide",
+  "lang": "af",
+  "order": 2,
+  "readingTime": 6,
+  "related": [],
+  "route": "paperwork/free-tools/",
+  "section": "paperwork",
+  "slug": "free-tools",
+  "sourcePath": "03 Paperwork and templates/02-free-tools.md",
+  "sources": {
+    "acts": [
+      "electronic-communications-and-transactions-act-25-of-2002"
+    ],
+    "entries": [
+      "google-fonts",
+      "inkscape"
+    ]
+  },
+  "summary": "Drie gratis opsies is die moeite werd om te oorweeg. Hulle is nie ewe goed vir ’n Suid-Afrikaanse eenpersoonbesigheid nie.",
+  "tags": [
+    "tools"
+  ],
+  "terms": [
+    {
+      "meaning": "Die program wat jy gebruik om webwerwe oop te maak: Chrome, Safari, Firefox.",
+      "term": "Blaaier (browser)"
+    },
+    {
+      "meaning": "Werk sonder internet.",
+      "term": "Vanlyn (offline)"
+    },
+    {
+      "meaning": "Jou lêers kopieer hulself outomaties na die wolk. As jy een uitvee, word dit oral uitgevee.",
+      "term": "Sinkroniseer (sync)"
+    },
+    {
+      "meaning": "’n Aparte afskrif wat jy doelbewus maak en op ’n ander plek hou.",
+      "term": "Rugsteun (backup)"
+    },
+    {
+      "meaning": "’n Lêerformaat wat op elke toestel dieselfde lyk en nie maklik verander kan word nie. Stuur PDF’s vir kliënte.",
+      "term": "PDF"
+    },
+    {
+      "meaning": "’n Logolêer wat enige grootte gemaak kan word sonder dat dit vaag word. SVG is ’n vektorformaat.",
+      "term": "Vektor (vector)"
+    },
+    {
+      "meaning": "Om jou foon se data te gebruik om vir jou skootrekenaar internet te gee.",
+      "term": "Warmkol (hotspot)"
+    },
+    {
+      "meaning": "’n Batterykas wat jou roeteerder tydens beurtkrag aan hou.",
+      "term": "UPS"
+    },
+    {
+      "meaning": "Jou webwerfadres, soos yourname.co.za.",
+      "term": "Domein (domain)"
+    }
+  ],
+  "title": "Gratis gereedskap",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

@@ -1,0 +1,924 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is vir jou as jou besigheidsnaam reeds vasstaan — by CIPC geregistreer, of net besluit en in gebruik — en jy weet waaronder jy wil handel dryf."
+        }
+      ],
+      "hash": "4441a4dac4500bb5",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "28d00357987d24ea"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Handelsmerkopdragte"
+            }
+          ],
+          "doc": "branding/branding-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " neem aan dat jy van niks af begin. Jy begin nie van niks af nie. Hierdie lêer sê vir jou watter dele om oor te slaan, watter dele jy steeds nodig het, en watter drie kontroles steeds die moeite werd is al is die naam reeds gekies."
+        }
+      ],
+      "hash": "5deaffed9e9751a1",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "f99f1ec785eb6d6f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die kort antwoord"
+        }
+      ],
+      "depth": 2,
+      "hash": "a7670f9d7cde3376",
+      "id": "the-short-answer",
+      "kind": "heading",
+      "sourceHash": "af31a779f739eba8",
+      "text": "Die kort antwoord"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "bbeedcd947e8d069",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Stap"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jy"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Waarom"
+          }
+        ]
+      ],
+      "id": "the-short-answer.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Opdrag 0: die kortbeskrywing"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Doen dit steeds"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Alles wat volg, word daarop gebou. Moenie dit oorslaan nie."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Opdrag 1: beskrywing in een sin"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Doen dit steeds"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Jou naam verduidelik nie wat jy doen nie. Hierdie sin doen dit."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Opdrag 2: ondersoek na mededingers"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Aangepas"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Gebruik die weergawe hieronder. Jy het die visuele helfte nodig, nie die helfte oor die naam nie."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Opdrag 3: die naam"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Slaan oor"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Reeds besluit."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Opdrag 4: slagspreuk"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Dalk"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Net as jou naam nie sê wat jy doen nie. Sien hieronder."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Opdrag 5: rigting vir die logo"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Doen dit steeds"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Dit is waar jou werklike werk begin."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Opdrag 6: maak die logo"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Doen dit steeds"
+            }
+          ],
+          []
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Opdrag 7: kleure en lettertipe"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Doen dit steeds"
+            }
+          ],
+          []
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Opdrag 8: fotografie"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Doen dit steeds"
+            }
+          ],
+          []
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Opdrag 9: stem"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Doen dit steeds"
+            }
+          ],
+          []
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Opdrag 10: \"oor ons\"-paragraaf"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Doen dit steeds"
+            }
+          ],
+          []
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Opdrag 11: handelsmerkgids"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Doen dit steeds"
+            }
+          ],
+          []
+        ]
+      ],
+      "sourceHash": "8dec49055fb60e38"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dus: slaan een opdrag oor, pas een aan, en doen die ander nege. Maak "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Handelsmerkopdragte"
+            }
+          ],
+          "doc": "branding/branding-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " oop en werk daardeur, maar spring oor Opdrag 3."
+        }
+      ],
+      "hash": "b6dfe19379f7ee87",
+      "id": "the-short-answer.2",
+      "kind": "paragraph",
+      "sourceHash": "f97abad21864c29e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Drie kontroles wat steeds die moeite werd is"
+        }
+      ],
+      "depth": 2,
+      "hash": "50b57df7adc0a914",
+      "id": "three-checks-still-worth-doing",
+      "kind": "heading",
+      "sourceHash": "654821be573f7174",
+      "text": "Drie kontroles wat steeds die moeite werd is"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Geregistreerde maatskappynaam is nie dieselfde as om ’n handelsmerk te besit nie. Hierdie kontroles neem twintig minute."
+        }
+      ],
+      "hash": "54ebbdf1b75e54b8",
+      "id": "three-checks-still-worth-doing.1",
+      "kind": "paragraph",
+      "sourceHash": "2794ceb2170e9131"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "1. Die domein en die gebruikersname."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Kyk of jou handelsnaam by twee of drie Suid-Afrikaanse domeinverkopers beskikbaar is, en op Instagram, Facebook en TikTok. As dit nie meer beskikbaar is nie, hoef jy nie jou naam te verander nie, maar jy moet dit nou weet, voordat dit op ’n voertuig kom. Jy kan dalk uiteindelik as \"Mokoena Motors\" handel dryf terwyl die domein mokoenamotors.co.za reeds in gebruik is en mokoenamotorssa.co.za beskikbaar is. Besluit dit voordat jy druk."
+        }
+      ],
+      "hash": "7736422e800500e5",
+      "id": "three-checks-still-worth-doing.2",
+      "kind": "paragraph",
+      "sourceHash": "9d64b834598d67bf"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "2. Die handelsmerk."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Soek in CIPC se handelsmerkdatabasis na jou handelsnaam in jou klas goedere of dienste."
+        }
+      ],
+      "hash": "e318d2a282b5c628",
+      "id": "three-checks-still-worth-doing.3",
+      "kind": "paragraph",
+      "sourceHash": "fec216528aad709e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n CIPC-maatskappynaam beskerm niks in die mark nie. Dit keer dat ’n ander maatskappy dieselfde maatskappynaam registreer. Dit keer nie dat iemand onder jou handelsmerk handel dryf nie, en dit keer nie dat iemand anders dit as handelsmerk registreer en dan teen jou beswaar maak nie."
+        }
+      ],
+      "hash": "8fe30212e0230b1e",
+      "id": "three-checks-still-worth-doing.4",
+      "kind": "paragraph",
+      "sourceHash": "4fe1f6a9611b1193"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy hoef nie in die eerste jaar ’n handelsmerk te registreer nie. Jy moet wel weet of iemand anders reeds een hou."
+        }
+      ],
+      "hash": "6b9e1a8862aa2a46",
+      "id": "three-checks-still-worth-doing.5",
+      "kind": "paragraph",
+      "sourceHash": "b096fbd68779924f"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "3. Sê dit hardop."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Sê die handelsnaam vir ’n moedertaalspreker van elke taal wat jou kliënte praat, en vra hoe dit vir hulle klink. Doen dit selfs al is die naam reeds geregistreer. Dit is goedkoper om dit nou uit te vind as ná die uithangborde."
+        }
+      ],
+      "hash": "ccf8cc762991ac82",
+      "id": "three-checks-still-worth-doing.6",
+      "kind": "paragraph",
+      "sourceHash": "09fa6f73b8823124"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As die naam geregistreer is, maar jy twyfel nou"
+        }
+      ],
+      "depth": 2,
+      "hash": "f08db5e4a3d3cf6e",
+      "id": "if-the-name-is-registered-but-you-are-having-second-thoughts",
+      "kind": "heading",
+      "sourceHash": "bcde209b13abb81e",
+      "text": "As die naam geregistreer is, maar jy twyfel nou"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is moontlik om ’n geregistreerde maatskappynaam by CIPC te verander, en dit is nie duur nie. Maar gewoonlik is dit onnodig, want die geregistreerde naam en die handelsnaam is twee verskillende dinge."
+        }
+      ],
+      "hash": "f98c254ff0f0de2e",
+      "id": "if-the-name-is-registered-but-you-are-having-second-thoughts.1",
+      "kind": "paragraph",
+      "sourceHash": "ae167a4d6eed347e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy kan onder een naam registreer en onder ’n ander naam handel dryf. \"Mokoena Holdings (Pty) Ltd\" kan as \"Mokoena Motors\" handel dryf en later \"Mokoena Solar\" byvoeg, sonder ’n naamsverandering by CIPC."
+        }
+      ],
+      "hash": "b292fb418de3b061",
+      "id": "if-the-name-is-registered-but-you-are-having-second-thoughts.2",
+      "kind": "paragraph",
+      "sourceHash": "d427b00bd4b3f946"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die volle besonderhede, ook wanneer ’n naamsverandering die moeite werd is, is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Nuwe besigheidslyne byvoeg"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "aa2a48442c408c47",
+      "id": "if-the-name-is-registered-but-you-are-having-second-thoughts.3",
+      "kind": "paragraph",
+      "sourceHash": "9db1ed42d71e1409"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die reël wat op jou van toepassing is omdat die naam geregistreer is"
+        }
+      ],
+      "depth": 2,
+      "hash": "68def93c480cb8a0",
+      "id": "the-rule-that-applies-to-you-because-the-name-is-registered",
+      "kind": "heading",
+      "sourceHash": "05e07c8349c1e7ea",
+      "text": "Die reël wat op jou van toepassing is omdat die naam geregistreer is"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Artikel 32 van die Companies Act vereis dat die maatskappy se geregistreerde naam en registrasienommer op al sy dokumente verskyn: fakture, kwitansies, afleweringsnotas, briewe, bestellings en kennisgewings, ook e-posse en jou webwerf."
+        }
+      ],
+      "hash": "f2253ed0272ab0b7",
+      "id": "the-rule-that-applies-to-you-because-the-name-is-registered.1",
+      "kind": "paragraph",
+      "sourceHash": "c9960646b91948a2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy dus onder ’n handelsnaam bemark, wys albei:"
+        }
+      ],
+      "hash": "4e6749713535fdb7",
+      "id": "the-rule-that-applies-to-you-because-the-name-is-registered.2",
+      "kind": "paragraph",
+      "sourceHash": "250595acb39d5d00"
+    },
+    {
+      "hash": "4d5040d95389165c",
+      "id": "the-rule-that-applies-to-you-because-the-name-is-registered.3",
+      "kind": "code",
+      "sourceHash": "4d5040d95389165c",
+      "text": "MOKOENA MOTORS\nA trading name of Mokoena Holdings (Pty) Ltd | Reg. No. 2026/123456/07",
+      "variant": "example"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die sjablone in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Watter sjabloon om wanneer te gebruik"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " het ’n plek hiervoor. Vir ’n maatskappy is dit nie opsioneel nie."
+        }
+      ],
+      "hash": "18acfda8d765f14b",
+      "id": "the-rule-that-applies-to-you-because-the-name-is-registered.4",
+      "kind": "paragraph",
+      "sourceHash": "55c721cc9119ebee"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Het jy ’n slagspreuk nodig?"
+        }
+      ],
+      "depth": 2,
+      "hash": "3645de67581b3a3f",
+      "id": "do-you-need-a-tagline",
+      "kind": "heading",
+      "sourceHash": "007a3dcf4e5b7e1a",
+      "text": "Het jy ’n slagspreuk nodig?"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Net as jou naam nie verduidelik wat jy doen nie."
+        }
+      ],
+      "hash": "d6066adc93473c4b",
+      "id": "do-you-need-a-tagline.1",
+      "kind": "paragraph",
+      "sourceHash": "9f440c90adee7fa7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "\"Mokoena Plumbing\" het geen slagspreuk nodig nie. \"Kumba\" wel. \"Clipboard Motors\" ook, want die naam is maklik om te onthou, maar nie selfverduidelikend nie."
+        }
+      ],
+      "hash": "5637f116da4c2692",
+      "id": "do-you-need-a-tagline.2",
+      "kind": "paragraph",
+      "sourceHash": "e4d83f285b42aaf2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy een nodig het, gebruik Opdrag 4 in die hooflêer vir handelsmerke. As jou naam reeds jou vak noem, slaan dit oor en gebruik die spasie vir iets beters."
+        }
+      ],
+      "hash": "10482256eeaf5b08",
+      "id": "do-you-need-a-tagline.3",
+      "kind": "paragraph",
+      "sourceHash": "88395ae17db2604b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Aangepaste Opdrag 2: ondersoek na mededingers, net visueel"
+        }
+      ],
+      "depth": 2,
+      "hash": "475fa53b0036daa1",
+      "id": "modified-prompt-2-competitor-scan-visual-only",
+      "kind": "heading",
+      "sourceHash": "493d5bb376c0fb99",
+      "text": "Aangepaste Opdrag 2: ondersoek na mededingers, net visueel"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die oorspronklike Opdrag 2 vra oor patrone in name, en dit het jy nie meer nodig nie. Gebruik eerder hierdie weergawe. Dit doen dieselfde werk vir die visuele kant, en voeg een ding by wat die oorspronklike nie doen nie: of jou bestaande naam pas by die rigtings wat jy oorweeg."
+        }
+      ],
+      "hash": "d986beeb1a97e9de",
+      "id": "modified-prompt-2-competitor-scan-visual-only.1",
+      "kind": "paragraph",
+      "sourceHash": "e6c92e1ab1155437"
+    },
+    {
+      "hash": "32b710b8ef86393e",
+      "id": "modified-prompt-2-competitor-scan-visual-only.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PLAK JOU HANDELSMERK-KORTBESKRYWING"
+        },
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "NAAM"
+        },
+        {
+          "key": "tradingName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "HANDELSNAAM, as dit verskil"
+        },
+        {
+          "key": "town",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "DORP/STAD"
+        },
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BESIGHEIDSTIPE"
+        }
+      ],
+      "sourceHash": "97e482b418d30a65",
+      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nMy besigheidsnaam is reeds besluit: [NAAM]\nEk dryf handel as: [HANDELSNAAM, as dit verskil]\n\nEk verander nie die naam nie. Moenie alternatiewe voorstel nie.\n\nEk wil verstaan hoe die handelsmerke in my mark reeds lyk in\n[DORP/STAD], Suid-Afrika, vir [BESIGHEIDSTIPE].\n\nGegrond op wat tipies is vir hierdie soort besigheid in Suid-Afrika,\nbeskryf:\n\n1. Die kleure wat die meeste mededingers in hierdie vak gebruik, en waarom\n2. Die logostyle wat hulle gebruik\n3. Die aansprake wat hulle almal maak\n4. Die drie mees algemene visuele clichés in hierdie bedryf\n\nMaak dit duidelik dat dit jou algemene kennis van die bedryf is, nie ’n\nopname van my werklike dorp nie. Ek sal self na werklike mededingers kyk.\n\nBeantwoord dan twee vrae oor my bestaande naam:\n\n5. Wat stel my naam reeds visueel voor? Wys dit na ’n prent,\n   ’n lettervorm, of na niks in die besonder nie?\n6. Is daar iets aan my naam wat visueel teen my sou werk:\n   te lank vir ’n voertuigdeur, moeilik om in lettertipe te set, maklik om te verwar\n   met ’n mededinger, of lomp in klein groottes? Wees eerlik.\n\nGee my dan 5 spesifieke maniere waarop ek doelbewus anders as die res\nvan die vak kan lyk, sonder om onprofessioneel te lyk en sonder om\ndie naam te verander. Sê by elkeen wat die risiko van daardie keuse is.\n\nNommer die 5 maniere 1 tot 5. Sê dan vir my watter een die swakste is en waarom.\nStop dan.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vraag 6 is die nuttige een. ’n Naam wat jy nie kan verander nie, is ’n beperking waaromheen die logo moet werk, en dit is beter om daarvan te weet voordat jy ’n rigting kies as daarna."
+        }
+      ],
+      "hash": "4e8956deef982421",
+      "id": "modified-prompt-2-competitor-scan-visual-only.3",
+      "kind": "paragraph",
+      "sourceHash": "1baa23aa796bcf5f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kyk dan self na die werklikheid. Soek op Google en Facebook na jou vak plus jou dorp, en kyk na tien mededingers. Skryf hulle kleure neer. Plak wat jy vind in Opdrag 5."
+        }
+      ],
+      "hash": "d4e99c0fda6a193b",
+      "id": "modified-prompt-2-competitor-scan-visual-only.4",
+      "kind": "paragraph",
+      "sourceHash": "367a65c35363419e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Waarheen volgende"
+        }
+      ],
+      "depth": 2,
+      "hash": "c9f4c394a494543a",
+      "id": "where-to-go-next",
+      "kind": "heading",
+      "sourceHash": "a562d24ed79df7ba",
+      "text": "Waarheen volgende"
+    },
+    {
+      "hash": "3e922a15fc8b1757",
+      "id": "where-to-go-next.1",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Handelsmerkopdragte"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — Opdrag 0, Opdrag 1, die aangepaste Opdrag 2 hierbo"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Stemming en materiale (gebruik ná Opdrag 4)"
+              }
+            ],
+            "doc": "branding/mood-and-materials",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — besluit oor die stemming voor die logo"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Handelsmerkopdragte"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — Opdrag 5 en verder"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Handelsmerktoepassings en afronding"
+              }
+            ],
+            "doc": "branding/brand-applications-and-polish",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — die lêers wat jy nodig het en die gehaltetoetse"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Bemarkingsopdragte"
+              }
+            ],
+            "doc": "branding/marketing-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — Google Business Profile en WhatsApp Business"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "0623d147e6d58f5d",
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy nog nie besluit het of jy hoegenaamd die maatskappy nodig gehad het nie, of as jy een geregistreer het en nie seker is wat dit jou nou kos nie, lees "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Registreer: wat jy regtig nodig het"
+            }
+          ],
+          "doc": "core/register",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "2cf07007c344ed44",
+      "id": "where-to-go-next.2",
+      "kind": "paragraph",
+      "sourceHash": "60dca965e4a3fb61"
+    }
+  ],
+  "contentHash": "8f0ba589a1baf727",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Het jy reeds jou naam? Begin hier",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "the-short-answer",
+      "text": "Die kort antwoord"
+    },
+    {
+      "depth": 2,
+      "id": "three-checks-still-worth-doing",
+      "text": "Drie kontroles wat steeds die moeite werd is"
+    },
+    {
+      "depth": 2,
+      "id": "if-the-name-is-registered-but-you-are-having-second-thoughts",
+      "text": "As die naam geregistreer is, maar jy twyfel nou"
+    },
+    {
+      "depth": 2,
+      "id": "the-rule-that-applies-to-you-because-the-name-is-registered",
+      "text": "Die reël wat op jou van toepassing is omdat die naam geregistreer is"
+    },
+    {
+      "depth": 2,
+      "id": "do-you-need-a-tagline",
+      "text": "Het jy ’n slagspreuk nodig?"
+    },
+    {
+      "depth": 2,
+      "id": "modified-prompt-2-competitor-scan-visual-only",
+      "text": "Aangepaste Opdrag 2: ondersoek na mededingers, net visueel"
+    },
+    {
+      "depth": 2,
+      "id": "where-to-go-next",
+      "text": "Waarheen volgende"
+    }
+  ],
+  "id": "branding/already-have-your-name",
+  "kind": "guide",
+  "lang": "af",
+  "order": 1,
+  "readingTime": 6,
+  "related": [
+    "branding/branding-prompts",
+    "core/adding-new-lines",
+    "paperwork/which-template-to-use-when",
+    "branding/mood-and-materials",
+    "branding/brand-applications-and-polish"
+  ],
+  "route": "branding/already-have-your-name/",
+  "section": "branding",
+  "slug": "already-have-your-name",
+  "sourcePath": "02 Branding and marketing/00-already-have-your-name.md",
+  "sources": {
+    "acts": [
+      "companies-act-71-of-2008"
+    ],
+    "entries": [
+      "cipc-trade-mark-search"
+    ]
+  },
+  "summary": "Dit is vir jou as jou besigheidsnaam reeds vasstaan — by CIPC geregistreer, of net besluit en in gebruik — en jy weet waaronder jy wil handel dryf.",
+  "tags": [
+    "prompts"
+  ],
+  "terms": [],
+  "title": "Het jy reeds jou naam? (kortpad)",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

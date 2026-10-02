@@ -1,0 +1,785 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Waar Suid-Afrikaanse klein besighede werklik kliënte kry"
+        }
+      ],
+      "depth": 2,
+      "hash": "7e948a58946258f0",
+      "id": "where-south-african-small-businesses-actually-get-customers",
+      "kind": "heading",
+      "sourceHash": "f06cb9cb55e651a5",
+      "text": "Waar Suid-Afrikaanse klein besighede werklik kliënte kry"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wees eerlik hieroor voordat jy ’n dag spandeer om Instagram-plasings te maak."
+        }
+      ],
+      "hash": "925fd1083cac5a84",
+      "id": "where-south-african-small-businesses-actually-get-customers.1",
+      "kind": "paragraph",
+      "sourceHash": "973635e68c43701d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n plaaslike diensbesigheid (loodgieter, haarkapper, privaat onderwyser, skoonmaker, werktuigkundige) kom die meeste eerste kliënte van ’n Google Business Profile, WhatsApp, mond-tot-mond en plaaslike Facebook-groepe. Instagram en TikTok begin stadig."
+        }
+      ],
+      "hash": "c6e28f84cdb7ce4f",
+      "id": "where-south-african-small-businesses-actually-get-customers.2",
+      "kind": "paragraph",
+      "sourceHash": "3484b5659bd8c7d7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n produkbesigheid wat landwyd verkoop, kom Facebook Marketplace, Instagram en ’n WhatsApp-katalogus gewoonlik eerste. ’n Volledige aanlynwinkel is ’n latere stap."
+        }
+      ],
+      "hash": "af4582c2cd3d8017",
+      "id": "where-south-african-small-businesses-actually-get-customers.3",
+      "kind": "paragraph",
+      "sourceHash": "4ad7c290692e8d63"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kies twee kanale. Doen daardie twee behoorlik. Om op ses kanale swak te wees, is erger as om op twee goed te wees."
+        }
+      ],
+      "hash": "7ca8bfdd74728f4d",
+      "id": "where-south-african-small-businesses-actually-get-customers.4",
+      "kind": "paragraph",
+      "sourceHash": "f0c0fc700ed93645"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Doen eers hierdie twee dinge, voor enige inhoud"
+        }
+      ],
+      "depth": 2,
+      "hash": "aef03cda4cd14743",
+      "id": "do-these-two-things-first-before-any-content",
+      "kind": "heading",
+      "sourceHash": "83f9058bfa7672a8",
+      "text": "Doen eers hierdie twee dinge, voor enige inhoud"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "1. Google Business Profile"
+        }
+      ],
+      "depth": 3,
+      "hash": "4a902a19e4212533",
+      "id": "1-google-business-profile",
+      "kind": "heading",
+      "sourceHash": "4a902a19e4212533",
+      "text": "1. Google Business Profile"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is gratis, en dit is die ding met die hoogste waarde wat ’n plaaslike besigheid kan doen. Wanneer iemand in jou dorp na \"loodgieter naby my\" soek, is dit wat besluit of jy verskyn."
+        }
+      ],
+      "hash": "01cf26c07a9c659c",
+      "id": "1-google-business-profile.1",
+      "kind": "paragraph",
+      "sourceHash": "699234f3f4554cb7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gaan na "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "business.google.com"
+            }
+          ],
+          "external": true,
+          "href": "https://business.google.com/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Eis jou besigheid op. Vul alles in: ure, diensgebied, foon, WhatsApp-skakel, kategorieë, en minstens 10 foto’s."
+        }
+      ],
+      "hash": "335e57f85a3735d2",
+      "id": "1-google-business-profile.2",
+      "kind": "paragraph",
+      "sourceHash": "120b64a1ca75faa4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vra dan elke tevrede kliënt vir ’n resensie. Resensies is die grootste enkele faktor wat bepaal of jy bo jou mededingers verskyn."
+        }
+      ],
+      "hash": "0f8d526272c58055",
+      "id": "1-google-business-profile.3",
+      "kind": "paragraph",
+      "sourceHash": "6bf0570a7837fe04"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "2. WhatsApp Business"
+        }
+      ],
+      "depth": 3,
+      "hash": "870f4652b2520747",
+      "id": "2-whatsapp-business",
+      "kind": "heading",
+      "sourceHash": "870f4652b2520747",
+      "text": "2. WhatsApp Business"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Gratis toep, apart van gewone WhatsApp. Installeer dit op die besigheidsnommer."
+        }
+      ],
+      "hash": "db719dddcd7481d4",
+      "id": "2-whatsapp-business.1",
+      "kind": "paragraph",
+      "sourceHash": "31cae7ec73e4f6e8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Stel op:"
+        }
+      ],
+      "hash": "a314d791ca8b5c2b",
+      "id": "2-whatsapp-business.2",
+      "kind": "paragraph",
+      "sourceHash": "4662d794febf02d6"
+    },
+    {
+      "hash": "9f05138984cf1744",
+      "id": "2-whatsapp-business.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "’n Besigheidsprofiel met jou adres, ure en ’n beskrywing"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Katalogus met jou produkte of dienste en pryse"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Vinnige antwoorde (quick replies) vir die drie vrae wat jy elke dag beantwoord"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Afwesigheidsboodskap vir ná ure"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Etikette om moontlike kliënte te volg: Nuut, Gekwoteer, Wag, Betaal"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "9df41f25f179db65"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die meeste Suid-Afrikaanse kliënte sal jou op WhatsApp kontak, of jy hulle nooi of nie. Maak daardie ervaring goed, en jy sal mededingers klop wat net ’n kontakvorm het."
+        }
+      ],
+      "hash": "4a57c476e0a1cb3f",
+      "id": "2-whatsapp-business.4",
+      "kind": "paragraph",
+      "sourceHash": "9988ee17693d8189"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opdrag 1: inhoudspilare"
+        }
+      ],
+      "depth": 2,
+      "hash": "3a98fe3fff068eb7",
+      "id": "prompt-1-content-pillars",
+      "kind": "heading",
+      "sourceHash": "889e464e5ea2a1bb",
+      "text": "Opdrag 1: inhoudspilare"
+    },
+    {
+      "hash": "ffe54a127be41fc3",
+      "id": "prompt-1-content-pillars.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "PLAK JOU HANDELSMERK-KORTBESKRYWING UIT 05-branding-prompts.md"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PLAK JOU STEMGIDS"
+        }
+      ],
+      "sourceHash": "cf089ed8f9b49371",
+      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING UIT 05-branding-prompts.md]\n\nHier is die stem van my handelsmerk:\n\n[PLAK JOU STEMGIDS]\n\nGee my 5 stelle inhoudspilare. ’n Inhoudspilaar is ’n onderwerp waaroor ek\nherhaaldelik plaas.\n\nElke stel moet presies 4 pilare hê. Gee my vir elke pilaar:\n- Die naam van die pilaar\n- Waarom dit vir my spesifieke kliënte belangrik is\n- Drie voorbeelde van idees vir plasings\n\nMaak die 5 stelle werklik verskillend in benadering. Minstens een stel moet\ngebou wees rondom dinge wat ek met ’n foon kan afneem terwyl ek werk, sonder\nbeplanning.\n\nOnthou dat ek een persoon is sonder tyd en sonder begroting.\n\nNommer die stelle 1 tot 5. Stop ná die 5 stelle. Vra my watter stel die\nnaaste is en wat ek sou verander.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opdrag 2: ’n maand se plasings"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e7e91b7d1cf049a",
+      "id": "prompt-2-a-month-of-posts",
+      "kind": "heading",
+      "sourceHash": "ce00b640dc4e5116",
+      "text": "Opdrag 2: ’n maand se plasings"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik dit nadat jy jou pilare gekies het."
+        }
+      ],
+      "hash": "de7a6c8cf46e4b8e",
+      "id": "prompt-2-a-month-of-posts.1",
+      "kind": "paragraph",
+      "sourceHash": "004b7f499193f9fe"
+    },
+    {
+      "hash": "6678511ec5e739af",
+      "id": "prompt-2-a-month-of-posts.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PLAK DIE 4 PILARE WAT JY GEKIES HET"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PLAK JOU STEMGIDS"
+        },
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BESIGHEIDSTIPE"
+        },
+        {
+          "key": "town",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "DORP/STAD"
+        }
+      ],
+      "sourceHash": "e4f0c66201677e84",
+      "text": "My inhoudspilare is:\n\n[PLAK DIE 4 PILARE WAT JY GEKIES HET]\n\nDie stem van my handelsmerk is:\n\n[PLAK JOU STEMGIDS]\n\nEk is ’n [BESIGHEIDSTIPE] in [DORP/STAD], Suid-Afrika.\n\nSkryf vir my 12 plasings vir een maand. Dit is 3 plasings per week.\n\nGee my vir elke plasing:\n- By watter pilaar dit hoort\n- Die onderskrif, gereed om te plak, hoogstens 60 woorde\n- Watter foto of video om te neem, so beskryf dat ek dit op my foon kan neem\n in minder as 5 minute\n- 5 hutsmerke waarna ’n Suid-Afrikaanse kliënt werklik sou soek\n- Een reël wat vir die leser sê wat om volgende te doen\n\nReëls:\n- Eenvoudige taal\n- Suid-Afrikaanse spelling en bedrae in rand\n- Nie emoji’s op elke reël nie, hoogstens twee per plasing\n- Moenie aansprake, statistieke of kliëntstories versin nie\n- Noem beurtkrag, die weer of plaaslike gebeure net as dit werklik\n relevant is vir wat ek verkoop\n\nVersprei die 12 plasings eweredig oor die pilare.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opdrag 3: WhatsApp-boodskappe wat jy elke week stuur"
+        }
+      ],
+      "depth": 2,
+      "hash": "4605252691dc2418",
+      "id": "prompt-3-whatsapp-messages-you-send-every-week",
+      "kind": "heading",
+      "sourceHash": "dfe4ef133a7bc26d",
+      "text": "Opdrag 3: WhatsApp-boodskappe wat jy elke week stuur"
+    },
+    {
+      "hash": "6c1ebaf7063eea32",
+      "id": "prompt-3-whatsapp-messages-you-send-every-week.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BESIGHEIDSTIPE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PLAK JOU STEMGIDS"
+        }
+      ],
+      "sourceHash": "6d3811a57fc30cd2",
+      "text": "Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika. Die stem van my handelsmerk is:\n\n[PLAK JOU STEMGIDS]\n\nSkryf vir my kort WhatsApp-boodskapsjablone vir hierdie 8 situasies. Elkeen\nmoet korter as 60 woorde wees, beleefd, en maklik om op ’n foon te lees.\n\n1. Iemand vra \"hoeveel?\" en ek het meer inligting nodig voordat ek ’n kwotasie gee\n2. ’n Kwotasie stuur\n3. ’n Kwotasie opvolg ná 3 dae sonder antwoord\n4. ’n Bespreking bevestig met datum, tyd en adres\n5. ’n Kliënt die dag tevore herinner\n6. Vir ’n kliënt sê dat ek laat is\n7. Beleefd vir betaling vra wanneer ’n faktuur agterstallig is\n8. Vir ’n Google-resensie vra nadat ’n werk goed afgeloop het\n\nGebruik [VIERKANTIGE HAKIES] vir enigiets wat ek moet invul.\n\nGee my elke boodskap twee keer: een keer in Engels en een keer in ’n warmer, minder\nformele toon.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Stoor dit as vinnige antwoorde (Quick Replies) in WhatsApp Business. Jy sal dit elke dag gebruik."
+        }
+      ],
+      "hash": "2da9098ba626a617",
+      "id": "prompt-3-whatsapp-messages-you-send-every-week.2",
+      "kind": "paragraph",
+      "sourceHash": "b811e8877bbb2f05"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opdrag 4: jou beskrywing vir Google Business Profile"
+        }
+      ],
+      "depth": 2,
+      "hash": "7c0cc4dbc6f166c0",
+      "id": "prompt-4-your-google-business-profile-description",
+      "kind": "heading",
+      "sourceHash": "ddd0b956da9fcf76",
+      "text": "Opdrag 4: jou beskrywing vir Google Business Profile"
+    },
+    {
+      "hash": "21992a8900744eab",
+      "id": "prompt-4-your-google-business-profile-description.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BESIGHEIDSTIPE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "GEBIEDE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "BESKRYF IN JOU EIE WOORDE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "BESKRYF"
+        }
+      ],
+      "sourceHash": "b03a04f68b279f46",
+      "text": "Ek is ’n [BESIGHEIDSTIPE] wat [GEBIEDE] in Suid-Afrika bedien.\n\nWat ek doen: [BESKRYF IN JOU EIE WOORDE]\nWat my anders maak: [BESKRYF]\n\nSkryf 5 verskillende beskrywings vir Google Business Profile.\n\nReëls:\n- Hoogstens 700 karakters elk\n- Sluit die woorde in wat ’n kliënt werklik in Google sou tik\n- Noem die gebiede wat ek bedien\n- Geen bemarkingstaal nie\n- Sê wat om volgende te doen\n\nGee my ook ’n lys van die Google Business-kategorieë wat ek moet kies,\nprimêr en sekondêr.\n\nNommer hulle 1 tot 5. Stop ná die 5 opsies.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opdrag 5: antwoorde op die vrae wat ’n verkoping keer"
+        }
+      ],
+      "depth": 2,
+      "hash": "316e889e0f69bafa",
+      "id": "prompt-5-answering-the-questions-that-stop-a-sale",
+      "kind": "heading",
+      "sourceHash": "a7d1ee5cbb9ddc73",
+      "text": "Opdrag 5: antwoorde op die vrae wat ’n verkoping keer"
+    },
+    {
+      "hash": "e08f2144bef179ca",
+      "id": "prompt-5-answering-the-questions-that-stop-a-sale.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BESIGHEIDSTIPE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PRODUK OF DIENS"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PRYS"
+        }
+      ],
+      "sourceHash": "0e32382f88c192db",
+      "text": "Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika wat [PRODUK OF DIENS] verkoop teen\nomtrent [PRYS].\n\nLys die 10 vrae of bekommernisse wat ’n Suid-Afrikaanse kliënt die meeste daarvan\nweerhou om by ’n klein, onbekende besigheid soos myne te koop.\n\nSkryf vir elkeen ’n kort antwoord wat ek op WhatsApp, op my pryslys\nen op sosiale media kan gebruik. Korter as 40 woorde elk.\n\nWees eerlik. Moenie antwoorde skryf wat beloftes maak wat ek nie kan nakom nie.\n\nSê dan vir my watter drie hiervan ek in die openbaar moet beantwoord, nog voordat die\nkliënt vra.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is gewoonlik die nuttigste opdrag in hierdie lêer. Die antwoorde word jou lys van algemene vrae (FAQ), jou verkoopsteks, en die helfte van jou inhoud."
+        }
+      ],
+      "hash": "c98fe2419f7f75ab",
+      "id": "prompt-5-answering-the-questions-that-stop-a-sale.2",
+      "kind": "paragraph",
+      "sourceHash": "9dd557dd4582054d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om die prente te maak"
+        }
+      ],
+      "depth": 2,
+      "hash": "606dce6d598aab76",
+      "id": "making-the-images",
+      "kind": "heading",
+      "sourceHash": "b9a3a07636c37a27",
+      "text": "Om die prente te maak"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gratis gereedskap:"
+        }
+      ],
+      "hash": "c2d97a4900b0dadb",
+      "id": "making-the-images.1",
+      "kind": "paragraph",
+      "sourceHash": "8147eac8a6b1cca7"
+    },
+    {
+      "hash": "2d6806f8df6ef0af",
+      "id": "making-the-images.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Canva se gratis plan — sjablone vir sosiale media, groottes reeds ingestel, handelsmerkkleure kan gestoor word"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Photopea — gratis in die blaaier, maak PSD-lêers oop"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "GIMP — gratis fotoredigeerder vir die rekenaar"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jou foonkamera — beter as enige voorraadfoto vir ’n plaaslike besigheid"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "b09a2bc8e20c648e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Raad: werklike foto’s van jou werklike werk klop ontwerpte grafika byna elke keer vir ’n klein plaaslike besigheid. ’n Duidelike foto van ’n voltooide werk, in daglig geneem, presteer beter as ’n gepoleerde grafika uit ’n sjabloon."
+        }
+      ],
+      "hash": "3e67a66c49cb8432",
+      "id": "making-the-images.3",
+      "kind": "paragraph",
+      "sourceHash": "49c8dc441d70d360"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hou prentlêers klein. Baie van jou kliënte betaal per megagreep vir data. Voer prente vir sosiale media onder 500 KB uit."
+        }
+      ],
+      "hash": "8c25d535efb46c03",
+      "id": "making-the-images.4",
+      "kind": "paragraph",
+      "sourceHash": "4dd1e3c9b3feecd0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat om in jou eerste jaar te ignoreer"
+        }
+      ],
+      "depth": 2,
+      "hash": "ced91124e8dc94ce",
+      "id": "what-to-ignore-in-your-first-year",
+      "kind": "heading",
+      "sourceHash": "ff250a14fb2baedd",
+      "text": "Wat om in jou eerste jaar te ignoreer"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Betaalde advertensies. Moenie geld aan advertensies spandeer voordat jy presies weet watter boodskap verkope bring nie. Onbetaalde plasings en ’n Google Business Profile leer jou dit gratis."
+        }
+      ],
+      "hash": "864042d7cd7d4269",
+      "id": "what-to-ignore-in-your-first-year.1",
+      "kind": "paragraph",
+      "sourceHash": "9aacca55436eddb8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daagliks plaas. Drie goeie plasings per week klop sewe haastige plasings. Niemand tel nie."
+        }
+      ],
+      "hash": "4ca42e692b5d566d",
+      "id": "what-to-ignore-in-your-first-year.2",
+      "kind": "paragraph",
+      "sourceHash": "2b86d8421d8c53b0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om op elke platform te wees. As jy nie boodskappe op ’n platform binne ’n dag gaan beantwoord nie, moenie ’n rekening daar oopmaak nie."
+        }
+      ],
+      "hash": "f6464766061946f6",
+      "id": "what-to-ignore-in-your-first-year.3",
+      "kind": "paragraph",
+      "sourceHash": "dde38c1ce9321b03"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Blog. Net die moeite werd as soektogte werklik die manier is waarop jou kliënte jou soort besigheid vind, en net as jy dit ’n jaar lank gaan skryf."
+        }
+      ],
+      "hash": "22e20b048d808580",
+      "id": "what-to-ignore-in-your-first-year.4",
+      "kind": "paragraph",
+      "sourceHash": "3a7f9bbf02745c11"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Volgelinge koop of by betrokkenheidsgroepe aansluit. Dit beskadig jou bereik en dit verkoop niks."
+        }
+      ],
+      "hash": "9e4e05f731e24b11",
+      "id": "what-to-ignore-in-your-first-year.5",
+      "kind": "paragraph",
+      "sourceHash": "1b6a76725f2404e0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die een maatstaf wat saak maak"
+        }
+      ],
+      "depth": 2,
+      "hash": "cfc6f659e61616c3",
+      "id": "the-one-metric-that-matters",
+      "kind": "heading",
+      "sourceHash": "970dcfac7183118c",
+      "text": "Die een maatstaf wat saak maak"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tel hoeveel mense jou hierdie maand gekontak het, en hoeveel van hulle gekoop het."
+        }
+      ],
+      "hash": "79075e47e6e67cdf",
+      "id": "the-one-metric-that-matters.1",
+      "kind": "paragraph",
+      "sourceHash": "bfa586d6e966a4f3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Nie duime nie. Nie volgelinge nie. Navrae en verkope."
+        }
+      ],
+      "hash": "b897e4d0b3fdf831",
+      "id": "the-one-metric-that-matters.2",
+      "kind": "paragraph",
+      "sourceHash": "272c697546293c1b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Skryf hierdie twee getalle elke maand neer in dieselfde sigblad waarin jy geld byhou. Ná drie maande sal jy weet watter kanaal werklik werk, en kan jy ophou om die ander een te doen."
+        }
+      ],
+      "hash": "05317ce0a1a03c5d",
+      "id": "the-one-metric-that-matters.3",
+      "kind": "paragraph",
+      "sourceHash": "dc855774236e1488"
+    }
+  ],
+  "contentHash": "90b5823f37f7903d",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Bemarkingsopdragte en -bates",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "where-south-african-small-businesses-actually-get-customers",
+      "text": "Waar Suid-Afrikaanse klein besighede werklik kliënte kry"
+    },
+    {
+      "depth": 2,
+      "id": "do-these-two-things-first-before-any-content",
+      "text": "Doen eers hierdie twee dinge, voor enige inhoud"
+    },
+    {
+      "depth": 3,
+      "id": "1-google-business-profile",
+      "text": "1. Google Business Profile"
+    },
+    {
+      "depth": 3,
+      "id": "2-whatsapp-business",
+      "text": "2. WhatsApp Business"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-1-content-pillars",
+      "text": "Opdrag 1: inhoudspilare"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-2-a-month-of-posts",
+      "text": "Opdrag 2: ’n maand se plasings"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-3-whatsapp-messages-you-send-every-week",
+      "text": "Opdrag 3: WhatsApp-boodskappe wat jy elke week stuur"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-4-your-google-business-profile-description",
+      "text": "Opdrag 4: jou beskrywing vir Google Business Profile"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-5-answering-the-questions-that-stop-a-sale",
+      "text": "Opdrag 5: antwoorde op die vrae wat ’n verkoping keer"
+    },
+    {
+      "depth": 2,
+      "id": "making-the-images",
+      "text": "Om die prente te maak"
+    },
+    {
+      "depth": 2,
+      "id": "what-to-ignore-in-your-first-year",
+      "text": "Wat om in jou eerste jaar te ignoreer"
+    },
+    {
+      "depth": 2,
+      "id": "the-one-metric-that-matters",
+      "text": "Die een maatstaf wat saak maak"
+    }
+  ],
+  "id": "branding/marketing-prompts",
+  "kind": "guide",
+  "lang": "af",
+  "order": 5,
+  "readingTime": 6,
+  "related": [],
+  "route": "branding/marketing-prompts/",
+  "section": "branding",
+  "slug": "marketing-prompts",
+  "sourceNote": {
+    "reason": "This page contains AI prompts and marketing advice. It makes no factual claims from the sources register.",
+    "see": [
+      "lookup/sources",
+      "start/how-this-was-made"
+    ]
+  },
+  "sourcePath": "02 Branding and marketing/04-marketing-prompts.md",
+  "sources": {
+    "acts": [],
+    "entries": []
+  },
+  "summary": "Wees eerlik hieroor voordat jy ’n dag spandeer om Instagram-plasings te maak.",
+  "tags": [
+    "prompts",
+    "marketing"
+  ],
+  "terms": [],
+  "title": "Bemarkingsopdragte",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

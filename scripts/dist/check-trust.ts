@@ -15,6 +15,7 @@ import { normaliseBase } from '../base-path';
 import { decodeEntities, listFiles, resolveDistRoot, routeOfHtmlFile } from './audit-links';
 import af from '../../src/i18n/af.json';
 import en from '../../src/i18n/en.json';
+import termsAf from '../translate/TERMS-af.json';
 
 /** Document kinds whose pages D5 governs: every kind the content pipeline emits. */
 export const TRUST_KINDS = ['guide', 'template', 'checklist', 'glossary', 'sources'] as const;
@@ -241,11 +242,157 @@ function sharedStrings(): Set<string> {
  * URLs and domain names, and codes: one all-caps token with a digit (VAT201, EMP201) or of at
  * most five letters (SARS, CIPC), or a short run of such tokens ("CC0 1.0"). Upper-case words
  * ("TAX INVOICE") are words, and are checked (review WP-20 passes 8, 9). Names such as "Google Drive"
- * cannot be told apart from English words; the translation package extends `sharedStrings` or this
- * pattern when its first document lands (backlog, review WP-20 pass 7).
+ * cannot be told apart from English words, so `isProtectedText` takes them from TERMS-af.json.
  */
 const LANGUAGE_NEUTRAL =
-  /^(?:[^\p{L}]+|R[\d.,]+(?: million)?|(?:https?:\/\/)?[\w-]+(?:\.[\w-]+)+(?:\/\S*)?|(?:(?:(?=[\p{Lu}\d&./-]*\d)[\p{Lu}\d&./-]{2,}|\p{Lu}{2,5})(?: |$))+)$/u;
+  /^(?:[^\p{L}]+|R ?[\d.,]+(?: million)?|\[\p{Lu}\]|(?:https?:\/\/)?[\w-]+(?:\.[\w-]+)+(?:\/\S*)?|(?:(?:(?=[\p{Lu}\d&./-]*\d)[\p{Lu}\d&./-]{2,}|\p{Lu}{2,5})(?: |$))+)$/u;
+
+/**
+ * Names `scripts/translate/TERMS-af.json` keeps in English in every language (SARS, eFiling, Act
+ * names, form codes), longest first so "WhatsApp Business" is removed before "WhatsApp".
+ */
+export const PROTECTED_NAMES: readonly string[] = [
+  ...new Set([
+    ...termsAf.keepVerbatim,
+    ...termsAf.formCodes,
+    ...termsAf.terms.filter((term) => term.keepVerbatim).map((term) => term.en),
+  ]),
+].sort((a, b) => b.length - a.length);
+
+/** Every text run inside the links of some inline runs (a register entry's "supports" text). */
+function linkTexts(runs: readonly unknown[]): string[] {
+  const out: string[] = [];
+  const text = (items: readonly unknown[]): string =>
+    items
+      .map((item) => {
+        const run = item as { t?: string; v?: string; c?: unknown[] };
+        return run.v ?? (run.c ? text(run.c) : '');
+      })
+      .join('');
+  for (const item of runs) {
+    const run = item as { t?: string; c?: unknown[] };
+    if (run.t === 'link' && run.c) out.push(text(run.c));
+    else if (run.c) out.push(...linkTexts(run.c));
+  }
+  return out;
+}
+
+/**
+ * Titles of the works and publishers the English register cites ("Flip the Market", "SARS — Guide
+ * to Provisional Tax", "Werksmans Attorneys"), whole and split at " — ", ", " and " / ". They are
+ * proper names, which WCAG 3.1.2 does not ask to be marked, and the style guide keeps named
+ * publications and secondary sources in English so a reader can search for them.
+ */
+export function registerNames(register: {
+  entries: readonly { title: string; supports?: readonly unknown[] | undefined }[];
+  acts: readonly { name: string }[];
+}): string[] {
+  const names = new Set<string>();
+  const add = (text: string): void => {
+    const trimmed = text.trim();
+    if (trimmed === '') return;
+    names.add(trimmed);
+    for (const part of trimmed.split(/ — |, | \/ /)) if (part.trim() !== '') names.add(part.trim());
+  };
+  for (const entry of register.entries) {
+    add(entry.title);
+    for (const text of linkTexts(entry.supports ?? [])) add(text);
+  }
+  for (const act of register.acts) add(act.name);
+  for (const name of OTHER_NAMES) names.add(name);
+  return [...names];
+}
+
+/**
+ * Proper names the register's prose cites outside its titles and links (law firms, journals,
+ * regulators named mid-sentence), and official names the translation keeps in English (CIPC's
+ * "Letter of Good Standing", WP-40 batch 2 and 3 notes).
+ */
+const OTHER_NAMES = [
+  'Annual Review of Psychology',
+  'Financial Sector Conduct Authority',
+  'Journal of the Academy of Marketing Science',
+  'Letter of Good Standing',
+  'Shandu Attorneys',
+  'Werksmans Attorneys',
+];
+
+/**
+ * Words and labels spelled and meant the same in Afrikaans and English, so a twin that has them is
+ * not untranslated: loanwords (Favicon, Odometer), product and file names (Pantone, Markdown,
+ * Drive), and table labels that are Afrikaans too ("Was", "In Drive?", "Status in markdown:").
+ * Each entry was read in context in WP-40 integration; add one only after doing the same.
+ */
+export const SAME_IN_AFRIKAANS: ReadonlySet<string> = new Set([
+  'Dividend',
+  'Drive',
+  'Favicon',
+  'In Drive?',
+  'Km',
+  'Markdown',
+  'Odometer',
+  'Pantone',
+  'Pty',
+  'Raster',
+  'Status in Drive:',
+  'Status in markdown:',
+  'Was',
+]);
+
+/** Month names Afrikaans spells as English does, so "13 September 2026" is the same in both. */
+const SAME_MONTHS = Object.entries(termsAf.months)
+  .filter(([english, afrikaans]) => english === afrikaans)
+  .map(([english]) => english);
+const SAME_DATE = new RegExp(`\\b\\d{1,2} (?:${SAME_MONTHS.join('|')}) \\d{4}\\b`, 'g');
+
+const escapeRegExp = (text: string): string => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/**
+ * True when text is made only of protected names, an Act's "68 of 2008", punctuation, and short
+ * codes ("RWC / CoR", "SARS:", "Consumer Protection Act 68 of 2008."). Such text is the same on both
+ * twins because the style guide keeps it, not because a translation is missing. A code here is a
+ * `LANGUAGE_NEUTRAL` token or two to four letters with at least two capitals (CoR, PrDP).
+ */
+const namePatterns = new Map<string, RegExp>();
+function namePattern(name: string): RegExp {
+  let pattern = namePatterns.get(name);
+  if (!pattern) {
+    pattern = new RegExp(`(?<![\\p{L}\\d])${escapeRegExp(name)}(?![\\p{L}\\d])`, 'giu');
+    namePatterns.set(name, pattern);
+  }
+  return pattern;
+}
+
+export function isProtectedText(text: string, names: readonly string[] = PROTECTED_NAMES): boolean {
+  const patterns = (value: string): string =>
+    value
+      .replace(/\bRegulation R\d+ of \d{4}\b/g, ' ')
+      .replace(/\b\d+ of \d{4}\b/g, ' ')
+      .replace(/\b\d+ x \d+\b/g, ' ')
+      .replace(SAME_DATE, ' ');
+  const withoutNames = (value: string): string =>
+    names.reduce((rest, name) => rest.replace(namePattern(name), ' '), value);
+  // Both orders: a name can contain a pattern ("National Instruction 2 of 2016") and a pattern can
+  // contain a name ("Regulation R638 of 2018", where removing "R638" first breaks the pattern).
+  return [patterns(withoutNames(text)), withoutNames(patterns(text))].some(isNeutralResidue);
+}
+
+/** What is left of a text once its names and patterns are removed: only codes and punctuation. */
+function isNeutralResidue(rest: string): boolean {
+  const left = rest.trim();
+  if (SAME_IN_AFRIKAANS.has(left) || SAME_IN_AFRIKAANS.has(left.replace(/[.,;]+$/, '')))
+    return true;
+  return rest
+    .split(/[\s/]+/)
+    .map((token) => token.replace(/^[(]+|[),.;:]+$/g, ''))
+    .filter((token) => token !== '')
+    .every(
+      (token) =>
+        !/\p{L}/u.test(token) ||
+        LANGUAGE_NEUTRAL.test(token) ||
+        /^(?=(?:\P{Lu}*\p{Lu}){2})\p{L}{2,4}$/u.test(token),
+    );
+}
 
 /**
  * Language of parts on an Afrikaans page (build plan B5, WCAG 3.1.2; reviews WP-20 passes 6, 7), in
@@ -253,7 +400,12 @@ const LANGUAGE_NEUTRAL =
  * Afrikaans voice, and text marked English that the English twin lacks is Afrikaans read with an
  * English voice. Shared names, `<code>` and language-neutral text are skipped.
  */
-export function langProblems(afHtml: string, enHtml: string, shared = sharedStrings()): string[] {
+export function langProblems(
+  afHtml: string,
+  enHtml: string,
+  shared = sharedStrings(),
+  names: readonly string[] = PROTECTED_NAMES,
+): string[] {
   const english = new Set(textNodesWithLang(enHtml).map((node) => node.text));
   const found: string[] = [];
   const seen = new Set<string>();
@@ -266,16 +418,29 @@ export function langProblems(afHtml: string, enHtml: string, shared = sharedStri
     if (node.code || shared.has(node.text) || LANGUAGE_NEUTRAL.test(node.text)) continue;
     const inEnglish = english.has(node.text);
     // English text read with an Afrikaans voice: it inherits af-ZA and the English twin has it.
-    if (node.lang.startsWith('af') && inEnglish) {
-      report(`English text marked as Afrikaans: "${node.text.slice(0, 60)}"`);
-    }
+    const englishAsAfrikaans = node.lang.startsWith('af') && inEnglish;
     // Afrikaans text read with an English voice: it inherits en-ZA and the English twin lacks it,
     // as when a site line inside an English fallback block loses its own lang (review pass 7).
-    if (node.lang.startsWith('en') && !inEnglish) {
-      report(`Afrikaans text marked as English: "${node.text.slice(0, 60)}"`);
-    }
+    const afrikaansAsEnglish = node.lang.startsWith('en') && !inEnglish;
+    // Names are checked last, and only for a would-be finding: it is the slow test.
+    if (!(englishAsAfrikaans || afrikaansAsEnglish) || isProtectedText(node.text, names)) continue;
+    report(
+      englishAsAfrikaans
+        ? `English text marked as Afrikaans: "${node.text.slice(0, 60)}"`
+        : `Afrikaans text marked as English: "${node.text.slice(0, 60)}"`,
+    );
   }
   return found;
+}
+
+/** Protected names plus the English register's titles and publishers, longest first. */
+export function namesForCheck(repoRoot = path.resolve('.')): string[] {
+  const register = JSON.parse(
+    readFileSync(path.join(repoRoot, 'src', 'data', 'en', 'sources.json'), 'utf8'),
+  ) as Parameters<typeof registerNames>[0];
+  return [...new Set([...PROTECTED_NAMES, ...registerNames(register)])].sort(
+    (a, b) => b.length - a.length,
+  );
 }
 
 /** Document pages the build must contain: every manifest document in every enabled locale. */
@@ -296,6 +461,7 @@ export function runCli(
   let documents = 0;
   const files = listFiles(root).filter((name) => name.endsWith('.html'));
   const shared = sharedStrings();
+  const names = namesForCheck();
   let afPages = 0;
   for (const file of files) {
     const html = readFileSync(path.join(root, ...file.split('/')), 'utf8');
@@ -303,7 +469,7 @@ export function runCli(
       const twin = path.join(root, ...file.slice(3).split('/'));
       if (existsSync(twin)) {
         afPages++;
-        for (const problem of langProblems(html, readFileSync(twin, 'utf8'), shared)) {
+        for (const problem of langProblems(html, readFileSync(twin, 'utf8'), shared, names)) {
           failures.push(`/${routeOfHtmlFile(file)}: ${problem}`);
         }
       }

@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import {
   expectedDocumentPages,
+  isProtectedText,
   langProblems,
+  registerNames,
   noticeSentences,
   textNodesWithLang,
   trustProblems,
@@ -196,6 +198,68 @@ describe('language of parts on an Afrikaans page', () => {
     const enName = '<html lang="en-ZA"><body><p>CC0 1.0</p><p>SARS EMP201</p></body></html>';
     const afName = '<html lang="af-ZA"><body><p>CC0 1.0</p><p>SARS EMP201</p></body></html>';
     expect(langProblems(afName, enName)).toEqual([]);
+  });
+
+  it('treats names TERMS-af.json keeps in English as the same in both languages', () => {
+    for (const text of [
+      'SARS:',
+      'BizPortal',
+      'eNaTIS / NaTIS',
+      'RWC / CoR',
+      'PrDP',
+      'Consumer Protection Act 68 of 2008.',
+      'Voetstoots',
+      'Bona vacantia',
+      'CoR 14.3',
+      'WhatsApp Business',
+    ]) {
+      expect(isProtectedText(text), text).toBe(true);
+    }
+    for (const text of ['Tax and SARS', 'Running a Pty Ltd', 'Master checklist', 'Act']) {
+      expect(isProtectedText(text), text).toBe(false);
+    }
+  });
+
+  it('reads proper names from the English register: titles, their parts and linked names', () => {
+    const names = registerNames({
+      entries: [
+        {
+          title: 'SARS — Guide to Provisional Tax',
+          supports: [
+            { t: 'text', v: 'as ' },
+            { t: 'link', href: 'https://example.org', c: [{ t: 'text', v: 'Michalsons' }] },
+          ],
+        },
+        { title: 'Govchain, BRNC certificate guide' },
+      ],
+      acts: [{ name: 'Second-Hand Goods Act 6 of 2009' }],
+    });
+    for (const name of [
+      'SARS — Guide to Provisional Tax',
+      'Guide to Provisional Tax',
+      'Govchain',
+      'BRNC certificate guide',
+      'Michalsons',
+      'Second-Hand Goods Act 6 of 2009',
+    ]) {
+      expect(names, name).toContain(name);
+    }
+    expect(isProtectedText('Govchain —', names)).toBe(true);
+    expect(isProtectedText('Govchain se gids', names)).toBe(false);
+  });
+
+  it('treats dates in months spelt alike, sizes and same-in-both labels as neutral', () => {
+    expect(isProtectedText('13 September 2026')).toBe(true);
+    expect(isProtectedText('13 March 2026')).toBe(false);
+    expect(isProtectedText('PNG, 512 x 512')).toBe(true);
+    expect(isProtectedText('Pantone.')).toBe(true);
+    expect(isProtectedText('Regulation R638 of 2018')).toBe(true);
+  });
+
+  it('skips template amounts and single-letter placeholders', () => {
+    const enText = '<html lang="en-ZA"><body><p>R 0.00</p><p>[X]</p></body></html>';
+    const afText = '<html lang="af-ZA"><body><p>R 0.00</p><p>[X]</p></body></html>';
+    expect(langProblems(afText, enText)).toEqual([]);
   });
 
   it('fails English text that inherits Afrikaans', () => {

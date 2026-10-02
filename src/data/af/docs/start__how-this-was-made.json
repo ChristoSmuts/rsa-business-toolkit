@@ -1,0 +1,1654 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hierdie gereedskapstel is deur KI gegenereer"
+        }
+      ],
+      "depth": 2,
+      "hash": "2b003dc222f0aad9",
+      "id": "this-toolkit-was-generated-by-ai",
+      "kind": "heading",
+      "sourceHash": "d348ba69340aaca6",
+      "text": "Hierdie gereedskapstel is deur KI gegenereer"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is geskryf deur Claude, ’n KI-assistent wat deur Anthropic gemaak is, in ’n gesprek op 13 September 2026."
+        }
+      ],
+      "hash": "9fae138c88691c81",
+      "id": "this-toolkit-was-generated-by-ai.1",
+      "kind": "paragraph",
+      "sourceHash": "68e1a00b460c924c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Geen prokureur, rekenmeester of geregistreerde belastingpraktisyn het dit voor publikasie hersien nie."
+        }
+      ],
+      "hash": "bb9e98498a6807e4",
+      "id": "this-toolkit-was-generated-by-ai.2",
+      "kind": "paragraph",
+      "sourceHash": "02703914d18ac5aa"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy behoort dit te weet voordat jy op enigiets daarin staatmaak."
+        }
+      ],
+      "hash": "b3382dcd60f7a24b",
+      "id": "this-toolkit-was-generated-by-ai.3",
+      "kind": "paragraph",
+      "sourceHash": "c5b0e7981a1223d4"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "this-toolkit-was-generated-by-ai.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoe dit gemaak is"
+        }
+      ],
+      "depth": 2,
+      "hash": "cda8b6e737375079",
+      "id": "how-it-was-made",
+      "kind": "heading",
+      "sourceHash": "7eb64eae0ed0fef9",
+      "text": "Hoe dit gemaak is"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die KI is gevra om ’n praktiese gereedskapstel vir besigheidseienaars in Suid-Afrika wat alleen werk, te bou. Dit het drie dinge gedoen:"
+        }
+      ],
+      "hash": "8f9e88b9d0680cc6",
+      "id": "how-it-was-made.1",
+      "kind": "paragraph",
+      "sourceHash": "06567d170db75777"
+    },
+    {
+      "hash": "5e4fd77dfcf680a9",
+      "id": "how-it-was-made.2",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Die riglyne geskryf"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " uit sy algemene kennis van hoe klein besighede bestuur word."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Die web deursoek"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " vir elke Suid-Afrikaanse fooi, drempel, vormnommer en wetlike vereiste, want sy opleidingsdata eindig in Mei 2026 en verskeie belangrike getalle het in die Februarie 2026-begroting verander."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Die bronne aangeteken"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " vir elkeen van daardie feite in die "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Bronne- en verifikasieregister"
+              }
+            ],
+            "doc": "lookup/sources",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ", met skakels en datums."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "ddad40d4dd5a717e",
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die opdragte in "
+        },
+        {
+          "label": "02-branding-and-marketing/",
+          "section": "branding",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " is deur die KI geskryf. Hulle is nie teen elke KI-program getoets nie, so resultate sal verskil."
+        }
+      ],
+      "hash": "a4ed0c0c1a125167",
+      "id": "how-it-was-made.3",
+      "kind": "paragraph",
+      "sourceHash": "763fdaea476643aa"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "how-it-was-made.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat nagegaan is, en wat nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "6c4207a523a236c2",
+      "id": "what-was-verified-and-what-was-not",
+      "kind": "heading",
+      "sourceHash": "35fe5a1fffcfb6ad",
+      "text": "Wat nagegaan is, en wat nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Teen amptelike bronne nagegaan"
+        }
+      ],
+      "depth": 3,
+      "hash": "59dbf5b298541352",
+      "id": "verified-against-official-sources",
+      "kind": "heading",
+      "sourceHash": "88a3030b2f3da9d3",
+      "text": "Teen amptelike bronne nagegaan"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is nagegaan teen SARS, CIPC, BizPortal, SAPS, die B-BBEE Commission, die Information Regulator (Inligtingsreguleerder), die Department of Transport (Departement van Vervoer), provinsiale regering en die National Consumer Commission (Nasionale Verbruikerskommissie):"
+        }
+      ],
+      "hash": "abbd70b4a779c0d7",
+      "id": "verified-against-official-sources.1",
+      "kind": "paragraph",
+      "sourceHash": "b4641c740cc9211f"
+    },
+    {
+      "hash": "9f45de7a6f96da1e",
+      "id": "verified-against-official-sources.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Drempel en koersbande vir omsetbelasting vir 2026/2027"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Drempels vir verpligte en vrywillige BTW-registrasie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Inkomstebelastingdrempels volgens ouderdom"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Verpligtinge en sperdatums vir voorlopige belasting"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Vereistes vir ’n belastingfaktuur en die R50- en R5,000-vlakke"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Nosionele insetbelasting op tweedehandse goedere"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "CIPC se fooie vir maatskappyregistrasie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "B-BBEE se EME-drempels en reëls vir die beëdigde verklaring"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "POPIA se plig om ’n inligtingsbeampte te registreer"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Vereistes vir die Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid) en R638"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Lisensiekategorieë kragtens die Businesses Act"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "ECTA se verpligtinge vir aanlynverkope en die reg op ’n afkoelperiode"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "CPA se geïmpliseerde waarborg en die posisie oor voetstoots"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Registrasie van handelaars kragtens die Second-Hand Goods Act"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "BRNC, verkeersregisternommers en motorhandelnommers"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Tariewe vir motorhandelnommers (syfers van die Wes-Kaap)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Vereistes vir padwaardigheid en verandering van eienaarskap"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "afd36a329048a97f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Elkeen hiervan word met sy skakel in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bronne- en verifikasieregister"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " gelys."
+        }
+      ],
+      "hash": "292f6b82aeb2aa05",
+      "id": "verified-against-official-sources.3",
+      "kind": "paragraph",
+      "sourceHash": "5cb48c65330e9019"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Nie nagegaan nie"
+        }
+      ],
+      "depth": 3,
+      "hash": "eda095b5471164a3",
+      "id": "not-verified",
+      "kind": "heading",
+      "sourceHash": "effab55c2bfea794",
+      "text": "Nie nagegaan nie"
+    },
+    {
+      "hash": "224ee24772495613",
+      "id": "not-verified.1",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Bankfooie."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Doelbewus uitgelaat. Hulle verander voortdurend en verskil per rekening. Vra jou bank vir ’n huidige prysgids."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Munisipale fooie en prosesse."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Dit verskil in elke munisipaliteit en word nie eenvormig gepubliseer nie. Die gereedskapstel sê vir jou wie om te vra in plaas daarvan om te raai."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Provinsiale fooie"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", behalwe die Wes-Kaapse tariewe vir motorhandel, wat as sodanig gemerk is."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Pryse van dienste van derde partye"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " vir gereedskap soos Zoho Mail of Canva. Die gereedskapstel sê jy moet dit nagaan eerder as om ’n syfer te noem."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Of enige spesifieke besigheid kwalifiseer"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " vir omsetbelasting, SBC-koerse, die aftrekking vir ’n tuiskantoor of ’n bepaalde lisensie. Dit hang van jou feite af."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "b33a9dce0d516c5f"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "not-verified.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bekende beperkings"
+        }
+      ],
+      "depth": 2,
+      "hash": "1d4c755fe1a89119",
+      "id": "known-limitations",
+      "kind": "heading",
+      "sourceHash": "757835f50d6cd587",
+      "text": "Bekende beperkings"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Kennisafsnydatum."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die KI se opleidingsdata eindig in Mei 2026. Enigiets daarna is gedurende die gesprek deur ’n websoektog gevind, nie onthou nie. Gebeure ná 13 September 2026 word glad nie weerspieël nie."
+        }
+      ],
+      "hash": "b9804141311d2880",
+      "id": "known-limitations.1",
+      "kind": "paragraph",
+      "sourceHash": "5a3a9625763e5337"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "KI kan verkeerde dinge met selfvertroue sê."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Dit is die grootste risiko. ’n Versinde vormnommer of fooi lees presies soos ’n regte een. Daarom is elke spesifieke bewering aan ’n bron gekoppel, en daarom behoort jy die skakel oop te maak voordat jy optree."
+        }
+      ],
+      "hash": "0045befdd8b5ed3e",
+      "id": "known-limitations.2",
+      "kind": "paragraph",
+      "sourceHash": "297ef54753e2de23"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Sekondêre bronne kan verouderd wees."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Baie Suid-Afrikaanse sakewebwerwe noem nog die ou BTW-drempel van R1 miljoen. Waar die gereedskapstel op ’n sekondêre bron eerder as ’n amptelike een staatmaak, sê dit so."
+        }
+      ],
+      "hash": "1f66bd7032fa19b5",
+      "id": "known-limitations.3",
+      "kind": "paragraph",
+      "sourceHash": "fbccccd5bf5b6848"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Een teenstrydigheid is gevind en uitgelig."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Twee belastingwebwerwe het verskillende syfers vir die primêre korting gegee. Die gereedskapstel noem eerder die belastingdrempel, en teken die teenstrydigheid aan in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bronne- en verifikasieregister"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "08ba49ab0001ce37",
+      "id": "known-limitations.4",
+      "kind": "paragraph",
+      "sourceHash": "6e826a9d40c1bace"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Regsuitleg is nie oral uitgemaak nie."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die omvang van die CPA se waarborg van ses maande, die presiese grens van die uitsluiting van professionele dienste by omsetbelasting, en die posisie oor kopiereg op KI-gegenereerde werk is almal gebiede waar redelike kenners verskil. Die gereedskapstel lig dit uit eerder as om voor te gee dat dit uitgemaak is."
+        }
+      ],
+      "hash": "5e89e4f669b954fe",
+      "id": "known-limitations.5",
+      "kind": "paragraph",
+      "sourceHash": "4ee344952939be81"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Algemeen waar dit spesifiek behoort te wees."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die gereedskapstel kan nie jou munisipaliteit, jou provinsie, jou omset of jou ambag ken nie. Waar dit saak maak, sê dit \"vra\" eerder as om ’n antwoord te versin."
+        }
+      ],
+      "hash": "c30cba4eecf75b81",
+      "id": "known-limitations.6",
+      "kind": "paragraph",
+      "sourceHash": "9ccf843939c367d0"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "known-limitations.7",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat dit nie is nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "9d5a5d326bcdd121",
+      "id": "what-this-is-not",
+      "kind": "heading",
+      "sourceHash": "747e68a2c0813fa0",
+      "text": "Wat dit nie is nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is nie regsadvies nie. Dit is nie belastingadvies nie. Dit is nie finansiële advies nie. Dit skep nie ’n professionele verhouding met enigiemand nie."
+        }
+      ],
+      "hash": "00b26d823be70098",
+      "id": "what-this-is-not.1",
+      "kind": "paragraph",
+      "sourceHash": "3a42c325bfe79ec1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Geen aanspreeklikheid word aanvaar vir enige verlies wat voortspruit uit optrede op grond daarvan nie."
+        }
+      ],
+      "hash": "44f216b84bfce52e",
+      "id": "what-this-is-not.2",
+      "kind": "paragraph",
+      "sourceHash": "27fc85d78326c418"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "what-this-is-not.3",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoe om enigiets in hierdie gereedskapstel na te gaan"
+        }
+      ],
+      "depth": 2,
+      "hash": "a58933adf6da3b2e",
+      "id": "how-to-check-anything-in-this-toolkit",
+      "kind": "heading",
+      "sourceHash": "dc5abfc142a848c6",
+      "text": "Hoe om enigiets in hierdie gereedskapstel na te gaan"
+    },
+    {
+      "hash": "ed9d452a17393c8b",
+      "id": "how-to-check-anything-in-this-toolkit.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Maak die "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Bronne- en verifikasieregister"
+              }
+            ],
+            "doc": "lookup/sources",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " oop"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Vind die onderwerp"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Maak die skakel oop wat as "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "[Amptelik]"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " gemerk is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Bevestig die syfer of vereiste self"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "As die amptelike bron nie met hierdie gereedskapstel saamstem nie, is die amptelike bron reg"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "fd31f3cd7b9860ad",
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die vernaamste amptelike webwerwe:"
+        }
+      ],
+      "hash": "a0751ad979afea39",
+      "id": "how-to-check-anything-in-this-toolkit.2",
+      "kind": "paragraph",
+      "sourceHash": "6450bb18bd745dbe"
+    },
+    {
+      "hash": "6581a13007f7ce5e",
+      "id": "how-to-check-anything-in-this-toolkit.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "SARS — "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.sars.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.sars.gov.za",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Maatskappyregistrasie — "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.bizportal.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.bizportal.gov.za",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "CIPC — "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.cipc.co.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.cipc.co.za",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Information Regulator — "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "inforegulator.org.za"
+              }
+            ],
+            "external": true,
+            "href": "https://inforegulator.org.za/",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Voertuie — "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.natis.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.natis.gov.za",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "SAPS, tweedehandse goedere — "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.saps.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.saps.gov.za",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "B-BBEE Commission — "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.bbbeecommission.co.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.bbbeecommission.co.za",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "National Consumer Commission — "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "thencc.org.za"
+              }
+            ],
+            "external": true,
+            "href": "https://thencc.org.za/",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Alle Suid-Afrikaanse wetgewing — "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.gov.za",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " en "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.saflii.org"
+              }
+            ],
+            "external": true,
+            "href": "https://www.saflii.org",
+            "t": "link"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "d38627a2efab2680"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "how-to-check-anything-in-this-toolkit.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wanneer om eerder ’n mens te betaal"
+        }
+      ],
+      "depth": 2,
+      "hash": "4b4976c8dd1cb898",
+      "id": "when-to-pay-a-human-instead",
+      "kind": "heading",
+      "sourceHash": "acd603a7fb33056f",
+      "text": "Wanneer om eerder ’n mens te betaal"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Betaal ’n geregistreerde professionele persoon wanneer:"
+        }
+      ],
+      "hash": "23728263f5bd48b4",
+      "id": "when-to-pay-a-human-instead.1",
+      "kind": "paragraph",
+      "sourceHash": "15b1bf86281ff0a2"
+    },
+    {
+      "hash": "eb2e189d63dfbbf2",
+      "id": "when-to-pay-a-human-instead.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Die bedrag op die spel meer as ’n maand se wins is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jy tussen ’n maatskappy en ’n eenmansaak kies en daar regte geld betrokke is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jy tussen omsetbelasting en gewone belasting besluit"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jy ’n kontrak teken wat jy nie ten volle verstaan nie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jy op die punt staan om jou eerste werknemer aan te stel"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "SARS, ’n munisipaliteit of ’n reguleerder jou gekontak het"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jy ’n besigheid koop of verkoop"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "52d6c700e7b59178"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Een uur by ’n belastingpraktisyn wat by SARS geregistreer is, of by ’n prokureur, kos minder as een boete. Kontroleer ’n belastingpraktisyn se registrasie deur SARS eFiling voordat jy hom of haar betaal."
+        }
+      ],
+      "hash": "3bed8a0b2ccc3165",
+      "id": "when-to-pay-a-human-instead.3",
+      "kind": "paragraph",
+      "sourceHash": "3065707c7fcf11b0"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "when-to-pay-a-human-instead.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lys van regstellings"
+        }
+      ],
+      "depth": 2,
+      "hash": "b5a1752392de2366",
+      "id": "corrections-log",
+      "kind": "heading",
+      "sourceHash": "4c0d51c4cfb4bafa",
+      "text": "Lys van regstellings"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Verifikasierondte is op 13 September 2026 gedoen, ná die eerste konsep. Twee feitefoute is gevind en reggemaak. Hulle word hier aangeteken, want ’n dokument wat deur KI geskryf is en sy regstellings wegsteek, is minder betroubaar, nie meer nie."
+        }
+      ],
+      "hash": "05a452343bf37434",
+      "id": "corrections-log.1",
+      "kind": "paragraph",
+      "sourceHash": "424fa1ddc23610d0"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Reggestel: geagte vergoeding vir maatskappydirekteure."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " ’n Vroeëre konsep het gesê dat ’n privaat maatskappy se direkteur se PAYE bereken word op ’n nosionele maandelikse salaris wat van die vorige jaar se verdienste afgelei word. Daardie reël, paragraaf 11C van die Vierde Bylae by die Income Tax Act, is met ingang van 1 Maart 2017 herroep. Direkteure se PAYE word nou op werklike vergoeding gebaseer. Die fout het ontstaan omdat daar op twee Suid-Afrikaanse belastingartikels staatgemaak is wat die herroepe reël nog as geldig beskryf. Albei is verwerp, en die bron vir die regstelling is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bronne- en verifikasieregister"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "cf4b9d0cb7558117",
+      "id": "corrections-log.2",
+      "kind": "paragraph",
+      "sourceHash": "a75f7bab8308a568"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Reggestel: limiet van die Small Claims Court."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " ’n Vroeëre konsep het die limiet as R20,000 gegee. Dit het op 1 Augustus 2026 tot R30,000 gestyg, vasgestel in Government Gazette (Staatskoerant) 55038, Government Notice (Goewermentskennisgewing) 7717 van 20 Julie 2026. Die meeste webwerwe sê nog R20,000."
+        }
+      ],
+      "hash": "375c23c4a82f7589",
+      "id": "corrections-log.3",
+      "kind": "paragraph",
+      "sourceHash": "39021f4480045fd0"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Afgewater, nie reggestel nie."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Vier bewerings is verswak omdat hulle nie tot ’n standaard nagegaan kon word wat ’n stellige bewering regverdig nie: die jaarlikse koste van ’n .co.za-domein, die koste om ’n logo as vektor oor te teken, LibreOffice se vermoëns op ’n foon, en die hofverslagverwysing vir Cohen NO v Segal. Elkeen gee nou ’n reeks of sê vir jou om dit na te gaan, eerder as om ’n syfer te stel."
+        }
+      ],
+      "hash": "791da834354f2de5",
+      "id": "corrections-log.4",
+      "kind": "paragraph",
+      "sourceHash": "9adceb825ade0a2a"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Derde rondte, dieselfde dag: hersiening vir ’n spesifieke leser."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die gereedskapstel is weer gelees soos een spesifieke persoon dit sou lees: die enigste direkteur van ’n Pty Ltd wat voertuie verkoop en van plan is om ander lyne by te voeg. Geen verdere feitefoute is gevind nie. Vyf gapings is gevind en gevul: omsetbelasting is verkeerd vir ’n herverkoper met ’n lae marge en die handelaarlêer het dit nie gesê nie; ’n handelaar steek die BTW-drempel van R2.3 miljoen baie vinniger oor as ’n diensbesigheid, want omset is bruto verkope; onverkoopte voertuie aan die einde van die jaar is handelsvoorraad, nie ’n uitgawe nie; ’n houdeposito het skriftelike kansellasiebepalings nodig om afdwingbaar te wees; en niks het die byvoeging van ’n tweede besigheidslyn, handelsname, of die Small Business Corporation-strik van aandele in twee maatskappye gedek nie. ’n Nuwe lêer, "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Nuwe besigheidslyne byvoeg"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", en ’n uitgewerkte leesroete in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Hoe om hierdie gereedskapstel te gebruik"
+            }
+          ],
+          "doc": "start/how-to-use",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " dek dit nou."
+        }
+      ],
+      "hash": "8e5d2a0430db640d",
+      "id": "corrections-log.5",
+      "kind": "paragraph",
+      "sourceHash": "346ecdc6eefc90af"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Vierde rondte, dieselfde dag: leesbaarheid."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die leesvlak van elke lêer is gemeet. Die prosa wat vir hierdie gereedskapstel geskryf is, is op ongeveer Graad 5 tot 8. Die paragrawe wat naby aan regs- of amptelike bewoording bly, was op Graad 10 tot 12 en was 40 tot 80 woorde lank. Eerder as om die bewoording uit die bronne te verander, het elke sulke paragraaf van 38 woorde of meer nou ’n reël daaronder wat met \"In gewone taal:\" (\"In plain words:\") begin en dieselfde ding in alledaagse Engels sê. Elke swaar lêer begin ook met ’n tabel \"Woorde wat in hierdie lêer gebruik word\" (\"Words used in this file\"). Gemeet op die leesroete met die gewone-taal-reëls, het die moeilikste lêers twee tot drie graadvlakke gedaal."
+        }
+      ],
+      "hash": "a6ac1a10633c346f",
+      "id": "corrections-log.6",
+      "kind": "paragraph",
+      "sourceHash": "973c9f799384f8f3"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Vyfde rondte: die lêers wat die leesbaarheidsrondte gemis het."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " ’n Kontrole van watter lêers gewone-taal-reëls en woordtabelle gekry het, het 13 van 26 getoon. Die oorblywende lêers het goed op sinslengte gevaar, maar drie van hulle het onverklaarde terme gebruik waar ’n leser dit nie kan oorslaan nie: die faktuur- en kwotasiesjablone, die kontrolelys om uit te druk, en die bronneregister. Hulle het nou woordtabelle of ’n sleutel bo-aan. Daar is ná elke herbou nagegaan dat die zip-lêer greep vir greep identies aan die werkvouer is."
+        }
+      ],
+      "hash": "d5e327e9c3428a45",
+      "id": "corrections-log.7",
+      "kind": "paragraph",
+      "sourceHash": "576de87f0ee87f51"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Sesde rondte: die handelsmerkopdragte as opdragontwerp (prompt engineering)."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die opdragte is hersien om te sien of ’n KI-program wat hulle kry, professionele resultate sou lewer wat jy as jou eie kan besit. Ses swakhede is gevind en reggemaak. Die kortbeskrywing het geen vaste struktuur gehad nie, so latere opdragte het inkonsekwente insette gekry; dit gebruik nou ses benoemde opskrifte. Die stap vir beeldgenerering het die lêer se eie raad weerspreek om ’n woordmerk te verkies; dit is nou verdeel in ’n roete met net teks, gebou in ’n regte lettertipe, en ’n roete met net ’n merk, sonder teks. Geen opdrag het die KI gevra om sy eie resultate te beoordeel nie; elke opdrag eindig nou deur sy swakste opsie te noem. Twee opdragte het die KI gevra vir dinge wat dit nie betroubaar kan doen nie, naamlik om te bevestig dat ’n naam geen onbeskofte betekenis in ’n ander taal het nie, en om kleurkontras te bereken; albei vra nou vir materiaal om na te gaan en sê vir die leser hoe om dit na te gaan. ’n Uitgewerkte voorbeeld is bygevoeg sodat die leser die standaard ken. ’n Nota oor die onuitgemaakte eienaarskap van KI-gegenereerde logo’s en oor lisensiëring van lettertipes is bygevoeg."
+        }
+      ],
+      "hash": "8c0c7aae5b66ba77",
+      "id": "corrections-log.8",
+      "kind": "paragraph",
+      "sourceHash": "7313349e770af797"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Sewende rondte: tuiswerk en ontmoetings met kliënte."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " ’n Nuwe kernlêer is bygevoeg vir besighede sonder ’n perseel. Dit dek sonering vir ’n tuisonderneming, handel per foon en WhatsApp, verifikasie van betalings, algemene swendelary wat op verkopers gemik is, kontrole van kontant, en ontmoetings met vreemdelinge vir inspeksies en toetsritte. Elke bewering oor veiligheid en betaling is nagegaan teen die South African Reserve Bank (Suid-Afrikaanse Reserwebank) se gepubliseerde riglyne oor banknote, SABRIC se bedrogsyfers vir 2024, BankservAfrica se PayShap-limiete, en die gepubliseerde riglyne van Tracker South Africa, "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Cars.co.za"
+            }
+          ],
+          "external": true,
+          "href": "https://cars.co.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " en MotorHappy oor private voertuigverkope. Die lêer is geskryf om in te lig, nie om bang te maak nie: die risiko’s word eenvoudig beskryf, elkeen met die gewoonte wat dit teenwerk."
+        }
+      ],
+      "hash": "f70658dbf56469be",
+      "id": "corrections-log.9",
+      "kind": "paragraph",
+      "sourceHash": "1715e34f1ec98ba3"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Agtste rondte: ’n formaatfout, en ’n laaste ronde vir akkuraatheid."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die skryfprogram merk sinne met bronne met interne verwysingsetikette. In vroeëre weergawes het daardie etikette in die lêers uitgelek, so ’n leser sou teks soos "
+        },
+        {
+          "t": "code",
+          "v": "(cite index=\"57-1\">"
+        },
+        {
+          "t": "text",
+          "v": " aan die begin van sinne met bronne gesien het. Al 239 etikette is verwyder; die teks met bronne is onveranderd en elke bron word steeds volgens onderwerp in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bronne- en verifikasieregister"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " gelys. Hierdie fout was onsigbaar vir die vroeëre leesbaarheidskontroles, want hulle het die etikette verwyder voordat hulle gemeet het. Afsonderlik is elke randsyfer, persentasie en sperdatum wat sonder ’n bron gestel is, gelys en nagegaan. Die sperdatums vir voorlopige belasting, EMP201 en ITR14 is teen SARS se eie kalenderblad bevestig, en twee verfynings is bygevoeg: die sluitingsdatums vir die 2026-indieningseisoen soos in die Staatskoerant afgekondig, en die reël dat ’n SARS-sperdatum wat op ’n naweek val, na die vorige werkdag skuif. Een prys wat nie nagegaan kon word nie (wat agente vir maatskappyregistrasie vra), is verwyder."
+        }
+      ],
+      "hash": "be3f02692caf01bd",
+      "id": "corrections-log.10",
+      "kind": "paragraph",
+      "sourceHash": "a093a8cf8c70c249"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Negende rondte: ’n kortpad vir mense wie se naam reeds besluit is."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die handelsmerkvolgorde het aanvaar dat elke leser van niks af begin, en het iemand met ’n geregistreerde naam deur ’n naamopdrag en ’n mededingerskandering gestuur wat op die naam gefokus is, wat hulle nie nodig gehad het nie. ’n Nuwe lêer, "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Het jy reeds jou naam? (kortpad)"
+            }
+          ],
+          "doc": "branding/already-have-your-name",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", wys watter opdragte om oor te slaan, gee ’n vervanging vir die mededingerskandering wat net oor die visuele gaan en ook vra of die bestaande naam visuele beperkings skep, en teken die drie kontroles aan wat steeds die moeite werd is wanneer ’n maatskappynaam geregistreer is: domein en gebruikersname, ’n CIPC-handelsmerksoektog, en om die naam hardop te sê vir sprekers van die tale wat ter sake is. Die punt waarom dit draai, is dat ’n geregistreerde maatskappynaam niks in die mark beskerm nie."
+        }
+      ],
+      "hash": "520205454bab93a7",
+      "id": "corrections-log.11",
+      "kind": "paragraph",
+      "sourceHash": "6010341685c411b6"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Tiende rondte: stemming en materiale."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die handelsmerkvolgorde het geen stap gehad wat die algehele visuele rigting vasstel nie, so die opdragte vir die logo, kleur en fotografie het elkeen onafhanklike estetiese besluite geneem wat mekaar kon weerspreek. ’n Nuwe lêer, "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Stemming en materiale (gebruik ná Opdrag 4)"
+            }
+          ],
+          "doc": "branding/mood-and-materials",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", voeg ’n opdrag vir die visuele gebied tussen die naam en die logo by, plus ’n materiaalopdrag wat uithangborde, drukwerk, voertuigafbeeldings en klere dek. Twee akkuraatheidskontroles het dit gevorm. Eerstens hou populêre kleursielkunde nie stand teen die literatuur nie: Elliot en Maier (2014) vind geen universele kleurbetekenis nie, en die syfer \"62 tot 90% van oordeel is kleur\" wat wyd aangehaal word, kom uit ’n literatuuroorsig van 2006 eerder as uit ’n koopeksperiment, so die opdragte vra oor hoe goed dit by die handelsmerk pas en hoe dit uitstaan, en sê uitdruklik vir die KI om nie kleurbetekenisse te verskaf nie. Tweedens is bewerings oor die duursaamheid van uithangborde nagegaan teen bronne in die bedryf en een Suid-Afrikaanse verskaffer, wat die riglyne oor gegote teenoor gekalanderde vinyl en die plaaslike UV-syfers gegee het, albei in die bronneregister aangeteken met hul beperkings genoem."
+        }
+      ],
+      "hash": "f9f0648e0c379cc2",
+      "id": "corrections-log.12",
+      "kind": "paragraph",
+      "sourceHash": "f6a9029ce9d8cef2"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Elfde rondte: ’n nommeringsfout in die Drive-kopie."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die gebruiker het opgemerk dat die Core-vouer in Google Drive by 02 begin het. Toe die Drive-weergawe gebou is, is twee markdown-lêers saamgevoeg in die hoof-START HERE: die bewaarplek se README en die Core-vouer se eie begin-hier-dokument. Om die README saam te voeg, was korrek. Om die Core se begin-hier saam te voeg, was nie, want dit was ’n intreedokument vir die vouer eerder as ’n readme, en omdat dit verwyder is, het dit gelyk asof die vouer sy eerste lêer kort, en was die vouer sonder die oriënteringsdokument wat elke ander vouer het. ’n Intreedokument vir Core is in Drive geskep. Die markdown-kopie was reeds korrek en het geen verandering nodig gehad nie."
+        }
+      ],
+      "hash": "c95cc60f3243def0",
+      "id": "corrections-log.13",
+      "kind": "paragraph",
+      "sourceHash": "b081b3c2cb6afba0"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Twaalfde rondte: die eenpersoonmaatskappy as sy eie leser, en drie regstellings."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " ’n Nuwe lêer, "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Jy is die besigheid"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", dek wat gebeur wanneer die enigste persoon in die besigheid nie kan werk nie, nie betaal kan word nie, of nie daar is nie. Toe die gereedskapstel weer spesifiek gelees is as ’n Pty Ltd met een direkteur wat ook die enigste werknemer is, is ook foute gevind. "
+        },
+        {
+          "doc": "core/running-a-pty-ltd",
+          "label": "01-core/06",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " het gesê dat COIDA geld wanneer die maatskappy iemand anders in diens neem; dit was verkeerd, want COIDA se omskrywing van ’n werknemer sluit ’n werkende direkteur onder ’n dienskontrak in, so ’n direkteur wat ’n salaris trek, moet geregistreer wees, selfs as die enigste persoon in die maatskappy. "
+        },
+        {
+          "doc": "core/register",
+          "label": "01-core/02",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " het UIF en COIDA net voorgestel as ’n koste wat ontstaan wanneer jy jouself betaal, en het weggelaat dat ’n eenmansaak-eienaar van albei uitgesluit is en dus hoegenaamd geen siektevoordeel en geen dekking vir beserings het nie. Die woordelysinskrywing vir die Small Claims Court het nie aangeteken dat artikel 7(1) van die Small Claims Courts Act net natuurlike persone toelaat om ’n eis in te stel nie, wat beteken dat inlywing jou toegang kos tot die land se goedkoopste roete om skuld in te vorder; die dokument vir voertuighandelaars het dieselfde voorbehoud nodig gehad, want dit het die hof genoem sonder om te sê in watter rigting die nadeel werk. Al drie is reggestel, met bronne."
+        }
+      ],
+      "hash": "c5da8f2ae984ef60",
+      "id": "corrections-log.14",
+      "kind": "paragraph",
+      "sourceHash": "bbf1912957afa376"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die les geld wyer. Twee van die ses probleme het gekom van Suid-Afrikaanse artikels wat hoog in soekresultate verskyn het maar eenvoudig verouderd was. Hoe onlangs ’n webblad is, sê nie of die reg daarin nog geld nie. Waar hierdie gereedskapstel en ’n amptelike bron verskil, wen die amptelike bron."
+        }
+      ],
+      "hash": "909c9449fb5c22db",
+      "id": "corrections-log.15",
+      "kind": "paragraph",
+      "sourceHash": "f83ee39947aacb3d"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "corrections-log.16",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy hierdie gereedskapstel deel"
+        }
+      ],
+      "depth": 2,
+      "hash": "80ba8ab08c10894a",
+      "id": "if-you-share-this-toolkit",
+      "kind": "heading",
+      "sourceHash": "6c3e28a6a51913f5",
+      "text": "As jy hierdie gereedskapstel deel"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hou asseblief hierdie lêer en die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bronne- en verifikasieregister"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " daarby, sodat die volgende persoon weet hoe dit gemaak is en die feite self kan nagaan."
+        }
+      ],
+      "hash": "63cb388cf145968d",
+      "id": "if-you-share-this-toolkit.1",
+      "kind": "paragraph",
+      "sourceHash": "52a465daaeadf02c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy iets regmaak, maak dit in die lêer reg, sodat jou kopie beter word eerder as om verkeerd te bly."
+        }
+      ],
+      "hash": "ed3fff5e5c996ea2",
+      "id": "if-you-share-this-toolkit.2",
+      "kind": "paragraph",
+      "sourceHash": "110f8219592071cb"
+    }
+  ],
+  "contentHash": "841668255215ec99",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "KI-openbaarmaking",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "this-toolkit-was-generated-by-ai",
+      "text": "Hierdie gereedskapstel is deur KI gegenereer"
+    },
+    {
+      "depth": 2,
+      "id": "how-it-was-made",
+      "text": "Hoe dit gemaak is"
+    },
+    {
+      "depth": 2,
+      "id": "what-was-verified-and-what-was-not",
+      "text": "Wat nagegaan is, en wat nie"
+    },
+    {
+      "depth": 3,
+      "id": "verified-against-official-sources",
+      "text": "Teen amptelike bronne nagegaan"
+    },
+    {
+      "depth": 3,
+      "id": "not-verified",
+      "text": "Nie nagegaan nie"
+    },
+    {
+      "depth": 2,
+      "id": "known-limitations",
+      "text": "Bekende beperkings"
+    },
+    {
+      "depth": 2,
+      "id": "what-this-is-not",
+      "text": "Wat dit nie is nie"
+    },
+    {
+      "depth": 2,
+      "id": "how-to-check-anything-in-this-toolkit",
+      "text": "Hoe om enigiets in hierdie gereedskapstel na te gaan"
+    },
+    {
+      "depth": 2,
+      "id": "when-to-pay-a-human-instead",
+      "text": "Wanneer om eerder ’n mens te betaal"
+    },
+    {
+      "depth": 2,
+      "id": "corrections-log",
+      "text": "Lys van regstellings"
+    },
+    {
+      "depth": 2,
+      "id": "if-you-share-this-toolkit",
+      "text": "As jy hierdie gereedskapstel deel"
+    }
+  ],
+  "id": "start/how-this-was-made",
+  "kind": "guide",
+  "lang": "af",
+  "order": 3,
+  "readingTime": 14,
+  "related": [
+    "core/adding-new-lines",
+    "start/how-to-use",
+    "branding/already-have-your-name",
+    "branding/mood-and-materials",
+    "core/you-are-the-business"
+  ],
+  "route": "start/how-this-was-made/",
+  "section": "start",
+  "slug": "how-this-was-made",
+  "sourceNote": {
+    "reason": "Describes how the toolkit was generated and checked; the full register lists every source.",
+    "see": [
+      "lookup/sources"
+    ]
+  },
+  "sourcePath": "00 Start here/02-how-this-was-made.md",
+  "sources": {
+    "acts": [],
+    "entries": []
+  },
+  "summary": "Dit is geskryf deur Claude, ’n KI-assistent wat deur Anthropic gemaak is, in ’n gesprek op 13 September 2026.",
+  "tags": [
+    "orientation",
+    "ai-disclosure"
+  ],
+  "terms": [],
+  "title": "Hoe dit gemaak is en hoe om dit na te gaan",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

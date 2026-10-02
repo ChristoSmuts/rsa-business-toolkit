@@ -1,0 +1,2024 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "pty"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lees eers "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Registreer: wat jy regtig nodig het"
+            }
+          ],
+          "doc": "core/register",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Daardie lêer help jou besluit of jy hoegenaamd ’n maatskappy moet registreer."
+        }
+      ],
+      "hash": "2b8134ef43f6f142",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "84ee79d532d6efa3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hierdie lêer is vir mense wat reeds een het, of wat besluit het om een te kry. Dit dek wat ’n maatskappy jou elke jaar aan tyd en pligte kos, en wat skeefloop wanneer jy dit ignoreer."
+        }
+      ],
+      "hash": "4e7690175b139f22",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "200ffd3c8fe30568"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "8fd49ad7f3eb2a2a",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Eenvoudige betekenisse van die terme wat in hierdie lêer gebruik word. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Jaarlikse vorm wat vir CIPC sê dat jou maatskappy nog bestaan. Nie ’n belastingopgawe nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Jaarlikse opgawe (annual return)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Gratis indiening wat die werklike mense noem wat die maatskappy besit."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Voordelige eienaarskap (beneficial ownership)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die jaarlikse opsomming van wat die maatskappy verdien, spandeer, besit en skuld."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Finansiële state"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Puntberekening wat bepaal of iemand jou finansiële state moet nagaan."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Public Interest Score (openbare-belangtelling)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Volledige onafhanklike nagaan van die finansiële state. Duur. Selde nodig vir ’n klein maatskappy."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Oudit"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "CIPC sluit jou maatskappy omdat jy opgehou het om in te dien."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Deregistrasie"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die toets waarin ’n maatskappy moet slaag voordat dit ’n dividend uitbetaal: dit besit meer as wat dit skuld, en dit kan sy rekeninge vir die volgende jaar betaal."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Solvensie- en likiditeitstoets"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Skriftelike rekord van ’n beslissing. Nodig selfs as jy die enigste direkteur is."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Besluit (resolution)"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "4faadebfe5e742a7"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die kort weergawe: om ’n maatskappy te registreer, kos een middag en R175. Om dit aan die lewe en in orde te hou, is die regte werk, en dit hou nooit op nie."
+        }
+      ],
+      "hash": "f4e5d68abf6189bf",
+      "id": "words-used-in-this-file.3",
+      "kind": "paragraph",
+      "sourceHash": "15c76a0c6e9c72f2"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat verander sodra jy ’n maatskappy het"
+        }
+      ],
+      "depth": 2,
+      "hash": "9d39833809aeab02",
+      "id": "what-changes-the-moment-you-have-a-company",
+      "kind": "heading",
+      "sourceHash": "df2fd6eb73ef480f",
+      "text": "Wat verander sodra jy ’n maatskappy het"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die maatskappy is ’n aparte regspersoon. Dit is die hele punt, en dit het gevolge in albei rigtings."
+        }
+      ],
+      "hash": "c7f0844d1684379b",
+      "id": "what-changes-the-moment-you-have-a-company.1",
+      "kind": "paragraph",
+      "sourceHash": "6c1905e4b24040fc"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die maatskappy besit die geld, nie jy nie. Geld in die maatskappy se bankrekening is maatskappygeld. Jy kan dit nie sommer spandeer nie. Daar is drie wettige maniere om dit uit te haal, en elkeen het ’n belastinggevolg. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Betaal jouself uit ’n Pty Ltd"
+            }
+          ],
+          "doc": "core/paying-yourself",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "c01a523292c883c0",
+      "id": "what-changes-the-moment-you-have-a-company.2",
+      "kind": "paragraph",
+      "sourceHash": "bdd894135773df07"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die maatskappy teken kontrakte, nie jy nie. Teken as \"vir en namens [Maatskappynaam] (Pty) Ltd\" (\"for and on behalf of\"), met jou naam en \"Direkteur\" (\"Director\") daaronder. As jy jou eie naam teken sonder om na die maatskappy te verwys, het jy jouself dalk persoonlik gebind."
+        }
+      ],
+      "hash": "368da83837dacb70",
+      "id": "what-changes-the-moment-you-have-a-company.3",
+      "kind": "paragraph",
+      "sourceHash": "def01844c3af1737"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die maatskappy se naam en registrasienommer moet op sy dokumente verskyn. Artikel 32 van die Companies Act vereis die geregistreerde naam en registrasienommer op fakture, kwitansies, afleweringsbriewe, briewe, bestellings en kennisgewings, ook elektroniese. As jy onder ’n handelsnaam bemark, voeg by: \"’n handelsnaam van [Geregistreerde Naam] (Pty) Ltd, Reg. No. [nommer]\" (\"a trading name of\"). Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Nuwe besigheidslyne byvoeg"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "d80a4c1e87d79e7f",
+      "id": "what-changes-the-moment-you-have-a-company.4",
+      "kind": "paragraph",
+      "sourceHash": "7d8ec5d2c2948301"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die maatskappy se skuld is oor die algemeen die maatskappy s’n. Daardie beskerming is werklik, maar dit is nie absoluut nie. Dit breek op drie algemene maniere, wat hieronder bespreek word."
+        }
+      ],
+      "hash": "b5941a17398a74bc",
+      "id": "what-changes-the-moment-you-have-a-company.5",
+      "kind": "paragraph",
+      "sourceHash": "9d70f7da1dd8f276"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het nou twee aparte reguleerders. CIPC hanteer die maatskappyregister. SARS hanteer belasting. Hulle praat nie met mekaar oor jou indienings nie. Om by die een in te dien, voldoen nie aan die ander se vereistes nie."
+        }
+      ],
+      "hash": "599f313241b738a0",
+      "id": "what-changes-the-moment-you-have-a-company.6",
+      "kind": "paragraph",
+      "sourceHash": "3dfafb42bc2ad580"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "what-changes-the-moment-you-have-a-company.7",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou jaarlikse pligte, in volgorde van hoe dikwels hulle gemis word"
+        }
+      ],
+      "depth": 2,
+      "hash": "77f0b64ece2ca5b2",
+      "id": "your-annual-duties-in-order-of-how-often-they-are-missed",
+      "kind": "heading",
+      "sourceHash": "021ff60f9e6e41dc",
+      "text": "Jou jaarlikse pligte, in volgorde van hoe dikwels hulle gemis word"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "1. CIPC se jaarlikse opgawe"
+        }
+      ],
+      "depth": 3,
+      "hash": "ef35d64eb2d790a4",
+      "id": "1-cipc-annual-return",
+      "kind": "heading",
+      "sourceHash": "b0303f76b8d098a0",
+      "text": "1. CIPC se jaarlikse opgawe"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit bevestig dat die maatskappy nog bestaan. Dit is nie ’n belastingopgawe nie."
+        }
+      ],
+      "hash": "55cee6a9c80b16c6",
+      "id": "1-cipc-annual-return.1",
+      "kind": "paragraph",
+      "sourceHash": "d9034c552ee5f0d4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Maatskappye dien dit in binne 30 werksdae ná die herdenkingsdatum van hulle registrasie. Dit bevestig dat die maatskappy nog aktief is, en dit is apart van jou SARS-belastingopgawe."
+        }
+      ],
+      "hash": "38e1c1b50ef6754f",
+      "id": "1-cipc-annual-return.2",
+      "kind": "paragraph",
+      "sourceHash": "e8d515fb828e8148"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Anders as SARS-sperdatums, wat vaste datums het, is CIPC se jaarlikse opgawes op ’n deurlopende grondslag verskuldig, gekoppel aan jou maatskappy se herdenkingsdatum, die datum waarop dit oorspronklik ingelyf is."
+        }
+      ],
+      "hash": "e81648b82d549a9c",
+      "id": "1-cipc-annual-return.3",
+      "kind": "paragraph",
+      "sourceHash": "db7181e828df76b0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die fooi styg saam met omset. Vir maatskappye wissel die fooi van R100 vir omset onder R1 miljoen tot R3,000 by R25 miljoen of meer wanneer dit betyds ingedien word, terwyl laat indienings R150 tot R4,000 kos."
+        }
+      ],
+      "hash": "baeed20b267c97e5",
+      "id": "1-cipc-annual-return.4",
+      "kind": "paragraph",
+      "sourceHash": "7adeac66a891e8f7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Alle geregistreerde maatskappye moet jaarliks indien, ongeag handelsbedrywighede of omset. ’n Dormante maatskappy met nul omset dien in teen R100."
+        }
+      ],
+      "hash": "c466741f6476160e",
+      "id": "1-cipc-annual-return.5",
+      "kind": "paragraph",
+      "sourceHash": "966e5829d4620f8a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dien in by "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "https://annualreturns.cipc.co.za"
+            }
+          ],
+          "external": true,
+          "href": "https://annualreturns.cipc.co.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Jy het ’n CIPC-kliëntkode (customer code) en ’n eServices-aanmelding nodig."
+        }
+      ],
+      "hash": "3062b471b853118e",
+      "id": "1-cipc-annual-return.6",
+      "kind": "paragraph",
+      "sourceHash": "e8080ce22d4b3fad"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hou die bevestiging. Banke, tenderbeoordelaars en verskaffers vra dit soms as bewys van goeie status."
+        }
+      ],
+      "hash": "39fdfaa6d658dbcc",
+      "id": "1-cipc-annual-return.7",
+      "kind": "paragraph",
+      "sourceHash": "e210d31c3ef7f1a1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "2. Indiening van voordelige eienaarskap"
+        }
+      ],
+      "depth": 3,
+      "hash": "430420d0cd0e19a0",
+      "id": "2-beneficial-ownership-filing",
+      "kind": "heading",
+      "sourceHash": "0181aa163e2a25e8",
+      "text": "2. Indiening van voordelige eienaarskap"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit noem die werklike mense agter die maatskappy. Dit is ingestel as deel van Suid-Afrika se reaksie op sy plasing op die FATF se grys lys."
+        }
+      ],
+      "hash": "db943d754745d0ac",
+      "id": "2-beneficial-ownership-filing.1",
+      "kind": "paragraph",
+      "sourceHash": "00fcfdecbbfa7ca3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is gratis, en dit blokkeer alles anders as jy dit oorslaan."
+        }
+      ],
+      "hash": "1b1590df36191562",
+      "id": "2-beneficial-ownership-filing.2",
+      "kind": "paragraph",
+      "sourceHash": "6c5bc244414d9876"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sedert 1 Julie 2024 blokkeer CIPC die indiening van die jaarlikse opgawe heeltemal as voordelige eienaarskap nie ingedien is nie. Jy kan nie jou jaarlikse opgawe indien sonder om eers voordelige eienaarskap in te dien nie."
+        }
+      ],
+      "hash": "87b4ae135eba2664",
+      "id": "2-beneficial-ownership-filing.3",
+      "kind": "paragraph",
+      "sourceHash": "452f5339370b45a0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Nienakoming van die indiening van voordelige eienaarskap word nou saam met nienakoming van die jaarlikse opgawe behandel, en dit kan op sy eie tot deregistrasie lei."
+        }
+      ],
+      "hash": "239a6ac73f5bc175",
+      "id": "2-beneficial-ownership-filing.4",
+      "kind": "paragraph",
+      "sourceHash": "dfc36d47e876e0c7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n eenpersoonmaatskappy neem dit minute: jy is die enigste voordelige eienaar. Doen dit voordat jy gaan sit om die jaarlikse opgawe in te dien, nie terwyl jy dit doen nie."
+        }
+      ],
+      "hash": "38173692aaa7b375",
+      "id": "2-beneficial-ownership-filing.5",
+      "kind": "paragraph",
+      "sourceHash": "ece3915c37f1f031"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "3. Finansiële state"
+        }
+      ],
+      "depth": 3,
+      "hash": "6d2c9007ec98c5ce",
+      "id": "3-financial-statements",
+      "kind": "heading",
+      "sourceHash": "002ea61e47d8babd",
+      "text": "3. Finansiële state"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy moet jaarlikse finansiële state opstel. Of iemand onafhankliks hulle moet nagaan, hang af van jou Public Interest Score."
+        }
+      ],
+      "hash": "866cf0c7c0f21531",
+      "id": "3-financial-statements.1",
+      "kind": "paragraph",
+      "sourceHash": "950335aeb3f01643"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die PIS is ’n puntberekening wat aan die einde van elke finansiële jaar gedoen word. Jy kry een punt per werknemer, gemiddeld oor die jaar, een punt per R1 miljoen of gedeelte daarvan van omset, een punt per R1 miljoen of gedeelte daarvan van laste aan derde partye, en punte vir die getal aandeelhouers."
+        }
+      ],
+      "hash": "c48fd22623bd782f",
+      "id": "3-financial-statements.2",
+      "kind": "paragraph",
+      "sourceHash": "b2f5c080d576e6d1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tel punte bymekaar: een vir elke werknemer, een vir elke R1 miljoen se verkope, een vir elke R1 miljoen wat jy aan ander skuld, en ’n paar vir hoeveel aandeelhouers jy het. ’n Eenpersoonmaatskappy met beskeie verkope kry ’n baie lae telling."
+        }
+      ],
+      "hash": "8ecc502fa8333c9b",
+      "id": "3-financial-statements.3",
+      "kind": "callout",
+      "pairsWith": "3-financial-statements.2",
+      "sourceHash": "f4f95cec67254e70",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n eenpersoonmaatskappy met beskeie omset sal die telling ver onder 100 wees."
+        }
+      ],
+      "hash": "a95d64f1f9a2ce5d",
+      "id": "3-financial-statements.4",
+      "kind": "paragraph",
+      "sourceHash": "ef12cd98746e7396"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat dit beteken:"
+        }
+      ],
+      "hash": "747a832f5851a70d",
+      "id": "3-financial-statements.5",
+      "kind": "paragraph",
+      "sourceHash": "c4a0994d36f21aa1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Maatskappy met ’n Public Interest Score onder 100 is vrygestel van sowel ’n oudit as ’n onafhanklike oorsig as elke persoon wat ’n voordelige belang in sy aandele hou, ook ’n direkteur is. Dit is wat \"eienaarbestuurd\" (\"owner-managed\") beteken."
+        }
+      ],
+      "hash": "62d223518c78c19b",
+      "id": "3-financial-statements.6",
+      "kind": "paragraph",
+      "sourceHash": "27571c489dbdccaf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jou telling onder 100 is en elke aandeelhouer ook ’n direkteur is, hoef niemand buite die maatskappy jou finansiële state na te gaan nie. Jy moet hulle steeds opstel."
+        }
+      ],
+      "hash": "b2699cfa1382d0ab",
+      "id": "3-financial-statements.7",
+      "kind": "callout",
+      "pairsWith": "3-financial-statements.6",
+      "sourceHash": "883ef6864da00474",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Eienaarbestuurde maatskappye met 100 punte of minder is heeltemal vrygestel van ’n oudit of oorsig as hulle so kies, maar hulle moet steeds finansiële state opstel."
+        }
+      ],
+      "hash": "c58f05e3a1ef4685",
+      "id": "3-financial-statements.8",
+      "kind": "paragraph",
+      "sourceHash": "8c08e0995cad6f06"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy dus die enigste aandeelhouer en die enigste direkteur is, het jy byna seker ’n samestelling nodig, nie ’n oudit nie, en nie ’n onafhanklike oorsig nie."
+        }
+      ],
+      "hash": "78f4fb62a1833b09",
+      "id": "3-financial-statements.9",
+      "kind": "paragraph",
+      "sourceHash": "6dee8e88e68f6227"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hou die grens dop. As jou maatskappy selfs een aandeelhouer het wat nie ’n direkteur is nie, of as ’n trust, ’n ander maatskappy of enige ander regspersoon aandele hou, geld die strenger reëls vir maatskappye wat nie eienaarbestuurd is nie. As jy ’n familielid 10% van jou aandele gee sonder om hom of haar ’n direkteur te maak, kan dit jou verslagdoeningsplig verander."
+        }
+      ],
+      "hash": "a8a4b4871d212ca5",
+      "id": "3-financial-statements.10",
+      "kind": "paragraph",
+      "sourceHash": "ca55845be9618070"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bo 100 punte word dit strenger. Tussen 100 en 349 lei state wat intern saamgestel is tot ’n verpligte oudit, terwyl state wat onafhanklik saamgestel is, dalk net ’n onafhanklike oorsig vereis. Van 350 af word ’n oudit vereis, ongeag die eienaarskapstruktuur of hoe die state saamgestel is."
+        }
+      ],
+      "hash": "b37ebaf14e0f7d9d",
+      "id": "3-financial-statements.11",
+      "kind": "paragraph",
+      "sourceHash": "ef6c454556374278"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sodra jou telling verby 100 gaan, word die reëls strenger. Wie die state opstel, begin saak maak. Van 350 af word ’n oudit vereis, maak nie saak wat nie."
+        }
+      ],
+      "hash": "2ba7260db2c5bcae",
+      "id": "3-financial-statements.12",
+      "kind": "callout",
+      "pairsWith": "3-financial-statements.11",
+      "sourceHash": "97b004065a860043",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat jy by CIPC indien: jaarlikse opgawes moet ingedien word saam met die jongste verklaring van voordelige eienaarskap en óf geouditeerde finansiële state, óf finansiële state waaroor ’n oorsig gedoen is, óf ’n Financial Accountability Supplement (aanvulling oor finansiële verantwoordbaarheid), na gelang van wat op die maatskappy van toepassing is."
+        }
+      ],
+      "hash": "1b6f2ebf89436cc1",
+      "id": "3-financial-statements.13",
+      "kind": "paragraph",
+      "sourceHash": "ad88bd304cee158e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n klein eienaarbestuurde maatskappy is die Financial Accountability Supplement die gewone roete. Dit is ’n kort vorm met die belangrikste finansiële inligting, nie ’n volledige stel state nie."
+        }
+      ],
+      "hash": "d92d0151b4df690c",
+      "id": "3-financial-statements.14",
+      "kind": "paragraph",
+      "sourceHash": "60c8b5a692e4d6b4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die werklikheid oor koste: selfs sonder ’n oudit betaal die meeste eenpersoonmaatskappye ’n rekenmeester ’n paar duisend rand per jaar om die state saam te stel en die ITR14 in te dien. Begroot daarvoor voordat jy registreer."
+        }
+      ],
+      "hash": "72b8564da5c46425",
+      "id": "3-financial-statements.15",
+      "kind": "paragraph",
+      "sourceHash": "cb0b8f241c25d06b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "4. SARS-maatskappybelasting"
+        }
+      ],
+      "depth": 3,
+      "hash": "738cef56538ddd06",
+      "id": "4-sars-company-tax",
+      "kind": "heading",
+      "sourceHash": "e5711d5ad2585d16",
+      "text": "4. SARS-maatskappybelasting"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Maatskappy is outomaties ’n voorlopige belastingbetaler (provisional taxpayer). Twee IRP6-opgawes per jaar, plus een ITR14-jaaropgawe binne 12 maande ná die einde van die finansiële jaar."
+        }
+      ],
+      "hash": "ac010ed56a6886f3",
+      "id": "4-sars-company-tax.1",
+      "kind": "paragraph",
+      "sourceHash": "bf13b96a8a13b30a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Dormante maatskappy dien steeds ’n nul-ITR14 in."
+        }
+      ],
+      "hash": "4e6356739a552878",
+      "id": "4-sars-company-tax.2",
+      "kind": "paragraph",
+      "sourceHash": "6a0f13a5a1cd9be6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die volle besonderhede is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Belasting en SARS"
+            }
+          ],
+          "doc": "core/tax-and-sars",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", ook die koerse vir ’n Small Business Corporation (kleinsakekorporasie), wat by 0% op die eerste R99,000 belasbare inkomste begin as die maatskappy kwalifiseer."
+        }
+      ],
+      "hash": "14e2a841755203da",
+      "id": "4-sars-company-tax.3",
+      "kind": "paragraph",
+      "sourceHash": "68d0b16af2fc9467"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "5. Geregistreerde verteenwoordiger en maatskappybesonderhede"
+        }
+      ],
+      "depth": 3,
+      "hash": "b9eb21236af4215d",
+      "id": "5-registered-representative-and-company-details",
+      "kind": "heading",
+      "sourceHash": "75b5eb32d495d5c0",
+      "text": "5. Geregistreerde verteenwoordiger en maatskappybesonderhede"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bevestig ná registrasie die geregistreerde verteenwoordiger (registered representative, die \"public officer\") by SARS. Daarsonder kan jy nie op eFiling namens die maatskappy transaksies doen nie."
+        }
+      ],
+      "hash": "973af18659f0dcbd",
+      "id": "5-registered-representative-and-company-details.1",
+      "kind": "paragraph",
+      "sourceHash": "95feb1eec3d939f3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Laat weet CIPC binne die vereiste tydperk as die geregistreerde adres, die direkteure of die ouditeure verander. Dit is gratis om ’n verandering van direkteure in te dien."
+        }
+      ],
+      "hash": "4cf863ba9433e023",
+      "id": "5-registered-representative-and-company-details.2",
+      "kind": "paragraph",
+      "sourceHash": "76609ec2737c1aa4"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "5-registered-representative-and-company-details.3",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat gebeur as jy ophou indien"
+        }
+      ],
+      "depth": 2,
+      "hash": "e368ec3f78d2e174",
+      "id": "what-happens-if-you-stop-filing",
+      "kind": "heading",
+      "sourceHash": "e9e82ea43749185d",
+      "text": "Wat gebeur as jy ophou indien"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is die algemeenste manier waarop klein Suid-Afrikaanse maatskappye doodgaan, en dit is heeltemal vermybaar."
+        }
+      ],
+      "hash": "b9ae45edb57edad7",
+      "id": "what-happens-if-you-stop-filing.1",
+      "kind": "paragraph",
+      "sourceHash": "bdf3e305f72f5446"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy die jaarlikse opgawe twee jaar agtereenvolgens mis, begin CIPC die deregistrasieproses. Ná genoeg gemiste jare verskuif die maatskappy se status van \"AR Deregistration Process\" na \"Final Deregistration\"."
+        }
+      ],
+      "hash": "09fae17966d7fb51",
+      "id": "what-happens-if-you-stop-filing.2",
+      "kind": "paragraph",
+      "sourceHash": "8a3a99fc1d0cd4d3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sodra twee of meer opeenvolgende jaarlikse opgawes uitstaande is, word die maatskappy outomaties in die AR-deregistrasieproses geplaas. Banke, SARS en die Central Supplier Database (sentrale verskafferdatabasis) kan weier om met die maatskappy te werk terwyl dit hierdie status het."
+        }
+      ],
+      "hash": "49d0fbc7d2d013f2",
+      "id": "what-happens-if-you-stop-filing.3",
+      "kind": "paragraph",
+      "sourceHash": "0d466cf39f975cb5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Mis twee jaar se jaarlikse opgawes, en CIPC begin jou maatskappy sluit. Terwyl dit gebeur, kan banke en SARS weier om met jou te werk."
+        }
+      ],
+      "hash": "6ba2c3ee39b9b932",
+      "id": "what-happens-if-you-stop-filing.4",
+      "kind": "callout",
+      "pairsWith": "what-happens-if-you-stop-filing.3",
+      "sourceHash": "15e71a4729f98ef7",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Terwyl jy nie voldoen nie, kan jy geen ander dokumente by CIPC indien nie. Geen verandering van direkteure, geen naamsverandering, geen adresverandering en geen spesiale besluite kan verwerk word nie."
+        }
+      ],
+      "hash": "2fabc3d6db99e3ef",
+      "id": "what-happens-if-you-stop-filing.5",
+      "kind": "paragraph",
+      "sourceHash": "45b85fc46ba9d503"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sodra die maatskappy gederegistreer is, verloor dit sy regstatus, bankrekeninge kan gevries word, en bates kan as bona vacantia na die staat oorgaan. Direkteure kan persoonlik aanspreeklik gehou word as hulle deur ’n gederegistreerde entiteit handel dryf."
+        }
+      ],
+      "hash": "ad2ce271f0e838c3",
+      "id": "what-happens-if-you-stop-filing.6",
+      "kind": "paragraph",
+      "sourceHash": "377424340d42c1d3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As CIPC klaarmaak om die maatskappy te sluit, hou dit op bestaan. Die bankrekening kan gevries word, en enigiets wat die maatskappy besit, kan na die staat gaan. As jy in elk geval aanhou handel dryf, kan jy persoonlik aanspreeklik wees."
+        }
+      ],
+      "hash": "57ee71c11028584d",
+      "id": "what-happens-if-you-stop-filing.7",
+      "kind": "callout",
+      "pairsWith": "what-happens-if-you-stop-filing.6",
+      "sourceHash": "d075b65bdb14a70c",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is nie net teorie nie. In Januarie 2025 het CIPC begin om meer as 800,000 maatskappye te deregistreer weens gemiste jaarlikse opgawes en indienings van voordelige eienaarskap."
+        }
+      ],
+      "hash": "f93401514e74ab44",
+      "id": "what-happens-if-you-stop-filing.8",
+      "kind": "paragraph",
+      "sourceHash": "b9b11fc0898c3302"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om dit terug te kry:"
+        }
+      ],
+      "hash": "64d38d14f3567a99",
+      "id": "what-happens-if-you-stop-filing.9",
+      "kind": "paragraph",
+      "sourceHash": "8fb17a86109cbc3d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Maatskappye wat weens die jaarlikse opgawe (AR) gederegistreer is, kan relatief goedkoop herstel word, omtrent R200 plus die agterstallige jaarlikse opgawes. Maatskappye wat finaal gederegistreer is, het ’n herstelbevel van die hooggeregshof nodig, wat aansienlik duurder is."
+        }
+      ],
+      "hash": "d5751363b3742437",
+      "id": "what-happens-if-you-stop-filing.10",
+      "kind": "paragraph",
+      "sourceHash": "6a668629f32c5e9d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Maatskappy wat weens nienakoming gederegistreer is, kan gewoonlik herstel word deur by CIPC aansoek te doen op vorm CoR 40.5, te bewys dat dit handel gedryf het of bates gehou het, en alle uitstaande jaarlikse opgawes en fooie af te handel."
+        }
+      ],
+      "hash": "fec53ba9ebcd2117",
+      "id": "what-happens-if-you-stop-filing.11",
+      "kind": "paragraph",
+      "sourceHash": "5b8d299b4f9a13a7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy kan gewoonlik ’n geslote maatskappy terugbring, maar jy moet bewys dat dit regtig handel gedryf het, alles indien wat jy gemis het, en al die fooie betaal."
+        }
+      ],
+      "hash": "312e00965fa3bcf9",
+      "id": "what-happens-if-you-stop-filing.12",
+      "kind": "callout",
+      "pairsWith": "what-happens-if-you-stop-filing.11",
+      "sourceHash": "e34252fe2d8ca272",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Twee herinneringe in jou kalender voorkom dit alles. Stel hulle vandag."
+        }
+      ],
+      "hash": "e33247e915e21236",
+      "id": "what-happens-if-you-stop-filing.13",
+      "kind": "paragraph",
+      "sourceHash": "c07650b8b596b9b0"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "what-happens-if-you-stop-filing.14",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wanneer die maatskappy jou nie beskerm nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "1209e161347074fa",
+      "id": "when-the-company-does-not-protect-you",
+      "kind": "heading",
+      "sourceHash": "5b804f85cbbe16ca",
+      "text": "Wanneer die maatskappy jou nie beskerm nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Mense registreer ’n Pty omdat hulle glo hulle huis is nou veilig. Drie dinge breek daardie beskerming."
+        }
+      ],
+      "hash": "6cbb3962e82c094e",
+      "id": "when-the-company-does-not-protect-you.1",
+      "kind": "paragraph",
+      "sourceHash": "a14064cbb9ff8f2a"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Persoonlike borgstelling."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Banke, verhuurders en baie verskaffers sal vereis dat jy persoonlik as borg vir die maatskappy se skuld teken. Sodra jy dit doen, is daardie spesifieke skuld joune, ongeag die maatskappy. Lees wat jy teken, en beding perke waar jy kan. ’n Borgstelling met ’n perk van R100,000 is iets heel anders as ’n onbeperkte een."
+        }
+      ],
+      "hash": "aa62c1e08a90a522",
+      "id": "when-the-company-does-not-protect-you.2",
+      "kind": "paragraph",
+      "sourceHash": "08f15b1dbd995056"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Geld meng."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " As jy persoonlike uitgawes deur die maatskappy se rekening laat loop en maatskappygeld as joune behandel, verswak jy die argument dat die maatskappy werklik apart is. Dit skep ook die belastingprobleem met die leningsrekening in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Betaal jouself uit ’n Pty Ltd"
+            }
+          ],
+          "doc": "core/paying-yourself",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "6b5859cd446cd6e8",
+      "id": "when-the-company-does-not-protect-you.3",
+      "kind": "paragraph",
+      "sourceHash": "72a247ae21b0bda4"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Roekelose of nalatige handeldryf."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die Companies Act 71 of 2008 lê werklike pligte op direkteure. Artikel 22 verbied dat besigheid roekeloos, met growwe nalatigheid of met die opset om te bedrieg gedryf word. Artikel 76 beskryf die plig om in goeie trou op te tree, in die maatskappy se beste belang, en met die sorg en vaardigheid wat redelikerwys verwag word. Artikel 77 maak direkteure persoonlik aanspreeklik vir verlies wat veroorsaak word deur daardie pligte te verbreek, en artikel 218(2) laat enigiemand wat verlies ly weens ’n oortreding van die Wet, toe om dit te eis."
+        }
+      ],
+      "hash": "7f13cbed93d173b6",
+      "id": "when-the-company-does-not-protect-you.4",
+      "kind": "paragraph",
+      "sourceHash": "0420aa8cdbdd4d3c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "In gewone woorde: as jy aanhou om deposito’s van kliënte te neem terwyl jy weet die maatskappy kan nie lewer nie, of aanhou handel dryf terwyl die maatskappy insolvent is, kan die skuld persoonlik joune word. Die maatskappy beskerm jou teen gewone besigheidsmislukking, nie teen wangedrag wat jy wetend pleeg nie."
+        }
+      ],
+      "hash": "ecfba0615b6b5feb",
+      "id": "when-the-company-does-not-protect-you.5",
+      "kind": "paragraph",
+      "sourceHash": "82324d8e7446af08"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Die solvensie- en likiditeitstoets."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Voordat die maatskappy geld as ’n dividend aan jou uitkeer, moet die direksie tevrede wees dat die maatskappy die artikel 4-solvensie- en likiditeitstoets slaag: die bates is meer as die laste, en die maatskappy kan sy skuld vir die volgende 12 maande betaal soos dit betaalbaar word. ’n Direksie van een persoon moet dit steeds toepas, en aanteken dat dit gedoen is."
+        }
+      ],
+      "hash": "a53953a687da438e",
+      "id": "when-the-company-does-not-protect-you.6",
+      "kind": "paragraph",
+      "sourceHash": "cea32ae66e47a5fc"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "when-the-company-does-not-protect-you.7",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Rekords wat die maatskappy moet hou"
+        }
+      ],
+      "depth": 2,
+      "hash": "4bc15eb0394ee750",
+      "id": "records-the-company-must-keep",
+      "kind": "heading",
+      "sourceHash": "89ea677be20935e4",
+      "text": "Rekords wat die maatskappy moet hou"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Apart van jou belastingrekords vereis die Companies Act dat die maatskappy die volgende hou:"
+        }
+      ],
+      "hash": "287d38ee99b1b486",
+      "id": "records-the-company-must-keep.1",
+      "kind": "paragraph",
+      "sourceHash": "08fe6c7f83d803ce"
+    },
+    {
+      "hash": "587e32e7ccb62ab6",
+      "id": "records-the-company-must-keep.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Die akte van oprigting (MOI)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Rekord van direkteure, vorige en huidige"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die effekteregister, met ander woorde wie die aandele besit"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die register van voordelige belange"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Besluite van die direksie en van aandeelhouers"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jaarlikse finansiële state"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Kennisgewings en notules van vergaderings"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "509d80cd81c5cb6c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n eenpersoonmaatskappy is die meeste hiervan elk een bladsy, en die meeste mense maak hulle nooit nie. Doen dit een keer, hou dit in ’n vouer met die naam \"Maatskappyrekords\", en voeg by soos dinge verander."
+        }
+      ],
+      "hash": "6e988646eb442714",
+      "id": "records-the-company-must-keep.3",
+      "kind": "paragraph",
+      "sourceHash": "2219a6bb18d4f5d3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die twee waarvoor jy werklik gevra sal word: jou aandelesertifikaat, en ’n besluit wat jou magtig om ’n bankrekening oop te maak of ’n spesifieke kontrak te teken. Banke en korporatiewe kliënte vra gereeld hiervoor."
+        }
+      ],
+      "hash": "004a01477f9e3283",
+      "id": "records-the-company-must-keep.4",
+      "kind": "paragraph",
+      "sourceHash": "6739a8713ce02afa"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Besluite maak saak selfs wanneer jy die enigste direkteur is. As jy ’n dividend verklaar, skryf ’n besluit van een paragraaf wat die datum, die bedrag en die feit dat die solvensie- en likiditeitstoets oorweeg is, aanteken. Dit kos vyf minute, en dit is die verskil tussen ’n dividend en ’n onverklaarde onttrekking wanneer SARS kyk."
+        }
+      ],
+      "hash": "9db8606512122e17",
+      "id": "records-the-company-must-keep.5",
+      "kind": "paragraph",
+      "sourceHash": "384ebe14b1262050"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "records-the-company-must-keep.6",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Werknemers, jy ingesluit"
+        }
+      ],
+      "depth": 2,
+      "hash": "58ae391dff5d0132",
+      "id": "employees-including-yourself",
+      "kind": "heading",
+      "sourceHash": "f6c12ccbe8dcd31a",
+      "text": "Werknemers, jy ingesluit"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As die maatskappy jou ’n salaris betaal, word die maatskappy ’n werkgewer. Dit bring PAYE mee, en gewoonlik UIF, en dalk SDL. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Betaal jouself uit ’n Pty Ltd"
+            }
+          ],
+          "doc": "core/paying-yourself",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", wat die besonderhede dek, en een punt waaroor bronne werklik verskil."
+        }
+      ],
+      "hash": "9e5794e9474399a5",
+      "id": "employees-including-yourself.1",
+      "kind": "paragraph",
+      "sourceHash": "1c55753fdc07f83f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "COIDA geld byna seker ook vir jou, en dit word wyd verkeerd verstaan. Die Wet se definisie van werknemer sluit ’n werkende direkteur van ’n maatskappy in wat ’n dienskontrak aangegaan het, vir sover hy of sy binne die omvang van daardie diens optree. Dit sluit aandeelhouers of stil vennote uit wat net dividende of ’n winsaandeel ontvang."
+        }
+      ],
+      "hash": "2e9ccd0c69aaf4a0",
+      "id": "employees-including-yourself.2",
+      "kind": "paragraph",
+      "sourceHash": "0da31902cafd2b59"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Werkende direkteur wat ’n maandelikse salaris kry, kwalifiseer dus as ’n werknemer, moet geregistreer word, en moet ’n Return of Earnings (verdiensteopgawe) indien, selfs waar daardie direkteur die enigste persoon in die maatskappy is. ’n Eenmansaak (sole proprietor) se eienaar, daarenteen, is nie ’n werknemer kragtens COIDA nie en kan nie registreer nie."
+        }
+      ],
+      "hash": "5352c4a6e2a8d349",
+      "id": "employees-including-yourself.3",
+      "kind": "paragraph",
+      "sourceHash": "829f07db9acd9f04"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die Compensation Fund (Vergoedingsfonds) se riglyne sê dat ’n werkgewer binne sewe dae nadat hy werknemers aangestel het, moet registreer, en dat alle werkgewers met een of meer deeltydse, los, tydelike of voltydse werknemers kragtens artikel 80(1) moet registreer."
+        }
+      ],
+      "hash": "c58f9d19e3557243",
+      "id": "employees-including-yourself.4",
+      "kind": "paragraph",
+      "sourceHash": "6ef2112b57f5fee7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die Letter of Good Standing (brief van goeie status) wat bewys dat jou COIDA-rekening op datum is, verval elke jaar, en jy het ’n geldige een nodig om vir regeringswerk te tender."
+        }
+      ],
+      "hash": "c1b6a249cb5afba9",
+      "id": "employees-including-yourself.5",
+      "kind": "paragraph",
+      "sourceHash": "a9217112f101b6d9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sodra jy enigiemand in diens neem, selfs deeltyds of los, het jy sewe dae om by die Compensation Fund te registreer vir dekking vir beserings by die werk."
+        }
+      ],
+      "hash": "111ad0d42e55e179",
+      "id": "employees-including-yourself.6",
+      "kind": "callout",
+      "pairsWith": "employees-including-yourself.5",
+      "sourceHash": "7dc58e862d03999d",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Moenie COIDA net as ’n koste sien nie. Dit betaal uit vir beserings aan diens, en dit is dekking wat die eienaar van ’n eenmansaak teen geen prys langs hierdie roete kan koop nie. Vir ’n eenpersoonmaatskappy is dit deel van die enigste veiligheidsnet wat jy het. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Jy is die besigheid"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "7840090944c7a830",
+      "id": "employees-including-yourself.7",
+      "kind": "paragraph",
+      "sourceHash": "39abe66152558cc8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Arbeidsreg val buite die bestek van hierdie gereedskapstel. Kry behoorlike advies voordat jy jou eerste persoon aanstel. Die Basic Conditions of Employment Act en die Labour Relations Act is streng, en foute is duur om reg te maak."
+        }
+      ],
+      "hash": "0b79f6ceda88662d",
+      "id": "employees-including-yourself.8",
+      "kind": "paragraph",
+      "sourceHash": "f3e5d9219375bc73"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "employees-including-yourself.9",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat gebeur as jy nie daar is nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "67d77089aea9df46",
+      "id": "what-happens-if-you-are-not-there",
+      "kind": "heading",
+      "sourceHash": "ab810852c255cfa8",
+      "text": "Wat gebeur as jy nie daar is nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Maatskappy het ewigdurende opvolging, maar dit kan net deur sy direkteure optree, en kragtens die Companies Act hou ’n persoon op om ’n direkteur te wees wanneer hy of sy sterf."
+        }
+      ],
+      "hash": "81452f1f19ce8053",
+      "id": "what-happens-if-you-are-not-there.1",
+      "kind": "paragraph",
+      "sourceHash": "c4d7216309547d34"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n enigste direkteur wat ook die enigste aandeelhouer is, is dit ’n ernstige probleem. Daar is niemand oor wat ’n plaasvervanger kan aanstel nie, want direkteure word deur aandeelhouers aangestel, en die aandele het in ’n bestorwe boedel beland. Die Master of the High Court (Meester van die Hooggeregshof) moet ’n eksekuteur aanstel, wat gewoonlik twee weke tot drie maande neem, en of daardie eksekuteur dan ’n direkteur kan aanstel, hang af van wat jou akte van oprigting (MOI) sê. As dit dit nie toelaat nie, is die oplossing ’n hofaansoek."
+        }
+      ],
+      "hash": "cd420d5a0ff55247",
+      "id": "what-happens-if-you-are-not-there.2",
+      "kind": "paragraph",
+      "sourceHash": "c68de58e50e7a0fa"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Intussen kan niemand teken nie, die bankrekening is vas, en die sperdatums van SARS en CIPC loop aan."
+        }
+      ],
+      "hash": "1ba725b2105df9a0",
+      "id": "what-happens-if-you-are-not-there.3",
+      "kind": "paragraph",
+      "sourceHash": "82a0d7ea5096316f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die goedkoopste oplossing is om ’n tweede direkteur aan te stel. Dit is gratis om ’n verandering van direkteure by CIPC in te dien. Die volle besonderhede, ook die kontrole van die MOI en die rekord van een bladsy om agter te laat, is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Jy is die besigheid"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "76e5bc05274a301d",
+      "id": "what-happens-if-you-are-not-there.4",
+      "kind": "paragraph",
+      "sourceHash": "ec7386f43f30fbba"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om ’n maatskappy behoorlik te sluit"
+        }
+      ],
+      "depth": 2,
+      "hash": "ef8765acb59f6dd1",
+      "id": "closing-a-company-properly",
+      "kind": "heading",
+      "sourceHash": "e1407e807b60a318",
+      "text": "Om ’n maatskappy behoorlik te sluit"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy die maatskappy nie meer nodig het nie, deregistreer dit doelbewus. Moenie net ophou indien nie."
+        }
+      ],
+      "hash": "a96b445dc663534e",
+      "id": "closing-a-company-properly.1",
+      "kind": "paragraph",
+      "sourceHash": "2ac480feac0a4397"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tensy dit formeel gederegistreer is, bly die indieningsvereiste van krag. As jy die maatskappy nie meer nodig het nie, is die regte roete vrywillige deregistrasie, nie om eenvoudig op te hou om enigiets in te dien nie."
+        }
+      ],
+      "hash": "13ac0905afed1422",
+      "id": "closing-a-company-properly.2",
+      "kind": "paragraph",
+      "sourceHash": "43622010ae373faf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die volgorde, rofweg: dien alle uitstaande opgawes in, betaal alle belastingskuld, kry belastingklaring, doen by CIPC aansoek om vrywillige deregistrasie, en deregistreer dan elke SARS-belastingtipe afsonderlik, met die CIPC-kennisgewing van deregistrasie as stawing vir die versoek."
+        }
+      ],
+      "hash": "362ab6a6de0dfebf",
+      "id": "closing-a-company-properly.3",
+      "kind": "paragraph",
+      "sourceHash": "d11fc2c7c50f7423"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verwag dat dit stadig sal gaan. Een Suid-Afrikaanse nakomingsfirma skat 12 tot 18 maande by SARS, en raai aan dat jy aanhou indien totdat die deregistrasie skriftelik bevestig is. Beskou dit as ’n skatting, nie ’n belofte nie."
+        }
+      ],
+      "hash": "aaeb3ae21981cb19",
+      "id": "closing-a-company-properly.4",
+      "kind": "paragraph",
+      "sourceHash": "c2f95f2c433c0ede"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is die sterkste praktiese argument daarvoor om nie ’n maatskappy te registreer voordat jy een nodig het nie. Om in te kom, kos R175. Om behoorlik uit te kom, kos ’n jaar se administrasie."
+        }
+      ],
+      "hash": "fc5c3440a64aef77",
+      "id": "closing-a-company-properly.5",
+      "kind": "paragraph",
+      "sourceHash": "6fbc8a3cea6adab4"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "closing-a-company-properly.6",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou jaarlikse Pty Ltd-kontrolelys"
+        }
+      ],
+      "depth": 2,
+      "hash": "84278db2f1870bb7",
+      "id": "your-pty-ltd-annual-checklist",
+      "kind": "heading",
+      "sourceHash": "106069535b953c1e",
+      "text": "Jou jaarlikse Pty Ltd-kontrolelys"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Elke jaar"
+        }
+      ],
+      "hash": "f85996a0d3612ee7",
+      "id": "your-pty-ltd-annual-checklist.1",
+      "items": [
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Verklaring van voordelige eienaarskap ingedien en op datum"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:44c17e09",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "CIPC se jaarlikse opgawe ingedien binne 30 werksdae ná die herdenkingsdatum van die registrasie"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:b79af9c6",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Jaarlikse finansiële state opgestel"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:00f5fc24",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Public Interest Score aan die einde van die jaar bereken"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:b0853b54",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Financial Accountability Supplement of state saam met die jaarlikse opgawe ingedien"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:95b86e75",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "ITR14 by SARS ingedien binne 12 maande ná die einde van die finansiële jaar"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:724ea4bf",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Twee voorlopige IRP6-opgawes ingedien"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:60d623d8",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Vouer met maatskappyrekords bygewerk met alle besluite wat geneem is"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:7ec2806c",
+          "when": {
+            "entity": "pty"
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "7236783223a83a30"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Elke maand, as die maatskappy jou of iemand anders ’n salaris betaal"
+        }
+      ],
+      "hash": "8c462bd262742e50",
+      "id": "your-pty-ltd-annual-checklist.2",
+      "items": [
+        {
+          "block": "your-pty-ltd-annual-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "EMP201 ingedien en betaal teen die 7de van die volgende maand"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:2f83b8dc",
+          "when": {
+            "entity": "pty"
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "f99b289be2cdd108"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Twee keer per jaar, as jy as werkgewer geregistreer is"
+        }
+      ],
+      "hash": "d5e127e7ac521b34",
+      "id": "your-pty-ltd-annual-checklist.3",
+      "items": [
+        {
+          "block": "your-pty-ltd-annual-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "EMP501-rekonsiliasie ingedien"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:7debec73",
+          "when": {
+            "entity": "pty"
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "4e4e15ec3c7591ff"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Deurlopend"
+        }
+      ],
+      "hash": "dc56b90946f6c471",
+      "id": "your-pty-ltd-annual-checklist.4",
+      "items": [
+        {
+          "block": "your-pty-ltd-annual-checklist.4",
+          "c": [
+            {
+              "t": "text",
+              "v": "Maatskappygeld streng apart gehou van persoonlike geld"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:adba8c60",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.4",
+          "c": [
+            {
+              "t": "text",
+              "v": "Kontrakte namens die maatskappy geteken, nie in jou eie naam nie"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:c2f17e61",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "your-pty-ltd-annual-checklist.4",
+          "c": [
+            {
+              "t": "text",
+              "v": "Saldo van die leningsrekening nagegaan voor die einde van elke finansiële jaar"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "id": "core/running-a-pty-ltd:295a6e78",
+          "when": {
+            "entity": "pty"
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "a53f3ad7f9cbd13c"
+    }
+  ],
+  "contentHash": "e7c932598f6a5e78",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Bestuur van ’n Pty Ltd",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "what-changes-the-moment-you-have-a-company",
+      "text": "Wat verander sodra jy ’n maatskappy het"
+    },
+    {
+      "depth": 2,
+      "id": "your-annual-duties-in-order-of-how-often-they-are-missed",
+      "text": "Jou jaarlikse pligte, in volgorde van hoe dikwels hulle gemis word"
+    },
+    {
+      "depth": 3,
+      "id": "1-cipc-annual-return",
+      "text": "1. CIPC se jaarlikse opgawe"
+    },
+    {
+      "depth": 3,
+      "id": "2-beneficial-ownership-filing",
+      "text": "2. Indiening van voordelige eienaarskap"
+    },
+    {
+      "depth": 3,
+      "id": "3-financial-statements",
+      "text": "3. Finansiële state"
+    },
+    {
+      "depth": 3,
+      "id": "4-sars-company-tax",
+      "text": "4. SARS-maatskappybelasting"
+    },
+    {
+      "depth": 3,
+      "id": "5-registered-representative-and-company-details",
+      "text": "5. Geregistreerde verteenwoordiger en maatskappybesonderhede"
+    },
+    {
+      "depth": 2,
+      "id": "what-happens-if-you-stop-filing",
+      "text": "Wat gebeur as jy ophou indien"
+    },
+    {
+      "depth": 2,
+      "id": "when-the-company-does-not-protect-you",
+      "text": "Wanneer die maatskappy jou nie beskerm nie"
+    },
+    {
+      "depth": 2,
+      "id": "records-the-company-must-keep",
+      "text": "Rekords wat die maatskappy moet hou"
+    },
+    {
+      "depth": 2,
+      "id": "employees-including-yourself",
+      "text": "Werknemers, jy ingesluit"
+    },
+    {
+      "depth": 2,
+      "id": "what-happens-if-you-are-not-there",
+      "text": "Wat gebeur as jy nie daar is nie"
+    },
+    {
+      "depth": 2,
+      "id": "closing-a-company-properly",
+      "text": "Om ’n maatskappy behoorlik te sluit"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 2,
+      "id": "your-pty-ltd-annual-checklist",
+      "text": "Jou jaarlikse Pty Ltd-kontrolelys"
+    }
+  ],
+  "id": "core/running-a-pty-ltd",
+  "kind": "guide",
+  "lang": "af",
+  "order": 6,
+  "readingTime": 16,
+  "related": [
+    "core/paying-yourself",
+    "core/you-are-the-business",
+    "core/register",
+    "core/adding-new-lines",
+    "core/tax-and-sars"
+  ],
+  "route": "core/running-a-pty-ltd/",
+  "section": "core",
+  "slug": "running-a-pty-ltd",
+  "sourcePath": "01 Core - applies to everyone/06-running-a-pty-ltd.md",
+  "sources": {
+    "acts": [
+      "companies-act-71-of-2008"
+    ],
+    "entries": [
+      "sars--tax-calendar",
+      "sars--guide-to-provisional-tax",
+      "govchain-how-to-register-a-company-directly-with-cipc",
+      "cipc--annual-returns-filing-system",
+      "cipc--financial-statements-and-independent-reviews",
+      "saica--independent-reviews",
+      "govchain-company-annual-returns",
+      "admin-boss",
+      "ourpower",
+      "thrivecfo",
+      "clearcomply-public-interest-score",
+      "cfo360-pis-calculator",
+      "elyforma",
+      "coida-and-working-directors",
+      "death-of-a-sole-director-and-shareholder"
+    ]
+  },
+  "summary": "Lees eers Registreer: wat jy regtig nodig het. Daardie lêer help jou besluit of jy hoegenaamd ’n maatskappy moet registreer.",
+  "tags": [
+    "pty"
+  ],
+  "terms": [
+    {
+      "meaning": "’n Jaarlikse vorm wat vir CIPC sê dat jou maatskappy nog bestaan. Nie ’n belastingopgawe nie.",
+      "term": "Jaarlikse opgawe (annual return)"
+    },
+    {
+      "meaning": "’n Gratis indiening wat die werklike mense noem wat die maatskappy besit.",
+      "term": "Voordelige eienaarskap (beneficial ownership)"
+    },
+    {
+      "meaning": "Die jaarlikse opsomming van wat die maatskappy verdien, spandeer, besit en skuld.",
+      "term": "Finansiële state"
+    },
+    {
+      "meaning": "’n Puntberekening wat bepaal of iemand jou finansiële state moet nagaan.",
+      "term": "Public Interest Score (openbare-belangtelling)"
+    },
+    {
+      "meaning": "’n Volledige onafhanklike nagaan van die finansiële state. Duur. Selde nodig vir ’n klein maatskappy.",
+      "term": "Oudit"
+    },
+    {
+      "meaning": "CIPC sluit jou maatskappy omdat jy opgehou het om in te dien.",
+      "term": "Deregistrasie"
+    },
+    {
+      "meaning": "Die toets waarin ’n maatskappy moet slaag voordat dit ’n dividend uitbetaal: dit besit meer as wat dit skuld, en dit kan sy rekeninge vir die volgende jaar betaal.",
+      "term": "Solvensie- en likiditeitstoets"
+    },
+    {
+      "meaning": "’n Skriftelike rekord van ’n beslissing. Nodig selfs as jy die enigste direkteur is.",
+      "term": "Besluit (resolution)"
+    }
+  ],
+  "title": "Bestuur van ’n Pty Ltd",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

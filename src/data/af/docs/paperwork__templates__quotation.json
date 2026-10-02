@@ -1,0 +1,790 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoe om dit te gebruik: maak ’n afskrif, hernoem dit na die kwotasienommer, vervang alles in [VIERKANTIGE HAKIES], voer dit dan na PDF uit en stuur die PDF. Moet nooit die redigeerbare lêer vir ’n kliënt stuur nie."
+        }
+      ],
+      "hash": "fef706f03c72615c",
+      "id": "intro.1",
+      "kind": "note",
+      "sourceHash": "d871e32ec2e5c14b"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "key": "businessName",
+              "style": "identity",
+              "t": "placeholder",
+              "v": "JOU BESIGHEIDSNAAM"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "ownerName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Jou naam"
+        },
+        {
+          "t": "text",
+          "v": " | "
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Foon"
+        },
+        {
+          "t": "text",
+          "v": " | "
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "E-pos"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Fisiese adres"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "nested": true,
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "As ’n maatskappy: Handeldrywende as ’n naam van [GEREGISTREERDE NAAM] (Pty) Ltd, Reg. No. [NOMMER] — dit word deur die wet vereis"
+        }
+      ],
+      "hash": "39a251e49b0d7467",
+      "id": "intro.3",
+      "kind": "paragraph",
+      "sourceHash": "3812845ee2a23704"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "bb543ebfb2c9a40a",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Veld"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Besonderhede"
+          }
+        ]
+      ],
+      "id": "intro.4",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Kwotasienommer"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "QUO-0001"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Datum"
+            }
+          ],
+          [
+            {
+              "style": "format",
+              "t": "placeholder",
+              "v": "DD Maand JJJJ"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Geldig tot"
+            }
+          ],
+          [
+            {
+              "style": "format",
+              "t": "placeholder",
+              "v": "DD Maand JJJJ"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "086a151eb99263cf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Aan"
+        }
+      ],
+      "depth": 2,
+      "hash": "f45795b28caac0f6",
+      "id": "to",
+      "kind": "heading",
+      "sourceHash": "7cb1cef9ea8a2276",
+      "text": "Aan"
+    },
+    {
+      "c": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Kliënt se naam"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Kliënt se adres"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "style": "choice",
+          "t": "placeholder",
+          "v": "Kliënt se foon / e-pos"
+        }
+      ],
+      "hash": "f04b2519f5b78bcf",
+      "id": "to.1",
+      "kind": "paragraph",
+      "sourceHash": "128a5a29c755571a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat ek sal doen"
+        }
+      ],
+      "depth": 2,
+      "hash": "9f7b1deff994b580",
+      "id": "what-i-will-do",
+      "kind": "heading",
+      "sourceHash": "7a8350a4412da93e",
+      "text": "Wat ek sal doen"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "hash": "cf0fe23c6ec26c9b",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Beskrywing"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Aantal"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Eenheidsprys"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Bedrag"
+          }
+        ]
+      ],
+      "id": "what-i-will-do.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Item of diens"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "1"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Item of diens"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "1"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Item of diens"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "1"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "TOTAAL"
+                }
+              ],
+              "t": "strong"
+            }
+          ],
+          [],
+          [],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "R 0.00"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "ef51c3866a1befb7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat ingesluit is"
+        }
+      ],
+      "depth": 2,
+      "hash": "b11c089af0aaddff",
+      "id": "what-is-included",
+      "kind": "heading",
+      "sourceHash": "4259c91d12be499c",
+      "text": "Wat ingesluit is"
+    },
+    {
+      "hash": "6929d74652f91a15",
+      "id": "what-is-included.1",
+      "items": [
+        [
+          {
+            "style": "instruction",
+            "t": "placeholder",
+            "v": "Wees spesifiek"
+          }
+        ],
+        [
+          {
+            "style": "instruction",
+            "t": "placeholder",
+            "v": "Wees spesifiek"
+          }
+        ],
+        [
+          {
+            "style": "instruction",
+            "t": "placeholder",
+            "v": "Wees spesifiek"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "c7d4107df01907a1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat NIE ingesluit is nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "00eff374db6b6e11",
+      "id": "what-is-not-included",
+      "kind": "heading",
+      "sourceHash": "458a6e2b336f0edf",
+      "text": "Wat NIE ingesluit is nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vul dit in. Die meeste geskille gaan oor werk waarvan die kliënt aangeneem het dat dit by die prys ingesluit is."
+        }
+      ],
+      "hash": "4d0c470478c9ab65",
+      "id": "what-is-not-included.1",
+      "kind": "note",
+      "sourceHash": "b86c9716a7b7a47c"
+    },
+    {
+      "hash": "cef31c8240e84fdd",
+      "id": "what-is-not-included.2",
+      "items": [
+        [
+          {
+            "style": "instruction",
+            "t": "placeholder",
+            "v": "Lys dit, anders sal jy gevra word om dit gratis te doen"
+          }
+        ],
+        [
+          {
+            "style": "instruction",
+            "t": "placeholder",
+            "v": "Lys dit"
+          }
+        ],
+        [
+          {
+            "style": "instruction",
+            "t": "placeholder",
+            "v": "Lys dit"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "c7851f153b91a061"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tydsraamwerk"
+        }
+      ],
+      "depth": 2,
+      "hash": "929a8dec4a9903d2",
+      "id": "timing",
+      "kind": "heading",
+      "sourceHash": "38bef9462294a2df",
+      "text": "Tydsraamwerk"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die werk begin "
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "wanneer"
+        },
+        {
+          "t": "text",
+          "v": " en neem ongeveer "
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "hoe lank"
+        },
+        {
+          "t": "text",
+          "v": " sodra die deposito ontvang is."
+        }
+      ],
+      "hash": "4197480f772d9baf",
+      "id": "timing.1",
+      "kind": "paragraph",
+      "sourceHash": "a393d693e2d74870"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Betaling"
+        }
+      ],
+      "depth": 2,
+      "hash": "bfa858f16a07f6c8",
+      "id": "payment",
+      "kind": "heading",
+      "sourceHash": "131ba564c8345e6b",
+      "text": "Betaling"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deposito van "
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "X"
+        },
+        {
+          "t": "text",
+          "v": "% voordat werk begin. Saldo betaalbaar "
+        },
+        {
+          "style": "choice",
+          "t": "placeholder",
+          "v": "by voltooiing / binne X dae ná die faktuur"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "6f041d505de267ea",
+      "id": "payment.1",
+      "kind": "paragraph",
+      "sourceHash": "32472133e7c580e0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hierdie kwotasie is vir "
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "X"
+        },
+        {
+          "t": "text",
+          "v": " dae geldig. Pryse kan ná daardie datum verander."
+        }
+      ],
+      "hash": "1eff7457f5e81c22",
+      "id": "payment.2",
+      "kind": "paragraph",
+      "sourceHash": "eb91c6c64b1f47c5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy hierdie kwotasie aanvaar, beteken dit dat jy my bepalings en voorwaardes aanvaar, wat aangeheg is of by "
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "skakel"
+        },
+        {
+          "t": "text",
+          "v": " beskikbaar is."
+        }
+      ],
+      "hash": "abe5159647a1b266",
+      "id": "payment.3",
+      "kind": "paragraph",
+      "sourceHash": "4666a8b9feb1a178"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Aanvaarding"
+        }
+      ],
+      "depth": 2,
+      "hash": "2de14c0dd45fd729",
+      "id": "acceptance",
+      "kind": "heading",
+      "sourceHash": "adfc9000a4408b28",
+      "text": "Aanvaarding"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Aanvaar deur: "
+        },
+        {
+          "t": "sigline"
+        }
+      ],
+      "hash": "5617d16bc4632f4b",
+      "id": "acceptance.1",
+      "kind": "paragraph",
+      "sourceHash": "2d8f7c92271f8703"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Naam (in drukskrif): "
+        },
+        {
+          "t": "sigline"
+        }
+      ],
+      "hash": "7320e1e583365ae1",
+      "id": "acceptance.2",
+      "kind": "paragraph",
+      "sourceHash": "603c088c6f7d7801"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Datum: "
+        },
+        {
+          "t": "sigline"
+        }
+      ],
+      "hash": "24c796f8bdaeadb1",
+      "id": "acceptance.3",
+      "kind": "paragraph",
+      "sourceHash": "630bb172fe3bf13c"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "acceptance.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Drie reëls wat jou geld spaar"
+        }
+      ],
+      "depth": 2,
+      "hash": "ba24bf03b26b9496",
+      "id": "three-rules-that-save-you-money",
+      "kind": "heading",
+      "sourceHash": "85b525f475f9f59d",
+      "text": "Drie reëls wat jou geld spaar"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sit ’n geldigheidsdatum op elke kwotasie. Materiaalpryse verander."
+        }
+      ],
+      "hash": "fff636d15703fa78",
+      "id": "three-rules-that-save-you-money.1",
+      "kind": "callout",
+      "sourceHash": "166d7e9535e72657",
+      "style": "note"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Skryf neer wat nie ingesluit is nie. Dit is die afdeling wat argumente voorkom."
+        }
+      ],
+      "hash": "35edc83b77b70b3f",
+      "id": "three-rules-that-save-you-money.2",
+      "kind": "paragraph",
+      "sourceHash": "78c33152e3a2bed3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kry ’n deposito voordat jy materiaal koop. ’n Getekende kwotasie plus ’n deposito is ’n kontrak."
+        }
+      ],
+      "hash": "f43fb00c12d4487b",
+      "id": "three-rules-that-save-you-money.3",
+      "kind": "paragraph",
+      "sourceHash": "989ea9c2004a8a78"
+    }
+  ],
+  "contentHash": "d5d917894d274d0f",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "KWOTASIE",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "to",
+      "text": "Aan"
+    },
+    {
+      "depth": 2,
+      "id": "what-i-will-do",
+      "text": "Wat ek sal doen"
+    },
+    {
+      "depth": 2,
+      "id": "what-is-included",
+      "text": "Wat ingesluit is"
+    },
+    {
+      "depth": 2,
+      "id": "what-is-not-included",
+      "text": "Wat NIE ingesluit is nie"
+    },
+    {
+      "depth": 2,
+      "id": "timing",
+      "text": "Tydsraamwerk"
+    },
+    {
+      "depth": 2,
+      "id": "payment",
+      "text": "Betaling"
+    },
+    {
+      "depth": 2,
+      "id": "acceptance",
+      "text": "Aanvaarding"
+    },
+    {
+      "depth": 2,
+      "id": "three-rules-that-save-you-money",
+      "text": "Drie reëls wat jou geld spaar"
+    }
+  ],
+  "id": "paperwork/templates/quotation",
+  "kind": "template",
+  "lang": "af",
+  "order": 3,
+  "readingTime": 2,
+  "related": [],
+  "route": "templates/quotation/",
+  "section": "paperwork",
+  "slug": "quotation",
+  "sourcePath": "03 Paperwork and templates/templates-to-fill-in/01-quotation.md",
+  "sources": {
+    "acts": [
+      "companies-act-71-of-2008"
+    ],
+    "entries": []
+  },
+  "summary": "Hoe om dit te gebruik: maak ’n afskrif, hernoem dit na die kwotasienommer, vervang alles in [VIERKANTIGE HAKIES], voer dit dan na PDF uit en stuur die PDF.",
+  "tags": [
+    "template"
+  ],
+  "terms": [],
+  "title": "Kwotasie (sjabloon)",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

@@ -1,0 +1,1971 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Laas bygewerk: 13 September 2026"
+        }
+      ],
+      "hash": "0a8500cc61a1b701",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "4e837719de26e3c1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit teken aan wat in die gereedskapstel verander het, en waar die Google Drive-kopie en hierdie markdown-kopie verskil."
+        }
+      ],
+      "hash": "cb0c55416f789422",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "fc43c981fac7676c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daar is twee kopieë van hierdie gereedskapstel:"
+        }
+      ],
+      "hash": "4aeecf931c87484d",
+      "id": "intro.3",
+      "kind": "paragraph",
+      "sourceHash": "40c639a91358a33a"
+    },
+    {
+      "hash": "79bdc25b0c6da15e",
+      "id": "intro.4",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Hierdie markdown-stel"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " (die zip-lêer). Die bron van waarheid. Gewone teks, niks wat in omskakeling verlore gaan nie."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Die Google Drive-stel."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " 34 dokumente en 2 sigblaaie, almal aan mekaar gekoppel."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "03d87cbabf4c6e9b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die Drive-koppelaar kan dokumente skep, maar kan nie ’n bestaande een wysig nie. Wanneer die markdown verander, moet iemand dit dus met die hand in die Drive-kopie plak. Hierdie lêer hou boek van daardie gaping."
+        }
+      ],
+      "hash": "43a3270c44aaa5d9",
+      "id": "intro.5",
+      "kind": "paragraph",
+      "sourceHash": "7a9045fed5712aec"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.6",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verandering 1: kortpad vir mense wie se naam reeds besluit is"
+        }
+      ],
+      "depth": 2,
+      "hash": "58f13e9fb11e7704",
+      "id": "change-1-shortcut-path-for-people-whose-name-is-already-decided",
+      "kind": "heading",
+      "sourceHash": "414a5a7113cb2778",
+      "text": "Verandering 1: kortpad vir mense wie se naam reeds besluit is"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Datum:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " 13 September 2026"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Rede:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die handelsmerkvolgorde het aanvaar dat elke leser van niks af begin. Iemand met ’n geregistreerde naam is deur ’n naamopdrag en ’n mededingerskandering gestuur wat op die naam gefokus is, wat hy of sy nie nodig gehad het nie."
+        }
+      ],
+      "hash": "8816f7152b4e55ab",
+      "id": "change-1-shortcut-path-for-people-whose-name-is-already-decided.1",
+      "kind": "paragraph",
+      "sourceHash": "5d972578e8525e59"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bygevoeg"
+        }
+      ],
+      "depth": 3,
+      "hash": "83e9c480082712b1",
+      "id": "added",
+      "kind": "heading",
+      "sourceHash": "f1ad429536dd7fe4",
+      "text": "Bygevoeg"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Het jy reeds jou naam? (kortpad)"
+            }
+          ],
+          "doc": "branding/already-have-your-name",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " — nuwe lêer, ongeveer 1,200 woorde."
+        }
+      ],
+      "hash": "ee6d3a55ce0d3e5c",
+      "id": "added.1",
+      "kind": "paragraph",
+      "sourceHash": "85169cf8ad410c0d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat dit doen:"
+        }
+      ],
+      "hash": "2de89e3481c5e462",
+      "id": "added.2",
+      "kind": "paragraph",
+      "sourceHash": "1f8ec9add66fff28"
+    },
+    {
+      "hash": "a5231f071ccdcda6",
+      "id": "added.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Dit deel al 12 handelsmerkopdragte in as oorslaan / aanpas / steeds doen. Die antwoord is: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "slaan een oor, pas een aan, doen die ander nege."
+              }
+            ],
+            "t": "strong"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Dit gee ’n vervanging vir Opdrag 2 wat die naampatrone weglaat en twee vrae byvoeg wat die oorspronklike nooit gevra het nie: wat suggereer my naam reeds visueel, en skep dit visuele beperkings (te lank vir ’n voertuigdeur, lomp in klein groottes, moeilik om in ’n lettertipe te set)."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Dit teken die drie kontroles aan wat steeds die moeite werd is wanneer ’n maatskappynaam geregistreer is: domein en gebruikersname, ’n CIPC-handelsmerksoektog, en om die naam hardop te sê vir sprekers van die tale wat ter sake is."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Dit verduidelik dat ’n CIPC-maatskappynaam niks in die mark beskerm nie."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Dit herhaal die vereiste van artikel 32, wat nou geld omdat die naam geregistreer is."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "6a7ecc453fa11184"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Status in Drive:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " KLAAR. Geskep as \"00 Already have your name - start here in this folder\" in die vouer 02 Branding and marketing."
+        }
+      ],
+      "hash": "44aa1c807441c083",
+      "id": "added.4",
+      "kind": "paragraph",
+      "sourceHash": "3fdb7410a18803be"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verander: wegwysers na die nuwe lêer"
+        }
+      ],
+      "depth": 3,
+      "hash": "7b5c5ad77ef3c574",
+      "id": "changed-signposts-pointing-at-the-new-file",
+      "kind": "heading",
+      "sourceHash": "e09ef5f235c1f569",
+      "text": "Verander: wegwysers na die nuwe lêer"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "ac193b154586161b",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Lêer"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Wat bygevoeg is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "In Drive?"
+          }
+        ]
+      ],
+      "id": "changed-signposts-pointing-at-the-new-file.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Handelsmerkopdragte"
+                }
+              ],
+              "doc": "branding/branding-prompts",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Een reël bo-aan: \"Het jy reeds jou naam? ... lees eers "
+            },
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Het jy reeds jou naam? (kortpad)"
+                }
+              ],
+              "doc": "branding/already-have-your-name",
+              "t": "link"
+            },
+            {
+              "t": "text",
+              "v": ".\""
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NEE — moet geplak word"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Registreer: wat jy regtig nodig het"
+                }
+              ],
+              "doc": "core/register",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Een reël onder \"Die naam kies\""
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NEE — moet geplak word"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Hoe om hierdie gereedskapstel te gebruik"
+                }
+              ],
+              "doc": "start/how-to-use",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Nuwe ry in die opsoektabel van Roete 3"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NEE — moet geplak word"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Kern: begin hier"
+                }
+              ],
+              "doc": "core/start-here",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Nuwe inskrywing in die lêerindeks"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NEE — sien nota hieronder"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Begin hier"
+                }
+              ],
+              "doc": "start/start-here",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Nuwe reël in die vouerboom"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NEE — sien nota hieronder"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Hoe dit gemaak is en hoe om dit na te gaan"
+                }
+              ],
+              "doc": "start/how-this-was-made",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Inskrywing vir die negende rondte in die lys van regstellings"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NEE — moet geplak word"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "8037e5e2e736c691"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "changed-signposts-pointing-at-the-new-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verandering 2: stap vir stemming en materiale"
+        }
+      ],
+      "depth": 2,
+      "hash": "f337d4cca8d1bf15",
+      "id": "change-2-mood-and-materials-step",
+      "kind": "heading",
+      "sourceHash": "1ea6904eaee049b9",
+      "text": "Verandering 2: stap vir stemming en materiale"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Datum:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " 13 September 2026"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Rede:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Niks in die handelsmerkvolgorde het die algehele visuele rigting vasgestel nie. Opdragte 5, 7 en 8 het elkeen hul eie estetiese besluit geneem, so die logo, kleurpalet en fotografie kon mekaar weerspreek. Materiale het ook oral ontbreek, behalwe as beperkings."
+        }
+      ],
+      "hash": "448df9d5e990e9ef",
+      "id": "change-2-mood-and-materials-step.1",
+      "kind": "paragraph",
+      "sourceHash": "1d37fed6caccfe0e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bygevoeg"
+        }
+      ],
+      "depth": 3,
+      "hash": "83e9c480082712b1",
+      "id": "added-1",
+      "kind": "heading",
+      "sourceHash": "f1ad429536dd7fe4",
+      "text": "Bygevoeg"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Stemming en materiale (gebruik ná Opdrag 4)"
+            }
+          ],
+          "doc": "branding/mood-and-materials",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " — nuwe lêer, ongeveer 1,300 woorde. Opdrag A stel ’n visuele gebied vas; Opdrag B stel die materiale vir uithangborde, drukwerk, voertuie en klere vas. Dit sluit ’n reël in om in Opdragte 5, 7 en 8 te plak wat hulle dwing om ooreen te stem."
+        }
+      ],
+      "hash": "97fc7f26b2fbaf88",
+      "id": "added-1.1",
+      "kind": "paragraph",
+      "sourceHash": "da2cb850981d38d8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Twee dinge is nagegaan voordat dit geskryf is:"
+        }
+      ],
+      "hash": "0be1c31a1a2faf4e",
+      "id": "added-1.2",
+      "kind": "paragraph",
+      "sourceHash": "c6d2c2bb360229af"
+    },
+    {
+      "hash": "2bf1fbd960708d57",
+      "id": "added-1.3",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Kleursielkunde is swak."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Elliot en Maier (2014) vind geen universele kleurbetekenis nie. Die bekende syfer \"62 tot 90% van ’n blitsoordeel is kleur\" kom uit ’n literatuuroorsig van 2006, nie uit ’n eksperiment nie. Wat wel standhou, is hoe goed ’n kleur by ’n persoonlikheid pas (Labrecque en Milne, 2012). Die opdragte vra dus oor pas en verskil, en sê vir die KI om nie kleurbetekenisse te gee nie."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Suid-Afrikaanse UV is ’n werklike ontwerpbeperking."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " UV van sone 3, vinyl wat in ongeveer ’n derde van sy Europese leeftyd verbleik, horisontale installasies wat 50 tot 70% verloor. Riglyne oor gegote teenoor gekalanderde vinyl bygevoeg. Bronne en hul beperkings aangeteken."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "46fafeb365b9ca58"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Status in Drive:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " KLAAR. Geskep as \"01a Mood and materials - decide this before the logo\"."
+        }
+      ],
+      "hash": "c488e040ef6ba2d7",
+      "id": "added-1.4",
+      "kind": "paragraph",
+      "sourceHash": "96e74c7fdd57f687"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verander: wegwysers"
+        }
+      ],
+      "depth": 3,
+      "hash": "cc7d1032c7dd8aba",
+      "id": "changed-signposts",
+      "kind": "heading",
+      "sourceHash": "25e1bf45bcaf900a",
+      "text": "Verander: wegwysers"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "df0e793d0c90c000",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Lêer"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Wat bygevoeg is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "In Drive?"
+          }
+        ]
+      ],
+      "id": "changed-signposts.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Handelsmerkopdragte"
+                }
+              ],
+              "doc": "branding/branding-prompts",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Reël \"Voor Opdrag 5\" bo-aan"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NEE — moet geplak word"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Het jy reeds jou naam? (kortpad)"
+                }
+              ],
+              "doc": "branding/already-have-your-name",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Stemmingstap ingevoeg in \"Waarheen volgende\""
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NEE — moet geplak word"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Kern: begin hier"
+                }
+              ],
+              "doc": "core/start-here",
+              "t": "link"
+            },
+            {
+              "t": "text",
+              "v": " en "
+            },
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Begin hier"
+                }
+              ],
+              "doc": "start/start-here",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Inskrywing in die indeks"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NEE — plak in START HERE"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Hoe om hierdie gereedskapstel te gebruik"
+                }
+              ],
+              "doc": "start/how-to-use",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Twee rye in die tabel van Roete 3"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NEE — moet geplak word"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Bronne- en verifikasieregister"
+                }
+              ],
+              "doc": "lookup/sources",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Nuwe afdeling: kleurnavorsing en materiale vir uithangborde"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NEE — moet geplak word"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Hoe dit gemaak is en hoe om dit na te gaan"
+                }
+              ],
+              "doc": "start/how-this-was-made",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Inskrywing vir die tiende rondte"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "NEE — moet geplak word"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "a9917c673c60ab61"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "changed-signposts.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verandering 3: ontbrekende intreedokument in die Core-vouer (regstelling)"
+        }
+      ],
+      "depth": 2,
+      "hash": "de1d1303869c9b27",
+      "id": "change-3-missing-entry-document-in-the-core-folder-fix",
+      "kind": "heading",
+      "sourceHash": "ef121f8d093a17ce",
+      "text": "Verandering 3: ontbrekende intreedokument in die Core-vouer (regstelling)"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Datum:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " 14 September 2026"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Rede:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " ’n Nommeringsfout, raakgesien deur die gebruiker. In Drive het die vouer 01 Core van 02 tot 09 geloop sonder ’n 01, want "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Kern: begin hier"
+            }
+          ],
+          "doc": "core/start-here",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " was by die hoof-START HERE ingevou toe Drive gebou is. Die resultaat het gelyk soos ’n ontbrekende lêer, en daardeur was Core die enigste vouer sonder sy eie intreedokument. Elke ander vouer het een."
+        }
+      ],
+      "hash": "569ea7710a072268",
+      "id": "change-3-missing-entry-document-in-the-core-folder-fix.1",
+      "kind": "paragraph",
+      "sourceHash": "abf6f25be5dee74d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bygevoeg"
+        }
+      ],
+      "depth": 3,
+      "hash": "83e9c480082712b1",
+      "id": "added-2",
+      "kind": "heading",
+      "sourceHash": "f1ad429536dd7fe4",
+      "text": "Bygevoeg"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Drive-dokument \"01 Start here - what is in this folder\" in die vouer 01 Core. Dit bevat die leesvolgorde, ’n tabel van die agt kerndokumente met wanneer om elkeen te lees, watter dokumente op watter lesers van toepassing is, en ’n kort nota wat verduidelik dat die nommering by 02 begin omdat hierdie dokument 01 is."
+        }
+      ],
+      "hash": "c1d6948f1339ca20",
+      "id": "added-2.1",
+      "kind": "paragraph",
+      "sourceHash": "fc75dcc02abd4b10"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is doelbewus nie ’n kopie van die hoof-START HERE nie. Die hoof-START HERE is ’n indeks van die hele gereedskapstel; hierdie een help jou om jou weg binne die Core-vouer te vind."
+        }
+      ],
+      "hash": "6afe06c4ad560b1e",
+      "id": "added-2.2",
+      "kind": "paragraph",
+      "sourceHash": "f584d5bb4111bcd9"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Status in Drive:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " KLAAR."
+        },
+        {
+          "t": "br"
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Status in markdown:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Geen verandering nodig nie. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Kern: begin hier"
+            }
+          ],
+          "doc": "core/start-here",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " het reeds bestaan en het reeds hierdie rol vervul."
+        }
+      ],
+      "hash": "389e6c7ec12fa3bd",
+      "id": "added-2.3",
+      "kind": "paragraph",
+      "sourceHash": "1eff920c9fb2bb34"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Les"
+        }
+      ],
+      "depth": 3,
+      "hash": "52a72f13ca2cb06e",
+      "id": "lesson",
+      "kind": "heading",
+      "sourceHash": "0b11e417176e57a6",
+      "text": "Les"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die hoof-START HERE het twee markdown-lêers opgeneem: "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Begin hier"
+            }
+          ],
+          "doc": "start/start-here",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " en "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Kern: begin hier"
+            }
+          ],
+          "doc": "core/start-here",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Om die README saam te voeg, was reg, want ’n lys van ’n Drive-vouer doen wat ’n README doen. Om die Core se begin-hier saam te voeg, was verkeerd, want dit was ’n intreedokument vir ’n vouer, nie ’n readme vir die bewaarplek nie. Hulle het gelyk soos dieselfde soort lêer, maar was dit nie."
+        }
+      ],
+      "hash": "b528b5a7be6738ba",
+      "id": "lesson.1",
+      "kind": "paragraph",
+      "sourceHash": "1a56cb070014ddf5"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "lesson.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verandering 4: jy is die besigheid, plus drie regstellings"
+        }
+      ],
+      "depth": 2,
+      "hash": "0ce5b343f76b8012",
+      "id": "change-4-you-are-the-business-plus-three-corrections",
+      "kind": "heading",
+      "sourceHash": "bcdb06daaac15ef4",
+      "text": "Verandering 4: jy is die besigheid, plus drie regstellings"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Datum:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " 14 September 2026"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Rede:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Toe die gereedskapstel weer gelees is as ’n Pty Ltd met een direkteur wat ook die enigste werknemer is, het dit ’n ontbrekende onderwerp en drie feitefoute blootgelê."
+        }
+      ],
+      "hash": "c4f36dd50a705ecc",
+      "id": "change-4-you-are-the-business-plus-three-corrections.1",
+      "kind": "paragraph",
+      "sourceHash": "d173f8497d262db5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bygevoeg"
+        }
+      ],
+      "depth": 3,
+      "hash": "83e9c480082712b1",
+      "id": "added-3",
+      "kind": "heading",
+      "sourceHash": "f1ad429536dd7fe4",
+      "text": "Bygevoeg"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Jy is die besigheid"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " — geen veiligheidsnet as jy nie kan werk nie, die invorderingstappe vir ’n onbetaalde faktuur, en kontinuïteit as jy nie daar is nie."
+        }
+      ],
+      "hash": "6250a87ed109e22a",
+      "id": "added-3.1",
+      "kind": "paragraph",
+      "sourceHash": "e131fc7f9ca0eb71"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Reggestel"
+        }
+      ],
+      "depth": 3,
+      "hash": "9290beb8df326b40",
+      "id": "corrected",
+      "kind": "heading",
+      "sourceHash": "d73476ab3c29300b",
+      "text": "Reggestel"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "5621b69428aeb993",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Waar"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Was"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Nou"
+          }
+        ]
+      ],
+      "id": "corrected.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Bestuur van ’n Pty Ltd"
+                }
+              ],
+              "doc": "core/running-a-pty-ltd",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "\"As die maatskappy enigiemand anders in diens neem, geld COIDA-registrasie\""
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Verkeerd. COIDA se omskrywing van ’n werknemer sluit ’n werkende direkteur onder ’n dienskontrak in. ’n Direkteur wat ’n salaris trek, moet registreer en ’n Return of Earnings (verdiensteopgawe) indien, selfs as die enigste persoon in die maatskappy."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Registreer: wat jy regtig nodig het"
+                }
+              ],
+              "doc": "core/register",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "UIF en COIDA voorgestel as ’n koste wat ontstaan wanneer jy jouself betaal"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "’n Eenmansaak-eienaar is van albei uitgesluit, en het dus hoegenaamd geen siektevoordeel en geen dekking vir beserings nie. Vir ’n maatskappy is dit ’n ruil, nie ’n strik nie."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Woordelys"
+                }
+              ],
+              "doc": "lookup/glossary",
+              "t": "link"
+            },
+            {
+              "t": "text",
+              "v": " en "
+            },
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Voertuighandelaar"
+                }
+              ],
+              "doc": "business-types/vehicle-dealer",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Small Claims Court (Kleineisehof) genoem sonder om te sê wie dit mag gebruik"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Artikel 7(1) van die Small Claims Courts Act laat net natuurlike persone toe om ’n eis in te stel. ’n Eis kan daar teen ’n maatskappy ingestel word, maar ’n maatskappy kan nie daar ’n eis instel nie."
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "b0aa9c1df64429a5"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Status in Drive:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " NOG NIE. Die nuwe dokument en al vier regstellings moet oorgedra word."
+        }
+      ],
+      "hash": "08434e4664df516b",
+      "id": "corrected.2",
+      "kind": "paragraph",
+      "sourceHash": "971eb7ddd943b4f1"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "corrected.3",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat jy in Drive moet plak"
+        }
+      ],
+      "depth": 2,
+      "hash": "64ee2c349c30507d",
+      "id": "what-you-need-to-paste-into-drive",
+      "kind": "heading",
+      "sourceHash": "0a76fa7898a1b400",
+      "text": "Wat jy in Drive moet plak"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vyf wysigings. Elkeen is een reël of een kort blok. Maak die dokument oop, plak, klaar."
+        }
+      ],
+      "hash": "24cc0a81e9aac26c",
+      "id": "what-you-need-to-paste-into-drive.1",
+      "kind": "paragraph",
+      "sourceHash": "b0aa657b28e66819"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "1. \"01 Branding prompts\" — plak heel bo, onder die titel"
+        }
+      ],
+      "depth": 3,
+      "hash": "c03c6607c23e23c3",
+      "id": "1-01-branding-prompts--paste-at-the-very-top-under-the-title",
+      "kind": "heading",
+      "sourceHash": "04e7dda1373b3145",
+      "text": "1. \"01 Branding prompts\" — plak heel bo, onder die titel"
+    },
+    {
+      "hash": "cadf0254dd7a62e1",
+      "id": "1-01-branding-prompts--paste-at-the-very-top-under-the-title.1",
+      "kind": "code",
+      "sourceHash": "03b8ebaf8919e732",
+      "text": "Het jy reeds jou naam? As jou besigheidsnaam vasstaan en jy weet\nonder watter naam jy handel dryf, lees eers \"00 Already have your name\"\nin hierdie vouer. Dit sê vir jou watter van hierdie opdragte om oor te slaan.",
+      "variant": "snippet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "2. \"02 Register - what you actually need\" — plak onder die opskrif \"Choosing the name\""
+        }
+      ],
+      "depth": 3,
+      "hash": "7a82f954632bd95e",
+      "id": "2-02-register---what-you-actually-need--paste-under-the-heading-choosing-the-name",
+      "kind": "heading",
+      "sourceHash": "fb80af5784824f69",
+      "text": "2. \"02 Register - what you actually need\" — plak onder die opskrif \"Choosing the name\""
+    },
+    {
+      "hash": "60702719fe6eae85",
+      "id": "2-02-register---what-you-actually-need--paste-under-the-heading-choosing-the-name.1",
+      "kind": "code",
+      "sourceHash": "b75f879e1f9295a1",
+      "text": "As jou naam reeds geregistreer en besluit is, sien \"00 Already have\nyour name\" in die vouer Branding and marketing. Dit lys die drie\nkontroles wat steeds die moeite werd is.",
+      "variant": "snippet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "3. \"01 How to use this toolkit\" — voeg ’n ry by die tabel van Roete 3"
+        }
+      ],
+      "depth": 3,
+      "hash": "ed97528cb15ac9de",
+      "id": "3-01-how-to-use-this-toolkit--add-a-row-to-the-path-3-table",
+      "kind": "heading",
+      "sourceHash": "f322182f72db576d",
+      "text": "3. \"01 How to use this toolkit\" — voeg ’n ry by die tabel van Roete 3"
+    },
+    {
+      "hash": "4f2f61594d84f5b7",
+      "id": "3-01-how-to-use-this-toolkit--add-a-row-to-the-path-3-table.1",
+      "kind": "code",
+      "sourceHash": "55e29d40ad40bd85",
+      "text": "My naam is reeds besluit, wat slaan ek oor?  →  00 Already have your name",
+      "variant": "snippet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "4. \"00 START HERE\" — voeg ’n ry by die tabel Branding and marketing"
+        }
+      ],
+      "depth": 3,
+      "hash": "c91372e21de6e33c",
+      "id": "4-00-start-here--add-a-row-to-the-branding-and-marketing-table",
+      "kind": "heading",
+      "sourceHash": "f30e5cae0223786f",
+      "text": "4. \"00 START HERE\" — voeg ’n ry by die tabel Branding and marketing"
+    },
+    {
+      "hash": "48c86acb36db1eb4",
+      "id": "4-00-start-here--add-a-row-to-the-branding-and-marketing-table.1",
+      "kind": "code",
+      "sourceHash": "e3ea16d420192b75",
+      "text": "00 Already have your name   |   Kortpad as die naam vasstaan:\nwatter opdragte om oor te slaan, en die drie kontroles wat steeds die moeite werd is",
+      "variant": "snippet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "5. \"02 AI disclosure and how this was checked\" — plak in die lys van regstellings, voor die reël wat met \"The lesson generalises\" begin"
+        }
+      ],
+      "depth": 3,
+      "hash": "488cf12eaefced2a",
+      "id": "5-02-ai-disclosure-and-how-this-was-checked--paste-into-the-corrections-log-before-the-line-beginning-the-lesson-generalises",
+      "kind": "heading",
+      "sourceHash": "3dd0df75dbd71fe0",
+      "text": "5. \"02 AI disclosure and how this was checked\" — plak in die lys van regstellings, voor die reël wat met \"The lesson generalises\" begin"
+    },
+    {
+      "hash": "c4260405820983d3",
+      "id": "5-02-ai-disclosure-and-how-this-was-checked--paste-into-the-corrections-log-before-the-line-beginning-the-lesson-generalises.1",
+      "kind": "code",
+      "sourceHash": "5736379ce15f3404",
+      "text": "Negende rondte: ’n kortpad vir mense wie se naam reeds besluit is.\nDie handelsmerkvolgorde het aanvaar dat elke leser van niks af begin,\nen het iemand met ’n geregistreerde naam deur ’n naamopdrag en ’n\nmededingerskandering gestuur wat op die naam gefokus is, wat hulle nie nodig gehad het nie. ’n Nuwe dokument wys\nwatter opdragte om oor te slaan, gee ’n vervanging vir die\nmededingerskandering wat net oor die visuele gaan en ook vra of die bestaande naam visuele\nbeperkings skep, en teken die drie kontroles aan wat steeds die moeite werd is wanneer ’n\nmaatskappynaam geregistreer is. Die punt waarom dit draai, is dat ’n geregistreerde\nmaatskappynaam niks in die mark beskerm nie.",
+      "variant": "snippet"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "5-02-ai-disclosure-and-how-this-was-checked--paste-into-the-corrections-log-before-the-line-beginning-the-lesson-generalises.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bekende strukturele verskille tussen die twee kopieë"
+        }
+      ],
+      "depth": 2,
+      "hash": "7057dbcd894e0a63",
+      "id": "known-structural-differences-between-the-two-copies",
+      "kind": "heading",
+      "sourceHash": "5cc626442a37a768",
+      "text": "Bekende strukturele verskille tussen die twee kopieë"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hierdie is doelbewus, nie foute nie."
+        }
+      ],
+      "hash": "084851b2d588712e",
+      "id": "known-structural-differences-between-the-two-copies.1",
+      "kind": "paragraph",
+      "sourceHash": "99ccb8e7f3a018c3"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "7a5d8bd9e6bc087b",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Markdown"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Drive"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Waarom"
+          }
+        ]
+      ],
+      "id": "known-structural-differences-between-the-two-copies.2",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Begin hier"
+                }
+              ],
+              "doc": "start/start-here",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Saamgevoeg in \"00 START HERE\""
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "’n Lys van ’n Drive-vouer doen die werk van ’n README, so ’n aparte een was oorbodig."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Kern: begin hier"
+                }
+              ],
+              "doc": "core/start-here",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Bestaan nou in Drive as \"01 Start here\" in die Core-vouer"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Is verkeerdelik by START HERE saamgevoeg toe Drive gebou is, sodat die Core-vouer van 02 tot 09 genommer was. Reggestel op 14 September 2026."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Watter sjabloon om wanneer te gebruik"
+                }
+              ],
+              "doc": "paperwork/which-template-to-use-when",
+              "t": "link"
+            },
+            {
+              "t": "text",
+              "v": " bevat die sjablone as teks"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Verdeel in ’n gids plus 5 Google Docs om in te vul"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Sjablone wat jy kopieer en invul, is nuttiger as sjablone wat binne ’n gids gedruk is."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Die kasboek en logboek is tabelle binne ’n markdown-lêer"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Twee Google Sheets"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "’n Logboek wat jy op jou foon invul, is beter as een wat in ’n dokument gedruk is."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Gewone markdown-blokaanhalings vir \"In gewone taal\""
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Grys ingekleurde tabelle met een sel"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Google Docs maak blokaanhalings stilweg plat, so hulle sou onsigbaar gewees het."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Omheinde kodeblokke vir opdragte"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Grys ingekleurde blokke in Courier"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Maak die begin en einde van elke opdrag duidelik vir kopiëring."
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "349c1fcb4d8ab78c"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "known-structural-differences-between-the-two-copies.3",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoe om die twee kopieë gelyk te hou"
+        }
+      ],
+      "depth": 2,
+      "hash": "cb979cbfcd8f5775",
+      "id": "how-to-keep-the-two-copies-in-sync",
+      "kind": "heading",
+      "sourceHash": "4703d00e7ad49c1c",
+      "text": "Hoe om die twee kopieë gelyk te hou"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n klein verandering, wysig die Google Doc direk. Die dokument-ID bly dieselfde, so elke skakel wat daarna wys, werk steeds."
+        }
+      ],
+      "hash": "abb17ffc3a77a109",
+      "id": "how-to-keep-the-two-copies-in-sync.1",
+      "kind": "paragraph",
+      "sourceHash": "f1e05caa50e1ad35"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n volledige herskrywing van een dokument, maak die bestaande Google Doc oop, kies alles, vee dit uit en plak die nuwe inhoud. Die ID bly, want die lêer bly."
+        }
+      ],
+      "hash": "55e5874e63c656ea",
+      "id": "how-to-keep-the-two-copies-in-sync.2",
+      "kind": "paragraph",
+      "sourceHash": "80a3b748dc3b463e"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Moet nooit aflaai, wysig en weer oplaai nie."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Dit skep ’n nuwe lêer met ’n nuwe ID, en elke skakel in die gereedskapstel sou steeds na die ou een wys."
+        }
+      ],
+      "hash": "4f8649ba8be6a26a",
+      "id": "how-to-keep-the-two-copies-in-sync.3",
+      "kind": "paragraph",
+      "sourceHash": "f8a8fc9a518e9c91"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Werk hierdie veranderingslys by wanneer jy enige van die twee kopieë verander."
+        }
+      ],
+      "hash": "b07012a04c3c49d1",
+      "id": "how-to-keep-the-two-copies-in-sync.4",
+      "kind": "paragraph",
+      "sourceHash": "facc1da44d972127"
+    }
+  ],
+  "contentHash": "9a4c8d5bab829f81",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Veranderingslys en verskille",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "change-1-shortcut-path-for-people-whose-name-is-already-decided",
+      "text": "Verandering 1: kortpad vir mense wie se naam reeds besluit is"
+    },
+    {
+      "depth": 3,
+      "id": "added",
+      "text": "Bygevoeg"
+    },
+    {
+      "depth": 3,
+      "id": "changed-signposts-pointing-at-the-new-file",
+      "text": "Verander: wegwysers na die nuwe lêer"
+    },
+    {
+      "depth": 2,
+      "id": "change-2-mood-and-materials-step",
+      "text": "Verandering 2: stap vir stemming en materiale"
+    },
+    {
+      "depth": 3,
+      "id": "added-1",
+      "text": "Bygevoeg"
+    },
+    {
+      "depth": 3,
+      "id": "changed-signposts",
+      "text": "Verander: wegwysers"
+    },
+    {
+      "depth": 2,
+      "id": "change-3-missing-entry-document-in-the-core-folder-fix",
+      "text": "Verandering 3: ontbrekende intreedokument in die Core-vouer (regstelling)"
+    },
+    {
+      "depth": 3,
+      "id": "added-2",
+      "text": "Bygevoeg"
+    },
+    {
+      "depth": 3,
+      "id": "lesson",
+      "text": "Les"
+    },
+    {
+      "depth": 2,
+      "id": "change-4-you-are-the-business-plus-three-corrections",
+      "text": "Verandering 4: jy is die besigheid, plus drie regstellings"
+    },
+    {
+      "depth": 3,
+      "id": "added-3",
+      "text": "Bygevoeg"
+    },
+    {
+      "depth": 3,
+      "id": "corrected",
+      "text": "Reggestel"
+    },
+    {
+      "depth": 2,
+      "id": "what-you-need-to-paste-into-drive",
+      "text": "Wat jy in Drive moet plak"
+    },
+    {
+      "depth": 3,
+      "id": "1-01-branding-prompts--paste-at-the-very-top-under-the-title",
+      "text": "1. \"01 Branding prompts\" — plak heel bo, onder die titel"
+    },
+    {
+      "depth": 3,
+      "id": "2-02-register---what-you-actually-need--paste-under-the-heading-choosing-the-name",
+      "text": "2. \"02 Register - what you actually need\" — plak onder die opskrif \"Choosing the name\""
+    },
+    {
+      "depth": 3,
+      "id": "3-01-how-to-use-this-toolkit--add-a-row-to-the-path-3-table",
+      "text": "3. \"01 How to use this toolkit\" — voeg ’n ry by die tabel van Roete 3"
+    },
+    {
+      "depth": 3,
+      "id": "4-00-start-here--add-a-row-to-the-branding-and-marketing-table",
+      "text": "4. \"00 START HERE\" — voeg ’n ry by die tabel Branding and marketing"
+    },
+    {
+      "depth": 3,
+      "id": "5-02-ai-disclosure-and-how-this-was-checked--paste-into-the-corrections-log-before-the-line-beginning-the-lesson-generalises",
+      "text": "5. \"02 AI disclosure and how this was checked\" — plak in die lys van regstellings, voor die reël wat met \"The lesson generalises\" begin"
+    },
+    {
+      "depth": 2,
+      "id": "known-structural-differences-between-the-two-copies",
+      "text": "Bekende strukturele verskille tussen die twee kopieë"
+    },
+    {
+      "depth": 2,
+      "id": "how-to-keep-the-two-copies-in-sync",
+      "text": "Hoe om die twee kopieë gelyk te hou"
+    }
+  ],
+  "id": "start/what-has-changed",
+  "kind": "guide",
+  "lang": "af",
+  "order": 4,
+  "readingTime": 10,
+  "related": [
+    "core/start-here",
+    "start/start-here",
+    "branding/already-have-your-name",
+    "branding/branding-prompts",
+    "core/register"
+  ],
+  "route": "start/what-has-changed/",
+  "section": "start",
+  "slug": "what-has-changed",
+  "sourceNote": {
+    "reason": "A change log of the toolkit; the facts it mentions are sourced in the documents it names.",
+    "see": [
+      "lookup/sources",
+      "start/how-this-was-made"
+    ]
+  },
+  "sourcePath": "00 Start here/03-what-has-changed.md",
+  "sources": {
+    "acts": [],
+    "entries": []
+  },
+  "summary": "Laas bygewerk: 13 September 2026",
+  "tags": [
+    "orientation",
+    "changelog"
+  ],
+  "terms": [],
+  "title": "Wat het verander",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

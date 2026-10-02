@@ -1,5 +1,5 @@
 {
-  "contentHash": "f387e48a418e0514",
+  "contentHash": "089c0a48d5b57024",
   "docs": {
     "branding/already-have-your-name": {
       "appliesTo": {
@@ -8,13 +8,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 1,
       "route": "branding/already-have-your-name/",
       "section": "branding",
       "slug": "already-have-your-name",
       "titles": {
+        "af": "Het jy reeds jou naam? (kortpad)",
         "en": "Already have your name (shortcut)"
       }
     },
@@ -25,13 +27,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 4,
       "route": "branding/brand-applications-and-polish/",
       "section": "branding",
       "slug": "brand-applications-and-polish",
       "titles": {
+        "af": "Handelsmerktoepassings en afronding",
         "en": "Brand applications and polish"
       }
     },
@@ -42,13 +46,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 2,
       "route": "branding/branding-prompts/",
       "section": "branding",
       "slug": "branding-prompts",
       "titles": {
+        "af": "Handelsmerkopdragte",
         "en": "Branding prompts"
       }
     },
@@ -59,13 +65,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 5,
       "route": "branding/marketing-prompts/",
       "section": "branding",
       "slug": "marketing-prompts",
       "titles": {
+        "af": "Bemarkingsopdragte",
         "en": "Marketing prompts"
       }
     },
@@ -76,13 +84,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 3,
       "route": "branding/mood-and-materials/",
       "section": "branding",
       "slug": "mood-and-materials",
       "titles": {
+        "af": "Stemming en materiale (ná opdrag 4)",
         "en": "Mood and materials (use after Prompt 4)"
       }
     },
@@ -95,13 +105,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 4,
       "route": "business-types/beauty/",
       "section": "business-types",
       "slug": "beauty",
       "titles": {
+        "af": "Skoonheid en persoonlike versorging",
         "en": "Beauty and personal care"
       }
     },
@@ -114,13 +126,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 3,
       "route": "business-types/food/",
       "section": "business-types",
       "slug": "food",
       "titles": {
+        "af": "Kosbesigheid",
         "en": "Food business"
       }
     },
@@ -131,13 +145,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 1,
       "route": "business-types/",
       "section": "business-types",
       "slug": "pick-your-business-type",
       "titles": {
+        "af": "Kies jou besigheidstipe",
         "en": "Pick your business type"
       }
     },
@@ -150,13 +166,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 7,
       "route": "business-types/professional-creative/",
       "section": "business-types",
       "slug": "professional-creative",
       "titles": {
+        "af": "Professionele en kreatiewe werk",
         "en": "Professional and creative work"
       }
     },
@@ -169,13 +187,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 5,
       "route": "business-types/retail-online/",
       "section": "business-types",
       "slug": "retail-online",
       "titles": {
+        "af": "Kleinhandel en aanlynwinkel",
         "en": "Retail and online shop"
       }
     },
@@ -188,13 +208,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 6,
       "route": "business-types/services-trades/",
       "section": "business-types",
       "slug": "services-trades",
       "titles": {
+        "af": "Dienste en ambagte",
         "en": "Services and trades"
       }
     },
@@ -207,13 +229,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 2,
       "route": "business-types/vehicle-dealer/",
       "section": "business-types",
       "slug": "vehicle-dealer",
       "titles": {
+        "af": "Voertuighandelaar",
         "en": "Vehicle dealer"
       }
     },
@@ -224,13 +248,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 8,
       "route": "core/adding-new-lines/",
       "section": "core",
       "slug": "adding-new-lines",
       "titles": {
+        "af": "Nuwe besigheidslyne byvoeg",
         "en": "Adding new lines of business"
       }
     },
@@ -241,13 +267,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 7,
       "route": "core/paying-yourself/",
       "section": "core",
       "slug": "paying-yourself",
       "titles": {
+        "af": "Betaal jouself uit ’n Pty Ltd",
         "en": "Paying yourself from a Pty Ltd"
       }
     },
@@ -258,13 +286,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 2,
       "route": "core/register/",
       "section": "core",
       "slug": "register",
       "titles": {
+        "af": "Registreer: wat jy regtig nodig het",
         "en": "Register: what you actually need"
       }
     },
@@ -275,13 +305,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 6,
       "route": "core/running-a-pty-ltd/",
       "section": "core",
       "slug": "running-a-pty-ltd",
       "titles": {
+        "af": "Bestuur van ’n Pty Ltd",
         "en": "Running a Pty Ltd"
       }
     },
@@ -292,13 +324,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 1,
       "route": "core/start-here/",
       "section": "core",
       "slug": "start-here",
       "titles": {
+        "af": "Kern: begin hier",
         "en": "Core: start here"
       }
     },
@@ -309,13 +343,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 3,
       "route": "core/tax-and-sars/",
       "section": "core",
       "slug": "tax-and-sars",
       "titles": {
+        "af": "Belasting en SARS",
         "en": "Tax and SARS"
       }
     },
@@ -326,13 +362,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 5,
       "route": "core/vehicles/",
       "section": "core",
       "slug": "vehicles",
       "titles": {
+        "af": "Voertuie vir jou besigheid",
         "en": "Vehicles for your business"
       }
     },
@@ -343,13 +381,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 4,
       "route": "core/what-you-need-to-sell-things/",
       "section": "core",
       "slug": "what-you-need-to-sell-things",
       "titles": {
+        "af": "Wat jy nodig het om dinge te verkoop",
         "en": "What you need to sell things"
       }
     },
@@ -360,13 +400,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 9,
       "route": "core/working-from-home-and-safety/",
       "section": "core",
       "slug": "working-from-home-and-safety",
       "titles": {
+        "af": "Van die huis af werk en veilig ontmoet",
         "en": "Working from home and meeting safely"
       }
     },
@@ -377,13 +419,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 10,
       "route": "core/you-are-the-business/",
       "section": "core",
       "slug": "you-are-the-business",
       "titles": {
+        "af": "Jy is die besigheid",
         "en": "You are the business"
       }
     },
@@ -394,13 +438,15 @@
       },
       "kind": "checklist",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 2,
       "route": "checklist/",
       "section": "lookup",
       "slug": "checklist",
       "titles": {
+        "af": "Hoofkontrolelys",
         "en": "Master checklist"
       }
     },
@@ -411,13 +457,15 @@
       },
       "kind": "glossary",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 1,
       "route": "glossary/",
       "section": "lookup",
       "slug": "glossary",
       "titles": {
+        "af": "Woordelys",
         "en": "Glossary"
       }
     },
@@ -428,13 +476,15 @@
       },
       "kind": "sources",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 3,
       "route": "sources/",
       "section": "lookup",
       "slug": "sources",
       "titles": {
+        "af": "Bronne- en verifikasieregister",
         "en": "Sources and verification register"
       }
     },
@@ -445,13 +495,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 2,
       "route": "paperwork/free-tools/",
       "section": "paperwork",
       "slug": "free-tools",
       "titles": {
+        "af": "Gratis gereedskap",
         "en": "Free tools"
       }
     },
@@ -462,13 +514,15 @@
       },
       "kind": "template",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 4,
       "route": "templates/invoice/",
       "section": "paperwork",
       "slug": "invoice",
       "titles": {
+        "af": "Faktuur, NIE BTW-geregistreer nie (sjabloon)",
         "en": "Invoice, NOT VAT registered (template)"
       }
     },
@@ -479,13 +533,15 @@
       },
       "kind": "template",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 7,
       "route": "templates/privacy-notice/",
       "section": "paperwork",
       "slug": "privacy-notice",
       "titles": {
+        "af": "Privaatheidskennisgewing, POPIA (sjabloon)",
         "en": "Privacy notice, POPIA (template)"
       }
     },
@@ -496,13 +552,15 @@
       },
       "kind": "template",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 3,
       "route": "templates/quotation/",
       "section": "paperwork",
       "slug": "quotation",
       "titles": {
+        "af": "Kwotasie (sjabloon)",
         "en": "Quotation (template)"
       }
     },
@@ -513,13 +571,15 @@
       },
       "kind": "template",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 6,
       "route": "templates/receipt/",
       "section": "paperwork",
       "slug": "receipt",
       "titles": {
+        "af": "Kwitansie (sjabloon)",
         "en": "Receipt (template)"
       }
     },
@@ -530,13 +590,15 @@
       },
       "kind": "template",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 5,
       "route": "templates/tax-invoice/",
       "section": "paperwork",
       "slug": "tax-invoice",
       "titles": {
+        "af": "Belastingfaktuur, BTW-geregistreer (sjabloon)",
         "en": "Tax invoice, VAT registered (template)"
       }
     },
@@ -547,13 +609,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 1,
       "route": "paperwork/which-template-to-use-when/",
       "section": "paperwork",
       "slug": "which-template-to-use-when",
       "titles": {
+        "af": "Watter sjabloon wanneer",
         "en": "Which template to use when"
       }
     },
@@ -564,13 +628,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 3,
       "route": "start/how-this-was-made/",
       "section": "start",
       "slug": "how-this-was-made",
       "titles": {
+        "af": "Hoe dit gemaak is en hoe om dit na te gaan",
         "en": "How this was made and how to check it"
       }
     },
@@ -581,13 +647,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 2,
       "route": "start/how-to-use/",
       "section": "start",
       "slug": "how-to-use",
       "titles": {
+        "af": "Hoe om hierdie gereedskapstel te gebruik",
         "en": "How to use this toolkit"
       }
     },
@@ -598,13 +666,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 1,
       "route": "start/start-here/",
       "section": "start",
       "slug": "start-here",
       "titles": {
+        "af": "Begin hier",
         "en": "Start here"
       }
     },
@@ -615,18 +685,24 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 4,
       "route": "start/what-has-changed/",
       "section": "start",
       "slug": "what-has-changed",
       "titles": {
+        "af": "Wat het verander",
         "en": "What has changed"
       }
     }
   },
   "langs": {
+    "af": {
+      "docCount": 36,
+      "status": "machine-unreviewed"
+    },
     "en": {
       "docCount": 36,
       "status": "source"

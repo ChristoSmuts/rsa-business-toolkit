@@ -1,0 +1,1036 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "pty"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het met een ding begin. Nou wil jy nog iets byvoeg: ’n voertuighandelaar wat ’n bandewinkel byvoeg, ’n werktuigkundige wat onderdele begin verkoop, ’n ontwerper wat drukwerk byvoeg."
+        }
+      ],
+      "hash": "3efbe4d5a26584f9",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "4e280cc992649b1a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hierdie lêer beantwoord die vrae wat opkom wanneer ’n eenpersoonmaatskappy sywaarts groei. Die meeste het goedkoper antwoorde as wat mense verwag, en een het ’n duur strik."
+        }
+      ],
+      "hash": "240e12d0b6c46650",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "c6ceca511384ad0c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "f13d0d9a0f35e72c",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Eenvoudige betekenisse van die terme wat in hierdie lêer gebruik word. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die maatskappy se amptelike naam op sy CIPC-sertifikaat."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Geregistreerde naam (registered name)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Ander naam waaronder jy bemark."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Handelsnaam (trading name)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Memorandum of Incorporation (akte van oprigting). Die maatskappy se reëlboek."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "MOI"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Laer maatskappybelastingkoerse vir klein besighede wat aan streng voorwaardes voldoen."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "SBC-koerse"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Om een riskante bedrywigheid apart te hou sodat sy probleme nie by die res kan uitkom nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Omhein (ring-fence)"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "624191c0a8f04634"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kan een maatskappy in meer as een ding handel dryf"
+        }
+      ],
+      "depth": 2,
+      "hash": "43ac3623dd81164c",
+      "id": "can-one-company-trade-in-more-than-one-thing",
+      "kind": "heading",
+      "sourceHash": "6933dd6636765b69",
+      "text": "Kan een maatskappy in meer as een ding handel dryf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ja. ’n Privaat maatskappy wat op BizPortal met die standaard-akte van oprigting (MOI) geregistreer is, het onbeperkte oogmerke. Dit mag enige wettige besigheid bedryf. Jy hoef niks by CIPC te wysig om ’n nuwe bedrywigheid te begin nie."
+        }
+      ],
+      "hash": "8f242c24688f80d2",
+      "id": "can-one-company-trade-in-more-than-one-thing.1",
+      "kind": "paragraph",
+      "sourceHash": "4fc14b12c324383e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat wel verander, is alles wat aan die bedrywigheid gekoppel is eerder as aan die maatskappy:"
+        }
+      ],
+      "hash": "1052096be7b5a82d",
+      "id": "can-one-company-trade-in-more-than-one-thing.2",
+      "kind": "paragraph",
+      "sourceHash": "ddd012ea12393b40"
+    },
+    {
+      "hash": "e0bca7cc78804ba7",
+      "id": "can-one-company-trade-in-more-than-one-thing.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Lisensies. Elke nuwe lyn het sy eie lisensies en permitte nodig. Maak die ooreenstemmende lêer in "
+          },
+          {
+            "label": "04-business-types/",
+            "section": "business-types",
+            "t": "docref"
+          },
+          {
+            "t": "text",
+            "v": " oop. ’n Voertuighandelaar wat ’n kafee byvoeg, is nou ook ’n kosbesigheid en het ’n Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid) nodig."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Versekering. Sê vir jou versekeraar. Dekking wat vir een bedrywigheid gekoop is, dek nie eise uit ’n ander een nie."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Sonering. Jou perseel is dalk vir die motorhandel gesoneer, maar nie vir kosvoorbereiding nie, of vir kleinhandel, maar nie vir werkswinkelgeraas nie. Vra die stadsbeplanningsafdeling voordat jy begin."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "SAPS-registrasie vir tweedehandse goedere, as jy in gebruikte goedere handel dryf. Die houer van ’n registrasiesertifikaat moet die Nasionale Kommissaris (National Commissioner) binne 30 dae skriftelik in kennis stel as enige van die inligting wat in die aansoek ingedien is, verander, of as enigiets verander wat die handelaar se vermoë raak om aan die registrasievereistes te voldoen. Om ’n nuwe kategorie gebruikte goedere of ’n nuwe perseel by te voeg, is so ’n verandering."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "c83e64e510a019b2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As enigiets op jou SAPS-registrasie as handelaar verander, ook waarin jy handel dryf of waar, moet jy SAPS binne 30 dae skriftelik laat weet."
+        }
+      ],
+      "hash": "d60a9a890a271164",
+      "id": "can-one-company-trade-in-more-than-one-thing.4",
+      "kind": "callout",
+      "pairsWith": "can-one-company-trade-in-more-than-one-thing.3",
+      "sourceHash": "e790a3610a5cb9e1",
+      "style": "plain"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "can-one-company-trade-in-more-than-one-thing.5",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Geregistreerde naam en handelsname"
+        }
+      ],
+      "depth": 2,
+      "hash": "674428fcb0996544",
+      "id": "registered-name-and-trading-names",
+      "kind": "heading",
+      "sourceHash": "74e2652dd159fe21",
+      "text": "Geregistreerde naam en handelsname"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou maatskappy het een geregistreerde naam, die een op die CoR 14.3. Jy kan onder ander name bemark."
+        }
+      ],
+      "hash": "98173245ce9330e5",
+      "id": "registered-name-and-trading-names.1",
+      "kind": "paragraph",
+      "sourceHash": "5effc99855244ed9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is waar ’n besluit wat jy by registrasie geneem het, vrugte afwerp of jou geld kos. ’n Maatskappy wat as \"Mokoena Motors (Pty) Ltd\" geregistreer is en nou sonpanele verkoop, het ’n ongemaklike naam op elke faktuur. ’n Maatskappy wat as \"Mokoena Holdings (Pty) Ltd\" of net onder sy registrasienommer geregistreer is, kan sonder probleme as \"Mokoena Motors\" en \"Mokoena Solar\" handel dryf."
+        }
+      ],
+      "hash": "a7d73aa9bbf42ec1",
+      "id": "registered-name-and-trading-names.2",
+      "kind": "paragraph",
+      "sourceHash": "bba5fe2882478065"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy nog nie geregistreer het nie: registreer ’n neutrale naam, of glad nie ’n naam nie, en sit die spesifieke handelsmerk in die handelsnaam. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Handelsmerkopdragte"
+            }
+          ],
+          "doc": "branding/branding-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "a909129933bf513d",
+      "id": "registered-name-and-trading-names.3",
+      "kind": "paragraph",
+      "sourceHash": "ac447dc519771d18"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy reeds ’n eng naam geregistreer het: ’n naamsverandering by CIPC is moontlik en nie duur nie, maar ook nie dringend nie. Handelsname los die meeste daarvan op."
+        }
+      ],
+      "hash": "121ddb9318cdb555",
+      "id": "registered-name-and-trading-names.4",
+      "kind": "paragraph",
+      "sourceHash": "7a03bc08a03b2023"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat die wet in elk geval vereis"
+        }
+      ],
+      "depth": 3,
+      "hash": "621becd84d1d7278",
+      "id": "what-the-law-requires-either-way",
+      "kind": "heading",
+      "sourceHash": "69bf0a102c447112",
+      "text": "Wat die wet in elk geval vereis"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Artikel 32 van die Companies Act sê dat die maatskappy se geregistreerde naam en registrasienommer op al sy dokumente moet verskyn. Dit beteken fakture, kwitansies, afleweringsbriewe, briewe, bestellings en kennisgewings, ook e-posse en jou webwerf."
+        }
+      ],
+      "hash": "283abcc162809542",
+      "id": "what-the-law-requires-either-way.1",
+      "kind": "paragraph",
+      "sourceHash": "b66ec23cb8ff6184"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die reël is dus eenvoudig. Gebruik die handelsnaam vir bemarking. Sit dan \"Handeldrywende as\" (\"Trading as\") met die volle geregistreerde naam en nommer op elke kwotasie, faktuur, kontrak, webwerfvoetskrif en e-poshandtekening. Iets soos:"
+        }
+      ],
+      "hash": "82fc29d296e79be6",
+      "id": "what-the-law-requires-either-way.2",
+      "kind": "paragraph",
+      "sourceHash": "13f2ac7570806915"
+    },
+    {
+      "hash": "f49fbb35120d45df",
+      "id": "what-the-law-requires-either-way.3",
+      "kind": "code",
+      "sourceHash": "f49fbb35120d45df",
+      "text": "Mokoena Solar\nA trading name of Mokoena Holdings (Pty) Ltd, Reg. No. 2026/123456/07",
+      "variant": "example"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wees bewus daarvan dat die Consumer Protection Act ook verwag dat ’n verskaffer onder sy geregistreerde naam handel dryf, of onder ’n besigheidsnaam wat kragtens artikel 80 van daardie Wet geregistreer is, en die artikel 80-register is nog nooit in werking gestel nie. Die universele praktyk is die \"handeldrywende as\"-vermelding hierbo, wat die kliënt die inligting gee wat die wet probeer beskerm. Doen dit konsekwent, en jy is in die sterkste posisie wat beskikbaar is."
+        }
+      ],
+      "hash": "d11efc1127fee40a",
+      "id": "what-the-law-requires-either-way.4",
+      "kind": "paragraph",
+      "sourceHash": "3ca3f25578177537"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Elke handelsnaam behoort sy eie domein en gebruikersname op sosiale media te hê, en, as dit saak maak, sy eie soektog na handelsmerke. Die maatskappynaam beskerm niks in die mark nie."
+        }
+      ],
+      "hash": "757f6e08b0740d5f",
+      "id": "what-the-law-requires-either-way.5",
+      "kind": "paragraph",
+      "sourceHash": "4f94819109ac7189"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "what-the-law-requires-either-way.6",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Belasting: een maatskappy, verskeie bedrywighede"
+        }
+      ],
+      "depth": 2,
+      "hash": "c5a912ac3f440799",
+      "id": "tax-one-company-several-activities",
+      "kind": "heading",
+      "sourceHash": "9ad3f82dbaa2f37a",
+      "text": "Belasting: een maatskappy, verskeie bedrywighede"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir inkomstebelasting het die maatskappy een belasbare inkomste. Alle bedrywighede gaan op een ITR14. Wins uit een lyn verreken verliese in ’n ander. Dit is ’n voordeel van ’n enkele maatskappy."
+        }
+      ],
+      "hash": "6a841df359ac8e59",
+      "id": "tax-one-company-several-activities.1",
+      "kind": "paragraph",
+      "sourceHash": "841664a17dab7c4e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir BTW dek een registrasie elke bedrywigheid wat die maatskappy bedryf. As jy geregistreer het weens voertuigverkope, is jou bandeverkope ook BTW-verkope, en jy kan BTW eis op die bande wat jy inkoop."
+        }
+      ],
+      "hash": "7426ac8db699db5b",
+      "id": "tax-one-company-several-activities.2",
+      "kind": "paragraph",
+      "sourceHash": "2be3b580b960a485"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Twee strikke."
+        }
+      ],
+      "hash": "27e632e17d81a9ef",
+      "id": "tax-one-company-several-activities.3",
+      "kind": "paragraph",
+      "sourceHash": "930f26d157712edc"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Omsetbelasting."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " As die maatskappy omsetbelasting betaal, kan ’n lyn met professionele dienste dit daaruit stoot. ’n Besigheid word uitgesluit waar meer as 20% van die inkomste uit professionele dienste kom. ’n Handelaar wat ’n konsultasie-afdeling byvoeg, loop gevaar. Omsetbelasting word ook gehef op die totale verkope oor alles wat die maatskappy doen. ’n Lyn met klein winsmarges word op sy verkope belas, net soos ’n lyn met groot marges. Dit benadeel gewoonlik die een met die lae marge."
+        }
+      ],
+      "hash": "9c2b98ad1a5d6f17",
+      "id": "tax-one-company-several-activities.4",
+      "kind": "paragraph",
+      "sourceHash": "d69cf17c3b64015b"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Status as Small Business Corporation (kleinsakekorporasie)."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " SBC-koerse hang daarvan af dat elke aandeelhouer ’n natuurlike persoon is, en geen aandeelhouer mag aandele in ’n ander maatskappy hou nie, behalwe vir beperkte uitsonderings. Dit maak saak wanneer jy die volgende vraag oorweeg."
+        }
+      ],
+      "hash": "cf384e045829c308",
+      "id": "tax-one-company-several-activities.5",
+      "kind": "paragraph",
+      "sourceHash": "9dce1247cbfbc18f"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "tax-one-company-several-activities.6",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Behoort die nuwe lyn ’n aparte maatskappy te wees"
+        }
+      ],
+      "depth": 2,
+      "hash": "cd2f1b3dfac39908",
+      "id": "should-the-new-line-be-a-separate-company",
+      "kind": "heading",
+      "sourceHash": "560f1712859856b0",
+      "text": "Behoort die nuwe lyn ’n aparte maatskappy te wees"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die instink is dikwels ja: hou die riskante besigheid weg van die veilige een. Soms is dit reg. Maar die koste is werklik, en een daarvan is versteek."
+        }
+      ],
+      "hash": "07692e63b9d50a23",
+      "id": "should-the-new-line-be-a-separate-company.1",
+      "kind": "paragraph",
+      "sourceHash": "fff666f2a13f2e4f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat ’n tweede maatskappy kos"
+        }
+      ],
+      "depth": 3,
+      "hash": "0bc0285138f65e0b",
+      "id": "what-a-second-company-costs",
+      "kind": "heading",
+      "sourceHash": "01bb0cf6bf5c9827",
+      "text": "Wat ’n tweede maatskappy kos"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Alles in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bestuur van ’n Pty Ltd"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", twee keer. Twee jaarlikse opgawes, twee indienings van voordelige eienaarskap, twee stelle finansiële state, twee ITR14-opgawes, twee stelle voorlopige opgawes, twee bankrekeninge. As jy een maatskappy se administrasie swaar gevind het, sal twee nie ligter wees nie."
+        }
+      ],
+      "hash": "a1307e9892f479d9",
+      "id": "what-a-second-company-costs.1",
+      "kind": "paragraph",
+      "sourceHash": "4546ae820d66ecd9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die versteekte koste: jy kan die SBC-koerse op albei verloor"
+        }
+      ],
+      "depth": 3,
+      "hash": "cca9df7f614e984c",
+      "id": "the-hidden-cost-you-may-lose-sbc-rates-on-both",
+      "kind": "heading",
+      "sourceHash": "e1c8c8de635b288c",
+      "text": "Die versteekte koste: jy kan die SBC-koerse op albei verloor"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die voorwaarde wat die meeste maatskappye van die status as Small Business Corporation uitsluit, is ’n aandeelhouer wat aandele in ’n ander maatskappy hou."
+        }
+      ],
+      "hash": "47f4d305cb803fad",
+      "id": "the-hidden-cost-you-may-lose-sbc-rates-on-both.1",
+      "kind": "paragraph",
+      "sourceHash": "5b9fb051a4fea177"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy is die aandeelhouer van Maatskappy A. Jy stig Maatskappy B en hou sy aandele. Jy hou nou aandele in ’n ander maatskappy. Na gelang van die presiese uitsonderings kan Maatskappy A sy SBC-status verloor, en Maatskappy B kwalifiseer dalk nooit. Albei betaal dan die vaste 27% in plaas van ’n skaal wat by 0% begin."
+        }
+      ],
+      "hash": "76450e68049a8fdf",
+      "id": "the-hidden-cost-you-may-lose-sbc-rates-on-both.2",
+      "kind": "paragraph",
+      "sourceHash": "09c88906d09dff26"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Op R300,000 belasbare inkomste is die verskil tienduisende rande per jaar. Kry ’n belastingpraktisyn om jou spesifieke struktuur deur te werk voordat jy ’n tweede maatskappy stig. Dit is nie ’n vraag om oor te raai nie."
+        }
+      ],
+      "hash": "21868d48e67bc036",
+      "id": "the-hidden-cost-you-may-lose-sbc-rates-on-both.3",
+      "kind": "paragraph",
+      "sourceHash": "aa730be2b263fff2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wanneer dit steeds die moeite werd is om te verdeel"
+        }
+      ],
+      "depth": 3,
+      "hash": "15b0486e5c1b42ff",
+      "id": "when-splitting-is-still-worth-it",
+      "kind": "heading",
+      "sourceHash": "d8d143ab5302a498",
+      "text": "Wanneer dit steeds die moeite werd is om te verdeel"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Aparte maatskappy maak sin wanneer die nuwe lyn die eerste een kan laat sink as iets erg skeefloop, en wanneer daardie risiko groter is as die ekstra belasting wat jy sou betaal as jy die SBC-koerse verloor. ’n Voertuighandelaar wat ’n vervoer- of logistieke bedryf met swaar voertuie op die pad byvoeg, is die soort geval waar skeiding geregverdig kan wees. ’n Voertuighandelaar wat bandmontering byvoeg, is gewoonlik nie so ’n geval nie."
+        }
+      ],
+      "hash": "87b20b598365401d",
+      "id": "when-splitting-is-still-worth-it.1",
+      "kind": "paragraph",
+      "sourceHash": "1fd738fc6e415b54"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Onthou ook dat ’n bank of verhuurder jou in elk geval sal vra om borg te teken vir die nuwe maatskappy. Dit neem baie van die beskerming weg waarvoor jy verdeel het. Sien die afdeling \"Wanneer die maatskappy jou nie beskerm nie\" in "
+        },
+        {
+          "doc": "core/running-a-pty-ltd",
+          "label": "01-core/06",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "6f292426d5046e94",
+      "id": "when-splitting-is-still-worth-it.2",
+      "kind": "paragraph",
+      "sourceHash": "fb57a7745155934e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die middelroete"
+        }
+      ],
+      "depth": 3,
+      "hash": "e9d0f192f80e2fbf",
+      "id": "the-middle-route",
+      "kind": "heading",
+      "sourceHash": "413289f19fbad029",
+      "text": "Die middelroete"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Een maatskappy, aparte handelsname, aparte bank-subrekeninge of duidelik gemerkte transaksies, aparte versekeringskedules. Jy kry die skeiding in bemarking en in rekords sonder die dubbele nakoming. Die meeste eenpersoonbesighede wat ’n tweede lyn byvoeg, behoort hier te begin."
+        }
+      ],
+      "hash": "effdc2d1b0204207",
+      "id": "the-middle-route.1",
+      "kind": "paragraph",
+      "sourceHash": "72bce38e19be3670"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "the-middle-route.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Rekords wanneer jy meer as een lyn het"
+        }
+      ],
+      "depth": 2,
+      "hash": "23540a42f7828ae5",
+      "id": "records-when-you-have-more-than-one-line",
+      "kind": "heading",
+      "sourceHash": "1a68960515840e5e",
+      "text": "Rekords wanneer jy meer as een lyn het"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voeg ’n \"Lyn\"-kolom by jou kasboek. Voertuie, Bande, Werkswinkel. Merk elke transaksie."
+        }
+      ],
+      "hash": "b98b525901bffc5d",
+      "id": "records-when-you-have-more-than-one-line.1",
+      "kind": "paragraph",
+      "sourceHash": "464a581cea523cf8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit kos niks, en dit sê vir jou binne drie maande watter lyn regtig geld maak. Eienaars ontdek gereeld dat die lyn wat hulle die meeste geniet, die een is wat geld verloor, en dat die vervelige een daarvoor betaal."
+        }
+      ],
+      "hash": "e7f23a77edb0ce00",
+      "id": "records-when-you-have-more-than-one-line.2",
+      "kind": "paragraph",
+      "sourceHash": "e6aeafa929eecb81"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit maak ook die berekening van handelsvoorraad aan die einde van die jaar baie makliker as voorraad aan meer as een lyn behoort."
+        }
+      ],
+      "hash": "8ade2f668c5da9f4",
+      "id": "records-when-you-have-more-than-one-line.3",
+      "kind": "paragraph",
+      "sourceHash": "1dca0dac1b7ed447"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "records-when-you-have-more-than-one-line.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kontrolelys voordat jy ’n lyn byvoeg"
+        }
+      ],
+      "depth": 2,
+      "hash": "796ed2896b645015",
+      "id": "checklist-before-you-add-a-line",
+      "kind": "heading",
+      "sourceHash": "edbd133e12ab0231",
+      "text": "Kontrolelys voordat jy ’n lyn byvoeg"
+    },
+    {
+      "hash": "34087f5780d96349",
+      "id": "checklist-before-you-add-a-line.1",
+      "items": [
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Die ooreenstemmende lêer in "
+            },
+            {
+              "label": "04-business-types/",
+              "section": "business-types",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": " nagegaan vir lisensies wat die nuwe lyn nodig het"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:8febf321",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Bevestig dat die sonering die nuwe bedrywigheid op my perseel toelaat"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:b3d4e816",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "My versekeraar laat weet en skriftelike bevestiging van dekking ontvang"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:7342bbc4",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "SAPS binne 30 dae in kennis gestel as dit my registrasie vir tweedehandse goedere verander"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:1f424128",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Oor die handelsnaam besluit, en die domein, gebruikersname en handelsmerke nagegaan"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:47e5c318",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "\"Handeldrywende as\" plus die geregistreerde naam en nommer op die nuwe lyn se dokumente gesit"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:57d2420f",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Nagegaan of die nuwe lyn my posisie vir omsetbelasting of SBC raak"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:7cc8050d",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Teen ’n tweede maatskappy besluit, of eers advies oor die SBC-gevolg gekry"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:a12236e9",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "checklist-before-you-add-a-line.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "’n Lyn-kolom by die kasboek gevoeg"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "id": "core/adding-new-lines:6b8d242c",
+          "when": {
+            "entity": "pty"
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "db3a15341570de7b"
+    }
+  ],
+  "contentHash": "e23689fa092247ba",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Nuwe besigheidslyne by jou Pty voeg",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "can-one-company-trade-in-more-than-one-thing",
+      "text": "Kan een maatskappy in meer as een ding handel dryf"
+    },
+    {
+      "depth": 2,
+      "id": "registered-name-and-trading-names",
+      "text": "Geregistreerde naam en handelsname"
+    },
+    {
+      "depth": 3,
+      "id": "what-the-law-requires-either-way",
+      "text": "Wat die wet in elk geval vereis"
+    },
+    {
+      "depth": 2,
+      "id": "tax-one-company-several-activities",
+      "text": "Belasting: een maatskappy, verskeie bedrywighede"
+    },
+    {
+      "depth": 2,
+      "id": "should-the-new-line-be-a-separate-company",
+      "text": "Behoort die nuwe lyn ’n aparte maatskappy te wees"
+    },
+    {
+      "depth": 3,
+      "id": "what-a-second-company-costs",
+      "text": "Wat ’n tweede maatskappy kos"
+    },
+    {
+      "depth": 3,
+      "id": "the-hidden-cost-you-may-lose-sbc-rates-on-both",
+      "text": "Die versteekte koste: jy kan die SBC-koerse op albei verloor"
+    },
+    {
+      "depth": 3,
+      "id": "when-splitting-is-still-worth-it",
+      "text": "Wanneer dit steeds die moeite werd is om te verdeel"
+    },
+    {
+      "depth": 3,
+      "id": "the-middle-route",
+      "text": "Die middelroete"
+    },
+    {
+      "depth": 2,
+      "id": "records-when-you-have-more-than-one-line",
+      "text": "Rekords wanneer jy meer as een lyn het"
+    },
+    {
+      "depth": 2,
+      "id": "checklist-before-you-add-a-line",
+      "text": "Kontrolelys voordat jy ’n lyn byvoeg"
+    }
+  ],
+  "id": "core/adding-new-lines",
+  "kind": "guide",
+  "lang": "af",
+  "order": 8,
+  "readingTime": 7,
+  "related": [
+    "core/running-a-pty-ltd",
+    "branding/branding-prompts"
+  ],
+  "route": "core/adding-new-lines/",
+  "section": "core",
+  "slug": "adding-new-lines",
+  "sourcePath": "01 Core - applies to everyone/08-adding-new-lines.md",
+  "sources": {
+    "acts": [
+      "companies-act-71-of-2008",
+      "consumer-protection-act-68-of-2008"
+    ],
+    "entries": [
+      "sars--turnover-tax",
+      "bizportal-cipc--company-registration",
+      "nada-saps-dealer-inspections"
+    ]
+  },
+  "summary": "Jy het met een ding begin. Nou wil jy nog iets byvoeg: ’n voertuighandelaar wat ’n bandewinkel byvoeg, ’n werktuigkundige wat onderdele begin verkoop, ’n ontwerper wat drukwerk byvoeg.",
+  "tags": [
+    "pty",
+    "growth"
+  ],
+  "terms": [
+    {
+      "meaning": "Die maatskappy se amptelike naam op sy CIPC-sertifikaat.",
+      "term": "Geregistreerde naam (registered name)"
+    },
+    {
+      "meaning": "’n Ander naam waaronder jy bemark.",
+      "term": "Handelsnaam (trading name)"
+    },
+    {
+      "meaning": "Memorandum of Incorporation (akte van oprigting). Die maatskappy se reëlboek.",
+      "term": "MOI"
+    },
+    {
+      "meaning": "Laer maatskappybelastingkoerse vir klein besighede wat aan streng voorwaardes voldoen.",
+      "term": "SBC-koerse"
+    },
+    {
+      "meaning": "Om een riskante bedrywigheid apart te hou sodat sy probleme nie by die res kan uitkom nie.",
+      "term": "Omhein (ring-fence)"
+    }
+  ],
+  "title": "Nuwe besigheidslyne byvoeg",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

@@ -1,0 +1,277 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die Suid-Afrikaanse sakewêreld is vol afkortings. Hier is wat hulle beteken, in gewone taal."
+        }
+      ],
+      "hash": "fb56f3cf91c198d1",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "3634abb3bf652bae"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Registrasie en maatskappye"
+        }
+      ],
+      "depth": 2,
+      "hash": "cfaeafbd9471b235",
+      "id": "registration-and-companies",
+      "kind": "heading",
+      "sourceHash": "4a592e1616e82f9c",
+      "text": "Registrasie en maatskappye"
+    },
+    {
+      "group": "registration-and-companies",
+      "hash": "b178b6ddab4e0e04",
+      "id": "registration-and-companies.1",
+      "kind": "glossary",
+      "sourceHash": "0da441d25b1db8cb"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Belasting"
+        }
+      ],
+      "depth": 2,
+      "hash": "cc4073b719332652",
+      "id": "tax",
+      "kind": "heading",
+      "sourceHash": "7626fa3f2b7b3ca3",
+      "text": "Belasting"
+    },
+    {
+      "group": "tax",
+      "hash": "ad081eeafb6f9d10",
+      "id": "tax.1",
+      "kind": "glossary",
+      "sourceHash": "f22ef48e6afd9552"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Nakoming"
+        }
+      ],
+      "depth": 2,
+      "hash": "fc0e581d400794cc",
+      "id": "compliance",
+      "kind": "heading",
+      "sourceHash": "bb84effd8ddf8662",
+      "text": "Nakoming"
+    },
+    {
+      "group": "compliance",
+      "hash": "091b3ba67d65e9ae",
+      "id": "compliance.1",
+      "kind": "glossary",
+      "sourceHash": "c05962d5bca9da43"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lisensiëring"
+        }
+      ],
+      "depth": 2,
+      "hash": "3338920a6d28f14a",
+      "id": "licensing",
+      "kind": "heading",
+      "sourceHash": "ad579fe3f90ff1b4",
+      "text": "Lisensiëring"
+    },
+    {
+      "group": "licensing",
+      "hash": "fb483bc94ef8fd47",
+      "id": "licensing.1",
+      "kind": "glossary",
+      "sourceHash": "4514d04f9ee27158"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voertuie"
+        }
+      ],
+      "depth": 2,
+      "hash": "9fec29a2740eb097",
+      "id": "vehicles",
+      "kind": "heading",
+      "sourceHash": "8e3a81843d12212e",
+      "text": "Voertuie"
+    },
+    {
+      "group": "vehicles",
+      "hash": "26ccba01bc394f04",
+      "id": "vehicles.1",
+      "kind": "glossary",
+      "sourceHash": "90d9b4bdaf218937"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tuiswerk en betaling ontvang"
+        }
+      ],
+      "depth": 2,
+      "hash": "9f5f3edc34582935",
+      "id": "working-from-home-and-getting-paid",
+      "kind": "heading",
+      "sourceHash": "813047dd90b90458",
+      "text": "Tuiswerk en betaling ontvang"
+    },
+    {
+      "group": "working-from-home-and-getting-paid",
+      "hash": "f7abc8f7a4e9ae98",
+      "id": "working-from-home-and-getting-paid.1",
+      "kind": "glossary",
+      "sourceHash": "3d2d2ffb9896f651"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Geld en dokumente"
+        }
+      ],
+      "depth": 2,
+      "hash": "cb2f3be33fe0d511",
+      "id": "money-and-documents",
+      "kind": "heading",
+      "sourceHash": "e9e89aae2885ea42",
+      "text": "Geld en dokumente"
+    },
+    {
+      "group": "money-and-documents",
+      "hash": "46babed0a4abe671",
+      "id": "money-and-documents.1",
+      "kind": "glossary",
+      "sourceHash": "b29e5b52a607ea06"
+    }
+  ],
+  "contentHash": "00bf8ff958c44248",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Woordelys",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "registration-and-companies",
+      "text": "Registrasie en maatskappye"
+    },
+    {
+      "depth": 2,
+      "id": "tax",
+      "text": "Belasting"
+    },
+    {
+      "depth": 2,
+      "id": "compliance",
+      "text": "Nakoming"
+    },
+    {
+      "depth": 2,
+      "id": "licensing",
+      "text": "Lisensiëring"
+    },
+    {
+      "depth": 2,
+      "id": "vehicles",
+      "text": "Voertuie"
+    },
+    {
+      "depth": 2,
+      "id": "working-from-home-and-getting-paid",
+      "text": "Tuiswerk en betaling ontvang"
+    },
+    {
+      "depth": 2,
+      "id": "money-and-documents",
+      "text": "Geld en dokumente"
+    }
+  ],
+  "id": "lookup/glossary",
+  "kind": "glossary",
+  "lang": "af",
+  "order": 1,
+  "readingTime": 1,
+  "related": [],
+  "route": "glossary/",
+  "section": "lookup",
+  "slug": "glossary",
+  "sourcePath": "05 Look it up/01-glossary.md",
+  "sources": {
+    "acts": [],
+    "entries": [
+      "sars--turnover-tax",
+      "sars--tax-calendar",
+      "sars--guide-to-provisional-tax",
+      "sars--vat-264-declaration-for-the-supply-of-second-hand-goods",
+      "xero-za-sars-tax-tables-20262027",
+      "cipc--annual-returns-filing-system",
+      "cipc--financial-statements-and-independent-reviews",
+      "thrivecfo",
+      "elyforma",
+      "sars--comprehensive-guide-to-dividends-tax",
+      "sars--budget-2026-faq",
+      "polity--ensafrica-directors-of-private-companies-and-paye",
+      "simplepay-deemed-remuneration",
+      "the-tax-faculty-dividends-interest-on-loan",
+      "b-bbee-commission--frequently-asked-questions",
+      "information-regulator-of-south-africa",
+      "national-consumer-commission--consumer-protection-in-e-commerce",
+      "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
+      "rlv-form--application-for-registration-and-licensing-of-motor-vehicle",
+      "govza--apply-for-a-motor-trade-number-and-permit",
+      "governmentcoza--apply-for-a-traffic-register-number",
+      "govchain-brnc-certificate-guide",
+      "hanekom-attorneys-webuycars-consent-order",
+      "department-of-justice--small-claims-courts",
+      "department-of-justice--media-statement-22-july-2026",
+      "regulation-r638-of-2018",
+      "regulation-r146-of-2012",
+      "businesses-act-71-of-1991",
+      "mj-kotze-inc-credit-provider-registration",
+      "south-african-reserve-bank--banknote-security-features",
+      "sabric--south-african-banking-risk-information-centre",
+      "techcentral",
+      "solmate",
+      "cape-argus",
+      "flip-the-market",
+      "tracker-south-africa",
+      "ashersons-attorneys",
+      "small-claims-court-who-may-sue"
+    ]
+  },
+  "summary": "Die Suid-Afrikaanse sakewêreld is vol afkortings. Hier is wat hulle beteken, in gewone taal.",
+  "tags": [
+    "reference"
+  ],
+  "terms": [],
+  "title": "Woordelys",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

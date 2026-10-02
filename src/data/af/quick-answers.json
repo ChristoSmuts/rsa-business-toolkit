@@ -1,0 +1,611 @@
+{
+  "doc": "start/how-to-use",
+  "items": [
+    {
+      "id": "do-i-need-to-register-a-company",
+      "question": [
+        {
+          "t": "text",
+          "v": "Moet ek ’n maatskappy registreer?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/register",
+          "label": "01-core/02",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "do-i-have-to-register-for-vat",
+      "question": [
+        {
+          "t": "text",
+          "v": "Moet ek vir BTW registreer?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/tax-and-sars",
+          "label": "01-core/03",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "how-do-i-pay-less-tax-legally",
+      "question": [
+        {
+          "t": "text",
+          "v": "Hoe betaal ek wettig minder belasting?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/tax-and-sars",
+          "label": "01-core/03",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "do-i-need-a-licence-to-sell-this",
+      "note": [
+        {
+          "t": "text",
+          "v": "en die lêer vir jou besigheidstipe"
+        }
+      ],
+      "question": [
+        {
+          "t": "text",
+          "v": "Het ek ’n lisensie nodig om dit te verkoop?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/what-you-need-to-sell-things",
+          "label": "01-core/04",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "can-i-put-the-car-in-the-business-name",
+      "question": [
+        {
+          "t": "text",
+          "v": "Kan ek die motor in die besigheid se naam sit?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/vehicles",
+          "label": "01-core/05",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "what-does-a-pty-ltd-cost-me-every-year",
+      "question": [
+        {
+          "t": "text",
+          "v": "Wat kos ’n Pty Ltd my elke jaar?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/running-a-pty-ltd",
+          "label": "01-core/06",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "my-company-missed-its-cipc-filings-what-now",
+      "question": [
+        {
+          "t": "text",
+          "v": "My maatskappy het sy CIPC-indienings gemis, wat nou?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/running-a-pty-ltd",
+          "label": "01-core/06",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "do-i-need-an-audit",
+      "question": [
+        {
+          "t": "text",
+          "v": "Het ek ’n oudit nodig?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/running-a-pty-ltd",
+          "label": "01-core/06",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "how-do-i-take-money-out-of-my-own-company",
+      "question": [
+        {
+          "t": "text",
+          "v": "Hoe haal ek geld uit my eie maatskappy?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/paying-yourself",
+          "label": "01-core/07",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "salary-or-dividends",
+      "question": [
+        {
+          "t": "text",
+          "v": "Salaris of dividende?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/paying-yourself",
+          "label": "01-core/07",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "what-is-a-directors-loan-account",
+      "question": [
+        {
+          "t": "text",
+          "v": "Wat is ’n direkteur se leningsrekening?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/paying-yourself",
+          "label": "01-core/07",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "can-my-company-trade-under-a-different-name",
+      "question": [
+        {
+          "t": "text",
+          "v": "Kan my maatskappy onder ’n ander naam handel dryf?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/adding-new-lines",
+          "label": "01-core/08",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "should-my-new-line-be-a-separate-company",
+      "question": [
+        {
+          "t": "text",
+          "v": "Moet my nuwe lyn ’n aparte maatskappy wees?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/adding-new-lines",
+          "label": "01-core/08",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "which-licences-does-a-new-activity-need",
+      "question": [
+        {
+          "t": "text",
+          "v": "Watter lisensies het ’n nuwe aktiwiteit nodig?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/adding-new-lines",
+          "label": "01-core/08",
+          "t": "docref"
+        },
+        {
+          "label": "04-business-types/",
+          "section": "business-types",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "can-i-run-this-from-home",
+      "question": [
+        {
+          "t": "text",
+          "v": "Kan ek dit van die huis af bestuur?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/working-from-home-and-safety",
+          "label": "01-core/09",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "how-do-i-know-a-payment-is-real",
+      "question": [
+        {
+          "t": "text",
+          "v": "Hoe weet ek of ’n betaling eg is?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/working-from-home-and-safety",
+          "label": "01-core/09",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "where-should-i-meet-a-buyer-for-a-test-drive",
+      "question": [
+        {
+          "t": "text",
+          "v": "Waar moet ek ’n koper vir ’n toetsrit ontmoet?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/working-from-home-and-safety",
+          "label": "01-core/09",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "someone-sent-a-proof-of-payment-can-i-release-the-goods",
+      "note": [
+        {
+          "t": "text",
+          "v": "(nee, nog nie)"
+        }
+      ],
+      "question": [
+        {
+          "t": "text",
+          "v": "Iemand het ’n betalingsbewys gestuur, kan ek die goedere vrystel?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/working-from-home-and-safety",
+          "label": "01-core/09",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "what-must-my-invoice-show",
+      "question": [
+        {
+          "t": "text",
+          "v": "Wat moet my faktuur wys?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "paperwork/which-template-to-use-when",
+          "label": "03-documents/01",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "what-do-i-write-in-my-terms",
+      "question": [
+        {
+          "t": "text",
+          "v": "Wat skryf ek in my bepalings?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "paperwork/which-template-to-use-when",
+          "label": "03-documents/01",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "which-free-software-should-i-use",
+      "question": [
+        {
+          "t": "text",
+          "v": "Watter gratis sagteware moet ek gebruik?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "paperwork/free-tools",
+          "label": "03-documents/02",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "how-do-i-name-my-business",
+      "question": [
+        {
+          "t": "text",
+          "v": "Hoe gee ek my besigheid ’n naam?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "branding/branding-prompts",
+          "label": "02-branding-and-marketing/01",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "my-name-is-already-decided-what-do-i-skip",
+      "question": [
+        {
+          "t": "text",
+          "v": "My naam is reeds besluit, wat slaan ek oor?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "branding/already-have-your-name",
+          "label": "02-branding-and-marketing/00",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "what-if-i-get-sick-and-cannot-work",
+      "question": [
+        {
+          "t": "text",
+          "v": "Wat as ek siek word en nie kan werk nie?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/you-are-the-business",
+          "label": "01-core/10",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "a-customer-will-not-pay-me-what-now",
+      "question": [
+        {
+          "t": "text",
+          "v": "’n Kliënt wil my nie betaal nie, wat nou?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/you-are-the-business",
+          "label": "01-core/10",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "can-i-use-the-small-claims-court",
+      "note": [
+        {
+          "t": "text",
+          "v": "(net as jy nie ’n maatskappy is nie)"
+        }
+      ],
+      "question": [
+        {
+          "t": "text",
+          "v": "Kan ek die Small Claims Court (Kleineisehof) gebruik?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/you-are-the-business",
+          "label": "01-core/10",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "what-happens-to-my-company-if-i-die",
+      "question": [
+        {
+          "t": "text",
+          "v": "Wat gebeur met my maatskappy as ek sterf?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "core/you-are-the-business",
+          "label": "01-core/10",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "how-do-i-stop-my-logo-colours-and-photos-clashing",
+      "question": [
+        {
+          "t": "text",
+          "v": "Hoe keer ek dat my logo, kleure en foto’s bots?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "branding/mood-and-materials",
+          "label": "02-branding-and-marketing/01a",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "what-should-my-signage-and-print-be-made-of",
+      "question": [
+        {
+          "t": "text",
+          "v": "Waarvan moet my uithangborde en drukwerk gemaak wees?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "branding/mood-and-materials",
+          "label": "02-branding-and-marketing/01a",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "how-do-i-avoid-branding-that-looks-ai-made",
+      "question": [
+        {
+          "t": "text",
+          "v": "Hoe vermy ek ’n handelsmerk wat lyk asof KI dit gemaak het?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "branding/branding-prompts",
+          "label": "02-branding-and-marketing/01",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "what-logo-files-do-i-actually-need",
+      "question": [
+        {
+          "t": "text",
+          "v": "Watter logolêers het ek regtig nodig?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "branding/brand-applications-and-polish",
+          "label": "02-branding-and-marketing/02",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "what-does-the-sign-maker-need-from-me",
+      "question": [
+        {
+          "t": "text",
+          "v": "Wat het die uithangbordmaker van my nodig?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "branding/brand-applications-and-polish",
+          "label": "02-branding-and-marketing/02",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "is-my-branding-any-good",
+      "note": [
+        {
+          "t": "text",
+          "v": "die kritiekopdrag"
+        }
+      ],
+      "question": [
+        {
+          "t": "text",
+          "v": "Is my handelsmerk enigsins goed?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "branding/brand-applications-and-polish",
+          "label": "02-branding-and-marketing/02",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "where-do-i-actually-find-customers",
+      "question": [
+        {
+          "t": "text",
+          "v": "Waar vind ek regtig kliënte?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "branding/brand-applications-and-polish",
+          "label": "02-branding-and-marketing/02",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "what-does-this-abbreviation-mean",
+      "question": [
+        {
+          "t": "text",
+          "v": "Wat beteken hierdie afkorting?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "lookup/glossary",
+          "label": "Woordelys",
+          "t": "docref"
+        }
+      ]
+    },
+    {
+      "id": "where-did-this-fact-come-from",
+      "question": [
+        {
+          "t": "text",
+          "v": "Waar kom hierdie feit vandaan?"
+        }
+      ],
+      "targets": [
+        {
+          "doc": "lookup/sources",
+          "label": "Bronne- en verifikasieregister",
+          "t": "docref"
+        }
+      ]
+    }
+  ],
+  "lang": "af"
+}

@@ -1,0 +1,2026 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het ’n naam, ’n logo, kleure, lettertipe en ’n stem. Hierdie lêer maak daarvan lêers wat jy werklik kan gebruik, en kontroleer of dit professioneel lyk voordat jy geld spandeer."
+        }
+      ],
+      "hash": "877d8b320d2b08e1",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "8b795e269c5173ba"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die meeste klein besighede slaan hierdie stap oor en ontdek dan die probleem by die uithangbordmaker, by die drukker, of om drie-uur in die oggend wanneer ’n kliënt vra vir \"die logo in vektor\"."
+        }
+      ],
+      "hash": "3d157f6f2a53c865",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "f99f5bb03372a865"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "98ce90ed8b754138",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Eenvoudige betekenisse van die terme in hierdie lêer. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Logolêer wat enige grootte gemaak kan word sonder om vaag te word. SVG, EPS, PDF, AI."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Vektor (vector)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Prentlêer. Goed vir skerms. Word vaag wanneer dit vergroot word. Kan ’n deursigtige agtergrond hê."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "PNG"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Geen wit blok om die logo nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Deursigtige agtergrond (transparent background)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Vaste rangskikking van jou beeldmerk en jou naam."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Logo-opstelling (lockup)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die wit weergawe van jou logo, vir donker agtergronde."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Omgekeer (reversed)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die klein ikoon op ’n blaaieroortjie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Favicon"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "RGB is kleur vir skerms. CMYK is kleur vir drukwerk. Hulle stem nie presies ooreen nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "RGB / CMYK"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Kolletjies per duim (dots per inch). Drukwerk het 300 nodig. Webprente is gewoonlik 72 en lyk vaag wanneer hulle gedruk word."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "DPI"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Ekstra 3mm kleur verby die rand van die papier, sodat die sny geen wit streep laat nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Afloop (bleed)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Genommerde stelsel vir presiese drukkleure."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Pantone"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die styl van die letters."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Lettertipe / font (typeface / font)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Hoe maklik teks teen sy agtergrond gelees kan word."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Kontras (contrast)"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "b2674c649d6feaea"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.3",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 1: die lêers wat jy moet hê"
+        }
+      ],
+      "depth": 2,
+      "hash": "b6f409ae02711041",
+      "id": "part-1-the-files-you-must-have",
+      "kind": "heading",
+      "sourceHash": "7b67d9a1b1b99e56",
+      "text": "Deel 1: die lêers wat jy moet hê"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Maak dit een keer. Sit dit in een vouer. Stuur daardie vouer vir enigiemand wat enigiets vir jou maak."
+        }
+      ],
+      "hash": "be6df7b6a11e16eb",
+      "id": "part-1-the-files-you-must-have.1",
+      "kind": "paragraph",
+      "sourceHash": "ff05423c30e2ac2c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Logolêers"
+        }
+      ],
+      "depth": 3,
+      "hash": "a589fb596bf0ca39",
+      "id": "logo-files",
+      "kind": "heading",
+      "sourceHash": "f1b6f26b8c6b4884",
+      "text": "Logolêers"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "4907fd4466fce8cf",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Lêer"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Formaat"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Waarvoor dit is"
+          }
+        ]
+      ],
+      "id": "logo-files.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Volkleur, vektor"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "SVG en PDF"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Drukkers, uithangbordmakers, enigiets groots"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Volkleur, deursigtige agtergrond"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "PNG, 2000px breed"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Webwerwe, dokumente, e-pos"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Een kleur, swart"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "SVG en PNG"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Stempels, fakse, goedkoop drukwerk, borduurwerk"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Een kleur, wit (omgekeer)"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "SVG en PNG"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Om op ’n donker foto of gekleurde agtergrond te plaas"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Vierkantige ikoon"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "PNG, 1000 x 1000"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Profielfoto’s op sosiale media, WhatsApp Business"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Favicon"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "PNG, 512 x 512"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Die klein ikoon op ’n blaaieroortjie"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "cc5a9fdf1f5831ff"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy wil ook twee rangskikkings van dieselfde logo hê, wat logo-opstellings genoem word:"
+        }
+      ],
+      "hash": "d889584fd46e96cf",
+      "id": "logo-files.2",
+      "kind": "paragraph",
+      "sourceHash": "a06bb320176fbdcb"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Horisontaal"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " — beeldmerk langs die naam. Gebruik op briefhoofde, voertuigdeure, opskrifte van webwerwe."
+        }
+      ],
+      "hash": "ef416b2ebd3955b9",
+      "id": "logo-files.3",
+      "kind": "paragraph",
+      "sourceHash": "7b50085079cd5e14"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Gestapel"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " — beeldmerk bo die naam. Gebruik in vierkantige spasies, profiele op sosiale media, stempels."
+        }
+      ],
+      "hash": "2abfdbcb5c53f861",
+      "id": "logo-files.4",
+      "kind": "paragraph",
+      "sourceHash": "00314d6e99def6f4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Logo wat net in een rangskikking bestaan, sal uiteindelik deur iemand uitgerek of platgedruk word."
+        }
+      ],
+      "hash": "158b48dc3013033b",
+      "id": "logo-files.5",
+      "kind": "paragraph",
+      "sourceHash": "6661f8e27aa705e3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Twee reëls wat die logo beskerm"
+        }
+      ],
+      "depth": 3,
+      "hash": "067712934a2af039",
+      "id": "two-rules-that-protect-the-logo",
+      "kind": "heading",
+      "sourceHash": "d0d2c1844d7bbe04",
+      "text": "Twee reëls wat die logo beskerm"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Vrye ruimte."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Besluit op ’n minimum leë ruimte rondom die logo en skryf dit in jou handelsmerkgids. ’n Eenvoudige reël: laat aan elke kant ruimte gelyk aan die hoogte van die eerste letter. Niks anders kom in daardie ruimte nie."
+        }
+      ],
+      "hash": "c6ea0827bd29e78b",
+      "id": "two-rules-that-protect-the-logo.1",
+      "kind": "paragraph",
+      "sourceHash": "f2d41847b03c2b4f"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Kleinste grootte."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Toets hoe klein dit kan word voordat dit ’n gemors word. Skryf daardie getal neer, in millimeter vir drukwerk en in pixels vir skerms. Onder daardie grootte gebruik jy net die ikoon."
+        }
+      ],
+      "hash": "b64906ee22e92361",
+      "id": "two-rules-that-protect-the-logo.2",
+      "kind": "paragraph",
+      "sourceHash": "6de25e5f26fc4233"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opdrag: maak die lêerkontrolelys vir jou handelsmerk"
+        }
+      ],
+      "depth": 3,
+      "hash": "185040b056e86bba",
+      "id": "prompt-generate-the-file-checklist-for-your-brand",
+      "kind": "heading",
+      "sourceHash": "316a6a580176dd5b",
+      "text": "Opdrag: maak die lêerkontrolelys vir jou handelsmerk"
+    },
+    {
+      "hash": "3b8b7993b792ce82",
+      "id": "prompt-generate-the-file-checklist-for-your-brand.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "BESKRYF DIT, of sê dat jy dit sal aanheg"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "HEKSKODES"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "NAME"
+        }
+      ],
+      "sourceHash": "1802309ea064c9ef",
+      "text": "My logo is: [BESKRYF DIT, of sê dat jy dit sal aanheg]\nMy kleure is: [HEKSKODES]\nMy lettertipes is: [NAME]\n\nSkryf vir my ’n kontrolelys van een bladsy vir \"handelsmerkbates\" wat elke logolêer,\ngrootte en formaat lys wat ek vir ’n klein Suid-Afrikaanse besigheid nodig het, en waarvoor\nelkeen gebruik word.\n\nSluit in: vektorlêers, deursigtige weergawes, weergawes in een kleur, ’n\nomgekeerde weergawe, groottes vir profiele op sosiale media, ’n favicon, en die twee logo-opstellings.\n\nGee my dan ’n reël vir vrye ruimte en ’n reël vir die kleinste grootte van my logo,\nso geskryf dat ’n drukker of uithangbordmaker dit kan volg.\n\nHou dit by een bladsy in eenvoudige taal.",
+      "variant": "prompt"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prompt-generate-the-file-checklist-for-your-brand.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 2: basiese beginsels van drukwerk wat geld spaar"
+        }
+      ],
+      "depth": 2,
+      "hash": "78952d71a4737f6b",
+      "id": "part-2-print-basics-that-save-money",
+      "kind": "heading",
+      "sourceHash": "e2b1809d12c5b13f",
+      "text": "Deel 2: basiese beginsels van drukwerk wat geld spaar"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Drukkers vra vrae wat mense verras. Hier is die antwoorde."
+        }
+      ],
+      "hash": "19a933c6a2115ee4",
+      "id": "part-2-print-basics-that-save-money.1",
+      "kind": "paragraph",
+      "sourceHash": "79ac872ebab7c8c2"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "RGB of CMYK."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Skerms gebruik RGB. Drukwerk gebruik CMYK. ’n Helder skermkleur kan dof en modderig druk. Vra jou drukker vir ’n CMYK-weergawe van jou handelsmerkkleure, en kyk na ’n gedrukte proef voordat jy ’n duisend van enigiets bestel."
+        }
+      ],
+      "hash": "ab604e0a0537b3d6",
+      "id": "part-2-print-basics-that-save-money.2",
+      "kind": "paragraph",
+      "sourceHash": "fda63409c9530c62"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Resolusie."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Drukwerk het 300 DPI nodig. ’n Foto wat van Facebook afgehaal is, is gewoonlik 72 DPI en sal vaag lyk wanneer dit gedruk word. Hou jou oorspronklike fotolêers."
+        }
+      ],
+      "hash": "4357e7e59e3258b1",
+      "id": "part-2-print-basics-that-save-money.3",
+      "kind": "paragraph",
+      "sourceHash": "8897b73df9a5016b"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Afloop."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " As ’n kleur of ’n foto tot by die rand van die papier loop, het die drukker 3mm ekstra verby die rand nodig om in te sny. Vra vir \"3mm afloop\" (\"3mm bleed\"), en jou kunswerk sal nie met wit strepies op die rande terugkom nie."
+        }
+      ],
+      "hash": "c74b9fd84e416b83",
+      "id": "part-2-print-basics-that-save-money.4",
+      "kind": "paragraph",
+      "sourceHash": "95b59b872722004e"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Pantone."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " As presiese kleur saak maak, byvoorbeeld op verpakking, vra oor ’n Pantone-steunkleur. Dit kos meer. Vir die meeste klein besighede is dit nie nodig nie."
+        }
+      ],
+      "hash": "9a2165c6f0152569",
+      "id": "part-2-print-basics-that-save-money.5",
+      "kind": "paragraph",
+      "sourceHash": "f1a1e8143fd2e5f6"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Borduurwerk."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Hemde en pette het ’n eenvoudige, stewige ontwerp in een kleur nodig. Fyn lyne en klein teks verdwyn in garing. Dit is waarom die weergawe van jou logo in een kleur bestaan."
+        }
+      ],
+      "hash": "cedfab4e851a8f24",
+      "id": "part-2-print-basics-that-save-money.6",
+      "kind": "paragraph",
+      "sourceHash": "f077200309c004bc"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Viniel en uithangborde."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Uithangbordmakers het vektor nodig. ’n PNG sal geweier word, of sal met sagte rande terugkom."
+        }
+      ],
+      "hash": "1589b55d78d3a7f2",
+      "id": "part-2-print-basics-that-save-money.7",
+      "kind": "paragraph",
+      "sourceHash": "2fc9488fde1085b9"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "part-2-print-basics-that-save-money.8",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 3: waar die handelsmerk werklik gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "7a5106cf050591b6",
+      "id": "part-3-where-the-brand-actually-gets-used",
+      "kind": "heading",
+      "sourceHash": "28e23e5a8ad4d991",
+      "text": "Deel 3: waar die handelsmerk werklik gebruik word"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Werk hierdeur in volgorde van hoeveel elkeen vir jou verdien. Die meeste eenpersoonbesighede behoort ná item 6 op te hou."
+        }
+      ],
+      "hash": "b9a01ecdaa1a368a",
+      "id": "part-3-where-the-brand-actually-gets-used.1",
+      "kind": "paragraph",
+      "sourceHash": "534d433644e30ba9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "1. WhatsApp Business-profiel"
+        }
+      ],
+      "depth": 3,
+      "hash": "16a5de4ae9838e98",
+      "id": "1-whatsapp-business-profile",
+      "kind": "heading",
+      "sourceHash": "4b48f9102ed5850d",
+      "text": "1. WhatsApp Business-profiel"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die ding wat jy besit wat die meeste gesien word. Die vierkantige ikoonweergawe van die logo as die profielfoto. Besigheidsnaam, ure, adres en ’n beskrywing van een reël in jou stem."
+        }
+      ],
+      "hash": "8bf2c2acd065cc7a",
+      "id": "1-whatsapp-business-profile.1",
+      "kind": "paragraph",
+      "sourceHash": "4b62a3592191021e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "2. Google Business Profile"
+        }
+      ],
+      "depth": 3,
+      "hash": "220f8273af5c3598",
+      "id": "2-google-business-profile",
+      "kind": "heading",
+      "sourceHash": "220f8273af5c3598",
+      "text": "2. Google Business Profile"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Logo, voorbladfoto, en minstens tien werklike foto’s van werklike werk. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bemarkingsopdragte"
+            }
+          ],
+          "doc": "branding/marketing-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "6a0b4118613309ea",
+      "id": "2-google-business-profile.1",
+      "kind": "paragraph",
+      "sourceHash": "b59f5c9261d7e4d8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "3. Jou kwotasie en faktuur"
+        }
+      ],
+      "depth": 3,
+      "hash": "a2fa04ac63c7b2d2",
+      "id": "3-your-quote-and-invoice",
+      "kind": "heading",
+      "sourceHash": "bc426af0b2b0427c",
+      "text": "3. Jou kwotasie en faktuur"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Logo links bo, jou kleure spaarsamig gebruik, jou lettertipe vir die hoofteks regdeur. Niks anders nie. ’n Faktuur is nie die plek vir ’n ontwerp nie."
+        }
+      ],
+      "hash": "76f7ea306e44d60a",
+      "id": "3-your-quote-and-invoice.1",
+      "kind": "paragraph",
+      "sourceHash": "c2570a74bc4e92e2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sjablone is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Watter sjabloon om wanneer te gebruik"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Hou die uitleg eenvoudig en die besonderhede korrek. ’n Verkeerde BTW-reël maak meer saak as ’n mooi opskrif."
+        }
+      ],
+      "hash": "2e94c2cc2e035f8e",
+      "id": "3-your-quote-and-invoice.2",
+      "kind": "paragraph",
+      "sourceHash": "ef6b144368a83031"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "4. E-poshandtekening"
+        }
+      ],
+      "depth": 3,
+      "hash": "d77a98d9234108e4",
+      "id": "4-email-signature",
+      "kind": "heading",
+      "sourceHash": "7669b81054be492a",
+      "text": "4. E-poshandtekening"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Naam, besigheidsnaam, rol, foon, e-pos, webwerf. Hoogstens een kleurlyn. Geen groot prente nie, geen aanhalings nie, geen \"gestuur van my foon\" nie, geen ikone vir sosiale media wat in die helfte van die e-posprogramme breek nie."
+        }
+      ],
+      "hash": "af070c878ce6bf19",
+      "id": "4-email-signature.1",
+      "kind": "paragraph",
+      "sourceHash": "e5c9460eed8ff679"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "5. Voertuigbelettering"
+        }
+      ],
+      "depth": 3,
+      "hash": "fa60e575e1ba8b93",
+      "id": "5-vehicle-signage",
+      "kind": "heading",
+      "sourceHash": "2ec5af700df16ff9",
+      "text": "5. Voertuigbelettering"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dikwels die goedkoopste advertensie wat ’n plaaslike besigheid kan koop, en ’n aftrekbare uitgawe."
+        }
+      ],
+      "hash": "c04f66b225a18755",
+      "id": "5-vehicle-signage.1",
+      "kind": "paragraph",
+      "sourceHash": "eb65313a099dfb99"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Reëls: die foonnommer is die grootste ding ná die naam. Wat jy doen, moet in minder as drie sekondes van ’n ander baan af leesbaar wees. Hoogstens twee kleure. Geen fyn detail nie. Kyk na jou munisipale verordeninge vir beperkings op grootte voordat jy bestel."
+        }
+      ],
+      "hash": "a2e3714e60be6cbc",
+      "id": "5-vehicle-signage.2",
+      "kind": "paragraph",
+      "sourceHash": "feb700ff2029fb83"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "6. Besigheidskaartjie"
+        }
+      ],
+      "depth": 3,
+      "hash": "b6ce1a1bbcd8ef29",
+      "id": "6-business-card",
+      "kind": "heading",
+      "sourceHash": "a16035a4793e8ba7",
+      "text": "6. Besigheidskaartjie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Steeds nuttig in Suid-Afrika, veral vir ambagte en by markte. Naam, wat jy doen, foon, WhatsApp, e-pos. Alles anders is opsioneel. ’n QR-kode na jou WhatsApp is meer werd as ’n webadres."
+        }
+      ],
+      "hash": "4bbdddf05b0ee4d5",
+      "id": "6-business-card.1",
+      "kind": "paragraph",
+      "sourceHash": "662e49d99f1a3894"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "7. Profiel- en voorbladprente op sosiale media"
+        }
+      ],
+      "depth": 3,
+      "hash": "78b1e52d8e2c0537",
+      "id": "7-social-profile-and-cover-images",
+      "kind": "heading",
+      "sourceHash": "df6f492030867f44",
+      "text": "7. Profiel- en voorbladprente op sosiale media"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Elke platform sny anders. Hou enigiets belangriks in die middel. Toets jou profielfoto op duimnaelgrootte op ’n foon voordat jy daarop besluit."
+        }
+      ],
+      "hash": "fbf286b95014f779",
+      "id": "7-social-profile-and-cover-images.1",
+      "kind": "paragraph",
+      "sourceHash": "4b926e2b00f8364e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "8. Uithangbord en venster"
+        }
+      ],
+      "depth": 3,
+      "hash": "5e87c6888d873812",
+      "id": "8-signage-and-window",
+      "kind": "heading",
+      "sourceHash": "3d6afeb419cd4e0e",
+      "text": "8. Uithangbord en venster"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n perseel het: naam, wat jy doen, ure. Leesbaar van oorkant die pad."
+        }
+      ],
+      "hash": "89728356749a22fd",
+      "id": "8-signage-and-window.1",
+      "kind": "paragraph",
+      "sourceHash": "37152c1c24c2de81"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "9. Verpakking en etikette"
+        }
+      ],
+      "depth": 3,
+      "hash": "22422b237c803bbd",
+      "id": "9-packaging-and-labels",
+      "kind": "heading",
+      "sourceHash": "682d1c5f21a8031a",
+      "text": "9. Verpakking en etikette"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n fisiese produk verkoop. Vir kos, kyk eers na "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Kosbesigheid"
+            }
+          ],
+          "doc": "business-types/food",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", want etikettering word gereguleer kragtens R146 van 2012, en as jy dit verkeerd kry, moet jy herdruk."
+        }
+      ],
+      "hash": "93a6d1d7dd0be228",
+      "id": "9-packaging-and-labels.1",
+      "kind": "paragraph",
+      "sourceHash": "281ee9542b293835"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "10. Uniform of hemp"
+        }
+      ],
+      "depth": 3,
+      "hash": "68bc6031a7b944fa",
+      "id": "10-uniform-or-shirt",
+      "kind": "heading",
+      "sourceHash": "53ed176e6dfa7eb6",
+      "text": "10. Uniform of hemp"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Logo in een kleur, geborduur of gedruk. Klein op die bors, groter op die rug saam met die foonnommer."
+        }
+      ],
+      "hash": "65546286c69a9786",
+      "id": "10-uniform-or-shirt.1",
+      "kind": "paragraph",
+      "sourceHash": "58f50bdd490f81af"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opdrag: beplan jou toepassings"
+        }
+      ],
+      "depth": 3,
+      "hash": "9ac37fc39bc17de7",
+      "id": "prompt-plan-your-applications",
+      "kind": "heading",
+      "sourceHash": "355257838579f32f",
+      "text": "Opdrag: beplan jou toepassings"
+    },
+    {
+      "hash": "1896bf240d18fc37",
+      "id": "prompt-plan-your-applications.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BESIGHEIDSTIPE"
+        },
+        {
+          "key": "town",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "DORP/STAD"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PLAK DIE HANDELSMERKGIDS VAN EEN BLADSY"
+        }
+      ],
+      "sourceHash": "3eb12e8d3e05004d",
+      "text": "My besigheid is: [BESIGHEIDSTIPE] in [DORP/STAD], Suid-Afrika.\nEk is die eienaar en die enigste werker.\nMy handelsmerkgids sê: [PLAK DIE HANDELSMERKGIDS VAN EEN BLADSY]\n\nLys die handelsmerktoepassings wat ek moet maak, in volgorde van hoeveel elkeen\nvir my waarskynlik sal verdien, vir my spesifieke soort besigheid.\n\nSê vir my by elkeen:\n- Wat presies daarop kom\n- Wat om weg te laat\n- Die lêerformaat en grootte om aan die verskaffer te gee\n- ’n Rowwe idee of dit ’n doen-dit-self-werk of ’n betaalde werk is\n- Of dit kan wag\n\nWees eerlik oor watter ek nie nodig het nie. Ek het baie min geld.\n\nStop ná die lys. Moenie nog enigiets ontwerp nie.",
+      "variant": "prompt"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prompt-plan-your-applications.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 4: die gehaltetoetse"
+        }
+      ],
+      "depth": 2,
+      "hash": "6a40a99fd9fd21ce",
+      "id": "part-4-the-quality-tests",
+      "kind": "heading",
+      "sourceHash": "56f400fc13155b66",
+      "text": "Deel 4: die gehaltetoetse"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Doen elkeen van hierdie toetse voordat jy geld spandeer. Hulle neem tien minute en vang byna alles."
+        }
+      ],
+      "hash": "cbe41fdc6f48a115",
+      "id": "part-4-the-quality-tests.1",
+      "kind": "paragraph",
+      "sourceHash": "f8091fe5932a8180"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Die mededinger-ruiltoets."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Sit ’n mededinger se naam op jou logo, slagspreuk en beskrywing. Werk dit steeds? As dit wel werk, is dit generies."
+        }
+      ],
+      "hash": "90b621d5264f2f18",
+      "id": "part-4-the-quality-tests.2",
+      "kind": "paragraph",
+      "sourceHash": "c57f1e1148949ab0"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Die eenkleurtoets."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Druk dit net in swart. Is dit steeds leesbaar? As die ontwerp op kleur staatmaak om verstaan te word, sal dit misluk op ’n stempel, ’n faks, ’n fotostaat en ’n hemp."
+        }
+      ],
+      "hash": "9101ee35f4202bab",
+      "id": "part-4-the-quality-tests.3",
+      "kind": "paragraph",
+      "sourceHash": "944274a259f3aef1"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Die duimnaeltoets."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Verklein dit tot omtrent die grootte van ’n WhatsApp-profielfoto op ’n foon. Kan jy steeds sien wat dit is?"
+        }
+      ],
+      "hash": "5b4ad9a187c77e11",
+      "id": "part-4-the-quality-tests.4",
+      "kind": "paragraph",
+      "sourceHash": "1af71efc92536b6d"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Die knyp-oog-toets."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Knyp jou oë half toe totdat dit vervaag. Is die vorm steeds kenmerkend, of word dit ’n grys klont?"
+        }
+      ],
+      "hash": "d03c560d677c27a6",
+      "id": "part-4-the-quality-tests.5",
+      "kind": "paragraph",
+      "sourceHash": "e9c52f2292ccffca"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Die fotostaattoets."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Druk dit, maak ’n fotostaat van die drukstuk, en maak dan ’n fotostaat van die afskrif. So lyk jou logo nadat dit deur drie van jou kliënte se kantore was."
+        }
+      ],
+      "hash": "e6be35299b4e1a1a",
+      "id": "part-4-the-quality-tests.6",
+      "kind": "paragraph",
+      "sourceHash": "b674de2a46a83300"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Die afstandtoets."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Sit dit op die vloer en loop vyf meter terug. Dit is min of meer soos ’n voertuig wat by jou verbyry."
+        }
+      ],
+      "hash": "1b1da931129e63c0",
+      "id": "part-4-the-quality-tests.7",
+      "kind": "paragraph",
+      "sourceHash": "b88d4d84bdc8a7af"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Die telefoontoets."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Sê jou besigheidsnaam en webadres hardop vir iemand wat dit nog nooit gehoor het nie. Kan hulle dit korrek terugspel?"
+        }
+      ],
+      "hash": "cde5a29b10ee01e2",
+      "id": "part-4-the-quality-tests.8",
+      "kind": "paragraph",
+      "sourceHash": "e1a4a918b958411a"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Die drie-sekonde-toets."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Wys jou besigheidskaartjie of voertuig vir drie sekondes vir iemand. Vra wat die besigheid doen en wat die foonnommer was. As hulle nie albei kan beantwoord nie, is daar te veel daarop."
+        }
+      ],
+      "hash": "4f7c4356c53b4616",
+      "id": "part-4-the-quality-tests.9",
+      "kind": "paragraph",
+      "sourceHash": "7731be23f2401e0e"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Die konsekwentheidstoets."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Sit jou faktuur, jou besigheidskaartjie, jou WhatsApp-profiel en een plasing op sosiale media langs mekaar. Lyk hulle soos dieselfde besigheid? Gebrek aan konsekwentheid is die algemeenste rede waarom klein handelsmerke amateuragtig lyk, en dit kos niks om reg te maak nie."
+        }
+      ],
+      "hash": "bf7b52ea3da7b970",
+      "id": "part-4-the-quality-tests.10",
+      "kind": "paragraph",
+      "sourceHash": "70372cc75e1b1735"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "part-4-the-quality-tests.11",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 5: die kritiekopdrag"
+        }
+      ],
+      "depth": 2,
+      "hash": "10ad11d0b6215a66",
+      "id": "part-5-the-critique-prompt",
+      "kind": "heading",
+      "sourceHash": "0efd13713df3562d",
+      "text": "Deel 5: die kritiekopdrag"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik dit wanneer jy dink jy is klaar. Dit is doelbewus streng geskryf."
+        }
+      ],
+      "hash": "9afdba1dd495161b",
+      "id": "part-5-the-critique-prompt.1",
+      "kind": "paragraph",
+      "sourceHash": "77cdb18857f96cf4"
+    },
+    {
+      "hash": "c66aa7a35515d8a5",
+      "id": "part-5-the-critique-prompt.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "NAAM"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "SLAGSPREUK of \"geen\""
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PLAK"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "BESKRYF DIT IN DETAIL, of heg die prent aan"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "HEKSKODES"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "NAME"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "DRIE WOORDE"
+        }
+      ],
+      "sourceHash": "95cd1f28bdcbf267",
+      "text": "Ek is ’n eenpersoonbesigheid in Suid-Afrika. Hier is my handelsmerk:\n\nBesigheidsnaam: [NAAM]\nSlagspreuk: [SLAGSPREUK of \"geen\"]\nBeskrywing in een sin: [PLAK]\nLogo: [BESKRYF DIT IN DETAIL, of heg die prent aan]\nKleure: [HEKSKODES]\nLettertipes: [NAME]\nStem: [DRIE WOORDE]\n\nKritiseer dit eerlik. Moenie bemoedigend wees nie. Neem aan ek kan dit vat.\n\nGaan deur elkeen van hierdie punte en antwoord reguit:\n\n1. Lyk enige deel hiervan asof dit deur KI gegenereer is of uit ’n sjabloon kom? Wys na\n die spesifieke element en sê waarom.\n2. Sou dit steeds werk as ’n mededinger sy naam daarop sit? Indien wel,\n watter dele?\n3. Watter visuele cliché uit my bedryf herhaal ek sonder om dit te besef?\n4. Waar sal dit breek: klein groottes, een kleur, borduurwerk, ’n voertuig,\n ’n swart-en-wit-drukstuk?\n5. Watter pare van teks op agtergrond lyk riskant vir leesbaarheid? Ek sal\n die presiese kontrasverhoudings self by webaim.org nagaan, so moenie\n beweer dat jy hulle bereken het nie.\n6. Sê die naam, slagspreuk en beskrywing almal dieselfde ding, of\n weerspreek hulle mekaar?\n7. Wat is die enkele swakste element, en waarmee sou jy dit vervang?\n8. Is enige deel hiervan deur ’n beeldhulpmiddel gegenereer eerder as in ’n\n werklike font geset of geteken? Indien wel, sê vir my watter dele ek dalk sal sukkel om te besit\n of te beskerm, en wat ek met die hand moet oordoen.\n\nEindig met die drie veranderinge wat dit die meeste sou verbeter, in volgorde van\nimpak. Wees spesifiek. Moenie ’n volledige herontwerp voorstel nie.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik dan nog een:"
+        }
+      ],
+      "hash": "d62027fa49eeab36",
+      "id": "part-5-the-critique-prompt.3",
+      "kind": "paragraph",
+      "sourceHash": "89f1cfa063131d7a"
+    },
+    {
+      "hash": "29bfebe469bdece6",
+      "id": "part-5-the-critique-prompt.4",
+      "kind": "code",
+      "sourceHash": "06cd81ab48b98cb3",
+      "text": "Gegrond op daardie kritiek, gee my 5 spesifieke regstellings net vir die swakste\nelement. Hou alles anders dieselfde.\n\nNommer hulle 1 tot 5. Stop ná die 5 opsies.",
+      "variant": "prompt"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "part-5-the-critique-prompt.5",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 6: waarvoor om te betaal en wat om self te doen"
+        }
+      ],
+      "depth": 2,
+      "hash": "80e6d8606231f57e",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself",
+      "kind": "heading",
+      "sourceHash": "9124dac9de27618a",
+      "text": "Deel 6: waarvoor om te betaal en wat om self te doen"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Doen self, gratis:"
+        }
+      ],
+      "hash": "507a70c45391dbd9",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself.1",
+      "kind": "paragraph",
+      "sourceHash": "fb51288de4ee7608"
+    },
+    {
+      "hash": "2845ed1639a4ef20",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Die handelsmerk-kortbeskrywing, naam, slagspreuk en stem, met "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Handelsmerkopdragte"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Kleure en die keuse van lettertipe uit Google Fonts"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Profiel- en voorbladprente vir sosiale media in Canva"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Foto’s van jou eie werk op jou foon"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jou faktuur- en kwotasiesjablone"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "59c659590ea18c54"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is die moeite werd om hiervoor te betaal, in hierdie volgorde, wanneer jy geld het:"
+        }
+      ],
+      "hash": "9947f656686c8069",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself.3",
+      "kind": "paragraph",
+      "sourceHash": "b9944dfb18547d12"
+    },
+    {
+      "hash": "b79fb24b3365a46d",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself.4",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "’n Vektorhertekening van jou logo."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Die ontwerpaankoop met die hoogste waarde vir ’n klein besigheid. Kry twee of drie kwotasies."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Voertuigbelettering."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Verdien sy koste vinniger terug as byna enigiets anders vir ’n plaaslike besigheid."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "’n Uithangbord vir jou perseel"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", as jy een het."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "’n Behoorlike fotosessie"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", eers wanneer jy werk het wat die moeite werd is om af te neem."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "’n Ontwerper om jou handelsmerk te hersien"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", goedkoper as ’n ontwerper om dit te bou, en dikwels nuttiger."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "b16f9c8e88424245",
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is nie die moeite werd om in die eerste jaar hiervoor te betaal nie:"
+        }
+      ],
+      "hash": "baab12ee6dea87ce",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself.5",
+      "kind": "paragraph",
+      "sourceHash": "ccae69cfb98ee50f"
+    },
+    {
+      "hash": "d470acb7a5ce2702",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself.6",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "’n Volledige pakket vir handelsmerkidentiteit"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Webwerf, voordat jy kliënte het"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Gedrukte brosjures"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Enige soort handelsware met jou handelsmerk"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "4fb7c3199efce078"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself.7",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 7: jou handelsmerkvouer"
+        }
+      ],
+      "depth": 2,
+      "hash": "3b2d8538b02de2e1",
+      "id": "part-7-your-brand-folder",
+      "kind": "heading",
+      "sourceHash": "a6329b9b04cf3a3a",
+      "text": "Deel 7: jou handelsmerkvouer"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Stel dit op in Google Drive of op jou skootrekenaar. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Gratis gereedskap"
+            }
+          ],
+          "doc": "paperwork/free-tools",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "08658adf9dd01284",
+      "id": "part-7-your-brand-folder.1",
+      "kind": "paragraph",
+      "sourceHash": "823f4646c437a831"
+    },
+    {
+      "hash": "70d7048c313c49a1",
+      "id": "part-7-your-brand-folder.2",
+      "kind": "code",
+      "sourceHash": "70d7048c313c49a1",
+      "text": "07 Brand/\n├── brand-guide.pdf The one-page guide from Prompt 10\n├── logo/\n│ ├── logo-colour.svg\n│ ├── logo-colour.pdf\n│ ├── logo-colour-2000px.png\n│ ├── logo-black.svg\n│ ├── logo-white.svg\n│ ├── icon-1000px.png\n│ └── favicon-512px.png\n├── fonts/ The font files you downloaded\n├── colours.txt Hex codes, and CMYK from your printer\n├── photos/ Your best 20 work photos, full size\n└── templates/ Quote, invoice, email signature",
+      "variant": "listing"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Maak ’n rugsteun op ’n ander plek as jou skootrekenaar. As jou skootrekenaar gesteel word en die enigste afskrif van jou vektorlogo saam daarmee verdwyn, betaal jy om dit weer te laat teken."
+        }
+      ],
+      "hash": "9c72af97ebe4908c",
+      "id": "part-7-your-brand-folder.3",
+      "kind": "paragraph",
+      "sourceHash": "f172d08123ad1016"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "part-7-your-brand-folder.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die een reël"
+        }
+      ],
+      "depth": 2,
+      "hash": "e0acacee50ff6c7c",
+      "id": "the-one-rule",
+      "kind": "heading",
+      "sourceHash": "ec2d44107190aa4d",
+      "text": "Die een reël"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kies dit, gebruik dit oral, en los dit ’n jaar lank uit."
+        }
+      ],
+      "hash": "0b43dd32872cbd2c",
+      "id": "the-one-rule.1",
+      "kind": "paragraph",
+      "sourceHash": "b06ee6eb65dc6c8b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Gewone handelsmerk wat konsekwent gebruik word, klop ’n briljante handelsmerk wat onkonsekwent gebruik word. Kliënte herken jou deur herhaling, nie deur slimheid nie."
+        }
+      ],
+      "hash": "2e3144a482c50b07",
+      "id": "the-one-rule.2",
+      "kind": "paragraph",
+      "sourceHash": "5539d16efa242d03"
+    }
+  ],
+  "contentHash": "3e657e22d35225eb",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Handelsmerktoepassings en afronding",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "part-1-the-files-you-must-have",
+      "text": "Deel 1: die lêers wat jy moet hê"
+    },
+    {
+      "depth": 3,
+      "id": "logo-files",
+      "text": "Logolêers"
+    },
+    {
+      "depth": 3,
+      "id": "two-rules-that-protect-the-logo",
+      "text": "Twee reëls wat die logo beskerm"
+    },
+    {
+      "depth": 3,
+      "id": "prompt-generate-the-file-checklist-for-your-brand",
+      "text": "Opdrag: maak die lêerkontrolelys vir jou handelsmerk"
+    },
+    {
+      "depth": 2,
+      "id": "part-2-print-basics-that-save-money",
+      "text": "Deel 2: basiese beginsels van drukwerk wat geld spaar"
+    },
+    {
+      "depth": 2,
+      "id": "part-3-where-the-brand-actually-gets-used",
+      "text": "Deel 3: waar die handelsmerk werklik gebruik word"
+    },
+    {
+      "depth": 3,
+      "id": "1-whatsapp-business-profile",
+      "text": "1. WhatsApp Business-profiel"
+    },
+    {
+      "depth": 3,
+      "id": "2-google-business-profile",
+      "text": "2. Google Business Profile"
+    },
+    {
+      "depth": 3,
+      "id": "3-your-quote-and-invoice",
+      "text": "3. Jou kwotasie en faktuur"
+    },
+    {
+      "depth": 3,
+      "id": "4-email-signature",
+      "text": "4. E-poshandtekening"
+    },
+    {
+      "depth": 3,
+      "id": "5-vehicle-signage",
+      "text": "5. Voertuigbelettering"
+    },
+    {
+      "depth": 3,
+      "id": "6-business-card",
+      "text": "6. Besigheidskaartjie"
+    },
+    {
+      "depth": 3,
+      "id": "7-social-profile-and-cover-images",
+      "text": "7. Profiel- en voorbladprente op sosiale media"
+    },
+    {
+      "depth": 3,
+      "id": "8-signage-and-window",
+      "text": "8. Uithangbord en venster"
+    },
+    {
+      "depth": 3,
+      "id": "9-packaging-and-labels",
+      "text": "9. Verpakking en etikette"
+    },
+    {
+      "depth": 3,
+      "id": "10-uniform-or-shirt",
+      "text": "10. Uniform of hemp"
+    },
+    {
+      "depth": 3,
+      "id": "prompt-plan-your-applications",
+      "text": "Opdrag: beplan jou toepassings"
+    },
+    {
+      "depth": 2,
+      "id": "part-4-the-quality-tests",
+      "text": "Deel 4: die gehaltetoetse"
+    },
+    {
+      "depth": 2,
+      "id": "part-5-the-critique-prompt",
+      "text": "Deel 5: die kritiekopdrag"
+    },
+    {
+      "depth": 2,
+      "id": "part-6-what-to-pay-for-and-what-to-do-yourself",
+      "text": "Deel 6: waarvoor om te betaal en wat om self te doen"
+    },
+    {
+      "depth": 2,
+      "id": "part-7-your-brand-folder",
+      "text": "Deel 7: jou handelsmerkvouer"
+    },
+    {
+      "depth": 2,
+      "id": "the-one-rule",
+      "text": "Die een reël"
+    }
+  ],
+  "id": "branding/brand-applications-and-polish",
+  "kind": "guide",
+  "lang": "af",
+  "order": 4,
+  "readingTime": 11,
+  "related": [
+    "branding/marketing-prompts",
+    "paperwork/which-template-to-use-when",
+    "business-types/food",
+    "branding/branding-prompts",
+    "paperwork/free-tools"
+  ],
+  "route": "branding/brand-applications-and-polish/",
+  "section": "branding",
+  "slug": "brand-applications-and-polish",
+  "sourcePath": "02 Branding and marketing/03-brand-applications-and-polish.md",
+  "sources": {
+    "acts": [],
+    "entries": [
+      "regulation-r146-of-2012",
+      "webaim-contrast-checker"
+    ]
+  },
+  "summary": "Jy het ’n naam, ’n logo, kleure, lettertipe en ’n stem. Hierdie lêer maak daarvan lêers wat jy werklik kan gebruik, en kontroleer of dit professioneel lyk voordat jy geld spandeer.",
+  "tags": [
+    "prompts"
+  ],
+  "terms": [
+    {
+      "meaning": "’n Logolêer wat enige grootte gemaak kan word sonder om vaag te word. SVG, EPS, PDF, AI.",
+      "term": "Vektor (vector)"
+    },
+    {
+      "meaning": "’n Prentlêer. Goed vir skerms. Word vaag wanneer dit vergroot word. Kan ’n deursigtige agtergrond hê.",
+      "term": "PNG"
+    },
+    {
+      "meaning": "Geen wit blok om die logo nie.",
+      "term": "Deursigtige agtergrond (transparent background)"
+    },
+    {
+      "meaning": "’n Vaste rangskikking van jou beeldmerk en jou naam.",
+      "term": "Logo-opstelling (lockup)"
+    },
+    {
+      "meaning": "Die wit weergawe van jou logo, vir donker agtergronde.",
+      "term": "Omgekeer (reversed)"
+    },
+    {
+      "meaning": "Die klein ikoon op ’n blaaieroortjie.",
+      "term": "Favicon"
+    },
+    {
+      "meaning": "RGB is kleur vir skerms. CMYK is kleur vir drukwerk. Hulle stem nie presies ooreen nie.",
+      "term": "RGB / CMYK"
+    },
+    {
+      "meaning": "Kolletjies per duim (dots per inch). Drukwerk het 300 nodig. Webprente is gewoonlik 72 en lyk vaag wanneer hulle gedruk word.",
+      "term": "DPI"
+    },
+    {
+      "meaning": "Ekstra 3mm kleur verby die rand van die papier, sodat die sny geen wit streep laat nie.",
+      "term": "Afloop (bleed)"
+    },
+    {
+      "meaning": "’n Genommerde stelsel vir presiese drukkleure.",
+      "term": "Pantone"
+    },
+    {
+      "meaning": "Die styl van die letters.",
+      "term": "Lettertipe / font (typeface / font)"
+    },
+    {
+      "meaning": "Hoe maklik teks teen sy agtergrond gelees kan word.",
+      "term": "Kontras (contrast)"
+    }
+  ],
+  "title": "Handelsmerktoepassings en afronding",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}
