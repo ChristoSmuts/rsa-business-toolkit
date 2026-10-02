@@ -1,0 +1,84 @@
+---
+/**
+ * Every route generated from the manifest, in every enabled language (WP-20 milestone 2): each
+ * document through `Doc.astro`, and each section landing that is not itself a document.
+ * Static pages beside this file (`index`, `contents`, `templates/`, `about`, `search`) win over
+ * this catch-all, and `contentPages` refuses a content route that collides with one of them.
+ */
+import { getCollection } from 'astro:content';
+import Doc from '../../layouts/Doc.astro';
+import Page from '../../layouts/Page.astro';
+import SectionLanding from '../../components/pages/SectionLanding.astro';
+import { useTranslations, type TranslationKey } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { loadDoc, loadGlossary, loadManifest, loadSources } from '../../lib/content/collections';
+import { sectionDocIds } from '../../lib/content/manifest';
+import type { Doc as ContentDoc } from '../../lib/content/schema';
+import {
+  contentPageTitle,
+  contentStaticPaths,
+  docContentLang,
+  type ContentPage,
+} from '../../lib/pages';
+
+export async function getStaticPaths() {
+  return contentStaticPaths(await loadManifest());
+}
+
+interface Props {
+  locale: Locale;
+  page: ContentPage;
+}
+
+const { locale, page } = Astro.props;
+const manifest = await loadManifest();
+const t = useTranslations(locale);
+
+async function requireDoc(id: string): Promise<ContentDoc> {
+  const doc = await loadDoc(docContentLang(manifest, id, locale), id);
+  if (!doc)
+    throw new Error(`${id} is in the manifest but not in src/data. Run \`pnpm content:build\`.`);
+  return doc;
+}
+
+const doc = page.kind === 'doc' ? await requireDoc(page.docId) : undefined;
+const contentLang = doc ? (doc.lang as Locale) : locale;
+const glossary = doc ? await loadGlossary(contentLang) : undefined;
+const sources = await loadSources(
+  doc ? contentLang : docContentLang(manifest, 'lookup/sources', locale),
+);
+const businessTypes = (await getCollection('businessTypes')).map((entry) => entry.data);
+const sectionDescription =
+  page.kind === 'section' ? t(`nav.sections.${page.sectionId}.description` as TranslationKey) : '';
+const sectionDocs =
+  page.kind === 'section'
+    ? await Promise.all(sectionDocIds(manifest, page.sectionId).map((id) => requireDoc(id)))
+    : [];
+---
+
+{doc ? (
+  <Doc
+    locale={locale}
+    manifest={manifest}
+    doc={doc}
+    glossary={glossary}
+    sources={sources}
+    businessTypes={businessTypes}
+  />
+) : (
+  <Page
+    locale={locale}
+    manifest={manifest}
+    route={page.route}
+    title={contentPageTitle(manifest, page, locale, t)}
+    description={sectionDescription}
+  >
+    <SectionLanding
+      locale={locale}
+      manifest={manifest}
+      sectionId={page.sectionId}
+      docs={sectionDocs}
+      checkedOn={sources?.checkedOn ?? ''}
+    />
+  </Page>
+)}

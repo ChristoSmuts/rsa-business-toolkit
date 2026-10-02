@@ -1,0 +1,132 @@
+---
+/**
+ * `/contents/`: every document and its sections, in reading order (build plan B1: "full site
+ * map, every doc + heading"). It is also the fallback the search page and the 404 page point to,
+ * so it must work with nothing but links.
+ */
+import Page from '../../layouts/Page.astro';
+import Breadcrumb from '../../components/navigation/Breadcrumb.astro';
+import { useTranslations } from '../../i18n';
+import { getLocale, type Locale } from '../../i18n/locales';
+import { loadDoc, loadManifest } from '../../lib/content/collections';
+import { docHref, docTitle, orderedSections, sectionHref } from '../../lib/content/manifest';
+import { localeStaticPaths } from '../../lib/i18n-routes';
+import { TERMS_HEADING_ID } from '../../lib/content/render';
+import { docContentLang, pageTitle } from '../../lib/pages';
+import { href } from '../../lib/paths';
+import { APP_ROUTES } from '../../lib/routes';
+
+export function getStaticPaths() {
+  return localeStaticPaths();
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const manifest = await loadManifest();
+
+const sections = await Promise.all(
+  orderedSections(manifest).map(async (section) => ({
+    id: section.id,
+    title: section.titles[locale] ?? section.titles.en ?? section.id,
+    href: sectionHref(manifest, section.id, locale),
+    docs: await Promise.all(
+      section.docs.map(async (id) => {
+        const lang = docContentLang(manifest, id, locale);
+        const doc = await loadDoc(lang, id);
+        return {
+          id,
+          title: docTitle(manifest, id, locale),
+          href: docHref(manifest, id, locale),
+          lang: lang === locale ? undefined : (getLocale(lang)?.hreflang ?? lang),
+          headings: (doc?.headings ?? []).filter(
+            (heading) => heading.depth === 2 && heading.id !== TERMS_HEADING_ID,
+          ),
+        };
+      }),
+    ),
+  })),
+);
+---
+
+<Page
+  locale={locale}
+  manifest={manifest}
+  route={APP_ROUTES.contents}
+  title={pageTitle(t, t('contents.title'))}
+  description={t('contents.metaDescription')}
+>
+  <div class="st-container st-stack st-stack-lg st-contents">
+    <Breadcrumb
+      crumbs={[
+        { href: href(locale, APP_ROUTES.home), label: t('nav.home') },
+        { href: undefined, label: t('contents.title') },
+      ]}
+      locale={locale}
+    />
+    <h1>{t('contents.title')}</h1>
+    <p class="st-lead">{t('contents.intro')}</p>
+    {sections.map((section) => (
+      <section class="st-stack" aria-labelledby={`contents-${section.id}`}>
+        <h2 id={`contents-${section.id}`}>
+          {section.href ? <a href={section.href}>{section.title}</a> : section.title}
+        </h2>
+        <ol class="st-contents__docs">
+          {section.docs.map((doc) => (
+            <li>
+              <a class="st-contents__doc" href={doc.href}>
+                {doc.title}
+              </a>
+              {doc.headings.length > 0 && (
+                <ul
+                  class="st-contents__headings"
+                  aria-label={t('contents.docSections', { title: doc.title })}
+                  lang={doc.lang}
+                >
+                  {doc.headings.map((heading) => (
+                    <li>
+                      <a href={`${doc.href}#${heading.id}`}>{heading.text}</a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))}
+  </div>
+</Page>
+
+<style>
+  .st-contents {
+    padding-block: var(--st-space-5) var(--st-space-8);
+  }
+
+  .st-contents__docs {
+    display: grid;
+    gap: var(--st-space-4);
+    max-inline-size: var(--st-measure);
+  }
+
+  .st-contents__doc {
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-contents__headings {
+    display: grid;
+    gap: var(--st-space-1);
+    margin-block-start: var(--st-space-2);
+    font-size: var(--st-text-sm);
+  }
+
+  .st-contents a {
+    display: inline-block;
+    min-block-size: var(--st-target);
+    padding-block: var(--st-space-2);
+    overflow-wrap: anywhere;
+  }
+</style>

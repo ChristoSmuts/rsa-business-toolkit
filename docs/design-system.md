@@ -275,6 +275,25 @@ reaches every section and tool from the header, and there is no second copy of t
 step. The language switcher is plain links either way; `<st-lang-switch>` only adds the current
 `#fragment` to them.
 
+### Pages (WP-20 milestone 2)
+
+| File | Routes | Notes |
+| --- | --- | --- |
+| `src/pages/[...locale]/[...route].astro` | every document and every section landing, in every enabled language | One catch-all, fed by `contentStaticPaths()` in `src/lib/pages.ts`. A section whose route is a document's (`business-types/`) gets no second page. A content route that collides with an app route or another content route fails the build. |
+| `src/layouts/Doc.astro` | every document | Build plan B6 in order. Business-type documents add the effort meter, "Read Core first" and the related types; the checklist says it is a reminder list; a template says when its rules were checked. |
+| `src/components/pages/SectionLanding.astro` | `start/`, `core/`, `branding/`, `paperwork/`, `look-it-up/` | Cards built from each document's own summary and reading time. |
+| `src/pages/[...locale]/index.astro` | home | The three 2026 figures come from `src/lib/home.ts`, each tied to an official register entry; `tests/unit/site/home.test.ts` fails if a figure is not in its source's own "supports" text. |
+| `contents.astro`, `templates/index.astro`, `about.astro`, `search.astro` | the app pages | The search page is a GET form plus the common questions from "How to use this toolkit", so it is useful before WP-33 and without JavaScript. About leaves out shortcuts and settings until the packages that build them land. |
+| `src/pages/404.astro` | `/404.html` | Both languages on one page, because the server cannot know which one the reader wanted. |
+| `src/layouts/Page.astro` | all of the above | Canonical, `hreflang` with `x-default`, Open Graph and a description. `locales` lists only the languages a page really exists in. |
+
+On an Afrikaans route that falls back to the English document, the English text is marked
+`lang="en-ZA"` wherever it appears: the blocks, the `<h1>`, the summary, the terms, the table of
+contents, the breadcrumb and sidebar titles, and the register's own text in "Sources for this page".
+Inside the blocks the labels and document titles are English too (`ContentContext.contentLang`), so a
+fallback block is one English island rather than English text with Afrikaans labels read in an
+English voice. Everything around the content, and every URL, stays in the reader's language.
+
 ### Illustrations
 
 Seven inline SVGs: `VehicleDealer` (bakkie), `FoodBusiness` (pot with steam), `BeautyCare` (comb and scissors), `RetailOnline` (shop awning with parcel), `ServicesTrades` (spanner and ladder), `ProfessionalCreative` (pencil and laptop), `General` (row of small shapes).

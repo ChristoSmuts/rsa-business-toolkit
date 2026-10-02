@@ -1,0 +1,71 @@
+---
+/**
+ * The shell of every real page (WP-20 milestone 2): `Base.astro` plus the site header and footer
+ * and the whole `<head>` the brief asks for — canonical, `hreflang` with `x-default`, Open Graph,
+ * a meta description and `theme-color` (the last from `Base.astro`).
+ *
+ * `locales` is the list of languages this page really exists in. App pages are fully translated,
+ * so they default to every enabled locale. A document that only exists in English passes `['en']`,
+ * so its Afrikaans fallback page is not advertised to search engines as an Afrikaans version.
+ */
+import Base from './Base.astro';
+import SiteFooter from '../components/navigation/SiteFooter.astro';
+import SiteHeader from '../components/navigation/SiteHeader.astro';
+import { useTranslations } from '../i18n';
+import { ENABLED_LOCALES, getLocale, type Locale } from '../i18n/locales';
+import type { Manifest } from '../lib/content/schema';
+import { alternateUrls } from '../lib/i18n-routes';
+import { canonicalUrl } from '../lib/pages';
+
+interface Props {
+  locale: Locale;
+  manifest: Manifest;
+  /** Site-relative route without locale prefix and base (`''` is home). */
+  route: string;
+  title: string;
+  description: string;
+  locales?: readonly Locale[] | undefined;
+  /** `article` for documents, `website` for everything else. */
+  ogType?: 'article' | 'website' | undefined;
+  noindex?: boolean | undefined;
+}
+
+const {
+  locale,
+  manifest,
+  route,
+  title,
+  description,
+  locales = ENABLED_LOCALES,
+  ogType = 'website',
+  noindex = false,
+} = Astro.props;
+const t = useTranslations(locale);
+const site = Astro.site ?? new URL('https://example.github.io');
+const canonical = canonicalUrl(locale, route, site);
+const alternates = alternateUrls(route, locales, site);
+const ogLocale = (getLocale(locale)?.hreflang ?? locale).replace('-', '_');
+---
+
+<Base
+  lang={locale}
+  title={title}
+  description={description}
+  canonical={canonical}
+  alternates={alternates}
+  noindex={noindex}
+  skipLinkLabel={t('nav.skipLink')}
+>
+  <Fragment slot="head">
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={t('site.name')} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={ogLocale} />
+    <slot name="head" />
+  </Fragment>
+  <SiteHeader slot="header" locale={locale} manifest={manifest} route={route} />
+  <slot />
+  <SiteFooter slot="footer" locale={locale} manifest={manifest} route={route} />
+</Base>

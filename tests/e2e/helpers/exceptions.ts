@@ -13,9 +13,6 @@
  *
  * This module has no Playwright import, so the unit tests can validate it.
  */
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 export const PAGE_CHECKS = [
   'csp-meta',
@@ -152,85 +149,24 @@ export interface FutureRoute {
 }
 
 /**
- * The manifest is the list of routes build plan B1 says the site has, so the allowance below is
- * derived from it rather than typed out: a document the content pipeline adds cannot be silently
- * missing from the list, and a route that is built stops being allowed the moment it exists.
+ * WP-20 built every route in build plan B1 except the two that only exist with the wizard: the
+ * questions (`find-my-path/`) and the path they produce (`my-path/`). Every page links to both,
+ * through the Tools menu, the mobile drawer and the home page's "Find my path" button, so the links
+ * are already correct; the pages behind them are WP-31.
  */
-interface ManifestRoutes {
-  sections: { route: string }[];
-  docs: Record<string, { route: string }>;
-}
+const WIZARD_ROUTES = ['find-my-path/', 'my-path/'] as const;
 
-const MANIFEST: ManifestRoutes = JSON.parse(
-  readFileSync(
-    path.join(
-      path.dirname(fileURLToPath(import.meta.url)),
-      '..',
-      '..',
-      '..',
-      'src',
-      'data',
-      'manifest.json',
-    ),
-    'utf8',
-  ),
-) as ManifestRoutes;
-
-/** Tool and utility routes from build plan B1 that are not generated from a document. */
-const APP_ROUTES = [
-  'find-my-path/',
-  'my-path/',
-  'search/',
-  'contents/',
-  'templates/',
-  'about/',
-] as const;
-
-/**
- * `/design-system/content/` is the live reference for content rendering and navigation (WP-20
- * milestone 1). It renders the real header, the real footer and a real document, so it links to
- * the same places every content page will: the six sections, the tools, and — through the `toc`
- * block, which renders the site contents from the manifest — every document.
- *
- * Those links are already correct; the pages behind them are WP-20 milestone 2. Every entry here
- * deletes itself: `pnpm dist:audit` fails, naming the route, as soon as the page is built.
- */
-const siteRoutes = [
-  ...MANIFEST.sections.map((section) => section.route),
-  ...Object.values(MANIFEST.docs).map((doc) => doc.route),
-  ...APP_ROUTES,
-];
-
-const REFERENCE_PAGE_ROUTES: FutureRoute[] = [
-  ...new Set(siteRoutes.flatMap((route) => [route, `af/${route}`])),
-]
-  .sort(compareRoutes)
-  .map((route) => ({
-    route,
-    reason:
-      'Build plan B1 lists this route. /design-system/content/ links to it from the site header, ' +
-      'the footer, the contents block or the body of the document it renders, in both languages, ' +
-      'exactly as every content page will.',
-    expires: 'Remove when WP-20 milestone 2 builds the routes under src/pages/[...locale]/.',
-    expiresOn: '2027-03-31',
-  }));
-
-function compareRoutes(a: string, b: string): number {
-  return a < b ? -1 : a > b ? 1 : 0;
-}
-
-export const KNOWN_FUTURE_ROUTES: readonly FutureRoute[] = [
-  ...REFERENCE_PAGE_ROUTES,
-  {
-    route: 'af/',
-    reason:
-      'The Card demo on /design-system/ is an Afrikaans card and links to the Afrikaans home page, ' +
-      'and /af/design-system/content/ links to it from the wordmark in the site header. Both are ' +
-      'what a real page links to. Only the placeholder English home page is built so far.',
-    expires: 'Remove when the page package builds the Afrikaans home page (build plan P2).',
-    expiresOn: '2027-03-31',
-  },
-];
+export const KNOWN_FUTURE_ROUTES: readonly FutureRoute[] = WIZARD_ROUTES.flatMap((route) => [
+  route,
+  `af/${route}`,
+]).map((route) => ({
+  route,
+  reason:
+    'Build plan B1 lists this route. Every page links to it from the Tools menu or the mobile ' +
+    'drawer, and the home page from its "Find my path" button, in both languages.',
+  expires: 'Remove when WP-31 builds the wizard and My path under src/pages/[...locale]/.',
+  expiresOn: '2027-03-31',
+}));
 
 /** Problems with the future-route list itself, as readable sentences. Empty when it is valid. */
 export function validateFutureRoutes(

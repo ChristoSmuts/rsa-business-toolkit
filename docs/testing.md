@@ -97,6 +97,29 @@ Afrikaans twin, the live reference the site package renders from `src/data/`:
   is on screen. A box that measures zero fails, so a component hidden by a media query cannot satisfy
   the test without being tested.
 
+### The real pages: `pages.spec.ts`
+
+WP-20 milestone 2. The per-route loops run in `chromium` only, because `mobile` and `webkit` render
+the same HTML and the `nojs` and `a11y` projects already visit every route; the navigation tests run
+in every project.
+
+- **D5 on every document page, in both languages.** The AI notice is the first callout in the article
+  header and links "How this was made"; "Sources for this page" lists sources or carries a note; and
+  the page links the sources register (the register page itself excepted). `pnpm dist:audit` proves
+  each of those links resolves. `Doc.astro` also calls `assertDocTrust`, so a document with no
+  sources and no note fails `pnpm build` before any test runs.
+- **The head of every built page**, read from `dist/` with no browser: a canonical URL that is the
+  page itself, `hreflang` with `x-default`, `og:title`, `og:description`, `og:url`, `og:locale`,
+  `og:type`, a description of at least 20 characters, and `theme-color`. An Afrikaans page that
+  shows the English document is not offered as an Afrikaans alternate.
+- **Navigation only real routes can show:** the breadcrumb through a section, the pager crossing
+  from one section into the next, a section landing's cards in order, switching language on a real
+  document with an anchor that exists on the other side, the Afrikaans fallback with `lang="en-ZA"`
+  on the content and Afrikaans chrome around it, and the home page's figures each with an official
+  SARS link and its check date.
+
+`not-found.spec.ts` stopped skipping when `src/pages/404.astro` landed.
+
 `nojs.spec.ts` adds the other half of the navigation contract: with scripting off the header's
 `<details>` menus are shown at every width and the drawer button is not, so a phone without
 JavaScript still reaches every section and tool.
@@ -338,7 +361,7 @@ URLs are read from `href`, `xlink:href`, `src`, `srcset`, `imagesrcset`, `action
 
 ### Routes that are not built yet
 
-A page can link, correctly, to a route that no package has built yet: the `/design-system/` D5 demos link to `start/how-this-was-made/` and `lookup/sources/` exactly as every content page will. Those links are right, so they stay, and the audit gets the exception instead — one entry per route in `KNOWN_FUTURE_ROUTES` (`tests/e2e/helpers/exceptions.ts`), with the route, who links to it, why the link is already correct, which change removes the entry, and an optional `expiresOn` review date. `missing-target` is skipped for exactly those URLs and for nothing else; every other rule still applies, and the fragment of such a link cannot be checked because the page does not exist.
+A page can link, correctly, to a route that no package has built yet: every page's Tools menu links to `my-path/`, which the wizard package builds. Those links are right, so they stay, and the audit gets the exception instead — one entry per route in `KNOWN_FUTURE_ROUTES` (`tests/e2e/helpers/exceptions.ts`), with the route, who links to it, why the link is already correct, which change removes the entry, and an optional `expiresOn` review date. `missing-target` is skipped for exactly those URLs and for nothing else; every other rule still applies, and the fragment of such a link cannot be checked because the page does not exist.
 
 The allowance is built to delete itself. `pnpm dist:audit` fails, naming the entry, as soon as either half of its reason stops being true:
 
@@ -348,7 +371,7 @@ The allowance is built to delete itself. `pnpm dist:audit` fails, naming the ent
 A malformed entry fails the audit too, and `pnpm test` (`tests/unit/e2e-harness.test.ts`) validates the list. A green run names what it let through, so the allowance is visible without reading the source:
 
 ```
-dist:audit: 2 HTML file(s), 113 URL(s) checked under base /business-toolkit/. No problems. 4 route(s) not built yet, allowed to be missing by KNOWN_FUTURE_ROUTES (tests/e2e/helpers/exceptions.ts): af/, af/start/how-this-was-made/, lookup/sources/, start/how-this-was-made/.
+dist:audit: 96 HTML file(s), 13741 URL(s) checked under base /business-toolkit/. No problems. 4 route(s) not built yet, allowed to be missing by KNOWN_FUTURE_ROUTES (tests/e2e/helpers/exceptions.ts): af/find-my-path/, af/my-path/, find-my-path/, my-path/.
 ```
 
 An overdue `expiresOn` prints `dist:audit: overdue known-future route: …` and, under `CI`, a `::warning` workflow command; like a page check exception's review date, it does not fail the build.
@@ -359,12 +382,11 @@ Current list:
 
 | Route                                       | Links from                         | Removed when                                                     |
 | ------------------------------------------- | ---------------------------------- | ---------------------------------------------------------------- |
-| `af/`                                       | `/design-system/` Card demo, and the wordmark on `/af/design-system/content/` | The page package builds the Afrikaans home page (P2) |
-| every section, document and tool route in both languages (derived from `src/data/manifest.json`) | `/design-system/content/`: the site header, the footer, the `toc` block and the body of the document it renders | WP-20 milestone 2 builds the routes under `src/pages/[...locale]/` |
+| `find-my-path/`, `af/find-my-path/`, `my-path/`, `af/my-path/` | The Tools menu and the mobile drawer on every page, and the home page's "Find my path" button | WP-31 builds the wizard and My path |
 
-The second row is generated in `exceptions.ts` from the manifest rather than typed out, so a document
-the content pipeline adds cannot be silently missing from it, and every entry still deletes itself the
-moment its route is built. `pnpm dist:audit` prints the full list on a green run.
+WP-20 milestone 2 built every other route in build plan B1, and the generated list it replaced
+deleted itself the way it was designed to: the audit failed on each entry whose route now existed.
+`pnpm dist:audit` prints the remaining list on a green run.
 
 Absolute URLs on `SITE_URL` (canonical, hreflang and `og:url`) count as internal. The scanner is a small tokenizer in the script itself (no parser dependency). It ignores comments (including the empty `<!-->` form) and the contents of `<script>`, `<style>`, `<textarea>` and `<title>`.
 

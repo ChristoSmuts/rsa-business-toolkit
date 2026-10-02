@@ -1,4 +1,14 @@
 {
-  "description": "Site-relative paths that pnpm lhci audits in both presets. Add a page in the package that builds it (see docs/testing.md).",
-  "paths": ["/"]
+  "description": "Site-relative paths that pnpm lhci audits in both presets. Add a page in the package that builds it (see docs/testing.md). One of each page type WP-20 builds: home, a section landing, the longest document, the business-type hub, the checklist, the glossary, a template, the contents and an Afrikaans fallback document.",
+  "paths": [
+    "/",
+    "/core/",
+    "/business-types/vehicle-dealer/",
+    "/business-types/",
+    "/checklist/",
+    "/glossary/",
+    "/templates/tax-invoice/",
+    "/contents/",
+    "/af/core/register/"
+  ]
 }

@@ -1,0 +1,305 @@
+---
+/**
+ * A document page (build plan B6): breadcrumb · sidebar · article header with the D5 AI notice
+ * (and, on Afrikaans routes, the translation notice directly under it) · "Words used in this
+ * file" · contents · blocks · sources for this page · pager · contents column.
+ *
+ * The article half is what `/design-system/content/` drafted in milestone 1, from the same
+ * components. Additions by kind of page:
+ * - a business-type document gets its effort meter, the "Read Core first" callout and the
+ *   related-type hints;
+ * - the master checklist says it is a reminder list, not proof of compliance (D5);
+ * - a template says when its required-content rules were checked (D5).
+ *
+ * `assertDocTrust` runs first, so a document that would render without sources and without a
+ * source note fails the build instead of shipping (D5).
+ */
+import Page from './Page.astro';
+import Badge from '../components/ui/Badge.astro';
+import Callout from '../components/ui/Callout.astro';
+import EffortMeter from '../components/ui/EffortMeter.astro';
+import Blocks from '../components/content/Blocks.astro';
+import TermsBlock from '../components/content/TermsBlock.astro';
+import Breadcrumb from '../components/navigation/Breadcrumb.astro';
+import SectionSidebar from '../components/navigation/SectionSidebar.astro';
+import TableOfContents from '../components/navigation/TableOfContents.astro';
+import AiNotice from '../components/trust/AiNotice.astro';
+import SourcesForPage from '../components/trust/SourcesForPage.astro';
+import TranslationNotice from '../components/trust/TranslationNotice.astro';
+import { formatDate, useTranslations } from '../i18n';
+import { DEFAULT_LOCALE, getLocale, type Locale } from '../i18n/locales';
+import { createContentContext } from '../lib/content/context';
+import { docHref, docTitle, sectionHref, sectionTitle } from '../lib/content/manifest';
+import type { BusinessType, Doc, GlossaryFile, Manifest, SourcesFile } from '../lib/content/schema';
+import { splitTermsBlocks } from '../lib/content/render';
+import { hasOwnSources } from '../lib/content/trust';
+import { documentCrumbs } from '../lib/nav';
+import {
+  assertDocTrust,
+  docLocales,
+  docPager,
+  effortLevel,
+  pageTitle,
+  sectionHue,
+} from '../lib/pages';
+import { href } from '../lib/paths';
+
+interface Props {
+  locale: Locale;
+  manifest: Manifest;
+  /** The document in the language it is rendered in (English when not translated yet). */
+  doc: Doc;
+  glossary: GlossaryFile | undefined;
+  sources: SourcesFile | undefined;
+  /** Every business type, for the effort meter and the related-type hints. */
+  businessTypes: readonly BusinessType[];
+}
+
+const { locale, manifest, doc, glossary, sources, businessTypes } = Astro.props;
+assertDocTrust(doc);
+
+const t = useTranslations(locale);
+const route = doc.route;
+const contentLang = doc.lang as Locale;
+const isFallback = contentLang !== locale;
+const contentLangTag = isFallback ? (getLocale(contentLang)?.hreflang ?? contentLang) : undefined;
+const context = createContentContext({
+  locale,
+  contentLang,
+  manifest,
+  glossary,
+  sources,
+  docId: doc.id,
+});
+
+const section = sectionTitle(manifest, doc.section, locale);
+const title = docTitle(manifest, doc.id, locale);
+const crumbs = documentCrumbs(manifest, doc.id, locale, t);
+const pager = docPager(manifest, doc.id, locale);
+const hue = sectionHue(doc.section);
+const { terms, rest } = splitTermsBlocks(doc.blocks);
+const translationStatus = isFallback ? 'fallback' : doc.translation.status;
+const englishHref = locale === DEFAULT_LOCALE ? undefined : href(DEFAULT_LOCALE, route);
+
+const businessType = businessTypes.find((type) => type.doc === doc.id);
+const effortLabels = [
+  t('businessTypes.effort.lowest'),
+  t('businessTypes.effort.low-medium'),
+  t('businessTypes.effort.medium'),
+  t('businessTypes.effort.medium-high'),
+  t('businessTypes.effort.high'),
+] as const;
+const coreHref = sectionHref(manifest, 'core', locale);
+const relatedTypes = businessType
+  ? doc.related
+      .map((id) => businessTypes.find((type) => type.doc === id))
+      .filter((type): type is BusinessType => type !== undefined && type.id !== businessType.id)
+  : [];
+---
+
+<Page
+  locale={locale}
+  manifest={manifest}
+  route={route}
+  title={pageTitle(t, title, section)}
+  description={doc.summary}
+  locales={docLocales(manifest, doc.id)}
+  ogType="article"
+>
+  <div class="st-container st-doc-grid st-doc" data-section={hue}>
+    <SectionSidebar
+      manifest={manifest}
+      sectionId={doc.section}
+      currentDocId={doc.id}
+      locale={locale}
+    />
+
+    <div class="st-stack st-stack-lg st-doc__main">
+      <Breadcrumb crumbs={crumbs} locale={locale} />
+
+      <article class="st-stack st-stack-lg" data-doc={doc.id} data-kind={doc.kind}>
+        <header class="st-stack st-doc__header">
+          <p class="st-hint st-doc__section">
+            {t('doc.sectionLabel')}: {section}
+          </p>
+          <h1 lang={contentLangTag}>{doc.h1}</h1>
+          <p class="st-lead" lang={contentLangTag}>
+            {doc.summary}
+          </p>
+          <p class="st-cluster">
+            <Badge variant="status" icon="lucide:clock">
+              {t('doc.readTime', { minutes: doc.readingTime })}
+            </Badge>
+            {doc.appliesTo.entity !== 'all' && (
+              <Badge variant="entity">
+                {doc.appliesTo.entity === 'pty' ? t('doc.ptyOnly') : t('doc.soleProprietorOnly')}
+              </Badge>
+            )}
+          </p>
+          {businessType && (
+            <EffortMeter
+              level={effortLevel(businessType.effort)}
+              label={t('businessTypes.effortLabel')}
+              levelLabels={effortLabels}
+            />
+          )}
+          <AiNotice
+            verification={doc.verification}
+            hasPageSources={hasOwnSources(doc.sources)}
+            locale={locale}
+            manifest={manifest}
+          />
+          <TranslationNotice status={translationStatus} locale={locale} englishHref={englishHref} />
+        </header>
+
+        {businessType && coreHref && (
+          <Callout variant="info" label={t('doc.readCoreFirstTitle')}>
+            <p>{t('doc.readCoreFirst')}</p>
+            <p>
+              <a class="st-link-block" href={coreHref}>
+                {t('doc.readCoreFirstAction')}
+              </a>
+            </p>
+          </Callout>
+        )}
+
+        {doc.kind === 'checklist' && (
+          <Callout variant="note" label={t('doc.note')}>
+            <p>{t('trust.checklistReminder')}</p>
+          </Callout>
+        )}
+
+        {doc.kind === 'template' && (
+          <Callout variant="note" label={t('doc.note')}>
+            <p>
+              {t('trust.templateRulesChecked', {
+                date: formatDate(locale, doc.verification.checkedOn),
+              })}
+            </p>
+          </Callout>
+        )}
+
+        {terms && (
+          <details class="st-doc__terms" id="words-used-in-this-file" open>
+            <summary>{t('doc.wordsUsed')}</summary>
+            <div lang={contentLangTag}>
+              <TermsBlock block={terms} context={context} />
+            </div>
+          </details>
+        )}
+
+        <TableOfContents
+          headings={doc.headings}
+          locale={locale}
+          variant="details"
+          contentLang={contentLangTag}
+        />
+
+        <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
+
+        {relatedTypes.length > 0 && (
+          <section class="st-stack" aria-labelledby="st-related-types">
+            <h2 id="st-related-types">{t('doc.related.heading')}</h2>
+            <p>{t('doc.related.lead')}</p>
+            <ul class="st-stack st-stack-sm" role="list">
+              {relatedTypes.map((type) => (
+                <li>
+                  <a class="st-link-block" href={docHref(manifest, type.doc, locale)}>
+                    {t('doc.related.item', { name: t(`businessTypes.${type.id}.name`) })}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <SourcesForPage
+          sources={doc.sources}
+          sourceNote={doc.sourceNote}
+          context={context}
+          locale={locale}
+          id="sources-for-this-page"
+        />
+      </article>
+
+      {(pager.previous || pager.next) && (
+        <nav class="st-pager" aria-label={t('nav.pagerLabel')}>
+          {pager.previous && (
+            <a class="st-pager__link" href={pager.previous.href} rel="prev">
+              {t('nav.previous', { title: pager.previous.title })}
+            </a>
+          )}
+          {pager.next && (
+            <a class="st-pager__link st-pager__next" href={pager.next.href} rel="next">
+              {t('nav.next', { title: pager.next.title })}
+            </a>
+          )}
+        </nav>
+      )}
+    </div>
+
+    <TableOfContents
+      headings={doc.headings}
+      locale={locale}
+      variant="column"
+      contentLang={contentLangTag}
+    />
+  </div>
+</Page>
+
+<style>
+  .st-doc {
+    padding-block: var(--st-space-5) var(--st-space-8);
+  }
+
+  .st-doc__main {
+    min-inline-size: 0;
+  }
+
+  .st-doc__section {
+    color: var(--st-section, var(--st-text-muted));
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-doc__terms {
+    max-inline-size: var(--st-measure);
+  }
+
+  .st-doc__terms summary {
+    min-block-size: var(--st-target);
+    display: flex;
+    align-items: center;
+    font-weight: var(--st-weight-semibold);
+    cursor: pointer;
+  }
+
+  .st-pager {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-3);
+    padding-block-start: var(--st-space-5);
+    border-block-start: var(--st-border-width) solid var(--st-border);
+  }
+
+  .st-pager__link {
+    display: flex;
+    align-items: center;
+    min-block-size: var(--st-target);
+    padding: var(--st-space-3) var(--st-space-4);
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-md);
+    overflow-wrap: anywhere;
+  }
+
+  @media (width >= 768px) {
+    .st-pager {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .st-pager__next {
+      grid-column: 2;
+      justify-content: flex-end;
+      text-align: end;
+    }
+  }
+</style>

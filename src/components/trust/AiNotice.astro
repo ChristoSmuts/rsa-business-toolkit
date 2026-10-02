@@ -53,13 +53,11 @@ if (howMade === undefined) {
     </Badge>
     <span>{t(notice.meansKey, { reviewer: notice.reviewer })}</span>
   </p>
-  {howMade && (
-    <p>
-      <a class="st-link-block" href={howMade}>
-        {t('trust.aiNotice.link')}
-      </a>
-    </p>
-  )}
+  <p>
+    <a class="st-link-block" href={howMade}>
+      {t('trust.aiNotice.link')}
+    </a>
+  </p>
 </Callout>
 
 <style>

@@ -1,0 +1,108 @@
+---
+/**
+ * A section landing (build plan B6): breadcrumb · hue-striped header · the section's documents
+ * in order as cards (number, title, summary, read time, badges) · the AI line with its date.
+ *
+ * The cards are built from each document's own data, so a summary or reading time on a landing
+ * is always the one the document page shows. An Afrikaans landing whose documents are not
+ * translated yet marks each English summary with `lang="en"`.
+ */
+import Badge from '../ui/Badge.astro';
+import Card from '../ui/Card.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import Breadcrumb from '../navigation/Breadcrumb.astro';
+import { formatDate, useTranslations, type TranslationKey } from '../../i18n';
+import { getLocale, type Locale } from '../../i18n/locales';
+import { docHref, docTitle, sectionTitle } from '../../lib/content/manifest';
+import type { Doc, Manifest } from '../../lib/content/schema';
+import type { Crumb } from '../../lib/nav';
+import { sectionHue } from '../../lib/pages';
+import { href } from '../../lib/paths';
+import { APP_ROUTES, NAV_DOC_IDS } from '../../lib/routes';
+
+interface Props {
+  locale: Locale;
+  manifest: Manifest;
+  sectionId: string;
+  /** The section's documents in order, each in the language it is rendered in. */
+  docs: readonly Doc[];
+  /** The date the sources register was checked. */
+  checkedOn: string;
+}
+
+const { locale, manifest, sectionId, docs, checkedOn } = Astro.props;
+const t = useTranslations(locale);
+const title = sectionTitle(manifest, sectionId, locale);
+const hue = sectionHue(sectionId) ?? 'start';
+const crumbs: Crumb[] = [
+  { href: href(locale, APP_ROUTES.home), label: t('nav.home') },
+  { href: undefined, label: title },
+];
+const howMadeHref = docHref(manifest, NAV_DOC_IDS.howThisWasMade, locale);
+const description = t(`nav.sections.${sectionId}.description` as TranslationKey);
+---
+
+<div class="st-container st-stack st-stack-lg st-section-page" data-section={hue}>
+  <Breadcrumb crumbs={crumbs} locale={locale} />
+  <SectionHeader section={hue} title={title} level={1} />
+  <p class="st-lead">{description}</p>
+  <p class="st-hint">{t('section.docCount', { count: docs.length })}</p>
+
+  <ol
+    class="st-section-page__list"
+    role="list"
+    aria-label={t('section.pagesLabel', { section: title })}
+  >
+    {docs.map((doc, index) => {
+      const lang = doc.lang === locale ? undefined : (getLocale(doc.lang)?.hreflang ?? doc.lang);
+      return (
+        <li>
+          <Card
+            title={docTitle(manifest, doc.id, locale)}
+            href={docHref(manifest, doc.id, locale)}
+            section={hue}
+            eyebrow={t('section.pageNumber', { n: index + 1, total: docs.length })}
+            headingLevel={2}
+          >
+            <p lang={lang}>{doc.summary}</p>
+            <p slot="meta" class="st-cluster">
+              <Badge variant="status" icon="lucide:clock">
+                {t('doc.readTime', { minutes: doc.readingTime })}
+              </Badge>
+              {doc.appliesTo.entity !== 'all' && (
+                <Badge variant="entity">
+                  {doc.appliesTo.entity === 'pty' ? t('doc.ptyOnly') : t('doc.soleProprietorOnly')}
+                </Badge>
+              )}
+            </p>
+          </Card>
+        </li>
+      );
+    })}
+  </ol>
+
+  <p class="st-hint">
+    {t('site.checkedOn', { date: formatDate(locale, checkedOn) })}{' '}
+    {howMadeHref && <a href={howMadeHref}>{t('trust.aiNotice.link')}</a>}
+  </p>
+</div>
+
+<style>
+  .st-section-page {
+    padding-block: var(--st-space-5) var(--st-space-8);
+  }
+
+  .st-section-page__list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-4);
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (width >= 768px) {
+    .st-section-page__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

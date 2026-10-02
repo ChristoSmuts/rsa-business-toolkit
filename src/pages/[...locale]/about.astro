@@ -1,0 +1,81 @@
+---
+/**
+ * `/about/`: how the guide was made and the licence (build plan B1).
+ *
+ * The keyboard shortcuts and the settings (shortcuts, low data, clear my data) that B1 also puts
+ * here belong to the packages that build those features (WP-30 and WP-33). They are not listed
+ * before then: a table of shortcuts that do nothing would tell a reader something untrue.
+ */
+import Page from '../../layouts/Page.astro';
+import Breadcrumb from '../../components/navigation/Breadcrumb.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { loadManifest } from '../../lib/content/collections';
+import { docHref } from '../../lib/content/manifest';
+import { localeStaticPaths } from '../../lib/i18n-routes';
+import { pageTitle } from '../../lib/pages';
+import { href } from '../../lib/paths';
+import { APP_ROUTES, NAV_DOC_IDS } from '../../lib/routes';
+
+export function getStaticPaths() {
+  return localeStaticPaths();
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const manifest = await loadManifest();
+const howMadeHref = docHref(manifest, NAV_DOC_IDS.howThisWasMade, locale);
+const sourcesHref = docHref(manifest, NAV_DOC_IDS.sources, locale);
+---
+
+<Page
+  locale={locale}
+  manifest={manifest}
+  route={APP_ROUTES.about}
+  title={pageTitle(t, t('about.title'))}
+  description={t('about.aiSummary')}
+>
+  <div class="st-container st-stack st-stack-lg st-about">
+    <Breadcrumb
+      crumbs={[
+        { href: href(locale, APP_ROUTES.home), label: t('nav.home') },
+        { href: undefined, label: t('about.title') },
+      ]}
+      locale={locale}
+    />
+    <h1>{t('about.title')}</h1>
+    <p class="st-lead">{t('site.description')}</p>
+
+    <section class="st-stack" aria-labelledby="about-ai">
+      <h2 id="about-ai">{t('about.aiHeading')}</h2>
+      <p>{t('site.disclaimerLong')}</p>
+      <p class="st-cluster">
+        {howMadeHref && (
+          <a class="st-link-block" href={howMadeHref}>
+            {t('about.aiLink')}
+          </a>
+        )}
+        {sourcesHref && (
+          <a class="st-link-block" href={sourcesHref}>
+            {t('trust.sources.seeRegister')}
+          </a>
+        )}
+      </p>
+    </section>
+
+    <section class="st-stack" aria-labelledby="about-licence">
+      <h2 id="about-licence">{t('about.licenceHeading')}</h2>
+      <p>{t('about.licence')}</p>
+    </section>
+  </div>
+</Page>
+
+<style>
+  .st-about {
+    padding-block: var(--st-space-5) var(--st-space-8);
+  }
+</style>

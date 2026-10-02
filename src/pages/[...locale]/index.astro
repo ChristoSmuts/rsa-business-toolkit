@@ -1,0 +1,356 @@
+---
+/**
+ * Home, in every enabled language (build plan B6): hero with the AI line · where to start ·
+ * your kind of business · four things that matter early · three numbers that changed in 2026,
+ * each with its date and official source (D5) · trust strip.
+ *
+ * The personalised "Your path" card needs a saved profile, which is WP-31; this is the version
+ * every visitor sees, and the one that works without JavaScript.
+ */
+import { getCollection } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Button from '../../components/ui/Button.astro';
+import Card from '../../components/ui/Card.astro';
+import EffortMeter from '../../components/ui/EffortMeter.astro';
+import Icon from '../../components/ui/Icon.astro';
+import BeautyCare from '../../components/illustrations/BeautyCare.astro';
+import FoodBusiness from '../../components/illustrations/FoodBusiness.astro';
+import General from '../../components/illustrations/General.astro';
+import ProfessionalCreative from '../../components/illustrations/ProfessionalCreative.astro';
+import RetailOnline from '../../components/illustrations/RetailOnline.astro';
+import ServicesTrades from '../../components/illustrations/ServicesTrades.astro';
+import VehicleDealer from '../../components/illustrations/VehicleDealer.astro';
+import { formatDate, useTranslations, type TranslationKey } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { loadManifest, loadSources } from '../../lib/content/collections';
+import { docHref, sectionHref } from '../../lib/content/manifest';
+import { HOME_NUMBERS_YEAR, resolveHomeNumbers } from '../../lib/home';
+import { localeStaticPaths } from '../../lib/i18n-routes';
+import { docContentLang, effortLevel } from '../../lib/pages';
+import { href } from '../../lib/paths';
+import { APP_ROUTES, NAV_DOC_IDS } from '../../lib/routes';
+
+export function getStaticPaths() {
+  return localeStaticPaths();
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const manifest = await loadManifest();
+const sources = await loadSources(docContentLang(manifest, NAV_DOC_IDS.sources, locale));
+if (!sources) throw new Error('The sources register is missing. Run `pnpm content:build`.');
+const checkedOn = formatDate(locale, sources.checkedOn);
+const numbers = resolveHomeNumbers(sources);
+
+const howMadeHref = docHref(manifest, NAV_DOC_IDS.howThisWasMade, locale);
+const coreStartHref = docHref(manifest, 'core/start-here', locale);
+const coreHref = sectionHref(manifest, 'core', locale);
+const checklistHref = docHref(manifest, NAV_DOC_IDS.checklist, locale);
+const typesHref = sectionHref(manifest, 'business-types', locale);
+
+const ILLUSTRATIONS = {
+  'vehicle-dealer': VehicleDealer,
+  food: FoodBusiness,
+  beauty: BeautyCare,
+  'retail-online': RetailOnline,
+  'services-trades': ServicesTrades,
+  'professional-creative': ProfessionalCreative,
+} as const;
+const effortLabels = [
+  t('businessTypes.effort.lowest'),
+  t('businessTypes.effort.low-medium'),
+  t('businessTypes.effort.medium'),
+  t('businessTypes.effort.medium-high'),
+  t('businessTypes.effort.high'),
+] as const;
+const types = (await getCollection('businessTypes'))
+  .map((entry) => entry.data)
+  .sort((a, b) => a.order - b.order)
+  .map((type) => ({
+    ...type,
+    name: t(`businessTypes.${type.id}.name` as TranslationKey),
+    description: t(`businessTypes.${type.id}.description` as TranslationKey),
+    href: docHref(manifest, type.doc, locale),
+    Illustration: ILLUSTRATIONS[type.id],
+  }));
+
+const whereToStart = [
+  {
+    key: 'fiveMinutes',
+    title: t('home.whereToStart.fiveMinutes.title', { minutes: 5 }),
+    body: t('home.whereToStart.fiveMinutes.body'),
+    action: t('home.whereToStart.fiveMinutes.action'),
+    href: coreStartHref,
+  },
+  {
+    key: 'anHour',
+    title: t('home.whereToStart.anHour.title'),
+    body: t('home.whereToStart.anHour.body'),
+    action: t('home.whereToStart.anHour.action'),
+    href: coreHref,
+  },
+  {
+    key: 'checklist',
+    title: t('home.whereToStart.checklist.title'),
+    body: t('home.whereToStart.checklist.body'),
+    action: t('home.whereToStart.checklist.action'),
+    href: checklistHref,
+  },
+];
+---
+
+<Page
+  locale={locale}
+  manifest={manifest}
+  route={APP_ROUTES.home}
+  title={`${t('site.name')}: ${t('site.tagline')}`}
+  description={t('site.description')}
+>
+  <div class="st-container st-stack st-home">
+    <section class="st-home__hero st-stack" aria-labelledby="home-title">
+      <h1 id="home-title">{t('home.heroTitle')}</h1>
+      <p class="st-lead">{t('home.heroLead')}</p>
+      <p class="st-hint">
+        {t('home.heroVerify', { date: checkedOn })}{' '}
+        {howMadeHref && <a href={howMadeHref}>{t('home.trust.howThisWasMade')}</a>}
+      </p>
+      <p class="st-cluster">
+        <Button href={href(locale, APP_ROUTES.wizard)} variant="primary" size="lg">
+          {t('home.findMyPath')}
+        </Button>
+        <Button href={href(locale, APP_ROUTES.search)} variant="secondary" size="lg">
+          {t('home.knowWhatINeed')}
+        </Button>
+      </p>
+    </section>
+
+    <section class="st-stack" aria-labelledby="home-where">
+      <h2 id="home-where">{t('home.whereToStart.heading')}</h2>
+      <ul class="st-home__grid st-home__grid--3" role="list">
+        {whereToStart.map((item) => (
+          <li>
+            <Card title={item.title} href={item.href} headingLevel={3}>
+              <p>{item.body}</p>
+              <p slot="meta" class="st-hint">
+                {item.action}
+              </p>
+            </Card>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="st-stack" aria-labelledby="home-types" data-section="types">
+      <h2 id="home-types">{t('home.businessTypes.heading')}</h2>
+      <p>{t('home.businessTypes.lead')}</p>
+      <ul class="st-home__grid" role="list">
+        {types.map(({ Illustration, ...type }) => (
+          <li>
+            <Card title={type.name} href={type.href} section="types" headingLevel={3}>
+              <Illustration slot="illustration" />
+              <p>{type.description}</p>
+              <EffortMeter
+                slot="meta"
+                level={effortLevel(type.effort)}
+                label={t('businessTypes.effortLabel')}
+                levelLabels={effortLabels}
+              />
+            </Card>
+          </li>
+        ))}
+        <li>
+          <Card
+            title={t('businessTypes.general.name')}
+            href={typesHref}
+            section="types"
+            headingLevel={3}
+          >
+            <General slot="illustration" />
+            <p>{t('businessTypes.general.description')}</p>
+          </Card>
+        </li>
+      </ul>
+      {typesHref && (
+        <p>
+          <a class="st-link-block" href={typesHref}>
+            {t('home.businessTypes.allTypes')}
+          </a>
+        </p>
+      )}
+    </section>
+
+    <section class="st-stack" aria-labelledby="home-four">
+      <h2 id="home-four">{t('home.fourThings.heading')}</h2>
+      <ol class="st-home__four">
+        <li>{t('home.fourThings.bank')}</li>
+        <li>{t('home.fourThings.sars')}</li>
+        <li>{t('home.fourThings.licence')}</li>
+        <li>{t('home.fourThings.records')}</li>
+      </ol>
+    </section>
+
+    <section class="st-stack" aria-labelledby="home-numbers">
+      <h2 id="home-numbers">{t('home.threeNumbers.heading', { year: HOME_NUMBERS_YEAR })}</h2>
+      <p>{t('home.threeNumbers.lead')}</p>
+      <ul class="st-home__grid st-home__grid--3" role="list">
+        {numbers.map((item) => (
+          <li class="st-home__number st-stack st-stack-sm" data-number={item.id}>
+            <h3 class="st-home__number-label">{t(item.labelKey)}</h3>
+            <p class="st-home__number-value st-num">{item.amount}</p>
+            {item.oldAmount && (
+              <p class="st-hint">{t('home.threeNumbers.notOld', { amount: item.oldAmount })}</p>
+            )}
+            {item.zeroBand && (
+              <p class="st-hint">
+                {t('home.threeNumbers.turnoverTaxZero', {
+                  rate: item.zeroBand.rate,
+                  amount: item.zeroBand.amount,
+                })}
+              </p>
+            )}
+            {item.from && (
+              <p class="st-hint">
+                {t('home.threeNumbers.from', { date: formatDate(locale, item.from) })}
+              </p>
+            )}
+            <p class="st-hint">{t('trust.fact.checked', { date: checkedOn })}</p>
+            <p class="st-cluster">
+              <a class="st-link-block" href={item.sourceUrl} rel="noopener noreferrer">
+                {t('home.threeNumbers.officialSource')}
+                <Icon name="lucide:external-link" size="0.9em" />
+                <span class="st-visually-hidden">
+                  {t('home.threeNumbers.officialSourceFor', { name: t(item.labelKey) })}
+                </span>
+              </a>
+              {item.official && (
+                <Badge variant="official">{t('trust.sources.officialLabel')}</Badge>
+              )}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="st-home__trust st-stack" aria-labelledby="home-trust">
+      <h2 id="home-trust">{t('home.trust.label')}</h2>
+      <ul class="st-home__trust-list" role="list">
+        <li>
+          <Icon name="lucide:bot" size="1.25em" />
+          {t('home.trust.checked', { date: checkedOn })}
+        </li>
+        <li>
+          <Icon name="lucide:book-open-check" size="1.25em" />
+          {t('home.trust.sources')}
+        </li>
+        <li>
+          <Icon name="lucide:hand-coins" size="1.25em" />
+          {t('home.trust.free')}
+        </li>
+        <li>
+          <Icon name="lucide:smartphone" size="1.25em" />
+          {t('home.trust.private')}
+        </li>
+      </ul>
+      {howMadeHref && (
+        <p>
+          <a class="st-link-block" href={howMadeHref}>
+            {t('home.trust.howThisWasMade')}
+          </a>
+        </p>
+      )}
+    </section>
+  </div>
+</Page>
+
+<style>
+  .st-home {
+    gap: var(--st-space-7);
+    padding-block: var(--st-space-6) var(--st-space-8);
+  }
+
+  .st-home__hero {
+    max-inline-size: var(--st-measure);
+  }
+
+  .st-home__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-4);
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (width >= 768px) {
+    .st-home__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (width >= 1024px) {
+    .st-home__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .st-home__four {
+    display: grid;
+    gap: var(--st-space-2);
+    max-inline-size: var(--st-measure);
+  }
+
+  .st-home__number {
+    padding: var(--st-space-4);
+    border: var(--st-border-width) solid var(--st-border);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface);
+  }
+
+  .st-home__number-label {
+    font-size: var(--st-text-md);
+  }
+
+  .st-home__number-value {
+    font-family: var(--st-font-display);
+    font-size: var(--st-text-display);
+    line-height: 1.1;
+    color: var(--st-primary);
+    overflow-wrap: anywhere;
+  }
+
+  .st-home__trust {
+    padding: var(--st-space-5);
+    border-radius: var(--st-radius-lg);
+    background-color: var(--st-surface-2);
+  }
+
+  .st-home__trust-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-3);
+    padding: 0;
+    list-style: none;
+  }
+
+  .st-home__trust-list li {
+    display: flex;
+    gap: var(--st-space-2);
+    align-items: flex-start;
+  }
+
+  @media (width >= 768px) {
+    .st-home__trust-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (forced-colors: active) {
+    .st-home__number {
+      border-color: CanvasText;
+    }
+  }
+</style>

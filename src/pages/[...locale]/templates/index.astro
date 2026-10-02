@@ -1,0 +1,108 @@
+---
+/**
+ * `/templates/`: the five templates as cards, plus "Which one do I need?" (build plan B6).
+ * Each card opens the template's document page; filling and printing is WP-32.
+ */
+import Page from '../../../layouts/Page.astro';
+import Card from '../../../components/ui/Card.astro';
+import SectionHeader from '../../../components/ui/SectionHeader.astro';
+import Breadcrumb from '../../../components/navigation/Breadcrumb.astro';
+import { formatDate, useTranslations, type TranslationKey } from '../../../i18n';
+import type { Locale } from '../../../i18n/locales';
+import { loadManifest, loadSources } from '../../../lib/content/collections';
+import { docHref, sectionDocIds } from '../../../lib/content/manifest';
+import { localeStaticPaths } from '../../../lib/i18n-routes';
+import { docContentLang, pageTitle } from '../../../lib/pages';
+import { href } from '../../../lib/paths';
+import { APP_ROUTES, NAV_DOC_IDS } from '../../../lib/routes';
+
+export function getStaticPaths() {
+  return localeStaticPaths();
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const manifest = await loadManifest();
+const sources = await loadSources(docContentLang(manifest, NAV_DOC_IDS.sources, locale));
+const howMadeHref = docHref(manifest, NAV_DOC_IDS.howThisWasMade, locale);
+const whichHref = docHref(manifest, 'paperwork/which-template-to-use-when', locale);
+
+/** Template documents in the paperwork section's order; the slug is the dictionary key. */
+const templates = sectionDocIds(manifest, 'paperwork')
+  .filter((id) => manifest.docs[id]?.kind === 'template')
+  .map((id) => {
+    const slug = manifest.docs[id]?.slug ?? id;
+    return {
+      id,
+      href: docHref(manifest, id, locale),
+      name: t(`templates.items.${slug}.name` as TranslationKey),
+      description: t(`templates.items.${slug}.description` as TranslationKey),
+    };
+  });
+---
+
+<Page
+  locale={locale}
+  manifest={manifest}
+  route={APP_ROUTES.templates}
+  title={pageTitle(t, t('templates.indexTitle'))}
+  description={t('templates.indexIntro')}
+>
+  <div class="st-container st-stack st-stack-lg st-templates" data-section="paperwork">
+    <Breadcrumb
+      crumbs={[
+        { href: href(locale, APP_ROUTES.home), label: t('nav.home') },
+        { href: undefined, label: t('templates.indexTitle') },
+      ]}
+      locale={locale}
+    />
+    <SectionHeader section="paperwork" title={t('templates.indexTitle')} level={1} />
+    <p class="st-lead">{t('templates.indexIntro')}</p>
+    {whichHref && (
+      <p>
+        <a class="st-link-block" href={whichHref}>
+          {t('templates.whichOne')}
+        </a>
+      </p>
+    )}
+    <ul class="st-templates__list" role="list">
+      {templates.map((item) => (
+        <li>
+          <Card title={item.name} href={item.href} section="paperwork" headingLevel={2}>
+            <p>{item.description}</p>
+          </Card>
+        </li>
+      ))}
+    </ul>
+    {sources && (
+      <p class="st-hint">
+        {t('site.checkedOn', { date: formatDate(locale, sources.checkedOn) })}{' '}
+        {howMadeHref && <a href={howMadeHref}>{t('trust.aiNotice.link')}</a>}
+      </p>
+    )}
+  </div>
+</Page>
+
+<style>
+  .st-templates {
+    padding-block: var(--st-space-5) var(--st-space-8);
+  }
+
+  .st-templates__list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-4);
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (width >= 768px) {
+    .st-templates__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
