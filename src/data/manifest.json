@@ -1,5 +1,5 @@
 {
-  "contentHash": "89e0a295c093f8f2",
+  "contentHash": "8c8443c51f0ae7e7",
   "docs": {
     "branding/already-have-your-name": {
       "appliesTo": {
@@ -8,13 +8,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 1,
       "route": "branding/already-have-your-name/",
       "section": "branding",
       "slug": "already-have-your-name",
       "titles": {
+        "af": "Het jy reeds jou naam? Begin hier",
         "en": "Already have your name (shortcut)"
       }
     },
@@ -25,13 +27,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 4,
       "route": "branding/brand-applications-and-polish/",
       "section": "branding",
       "slug": "brand-applications-and-polish",
       "titles": {
+        "af": "Handelsmerktoepassings en afronding",
         "en": "Brand applications and polish"
       }
     },
@@ -42,13 +46,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 2,
       "route": "branding/branding-prompts/",
       "section": "branding",
       "slug": "branding-prompts",
       "titles": {
+        "af": "Handelsmerkopdragte",
         "en": "Branding prompts"
       }
     },
@@ -59,13 +65,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 5,
       "route": "branding/marketing-prompts/",
       "section": "branding",
       "slug": "marketing-prompts",
       "titles": {
+        "af": "Bemarkingsopdragte en -bates",
         "en": "Marketing prompts"
       }
     },
@@ -76,13 +84,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 3,
       "route": "branding/mood-and-materials/",
       "section": "branding",
       "slug": "mood-and-materials",
       "titles": {
+        "af": "Stemming en materiale: besluit dit voor die logo",
         "en": "Mood and materials (use after Prompt 4)"
       }
     },
@@ -95,13 +105,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 4,
       "route": "business-types/beauty/",
       "section": "business-types",
       "slug": "beauty",
       "titles": {
+        "af": "Besigheidstipe: skoonheid en persoonlike versorging",
         "en": "Beauty and personal care"
       }
     },
@@ -114,13 +126,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 3,
       "route": "business-types/food/",
       "section": "business-types",
       "slug": "food",
       "titles": {
+        "af": "Besigheidstipe: kos en drinkgoed",
         "en": "Food business"
       }
     },
@@ -152,13 +166,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 7,
       "route": "business-types/professional-creative/",
       "section": "business-types",
       "slug": "professional-creative",
       "titles": {
+        "af": "Besigheidstipe: professionele en kreatiewe werk",
         "en": "Professional and creative work"
       }
     },
@@ -171,13 +187,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 5,
       "route": "business-types/retail-online/",
       "section": "business-types",
       "slug": "retail-online",
       "titles": {
+        "af": "Besigheidstipe: kleinhandel en aanlyn verkoop",
         "en": "Retail and online shop"
       }
     },
@@ -190,13 +208,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 6,
       "route": "business-types/services-trades/",
       "section": "business-types",
       "slug": "services-trades",
       "titles": {
+        "af": "Besigheidstipe: dienste en ambagte",
         "en": "Services and trades"
       }
     },
@@ -209,13 +229,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 2,
       "route": "business-types/vehicle-dealer/",
       "section": "business-types",
       "slug": "vehicle-dealer",
       "titles": {
+        "af": "Besigheidstipe: voertuie koop en verkoop",
         "en": "Vehicle dealer"
       }
     },
@@ -416,13 +438,15 @@
       },
       "kind": "checklist",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 2,
       "route": "checklist/",
       "section": "lookup",
       "slug": "checklist",
       "titles": {
+        "af": "Hoofkontrolelys",
         "en": "Master checklist"
       }
     },
@@ -452,13 +476,15 @@
       },
       "kind": "sources",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 3,
       "route": "sources/",
       "section": "lookup",
       "slug": "sources",
       "titles": {
+        "af": "Bronne- en verifikasieregister",
         "en": "Sources and verification register"
       }
     },
@@ -469,13 +495,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 2,
       "route": "paperwork/free-tools/",
       "section": "paperwork",
       "slug": "free-tools",
       "titles": {
+        "af": "Gratis gereedskap",
         "en": "Free tools"
       }
     },
@@ -581,13 +609,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 1,
       "route": "paperwork/which-template-to-use-when/",
       "section": "paperwork",
       "slug": "which-template-to-use-when",
       "titles": {
+        "af": "Dokumente en sjablone",
         "en": "Which template to use when"
       }
     },
@@ -670,8 +700,8 @@
   },
   "langs": {
     "af": {
-      "docCount": 21,
-      "status": "partial"
+      "docCount": 36,
+      "status": "machine-unreviewed"
     },
     "en": {
       "docCount": 36,

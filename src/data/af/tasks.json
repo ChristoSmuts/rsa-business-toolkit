@@ -907,6 +907,2855 @@
       "heading": "continuity",
       "id": "core/you-are-the-business:e3e2729b",
       "order": 54
+    },
+    {
+      "block": "checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Een visuele wêreld gekies en in een sin neergeskryf"
+        }
+      ],
+      "doc": "branding/mood-and-materials",
+      "heading": "checklist",
+      "id": "branding/mood-and-materials:a94accc0",
+      "order": 55
+    },
+    {
+      "block": "checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit in Opdragte 5, 7 en 8 geplak, met die reël \"moet binne ... pas\""
+        }
+      ],
+      "doc": "branding/mood-and-materials",
+      "heading": "checklist",
+      "id": "branding/mood-and-materials:3028bd4e",
+      "order": 56
+    },
+    {
+      "block": "checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Rigting vir materiale gekies, die goedkoop weergawe"
+        }
+      ],
+      "doc": "branding/mood-and-materials",
+      "heading": "checklist",
+      "id": "branding/mood-and-materials:e3bf4881",
+      "order": 57
+    },
+    {
+      "block": "checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Die uithangbordmaker gevra: gegote of gekalanderde viniel, en is die drukwerk gelamineer"
+        }
+      ],
+      "doc": "branding/mood-and-materials",
+      "heading": "checklist",
+      "id": "branding/mood-and-materials:81c3b913",
+      "order": 58
+    },
+    {
+      "block": "checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Nagegaan dat my logo steeds werk as een of twee plat kleure, sodat gesnyde viniel ’n opsie is"
+        }
+      ],
+      "doc": "branding/mood-and-materials",
+      "heading": "checklist",
+      "id": "branding/mood-and-materials:cd1a4491",
+      "order": 59
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Besluit tussen ’n eenmansaak of ’n maatskappy ("
+        },
+        {
+          "doc": "core/register",
+          "label": "01-core/02",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ")"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste aankoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:81105d14",
+      "order": 60,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Kry ’n BRNC of Traffic Register Number ("
+        },
+        {
+          "doc": "core/vehicles",
+          "label": "01-core/05",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ")"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste aankoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:ddf401f6",
+      "order": 61,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Doen by SAPS aansoek om registrasie as handelaar in tweedehandse goedere, vorm SAPS 601, gratis"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste aankoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:9df05312",
+      "order": 62,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Gaan die sonering van jou perseel na, voordat jy enige huurkontrak teken"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste aankoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:85d9f1a4",
+      "order": 63,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Doen aansoek om ’n munisipale besigheidslisensie as dit vereis word"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste aankoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:e5ee625b",
+      "order": 64,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Kry kwotasies vir motorhandelversekering"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste aankoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:9d53e703",
+      "order": 65,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bereken of BTW-registrasie die moeite loon, gegewe nosionele insetbelasting, en bevestig dat jy NIE op omsetbelasting is nie"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste aankoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:96c81d0e",
+      "order": 66,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Stel ’n sjabloon op vir jou koopooreenkoms en gebrekeskedule"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste aankoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:621643ad",
+      "order": 67,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Stel jou SAPS-register van verkrygings en vervreemdings op"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste aankoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:70c5bd63",
+      "order": 68,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Besluit oor jou inspeksieproses, en wie dit doen"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste aankoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:4e32d6ab",
+      "order": 69,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "Padwaardigheidsertifikaat in die hand"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste verkoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:45b57985",
+      "order": 70,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebrekeskedule geteken en geparafeer"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste verkoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:0f979ec9",
+      "order": 71,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "Skriftelike koopooreenkoms geteken"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste verkoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:5391018c",
+      "order": 72,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "NCO op dieselfde dag ingedien"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste verkoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:c0b079e3",
+      "order": 73,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "Afskrif van die koper se ID in jou register"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste verkoop"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:0735f705",
+      "order": 74,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "SAPS-register op die dag van elke transaksie bygewerk"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Deurlopend"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:2af36b16",
+      "order": 75,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "VAT264 vir elke aankoop van iemand wat nie ’n ondernemer is nie"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Deurlopend"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:856d737a",
+      "order": 76,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "Hernuwing van die SAPS-registrasie in jou dagboek"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Deurlopend"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:9f301304",
+      "order": 77,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "Vyf jaar se rekords gehou vir SAPS en SARS"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Deurlopend"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:16c1d991",
+      "order": 78,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "Lopende verkope oor 12 maande dopgehou teenoor die BTW-drempel van R2.3 miljoen"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Deurlopend"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:b2a0d33d",
+      "order": 79,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "Voorraadlys met die koste per voertuig, gereed vir die jaareinde"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Deurlopend"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:dbcc89dc",
+      "order": 80,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "your-startup-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy van die huis af werk: sonering vir die stoor van voorraad nagegaan, en die gewoontes vir veilige ontmoetings in "
+        },
+        {
+          "doc": "core/working-from-home-and-safety",
+          "label": "01-core/09",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " by elke besigtiging gebruik"
+        }
+      ],
+      "doc": "business-types/vehicle-dealer",
+      "group": [
+        {
+          "t": "text",
+          "v": "Deurlopend"
+        }
+      ],
+      "heading": "your-startup-checklist",
+      "id": "business-types/vehicle-dealer:5dfe11f3",
+      "order": 81,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ],
+        "tags": [
+          "home"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bevestig die sonering vir kosvoorbereiding by jou perseel"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:c251f427",
+      "order": 82,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bespreek geakkrediteerde R638-opleiding vir jouself en enigiemand wat kos sal hanteer"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:c239e886",
+      "order": 83,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Berei die perseel voor volgens R638-standaarde"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:4d4cb4db",
+      "order": 84,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Doen aansoek om die COA by jou munisipaliteit se Omgewingsgesondheidsafdeling"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:a7fe56ab",
+      "order": 85,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Doen aansoek om die munisipale besigheidslisensie"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:0f8340c3",
+      "order": 86,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Kry brandnakoming en ’n gas-CoC as dit van toepassing is"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:7ee08e59",
+      "order": 87,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Gaan R146 na vir jou etikette voordat jy druk"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:02658eb1",
+      "order": 88,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Vertoon die COA teen die muur"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:690c42ea",
+      "order": 89,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Maak eers dan oop"
+        }
+      ],
+      "doc": "business-types/food",
+      "heading": "your-checklist",
+      "id": "business-types/food:eb4fb487",
+      "order": 90,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bevestig die sonering van jou perseel, ook as dit jou huis is"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:92352a66",
+      "order": 91,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Doen aansoek om die munisipale lisensie vir ’n gesondheidsinrigting"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:4154a207",
+      "order": 92,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Berei die perseel voor vir die gesondheidsinspeksie"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:3e9fa384",
+      "order": 93,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Kry aanspreeklikheidsversekering vir behandelings wat by jou dienste pas"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:acd577dc",
+      "order": 94,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Maak ’n sjabloon vir ’n konsultasie- en plektoetsrekord"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:78e1ef6f",
+      "order": 95,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Skryf jou bepalings vir besprekings, deposito’s en kansellasies"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:1ee82848",
+      "order": 96,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Kry skriftelike toestemming van kliënte voordat jy foto’s plaas"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:3f035f6f",
+      "order": 97,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Registreer jou POPIA-inligtingsbeampte, aangesien jy kliënte se gesondheidsinligting hou"
+        }
+      ],
+      "doc": "business-types/beauty",
+      "heading": "your-checklist",
+      "id": "business-types/beauty:22a2e898",
+      "order": 98,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Gaan na of jou munisipaliteit ’n handelaarslisensie vereis"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:05b6a4b6",
+      "order": 99,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy gebruikte goedere verkoop, registreer by SAPS onder die Second-Hand Goods Act"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:51431599",
+      "order": 100,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ],
+        "tags": [
+          "second-hand"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy invoer, kry ’n invoerderskode van SARS en gaan die NRCS-vereistes na"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:7606eb50",
+      "order": 101,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ],
+        "tags": [
+          "import"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Sit die inligting wat ECTA artikel 43 vereis op jou webwerf"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:3f057ea5",
+      "order": 102,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Voeg ’n stap by om die bestelling na te gaan voor die betaling"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:857a560f",
+      "order": 103,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Skryf ’n beleid oor terugsendings wat die reg op ’n afkoelperiode van sewe dae eerbiedig"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:3997af12",
+      "order": 104,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Publiseer jou privaatheidskennisgewing"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:eead27a2",
+      "order": 105,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Stel voorraadopsporing op saam met jou kasboek"
+        }
+      ],
+      "doc": "business-types/retail-online",
+      "heading": "your-checklist",
+      "id": "business-types/retail-online:46751df3",
+      "order": 106,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bevestig of jou ambag professionele of statutêre registrasie vereis"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:7aeedd49",
+      "order": 107,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Kry versekering vir openbare aanspreeklikheid"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:6b14de08",
+      "order": 108,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Sê vir jou voertuigversekeraar dat jy die voertuig vir werk gebruik"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:06447813",
+      "order": 109,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Stel jou kwotasiesjabloon op met ’n behoorlike lys van uitsluitings"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:3e62bd56",
+      "order": 110,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Stel jou bepalings vir deposito’s en vorderingsbetalings op skrif"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:4931924a",
+      "order": 111,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Begin ’n logboek vir jou voertuig"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:6fa9b54e",
+      "order": 112,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Eis jou Google Business Profile op en vul dit volledig in"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:92e8509e",
+      "order": 113,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Stel WhatsApp Business op met vinnige antwoorde"
+        }
+      ],
+      "doc": "business-types/services-trades",
+      "heading": "your-checklist",
+      "id": "business-types/services-trades:a9a8c6bf",
+      "order": 114,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bevestig of jou beroep statutêre registrasie vereis"
+        }
+      ],
+      "doc": "business-types/professional-creative",
+      "heading": "your-checklist",
+      "id": "business-types/professional-creative:4e99d003",
+      "order": 115,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Gaan na of jy van omsetbelasting uitgesluit is voordat jy dit kies"
+        }
+      ],
+      "doc": "business-types/professional-creative",
+      "heading": "your-checklist",
+      "id": "business-types/professional-creative:fc5121e3",
+      "order": 116,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Stel ’n diensooreenkoms op wat omvang, hersienings, IP en betaling dek"
+        }
+      ],
+      "doc": "business-types/professional-creative",
+      "heading": "your-checklist",
+      "id": "business-types/professional-creative:4c50b1ae",
+      "order": 117,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Besluit oor jou beleid vir deposito’s en hersienings, en hou daarby"
+        }
+      ],
+      "doc": "business-types/professional-creative",
+      "heading": "your-checklist",
+      "id": "business-types/professional-creative:8afe75e0",
+      "order": 118,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Stel die tuiskantoorberekening op as jy kwalifiseer"
+        }
+      ],
+      "doc": "business-types/professional-creative",
+      "heading": "your-checklist",
+      "id": "business-types/professional-creative:1c124945",
+      "order": 119,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Registreer as ’n voorlopige belastingbetaler (provisional taxpayer) en skryf die IRP6-datums in jou dagboek"
+        }
+      ],
+      "doc": "business-types/professional-creative",
+      "heading": "your-checklist",
+      "id": "business-types/professional-creative:66134f08",
+      "order": 120,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "your-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bepaal of jy soos ’n werknemer van een kliënt lyk, en stel dit reg as dit so is"
+        }
+      ],
+      "doc": "business-types/professional-creative",
+      "heading": "your-checklist",
+      "id": "business-types/professional-creative:09f007d9",
+      "order": 121,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "before-you-trade.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Een keer iets verkoop en betaling ontvang, om te bewys dat mense dit wil hê"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "before-you-trade",
+      "id": "lookup/checklist:5cce7722",
+      "order": 122
+    },
+    {
+      "block": "before-you-trade.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Aparte bankrekening net vir besigheidsgeld oopgemaak, en die bank gevra wat my limiete vir kitsbetalings is"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "before-you-trade",
+      "id": "lookup/checklist:1c9a465a",
+      "order": 123
+    },
+    {
+      "block": "before-you-trade.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "As ek van die huis af werk: sonering, titelakte en kompleksreëls nagegaan; my huishoudelike versekeraar ingelig"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "before-you-trade",
+      "id": "lookup/checklist:53e717ac",
+      "order": 124,
+      "when": {
+        "tags": [
+          "home"
+        ]
+      }
+    },
+    {
+      "block": "before-you-trade.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Ligging in my foon se kamera afgeskakel voordat ek by die huis foto’s van voorraad neem"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "before-you-trade",
+      "id": "lookup/checklist:8a10fb7e",
+      "order": 125
+    },
+    {
+      "block": "before-you-trade.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Nagegaan of my besigheidstipe ’n lisensie nodig het ("
+        },
+        {
+          "doc": "core/what-you-need-to-sell-things",
+          "label": "01-core/04",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " en "
+        },
+        {
+          "label": "04-business-types/",
+          "section": "business-types",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ")"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "before-you-trade",
+      "id": "lookup/checklist:5dfc9c4d",
+      "order": 126
+    },
+    {
+      "block": "before-you-trade.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir daardie lisensie aansoek gedoen, as dit nodig is, en gewag totdat dit uitgereik is"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "before-you-trade",
+      "id": "lookup/checklist:eb465a87",
+      "order": 127
+    },
+    {
+      "block": "before-you-trade.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Sonering nagegaan, as ek van die huis af of van ’n vaste perseel af werk"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "before-you-trade",
+      "id": "lookup/checklist:88cba814",
+      "order": 128
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Naam gekies en dit nagegaan by CIPC, as ’n .co.za-domein, en op sosiale media"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:bcf0f339",
+      "order": 129
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Die domein gekoop, selfs al is daar nog nie ’n webwerf nie"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:02efde59",
+      "order": 130
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Handelsmerkopsomming van een bladsy gemaak ("
+        },
+        {
+          "doc": "branding/branding-prompts",
+          "label": "02-branding-and-marketing/01",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ")"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:32e2d4af",
+      "order": 131
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Kwotasiesjabloon gemaak"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:8dae9274",
+      "order": 132
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Faktuursjabloon gemaak, met die korrekte BTW-bewoording vir my situasie"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:f9ae9c72",
+      "order": 133
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bepalings en voorwaardes geskryf"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:25f043c4",
+      "order": 134
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Privaatheidskennisgewing geskryf"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:1b7c3802",
+      "order": 135
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Kasboek-sigblad opgestel"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:48e229b7",
+      "order": 136
+    },
+    {
+      "block": "brand-and-documents.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Vouers in Drive opgestel met ’n vaste naamstelsel ("
+        },
+        {
+          "doc": "paperwork/free-tools",
+          "label": "03-documents/02",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ")"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "brand-and-documents",
+      "id": "lookup/checklist:1687e0b9",
+      "order": 137
+    },
+    {
+      "block": "compliance.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "My inligtingsbeampte (Information Officer) by "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "inforegulator.org.za"
+            }
+          ],
+          "external": true,
+          "href": "https://inforegulator.org.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " geregistreer (gratis)"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "compliance",
+      "id": "lookup/checklist:a036463c",
+      "order": 138
+    },
+    {
+      "block": "compliance.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bevestig dat ek ’n SARS-inkomstebelastingnommer het"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "compliance",
+      "id": "lookup/checklist:9488b9de",
+      "order": 139
+    },
+    {
+      "block": "compliance.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "As voorlopige belastingbetaler (provisional taxpayer) geregistreer"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "compliance",
+      "id": "lookup/checklist:afe2d3be",
+      "order": 140
+    },
+    {
+      "block": "compliance.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Besluit tussen eenmansaak of maatskappy, en geregistreer as dit nodig is"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "compliance",
+      "id": "lookup/checklist:5d35feb9",
+      "order": 141
+    },
+    {
+      "block": "compliance.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "As ’n maatskappy: die geregistreerde verteenwoordiger (registered representative) by SARS bevestig"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "compliance",
+      "id": "lookup/checklist:025df418",
+      "order": 142,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "compliance.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "As ’n maatskappy: inligting oor voordelige eienaarskap (beneficial ownership) ingedien (gratis)"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "compliance",
+      "id": "lookup/checklist:e7aada86",
+      "order": 143,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "compliance.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n B-BBEE-beëdigde verklaring laat teken, as ’n kliënt daarvoor gevra het (gratis)"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "compliance",
+      "id": "lookup/checklist:efcec13d",
+      "order": 144
+    },
+    {
+      "block": "marketing.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "My Google Business Profile opgeëis en voltooi"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "marketing",
+      "id": "lookup/checklist:22905c13",
+      "order": 145
+    },
+    {
+      "block": "marketing.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "WhatsApp Business opgestel met ’n katalogus en vinnige antwoorde"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "marketing",
+      "id": "lookup/checklist:f77f50f7",
+      "order": 146
+    },
+    {
+      "block": "marketing.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "My eerste drie kliënte vir resensies gevra"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "marketing",
+      "id": "lookup/checklist:111fd9c5",
+      "order": 147
+    },
+    {
+      "block": "every-sale-where-i-never-meet-the-customer-or-meet-them-once.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Geld is in my saldo weerspieël (reflected), nie \"hangend\" nie, voordat enigiets oorhandig word"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-sale-where-i-never-meet-the-customer-or-meet-them-once",
+      "id": "lookup/checklist:057de8cb",
+      "order": 148
+    },
+    {
+      "block": "every-sale-where-i-never-meet-the-customer-or-meet-them-once.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Geen goedere vrygestel op grond van ’n skermskoot, SMS of PDF-betalingsbewys nie"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-sale-where-i-never-meet-the-customer-or-meet-them-once",
+      "id": "lookup/checklist:9aecec2a",
+      "order": 149
+    },
+    {
+      "block": "every-sale-where-i-never-meet-the-customer-or-meet-them-once.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Ontmoet op ’n openbare, besige plek met kameras, in daglig; iemand ingelig; iemand by my"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-sale-where-i-never-meet-the-customer-or-meet-them-once",
+      "id": "lookup/checklist:b620b7df",
+      "order": 150
+    },
+    {
+      "block": "every-sale-where-i-never-meet-the-customer-or-meet-them-once.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n voertuig: eers ’n afskrif van die lisensie en ID ontvang, sleutels in my hand gehou, geen toetsrit alleen nie"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-sale-where-i-never-meet-the-customer-or-meet-them-once",
+      "id": "lookup/checklist:8a68f28a",
+      "order": 151,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "money-hygiene.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Ek neem ’n foto van elke strokie op die dag dat ek dit kry"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "money-hygiene",
+      "id": "lookup/checklist:99fc0864",
+      "order": 152
+    },
+    {
+      "block": "money-hygiene.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Ek rekonsilieer die kasboek maandeliks teen die bankstaat"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "money-hygiene",
+      "id": "lookup/checklist:34453e8d",
+      "order": 153
+    },
+    {
+      "block": "money-hygiene.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Faktuurnommers loop in volgorde, sonder gapings"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "money-hygiene",
+      "id": "lookup/checklist:f3ff7fdb",
+      "order": 154
+    },
+    {
+      "block": "money-hygiene.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Ek teken elke maand navrae en verkope aan, nie likes en volgers nie"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "money-hygiene",
+      "id": "lookup/checklist:59e1a146",
+      "order": 155
+    },
+    {
+      "block": "once-after-registration.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Geregistreerde verteenwoordiger by SARS (public officer) op eFiling bevestig"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "once-after-registration",
+      "id": "lookup/checklist:c2850f49",
+      "order": 156,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "once-after-registration.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Voordelige eienaarskap by CIPC ingedien (gratis)"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "once-after-registration",
+      "id": "lookup/checklist:0694d50e",
+      "order": 157,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "once-after-registration.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Vouer vir maatskappyrekords geskep: akte van oprigting (MOI), aandeelsertifikaat, rekord van direkteure, effekteregister"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "once-after-registration",
+      "id": "lookup/checklist:eb8bf210",
+      "order": 158,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "once-after-registration.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bankrekening in die maatskappy se naam oopgemaak, net vir maatskappygeld gebruik"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "once-after-registration",
+      "id": "lookup/checklist:3e92283b",
+      "order": 159,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "once-after-registration.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Besluit hoe ek myself gaan betaal, en waarom"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "once-after-registration",
+      "id": "lookup/checklist:d16ddfb9",
+      "order": 160,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "once-after-registration.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Geregistreerde naam en registrasienommer op elke dokument, met \"handeldrywende as\" (\"trading as\") as ek ’n handelsmerknaam gebruik"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "once-after-registration",
+      "id": "lookup/checklist:d21f5efe",
+      "order": 161,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "once-after-registration.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "As ek later lyne wil byvoeg: ’n neutrale maatskappynaam geregistreer, die handelsmerk in die handelsnaam"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "once-after-registration",
+      "id": "lookup/checklist:64fdeec3",
+      "order": 162,
+      "when": {
+        "entity": "pty",
+        "tags": [
+          "adding-lines"
+        ]
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Verklaring oor voordelige eienaarskap is op datum"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:a39426e1",
+      "order": 163,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "CIPC se jaarlikse opgawe binne 30 werksdae ná die herdenking van registrasie ingedien"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:b79af9c6",
+      "order": 164,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Jaarlikse finansiële state opgestel"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:00f5fc24",
+      "order": 165,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Public Interest Score (openbare-belangtelling) aan die einde van die jaar bereken"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:b0853b54",
+      "order": 166,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Financial Accountability Supplement of state saam met die jaarlikse opgawe ingedien"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:95b86e75",
+      "order": 167,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "ITR14 binne 12 maande ná die einde van die finansiële jaar ingedien"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:63d6082e",
+      "order": 168,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Twee IRP6-opgawes vir voorlopige belasting ingedien"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:60d623d8",
+      "order": 169,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-year.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Leningsrekening VOOR die einde van die finansiële jaar nagegaan en vereffen"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-year",
+      "id": "lookup/checklist:12b6eab2",
+      "order": 170,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "every-month-if-the-company-pays-anyone-a-salary-including-me.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "EMP201 teen die 7de ingedien en betaal"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "every-month-if-the-company-pays-anyone-a-salary-including-me",
+      "id": "lookup/checklist:fe35c42c",
+      "order": 171,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "never.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Persoonlike uitgawe uit die maatskappyrekening betaal"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "never",
+      "id": "lookup/checklist:c7242bd4",
+      "order": 172,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "never.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Geld uithaal sonder om dit as salaris, dividend of lening aan te teken"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "never",
+      "id": "lookup/checklist:27055304",
+      "order": 173,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "never.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Dividend verklaar sonder ’n skriftelike besluit"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "never",
+      "id": "lookup/checklist:8a008594",
+      "order": 174,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "BRNC of Traffic Register Number (verkeersregisternommer)"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:57a8c2a4",
+      "order": 175,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "SAPS-registrasie as handelaar in tweedehandse goedere (SAPS 601, gratis)"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:9aefc6b4",
+      "order": 176,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Register van verkrygings en vervreemdings opgestel met velde vir VIN, enjin, odometer en kleur"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:b196800c",
+      "order": 177,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Motorhandelnommers, as ek ongeregistreerde voorraad rondbeweeg"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:744d13d6",
+      "order": 178,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Motorhandelversekering wat voorraad en toetsritte insluit"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:8dbe5551",
+      "order": 179,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Verkoopooreenkoms met ’n genommerde lys van gebreke wat die koper parafeer"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:cdc31934",
+      "order": 180,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Besluit oor BTW geneem, met nosionele insetbelasting deurgewerk"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:8ef76a00",
+      "order": 181,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "vehicle-dealer.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "VAT264-proses in plek, as jy geregistreer is"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "vehicle-dealer",
+      "id": "lookup/checklist:e441a4c4",
+      "order": 182,
+      "when": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      }
+    },
+    {
+      "block": "food.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Geakkrediteerde R638-opleiding vir my en elke voedselhanteerder"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "food",
+      "id": "lookup/checklist:32e8d8b8",
+      "order": 183,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "food.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Perseel volgens R638-standaarde voorberei"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "food",
+      "id": "lookup/checklist:527a8410",
+      "order": 184,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "food.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Aansoek om ’n COA gedoen deur die munisipaliteit se afdeling vir omgewingsgesondheid"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "food",
+      "id": "lookup/checklist:b857c0d6",
+      "order": 185,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "food.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "COA teen die muur vertoon"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "food",
+      "id": "lookup/checklist:1f166d50",
+      "order": 186,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "food.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Munisipale besigheidslisensie"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "food",
+      "id": "lookup/checklist:8b8c0d43",
+      "order": 187,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "food.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Brandnakoming en gas-CoC, waar van toepassing"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "food",
+      "id": "lookup/checklist:58836809",
+      "order": 188,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "food.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Etikette teen R146 nagegaan voordat dit gedruk word"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "food",
+      "id": "lookup/checklist:09952c25",
+      "order": 189,
+      "when": {
+        "businessTypes": [
+          "food"
+        ]
+      }
+    },
+    {
+      "block": "beauty-and-personal-care.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Munisipale lisensie vir ’n gesondheidsinstelling"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "beauty-and-personal-care",
+      "id": "lookup/checklist:08c14d32",
+      "order": 190,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "beauty-and-personal-care.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Perseel gereed vir gesondheidsinspeksie"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "beauty-and-personal-care",
+      "id": "lookup/checklist:5ddbfd24",
+      "order": 191,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "beauty-and-personal-care.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Aanspreeklikheidsversekering vir behandelings wat pas by wat ek werklik doen"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "beauty-and-personal-care",
+      "id": "lookup/checklist:4f9e60d7",
+      "order": 192,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "beauty-and-personal-care.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Sjabloon vir rekords van konsultasies en pleistertoetse (patch tests)"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "beauty-and-personal-care",
+      "id": "lookup/checklist:23f8909e",
+      "order": 193,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "beauty-and-personal-care.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bespreking-, deposito- en kansellasievoorwaardes op skrif"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "beauty-and-personal-care",
+      "id": "lookup/checklist:796521bf",
+      "order": 194,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "beauty-and-personal-care.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Skriftelike toestemming van kliënte vir foto’s voordat ek dit plaas"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "beauty-and-personal-care",
+      "id": "lookup/checklist:f7fc2eff",
+      "order": 195,
+      "when": {
+        "businessTypes": [
+          "beauty"
+        ]
+      }
+    },
+    {
+      "block": "retail-and-online.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "SAPS-registrasie, as ek in tweedehandse goedere handel dryf"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "retail-and-online",
+      "id": "lookup/checklist:92ad1d52",
+      "order": 196,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "retail-and-online.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS-invoerderskode en NRCS-kontrole, as ek invoer"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "retail-and-online",
+      "id": "lookup/checklist:1a0745a3",
+      "order": 197,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "retail-and-online.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "ECTA s43-inligting op my webwerf gepubliseer"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "retail-and-online",
+      "id": "lookup/checklist:eea37d29",
+      "order": 198,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "retail-and-online.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Stap om die bestelling na te gaan voor betaling by die kassa"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "retail-and-online",
+      "id": "lookup/checklist:3b8c77ff",
+      "order": 199,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "retail-and-online.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Terugsendingsbeleid wat die afkoelperiode van sewe dae respekteer"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "retail-and-online",
+      "id": "lookup/checklist:5a7f3f39",
+      "order": 200,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "retail-and-online.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Voorraad word saam met die kasboek bygehou"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "retail-and-online",
+      "id": "lookup/checklist:63f5e0ad",
+      "order": 201,
+      "when": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      }
+    },
+    {
+      "block": "services-and-trades.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Professionele of statutêre registrasie vir my ambag, as dit vereis word"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "services-and-trades",
+      "id": "lookup/checklist:c835f118",
+      "order": 202,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "services-and-trades.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Openbare-aanspreeklikheidsversekering"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "services-and-trades",
+      "id": "lookup/checklist:aa9275cd",
+      "order": 203,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "services-and-trades.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Voertuigversekeraar ingelig dat ek die voertuig vir besigheid gebruik"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "services-and-trades",
+      "id": "lookup/checklist:bac9170c",
+      "order": 204,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "services-and-trades.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Kwotasiesjabloon met ’n regte lys van uitsluitings"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "services-and-trades",
+      "id": "lookup/checklist:2bb7976e",
+      "order": 205,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "services-and-trades.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Voorwaardes vir deposito’s en vorderingsbetalings"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "services-and-trades",
+      "id": "lookup/checklist:82477245",
+      "order": 206,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "services-and-trades.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Voertuiglogboek word bygehou"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "services-and-trades",
+      "id": "lookup/checklist:a448e918",
+      "order": 207,
+      "when": {
+        "businessTypes": [
+          "services-trades"
+        ]
+      }
+    },
+    {
+      "block": "professional-and-creative.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Nagegaan of ek van omsetbelasting uitgesluit is voordat ek dit kies"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "professional-and-creative",
+      "id": "lookup/checklist:956d9895",
+      "order": 208,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "professional-and-creative.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Diensooreenkoms wat omvang, rondtes van wysigings, IE en betaling dek"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "professional-and-creative",
+      "id": "lookup/checklist:e97fe964",
+      "order": 209,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "professional-and-creative.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Klousule dat eienaarskap by betaling oorgaan in elke kontrak"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "professional-and-creative",
+      "id": "lookup/checklist:4a72e7c9",
+      "order": 210,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "professional-and-creative.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Berekening vir ’n tuiskantoor gedoen, as ek kwalifiseer"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "professional-and-creative",
+      "id": "lookup/checklist:0b186a56",
+      "order": 211,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
+    },
+    {
+      "block": "professional-and-creative.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Nagegaan dat ek nie soos ’n werknemer van een kliënt lyk nie"
+        }
+      ],
+      "doc": "lookup/checklist",
+      "heading": "professional-and-creative",
+      "id": "lookup/checklist:53da774d",
+      "order": 212,
+      "when": {
+        "businessTypes": [
+          "professional-creative"
+        ]
+      }
     }
   ]
 }

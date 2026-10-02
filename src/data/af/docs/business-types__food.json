@@ -1,0 +1,1040 @@
+{
+  "appliesTo": {
+    "businessTypes": [
+      "food"
+    ],
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lees eers "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ". Hierdie lêer voeg die reëls by wat net vir kos geld."
+        }
+      ],
+      "hash": "98f53cc83ad445f2",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "0dfa1db9d3b70efa"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit dek enigiemand wat kos vir geld hanteer, voorberei, berg, vervoer of verkoop: ’n tuisbakker, ’n spysenier, ’n kosvragmotor, ’n spaza-winkel, ’n wegneemetesplek, ’n markstalletjie, ’n klein vervaardiger."
+        }
+      ],
+      "hash": "3cc35f2b14c93747",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "5373f68c95cb1f0a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "524cecd2779facdb",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Gewone betekenisse van die terme wat in hierdie lêer gebruik word. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid). Die permit sonder wat jy nie kan oopmaak nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "COA"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die 2018-reëls vir voedselhigiëne."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "R638"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die 2012-reëls vir die etikettering van kos."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "R146"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die munisipale gesondheidsinspekteur wat jou perseel nagaan."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "EHP"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Wie ook al die kombuis daagliks bestuur. Moet geakkrediteerde opleiding hê."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Persoon in beheer (person in charge)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Of die munisipaliteit jou soort besigheid by daardie adres toelaat."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Sonering"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "169a9340c63eee7c"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kos is ná voertuie die mees gereguleerde klein besigheid in Suid-Afrika. Beplan vir twee tot ses maande voordat jy wettig mag oopmaak."
+        }
+      ],
+      "hash": "ff575c8364c07705",
+      "id": "words-used-in-this-file.3",
+      "kind": "paragraph",
+      "sourceHash": "bfc497aaec0e4e61"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die een dokument sonder wat jy nie kan handel dryf nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "4f8ae76fcaa9a88f",
+      "id": "the-one-document-you-cannot-trade-without",
+      "kind": "heading",
+      "sourceHash": "07a45501369c8802",
+      "text": "Die een dokument sonder wat jy nie kan handel dryf nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Certificate of Acceptability, gewoonlik ’n COA genoem."
+        }
+      ],
+      "hash": "b84c0c83ecbefe71",
+      "id": "the-one-document-you-cannot-trade-without.1",
+      "kind": "paragraph",
+      "sourceHash": "f8fcd351cd0c7210"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Regulasie R638 van 2018 stel algemene higiënevereistes vir kospersele en vereis dat alle besighede wat verwerkte kos hanteer en kos vir wins verkoop, ’n Certificate of Acceptability moet hê."
+        }
+      ],
+      "hash": "2fb1f57f99ccdda9",
+      "id": "the-one-document-you-cannot-trade-without.2",
+      "kind": "paragraph",
+      "sourceHash": "0ba7cc9b013aa8d8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit geld ewe veel vir ’n restaurant in Sandton, ’n spaza-winkel in Khayelitsha, ’n spysenieringsmaatskappy in Durban en die kombuis van ’n wildsoord in Limpopo. Dit word soms die R638-sertifikaat, ’n omgewingsgesondheidspermit of ’n voedselbesigheidslisensie genoem."
+        }
+      ],
+      "hash": "ce24c9ad42fd808b",
+      "id": "the-one-document-you-cannot-trade-without.3",
+      "kind": "paragraph",
+      "sourceHash": "43eb47205d8c1f08"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Elke kosbesigheid het hierdie sertifikaat nodig, groot of klein. Mense noem dit ook die R638-sertifikaat, ’n gesondheidspermit of ’n koslisensie. Dieselfde ding."
+        }
+      ],
+      "hash": "6dbc4bf1528fa3f4",
+      "id": "the-one-document-you-cannot-trade-without.4",
+      "kind": "callout",
+      "pairsWith": "the-one-document-you-cannot-trade-without.3",
+      "sourceHash": "e9778befef1405a1",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "R638 reël die struktuur en netheid van persele, hoe kos vervoer word, die pligte van die persoon in beheer, die opleiding van voedselhanteerders, en die uitreiking van die COA deur jou plaaslike munisipaliteit. As jy kos aan die publiek hanteer, berg, vervoer of verkoop, geld R638 vir jou."
+        }
+      ],
+      "hash": "14e9c8ace7d7cbdf",
+      "id": "the-one-document-you-cannot-trade-without.5",
+      "kind": "paragraph",
+      "sourceHash": "36b0802a93915fcd"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "R638 is die stel reëls oor hoe ’n kosplek gebou en skoon gehou word, hoe kos vervoer word, wat die persoon in beheer moet doen, watter opleiding personeel nodig het, en hoe die sertifikaat uitgereik word. As jy kos verkoop, geld dit vir jou."
+        }
+      ],
+      "hash": "956bb8c08c81459e",
+      "id": "the-one-document-you-cannot-trade-without.6",
+      "kind": "callout",
+      "pairsWith": "the-one-document-you-cannot-trade-without.5",
+      "sourceHash": "f78a79838a9ba9da",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Waarom aansoeke misluk"
+        }
+      ],
+      "depth": 3,
+      "hash": "2bb99f67924cd327",
+      "id": "why-applications-fail",
+      "kind": "heading",
+      "sourceHash": "eb60678193784156",
+      "text": "Waarom aansoeke misluk"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opleiding onder R638 Regulasie 10 is nie opsioneel nie. Jy kan nie ’n COA kry sonder geakkrediteerde voedselveiligheidsopleiding vir die persoon in beheer en elke voedselhanteerder nie."
+        }
+      ],
+      "hash": "70823f230c79d3cc",
+      "id": "why-applications-fail.1",
+      "kind": "paragraph",
+      "sourceHash": "6ae4d5a1d4d908e8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die heel algemeenste rede waarom COA-aansoeke misluk, is dat die persoon in beheer nie ’n geakkrediteerde opleidingsertifikaat het wanneer die omgewingsgesondheidspraktisyn (Environmental Health Practitioner) opdaag nie."
+        }
+      ],
+      "hash": "bf0701d7fa0d6015",
+      "id": "why-applications-fail.2",
+      "kind": "paragraph",
+      "sourceHash": "048f490b9b611262"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Doen die opleiding voordat jy die inspeksie bespreek. Nie daarna nie."
+        }
+      ],
+      "hash": "fab872e575646b8d",
+      "id": "why-applications-fail.3",
+      "kind": "paragraph",
+      "sourceHash": "1305873a5eccb1bc"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoe om dit te kry"
+        }
+      ],
+      "depth": 3,
+      "hash": "c7c2b364af229433",
+      "id": "how-to-get-it",
+      "kind": "heading",
+      "sourceHash": "102f101a1ae682c7",
+      "text": "Hoe om dit te kry"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kontak die Omgewingsgesondheidsafdeling van die munisipaliteit waar jou perseel geleë is en vra die COA-aansoekvorm. ’n Omgewingsgesondheidspraktisyn sal die perseel inspekteer om te bevestig dat dit aan R638 voldoen. As dit voldoen, word die COA uitgereik. As nie, gee die EHP ’n lys van verbeterings wat nodig is."
+        }
+      ],
+      "hash": "0d01e24eb3fadbc4",
+      "id": "how-to-get-it.1",
+      "kind": "paragraph",
+      "sourceHash": "d27a83e9c856a384"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vra jou munisipaliteit se gesondheidsafdeling vir die vorm vir die kossertifikaat. ’n Gesondheidsinspekteur sal kom kyk. As jou kombuis slaag, kry jy die sertifikaat. As nie, gee hulle jou ’n lys van dinge om reg te maak."
+        }
+      ],
+      "hash": "bc3b4491e65efc94",
+      "id": "how-to-get-it.2",
+      "kind": "callout",
+      "pairsWith": "how-to-get-it.1",
+      "sourceHash": "13c263e46f529acc",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sodra die COA uitgereik is, moet dit opvallend op jou perseel vertoon word. Periodieke inspeksies sal volg."
+        }
+      ],
+      "hash": "5d98e39c5a6687ad",
+      "id": "how-to-get-it.3",
+      "kind": "paragraph",
+      "sourceHash": "8d3a158ecfc5e4ce"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die COA geld net vir daardie perseel en kan nie na ’n nuwe perseel of ’n nuwe eienaar oorgedra word nie. Dit het onder R638 geen vaste vervaldatum nie, maar word ongeldig wanneer sleutelvoorwaardes verander."
+        }
+      ],
+      "hash": "2fa0083c74125bc5",
+      "id": "how-to-get-it.4",
+      "kind": "paragraph",
+      "sourceHash": "d7abcbd958489ea8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy trek, doen jy weer aansoek. As jy ’n bestaande kafee koop, kom die vorige eienaar se COA nie saam nie."
+        }
+      ],
+      "hash": "d31e2a525c445868",
+      "id": "how-to-get-it.5",
+      "kind": "paragraph",
+      "sourceHash": "feb91ada9c9ab661"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Alles anders wat jy dalk nodig het"
+        }
+      ],
+      "depth": 2,
+      "hash": "1f70f79b563e9bb9",
+      "id": "everything-else-you-may-need",
+      "kind": "heading",
+      "sourceHash": "b064a9111a214f1b",
+      "text": "Alles anders wat jy dalk nodig het"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Nege dokumente dek die meeste kosbesighede: CIPC-registrasie, SARS-belasting, ’n Business Licence (besigheidslisensie) onder die Businesses Act 71 of 1991, ’n Certificate of Acceptability onder R638, ’n Zoning Certificate (soneringsertifikaat) as die perseel nie vir besigheid gesoneer is nie, ’n Fire Compliance Certificate (brandnakomingsertifikaat, SANS 10400-T), ’n Gas Certificate of Compliance (gasnakomingsertifikaat) as jy gas gebruik, ’n Liquor Licence (dranklisensie) as jy alkohol verkoop, en geakkrediteerde opleidingsertifikate in voedselveiligheid vir die persoon in beheer en alle voedselhanteerders."
+        }
+      ],
+      "hash": "b11f8e3a4d7ef72e",
+      "id": "everything-else-you-may-need.1",
+      "kind": "paragraph",
+      "sourceHash": "727b909e382dae3c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die meeste kosbesighede het nodig: maatskappy- of belastingregistrasie, ’n munisipale besigheidslisensie, die kossertifikaat (COA), soneringsgoedkeuring, ’n brandsertifikaat, ’n gassertifikaat as jy gas gebruik, ’n dranklisensie as jy alkohol verkoop, en opleidingsertifikate in voedselveiligheid vir almal wat kos hanteer."
+        }
+      ],
+      "hash": "8bd1718b26db20fb",
+      "id": "everything-else-you-may-need.2",
+      "kind": "callout",
+      "pairsWith": "everything-else-you-may-need.1",
+      "sourceHash": "de967bb7c8c378f2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy mag nie begin handel dryf in ’n besigheid wat ’n lisensie vereis voordat die lisensie uitgereik is nie. Om sonder ’n geldige lisensie handel te dryf, is strafbaar met ’n boete. Lisensiëring word deur die Businesses Act 71 of 1991 gereël."
+        }
+      ],
+      "hash": "031d5a82e0f8eff7",
+      "id": "everything-else-you-may-need.3",
+      "kind": "paragraph",
+      "sourceHash": "df58f46dab44a9e5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy kan nie oopmaak voordat die lisensie in jou hand is nie. As jy vroeg oopmaak, kan jy beboet word."
+        }
+      ],
+      "hash": "aff96574e7703db9",
+      "id": "everything-else-you-may-need.4",
+      "kind": "callout",
+      "pairsWith": "everything-else-you-may-need.3",
+      "sourceHash": "450cb3b023a20879",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy aan alle vereistes voldoen, word ’n lisensie uitgereik. As nie, kan jy aansoek doen om ’n uitstelperiode van 14 dae waarin jy die nodige veranderinge aanbring."
+        }
+      ],
+      "hash": "900f82b6d7d0d1ff",
+      "id": "everything-else-you-may-need.5",
+      "kind": "paragraph",
+      "sourceHash": "b49f7d4bd9bdcf8a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Realistiese tydsberekening"
+        }
+      ],
+      "depth": 2,
+      "hash": "8c6bcb03c3d21fe7",
+      "id": "realistic-timing",
+      "kind": "heading",
+      "sourceHash": "5ce0d346bbbc7c0d",
+      "text": "Realistiese tydsberekening"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verwag twee tot ses maande, afhangende van hoe vinnig die munisipaliteit reageer en hoe gereed die perseel is. CIPC-registrasie neem dae, opleiding een tot drie weke, die voorbereiding van die perseel twee tot agt weke, en die COA-aansoek twee tot agt weke. ’n Dranklisensie alleen kan drie tot twaalf maande byvoeg."
+        }
+      ],
+      "hash": "adcc72f0cbf0aeca",
+      "id": "realistic-timing.1",
+      "kind": "paragraph",
+      "sourceHash": "e15532fcba773140"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Realistiese tydsberekening: ’n paar dae vir maatskappyregistrasie, een tot drie weke vir opleiding, twee tot agt weke om die kombuis gereed te kry, twee tot agt weke vir die sertifikaat. Alkohol voeg drie maande tot ’n jaar by."
+        }
+      ],
+      "hash": "95836d776d8da85e",
+      "id": "realistic-timing.2",
+      "kind": "callout",
+      "pairsWith": "realistic-timing.1",
+      "sourceHash": "655952c92a133772",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Beplan jou huurkontrak hierom. Om huur te betaal vir ’n perseel waarvandaan jy nie wettig mag handel dryf nie, is hoe nuwe kosbesighede se geld opraak voordat hulle oopmaak."
+        }
+      ],
+      "hash": "099489ea224743c1",
+      "id": "realistic-timing.3",
+      "kind": "paragraph",
+      "sourceHash": "d75e1cd0d5bbd4d4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tuiswerk"
+        }
+      ],
+      "depth": 2,
+      "hash": "c7a506d4296e666b",
+      "id": "working-from-home",
+      "kind": "heading",
+      "sourceHash": "f76f2a0064715587",
+      "text": "Tuiswerk"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tuiskosbesighede is wettig, maar word tydens die inspeksie noukeurig ondersoek. Jy het ’n COA nodig, soneringsgoedkeuring, ’n kombuisarea wat aan R638 voldoen en van die gesin se woonruimte geskei is, R638-opleiding, ’n besigheidslisensie, en moontlik die bure se toestemming."
+        }
+      ],
+      "hash": "18fb9edfa5c3a58b",
+      "id": "working-from-home.1",
+      "kind": "paragraph",
+      "sourceHash": "63a6848dc3b5d2a2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Gedeelde gesinskombuis sal gewoonlik nie slaag nie. Begroot vir ’n aparte voorbereidingsarea."
+        }
+      ],
+      "hash": "bde64fe08862fae7",
+      "id": "working-from-home.2",
+      "kind": "paragraph",
+      "sourceHash": "1fe401deee2ab06a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Etikettering"
+        }
+      ],
+      "depth": 2,
+      "hash": "83eb759a60b1bfee",
+      "id": "labelling",
+      "kind": "heading",
+      "sourceHash": "17ce3476d77835be",
+      "text": "Etikettering"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Regulasie R146 van 2012 reël die etikettering en advertering van voedselprodukte, insluitend allergeenwaarskuwings."
+        }
+      ],
+      "hash": "51d0e8fef530681f",
+      "id": "labelling.1",
+      "kind": "paragraph",
+      "sourceHash": "6a4c01efbe3556f2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lees R146 voordat jy enigiets druk. Om etikette oor te druk omdat die allergeenverklaring verkeerd is, is ’n algemene koste wat jy kan vermy."
+        }
+      ],
+      "hash": "219aa5ab90aef95c",
+      "id": "labelling.2",
+      "kind": "paragraph",
+      "sourceHash": "01b3fcc53a9e678c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Moenie gesondheidsbewerings maak nie. \"Versterk immuniteit\" of \"help met diabetes\" kan jou produk so ver stoot dat dit as ’n medisyne gereguleer word."
+        }
+      ],
+      "hash": "fc5f5b40a72d9eaa",
+      "id": "labelling.3",
+      "kind": "paragraph",
+      "sourceHash": "c5fc19b2c2daa015"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die wyer wetgewing"
+        }
+      ],
+      "depth": 2,
+      "hash": "b229ea86b4944342",
+      "id": "the-wider-law",
+      "kind": "heading",
+      "sourceHash": "6e4ae8178decadb4",
+      "text": "Die wyer wetgewing"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kosbesighede word gereël deur die Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972, die Consumer Protection Act 68 of 2008, die Businesses Act 71 of 1991, die Agricultural Products Standards Act 119 of 1990, die Occupational Health and Safety Act 85 of 1993, en die Standards Act 8 of 2008."
+        }
+      ],
+      "hash": "54f29a410c358e23",
+      "id": "the-wider-law.1",
+      "kind": "paragraph",
+      "sourceHash": "c8858b9e4b1615ed"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verskeie wette geld vir kos. Die belangrikes vir ’n klein besigheid is die reëls vir voedselhigiëne (R638), die reëls vir etikettering (R146), verbruikersreg, en die munisipale lisensie."
+        }
+      ],
+      "hash": "97436f8b78209f00",
+      "id": "the-wider-law.2",
+      "kind": "callout",
+      "pairsWith": "the-wider-law.1",
+      "sourceHash": "e3e86e8c54a4f393",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Een uitsondering wat die moeite werd is om na te gaan: om enige voedselproduk in Suid-Afrika wettig te verkoop, behalwe onverwerkte landbouprodukte, moet jy by die plaaslike owerheid aansoek doen om ’n Certificate of Acceptability. As jy net rou produkte verkoop soos dit uit die grond kom, bevestig jou posisie by jou munisipaliteit eerder as om te aanvaar."
+        }
+      ],
+      "hash": "105c91fdba5b0f42",
+      "id": "the-wider-law.3",
+      "kind": "paragraph",
+      "sourceHash": "8652ec1bda7374a2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Notas oor handelsmerk en bemarking"
+        }
+      ],
+      "depth": 2,
+      "hash": "d7c823a003845e98",
+      "id": "branding-and-marketing-notes",
+      "kind": "heading",
+      "sourceHash": "cf2e2a9a2f4c9c97",
+      "text": "Notas oor handelsmerk en bemarking"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Handelsmerkopdragte"
+            }
+          ],
+          "doc": "branding/branding-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", met twee byvoegings."
+        }
+      ],
+      "hash": "e6f9642c301daaff",
+      "id": "branding-and-marketing-notes.1",
+      "kind": "paragraph",
+      "sourceHash": "1f5c31593df8dd10"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wanneer jy die naamopdrag gebruik, voeg hierdie reël by:"
+        }
+      ],
+      "hash": "b6b8e555f6b16a33",
+      "id": "branding-and-marketing-notes.2",
+      "kind": "paragraph",
+      "sourceHash": "c783e2baaceacacb"
+    },
+    {
+      "hash": "b3a46ab587e6c452",
+      "id": "branding-and-marketing-notes.3",
+      "kind": "code",
+      "sourceHash": "901c2ce00681d87f",
+      "text": "My besigheid verkoop kos. Maak seker dat geen naam ’n gesondheidsvoordeel,\n’n mediese bewering, of ’n beskermde term soos \"organies\" of \"vrylopend\"\nsuggereer wat ek sal moet bewys nie.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir fotografie klop daglig en ’n gewone agtergrond enige filter. Neem die foto van die kos sodra dit opgeskep is."
+        }
+      ],
+      "hash": "40012451d7da3198",
+      "id": "branding-and-marketing-notes.4",
+      "kind": "paragraph",
+      "sourceHash": "3782fd993a6b988e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou kontrolelys"
+        }
+      ],
+      "depth": 2,
+      "hash": "913a4f09fb30d35c",
+      "id": "your-checklist",
+      "kind": "heading",
+      "sourceHash": "44586aab28889f46",
+      "text": "Jou kontrolelys"
+    },
+    {
+      "hash": "18c67c8f2613013f",
+      "id": "your-checklist.1",
+      "items": [
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Bevestig die sonering vir kosvoorbereiding by jou perseel"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:c251f427",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Bespreek geakkrediteerde R638-opleiding vir jouself en enigiemand wat kos sal hanteer"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:c239e886",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Berei die perseel voor volgens R638-standaarde"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:4d4cb4db",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Doen aansoek om die COA by jou munisipaliteit se Omgewingsgesondheidsafdeling"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:a7fe56ab",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Doen aansoek om die munisipale besigheidslisensie"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:0f8340c3",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Kry brandnakoming en ’n gas-CoC as dit van toepassing is"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:7ee08e59",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Gaan R146 na vir jou etikette voordat jy druk"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:02658eb1",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Vertoon die COA teen die muur"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:690c42ea",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Maak eers dan oop"
+            }
+          ],
+          "doc": "business-types/food",
+          "id": "business-types/food:eb4fb487",
+          "when": {
+            "businessTypes": [
+              "food"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "25a94b545bf37b09"
+    }
+  ],
+  "contentHash": "a49369ad62cc9240",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Besigheidstipe: kos en drinkgoed",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "the-one-document-you-cannot-trade-without",
+      "text": "Die een dokument sonder wat jy nie kan handel dryf nie"
+    },
+    {
+      "depth": 3,
+      "id": "why-applications-fail",
+      "text": "Waarom aansoeke misluk"
+    },
+    {
+      "depth": 3,
+      "id": "how-to-get-it",
+      "text": "Hoe om dit te kry"
+    },
+    {
+      "depth": 2,
+      "id": "everything-else-you-may-need",
+      "text": "Alles anders wat jy dalk nodig het"
+    },
+    {
+      "depth": 2,
+      "id": "realistic-timing",
+      "text": "Realistiese tydsberekening"
+    },
+    {
+      "depth": 2,
+      "id": "working-from-home",
+      "text": "Tuiswerk"
+    },
+    {
+      "depth": 2,
+      "id": "labelling",
+      "text": "Etikettering"
+    },
+    {
+      "depth": 2,
+      "id": "the-wider-law",
+      "text": "Die wyer wetgewing"
+    },
+    {
+      "depth": 2,
+      "id": "branding-and-marketing-notes",
+      "text": "Notas oor handelsmerk en bemarking"
+    },
+    {
+      "depth": 2,
+      "id": "your-checklist",
+      "text": "Jou kontrolelys"
+    }
+  ],
+  "id": "business-types/food",
+  "kind": "guide",
+  "lang": "af",
+  "order": 3,
+  "readingTime": 7,
+  "related": [
+    "branding/branding-prompts"
+  ],
+  "route": "business-types/food/",
+  "section": "business-types",
+  "slug": "food",
+  "sourcePath": "04 Your kind of business/02-food-business.md",
+  "sources": {
+    "acts": [
+      "consumer-protection-act-68-of-2008",
+      "businesses-act-71-of-1991",
+      "foodstuffs-cosmetics-and-disinfectants-act-54-of-1972",
+      "occupational-health-and-safety-act-85-of-1993"
+    ],
+    "entries": [
+      "regulation-r638-of-2018",
+      "regulation-r146-of-2012",
+      "food-focus",
+      "asc-food-safety",
+      "businesses-act-71-of-1991"
+    ]
+  },
+  "summary": "Lees eers 01-core/. Hierdie lêer voeg die reëls by wat net vir kos geld.",
+  "tags": [
+    "business-types"
+  ],
+  "terms": [
+    {
+      "meaning": "Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid). Die permit sonder wat jy nie kan oopmaak nie.",
+      "term": "COA"
+    },
+    {
+      "meaning": "Die 2018-reëls vir voedselhigiëne.",
+      "term": "R638"
+    },
+    {
+      "meaning": "Die 2012-reëls vir die etikettering van kos.",
+      "term": "R146"
+    },
+    {
+      "meaning": "Die munisipale gesondheidsinspekteur wat jou perseel nagaan.",
+      "term": "EHP"
+    },
+    {
+      "meaning": "Wie ook al die kombuis daagliks bestuur. Moet geakkrediteerde opleiding hê.",
+      "term": "Persoon in beheer (person in charge)"
+    },
+    {
+      "meaning": "Of die munisipaliteit jou soort besigheid by daardie adres toelaat.",
+      "term": "Sonering"
+    }
+  ],
+  "title": "Besigheidstipe: kos en drinkgoed",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

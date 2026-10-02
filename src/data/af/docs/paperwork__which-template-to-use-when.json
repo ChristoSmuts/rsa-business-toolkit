@@ -1,0 +1,1931 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het ses dokumente nodig om ’n klein besigheid behoorlik te bestuur. Alles anders kan wag."
+        }
+      ],
+      "hash": "ba9a6fce9c2d2b56",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "93820633b614a195"
+    },
+    {
+      "hash": "2c9eda7004cd3192",
+      "id": "intro.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "’n Kwotasie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Faktuur"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Kwitansie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Bepalings en voorwaardes"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Privaatheidskennisgewing"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Kasboek"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "3f87de353673b1ce",
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "71933f00a0a6aeea",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Eenvoudige betekenisse van die terme wat in hierdie lêer gebruik word. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Prys wat jy aanbied voor die werk. Nog nie ’n verkoop nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Kwotasie"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die rekening wat jy ná die werk stuur, waarin jy om betaling vra."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Faktuur"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Bewys dat jy die geld ontvang het."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Kwitansie"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Dokument wat ’n faktuur wat jy reeds gestuur het, kanselleer of verminder. Gebruik dit in plaas daarvan om ’n faktuur uit te vee."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Kredietnota"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Hoeveelheid. Hoeveel."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Aantal"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die prys vir een."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Eenheidsprys"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die totaal voordat BTW bygetel word."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Subtotaal"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Sonder BTW (voordat dit bygetel word) / met BTW (daarna)."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "BTW uitgesluit / ingesluit"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die laaste dag waarop die kliënt mag betaal sonder om laat te wees."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Vervaldatum"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Elektroniese fondsoordrag. ’n Bankbetaling."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "EFT"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die nommer wat jou banktak identifiseer. Vra jou bank."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Takkode"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Korter BTW-faktuur wat toegelaat word vir verkope tussen R50 en R5,000."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Verkorte belastingfaktuur"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die kliënt. Die persoon of besigheid wat die goedere ontvang."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Ontvanger"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Maak seker dat jou rekords en jou bankstaat ooreenstem."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Rekonsilieer"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die kilometerteller op die paneelbord."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Odometer"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Geld wat vooruit betaal word voordat die werk begin."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Deposito"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "9fa0f4b713acf038"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bou dit een keer, in die program wat jy in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Gratis gereedskap"
+            }
+          ],
+          "doc": "paperwork/free-tools",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " gekies het, en gebruik dit weer en weer."
+        }
+      ],
+      "hash": "03dbdd6f30257c4a",
+      "id": "words-used-in-this-file.3",
+      "kind": "paragraph",
+      "sourceHash": "43b3e49ad4a11242"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Faktuurnommering"
+        }
+      ],
+      "depth": 2,
+      "hash": "546a5bd9bf22160a",
+      "id": "invoice-numbering",
+      "kind": "heading",
+      "sourceHash": "b288d225f84e7cce",
+      "text": "Faktuurnommering"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Nommer fakture in volgorde, sonder gapings: INV-0001, INV-0002, INV-0003."
+        }
+      ],
+      "hash": "eb3a88e995f982d6",
+      "id": "invoice-numbering.1",
+      "kind": "paragraph",
+      "sourceHash": "63731d744ce88b51"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir SARS lyk ’n gaping in die reeks soos ’n verborge verkoping. As jy ’n faktuur kanselleer, moet dit nie uitvee nie. Reik ’n kredietnota daarteen uit en hou albei."
+        }
+      ],
+      "hash": "c3230464e4b996b7",
+      "id": "invoice-numbering.2",
+      "kind": "paragraph",
+      "sourceHash": "82db360f1d0a8b9d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik dieselfde idee vir kwotasies: QUO-0001."
+        }
+      ],
+      "hash": "e4fce3561deaad04",
+      "id": "invoice-numbering.3",
+      "kind": "paragraph",
+      "sourceHash": "ca779f7799761d7f"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "invoice-numbering.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n Pty Ltd is: die opskrif wat deur die wet vereis word"
+        }
+      ],
+      "depth": 2,
+      "hash": "6483c8e7395f4348",
+      "id": "if-you-are-a-pty-ltd-the-header-line-that-is-required-by-law",
+      "kind": "heading",
+      "sourceHash": "6710b6b59de1f7eb",
+      "text": "As jy ’n Pty Ltd is: die opskrif wat deur die wet vereis word"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Elke kwotasie, faktuur, kwitansie, afleweringsbrief en brief moet die maatskappy se volle geregistreerde naam en registrasienommer dra, kragtens artikel 32 van die Companies Act. As jy ’n handelsnaam gebruik, wys albei:"
+        }
+      ],
+      "hash": "089b16ce560e5297",
+      "id": "if-you-are-a-pty-ltd-the-header-line-that-is-required-by-law.1",
+      "kind": "paragraph",
+      "sourceHash": "4f2b6bc471a58fce"
+    },
+    {
+      "hash": "4d5040d95389165c",
+      "id": "if-you-are-a-pty-ltd-the-header-line-that-is-required-by-law.2",
+      "kind": "code",
+      "sourceHash": "4d5040d95389165c",
+      "text": "MOKOENA MOTORS\nA trading name of Mokoena Holdings (Pty) Ltd | Reg. No. 2026/123456/07",
+      "variant": "example"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die sjablone hieronder wys "
+        },
+        {
+          "t": "code",
+          "v": "[Maatskappyregistrasienommer, as jy een het]"
+        },
+        {
+          "t": "text",
+          "v": ". Vir ’n maatskappy is dit nie opsioneel nie."
+        }
+      ],
+      "hash": "1771e990e320f921",
+      "id": "if-you-are-a-pty-ltd-the-header-line-that-is-required-by-law.3",
+      "kind": "paragraph",
+      "sourceHash": "f6beacdcf6d61633"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sjabloon 1: kwotasie"
+        }
+      ],
+      "depth": 2,
+      "hash": "fdd6e0cda0930059",
+      "id": "template-1-quotation",
+      "kind": "heading",
+      "sourceHash": "ad2304f87b2d40f5",
+      "text": "Sjabloon 1: kwotasie"
+    },
+    {
+      "hash": "d782c7066352f6f5",
+      "id": "template-1-quotation.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "JOU BESIGHEIDSNAAM"
+        },
+        {
+          "key": "ownerName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Jou naam"
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Foon"
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "E-pos"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Fisiese adres"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Maatskappyregistrasienommer, as jy een het"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Maand JJJJ"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Maand JJJJ"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Kliënt se naam"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Kliënt se adres"
+        },
+        {
+          "style": "choice",
+          "t": "placeholder",
+          "v": "Kliënt se foon / e-pos"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Item of diens"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Item of diens"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Wees spesifiek"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Wees spesifiek"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Lys dit, anders sal jy gevra word om dit gratis te doen"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "wanneer"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "hoe lank"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "X"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "X"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "skakel"
+        }
+      ],
+      "sourceHash": "ac74a9fcf3370276",
+      "text": "[JOU BESIGHEIDSNAAM]\n[Jou naam] | [Foon] | [E-pos]\n[Fisiese adres]\n[Maatskappyregistrasienommer, as jy een het]\n\nKWOTASIE\n\nKwotasienommer: QUO-0001\nDatum: [DD Maand JJJJ]\nGeldig tot: [DD Maand JJJJ]\n\nAAN\n[Kliënt se naam]\n[Kliënt se adres]\n[Kliënt se foon / e-pos]\n\n-------------------------------------------------------------\nBeskrywing Aantal Eenheidsprys Bedrag\n-------------------------------------------------------------\n[Item of diens] 1 R 0.00 R 0.00\n[Item of diens] 1 R 0.00 R 0.00\n-------------------------------------------------------------\n TOTAAL R 0.00\n-------------------------------------------------------------\n\nWAT INGESLUIT IS\n- [Wees spesifiek]\n- [Wees spesifiek]\n\nWAT NIE INGESLUIT IS NIE\n- [Lys dit, anders sal jy gevra word om dit gratis te doen]\n\nTYDSRAAMWERK\nDie werk begin [wanneer] en neem ongeveer [hoe lank] sodra die deposito\nontvang is.\n\nBETALING\nDeposito van [X]% voordat werk begin. Saldo betaalbaar [by voltooiing / binne\nX dae ná die faktuur].\n\nHierdie kwotasie is vir [X] dae geldig. Pryse kan ná daardie datum verander.\nAs jy hierdie kwotasie aanvaar, aanvaar jy my bepalings en voorwaardes, wat\naangeheg is of by [skakel] beskikbaar is.\n\nAanvaar deur: ______________________ Datum: ______________",
+      "variant": "template-preview"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Drie reëls wat jou geld spaar:"
+        }
+      ],
+      "hash": "62893129202fa2a3",
+      "id": "template-1-quotation.2",
+      "kind": "paragraph",
+      "sourceHash": "f12276a9604e4676"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sit ’n geldigheidsdatum op elke kwotasie. Materiaalpryse verander."
+        }
+      ],
+      "hash": "d9bbe66746b04ebe",
+      "id": "template-1-quotation.3",
+      "kind": "paragraph",
+      "sourceHash": "74a7efcf30af5444"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Skryf neer wat nie ingesluit is nie. Die meeste geskille gaan oor werk wat die kliënt aangeneem het by die prys ingesluit is."
+        }
+      ],
+      "hash": "6f3e2e330e0d4bb4",
+      "id": "template-1-quotation.4",
+      "kind": "paragraph",
+      "sourceHash": "5642651de9eb67ef"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kry ’n deposito voordat jy materiaal koop. ’n Getekende kwotasie plus ’n deposito is ’n kontrak."
+        }
+      ],
+      "hash": "f43fb00c12d4487b",
+      "id": "template-1-quotation.5",
+      "kind": "paragraph",
+      "sourceHash": "989ea9c2004a8a78"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "template-1-quotation.6",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sjabloon 2: faktuur as jy NIE vir BTW geregistreer is nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "65558e715a7fedde",
+      "id": "template-2-invoice-if-you-are-not-registered-for-vat",
+      "kind": "heading",
+      "sourceHash": "11613b9a5b43d4fe",
+      "text": "Sjabloon 2: faktuur as jy NIE vir BTW geregistreer is nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die meeste klein besighede is hier. Omset onder R2.3 miljoen per jaar beteken dat jy nie verplig is om te registreer nie."
+        }
+      ],
+      "hash": "dff7adb19d9790ee",
+      "id": "template-2-invoice-if-you-are-not-registered-for-vat.1",
+      "kind": "paragraph",
+      "sourceHash": "3e18d660d9c162a5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Reëls wat jy moet volg: moenie die woorde \"Belastingfaktuur\" (\"Tax Invoice\") gebruik nie. Moenie ’n BTW-reël wys nie. Moenie ’n BTW-nommer wys nie. Moenie 15% by enigiets tel nie."
+        }
+      ],
+      "hash": "d1ad752bfe4f42b6",
+      "id": "template-2-invoice-if-you-are-not-registered-for-vat.2",
+      "kind": "paragraph",
+      "sourceHash": "fe1af4dc1e3f4061"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy nie vir BTW geregistreer is nie, reik ’n gewone faktuur uit wat jou totale prys wys. Moenie BTW noem nie, moenie ’n BTW-reël insluit nie, en moenie die woorde \"Belastingfaktuur\" (\"Tax Invoice\") gebruik nie."
+        }
+      ],
+      "hash": "512cbe1b0761bb60",
+      "id": "template-2-invoice-if-you-are-not-registered-for-vat.3",
+      "kind": "paragraph",
+      "sourceHash": "eced663f740f6f19"
+    },
+    {
+      "hash": "d046f0bc44db4c49",
+      "id": "template-2-invoice-if-you-are-not-registered-for-vat.4",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "JOU BESIGHEIDSNAAM"
+        },
+        {
+          "key": "ownerName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Jou naam"
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Foon"
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "E-pos"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Fisiese adres"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Maatskappyregistrasienommer, as jy een het"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Maand JJJJ"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Maand JJJJ"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Kliënt se naam"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Kliënt se adres"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Item of diens"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Naam van bank"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Presies soos dit op die rekening verskyn"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Nommer"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Kode"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "datum"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Noem jou voorwaardes vir laat betaling hier."
+        }
+      ],
+      "sourceHash": "d98f402fc888dcee",
+      "text": "[JOU BESIGHEIDSNAAM]\n[Jou naam] | [Foon] | [E-pos]\n[Fisiese adres]\n[Maatskappyregistrasienommer, as jy een het]\n\nFAKTUUR\n\nFaktuurnommer: INV-0001\nDatum: [DD Maand JJJJ]\nVervaldatum: [DD Maand JJJJ]\n\nAAN\n[Kliënt se naam]\n[Kliënt se adres]\n\n-------------------------------------------------------------\nBeskrywing Aantal Eenheidsprys Bedrag\n-------------------------------------------------------------\n[Item of diens] 1 R 0.00 R 0.00\n-------------------------------------------------------------\n BEDRAG VERSKULDIG R 0.00\n-------------------------------------------------------------\n\nBETALINGSBESONDERHEDE\nBank: [Naam van bank]\nRekeningnaam: [Presies soos dit op die rekening verskyn]\nRekeningnommer: [Nommer]\nTakkode: [Kode]\nVerwysing: INV-0001\n\nGebruik asseblief die faktuurnommer as jou betalingsverwysing.\nBetaling is verskuldig teen [datum]. [Noem jou voorwaardes vir laat betaling hier.]",
+      "variant": "template-preview"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "template-2-invoice-if-you-are-not-registered-for-vat.5",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sjabloon 3: faktuur as jy WEL vir BTW geregistreer is"
+        }
+      ],
+      "depth": 2,
+      "hash": "fa996a3c0c7ff581",
+      "id": "template-3-invoice-if-you-are-registered-for-vat",
+      "kind": "heading",
+      "sourceHash": "435ec3454d208257",
+      "text": "Sjabloon 3: faktuur as jy WEL vir BTW geregistreer is"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik dit eers nadat SARS jou BTW-nommer uitgereik het."
+        }
+      ],
+      "hash": "1c5570e68fd11410",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.1",
+      "kind": "paragraph",
+      "sourceHash": "cf00d3cec2403e7b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daar is drie vlakke, gebaseer op die totaal met BTW ingesluit."
+        }
+      ],
+      "hash": "fba7840436a669a9",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.2",
+      "kind": "paragraph",
+      "sourceHash": "5a3922549e7669cd"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Belastingfaktuur word nie vereis waar die bedrag R50 of minder is nie, hoewel jy steeds stawende dokumentasie nodig het vir ’n aftrekking van insetbelasting."
+        }
+      ],
+      "hash": "0146a53ab0cbb0b1",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.3",
+      "kind": "paragraph",
+      "sourceHash": "8adbf49c6f633cc7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir leverings van R50 tot R5,000 word ’n verkorte belastingfaktuur toegelaat. Dit het meestal dieselfde inligting nodig, maar jy hoef nie die ontvanger se besonderhede in te sluit nie."
+        }
+      ],
+      "hash": "156a118ea761565b",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.4",
+      "kind": "paragraph",
+      "sourceHash": "1cac6162defd4224"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n lewering van meer as R5,000 moet ’n volledige belastingfaktuur die volgende bevat: die woorde \"Belastingfaktuur\" (\"Tax Invoice\"), \"BTW-faktuur\" (\"VAT Invoice\") of \"Faktuur\" (\"Invoice\"); die verskaffer se naam, adres en BTW-registrasienommer; die ontvanger se naam, adres en, waar hulle geregistreer is, hulle BTW-registrasienommer; ’n volgnommer en die uitreikdatum; en ’n beskrywing van die goedere of dienste wat gelewer is en die hoeveelheid of volume. Dit moet ook die waarde van die lewering, die BTW wat gehef is, en die totaal wys."
+        }
+      ],
+      "hash": "abf62c212ab5717d",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.5",
+      "kind": "paragraph",
+      "sourceHash": "ec7677e3cc770236"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir enige verkoping bo R5,000 moet jou faktuur die volgende wys: die woorde \"Belastingfaktuur\" (\"Tax Invoice\"), jou naam, adres en BTW-nommer, die kliënt se naam en adres (en hulle BTW-nommer as hulle een het), ’n faktuurnommer en datum, wat jy verkoop het en hoeveel daarvan, die prys voor BTW, die BTW, en die totaal."
+        }
+      ],
+      "hash": "56ab884f2bc65f3e",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.6",
+      "kind": "callout",
+      "pairsWith": "template-3-invoice-if-you-are-registered-for-vat.5",
+      "sourceHash": "dafd274e36d65d20",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy moet die dokument uitreik binne 21 dae nadat jy die verkoping voltooi of die diens gelewer het."
+        }
+      ],
+      "hash": "534b982c9ba850cd",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.7",
+      "kind": "paragraph",
+      "sourceHash": "75660c7b9122d86a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Al die vereiste kriteria moet nagekom word. SARS kontroleer fakture teen hierdie kriteria, en as een enkele een ontbreek, word die hele faktuur afgekeur."
+        }
+      ],
+      "hash": "cc9016614dcc8a2a",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.8",
+      "kind": "paragraph",
+      "sourceHash": "0619eea58d90b1d1"
+    },
+    {
+      "hash": "0ae6f6f560a7c52b",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.9",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "JOU BESIGHEIDSNAAM"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Fisiese adres"
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Foon"
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "E-pos"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Maand JJJJ"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Kliënt se naam"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Kliënt se fisiese adres"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Kliënt se BTW-nommer, as hulle ’n ondernemer is"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Goedere of dienste"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Bankbesonderhede"
+        }
+      ],
+      "sourceHash": "4ede1ac14310e162",
+      "text": "[JOU BESIGHEIDSNAAM]\n[Fisiese adres]\nBTW-registrasienommer: 4XXXXXXXXX\n[Foon] | [E-pos]\n\nBELASTINGFAKTUUR\n\nFaktuurnommer: INV-0001\nDatum: [DD Maand JJJJ]\n\nAAN\n[Kliënt se naam]\n[Kliënt se fisiese adres]\n[Kliënt se BTW-nommer, as hulle ’n ondernemer is]\n\n-------------------------------------------------------------\nBeskrywing Aantal Eenheidsprys Bedrag\n-------------------------------------------------------------\n[Goedere of dienste] 1 R 0.00 R 0.00\n-------------------------------------------------------------\n Subtotaal (BTW uitgesluit) R 0.00\n BTW @ 15% R 0.00\n TOTAAL (BTW ingesluit) R 0.00\n-------------------------------------------------------------\n\n[Bankbesonderhede]",
+      "variant": "template-preview"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Werk met 15%: om BTW by te tel, vermenigvuldig met 1.15. Om die BTW in ’n prys wat BTW insluit te vind, vermenigvuldig met 15/115."
+        }
+      ],
+      "hash": "d3e3b1d74599e3f4",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.10",
+      "kind": "paragraph",
+      "sourceHash": "d43f3be887bc5faa"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy tweedehandse goedere verkoop, moet die beskrywing dit sê."
+        }
+      ],
+      "hash": "95f984e22e2a21ed",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.11",
+      "kind": "paragraph",
+      "sourceHash": "48994a8cbad159b4"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "template-3-invoice-if-you-are-registered-for-vat.12",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sjabloon 4: kwitansie"
+        }
+      ],
+      "depth": 2,
+      "hash": "aeee94c79a2ef1a6",
+      "id": "template-4-receipt",
+      "kind": "heading",
+      "sourceHash": "58d5793963ca9ebe",
+      "text": "Sjabloon 4: kwitansie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Stuur dit wanneer geld inkom. Dit keer die \"het jy my betaling gekry?\"-boodskap."
+        }
+      ],
+      "hash": "e80da854b1479caa",
+      "id": "template-4-receipt.1",
+      "kind": "paragraph",
+      "sourceHash": "3d0a6147c6297e0c"
+    },
+    {
+      "hash": "98b2e5d2c8895ba9",
+      "id": "template-4-receipt.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "JOU BESIGHEIDSNAAM"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Maand JJJJ"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Kliënt se naam"
+        },
+        {
+          "style": "choice",
+          "t": "placeholder",
+          "v": "EFT / Kontant / Kaart"
+        }
+      ],
+      "sourceHash": "72ac2da5548a1d32",
+      "text": "[JOU BESIGHEIDSNAAM]\n\nKWITANSIE\n\nKwitansienommer: REC-0001\nDatum ontvang: [DD Maand JJJJ]\nOntvang van: [Kliënt se naam]\nBedrag ontvang: R 0.00\nMetode: [EFT / Kontant / Kaart]\nVir faktuur: INV-0001\n\nSaldo nog verskuldig: R 0.00\n\nDankie.",
+      "variant": "template-preview"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "template-4-receipt.3",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sjabloon 5: privaatheidskennisgewing (POPIA)"
+        }
+      ],
+      "depth": 2,
+      "hash": "4eed026d86695749",
+      "id": "template-5-privacy-notice-popia",
+      "kind": "heading",
+      "sourceHash": "bef623c342f6864c",
+      "text": "Sjabloon 5: privaatheidskennisgewing (POPIA)"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sit dit op jou webwerf, of stuur dit as ’n PDF wanneer ’n kliënt daarvoor vra. Dit is doelbewus kort."
+        }
+      ],
+      "hash": "29831423d89ea20f",
+      "id": "template-5-privacy-notice-popia.1",
+      "kind": "paragraph",
+      "sourceHash": "8e38d858160f014a"
+    },
+    {
+      "hash": "c1a0937d33ecb9ca",
+      "id": "template-5-privacy-notice-popia.2",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Besigheidsnaam"
+        },
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Besigheidsnaam"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Fisiese adres"
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "E-pos"
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Foon"
+        },
+        {
+          "key": "ownerName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Jou volle naam"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Voeg reëls by of verwyder reëls sodat dit vir jou besigheid waar is"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Voeg enige verskaffer of koerier by wat kliëntbesonderhede ontvang"
+        },
+        {
+          "style": "format",
+          "t": "placeholder",
+          "v": "DD Maand JJJJ"
+        }
+      ],
+      "sourceHash": "28e33ab95bdabb22",
+      "text": "PRIVAATHEIDSKENNISGEWING\n\n[Besigheidsnaam] (\"ons\") respekteer jou privaatheid. Hierdie kennisgewing\nverduidelik watter persoonlike inligting ons insamel en wat ons daarmee doen.\n\nWIE ONS IS\n[Besigheidsnaam]\n[Fisiese adres]\n[E-pos] | [Foon]\nInligtingsbeampte: [Jou volle naam]\n\nWAT ONS INSAMEL\n- Jou naam\n- Jou kontakbesonderhede (foon, e-pos, adres)\n- Besonderhede van wat jy gekoop het of oor navraag gedoen het\n- Betalingsinligting (ons stoor nie kaartnommers nie)\n[Voeg reëls by of verwyder reëls sodat dit vir jou besigheid waar is]\n\nWAAROM ONS DIT INSAMEL\n- Om vir jou ’n kwotasie te gee en die werk te doen waarvoor jy gevra het\n- Om vir jou ’n faktuur te stuur en betaling te ontvang\n- Om rekords te hou wat SARS volgens wet vereis\n- Om jou oor jou bestelling te kontak\n\nMET WIE ONS DIT DEEL\nOns verkoop nie jou inligting nie. Ons deel dit net met:\n- Ons bank, om betaling te ontvang\n- Ons rekenmeester, as ons een gebruik\n- SARS of ’n ander owerheid, waar die wet dit vereis\n[Voeg enige verskaffer of koerier by wat kliëntbesonderhede ontvang]\n\nHOE LANK ONS DIT HOU\nOns hou rekords vir vyf jaar, soos belastingwetgewing vereis. Daarna vee\nons dit uit.\n\nBEMARKING\nOns sal jou net bemarkingsboodskappe stuur as jy ingestem het om dit te ontvang.\nJy kan ons enige tyd vra om op te hou deur STOP te antwoord of vir ons te e-pos.\n\nJOU REGTE\nJy mag ons vra watter inligting ons oor jou hou, ons vra om dit reg te stel,\nof ons vra om dit uit te vee waar die wet dit toelaat. Kontak ons deur die\nbesonderhede hierbo te gebruik.\n\nAs jy ontevrede is met hoe ons jou inligting hanteer het, mag jy by die\nInformation Regulator (Inligtingsreguleerder) by inforegulator.org.za kla.\n\nLaas bygewerk: [DD Maand JJJJ]",
+      "variant": "template-preview"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Registreer jouself as die inligtingsbeampte (Information Officer) by "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "inforegulator.org.za"
+            }
+          ],
+          "external": true,
+          "href": "https://inforegulator.org.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Dit is gratis. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Registreer: wat jy regtig nodig het"
+            }
+          ],
+          "doc": "core/register",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "4f29fcf2eb415c54",
+      "id": "template-5-privacy-notice-popia.3",
+      "kind": "paragraph",
+      "sourceHash": "9837eb1a9ebd2b8c"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "template-5-privacy-notice-popia.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sjabloon 6: kasboek"
+        }
+      ],
+      "depth": 2,
+      "hash": "dfcfffd271a5d2f8",
+      "id": "template-6-cash-book",
+      "kind": "heading",
+      "sourceHash": "13e09b6f3d5cbf21",
+      "text": "Sjabloon 6: kasboek"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Een sigblad. Sewe kolomme. Dit is jou hele rekeningkundige stelsel in die eerste jaar."
+        }
+      ],
+      "hash": "7cf1f70d4edc426e",
+      "id": "template-6-cash-book.1",
+      "kind": "paragraph",
+      "sourceHash": "ca02ebe1e8c99be8"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "hash": "5d5ce35ad5290ccd",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Datum"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Beskrywing"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Kliënt of verskaffer"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Geld in"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Geld uit"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Kategorie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Strokie?"
+          }
+        ]
+      ],
+      "id": "template-6-cash-book.2",
+      "kind": "table",
+      "rows": [],
+      "sourceHash": "b32bdc57cd0e946d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kategorieë om te gebruik: Verkope, Voorraad, Materiaal, Brandstof, Data en lugtyd, Gereedskap en toerusting, Huur, Bankkoste, Advertensies, Versekering, Ander."
+        }
+      ],
+      "hash": "dd6002ad76cce2c0",
+      "id": "template-6-cash-book.3",
+      "kind": "paragraph",
+      "sourceHash": "cd903949a714f00f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Reëls:"
+        }
+      ],
+      "hash": "917a79cea01b70ce",
+      "id": "template-6-cash-book.4",
+      "kind": "paragraph",
+      "sourceHash": "d6ae0c8a03b925dc"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Teken elke transaksie aan. Elke enkele een, ook die R38 wat jy aan kabelbinders spandeer het."
+        }
+      ],
+      "hash": "bda2d91550f34033",
+      "id": "template-6-cash-book.5",
+      "kind": "paragraph",
+      "sourceHash": "77cf206d64bd4c7a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Neem ’n foto van elke strokie op die dag dat jy dit kry. Sit dit in ’n vouer wat volgens maand benoem is. Merk die \"Strokie?\"-kolom."
+        }
+      ],
+      "hash": "a849734d9e589812",
+      "id": "template-6-cash-book.6",
+      "kind": "paragraph",
+      "sourceHash": "8aa50fe3630bd458"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Rekonsilieer een keer per maand teen jou bankstaat. As die sigblad se totaal en die banksaldo verskil, vind dieselfde dag uit waarom."
+        }
+      ],
+      "hash": "8ae7dff0d2cbb76c",
+      "id": "template-6-cash-book.7",
+      "kind": "paragraph",
+      "sourceHash": "3c6dbd2eea946cb1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy omsetbelasting gebruik, is jou rekords ligter. Jy hou net rekord van bedrae wat ontvang is, dividende wat verklaar is, en bates of laste van meer as R10,000."
+        }
+      ],
+      "hash": "7114e5dbca24ac07",
+      "id": "template-6-cash-book.8",
+      "kind": "paragraph",
+      "sourceHash": "fea87dd4b2d1a9d9"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "template-6-cash-book.9",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sjabloon 7: voertuiglogboek"
+        }
+      ],
+      "depth": 2,
+      "hash": "08226a43b4cb7818",
+      "id": "template-7-vehicle-logbook",
+      "kind": "heading",
+      "sourceHash": "2cce730c7b5f45d4",
+      "text": "Sjabloon 7: voertuiglogboek"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS vereis dit vir enige eis vir reiskoste. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Voertuie vir jou besigheid"
+            }
+          ],
+          "doc": "core/vehicles",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "5f5ec41da49dab9e",
+      "id": "template-7-vehicle-logbook.1",
+      "kind": "paragraph",
+      "sourceHash": "311cde214b26f49b"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "hash": "d0a3054cd257ca84",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Datum"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Odometer aan die begin"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Odometer aan die einde"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Km"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Bestemming"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Besigheidsrede"
+          }
+        ]
+      ],
+      "id": "template-7-vehicle-logbook.2",
+      "kind": "table",
+      "rows": [],
+      "sourceHash": "901dfb055feccfcb"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Teken jou odometerlesing op 1 Maart aan en weer op 28 of 29 Februarie, sodat jy die totale kilometers vir die belastingjaar het."
+        }
+      ],
+      "hash": "4b1c50c50f5f3aa3",
+      "id": "template-7-vehicle-logbook.3",
+      "kind": "paragraph",
+      "sourceHash": "efb10761ac961c7f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vul dit in wanneer jy parkeer, nie aan die einde van die maand nie."
+        }
+      ],
+      "hash": "2f38f7a09b2db0ac",
+      "id": "template-7-vehicle-logbook.4",
+      "kind": "paragraph",
+      "sourceHash": "cb247f620ae082a7"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "template-7-vehicle-logbook.5",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opdragte om die res te genereer"
+        }
+      ],
+      "depth": 2,
+      "hash": "05388250ee3623ce",
+      "id": "prompts-to-generate-the-rest",
+      "kind": "heading",
+      "sourceHash": "779c7b12a2b04e48",
+      "text": "Opdragte om die res te genereer"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bepalings en voorwaardes"
+        }
+      ],
+      "depth": 3,
+      "hash": "ac94892efc4295da",
+      "id": "terms-and-conditions",
+      "kind": "heading",
+      "sourceHash": "4c44a7b130808080",
+      "text": "Bepalings en voorwaardes"
+    },
+    {
+      "hash": "e2bb5ed46b845b46",
+      "id": "terms-and-conditions.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BESIGHEIDSTIPE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "WAT"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "WIE"
+        },
+        {
+          "style": "choice",
+          "t": "placeholder",
+          "v": "’n eenmansaak / ’n geregistreerde maatskappy"
+        },
+        {
+          "style": "choice",
+          "t": "placeholder",
+          "v": "Ek verkoop aanlyn / Ek verkoop persoonlik / albei."
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "As jy aanlyn verkoop, voeg by:"
+        }
+      ],
+      "sourceHash": "d2d0db5f89524b54",
+      "text": "Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika. Ek verkoop [WAT] aan [WIE].\nEk is [’n eenmansaak / ’n geregistreerde maatskappy].\n[Ek verkoop aanlyn / Ek verkoop persoonlik / albei.]\n\nSkryf bepalings en voorwaardes vir my besigheid in eenvoudige Engels wat\n’n graad 8-leerder kan lees.\n\nDek:\n- Wat ek sal doen en wat die kliënt moet doen\n- Kwotasies, deposito’s en betalingsvoorwaardes\n- Wat gebeur as ’n kliënt kanselleer\n- Wat gebeur as ek moet kanselleer\n- Tydsberekening van aflewering of voltooiing\n- Terugsendings, terugbetalings en foute\n- Beperkings op waarvoor ek verantwoordelik is\n- Hoe geskille opgelos word\n\nMaak seker dat dit aan die Consumer Protection Act 68 of 2008 voldoen.\nWaar die Wet die kliënt ’n reg gee wat ek nie kan wegneem nie, sê dit in die\ndokument eerder as om te probeer om dit weg te neem.\n\n[As jy aanlyn verkoop, voeg by:] Ek verkoop aanlyn, so voldoen ook aan artikels 43,\n44 en 46 van die Electronic Communications and Transactions Act 25 of\n2002, insluitend die reg op ’n afkoelperiode van sewe dae.\n\nLys ná die dokument elke klousule waaroor jy onseker is en waaroor ek\nmet ’n prokureur behoort te gaan praat.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die Consumer Protection Act vereis eenvoudige taal. ’n Dokument wat jou kliënt nie kan verstaan nie, kan onafdwingbaar wees, so moenie die KI vra om dit regsgeleerd te laat klink nie."
+        }
+      ],
+      "hash": "ef7a0fa694a155ff",
+      "id": "terms-and-conditions.2",
+      "kind": "paragraph",
+      "sourceHash": "f9a6e49a95521a2d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Eenvoudige diensooreenkoms"
+        }
+      ],
+      "depth": 3,
+      "hash": "68ad1c826bb70917",
+      "id": "a-simple-service-agreement",
+      "kind": "heading",
+      "sourceHash": "b428147e32caca58",
+      "text": "’n Eenvoudige diensooreenkoms"
+    },
+    {
+      "hash": "620a9761b4330281",
+      "id": "a-simple-service-agreement.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BESIGHEIDSTIPE"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "BEDRAG"
+        }
+      ],
+      "sourceHash": "d4cd32f19241f460",
+      "text": "Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika. Ek het ’n kort skriftelike ooreenkoms\nnodig vir werk bo R[BEDRAG].\n\nSkryf ’n ooreenkoms van een bladsy in eenvoudige Engels wat die volgende dek:\n- Wie die partye is\n- Presies watter werk ek sal doen\n- Presies wat nie ingesluit is nie\n- Prys, deposito en betaaldatums\n- Begindatum en verwagte einddatum\n- Wat gebeur as die kliënt die omvang verander\n- Wat gebeur as die kliënt nie betaal nie\n- Wie die werk besit wanneer dit klaar is\n- Hoe enige kant kan kanselleer\n- Watter Suid-Afrikaanse reg van toepassing is\n\nGebruik [VIERKANTIGE HAKIES] vir enigiets wat ek per werk invul.\nHou dit by een bladsy. Moenie regswoorde gebruik waar ’n gewone woord werk nie.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Afleweringsbrief (net as jy fisiese goedere aflewer)"
+        }
+      ],
+      "depth": 3,
+      "hash": "61df056de70c88c7",
+      "id": "delivery-note-only-if-you-deliver-physical-goods",
+      "kind": "heading",
+      "sourceHash": "b2c0c08892b5366d",
+      "text": "Afleweringsbrief (net as jy fisiese goedere aflewer)"
+    },
+    {
+      "hash": "fa2cf39900711238",
+      "id": "delivery-note-only-if-you-deliver-physical-goods.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "WAT"
+        }
+      ],
+      "sourceHash": "dd2e88cdbbe2b4b1",
+      "text": "Skryf ’n eenvoudige sjabloon vir ’n afleweringsbrief vir ’n Suid-Afrikaanse klein besigheid\nwat [WAT] aan kliënte aflewer. Sluit velde in vir die afleweringsnommer, datum,\nkliëntbesonderhede, items en hoeveelhede, toestand by aankoms, en ’n\nhandtekeningblok vir die persoon wat die goedere ontvang. Hou dit by een bladsy.",
+      "variant": "prompt"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "delivery-note-only-if-you-deliver-physical-goods.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dokumente wat jy waarskynlik nog nie nodig het nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "7e825000b1951b63",
+      "id": "documents-you-probably-do-not-need-yet",
+      "kind": "heading",
+      "sourceHash": "abba6dfaafedf09b",
+      "text": "Dokumente wat jy waarskynlik nog nie nodig het nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Sakeplan. Net nodig om geld by ’n bank of belegger in te samel."
+        }
+      ],
+      "hash": "073d31d1a89138b0",
+      "id": "documents-you-probably-do-not-need-yet.1",
+      "kind": "paragraph",
+      "sourceHash": "de9619b6079e865a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Dienskontrak. Net wanneer jy iemand in diens neem. Wanneer jy dit doen, kry ’n behoorlike een, want die Basic Conditions of Employment Act is streng en foute is duur."
+        }
+      ],
+      "hash": "315b7e94ea7ccdaf",
+      "id": "documents-you-probably-do-not-need-yet.2",
+      "kind": "paragraph",
+      "sourceHash": "8c9792108b4ea4cf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Nie-openbaarmakingsooreenkoms. ’n Klein verskaffer het dit selde nodig. Die meeste kliënte wat een nodig het, sal vir jou hulle s’n stuur."
+        }
+      ],
+      "hash": "352703b2b1f7a12f",
+      "id": "documents-you-probably-do-not-need-yet.3",
+      "kind": "paragraph",
+      "sourceHash": "57fee80c3f75fee4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Aandeelhoudersooreenkoms. Net as jy meer as een aandeelhouer het. As jy ooit ’n vennoot inneem, kry dit voordat jy hulle geld neem, nie daarna nie."
+        }
+      ],
+      "hash": "b62d7dc2e5a1b643",
+      "id": "documents-you-probably-do-not-need-yet.4",
+      "kind": "paragraph",
+      "sourceHash": "10609be1b726cbff"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Maatskappystempel. Dit het geen regsbetekenis in Suid-Afrika nie."
+        }
+      ],
+      "hash": "442a0a742b6f4e31",
+      "id": "documents-you-probably-do-not-need-yet.5",
+      "kind": "paragraph",
+      "sourceHash": "8b3b366c3229bddd"
+    }
+  ],
+  "contentHash": "e3ec553db75461e4",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Dokumente en sjablone",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "invoice-numbering",
+      "text": "Faktuurnommering"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 2,
+      "id": "if-you-are-a-pty-ltd-the-header-line-that-is-required-by-law",
+      "text": "As jy ’n Pty Ltd is: die opskrif wat deur die wet vereis word"
+    },
+    {
+      "depth": 2,
+      "id": "template-1-quotation",
+      "text": "Sjabloon 1: kwotasie"
+    },
+    {
+      "depth": 2,
+      "id": "template-2-invoice-if-you-are-not-registered-for-vat",
+      "text": "Sjabloon 2: faktuur as jy NIE vir BTW geregistreer is nie"
+    },
+    {
+      "depth": 2,
+      "id": "template-3-invoice-if-you-are-registered-for-vat",
+      "text": "Sjabloon 3: faktuur as jy WEL vir BTW geregistreer is"
+    },
+    {
+      "depth": 2,
+      "id": "template-4-receipt",
+      "text": "Sjabloon 4: kwitansie"
+    },
+    {
+      "depth": 2,
+      "id": "template-5-privacy-notice-popia",
+      "text": "Sjabloon 5: privaatheidskennisgewing (POPIA)"
+    },
+    {
+      "depth": 2,
+      "id": "template-6-cash-book",
+      "text": "Sjabloon 6: kasboek"
+    },
+    {
+      "depth": 2,
+      "id": "template-7-vehicle-logbook",
+      "text": "Sjabloon 7: voertuiglogboek"
+    },
+    {
+      "depth": 2,
+      "id": "prompts-to-generate-the-rest",
+      "text": "Opdragte om die res te genereer"
+    },
+    {
+      "depth": 3,
+      "id": "terms-and-conditions",
+      "text": "Bepalings en voorwaardes"
+    },
+    {
+      "depth": 3,
+      "id": "a-simple-service-agreement",
+      "text": "’n Eenvoudige diensooreenkoms"
+    },
+    {
+      "depth": 3,
+      "id": "delivery-note-only-if-you-deliver-physical-goods",
+      "text": "Afleweringsbrief (net as jy fisiese goedere aflewer)"
+    },
+    {
+      "depth": 2,
+      "id": "documents-you-probably-do-not-need-yet",
+      "text": "Dokumente wat jy waarskynlik nog nie nodig het nie"
+    }
+  ],
+  "id": "paperwork/which-template-to-use-when",
+  "kind": "guide",
+  "lang": "af",
+  "order": 1,
+  "readingTime": 11,
+  "related": [
+    "paperwork/free-tools",
+    "core/register",
+    "core/vehicles"
+  ],
+  "route": "paperwork/which-template-to-use-when/",
+  "section": "paperwork",
+  "slug": "which-template-to-use-when",
+  "sourcePath": "03 Paperwork and templates/01-which-template-to-use-when.md",
+  "sources": {
+    "acts": [
+      "value-added-tax-act-89-of-1991",
+      "companies-act-71-of-2008",
+      "consumer-protection-act-68-of-2008",
+      "electronic-communications-and-transactions-act-25-of-2002",
+      "protection-of-personal-information-act-4-of-2013"
+    ],
+    "entries": [
+      "sars--turnover-tax",
+      "sars--what-is-the-new-threshold-for-vat-registration",
+      "sars--tax-invoice-checklist",
+      "information-regulator-of-south-africa",
+      "national-consumer-commission--consumer-protection-in-e-commerce"
+    ]
+  },
+  "summary": "Jy het ses dokumente nodig om ’n klein besigheid behoorlik te bestuur. Alles anders kan wag.",
+  "tags": [
+    "templates"
+  ],
+  "terms": [
+    {
+      "meaning": "’n Prys wat jy aanbied voor die werk. Nog nie ’n verkoop nie.",
+      "term": "Kwotasie"
+    },
+    {
+      "meaning": "Die rekening wat jy ná die werk stuur, waarin jy om betaling vra.",
+      "term": "Faktuur"
+    },
+    {
+      "meaning": "Bewys dat jy die geld ontvang het.",
+      "term": "Kwitansie"
+    },
+    {
+      "meaning": "’n Dokument wat ’n faktuur wat jy reeds gestuur het, kanselleer of verminder. Gebruik dit in plaas daarvan om ’n faktuur uit te vee.",
+      "term": "Kredietnota"
+    },
+    {
+      "meaning": "Hoeveelheid. Hoeveel.",
+      "term": "Aantal"
+    },
+    {
+      "meaning": "Die prys vir een.",
+      "term": "Eenheidsprys"
+    },
+    {
+      "meaning": "Die totaal voordat BTW bygetel word.",
+      "term": "Subtotaal"
+    },
+    {
+      "meaning": "Sonder BTW (voordat dit bygetel word) / met BTW (daarna).",
+      "term": "BTW uitgesluit / ingesluit"
+    },
+    {
+      "meaning": "Die laaste dag waarop die kliënt mag betaal sonder om laat te wees.",
+      "term": "Vervaldatum"
+    },
+    {
+      "meaning": "Elektroniese fondsoordrag. ’n Bankbetaling.",
+      "term": "EFT"
+    },
+    {
+      "meaning": "Die nommer wat jou banktak identifiseer. Vra jou bank.",
+      "term": "Takkode"
+    },
+    {
+      "meaning": "’n Korter BTW-faktuur wat toegelaat word vir verkope tussen R50 en R5,000.",
+      "term": "Verkorte belastingfaktuur"
+    },
+    {
+      "meaning": "Die kliënt. Die persoon of besigheid wat die goedere ontvang.",
+      "term": "Ontvanger"
+    },
+    {
+      "meaning": "Maak seker dat jou rekords en jou bankstaat ooreenstem.",
+      "term": "Rekonsilieer"
+    },
+    {
+      "meaning": "Die kilometerteller op die paneelbord.",
+      "term": "Odometer"
+    },
+    {
+      "meaning": "Geld wat vooruit betaal word voordat die werk begin.",
+      "term": "Deposito"
+    }
+  ],
+  "title": "Dokumente en sjablone",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

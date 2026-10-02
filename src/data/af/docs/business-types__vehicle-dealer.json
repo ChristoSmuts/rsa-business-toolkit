@@ -1,0 +1,3759 @@
+{
+  "appliesTo": {
+    "businessTypes": [
+      "vehicle-dealer"
+    ],
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lees eers "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ". Hierdie lêer voeg die reëls by wat net vir ’n voertuighandelaar geld."
+        }
+      ],
+      "hash": "0363622d4696e99c",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "105ed9a9549be34c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voertuighandel is een van die mees gereguleerde klein besighede in Suid-Afrika. Dit het drie lae van registrasie wat ander besighede nie het nie, en een regsrisiko wat ’n klein handelaar in ’n enkele transaksie kan vernietig."
+        }
+      ],
+      "hash": "eb2fcd58be4ccbf6",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "7c45314aabbd8927"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "4d3cd1ac92fcd4d6",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Gewone betekenisse van die terme wat in hierdie lêer gebruik word. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die gratis vorm om by die polisie as handelaar in tweedehandse goedere te registreer."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "SAPS 601"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die boek of sigblad waarin jy elke voertuig wat gekoop en verkoop is, aanteken."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Register (selfstandige naamwoord)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die voertuigidentifikasienommer, wat op die voertuig gestempel is."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "VIN"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die sertifikaat wat ’n maatskappy toelaat om voertuie op eNaTIS te besit."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "BRNC"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Spesiale nommer wat ’n handelaar toelaat om ongeregistreerde voorraad op openbare paaie te ry."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Motorhandelnommer (motor trade number)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Afrikaans vir \"soos dit staan\" (in Engels \"as is\"). Verkoop sonder verantwoordelikheid vir gebreke. Werk nie meer wanneer ’n handelaar aan die publiek verkoop nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Voetstoots"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die waarborg van ses maande wat die wet by elke verkoop deur ’n handelaar voeg."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Geïmpliseerde waarborg (implied warranty)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "BTW wat jy kan terugeis op ’n voertuig wat by ’n private persoon gekoop is, al het hy geen BTW gehef nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Nosionele insetbelasting (notional input tax)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die vorm wat jy en die verkoper teken sodat jy daardie BTW kan eis."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "VAT264"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Wie ook al die reg het om die voertuig te verkoop. As dit gefinansier is, is dit die bank."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Titelhouer (title holder)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die vorm wat die verkoper indien om te sê dat die voertuig van hande verwissel het."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "NCO"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die vorm wat die koper indien om die voertuig te registreer."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "RLV"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Sertifikaat van ’n toetsstasie dat die voertuig veilig is. Nodig by elke verkoop."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Padwaardigheid (roadworthy)"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "d56f28584767a17b"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lees die afdeling oor die Consumer Protection Act voordat jy jou eerste voertuig koop. Dit is die deel wat mense geld kos."
+        }
+      ],
+      "hash": "178af3c896fc4c55",
+      "id": "words-used-in-this-file.3",
+      "kind": "paragraph",
+      "sourceHash": "dbe0d7c28aeac39a"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vinnige antwoord: wat jy moet hê"
+        }
+      ],
+      "depth": 2,
+      "hash": "e3b1af8b7defcce2",
+      "id": "quick-answer-what-you-must-have",
+      "kind": "heading",
+      "sourceHash": "5c41cc006fe0046f",
+      "text": "Vinnige antwoord: wat jy moet hê"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verpligtend, in hierdie volgorde:"
+        }
+      ],
+      "hash": "4db2848e94e05710",
+      "id": "quick-answer-what-you-must-have.1",
+      "kind": "paragraph",
+      "sourceHash": "60b6b1c2624f00bd"
+    },
+    {
+      "hash": "2402500913370255",
+      "id": "quick-answer-what-you-must-have.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "’n Geregistreerde besigheid, as jy voertuie in ’n besigheidsnaam wil hou (sien "
+          },
+          {
+            "doc": "core/register",
+            "label": "01-core/02",
+            "t": "docref"
+          },
+          {
+            "t": "text",
+            "v": ")"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Business Register Number Certificate of ’n Traffic Register Number, sodat voertuie op die besigheid se naam geregistreer kan word"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Registrasie by SAPS as handelaar in tweedehandse goedere (gratis, maar verpligtend)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Munisipale besigheidslisensie, in die meeste munisipaliteite"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die regte sonering vir jou handelsperseel"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Skriftelike koopooreenkoms wat aan die Consumer Protection Act voldoen"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Versekering wat voorraadvoertuie en toetsritte dek"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "2888b113904ed591",
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opsioneel, maar dikwels nodig:"
+        }
+      ],
+      "hash": "e0a4f4d3e777bd45",
+      "id": "quick-answer-what-you-must-have.3",
+      "kind": "paragraph",
+      "sourceHash": "db92693d0e62176a"
+    },
+    {
+      "hash": "5d46f6eb2fd4c197",
+      "id": "quick-answer-what-you-must-have.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Motorhandelnommers, as jy ongeregistreerde voorraad op openbare paaie ry"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "BTW-registrasie, wat vroeër as vir die meeste besighede waardevol word"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "NCR-registrasie, as jy ooit self krediet verleen"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n FSP-lisensie, as jy versekering, waarborge of finansieringsprodukte verkoop"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "f20d8109c6b978bf",
+      "start": 8
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "quick-answer-what-you-must-have.5",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Laag 1: SAPS-registrasie as handelaar in tweedehandse goedere"
+        }
+      ],
+      "depth": 2,
+      "hash": "44bc4119457759e2",
+      "id": "layer-1-saps-second-hand-goods-dealer-registration",
+      "kind": "heading",
+      "sourceHash": "1e95957e9a0df466",
+      "text": "Laag 1: SAPS-registrasie as handelaar in tweedehandse goedere"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is verpligtend, en die meeste klein handelaars weet nie daarvan nie."
+        }
+      ],
+      "hash": "ddb5f5259faf0765",
+      "id": "layer-1-saps-second-hand-goods-dealer-registration.1",
+      "kind": "paragraph",
+      "sourceHash": "dcb093d31bd2c9fb"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die Second-Hand Goods Act 6 of 2009 val onder die Minister van Polisie. Die doel daarvan is om handel in gesteelde goedere te stop."
+        }
+      ],
+      "hash": "c22601e80be5120f",
+      "id": "layer-1-saps-second-hand-goods-dealer-registration.2",
+      "kind": "paragraph",
+      "sourceHash": "45f247094c76fdcf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die hoofbesigheidsaktiwiteite wat moet registreer, sluit in ’n afslaer, algemene handelaar, juwelier, motorhandelaar en skrootmetaalhandelaar. Die wet geld vir ’n persoon wat ’n besigheid bedryf wat in tweedehandse goedere handel dryf."
+        }
+      ],
+      "hash": "19d8405611161c3f",
+      "id": "layer-1-saps-second-hand-goods-dealer-registration.3",
+      "kind": "paragraph",
+      "sourceHash": "26ff3ecaf88d6dbb"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tweedehandse goedere is items wat meer as R100 werd is en wat gebruik is deur iemand anders as die vervaardiger of produsent. Handelaars moet by SAPS registreer, vir vyf jaar gedetailleerde registers van transaksies hou, die identiteit van verskaffers nagaan, en items rapporteer wat moontlik gesteel is."
+        }
+      ],
+      "hash": "e0c13573427d9d92",
+      "id": "layer-1-saps-second-hand-goods-dealer-registration.4",
+      "kind": "paragraph",
+      "sourceHash": "8f37f5e8c538e6dc"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy gebruikte goedere koop en verkoop, moet jy by die polisie registreer, elke item wat jy koop en verkoop neerskryf, daardie rekords vir vyf jaar hou, nagaan by wie jy koop, en enigiets rapporteer wat gesteel lyk."
+        }
+      ],
+      "hash": "1b99878dc7a93abf",
+      "id": "layer-1-saps-second-hand-goods-dealer-registration.5",
+      "kind": "callout",
+      "pairsWith": "layer-1-saps-second-hand-goods-dealer-registration.4",
+      "sourceHash": "b62ad63e7b7319fc",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoe om te registreer"
+        }
+      ],
+      "depth": 3,
+      "hash": "f6f49b526a389b82",
+      "id": "how-to-register",
+      "kind": "heading",
+      "sourceHash": "ecece8fca71f0f2c",
+      "text": "Hoe om te registreer"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kry die aansoekvorm by die kantoor van die Designated Police Officer (aangewese polisiebeampte) of van die SAPS-webwerf by "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.saps.gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.saps.gov.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", vul dit in en teken dit, en dien die voltooide vorm en al die vereiste dokumente by die kantoor van die Designated Police Officer in."
+        }
+      ],
+      "hash": "109c36b997014007",
+      "id": "how-to-register.1",
+      "kind": "paragraph",
+      "sourceHash": "71f36b462424efab"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kry die vorm by jou polisiestasie of op die SAPS-webwerf, vul dit in, teken dit, en gee dit by die stasie in saam met die dokumente waarvoor hulle vra."
+        }
+      ],
+      "hash": "d6afd31ab362679e",
+      "id": "how-to-register.2",
+      "kind": "callout",
+      "pairsWith": "how-to-register.1",
+      "sourceHash": "2574012326b5d138",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die vorm is die SAPS 601. Geen betaling word vereis nie. Registrasie is gratis."
+        }
+      ],
+      "hash": "c2f8bc3dba7fc552",
+      "id": "how-to-register.3",
+      "kind": "paragraph",
+      "sourceHash": "42475b4b25793f75"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vereiste dokumente: twee kleur-ID-foto’s van die aansoeker wat nie ouer as 3 maande is nie, en ’n gesertifiseerde afskrif van die RSA-identiteitsdokument of buitelandse paspoort van die aansoeker en van elke persoon wat vir die daaglikse bestuur van die besigheid verantwoordelik is."
+        }
+      ],
+      "hash": "76ec6a21ce0312af",
+      "id": "how-to-register.4",
+      "kind": "paragraph",
+      "sourceHash": "34e1f036484ea752"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bring twee onlangse kleur-ID-foto’s en ’n gesertifiseerde afskrif van die ID van almal wat die besigheid daagliks bestuur."
+        }
+      ],
+      "hash": "77f8bb49152dc73f",
+      "id": "how-to-register.5",
+      "kind": "callout",
+      "pairsWith": "how-to-register.4",
+      "sourceHash": "ed441ff9d2db45b6",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Enige persoon wat nie ’n natuurlike persoon is nie, mag net geregistreer word as ’n natuurlike persoon wat nie onder die wet gediskwalifiseer is nie, aangestel word om die besigheid te bestuur. Vir ’n maatskappy noem jy jouself as die verantwoordelike persoon."
+        }
+      ],
+      "hash": "48aa6815382ea8b0",
+      "id": "how-to-register.6",
+      "kind": "paragraph",
+      "sourceHash": "e24e3b0cbe7ddbab"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Nadat die Nasionale Kommissaris die aansoek oorweeg het, kan hy ’n registrasiesertifikaat of ’n tydelike registrasie uitreik, afhangende van die omstandighede."
+        }
+      ],
+      "hash": "1c64e244d40f14a3",
+      "id": "how-to-register.7",
+      "kind": "paragraph",
+      "sourceHash": "e4ea12a9a83e7691"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Doen aansoek by die SAPS-stasie in die gebied waar jou besigheidsperseel geleë is."
+        }
+      ],
+      "hash": "db28661d7a653ce0",
+      "id": "how-to-register.8",
+      "kind": "paragraph",
+      "sourceHash": "ea2f460b4b20344f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die register wat jy moet hou"
+        }
+      ],
+      "depth": 3,
+      "hash": "55d3cd53573bb503",
+      "id": "the-register-you-must-keep",
+      "kind": "heading",
+      "sourceHash": "e3050410eeb50d87",
+      "text": "Die register wat jy moet hou"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is die deel wat handelaars tydens ’n inspeksie in die moeilikheid laat beland."
+        }
+      ],
+      "hash": "3284702d65ea03fe",
+      "id": "the-register-you-must-keep.1",
+      "kind": "paragraph",
+      "sourceHash": "12348ebc1575e67e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Handelaar wat in tweedehandse motorvoertuie handel dryf, moet in die voorgeskrewe register die besonderhede van elke verkryging en vervreemding van ’n motorvoertuig aanteken, insluitend: die voertuigidentifikasienommer (VIN) en die onderstel- en enjinnommer; die afstandmeterlesing; die buite- en binnebekledingkleur; en enige onderskeidende merk of kenmerk, soos besonderhede van mikrokolle (microdots)."
+        }
+      ],
+      "hash": "e8824bc305d96272",
+      "id": "the-register-you-must-keep.2",
+      "kind": "paragraph",
+      "sourceHash": "68c026ecedbbdaa0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir elke voertuig wat jy koop of verkoop, skryf in jou register neer: die VIN, die onderstelnommer, die enjinnommer, die kilometerlesing, die kleure binne en buite, en enige spesiale merke soos mikrokolle."
+        }
+      ],
+      "hash": "ac3f7df735153290",
+      "id": "the-register-you-must-keep.3",
+      "kind": "callout",
+      "pairsWith": "the-register-you-must-keep.2",
+      "sourceHash": "72a905b388def330",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy teken ook aan by wie jy gekoop het en aan wie jy verkoop het."
+        }
+      ],
+      "hash": "a967d82be82e897c",
+      "id": "the-register-you-must-keep.4",
+      "kind": "paragraph",
+      "sourceHash": "4d356c1577e2eaac"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Persoon wat ’n motorvoertuig van of aan ’n handelaar verkry of vervreem, moet die handelaar van bewys van identiteit voorsien. Die handelaar moet ’n afskrif van die identiteitsdokument of paspoort kry en hou, en moet bewys van registrasie of deregistrasie kry en hou. Die handelaar moet hierdie afskrifte vir minstens vyf jaar vanaf die datum van die transaksie bewaar."
+        }
+      ],
+      "hash": "3f51d0d7ff1a9b32",
+      "id": "the-register-you-must-keep.5",
+      "kind": "paragraph",
+      "sourceHash": "ac6a2608d224063e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Enigiemand by wie jy ’n voertuig koop, of aan wie jy een verkoop, moet vir jou hulle ID wys. Jy hou ’n afskrif daarvan, plus bewys van die voertuig se registrasie, vir vyf jaar."
+        }
+      ],
+      "hash": "d0ceaf3459609db0",
+      "id": "the-register-you-must-keep.6",
+      "kind": "callout",
+      "pairsWith": "the-register-you-must-keep.5",
+      "sourceHash": "e55ddb9c27ee15fa",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Praktiese reël: neem nooit ’n voertuig in sonder ’n fotostaat van die verkoper se ID en die registrasiesertifikaat nie. Nooit nie. ’n Voertuig wat jy koop van iemand wat nie ID wil wys nie, is óf gesteel óf op pad om jou probleem te word."
+        }
+      ],
+      "hash": "e3d316c9b6a2000e",
+      "id": "the-register-you-must-keep.7",
+      "kind": "paragraph",
+      "sourceHash": "8274821bec59a9cf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hou jou registrasie geldig"
+        }
+      ],
+      "depth": 3,
+      "hash": "53971a4daf3fa913",
+      "id": "keeping-your-registration-valid",
+      "kind": "heading",
+      "sourceHash": "cf883ee2afef4a5a",
+      "text": "Hou jou registrasie geldig"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die houer van ’n registrasiesertifikaat moet die Nasionale Kommissaris binne 30 dae skriftelik in kennis stel as daar enige verandering is aan die inligting wat in die aansoek verstrek is, ’n verandering in die beheer of eienaarskap van die handelaar, of enige verandering wat die handelaar se vermoë raak om aan die vereistes vir registrasie te voldoen."
+        }
+      ],
+      "hash": "3df91b254cc4cff0",
+      "id": "keeping-your-registration-valid.1",
+      "kind": "paragraph",
+      "sourceHash": "5459add7d4bd9631"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As enigiets op jou SAPS-handelaarsregistrasie verander, insluitend waarin of waar jy handel dryf, moet jy SAPS binne 30 dae skriftelik laat weet."
+        }
+      ],
+      "hash": "1dffe1d9e4e0b9b1",
+      "id": "keeping-your-registration-valid.2",
+      "kind": "callout",
+      "pairsWith": "keeping-your-registration-valid.1",
+      "sourceHash": "e790a3610a5cb9e1",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As die verantwoordelike persoon wat op die sertifikaat aangeteken is, verander, moet die handelaar ’n SAPS 604-vorm invul en dit indien by die SAPS-stasie waar die oorspronklike aansoek gedoen is, selfs as die sertifikaat nog nie verval het nie."
+        }
+      ],
+      "hash": "256b576905b2e44d",
+      "id": "keeping-your-registration-valid.3",
+      "kind": "paragraph",
+      "sourceHash": "c83a1a73890b60ca"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As die persoon wat op jou sertifikaat genoem word as die een wat die besigheid bestuur, verander, vul vorm SAPS 604 in en gee dit by dieselfde stasie in, selfs as jou sertifikaat nog nie verval het nie."
+        }
+      ],
+      "hash": "7f18d771eef2a995",
+      "id": "keeping-your-registration-valid.4",
+      "kind": "callout",
+      "pairsWith": "keeping-your-registration-valid.3",
+      "sourceHash": "00dbfeb52b06dc80",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As ’n aansoek om hernuwing binne die vereiste tydperk ingedien word, bly die registrasie geldig totdat daar oor die hernuwing besluit is. Skryf jou hernuwingsdatum in jou dagboek."
+        }
+      ],
+      "hash": "dfbc7da5022631c9",
+      "id": "keeping-your-registration-valid.5",
+      "kind": "paragraph",
+      "sourceHash": "2ecd37dba013afb0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Inspeksies"
+        }
+      ],
+      "depth": 3,
+      "hash": "0a069c88fbe3c9f9",
+      "id": "inspections",
+      "kind": "heading",
+      "sourceHash": "d51756b2155c8114",
+      "text": "Inspeksies"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Polisiebeampte kan vereis dat die handelaar of die persoon in beheer van die perseel die registrasiesertifikaat vir daardie perseel vir inspeksie toon."
+        }
+      ],
+      "hash": "62170380ec1844d8",
+      "id": "inspections.1",
+      "kind": "paragraph",
+      "sourceHash": "bbd87d1afde98397"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hou die sertifikaat teen die muur by die perseel, nie in ’n laai by die huis nie."
+        }
+      ],
+      "hash": "f64eb7effb13f26b",
+      "id": "inspections.2",
+      "kind": "paragraph",
+      "sourceHash": "798ba22e4cbb6b4c"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "inspections.3",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Laag 2: voertuie op die besigheid se naam registreer"
+        }
+      ],
+      "depth": 2,
+      "hash": "4aed8bf7d4c84d30",
+      "id": "layer-2-getting-vehicles-registered-to-the-business",
+      "kind": "heading",
+      "sourceHash": "702a9dacbdfc4b13",
+      "text": "Laag 2: voertuie op die besigheid se naam registreer"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Voertuig wat jy as voorraad hou, moet êrens op die nasionale stelsel aangeteken wees."
+        }
+      ],
+      "hash": "f05daef6028bac30",
+      "id": "layer-2-getting-vehicles-registered-to-the-business.1",
+      "kind": "paragraph",
+      "sourceHash": "bd59398b7c3f7764"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy as ’n maatskappy handel dryf"
+        }
+      ],
+      "depth": 3,
+      "hash": "18c16ad232b1e308",
+      "id": "if-you-trade-as-a-company",
+      "kind": "heading",
+      "sourceHash": "8c15936efb2ec76f",
+      "text": "As jy as ’n maatskappy handel dryf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het ’n Business Register Number Certificate (BRNC) nodig. Die volledige proses, dokumente, koste en die reëls oor die gevolmagtigde is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Voertuie vir jou besigheid"
+            }
+          ],
+          "doc": "core/vehicles",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "65bf98e3e65d0ad9",
+      "id": "if-you-trade-as-a-company.1",
+      "kind": "paragraph",
+      "sourceHash": "463e1f7e8fd68c5d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kort weergawe: eNaTIS identifiseer elke voertuigeienaar met ’n identiteitsnommer. ’n Maatskappy het nie een nie, so die registrasie-owerheid reik ’n besigheidsregisternommer aan die maatskappy uit die eerste keer dat dit ’n voertuig moet besit. Jy doen persoonlik aansoek by jou plaaslike verkeersdepartement met vorm ABR, en jy benoem ’n gevolmagtigde (proxy)."
+        }
+      ],
+      "hash": "19854a15dc6238fa",
+      "id": "if-you-trade-as-a-company.2",
+      "kind": "paragraph",
+      "sourceHash": "f380f652a6553196"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy as ’n eenmansaak handel dryf"
+        }
+      ],
+      "depth": 3,
+      "hash": "a2dd4f59ab1d4d07",
+      "id": "if-you-trade-as-a-sole-proprietor",
+      "kind": "heading",
+      "sourceHash": "40793be091c060af",
+      "text": "As jy as ’n eenmansaak handel dryf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het twee roetes."
+        }
+      ],
+      "hash": "ef45f330b89a6e23",
+      "id": "if-you-trade-as-a-sole-proprietor.1",
+      "kind": "paragraph",
+      "sourceHash": "9d923f498af0d39c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Registreer voertuie teen jou eie ID-nommer. Eenvoudig, en wettig."
+        }
+      ],
+      "hash": "bc42aaf9309d2605",
+      "id": "if-you-trade-as-a-sole-proprietor.2",
+      "kind": "paragraph",
+      "sourceHash": "4d8eb474cddf2617"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Of doen aansoek om ’n Traffic Register Number (verkeersregisternommer). As jy ’n organisasie is wat as ’n nie-regspersoon optree, byvoorbeeld ’n vennootskap, ’n eenmansaak, ’n kerk, ’n trust of ’n statutêre liggaam, moet jy aansoek doen om ’n verkeersregisternommer om motorvoertuie in Suid-Afrika te registreer."
+        }
+      ],
+      "hash": "a10b9a7e4e30029a",
+      "id": "if-you-trade-as-a-sole-proprietor.3",
+      "kind": "paragraph",
+      "sourceHash": "e8088e340b97ce58"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy onder ’n besigheidsnaam handel dryf, maar nie ’n geregistreerde maatskappy is nie, kan jy ’n verkeersregisternommer kry sodat voertuie onder daardie naam geregistreer kan word."
+        }
+      ],
+      "hash": "7f5331132a441631",
+      "id": "if-you-trade-as-a-sole-proprietor.4",
+      "kind": "callout",
+      "pairsWith": "if-you-trade-as-a-sole-proprietor.3",
+      "sourceHash": "d0df8e59362922c7",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Verkeersregisternommer laat ’n handelsnaam op die voertuigrekord verskyn eerder as net jou persoonlike ID. Doen aansoek by jou registrasie-owerheid. Bring bewys van adres, ID-foto’s en die voorgeskrewe fooi."
+        }
+      ],
+      "hash": "51e23428dc2cd823",
+      "id": "if-you-trade-as-a-sole-proprietor.5",
+      "kind": "paragraph",
+      "sourceHash": "8fa0ae4fc192acbc"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n handelaar is ’n TRN of BRNC die moeite werd. Dit skei voorraadvoertuie van jou persoonlike voertuig op die stelsel, wat saak maak wanneer boetes opdaag."
+        }
+      ],
+      "hash": "cf7ad321befa8cff",
+      "id": "if-you-trade-as-a-sole-proprietor.6",
+      "kind": "paragraph",
+      "sourceHash": "16041ebc84eaff44"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "if-you-trade-as-a-sole-proprietor.7",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Laag 3: motorhandelnommers"
+        }
+      ],
+      "depth": 2,
+      "hash": "c89a48a1627a8217",
+      "id": "layer-3-motor-trade-numbers",
+      "kind": "heading",
+      "sourceHash": "f09cb61af46f816c",
+      "text": "Laag 3: motorhandelnommers"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n ongeregistreerde of ongelisensieerde voertuig as deel van jou besigheid op ’n openbare pad ry, het jy dit nodig."
+        }
+      ],
+      "hash": "b2819bccb24ea478",
+      "id": "layer-3-motor-trade-numbers.1",
+      "kind": "paragraph",
+      "sourceHash": "fc99ae88e7edd33e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om ’n ongeregistreerde voertuig op ’n openbare pad in Suid-Afrika te ry, moet jy ’n motorhandelpermit en -nommer hê. ’n Motorhandelnommer word deur geregistreerde vervaardigers, bouers of invoerders, motorvervoerkontrakteurs, motorhandelaars of finansiële instellings gebruik om ’n ongeregistreerde en ongelisensieerde motorvoertuig in die loop van hulle besigheid op ’n openbare pad te bestuur."
+        }
+      ],
+      "hash": "83ccdfc14a3bd615",
+      "id": "layer-3-motor-trade-numbers.2",
+      "kind": "paragraph",
+      "sourceHash": "402aa3cdf32bb9c7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy mag nie ’n ongeregistreerde of ongelisensieerde voertuig op ’n openbare pad ry nie, tensy jy ’n motorhandelnommer het. Handelaars, vervaardigers, invoerders, vervoerders en banke kan dit vir besigheidsgebruik kry."
+        }
+      ],
+      "hash": "7b6915c715b3cb42",
+      "id": "layer-3-motor-trade-numbers.3",
+      "kind": "callout",
+      "pairsWith": "layer-3-motor-trade-numbers.2",
+      "sourceHash": "d6577d7589cbb443",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Motorhandelaar mag dit gebruik om ’n motorvoertuig af te lewer, te verkoop, te verruil of te herstel."
+        }
+      ],
+      "hash": "ea48463300b67aeb",
+      "id": "layer-3-motor-trade-numbers.4",
+      "kind": "paragraph",
+      "sourceHash": "4d3a7525563aa278"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoe om aansoek te doen"
+        }
+      ],
+      "depth": 3,
+      "hash": "c23e2036adf3e14b",
+      "id": "how-to-apply",
+      "kind": "heading",
+      "sourceHash": "c6b64a567f88a031",
+      "text": "Hoe om aansoek te doen"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vul die vorm Application for motor trade number (MTN1) in. Dui aan waarom jy handelnommers nodig het en hoeveel jy nodig het. Die aansoek word op dieselfde dag verwerk. Kry die fooie by jou plaaslike registrasie-owerheid."
+        }
+      ],
+      "hash": "9bec5e414eafa74f",
+      "id": "how-to-apply.1",
+      "kind": "paragraph",
+      "sourceHash": "44f099b7d664e43a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die aansoeker moet aansoek doen om ’n motorhandelnommer en dan die motorhandelnommer lisensieer. Jy het die identifikasie van die maatskappy nodig, naamlik die besigheidsregistrasiesertifikaat of die verkeersregisternommer."
+        }
+      ],
+      "hash": "38de803ab48d68d3",
+      "id": "how-to-apply.2",
+      "kind": "paragraph",
+      "sourceHash": "9962c4df8f82cffd"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Koste"
+        }
+      ],
+      "depth": 3,
+      "hash": "f14696c747279cea",
+      "id": "cost",
+      "kind": "heading",
+      "sourceHash": "478b06be1972d45c",
+      "text": "Koste"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Fooie word per provinsie vasgestel. Soos deur die Wes-Kaapse Regering gepubliseer:"
+        }
+      ],
+      "hash": "02961bf426c7d056",
+      "id": "cost.1",
+      "kind": "paragraph",
+      "sourceHash": "fa380a5b9ca274b8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Aansoek om elke motorhandelnommer: R102. Lisensiëring van ’n motorhandelnommer vir ’n ander motorvoertuig as ’n motorfiets, deur ’n motorhandelaar, vervaardiger, bouer, invoerder of depositonemende instelling: R762. Lisensiëring vir ’n motorfiets: R168. Lisensiëring deur ’n motorvervoerkontrakteur: R168."
+        }
+      ],
+      "hash": "82f5555d4aa45f49",
+      "id": "cost.2",
+      "kind": "paragraph",
+      "sourceHash": "74763af3a877b640"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "In die Wes-Kaap: R102 om vir elke nommer aansoek te doen, en dan R762 per jaar om dit vir ’n motor of bakkie te lisensieer, of R168 vir ’n motorfiets. Ander provinsies vra ander bedrae."
+        }
+      ],
+      "hash": "8113fe84d00efcac",
+      "id": "cost.3",
+      "kind": "callout",
+      "pairsWith": "cost.2",
+      "sourceHash": "7432513923e95e80",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bevestig die huidige bedrag by jou eie provinsie. Fooie verskil."
+        }
+      ],
+      "hash": "e06edd0d8da95b49",
+      "id": "cost.4",
+      "kind": "paragraph",
+      "sourceHash": "3c2180b0f5bb4dac"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Het jy regtig een nodig?"
+        }
+      ],
+      "depth": 3,
+      "hash": "50592fd2a786f05e",
+      "id": "do-you-actually-need-one",
+      "kind": "heading",
+      "sourceHash": "a5c32b00f1ac8c61",
+      "text": "Het jy regtig een nodig?"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Net as jy ongelisensieerde voorraad op openbare paaie beweeg. As elke voertuig wat jy koop reeds geregistreer en gelisensieer is, en jy dit eers ná die oordrag beweeg, kan jy sonder handelnommers handel dryf."
+        }
+      ],
+      "hash": "2104e7b0f072574a",
+      "id": "do-you-actually-need-one.1",
+      "kind": "paragraph",
+      "sourceHash": "170e7e74e9abfef5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die meeste handelaars wat aktief handel dryf, het uiteindelik minstens een nodig, want jy sal op ’n stadium ’n voertuig met ’n verstreke lisensie koop."
+        }
+      ],
+      "hash": "f8c86c3325530bf0",
+      "id": "do-you-actually-need-one.2",
+      "kind": "paragraph",
+      "sourceHash": "dbe0b575a1b02576"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "do-you-actually-need-one.3",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die regsrisiko wat die meeste saak maak: die Consumer Protection Act"
+        }
+      ],
+      "depth": 2,
+      "hash": "1dcf5b408138b35c",
+      "id": "the-legal-risk-that-matters-most-the-consumer-protection-act",
+      "kind": "heading",
+      "sourceHash": "fb095b9bacb063db",
+      "text": "Die regsrisiko wat die meeste saak maak: die Consumer Protection Act"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is die afdeling om twee keer te lees. Kry dit een keer verkeerd op ’n voertuig van R200,000, en die wins van tien transaksies verdwyn."
+        }
+      ],
+      "hash": "f3038dcf3c59983f",
+      "id": "the-legal-risk-that-matters-most-the-consumer-protection-act.1",
+      "kind": "paragraph",
+      "sourceHash": "af150c81edad818c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voetstoots beskerm jou nie"
+        }
+      ],
+      "depth": 3,
+      "hash": "8ff0897f085ff326",
+      "id": "voetstoots-does-not-protect-you",
+      "kind": "heading",
+      "sourceHash": "2535d9d7ff2b1513",
+      "text": "Voetstoots beskerm jou nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Artikel 56 bied ’n geïmpliseerde waarborg van gehalte van ses maande, wat verbruikers toelaat om gebrekkige goedere binne ses maande terug te gee en te kies tussen herstel, vervanging of terugbetaling. As gevolg van hierdie geïmpliseerde waarborg kan handelaars nie meer staatmaak op \"voetstoots\"- of \"soos dit staan\"-klousules in verkope wat deur die CPA gereël word nie. Sulke klousules is net nog van belang in private verkope onder die gemenereg."
+        }
+      ],
+      "hash": "7f16f8dd88fc6892",
+      "id": "voetstoots-does-not-protect-you.1",
+      "kind": "paragraph",
+      "sourceHash": "71a1fa2e3bb93821"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Elke voertuig wat jy aan ’n private persoon verkoop, kom met ’n waarborg van ses maande, of jy dit neerskryf of nie. As dit breek, kies die kliënt: herstel dit, vervang dit, of betaal terug. As jou herstelwerk binne drie maande weer faal, moet jy dit vervang of terugbetaal. \"Verkoop soos dit staan\" doen niks in ’n verkoop deur ’n handelaar nie."
+        }
+      ],
+      "hash": "df95d6ae24cd4918",
+      "id": "voetstoots-does-not-protect-you.2",
+      "kind": "callout",
+      "pairsWith": "voetstoots-does-not-protect-you.1",
+      "sourceHash": "a6edac7f6346f0d7",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die Consumer Tribunal (Verbruikerstribunaal) het beslis dat ’n verkoop voetstoots nie geld vir enige transaksie wat onder die CPA val nie, en dat hierdie soort verkoop ook nie ingevolge artikel 5 van die CPA toegelaat word nie."
+        }
+      ],
+      "hash": "61a03e0a980013d1",
+      "id": "voetstoots-does-not-protect-you.3",
+      "kind": "paragraph",
+      "sourceHash": "112823f6875d2545"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Artikel 2(10) bepaal dat geen bepaling van die CPA so uitgelê mag word dat dit ’n reg uitsluit wat ’n verbruiker onder die gemenereg sou hê nie, en artikel 56(4) sê dat die geïmpliseerde waarborg van gehalte bykomend is tot enige ander waarborg onder die gemenereg. ’n Gebruiktemotorhandelaar kan dus nie sê dat hy die motor reeds vir twee jaar waarborg en dat die bepalings van daardie waarborg eerder geld nie."
+        }
+      ],
+      "hash": "3a2b547cc28016df",
+      "id": "voetstoots-does-not-protect-you.4",
+      "kind": "paragraph",
+      "sourceHash": "2a5bf1423998ac04"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die waarborg van ses maande kom bo-op enige ander waarborg. Jy kan dit nie met jou eie waarborgbepalings vervang nie, selfs nie met ’n langer een nie."
+        }
+      ],
+      "hash": "dcac509e18663774",
+      "id": "voetstoots-does-not-protect-you.5",
+      "kind": "callout",
+      "pairsWith": "voetstoots-does-not-protect-you.4",
+      "sourceHash": "303d275332c44183",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om \"voetstoots verkoop\" op jou faktuur te skryf, doen niks. Dit sal jou nie red nie."
+        }
+      ],
+      "hash": "67312a61beb3efec",
+      "id": "voetstoots-does-not-protect-you.6",
+      "kind": "paragraph",
+      "sourceHash": "aabf7f62540bfd29"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat die waarborg werklik sê"
+        }
+      ],
+      "depth": 3,
+      "hash": "c22982b95bd72430",
+      "id": "what-the-warranty-actually-says",
+      "kind": "heading",
+      "sourceHash": "bccfbdce999aa168",
+      "text": "Wat die waarborg werklik sê"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Artikel 56 van die CPA bied ’n geïmpliseerde waarborg van gehalte op alle goedere wat ’n verskaffer in die gewone loop van sake aan ’n verbruiker verkoop. Al is die voertuig tweedehands, moet dit redelik geskik wees vir die doeleindes waarvoor dit gewoonlik bedoel is, van goeie gehalte wees, in goeie werkende toestand wees, en vry van enige gebreke wees."
+        }
+      ],
+      "hash": "ffb20a802bafc9ad",
+      "id": "what-the-warranty-actually-says.1",
+      "kind": "paragraph",
+      "sourceHash": "63bccf45ede15ef1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Selfs ’n gebruikte voertuig moet werk soos ’n voertuig behoort te werk, in goeie toestand wees, en geen verborge foute hê nie. Dit is die wet, nie ’n belofte wat jy kies om te maak nie."
+        }
+      ],
+      "hash": "1a2457f9b997475e",
+      "id": "what-the-warranty-actually-says.2",
+      "kind": "callout",
+      "pairsWith": "what-the-warranty-actually-says.1",
+      "sourceHash": "aa78214883355a22",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As die voertuig binne ses maande ná aflewering nie aan hierdie standaarde voldoen nie, gee artikel 56(2) die koper die reg om te eis, na die koper se keuse, dat jy die voertuig herstel, die voertuig vervang, of die prys wat betaal is, terugbetaal."
+        }
+      ],
+      "hash": "5a7610a82fe5fd37",
+      "id": "what-the-warranty-actually-says.3",
+      "kind": "paragraph",
+      "sourceHash": "6f94156c9c48378a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As iets binne ses maande verkeerd loop, kies die koper hoe dit reggestel word. Nie jy nie."
+        }
+      ],
+      "hash": "b944ef78edf015bc",
+      "id": "what-the-warranty-actually-says.4",
+      "kind": "callout",
+      "pairsWith": "what-the-warranty-actually-says.3",
+      "sourceHash": "a826bb6851cee5bb",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die keuse is die kliënt s’n, nie joune nie. Jy kan nie daarop aandring om te herstel wanneer hulle vir ’n terugbetaling gevra het nie."
+        }
+      ],
+      "hash": "24b09a4d8bbc75a0",
+      "id": "what-the-warranty-actually-says.5",
+      "kind": "paragraph",
+      "sourceHash": "a240a6369f990a17"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As gebreke binne drie maande ná ’n herstel weer voorkom, moet die verskaffer vervang of terugbetaal. Jy kry een kans om te herstel."
+        }
+      ],
+      "hash": "c473ed7a9f8b1576",
+      "id": "what-the-warranty-actually-says.6",
+      "kind": "paragraph",
+      "sourceHash": "f3b24644152c6604"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die een verweer wat werk"
+        }
+      ],
+      "depth": 3,
+      "hash": "c02d25b01fff7963",
+      "id": "the-one-defence-that-works",
+      "kind": "heading",
+      "sourceHash": "fb15e4d52315b049",
+      "text": "Die een verweer wat werk"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die geïmpliseerde waarborg geld nie as jy die koper spesifiek van die gebreke ingelig het en hy uitdruklik of stilswyend ingestem het om die goedere in daardie toestand te aanvaar nie. ’n Algemene \"voetstoots\"-klousule is nie genoeg nie. Jy moet die spesifieke gebreke bekend gemaak het. Dit geld ook nie waar die onklaarraking aan gewone slytasie te wyte is nie, met inagneming van die ouderdom en kilometerstand van die voertuig. ’n Skielike groot meganiese faling gaan egter gewoonlik verder as gewone slytasie."
+        }
+      ],
+      "hash": "3a92f5e1f0333718",
+      "id": "the-one-defence-that-works.1",
+      "kind": "paragraph",
+      "sourceHash": "c25a2fbb912f82d8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou een verweer: vertel die koper voor die verkoop van elke spesifieke fout, op skrif, en laat hom instem om tog te koop. ’n Algemene \"verkoop soos dit staan\" is nie genoeg nie. Normale slytasie vir die motor se ouderdom en kilometerstand word ook nie gedek nie, maar ’n skielike groot onklaarraking gewoonlik wel."
+        }
+      ],
+      "hash": "091d03e2a8c183c1",
+      "id": "the-one-defence-that-works.2",
+      "kind": "callout",
+      "pairsWith": "the-one-defence-that-works.1",
+      "sourceHash": "808c53d401837740",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou beskerming is dus bekendmaking, op skrif, gebrek vir gebrek."
+        }
+      ],
+      "hash": "bcc08031047fb4a9",
+      "id": "the-one-defence-that-works.3",
+      "kind": "paragraph",
+      "sourceHash": "74f85365933e3e02"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Praktiese stelsel vir ’n klein handelaar:"
+        }
+      ],
+      "hash": "97c2857e27a7e000",
+      "id": "the-one-defence-that-works.4",
+      "kind": "paragraph",
+      "sourceHash": "0cc1cd52ec4e543d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Laat elke voertuig inspekteer voordat jy dit adverteer. Skryf elke fout neer wat jy vind. Neem ’n foto van elkeen."
+        }
+      ],
+      "hash": "39f14a5331873764",
+      "id": "the-one-defence-that-works.5",
+      "kind": "paragraph",
+      "sourceHash": "9a229821ac179c9a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sit ’n gebrekeskedule in jou koopooreenkoms. Nie \"verkoop soos dit staan\" nie. ’n Genommerde lys: \"1. Lugversorging koel nie. 2. Bestuurdersdeur se bekleding is los. 3. Agterbande op 3mm en sal binne 6 maande vervang moet word. 4. Olie syfer by die kleptoppakking uit.\""
+        }
+      ],
+      "hash": "767cf9b94af07565",
+      "id": "the-one-defence-that-works.6",
+      "kind": "paragraph",
+      "sourceHash": "aa3870192faa2310"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Laat die koper elke reël parafeer en die skedule teken."
+        }
+      ],
+      "hash": "d947b01fb74e646e",
+      "id": "the-one-defence-that-works.7",
+      "kind": "paragraph",
+      "sourceHash": "6cd444efff937aea"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hou die getekende skedule vir vyf jaar saam met jou inskrywing in die SAPS-register."
+        }
+      ],
+      "hash": "022184e4f024c314",
+      "id": "the-one-defence-that-works.8",
+      "kind": "paragraph",
+      "sourceHash": "89634a77683a5230"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hierdie een dokument is die verskil tussen ’n gebrek wat bekend gemaak is en ’n eis om terugbetaling onder artikel 56."
+        }
+      ],
+      "hash": "ae0cea5c8cf72252",
+      "id": "the-one-defence-that-works.9",
+      "kind": "paragraph",
+      "sourceHash": "1758dff26d631ad7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Waarheen dispute gaan"
+        }
+      ],
+      "depth": 3,
+      "hash": "b7233c77121e96db",
+      "id": "where-disputes-go",
+      "kind": "heading",
+      "sourceHash": "b2395f749bbcccaf",
+      "text": "Waarheen dispute gaan"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die Motor Industry Ombudsman of South Africa (MIOSA) bied onafhanklike geskilbeslegting vir die motorbedryf en is gratis vir verbruikers. Onder dit het die Small Claims Court (Kleineisehof) geen prokureur nodig nie. Die limiet daarvan is R30,000, bepaal in Staatskoerant (Government Gazette) 55038, Goewermentskennisgewing 7717 van 20 Julie 2026, van krag vanaf 1 Augustus 2026. Dit het die limiet van R20,000 vervang wat sedert 2019 gegeld het. Baie webwerwe noem nog R20,000."
+        }
+      ],
+      "hash": "b434d53108c2567f",
+      "id": "where-disputes-go.1",
+      "kind": "paragraph",
+      "sourceHash": "a211c1dbf0900063"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Let op in watter rigting dit werk. As jy deur ’n maatskappy handel dryf, kan jy nie self ’n eis in die Small Claims Court instel nie: net ’n natuurlike persoon mag daar ’n eis instel. ’n Koper kan wel ’n eis teen jou maatskappy daar instel, en ’n benoemde direkteur mag namens die maatskappy verskyn, maar om ’n kliënt te agtervolg wat jou nie betaal het nie, sal jy die landdroshof en ’n prokureur nodig hê."
+        }
+      ],
+      "hash": "6fd8182b7aad1a60",
+      "id": "where-disputes-go.2",
+      "kind": "paragraph",
+      "sourceHash": "701e67ece1fc615e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daarbo, die landdroshowe. ’n Distrikshof het siviele jurisdiksie waar die eis R200,000 of minder is, en ’n streekhof tussen R200,000 en R400,000. Groter eise gaan na die Hooggeregshof."
+        }
+      ],
+      "hash": "ade0a95311b12c60",
+      "id": "where-disputes-go.3",
+      "kind": "paragraph",
+      "sourceHash": "7926f520c2e66a81"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Uitspraak van die Wes-Kaapse Hooggeregshof in Desember 2025 het bevestig dat kopers nie eers die prosesse van ’n ombud of kommissie hoef uit te put voordat hulle onder die CPA na ’n hof gaan nie, en dat handelaars nie agter voetstoots-klousules of beperkte waarborge kan skuil wanneer hulle gebrekkige voertuie verkoop nie. Die hof het ’n bevel bekragtig wat ’n handelaar verplig het om R175,000 terug te betaal teen die teruggawe van ’n gebrekkige voertuig."
+        }
+      ],
+      "hash": "7fa1351e6a7ddfbc",
+      "id": "where-disputes-go.4",
+      "kind": "paragraph",
+      "sourceHash": "1dc07af19f440753"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Hof het laat in 2025 bevestig dat ’n koper reguit hof toe kan gaan, en dat ’n handelaar se \"soos dit staan\"-klousule of beperkte waarborg hom nie beskerm nie. Daardie handelaar moes R175,000 terugbetaal."
+        }
+      ],
+      "hash": "b38e17923e62ae95",
+      "id": "where-disputes-go.5",
+      "kind": "callout",
+      "pairsWith": "where-disputes-go.4",
+      "sourceHash": "2ae8b68e88acade8",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bou die koste van ’n terugbetaling af en toe in jou marge in. ’n Handelaar wat sy pryse stel asof niks ooit teruggestuur word nie, stel sy pryse verkeerd."
+        }
+      ],
+      "hash": "71d12d17e28235a9",
+      "id": "where-disputes-go.6",
+      "kind": "paragraph",
+      "sourceHash": "0475f5fccd9e4550"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "where-disputes-go.7",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "BTW: registreer vroeër as ander besighede"
+        }
+      ],
+      "depth": 2,
+      "hash": "ba588f938b57cd5a",
+      "id": "vat-register-earlier-than-other-businesses",
+      "kind": "heading",
+      "sourceHash": "e10184db623aa844",
+      "text": "BTW: registreer vroeër as ander besighede"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die algemene raad in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Belasting en SARS"
+            }
+          ],
+          "doc": "core/tax-and-sars",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " sê moenie vrywillig vir BTW registreer nie. Vir ’n voertuighandelaar draai daardie raad om, en die rede is nosionele insetbelasting."
+        }
+      ],
+      "hash": "e5eacdb4b5f73cd7",
+      "id": "vat-register-earlier-than-other-businesses.1",
+      "kind": "paragraph",
+      "sourceHash": "72be7c0940c7b617"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoe nosionele insetbelasting werk"
+        }
+      ],
+      "depth": 3,
+      "hash": "45779005ca0e5940",
+      "id": "how-notional-input-tax-works",
+      "kind": "heading",
+      "sourceHash": "b6519408f1473ad6",
+      "text": "Hoe nosionele insetbelasting werk"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die meeste van jou voorraad kom van private individue wat nie BTW-ondernemers is nie. Hulle hef geen BTW van jou nie. Normaalweg sou dit beteken dat jy BTW op die volle verkoopprys betaal sonder om iets terug te eis."
+        }
+      ],
+      "hash": "bf002374caa1df74",
+      "id": "how-notional-input-tax-works.1",
+      "kind": "paragraph",
+      "sourceHash": "fefd0d41f48b0bd9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die VAT Act los dit op."
+        }
+      ],
+      "hash": "7fa21e3f62957a85",
+      "id": "how-notional-input-tax-works.2",
+      "kind": "paragraph",
+      "sourceHash": "f954b9594980f2a0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wanneer iemand wat nie ’n ondernemer is nie, goedere verkry, is hy die finale verbruiker en dra hy die BTW. Wanneer daardie goedere later as tweedehandse goedere aan ’n ondernemer verkoop word, is daar ’n belastingelement in die verkoopprys ingesluit wat ontsluit moet word. Die ondernemer verantwoord BTW op die marge, wat die verskil tussen die verkoopprys en die koste van die goedere is. Om dit te bereik, word die ondernemer ’n aftrekking van nosionele insetbelasting toegelaat wanneer hy die tweedehandse goedere verkry."
+        }
+      ],
+      "hash": "f36e73b5a700ef73",
+      "id": "how-notional-input-tax-works.3",
+      "kind": "paragraph",
+      "sourceHash": "d25db9c21733fac5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Toe ’n private persoon ’n motor nuut gekoop het, het hy BTW betaal en kon hy dit nie terugeis nie. Wanneer jy daardie motor by hom koop, laat die wet jou toe om ’n deel van die BTW terug te eis asof hy dit gehef het, sodat jy net BTW op jou wins betaal, nie op die hele prys nie."
+        }
+      ],
+      "hash": "a82644a330bccf07",
+      "id": "how-notional-input-tax-works.4",
+      "kind": "callout",
+      "pairsWith": "how-notional-input-tax-works.3",
+      "sourceHash": "956f81a71102a3de",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die nosionele insetbelasting word bereken deur die belastingbreuk (15/115) te vermenigvuldig met die werklike koopprys of die opemarkwaarde van die goedere, watter een ook al die kleinste is."
+        }
+      ],
+      "hash": "e52be8ff3f3a811d",
+      "id": "how-notional-input-tax-works.5",
+      "kind": "paragraph",
+      "sourceHash": "8ad4f09582d26f3d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS se uitgewerkte voorbeeld:"
+        }
+      ],
+      "hash": "958039735f801a1f",
+      "id": "how-notional-input-tax-works.6",
+      "kind": "paragraph",
+      "sourceHash": "da9986e5e6739dfd"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "X, wat nie ’n ondernemer is nie, verkoop ’n tweedehandse voertuig vir R115,000 aan ’n motorhandelaar wat ’n geregistreerde BTW-ondernemer is, en dit is ook die opemarkwaarde. As die motorhandelaar die volle koopprys betaal het en aan alle voorwaardes voldoen, mag hy R15,000 as nosionele insetbelasting eis (15/115 × R115,000). As die handelaar dit vir R120,000 verkoop, word die handelaar se wins van R20,000 korrek teen 15% belas, wat R3,000 is."
+        }
+      ],
+      "hash": "c29db99577bb9945",
+      "id": "how-notional-input-tax-works.7",
+      "kind": "paragraph",
+      "sourceHash": "b078f67808dfd0f0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voorbeeld: jy koop ’n motor van ’n private persoon vir R115,000. Jy kan R15,000 as BTW terugeis. Jy verkoop dit vir R120,000 plus BTW. Die BTW wat jy werklik aan SARS betaal, is R3,000, wat 15% van jou wins van R20,000 is."
+        }
+      ],
+      "hash": "7524be7a3222c4d5",
+      "id": "how-notional-input-tax-works.8",
+      "kind": "callout",
+      "pairsWith": "how-notional-input-tax-works.7",
+      "sourceHash": "aa3b1b5f474ea28f",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sonder hierdie meganisme sou die BTW op die verkoop van R120,000 omtrent R15,650 wees. Daarmee betaal jy R3,000. Daardie verskil is jou hele marge op ’n klein transaksie."
+        }
+      ],
+      "hash": "da169d61c7baa646",
+      "id": "how-notional-input-tax-works.9",
+      "kind": "paragraph",
+      "sourceHash": "fe8da0f10e225be8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die voorwaardes waaraan jy moet voldoen"
+        }
+      ],
+      "depth": 3,
+      "hash": "41efe0303ad0904e",
+      "id": "the-conditions-you-must-meet",
+      "kind": "heading",
+      "sourceHash": "d9c2a0c185502bdb",
+      "text": "Die voorwaardes waaraan jy moet voldoen"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy moet ’n BTW-geregistreerde ondernemer wees, en jy moet die goedere verkry onder ’n nie-belasbare transaksie in die loop of ter bevordering van ’n onderneming."
+        }
+      ],
+      "hash": "86a2d3c95219e2e2",
+      "id": "the-conditions-you-must-meet.1",
+      "kind": "paragraph",
+      "sourceHash": "75c747f016edadaa"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS vereis dat die bedrag werklik betaal moet wees, ten volle of gedeeltelik, voordat jy kan eis. Die betaling moet naspeurbaar en verifieerbaar wees. Kontanttransaksies sonder ’n bankspoor stel die eis in gevaar."
+        }
+      ],
+      "hash": "eb385f23521bc27a",
+      "id": "the-conditions-you-must-meet.2",
+      "kind": "paragraph",
+      "sourceHash": "ed149fada8cc2e64"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die handelaar moet in besit wees van ’n voltooide VAT264-vorm wat verklaar dat die lewering van die motorvoertuig nie ’n belasbare lewering is nie."
+        }
+      ],
+      "hash": "943b6190386c36da",
+      "id": "the-conditions-you-must-meet.3",
+      "kind": "paragraph",
+      "sourceHash": "f887ba456d033c99"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die VAT264-vorm moet deur sowel die koper as die verkoper voltooi word. Laat dit teken op dieselfde oomblik wat jy die voertuig neem, nie later nie."
+        }
+      ],
+      "hash": "de01e1d83898ffc1",
+      "id": "the-conditions-you-must-meet.4",
+      "kind": "paragraph",
+      "sourceHash": "c5ed62a7ca02e5ed"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS publiseer ’n spesifieke gids: VAT 420 Guide for Motor Dealers. Lees dit voordat jy vir BTW registreer. Die skakel is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bronne- en verifikasieregister"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "1afa2590da061849",
+      "id": "the-conditions-you-must-meet.5",
+      "kind": "paragraph",
+      "sourceHash": "cbdaa0edcd058e7a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die besluit"
+        }
+      ],
+      "depth": 3,
+      "hash": "aa769ee49bfb756e",
+      "id": "the-decision",
+      "kind": "heading",
+      "sourceHash": "4d6fb07787d0a067",
+      "text": "Die besluit"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Onder R2.3 miljoen omset hoef jy nie te registreer nie. Maar ’n handelaar met ’n omset van R900,000 per jaar wat meestal by private verkopers koop, verloor waarskynlik geld deur buite die BTW-stelsel te bly, omdat nosionele insetbelasting meer werd is as die koste van nakoming."
+        }
+      ],
+      "hash": "98166aebe6ca37bc",
+      "id": "the-decision.1",
+      "kind": "paragraph",
+      "sourceHash": "833415b9aaef1414"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verstaan ook hoe vinnig ’n handelaar die verpligte drempel bereik. Omset is bruto verkope, nie marge nie. Sestien voertuie wat teen ’n gemiddeld van R150,000 verkoop word, is R2.4 miljoen. ’n Handelaar wat twee motors per maand verkoop, gaan binne die jaar oor R2.3 miljoen, en jy moet registreer binne 21 werksdae vanaf die datum waarop jy R2.3 miljoen oorskry, of vanaf die datum waarop dit duidelik word dat jy dit sal oorskry. Hou van die eerste maand af jou verkope oor ’n lopende 12 maande dop."
+        }
+      ],
+      "hash": "26937d191e9c0ad5",
+      "id": "the-decision.2",
+      "kind": "paragraph",
+      "sourceHash": "b620e3a47d546ab4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bereken dit met jou werklike syfers, of betaal ’n belastingpraktisyn vir een uur. Dit is die enkele waardevolste uur wat ’n klein handelaar kan koop."
+        }
+      ],
+      "hash": "6d31374cb2968970",
+      "id": "the-decision.3",
+      "kind": "paragraph",
+      "sourceHash": "4d81aa2f09485736"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Omsetbelasting is byna seker verkeerd vir ’n handelaar"
+        }
+      ],
+      "depth": 3,
+      "hash": "b6ae2d401c19d1ce",
+      "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer",
+      "kind": "heading",
+      "sourceHash": "24c7c482a257e342",
+      "text": "Omsetbelasting is byna seker verkeerd vir ’n handelaar"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die kernlêer oor belasting beskryf omsetbelasting, met 0% op die eerste R600,000. Dit lyk aantreklik. Vir ’n voertuighandelaar is dit gewoonlik ’n fout, om twee redes."
+        }
+      ],
+      "hash": "0c98f121f8137a03",
+      "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer.1",
+      "kind": "paragraph",
+      "sourceHash": "88d66d4ce3a5bf5a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit belas omset, nie wins nie. ’n Motor wat vir R140,000 gekoop en vir R155,000 verkoop word, voeg R155,000 by jou omset en R15,000 by jou wins. Teen 1% op die band bo R600,000 sou jy R1,550 omsetbelasting op daardie transaksie betaal teenoor ’n marge van R15,000. Onder normale belasting, met SBC-koerse wat by 0% begin, word ’n klein handelaar se werklike wins dikwels glad nie belas nie."
+        }
+      ],
+      "hash": "fb77733a63fc987f",
+      "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer.2",
+      "kind": "paragraph",
+      "sourceHash": "f54d8ebe20d1af99"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit haal jou uit die BTW-stelsel. Omsetbelasting vervang inkomstebelasting, BTW, voorlopige belasting, kapitaalwinsbelasting en dividendbelasting. Dit beteken geen nosionele insetbelasting nie, en dit is die enkele waardevolste belastingmeganisme wat ’n handelaar in gebruikte voertuie het."
+        }
+      ],
+      "hash": "410fce7f50c7ff83",
+      "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer.3",
+      "kind": "paragraph",
+      "sourceHash": "f74a8531b3679931"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bly op normale belasting, gaan na of die maatskappy vir SBC-koerse kwalifiseer, en registreer vir BTW wanneer die syfers dit sê."
+        }
+      ],
+      "hash": "4212871efe6c8a24",
+      "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer.4",
+      "kind": "paragraph",
+      "sourceHash": "8f76719d9b965ee3"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer.5",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Papierwerk by elke transaksie"
+        }
+      ],
+      "depth": 2,
+      "hash": "4dee56580e9d289f",
+      "id": "paperwork-on-every-deal",
+      "kind": "heading",
+      "sourceHash": "dff57b16a83594f1",
+      "text": "Papierwerk by elke transaksie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wanneer jy ’n voertuig inkoop"
+        }
+      ],
+      "depth": 3,
+      "hash": "82e5d238a48e9292",
+      "id": "when-you-buy-a-vehicle-in",
+      "kind": "heading",
+      "sourceHash": "3038c64278aca2a8",
+      "text": "Wanneer jy ’n voertuig inkoop"
+    },
+    {
+      "hash": "3dfb962df90bd23f",
+      "id": "when-you-buy-a-vehicle-in.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "’n Afskrif van die verkoper se ID, wat vir vyf jaar gehou word"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die oorspronklike registrasiesertifikaat (RC1)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Bevestig dat die verkoper se naam op die RC1 met die ID ooreenstem. As dit nie ooreenstem nie, stop."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Bevestig wie die titelhouer is. As die voertuig gefinansier is, sal die titelhouer die finansieringsinstelling wees. As die titelhouer nie die verkoper is wat in die papierwerk genoem word nie, wag voordat jy betaal, en vra watter dokumente die bevoegdheid om te verkoop bewys. ’n Vereffeningsbrief van die bank word vereis."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Getekende NCO (Notification of Change of Ownership) van die verkoper"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Getekende VAT264, as jy vir BTW geregistreer is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jou inskrywing in die SAPS-register, met die VIN, onderstel, enjinnommer, afstandmeter, kleur en onderskeidende merke"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Foto’s van die voertuig en van elke gebrek"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "d815eab101a5f05a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om die sleutels te hê, is nie dieselfde as skoon titel nie. Betaal nooit voordat die papierwerk ooreenstem nie."
+        }
+      ],
+      "hash": "7928b15f07a5c1f6",
+      "id": "when-you-buy-a-vehicle-in.2",
+      "kind": "paragraph",
+      "sourceHash": "1f84db0e412c27bc"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wanneer jy ’n voertuig uitverkoop"
+        }
+      ],
+      "depth": 3,
+      "hash": "d236e0eae665d337",
+      "id": "when-you-sell-a-vehicle-out",
+      "kind": "heading",
+      "sourceHash": "a3545e23a02bad82",
+      "text": "Wanneer jy ’n voertuig uitverkoop"
+    },
+    {
+      "hash": "8f993e6e678412f7",
+      "id": "when-you-sell-a-vehicle-out.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "’n Geldige padwaardigheidsertifikaat. Die Department of Transport (Departement van Vervoer) se blad oor voertuigregistrasie sê dat die registrasie van ’n gebruikte voertuig die padwaardigheidsertifikaat vereis as die huidige sertifikaat ouer as 60 dae is. Die Wes-Kaapse Regering sê dat ’n padwaardigheidstoets gedoen moet word elke keer wat ’n voertuig van eienaar verander."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jou NCO, ingedien sodat die voertuig nie meer aan jou gekoppel is nie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die koper het 21 dae om die registrasie te voltooi deur die RLV-vorm in te dien saam met die RC1, die padwaardigheidsertifikaat, gesertifiseerde dokumentasie en die vereiste fooie."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die getekende gebrekeskedule"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jou skriftelike koopooreenkoms"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Belastingfaktuur, of ’n gewone faktuur as jy nie vir BTW geregistreer is nie (sien "
+          },
+          {
+            "doc": "paperwork/which-template-to-use-when",
+            "label": "03-documents/01",
+            "t": "docref"
+          },
+          {
+            "t": "text",
+            "v": ")"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Afskrif van die koper se ID vir jou SAPS-register"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "490b8d0abe97b8b5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wanneer ’n voertuig van eienaar verander, het dit ’n padwaardigheidsertifikaat nodig wat minder as 60 dae oud is."
+        }
+      ],
+      "hash": "a4df88e4f430bd10",
+      "id": "when-you-sell-a-vehicle-out.2",
+      "kind": "callout",
+      "pairsWith": "when-you-sell-a-vehicle-out.1",
+      "sourceHash": "646c8114c49f8993",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As die sperdatum van 21 dae nie nagekom word nie, word boetes opgelê."
+        }
+      ],
+      "hash": "e6f2f932da132321",
+      "id": "when-you-sell-a-vehicle-out.3",
+      "kind": "paragraph",
+      "sourceHash": "37498a3ac15912ba"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Moenie sleutels oorhandig voordat die NCO ingedien is nie. ’n Voertuig wat nog aan jou gekoppel is, versamel boetes, e-tolgelde en aanspreeklikheid wat joune is totdat die rekord verander."
+        }
+      ],
+      "hash": "fca5b2c4348601ef",
+      "id": "when-you-sell-a-vehicle-out.4",
+      "kind": "paragraph",
+      "sourceHash": "2b7b945d3e477b41"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "when-you-sell-a-vehicle-out.5",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Twee dinge oor voorraad wat nuwe handelaars verras"
+        }
+      ],
+      "depth": 2,
+      "hash": "6e86d9a80586444f",
+      "id": "two-things-about-stock-that-surprise-new-dealers",
+      "kind": "heading",
+      "sourceHash": "884187d3f4e27fe4",
+      "text": "Twee dinge oor voorraad wat nuwe handelaars verras"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Onverkoopte voertuie aan die einde van die jaar word as handelsvoorraad belas"
+        }
+      ],
+      "depth": 3,
+      "hash": "19f6907abdbc927a",
+      "id": "unsold-vehicles-at-year-end-are-taxed-as-trading-stock",
+      "kind": "heading",
+      "sourceHash": "ec3c06f1f27514a0",
+      "text": "Onverkoopte voertuie aan die einde van die jaar word as handelsvoorraad belas"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Inkomstebelasting word op wins bereken, en wins sluit die waarde in van voorraad wat jy aan die einde van die finansiële jaar nog hou. Artikel 22 van die Income Tax Act vereis dat slothandelsvoorraad in berekening gebring word, gewoonlik teen kosprys."
+        }
+      ],
+      "hash": "9be0a5788a47ab7d",
+      "id": "unsold-vehicles-at-year-end-are-taxed-as-trading-stock.1",
+      "kind": "paragraph",
+      "sourceHash": "b8ae6783a690c711"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "In gewone woorde: as jy in Februarie vier voertuie gekoop het en hulle teen jou jaareinde op 28 Februarie nog nie verkoop het nie, is hulle koste nie eenvoudig ’n uitgawe wat hierdie jaar se wins verminder nie. Dit word as voorraad oorgedra en word eers koste van verkope wanneer elke voertuig verkoop word."
+        }
+      ],
+      "hash": "4795a5f689b6779b",
+      "id": "unsold-vehicles-at-year-end-are-taxed-as-trading-stock.2",
+      "kind": "paragraph",
+      "sourceHash": "aeb2b0e6fe9052c8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit vang handelaars wat voor die jaareinde baie koop en ’n belastingaftrekking verwag. Hou ’n gedateerde voorraadlys met die kosprys per voertuig, en gee dit aan die einde van die jaar vir jou rekenmeester."
+        }
+      ],
+      "hash": "627fb0950bfcdbfa",
+      "id": "unsold-vehicles-at-year-end-are-taxed-as-trading-stock.3",
+      "kind": "paragraph",
+      "sourceHash": "e3caeb1c43ea4ce4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As ’n bank jou voorraad finansier, hou die bank die titel"
+        }
+      ],
+      "depth": 3,
+      "hash": "5a811825c5686a39",
+      "id": "if-a-bank-finances-your-stock-the-bank-holds-title",
+      "kind": "heading",
+      "sourceHash": "7f7251df9504fbcd",
+      "text": "As ’n bank jou voorraad finansier, hou die bank die titel"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Handelaars wat groei, gebruik dikwels vloerplanfinansiering (floor plan finance), waar ’n geldskieter die aankoop van voorraad finansier. Op eNaTIS verskyn die geldskieter dan as die titelhouer en jy as die eienaar. As die voertuig gefinansier is, sal die titelhouer die finansieringsinstelling wees."
+        }
+      ],
+      "hash": "d1258bf0cd5e453e",
+      "id": "if-a-bank-finances-your-stock-the-bank-holds-title.1",
+      "kind": "paragraph",
+      "sourceHash": "0eb499787d312e72"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy kan nie ’n gefinansierde voertuig aan ’n koper oordra voordat die geldskieter se belang in daardie voertuig vereffen is en die geldskieter die titel vrystel nie. Bou die vereffeningstap in jou verkoopproses in, anders sal ’n verkoop by die registrasie-owerheid vashaak terwyl ’n ontevrede koper wag."
+        }
+      ],
+      "hash": "d6fb56580d968c8a",
+      "id": "if-a-bank-finances-your-stock-the-bank-holds-title.2",
+      "kind": "paragraph",
+      "sourceHash": "378eb913aab24a9d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deposito’s om ’n voertuig te hou"
+        }
+      ],
+      "depth": 2,
+      "hash": "9633fd136b28d163",
+      "id": "holding-deposits",
+      "kind": "heading",
+      "sourceHash": "f3bd356f7c9122c0",
+      "text": "Deposito’s om ’n voertuig te hou"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kliënte sal vra om \"’n deposito te betaal om die motor te hou\"."
+        }
+      ],
+      "hash": "4f1a87cb4c5b1df7",
+      "id": "holding-deposits.1",
+      "kind": "paragraph",
+      "sourceHash": "0dc1479b2190c2bb"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Neem dit, maar verstaan die posisie onder die Consumer Protection Act. ’n Verbruiker wat ’n bespreking of reservering maak, mag dit kanselleer, en jy mag ’n redelike kanselleringsfooi hef. By wat redelik is, word die kennis wat gegee is in ag geneem, en ook of jy die voertuig intussen aan iemand anders kon verkoop het."
+        }
+      ],
+      "hash": "19bcc615ace23920",
+      "id": "holding-deposits.2",
+      "kind": "paragraph",
+      "sourceHash": "1c8038bfa26d30c4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Skriftelike depositokwitansie wat die bedrag, die voertuig volgens VIN, die tydperk wat dit gehou word en die kanselleringsbepalings noem, is wat die fooi afdwingbaar maak. ’n WhatsApp wat sê \"deposito nie terugbetaalbaar nie\", maak dit nie afdwingbaar nie."
+        }
+      ],
+      "hash": "4e92e3e6a1d4a289",
+      "id": "holding-deposits.3",
+      "kind": "paragraph",
+      "sourceHash": "02a68bbc44a2103e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ander registrasies wat dalk van toepassing is"
+        }
+      ],
+      "depth": 2,
+      "hash": "4f95aaa93c6fdabd",
+      "id": "other-registrations-that-may-apply",
+      "kind": "heading",
+      "sourceHash": "3a6055c40c4f64aa",
+      "text": "Ander registrasies wat dalk van toepassing is"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Munisipale besigheidslisensie en sonering"
+        }
+      ],
+      "depth": 3,
+      "hash": "04833fe908d9d26f",
+      "id": "municipal-business-licence-and-zoning",
+      "kind": "heading",
+      "sourceHash": "3252c965c3b6469e",
+      "text": "Munisipale besigheidslisensie en sonering"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Persele vir voertuigverkope het byna altyd soneringsgoedkeuring vir motorhandel nodig. Residensiële sonering laat nie ’n motorwerf toe nie. Gaan dit by die munisipaliteit se stadsbeplanningsafdeling na voordat jy ’n huurkontrak teken, want jy kan dit nie agterna regmaak nie."
+        }
+      ],
+      "hash": "eaace2363d9ff3ee",
+      "id": "municipal-business-licence-and-zoning.1",
+      "kind": "paragraph",
+      "sourceHash": "1d84054777dd3165"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Baie munisipaliteite vereis ook ’n handelslisensie onder die Businesses Act 71 of 1991. Vra jou munisipaliteit se beampte vir besigheidslisensiëring (Business Licensing Officer)."
+        }
+      ],
+      "hash": "bcb2294a5e70fecf",
+      "id": "municipal-business-licence-and-zoning.2",
+      "kind": "paragraph",
+      "sourceHash": "deba12c812dad535"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy self krediet verleen"
+        }
+      ],
+      "depth": 3,
+      "hash": "2ba4ba6b20b2a6a8",
+      "id": "if-you-extend-credit-yourself",
+      "kind": "heading",
+      "sourceHash": "6e04b94e069130cf",
+      "text": "As jy self krediet verleen"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n koper toelaat om jou in paaiemente te betaal, is jy ’n kredietverskaffer onder die National Credit Act."
+        }
+      ],
+      "hash": "fe8e3b609910839e",
+      "id": "if-you-extend-credit-yourself.1",
+      "kind": "paragraph",
+      "sourceHash": "de17e540b683d8ec"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Enige persoon wat ’n kredietverskaffer is onder ’n kredietooreenkoms waarop die wet van toepassing is, moet by die National Credit Regulator (nasionale kredietreguleerder) registreer voordat hy krediet verleen. Die getal of grootte van die lenings maak nie meer saak nie."
+        }
+      ],
+      "hash": "9d9bcb8f5e5778d8",
+      "id": "if-you-extend-credit-yourself.2",
+      "kind": "paragraph",
+      "sourceHash": "503bf3fc064e492b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die ou geldelike drempel is weg. Daar is geen vrystelling vir klein handelaars nie. Om as kredietverskaffer te registreer, is ’n ernstige onderneming met deurlopende verslagdoeningspligte."
+        }
+      ],
+      "hash": "5792336970260cb4",
+      "id": "if-you-extend-credit-yourself.3",
+      "kind": "paragraph",
+      "sourceHash": "f78ebb28649c9d66"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die eenvoudige antwoord vir ’n klein handelaar: moenie jou eie paaiementbepalings aanbied nie. Verwys die koper na ’n bank of ’n geregistreerde finansieringshuis. Neem die volle betaling voor aflewering."
+        }
+      ],
+      "hash": "88c3372a0db0d61c",
+      "id": "if-you-extend-credit-yourself.4",
+      "kind": "paragraph",
+      "sourceHash": "5e5ac0f74594c042"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy waarborge of versekering verkoop, of finansiering reël"
+        }
+      ],
+      "depth": 3,
+      "hash": "78d8b06e455807ad",
+      "id": "if-you-sell-warranties-insurance-or-arrange-finance",
+      "kind": "heading",
+      "sourceHash": "096a48e45d4dd8c9",
+      "text": "As jy waarborge of versekering verkoop, of finansiering reël"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is finansiële dienste. Dit vereis ’n FSP-lisensie onder FAIS, of jy moet as ’n verteenwoordiger van ’n gelisensieerde FSP werk. Om op eie houtjie, sonder ’n lisensie, ’n diensplan of ’n waarborgproduk te verkoop, is ’n oortreding."
+        }
+      ],
+      "hash": "564f442ad799664a",
+      "id": "if-you-sell-warranties-insurance-or-arrange-finance.1",
+      "kind": "paragraph",
+      "sourceHash": "fbf99bef4feecff9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Werk eerder saam met ’n gelisensieerde verskaffer. Hulle sal jou korrek aanstel."
+        }
+      ],
+      "hash": "f697b6cb4db48ca7",
+      "id": "if-you-sell-warranties-insurance-or-arrange-finance.2",
+      "kind": "paragraph",
+      "sourceHash": "a1398b97ec287e23"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ingevoerde voertuie"
+        }
+      ],
+      "depth": 3,
+      "hash": "63558ad7b9f3ca8f",
+      "id": "imported-vehicles",
+      "kind": "heading",
+      "sourceHash": "4d9cc0c3c2c29a7a",
+      "text": "Ingevoerde voertuie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ingevoerde voertuie bring ’n aparte stapel vereistes mee: doeaneklaring by SARS en bewys dat die invoerreg betaal is, ’n SAPS-klaring, ’n magtigingsbrief van die SABS, en ’n korrekte inskrywing op eNaTIS."
+        }
+      ],
+      "hash": "5ae353c76f07860b",
+      "id": "imported-vehicles.1",
+      "kind": "paragraph",
+      "sourceHash": "89e4e7be7badb39c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As ’n motorvoertuig buite die Republiek geregistreer is, het jy die registrasie- en lisensiëringsdokumente nodig wat uitgereik is in die land waar die voertuig geregistreer is, ’n klaring van die motorvoertuig deur die South African Police Service (Suid-Afrikaanse Polisiediens), en ’n magtigingsbrief wat deur die South African Bureau of Standards uitgereik is. Die Customs and Excise Division (afdeling Doeane en Aksyns) van SARS verskaf die vereiste bewys dat aan hulle regulasies voldoen is."
+        }
+      ],
+      "hash": "972dced973e7fe2c",
+      "id": "imported-vehicles.2",
+      "kind": "paragraph",
+      "sourceHash": "43d6f8a110a24b34"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n ingevoerde voertuig het jy die buitelandse registrasiepapiere nodig, ’n polisieklaring, ’n magtigingsbrief van die SABS, en bewys van SARS Doeane dat die invoerreg betaal is."
+        }
+      ],
+      "hash": "6084e80829232820",
+      "id": "imported-vehicles.3",
+      "kind": "callout",
+      "pairsWith": "imported-vehicles.2",
+      "sourceHash": "5b51510515ef24cf",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Moenie invoer as jou eerste stap nie. Leer eers die plaaslike handel."
+        }
+      ],
+      "hash": "65e14ffafd6118a7",
+      "id": "imported-vehicles.4",
+      "kind": "paragraph",
+      "sourceHash": "bd3ef257e64857bc"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vrywillige lidmaatskap van die bedryf"
+        }
+      ],
+      "depth": 3,
+      "hash": "29683d79e73bef4b",
+      "id": "voluntary-industry-membership",
+      "kind": "heading",
+      "sourceHash": "741fcf23a6a26384",
+      "text": "Vrywillige lidmaatskap van die bedryf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die Retail Motor Industry Organisation (RMI) en sy afdeling vir gebruikte motors is nie verpligtend nie. Lidmaatskap wys vir kopers dat jy geloofwaardig is en gee jou toegang tot ondersteuning by dispute en leiding uit die bedryf. Die moeite werd om te oorweeg sodra jy gevestig is, nie op dag een nie."
+        }
+      ],
+      "hash": "56290cfd99c30545",
+      "id": "voluntary-industry-membership.1",
+      "kind": "paragraph",
+      "sourceHash": "1c65d7f82a7cc9ec"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "voluntary-industry-membership.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Handel dryf van die huis af, sonder ’n werf"
+        }
+      ],
+      "depth": 2,
+      "hash": "6f637f10ae4c2cae",
+      "id": "dealing-from-home-with-no-yard",
+      "kind": "heading",
+      "sourceHash": "4689fb399cbfa2e0",
+      "text": "Handel dryf van die huis af, sonder ’n werf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Baie klein handelaars begin so: voorraad word aanlyn geadverteer, die gesprek gebeur op WhatsApp, en besigtigings en toetsritte vind by ’n ooreengekome openbare plek plaas. Dit is ’n werkbare model. Drie dinge verskil van ’n handelaar met ’n werf."
+        }
+      ],
+      "hash": "3cbb7df557cd2536",
+      "id": "dealing-from-home-with-no-yard.1",
+      "kind": "paragraph",
+      "sourceHash": "bd843039235ba1f3"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Sonering is die struikelblok."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " ’n Tuisonderneming laat normaalweg ’n stil besigheid toe wat jy uit ’n kamer bedryf. Die gewone voorwaardes sluit in dat goedere, materiaal of voertuie nie op die perseel gestoor word op ’n manier wat ’n kommersiële voorkoms skep nie. Drie bakkies te koop op die sypaadjie sal dit in die meeste munisipaliteite oortree en sal ’n klagte van ’n buurman uitlok. Opsies: hou net een of twee voertuie by die huis en wissel hulle af; huur ’n parkeerplek by ’n veilige stoorwerf; of doen by die munisipaliteit aansoek om vergunningsgebruik (consent use). Vra die stadsbeplanningsafdeling voordat jy jou eerste voorraad koop, nie ná die klagte nie."
+        }
+      ],
+      "hash": "256035b13e4b944b",
+      "id": "dealing-from-home-with-no-yard.2",
+      "kind": "paragraph",
+      "sourceHash": "08cc6797c3fe0ec3"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Jou huis word die geregistreerde perseel."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Jou SAPS-registrasie vir tweedehandse goedere, jou BRNC en jou maatskappy se adres is almal by jou huis. ’n Polisiebeampte kan die perseel en jou register daar inspekteer. Dit is normaal. Hou die register en sertifikaat byderhand."
+        }
+      ],
+      "hash": "abf31d6feaaa7337",
+      "id": "dealing-from-home-with-no-yard.3",
+      "kind": "paragraph",
+      "sourceHash": "fb2ea5b08244dca9"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Elke besigtiging is ’n ontmoeting met ’n vreemdeling."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Lees "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Tuiswerk en veilige ontmoetings"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " heeltemal. Dit dek waar om te ontmoet, wat om van die koper te kry voor die ontmoeting, hoe om ’n toetsrit te hanteer sonder om die voertuig te verloor, waarom ’n skermskoot van ’n betalingsbewys nooit genoeg is nie, hoe om kontant na te gaan, en die algemene swendelarye wat op verkopers gemik is. Vir ’n handelaar maak die bedrae wat ter sprake is daardie gewoontes verpligtend, nie opsioneel nie."
+        }
+      ],
+      "hash": "ee2fb481de6e234a",
+      "id": "dealing-from-home-with-no-yard.4",
+      "kind": "paragraph",
+      "sourceHash": "37c367da45e84cba"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die kort weergawe vir ’n handelaar:"
+        }
+      ],
+      "hash": "0318ec574c6c24b4",
+      "id": "dealing-from-home-with-no-yard.5",
+      "kind": "paragraph",
+      "sourceHash": "852ad65998e51022"
+    },
+    {
+      "hash": "ce6bd2211e2bd1f3",
+      "id": "dealing-from-home-with-no-yard.6",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "’n Afskrif van die rybewys en van die ID op WhatsApp ontvang voordat jy instem om te ontmoet"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Ontmoet in daglig by ’n polisiestasie, ’n bank of die parkeerterrein van ’n besige vulstasie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Iemand saam met jou; die sleutels in jou hand totdat jy in die passasiersitplek sit"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die volle betaling weerspieël (reflected) in jou saldo voordat sleutels, papiere of ’n getekende NCO van hande verwissel"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Groot bedrae: ’n onmiddellike betaling terwyl jy kyk, of by ’n banktoonbank"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "96771488ccaa233a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Groei verder as voertuie"
+        }
+      ],
+      "depth": 2,
+      "hash": "97c7cc34afec6306",
+      "id": "growing-beyond-vehicles",
+      "kind": "heading",
+      "sourceHash": "4b1a7fe9e6087d90",
+      "text": "Groei verder as voertuie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die meeste handelaars voeg lyne by: bande, diens, onderdele, motorversorging (detailing), soms ’n onverwante besigheid onder dieselfde maatskappy."
+        }
+      ],
+      "hash": "a911bb0083b7d54d",
+      "id": "growing-beyond-vehicles.1",
+      "kind": "paragraph",
+      "sourceHash": "9ca7d3645b66ce8f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lees "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Nuwe besigheidslyne byvoeg"
+            }
+          ],
+          "doc": "core/adding-new-lines",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " voordat jy dit doen. Dit dek handelsname, en watter dokumente steeds die geregistreerde maatskappynaam moet dra. Dit dek watter lisensies elke nuwe lyn nodig het. En dit verduidelik die belastingstrik wat mense vang wat ’n tweede maatskappy stig: as jy aandele in meer as een maatskappy besit, kan dit jou die laer belastingkoerse vir ’n Small Business Corporation (kleinsakekorporasie) op albei kos."
+        }
+      ],
+      "hash": "816653fbf54027f4",
+      "id": "growing-beyond-vehicles.2",
+      "kind": "paragraph",
+      "sourceHash": "98f5887186268f83"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die kort raad vir ’n handelaar: hou een maatskappy, gebruik handelsname, en verdeel net in ’n tweede maatskappy vir ’n lyn waarvan die aanspreeklikheidsrisiko groot genoeg is om die verlies van SBC-koerse te regverdig."
+        }
+      ],
+      "hash": "c1af16f07a70ef00",
+      "id": "growing-beyond-vehicles.3",
+      "kind": "paragraph",
+      "sourceHash": "4018453157c5081c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Versekering"
+        }
+      ],
+      "depth": 2,
+      "hash": "56f59d1956969118",
+      "id": "insurance",
+      "kind": "heading",
+      "sourceHash": "99bdab3738b5ebcd",
+      "text": "Versekering"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is waar klein handelaars die meeste onderverseker is."
+        }
+      ],
+      "hash": "029d6b4d4c061b23",
+      "id": "insurance.1",
+      "kind": "paragraph",
+      "sourceHash": "39c78bce0e288cd8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het dekking nodig wat ’n gewone motorpolis jou nie gee nie:"
+        }
+      ],
+      "hash": "3590984c75281890",
+      "id": "insurance.2",
+      "kind": "paragraph",
+      "sourceHash": "25c4da9ff0fe7721"
+    },
+    {
+      "hash": "386dd2767b4291ef",
+      "id": "insurance.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Voorraaddekking vir voertuie wat jy besit maar nie verkoop het nie, wat op jou perseel geparkeer is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Dekking vir toetsritte, insluitend skade wat ’n voornemende koper veroorsaak"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Dekking vir voertuie wat onder motorhandelnommers bestuur word"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Openbare aanspreeklikheid vir mense op jou perseel"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Diefstaldekking wat pas by hoe veilig die perseel werklik is"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "3667ce0afecab3a1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vra ’n makelaar spesifiek vir motorhandelversekering. ’n Polis vir ’n private voertuig sal nie ’n eis dek waarby voorraad betrokke is nie."
+        }
+      ],
+      "hash": "72029c0b1ae8a036",
+      "id": "insurance.4",
+      "kind": "paragraph",
+      "sourceHash": "96a028c01f4c77c9"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "insurance.5",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou kontrolelys vir die begin"
+        }
+      ],
+      "depth": 2,
+      "hash": "147f533efd610196",
+      "id": "your-startup-checklist",
+      "kind": "heading",
+      "sourceHash": "147cd4f60378df66",
+      "text": "Jou kontrolelys vir die begin"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste aankoop"
+        }
+      ],
+      "hash": "4805339471ec029c",
+      "id": "your-startup-checklist.1",
+      "items": [
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Besluit tussen ’n eenmansaak of ’n maatskappy ("
+            },
+            {
+              "doc": "core/register",
+              "label": "01-core/02",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ")"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:81105d14",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Kry ’n BRNC of Traffic Register Number ("
+            },
+            {
+              "doc": "core/vehicles",
+              "label": "01-core/05",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ")"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:ddf401f6",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Doen by SAPS aansoek om registrasie as handelaar in tweedehandse goedere, vorm SAPS 601, gratis"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:9df05312",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Gaan die sonering van jou perseel na, voordat jy enige huurkontrak teken"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:85d9f1a4",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Doen aansoek om ’n munisipale besigheidslisensie as dit vereis word"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:e5ee625b",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Kry kwotasies vir motorhandelversekering"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:9d53e703",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Bereken of BTW-registrasie die moeite loon, gegewe nosionele insetbelasting, en bevestig dat jy NIE op omsetbelasting is nie"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:96c81d0e",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Stel ’n sjabloon op vir jou koopooreenkoms en gebrekeskedule"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:621643ad",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Stel jou SAPS-register van verkrygings en vervreemdings op"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:70c5bd63",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Besluit oor jou inspeksieproses, en wie dit doen"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:4e32d6ab",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "6d4478da9a8f1b1d"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Voor jou eerste verkoop"
+        }
+      ],
+      "hash": "b728567fe29dfa8e",
+      "id": "your-startup-checklist.2",
+      "items": [
+        {
+          "block": "your-startup-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "Padwaardigheidsertifikaat in die hand"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:45b57985",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "Gebrekeskedule geteken en geparafeer"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:0f979ec9",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "Skriftelike koopooreenkoms geteken"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:5391018c",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "NCO op dieselfde dag ingedien"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:c0b079e3",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "Afskrif van die koper se ID in jou register"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:0735f705",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "1dea83eb26e2c4d3"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Deurlopend"
+        }
+      ],
+      "hash": "1e3f2e002673beee",
+      "id": "your-startup-checklist.3",
+      "items": [
+        {
+          "block": "your-startup-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "SAPS-register op die dag van elke transaksie bygewerk"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:2af36b16",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "VAT264 vir elke aankoop van iemand wat nie ’n ondernemer is nie"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:856d737a",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "Hernuwing van die SAPS-registrasie in jou dagboek"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:9f301304",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "Vyf jaar se rekords gehou vir SAPS en SARS"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:16c1d991",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "Lopende verkope oor 12 maande dopgehou teenoor die BTW-drempel van R2.3 miljoen"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:b2a0d33d",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "Voorraadlys met die koste per voertuig, gereed vir die jaareinde"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:dbcc89dc",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "block": "your-startup-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "As jy van die huis af werk: sonering vir die stoor van voorraad nagegaan, en die gewoontes vir veilige ontmoetings in "
+            },
+            {
+              "doc": "core/working-from-home-and-safety",
+              "label": "01-core/09",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": " by elke besigtiging gebruik"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "id": "business-types/vehicle-dealer:5dfe11f3",
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ],
+            "tags": [
+              "home"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "3cbbad0d8e4dd749"
+    }
+  ],
+  "contentHash": "a23bfe7619f34792",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Besigheidstipe: voertuie koop en verkoop",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "quick-answer-what-you-must-have",
+      "text": "Vinnige antwoord: wat jy moet hê"
+    },
+    {
+      "depth": 2,
+      "id": "layer-1-saps-second-hand-goods-dealer-registration",
+      "text": "Laag 1: SAPS-registrasie as handelaar in tweedehandse goedere"
+    },
+    {
+      "depth": 3,
+      "id": "how-to-register",
+      "text": "Hoe om te registreer"
+    },
+    {
+      "depth": 3,
+      "id": "the-register-you-must-keep",
+      "text": "Die register wat jy moet hou"
+    },
+    {
+      "depth": 3,
+      "id": "keeping-your-registration-valid",
+      "text": "Hou jou registrasie geldig"
+    },
+    {
+      "depth": 3,
+      "id": "inspections",
+      "text": "Inspeksies"
+    },
+    {
+      "depth": 2,
+      "id": "layer-2-getting-vehicles-registered-to-the-business",
+      "text": "Laag 2: voertuie op die besigheid se naam registreer"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 3,
+      "id": "if-you-trade-as-a-company",
+      "text": "As jy as ’n maatskappy handel dryf"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "depth": 3,
+      "id": "if-you-trade-as-a-sole-proprietor",
+      "text": "As jy as ’n eenmansaak handel dryf"
+    },
+    {
+      "depth": 2,
+      "id": "layer-3-motor-trade-numbers",
+      "text": "Laag 3: motorhandelnommers"
+    },
+    {
+      "depth": 3,
+      "id": "how-to-apply",
+      "text": "Hoe om aansoek te doen"
+    },
+    {
+      "depth": 3,
+      "id": "cost",
+      "text": "Koste"
+    },
+    {
+      "depth": 3,
+      "id": "do-you-actually-need-one",
+      "text": "Het jy regtig een nodig?"
+    },
+    {
+      "depth": 2,
+      "id": "the-legal-risk-that-matters-most-the-consumer-protection-act",
+      "text": "Die regsrisiko wat die meeste saak maak: die Consumer Protection Act"
+    },
+    {
+      "depth": 3,
+      "id": "voetstoots-does-not-protect-you",
+      "text": "Voetstoots beskerm jou nie"
+    },
+    {
+      "depth": 3,
+      "id": "what-the-warranty-actually-says",
+      "text": "Wat die waarborg werklik sê"
+    },
+    {
+      "depth": 3,
+      "id": "the-one-defence-that-works",
+      "text": "Die een verweer wat werk"
+    },
+    {
+      "depth": 3,
+      "id": "where-disputes-go",
+      "text": "Waarheen dispute gaan"
+    },
+    {
+      "depth": 2,
+      "id": "vat-register-earlier-than-other-businesses",
+      "text": "BTW: registreer vroeër as ander besighede"
+    },
+    {
+      "depth": 3,
+      "id": "how-notional-input-tax-works",
+      "text": "Hoe nosionele insetbelasting werk"
+    },
+    {
+      "depth": 3,
+      "id": "the-conditions-you-must-meet",
+      "text": "Die voorwaardes waaraan jy moet voldoen"
+    },
+    {
+      "depth": 3,
+      "id": "the-decision",
+      "text": "Die besluit"
+    },
+    {
+      "depth": 3,
+      "id": "turnover-tax-is-almost-certainly-wrong-for-a-dealer",
+      "text": "Omsetbelasting is byna seker verkeerd vir ’n handelaar"
+    },
+    {
+      "depth": 2,
+      "id": "paperwork-on-every-deal",
+      "text": "Papierwerk by elke transaksie"
+    },
+    {
+      "depth": 3,
+      "id": "when-you-buy-a-vehicle-in",
+      "text": "Wanneer jy ’n voertuig inkoop"
+    },
+    {
+      "depth": 3,
+      "id": "when-you-sell-a-vehicle-out",
+      "text": "Wanneer jy ’n voertuig uitverkoop"
+    },
+    {
+      "depth": 2,
+      "id": "two-things-about-stock-that-surprise-new-dealers",
+      "text": "Twee dinge oor voorraad wat nuwe handelaars verras"
+    },
+    {
+      "depth": 3,
+      "id": "unsold-vehicles-at-year-end-are-taxed-as-trading-stock",
+      "text": "Onverkoopte voertuie aan die einde van die jaar word as handelsvoorraad belas"
+    },
+    {
+      "depth": 3,
+      "id": "if-a-bank-finances-your-stock-the-bank-holds-title",
+      "text": "As ’n bank jou voorraad finansier, hou die bank die titel"
+    },
+    {
+      "depth": 2,
+      "id": "holding-deposits",
+      "text": "Deposito’s om ’n voertuig te hou"
+    },
+    {
+      "depth": 2,
+      "id": "other-registrations-that-may-apply",
+      "text": "Ander registrasies wat dalk van toepassing is"
+    },
+    {
+      "depth": 3,
+      "id": "municipal-business-licence-and-zoning",
+      "text": "Munisipale besigheidslisensie en sonering"
+    },
+    {
+      "depth": 3,
+      "id": "if-you-extend-credit-yourself",
+      "text": "As jy self krediet verleen"
+    },
+    {
+      "depth": 3,
+      "id": "if-you-sell-warranties-insurance-or-arrange-finance",
+      "text": "As jy waarborge of versekering verkoop, of finansiering reël"
+    },
+    {
+      "depth": 3,
+      "id": "imported-vehicles",
+      "text": "Ingevoerde voertuie"
+    },
+    {
+      "depth": 3,
+      "id": "voluntary-industry-membership",
+      "text": "Vrywillige lidmaatskap van die bedryf"
+    },
+    {
+      "depth": 2,
+      "id": "dealing-from-home-with-no-yard",
+      "text": "Handel dryf van die huis af, sonder ’n werf"
+    },
+    {
+      "depth": 2,
+      "id": "growing-beyond-vehicles",
+      "text": "Groei verder as voertuie"
+    },
+    {
+      "depth": 2,
+      "id": "insurance",
+      "text": "Versekering"
+    },
+    {
+      "depth": 2,
+      "id": "your-startup-checklist",
+      "text": "Jou kontrolelys vir die begin"
+    }
+  ],
+  "id": "business-types/vehicle-dealer",
+  "kind": "guide",
+  "lang": "af",
+  "order": 2,
+  "readingTime": 29,
+  "related": [
+    "core/vehicles",
+    "core/working-from-home-and-safety",
+    "core/register",
+    "core/tax-and-sars",
+    "core/adding-new-lines"
+  ],
+  "route": "business-types/vehicle-dealer/",
+  "section": "business-types",
+  "slug": "vehicle-dealer",
+  "sourcePath": "04 Your kind of business/01-vehicle-dealer.md",
+  "sources": {
+    "acts": [
+      "income-tax-act-58-of-1962",
+      "value-added-tax-act-89-of-1991",
+      "consumer-protection-act-68-of-2008",
+      "businesses-act-71-of-1991",
+      "second-hand-goods-act-6-of-2009",
+      "national-road-traffic-act-93-of-1996",
+      "national-credit-act-34-of-2005",
+      "financial-advisory-and-intermediary-services-act-37-of-2002"
+    ],
+    "entries": [
+      "sars--budget-2026-frequently-asked-questions",
+      "sars--what-is-the-new-threshold-for-vat-registration",
+      "sars--vat-420-guide-for-motor-dealers",
+      "sars--vat-connect-issue-20-october-2025",
+      "sars--vat-264-declaration-for-the-supply-of-second-hand-goods",
+      "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
+      "enatis--natis--faqs-and-forms",
+      "rlv-form--application-for-registration-and-licensing-of-motor-vehicle",
+      "govza--apply-for-a-motor-trade-number-and-permit",
+      "western-cape-government--motor-trade-number-applications",
+      "govza--register-a-motor-vehicle",
+      "department-of-transport--register-motor-vehicle",
+      "governmentcoza--apply-for-a-traffic-register-number",
+      "govchain-brnc-certificate-guide",
+      "saps--second-hand-goods-act-6-of-2009-full-text",
+      "saps--national-instruction-2-of-2016-second-hand-goods-dealers-and-recyclers",
+      "saps--standard-operating-procedure-dealer-application-process",
+      "saflii--second-hand-goods-act-consolidated-text",
+      "nada-saps-dealer-inspections",
+      "sme-south-africa",
+      "hanekom-attorneys-webuycars-consent-order",
+      "the-citizen",
+      "moonstone",
+      "department-of-justice--small-claims-courts",
+      "department-of-justice--media-statement-22-july-2026",
+      "businesses-act-71-of-1991",
+      "mj-kotze-inc-credit-provider-registration",
+      "flip-the-market",
+      "tracker-south-africa",
+      "carscoza",
+      "motorhappy",
+      "yebo-business-1",
+      "small-claims-court-who-may-sue"
+    ]
+  },
+  "summary": "Lees eers 01-core/. Hierdie lêer voeg die reëls by wat net vir ’n voertuighandelaar geld.",
+  "tags": [
+    "business-types",
+    "vehicles"
+  ],
+  "terms": [
+    {
+      "meaning": "Die gratis vorm om by die polisie as handelaar in tweedehandse goedere te registreer.",
+      "term": "SAPS 601"
+    },
+    {
+      "meaning": "Die boek of sigblad waarin jy elke voertuig wat gekoop en verkoop is, aanteken.",
+      "term": "Register (selfstandige naamwoord)"
+    },
+    {
+      "meaning": "Die voertuigidentifikasienommer, wat op die voertuig gestempel is.",
+      "term": "VIN"
+    },
+    {
+      "meaning": "Die sertifikaat wat ’n maatskappy toelaat om voertuie op eNaTIS te besit.",
+      "term": "BRNC"
+    },
+    {
+      "meaning": "’n Spesiale nommer wat ’n handelaar toelaat om ongeregistreerde voorraad op openbare paaie te ry.",
+      "term": "Motorhandelnommer (motor trade number)"
+    },
+    {
+      "meaning": "Afrikaans vir \"soos dit staan\" (in Engels \"as is\"). Verkoop sonder verantwoordelikheid vir gebreke. Werk nie meer wanneer ’n handelaar aan die publiek verkoop nie.",
+      "term": "Voetstoots"
+    },
+    {
+      "meaning": "Die waarborg van ses maande wat die wet by elke verkoop deur ’n handelaar voeg.",
+      "term": "Geïmpliseerde waarborg (implied warranty)"
+    },
+    {
+      "meaning": "BTW wat jy kan terugeis op ’n voertuig wat by ’n private persoon gekoop is, al het hy geen BTW gehef nie.",
+      "term": "Nosionele insetbelasting (notional input tax)"
+    },
+    {
+      "meaning": "Die vorm wat jy en die verkoper teken sodat jy daardie BTW kan eis.",
+      "term": "VAT264"
+    },
+    {
+      "meaning": "Wie ook al die reg het om die voertuig te verkoop. As dit gefinansier is, is dit die bank.",
+      "term": "Titelhouer (title holder)"
+    },
+    {
+      "meaning": "Die vorm wat die verkoper indien om te sê dat die voertuig van hande verwissel het.",
+      "term": "NCO"
+    },
+    {
+      "meaning": "Die vorm wat die koper indien om die voertuig te registreer.",
+      "term": "RLV"
+    },
+    {
+      "meaning": "’n Sertifikaat van ’n toetsstasie dat die voertuig veilig is. Nodig by elke verkoop.",
+      "term": "Padwaardigheid (roadworthy)"
+    }
+  ],
+  "title": "Besigheidstipe: voertuie koop en verkoop",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

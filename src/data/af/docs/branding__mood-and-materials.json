@@ -1,0 +1,805 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik dit ná Opdrag 4 en voor Opdrag 5 in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Handelsmerkopdragte"
+            }
+          ],
+          "doc": "branding/branding-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "89959bd992f7643d",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "dc9a85f0e2d1ecf3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Waarom hierdie stap bestaan"
+        }
+      ],
+      "depth": 2,
+      "hash": "369e3c20d66bf0a5",
+      "id": "why-this-step-exists",
+      "kind": "heading",
+      "sourceHash": "eb1948e35b139bb3",
+      "text": "Waarom hierdie stap bestaan"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daarsonder neem drie opdragte elk hulle eie besluit oor die estetika, en hulle kan van mekaar verskil."
+        }
+      ],
+      "hash": "ed9c1d6441f2af9c",
+      "id": "why-this-step-exists.1",
+      "kind": "paragraph",
+      "sourceHash": "8a08f93ccae4031e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opdrag 5 gee jou rigtings vir die logo. Opdrag 7 gee jou kleure en lettertipe. Opdrag 8 gee jou fotografie. Elkeen is op sy eie goed. Maar niks sê vir hulle om met mekaar ooreen te stem nie, so jy kan uiteindelik ’n ruwe werkswinkel-logo hê, ’n sagte pastelpalet, en kliniese fotografie teen ’n wit agtergrond. Drie goeie antwoorde wat nie aan dieselfde besigheid behoort nie."
+        }
+      ],
+      "hash": "8605d72dca21ae3b",
+      "id": "why-this-step-exists.2",
+      "kind": "paragraph",
+      "sourceHash": "b143f4bdc3fe9a3a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Ontwerper stel eers die stemming vas, en lei dan alles daarvan af. Dit is daardie stap wat ontbreek."
+        }
+      ],
+      "hash": "fdefeb8b13c220ff",
+      "id": "why-this-step-exists.3",
+      "kind": "paragraph",
+      "sourceHash": "624e81216bcfc554"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit dek ook iets wat die gereedskapstel nêrens anders aanraak nie: waarvan jou handelsmerk fisies gemaak is. Die bord van die uithangbord, die papier vir drukwerk, hoe ’n hemp voel, waaruit die letters op die voertuig gesny is. Vir ’n klein Suid-Afrikaanse besigheid kos daardie keuses regte geld, en hulle misluk op spesifieke, voorspelbare maniere."
+        }
+      ],
+      "hash": "d47b5d8d20dd26f5",
+      "id": "why-this-step-exists.4",
+      "kind": "paragraph",
+      "sourceHash": "59fd6f0026c8b868"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voordat jy begin: wat die navorsing werklik oor kleur sê"
+        }
+      ],
+      "depth": 2,
+      "hash": "bcfc3ce3a7aae847",
+      "id": "before-you-start-what-the-research-actually-says-about-colour",
+      "kind": "heading",
+      "sourceHash": "c5207a4334cdd6a7",
+      "text": "Voordat jy begin: wat die navorsing werklik oor kleur sê"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vra ’n KI oor handelsmerkkleure en dit sal vir jou ’n tabel met betekenisse gee. Blou is vertroue, rooi is dringendheid, groen is die natuur. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Beskou dit as versiering, nie as bewys nie."
+            }
+          ],
+          "t": "strong"
+        }
+      ],
+      "hash": "3d5273e027c2c4d9",
+      "id": "before-you-start-what-the-research-actually-says-about-colour.1",
+      "kind": "paragraph",
+      "sourceHash": "fe25f99b2dddb8ad"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Elliot en Maier se oorsig in die Annual Review of Psychology (2014) het geen universele betekenis vir enige kleur gevind nie. Die effekte hang van die konteks af en verskuif met versadiging, helderheid, produkkategorie en kultuur."
+        }
+      ],
+      "hash": "20862c1055f5af57",
+      "id": "before-you-start-what-the-research-actually-says-about-colour.2",
+      "kind": "paragraph",
+      "sourceHash": "08bb5d17f25bf0f2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die bewering wat oral herhaal word, dat 62 tot 90% van ’n vinnige oordeel oor ’n produk van kleur kom, gaan terug na ’n literatuuroorsig van 2006 deur Satyendra Singh, nie na ’n gekontroleerde koopeksperiment nie. Dit word oral aangehaal asof dit ’n bevinding is. Dit is nie."
+        }
+      ],
+      "hash": "a14f6cc7600c4c60",
+      "id": "before-you-start-what-the-research-actually-says-about-colour.3",
+      "kind": "paragraph",
+      "sourceHash": "c20d67db19a743fd"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat wel staande bly, is nouer en nuttiger. Labrecque en Milne het in die Journal of the Academy of Marketing Science (2012) gevind dat "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "ooreenstemming tussen ’n handelsmerk se kleur en sy waargenome persoonlikheid voorkeur beter voorspel as die kleur self."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Met ander woorde, die vraag is nie \"wat beteken groen\" nie, dit is \"pas hierdie kleur by wat my besigheid werklik is, en onderskei dit my van die winkel verder af in die straat\"."
+        }
+      ],
+      "hash": "0970f19eccde9409",
+      "id": "before-you-start-what-the-research-actually-says-about-colour.4",
+      "kind": "paragraph",
+      "sourceHash": "3adfa0d7a634d402"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daarom vra die opdragte hieronder oor pas en verskil, en nooit oor wat kleure beteken nie. As ’n KI begin vertel wat ’n kleur beteken, ignoreer daardie deel van die antwoord."
+        }
+      ],
+      "hash": "5a2ef38f44626261",
+      "id": "before-you-start-what-the-research-actually-says-about-colour.5",
+      "kind": "paragraph",
+      "sourceHash": "defcd62aff447e48"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opdrag A: die visuele wêreld"
+        }
+      ],
+      "depth": 2,
+      "hash": "85937a43c1168957",
+      "id": "prompt-a-the-visual-territory",
+      "kind": "heading",
+      "sourceHash": "6434d1f7f13ea477",
+      "text": "Opdrag A: die visuele wêreld"
+    },
+    {
+      "hash": "d1d17bc9018690d4",
+      "id": "prompt-a-the-visual-territory.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PLAK JOU HANDELSMERK-KORTBESKRYWING"
+        },
+        {
+          "key": "businessName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "NAAM"
+        }
+      ],
+      "sourceHash": "f5304deaaad68f0e",
+      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nMy besigheidsnaam is: [NAAM]\n\nVoordat ek ’n logo, kleure of fotografie kies, wil ek die algehele\nstemming vasstel sodat al drie met mekaar ooreenstem.\n\nGee my 5 verskillende visuele wêrelde vir hierdie besigheid.\n\n’n Visuele wêreld is ’n kort beskrywing van die wêreld waarin die handelsmerk\nleef. Beskryf elkeen in woorde, soos ’n ontwerper dit sou opdra.\n\nGee my vir elke wêreld:\n- ’n Naam van twee of drie woorde\n- Drie woorde wat die gevoel beskryf\n- Waarvan dit gemaak is: twee of drie werklike materiale, oppervlaktes of teksture\n- Wat dit NIE is nie. Noem die naaste ding waarmee dit verwar kan word, en\n  sê hoe dit verskil.\n- Een voorbeeld uit die werklike wêreld wat ’n Suid-Afrikaner sal herken: ’n soort\n  winkel, ’n werkswinkel, ’n mark, ’n plek. Nie ’n handelsmerknaam nie.\n- Hoe hierdie wêreld my logo sou laat lyk, in een sin\n- Hoe dit my foto’s sou laat lyk, in een sin\n\nReëls:\n- Grond minstens twee wêrelde op die kenmerkende detail in my kortbeskrywing.\n- Moenie vir my sê wat kleure beteken of watter emosies hulle veroorsaak nie. Ek stel\n  nie belang in kleursielkunde nie.\n- Geen stemmingsbordwoorde sonder inhoud nie: verhewe, saamgestel, tydloos,\n  outentiek, premium, pasgemaak.\n- Minstens een wêreld moet doelbewus eenvoudig wees, want eenvoudig en\n  konsekwent klop interessant en onkonsekwent.\n- Elke wêreld moet in een sin aan ’n uithangbordmaker beskryf kan word.\n\nNommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kies een. Alles hierna word daarvan afgelei."
+        }
+      ],
+      "hash": "d8fbd5d6cfb2e26a",
+      "id": "prompt-a-the-visual-territory.2",
+      "kind": "paragraph",
+      "sourceHash": "0e5bf3a0635d899f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Plak dan jou gekose wêreld in Opdrag 5 (rigting vir die logo), Opdrag 7 (kleure en lettertipe) en Opdrag 8 (fotografie), en voeg hierdie reël by elkeen:"
+        }
+      ],
+      "hash": "7196a7f33a37cbc0",
+      "id": "prompt-a-the-visual-territory.3",
+      "kind": "paragraph",
+      "sourceHash": "a6c402649aa51e6c"
+    },
+    {
+      "hash": "0db1815a176cd205",
+      "id": "prompt-a-the-visual-territory.4",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PLAK DIE WÊRELD"
+        }
+      ],
+      "sourceHash": "5dfb8f693f852b73",
+      "text": "Dit moet binne die visuele wêreld pas wat ek gekies het: [PLAK DIE WÊRELD].\nEnigiets wat dit weerspreek, is verkeerd, hoe goed dit ook al op sy eie lyk.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daardie een reël is wat die drie opdragte laat ooreenstem."
+        }
+      ],
+      "hash": "4044d6d16a4a5e62",
+      "id": "prompt-a-the-visual-territory.5",
+      "kind": "paragraph",
+      "sourceHash": "0cb0990f1326001f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opdrag B: materiale en afwerkings"
+        }
+      ],
+      "depth": 2,
+      "hash": "316170d04fb1ec94",
+      "id": "prompt-b-materials-and-finishes",
+      "kind": "heading",
+      "sourceHash": "f5a8f84e2da65973",
+      "text": "Opdrag B: materiale en afwerkings"
+    },
+    {
+      "hash": "c4ff8658643d0d15",
+      "id": "prompt-b-materials-and-finishes.1",
+      "kind": "code",
+      "placeholders": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "PLAK DIE EEN WAT JY GEKIES HET"
+        },
+        {
+          "key": "businessType",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "BESIGHEIDSTIPE"
+        },
+        {
+          "key": "town",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "DORP/STAD"
+        }
+      ],
+      "sourceHash": "542194ecc5c33927",
+      "text": "Hier is my visuele wêreld:\n\n[PLAK DIE EEN WAT JY GEKIES HET]\n\nEk is ’n [BESIGHEIDSTIPE] in [DORP/STAD], Suid-Afrika. Ek is die eienaar en\ndie enigste werker, met baie min geld.\n\nGee my 5 rigtings vir materiale en afwerkings wat by hierdie wêreld pas.\n\nDek vir elkeen:\n- Uithangbord: waarvan die bord of paneel gemaak is, en watter afwerking\n- Drukwerk: waarop my kwotasie, faktuur en besigheidskaartjie gedruk word, en\n  op watter gewig\n- Voertuig: waaruit die letters of grafika gesny is, en of dit\n  gesnyde viniel is of gedruk\n- Klere: hoe ’n werkhemp lyk en hoe die logo daarop kom\n- Een goedkoop weergawe en een beter weergawe van elkeen, want ek gaan\n  goedkoop begin\n\nSê vir my ook by elke rigting:\n- Wat dit kos in vergelyking met die ander, rofweg, nie in rand nie\n- Wat eerste in sterk son misluk\n- Of ’n klein uithangbordwinkel in ’n Suid-Afrikaanse dorp dit werklik kan maak\n\nReëls:\n- Die Suid-Afrikaanse son is straf. Neem hoë UV aan.\n- Niks wat ’n gespesialiseerde verskaffer in ’n ander stad nodig het nie.\n- Niks waarvoor ek ’n minimum hoeveelheid van 500 moet bestel nie.\n- Wees eerlik wanneer die goedkoop weergawe goed genoeg is. Ek wil nie die\n  beter weergawe van alles aangepraat word nie.\n\nNommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat die son in Suid-Afrika aan uithangborde doen"
+        }
+      ],
+      "depth": 2,
+      "hash": "e12d5eaa49e741db",
+      "id": "what-the-sun-does-to-signage-in-south-africa",
+      "kind": "heading",
+      "sourceHash": "283fd8f1d79b181d",
+      "text": "Wat die son in Suid-Afrika aan uithangborde doen"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is die deel wat die meeste raad oor handelsmerke ignoreer, en dit is die deel wat jou twee keer geld kos."
+        }
+      ],
+      "hash": "f0b193b6dea3007b",
+      "id": "what-the-sun-does-to-signage-in-south-africa.1",
+      "kind": "paragraph",
+      "sourceHash": "c70ad323d4f78bbe"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Suid-Afrika lê in ’n UV-klimaat van sone 3, wat van die felste ter wêreld is. Een Suid-Afrikaanse vinielverskaffer, Sytech, stel die praktiese effek eenvoudig: vertikale viniel wat in Europa tot tien jaar hou, kan hier binne drie jaar verbleik, en grafika wat horisontaal aangebring is, soos op afdakke of die dak van ’n voertuig, kan 50 tot 70% van hulle verwagte leeftyd verloor."
+        }
+      ],
+      "hash": "6eb73e5472480bf1",
+      "id": "what-the-sun-does-to-signage-in-south-africa.2",
+      "kind": "paragraph",
+      "sourceHash": "79ddaef903836c3e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Beskou dit as ’n grootte-orde eerder as ’n presiese getal, maar ontwerp daarvoor."
+        }
+      ],
+      "hash": "7fd60c0bef81cc9e",
+      "id": "what-the-sun-does-to-signage-in-south-africa.3",
+      "kind": "paragraph",
+      "sourceHash": "2aa335cefd20fefc"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Gegote viniel teenoor gekalanderde viniel (cast versus calendered vinyl)"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " is die keuse wat jou uithangbordmaker vir jou sal maak tensy jy vra. Gegote film word in ’n vloeibare toestand gemaak, het geen ingeboude spanning nie, vorm om kurwes en klinknaels, en hou gewoonlik 5 tot 10 jaar buite. Gekalanderde film word gerol, dra interne spanning, krimp met tyd, en hou gewoonlik 1 tot 5 jaar, dikwels 3 tot 5 buite."
+        }
+      ],
+      "hash": "fdb432a741b08c0b",
+      "id": "what-the-sun-does-to-signage-in-south-africa.4",
+      "kind": "paragraph",
+      "sourceHash": "5ad48d2285896994"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die praktiese reël: gegote viniel vir enigiets op ’n voertuig of op ’n kurwe, gekalanderde viniel vir plat panele en korttermynwerk. Gekalanderde viniel op ’n voertuig lig dikwels by die rande en krimp binne twee tot drie jaar, en die besparing is dit nie werd nie."
+        }
+      ],
+      "hash": "f8a4bafd4f18f722",
+      "id": "what-the-sun-does-to-signage-in-south-africa.5",
+      "kind": "paragraph",
+      "sourceHash": "698a393ea82a4d0f"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Film wat vooraf gekleur is, hou langer as gedrukte film"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": ", want die kleur is deel van die film eerder as ink wat bo-op lê. As jou logo een of twee plat kleure is, sal gesnyde viniel langer hou as ’n gedrukte en gelamineerde weergawe van dieselfde ding. Dit is nog ’n argument vir ’n eenvoudige logo in een of twee kleure."
+        }
+      ],
+      "hash": "de74efbcb902c135",
+      "id": "what-the-sun-does-to-signage-in-south-africa.6",
+      "kind": "paragraph",
+      "sourceHash": "37179e7df20e8891"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "’n Laminaat oor ’n gedrukte grafika verleng sy leeftyd."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Vra daarvoor. Dit is nie outomaties by ’n goedkoop kwotasie nie."
+        }
+      ],
+      "hash": "ba99c8a9d9a1eb99",
+      "id": "what-the-sun-does-to-signage-in-south-africa.7",
+      "kind": "paragraph",
+      "sourceHash": "c9fd79c1a10a60bb"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Vra jou uithangbordmaker twee vrae"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " voordat jy ’n kwotasie aanvaar: is dit gegote of gekalanderde viniel, en is die drukwerk gelamineer. As die kwotasie ongewoon goedkoop is, is een van daardie twee die rede."
+        }
+      ],
+      "hash": "a6b9ace8adfdf64e",
+      "id": "what-the-sun-does-to-signage-in-south-africa.8",
+      "kind": "paragraph",
+      "sourceHash": "a6ff7c9f024e7b94"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die goedkoop weergawe is gewoonlik goed genoeg"
+        }
+      ],
+      "depth": 2,
+      "hash": "32d38f5243f346a1",
+      "id": "the-cheap-version-is-usually-fine",
+      "kind": "heading",
+      "sourceHash": "fc9eebd3fa2b9d36",
+      "text": "Die goedkoop weergawe is gewoonlik goed genoeg"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opdrag B is nie daar om jou na duur materiale te praat nie. Vir die meeste eenpersoonbesighede is die goedkoop weergawe die regte keuse, want:"
+        }
+      ],
+      "hash": "a26ea4c0286349e7",
+      "id": "the-cheap-version-is-usually-fine.1",
+      "kind": "paragraph",
+      "sourceHash": "81a82cb8a12808fb"
+    },
+    {
+      "hash": "4d60e0850e722280",
+      "id": "the-cheap-version-is-usually-fine.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Jou handelsmerk sal waarskynlik in die tweede jaar iets verander"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Verslete uithangbord by ’n besigheid wat werk, lyk besig, nie arm nie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Geld wat jy aan beter grafika op die voertuig spandeer, verdien meer as geld wat jy aan ’n beter besigheidskaartjie spandeer"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "97f79ede6f3db2a3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Spandeer op die voertuig, want dit beweeg en word gesien. Spaar op die kaartjie."
+        }
+      ],
+      "hash": "026ff5a60d67d4e5",
+      "id": "the-cheap-version-is-usually-fine.3",
+      "kind": "paragraph",
+      "sourceHash": "8a3791f6b62aadff"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Waar dit inpas"
+        }
+      ],
+      "depth": 2,
+      "hash": "195f7253649a97bc",
+      "id": "where-this-fits",
+      "kind": "heading",
+      "sourceHash": "0632b8822f7cd8a3",
+      "text": "Waar dit inpas"
+    },
+    {
+      "hash": "a807a1a490c78dc0",
+      "id": "where-this-fits.1",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Handelsmerkopdragte"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " Opdragte 0 tot 4 — kortbeskrywing, beskrywing, mededingers, naam, slagspreuk"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Hierdie lêer"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " — wêreld, dan materiale"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Handelsmerkopdragte"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " Opdrag 5 en verder, met jou wêreld in elkeen geplak"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Handelsmerktoepassings en afronding"
+              }
+            ],
+            "doc": "branding/brand-applications-and-polish",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — die lêers, die drukspesifikasies, die gehaltetoetse"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "f093d132bfb4367c",
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jou naam reeds besluit is, begin eerder by "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Het jy reeds jou naam? (kortpad)"
+            }
+          ],
+          "doc": "branding/already-have-your-name",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", en kom dan hierheen."
+        }
+      ],
+      "hash": "492a27aa5e73a4dc",
+      "id": "where-this-fits.2",
+      "kind": "paragraph",
+      "sourceHash": "58de108b8ce60799"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kontrolelys"
+        }
+      ],
+      "depth": 2,
+      "hash": "99697455a006a03f",
+      "id": "checklist",
+      "kind": "heading",
+      "sourceHash": "fe7899d3da62ca07",
+      "text": "Kontrolelys"
+    },
+    {
+      "hash": "3a8afb6986698bcc",
+      "id": "checklist.1",
+      "items": [
+        {
+          "block": "checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Een visuele wêreld gekies en in een sin neergeskryf"
+            }
+          ],
+          "doc": "branding/mood-and-materials",
+          "id": "branding/mood-and-materials:a94accc0"
+        },
+        {
+          "block": "checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Dit in Opdragte 5, 7 en 8 geplak, met die reël \"moet binne ... pas\""
+            }
+          ],
+          "doc": "branding/mood-and-materials",
+          "id": "branding/mood-and-materials:3028bd4e"
+        },
+        {
+          "block": "checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "’n Rigting vir materiale gekies, die goedkoop weergawe"
+            }
+          ],
+          "doc": "branding/mood-and-materials",
+          "id": "branding/mood-and-materials:e3bf4881"
+        },
+        {
+          "block": "checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Die uithangbordmaker gevra: gegote of gekalanderde viniel, en is die drukwerk gelamineer"
+            }
+          ],
+          "doc": "branding/mood-and-materials",
+          "id": "branding/mood-and-materials:81c3b913"
+        },
+        {
+          "block": "checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Nagegaan dat my logo steeds werk as een of twee plat kleure, sodat gesnyde viniel ’n opsie is"
+            }
+          ],
+          "doc": "branding/mood-and-materials",
+          "id": "branding/mood-and-materials:cd1a4491"
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "6e26b5bf02a83490"
+    }
+  ],
+  "contentHash": "9755d1b8ff2f63ba",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Stemming en materiale: besluit dit voor die logo",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "why-this-step-exists",
+      "text": "Waarom hierdie stap bestaan"
+    },
+    {
+      "depth": 2,
+      "id": "before-you-start-what-the-research-actually-says-about-colour",
+      "text": "Voordat jy begin: wat die navorsing werklik oor kleur sê"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-a-the-visual-territory",
+      "text": "Opdrag A: die visuele wêreld"
+    },
+    {
+      "depth": 2,
+      "id": "prompt-b-materials-and-finishes",
+      "text": "Opdrag B: materiale en afwerkings"
+    },
+    {
+      "depth": 2,
+      "id": "what-the-sun-does-to-signage-in-south-africa",
+      "text": "Wat die son in Suid-Afrika aan uithangborde doen"
+    },
+    {
+      "depth": 2,
+      "id": "the-cheap-version-is-usually-fine",
+      "text": "Die goedkoop weergawe is gewoonlik goed genoeg"
+    },
+    {
+      "depth": 2,
+      "id": "where-this-fits",
+      "text": "Waar dit inpas"
+    },
+    {
+      "depth": 2,
+      "id": "checklist",
+      "text": "Kontrolelys"
+    }
+  ],
+  "id": "branding/mood-and-materials",
+  "kind": "guide",
+  "lang": "af",
+  "order": 3,
+  "readingTime": 8,
+  "related": [
+    "branding/branding-prompts",
+    "branding/brand-applications-and-polish",
+    "branding/already-have-your-name"
+  ],
+  "route": "branding/mood-and-materials/",
+  "section": "branding",
+  "slug": "mood-and-materials",
+  "sourcePath": "02 Branding and marketing/02-mood-and-materials.md",
+  "sources": {
+    "acts": [],
+    "entries": [
+      "elliot-a-j-and-maier-m-a-color-psychology-effects-of-perceiving-color-on-psychological-functioning-in",
+      "labrecque-l-i-and-milne-g-r-exciting-red-and-competent-blue-the-importance-of-color-in-marketing-journal-of",
+      "sytech-supplies-south-africa",
+      "cast-versus-calendered-lifespans-cast-roughly-5-to-10-years-outdoors-calendered-roughly-1-to-5-are-consistent"
+    ]
+  },
+  "summary": "Gebruik dit ná Opdrag 4 en voor Opdrag 5 in Handelsmerkopdragte.",
+  "tags": [
+    "prompts"
+  ],
+  "terms": [],
+  "title": "Stemming en materiale: besluit dit voor die logo",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

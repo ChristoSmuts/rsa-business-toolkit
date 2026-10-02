@@ -1,0 +1,1055 @@
+{
+  "appliesTo": {
+    "businessTypes": [
+      "professional-creative"
+    ],
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lees eers "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ". Hierdie lêer voeg die reëls by wat geld wanneer jy jou vaardigheid of jou tyd verkoop."
+        }
+      ],
+      "hash": "4dd7458401a2198c",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "dc068fcce107dd2d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit dek konsultante, ontwerpers, ontwikkelaars, kopieskrywers, fotograwe, videograwe, privaat onderwysers, boekhouers, virtuele assistente, vertalers en bemarkers."
+        }
+      ],
+      "hash": "f4b6000aef35d0e3",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "18dcadbfd8593c9c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "a981ba1ea11ea64c",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Gewone betekenisse van die terme wat in hierdie lêer gebruik word. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Eenvoudige belasting op verkope. Baie professionele mense mag dit nie gebruik nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Omsetbelasting (turnover tax)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Om ’n deel van jou huiskoste te eis omdat jy uit ’n kamer werk wat net daarvoor gebruik word."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Tuiskantooraftrekking (home office deduction)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Intellektuele eiendom (intellectual property). Wie die werk besit wat jy skep."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "IP"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "SARS se term vir iemand wat soos ’n werknemer van een kliënt lyk. Verloor die meeste aftrekkings."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Persoonlikedienste-verskaffer (personal service provider)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Hoeveel keer ’n kliënt mag vra vir veranderinge voordat hy ekstra betaal."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Hersieningsrondes (revision rounds)"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "ace9a9c3c0b31a28"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is die besigheidstipe met die minste regulering in Suid-Afrika. Jy kan gewoonlik môre al faktureer."
+        }
+      ],
+      "hash": "032a602f846851d4",
+      "id": "words-used-in-this-file.3",
+      "kind": "paragraph",
+      "sourceHash": "946b4a4cc397bfc3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat jy nodig het"
+        }
+      ],
+      "depth": 2,
+      "hash": "d4b67d10fd9021f5",
+      "id": "what-you-need",
+      "kind": "heading",
+      "sourceHash": "58821a0791c46f92",
+      "text": "Wat jy nodig het"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Byna seker niks buiten die kernlêers nie. Geen munisipale lisensie nie, geen gesondheidsinspeksie nie, geen produkregulering nie."
+        }
+      ],
+      "hash": "03565e86a11bb672",
+      "id": "what-you-need.1",
+      "kind": "paragraph",
+      "sourceHash": "6861e900c266d8ce"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Twee uitsonderings."
+        }
+      ],
+      "hash": "face87a4cf6ac097",
+      "id": "what-you-need.2",
+      "kind": "paragraph",
+      "sourceHash": "e6f90228500037f9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sommige beroepe is statutêr gereguleer en mag nie sonder registrasie beoefen word nie: rekenmeesters wat sekere werk afteken, ouditeure, finansiële adviseurs onder FAIS, eiendomsagente, ingenieurs wat ontwerpe teken, argitekte, prokureurs en gesondheidspraktisyns. As jy ’n professionele titel het, gaan jou liggaam se reëls oor onafhanklike praktyk na."
+        }
+      ],
+      "hash": "65cd40aeabbdb9d4",
+      "id": "what-you-need.3",
+      "kind": "paragraph",
+      "sourceHash": "18eeb08305088974"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy finansiële advies gee of finansiële produkte verkoop, het jy ’n FSP-lisensie onder FAIS nodig, of jy moet ’n verteenwoordiger van ’n gelisensieerde FSP wees. As jy dit \"afrigting\" noem, verander dit nie die regsposisie nie."
+        }
+      ],
+      "hash": "673bf69d8390bdf3",
+      "id": "what-you-need.4",
+      "kind": "paragraph",
+      "sourceHash": "4a7e219c5ba27492"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die omsetbelasting-strik"
+        }
+      ],
+      "depth": 2,
+      "hash": "1fd2d90f0c146569",
+      "id": "the-turnover-tax-trap",
+      "kind": "heading",
+      "sourceHash": "d8806676b58f30c1",
+      "text": "Die omsetbelasting-strik"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is die belangrikste belastingpunt vir hierdie groep, en dit is maklik om mis te kyk."
+        }
+      ],
+      "hash": "34ae7429f68e5fed",
+      "id": "the-turnover-tax-trap.1",
+      "kind": "paragraph",
+      "sourceHash": "069990814347006f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Omsetbelasting lyk aantreklik: 0% op die eerste R600,000 omset. Maar die meeste van hierdie groep kan dit nie gebruik nie."
+        }
+      ],
+      "hash": "ac6c49edf964b78a",
+      "id": "the-turnover-tax-trap.2",
+      "kind": "paragraph",
+      "sourceHash": "f283a91bcc010027"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sekere besighede is uitgesluit, soos verskaffers van professionele dienste, arbeidsmakelaars, persoonlikedienste-verskaffers, en besighede wat ander uitgeslote aktiwiteite bedryf."
+        }
+      ],
+      "hash": "c91186b4a485e95f",
+      "id": "the-turnover-tax-trap.3",
+      "kind": "paragraph",
+      "sourceHash": "bf0d83b8fae7a6b6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Besigheid is uitgesluit waar meer as 20% van die inkomste uit professionele dienste kom."
+        }
+      ],
+      "hash": "059c1d4d0c6acef8",
+      "id": "the-turnover-tax-trap.4",
+      "kind": "paragraph",
+      "sourceHash": "c1953ea13d408ad2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die uitsluiting vang rekenmeesters, regslui, ingenieurs, argitekte, konsultante en soortgelyke beroepe. Of ’n ontwerper, ontwikkelaar of kopieskrywer binne die uitsluiting val, is nie altyd duidelik nie."
+        }
+      ],
+      "hash": "0784762e1d75f6e5",
+      "id": "the-turnover-tax-trap.5",
+      "kind": "paragraph",
+      "sourceHash": "0cf9441f0ac8ccd9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gaan SARS se lys vir jou presiese beroep na voordat jy omsetbelasting kies. As jy dit verkeerdelik kies en SARS dit later omkeer, is dit duur."
+        }
+      ],
+      "hash": "699e0d2c6fec77f9",
+      "id": "the-turnover-tax-trap.6",
+      "kind": "paragraph",
+      "sourceHash": "9f810942ecd81a44"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy nie omsetbelasting kan gebruik nie, is jou hefbome dié in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Belasting en SARS"
+            }
+          ],
+          "doc": "core/tax-and-sars",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ": eis elke werklike uitgawe, bly onder die drempel terwyl jy klein is, en oorweeg die tuiskantooraftrekking as jy kwalifiseer."
+        }
+      ],
+      "hash": "8e88e023ca14f2e5",
+      "id": "the-turnover-tax-trap.7",
+      "kind": "paragraph",
+      "sourceHash": "bca721c097d05024"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die tuiskantooraftrekking"
+        }
+      ],
+      "depth": 2,
+      "hash": "26aac1339669c33b",
+      "id": "the-home-office-deduction",
+      "kind": "heading",
+      "sourceHash": "bb53ceeeeca3c461",
+      "text": "Die tuiskantooraftrekking"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hierdie groep kwalifiseer meer dikwels as ander, omdat die werk werklik by die huis gebeur."
+        }
+      ],
+      "hash": "acc7c3e2bac0a409",
+      "id": "the-home-office-deduction.1",
+      "kind": "paragraph",
+      "sourceHash": "8102da3e038f7380"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS verwag oor die algemeen ’n spesifieke deel van die huis wat gereeld en uitsluitlik vir die bedryf gebruik word, en wat behoorlik daarvoor toegerus is. ’n Kamer wat net daarvoor gebruik word, kwalifiseer. Die kombuistafel kwalifiseer nie."
+        }
+      ],
+      "hash": "c67125ae7f81688a",
+      "id": "the-home-office-deduction.2",
+      "kind": "paragraph",
+      "sourceHash": "dca480df2fc29c6e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy kwalifiseer, kan jy ’n deel van die huur of verbandrente, eiendomsbelasting en elektrisiteit eis, gebaseer op vloeroppervlakte. Meet die kamer, meet die huis, en hou ’n foto en die berekening op lêer."
+        }
+      ],
+      "hash": "1bd972ca75736ca4",
+      "id": "the-home-office-deduction.3",
+      "kind": "paragraph",
+      "sourceHash": "bf7d42e1c78b430a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kontrakte is hier belangriker as enige ander plek"
+        }
+      ],
+      "depth": 2,
+      "hash": "a1c458aaf8f9d3bd",
+      "id": "contracts-matter-more-here-than-anywhere-else",
+      "kind": "heading",
+      "sourceHash": "bd0231aaca44057c",
+      "text": "Kontrakte is hier belangriker as enige ander plek"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou risiko is nie ’n foutiewe produk nie. Dit is omvangkruip (scope creep) en wanbetaling."
+        }
+      ],
+      "hash": "ba2204833aa1cca0",
+      "id": "contracts-matter-more-here-than-anywhere-else.1",
+      "kind": "paragraph",
+      "sourceHash": "6f4fe4fca091c29f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik die opdrag vir ’n diensooreenkoms in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Watter sjabloon om wanneer te gebruik"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Maak seker dit dek:"
+        }
+      ],
+      "hash": "85e5b55be71d1a56",
+      "id": "contracts-matter-more-here-than-anywhere-else.2",
+      "kind": "paragraph",
+      "sourceHash": "a9e3b1d794349d8f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat ingesluit is, in spesifieke lewerbare items, nie vae beskrywings nie."
+        }
+      ],
+      "hash": "60c49140c4917599",
+      "id": "contracts-matter-more-here-than-anywhere-else.3",
+      "kind": "paragraph",
+      "sourceHash": "ca18238e1cb31ace"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoeveel hersieningsrondes ingesluit is, en wat ’n ekstra rondte kos. \"Twee hersieningsrondes ingesluit\" is die enkele waardevolste reël in ’n kreatiewe kontrak."
+        }
+      ],
+      "hash": "3b1b609c3763b345",
+      "id": "contracts-matter-more-here-than-anywhere-else.4",
+      "kind": "paragraph",
+      "sourceHash": "6d010fd67486c816"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wie die werk besit wanneer dit klaar is, en wanneer eienaarskap oorgaan. Standaardpraktyk: eienaarskap gaan oor wanneer volle betaling ontvang is, nie by aflewering nie. Dit is jou hefboom wanneer ’n faktuur nie betaal word nie."
+        }
+      ],
+      "hash": "31d3df1725129902",
+      "id": "contracts-matter-more-here-than-anywhere-else.5",
+      "kind": "paragraph",
+      "sourceHash": "b7affaabc689a378"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat gebeur as die kliënt halfpad kanselleer, en wat jy geskuld word vir werk wat reeds gedoen is."
+        }
+      ],
+      "hash": "e327acc3e490dc2c",
+      "id": "contracts-matter-more-here-than-anywhere-else.6",
+      "kind": "paragraph",
+      "sourceHash": "c7ade88bb843b1c6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Betalingsbepalings, en wat gebeur wanneer dit nie nagekom word nie."
+        }
+      ],
+      "hash": "68d3876ea8beaf9b",
+      "id": "contracts-matter-more-here-than-anywhere-else.7",
+      "kind": "paragraph",
+      "sourceHash": "40bd6f7fc0233def"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Intellektuele eiendom"
+        }
+      ],
+      "depth": 2,
+      "hash": "683cc42700bbd529",
+      "id": "intellectual-property",
+      "kind": "heading",
+      "sourceHash": "f43680c34dec8a01",
+      "text": "Intellektuele eiendom"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "In die Suid-Afrikaanse reg besit die persoon wat ’n werk skep, by verstek oor die algemeen die outeursreg, tensy dit deur ’n werknemer in die loop van sy diens gemaak is of die kontrak iets anders sê."
+        }
+      ],
+      "hash": "f9766465e740aca4",
+      "id": "intellectual-property.1",
+      "kind": "paragraph",
+      "sourceHash": "bb44aa3ab0d703fe"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit beteken jou kliënt besit nie outomaties wat jy vir hom gemaak het nie, tensy jou kontrak dit oordra. Die meeste kliënte aanvaar dat hulle dit wel besit."
+        }
+      ],
+      "hash": "c136e7c302b97919",
+      "id": "intellectual-property.2",
+      "kind": "paragraph",
+      "sourceHash": "fa5209c91366b92b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hanteer dit uitdruklik. Dra óf eienaarskap oor by volle betaling, óf gee ’n lisensie vir die werk vir ’n omskrewe gebruik. Sê watter een, op skrif, voordat jy begin."
+        }
+      ],
+      "hash": "bdac5ba4d2da5b4e",
+      "id": "intellectual-property.3",
+      "kind": "paragraph",
+      "sourceHash": "a539256bcbf184a4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy KI-gereedskap gebruik om werk vir kliënte te maak, sê dit in jou kontrak, en verstaan dat die posisie oor outeursreg op KI-gegenereerde materiaal nog nie uitgeklaar is nie. Moenie ’n kliënt uitsluitlike eienaarskap belowe van iets wat jy nie kan waarborg nie."
+        }
+      ],
+      "hash": "be0c0ab9cb3ea006",
+      "id": "intellectual-property.4",
+      "kind": "paragraph",
+      "sourceHash": "893cf87e81c2f326"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Betaal word"
+        }
+      ],
+      "depth": 2,
+      "hash": "2df149c36f1f198d",
+      "id": "getting-paid",
+      "kind": "heading",
+      "sourceHash": "76aaf7e2563d04bb",
+      "text": "Betaal word"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vryskutwerkers in Suid-Afrika verloor meer geld aan laat betaling as aan lae tariewe."
+        }
+      ],
+      "hash": "ce29741b37d0cb8a",
+      "id": "getting-paid.1",
+      "kind": "paragraph",
+      "sourceHash": "87cd76db15507e83"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deposito vooraf. 50% is normaal vir projekwerk. Geen deposito nie, geen begin nie."
+        }
+      ],
+      "hash": "241b9d572a4ea1d5",
+      "id": "getting-paid.2",
+      "kind": "paragraph",
+      "sourceHash": "87c927691a1c74b1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Faktureer op ’n vaste dag, elke maand, met duidelike vervaldatums. Sien "
+        },
+        {
+          "doc": "paperwork/which-template-to-use-when",
+          "label": "03-documents/01",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "50ce45509bfea277",
+      "id": "getting-paid.3",
+      "kind": "paragraph",
+      "sourceHash": "7461f3d3dee39db1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Stel jou bepalings vir laat betaling in die kontrak, en pas dit toe. Rente op agterstallige bedrae is afdwingbaar as dit vooraf ooreengekom is."
+        }
+      ],
+      "hash": "574b895d90ce1ae1",
+      "id": "getting-paid.4",
+      "kind": "paragraph",
+      "sourceHash": "20507fa6e8b13be9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hou die finale lêers terug tot die finale betaling. Dit werk net as jou kontrak sê dat eienaarskap by betaling oorgaan, en daarom is daardie klousule belangrik."
+        }
+      ],
+      "hash": "b609da63a4c54016",
+      "id": "getting-paid.5",
+      "kind": "paragraph",
+      "sourceHash": "f7acb86df228dfcd"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Belastingpunt wat die meeste vryskutwerkers mis"
+        }
+      ],
+      "depth": 2,
+      "hash": "43fdd63a49da7e9a",
+      "id": "tax-point-most-freelancers-miss",
+      "kind": "heading",
+      "sourceHash": "edf9ab4526c4ed22",
+      "text": "Belastingpunt wat die meeste vryskutwerkers mis"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy hoofsaaklik vir een kliënt werk, wat jou ure beheer en hoe jy werk, kan SARS jou dalk as ’n persoonlikedienste-verskaffer of as ’n werknemer behandel. Dit verander jou belastingbehandeling aansienlik en neem die meeste van jou aftrekkings weg."
+        }
+      ],
+      "hash": "14697898852feca0",
+      "id": "tax-point-most-freelancers-miss.1",
+      "kind": "paragraph",
+      "sourceHash": "8d9f9b18371a4426"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tekens van risiko: een kliënt wat die meeste van jou inkomste verskaf, vaste ure by hulle perseel werk, hulle toerusting gebruik, ’n bestuurder hê."
+        }
+      ],
+      "hash": "3f9026af8e80aa9e",
+      "id": "tax-point-most-freelancers-miss.2",
+      "kind": "paragraph",
+      "sourceHash": "7193c00ca4504ae9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As dit jou beskryf, kry advies. Dit kan reggestel word, maar nie ná ’n aanslag nie."
+        }
+      ],
+      "hash": "263046004b996380",
+      "id": "tax-point-most-freelancers-miss.3",
+      "kind": "paragraph",
+      "sourceHash": "67b329559cb5472a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Notas oor handelsmerk en bemarking"
+        }
+      ],
+      "depth": 2,
+      "hash": "d7c823a003845e98",
+      "id": "branding-and-marketing-notes",
+      "kind": "heading",
+      "sourceHash": "cf2e2a9a2f4c9c97",
+      "text": "Notas oor handelsmerk en bemarking"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik "
+        },
+        {
+          "label": "02-branding-and-marketing/",
+          "section": "branding",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ". Vir hierdie groep is die volgorde van voorrang anders as vir ’n plaaslike ambag:"
+        }
+      ],
+      "hash": "487070e70cadaf85",
+      "id": "branding-and-marketing-notes.1",
+      "kind": "paragraph",
+      "sourceHash": "68c2f5f6509cbc8f"
+    },
+    {
+      "hash": "98a52d956d1646d3",
+      "id": "branding-and-marketing-notes.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "’n Portefeulje van regte werk, al is dit net twee of drie stukke"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Duidelike beskrywing van wat jy doen en vir wie jy dit doen"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "LinkedIn, as jy aan besighede verkoop"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Verwysings van vorige kliënte, waarvoor jy direk vra"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Eenvoudige webwerf"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "c23092a860bdd02d",
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die naamopdrag in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Handelsmerkopdragte"
+            }
+          ],
+          "doc": "branding/branding-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " werk, maar oorweeg om onder jou eie naam handel te dryf. Vir ’n konsultant of kreatiewe persoon wat alleen werk, bou \"Naledi Mokoena Design\" dikwels meer vertroue as ’n uitgedinkte agentskapnaam, en dit word nooit ’n leuen wanneer iemand vra hoe groot die span is nie."
+        }
+      ],
+      "hash": "fbb66e53de59ad08",
+      "id": "branding-and-marketing-notes.3",
+      "kind": "paragraph",
+      "sourceHash": "fcda45f1b3b97b7a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou kontrolelys"
+        }
+      ],
+      "depth": 2,
+      "hash": "913a4f09fb30d35c",
+      "id": "your-checklist",
+      "kind": "heading",
+      "sourceHash": "44586aab28889f46",
+      "text": "Jou kontrolelys"
+    },
+    {
+      "hash": "a9afb4ff77244cac",
+      "id": "your-checklist.1",
+      "items": [
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Bevestig of jou beroep statutêre registrasie vereis"
+            }
+          ],
+          "doc": "business-types/professional-creative",
+          "id": "business-types/professional-creative:4e99d003",
+          "when": {
+            "businessTypes": [
+              "professional-creative"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Gaan na of jy van omsetbelasting uitgesluit is voordat jy dit kies"
+            }
+          ],
+          "doc": "business-types/professional-creative",
+          "id": "business-types/professional-creative:fc5121e3",
+          "when": {
+            "businessTypes": [
+              "professional-creative"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Stel ’n diensooreenkoms op wat omvang, hersienings, IP en betaling dek"
+            }
+          ],
+          "doc": "business-types/professional-creative",
+          "id": "business-types/professional-creative:4c50b1ae",
+          "when": {
+            "businessTypes": [
+              "professional-creative"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Besluit oor jou beleid vir deposito’s en hersienings, en hou daarby"
+            }
+          ],
+          "doc": "business-types/professional-creative",
+          "id": "business-types/professional-creative:8afe75e0",
+          "when": {
+            "businessTypes": [
+              "professional-creative"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Stel die tuiskantoorberekening op as jy kwalifiseer"
+            }
+          ],
+          "doc": "business-types/professional-creative",
+          "id": "business-types/professional-creative:1c124945",
+          "when": {
+            "businessTypes": [
+              "professional-creative"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Registreer as ’n voorlopige belastingbetaler (provisional taxpayer) en skryf die IRP6-datums in jou dagboek"
+            }
+          ],
+          "doc": "business-types/professional-creative",
+          "id": "business-types/professional-creative:66134f08",
+          "when": {
+            "businessTypes": [
+              "professional-creative"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Bepaal of jy soos ’n werknemer van een kliënt lyk, en stel dit reg as dit so is"
+            }
+          ],
+          "doc": "business-types/professional-creative",
+          "id": "business-types/professional-creative:09f007d9",
+          "when": {
+            "businessTypes": [
+              "professional-creative"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "577e0d64887649de"
+    }
+  ],
+  "contentHash": "672d8bc6ea1e428d",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Besigheidstipe: professionele en kreatiewe werk",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "what-you-need",
+      "text": "Wat jy nodig het"
+    },
+    {
+      "depth": 2,
+      "id": "the-turnover-tax-trap",
+      "text": "Die omsetbelasting-strik"
+    },
+    {
+      "depth": 2,
+      "id": "the-home-office-deduction",
+      "text": "Die tuiskantooraftrekking"
+    },
+    {
+      "depth": 2,
+      "id": "contracts-matter-more-here-than-anywhere-else",
+      "text": "Kontrakte is hier belangriker as enige ander plek"
+    },
+    {
+      "depth": 2,
+      "id": "intellectual-property",
+      "text": "Intellektuele eiendom"
+    },
+    {
+      "depth": 2,
+      "id": "getting-paid",
+      "text": "Betaal word"
+    },
+    {
+      "depth": 2,
+      "id": "tax-point-most-freelancers-miss",
+      "text": "Belastingpunt wat die meeste vryskutwerkers mis"
+    },
+    {
+      "depth": 2,
+      "id": "branding-and-marketing-notes",
+      "text": "Notas oor handelsmerk en bemarking"
+    },
+    {
+      "depth": 2,
+      "id": "your-checklist",
+      "text": "Jou kontrolelys"
+    }
+  ],
+  "id": "business-types/professional-creative",
+  "kind": "guide",
+  "lang": "af",
+  "order": 7,
+  "readingTime": 6,
+  "related": [
+    "paperwork/which-template-to-use-when",
+    "core/tax-and-sars",
+    "branding/branding-prompts"
+  ],
+  "route": "business-types/professional-creative/",
+  "section": "business-types",
+  "slug": "professional-creative",
+  "sourcePath": "04 Your kind of business/06-professional-and-creative.md",
+  "sources": {
+    "acts": [
+      "consumer-protection-act-68-of-2008",
+      "financial-advisory-and-intermediary-services-act-37-of-2002"
+    ],
+    "entries": [
+      "sars--turnover-tax"
+    ]
+  },
+  "summary": "Lees eers 01-core/. Hierdie lêer voeg die reëls by wat geld wanneer jy jou vaardigheid of jou tyd verkoop.",
+  "tags": [
+    "business-types"
+  ],
+  "terms": [
+    {
+      "meaning": "’n Eenvoudige belasting op verkope. Baie professionele mense mag dit nie gebruik nie.",
+      "term": "Omsetbelasting (turnover tax)"
+    },
+    {
+      "meaning": "Om ’n deel van jou huiskoste te eis omdat jy uit ’n kamer werk wat net daarvoor gebruik word.",
+      "term": "Tuiskantooraftrekking (home office deduction)"
+    },
+    {
+      "meaning": "Intellektuele eiendom (intellectual property). Wie die werk besit wat jy skep.",
+      "term": "IP"
+    },
+    {
+      "meaning": "SARS se term vir iemand wat soos ’n werknemer van een kliënt lyk. Verloor die meeste aftrekkings.",
+      "term": "Persoonlikedienste-verskaffer (personal service provider)"
+    },
+    {
+      "meaning": "Hoeveel keer ’n kliënt mag vra vir veranderinge voordat hy ekstra betaal.",
+      "term": "Hersieningsrondes (revision rounds)"
+    }
+  ],
+  "title": "Besigheidstipe: professionele en kreatiewe werk",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

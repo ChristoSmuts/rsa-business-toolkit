@@ -1,0 +1,1029 @@
+{
+  "appliesTo": {
+    "businessTypes": [
+      "services-trades"
+    ],
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lees eers "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ". Hierdie lêer voeg die reëls by wat geld wanneer jy dinge regmaak, bou, installeer, skoonmaak of aflewer."
+        }
+      ],
+      "hash": "ccd377aea534e7b1",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "919b7382ddd94cfd"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit dek loodgieters, elektrisiëns, bouers, verwers, werktuigkundiges, tuiniers, skoonmakers, handlangers, koeriers en installeerders."
+        }
+      ],
+      "hash": "d7e288be82d23705",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "c89cfc4cd3f45e87"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "0440a3d5625df73c",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Gewone betekenisse van die terme wat in hierdie lêer gebruik word. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Certificate of Compliance (nakomingsertifikaat). Die dokument wat ’n elektrisiën of gasinstalleerder teken. Net geregistreerde persone mag een teken."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "CoC"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Versekering vir skade wat jy aan ander mense of hulle eiendom aanrig."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Openbare aanspreeklikheid (public liability)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Presies watter werk by die prys ingesluit is, en watter nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Omvang (scope)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Ekstra werk buite die oorspronklike omvang. Kom dit op skrif ooreen voordat jy dit doen."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Wysiging (variation)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Om in fases betaal te word soos die werk vorder."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Vorderingsbetaling (progress payment)"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "7ede2df35070bbe0"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gaan na of jou ambag gereguleer is"
+        }
+      ],
+      "depth": 2,
+      "hash": "a063e4388db84fbe",
+      "id": "check-whether-your-trade-is-regulated",
+      "kind": "heading",
+      "sourceHash": "48121dadd832187a",
+      "text": "Gaan na of jou ambag gereguleer is"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die meeste ambagte het geen lisensie nodig nie. Sommige ambagte mag nie wettig sonder registrasie gedoen word nie. As jy die werk tog doen, kan jou kliënt se versekering dalk weier om te betaal, en jy dra die risiko."
+        }
+      ],
+      "hash": "b557e6f7c0d17d8e",
+      "id": "check-whether-your-trade-is-regulated.1",
+      "kind": "paragraph",
+      "sourceHash": "c05535265f3df9f7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ambagte wat gewoonlik registrasie of sertifisering vereis:"
+        }
+      ],
+      "hash": "29f9dd2ad62d1df1",
+      "id": "check-whether-your-trade-is-regulated.2",
+      "kind": "paragraph",
+      "sourceHash": "6194756f7385a8d7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Elektrisiëns wat ’n Certificate of Compliance uitreik, moet as ’n geregistreerde persoon by die Department of Employment and Labour (Departement van Indiensneming en Arbeid) geregistreer wees. ’n Elektriese CoC wat geteken is deur iemand wat nie geregistreer is nie, is waardeloos, en die kliënt vind dit uit wanneer die verkoop van sy huis skipbreuk ly."
+        }
+      ],
+      "hash": "e3be690074bfcf3a",
+      "id": "check-whether-your-trade-is-regulated.3",
+      "kind": "paragraph",
+      "sourceHash": "cd4ca80bc3e8ce49"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gasinstalleerders moet geregistreer en gemagtig wees om ’n gas-Certificate of Conformity (gelykvormigheidsertifikaat) uit te reik."
+        }
+      ],
+      "hash": "4d2e01ff03492121",
+      "id": "check-whether-your-trade-is-regulated.4",
+      "kind": "paragraph",
+      "sourceHash": "62c8e878148a2a19"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Loodgieters wat loodgietersertifikate uitreik, het die toepaslike registrasie nodig, en sommige munisipaliteite hou hulle eie lyste."
+        }
+      ],
+      "hash": "544599203050f778",
+      "id": "check-whether-your-trade-is-regulated.5",
+      "kind": "paragraph",
+      "sourceHash": "5443ee7da4c96e69"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bouers wat residensiële werk doen vir verkoop, het NHBRC-registrasie nodig. Boukontrakteurs wat vir openbare werk tender, het CIDB-registrasie en -gradering nodig."
+        }
+      ],
+      "hash": "459de4b15b10c321",
+      "id": "check-whether-your-trade-is-regulated.6",
+      "kind": "paragraph",
+      "sourceHash": "93be83e32c083b33"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sekuriteitsdienste vereis PSIRA-registrasie. Dit word streng afgedwing."
+        }
+      ],
+      "hash": "7777577125f2da10",
+      "id": "check-whether-your-trade-is-regulated.7",
+      "kind": "paragraph",
+      "sourceHash": "7f2e5563a8f5003c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Plaagbeheerders wat geskeduleerde chemikalieë hanteer, het registrasie onder die toepaslike landbou- en gesondheidswetgewing nodig."
+        }
+      ],
+      "hash": "8e1dc657d8b9df55",
+      "id": "check-whether-your-trade-is-regulated.8",
+      "kind": "paragraph",
+      "sourceHash": "8aeb38105d83121b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jou ambag ’n professionele of statutêre liggaam het, aanvaar dat registrasie verpligtend is totdat jy die teendeel bevestig. Soek op die liggaam se webwerf, of bel hulle. Een oproep is goedkoper as ’n werk waaroor daar ’n dispuut is."
+        }
+      ],
+      "hash": "fa00111b7e717fc2",
+      "id": "check-whether-your-trade-is-regulated.9",
+      "kind": "paragraph",
+      "sourceHash": "b730c3e3d92148fa"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Beroepsgesondheid en -veiligheid"
+        }
+      ],
+      "depth": 2,
+      "hash": "f562e2d7ad3c25e7",
+      "id": "occupational-health-and-safety",
+      "kind": "heading",
+      "sourceHash": "500f0dccc7482a4f",
+      "text": "Beroepsgesondheid en -veiligheid"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die Occupational Health and Safety Act geld vir jou, selfs sonder werknemers. Jy werk op ander mense se eiendom en rondom ander mense, so hulle veiligheid is jou verantwoordelikheid."
+        }
+      ],
+      "hash": "3bfda7047bbe0991",
+      "id": "occupational-health-and-safety.1",
+      "kind": "paragraph",
+      "sourceHash": "157e77e29a83a6db"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Spesifiek vir konstruksiewerk bring die Construction Regulations (Konstruksieregulasies) ekstra pligte mee, en ’n kliënt kan ’n veiligheidslêer vereis voordat jy op die terrein mag begin. Korporatiewe en regeringskliënte sal altyd daarvoor vra. Stel een keer ’n basiese veiligheidslêer saam en gebruik dit weer."
+        }
+      ],
+      "hash": "b76b62949e4c1969",
+      "id": "occupational-health-and-safety.2",
+      "kind": "paragraph",
+      "sourceHash": "ff8d796e63e64eec"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verbruikersreg oor dienste"
+        }
+      ],
+      "depth": 2,
+      "hash": "16011b3e27621ba7",
+      "id": "consumer-law-on-services",
+      "kind": "heading",
+      "sourceHash": "6232b32f80f7a96b",
+      "text": "Verbruikersreg oor dienste"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Diens moet met redelike vaardigheid, sorg en ywer gelewer word, en binne ’n redelike tyd. As dit nie so is nie, kan die kliënt eis dat dit reggestel word of dat die geld terugbetaal word."
+        }
+      ],
+      "hash": "bd20a00dd471be10",
+      "id": "consumer-law-on-services.1",
+      "kind": "paragraph",
+      "sourceHash": "9501f569ea3655ed"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Goedere wat jy installeer, het die geïmpliseerde waarborg van ses maande, apart van jou vakmanskap."
+        }
+      ],
+      "hash": "04775e5860ab846a",
+      "id": "consumer-law-on-services.2",
+      "kind": "paragraph",
+      "sourceHash": "20a6ad3f929adcf4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kwotasies: waar ambagte geld verloor"
+        }
+      ],
+      "depth": 2,
+      "hash": "3a461147a98b3d93",
+      "id": "quoting-where-trades-lose-money",
+      "kind": "heading",
+      "sourceHash": "0de086dd9f3e3ec9",
+      "text": "Kwotasies: waar ambagte geld verloor"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die meeste dispute oor ambagswerk gaan nie oor gehalte nie. Hulle gaan oor omvang."
+        }
+      ],
+      "hash": "93ab1cd7c3c83333",
+      "id": "quoting-where-trades-lose-money.1",
+      "kind": "paragraph",
+      "sourceHash": "d91d4664da24ca99"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik die kwotasiesjabloon in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Watter sjabloon om wanneer te gebruik"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " en vul albei lyste in. Wat ingesluit is, en wat nie ingesluit is nie. Die tweede lys is die een wat jou red."
+        }
+      ],
+      "hash": "f1d14607373cc74c",
+      "id": "quoting-where-trades-lose-money.2",
+      "kind": "paragraph",
+      "sourceHash": "1549c867b238bfb7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Skryf neer:"
+        }
+      ],
+      "hash": "73599dfdb8bbd313",
+      "id": "quoting-where-trades-lose-money.3",
+      "kind": "paragraph",
+      "sourceHash": "af5154a63825fbea"
+    },
+    {
+      "hash": "a54f684abf7d454d",
+      "id": "quoting-where-trades-lose-money.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Presies watter werk gedek word"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Wat uitgesluit is, in gewone woorde"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Wie die materiaal verskaf"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Wie puin en afval verwyder"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Wat gebeur as jy ’n muur oopmaak en iets onverwags vind"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Wat ’n wysiging kos, en dat dit op skrif ooreengekom moet word voordat jy dit doen"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Of die prys reiskoste insluit, en hoe ver"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "1205a84ebe51691b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "\"Bykomende werk sal apart gekwoteer word en moet op skrif goedgekeur word voordat dit begin\" is een sin wat die meeste argumente voorkom."
+        }
+      ],
+      "hash": "982b706ff130e83e",
+      "id": "quoting-where-trades-lose-money.5",
+      "kind": "paragraph",
+      "sourceHash": "d7c9e4a38ca302b2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deposito’s en betaling"
+        }
+      ],
+      "depth": 2,
+      "hash": "ad5b3cb0e43a52bd",
+      "id": "deposits-and-payment",
+      "kind": "heading",
+      "sourceHash": "2e01fa2275d4ccdf",
+      "text": "Deposito’s en betaling"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Neem ’n deposito voordat jy materiaal koop. ’n Getekende kwotasie plus ’n deposito is ’n kontrak."
+        }
+      ],
+      "hash": "965b65d631da112f",
+      "id": "deposits-and-payment.1",
+      "kind": "paragraph",
+      "sourceHash": "9b18c6edb9d16d68"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir langer werke, gebruik vorderingsbetalings wat aan fases gekoppel is, nie aan datums nie. \"50% wanneer die eerste installasie voltooi is\" is afdwingbaar en duidelik. \"50% ná twee weke\" lok ’n rusie uit oor of jy op die terrein was."
+        }
+      ],
+      "hash": "ebd32fdc6f67b5a3",
+      "id": "deposits-and-payment.2",
+      "kind": "paragraph",
+      "sourceHash": "191977dd6e0f25f8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Stuur die faktuur op die dag wat jy klaarmaak. Ambagslui wat weekliks faktureer, word weekliks betaal. Ambagslui wat maandeliks faktureer, word betaal wanneer dit die kliënt pas."
+        }
+      ],
+      "hash": "a0881207bfc0a8d0",
+      "id": "deposits-and-payment.3",
+      "kind": "paragraph",
+      "sourceHash": "3171d0f3d988736e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Versekering"
+        }
+      ],
+      "depth": 2,
+      "hash": "56f59d1956969118",
+      "id": "insurance",
+      "kind": "heading",
+      "sourceHash": "99bdab3738b5ebcd",
+      "text": "Versekering"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dekking vir openbare aanspreeklikheid. As jy ’n huis laat oorstroom, ’n dak aan die brand steek of ’n stuk gereedskap op ’n motor laat val, is dit wat tussen jou en persoonlike bankrotskap staan. Dit is nie duur vir ’n ambagsman wat alleen werk nie."
+        }
+      ],
+      "hash": "ee68d2c966aeec4f",
+      "id": "insurance.1",
+      "kind": "paragraph",
+      "sourceHash": "50a3999bb3ce6fce"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sê vir jou voertuigversekeraar dat die voertuig vir besigheid gebruik word, en vra oor dekking vir goedere in transito as jy kliënte se eiendom of duur gereedskap vervoer. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Voertuie vir jou besigheid"
+            }
+          ],
+          "doc": "core/vehicles",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "e9c82d6ab9bee402",
+      "id": "insurance.2",
+      "kind": "paragraph",
+      "sourceHash": "2ced487ef1387b6e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gereedskapversekering is die moeite werd sodra jou gereedskap meer werd is as ’n paar maande se wins."
+        }
+      ],
+      "hash": "261f76d7922aa4e2",
+      "id": "insurance.3",
+      "kind": "paragraph",
+      "sourceHash": "3baa8638ee9bc1b1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voertuie"
+        }
+      ],
+      "depth": 2,
+      "hash": "9fec29a2740eb097",
+      "id": "vehicles",
+      "kind": "heading",
+      "sourceHash": "8e3a81843d12212e",
+      "text": "Voertuie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die meeste ambagte het een nodig. Lees "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Voertuie vir jou besigheid"
+            }
+          ],
+          "doc": "core/vehicles",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " voordat jy besluit of jy dit in ’n besigheidsnaam wil sit. Vir ’n enkele eienaar wat self die werk doen, is persoonlike eienaarskap plus ’n logboek gewoonlik die beter antwoord."
+        }
+      ],
+      "hash": "74c8cdfec61bc98a",
+      "id": "vehicles.1",
+      "kind": "paragraph",
+      "sourceHash": "41477169d4b29484"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ekstra reëls geld as jou voertuig vol gelaai meer as 3,500 kg weeg, of as jy passasiers vir geld vervoer. Jy het ’n Professional Driving Permit (professionele bestuurspermit) en elke jaar ’n padwaardigheidstoets nodig. Vir passasiersvervoer het jy ook ’n bedryfslisensie nodig."
+        }
+      ],
+      "hash": "444ce517c5cdcc74",
+      "id": "vehicles.2",
+      "kind": "paragraph",
+      "sourceHash": "69ad90d6b2ee7c49"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tekens op jou voertuig is gewoonlik die goedkoopste advertensie wat ’n plaaslike ambag kan koop, en dit is ’n aftrekbare uitgawe."
+        }
+      ],
+      "hash": "20a2be2aca692289",
+      "id": "vehicles.3",
+      "kind": "paragraph",
+      "sourceHash": "a7e781d3382cb543"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Notas oor handelsmerk en bemarking"
+        }
+      ],
+      "depth": 2,
+      "hash": "d7c823a003845e98",
+      "id": "branding-and-marketing-notes",
+      "kind": "heading",
+      "sourceHash": "cf2e2a9a2f4c9c97",
+      "text": "Notas oor handelsmerk en bemarking"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik "
+        },
+        {
+          "label": "02-branding-and-marketing/",
+          "section": "branding",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ". Vir ’n plaaslike ambag is die volgorde van voorrang:"
+        }
+      ],
+      "hash": "caf2e29caa944f96",
+      "id": "branding-and-marketing-notes.1",
+      "kind": "paragraph",
+      "sourceHash": "0697e5885df885ee"
+    },
+    {
+      "hash": "5f74a8581872f6ed",
+      "id": "branding-and-marketing-notes.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Google Business Profile, volledig ingevul, met foto’s van regte werk"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Resensies van elke tevrede kliënt"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "WhatsApp Business met vinnige antwoorde en ’n katalogus van algemene werke met pryse"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Plaaslike Facebook-gemeenskapsgroepe"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Tekens op jou voertuig"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "699210569ac01119",
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sosiale media is vyfde, nie eerste nie. ’n Loodgieter met 40 Google-resensies klop ’n loodgieter met 4,000 Instagram-volgers."
+        }
+      ],
+      "hash": "86e128b5f4b7a9c4",
+      "id": "branding-and-marketing-notes.3",
+      "kind": "paragraph",
+      "sourceHash": "f0ced3dd961773a4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Neem foto’s van elke voltooide werk voordat jy loop. Twee foto’s, voor en ná, in daglig geneem. Dit is jou hele inhoudstrategie."
+        }
+      ],
+      "hash": "0b814921f8e1f2fe",
+      "id": "branding-and-marketing-notes.4",
+      "kind": "paragraph",
+      "sourceHash": "a121cf30bbaa08ce"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou kontrolelys"
+        }
+      ],
+      "depth": 2,
+      "hash": "913a4f09fb30d35c",
+      "id": "your-checklist",
+      "kind": "heading",
+      "sourceHash": "44586aab28889f46",
+      "text": "Jou kontrolelys"
+    },
+    {
+      "hash": "0a6c4a5d17b977c7",
+      "id": "your-checklist.1",
+      "items": [
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Bevestig of jou ambag professionele of statutêre registrasie vereis"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:7aeedd49",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Kry versekering vir openbare aanspreeklikheid"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:6b14de08",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Sê vir jou voertuigversekeraar dat jy die voertuig vir werk gebruik"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:06447813",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Stel jou kwotasiesjabloon op met ’n behoorlike lys van uitsluitings"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:3e62bd56",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Stel jou bepalings vir deposito’s en vorderingsbetalings op skrif"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:4931924a",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Begin ’n logboek vir jou voertuig"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:6fa9b54e",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Eis jou Google Business Profile op en vul dit volledig in"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:92e8509e",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Stel WhatsApp Business op met vinnige antwoorde"
+            }
+          ],
+          "doc": "business-types/services-trades",
+          "id": "business-types/services-trades:a9a8c6bf",
+          "when": {
+            "businessTypes": [
+              "services-trades"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "fbd60cb2055ec4d4"
+    }
+  ],
+  "contentHash": "ab30b9b4854e2977",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Besigheidstipe: dienste en ambagte",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "check-whether-your-trade-is-regulated",
+      "text": "Gaan na of jou ambag gereguleer is"
+    },
+    {
+      "depth": 2,
+      "id": "occupational-health-and-safety",
+      "text": "Beroepsgesondheid en -veiligheid"
+    },
+    {
+      "depth": 2,
+      "id": "consumer-law-on-services",
+      "text": "Verbruikersreg oor dienste"
+    },
+    {
+      "depth": 2,
+      "id": "quoting-where-trades-lose-money",
+      "text": "Kwotasies: waar ambagte geld verloor"
+    },
+    {
+      "depth": 2,
+      "id": "deposits-and-payment",
+      "text": "Deposito’s en betaling"
+    },
+    {
+      "depth": 2,
+      "id": "insurance",
+      "text": "Versekering"
+    },
+    {
+      "depth": 2,
+      "id": "vehicles",
+      "text": "Voertuie"
+    },
+    {
+      "depth": 2,
+      "id": "branding-and-marketing-notes",
+      "text": "Notas oor handelsmerk en bemarking"
+    },
+    {
+      "depth": 2,
+      "id": "your-checklist",
+      "text": "Jou kontrolelys"
+    }
+  ],
+  "id": "business-types/services-trades",
+  "kind": "guide",
+  "lang": "af",
+  "order": 6,
+  "readingTime": 5,
+  "related": [
+    "core/vehicles",
+    "paperwork/which-template-to-use-when"
+  ],
+  "route": "business-types/services-trades/",
+  "section": "business-types",
+  "slug": "services-trades",
+  "sourcePath": "04 Your kind of business/05-services-and-trades.md",
+  "sources": {
+    "acts": [
+      "consumer-protection-act-68-of-2008",
+      "occupational-health-and-safety-act-85-of-1993"
+    ],
+    "entries": [
+      "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
+      "hanekom-attorneys-webuycars-consent-order"
+    ]
+  },
+  "summary": "Lees eers 01-core/. Hierdie lêer voeg die reëls by wat geld wanneer jy dinge regmaak, bou, installeer, skoonmaak of aflewer.",
+  "tags": [
+    "business-types"
+  ],
+  "terms": [
+    {
+      "meaning": "Certificate of Compliance (nakomingsertifikaat). Die dokument wat ’n elektrisiën of gasinstalleerder teken. Net geregistreerde persone mag een teken.",
+      "term": "CoC"
+    },
+    {
+      "meaning": "Versekering vir skade wat jy aan ander mense of hulle eiendom aanrig.",
+      "term": "Openbare aanspreeklikheid (public liability)"
+    },
+    {
+      "meaning": "Presies watter werk by die prys ingesluit is, en watter nie.",
+      "term": "Omvang (scope)"
+    },
+    {
+      "meaning": "Ekstra werk buite die oorspronklike omvang. Kom dit op skrif ooreen voordat jy dit doen.",
+      "term": "Wysiging (variation)"
+    },
+    {
+      "meaning": "Om in fases betaal te word soos die werk vorder.",
+      "term": "Vorderingsbetaling (progress payment)"
+    }
+  ],
+  "title": "Besigheidstipe: dienste en ambagte",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

@@ -1,0 +1,865 @@
+{
+  "appliesTo": {
+    "businessTypes": [
+      "beauty"
+    ],
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lees eers "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ". Hierdie lêer voeg die reëls by wat net geld vir besighede wat aan mense se liggame werk."
+        }
+      ],
+      "hash": "b8c7d02a5927d8f9",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "d77cb98f1250cd52"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit dek haarkappers, barbiers, naels, skoonheidsterapie, wimpers, massering, tatoeëring en lyfringe."
+        }
+      ],
+      "hash": "adb91a3bb6b55753",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "ed6acb4157298704"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "a38f17255c57ccde",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Gewone betekenisse van die terme wat in hierdie lêer gebruik word. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die wetlike kategorie vir haar-, skoonheids-, masserings- en tatoeëerbesighede."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Gesondheidsinrigting (health establishment)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die munisipale gesondheidsinspekteur."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "EHP"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Of jou adres vir besigheid gebruik mag word."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Sonering"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Dekking vir wanneer ’n behandeling ’n kliënt skade aandoen."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Aanspreeklikheidsversekering vir behandelings"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Klein toets op die vel voor ’n chemiese behandeling. Teken dit aan."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Plektoets (patch test)"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "37f706eab9732729"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het ’n munisipale lisensie nodig"
+        }
+      ],
+      "depth": 2,
+      "hash": "ac23809636caa698",
+      "id": "you-need-a-municipal-licence",
+      "kind": "heading",
+      "sourceHash": "f1179cdfad91261d",
+      "text": "Jy het ’n munisipale lisensie nodig"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is gesondheidsinrigtings onder die Businesses Act."
+        }
+      ],
+      "hash": "30f2450077ccd3ad",
+      "id": "you-need-a-municipal-licence.1",
+      "kind": "paragraph",
+      "sourceHash": "f2756c4e7fce31e3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die kategorieë wat gewoonlik ’n munisipale handelslisensie onder die Businesses Act vereis, sluit gesondheidsinrigtings in: besighede wat gesondheids-, skoonheids- of liggaamsbehandelingsdienste lewer, insluitend haarkappers, barbiers, skoonheidsalonne, naelsalonne, tatoeëerateljees en soortgelyke persele."
+        }
+      ],
+      "hash": "88c8fe72fdda4952",
+      "id": "you-need-a-municipal-licence.2",
+      "kind": "paragraph",
+      "sourceHash": "1fe7ce03e8b7c5fd"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Niemand mag sekere diensverwante besighede bedryf nie, tensy hulle ’n lisensie het wat uitgereik is deur die raad, plaaslike owerheid of munisipaliteit waar die besigheidsperseel geleë is."
+        }
+      ],
+      "hash": "6270d3b61613fb45",
+      "id": "you-need-a-municipal-licence.3",
+      "kind": "paragraph",
+      "sourceHash": "e034040ed4da416e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy mag nie begin handel dryf in ’n besigheid wat ’n lisensie vereis voordat die lisensie uitgereik is nie. Om sonder ’n geldige lisensie handel te dryf, is strafbaar met ’n boete."
+        }
+      ],
+      "hash": "aa014d7855d8f228",
+      "id": "you-need-a-municipal-licence.4",
+      "kind": "paragraph",
+      "sourceHash": "0587fcf86be90a21"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Doen aansoek by jou munisipaliteit se kantoor vir besigheidslisensiëring. ’n Omgewingsgesondheidspraktisyn (Environmental Health Practitioner) sal die perseel inspekteer."
+        }
+      ],
+      "hash": "a4e257e257466e08",
+      "id": "you-need-a-municipal-licence.5",
+      "kind": "paragraph",
+      "sourceHash": "71273b188daadc6a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Waarna die inspekteur gewoonlik kyk: fasiliteite om hande te was, ventilasie, of oppervlakke maklik skoongemaak kan word, afvalverwydering, die berging van chemikalieë, en skeiding van die woonruimte as jy van die huis af werk."
+        }
+      ],
+      "hash": "19ed0adeeb362f61",
+      "id": "you-need-a-municipal-licence.6",
+      "kind": "paragraph",
+      "sourceHash": "2e55e6030e8d15cf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tatoeëer- en lyfringateljees"
+        }
+      ],
+      "depth": 2,
+      "hash": "4d659e3b9731f23d",
+      "id": "tattoo-and-piercing-studios",
+      "kind": "heading",
+      "sourceHash": "00fb0f54df70611f",
+      "text": "Tatoeëer- en lyfringateljees"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hulle kry die strengste inspeksie in hierdie kategorie, omdat hulle die vel breek."
+        }
+      ],
+      "hash": "ffe55b6608cc8c7a",
+      "id": "tattoo-and-piercing-studios.1",
+      "kind": "paragraph",
+      "sourceHash": "d73730eeb9895b2f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verwag vrae oor steriliseringstoerusting, naalde vir eenmalige gebruik, houers vir skerp voorwerpe, kontrakte vir afvalverwydering, en rekords van kliënte en lotnommers."
+        }
+      ],
+      "hash": "7189518a145cde40",
+      "id": "tattoo-and-piercing-studios.2",
+      "kind": "paragraph",
+      "sourceHash": "076abb35fa7189a9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Praat met jou omgewingsgesondheidspraktisyn voordat jy ’n huurkontrak teken. Die vereistes vir die perseel kan ’n goedkoop ruimte onbruikbaar maak."
+        }
+      ],
+      "hash": "b6384aa00041c4a7",
+      "id": "tattoo-and-piercing-studios.3",
+      "kind": "paragraph",
+      "sourceHash": "f6897a7e4c715e62"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tuiswerk"
+        }
+      ],
+      "depth": 2,
+      "hash": "c7a506d4296e666b",
+      "id": "working-from-home",
+      "kind": "heading",
+      "sourceHash": "f76f2a0064715587",
+      "text": "Tuiswerk"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is algemeen en gewoonlik wettig. Maar jy het soneringsgoedkeuring nodig, en gewoonlik ’n aparte behandelingskamer met sy eie wasbak."
+        }
+      ],
+      "hash": "42af5e0d98349b8f",
+      "id": "working-from-home.1",
+      "kind": "paragraph",
+      "sourceHash": "c7125a3461b05d4d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vra die stadsbeplanningsafdeling oor jou sonering voordat jy geld aan ’n kamer bestee. Sommige residensiële sonerings laat ’n tuisbedrywigheid (home occupation) toe, met beperkings op die getal kliënte, parkering en tekens."
+        }
+      ],
+      "hash": "a238667ead2f56a0",
+      "id": "working-from-home.2",
+      "kind": "paragraph",
+      "sourceHash": "744d0f062b97af43"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy produkte maak of verkoop"
+        }
+      ],
+      "depth": 2,
+      "hash": "fd34a48423eea118",
+      "id": "if-you-make-or-sell-products",
+      "kind": "heading",
+      "sourceHash": "8d2dad5d0c183740",
+      "text": "As jy produkte maak of verkoop"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om kleinhandelprodukte te verkoop wat iemand anders vervaardig, is gewone kleinhandel. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Kleinhandel en aanlynwinkel"
+            }
+          ],
+          "doc": "business-types/retail-online",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "6d64000a0d62a966",
+      "id": "if-you-make-or-sell-products.1",
+      "kind": "paragraph",
+      "sourceHash": "f86fa306d29ff135"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy jou eie olies, rome, skrobmiddels of haarprodukte maak, verander dinge. Die Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 reguleer skoonheidsmiddels, insluitend etikettering en bewerings oor bestanddele."
+        }
+      ],
+      "hash": "0043774f204a0c2d",
+      "id": "if-you-make-or-sell-products.2",
+      "kind": "paragraph",
+      "sourceHash": "f52dc29fa1cb37a7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Moenie beweer dat ’n produk ’n mediese toestand behandel nie. \"Laat ekseem verdwyn\" of \"genees aknee\" kan jou produk as ’n medisyne herklassifiseer, en dan raak SAHPRA by jou betrokke. \"Kalmeer droë vel\" is ’n bewering vir ’n skoonheidsmiddel. \"Behandel dermatitis\" is nie."
+        }
+      ],
+      "hash": "6a91f2a6c7a1da25",
+      "id": "if-you-make-or-sell-products.3",
+      "kind": "paragraph",
+      "sourceHash": "7fc6d20459a716ea"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Versekering wat jy regtig nodig het"
+        }
+      ],
+      "depth": 2,
+      "hash": "10d4249d53547d35",
+      "id": "insurance-you-actually-need",
+      "kind": "heading",
+      "sourceHash": "361323082b2bf9ff",
+      "text": "Versekering wat jy regtig nodig het"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Professionele skadeloosstelling (professional indemnity) of aanspreeklikheidsdekking vir behandelings. Een brandwond van ’n haarontkruller, een besmette lyfring of een slegte reaksie op ’n produk kan jou meer kos as ’n jaar se wins."
+        }
+      ],
+      "hash": "4d03c3317fb3e352",
+      "id": "insurance-you-actually-need.1",
+      "kind": "paragraph",
+      "sourceHash": "172a14364a7d0eb8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vra ’n makelaar vir dekking wat pas by die behandelings wat jy werklik doen, en vertel hulle alles wat jy doen. Dekking wat vir \"haarkappery\" gekoop is, sal nie ’n eis vir ’n wimperoplig dek nie."
+        }
+      ],
+      "hash": "dedfdbd3eeb1f74c",
+      "id": "insurance-you-actually-need.2",
+      "kind": "paragraph",
+      "sourceHash": "46e864a7215232e3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verbruikersreg geld ook vir dienste"
+        }
+      ],
+      "depth": 2,
+      "hash": "288ed5cd5a4b2a44",
+      "id": "consumer-law-applies-to-services-too",
+      "kind": "heading",
+      "sourceHash": "a4908024ea917a1d",
+      "text": "Verbruikersreg geld ook vir dienste"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Diens moet met redelike vaardigheid en sorg gelewer word. As ’n behandeling verkeerd loop, het die kliënt die reg dat dit reggestel word of dat die geld terugbetaal word."
+        }
+      ],
+      "hash": "d68e9382cb8246f0",
+      "id": "consumer-law-applies-to-services-too.1",
+      "kind": "paragraph",
+      "sourceHash": "8c13d6ef3b7e6d52"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Beskerm jouself met ’n konsultasierekord: wat die kliënt gevra het, wat jy aangeraai het, enige allergie of plektoets, en wat ooreengekom is. Laat hulle dit teken. Vir kleur-, chemiese en velbehandelings is ’n rekord van die plektoets die verskil tussen ’n posisie wat jy kan verdedig en ’n skikking."
+        }
+      ],
+      "hash": "6368bbb02c51a884",
+      "id": "consumer-law-applies-to-services-too.2",
+      "kind": "paragraph",
+      "sourceHash": "3241b1788313c053"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Besprekings, deposito’s en kliënte wat nie opdaag nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "8b8e7be512765595",
+      "id": "bookings-deposits-and-no-shows",
+      "kind": "heading",
+      "sourceHash": "9a1a44156a95c08c",
+      "text": "Besprekings, deposito’s en kliënte wat nie opdaag nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kliënte wat nie opdaag nie, is die grootste verborge koste in hierdie bedryf."
+        }
+      ],
+      "hash": "0155f4c4b7e23dd2",
+      "id": "bookings-deposits-and-no-shows.1",
+      "kind": "paragraph",
+      "sourceHash": "5b15286d25e88c38"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Deposito is wettig en afdwingbaar as die bepalings voor die bespreking duidelik en redelik is. Onder die Consumer Protection Act mag ’n kliënt ’n bespreking kanselleer. Jy mag ’n kanselleringsfooi hef, maar dit moet redelik wees. Wat redelik is, hang af van hoeveel kennis hulle gegee het, en of jy die tydgleuf met iemand anders kon vul."
+        }
+      ],
+      "hash": "ef270c6b46cbd173",
+      "id": "bookings-deposits-and-no-shows.2",
+      "kind": "paragraph",
+      "sourceHash": "ca2c77fcc9c014d0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sit jou kanselleringsbepalings op skrif, stuur dit saam met die besprekingsbevestiging, en pas dit konsekwent toe. Bepalings wat jy eers noem wanneer iemand ’n afspraak mis, is moeilik om af te dwing."
+        }
+      ],
+      "hash": "5ce376fd013a1e8c",
+      "id": "bookings-deposits-and-no-shows.3",
+      "kind": "paragraph",
+      "sourceHash": "09dceee8d64c7a7c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Notas oor handelsmerk en bemarking"
+        }
+      ],
+      "depth": 2,
+      "hash": "d7c823a003845e98",
+      "id": "branding-and-marketing-notes",
+      "kind": "heading",
+      "sourceHash": "cf2e2a9a2f4c9c97",
+      "text": "Notas oor handelsmerk en bemarking"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik "
+        },
+        {
+          "label": "02-branding-and-marketing/",
+          "section": "branding",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ". Twee dinge is in hierdie bedryf belangriker as in die meeste ander:"
+        }
+      ],
+      "hash": "ea5c9e30e3ce2ed5",
+      "id": "branding-and-marketing-notes.1",
+      "kind": "paragraph",
+      "sourceHash": "6a0a2641dd0ff04e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voor-en-ná-foto’s is jou doeltreffendste bemarking, maar jy het toestemming nodig. Vra elke kliënt, op skrif, voordat jy hulle gesig plaas. Dit is ’n POPIA-vereiste sowel as basiese hoflikheid. Hou die toestemming op lêer."
+        }
+      ],
+      "hash": "cada5588bc7154ef",
+      "id": "branding-and-marketing-notes.2",
+      "kind": "paragraph",
+      "sourceHash": "1e93d6317b589dc0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Resensies op jou Google Business Profile lok meer plaaslike besprekings as enige plasing op sosiale media. Vra elke tevrede kliënt. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bemarkingsopdragte"
+            }
+          ],
+          "doc": "branding/marketing-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "11227a318aa8ff90",
+      "id": "branding-and-marketing-notes.3",
+      "kind": "paragraph",
+      "sourceHash": "a2701504475bcfb3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou kontrolelys"
+        }
+      ],
+      "depth": 2,
+      "hash": "913a4f09fb30d35c",
+      "id": "your-checklist",
+      "kind": "heading",
+      "sourceHash": "44586aab28889f46",
+      "text": "Jou kontrolelys"
+    },
+    {
+      "hash": "89e99f2db8381c14",
+      "id": "your-checklist.1",
+      "items": [
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Bevestig die sonering van jou perseel, ook as dit jou huis is"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:92352a66",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Doen aansoek om die munisipale lisensie vir ’n gesondheidsinrigting"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:4154a207",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Berei die perseel voor vir die gesondheidsinspeksie"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:3e9fa384",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Kry aanspreeklikheidsversekering vir behandelings wat by jou dienste pas"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:acd577dc",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Maak ’n sjabloon vir ’n konsultasie- en plektoetsrekord"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:78e1ef6f",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Skryf jou bepalings vir besprekings, deposito’s en kansellasies"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:1ee82848",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Kry skriftelike toestemming van kliënte voordat jy foto’s plaas"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:3f035f6f",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Registreer jou POPIA-inligtingsbeampte, aangesien jy kliënte se gesondheidsinligting hou"
+            }
+          ],
+          "doc": "business-types/beauty",
+          "id": "business-types/beauty:22a2e898",
+          "when": {
+            "businessTypes": [
+              "beauty"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "77666b6831b263a2"
+    }
+  ],
+  "contentHash": "5f696b29a825137f",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Besigheidstipe: skoonheid en persoonlike versorging",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "you-need-a-municipal-licence",
+      "text": "Jy het ’n munisipale lisensie nodig"
+    },
+    {
+      "depth": 2,
+      "id": "tattoo-and-piercing-studios",
+      "text": "Tatoeëer- en lyfringateljees"
+    },
+    {
+      "depth": 2,
+      "id": "working-from-home",
+      "text": "Tuiswerk"
+    },
+    {
+      "depth": 2,
+      "id": "if-you-make-or-sell-products",
+      "text": "As jy produkte maak of verkoop"
+    },
+    {
+      "depth": 2,
+      "id": "insurance-you-actually-need",
+      "text": "Versekering wat jy regtig nodig het"
+    },
+    {
+      "depth": 2,
+      "id": "consumer-law-applies-to-services-too",
+      "text": "Verbruikersreg geld ook vir dienste"
+    },
+    {
+      "depth": 2,
+      "id": "bookings-deposits-and-no-shows",
+      "text": "Besprekings, deposito’s en kliënte wat nie opdaag nie"
+    },
+    {
+      "depth": 2,
+      "id": "branding-and-marketing-notes",
+      "text": "Notas oor handelsmerk en bemarking"
+    },
+    {
+      "depth": 2,
+      "id": "your-checklist",
+      "text": "Jou kontrolelys"
+    }
+  ],
+  "id": "business-types/beauty",
+  "kind": "guide",
+  "lang": "af",
+  "order": 4,
+  "readingTime": 4,
+  "related": [
+    "business-types/retail-online",
+    "branding/marketing-prompts"
+  ],
+  "route": "business-types/beauty/",
+  "section": "business-types",
+  "slug": "beauty",
+  "sourcePath": "04 Your kind of business/03-beauty-and-personal-care.md",
+  "sources": {
+    "acts": [
+      "consumer-protection-act-68-of-2008",
+      "businesses-act-71-of-1991",
+      "foodstuffs-cosmetics-and-disinfectants-act-54-of-1972"
+    ],
+    "entries": [
+      "information-regulator-of-south-africa",
+      "businesses-act-71-of-1991"
+    ]
+  },
+  "summary": "Lees eers 01-core/. Hierdie lêer voeg die reëls by wat net geld vir besighede wat aan mense se liggame werk.",
+  "tags": [
+    "business-types"
+  ],
+  "terms": [
+    {
+      "meaning": "Die wetlike kategorie vir haar-, skoonheids-, masserings- en tatoeëerbesighede.",
+      "term": "Gesondheidsinrigting (health establishment)"
+    },
+    {
+      "meaning": "Die munisipale gesondheidsinspekteur.",
+      "term": "EHP"
+    },
+    {
+      "meaning": "Of jou adres vir besigheid gebruik mag word.",
+      "term": "Sonering"
+    },
+    {
+      "meaning": "Dekking vir wanneer ’n behandeling ’n kliënt skade aandoen.",
+      "term": "Aanspreeklikheidsversekering vir behandelings"
+    },
+    {
+      "meaning": "’n Klein toets op die vel voor ’n chemiese behandeling. Teken dit aan.",
+      "term": "Plektoets (patch test)"
+    }
+  ],
+  "title": "Besigheidstipe: skoonheid en persoonlike versorging",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

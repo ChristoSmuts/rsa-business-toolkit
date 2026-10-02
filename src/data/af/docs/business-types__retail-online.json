@@ -1,0 +1,1207 @@
+{
+  "appliesTo": {
+    "businessTypes": [
+      "retail-online"
+    ],
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lees eers "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ". Hierdie lêer voeg die reëls by wat geld wanneer jy fisiese produkte verkoop."
+        }
+      ],
+      "hash": "b206cb38e06d35a6",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "1a8eda2977ce098f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit dek ’n winkel, ’n markstalletjie, ’n aanlynwinkel, ’n Instagram-winkel, en verkope op Takealot of Facebook Marketplace."
+        }
+      ],
+      "hash": "fb54eabc0f017431",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "535087c113574b29"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "eea196911449e078",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Gewone betekenisse van die terme wat in hierdie lêer gebruik word. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die wet vir aanlynverkope."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "ECTA"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die kliënt se reg om ’n aanlynaankoop binne sewe dae terug te stuur en sy geld terug te kry."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Afkoelperiode (cooling-off)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die waarborg van ses maande wat die wet by elke verkoop voeg."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Geïmpliseerde waarborg (implied warranty)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Gratis SARS-nommer wat jy nodig het om goedere die land in te bring."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Invoerderskode (importer's code)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die reguleerder, en die magtigingsbrief (Letter of Authority), vir sekere produkte soos elektriese goedere. Sonder die brief mag die goedere nie verkoop word nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "NRCS / LOA"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die wet wat vereis dat enigiemand wat gebruikte goedere herverkoop, by die polisie registreer."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Second-Hand Goods Act"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "834bbaafe39c4e82"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Het jy ’n lisensie nodig?"
+        }
+      ],
+      "depth": 2,
+      "hash": "15bb257598f10bf3",
+      "id": "do-you-need-a-licence",
+      "kind": "heading",
+      "sourceHash": "bddf068d1c609ace",
+      "text": "Het jy ’n lisensie nodig?"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gewoonlik nie, as jy gewone goedere verkoop soos klere, huishoudelike ware, skryfbehoeftes, geskenke of bykomstighede."
+        }
+      ],
+      "hash": "b16336cea69d31f3",
+      "id": "do-you-need-a-licence.1",
+      "kind": "paragraph",
+      "sourceHash": "42e54e85da29c954"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het wel een nodig as jy kos verkoop. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Kosbesigheid"
+            }
+          ],
+          "doc": "business-types/food",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "ff0c5980ef2ced3a",
+      "id": "do-you-need-a-licence.2",
+      "kind": "paragraph",
+      "sourceHash": "e03c453ab64d3084"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kleinhandel in kos, dit wil sê enige besigheid wat kos verkoop, voorberei of hanteer om aan die publiek te verkoop, insluitend spaza-winkels, vereis ’n munisipale handelslisensie onder die Businesses Act."
+        }
+      ],
+      "hash": "da883d9aead63890",
+      "id": "do-you-need-a-licence.3",
+      "kind": "paragraph",
+      "sourceHash": "4a635044bbc5b09a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sommige munisipaliteite vereis steeds ’n algemene handelaarslisensie vir ’n vaste winkel. Vra jou munisipaliteit se kantoor vir besigheidslisensiëring. Markstalletjies het gewoonlik ’n handelspermit van die mark of die munisipaliteit nodig eerder as ’n besigheidslisensie."
+        }
+      ],
+      "hash": "4f9a4726c61878dc",
+      "id": "do-you-need-a-licence.4",
+      "kind": "paragraph",
+      "sourceHash": "7d86e44d18e83e16"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy tweedehandse goedere verkoop"
+        }
+      ],
+      "depth": 2,
+      "hash": "90ef184dd5d1e618",
+      "id": "if-you-sell-second-hand-goods",
+      "kind": "heading",
+      "sourceHash": "a540336eb629a7fc",
+      "text": "As jy tweedehandse goedere verkoop"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit vang meer mense as wat jy sou verwag. As jy gebruikte items koop om te herverkoop, is jy ’n handelaar."
+        }
+      ],
+      "hash": "f0b4da6a6656dca7",
+      "id": "if-you-sell-second-hand-goods.1",
+      "kind": "paragraph",
+      "sourceHash": "7d8ff239e48f5b20"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die Second-Hand Goods Act 6 of 2009 vereis dat handelaars by SAPS registreer, vir vyf jaar gedetailleerde registers van transaksies hou, die identiteit van verskaffers nagaan, en items rapporteer wat moontlik gesteel is. Die wet geld vir besighede wat handel dryf in gebruikte items wat meer as R100 werd is."
+        }
+      ],
+      "hash": "dbfaddff26805b99",
+      "id": "if-you-sell-second-hand-goods.2",
+      "kind": "paragraph",
+      "sourceHash": "4579651e0a51d758"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy gebruikte goedere koop om te herverkoop, moet jy by die polisie registreer, vir vyf jaar rekords van elke item hou, nagaan by wie jy koop, en enigiets rapporteer wat gesteel lyk. Registrasie is gratis."
+        }
+      ],
+      "hash": "7a2c75390dfebf0d",
+      "id": "if-you-sell-second-hand-goods.3",
+      "kind": "callout",
+      "pairsWith": "if-you-sell-second-hand-goods.2",
+      "sourceHash": "f55aab85800ec32a",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die hoofbesigheidsaktiwiteite wat moet registreer, sluit in ’n afslaer, algemene handelaar, juwelier, motorhandelaar en skrootmetaalhandelaar."
+        }
+      ],
+      "hash": "0bf347be2d16bded",
+      "id": "if-you-sell-second-hand-goods.4",
+      "kind": "paragraph",
+      "sourceHash": "e838707a822acf12"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy gebruikte fone, skootrekenaars, meubels, juweliersware of vintage-klere koop en weer verkoop, geld dit vir jou. Registrasie is gratis met die SAPS 601-vorm by jou plaaslike polisiestasie."
+        }
+      ],
+      "hash": "da9b54c6fa29da50",
+      "id": "if-you-sell-second-hand-goods.5",
+      "kind": "paragraph",
+      "sourceHash": "6a7612ab55f17681"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Aanlyn verkoop"
+        }
+      ],
+      "depth": 2,
+      "hash": "3c0149126febb5ff",
+      "id": "selling-online",
+      "kind": "heading",
+      "sourceHash": "ad2700745b43e8f1",
+      "text": "Aanlyn verkoop"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Twee wette geld bo en behalwe alles anders: die Consumer Protection Act 68 of 2008 en die Electronic Communications and Transactions Act 25 of 2002."
+        }
+      ],
+      "hash": "00de109857bff47c",
+      "id": "selling-online.1",
+      "kind": "paragraph",
+      "sourceHash": "805f9c993ac21f42"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat op jou webwerf moet verskyn"
+        }
+      ],
+      "depth": 3,
+      "hash": "46bb9300b7247898",
+      "id": "what-must-appear-on-your-site",
+      "kind": "heading",
+      "sourceHash": "917e74d800b5fb86",
+      "text": "Wat op jou webwerf moet verskyn"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Artikel 43 van ECTA vereis dat verskaffers die volle prys van goedere of dienste bekend maak, insluitend bykomende koste, en inligting oor hulle regstatus en fisiese adres gee."
+        }
+      ],
+      "hash": "770ba229bac4b1ca",
+      "id": "what-must-appear-on-your-site.1",
+      "kind": "paragraph",
+      "sourceHash": "86cf97406b6bf223"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sit al hierdie dinge op jou webwerf:"
+        }
+      ],
+      "hash": "9e69a3b4d38c49cb",
+      "id": "what-must-appear-on-your-site.2",
+      "kind": "paragraph",
+      "sourceHash": "412c31e30e072fa2"
+    },
+    {
+      "hash": "193a0bc80f2a118f",
+      "id": "what-must-appear-on-your-site.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Jou volle wettige naam, en die maatskappyregistrasienommer as jy een het"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Fisiese adres, nie net ’n posbus nie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "E-posadres en telefoonnommer"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die volle prys, insluitend aflewering en elke ander koste"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Beleid oor terugsendings en terugbetalings"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Privaatheidskennisgewing (sjabloon in "
+          },
+          {
+            "doc": "paperwork/which-template-to-use-when",
+            "label": "03-documents/01",
+            "t": "docref"
+          },
+          {
+            "t": "text",
+            "v": ")"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "c783f53ab28318f2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die stap om die bestelling na te gaan"
+        }
+      ],
+      "depth": 3,
+      "hash": "3f07cbf1b686aa6a",
+      "id": "the-order-review-step",
+      "kind": "heading",
+      "sourceHash": "faa568cec34686dd",
+      "text": "Die stap om die bestelling na te gaan"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou betaalproses moet ’n stap insluit waar die kliënt die hele bestelling kan nagaan, insluitend produkte, hoeveelhede, pryse, afleweringskoste en bepalings, en enige foute kan regstel voordat hy dit afhandel. Dit voldoen aan artikel 43(2). As jy dit nie bied nie, kry die verbruiker ’n reg om binne 14 dae te kanselleer onder artikel 43(3)."
+        }
+      ],
+      "hash": "a56b472203b70ce2",
+      "id": "the-order-review-step.1",
+      "kind": "paragraph",
+      "sourceHash": "801d9c4efdaadb59"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voordat die kliënt betaal, moet jou webwerf vir hom ’n opsomming wys van alles wat hy koop, met alle koste, en hom toelaat om foute reg te maak. As jy hierdie stap oorslaan, kry die kliënt 14 dae om te kanselleer."
+        }
+      ],
+      "hash": "eedbf653461c8358",
+      "id": "the-order-review-step.2",
+      "kind": "callout",
+      "pairsWith": "the-order-review-step.1",
+      "sourceHash": "1f2e0f08202841ad",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Koopknoppie met een klik en geen skerm om die bestelling na te gaan nie, stel jou op elke bestelling bloot aan ’n week ekstra waarin die kliënt kan kanselleer."
+        }
+      ],
+      "hash": "2b4d94fb919bae08",
+      "id": "the-order-review-step.3",
+      "kind": "paragraph",
+      "sourceHash": "76cbc51191e92423"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die reg op ’n afkoelperiode van sewe dae"
+        }
+      ],
+      "depth": 3,
+      "hash": "df11b3d2169aa747",
+      "id": "the-seven-day-cooling-off-right",
+      "kind": "heading",
+      "sourceHash": "3c37690e3a674c04",
+      "text": "Die reg op ’n afkoelperiode van sewe dae"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Artikel 44 laat ’n verbruiker toe om ’n elektroniese transaksie sonder rede en sonder boete te kanselleer binne sewe dae nadat hy die goedere ontvang het, of nadat die ooreenkoms vir dienste gesluit is. Dit geld waar die verbruiker ’n natuurlike persoon is, ongeag die waarde van die transaksie, onderhewig aan die uitsluitings in artikel 42(2)."
+        }
+      ],
+      "hash": "2e79a4a5b9cd7e8d",
+      "id": "the-seven-day-cooling-off-right.1",
+      "kind": "paragraph",
+      "sourceHash": "ca67f46f6e6a879a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Enigiemand wat by jou webwerf koop, kan dit binne sewe dae terugstuur en sy volle geld terugkry, sonder om ’n rede te gee."
+        }
+      ],
+      "hash": "65f4376ad8f61ea1",
+      "id": "the-seven-day-cooling-off-right.2",
+      "kind": "callout",
+      "pairsWith": "the-seven-day-cooling-off-right.1",
+      "sourceHash": "cb4570b207992534",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die tydperk van sewe dae is wetlik bepaal en jy kan dit nie by kontrak uitsluit nie. ’n Bordjie \"geen terugbetalings nie\" op ’n aanlynwinkel kan nie teen ’n eis onder die afkoelperiode afgedwing word nie."
+        }
+      ],
+      "hash": "a4de7f9b89b9cbf8",
+      "id": "the-seven-day-cooling-off-right.3",
+      "kind": "paragraph",
+      "sourceHash": "3dc993feae6ed117"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die enigste koste wat jy vir die kansellasie aan die verbruiker mag oordra, is die direkte koste om die goedere terug te stuur."
+        }
+      ],
+      "hash": "b034c3eb67fe646a",
+      "id": "the-seven-day-cooling-off-right.4",
+      "kind": "paragraph",
+      "sourceHash": "544e116cec24fbbf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir dienste verval die reg op ’n afkoelperiode sodra die dienste gebruik is, en sekere transaksies is uitgesluit, insluitend sommige finansiële dienste en veilings."
+        }
+      ],
+      "hash": "b3b8c1fa9ce05548",
+      "id": "the-seven-day-cooling-off-right.5",
+      "kind": "paragraph",
+      "sourceHash": "a8c6054b9894f966"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Moenie ’n winkel se beleid oor terugsendings op ’n webwerf kopieer nie. Dit is verskillende regsituasies."
+        }
+      ],
+      "hash": "eaaddd0aa6bc7e44",
+      "id": "the-seven-day-cooling-off-right.6",
+      "kind": "paragraph",
+      "sourceHash": "9b9aae6529fb0108"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tydsberekening van aflewering"
+        }
+      ],
+      "depth": 3,
+      "hash": "050c0c465642eaed",
+      "id": "delivery-timing",
+      "kind": "heading",
+      "sourceHash": "5dc60b4532d48ddc",
+      "text": "Tydsberekening van aflewering"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Onder artikel 46 moet jy die bestelling binne 30 dae nadat jy dit ontvang het, uitvoer, tensy jy iets anders ooreengekom het. As jy nie kan lewer nie omdat die goedere nie beskikbaar is nie, moet jy die kliënt onmiddellik in kennis stel en enige betaling binne 30 dae ná daardie kennisgewing terugbetaal."
+        }
+      ],
+      "hash": "1ca32bf6f2d96343",
+      "id": "delivery-timing.1",
+      "kind": "paragraph",
+      "sourceHash": "8209d5bd938fa896"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lewer binne 30 dae, tensy jy iets anders ooreengekom het. As jy glad nie kan lewer nie, sê dit onmiddellik en betaal binne 30 dae terug."
+        }
+      ],
+      "hash": "54cb7830e0b2b5e8",
+      "id": "delivery-timing.2",
+      "kind": "callout",
+      "pairsWith": "delivery-timing.1",
+      "sourceHash": "bf1be758e4bd0930",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jou produkblad aflewering binne drie dae belowe, word daardie belofte jou ooreenkoms. Belowe wat jy werklik kan doen."
+        }
+      ],
+      "hash": "e8ba48674128fa0a",
+      "id": "delivery-timing.3",
+      "kind": "paragraph",
+      "sourceHash": "c27abfb4a56e23d6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die waarborg van ses maande"
+        }
+      ],
+      "depth": 2,
+      "hash": "7f6caa9791406f0d",
+      "id": "the-six-month-warranty",
+      "kind": "heading",
+      "sourceHash": "bbcae40c8b125e69",
+      "text": "Die waarborg van ses maande"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verbruikers is geregtig op goedere wat redelik geskik is vir hulle gewone doel, van goeie gehalte en in goeie werkende toestand is, vry van gebreke is, redelik duursaam is, en aan toepaslike standaarde voldoen."
+        }
+      ],
+      "hash": "286754e02cb88d62",
+      "id": "the-six-month-warranty.1",
+      "kind": "paragraph",
+      "sourceHash": "b5cbb8838b4a552c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Artikel 56 gee ’n geïmpliseerde waarborg van ses maande. As goedere binne ses maande breek en dit nie die kliënt se skuld is nie, kan hy oor die algemeen kies tussen herstel, vervanging of terugbetaling."
+        }
+      ],
+      "hash": "aab3cf08ec16f638",
+      "id": "the-six-month-warranty.2",
+      "kind": "paragraph",
+      "sourceHash": "7b80b5117fab2802"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bereken dit in jou pryse in. ’n Kleinhandelaar wat aanneem dat niks teruggestuur sal word nie, stel sy pryse verkeerd."
+        }
+      ],
+      "hash": "5ee8d7becfdb73f2",
+      "id": "the-six-month-warranty.3",
+      "kind": "paragraph",
+      "sourceHash": "a03afa4958627c90"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voorraad invoer"
+        }
+      ],
+      "depth": 2,
+      "hash": "381dc4809151e48f",
+      "id": "importing-stock",
+      "kind": "heading",
+      "sourceHash": "21508507e8d75aeb",
+      "text": "Voorraad invoer"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het ’n invoerderskode (importer's code) van SARS Doeane nodig. Dit is gratis en apart van jou registrasie vir inkomstebelasting."
+        }
+      ],
+      "hash": "e5437ea748e97645",
+      "id": "importing-stock.1",
+      "kind": "paragraph",
+      "sourceHash": "19a7a2e6838b4ba1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy betaal invoerreg plus 15% BTW op die geland waarde by die grens, selfs as jy nie vir BTW geregistreer is nie. Daardie BTW is ’n werklike koste wat jy nie kan terugkry nie, tensy jy ’n ondernemer is. Bou dit in jou geland koste in voordat jy bestel, nie daarna nie."
+        }
+      ],
+      "hash": "3f680b3de08157a3",
+      "id": "importing-stock.2",
+      "kind": "paragraph",
+      "sourceHash": "559fd684f2f9a29f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sommige goedere het ’n Letter of Authority (magtigingsbrief) van die National Regulator for Compulsory Specifications (NRCS) nodig voordat hulle in Suid-Afrika verkoop mag word. Dit dek baie elektriese produkte, beligting, proppe, laaiers en sommige motoronderdele. Invoerders word gedurig hierdeur betrap, en die voorraad kan dan nie wettig verkoop word nie."
+        }
+      ],
+      "hash": "68b9fdc1f0029422",
+      "id": "importing-stock.3",
+      "kind": "paragraph",
+      "sourceHash": "dd25b657785a4fcf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gaan die NRCS-vereiste na voordat jy ’n deposito aan ’n verskaffer betaal."
+        }
+      ],
+      "hash": "f3f3711bf5eabef8",
+      "id": "importing-stock.4",
+      "kind": "paragraph",
+      "sourceHash": "b427ebe0838dbc04"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Betalings"
+        }
+      ],
+      "depth": 2,
+      "hash": "fa95edea2e33cf62",
+      "id": "payments",
+      "kind": "heading",
+      "sourceHash": "900058d3e7340159",
+      "text": "Betalings"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vergelyk die fooie van betaalpoorte noukeurig. Vir ’n klein winkel is die persentasie per transaksie belangriker as die maandelikse fooi."
+        }
+      ],
+      "hash": "d909dc3a47d1e206",
+      "id": "payments.1",
+      "kind": "paragraph",
+      "sourceHash": "fe6f7edef3e71fe6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vra oor: die persentasie per transaksie, die vaste fooi per transaksie, die maandelikse fooi, hoe lank dit neem voordat die geld in jou rekening is, hoe hulle terugvorderings (chargebacks) hanteer, en of hulle kits-EFT ondersteun, wat baie Suid-Afrikaanse kliënte bo kaarte verkies."
+        }
+      ],
+      "hash": "0040ca265199694a",
+      "id": "payments.2",
+      "kind": "paragraph",
+      "sourceHash": "37c974deb6c8a7ca"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy kontant neem, gaan jou bank se fooie vir kontantdeposito’s na. Dit is dikwels die grootste enkele bankkoste vir ’n klein kleinhandelaar."
+        }
+      ],
+      "hash": "9dbe21975859af7d",
+      "id": "payments.3",
+      "kind": "paragraph",
+      "sourceHash": "9e6bad93665731be"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voorraadrekords"
+        }
+      ],
+      "depth": 2,
+      "hash": "84aa349ea5619c81",
+      "id": "stock-records",
+      "kind": "heading",
+      "sourceHash": "e93205467564c501",
+      "text": "Voorraadrekords"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sodra jy voorraad hou, het die sigblad in "
+        },
+        {
+          "doc": "paperwork/which-template-to-use-when",
+          "label": "03-documents/01",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " nog een blad nodig: voorraad op hande."
+        }
+      ],
+      "hash": "cbc738d17820ca56",
+      "id": "stock-records.1",
+      "kind": "paragraph",
+      "sourceHash": "ee1fe5efc8154ee8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hou rekord van die kosprys, verkoopprys, hoeveelheid en datum ontvang. Jy het die koste van verkoopte goedere vir jou belastingopgawe nodig, en jy moet weet watter items werklik geld maak."
+        }
+      ],
+      "hash": "b1e49fff91ddf885",
+      "id": "stock-records.2",
+      "kind": "paragraph",
+      "sourceHash": "f6495d77af5e1343"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Notas oor handelsmerk en bemarking"
+        }
+      ],
+      "depth": 2,
+      "hash": "d7c823a003845e98",
+      "id": "branding-and-marketing-notes",
+      "kind": "heading",
+      "sourceHash": "cf2e2a9a2f4c9c97",
+      "text": "Notas oor handelsmerk en bemarking"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik "
+        },
+        {
+          "label": "02-branding-and-marketing/",
+          "section": "branding",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ". Vir produkte, voeg dit by die naamopdrag:"
+        }
+      ],
+      "hash": "42caa7cc0e609744",
+      "id": "branding-and-marketing-notes.1",
+      "kind": "paragraph",
+      "sourceHash": "3c44872f666cd82b"
+    },
+    {
+      "hash": "abd6213e293e4211",
+      "id": "branding-and-marketing-notes.2",
+      "kind": "code",
+      "sourceHash": "b48716ecee5f0d8d",
+      "text": "Ek verkoop fisiese produkte. Maak seker dat die naam nie reeds ’n geregistreerde\nhandelsmerk in Suid-Afrika vir soortgelyke goedere is nie, en sê vir my hoe ek\ndit self op die CIPC se handelsmerkdatabasis kan nagaan.",
+      "variant": "prompt"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Produkfoto’s teen ’n gewone agtergrond, in daglig geneem, lei vir die meeste klein verkopers tot meer verkope as gestileerde foto’s. Hou beeldlêers onder 500 KB, want baie kliënte betaal vir data."
+        }
+      ],
+      "hash": "c41aebe033fe8a30",
+      "id": "branding-and-marketing-notes.3",
+      "kind": "paragraph",
+      "sourceHash": "1bf4cb6be1c12ad8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou kontrolelys"
+        }
+      ],
+      "depth": 2,
+      "hash": "913a4f09fb30d35c",
+      "id": "your-checklist",
+      "kind": "heading",
+      "sourceHash": "44586aab28889f46",
+      "text": "Jou kontrolelys"
+    },
+    {
+      "hash": "3d05580040913c40",
+      "id": "your-checklist.1",
+      "items": [
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Gaan na of jou munisipaliteit ’n handelaarslisensie vereis"
+            }
+          ],
+          "doc": "business-types/retail-online",
+          "id": "business-types/retail-online:05b6a4b6",
+          "when": {
+            "businessTypes": [
+              "retail-online"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "As jy gebruikte goedere verkoop, registreer by SAPS onder die Second-Hand Goods Act"
+            }
+          ],
+          "doc": "business-types/retail-online",
+          "id": "business-types/retail-online:51431599",
+          "when": {
+            "businessTypes": [
+              "retail-online"
+            ],
+            "tags": [
+              "second-hand"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "As jy invoer, kry ’n invoerderskode van SARS en gaan die NRCS-vereistes na"
+            }
+          ],
+          "doc": "business-types/retail-online",
+          "id": "business-types/retail-online:7606eb50",
+          "when": {
+            "businessTypes": [
+              "retail-online"
+            ],
+            "tags": [
+              "import"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Sit die inligting wat ECTA artikel 43 vereis op jou webwerf"
+            }
+          ],
+          "doc": "business-types/retail-online",
+          "id": "business-types/retail-online:3f057ea5",
+          "when": {
+            "businessTypes": [
+              "retail-online"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Voeg ’n stap by om die bestelling na te gaan voor die betaling"
+            }
+          ],
+          "doc": "business-types/retail-online",
+          "id": "business-types/retail-online:857a560f",
+          "when": {
+            "businessTypes": [
+              "retail-online"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Skryf ’n beleid oor terugsendings wat die reg op ’n afkoelperiode van sewe dae eerbiedig"
+            }
+          ],
+          "doc": "business-types/retail-online",
+          "id": "business-types/retail-online:3997af12",
+          "when": {
+            "businessTypes": [
+              "retail-online"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Publiseer jou privaatheidskennisgewing"
+            }
+          ],
+          "doc": "business-types/retail-online",
+          "id": "business-types/retail-online:eead27a2",
+          "when": {
+            "businessTypes": [
+              "retail-online"
+            ]
+          }
+        },
+        {
+          "block": "your-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Stel voorraadopsporing op saam met jou kasboek"
+            }
+          ],
+          "doc": "business-types/retail-online",
+          "id": "business-types/retail-online:46751df3",
+          "when": {
+            "businessTypes": [
+              "retail-online"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "c8e92c9a6a626a25"
+    }
+  ],
+  "contentHash": "76ecfb5b8317ae39",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Besigheidstipe: kleinhandel en aanlyn verkoop",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "do-you-need-a-licence",
+      "text": "Het jy ’n lisensie nodig?"
+    },
+    {
+      "depth": 2,
+      "id": "if-you-sell-second-hand-goods",
+      "text": "As jy tweedehandse goedere verkoop"
+    },
+    {
+      "depth": 2,
+      "id": "selling-online",
+      "text": "Aanlyn verkoop"
+    },
+    {
+      "depth": 3,
+      "id": "what-must-appear-on-your-site",
+      "text": "Wat op jou webwerf moet verskyn"
+    },
+    {
+      "depth": 3,
+      "id": "the-order-review-step",
+      "text": "Die stap om die bestelling na te gaan"
+    },
+    {
+      "depth": 3,
+      "id": "the-seven-day-cooling-off-right",
+      "text": "Die reg op ’n afkoelperiode van sewe dae"
+    },
+    {
+      "depth": 3,
+      "id": "delivery-timing",
+      "text": "Tydsberekening van aflewering"
+    },
+    {
+      "depth": 2,
+      "id": "the-six-month-warranty",
+      "text": "Die waarborg van ses maande"
+    },
+    {
+      "depth": 2,
+      "id": "importing-stock",
+      "text": "Voorraad invoer"
+    },
+    {
+      "depth": 2,
+      "id": "payments",
+      "text": "Betalings"
+    },
+    {
+      "depth": 2,
+      "id": "stock-records",
+      "text": "Voorraadrekords"
+    },
+    {
+      "depth": 2,
+      "id": "branding-and-marketing-notes",
+      "text": "Notas oor handelsmerk en bemarking"
+    },
+    {
+      "depth": 2,
+      "id": "your-checklist",
+      "text": "Jou kontrolelys"
+    }
+  ],
+  "id": "business-types/retail-online",
+  "kind": "guide",
+  "lang": "af",
+  "order": 5,
+  "readingTime": 7,
+  "related": [
+    "paperwork/which-template-to-use-when",
+    "business-types/food"
+  ],
+  "route": "business-types/retail-online/",
+  "section": "business-types",
+  "slug": "retail-online",
+  "sourcePath": "04 Your kind of business/04-retail-and-online-shop.md",
+  "sources": {
+    "acts": [
+      "consumer-protection-act-68-of-2008",
+      "electronic-communications-and-transactions-act-25-of-2002",
+      "businesses-act-71-of-1991",
+      "second-hand-goods-act-6-of-2009"
+    ],
+    "entries": [
+      "national-consumer-commission--consumer-protection-in-e-commerce",
+      "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
+      "dommisse-attorneys",
+      "mj-kotze-inc-what-is-ecta",
+      "lawtons-africa",
+      "saps--second-hand-goods-act-6-of-2009-full-text",
+      "saps--national-instruction-2-of-2016-second-hand-goods-dealers-and-recyclers",
+      "hanekom-attorneys-webuycars-consent-order",
+      "businesses-act-71-of-1991",
+      "cipc-trade-mark-search"
+    ]
+  },
+  "summary": "Lees eers 01-core/. Hierdie lêer voeg die reëls by wat geld wanneer jy fisiese produkte verkoop.",
+  "tags": [
+    "business-types"
+  ],
+  "terms": [
+    {
+      "meaning": "Die wet vir aanlynverkope.",
+      "term": "ECTA"
+    },
+    {
+      "meaning": "Die kliënt se reg om ’n aanlynaankoop binne sewe dae terug te stuur en sy geld terug te kry.",
+      "term": "Afkoelperiode (cooling-off)"
+    },
+    {
+      "meaning": "Die waarborg van ses maande wat die wet by elke verkoop voeg.",
+      "term": "Geïmpliseerde waarborg (implied warranty)"
+    },
+    {
+      "meaning": "’n Gratis SARS-nommer wat jy nodig het om goedere die land in te bring.",
+      "term": "Invoerderskode (importer's code)"
+    },
+    {
+      "meaning": "Die reguleerder, en die magtigingsbrief (Letter of Authority), vir sekere produkte soos elektriese goedere. Sonder die brief mag die goedere nie verkoop word nie.",
+      "term": "NRCS / LOA"
+    },
+    {
+      "meaning": "Die wet wat vereis dat enigiemand wat gebruikte goedere herverkoop, by die polisie registreer.",
+      "term": "Second-Hand Goods Act"
+    }
+  ],
+  "title": "Besigheidstipe: kleinhandel en aanlyn verkoop",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}
