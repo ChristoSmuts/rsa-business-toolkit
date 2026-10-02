@@ -233,7 +233,7 @@ Hierdie een dokument is die verskil tussen ’n gebrek wat bekend gemaak is en �
 
 Die Motor Industry Ombudsman of South Africa (MIOSA) bied onafhanklike geskilbeslegting vir die motorbedryf en is gratis vir verbruikers. Daaronder is die Small Claims Court (Kleineisehof), waar jy geen prokureur nodig het nie. Die limiet daarvan is R30,000, bepaal in Staatskoerant (Government Gazette) 55038, Goewermentskennisgewing 7717 van 20 Julie 2026, van krag vanaf 1 Augustus 2026. Dit het die limiet van R20,000 vervang wat sedert 2019 gegeld het. Baie webwerwe noem nog R20,000.
 
-Let op in watter rigting dit werk. As jy deur ’n maatskappy handel dryf, kan jy nie self ’n eis in die Small Claims Court instel nie: net ’n natuurlike persoon mag daar ’n eis instel. ’n Koper kan wel ’n eis teen jou maatskappy daar instel, en ’n benoemde direkteur mag namens die maatskappy verskyn, maar om ’n kliënt te agtervolg wat jou nie betaal het nie, sal jy die landdroshof en ’n prokureur nodig hê.
+Let op in watter rigting dit werk. As jy deur ’n maatskappy handel dryf, kan jy nie self ’n eis in die Small Claims Court instel nie: net ’n natuurlike persoon mag daar ’n eis instel. ’n Koper kan wel ’n eis teen jou maatskappy daar instel, en ’n benoemde direkteur mag namens die maatskappy verskyn, maar om geld te verhaal by ’n kliënt wat jou nie betaal het nie, sal jy die landdroshof en ’n prokureur nodig hê.
 
 Daarbo, die landdroshowe. ’n Distrikshof het siviele jurisdiksie waar die eis R200,000 of minder is, en ’n streekhof tussen R200,000 en R400,000. Groter eise gaan na die Hooggeregshof.
 

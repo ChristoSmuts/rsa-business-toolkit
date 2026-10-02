@@ -82,7 +82,7 @@ As jy KI-gereedskap gebruik om werk vir kliënte te maak, sê dit in jou kontrak
 
 ## Betaal word
 
-Vryskutwerkers in Suid-Afrika verloor meer geld aan laat betaling as aan lae tariewe.
+Vryskutwerkers in Suid-Afrika verloor meer geld weens laat betaling as weens lae tariewe.
 
 Deposito vooraf. 50% is normaal vir projekwerk. Geen deposito nie, geen begin nie.
 
