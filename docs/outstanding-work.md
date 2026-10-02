@@ -20,25 +20,22 @@ Fixed by giving the `page` fixture a setup budget of its own (`tests/e2e/helpers
 
 Read `docs/build-plan.md` first for the design, then this file for where the work stopped. `docs/reviews/merge-checklist.md` holds the tasks that must happen at merge time.
 
-## Where to pick up
+## Where to pick up (23 September, work stopped on the user's instruction)
 
-**WP-20 milestone 1 (rendering and navigation) is built on `wp/site` and awaiting review.** It adds
-`src/components/content/`, `src/components/trust/`, `src/components/navigation/`, the pure helpers in
-`src/lib/content/` and `src/lib/nav.ts`, and one page: `/design-system/content/` and its Afrikaans
-twin, the live reference for all of it, made only of real data from `src/data/`. Milestone 2 (pages
-and routes) has not started, and takes three things with it:
+The foundation has no outstanding work and `pnpm gate` is green on `main`.
 
-1. every route in build plan B1 under `src/pages/[...locale]/`, and `src/layouts/Doc.astro`, which
-   the article half of the reference page is the working draft of;
-2. removing the generated `KNOWN_FUTURE_ROUTES` block (see the known limits below), which the audit
-   will insist on as soon as the routes exist;
-3. `tests/lighthouse/urls.json`, which still lists only `/`: the reference page is `noindex` and not
-   a page type a reader visits, so the real page types go in with milestone 2.
+**The site package has started.** Branch `wp/site`, worktree `C:\_Projects\Local\bt-wt\site`, tip `9de5fa2`, clean, based on `main` at `b69fd76`.
 
-The interactive packages, the Afrikaans document translations and the accuracy review phase are
-still **paused pending the user's go-ahead**. Do not start any of them until the user says so.
+- **Milestone 1 (rendering and navigation) is built and its own gate is green**: all 12 block kinds and 10 inline-run kinds rendered from the real corpus, the D5 trust components (`AiNotice`, `TranslationNotice`, `SourcesForPage`), the full navigation set, and one `noindex` reference page at `/design-system/content/`. 886 unit tests across 27 files; chromium, webkit, mobile, nojs and a11y all green run one at a time. The branch's own handover commit is `9de5fa2`.
+- **Milestone 1 has NOT been reviewed.** A review pass was running and was stopped part-way, during guard-mutation testing. **No report was written**, so there are no findings to act on and nothing was concluded. It left one deliberate mutation in `src/lib/content/manifest.ts` (a `docrefText` branch), which has been reverted — the worktree is clean and matches `9de5fa2`.
+- **Next step: re-run the Milestone 1 review from the start** (`docs/reviews/WP-20-m1-pass1.md` does not exist yet), then the fix round it calls for, then Milestone 2 (pages and routes) per the brief, which wants a review after each milestone and a whole-package pass at the end.
 
-When work does resume, the suggested order is the one in the build plan Part D: the site package (rendering and navigation, then pages and routes), then the interactive packages, with the Afrikaans translations able to run alongside.
+While building Milestone 1 the author found and fixed three real defects in already-merged, already-reviewed code, which is worth knowing when reviewing it:
+- `TableScroll` was not `position: relative`, so absolutely positioned descendants escaped the scroll region and the document measured 581px wide at a 320px viewport with nothing visibly out of place. That had survived six design-system review passes.
+- `/design-system/` linked `lookup/sources/`, which is a document id and not a route (the route is `sources/`), so that `KNOWN_FUTURE_ROUTES` entry could never self-delete.
+- `pnpm test:a11y` caught a defect the author had just shipped: fenced code blocks were focusable scrollable regions.
+
+The interactive packages, the Afrikaans document translations and the accuracy review phase remain **paused pending the user's go-ahead**. The suggested order after the site package is the one in the build plan Part D.
 
 Two things need a decision from the user before anything is published:
 - the licence (MIT for code, the toolkit's own terms for content);
