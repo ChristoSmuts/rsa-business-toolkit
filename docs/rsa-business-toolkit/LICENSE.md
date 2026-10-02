@@ -1,6 +1,6 @@
 # Licence for the guide's text
 
-The text of the SA Business Toolkit guide, in this folder and in its Afrikaans translation, is dedicated to the public domain under the Creative Commons CC0 1.0 Universal Public Domain Dedication.
+To the extent possible under law, Christo Smuts has waived all copyright and related or neighbouring rights to the text of the SA Business Toolkit guide, in this folder and in its Afrikaans translation, under the Creative Commons CC0 1.0 Universal Public Domain Dedication. Where a waiver is not effective, CC0 1.0 grants the same freedoms as a licence.
 
 The full legal code is at <https://creativecommons.org/publicdomain/zero/1.0/legalcode>.
 

@@ -192,6 +192,12 @@ describe('language of parts on an Afrikaans page', () => {
     ]);
   });
 
+  it('treats a short run of codes as a name, the same in both languages', () => {
+    const enName = '<html lang="en-ZA"><body><p>CC0 1.0</p><p>SARS EMP201</p></body></html>';
+    const afName = '<html lang="af-ZA"><body><p>CC0 1.0</p><p>SARS EMP201</p></body></html>';
+    expect(langProblems(afName, enName)).toEqual([]);
+  });
+
   it('fails English text that inherits Afrikaans', () => {
     const af = '<html lang="af-ZA"><body><h1>Register: what you actually need</h1></body></html>';
     expect(langProblems(af, en)).toEqual([

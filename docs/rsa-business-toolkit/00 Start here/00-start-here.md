@@ -102,7 +102,7 @@ Three numbers changed in 2026 and most websites still have them wrong:
 
 ## Licence
 
-This guide is in the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). Use it, copy it, change it, give it to someone else, for any purpose. No attribution required.
+This guide is dedicated to the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). Use it, copy it, change it, give it to someone else, for any purpose. No attribution required.
 
 If you pass it on, please keep [How this was made and how to check it](02-how-this-was-made.md) and [Sources and verification register](../05%20Look%20it%20up/03-sources-and-verification-register.md) with it, so the next person knows how it was made and can check the facts.
 

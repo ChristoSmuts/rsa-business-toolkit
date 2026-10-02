@@ -57,6 +57,11 @@ test.describe('the D5 trust pieces on every document page', () => {
         await expect(first).toHaveClass(/st-ai-notice/);
         // Present is not enough: a stray rule could hide it on every page (review WP-20 pass 8).
         await expect(first).toBeVisible();
+        // Visible is not enough either: a visually hidden notice is a 1px box (review pass 9).
+        expect(
+          (await first.boundingBox())?.height ?? 0,
+          'the AI notice has real height',
+        ).toBeGreaterThan(40);
         await expect(first.locator('a')).toHaveAttribute(
           'href',
           `${basePath}${prefix}start/how-this-was-made/`,
@@ -65,12 +70,18 @@ test.describe('the D5 trust pieces on every document page', () => {
         const sources = page.locator('#sources-for-this-page').locator('xpath=..');
         await expect(sources).toBeVisible();
         const entries = await sources.locator('.st-source').count();
-        const emptyEntries = await sources
-          .locator('.st-source')
-          .evaluateAll(
-            (nodes) => nodes.filter((node) => (node.textContent ?? '').trim().length < 3).length,
-          );
-        expect(emptyEntries, 'a source entry with no text').toBe(0);
+        // Each entry's own title must have text: badges and hidden link text alone do not count
+        // (reviews WP-20 passes 8 and 9). The Acts entry has no link, so its heading is the title.
+        const emptyEntries = await sources.locator('.st-source').evaluateAll(
+          (nodes) =>
+            nodes.filter((node) => {
+              const title =
+                node.querySelector('.st-source__title a > span:first-child, .st-source__name') ??
+                node.querySelector('.st-source__title');
+              return (title?.textContent ?? '').trim().length < 3;
+            }).length,
+        );
+        expect(emptyEntries, 'a source entry with an empty title').toBe(0);
         const note = (await sources.locator('p.st-hint').first().innerText()).trim();
         expect(entries > 0 || note.length > 10, 'sources listed, or a note saying why not').toBe(
           true,
@@ -377,10 +388,15 @@ test.describe('navigation between real pages', () => {
 
     // Scrolling from the keyboard inside the open menu closes it without losing focus: focus goes
     // back to the summary, as with Escape (review WP-20 pass 8).
-    await page.evaluate(() => window.scrollTo(0, 0));
+    // Start from a settled page: the site scrolls smoothly, and a test that opens the menu
+    // mid-scroll proves nothing either way (review WP-20 pass 9).
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
     await read.locator('summary').focus();
     await page.keyboard.press('Enter');
+    expect(await isOpen(read)).toBe(true);
     await read.locator('a').first().focus();
+    await expect(read.locator('a').first()).toBeFocused();
     for (let step = 0; step < 4; step++) await page.keyboard.press('ArrowDown');
     await expect.poll(() => isOpen(read)).toBe(false);
     await expect(read.locator('summary')).toBeFocused();

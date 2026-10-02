@@ -119,10 +119,17 @@ export function enhanceTopbarMenus(doc: Document = document, win: Window = windo
   /** Scroll distance after which an open menu closes, in CSS pixels. */
   const SCROLL_CLOSE = 48;
   let openedAt = 0;
+  /** The menu `openedAt` belongs to; `toggle` is async, so a scroll can see a menu first. */
+  let measured: HTMLDetailsElement | undefined;
   const openMenu = (): HTMLDetailsElement | undefined => menus.find((menu) => menu.open);
   for (const menu of menus) {
     menu.addEventListener('toggle', () => {
-      if (menu.open) openedAt = win.scrollY;
+      if (!menu.open) {
+        if (measured === menu) measured = undefined;
+      } else if (measured !== menu) {
+        measured = menu;
+        openedAt = win.scrollY;
+      }
     });
     menu.addEventListener('focusout', (event) => {
       const next = event.relatedTarget;
@@ -144,7 +151,17 @@ export function enhanceTopbarMenus(doc: Document = document, win: Window = windo
     'scroll',
     () => {
       const menu = openMenu();
-      if (!menu || Math.abs(win.scrollY - openedAt) <= SCROLL_CLOSE) return;
+      if (!menu) {
+        measured = undefined;
+        return;
+      }
+      // A menu opened mid-scroll: measure from here, not from a stale position (review p9).
+      if (measured !== menu) {
+        measured = menu;
+        openedAt = win.scrollY;
+        return;
+      }
+      if (Math.abs(win.scrollY - openedAt) <= SCROLL_CLOSE) return;
       // Closing a menu that holds focus would drop focus to <body>; put it on the summary, as
       // Escape does (review WP-20 pass 8).
       const hadFocus = menu.contains(doc.activeElement);

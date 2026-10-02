@@ -76,4 +76,4 @@ In the repository settings, set the Pages source to GitHub Actions.
 
 - The website's code is open source under the MIT licence (`LICENSE`).
 - The guide's text, in `docs/rsa-business-toolkit/` and its translations, is in the public domain under CC0 1.0 (`docs/rsa-business-toolkit/LICENSE.md`): use it for anything, with no attribution required.
-- Every dependency is free and open source. Libraries are MIT, ISC, Apache-2.0 or BSD. The two web fonts are under the SIL Open Font License 1.1, and axe-core, used only in tests, is MPL-2.0.
+- Every dependency is under a free and open-source licence; `pnpm licenses list` prints the full list. What ships to readers is Astro's output and a few small MIT libraries, the Lucide icons (ISC) and two web fonts (SIL Open Font License 1.1). Build and test tools carry other open-source licences, such as MPL-2.0 (axe-core, lightningcss).

@@ -239,13 +239,13 @@ function sharedStrings(): Set<string> {
  * Text CLAUDE.md requires to stay byte-identical in Afrikaans, so it is the same in both twins
  * without being English: numbers, rand amounts as the English markdown writes them ("R2.3 million"),
  * URLs and domain names, and codes: one all-caps token with a digit (VAT201, EMP201) or of at
- * most five letters (SARS, CIPC). Upper-case words with spaces ("TAX INVOICE") are words, and are
- * checked (review WP-20 pass 8). Names such as "Google Drive"
+ * most five letters (SARS, CIPC), or a short run of such tokens ("CC0 1.0"). Upper-case words
+ * ("TAX INVOICE") are words, and are checked (review WP-20 passes 8, 9). Names such as "Google Drive"
  * cannot be told apart from English words; the translation package extends `sharedStrings` or this
  * pattern when its first document lands (backlog, review WP-20 pass 7).
  */
 const LANGUAGE_NEUTRAL =
-  /^(?:[^\p{L}]+|R[\d.,]+(?: million)?|(?:https?:\/\/)?[\w-]+(?:\.[\w-]+)+(?:\/\S*)?|(?=[\p{Lu}\d&./-]*\d)[\p{Lu}\d&./-]{2,}|\p{Lu}{2,5})$/u;
+  /^(?:[^\p{L}]+|R[\d.,]+(?: million)?|(?:https?:\/\/)?[\w-]+(?:\.[\w-]+)+(?:\/\S*)?|(?:(?:(?=[\p{Lu}\d&./-]*\d)[\p{Lu}\d&./-]{2,}|\p{Lu}{2,5})(?: |$))+)$/u;
 
 /**
  * Language of parts on an Afrikaans page (build plan B5, WCAG 3.1.2; reviews WP-20 passes 6, 7), in

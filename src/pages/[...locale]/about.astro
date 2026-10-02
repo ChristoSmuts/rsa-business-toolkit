@@ -13,7 +13,7 @@ import type { Locale } from '../../i18n/locales';
 import { loadManifest } from '../../lib/content/collections';
 import { docHref } from '../../lib/content/manifest';
 import { localeStaticPaths } from '../../lib/i18n-routes';
-import { pageTitle } from '../../lib/pages';
+import { pageTitle, splitAroundParam } from '../../lib/pages';
 import { href } from '../../lib/paths';
 import { APP_ROUTES, NAV_DOC_IDS } from '../../lib/routes';
 
@@ -28,7 +28,9 @@ interface Props {
 const { locale } = Astro.props;
 /** The guide's text licence, as `docs/rsa-business-toolkit/LICENSE.md` names it. */
 const CONTENT_LICENCE = 'CC0 1.0';
+const CONTENT_LICENCE_URL = 'https://creativecommons.org/publicdomain/zero/1.0/';
 const t = useTranslations(locale);
+const licenceParts = splitAroundParam((contentLicence) => t('about.licence', { contentLicence }));
 const manifest = await loadManifest();
 const howMadeHref = docHref(manifest, NAV_DOC_IDS.howThisWasMade, locale);
 const sourcesHref = docHref(manifest, NAV_DOC_IDS.sources, locale);
@@ -71,7 +73,9 @@ const sourcesHref = docHref(manifest, NAV_DOC_IDS.sources, locale);
 
     <section class="st-stack" aria-labelledby="about-licence">
       <h2 id="about-licence">{t('about.licenceHeading')}</h2>
-      <p>{t('about.licence', { contentLicence: CONTENT_LICENCE })}</p>
+      {/* One line on purpose: a line break here renders as a space inside "(CC0 1.0)". */}
+      <!-- prettier-ignore -->
+      <p>{licenceParts[0]}<a href={CONTENT_LICENCE_URL} rel="noopener noreferrer">{CONTENT_LICENCE}</a>{licenceParts[1]}</p>
     </section>
   </div>
 </Page>

@@ -273,7 +273,7 @@ The top bar's Read and Tools menus share a `name`, so the browser keeps one open
 script. `navigation.ts` adds what `<details>` lacks: Escape closes the open menu and returns focus to
 its summary (heard on the document, so it works after a Safari click that focuses nothing), a click
 or focus outside closes it, and scrolling closes it, moving focus to the summary if it was inside,
-so an open list never rides the sticky bar over the article.
+so an open list never rides the sticky bar over the article. A side effect, accepted: after a scroll closes the menu and focus lands on its summary, Space toggles the menu rather than paging the document, as it does on any focused `<summary>`.
 
 Without JavaScript the drawer cannot open, and it does not have to: below 1024px `SiteHeader` shows
 the same `<details>` menus stacked whenever `<html>` has no `js` class, so a phone with scripting off
