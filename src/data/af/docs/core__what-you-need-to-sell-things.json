@@ -270,10 +270,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Die kategorieë wat gewoonlik ’n munisipale handelslisensie vereis, sluit in kleinhandel en diens van kos (restaurante, wegneemetes, kafees, straatkosverkopers, spyseniering, spaza-winkels) en gesondheidsinstellings (gesondheids-, skoonheids- of liggaamsbehandelingsdienste, insluitend haarkappers, barbiers, skoonheidsalonne, naelsalonne en tatoeëerateljees)."
+          "v": "Die kategorieë wat gewoonlik ’n munisipale handelslisensie vereis, sluit in kleinhandel in kos en kosdienste (restaurante, wegneemetes, kafees, straatkosverkopers, spyseniering, spaza-winkels) en gesondheidsinstellings (gesondheids-, skoonheids- of liggaamsbehandelingsdienste, insluitend haarkappers, barbiers, skoonheidsalonne, naelsalonne en tatoeëerateljees)."
         }
       ],
-      "hash": "aefbb5488844ce98",
+      "hash": "0bf7f41e84dac2aa",
       "id": "the-general-rule.6",
       "kind": "paragraph",
       "sourceHash": "3e833788bb2013e9"
@@ -593,10 +593,10 @@
       "c": [
         {
           "t": "text",
-          "v": "As jy skoonheidsmiddels maak of invoer, geld die Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 vir die produk self. Etikettering en bewerings oor bestanddele word gereguleer. Moenie beweer dat ’n produk ’n mediese toestand behandel nie, tensy jy gereed is dat dit as ’n medisyne geklassifiseer word."
+          "v": "As jy skoonheidsmiddels maak of invoer, geld die Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 vir die produk self. Etikettering en bewerings oor bestanddele word gereguleer. Moenie beweer dat ’n produk ’n mediese toestand behandel nie, tensy jy daarop voorbereid is dat dit as ’n medisyne geklassifiseer word."
         }
       ],
-      "hash": "e291f168c725a179",
+      "hash": "ddcb1e59e5075b1b",
       "id": "if-you-sell-beauty-or-body-treatments.3",
       "kind": "paragraph",
       "sourceHash": "8bd2fd607a3fa70d"
@@ -994,10 +994,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Jy sal invoerbelasting plus 15% BTW op die gelande waarde by die grens betaal, selfs as jy nie vir BTW geregistreer is nie. Daardie BTW is ’n werklike koste vir jou as jy dit nie kan terugeis nie, so bou dit in jou pryse in voordat jy bestel."
+          "v": "Jy sal invoerreg plus 15% BTW op die gelande waarde by die grens betaal, selfs as jy nie vir BTW geregistreer is nie. Daardie BTW is ’n werklike koste vir jou as jy dit nie kan terugeis nie, so bou dit in jou pryse in voordat jy bestel."
         }
       ],
-      "hash": "b686cd254be3584b",
+      "hash": "7deb5d995cfefb32",
       "id": "if-you-import-anything.2",
       "kind": "paragraph",
       "sourceHash": "fafdc53db7b61e21"
@@ -1205,10 +1205,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Daar is ’n geïmpliseerde waarborg van ses maande op goedere. As goedere binne ses maande breek, kan die kliënt oor die algemeen ’n herstel, vervanging of terugbetaling eis, en die keuse is gewoonlik syne of hare, nie joune nie."
+          "v": "Daar is ’n geïmpliseerde waarborg van ses maande op goedere. As goedere binne ses maande faal, kan die kliënt oor die algemeen ’n herstel, vervanging of terugbetaling eis, en die keuse is gewoonlik syne of hare, nie joune nie."
         }
       ],
-      "hash": "879031f7be2fe2f4",
+      "hash": "0a23d09fd4172a22",
       "id": "rules-that-apply-to-everyone-selling-anything.3",
       "kind": "paragraph",
       "sourceHash": "02e078e76524f3f5"
@@ -1344,7 +1344,7 @@
       "sourceHash": "0f6bf7e5d95d8cee"
     }
   ],
-  "contentHash": "86db685c50713afe",
+  "contentHash": "f24be99b97353c5c",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

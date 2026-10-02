@@ -1086,16 +1086,16 @@
       "c": [
         {
           "t": "text",
-          "v": "Om jou voertuig te brandmerk. Voertuigtekens is gewoonlik ’n aftrekbare advertensiekoste en is dikwels die goedkoopste advertensies wat ’n plaaslike besigheid kan koop. Kontroleer jou munisipale verordeninge vir beperkings op die grootte van tekens."
+          "v": "Jou handelsmerk op jou voertuig. Voertuigtekens is gewoonlik ’n aftrekbare advertensiekoste en is dikwels die goedkoopste advertensies wat ’n plaaslike besigheid kan koop. Kontroleer jou munisipale verordeninge vir beperkings op die grootte van tekens."
         }
       ],
-      "hash": "bede79979742e317",
+      "hash": "87b0b646a59ff45c",
       "id": "other-things-to-check.3",
       "kind": "paragraph",
       "sourceHash": "2e1fcdfb63c776b5"
     }
   ],
-  "contentHash": "2bc20d07d8fbf61f",
+  "contentHash": "9b4efd47df50fa6b",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

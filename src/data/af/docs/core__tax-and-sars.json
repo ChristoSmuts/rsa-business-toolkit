@@ -46,7 +46,7 @@
       "text": "Woorde wat in hierdie lêer gebruik word"
     },
     {
-      "hash": "cbb084bbfbe30a91",
+      "hash": "b84d8a4749e7f730",
       "id": "words-used-in-this-file.1",
       "intro": [
         {
@@ -163,7 +163,7 @@
           "term": [
             {
               "t": "text",
-              "v": "BTW"
+              "v": "BTW (VAT)"
             }
           ]
         },
@@ -363,10 +363,10 @@
       "c": [
         {
           "t": "text",
-          "v": "As jy enige soort besigheid bedryf, moet jy twee keer per jaar belasting vooruit betaal. Dit word genoem om ’n voorlopige belastingbetaler te wees. Dit geld of jy as jouself of deur ’n maatskappy handel dryf."
+          "v": "As jy enige soort besigheid bedryf, moet jy twee keer per jaar belasting vooruit betaal. Iemand wat dit moet doen, word ’n voorlopige belastingbetaler genoem. Dit geld of jy as jouself of deur ’n maatskappy handel dryf."
         }
       ],
-      "hash": "cee7463e1ae0801b",
+      "hash": "edb7b0a3faa8fa04",
       "id": "provisional-tax.3",
       "kind": "callout",
       "pairsWith": "provisional-tax.2",
@@ -513,10 +513,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Dit geld selfs as die maatskappy niks verdien het nie. ’n Dormante maatskappy dien steeds ’n nul-ITR14 by SARS en ’n jaarlikse nulopgawe by CIPC in. Dit is die enkele mees algemene manier waarop klein eienaars skuld by die staat opbou sonder om dit agter te kom."
+          "v": "Dit geld selfs as die maatskappy niks verdien het nie. ’n Dormante maatskappy dien steeds ’n nul-ITR14 by SARS en ’n jaarlikse nulopgawe by CIPC in. Dit is die algemeenste manier waarop klein eienaars skuld by die staat opbou sonder om dit agter te kom."
         }
       ],
-      "hash": "64e2855e00c479b6",
+      "hash": "d7919e1a869070c7",
       "id": "what-sars-wants-from-a-company.3",
       "kind": "paragraph",
       "sourceHash": "67ca6bf9178d67e0"
@@ -636,7 +636,7 @@
       "sourceHash": "d0a7d19692cee264"
     },
     {
-      "hash": "5d09ebd81fff3bae",
+      "hash": "ac0f5a1c70e53a60",
       "id": "route-2-claim-every-real-expense.3",
       "items": [
         [
@@ -692,7 +692,7 @@
         [
           {
             "t": "text",
-            "v": "Rekenkundige en regsfooie"
+            "v": "Rekenmeesters- en regsfooie"
           }
         ],
         [
@@ -1530,7 +1530,7 @@
       "sourceHash": "cbc3a48ec3dc57e9"
     }
   ],
-  "contentHash": "43c932a5fdac3a8c",
+  "contentHash": "b53689727d89e6ff",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -1686,7 +1686,7 @@
     },
     {
       "meaning": "15% belasting wat by verkope bygevoeg word, net deur besighede wat daarvoor geregistreer is.",
-      "term": "BTW"
+      "term": "BTW (VAT)"
     },
     {
       "meaning": "’n Koste wat jy van inkomste mag aftrek voordat belasting bereken word.",

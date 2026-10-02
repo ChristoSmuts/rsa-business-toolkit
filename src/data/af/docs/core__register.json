@@ -266,10 +266,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Die maatskappy is ’n aparte regspersoon. Dit het sy eie registrasienommer. Dit kan dinge besit en kontrakte teken, en ’n eis kan op sy eie teen dit ingestel word."
+          "v": "Die maatskappy is ’n aparte regspersoon. Dit het sy eie registrasienommer. Dit kan dinge besit en kontrakte teken, en ’n eis kan teen die maatskappy self ingestel word."
         }
       ],
-      "hash": "83998a7cc667e44c",
+      "hash": "7b5bfeaa9eab1bf3",
       "id": "private-company-pty-ltd.1",
       "kind": "paragraph",
       "sourceHash": "dcae521bbdd87aa0"
@@ -394,7 +394,7 @@
       "sourceHash": "4a0553ddcf8d65e9"
     },
     {
-      "hash": "480f3dbff741c366",
+      "hash": "2128900871be5537",
       "id": "which-one-should-you-choose.4",
       "items": [
         [
@@ -412,7 +412,7 @@
         [
           {
             "t": "text",
-            "v": "Jou werk ernstige verlies of besering kan veroorsaak, sodat jy ’n regsmuur tussen die besigheid en jou huis wil hê"
+            "v": "Jou werk ernstige verlies of besering kan veroorsaak, en jy dus ’n regsmuur tussen die besigheid en jou huis wil hê"
           }
         ],
         [
@@ -584,10 +584,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Moenie ’n agent hiervoor betaal nie. Agente vra ’n paar keer die CIPC-fooi vir ’n vorm wat jy self in een middag kan voltooi."
+          "v": "Moenie ’n agent hiervoor betaal nie. Agente vra ’n paar keer soveel as die CIPC-fooi vir ’n vorm wat jy self in een middag kan voltooi."
         }
       ],
-      "hash": "038f0efea903b483",
+      "hash": "6e040f319f848b36",
       "id": "how-to-register-a-company-yourself.1",
       "kind": "paragraph",
       "sourceHash": "a3c00e9da44b773f"
@@ -714,13 +714,13 @@
       "sourceHash": "09fc91524a8f7352"
     },
     {
-      "hash": "bf95b43f4018504f",
+      "hash": "87e1a921990c5806",
       "id": "how-to-register-a-company-yourself.8",
       "items": [
         [
           {
             "t": "text",
-            "v": "Bevestig die geregistreerde verteenwoordiger by SARS (die openbare amptenaar, \"public officer\"). Daarsonder kan jy nie eFiling vir die maatskappy gebruik nie."
+            "v": "Bevestig die geregistreerde verteenwoordiger by SARS (die openbare beampte, \"public officer\"). Daarsonder kan jy nie eFiling vir die maatskappy gebruik nie."
           }
         ],
         [
@@ -1244,10 +1244,10 @@
       "c": [
         {
           "t": "text",
-          "v": "’n Sakeplan. Jy het net een nodig om geld by ’n bank of belegger te kry. Om vir jouself ’n plan van 30 bladsye te skryf, is uitstel wat soos werk aangetrek is."
+          "v": "’n Sakeplan. Jy het net een nodig om geld by ’n bank of belegger te kry. Om vir jouself ’n plan van 30 bladsye te skryf, is uitstel wat as werk vermom is."
         }
       ],
-      "hash": "7837f4f6a2829063",
+      "hash": "6eed612586a5b7ce",
       "id": "things-you-can-skip-at-the-start.4",
       "kind": "paragraph",
       "sourceHash": "68aa9ad937c350e5"
@@ -1435,7 +1435,7 @@
       "sourceHash": "bce5c280bfc5098a"
     }
   ],
-  "contentHash": "b67ff5c0ebbf4386",
+  "contentHash": "92c433a6e2cf2570",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
