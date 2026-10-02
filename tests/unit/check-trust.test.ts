@@ -161,6 +161,22 @@ describe('language of parts on an Afrikaans page', () => {
     expect(langProblems(af, en)).toEqual([]);
   });
 
+  it('fails Afrikaans text that inherits English, as inside an English fallback block', () => {
+    const af =
+      '<html lang="af-ZA"><body><div lang="en-ZA"><p>Merkies word nie gestoor nie.</p></div></body></html>';
+    expect(langProblems(af, en)).toEqual([
+      'Afrikaans text marked as English: "Merkies word nie gestoor nie."',
+    ]);
+  });
+
+  it('skips what Afrikaans keeps byte-identical: code, URLs, all-caps codes', () => {
+    const enText =
+      '<html lang="en-ZA"><body><p><code>VAT201</code></p><p>www.bizportal.gov.za</p><p>SARS</p><p>EMP201</p></body></html>';
+    const afText =
+      '<html lang="af-ZA"><body><p><code>VAT201</code></p><p>www.bizportal.gov.za</p><p>SARS</p><p>EMP201</p></body></html>';
+    expect(langProblems(afText, enText)).toEqual([]);
+  });
+
   it('fails English text that inherits Afrikaans', () => {
     const af = '<html lang="af-ZA"><body><h1>Register: what you actually need</h1></body></html>';
     expect(langProblems(af, en)).toEqual([

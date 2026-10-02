@@ -73,7 +73,7 @@ function isOfficial(url: string): boolean {
   : run.t === 'strong' ? <strong><Self runs={run.c} context={context} /></strong>
   : run.t === 'em' ? <em><Self runs={run.c} context={context} /></em>
   : run.t === 'placeholder' ? <mark class="st-placeholder" data-placeholder={run.style}>{placeholderLabel(run)}</mark>
-  : run.t === 'sigline' ? <span class="st-sigline" role="img" aria-label={t('templates.fields.signature')} />
+  : run.t === 'sigline' ? <Fragment><span class="st-sigline" aria-hidden="true" /><span class="st-visually-hidden">{t('templates.fields.blankLine')}</span></Fragment>
   : run.t === 'link' && 'external' in run ? <Fragment><a href={run.href} rel="noopener noreferrer"><Self runs={run.c} context={context} /><Icon name="lucide:external-link" size="0.9em" /><span class="st-visually-hidden">{externalLabel}</span></a>{isOfficial(run.href) && <Fragment> <Badge variant="official">{officialLabel}</Badge></Fragment>}</Fragment>
   : run.t === 'link' ? (targetHref(run) === undefined ? <Self runs={run.c} context={context} /> : <a href={targetHref(run)}><Self runs={run.c} context={context} /></a>)
   : targetHref(run) === undefined ? docrefText(run)

@@ -176,6 +176,8 @@ const VOID_ELEMENTS = new Set([
 export interface LangText {
   readonly text: string;
   readonly lang: string;
+  /** Inside `<code>`: a form code or a command, the same in every language. */
+  readonly code?: true;
 }
 
 /**
@@ -186,6 +188,7 @@ export interface LangText {
 export function textNodesWithLang(html: string): LangText[] {
   const out: LangText[] = [];
   const stack: { tag: string; lang: string }[] = [];
+  const inCode = (): boolean => stack.some((entry) => entry.tag === 'code');
   let skip = 0;
   const current = (): string => stack.at(-1)?.lang ?? '';
   for (const match of html.matchAll(/<!--[\s\S]*?-->|<\/?[a-zA-Z][^>]*>|[^<]+/g)) {
@@ -212,7 +215,8 @@ export function textNodesWithLang(html: string): LangText[] {
     }
     if (skip > 0) continue;
     const text = decodeEntities(token).replace(/\s+/g, ' ').trim();
-    if (text !== '') out.push({ text, lang: current() });
+    if (text !== '')
+      out.push(inCode() ? { text, lang: current(), code: true } : { text, lang: current() });
   }
   return out;
 }
@@ -228,25 +232,45 @@ function sharedStrings(): Set<string> {
   return new Set([...values(af, new Set())].filter((value) => english.has(value)));
 }
 
-/** Text that is the same in every language: numbers, rand amounts (CLAUDE.md), and punctuation. */
-const LANGUAGE_NEUTRAL = /^(?:[\d\s.,:;()/%–—-]+|R[\d.,]+(?: million)?|[^\p{L}]+)$/u;
+/**
+ * Text CLAUDE.md requires to stay byte-identical in Afrikaans, so it is the same in both twins
+ * without being English: numbers, rand amounts as the English markdown writes them ("R2.3 million"),
+ * URLs and domain names, and all-caps codes (VAT201, SARS, EMP201). Names such as "Google Drive"
+ * cannot be told apart from English words; the translation package extends `sharedStrings` or this
+ * pattern when its first document lands (backlog, review WP-20 pass 7).
+ */
+const LANGUAGE_NEUTRAL =
+  /^(?:[^\p{L}]+|R[\d.,]+(?: million)?|(?:https?:\/\/)?[\w-]+(?:\.[\w-]+)+(?:\/\S*)?|[\p{Lu}\d][\p{Lu}\d /&.-]*)$/u;
 
 /**
- * Language of parts on an Afrikaans page (build plan B5, WCAG 3.1.2; review WP-20 pass 6): any
- * text that the page marks as Afrikaans but that also appears, word for word, in its English twin
- * is English text read with an Afrikaans voice. Names both dictionaries share, numbers and rand
- * amounts are the same in both languages and are allowed.
+ * Language of parts on an Afrikaans page (build plan B5, WCAG 3.1.2; reviews WP-20 passes 6, 7), in
+ * both directions: text marked Afrikaans that the English twin also has is English read with an
+ * Afrikaans voice, and text marked English that the English twin lacks is Afrikaans read with an
+ * English voice. Shared names, `<code>` and language-neutral text are skipped.
  */
 export function langProblems(afHtml: string, enHtml: string, shared = sharedStrings()): string[] {
   const english = new Set(textNodesWithLang(enHtml).map((node) => node.text));
-  const found = new Set<string>();
+  const found: string[] = [];
+  const seen = new Set<string>();
+  const report = (message: string): void => {
+    if (seen.has(message)) return;
+    seen.add(message);
+    found.push(message);
+  };
   for (const node of textNodesWithLang(afHtml)) {
-    if (!node.lang.startsWith('af')) continue;
-    if (!english.has(node.text) || shared.has(node.text) || LANGUAGE_NEUTRAL.test(node.text))
-      continue;
-    found.add(node.text);
+    if (node.code || shared.has(node.text) || LANGUAGE_NEUTRAL.test(node.text)) continue;
+    const inEnglish = english.has(node.text);
+    // English text read with an Afrikaans voice: it inherits af-ZA and the English twin has it.
+    if (node.lang.startsWith('af') && inEnglish) {
+      report(`English text marked as Afrikaans: "${node.text.slice(0, 60)}"`);
+    }
+    // Afrikaans text read with an English voice: it inherits en-ZA and the English twin lacks it,
+    // as when a site line inside an English fallback block loses its own lang (review pass 7).
+    if (node.lang.startsWith('en') && !inEnglish) {
+      report(`Afrikaans text marked as English: "${node.text.slice(0, 60)}"`);
+    }
   }
-  return [...found].map((text) => `English text marked as Afrikaans: "${text.slice(0, 60)}"`);
+  return found;
 }
 
 /** Document pages the build must contain: every manifest document in every enabled locale. */
@@ -299,7 +323,7 @@ export function runCli(
   }
   console.log(
     `dist:trust: ${documents} document page(s), each with its AI notice and sources; ` +
-      `${afPages} Afrikaans page(s) with no English text marked as Afrikaans.`,
+      `${afPages} Afrikaans page(s) with language of parts correct both ways.`,
   );
   return 0;
 }

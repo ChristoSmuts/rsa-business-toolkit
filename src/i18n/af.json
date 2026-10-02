@@ -550,6 +550,7 @@
       "lastUpdated": "Laas bygewerk",
       "acceptedBy": "Aanvaar deur",
       "signature": "Handtekening",
+      "blankLine": "(leë lyn om in te vul)",
       "printName": "Naam (drukletters)",
       "signatureDate": "Datum",
       "notes": "Notas"

@@ -298,7 +298,7 @@ test.describe('navigation between real pages', () => {
     }
   });
 
-  test('the desktop menus close on Escape, outside clicks, focus leaving, and each other', async ({
+  test('the desktop menus close on Escape, outside clicks, focus leaving, scrolling and each other', async ({
     page,
   }, testInfo) => {
     test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
@@ -331,9 +331,41 @@ test.describe('navigation between real pages', () => {
     expect(await isOpen(read)).toBe(false);
     expect(await isOpen(tools)).toBe(true);
 
-    // A click in the article closes it.
+    // A press inside the open list that misses a link (its padding, the gap between links) must
+    // neither close it nor crash the tab: closing it under the pointer killed Chromium (pass 7).
+    let crashed = false;
+    page.on('crash', () => {
+      crashed = true;
+    });
+    const list = tools.locator('.st-menu__list');
+    const box = await list.boundingBox();
+    if (!box) throw new Error('the open Tools list has no box');
+    await page.mouse.click(box.x + 3, box.y + 3);
+    const first = await list.locator('li').nth(0).boundingBox();
+    const second = await list.locator('li').nth(1).boundingBox();
+    if (first && second) {
+      await page.mouse.click(first.x + 10, (first.y + first.height + second.y) / 2);
+    }
+    expect(crashed).toBe(false);
+    expect(await isOpen(tools)).toBe(true);
+
+    // A click in the article closes it, with focus already gone, as after a Safari mouse click
+    // (which never focuses the summary): only the pointerdown handler can close it then.
+    await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
     await page.locator('article h1').click();
     expect(await isOpen(tools)).toBe(false);
+
+    // Escape closes it with nothing focused inside it, too.
+    await read.locator('summary').click();
+    await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+    await page.keyboard.press('Escape');
+    expect(await isOpen(read)).toBe(false);
+    await expect(read.locator('summary')).toBeFocused();
+
+    // Scrolling the page closes it, so it does not ride the sticky bar over the article.
+    await read.locator('summary').click();
+    await page.mouse.wheel(0, 800);
+    await expect.poll(() => isOpen(read)).toBe(false);
 
     // Tabbing past the last link closes it.
     await read.locator('summary').click();

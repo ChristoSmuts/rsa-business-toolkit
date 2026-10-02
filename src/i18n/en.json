@@ -550,6 +550,7 @@
       "lastUpdated": "Last updated",
       "acceptedBy": "Accepted by",
       "signature": "Signature",
+      "blankLine": "(blank line to fill in)",
       "printName": "Name (print)",
       "signatureDate": "Date",
       "notes": "Notes"

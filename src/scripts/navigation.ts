@@ -103,34 +103,51 @@ trackTopbar();
 /**
  * The top bar's Read and Tools menus are native `<details>`, which only close from their own
  * summary. From 1024px their lists float over the page and, while the bar is sticky, ride along
- * over the article. So, as an enhancement (review WP-20 pass 6):
- * - Escape inside an open menu closes it and puts focus back on its summary;
- * - a pointer press outside it, or focus moving outside it, closes it.
+ * over the article. So, as an enhancement (reviews WP-20 passes 6 and 7):
+ * - Escape closes the open menu and puts focus on its summary. It is heard on the document, because
+ *   Safari does not focus a `<summary>` on a mouse click, so focus is often not inside the menu;
+ * - a pointer press outside the open menu closes it;
+ * - focus moving to an element outside it closes it. Only when `relatedTarget` is a real element:
+ *   a press on the list's own padding moves focus to `<body>` (no related target), and closing the
+ *   `<details>` under the pointer in that moment crashed Chromium's renderer (pass 7 blocker);
+ * - scrolling the page more than a short way closes it, so it does not ride over the article.
  * Only one is ever open: they share a `name`, which the browser enforces without this script.
  */
-export function enhanceTopbarMenus(doc: Document = document): void {
+export function enhanceTopbarMenus(doc: Document = document, win: Window = window): void {
   const menus = [...doc.querySelectorAll<HTMLDetailsElement>('.st-topbar__menus details')];
   if (menus.length === 0) return;
-  const closeAll = (except?: Node | null): void => {
-    for (const menu of menus)
-      if (menu.open && !(except && menu.contains(except))) menu.open = false;
-  };
+  /** Scroll distance after which an open menu closes, in CSS pixels. */
+  const SCROLL_CLOSE = 48;
+  let openedAt = 0;
+  const openMenu = (): HTMLDetailsElement | undefined => menus.find((menu) => menu.open);
   for (const menu of menus) {
-    menu.addEventListener('keydown', (event) => {
-      if (event.key !== 'Escape' || !menu.open) return;
-      menu.open = false;
-      menu.querySelector('summary')?.focus();
-      event.stopPropagation();
+    menu.addEventListener('toggle', () => {
+      if (menu.open) openedAt = win.scrollY;
     });
     menu.addEventListener('focusout', (event) => {
       const next = event.relatedTarget;
-      if (next instanceof Node && menu.contains(next)) return;
+      if (!(next instanceof Node) || menu.contains(next)) return;
       menu.open = false;
     });
   }
-  doc.addEventListener('pointerdown', (event) => {
-    closeAll(event.target instanceof Node ? event.target : null);
+  doc.addEventListener('keydown', (event) => {
+    const menu = openMenu();
+    if (event.key !== 'Escape' || !menu) return;
+    menu.open = false;
+    menu.querySelector('summary')?.focus();
   });
+  doc.addEventListener('pointerdown', (event) => {
+    const menu = openMenu();
+    if (menu && !(event.target instanceof Node && menu.contains(event.target))) menu.open = false;
+  });
+  win.addEventListener(
+    'scroll',
+    () => {
+      const menu = openMenu();
+      if (menu && Math.abs(win.scrollY - openedAt) > SCROLL_CLOSE) menu.open = false;
+    },
+    { passive: true },
+  );
 }
 
 enhanceTopbarMenus();

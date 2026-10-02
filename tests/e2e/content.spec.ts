@@ -110,7 +110,9 @@ const EXPECTED: Readonly<Record<string, string>> = {
   'inline:docref-doc': 'a[href^="/business-toolkit/"]',
   'inline:docref-section': 'a[href^="/business-toolkit/"]',
   'inline:placeholder': 'mark.st-placeholder',
-  'inline:sigline': 'span.st-sigline[role="img"][aria-label]',
+  // A blank line after its visible label ("Name (print):"): decorative, plus hidden "blank line"
+  // text, so it is never announced as a signature it is not (review WP-20 pass 7).
+  'inline:sigline': 'span.st-sigline[aria-hidden="true"] + span.st-visually-hidden',
   'inline:br': 'br',
 };
 
