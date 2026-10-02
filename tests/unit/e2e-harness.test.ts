@@ -137,10 +137,11 @@ describe('page check exceptions (tests/e2e/helpers/exceptions.ts)', () => {
     expect(overdueWarningCommand('a\r\nb 50%')).toBe(
       '::warning title=Overdue page check exception::a%0D%0Ab 50%25',
     );
-    // The field must stay in use by a live list, or the whole path goes dormant again. The page
-    // check list is empty today; the known-future routes carry the review dates.
+    // While either list holds an entry, at least one must carry a review date, or the overdue path
+    // goes dormant with work still waiting on it. Both lists empty is their goal state (WP-20 left
+    // them so): nothing can go overdue, and the functions above stay covered by their own tests.
     const live = [...PAGE_CHECK_EXCEPTIONS, ...KNOWN_FUTURE_ROUTES];
-    expect(live.some((entry) => entry.expiresOn !== undefined)).toBe(true);
+    if (live.length > 0) expect(live.some((entry) => entry.expiresOn !== undefined)).toBe(true);
     for (const entry of live) {
       if (entry.expiresOn !== undefined) expect(isIsoDate(entry.expiresOn), entry.route).toBe(true);
     }

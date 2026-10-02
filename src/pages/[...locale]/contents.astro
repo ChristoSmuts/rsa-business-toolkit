@@ -9,7 +9,13 @@ import Breadcrumb from '../../components/navigation/Breadcrumb.astro';
 import { useTranslations } from '../../i18n';
 import { getLocale, type Locale } from '../../i18n/locales';
 import { loadDoc, loadManifest } from '../../lib/content/collections';
-import { docHref, docTitle, orderedSections, sectionHref } from '../../lib/content/manifest';
+import {
+  docHref,
+  docTitle,
+  docTitleLang,
+  orderedSections,
+  sectionHref,
+} from '../../lib/content/manifest';
 import { localeStaticPaths } from '../../lib/i18n-routes';
 import { TERMS_HEADING_ID } from '../../lib/content/render';
 import { docContentLang, pageTitle } from '../../lib/pages';
@@ -40,6 +46,10 @@ const sections = await Promise.all(
         return {
           id,
           title: docTitle(manifest, id, locale),
+          titleLang: docTitleLang(manifest, id, locale),
+          // Unique on the page: document ids contain a slash, which an id may hold but a CSS
+          // selector would need escaped.
+          slug: id.replace(/\//g, '--'),
           href: docHref(manifest, id, locale),
           lang: lang === locale ? undefined : (getLocale(lang)?.hreflang ?? lang),
           headings: (doc?.headings ?? []).filter(
@@ -77,18 +87,21 @@ const sections = await Promise.all(
         <ol class="st-contents__docs">
           {section.docs.map((doc) => (
             <li>
-              <a class="st-contents__doc" href={doc.href}>
+              <a
+                class="st-contents__doc"
+                id={`contents-doc-${doc.slug}`}
+                href={doc.href}
+                lang={doc.titleLang}
+              >
                 {doc.title}
               </a>
               {doc.headings.length > 0 && (
-                <ul
-                  class="st-contents__headings"
-                  aria-label={t('contents.docSections', { title: doc.title })}
-                  lang={doc.lang}
-                >
+                <ul class="st-contents__headings" aria-labelledby={`contents-doc-${doc.slug}`}>
                   {doc.headings.map((heading) => (
                     <li>
-                      <a href={`${doc.href}#${heading.id}`}>{heading.text}</a>
+                      <a href={`${doc.href}#${heading.id}`} lang={doc.lang}>
+                        {heading.text}
+                      </a>
                     </li>
                   ))}
                 </ul>

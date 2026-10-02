@@ -98,17 +98,36 @@ test.describe('the head of every built page', () => {
     expect(problems).toEqual([]);
   });
 
-  test('an untranslated document is not offered as an Afrikaans version', ({
+  test('the head and the sitemap name the same language versions of every page', ({
     basePath: _basePath,
   }, testInfo) => {
     test.skip(testInfo.project.name !== 'chromium', 'Reads dist/, no browser needed.');
-    const html = readFileSync(htmlFileForRoute('af/core/register/'), 'utf8');
-    expect(html).not.toMatch(/<link rel="alternate" hreflang="af-ZA"/);
-    expect(html).toMatch(/<html lang="af-ZA"/);
-    // A fully translated app page is offered in both.
-    const home = readFileSync(htmlFileForRoute('af/'), 'utf8');
-    expect(home).toMatch(/<link rel="alternate" hreflang="af-ZA"/);
-    expect(home).toMatch(/<link rel="alternate" hreflang="en-ZA"/);
+    const sitemap = readFileSync(htmlFileForRoute('sitemap-0.xml'), 'utf8');
+    const problems: string[] = [];
+    let checked = 0;
+    for (const entry of sitemap.split('<url>').slice(1)) {
+      const loc = /<loc>([^<]+)<\/loc>/.exec(entry)?.[1] ?? '';
+      const route = new URL(loc).pathname.replace(/^\/[^/]+\//, '');
+      const inSitemap = [...entry.matchAll(/hreflang="([^"]+)" href="([^"]+)"/g)]
+        .map((match) => `${match[1] ?? ''} ${match[2] ?? ''}`)
+        .sort();
+      const html = readFileSync(htmlFileForRoute(route), 'utf8');
+      const inHead = [...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"/g)]
+        .map((match) => `${match[1] ?? ''} ${match[2] ?? ''}`)
+        .filter((pair) => !pair.startsWith('x-default '))
+        .sort();
+      if (inSitemap.join('|') !== inHead.join('|')) {
+        problems.push(`/${route}: sitemap ${inSitemap.join(', ')} | head ${inHead.join(', ')}`);
+      }
+      checked++;
+    }
+    expect(checked).toBeGreaterThan(90);
+    expect(problems).toEqual([]);
+    // The fallback page is the Afrikaans page for its URL, with its own canonical.
+    const fallback = readFileSync(htmlFileForRoute('af/core/register/'), 'utf8');
+    expect(fallback).toMatch(/<html lang="af-ZA"/);
+    expect(fallback).toMatch(/<link rel="canonical" href="[^"]*\/af\/core\/register\/"/);
+    expect(fallback).toMatch(/<meta property="og:locale" content="af_ZA"/);
   });
 });
 
@@ -168,6 +187,25 @@ test.describe('navigation between real pages', () => {
     await expect(callouts.nth(1)).toContainText('Afrikaans');
     // The chrome around the content is Afrikaans.
     await expect(page.locator('.st-topbar')).toContainText('Lees');
+    // English titles in Afrikaans sentences carry their own lang (review WP-20 pass 2).
+    await expect(page.locator('.st-pager a[rel="next"] span')).toHaveAttribute('lang', 'en-ZA');
+    await expect(page.locator('.st-pager a[rel="next"]')).toContainText('Volgende');
+  });
+
+  test('English document titles on Afrikaans landings and contents are marked', async ({
+    page,
+  }) => {
+    await open(page, 'af/core/');
+    await expect(page.locator('.st-card__title').first()).toHaveAttribute('lang', 'en-ZA');
+    await open(page, 'af/contents/');
+    const doc = page.locator('.st-contents__doc').first();
+    await expect(doc).toHaveAttribute('lang', 'en-ZA');
+    const list = page.locator('.st-contents__headings').first();
+    await expect(list).not.toHaveAttribute('lang', /.*/);
+    await expect(list.locator('a').first()).toHaveAttribute('lang', 'en-ZA');
+    // The English landing marks nothing: every title is in the page's language.
+    await open(page, 'core/');
+    await expect(page.locator('.st-card__title').first()).not.toHaveAttribute('lang', /.*/);
   });
 
   test('home links each kind of business and states its figures with a source', async ({

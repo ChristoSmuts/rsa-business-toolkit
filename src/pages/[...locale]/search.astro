@@ -1,8 +1,9 @@
 ---
 /**
  * `/search/`: the full-page search shell (build plan B1, B3). The search client is WP-33, which
- * enhances this form in place. Until then, and whenever JavaScript is off, the page is still
- * useful on its own: the common questions from "How to use this toolkit", each linked to the page
+ * enhances this form in place and owns the loading, failure and "needs JavaScript" messages.
+ * Until then the page says plainly that full search is not ready, the same with or without
+ * JavaScript, and is still useful on its own: the common questions from "How to use this toolkit", each linked to the page
  * that answers it, and a link to the contents.
  *
  * The form submits GET to this same page, so a `?q=` URL is already shareable for WP-33 to read.
@@ -81,10 +82,7 @@ const contentsHref = href(locale, APP_ROUTES.contents);
     </form>
 
     <Callout variant="info" label={t('search.dialogTitle')}>
-      <p class="no-js-only">{t('search.noJs')}</p>
-      <p class="js-only">
-        {t('search.failed')} {t('search.failedFallback')}
-      </p>
+      <p>{t('search.notReady')}</p>
       <p>
         <a class="st-link-block" href={contentsHref}>
           {t('search.browseContents')}

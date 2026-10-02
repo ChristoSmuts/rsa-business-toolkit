@@ -6,6 +6,7 @@
  *
  * The article half is what `/design-system/content/` drafted in milestone 1, from the same
  * components. Additions by kind of page:
+ * - the hub ("Pick your business type") gets the six type tiles with their effort meters;
  * - a business-type document gets its effort meter, the "Read Core first" callout and the
  *   related-type hints;
  * - the master checklist says it is a reminder list, not proof of compliance (D5);
@@ -15,6 +16,7 @@
  * source note fails the build instead of shipping (D5).
  */
 import Page from './Page.astro';
+import BusinessTypeTiles from '../components/pages/BusinessTypeTiles.astro';
 import Badge from '../components/ui/Badge.astro';
 import Callout from '../components/ui/Callout.astro';
 import EffortMeter from '../components/ui/EffortMeter.astro';
@@ -36,11 +38,11 @@ import { hasOwnSources } from '../lib/content/trust';
 import { documentCrumbs } from '../lib/nav';
 import {
   assertDocTrust,
-  docLocales,
   docPager,
   effortLevel,
   pageTitle,
   sectionHue,
+  splitAroundParam,
 } from '../lib/pages';
 import { href } from '../lib/paths';
 
@@ -56,6 +58,8 @@ interface Props {
 }
 
 const { locale, manifest, doc, glossary, sources, businessTypes } = Astro.props;
+/** The document that is the business-types hub; B6 gives it the type tiles above its text. */
+const BUSINESS_TYPES_HUB = 'business-types/pick-your-business-type';
 assertDocTrust(doc);
 
 const t = useTranslations(locale);
@@ -76,6 +80,8 @@ const section = sectionTitle(manifest, doc.section, locale);
 const title = docTitle(manifest, doc.id, locale);
 const crumbs = documentCrumbs(manifest, doc.id, locale, t);
 const pager = docPager(manifest, doc.id, locale);
+const previousParts = splitAroundParam((title) => t('nav.previous', { title }));
+const nextParts = splitAroundParam((title) => t('nav.next', { title }));
 const hue = sectionHue(doc.section);
 const { terms, rest } = splitTermsBlocks(doc.blocks);
 const translationStatus = isFallback ? 'fallback' : doc.translation.status;
@@ -103,7 +109,6 @@ const relatedTypes = businessType
   route={route}
   title={pageTitle(t, title, section)}
   description={doc.summary}
-  locales={docLocales(manifest, doc.id)}
   ogType="article"
 >
   <div class="st-container st-doc-grid st-doc" data-section={hue}>
@@ -179,6 +184,19 @@ const relatedTypes = businessType
           </Callout>
         )}
 
+        {doc.id === BUSINESS_TYPES_HUB && (
+          <section class="st-stack" aria-labelledby="st-hub-tiles">
+            <h2 id="st-hub-tiles">{t('businessTypesHub.ifYouHeading')}</h2>
+            <p>{t('home.businessTypes.lead')}</p>
+            <BusinessTypeTiles
+              locale={locale}
+              manifest={manifest}
+              businessTypes={businessTypes}
+              general={false}
+            />
+          </section>
+        )}
+
         {terms && (
           <details class="st-doc__terms" id="words-used-in-this-file" open>
             <summary>{t('doc.wordsUsed')}</summary>
@@ -226,12 +244,16 @@ const relatedTypes = businessType
         <nav class="st-pager" aria-label={t('nav.pagerLabel')}>
           {pager.previous && (
             <a class="st-pager__link" href={pager.previous.href} rel="prev">
-              {t('nav.previous', { title: pager.previous.title })}
+              {previousParts[0]}
+              <span lang={pager.previous.lang}>{pager.previous.title}</span>
+              {previousParts[1]}
             </a>
           )}
           {pager.next && (
             <a class="st-pager__link st-pager__next" href={pager.next.href} rel="next">
-              {t('nav.next', { title: pager.next.title })}
+              {nextParts[0]}
+              <span lang={pager.next.lang}>{pager.next.title}</span>
+              {nextParts[1]}
             </a>
           )}
         </nav>

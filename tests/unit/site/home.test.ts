@@ -12,6 +12,12 @@ function supports(id: string): string {
 }
 
 describe('the home page figures', () => {
+  it('leave out the 0% band while the register does not support it', () => {
+    // The guide states R600,000; the register does not. When it does, this fails: add the band back.
+    const withBand = { ...HOME_NUMBERS[2], zeroBand: { rate: 0, amount: 'R600,000' } };
+    expect(supports(withBand.sourceId ?? '')).not.toContain('R600,000');
+  });
+
   it('each cite an official register entry with a link', () => {
     for (const item of resolveHomeNumbers(sources)) {
       expect(item.official, item.id).toBe(true);
@@ -23,8 +29,8 @@ describe('the home page figures', () => {
     for (const item of HOME_NUMBERS) {
       const text = supports(item.sourceId);
       expect(text, item.sourceId).toContain(item.amount);
-      if (item.zeroBand)
-        expect(text + plainTextOf('core/tax-and-sars')).toContain(item.zeroBand.amount);
+      // Only the cited entry counts. The guide's own text is not a source (review WP-20 pass 2).
+      if (item.zeroBand) expect(text, item.sourceId).toContain(item.zeroBand.amount);
     }
   });
 

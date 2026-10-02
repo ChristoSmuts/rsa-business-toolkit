@@ -14,6 +14,7 @@ import {
   pageTitle,
   routeParam,
   sectionHue,
+  splitAroundParam,
 } from '../../../src/lib/pages';
 import { APP_ROUTES } from '../../../src/lib/routes';
 import { realDocs, realManifest } from './data';
@@ -188,5 +189,13 @@ describe('small mappings', () => {
     expect(canonicalUrl('af', 'core/register/', 'https://x.test')).toMatch(
       /^https:\/\/x\.test\/.*af\/core\/register\/$/,
     );
+  });
+});
+
+describe('splitAroundParam', () => {
+  it('splits a translated sentence around its parameter', () => {
+    expect(splitAroundParam((title) => af('nav.next', { title }))).toEqual(['Volgende: ', '']);
+    expect(splitAroundParam((title) => en('nav.previous', { title }))).toEqual(['Previous: ', '']);
+    expect(splitAroundParam(() => 'no marker')).toEqual(['no marker', '']);
   });
 });

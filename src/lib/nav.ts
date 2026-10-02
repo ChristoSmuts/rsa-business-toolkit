@@ -10,7 +10,7 @@ import type { Locale } from '../i18n/locales';
 import { docHref, docTitle, docTitleLang, orderedSections, sectionHref } from './content/manifest';
 import type { Manifest, SectionId } from './content/schema';
 import { href } from './paths';
-import { APP_ROUTES, NAV_DOC_IDS } from './routes';
+import { APP_ROUTES, NAV_DOC_IDS, WIZARD_AVAILABLE } from './routes';
 import { DEFAULT_LOCALE } from '../i18n/locales';
 
 export interface NavLink {
@@ -46,7 +46,7 @@ export function sectionLinks(manifest: Manifest, locale: Locale, t: Translator):
   return links;
 }
 
-/** My path, Checklist, Templates, Glossary, Sources (build plan B2, Tools menu). */
+/** My path (once `WIZARD_AVAILABLE`), Checklist, Templates, Glossary, Sources (B2, Tools menu). */
 export function toolLinks(manifest: Manifest, locale: Locale, t: Translator): NavLink[] {
   const fromDoc = (
     id: string,
@@ -58,8 +58,8 @@ export function toolLinks(manifest: Manifest, locale: Locale, t: Translator): Na
     if (url === undefined || route === undefined) return undefined;
     return { id, href: url, route, label: t(labelKey), description: t(descriptionKey) };
   };
-  const links: (NavLink | undefined)[] = [
-    {
+  const links: (NavLink | false | undefined)[] = [
+    WIZARD_AVAILABLE && {
       id: 'my-path',
       href: href(locale, APP_ROUTES.myPath),
       route: APP_ROUTES.myPath,
@@ -77,7 +77,7 @@ export function toolLinks(manifest: Manifest, locale: Locale, t: Translator): Na
     fromDoc(NAV_DOC_IDS.glossary, 'nav.glossary', 'nav.toolDescriptions.glossary'),
     fromDoc(NAV_DOC_IDS.sources, 'nav.sources', 'nav.toolDescriptions.sources'),
   ];
-  return links.filter((link): link is NavLink => link !== undefined);
+  return links.filter((link): link is NavLink => link !== undefined && link !== false);
 }
 
 /** Contents, About and "How this was made": the footer's own links. */

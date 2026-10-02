@@ -7,7 +7,7 @@
  */
 import type { Translator } from '../i18n';
 import { DEFAULT_LOCALE, ENABLED_LOCALES, type Locale } from '../i18n/locales';
-import { docHref, docTitle, orderedSections, sectionTitle } from './content/manifest';
+import { docHref, docTitle, docTitleLang, orderedSections, sectionTitle } from './content/manifest';
 import { EffortSchema, type Doc, type Effort, type Manifest } from './content/schema';
 import { hasOwnSources } from './content/trust';
 import { href } from './paths';
@@ -105,6 +105,8 @@ export function docContentLang(manifest: Manifest, docId: string, locale: Locale
 export interface PagerLink {
   readonly href: string;
   readonly title: string;
+  /** `lang` of the title when it is not in the reader's language. */
+  readonly lang: string | undefined;
   readonly docId: string;
 }
 
@@ -126,10 +128,28 @@ export function docPager(manifest: Manifest, docId: string, locale: Locale): Pag
     const url = docHref(manifest, id, locale);
     return url === undefined
       ? undefined
-      : { href: url, title: docTitle(manifest, id, locale), docId: id };
+      : {
+          href: url,
+          title: docTitle(manifest, id, locale),
+          lang: docTitleLang(manifest, id, locale),
+          docId: id,
+        };
   };
   if (index === -1) return { previous: undefined, next: undefined };
   return { previous: link(order[index - 1]), next: link(order[index + 1]) };
+}
+
+/**
+ * A translated sentence split around one of its parameters, so the parameter's text can carry its
+ * own `lang` (an English title inside "Vorige: {title}"). `render` is the translator call with the
+ * parameter set to the marker this function passes in.
+ */
+export function splitAroundParam(render: (marker: string) => string): [string, string] {
+  const marker = '\u0000';
+  const text = render(marker);
+  const index = text.indexOf(marker);
+  if (index === -1) return [text, ''];
+  return [text.slice(0, index), text.slice(index + marker.length)];
 }
 
 /** `<title>`: "Doc · Section · SA Business Toolkit", or "Page · SA Business Toolkit" (B5). */

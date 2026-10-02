@@ -712,7 +712,8 @@
     "browseContents": "Browse all pages",
     "clear": "Clear search",
     "close": "Close search",
-    "noJs": "Search needs JavaScript. Use the contents page to find what you need."
+    "noJs": "Search needs JavaScript. Use the contents page to find what you need.",
+    "notReady": "Full search is not ready yet. Use the common questions below, or browse all pages."
   },
   "contents": {
     "title": "Contents",

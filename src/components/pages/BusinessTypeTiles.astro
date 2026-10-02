@@ -1,0 +1,104 @@
+---
+/**
+ * The six kinds of business as illustrated tiles with their setup effort (build plan B6), shared by
+ * the home page and the business-types hub so both always show the same names, order and effort.
+ *
+ * The "General" tile leads to the hub, so the hub itself leaves it out (`general={false}`): a tile
+ * that links to the page it is on is a dead end.
+ */
+import Card from '../ui/Card.astro';
+import EffortMeter from '../ui/EffortMeter.astro';
+import BeautyCare from '../illustrations/BeautyCare.astro';
+import FoodBusiness from '../illustrations/FoodBusiness.astro';
+import General from '../illustrations/General.astro';
+import ProfessionalCreative from '../illustrations/ProfessionalCreative.astro';
+import RetailOnline from '../illustrations/RetailOnline.astro';
+import ServicesTrades from '../illustrations/ServicesTrades.astro';
+import VehicleDealer from '../illustrations/VehicleDealer.astro';
+import { useTranslations, type TranslationKey } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { docHref, sectionHref } from '../../lib/content/manifest';
+import type { BusinessType, Manifest } from '../../lib/content/schema';
+import { effortLevel } from '../../lib/pages';
+
+interface Props {
+  locale: Locale;
+  manifest: Manifest;
+  businessTypes: readonly BusinessType[];
+  headingLevel?: 2 | 3 | undefined;
+  general?: boolean | undefined;
+}
+
+const { locale, manifest, businessTypes, headingLevel = 3, general = true } = Astro.props;
+const t = useTranslations(locale);
+const ILLUSTRATIONS = {
+  'vehicle-dealer': VehicleDealer,
+  food: FoodBusiness,
+  beauty: BeautyCare,
+  'retail-online': RetailOnline,
+  'services-trades': ServicesTrades,
+  'professional-creative': ProfessionalCreative,
+} as const;
+const effortLabels = [
+  t('businessTypes.effort.lowest'),
+  t('businessTypes.effort.low-medium'),
+  t('businessTypes.effort.medium'),
+  t('businessTypes.effort.medium-high'),
+  t('businessTypes.effort.high'),
+] as const;
+const types = [...businessTypes]
+  .sort((a, b) => a.order - b.order)
+  .map((type) => ({
+    ...type,
+    name: t(`businessTypes.${type.id}.name` as TranslationKey),
+    description: t(`businessTypes.${type.id}.description` as TranslationKey),
+    href: docHref(manifest, type.doc, locale),
+    Illustration: ILLUSTRATIONS[type.id],
+  }));
+const hubHref = sectionHref(manifest, 'business-types', locale);
+---
+
+<ul class="st-type-tiles" role="list" data-section="types">
+  {types.map(({ Illustration, ...type }) => (
+    <li>
+      <Card title={type.name} href={type.href} section="types" headingLevel={headingLevel}>
+        <Illustration slot="illustration" />
+        <p>{type.description}</p>
+        <EffortMeter
+          slot="meta"
+          level={effortLevel(type.effort)}
+          label={t('businessTypes.effortLabel')}
+          levelLabels={effortLabels}
+        />
+      </Card>
+    </li>
+  ))}
+  {general && hubHref && (
+    <li>
+      <Card
+        title={t('businessTypes.general.name')}
+        href={hubHref}
+        section="types"
+        headingLevel={headingLevel}
+      >
+        <General slot="illustration" />
+        <p>{t('businessTypes.general.description')}</p>
+      </Card>
+    </li>
+  )}
+</ul>
+
+<style>
+  /*
+   * Sized by its own width, not the viewport: the same tiles sit in the full-width home page and in
+   * the narrower document column of the hub, where viewport breakpoints gave three cramped columns.
+   * `min(100%, …)` keeps a single column from overflowing at 320px.
+   */
+  .st-type-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+    gap: var(--st-space-4);
+    padding: 0;
+    list-style: none;
+  }
+</style>

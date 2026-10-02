@@ -9,6 +9,8 @@ type Section = 'start' | 'core' | 'branding' | 'paperwork' | 'types' | 'lookup';
 
 interface Props {
   title: string;
+  /** `lang` of the title when it is not in the page's language (an untranslated document). */
+  titleLang?: string | undefined;
   href?: string | undefined;
   section?: Section | undefined;
   eyebrow?: string | undefined;
@@ -16,7 +18,15 @@ interface Props {
   class?: string | undefined;
 }
 
-const { title, href, section, eyebrow, headingLevel = 3, class: className } = Astro.props;
+const {
+  title,
+  titleLang,
+  href,
+  section,
+  eyebrow,
+  headingLevel = 3,
+  class: className,
+} = Astro.props;
 const Heading = `h${headingLevel}` as 'h2' | 'h3' | 'h4';
 const hasArt = Astro.slots.has('illustration');
 const hasMeta = Astro.slots.has('meta');
@@ -34,7 +44,7 @@ const hasMeta = Astro.slots.has('meta');
   )}
   <div class="st-card__body">
     {eyebrow && <p class="st-card__eyebrow">{eyebrow}</p>}
-    <Heading class="st-card__title">
+    <Heading class="st-card__title" lang={titleLang}>
       {href ? (
         <a class="st-card__link" href={href}>
           {title}

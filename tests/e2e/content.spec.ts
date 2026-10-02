@@ -11,6 +11,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
+import { WIZARD_AVAILABLE } from '../../src/lib/routes';
 import { ALL_FEATURES, selectCoverage } from '../../src/lib/content/coverage';
 import { docrefText } from '../../src/lib/content/manifest';
 import { normaliseText, plainText } from '../../src/lib/content/render';
@@ -462,7 +463,7 @@ test.describe('navigation', () => {
       .locator('a')
       .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('href') ?? ''));
     expect(toolHrefs).toEqual([
-      '/business-toolkit/my-path/',
+      ...(WIZARD_AVAILABLE ? ['/business-toolkit/my-path/'] : []),
       '/business-toolkit/checklist/',
       '/business-toolkit/templates/',
       '/business-toolkit/glossary/',

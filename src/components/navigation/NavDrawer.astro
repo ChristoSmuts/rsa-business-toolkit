@@ -25,7 +25,8 @@ interface Props {
   sections: readonly NavLink[];
   tools: readonly NavLink[];
   searchHref: string;
-  wizardHref: string;
+  /** Absent until the wizard is built (`WIZARD_AVAILABLE`). */
+  wizardHref?: string | undefined;
 }
 
 const { id, locale, route, sections, tools, searchHref, wizardHref } = Astro.props;
@@ -45,9 +46,11 @@ const titleId = `${id}-title`;
         </button>
       </div>
       <nav class="st-drawer__nav" aria-label={t('nav.menu')}>
-        <a class="st-link-block" href={wizardHref}>
-          {t('nav.findMyPath')}
-        </a>
+        {wizardHref && (
+          <a class="st-link-block" href={wizardHref}>
+            {t('nav.findMyPath')}
+          </a>
+        )}
         <a class="st-link-block" href={searchHref}>
           {t('nav.search')}
         </a>

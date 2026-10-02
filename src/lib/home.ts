@@ -46,7 +46,9 @@ export const HOME_NUMBERS: readonly HomeNumber[] = [
     id: 'turnover-tax',
     labelKey: 'home.threeNumbers.turnoverTax',
     amount: 'R2.3 million',
-    zeroBand: { rate: 0, amount: 'R600,000' },
+    // The guide's "0% on the first R600,000" is not shown here: no register entry records it as
+    // supported, and every figure on this card must be. Add `zeroBand` back once the register
+    // cites an official source for the band (a `fix(content):` change, WP-47).
     sourceId: 'sars--turnover-tax',
   },
 ];

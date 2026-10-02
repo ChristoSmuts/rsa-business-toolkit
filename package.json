@@ -10,8 +10,9 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && pnpm dist:audit",
+    "build": "astro build && pnpm dist:audit && pnpm dist:trust",
     "dist:audit": "tsx scripts/dist/audit-links.ts",
+    "dist:trust": "tsx scripts/dist/check-trust.ts",
     "lhci": "node scripts/ci/run-lhci.mjs",
     "preview": "astro preview",
     "astro": "astro",

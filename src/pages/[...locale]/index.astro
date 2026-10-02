@@ -12,24 +12,17 @@ import Page from '../../layouts/Page.astro';
 import Badge from '../../components/ui/Badge.astro';
 import Button from '../../components/ui/Button.astro';
 import Card from '../../components/ui/Card.astro';
-import EffortMeter from '../../components/ui/EffortMeter.astro';
+import BusinessTypeTiles from '../../components/pages/BusinessTypeTiles.astro';
 import Icon from '../../components/ui/Icon.astro';
-import BeautyCare from '../../components/illustrations/BeautyCare.astro';
-import FoodBusiness from '../../components/illustrations/FoodBusiness.astro';
-import General from '../../components/illustrations/General.astro';
-import ProfessionalCreative from '../../components/illustrations/ProfessionalCreative.astro';
-import RetailOnline from '../../components/illustrations/RetailOnline.astro';
-import ServicesTrades from '../../components/illustrations/ServicesTrades.astro';
-import VehicleDealer from '../../components/illustrations/VehicleDealer.astro';
-import { formatDate, useTranslations, type TranslationKey } from '../../i18n';
+import { formatDate, useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
 import { loadManifest, loadSources } from '../../lib/content/collections';
 import { docHref, sectionHref } from '../../lib/content/manifest';
 import { HOME_NUMBERS_YEAR, resolveHomeNumbers } from '../../lib/home';
 import { localeStaticPaths } from '../../lib/i18n-routes';
-import { docContentLang, effortLevel } from '../../lib/pages';
+import { docContentLang } from '../../lib/pages';
 import { href } from '../../lib/paths';
-import { APP_ROUTES, NAV_DOC_IDS } from '../../lib/routes';
+import { APP_ROUTES, NAV_DOC_IDS, WIZARD_AVAILABLE } from '../../lib/routes';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -53,31 +46,7 @@ const coreHref = sectionHref(manifest, 'core', locale);
 const checklistHref = docHref(manifest, NAV_DOC_IDS.checklist, locale);
 const typesHref = sectionHref(manifest, 'business-types', locale);
 
-const ILLUSTRATIONS = {
-  'vehicle-dealer': VehicleDealer,
-  food: FoodBusiness,
-  beauty: BeautyCare,
-  'retail-online': RetailOnline,
-  'services-trades': ServicesTrades,
-  'professional-creative': ProfessionalCreative,
-} as const;
-const effortLabels = [
-  t('businessTypes.effort.lowest'),
-  t('businessTypes.effort.low-medium'),
-  t('businessTypes.effort.medium'),
-  t('businessTypes.effort.medium-high'),
-  t('businessTypes.effort.high'),
-] as const;
-const types = (await getCollection('businessTypes'))
-  .map((entry) => entry.data)
-  .sort((a, b) => a.order - b.order)
-  .map((type) => ({
-    ...type,
-    name: t(`businessTypes.${type.id}.name` as TranslationKey),
-    description: t(`businessTypes.${type.id}.description` as TranslationKey),
-    href: docHref(manifest, type.doc, locale),
-    Illustration: ILLUSTRATIONS[type.id],
-  }));
+const businessTypes = (await getCollection('businessTypes')).map((entry) => entry.data);
 
 const whereToStart = [
   {
@@ -120,10 +89,16 @@ const whereToStart = [
         {howMadeHref && <a href={howMadeHref}>{t('home.trust.howThisWasMade')}</a>}
       </p>
       <p class="st-cluster">
-        <Button href={href(locale, APP_ROUTES.wizard)} variant="primary" size="lg">
-          {t('home.findMyPath')}
-        </Button>
-        <Button href={href(locale, APP_ROUTES.search)} variant="secondary" size="lg">
+        {WIZARD_AVAILABLE && (
+          <Button href={href(locale, APP_ROUTES.wizard)} variant="primary" size="lg">
+            {t('home.findMyPath')}
+          </Button>
+        )}
+        <Button
+          href={href(locale, APP_ROUTES.search)}
+          variant={WIZARD_AVAILABLE ? 'secondary' : 'primary'}
+          size="lg"
+        >
           {t('home.knowWhatINeed')}
         </Button>
       </p>
@@ -148,33 +123,7 @@ const whereToStart = [
     <section class="st-stack" aria-labelledby="home-types" data-section="types">
       <h2 id="home-types">{t('home.businessTypes.heading')}</h2>
       <p>{t('home.businessTypes.lead')}</p>
-      <ul class="st-home__grid" role="list">
-        {types.map(({ Illustration, ...type }) => (
-          <li>
-            <Card title={type.name} href={type.href} section="types" headingLevel={3}>
-              <Illustration slot="illustration" />
-              <p>{type.description}</p>
-              <EffortMeter
-                slot="meta"
-                level={effortLevel(type.effort)}
-                label={t('businessTypes.effortLabel')}
-                levelLabels={effortLabels}
-              />
-            </Card>
-          </li>
-        ))}
-        <li>
-          <Card
-            title={t('businessTypes.general.name')}
-            href={typesHref}
-            section="types"
-            headingLevel={3}
-          >
-            <General slot="illustration" />
-            <p>{t('businessTypes.general.description')}</p>
-          </Card>
-        </li>
-      </ul>
+      <BusinessTypeTiles locale={locale} manifest={manifest} businessTypes={businessTypes} />
       {typesHref && (
         <p>
           <a class="st-link-block" href={typesHref}>
@@ -251,10 +200,12 @@ const whereToStart = [
           <Icon name="lucide:hand-coins" size="1.25em" />
           {t('home.trust.free')}
         </li>
-        <li>
-          <Icon name="lucide:smartphone" size="1.25em" />
-          {t('home.trust.private')}
-        </li>
+        {WIZARD_AVAILABLE && (
+          <li>
+            <Icon name="lucide:smartphone" size="1.25em" />
+            {t('home.trust.private')}
+          </li>
+        )}
       </ul>
       {howMadeHref && (
         <p>

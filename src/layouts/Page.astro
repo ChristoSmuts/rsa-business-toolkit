@@ -4,9 +4,11 @@
  * and the whole `<head>` the brief asks for — canonical, `hreflang` with `x-default`, Open Graph,
  * a meta description and `theme-color` (the last from `Base.astro`).
  *
- * `locales` is the list of languages this page really exists in. App pages are fully translated,
- * so they default to every enabled locale. A document that only exists in English passes `['en']`,
- * so its Afrikaans fallback page is not advertised to search engines as an Afrikaans version.
+ * `locales` defaults to every enabled locale, for every page, including an Afrikaans page that
+ * shows the English document. That page is still the Afrikaans page for its URL: its `<html lang>`,
+ * navigation and notices are Afrikaans and it tells the reader the content is not translated yet.
+ * So it is self-canonical and listed in `hreflang`, exactly as `sitemap-0.xml` lists it; the head
+ * and the sitemap must never disagree (review WP-20 pass 2, `pages.spec.ts`).
  */
 import Base from './Base.astro';
 import SiteFooter from '../components/navigation/SiteFooter.astro';

@@ -10,10 +10,10 @@
  *   JavaScript off reaches every section and tool through the header itself, and there is no
  *   second copy of the links to keep in step;
  * - the search control is a link to `/search/`, which is a real page, not a dialog opener. The
- *   `/` hint is `js-only`, because the shortcut is.
+ *   `/` shortcut and its `<Kbd>` hint arrive together with WP-33's search client: a hint for a key
+ *   that does nothing would tell the reader something untrue (review WP-20 pass 2).
  */
 import Icon from '../ui/Icon.astro';
-import Kbd from '../ui/Kbd.astro';
 import Logo from '../illustrations/Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import NavDrawer from './NavDrawer.astro';
@@ -24,7 +24,7 @@ import type { Locale } from '../../i18n/locales';
 import { sectionLinks, toolLinks } from '../../lib/nav';
 import { href } from '../../lib/paths';
 import type { Manifest } from '../../lib/content/schema';
-import { APP_ROUTES } from '../../lib/routes';
+import { APP_ROUTES, WIZARD_AVAILABLE } from '../../lib/routes';
 
 interface Props {
   locale: Locale;
@@ -39,7 +39,7 @@ const sections = sectionLinks(manifest, locale, t);
 const tools = toolLinks(manifest, locale, t);
 const homeHref = href(locale, APP_ROUTES.home);
 const searchHref = href(locale, APP_ROUTES.search);
-const wizardHref = href(locale, APP_ROUTES.wizard);
+const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefined;
 ---
 
 <header class="st-topbar">
@@ -58,9 +58,6 @@ const wizardHref = href(locale, APP_ROUTES.wizard);
     <a class="st-topbar__search" href={searchHref}>
       <Icon name="lucide:search" size="1em" />
       <span>{t('nav.search')}</span>
-      <span class="js-only st-topbar__kbd">
-        <Kbd>/</Kbd>
-      </span>
     </a>
     <LanguageSwitcher class="st-topbar__lang" locale={locale} route={route} />
     <ThemeControl class="st-topbar__theme" locale={locale} />

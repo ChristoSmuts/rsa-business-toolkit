@@ -281,11 +281,16 @@ step. The language switcher is plain links either way; `<st-lang-switch>` only a
 | --- | --- | --- |
 | `src/pages/[...locale]/[...route].astro` | every document and every section landing, in every enabled language | One catch-all, fed by `contentStaticPaths()` in `src/lib/pages.ts`. A section whose route is a document's (`business-types/`) gets no second page. A content route that collides with an app route or another content route fails the build. |
 | `src/layouts/Doc.astro` | every document | Build plan B6 in order. Business-type documents add the effort meter, "Read Core first" and the related types; the checklist says it is a reminder list; a template says when its rules were checked. |
+| `src/components/pages/BusinessTypeTiles.astro` | home, `business-types/` | The six types as tiles with effort meters. The hub document shows them above its text (B6); it leaves out the General tile, which would link to itself. |
 | `src/components/pages/SectionLanding.astro` | `start/`, `core/`, `branding/`, `paperwork/`, `look-it-up/` | Cards built from each document's own summary and reading time. |
 | `src/pages/[...locale]/index.astro` | home | The three 2026 figures come from `src/lib/home.ts`, each tied to an official register entry; `tests/unit/site/home.test.ts` fails if a figure is not in its source's own "supports" text. |
-| `contents.astro`, `templates/index.astro`, `about.astro`, `search.astro` | the app pages | The search page is a GET form plus the common questions from "How to use this toolkit", so it is useful before WP-33 and without JavaScript. About leaves out shortcuts and settings until the packages that build them land. |
+| `contents.astro`, `templates/index.astro`, `about.astro`, `search.astro` | the app pages | The search page is a GET form, one sentence saying full search is not ready (the same with or without JavaScript; the loading and failure messages belong to WP-33's client), and the common questions from "How to use this toolkit". About leaves out shortcuts and settings until the packages that build them land; the header leaves out the `/` hint until WP-33 adds the shortcut. |
 | `src/pages/404.astro` | `/404.html` | Both languages on one page, because the server cannot know which one the reader wanted. |
-| `src/layouts/Page.astro` | all of the above | Canonical, `hreflang` with `x-default`, Open Graph and a description. `locales` lists only the languages a page really exists in. |
+| `src/layouts/Page.astro` | all of the above | Canonical, `hreflang` with `x-default`, Open Graph and a description. Every page is listed in every enabled locale, matching the sitemap; an Afrikaans fallback page is the Afrikaans page for its URL. |
+
+The wizard and My path are WP-31. Until `WIZARD_AVAILABLE` in `src/lib/routes.ts` is `true`, no page
+links to them: the Tools menu, the drawer, the home page's primary button and the trust line about
+"your answers" are left out, and the home page's primary action is search.
 
 On an Afrikaans route that falls back to the English document, the English text is marked
 `lang="en-ZA"` wherever it appears: the blocks, the `<h1>`, the summary, the terms, the table of

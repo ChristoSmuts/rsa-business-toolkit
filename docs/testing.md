@@ -106,12 +106,17 @@ in every project.
 - **D5 on every document page, in both languages.** The AI notice is the first callout in the article
   header and links "How this was made"; "Sources for this page" lists sources or carries a note; and
   the page links the sources register (the register page itself excepted). `pnpm dist:audit` proves
-  each of those links resolves. `Doc.astro` also calls `assertDocTrust`, so a document with no
-  sources and no note fails `pnpm build` before any test runs.
+  each of those links resolves. Two checks make `pnpm build` itself fail first: `Doc.astro` calls
+  `assertDocTrust`, so a document whose data has no sources and no note never renders, and
+  `pnpm dist:trust` (`scripts/dist/check-trust.ts`, run by `pnpm build` after the link audit)
+  fails any built page with an `<article data-kind>` that lacks the AI notice in its header or the
+  "Sources for this page" section, so a layout that stops rendering them cannot ship.
 - **The head of every built page**, read from `dist/` with no browser: a canonical URL that is the
   page itself, `hreflang` with `x-default`, `og:title`, `og:description`, `og:url`, `og:locale`,
-  `og:type`, a description of at least 20 characters, and `theme-color`. An Afrikaans page that
-  shows the English document is not offered as an Afrikaans alternate.
+  `og:type`, a description of at least 20 characters, and `theme-color`. The `hreflang` set in
+  every page's head must equal the one `sitemap-0.xml` gives the same URL. An Afrikaans page that
+  shows the English document is still the Afrikaans page for its URL (Afrikaans `<html lang>`,
+  navigation and notices), so it is self-canonical and listed in both.
 - **Navigation only real routes can show:** the breadcrumb through a section, the pager crossing
   from one section into the next, a section landing's cards in order, switching language on a real
   document with an anchor that exists on the other side, the Afrikaans fallback with `lang="en-ZA"`
@@ -361,7 +366,7 @@ URLs are read from `href`, `xlink:href`, `src`, `srcset`, `imagesrcset`, `action
 
 ### Routes that are not built yet
 
-A page can link, correctly, to a route that no package has built yet: every page's Tools menu links to `my-path/`, which the wizard package builds. Those links are right, so they stay, and the audit gets the exception instead — one entry per route in `KNOWN_FUTURE_ROUTES` (`tests/e2e/helpers/exceptions.ts`), with the route, who links to it, why the link is already correct, which change removes the entry, and an optional `expiresOn` review date. `missing-target` is skipped for exactly those URLs and for nothing else; every other rule still applies, and the fragment of such a link cannot be checked because the page does not exist.
+A page can link, correctly, to a route that no package has built yet: a design-system demo of a component a later package wires to its page. Those links are right, so they stay, and the audit gets the exception instead — one entry per route in `KNOWN_FUTURE_ROUTES` (`tests/e2e/helpers/exceptions.ts`), with the route, who links to it, why the link is already correct, which change removes the entry, and an optional `expiresOn` review date. `missing-target` is skipped for exactly those URLs and for nothing else; every other rule still applies, and the fragment of such a link cannot be checked because the page does not exist.
 
 The allowance is built to delete itself. `pnpm dist:audit` fails, naming the entry, as soon as either half of its reason stops being true:
 
@@ -371,22 +376,19 @@ The allowance is built to delete itself. `pnpm dist:audit` fails, naming the ent
 A malformed entry fails the audit too, and `pnpm test` (`tests/unit/e2e-harness.test.ts`) validates the list. A green run names what it let through, so the allowance is visible without reading the source:
 
 ```
-dist:audit: 96 HTML file(s), 13741 URL(s) checked under base /business-toolkit/. No problems. 4 route(s) not built yet, allowed to be missing by KNOWN_FUTURE_ROUTES (tests/e2e/helpers/exceptions.ts): af/find-my-path/, af/my-path/, find-my-path/, my-path/.
+dist:audit: 96 HTML file(s), 13527 URL(s) checked under base /business-toolkit/. No problems.
 ```
 
 An overdue `expiresOn` prints `dist:audit: overdue known-future route: …` and, under `CI`, a `::warning` workflow command; like a page check exception's review date, it does not fail the build.
 
 Do not add an entry to silence a link that is simply wrong. A link to a route no package will ever build is a bug in the page.
 
-Current list:
-
-| Route                                       | Links from                         | Removed when                                                     |
-| ------------------------------------------- | ---------------------------------- | ---------------------------------------------------------------- |
-| `find-my-path/`, `af/find-my-path/`, `my-path/`, `af/my-path/` | The Tools menu and the mobile drawer on every page, and the home page's "Find my path" button | WP-31 builds the wizard and My path |
-
-WP-20 milestone 2 built every other route in build plan B1, and the generated list it replaced
-deleted itself the way it was designed to: the audit failed on each entry whose route now existed.
-`pnpm dist:audit` prints the remaining list on a green run.
+Current list: **empty**. WP-20 built every route in build plan B1 except the wizard and My path
+(WP-31), and no page links to those two until `WIZARD_AVAILABLE` in `src/lib/routes.ts` is `true`.
+A link a reader can follow to a missing page is a 404 on the deployed site, whatever the audit
+allows, so the flag hides the links rather than this list excusing them. The generated list
+milestone 1 needed deleted itself the way it was designed to: the audit failed on each entry whose
+route had been built.
 
 Absolute URLs on `SITE_URL` (canonical, hreflang and `og:url`) count as internal. The scanner is a small tokenizer in the script itself (no parser dependency). It ignores comments (including the empty `<!-->` form) and the contents of `<script>`, `<style>`, `<textarea>` and `<title>`.
 

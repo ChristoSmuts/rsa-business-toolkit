@@ -7,7 +7,7 @@ import {
   sectionLinks,
   toolLinks,
 } from '../../../src/lib/nav';
-import { APP_ROUTES, NAV_DOC_IDS } from '../../../src/lib/routes';
+import { APP_ROUTES, NAV_DOC_IDS, WIZARD_AVAILABLE } from '../../../src/lib/routes';
 import { realManifest } from './data';
 
 const manifest = realManifest();
@@ -51,7 +51,7 @@ describe('toolLinks', () => {
 
   it('is the Tools menu from build plan B2', () => {
     expect(links.map((link) => link.id)).toEqual([
-      'my-path',
+      ...(WIZARD_AVAILABLE ? ['my-path'] : []),
       NAV_DOC_IDS.checklist,
       'templates',
       NAV_DOC_IDS.glossary,
@@ -61,7 +61,7 @@ describe('toolLinks', () => {
 
   it('takes the document routes from the manifest, not from the document ids', () => {
     expect(links.map((link) => link.route)).toEqual([
-      APP_ROUTES.myPath,
+      ...(WIZARD_AVAILABLE ? [APP_ROUTES.myPath] : []),
       'checklist/',
       APP_ROUTES.templates,
       'glossary/',

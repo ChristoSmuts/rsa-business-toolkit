@@ -13,7 +13,7 @@ import SectionHeader from '../ui/SectionHeader.astro';
 import Breadcrumb from '../navigation/Breadcrumb.astro';
 import { formatDate, useTranslations, type TranslationKey } from '../../i18n';
 import { getLocale, type Locale } from '../../i18n/locales';
-import { docHref, docTitle, sectionTitle } from '../../lib/content/manifest';
+import { docHref, docTitle, docTitleLang, sectionTitle } from '../../lib/content/manifest';
 import type { Doc, Manifest } from '../../lib/content/schema';
 import type { Crumb } from '../../lib/nav';
 import { sectionHue } from '../../lib/pages';
@@ -59,6 +59,7 @@ const description = t(`nav.sections.${sectionId}.description` as TranslationKey)
         <li>
           <Card
             title={docTitle(manifest, doc.id, locale)}
+            titleLang={docTitleLang(manifest, doc.id, locale)}
             href={docHref(manifest, doc.id, locale)}
             section={hue}
             eyebrow={t('section.pageNumber', { n: index + 1, total: docs.length })}

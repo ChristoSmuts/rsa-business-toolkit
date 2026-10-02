@@ -149,24 +149,12 @@ export interface FutureRoute {
 }
 
 /**
- * WP-20 built every route in build plan B1 except the two that only exist with the wizard: the
- * questions (`find-my-path/`) and the path they produce (`my-path/`). Every page links to both,
- * through the Tools menu, the mobile drawer and the home page's "Find my path" button, so the links
- * are already correct; the pages behind them are WP-31.
+ * Empty, and that is the goal state. WP-20 built every route in build plan B1 except the wizard and
+ * My path (WP-31), and no page links to those two until `WIZARD_AVAILABLE` in `src/lib/routes.ts`
+ * says they exist. The generated list milestone 1 needed deleted itself the way it was designed to:
+ * the audit failed on each entry whose route had been built.
  */
-const WIZARD_ROUTES = ['find-my-path/', 'my-path/'] as const;
-
-export const KNOWN_FUTURE_ROUTES: readonly FutureRoute[] = WIZARD_ROUTES.flatMap((route) => [
-  route,
-  `af/${route}`,
-]).map((route) => ({
-  route,
-  reason:
-    'Build plan B1 lists this route. Every page links to it from the Tools menu or the mobile ' +
-    'drawer, and the home page from its "Find my path" button, in both languages.',
-  expires: 'Remove when WP-31 builds the wizard and My path under src/pages/[...locale]/.',
-  expiresOn: '2027-03-31',
-}));
+export const KNOWN_FUTURE_ROUTES: readonly FutureRoute[] = [];
 
 /** Problems with the future-route list itself, as readable sentences. Empty when it is valid. */
 export function validateFutureRoutes(
