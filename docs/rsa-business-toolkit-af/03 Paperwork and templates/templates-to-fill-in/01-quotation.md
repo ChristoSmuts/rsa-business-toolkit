@@ -1,6 +1,6 @@
 # KWOTASIE
 
-*Hoe om dit te gebruik: maak ’n afskrif, hernoem dit na die kwotasienommer, vervang alles in [VIERKANTIGE HAKIES], voer dit dan na PDF uit en stuur die PDF. Moet nooit die lêer wat geredigeer kan word, vir ’n kliënt stuur nie.*
+*Hoe om dit te gebruik: maak ’n afskrif, hernoem dit na die kwotasienommer, vervang alles in [VIERKANTIGE HAKIES], voer dit dan na PDF uit en stuur die PDF. Moet nooit die redigeerbare lêer vir ’n kliënt stuur nie.*
 
 ---
 

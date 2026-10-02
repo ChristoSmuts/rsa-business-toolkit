@@ -45,7 +45,7 @@ Ons hou rekords vir vyf jaar, soos belastingwetgewing vereis. Daarna vee ons dit
 
 ## Bemarking
 
-Ons sal jou net bemarkingsboodskappe stuur as jy ingestem het om dit te ontvang. Jy kan ons enige tyd vra om op te hou deur STOP te antwoord of vir ons ’n e-pos te stuur.
+Ons sal jou net bemarkingsboodskappe stuur as jy ingestem het om dit te ontvang. Jy kan enige tyd vir ons sê om op te hou deur STOP te antwoord of vir ons ’n e-pos te stuur.
 
 ## Jou regte
 

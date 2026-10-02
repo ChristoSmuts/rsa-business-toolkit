@@ -1,6 +1,6 @@
 # FAKTUUR
 
-**Gebruik hierdie een as jy NIE vir BTW geregistreer is nie.** Dit is die meeste klein besighede. Jy hoef nie te registreer voordat jou omset in enige deurlopende 12 maande R2.3 miljoen oorskry nie.
+**Gebruik hierdie een as jy NIE vir BTW geregistreer is nie.** Dit geld vir die meeste klein besighede. Jy hoef nie te registreer voordat jou omset in enige deurlopende 12 maande R2.3 miljoen oorskry nie.
 
 > Drie reëls wat jy op hierdie faktuur moet volg. Moet NIE die woord "Belastingfaktuur" ("Tax Invoice") gebruik nie. Moet NIE ’n BTW-reël wys nie. Moet NIE ’n BTW-nommer wys nie. Moet NIE 15% by enigiets tel nie. Om BTW te hef wanneer jy nie geregistreer is nie, is bedrog, nie ’n administratiewe fout nie.
 
