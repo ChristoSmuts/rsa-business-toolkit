@@ -1,0 +1,655 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Gebruik dit eers nadat SARS jou BTW-nommer uitgereik het."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " As jy nie geregistreer is nie, gebruik eerder die ander faktuursjabloon."
+        }
+      ],
+      "hash": "e05193023327abdd",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "13e1a8383fcc411a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS kontroleer belastingfakture teen ’n vaste lys. As een verpligte item ontbreek, kan die hele faktuur afgekeur word. Geen belastingfaktuur word by R50 of minder vereis nie. ’n Verkorte belastingfaktuur word van R50 tot R5,000 toegelaat. ’n Volledige belastingfaktuur word bo R5,000 vereis. Jy moet dit binne 21 dae ná die verkoping uitreik."
+        }
+      ],
+      "hash": "5751881cd7018b90",
+      "id": "intro.2",
+      "kind": "callout",
+      "sourceHash": "17e3a65936f4af64",
+      "style": "note"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.3",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "key": "businessName",
+              "style": "identity",
+              "t": "placeholder",
+              "v": "JOU BESIGHEIDSNAAM"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Fisiese adres"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "BTW-registrasienommer: 4XXXXXXXXX"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Foon"
+        },
+        {
+          "t": "text",
+          "v": " | "
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "E-pos"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "nested": true,
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "As ’n maatskappy: Handeldrywende as ’n naam van [GEREGISTREERDE NAAM] (Pty) Ltd, Reg. No. [NOMMER]"
+        }
+      ],
+      "hash": "1b723f9ea9811bec",
+      "id": "intro.4",
+      "kind": "paragraph",
+      "sourceHash": "6d5ef54926b88b31"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "80a65beedcb9936d",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Veld"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Besonderhede"
+          }
+        ]
+      ],
+      "id": "intro.5",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Faktuurnommer"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "INV-0001"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Uitreikdatum"
+            }
+          ],
+          [
+            {
+              "style": "format",
+              "t": "placeholder",
+              "v": "DD Maand JJJJ"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "a988c2230fa2441d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Aan"
+        }
+      ],
+      "depth": 2,
+      "hash": "f45795b28caac0f6",
+      "id": "to",
+      "kind": "heading",
+      "sourceHash": "7cb1cef9ea8a2276",
+      "text": "Aan"
+    },
+    {
+      "c": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Kliënt se naam"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Kliënt se fisiese adres"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Kliënt se BTW-nommer, as hulle ’n ondernemer is — verpligtend op fakture bo R5,000"
+        }
+      ],
+      "hash": "e1cc1c1e8e7ada9d",
+      "id": "to.1",
+      "kind": "paragraph",
+      "sourceHash": "8eaab89eff3a2ee1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lewering"
+        }
+      ],
+      "depth": 2,
+      "hash": "db4e03d3c55398e1",
+      "id": "supply",
+      "kind": "heading",
+      "sourceHash": "f76fda3ba7e215c2",
+      "text": "Lewering"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "hash": "19a311990f5038d7",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Beskrywing"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Aantal"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Eenheidsprys"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Bedrag"
+          }
+        ]
+      ],
+      "id": "supply.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "style": "instruction",
+              "t": "placeholder",
+              "v": "Goedere of dienste gelewer"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "1"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Subtotaal (BTW uitgesluit)"
+            }
+          ],
+          [],
+          [],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "BTW @ 15%"
+            }
+          ],
+          [],
+          [],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "TOTAAL (BTW ingesluit)"
+                }
+              ],
+              "t": "strong"
+            }
+          ],
+          [],
+          [],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "R 0.00"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "2734dac9d70ac04f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Betalingsbesonderhede"
+        }
+      ],
+      "depth": 2,
+      "hash": "fa891e1d0df390c5",
+      "id": "payment-details",
+      "kind": "heading",
+      "sourceHash": "d6bfcb998cd265fc",
+      "text": "Betalingsbesonderhede"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "75075dc304077bfe",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Veld"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Besonderhede"
+          }
+        ]
+      ],
+      "id": "payment-details.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Bank"
+            }
+          ],
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Naam van bank"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Rekeningnaam"
+            }
+          ],
+          [
+            {
+              "style": "instruction",
+              "t": "placeholder",
+              "v": "Presies soos dit op die rekening verskyn"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Rekeningnommer"
+            }
+          ],
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Nommer"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Takkode"
+            }
+          ],
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Kode"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Verwysing"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "INV-0001"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "ecc08dc2bb244b04"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "payment-details.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die sewe dinge wat ’n volledige belastingfaktuur moet wys"
+        }
+      ],
+      "depth": 2,
+      "hash": "87b86d4b762e28d4",
+      "id": "the-seven-things-a-full-tax-invoice-must-show",
+      "kind": "heading",
+      "sourceHash": "10e65380ab1253ac",
+      "text": "Die sewe dinge wat ’n volledige belastingfaktuur moet wys"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir enige lewering bo R5,000:"
+        }
+      ],
+      "hash": "57041b6bbda9a490",
+      "id": "the-seven-things-a-full-tax-invoice-must-show.1",
+      "kind": "paragraph",
+      "sourceHash": "6bc0120a90e3c185"
+    },
+    {
+      "hash": "45af86d0f60272a7",
+      "id": "the-seven-things-a-full-tax-invoice-must-show.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Die woorde \"Belastingfaktuur\" (\"Tax Invoice\"), \"BTW-faktuur\" (\"VAT Invoice\") of \"Faktuur\" (\"Invoice\")"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jou naam, adres en BTW-registrasienommer"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die kliënt se naam en adres, en hulle BTW-nommer as hulle geregistreer is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Volgnommer en die uitreikdatum"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Beskrywing van die goedere of dienste wat gelewer is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die hoeveelheid of volume wat gelewer is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die waarde van die lewering, die BTW wat gehef is, en die totaal"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "40c9e125d3aff4c3",
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Werk met 15%"
+        }
+      ],
+      "depth": 2,
+      "hash": "7d13ed3038bbc1a3",
+      "id": "working-with-15",
+      "kind": "heading",
+      "sourceHash": "166b2440c381a8d1",
+      "text": "Werk met 15%"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om BTW by ’n prys te tel, vermenigvuldig met 1.15. Om die BTW in ’n prys wat BTW insluit te vind, vermenigvuldig met 15/115."
+        }
+      ],
+      "hash": "7f0c73c9bfd057f6",
+      "id": "working-with-15.1",
+      "kind": "paragraph",
+      "sourceHash": "3da10cd97b9855d0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy tweedehandse goedere verkoop, moet die beskrywing dit sê."
+        }
+      ],
+      "hash": "95f984e22e2a21ed",
+      "id": "working-with-15.2",
+      "kind": "paragraph",
+      "sourceHash": "48994a8cbad159b4"
+    }
+  ],
+  "contentHash": "8f2e0f3108768f03",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "BELASTINGFAKTUUR",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "to",
+      "text": "Aan"
+    },
+    {
+      "depth": 2,
+      "id": "supply",
+      "text": "Lewering"
+    },
+    {
+      "depth": 2,
+      "id": "payment-details",
+      "text": "Betalingsbesonderhede"
+    },
+    {
+      "depth": 2,
+      "id": "the-seven-things-a-full-tax-invoice-must-show",
+      "text": "Die sewe dinge wat ’n volledige belastingfaktuur moet wys"
+    },
+    {
+      "depth": 2,
+      "id": "working-with-15",
+      "text": "Werk met 15%"
+    }
+  ],
+  "id": "paperwork/templates/tax-invoice",
+  "kind": "template",
+  "lang": "af",
+  "order": 5,
+  "readingTime": 1,
+  "related": [],
+  "route": "templates/tax-invoice/",
+  "section": "paperwork",
+  "slug": "tax-invoice",
+  "sourcePath": "03 Paperwork and templates/templates-to-fill-in/03-tax-invoice-vat-registered.md",
+  "sources": {
+    "acts": [
+      "value-added-tax-act-89-of-1991"
+    ],
+    "entries": [
+      "sars--tax-invoice-checklist"
+    ]
+  },
+  "summary": "Gebruik dit eers nadat SARS jou BTW-nommer uitgereik het. As jy nie geregistreer is nie, gebruik eerder die ander faktuursjabloon.",
+  "tags": [
+    "template",
+    "vat"
+  ],
+  "terms": [],
+  "title": "BELASTINGFAKTUUR",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

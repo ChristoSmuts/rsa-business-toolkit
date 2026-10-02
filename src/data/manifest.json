@@ -1,5 +1,5 @@
 {
-  "contentHash": "f387e48a418e0514",
+  "contentHash": "6a5fc1bd535f01c1",
   "docs": {
     "branding/already-have-your-name": {
       "appliesTo": {
@@ -131,13 +131,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 1,
       "route": "business-types/",
       "section": "business-types",
       "slug": "pick-your-business-type",
       "titles": {
+        "af": "Kies jou besigheidstipe",
         "en": "Pick your business type"
       }
     },
@@ -292,13 +294,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 1,
       "route": "core/start-here/",
       "section": "core",
       "slug": "start-here",
       "titles": {
+        "af": "Begin hier",
         "en": "Core: start here"
       }
     },
@@ -411,13 +415,15 @@
       },
       "kind": "glossary",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 1,
       "route": "glossary/",
       "section": "lookup",
       "slug": "glossary",
       "titles": {
+        "af": "Woordelys",
         "en": "Glossary"
       }
     },
@@ -462,13 +468,15 @@
       },
       "kind": "template",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 4,
       "route": "templates/invoice/",
       "section": "paperwork",
       "slug": "invoice",
       "titles": {
+        "af": "FAKTUUR",
         "en": "Invoice, NOT VAT registered (template)"
       }
     },
@@ -479,13 +487,15 @@
       },
       "kind": "template",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 7,
       "route": "templates/privacy-notice/",
       "section": "paperwork",
       "slug": "privacy-notice",
       "titles": {
+        "af": "PRIVAATHEIDSKENNISGEWING",
         "en": "Privacy notice, POPIA (template)"
       }
     },
@@ -496,13 +506,15 @@
       },
       "kind": "template",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 3,
       "route": "templates/quotation/",
       "section": "paperwork",
       "slug": "quotation",
       "titles": {
+        "af": "KWOTASIE",
         "en": "Quotation (template)"
       }
     },
@@ -513,13 +525,15 @@
       },
       "kind": "template",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 6,
       "route": "templates/receipt/",
       "section": "paperwork",
       "slug": "receipt",
       "titles": {
+        "af": "KWITANSIE",
         "en": "Receipt (template)"
       }
     },
@@ -530,13 +544,15 @@
       },
       "kind": "template",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 5,
       "route": "templates/tax-invoice/",
       "section": "paperwork",
       "slug": "tax-invoice",
       "titles": {
+        "af": "BELASTINGFAKTUUR",
         "en": "Tax invoice, VAT registered (template)"
       }
     },
@@ -598,13 +614,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 1,
       "route": "start/start-here/",
       "section": "start",
       "slug": "start-here",
       "titles": {
+        "af": "Suid-Afrikaanse gereedskapstel vir klein besighede",
         "en": "Start here"
       }
     },
@@ -627,6 +645,10 @@
     }
   },
   "langs": {
+    "af": {
+      "docCount": 9,
+      "status": "partial"
+    },
     "en": {
       "docCount": 36,
       "status": "source"

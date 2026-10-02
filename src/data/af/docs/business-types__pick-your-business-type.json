@@ -1,0 +1,592 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die kernlêers in "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " geld vir almal. Hierdie vouer voeg die reëls by wat net vir jou soort besigheid geld."
+        }
+      ],
+      "hash": "56650a3ac227db57",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "de5b21f17475270c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vind jouself in die tabel en maak dan daardie lêer oop."
+        }
+      ],
+      "hash": "1d99560278fad47f",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "1bdbb369b84d47d8"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "c1a7c7381f22c1ea",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "As jy..."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Maak oop"
+          }
+        ]
+      ],
+      "id": "intro.3",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Voertuie koop en verkoop"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Voertuighandelaar"
+                }
+              ],
+              "doc": "business-types/vehicle-dealer",
+              "t": "link"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Kos of drinkgoed maak, kook, verpak of verkoop"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Kosbesigheid"
+                }
+              ],
+              "doc": "business-types/food",
+              "t": "link"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Hare, naels, skoonheidsbehandelings, masserings, tatoeëermerke of lyfringe doen"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Skoonheid en persoonlike versorging"
+                }
+              ],
+              "doc": "business-types/beauty",
+              "t": "link"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Fisiese produkte verkoop, in ’n winkel, by markte of aanlyn"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Kleinhandel en aanlynwinkel"
+                }
+              ],
+              "doc": "business-types/retail-online",
+              "t": "link"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Dinge regmaak, bou, installeer, skoonmaak of aflewer"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Dienste en ambagte"
+                }
+              ],
+              "doc": "business-types/services-trades",
+              "t": "link"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Jou vaardigheid of jou tyd verkoop: ontwerp, konsultasie, kodering, privaat onderrig, skryfwerk, fotografie"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Professionele en kreatiewe werk"
+                }
+              ],
+              "doc": "business-types/professional-creative",
+              "t": "link"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "7010f8a82d67d87e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As twee lêers op jou van toepassing is, lees albei. ’n Kosvragmotor is ’n kosbesigheid en ’n voertuigeienaar. ’n Aanlyn klerehandelsmerk is kleinhandel en aanlyn."
+        }
+      ],
+      "hash": "8aa774b0470291b3",
+      "id": "intro.4",
+      "kind": "paragraph",
+      "sourceHash": "e3437a8dd389e3dc"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoeveel regulering elke tipe meebring"
+        }
+      ],
+      "depth": 2,
+      "hash": "f31b32a41f03d572",
+      "id": "how-much-regulation-each-type-carries",
+      "kind": "heading",
+      "sourceHash": "e826feb4cb916579",
+      "text": "Hoeveel regulering elke tipe meebring"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is ’n rowwe riglyn vir hoeveel opstelwerk jy kan verwag voordat jy wettig handel kan dryf."
+        }
+      ],
+      "hash": "df74f1e4b647b647",
+      "id": "how-much-regulation-each-type-carries.1",
+      "kind": "paragraph",
+      "sourceHash": "dc6bc8f24c2f3473"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "c2ccdc49b7e1a02a",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Besigheidstipe"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Opstelwerk"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Hoofrede"
+          }
+        ]
+      ],
+      "id": "how-much-regulation-each-type-carries.2",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Professioneel en kreatief"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Die minste"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Gewoonlik glad geen lisensie nie"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Dienste en ambagte"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Laag tot middelmatig"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Sommige ambagte het professionele registrasie nodig"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Kleinhandel en aanlyn"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Middelmatig"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Verbruikersreg, en produkreëls vir sommige goedere"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Skoonheid en persoonlike versorging"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Middelmatig tot hoog"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Gesondheidsinspeksie en munisipale lisensie"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Kos"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Hoog"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid), opleiding, inspeksies"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Voertuighandel"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Hoog"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Drie aparte lae van registrasie"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "42adedfbddc5826d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy tussen besigheidsidees kies en geld is skaars, is die linkerkolom van hierdie tabel die moeite werd om as ’n kostevergelyking te lees. ’n Kosbesigheid kan twee tot ses maande neem voordat dit wettig mag oopmaak. ’n Konsultasiebesigheid kan môre al ’n faktuur stuur."
+        }
+      ],
+      "hash": "3815aa9294c8b0e5",
+      "id": "how-much-regulation-each-type-carries.3",
+      "kind": "paragraph",
+      "sourceHash": "1b40b778e4800b98"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat almal nodig het, ongeag die tipe"
+        }
+      ],
+      "depth": 2,
+      "hash": "e9a629d5b7d82759",
+      "id": "what-everyone-needs-regardless-of-type",
+      "kind": "heading",
+      "sourceHash": "1e50218f1338e26b",
+      "text": "Wat almal nodig het, ongeag die tipe"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Uit "
+        },
+        {
+          "label": "01-core/",
+          "section": "core",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": ":"
+        }
+      ],
+      "hash": "d20c0a3f2020be0a",
+      "id": "what-everyone-needs-regardless-of-type.1",
+      "kind": "paragraph",
+      "sourceHash": "39c05a2f18397156"
+    },
+    {
+      "hash": "07978fa023dd5444",
+      "id": "what-everyone-needs-regardless-of-type.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "’n Aparte bankrekening vir besigheidsgeld"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "SARS-registrasie en indiening, selfs met nul inkomste"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Registrasie van ’n POPIA-inligtingsbeampte, gratis, by "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "inforegulator.org.za"
+              }
+            ],
+            "external": true,
+            "href": "https://inforegulator.org.za/",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Eerlike advertensies en nakoming van die Consumer Protection Act"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Rekords wat vir vyf jaar gehou word"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "ccde106bd324adbf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat niemand op dag een nodig het nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "fd950fd338c92c27",
+      "id": "what-nobody-needs-on-day-one",
+      "kind": "heading",
+      "sourceHash": "4ba05e7f66862cc2",
+      "text": "Wat niemand op dag een nodig het nie"
+    },
+    {
+      "hash": "512f16639a5ceead",
+      "id": "what-nobody-needs-on-day-one.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "’n Geregistreerde maatskappy, tensy ’n kliënt dit eis"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "BTW-registrasie, tensy die omset R2.3 miljoen oorskry of die syfers daarvoor pleit"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Betaalde B-BBEE-sertifikaat, aangesien die beëdigde verklaring gratis is onder R10 miljoen omset"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Sakeplan, tensy jy iemand vir geld vra"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Webwerf, voordat jy kliënte het"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "271ba8d70ca1c3cc"
+    }
+  ],
+  "contentHash": "1960cd0e629b2f26",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Kies jou besigheidstipe",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "how-much-regulation-each-type-carries",
+      "text": "Hoeveel regulering elke tipe meebring"
+    },
+    {
+      "depth": 2,
+      "id": "what-everyone-needs-regardless-of-type",
+      "text": "Wat almal nodig het, ongeag die tipe"
+    },
+    {
+      "depth": 2,
+      "id": "what-nobody-needs-on-day-one",
+      "text": "Wat niemand op dag een nodig het nie"
+    }
+  ],
+  "id": "business-types/pick-your-business-type",
+  "kind": "guide",
+  "lang": "af",
+  "order": 1,
+  "readingTime": 2,
+  "related": [
+    "business-types/vehicle-dealer",
+    "business-types/food",
+    "business-types/beauty",
+    "business-types/retail-online",
+    "business-types/services-trades"
+  ],
+  "route": "business-types/",
+  "section": "business-types",
+  "slug": "pick-your-business-type",
+  "sourcePath": "04 Your kind of business/00-pick-your-business-type.md",
+  "sources": {
+    "acts": [
+      "consumer-protection-act-68-of-2008"
+    ],
+    "entries": [
+      "sars--what-is-the-new-threshold-for-vat-registration",
+      "b-bbee-commission--frequently-asked-questions",
+      "information-regulator-of-south-africa",
+      "asc-food-safety"
+    ]
+  },
+  "summary": "Die kernlêers in 01-core/ geld vir almal. Hierdie vouer voeg die reëls by wat net vir jou soort besigheid geld.",
+  "tags": [
+    "business-types"
+  ],
+  "terms": [],
+  "title": "Kies jou besigheidstipe",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

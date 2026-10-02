@@ -1,0 +1,1552 @@
+{
+  "doc": "lookup/glossary",
+  "entries": [
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die regeringswebwerf waar jy self ’n maatskappy registreer. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.bizportal.gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.bizportal.gov.za",
+          "t": "link"
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "bizportal",
+      "term": "BizPortal"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Companies and Intellectual Property Commission (kommissie vir maatskappye en intellektuele eiendom). Die regeringsliggaam wat die register van maatskappye en handelsmerke hou."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "cipc",
+      "term": "CIPC"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Jou maatskappy se registrasiesertifikaat. Bewys dat die maatskappy bestaan."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "cor-143",
+      "term": "CoR 14.3"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Central Supplier Database (sentrale verskafferdatabasis). Die lys waarop jy moet wees om aan die regering te verkoop."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "csd",
+      "term": "CSD"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Memorandum of Incorporation (akte van oprigting). Die reëlboek van jou maatskappy. CIPC gee jou gratis ’n standaardweergawe."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "moi",
+      "term": "MOI"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Privaat maatskappy. ’n Regspersoon wat apart van jou is."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "pty-ltd",
+      "term": "Pty Ltd"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Jy, wat in jou eie naam handel dryf. Nie ’n aparte regspersoon nie. Geen maatskappyregistrasie nodig nie, maar jy moet steeds vir belasting by SARS registreer."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "sole-proprietor",
+      "term": "Eenmansaak (sole proprietor)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Gratis indiening by CIPC wat die werklike mense agter ’n maatskappy noem. Verpligtend."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "beneficial-ownership-filing",
+      "term": "Indiening van voordelige eienaarskap (beneficial ownership filing)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Jaarlikse indiening by CIPC om te bevestig dat die maatskappy nog bestaan. Nie ’n belastingopgawe nie. Albei word vereis."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "annual-return",
+      "term": "Jaarlikse opgawe (annual return)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n CIPC-rekening-ID van ses karakters wat jy nodig het voordat jy enigiets by CIPC kan indien."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "customer-code",
+      "term": "Kliëntkode (customer code)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Public Interest Score (openbare-belangtelling). ’n Puntberekening wat aan die einde van elke finansiële jaar gedoen word en wat bepaal of jou maatskappy ’n oudit, ’n onafhanklike oorsig of geeneen van die twee nodig het nie."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "pis",
+      "term": "PIS"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Maatskappy waar elke aandeelhouer ook ’n direkteur is. Dit het die ligste verpligtinge vir finansiële verslaggewing."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "owner-managed-company",
+      "term": "Eienaarbestuurde maatskappy (owner-managed company)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Annual Financial Statements (jaarlikse finansiële state)."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "afs",
+      "term": "AFS"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Financial Accountability Supplement (aanvulling oor finansiële verantwoordbaarheid). ’n Kort finansiële opsomming wat saam met die jaarlikse opgawe by CIPC ingedien word in plaas van volledige state, waar dit toegelaat word."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "fas",
+      "term": "FAS"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Volledige nagaan van die finansiële state, met ’n positiewe mening. Duur. Word selde vir ’n eenpersoonmaatskappy vereis."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "audit",
+      "term": "Oudit (audit)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Ligter kontrole wat beperkte sekerheid gee. Goedkoper as ’n oudit."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "independent-review",
+      "term": "Onafhanklike oorsig (independent review)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Rekenmeester stel die state uit jou rekords op, sonder om ’n mening daaroor te gee. Die gewone roete vir ’n klein eienaarbestuurde maatskappy."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "compilation",
+      "term": "Samestelling (compilation)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die CIPC-vorm waarmee jy aansoek doen om ’n gederegistreerde maatskappy te laat herstel."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "cor-405",
+      "term": "CoR 40.5"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Bates sonder ’n eienaar, wat na die staat kan oorgaan. Dit is wat met die bates van ’n gederegistreerde maatskappy kan gebeur."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "bona-vacantia",
+      "term": "Bona vacantia"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die artikel 4-toets waarin ’n direksie moet slaag voordat dit ’n dividend betaal: die bates is meer as die laste, en die maatskappy kan sy skuld vir die volgende 12 maande betaal."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "solvency-and-liquidity-test",
+      "term": "Solvensie- en likiditeitstoets (solvency and liquidity test)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Skriftelike rekord van ’n beslissing deur die direkteure of aandeelhouers. Dit is nodig selfs wanneer jy die enigste een is."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "resolution",
+      "term": "Besluit (resolution)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die maatskappy se amptelike naam op sy CoR 14.3. Dit moet saam met die registrasienommer op al die maatskappy se dokumente verskyn."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "registered-name",
+      "term": "Geregistreerde naam (registered name)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Naam waaronder jy jou besigheid bemark en wat verskil van die geregistreerde naam. Dit word toegelaat, maar die geregistreerde naam en nommer moet steeds op dokumente verskyn, met die woorde \"handeldrywende as\" (\"trading as\")."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "trading-name",
+      "term": "Handelsnaam (trading name)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Goedere wat jy hou om te verkoop. Onverkoopte voorraad aan die einde van die finansiële jaar word kragtens artikel 22 van die Income Tax Act teen kosprys in berekening gebring, so om voorraad te koop verminder nie op sigself daardie jaar se wins nie."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "trading-stock",
+      "term": "Handelsvoorraad (trading stock)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Geldskieter finansier ’n handelaar se voorraad. Die geldskieter word die titelhouer op eNaTIS totdat elke voertuig afbetaal is."
+        }
+      ],
+      "group": "Registrasie en maatskappye",
+      "groupId": "registration-and-companies",
+      "id": "floor-plan-finance",
+      "term": "Vloerplanfinansiering (floor plan finance)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "South African Revenue Service (Suid-Afrikaanse Inkomstediens). Die belastingowerheid."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "sars",
+      "term": "SARS"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "SARS se aanlynstelsel. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.sarsefiling.co.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.sarsefiling.co.za",
+          "t": "link"
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "efiling",
+      "term": "eFiling"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die jaarlikse inkomstebelastingopgawe vir individue, ook eienaars van eenmansake."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "itr12",
+      "term": "ITR12"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die jaarlikse inkomstebelastingopgawe vir maatskappye."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "itr14",
+      "term": "ITR14"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die voorlopige belastingopgawe. Dit word twee keer per jaar ingedien."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "irp6",
+      "term": "IRP6"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Iemand wat inkomste verdien waarvan geen PAYE afgetrek word nie, en wat dus gedurende die jaar vooruit belasting betaal. Elke besigheidseienaar is een."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "provisional-taxpayer",
+      "term": "Voorlopige belastingbetaler (provisional taxpayer)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Pay As You Earn (lopende betaalstelsel). Belasting wat ’n werkgewer van ’n salaris aftrek."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "paye",
+      "term": "PAYE"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die maandelikse betaalstaatopgawe wat PAYE, UIF en SDL verklaar. Dit is teen die 7de van die volgende maand verskuldig."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "emp201",
+      "term": "EMP201"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die rekonsiliasie van jou EMP201-indienings, twee keer per jaar."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "emp501",
+      "term": "EMP501"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Skills Development Levy (vaardigheidsontwikkelingsheffing). ’n Betaalstaatheffing wat eers geld sodra jou betaalstaat ’n drempel oorskry."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "sdl",
+      "term": "SDL"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "20% belasting op dividende, wat die maatskappy terughou en oorbetaal."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "dividends-tax",
+      "term": "Dividendbelasting (dividends tax)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Ou PAYE-reël vir direkteure van privaat maatskappye. Dit is met ingang van 1 Maart 2017 herroep. Baie webwerwe beskryf dit nog asof dit steeds geld. Direkteure se PAYE word nou op hulle werklike vergoeding gebaseer."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "deemed-remuneration",
+      "term": "Geagte vergoeding (deemed remuneration)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die rekord van geld wat tussen jou en jou maatskappy beweeg, buiten salaris en dividende. Krediet beteken die maatskappy skuld jou. Debiet beteken jy skuld die maatskappy."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "loan-account",
+      "term": "Leningsrekening (loan account)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Waar ’n maatskappy rentevry, of teen ’n laer koers as SARS se amptelike rentekoers, geld aan ’n aandeelhouer leen, word die tekort as ’n dividend behandel en teen 20% belas."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "deemed-dividend",
+      "term": "Geagte dividend (deemed dividend)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die koers wat SARS publiseer om te bepaal of ’n lening teen ’n lae rentekoers is. 7.75% per jaar vanaf 1 Desember 2025."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "official-rate-of-interest",
+      "term": "Amptelike rentekoers (official rate of interest)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die inkomstevlak waaronder jy geen inkomstebelasting skuld nie. R99,000 vir mense jonger as 65 in 2026/2027."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "tax-threshold",
+      "term": "Belastingdrempel (tax threshold)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Vereenvoudigde belasting vir mikrobesighede, wat op verkope eerder as op wins gehef word. 0% op die eerste R600,000."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "turnover-tax",
+      "term": "Omsetbelasting (turnover tax)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Totale verkope, voor enige koste. Nie wins nie."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "turnover",
+      "term": "Omset (turnover)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Wins ná toelaatbare uitgawes. Dit is waarop inkomstebelasting bereken word."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "taxable-income",
+      "term": "Belasbare inkomste (taxable income)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Small Business Corporation (kleinsakekorporasie). ’n Maatskappy wat vir verlaagde belastingkoerse kwalifiseer, wat by 0% begin."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "sbc",
+      "term": "SBC"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Belasting op toegevoegde waarde, 15%. Net geregistreerde ondernemers hef dit."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "vat",
+      "term": "BTW (VAT)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Besigheid wat vir BTW geregistreer is."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "vendor",
+      "term": "Ondernemer (vendor)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "BTW wat jy op aankope betaal het en kan terugeis. Net as jy ’n ondernemer is."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "input-tax",
+      "term": "Insetbelasting (input tax)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "BTW wat jy van kliënte gehef het en aan SARS moet betaal."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "output-tax",
+      "term": "Uitsetbelasting (output tax)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n BTW-eis wat toegelaat word wanneer jy tweedehandse goedere koop van iemand wat nie ’n ondernemer is nie. Belangrik vir voertuighandelaars."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "notional-input-tax",
+      "term": "Nosionele insetbelasting (notional input tax)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die vorm wat die koper en die verkoper albei teken sodat ’n eis vir nosionele insetbelasting geldig is."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "vat264",
+      "term": "VAT264"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Faktuur wat ’n BTW-ondernemer uitreik, met spesifieke verpligte velde. Net ondernemers mag een uitreik."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "tax-invoice",
+      "term": "Belastingfaktuur (tax invoice)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Verlies wat oorgedra word om belasting in ’n toekomstige jaar te verminder."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "assessed-loss",
+      "term": "Vasgestelde verlies (assessed loss)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Reël wat jou kan verhinder om ’n besigheidsverlies teen jou salaris te gebruik."
+        }
+      ],
+      "group": "Belasting",
+      "groupId": "tax",
+      "id": "ring-fencing-s20a",
+      "term": "Omheining van verliese (ring-fencing, s20A)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Protection of Personal Information Act. Suid-Afrika se wet op databeskerming."
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "popia",
+      "term": "POPIA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die persoon wat wetlik vir POPIA in jou besigheid verantwoordelik is. As jy alleen werk, is dit jy. Die beampte moet by die Information Regulator (Inligtingsreguleerder) geregistreer wees."
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "information-officer",
+      "term": "Inligtingsbeampte (Information Officer)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die liggaam wat POPIA afdwing. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "inforegulator.org.za"
+            }
+          ],
+          "external": true,
+          "href": "https://inforegulator.org.za/",
+          "t": "link"
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "information-regulator",
+      "term": "Information Regulator (Inligtingsreguleerder)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Promotion of Access to Information Act. Dit staan naas POPIA."
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "paia",
+      "term": "PAIA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Consumer Protection Act 68 of 2008."
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "cpa",
+      "term": "CPA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Electronic Communications and Transactions Act 25 of 2002. Dit reël aanlynverkope."
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "ecta",
+      "term": "ECTA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Waarborg wat die wet by elke verkoop insluit, of jy dit neerskryf of nie. Ses maande, kragtens CPA s56."
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "implied-warranty",
+      "term": "Geïmpliseerde waarborg (implied warranty)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Afrikaanse woord wat \"soos dit staan\" beteken (in Engels \"as is\"). ’n Klousule wat verkopers vroeër gebruik het om aanspreeklikheid vir gebreke te vermy. Dit beskerm nie meer ’n besigheid wat aan ’n verbruiker verkoop nie."
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "voetstoots",
+      "term": "Voetstoots"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die reg om te kanselleer en jou geld terug te kry sonder om ’n rede te gee. Sewe dae vir die meeste aanlynaankope."
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "cooling-off-period",
+      "term": "Afkoelperiode (cooling-off period)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Broad-Based Black Economic Empowerment (breedgebaseerde swart ekonomiese bemagtiging)."
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "b-bbee",
+      "term": "B-BBEE"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Exempted Micro Enterprise (vrygestelde mikro-onderneming). Omset onder R10 miljoen. Dit gebruik ’n gratis beëdigde verklaring in plaas van ’n sertifikaat waarvoor jy betaal."
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "eme",
+      "term": "EME"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Qualifying Small Enterprise (kwalifiserende klein onderneming). Omset tussen R10 miljoen en R50 miljoen."
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "qse",
+      "term": "QSE"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Persoon voor wie jy ’n beëdigde verklaring kan aflê. Gratis by enige polisiestasie."
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "commissioner-of-oaths",
+      "term": "Kommissaris van Ede (Commissioner of Oaths)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Unemployment Insurance Fund (Werkloosheidversekeringsfonds). Dit geld eers sodra jy werknemers het."
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "uif",
+      "term": "UIF"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Compensation for Occupational Injuries and Diseases Act. Dekking vir beserings by die werk. Dit geld eers sodra jy werknemers het."
+        }
+      ],
+      "group": "Nakoming",
+      "groupId": "compliance",
+      "id": "coida",
+      "term": "COIDA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid). Die verpligte permit vir enige perseel waar kos hanteer word."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "coa",
+      "term": "COA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Environmental Health Practitioner (omgewingsgesondheidspraktisyn). Die munisipale amptenaar wat kos- en gesondheidspersele inspekteer."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "ehp",
+      "term": "EHP"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die 2018-regulasie wat higiënereëls vir kospersele bepaal. Dit het R962 vervang."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "r638",
+      "term": "R638"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die 2012-regulasie oor die etikettering en advertering van kos."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "r146",
+      "term": "R146"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Munisipale handelslisensie wat vir kos-, gesondheids- en vermaaklikheidsbesighede vereis word."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "businesses-act-licence",
+      "term": "Businesses Act-lisensie (Businesses Act licence)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Munisipale bevestiging dat jou perseel wettig vir jou soort besigheid gebruik mag word."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "zoning-certificate",
+      "term": "Soneringsertifikaat (zoning certificate)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "National Regulator for Compulsory Specifications (nasionale reguleerder vir verpligte spesifikasies). Dit reik magtigingsbriewe (Letters of Authority) vir sekere ingevoerde produkte uit."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "nrcs",
+      "term": "NRCS"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Letter of Authority (magtigingsbrief). Toestemming van die NRCS om sekere gereguleerde goedere te verkoop."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "loa",
+      "term": "LOA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "South African Health Products Regulatory Authority (Suid-Afrikaanse reguleringsowerheid vir gesondheidsprodukte). Dit reguleer medisyne en mediese toestelle."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "sahpra",
+      "term": "SAHPRA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "National Credit Regulator (nasionale kredietreguleerder). Jy moet by hulle registreer voordat jy krediet verleen."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "ncr",
+      "term": "NCR"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Financial Services Provider (verskaffer van finansiële dienste). ’n Besigheid met ’n lisensie kragtens FAIS om advies oor finansiële produkte te gee of dit te verkoop. Enigiemand wat dit doen, moet ’n FSP-lisensie hê of as verteenwoordiger van ’n gelisensieerde FSP werk."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "fsp",
+      "term": "FSP"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Financial Advisory and Intermediary Services Act. Die wet agter FSP-lisensiëring."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "fais",
+      "term": "FAIS"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Private Security Industry Regulatory Authority (reguleringsowerheid vir die private sekuriteitsbedryf)."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "psira",
+      "term": "PSIRA"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "National Home Builders Registration Council (nasionale registrasieraad vir huisbouers)."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "nhbrc",
+      "term": "NHBRC"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Construction Industry Development Board (raad vir die ontwikkeling van die konstruksiebedryf)."
+        }
+      ],
+      "group": "Lisensiëring",
+      "groupId": "licensing",
+      "id": "cidb",
+      "term": "CIDB"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die nasionale verkeersinligtingstelsel. Elke voertuig en eienaar word hier aangeteken."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "enatis--natis",
+      "term": "eNaTIS / NaTIS"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Business Register Number Certificate (sertifikaat van besigheidsregisternommer). Dit laat ’n maatskappy toe om voertuie te besit en te registreer."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "brnc",
+      "term": "BRNC"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Traffic Register Number (verkeersregisternommer). Die ekwivalent vir partye wat nie regspersone is nie: eenmansake, trusts, vennootskappe, kerke."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "trn",
+      "term": "TRN"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die persoon wat by name gemagtig is om voertuigtransaksies vir ’n besigheid te hanteer."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "proxy",
+      "term": "Gevolmagtigde (proxy)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Application for Business Registration (aansoek om besigheidsregistrasie). Die vorm waarmee jy vir ’n BRNC aansoek doen."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "abr",
+      "term": "ABR"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die voertuigregistrasiesertifikaat."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "rc1",
+      "term": "RC1"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Application for Registration and Licensing of Motor Vehicle (aansoek om registrasie en lisensiëring van ’n motorvoertuig). Die koper se vorm."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "rlv",
+      "term": "RLV"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Notification of Change of Ownership (kennisgewing van verandering van eienaarskap). Die verkoper se vorm. Dien dit in op die dag waarop jy verkoop."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "nco",
+      "term": "NCO"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Aansoek om ’n motorhandelnommer."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "mtn1",
+      "term": "MTN1"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Dit laat ’n handelaar toe om ongeregistreerde voertuie uit sy voorraad op openbare paaie te ry."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "motor-trade-number",
+      "term": "Motorhandelnommer (motor trade number)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die party met die reg om te verkoop. As die voertuig gefinansier is, is dit die bank, nie die verkoper nie."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "title-holder",
+      "term": "Titelhouer (title holder)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die party wat op eNaTIS as eienaar aangeteken is. Dit kan ’n ander party as die titelhouer wees."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "owner",
+      "term": "Eienaar (owner)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Roadworthy Certificate, of Certificate of Roadworthiness (padwaardigheidsertifikaat). Dit word vereis wanneer ’n voertuig van eienaar verander."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "rwc--cor",
+      "term": "RWC / CoR"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Professional Driving Permit (professionele bestuurspermit). Nodig vir swaar voertuie en passasiersvervoer."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "prdp",
+      "term": "PrDP"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Gross Vehicle Mass (bruto voertuigmassa). Bo 3,500 kg geld ekstra reëls."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "gvm",
+      "term": "GVM"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Vehicle Identification Number (voertuigidentifikasienommer)."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "vin",
+      "term": "VIN"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die rekord van besigheidskilometers wat SARS vereis voordat dit ’n eis vir reiskoste toelaat."
+        }
+      ],
+      "group": "Voertuie",
+      "groupId": "vehicles",
+      "id": "logbook",
+      "term": "Logboek (logbook)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die munisipale kategorie wat ’n klein, stil besigheid in ’n huis sonder spesiale toestemming toelaat. Voorwaardes geld."
+        }
+      ],
+      "group": "Tuiswerk en betaling ontvang",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "home-enterprise--home-occupation",
+      "term": "Tuisonderneming / tuisbedrywigheid (home enterprise / home occupation)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Munisipale toestemming vir ’n besigheidsgebruik wat verder gaan as wat jou sonering by verstek toelaat."
+        }
+      ],
+      "group": "Tuiswerk en betaling ontvang",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "consent-use",
+      "term": "Vergunningsgebruik (consent use)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die bestuursliggaam van ’n kompleks of landgoed, met sy eie reëls bo en behalwe dié van die munisipaliteit."
+        }
+      ],
+      "group": "Tuiswerk en betaling ontvang",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "body-corporate--hoa",
+      "term": "Beheerliggaam / huiseienaarsvereniging (body corporate / HOA)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Liggingsdata wat in ’n foto versteek is. Skakel dit in jou kamera-instellings af voordat jy by die huis foto’s van voorraad neem."
+        }
+      ],
+      "group": "Tuiswerk en betaling ontvang",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "geotag",
+      "term": "Liggingsmerker (geotag)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Proof of payment (betalingsbewys). ’n Skermskoot of dokument wat wys dat ’n oordrag gedoen is. Maklik om te vervals. Moet nooit goedere op grond daarvan vrystel nie."
+        }
+      ],
+      "group": "Tuiswerk en betaling ontvang",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "pop",
+      "term": "POP"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die geld is werklik in jou rekeningsaldo. \"Hangend\" (\"pending\") is nie weerspieël nie."
+        }
+      ],
+      "group": "Tuiswerk en betaling ontvang",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "reflected--cleared",
+      "term": "Weerspieël / verreken (reflected / cleared)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Kitsbetaling van bank tot bank wat binne sekondes aankom en nie teruggedraai kan word nie. Stelsellimiet R50,000 per betaling; jou bank stel sy eie, laer limiete."
+        }
+      ],
+      "group": "Tuiswerk en betaling ontvang",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "payshap",
+      "term": "PayShap"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Foonnommer of ID-nommer wat aan ’n bankrekening gekoppel is sodat mense jou kan betaal sonder om rekeningbesonderhede in te tik."
+        }
+      ],
+      "group": "Tuiswerk en betaling ontvang",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "shapid",
+      "term": "ShapID"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Ouer opsies vir kitsbetaling. Dit kom ook vinnig aan, gewoonlik teen ’n hoër fooi."
+        }
+      ],
+      "group": "Tuiswerk en betaling ontvang",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "immediate-payment--rtc",
+      "term": "Onmiddellike betaling / RTC (immediate payment)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n \"Koper\" betaal doelbewus te veel en vra dat jy die verskil terugbetaal. Die oorspronklike betaling was nooit eg nie."
+        }
+      ],
+      "group": "Tuiswerk en betaling ontvang",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "overpayment-scam",
+      "term": "Oorbetalingswendelary (overpayment scam)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Eenmalige PIN (one-time PIN) van jou bank. Deel dit nooit met enigiemand nie, om watter rede ook al."
+        }
+      ],
+      "group": "Tuiswerk en betaling ontvang",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "otp",
+      "term": "OTP"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die bankbedryf se liggaam teen bedrog. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.sabric.co.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.sabric.co.za",
+          "t": "link"
+        }
+      ],
+      "group": "Tuiswerk en betaling ontvang",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "sabric",
+      "term": "SABRIC"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die Reserwebank se toets in drie stappe vir ’n egte banknoot."
+        }
+      ],
+      "group": "Tuiswerk en betaling ontvang",
+      "groupId": "working-from-home-and-getting-paid",
+      "id": "look-feel-tilt",
+      "term": "Kyk, voel, kantel (look, feel, tilt)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Prysaanbod wat vir ’n vermelde tydperk geldig is. Nog nie ’n verkoop nie."
+        }
+      ],
+      "group": "Geld en dokumente",
+      "groupId": "money-and-documents",
+      "id": "quote--quotation",
+      "term": "Kwotasie (quote / quotation)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Eis om betaling nadat goedere of dienste gelewer is."
+        }
+      ],
+      "group": "Geld en dokumente",
+      "groupId": "money-and-documents",
+      "id": "invoice",
+      "term": "Faktuur (invoice)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Dokument wat ’n faktuur wat reeds uitgereik is, kanselleer of verminder."
+        }
+      ],
+      "group": "Geld en dokumente",
+      "groupId": "money-and-documents",
+      "id": "credit-note",
+      "term": "Kredietnota (credit note)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die bankbevestiging wat ’n kliënt vir jou stuur. Nie dieselfde as geld in jou rekening nie. Wag vir die geld."
+        }
+      ],
+      "group": "Geld en dokumente",
+      "groupId": "money-and-documents",
+      "id": "proof-of-payment",
+      "term": "Betalingsbewys (proof of payment)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die sigblad waarin jy elke rand wat inkom en uitgaan, aanteken."
+        }
+      ],
+      "group": "Geld en dokumente",
+      "groupId": "money-and-documents",
+      "id": "cash-book",
+      "term": "Kasboek (cash book)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "’n Hof vir klein siviele eise waar geen prokureur nodig is nie. Limiet R30,000 vanaf 1 Augustus 2026, voorheen R20,000. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Net ’n natuurlike persoon mag ’n eis instel."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " ’n Maatskappy kan nie hier ’n eis instel nie, maar ’n eis kan wel hier teen ’n maatskappy ingestel word."
+        }
+      ],
+      "group": "Geld en dokumente",
+      "groupId": "money-and-documents",
+      "id": "small-claims-court",
+      "term": "Small Claims Court (Kleineisehof)"
+    },
+    {
+      "definition": [
+        {
+          "t": "text",
+          "v": "Die Financial Intelligence Centre Act. Die rede waarom banke adresbewys eis."
+        }
+      ],
+      "group": "Geld en dokumente",
+      "groupId": "money-and-documents",
+      "id": "fica",
+      "term": "FICA"
+    }
+  ],
+  "groups": [
+    {
+      "id": "registration-and-companies",
+      "order": 1,
+      "title": "Registrasie en maatskappye"
+    },
+    {
+      "id": "tax",
+      "order": 2,
+      "title": "Belasting"
+    },
+    {
+      "id": "compliance",
+      "order": 3,
+      "title": "Nakoming"
+    },
+    {
+      "id": "licensing",
+      "order": 4,
+      "title": "Lisensiëring"
+    },
+    {
+      "id": "vehicles",
+      "order": 5,
+      "title": "Voertuie"
+    },
+    {
+      "id": "working-from-home-and-getting-paid",
+      "order": 6,
+      "title": "Tuiswerk en betaling ontvang"
+    },
+    {
+      "id": "money-and-documents",
+      "order": 7,
+      "title": "Geld en dokumente"
+    }
+  ],
+  "lang": "af"
+}

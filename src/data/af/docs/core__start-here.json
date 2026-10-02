@@ -1,0 +1,1116 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hierdie gereedskapstel is vir een persoon wat ’n besigheid in Suid-Afrika bestuur. Jy is die eienaar. Jy is ook die enigste werker. Jy het min geld en min tyd."
+        }
+      ],
+      "hash": "68e603d794cc5ca5",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "94a3aede2125f2a4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Alles hier is gratis of baie goedkoop. Elke stap sê vir jou of dit deur die wet vereis word, of dit net ’n goeie idee is."
+        }
+      ],
+      "hash": "db21561bab94d4db",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "c6a10ac5bd47fca8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Eers die eerlike waarheid"
+        }
+      ],
+      "depth": 2,
+      "hash": "81c9ddb9369ca54e",
+      "id": "the-honest-truth-first",
+      "kind": "heading",
+      "sourceHash": "829b7e177e064737",
+      "text": "Eers die eerlike waarheid"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het nie die meeste van die dinge nodig wat mense vir jou sê om te kry nie."
+        }
+      ],
+      "hash": "ce66372c16494559",
+      "id": "the-honest-truth-first.1",
+      "kind": "paragraph",
+      "sourceHash": "f9ca494253a008bd"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy kan vandag wettig begin verkoop, onder jou eie naam, sonder maatskappyregistrasie, sonder ’n logo, sonder ’n webwerf en sonder ’n rekenmeester. Baie mense spandeer R15,000 en drie maande aan opstelling voordat hulle een rand verdien. Moenie dit doen nie."
+        }
+      ],
+      "hash": "3e4e2a1af98b1b8a",
+      "id": "the-honest-truth-first.2",
+      "kind": "paragraph",
+      "sourceHash": "0240a09bdc835490"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verdien eers geld. Voeg die formele dele by soos die besigheid groei."
+        }
+      ],
+      "hash": "0f92b01efe40a8a0",
+      "id": "the-honest-truth-first.3",
+      "kind": "paragraph",
+      "sourceHash": "c30301335d8ca696"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Volgorde om dinge te doen"
+        }
+      ],
+      "depth": 2,
+      "hash": "18eb73cdb6577bd0",
+      "id": "order-to-do-things",
+      "kind": "heading",
+      "sourceHash": "e80cac3889e9bd0b",
+      "text": "Volgorde om dinge te doen"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Werk hierdie stappe in volgorde deur. Moenie vorentoe spring nie."
+        }
+      ],
+      "hash": "f14de39394aa861d",
+      "id": "order-to-do-things.1",
+      "kind": "paragraph",
+      "sourceHash": "b4579c2dc5dc4ae7"
+    },
+    {
+      "hash": "b89812db1ebf16f1",
+      "id": "order-to-do-things.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Verkoop iets en word betaal. Al is dit net een keer. Dit bewys dat mense dit wil hê."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Open ’n aparte bankrekening vir besigheidsgeld. Hou besigheidsgeld en huisgeld van die eerste dag af apart. Vra die bank wat jou limiete vir kitsbetalings is; jy sal dit nodig hê."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "1a68678b84d74654",
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy van die huis af sonder ’n winkel gaan werk, lees "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Tuiswerk en veilige ontmoetings"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " voor jou eerste verkoping. Dit is kort, en dit dek die gewoontes wat keer dat jy geswendel word."
+        }
+      ],
+      "hash": "7bdc8942bdaa8f65",
+      "id": "order-to-do-things.3",
+      "kind": "paragraph",
+      "sourceHash": "2f2e074c75144c3d"
+    },
+    {
+      "hash": "ce6c643ede2f3a31",
+      "id": "order-to-do-things.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Kies ’n naam en ’n eenvoudige voorkoms. Gebruik die lêer "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Handelsmerkopdragte"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Maak jou kwotasie- en faktuursjablone. Gebruik die lêer "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Watter sjabloon om wanneer te gebruik"
+              }
+            ],
+            "doc": "paperwork/which-template-to-use-when",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Kyk of jou soort besigheid ’n lisensie nodig het om te verkoop. Lees "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Wat jy nodig het om dinge te verkoop"
+              }
+            ],
+            "doc": "core/what-you-need-to-sell-things",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ", en maak dan jou besigheidstipe in "
+          },
+          {
+            "label": "04-business-types/",
+            "section": "business-types",
+            "t": "docref"
+          },
+          {
+            "t": "text",
+            "v": " oop. Sommige besighede mag nie sonder ’n lisensie handel dryf nie."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Kry jou sake met SARS in orde. Gebruik die lêer "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Belasting en SARS"
+              }
+            ],
+            "doc": "core/tax-and-sars",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ". Doen dit selfs as jy niks verdien nie."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Besluit of jy ’n geregistreerde maatskappy nodig het. Gebruik die lêer "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Registreer: wat jy regtig nodig het"
+              }
+            ],
+            "doc": "core/register",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ". Die meeste eenpersoonbesighede het nie een in die eerste jaar nodig nie. As jy ja besluit, lees "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Bestuur van ’n Pty Ltd"
+              }
+            ],
+            "doc": "core/running-a-pty-ltd",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " voordat jy registreer, nie daarna nie."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "2a3368367387208e",
+      "start": 3
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Stappe 5 en 6 is die twee waarvoor mense beboet word. Moenie hulle vir later los nie."
+        }
+      ],
+      "hash": "c7a1efc5320abf43",
+      "id": "order-to-do-things.5",
+      "kind": "paragraph",
+      "sourceHash": "0d619fe5ec712e5a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat in hierdie gereedskapstel is"
+        }
+      ],
+      "depth": 2,
+      "hash": "07fc39b4e96b4836",
+      "id": "what-is-in-this-toolkit",
+      "kind": "heading",
+      "sourceHash": "0fb44e766c7d9949",
+      "text": "Wat in hierdie gereedskapstel is"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Geld vir almal, in hierdie vouer:"
+        }
+      ],
+      "hash": "bfccc19ac326caf2",
+      "id": "what-is-in-this-toolkit.1",
+      "kind": "paragraph",
+      "sourceHash": "8739ec63877976c6"
+    },
+    {
+      "hash": "b9ed821b11a59972",
+      "id": "what-is-in-this-toolkit.2",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Registreer: wat jy regtig nodig het"
+              }
+            ],
+            "doc": "core/register",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — maatskappyregistrasie, bank, B-BBEE, POPIA. Wat vereis word en wat nie."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Belasting en SARS"
+              }
+            ],
+            "doc": "core/tax-and-sars",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — SARS, omsetbelasting, BTW, en hoe om wettig geen belasting te betaal wanneer jy min verdien."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Wat jy nodig het om dinge te verkoop"
+              }
+            ],
+            "doc": "core/what-you-need-to-sell-things",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — ’n oorsig van lisensies en permitte, en verbruikersreg."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Voertuie vir jou besigheid"
+              }
+            ],
+            "doc": "core/vehicles",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — om ’n voertuig in die besigheid se naam te sit, en wanneer dit ’n slegte idee is."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "a54fdacb47d2b7e6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Net as jy ’n maatskappy geregistreer het:"
+        }
+      ],
+      "hash": "e4bbdd97a86b725f",
+      "id": "what-is-in-this-toolkit.3",
+      "kind": "paragraph",
+      "sourceHash": "8653df33c985e515"
+    },
+    {
+      "hash": "58f59b7a962aa933",
+      "id": "what-is-in-this-toolkit.4",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Bestuur van ’n Pty Ltd"
+              }
+            ],
+            "doc": "core/running-a-pty-ltd",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — wat ’n maatskappy jou elke jaar kos, en wat gebeur wanneer jy ophou indien."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Betaal jouself uit ’n Pty Ltd"
+              }
+            ],
+            "doc": "core/paying-yourself",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — die drie wettige maniere om geld uit te haal, en die belasting op elkeen."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Nuwe besigheidslyne byvoeg"
+              }
+            ],
+            "doc": "core/adding-new-lines",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — sywaarts groei onder een maatskappy: handelsname, lisensies per lyn, en waarom ’n tweede maatskappy jou jou belastingkoers kan kos."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Jy is die besigheid"
+              }
+            ],
+            "doc": "core/you-are-the-business",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — wat gebeur as jy nie kan werk nie, hoe om agter ’n onbetaalde faktuur aan te gaan, en wie die besigheid kan bestuur as jy nie daar is nie. Die een dokument wat oor jou gaan eerder as oor die besigheid."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Tuiswerk en veilige ontmoetings"
+              }
+            ],
+            "doc": "core/working-from-home-and-safety",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — om dit van die huis af te bestuur sonder ’n winkel of werf, handel per foon en WhatsApp, veilig betaal word, die algemene swendelary, en om kliënte sonder risiko te ontmoet vir ’n inspeksie of ’n toetsrit."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "5cead6ed6556ca2e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opdragte en sjablone:"
+        }
+      ],
+      "hash": "b7f5f203014384c7",
+      "id": "what-is-in-this-toolkit.5",
+      "kind": "paragraph",
+      "sourceHash": "2df94a9439a2ca8d"
+    },
+    {
+      "hash": "56459ae3699dcdf4",
+      "id": "what-is-in-this-toolkit.6",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Het jy reeds jou naam? (kortpad)"
+              }
+            ],
+            "doc": "branding/already-have-your-name",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — die kortpad as jou naam reeds vasstaan: watter opdragte om oor te slaan, en die drie kontroles wat steeds die moeite werd is."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Stemming en materiale (gebruik ná Opdrag 4)"
+              }
+            ],
+            "doc": "branding/mood-and-materials",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — besluit oor die algehele stemming en die fisiese materiale voordat jy ’n logo kies, sodat die logo, kleure en foto’s by mekaar pas. Sluit in wat die Suid-Afrikaanse son aan uithangborde doen."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Handelsmerkopdragte"
+              }
+            ],
+            "doc": "branding/branding-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — 11 KI-opdragte vir die kortbeskrywing, naam, logo, kleure, lettertipe, fotografie, stem en \"oor ons\"-teks. Elkeen gee jou 5 opsies. Dit begin met hoe om ’n handelsmerk te vermy wat lyk asof KI dit gemaak het, en wat die KI nie vir jou kan doen nie."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Handelsmerktoepassings en afronding"
+              }
+            ],
+            "doc": "branding/brand-applications-and-polish",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — die logolêers wat jy regtig nodig het, die basiese beginsels van uithangborde en drukwerk, en toetse om te doen voordat jy geld spandeer."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Bemarkingsopdragte"
+              }
+            ],
+            "doc": "branding/marketing-prompts",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — KI-opdragte vir sosiale media, WhatsApp en Google Business Profile."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Watter sjabloon om wanneer te gebruik"
+              }
+            ],
+            "doc": "paperwork/which-template-to-use-when",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — kwotasie, faktuur, bepalings, privaatheidskennisgewing, logboek, kasboek."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Gratis gereedskap"
+              }
+            ],
+            "doc": "paperwork/free-tools",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — watter gratis kantoorsagteware om te gebruik, en waarom."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "52438aac2587ae4d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Reëls vir jou soort besigheid:"
+        }
+      ],
+      "hash": "3d5b849cfae29407",
+      "id": "what-is-in-this-toolkit.7",
+      "kind": "paragraph",
+      "sourceHash": "c8e1ec1da6df4fb6"
+    },
+    {
+      "hash": "d90b2f9d5e5cf181",
+      "id": "what-is-in-this-toolkit.8",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Kies jou besigheidstipe"
+              }
+            ],
+            "doc": "business-types/pick-your-business-type",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — vind jouself in die tabel en maak dan daardie lêer oop. Dit dek voertuighandel, kos, skoonheid, kleinhandel en aanlyn, ambagte, en professionele of kreatiewe werk."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "c2eff2b92d222265"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Naslaan:"
+        }
+      ],
+      "hash": "c718d5cce9a1f3a9",
+      "id": "what-is-in-this-toolkit.9",
+      "kind": "paragraph",
+      "sourceHash": "45c3dc1c7731c618"
+    },
+    {
+      "hash": "8ceb57975475a18c",
+      "id": "what-is-in-this-toolkit.10",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Bronne- en verifikasieregister"
+              }
+            ],
+            "doc": "lookup/sources",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — elke feit in hierdie gereedskapstel, gekoppel aan sy wet en sy amptelike skakel"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Woordelys"
+              }
+            ],
+            "doc": "lookup/glossary",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — elke afkorting verduidelik"
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Hoofkontrolelys"
+              }
+            ],
+            "doc": "lookup/checklist",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — een kontrolelys wat jy kan uitdruk"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "e32c8b74a685b1f1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoe om die KI-opdragte te gebruik"
+        }
+      ],
+      "depth": 2,
+      "hash": "b78dfb404cb3497b",
+      "id": "how-to-use-the-ai-prompts",
+      "kind": "heading",
+      "sourceHash": "31b34bde4f6dcc7c",
+      "text": "Hoe om die KI-opdragte te gebruik"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die opdragte is vir enige KI-kletsprogram geskryf. Hulle werk in Claude, ChatGPT, Gemini of Copilot. Die gratis weergawes is goed genoeg."
+        }
+      ],
+      "hash": "3386822bbd42d0b3",
+      "id": "how-to-use-the-ai-prompts.1",
+      "kind": "paragraph",
+      "sourceHash": "545f1388d9423ebc"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Reëls om hulle te gebruik:"
+        }
+      ],
+      "hash": "0ec9e9445c35e7d8",
+      "id": "how-to-use-the-ai-prompts.2",
+      "kind": "paragraph",
+      "sourceHash": "aeb32be14b37a24d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kopieer een opdrag op ’n slag. Plak dit. Wag vir die antwoord. Moenie die volgende opdrag plak voordat jy tevrede is met die huidige een nie."
+        }
+      ],
+      "hash": "3a67e897aca862e5",
+      "id": "how-to-use-the-ai-prompts.3",
+      "kind": "paragraph",
+      "sourceHash": "2a09618bf08ed95c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Elke handelsmerkopdrag gee jou 5 opsies. Lees al 5. Kies die een wat die naaste is aan wat jy wil hê, selfs al is dit nie perfek nie. Sê dan vir die KI waarvan jy hou en waarvan jy nie hou nie, en vra vir 5 nuwe weergawes. Doen dit twee of drie keer. Die derde ronde is gewoonlik baie beter as die eerste."
+        }
+      ],
+      "hash": "6b1cfef7ee3d2b85",
+      "id": "how-to-use-the-ai-prompts.4",
+      "kind": "paragraph",
+      "sourceHash": "a153c1fcd6991d3c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Moet nooit die eerste antwoord aanvaar nie. Die eerste antwoord is die gemiddelde antwoord."
+        }
+      ],
+      "hash": "31abd8fee1d6ef9e",
+      "id": "how-to-use-the-ai-prompts.5",
+      "kind": "paragraph",
+      "sourceHash": "b0cb05d45ae9aa79"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Begin ’n nuwe klets vir elke groot taak. As ’n klets te lank is, vergeet die KI dinge."
+        }
+      ],
+      "hash": "56f4948a094196a3",
+      "id": "how-to-use-the-ai-prompts.6",
+      "kind": "paragraph",
+      "sourceHash": "cb9710735f50e058"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die KI sal soms verkeerd wees oor Suid-Afrikaanse wetgewing, pryse en vorms. Dit is ’n skryfhulp, nie ’n prokureur nie. Kontroleer enigiets wetliks teen die amptelike webwerf wat in hierdie gereedskapstel genoem word."
+        }
+      ],
+      "hash": "f3cdd905f5cb7529",
+      "id": "how-to-use-the-ai-prompts.7",
+      "kind": "paragraph",
+      "sourceHash": "6a15c664bf7d0af4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As die regstaal moeilik is"
+        }
+      ],
+      "depth": 2,
+      "hash": "93afb655dc968ce6",
+      "id": "if-the-legal-words-are-hard",
+      "kind": "heading",
+      "sourceHash": "84f135491991db80",
+      "text": "As die regstaal moeilik is"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sommige paragrawe is naby aan die wet geskryf sodat jy hulle kan nagaan. Elkeen word gevolg deur ’n reël wat met "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "In gewone taal:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " begin en wat dieselfde ding eenvoudig sê. Lees eerder daardie reël as jy dit nodig het."
+        }
+      ],
+      "hash": "c156f43a91c2b3e6",
+      "id": "if-the-legal-words-are-hard.1",
+      "kind": "paragraph",
+      "sourceHash": "6a889a97da533620"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Elke swaar lêer begin ook met ’n tabel van die woorde wat dit gebruik. En die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " verduidelik elke afkorting."
+        }
+      ],
+      "hash": "2275fd3b78ad4021",
+      "id": "if-the-legal-words-are-hard.2",
+      "kind": "paragraph",
+      "sourceHash": "451f7823b706c8e8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Oor die getalle in hierdie gereedskapstel"
+        }
+      ],
+      "depth": 2,
+      "hash": "19b9f3cbcfc04269",
+      "id": "about-the-numbers-in-this-toolkit",
+      "kind": "heading",
+      "sourceHash": "eb3c617e217eac99",
+      "text": "Oor die getalle in hierdie gereedskapstel"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Belastingreëls, fooie en drempels is in September 2026 nagegaan. Die belastingjaar wat nou loop, is 1 Maart 2026 tot 28 Februarie 2027."
+        }
+      ],
+      "hash": "bd4396e0bbdcf35e",
+      "id": "about-the-numbers-in-this-toolkit.1",
+      "kind": "paragraph",
+      "sourceHash": "4eb08d1c131ae81d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Suid-Afrikaanse belastingdrempels het baie verander in die 2026-begroting. Ouer blogs en ouer KI-antwoorde gebruik nog die ou getalle. As ’n webwerf vir jou sê dat die BTW-drempel R1 miljoen is, is daardie webwerf verouderd."
+        }
+      ],
+      "hash": "6e8fe828929e575a",
+      "id": "about-the-numbers-in-this-toolkit.2",
+      "kind": "paragraph",
+      "sourceHash": "2faa56137304be73"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voordat jy enigiets betaal of enigiets indien, kontroleer die huidige syfer op die amptelike webwerf:"
+        }
+      ],
+      "hash": "f9da8b7634503491",
+      "id": "about-the-numbers-in-this-toolkit.3",
+      "kind": "paragraph",
+      "sourceHash": "16216f6bf7a4d706"
+    },
+    {
+      "hash": "27b95b62f5ae4d5f",
+      "id": "about-the-numbers-in-this-toolkit.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "SARS: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.sars.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.sars.gov.za",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Maatskappyregistrasie: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.bizportal.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.bizportal.gov.za",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Databeskerming: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "inforegulator.org.za"
+              }
+            ],
+            "external": true,
+            "href": "https://inforegulator.org.za/",
+            "t": "link"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Voertuie: "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "www.natis.gov.za"
+              }
+            ],
+            "external": true,
+            "href": "https://www.natis.gov.za",
+            "t": "link"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "79f496d9517e96c0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hierdie gereedskapstel is algemene inligting. Dit is nie regsadvies of belastingadvies nie. Vir enigiets groots of ongewoons, betaal ’n geregistreerde belastingpraktisyn vir een uur van sy of haar tyd. Een uur is goedkoper as een boete."
+        }
+      ],
+      "hash": "666fe362222c9413",
+      "id": "about-the-numbers-in-this-toolkit.5",
+      "kind": "paragraph",
+      "sourceHash": "ebfa64872b5baedd"
+    }
+  ],
+  "contentHash": "73862f823f3820ac",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Begin hier",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "the-honest-truth-first",
+      "text": "Eers die eerlike waarheid"
+    },
+    {
+      "depth": 2,
+      "id": "order-to-do-things",
+      "text": "Volgorde om dinge te doen"
+    },
+    {
+      "depth": 2,
+      "id": "what-is-in-this-toolkit",
+      "text": "Wat in hierdie gereedskapstel is"
+    },
+    {
+      "depth": 2,
+      "id": "how-to-use-the-ai-prompts",
+      "text": "Hoe om die KI-opdragte te gebruik"
+    },
+    {
+      "depth": 2,
+      "id": "if-the-legal-words-are-hard",
+      "text": "As die regstaal moeilik is"
+    },
+    {
+      "depth": 2,
+      "id": "about-the-numbers-in-this-toolkit",
+      "text": "Oor die getalle in hierdie gereedskapstel"
+    }
+  ],
+  "id": "core/start-here",
+  "kind": "guide",
+  "lang": "af",
+  "order": 1,
+  "readingTime": 6,
+  "related": [
+    "core/working-from-home-and-safety",
+    "branding/branding-prompts",
+    "paperwork/which-template-to-use-when",
+    "core/what-you-need-to-sell-things",
+    "core/tax-and-sars"
+  ],
+  "route": "core/start-here/",
+  "section": "core",
+  "slug": "start-here",
+  "sourcePath": "01 Core - applies to everyone/01-core-start-here.md",
+  "sources": {
+    "acts": [],
+    "entries": [
+      "sars--what-is-the-new-threshold-for-vat-registration"
+    ]
+  },
+  "summary": "Hierdie gereedskapstel is vir een persoon wat ’n besigheid in Suid-Afrika bestuur. Jy is die eienaar. Jy is ook die enigste werker. Jy het min geld en min tyd.",
+  "tags": [
+    "orientation"
+  ],
+  "terms": [],
+  "title": "Begin hier",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

@@ -1,0 +1,652 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Gebruik hierdie een as jy NIE vir BTW geregistreer is nie."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Dit is die meeste klein besighede. Jy hoef nie te registreer voordat jou omset in enige deurlopende 12 maande R2.3 miljoen oorskry nie."
+        }
+      ],
+      "hash": "d4f9a7b81a343d10",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "9f9df21d38816dc4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Drie reëls wat jy op hierdie faktuur moet volg. Moet NIE die woord \"Belastingfaktuur\" (\"Tax Invoice\") gebruik nie. Moet NIE ’n BTW-reël wys nie. Moet NIE ’n BTW-nommer wys nie. Moet NIE 15% by enigiets tel nie. Om BTW te hef wanneer jy nie geregistreer is nie, is bedrog, nie ’n administratiewe fout nie."
+        }
+      ],
+      "hash": "ae5e38bfb2418173",
+      "id": "intro.2",
+      "kind": "callout",
+      "sourceHash": "ba1396f383b9e33a",
+      "style": "note"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Maak ’n afskrif, hernoem dit na die faktuurnommer, vervang alles in [VIERKANTIGE HAKIES], en voer dit dan na PDF uit."
+        }
+      ],
+      "hash": "bc4cb92572c91c24",
+      "id": "intro.3",
+      "kind": "note",
+      "sourceHash": "0d887478b7732b07"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "intro.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "key": "businessName",
+              "style": "identity",
+              "t": "placeholder",
+              "v": "JOU BESIGHEIDSNAAM"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "ownerName",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Jou naam"
+        },
+        {
+          "t": "text",
+          "v": " | "
+        },
+        {
+          "key": "phone",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Foon"
+        },
+        {
+          "t": "text",
+          "v": " | "
+        },
+        {
+          "key": "email",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "E-pos"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "key": "address",
+          "style": "identity",
+          "t": "placeholder",
+          "v": "Fisiese adres"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "nested": true,
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "As ’n maatskappy: Handeldrywende as ’n naam van [GEREGISTREERDE NAAM] (Pty) Ltd, Reg. No. [NOMMER]"
+        }
+      ],
+      "hash": "8534900c58a775c0",
+      "id": "intro.5",
+      "kind": "paragraph",
+      "sourceHash": "3435c11f916517f9"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "ca998fb26348bf0d",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Veld"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Besonderhede"
+          }
+        ]
+      ],
+      "id": "intro.6",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Faktuurnommer"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "INV-0001"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Datum"
+            }
+          ],
+          [
+            {
+              "style": "format",
+              "t": "placeholder",
+              "v": "DD Maand JJJJ"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Vervaldatum"
+            }
+          ],
+          [
+            {
+              "style": "format",
+              "t": "placeholder",
+              "v": "DD Maand JJJJ"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "d6b372fd908b5032"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Aan"
+        }
+      ],
+      "depth": 2,
+      "hash": "f45795b28caac0f6",
+      "id": "to",
+      "kind": "heading",
+      "sourceHash": "7cb1cef9ea8a2276",
+      "text": "Aan"
+    },
+    {
+      "c": [
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Kliënt se naam"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "Kliënt se adres"
+        }
+      ],
+      "hash": "acc6947fec7be87a",
+      "id": "to.1",
+      "kind": "paragraph",
+      "sourceHash": "09d05ddd3549be88"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Waarvoor dit is"
+        }
+      ],
+      "depth": 2,
+      "hash": "d4097b95436e9c6f",
+      "id": "what-this-is-for",
+      "kind": "heading",
+      "sourceHash": "808aa3786a3c5284",
+      "text": "Waarvoor dit is"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "hash": "fa068f85a9e87cca",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Beskrywing"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Aantal"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Eenheidsprys"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Bedrag"
+          }
+        ]
+      ],
+      "id": "what-this-is-for.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Item of diens"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "1"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Item of diens"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "1"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "R 0.00"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "BEDRAG VERSKULDIG"
+                }
+              ],
+              "t": "strong"
+            }
+          ],
+          [],
+          [],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "R 0.00"
+                }
+              ],
+              "t": "strong"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "f5ae3e901ef5adc5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Betalingsbesonderhede"
+        }
+      ],
+      "depth": 2,
+      "hash": "fa891e1d0df390c5",
+      "id": "payment-details",
+      "kind": "heading",
+      "sourceHash": "d6bfcb998cd265fc",
+      "text": "Betalingsbesonderhede"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "75075dc304077bfe",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Veld"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Besonderhede"
+          }
+        ]
+      ],
+      "id": "payment-details.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "Bank"
+            }
+          ],
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Naam van bank"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Rekeningnaam"
+            }
+          ],
+          [
+            {
+              "style": "instruction",
+              "t": "placeholder",
+              "v": "Presies soos dit op die rekening verskyn"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Rekeningnommer"
+            }
+          ],
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Nommer"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Takkode"
+            }
+          ],
+          [
+            {
+              "style": "field",
+              "t": "placeholder",
+              "v": "Kode"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Verwysing"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "INV-0001"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "ecc08dc2bb244b04"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik asseblief die faktuurnommer as jou betalingsverwysing."
+        }
+      ],
+      "hash": "80466ffde9fa7060",
+      "id": "payment-details.2",
+      "kind": "paragraph",
+      "sourceHash": "1b9893c005831cc1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Betaling is verskuldig teen "
+        },
+        {
+          "style": "field",
+          "t": "placeholder",
+          "v": "datum"
+        },
+        {
+          "t": "text",
+          "v": ". "
+        },
+        {
+          "style": "instruction",
+          "t": "placeholder",
+          "v": "Noem jou voorwaardes vir laat betaling hier."
+        }
+      ],
+      "hash": "dea54882c7364f1f",
+      "id": "payment-details.3",
+      "kind": "paragraph",
+      "sourceHash": "401df3bb4a4941dd"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "payment-details.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Faktuurnommering"
+        }
+      ],
+      "depth": 2,
+      "hash": "546a5bd9bf22160a",
+      "id": "invoice-numbering",
+      "kind": "heading",
+      "sourceHash": "b288d225f84e7cce",
+      "text": "Faktuurnommering"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Nommer fakture in volgorde, sonder gapings: INV-0001, INV-0002, INV-0003."
+        }
+      ],
+      "hash": "eb3a88e995f982d6",
+      "id": "invoice-numbering.1",
+      "kind": "paragraph",
+      "sourceHash": "63731d744ce88b51"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir SARS lyk ’n gaping in die reeks soos ’n verborge verkoping. As jy ’n faktuur kanselleer, moet dit nie uitvee nie. Reik ’n kredietnota daarteen uit en hou albei."
+        }
+      ],
+      "hash": "78bcd6e11487dee6",
+      "id": "invoice-numbering.2",
+      "kind": "callout",
+      "sourceHash": "94e00e2a928aab69",
+      "style": "note"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voordat jy enigiets oorhandig"
+        }
+      ],
+      "depth": 2,
+      "hash": "1410e825eea18b4e",
+      "id": "before-you-hand-anything-over",
+      "kind": "heading",
+      "sourceHash": "4b951497892f2cd7",
+      "text": "Voordat jy enigiets oorhandig"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wag totdat die geld in jou rekeningsaldo is, nie \"hangend\" (\"pending\") nie. ’n Skermskoot, ’n SMS of ’n PDF-betalingsbewys is nie geld nie."
+        }
+      ],
+      "hash": "75b1ea96c7f0d8e0",
+      "id": "before-you-hand-anything-over.1",
+      "kind": "paragraph",
+      "sourceHash": "5a00e94426e6e682"
+    }
+  ],
+  "contentHash": "c85ee1d3207be211",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "FAKTUUR",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "to",
+      "text": "Aan"
+    },
+    {
+      "depth": 2,
+      "id": "what-this-is-for",
+      "text": "Waarvoor dit is"
+    },
+    {
+      "depth": 2,
+      "id": "payment-details",
+      "text": "Betalingsbesonderhede"
+    },
+    {
+      "depth": 2,
+      "id": "invoice-numbering",
+      "text": "Faktuurnommering"
+    },
+    {
+      "depth": 2,
+      "id": "before-you-hand-anything-over",
+      "text": "Voordat jy enigiets oorhandig"
+    }
+  ],
+  "id": "paperwork/templates/invoice",
+  "kind": "template",
+  "lang": "af",
+  "order": 4,
+  "readingTime": 1,
+  "related": [],
+  "route": "templates/invoice/",
+  "section": "paperwork",
+  "slug": "invoice",
+  "sourcePath": "03 Paperwork and templates/templates-to-fill-in/02-invoice-not-vat-registered.md",
+  "sources": {
+    "acts": [],
+    "entries": [
+      "sars--what-is-the-new-threshold-for-vat-registration",
+      "flip-the-market"
+    ]
+  },
+  "summary": "Gebruik hierdie een as jy NIE vir BTW geregistreer is nie. Dit is die meeste klein besighede. Jy hoef nie te registreer voordat jou omset in enige deurlopende 12 maande R2.3 miljoen oorskry nie.",
+  "tags": [
+    "template"
+  ],
+  "terms": [],
+  "title": "FAKTUUR",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}
