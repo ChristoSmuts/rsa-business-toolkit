@@ -1103,7 +1103,7 @@
       "text": "As die KI vooruit hardloop"
     },
     {
-      "hash": "4811b18bf84126c9",
+      "hash": "7c66492aa2ff7656",
       "id": "if-the-ai-runs-ahead.1",
       "kind": "code",
       "placeholders": [
@@ -1114,7 +1114,7 @@
         }
       ],
       "sourceHash": "07e99fb46b1b83e9",
-      "text": "Stop. Gaan net terug na stap [X]. Gee my 5 opsies vir daardie stap en\nniks anders nie. Wag vir my antwoord voordat jy aangaan.",
+      "text": "Stop. Gaan terug na stap [X], en net daarheen. Gee my 5 opsies vir daardie stap en\nniks anders nie. Wag vir my antwoord voordat jy aangaan.",
       "variant": "prompt"
     },
     {
@@ -1320,7 +1320,7 @@
       "text": "Opdrag 3: die naam"
     },
     {
-      "hash": "3bcf7bd0881e9109",
+      "hash": "41faac61cdd60f19",
       "id": "prompt-3-the-name.1",
       "kind": "code",
       "placeholders": [
@@ -1341,7 +1341,7 @@
         }
       ],
       "sourceHash": "d92823be14e21479",
-      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nHier is my beskrywing in een sin:\n\n[PLAK DIE EEN WAT JY GEKIES HET]\n\nHier is hoe my mededingers werklik lyk, uit my eie soektog:\n\n[PLAK WAT JY GEVIND HET]\n\nStel 5 name voor vir hierdie besigheid in Suid-Afrika.\n\nReëls:\n- Maklik om hardop oor ’n raserige telefoonlyn te sê\n- Maklik om te spel nadat jy dit een keer gehoor het\n- Werk vir kliënte wat Engels, Afrikaans, isiZulu, isiXhosa\n of Sesotho praat\n- Nie byna dieselfde as ’n groot Suid-Afrikaanse handelsmerk nie\n- Kort genoeg om op ’n voertuigdeur en as Instagram-gebruikersnaam te pas\n- Nie aan een dorp gekoppel nie, tensy ek gesê het dat ek net daardie dorp bedien\n- Nie aan een produk gekoppel nie, tensy ek gesê het dat ek net daardie produk verkoop\n- Volg nie die patroon van name wat die meeste van my mededingers gebruik nie\n\nGee my ’n mengsel: minstens een wat my eie naam gebruik, minstens een wat gebou is op die\nkenmerkende detail uit my kortbeskrywing, en minstens een wat eenvoudig en beskrywend is.\n\nGee my vir elke naam:\n- Die naam\n- Wat dit beteken of waar dit vandaan kom\n- Een risiko of swakheid van hierdie naam\n- Enige woord in enige Suid-Afrikaanse taal wat soortgelyk klink, sodat\n ek die betekenis met iemand wat daardie taal praat kan nagaan. Moenie vir\n my sê dat dit veilig is nie. Lys wat naby klink en laat my self kyk.\n- ’n Voorgestelde .co.za-domein\n\nNommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
+      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nHier is my beskrywing in een sin:\n\n[PLAK DIE EEN WAT JY GEKIES HET]\n\nHier is hoe my mededingers werklik lyk, uit my eie soektog:\n\n[PLAK WAT JY GEVIND HET]\n\nStel 5 name voor vir hierdie besigheid in Suid-Afrika.\n\nReëls:\n- Maklik om hardop oor ’n raserige telefoonlyn te sê\n- Maklik om te spel nadat ’n mens dit een keer gehoor het\n- Werk vir kliënte wat Engels, Afrikaans, isiZulu, isiXhosa\n of Sesotho praat\n- Nie byna dieselfde as ’n groot Suid-Afrikaanse handelsmerk nie\n- Kort genoeg om op ’n voertuigdeur en as Instagram-gebruikersnaam te pas\n- Nie aan een dorp gekoppel nie, tensy ek gesê het dat ek net daardie dorp bedien\n- Nie aan een produk gekoppel nie, tensy ek gesê het dat ek net daardie produk verkoop\n- Volg nie die patroon van name wat die meeste van my mededingers gebruik nie\n\nGee my ’n mengsel: minstens een wat my eie naam gebruik, minstens een wat gebou is op die\nkenmerkende detail uit my kortbeskrywing, en minstens een wat eenvoudig en beskrywend is.\n\nGee my vir elke naam:\n- Die naam\n- Wat dit beteken of waar dit vandaan kom\n- Een risiko of swakheid van hierdie naam\n- Enige woord in enige Suid-Afrikaanse taal wat soortgelyk klink, sodat\n ek die betekenis met iemand wat daardie taal praat kan nagaan. Moenie vir\n my sê dat dit veilig is nie. Lys wat naby klink en laat my self kyk.\n- ’n Voorgestelde .co.za-domein\n\nNommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
       "variant": "prompt"
     },
     {
@@ -2378,11 +2378,11 @@
       "text": "Hoe goeie naamopsies lyk"
     },
     {
-      "hash": "c06ca960138d2c83",
+      "hash": "6179c916038fc9ab",
       "id": "what-good-name-options-look-like.1",
       "kind": "code",
       "sourceHash": "18198fb82b166b16",
-      "text": "1. Van Wyk Bakkies\n Van die eienaar se van plus wat hy verkoop. Eenvoudig, eerlik, plaaslik.\n Risiko: algemene van, so die domein is dalk reeds in gebruik. Klink soos: niks\n bekend wat problematies is nie, kyk by iemand wat isiXhosa praat.\n Domein: vanwykbakkies.co.za\n\n2. Clipboard Motors\n Van die foutelys wat die koper huis toe neem. Sê \"ons skryf dit neer\".\n Risiko: het die eerste keer een reël verduideliking nodig. Klink soos:\n niks naby in Afrikaans nie; kyk of mense wat isiXhosa praat \"clipboard\"\n verstaan. Domein: clipboardmotors.co.za\n\n3. Fault List Bakkies\n Padlangs. Maak van die bedryf se swakheid die verkoopspunt.\n Risiko: \"fault\" kan vir sommige kopers negatief klink. Klink soos: \"fout\"\n in Afrikaans beteken ’n vergissing, wat die betekenis versterk eerder as om\n dit te ondermyn. Domein: faultlist.co.za\n\n4. Werksbakkie\n Afrikaans vir \"work bakkie\". Een woord, maklik op ’n voertuigdeur.\n Risiko: minder duidelik vir kopers wie se eerste taal Engels is. Klink soos: niks\n problematies in Engels nie; kyk by isiXhosa. Domein: werksbakkie.co.za\n\n5. Paarl Diesel Yard\n Plek plus vak. Baie maklik om te vind wanneer mense soek.\n Risiko: gekoppel aan die Paarl, wat die kortbeskrywing toelaat. Algemene patroon, waarteen die\n ondersoek na mededingers gewaarsku het. Domein: paarldieselyard.co.za\n\nSwakste: opsie 5. Dit volg presies die patroon van name wat die meeste mededingers\ngebruik, en \"Diesel Yard\" kan aan enige werkswinkel behoort. Dit sou oorleef as ’n\nmededinger sy naam in die plek daarvan sit.",
+      "text": "1. Van Wyk Bakkies\n Van die eienaar se van plus wat hy verkoop. Eenvoudig, eerlik, plaaslik.\n Risiko: algemene van, so die domein is dalk reeds in gebruik. Klink soos: niks\n bekend wat problematies is nie, kyk by iemand wat isiXhosa praat.\n Domein: vanwykbakkies.co.za\n\n2. Clipboard Motors\n Van die foutelys wat die koper huis toe neem. Sê \"ons skryf dit neer\".\n Risiko: het die eerste keer een reël verduideliking nodig. Klink soos:\n niks naby in Afrikaans nie; kyk of mense wat isiXhosa praat \"clipboard\"\n verstaan. Domein: clipboardmotors.co.za\n\n3. Fault List Bakkies\n Padlangs. Maak van die bedryf se swakheid die verkoopspunt.\n Risiko: \"fault\" kan vir sommige kopers negatief klink. Klink soos: \"fout\"\n in Afrikaans beteken ’n vergissing, wat die betekenis versterk eerder as om\n dit te ondermyn. Domein: faultlist.co.za\n\n4. Werksbakkie\n Afrikaans vir \"work bakkie\". Een woord, maklik op ’n voertuigdeur.\n Risiko: minder duidelik vir kopers wie se eerste taal Engels is. Klink soos: niks\n problematies in Engels nie; gaan isiXhosa na. Domein: werksbakkie.co.za\n\n5. Paarl Diesel Yard\n Plek plus vak. Baie maklik om te vind wanneer mense soek.\n Risiko: gekoppel aan die Paarl, wat die kortbeskrywing toelaat. Algemene patroon, waarteen die\n ondersoek na mededingers gewaarsku het. Domein: paarldieselyard.co.za\n\nSwakste: opsie 5. Dit volg presies die patroon van name wat die meeste mededingers\ngebruik, en \"Diesel Yard\" kan aan enige werkswinkel behoort. Dit sou oorleef as ’n\nmededinger sy naam in die plek daarvan sit.",
       "variant": "snippet"
     },
     {
@@ -2468,7 +2468,7 @@
       "sourceHash": "8f3fc3ce6304deed"
     }
   ],
-  "contentHash": "0857c1e030f901ff",
+  "contentHash": "215cad05b520ea15",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
