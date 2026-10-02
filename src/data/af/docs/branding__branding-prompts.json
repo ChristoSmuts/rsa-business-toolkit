@@ -1940,7 +1940,7 @@
       "text": "Opdrag 7: kleure en lettertipe"
     },
     {
-      "hash": "01f506790b936cdf",
+      "hash": "74052b6777fa2d7d",
       "id": "prompt-7-colours-and-type.1",
       "kind": "code",
       "placeholders": [
@@ -1967,7 +1967,7 @@
         }
       ],
       "sourceHash": "894ec42f7b1aa149",
-      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nMy besigheidsnaam is: [NAAM]\nMy rigting vir die logo is: [PLAK DIT]\nMy mededingers gebruik meestal hierdie kleure: [PLAK UIT JOU EIE SOEKTOG]\n\nGee my 5 volledige stelsels van kleur en lettertipe.\n\nGee my vir elkeen:\n- Een hoofkleur, met die hekskode\n- Een ondersteunende kleur, met die hekskode\n- Een aksentkleur vir knoppies en uitlig, met die hekskode\n- ’n Donker kleur vir teks en ’n ligte kleur vir agtergronde\n- Een lettertipe vir opskrifte en een vir die hoofteks, albei gratis op Google Fonts\n- Voorgestelde groottes vir opskrif, subopskrif, hoofteks en fynskrif\n- Een sin oor waarom dit by my kliënte pas\n- ’n Waarskuwing as enige kleur sleg druk, in die son verbleik, of moeilik is om te\n lees\n\nReëls:\n- Moenie Montserrat, Poppins, Raleway of Lato voorstel nie.\n- Minstens twee stelsels moet die kleure vermy wat my mededingers gebruik.\n- Vermy kleure wat sterk met Suid-Afrikaanse politieke partye,\n banke of selfoonnetwerke verbind word. Sê vir my as een daardie probleem het.\n- Geen kleurverlope nie.\n- Sê vir elke paar van teks op agtergrond watter pare jy BEDOEL om\n leesbaar te wees. Moenie beweer dat jy die kontras bereken het nie. Ek sal dit self nagaan.\n\nNommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
+      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nMy besigheidsnaam is: [NAAM]\nMy rigting vir die logo is: [PLAK DIT]\nMy mededingers gebruik meestal hierdie kleure: [PLAK UIT JOU EIE SOEKTOG]\n\nGee my 5 volledige stelsels van kleur en lettertipe.\n\nGee my vir elkeen:\n- Een hoofkleur, met die hekskode\n- Een ondersteunende kleur, met die hekskode\n- Een aksentkleur vir knoppies en uitlig, met die hekskode\n- ’n Donker kleur vir teks en ’n ligte kleur vir agtergronde\n- Een lettertipe vir opskrifte en een vir die hoofteks, albei gratis op Google Fonts\n- Voorgestelde groottes vir opskrif, subopskrif, hoofteks en fynskrif\n- Een sin oor waarom dit by my kliënte pas\n- ’n Waarskuwing as enige kleur sleg druk, in die son verbleik, of moeilik is om te\n lees\n\nReëls:\n- Moenie Montserrat, Poppins, Raleway of Lato voorstel nie.\n- Minstens twee stelsels moet die kleure vermy wat my mededingers gebruik.\n- Vermy kleure wat sterk met Suid-Afrikaanse politieke partye,\n banke of selfoonnetwerke verbind word. Sê vir my as een daardie probleem het.\n- Geen kleurverlope nie.\n- Sê by elke paar van teks op agtergrond of jy BEDOEL dat dit\n leesbaar moet wees. Moenie beweer dat jy die kontras bereken het nie. Ek sal dit self nagaan.\n\nNommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
       "variant": "prompt"
     },
     {
@@ -2378,11 +2378,11 @@
       "text": "Hoe goeie naamopsies lyk"
     },
     {
-      "hash": "6179c916038fc9ab",
+      "hash": "f3603a3fb74bcea7",
       "id": "what-good-name-options-look-like.1",
       "kind": "code",
       "sourceHash": "18198fb82b166b16",
-      "text": "1. Van Wyk Bakkies\n Van die eienaar se van plus wat hy verkoop. Eenvoudig, eerlik, plaaslik.\n Risiko: algemene van, so die domein is dalk reeds in gebruik. Klink soos: niks\n bekend wat problematies is nie, kyk by iemand wat isiXhosa praat.\n Domein: vanwykbakkies.co.za\n\n2. Clipboard Motors\n Van die foutelys wat die koper huis toe neem. Sê \"ons skryf dit neer\".\n Risiko: het die eerste keer een reël verduideliking nodig. Klink soos:\n niks naby in Afrikaans nie; kyk of mense wat isiXhosa praat \"clipboard\"\n verstaan. Domein: clipboardmotors.co.za\n\n3. Fault List Bakkies\n Padlangs. Maak van die bedryf se swakheid die verkoopspunt.\n Risiko: \"fault\" kan vir sommige kopers negatief klink. Klink soos: \"fout\"\n in Afrikaans beteken ’n vergissing, wat die betekenis versterk eerder as om\n dit te ondermyn. Domein: faultlist.co.za\n\n4. Werksbakkie\n Afrikaans vir \"work bakkie\". Een woord, maklik op ’n voertuigdeur.\n Risiko: minder duidelik vir kopers wie se eerste taal Engels is. Klink soos: niks\n problematies in Engels nie; gaan isiXhosa na. Domein: werksbakkie.co.za\n\n5. Paarl Diesel Yard\n Plek plus vak. Baie maklik om te vind wanneer mense soek.\n Risiko: gekoppel aan die Paarl, wat die kortbeskrywing toelaat. Algemene patroon, waarteen die\n ondersoek na mededingers gewaarsku het. Domein: paarldieselyard.co.za\n\nSwakste: opsie 5. Dit volg presies die patroon van name wat die meeste mededingers\ngebruik, en \"Diesel Yard\" kan aan enige werkswinkel behoort. Dit sou oorleef as ’n\nmededinger sy naam in die plek daarvan sit.",
+      "text": "1. Van Wyk Bakkies\n Van die eienaar se van plus wat hy verkoop. Eenvoudig, eerlik, plaaslik.\n Risiko: algemene van, so die domein is dalk reeds in gebruik. Klink soos: niks\n bekend wat problematies is nie, vra iemand wat isiXhosa praat.\n Domein: vanwykbakkies.co.za\n\n2. Clipboard Motors\n Van die foutelys wat die koper huis toe neem. Sê \"ons skryf dit neer\".\n Risiko: het die eerste keer een reël verduideliking nodig. Klink soos:\n niks naby in Afrikaans nie; kyk of mense wat isiXhosa praat \"clipboard\"\n verstaan. Domein: clipboardmotors.co.za\n\n3. Fault List Bakkies\n Padlangs. Maak van die bedryf se swakheid die verkoopspunt.\n Risiko: \"fault\" kan vir sommige kopers negatief klink. Klink soos: \"fout\"\n in Afrikaans beteken ’n vergissing, wat die betekenis versterk eerder as om\n dit te ondermyn. Domein: faultlist.co.za\n\n4. Werksbakkie\n Afrikaans vir \"work bakkie\". Een woord, maklik op ’n voertuigdeur.\n Risiko: minder duidelik vir kopers wie se eerste taal Engels is. Klink soos: niks\n problematies in Engels nie; gaan isiXhosa na. Domein: werksbakkie.co.za\n\n5. Paarl Diesel Yard\n Plek plus vak. Baie maklik om te vind wanneer mense soek.\n Risiko: gekoppel aan die Paarl, wat die kortbeskrywing toelaat. Algemene patroon, waarteen die\n ondersoek na mededingers gewaarsku het. Domein: paarldieselyard.co.za\n\nSwakste: opsie 5. Dit volg presies die patroon van name wat die meeste mededingers\ngebruik, en \"Diesel Yard\" kan aan enige werkswinkel behoort. Dit sou oorleef as ’n\nmededinger sy naam in die plek daarvan sit.",
       "variant": "snippet"
     },
     {
@@ -2468,7 +2468,7 @@
       "sourceHash": "8f3fc3ce6304deed"
     }
   ],
-  "contentHash": "215cad05b520ea15",
+  "contentHash": "db265e36b4cb8698",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
