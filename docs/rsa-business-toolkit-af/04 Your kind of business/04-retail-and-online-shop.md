@@ -100,7 +100,7 @@ Bereken dit in jou pryse in. ’n Kleinhandelaar wat aanneem dat niks teruggestu
 
 Jy het ’n invoerderskode (importer's code) van SARS Doeane nodig. Dit is gratis en apart van jou registrasie vir inkomstebelasting.
 
-Jy betaal invoerreg plus 15% BTW op die geland waarde by die grens, selfs as jy nie vir BTW geregistreer is nie. Daardie BTW is ’n werklike koste wat jy nie kan terugkry nie, tensy jy ’n ondernemer is. Bou dit in jou geland koste in voordat jy bestel, nie daarna nie.
+Jy betaal invoerreg plus 15% BTW op die gelande waarde by die grens, selfs as jy nie vir BTW geregistreer is nie. Daardie BTW is ’n werklike koste wat jy nie kan terugkry nie, tensy jy ’n ondernemer is. Bou dit in jou gelande koste in voordat jy bestel, nie daarna nie.
 
 Sommige goedere het ’n Letter of Authority (magtigingsbrief) van die National Regulator for Compulsory Specifications (NRCS) nodig voordat hulle in Suid-Afrika verkoop mag word. Dit dek baie elektriese produkte, beligting, proppe, laaiers en sommige motoronderdele. Invoerders word gedurig hierdeur betrap, en die voorraad kan dan nie wettig verkoop word nie.
 
@@ -116,7 +116,7 @@ As jy kontant neem, gaan jou bank se fooie vir kontantdeposito’s na. Dit is di
 
 ## Voorraadrekords
 
-Sodra jy voorraad hou, het die sigblad in `03-documents/01` nog een blad nodig: voorraad op hande.
+Sodra jy voorraad hou, het die sigblad in `03-documents/01` nog een blad nodig: voorraad wat jy het.
 
 Hou rekord van die kosprys, verkoopprys, hoeveelheid en datum ontvang. Jy het die koste van verkoopte goedere vir jou belastingopgawe nodig, en jy moet weet watter items werklik geld maak.
 

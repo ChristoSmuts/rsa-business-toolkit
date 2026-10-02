@@ -2,7 +2,7 @@
 
 Lees eers `01-core/`. Hierdie lêer voeg die reëls by wat geld wanneer jy dinge regmaak, bou, installeer, skoonmaak of aflewer.
 
-Dit dek loodgieters, elektrisiëns, bouers, verwers, werktuigkundiges, tuiniers, skoonmakers, handlangers, koeriers en installeerders.
+Dit dek loodgieters, elektrisiëns, bouers, verwers, werktuigkundiges, tuiniers, skoonmakers, nutsmanne, koeriers en installeerders.
 
 ## Woorde wat in hierdie lêer gebruik word
 
@@ -74,19 +74,19 @@ Neem ’n deposito voordat jy materiaal koop. ’n Getekende kwotasie plus ’n 
 
 Vir langer werke, gebruik vorderingsbetalings wat aan fases gekoppel is, nie aan datums nie. "50% wanneer die eerste installasie voltooi is" is afdwingbaar en duidelik. "50% ná twee weke" lok ’n rusie uit oor of jy op die terrein was.
 
-Stuur die faktuur op die dag wat jy klaarmaak. Ambagslui wat weekliks faktureer, word weekliks betaal. Ambagslui wat maandeliks faktureer, word betaal wanneer dit die kliënt pas.
+Stuur die faktuur op die dag waarop jy klaarmaak. Ambagslui wat weekliks faktureer, word weekliks betaal. Ambagslui wat maandeliks faktureer, word betaal wanneer dit die kliënt pas.
 
 ## Versekering
 
 Dekking vir openbare aanspreeklikheid. As jy ’n huis laat oorstroom, ’n dak aan die brand steek of ’n stuk gereedskap op ’n motor laat val, is dit wat tussen jou en persoonlike bankrotskap staan. Dit is nie duur vir ’n ambagsman wat alleen werk nie.
 
-Sê vir jou voertuigversekeraar dat die voertuig vir besigheid gebruik word, en vra oor dekking vir goedere in transito as jy kliënte se eiendom of duur gereedskap vervoer. Sien [Voertuie vir jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
+Sê vir jou voertuigversekeraar dat die voertuig vir besigheid gebruik word, en vra oor dekking vir goedere in transito as jy kliënte se eiendom of duur gereedskap vervoer. Sien [Voertuie en jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
 
 Gereedskapversekering is die moeite werd sodra jou gereedskap meer werd is as ’n paar maande se wins.
 
 ## Voertuie
 
-Die meeste ambagte het een nodig. Lees [Voertuie vir jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md) voordat jy besluit of jy dit in ’n besigheidsnaam wil sit. Vir ’n enkele eienaar wat self die werk doen, is persoonlike eienaarskap plus ’n logboek gewoonlik die beter antwoord.
+Die meeste ambagte het een nodig. Lees [Voertuie en jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md) voordat jy besluit of jy dit in ’n besigheidsnaam wil sit. Vir ’n enkele eienaar wat self die werk doen, is persoonlike eienaarskap plus ’n logboek gewoonlik die beter antwoord.
 
 Ekstra reëls geld as jou voertuig vol gelaai meer as 3,500 kg weeg, of as jy passasiers vir geld vervoer. Jy het ’n Professional Driving Permit (professionele bestuurspermit) en elke jaar ’n padwaardigheidstoets nodig. Vir passasiersvervoer het jy ook ’n bedryfslisensie nodig.
 

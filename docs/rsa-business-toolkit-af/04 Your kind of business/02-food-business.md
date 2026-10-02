@@ -10,7 +10,7 @@ Gewone betekenisse van die terme wat in hierdie lêer gebruik word. Die volledig
 
 | Woord | Betekenis |
 |---|---|
-| COA | Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid). Die permit sonder wat jy nie kan oopmaak nie. |
+| COA | Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid). Die permit waarsonder jy nie kan oopmaak nie. |
 | R638 | Die 2018-reëls vir voedselhigiëne. |
 | R146 | Die 2012-reëls vir die etikettering van kos. |
 | EHP | Die munisipale gesondheidsinspekteur wat jou perseel nagaan. |
@@ -21,7 +21,7 @@ Gewone betekenisse van die terme wat in hierdie lêer gebruik word. Die volledig
 
 Kos is ná voertuie die mees gereguleerde klein besigheid in Suid-Afrika. Beplan vir twee tot ses maande voordat jy wettig mag oopmaak.
 
-## Die een dokument sonder wat jy nie kan handel dryf nie
+## Die een dokument waarsonder jy nie kan handel dryf nie
 
 ’n Certificate of Acceptability, gewoonlik ’n COA genoem.
 

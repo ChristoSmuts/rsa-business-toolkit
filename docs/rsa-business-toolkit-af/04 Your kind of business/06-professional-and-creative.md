@@ -12,7 +12,7 @@ Gewone betekenisse van die terme wat in hierdie lêer gebruik word. Die volledig
 |---|---|
 | Omsetbelasting (turnover tax) | ’n Eenvoudige belasting op verkope. Baie professionele mense mag dit nie gebruik nie. |
 | Tuiskantooraftrekking (home office deduction) | Om ’n deel van jou huiskoste te eis omdat jy uit ’n kamer werk wat net daarvoor gebruik word. |
-| IP | Intellektuele eiendom (intellectual property). Wie die werk besit wat jy skep. |
+| IE (IP) | Intellektuele eiendom (intellectual property). Wie die werk besit wat jy skep. |
 | Persoonlikedienste-verskaffer (personal service provider) | SARS se term vir iemand wat soos ’n werknemer van een kliënt lyk. Verloor die meeste aftrekkings. |
 | Hersieningsrondes (revision rounds) | Hoeveel keer ’n kliënt mag vra vir veranderinge voordat hy ekstra betaal. |
 
@@ -94,7 +94,7 @@ Hou die finale lêers terug tot die finale betaling. Dit werk net as jou kontrak
 
 ## Belastingpunt wat die meeste vryskutwerkers mis
 
-As jy hoofsaaklik vir een kliënt werk, wat jou ure beheer en hoe jy werk, kan SARS jou dalk as ’n persoonlikedienste-verskaffer of as ’n werknemer behandel. Dit verander jou belastingbehandeling aansienlik en neem die meeste van jou aftrekkings weg.
+As jy hoofsaaklik vir een kliënt werk wat jou ure en jou manier van werk beheer, kan SARS jou dalk as ’n persoonlikedienste-verskaffer of as ’n werknemer behandel. Dit verander jou belastingbehandeling aansienlik en neem die meeste van jou aftrekkings weg.
 
 Tekens van risiko: een kliënt wat die meeste van jou inkomste verskaf, vaste ure by hulle perseel werk, hulle toerusting gebruik, ’n bestuurder hê.
 
@@ -116,7 +116,7 @@ Die naamopdrag in [Handelsmerkopdragte](../02%20Branding%20and%20marketing/01-br
 
 1. Bevestig of jou beroep statutêre registrasie vereis
 2. Gaan na of jy van omsetbelasting uitgesluit is voordat jy dit kies
-3. Stel ’n diensooreenkoms op wat omvang, hersienings, IP en betaling dek
+3. Stel ’n diensooreenkoms op wat omvang, hersienings, IE en betaling dek
 4. Besluit oor jou beleid vir deposito’s en hersienings, en hou daarby
 5. Stel die tuiskantoorberekening op as jy kwalifiseer
 6. Registreer as ’n voorlopige belastingbetaler (provisional taxpayer) en skryf die IRP6-datums in jou dagboek

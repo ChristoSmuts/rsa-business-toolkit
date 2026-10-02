@@ -64,13 +64,13 @@ Vra ’n makelaar vir dekking wat pas by die behandelings wat jy werklik doen, e
 
 ’n Diens moet met redelike vaardigheid en sorg gelewer word. As ’n behandeling verkeerd loop, het die kliënt die reg dat dit reggestel word of dat die geld terugbetaal word.
 
-Beskerm jouself met ’n konsultasierekord: wat die kliënt gevra het, wat jy aangeraai het, enige allergie of plektoets, en wat ooreengekom is. Laat hulle dit teken. Vir kleur-, chemiese en velbehandelings is ’n rekord van die plektoets die verskil tussen ’n posisie wat jy kan verdedig en ’n skikking.
+Beskerm jouself met ’n konsultasierekord: wat die kliënt gevra het, wat jy aangeraai het, enige allergie of veltoets, en wat ooreengekom is. Laat hulle dit teken. Vir kleur-, chemiese en velbehandelings is ’n rekord van die veltoets die verskil tussen ’n posisie wat jy kan verdedig en ’n skikking.
 
 ## Besprekings, deposito’s en kliënte wat nie opdaag nie
 
 Kliënte wat nie opdaag nie, is die grootste verborge koste in hierdie bedryf.
 
-’n Deposito is wettig en afdwingbaar as die bepalings voor die bespreking duidelik en redelik is. Onder die Consumer Protection Act mag ’n kliënt ’n bespreking kanselleer. Jy mag ’n kanselleringsfooi hef, maar dit moet redelik wees. Wat redelik is, hang af van hoeveel kennis hulle gegee het, en of jy die tydgleuf met iemand anders kon vul.
+’n Deposito is wettig en afdwingbaar as die bepalings voor die bespreking duidelik en redelik is. Onder die Consumer Protection Act mag ’n kliënt ’n bespreking kanselleer. Jy mag ’n kanselleringsfooi hef, maar dit moet redelik wees. Wat redelik is, hang af van hoe lank vooraf hulle jou laat weet het, en of jy die tydgleuf met iemand anders kon vul.
 
 Sit jou kanselleringsbepalings op skrif, stuur dit saam met die besprekingsbevestiging, en pas dit konsekwent toe. Bepalings wat jy eers noem wanneer iemand ’n afspraak mis, is moeilik om af te dwing.
 
@@ -88,7 +88,7 @@ Resensies op jou Google Business Profile lok meer plaaslike besprekings as enige
 2. Doen aansoek om die munisipale lisensie vir ’n gesondheidsinrigting
 3. Berei die perseel voor vir die gesondheidsinspeksie
 4. Kry aanspreeklikheidsversekering vir behandelings wat by jou dienste pas
-5. Maak ’n sjabloon vir ’n konsultasie- en plektoetsrekord
+5. Maak ’n sjabloon vir ’n konsultasie- en veltoetsrekord
 6. Skryf jou bepalings vir besprekings, deposito’s en kansellasies
 7. Kry skriftelike toestemming van kliënte voordat jy foto’s plaas
 8. Registreer jou POPIA-inligtingsbeampte, aangesien jy kliënte se gesondheidsinligting hou

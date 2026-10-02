@@ -71,7 +71,7 @@ Kry die aansoekvorm by die kantoor van die Designated Police Officer (aangewese 
 
 Die vorm is die SAPS 601. Geen betaling word vereis nie. Registrasie is gratis.
 
-Vereiste dokumente: twee kleur-ID-foto’s van die aansoeker wat nie ouer as 3 maande is nie, en ’n gesertifiseerde afskrif van die RSA-identiteitsdokument of buitelandse paspoort van die aansoeker en van elke persoon wat vir die daaglikse bestuur van die besigheid verantwoordelik is.
+Vereiste dokumente: twee kleur-ID-foto’s van die aansoeker, nie ouer as 3 maande nie, en ’n gesertifiseerde afskrif van die RSA-identiteitsdokument of buitelandse paspoort van die aansoeker en van elke persoon wat vir die daaglikse bestuur van die besigheid verantwoordelik is.
 
 > **In gewone taal:** Bring twee onlangse kleur-ID-foto’s en ’n gesertifiseerde afskrif van die ID van almal wat die besigheid daagliks bestuur.
 
@@ -123,7 +123,7 @@ Hou die sertifikaat teen die muur by die perseel, nie in ’n laai by die huis n
 
 ### As jy as ’n maatskappy handel dryf
 
-Jy het ’n Business Register Number Certificate (BRNC) nodig. Die volledige proses, dokumente, koste en die reëls oor die gevolmagtigde is in [Voertuie vir jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
+Jy het ’n Business Register Number Certificate (BRNC) nodig. Die volledige proses, dokumente, koste en die reëls oor die gevolmagtigde is in [Voertuie en jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
 
 Kort weergawe: eNaTIS identifiseer elke voertuigeienaar met ’n identiteitsnommer. ’n Maatskappy het nie een nie, so die registrasie-owerheid reik ’n besigheidsregisternommer aan die maatskappy uit die eerste keer dat dit ’n voertuig moet besit. Jy doen persoonlik aansoek by jou plaaslike verkeersdepartement met vorm ABR, en jy benoem ’n gevolmagtigde (proxy).
 
@@ -231,7 +231,7 @@ Hierdie een dokument is die verskil tussen ’n gebrek wat bekend gemaak is en �
 
 ### Waarheen dispute gaan
 
-Die Motor Industry Ombudsman of South Africa (MIOSA) bied onafhanklike geskilbeslegting vir die motorbedryf en is gratis vir verbruikers. Onder dit het die Small Claims Court (Kleineisehof) geen prokureur nodig nie. Die limiet daarvan is R30,000, bepaal in Staatskoerant (Government Gazette) 55038, Goewermentskennisgewing 7717 van 20 Julie 2026, van krag vanaf 1 Augustus 2026. Dit het die limiet van R20,000 vervang wat sedert 2019 gegeld het. Baie webwerwe noem nog R20,000.
+Die Motor Industry Ombudsman of South Africa (MIOSA) bied onafhanklike geskilbeslegting vir die motorbedryf en is gratis vir verbruikers. Daaronder is die Small Claims Court (Kleineisehof), waar jy geen prokureur nodig het nie. Die limiet daarvan is R30,000, bepaal in Staatskoerant (Government Gazette) 55038, Goewermentskennisgewing 7717 van 20 Julie 2026, van krag vanaf 1 Augustus 2026. Dit het die limiet van R20,000 vervang wat sedert 2019 gegeld het. Baie webwerwe noem nog R20,000.
 
 Let op in watter rigting dit werk. As jy deur ’n maatskappy handel dryf, kan jy nie self ’n eis in die Small Claims Court instel nie: net ’n natuurlike persoon mag daar ’n eis instel. ’n Koper kan wel ’n eis teen jou maatskappy daar instel, en ’n benoemde direkteur mag namens die maatskappy verskyn, maar om ’n kliënt te agtervolg wat jou nie betaal het nie, sal jy die landdroshof en ’n prokureur nodig hê.
 
@@ -263,7 +263,7 @@ Die nosionele insetbelasting word bereken deur die belastingbreuk (15/115) te ve
 
 SARS se uitgewerkte voorbeeld:
 
-X, wat nie ’n ondernemer is nie, verkoop ’n tweedehandse voertuig vir R115,000 aan ’n motorhandelaar wat ’n geregistreerde BTW-ondernemer is, en dit is ook die opemarkwaarde. As die motorhandelaar die volle koopprys betaal het en aan alle voorwaardes voldoen, mag hy R15,000 as nosionele insetbelasting eis (15/115 × R115,000). As die handelaar dit vir R120,000 verkoop, word die handelaar se wins van R20,000 korrek teen 15% belas, wat R3,000 is.
+X, wat nie ’n ondernemer is nie, verkoop ’n tweedehandse voertuig vir R115,000 aan ’n motorhandelaar wat ’n geregistreerde BTW-ondernemer is, en dit is ook die opemarkwaarde. As die motorhandelaar die volle koopprys betaal het en aan alle voorwaardes voldoen, mag hy R15,000 as nosionele insetbelasting eis (15/115 × R115,000). As die handelaar dit vir R120,000 verkoop, word die handelaar se opslag van R20,000 korrek teen 15% belas, wat R3,000 is.
 
 > **In gewone taal:** Voorbeeld: jy koop ’n motor van ’n private persoon vir R115,000. Jy kan R15,000 as BTW terugeis. Jy verkoop dit vir R120,000 plus BTW. Die BTW wat jy werklik aan SARS betaal, is R3,000, wat 15% van jou wins van R20,000 is.
 
@@ -277,7 +277,7 @@ SARS vereis dat die bedrag werklik betaal moet wees, ten volle of gedeeltelik, v
 
 Die handelaar moet in besit wees van ’n voltooide VAT264-vorm wat verklaar dat die lewering van die motorvoertuig nie ’n belasbare lewering is nie.
 
-Die VAT264-vorm moet deur sowel die koper as die verkoper voltooi word. Laat dit teken op dieselfde oomblik wat jy die voertuig neem, nie later nie.
+Die VAT264-vorm moet deur sowel die koper as die verkoper voltooi word. Laat dit teken op dieselfde oomblik waarop jy die voertuig neem, nie later nie.
 
 SARS publiseer ’n spesifieke gids: VAT 420 Guide for Motor Dealers. Lees dit voordat jy vir BTW registreer. Die skakel is in die [Bronne- en verifikasieregister](../05%20Look%20it%20up/03-sources-and-verification-register.md).
 
@@ -293,7 +293,7 @@ Bereken dit met jou werklike syfers, of betaal ’n belastingpraktisyn vir een u
 
 Die kernlêer oor belasting beskryf omsetbelasting, met 0% op die eerste R600,000. Dit lyk aantreklik. Vir ’n voertuighandelaar is dit gewoonlik ’n fout, om twee redes.
 
-Dit belas omset, nie wins nie. ’n Motor wat vir R140,000 gekoop en vir R155,000 verkoop word, voeg R155,000 by jou omset en R15,000 by jou wins. Teen 1% op die band bo R600,000 sou jy R1,550 omsetbelasting op daardie transaksie betaal teenoor ’n marge van R15,000. Onder normale belasting, met SBC-koerse wat by 0% begin, word ’n klein handelaar se werklike wins dikwels glad nie belas nie.
+Dit belas omset, nie wins nie. ’n Motor wat vir R140,000 gekoop en vir R155,000 verkoop word, voeg R155,000 by jou omset en R15,000 by jou wins. Teen 1% op die gedeelte bo R600,000 sou jy R1,550 omsetbelasting op daardie transaksie betaal teenoor ’n marge van R15,000. Onder normale belasting, met SBC-koerse wat by 0% begin, word ’n klein handelaar se werklike wins dikwels glad nie belas nie.
 
 Dit haal jou uit die BTW-stelsel. Omsetbelasting vervang inkomstebelasting, BTW, voorlopige belasting, kapitaalwinsbelasting en dividendbelasting. Dit beteken geen nosionele insetbelasting nie, en dit is die enkele waardevolste belastingmeganisme wat ’n handelaar in gebruikte voertuie het.
 
@@ -316,9 +316,9 @@ Bly op normale belasting, gaan na of die maatskappy vir SBC-koerse kwalifiseer, 
 
 Om die sleutels te hê, is nie dieselfde as skoon titel nie. Betaal nooit voordat die papierwerk ooreenstem nie.
 
-### Wanneer jy ’n voertuig uitverkoop
+### Wanneer jy ’n voertuig verkoop
 
-- ’n Geldige padwaardigheidsertifikaat. Die Department of Transport (Departement van Vervoer) se blad oor voertuigregistrasie sê dat die registrasie van ’n gebruikte voertuig die padwaardigheidsertifikaat vereis as die huidige sertifikaat ouer as 60 dae is. Die Wes-Kaapse Regering sê dat ’n padwaardigheidstoets gedoen moet word elke keer wat ’n voertuig van eienaar verander.
+- ’n Geldige padwaardigheidsertifikaat. Die Department of Transport (Departement van Vervoer) se blad oor voertuigregistrasie sê dat die registrasie van ’n gebruikte voertuig die padwaardigheidsertifikaat vereis as die huidige sertifikaat ouer as 60 dae is. Die Wes-Kaapse Regering sê dat ’n padwaardigheidstoets gedoen moet word elke keer wanneer ’n voertuig van eienaar verander.
 - Jou NCO, ingedien sodat die voertuig nie meer aan jou gekoppel is nie
 - Die koper het 21 dae om die registrasie te voltooi deur die RLV-vorm in te dien saam met die RC1, die padwaardigheidsertifikaat, gesertifiseerde dokumentasie en die vereiste fooie.
 - Die getekende gebrekeskedule
@@ -354,7 +354,7 @@ Jy kan nie ’n gefinansierde voertuig aan ’n koper oordra voordat die geldski
 
 Kliënte sal vra om "’n deposito te betaal om die motor te hou".
 
-Neem dit, maar verstaan die posisie onder die Consumer Protection Act. ’n Verbruiker wat ’n bespreking of reservering maak, mag dit kanselleer, en jy mag ’n redelike kanselleringsfooi hef. By wat redelik is, word die kennis wat gegee is in ag geneem, en ook of jy die voertuig intussen aan iemand anders kon verkoop het.
+Neem dit, maar verstaan die posisie onder die Consumer Protection Act. ’n Verbruiker wat ’n bespreking of reservering maak, mag dit kanselleer, en jy mag ’n redelike kanselleringsfooi hef. By wat redelik is, word die kennisgewing wat gegee is in ag geneem, en ook of jy die voertuig intussen aan iemand anders kon verkoop het.
 
 ’n Skriftelike depositokwitansie wat die bedrag, die voertuig volgens VIN, die tydperk wat dit gehou word en die kanselleringsbepalings noem, is wat die fooi afdwingbaar maak. ’n WhatsApp wat sê "deposito nie terugbetaalbaar nie", maak dit nie afdwingbaar nie.
 
@@ -392,7 +392,7 @@ As ’n motorvoertuig buite die Republiek geregistreer is, het jy die registrasi
 
 Moenie invoer as jou eerste stap nie. Leer eers die plaaslike handel.
 
-### Vrywillige lidmaatskap van die bedryf
+### Vrywillige lidmaatskap van ’n bedryfsorganisasie
 
 Die Retail Motor Industry Organisation (RMI) en sy afdeling vir gebruikte motors is nie verpligtend nie. Lidmaatskap wys vir kopers dat jy geloofwaardig is en gee jou toegang tot ondersteuning by dispute en leiding uit die bedryf. Die moeite werd om te oorweeg sodra jy gevestig is, nie op dag een nie.
 
@@ -413,7 +413,7 @@ Die kort weergawe vir ’n handelaar:
 - ’n Afskrif van die rybewys en van die ID op WhatsApp ontvang voordat jy instem om te ontmoet
 - Ontmoet in daglig by ’n polisiestasie, ’n bank of die parkeerterrein van ’n besige vulstasie
 - Iemand saam met jou; die sleutels in jou hand totdat jy in die passasiersitplek sit
-- Die volle betaling weerspieël (reflected) in jou saldo voordat sleutels, papiere of ’n getekende NCO van hande verwissel
+- Die volle betaling is in jou saldo (reflected) voordat sleutels, papiere of ’n getekende NCO van hande verwissel
 - Groot bedrae: ’n onmiddellike betaling terwyl jy kyk, of by ’n banktoonbank
 
 ## Groei verder as voertuie
