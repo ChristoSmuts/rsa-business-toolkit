@@ -1,13 +1,17 @@
 ---
 /**
- * `/about/`: how the guide was made and the licence (build plan B1).
+ * `/about/`: how the guide was made, the licence, the keyboard shortcuts and the settings (build
+ * plan B1).
  *
- * The keyboard shortcuts and the settings (shortcuts, low data, clear my data) that B1 also puts
- * here belong to the packages that build those features (WP-30 and WP-33). They are not listed
- * before then: a table of shortcuts that do nothing would tell a reader something untrue.
+ * The shortcuts table lists only keys that work: `?`, Alt+← / Alt+→ and Escape (WP-30). The
+ * search keys `/` and Ctrl+K join it when `SEARCH_AVAILABLE` is on (WP-33), because a row for a key
+ * that does nothing would tell a reader something untrue. `?` on any page comes here
+ * (`#keyboard-shortcuts`, the page's `<link rel="help">`).
  */
 import Page from '../../layouts/Page.astro';
 import Breadcrumb from '../../components/navigation/Breadcrumb.astro';
+import Settings from '../../components/interactive/Settings.astro';
+import Kbd from '../../components/ui/Kbd.astro';
 import { useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
 import { loadManifest } from '../../lib/content/collections';
@@ -15,7 +19,8 @@ import { docHref } from '../../lib/content/manifest';
 import { localeStaticPaths } from '../../lib/i18n-routes';
 import { pageTitle, splitAroundParam } from '../../lib/pages';
 import { href } from '../../lib/paths';
-import { APP_ROUTES, NAV_DOC_IDS } from '../../lib/routes';
+import { APP_ROUTES, NAV_DOC_IDS, SEARCH_AVAILABLE } from '../../lib/routes';
+import { SHORTCUTS_ANCHOR } from '../../lib/shortcuts';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -34,6 +39,18 @@ const licenceParts = splitAroundParam((contentLicence) => t('about.licence', { c
 const manifest = await loadManifest();
 const howMadeHref = docHref(manifest, NAV_DOC_IDS.howThisWasMade, locale);
 const sourcesHref = docHref(manifest, NAV_DOC_IDS.sources, locale);
+const shortcutRows = [
+  ...(SEARCH_AVAILABLE
+    ? [
+        { key: t('about.shortcuts.keys.slash'), action: t('about.shortcuts.search') },
+        { key: t('about.shortcuts.keys.ctrlK'), action: t('about.shortcuts.search') },
+      ]
+    : []),
+  { key: t('about.shortcuts.keys.question'), action: t('about.shortcuts.help') },
+  { key: t('about.shortcuts.keys.altLeft'), action: t('about.shortcuts.previous') },
+  { key: t('about.shortcuts.keys.altRight'), action: t('about.shortcuts.next') },
+  { key: t('about.shortcuts.keys.escape'), action: t('about.shortcuts.escape') },
+];
 ---
 
 <Page
@@ -77,11 +94,43 @@ const sourcesHref = docHref(manifest, NAV_DOC_IDS.sources, locale);
       <!-- prettier-ignore -->
       <p>{licenceParts[0]}<a href={CONTENT_LICENCE_URL} rel="noopener noreferrer">{CONTENT_LICENCE}</a>{licenceParts[1]}</p>
     </section>
+
+    <section class="st-stack" aria-labelledby={SHORTCUTS_ANCHOR}>
+      <h2 id={SHORTCUTS_ANCHOR} tabindex="-1">
+        {t('about.shortcuts.heading')}
+      </h2>
+      <table class="st-about__shortcuts">
+        <thead>
+          <tr>
+            <th scope="col">{t('about.shortcuts.key')}</th>
+            <th scope="col">{t('about.shortcuts.action')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {shortcutRows.map((row) => (
+            <tr>
+              <td>
+                <Kbd>{row.key}</Kbd>
+              </td>
+              <td>{row.action}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="st-hint">{t('about.shortcuts.modifierNote')}</p>
+      <p class="st-hint">{t('about.shortcuts.note')}</p>
+    </section>
+
+    <Settings locale={locale} headingId="about-settings" />
   </div>
 </Page>
 
 <style>
   .st-about {
     padding-block: var(--st-space-5) var(--st-space-8);
+  }
+
+  .st-about__shortcuts {
+    max-inline-size: var(--st-measure);
   }
 </style>

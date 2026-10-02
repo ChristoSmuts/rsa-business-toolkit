@@ -1,0 +1,107 @@
+---
+/**
+ * Settings on `/about/` (build plan B1): single-key shortcuts, low data, and clear all my data.
+ *
+ * Every control saves on the device, so it needs JavaScript: without it the controls are hidden
+ * and one line says some tools need JavaScript. When the device will not keep settings,
+ * `<st-storage-notice>` says they last only until the page closes.
+ */
+import Button from '../ui/Button.astro';
+import Callout from '../ui/Callout.astro';
+import ConfirmDialog from '../ui/ConfirmDialog.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+
+interface Props {
+  locale: Locale;
+  headingId: string;
+}
+
+const { locale, headingId } = Astro.props;
+const t = useTranslations(locale);
+const switches = [
+  {
+    setting: 'shortcuts',
+    label: t('about.settings.shortcuts'),
+    help: t('about.settings.shortcutsHelp'),
+    on: true,
+  },
+  {
+    setting: 'lowData',
+    label: t('about.settings.lowData'),
+    help: t('about.settings.lowDataHelp'),
+    on: false,
+  },
+] as const;
+---
+
+<section class="st-stack" aria-labelledby={headingId}>
+  <h2 id={headingId}>{t('about.settings.heading')}</h2>
+  <p class="st-hint no-js-only">{t('site.noJs')}</p>
+  <div class="st-stack js-only">
+    <st-storage-notice class="st-settings__notice" hidden>
+      <Callout variant="warning" label={t('doc.warning')}>
+        <p>{t('storage.settingsUnavailable')}</p>
+      </Callout>
+    </st-storage-notice>
+    {switches.map((item) => (
+      <st-setting class="st-settings__item" data-setting={item.setting}>
+        <label class="st-check">
+          <input
+            type="checkbox"
+            role="switch"
+            checked={item.on}
+            aria-describedby={`st-setting-${item.setting}-help`}
+          />
+          <span>{item.label}</span>
+        </label>
+        <p class="st-hint" id={`st-setting-${item.setting}-help`}>
+          {item.help}
+        </p>
+      </st-setting>
+    ))}
+    <st-clear-data class="st-settings__item" data-done={t('about.settings.clearDone')}>
+      <p class="st-hint" id="st-clear-data-help">
+        {t('about.settings.clearDataHelp')}
+      </p>
+      <div class="st-cluster">
+        <Button
+          variant="danger"
+          iconStart="lucide:trash-2"
+          data-clear-data
+          aria-haspopup="dialog"
+          aria-describedby="st-clear-data-help"
+        >
+          {t('about.settings.clearData')}
+        </Button>
+      </div>
+      <p class="st-hint" role="status"></p>
+      <ConfirmDialog
+        id="st-clear-data"
+        title={t('about.settings.clearConfirm.title')}
+        body={t('about.settings.clearConfirm.body')}
+        confirmLabel={t('about.settings.clearConfirm.confirm')}
+        cancelLabel={t('common.cancel')}
+      />
+    </st-clear-data>
+  </div>
+</section>
+
+<script>
+  import '../../scripts/settings';
+</script>
+
+<style>
+  st-setting,
+  st-clear-data,
+  st-storage-notice {
+    display: block;
+  }
+
+  .st-settings__item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-1);
+    max-inline-size: var(--st-measure);
+  }
+</style>
