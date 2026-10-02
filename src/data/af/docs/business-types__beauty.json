@@ -31,10 +31,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Dit dek haarkappers, barbiers, naels, skoonheidsterapie, wimpers, massering, tatoeëring en lyfringe."
+          "v": "Dit dek haarkappery, barbierswerk, naels, skoonheidsterapie, wimpers, massering, tatoeëring en lyfringe."
         }
       ],
-      "hash": "adb91a3bb6b55753",
+      "hash": "870ad11af59ae06c",
       "id": "intro.2",
       "kind": "paragraph",
       "sourceHash": "ed6acb4157298704"
@@ -54,7 +54,7 @@
       "text": "Woorde wat in hierdie lêer gebruik word"
     },
     {
-      "hash": "a38f17255c57ccde",
+      "hash": "43183d900b788935",
       "id": "words-used-in-this-file.1",
       "intro": [
         {
@@ -143,7 +143,7 @@
           "term": [
             {
               "t": "text",
-              "v": "Plektoets (patch test)"
+              "v": "Veltoets (patch test)"
             }
           ]
         }
@@ -261,10 +261,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Hulle kry die strengste inspeksie in hierdie kategorie, omdat hulle die vel breek."
+          "v": "Hulle kry die strengste inspeksie in hierdie kategorie, omdat hulle die vel deurboor."
         }
       ],
-      "hash": "ffe55b6608cc8c7a",
+      "hash": "0c559dcf9448e3ae",
       "id": "tattoo-and-piercing-studios.1",
       "kind": "paragraph",
       "sourceHash": "d73730eeb9895b2f"
@@ -323,10 +323,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Vra die stadsbeplanningsafdeling oor jou sonering voordat jy geld aan ’n kamer bestee. Sommige residensiële sonerings laat ’n tuisbedrywigheid (home occupation) toe, met beperkings op die getal kliënte, parkering en tekens."
+          "v": "Vra die stadsbeplanningsafdeling oor jou sonering voordat jy geld aan ’n kamer bestee. Sommige residensiële sonerings laat ’n tuisbedrywigheid (home occupation) toe, met beperkings op die getal kliënte, parkering en uithangborde."
         }
       ],
-      "hash": "a238667ead2f56a0",
+      "hash": "9c10dbb31563d593",
       "id": "working-from-home.2",
       "kind": "paragraph",
       "sourceHash": "744d0f062b97af43"
@@ -745,7 +745,7 @@
       "sourceHash": "77666b6831b263a2"
     }
   ],
-  "contentHash": "69a4aa5c85b4a760",
+  "contentHash": "ac00f146bb9d7ea4",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -850,7 +850,7 @@
     },
     {
       "meaning": "’n Klein toets op die vel voor ’n chemiese behandeling. Teken dit aan.",
-      "term": "Plektoets (patch test)"
+      "term": "Veltoets (patch test)"
     }
   ],
   "title": "Skoonheid en persoonlike versorging",

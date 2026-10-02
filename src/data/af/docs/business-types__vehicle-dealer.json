@@ -1529,10 +1529,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Sit ’n gebrekeskedule in jou koopooreenkoms. Nie \"verkoop soos dit staan\" nie. ’n Genommerde lys: \"1. Lugversorging koel nie. 2. Bestuurdersdeur se bekleding is los. 3. Agterbande op 3mm en sal binne 6 maande vervang moet word. 4. Olie syfer by die kleptoppakking uit.\""
+          "v": "Sit ’n gebrekeskedule in jou koopooreenkoms. Nie \"verkoop soos dit staan\" nie. ’n Genommerde lys: \"1. Lugversorging koel nie. 2. Bestuurdersdeur se bekleding is los. 3. Agterbande op 3mm en sal binne 6 maande vervang moet word. 4. Olie syfer by die klepdekselpakking uit.\""
         }
       ],
-      "hash": "767cf9b94af07565",
+      "hash": "5388f93ac07dcd23",
       "id": "the-one-defence-that-works.6",
       "kind": "paragraph",
       "sourceHash": "aa3870192faa2310"
@@ -2500,10 +2500,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Die ou geldelike drempel is weg. Daar is geen vrystelling vir klein handelaars nie. Om as kredietverskaffer te registreer, is ’n ernstige onderneming met deurlopende verslagdoeningspligte."
+          "v": "Die ou geldelike drempel is weg. Daar is geen vrystelling vir klein handelaars nie. Om as kredietverskaffer te registreer, is ’n ernstige verbintenis met deurlopende verslagdoeningspligte."
         }
       ],
-      "hash": "5792336970260cb4",
+      "hash": "b437cde0cc7aeebc",
       "id": "if-you-extend-credit-yourself.3",
       "kind": "paragraph",
       "sourceHash": "f78ebb28649c9d66"
@@ -2576,10 +2576,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Ingevoerde voertuie bring ’n aparte stapel vereistes mee: doeaneklaring by SARS en bewys dat die invoerreg betaal is, ’n SAPS-klaring, ’n magtigingsbrief van die SABS, en ’n korrekte inskrywing op eNaTIS."
+          "v": "Ingevoerde voertuie bring ’n aparte stapel vereistes mee: doeaneklaring by SARS en bewys dat die invoerreg betaal is, ’n SAPS-klaring, ’n magtigingsbrief (letter of authority) van die SABS, en ’n korrekte inskrywing op eNaTIS."
         }
       ],
-      "hash": "5ae353c76f07860b",
+      "hash": "d464e5ccf5889855",
       "id": "imported-vehicles.1",
       "kind": "paragraph",
       "sourceHash": "89e4e7be7badb39c"
@@ -2826,10 +2826,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Die meeste handelaars voeg lyne by: bande, diens, onderdele, motorversorging (detailing), soms ’n onverwante besigheid onder dieselfde maatskappy."
+          "v": "Die meeste handelaars voeg lyne by: bande, diensbeurte, onderdele, motorversorging (detailing), soms ’n onverwante besigheid onder dieselfde maatskappy."
         }
       ],
-      "hash": "a911bb0083b7d54d",
+      "hash": "9eaa7bb73791d27e",
       "id": "growing-beyond-vehicles.1",
       "kind": "paragraph",
       "sourceHash": "9ca7d3645b66ce8f"
@@ -2890,10 +2890,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Dit is waar klein handelaars die meeste onderverseker is."
+          "v": "Dit is waar klein handelaars die dikwelste onderverseker is."
         }
       ],
-      "hash": "029d6b4d4c061b23",
+      "hash": "c2ccf336af9498ab",
       "id": "insurance.1",
       "kind": "paragraph",
       "sourceHash": "39c78bce0e288cd8"
@@ -3406,7 +3406,7 @@
       "sourceHash": "3cbbad0d8e4dd749"
     }
   ],
-  "contentHash": "a5afee3a25bbd5bb",
+  "contentHash": "a88d21dbeee0cd53",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

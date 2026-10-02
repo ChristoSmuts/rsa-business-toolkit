@@ -1536,7 +1536,7 @@
       "text": "Bepalings en voorwaardes"
     },
     {
-      "hash": "e8277d7e06159237",
+      "hash": "6e753cc492618b06",
       "id": "terms-and-conditions.1",
       "kind": "code",
       "placeholders": [
@@ -1573,7 +1573,7 @@
         }
       ],
       "sourceHash": "d2d0db5f89524b54",
-      "text": "Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika. Ek verkoop [WAT] aan [WIE].\nEk is [’n eenmansaak / ’n geregistreerde maatskappy].\n[Ek verkoop aanlyn / Ek verkoop persoonlik / albei.]\n\nSkryf bepalings en voorwaardes vir my besigheid in eenvoudige taal wat\n’n graad 8-leerder kan lees.\n\nDek:\n- Wat ek sal doen en wat die kliënt moet doen\n- Kwotasies, deposito’s en betalingsvoorwaardes\n- Wat gebeur as ’n kliënt kanselleer\n- Wat gebeur as ek moet kanselleer\n- Tydsberekening van aflewering of voltooiing\n- Terugsendings, terugbetalings en foute\n- Beperkings op waarvoor ek verantwoordelik is\n- Hoe geskille opgelos word\n\nMaak seker dat dit aan die Consumer Protection Act 68 of 2008 voldoen.\nWaar die Wet die kliënt ’n reg gee wat ek nie kan wegneem nie, sê dit in die\ndokument eerder as om te probeer om dit weg te neem.\n\n[As jy aanlyn verkoop, voeg by:] Ek verkoop aanlyn, so voldoen ook aan artikels 43,\n44 en 46 van die Electronic Communications and Transactions Act 25 of\n2002, insluitend die reg op ’n afkoelperiode van sewe dae.\n\nLys ná die dokument elke klousule waaroor jy onseker is en waaroor ek\nmet ’n prokureur behoort te gaan praat.",
+      "text": "Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika. Ek verkoop [WAT] aan [WIE].\nEk is [’n eenmansaak / ’n geregistreerde maatskappy].\n[Ek verkoop aanlyn / Ek verkoop persoonlik / albei.]\n\nSkryf bepalings en voorwaardes vir my besigheid in eenvoudige taal wat\n’n graad 8-leerder kan lees.\n\nDek:\n- Wat ek sal doen en wat die kliënt moet doen\n- Kwotasies, deposito’s en betalingsvoorwaardes\n- Wat gebeur as ’n kliënt kanselleer\n- Wat gebeur as ek moet kanselleer\n- Tydsberekening van aflewering of voltooiing\n- Terugsendings, terugbetalings en gebreke\n- Beperkings op waarvoor ek verantwoordelik is\n- Hoe geskille opgelos word\n\nMaak seker dat dit aan die Consumer Protection Act 68 of 2008 voldoen.\nWaar die Wet die kliënt ’n reg gee wat ek nie kan wegneem nie, sê dit in die\ndokument eerder as om te probeer om dit weg te neem.\n\n[As jy aanlyn verkoop, voeg by:] Ek verkoop aanlyn, so voldoen ook aan artikels 43,\n44 en 46 van die Electronic Communications and Transactions Act 25 of\n2002, insluitend die reg op ’n afkoelperiode van sewe dae.\n\nLys ná die dokument elke klousule waaroor jy onseker is en waaroor ek\nmet ’n prokureur behoort te gaan praat.",
       "variant": "prompt"
     },
     {
@@ -1733,7 +1733,7 @@
       "sourceHash": "8b3b366c3229bddd"
     }
   ],
-  "contentHash": "53ab59aaa8c27870",
+  "contentHash": "8a41f8ac3081aefa",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

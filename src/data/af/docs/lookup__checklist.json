@@ -1023,7 +1023,7 @@
       "text": "Een keer, ná registrasie"
     },
     {
-      "hash": "2dfd115b35565467",
+      "hash": "580d7862821c1560",
       "id": "once-after-registration.1",
       "items": [
         {
@@ -1031,7 +1031,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Geregistreerde verteenwoordiger by SARS (public officer) op eFiling bevestig"
+              "v": "Geregistreerde verteenwoordiger by SARS (openbare beampte, \"public officer\") op eFiling bevestig"
             }
           ],
           "doc": "lookup/checklist",
@@ -2563,7 +2563,7 @@
       "start": 1
     }
   ],
-  "contentHash": "b1820aeb4de27f70",
+  "contentHash": "eb7602dda4ec9e4f",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

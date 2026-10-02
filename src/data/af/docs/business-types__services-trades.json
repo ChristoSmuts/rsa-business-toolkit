@@ -652,10 +652,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Tekens op jou voertuig is gewoonlik die goedkoopste advertensie wat ’n plaaslike ambag kan koop, en dit is ’n aftrekbare uitgawe."
+          "v": "Voertuigbelettering is gewoonlik die goedkoopste advertensie wat ’n plaaslike ambag kan koop, en dit is ’n aftrekbare uitgawe."
         }
       ],
-      "hash": "20a2be2aca692289",
+      "hash": "9d69ce08d18438fe",
       "id": "vehicles.3",
       "kind": "paragraph",
       "sourceHash": "a7e781d3382cb543"
@@ -696,7 +696,7 @@
       "sourceHash": "0697e5885df885ee"
     },
     {
-      "hash": "5f74a8581872f6ed",
+      "hash": "b6fc26713c9aa977",
       "id": "branding-and-marketing-notes.2",
       "items": [
         [
@@ -726,7 +726,7 @@
         [
           {
             "t": "text",
-            "v": "Tekens op jou voertuig"
+            "v": "Voertuigbelettering"
           }
         ]
       ],
@@ -910,7 +910,7 @@
       "sourceHash": "fbd60cb2055ec4d4"
     }
   ],
-  "contentHash": "dbc10fda9d7fce27",
+  "contentHash": "f33439680abdbf5e",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

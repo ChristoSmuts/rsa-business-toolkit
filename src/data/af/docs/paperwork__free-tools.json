@@ -536,10 +536,10 @@
         },
         {
           "t": "text",
-          "v": " nie."
+          "v": " sorteer nie reg nie."
         }
       ],
-      "hash": "adeb09a8c82f83b6",
+      "hash": "2b739f6f6aa35bee",
       "id": "set-up-google-drive-properly-on-day-one.3",
       "kind": "paragraph",
       "sourceHash": "6bd7740f82f04396"
@@ -786,7 +786,7 @@
       "sourceHash": "754347a6a95eb3c4"
     }
   ],
-  "contentHash": "227037e00f936c47",
+  "contentHash": "b06b181b10f3cc96",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -1269,10 +1269,10 @@
         },
         {
           "t": "text",
-          "v": " Knyp jou oë toe totdat dit vervaag. Is die vorm steeds kenmerkend, of word dit ’n grys klont?"
+          "v": " Knyp jou oë half toe totdat dit vervaag. Is die vorm steeds kenmerkend, of word dit ’n grys klont?"
         }
       ],
-      "hash": "cfced0666f7d9500",
+      "hash": "d03c560d677c27a6",
       "id": "part-4-the-quality-tests.5",
       "kind": "paragraph",
       "sourceHash": "e9c52f2292ccffca"
@@ -1814,7 +1814,7 @@
       "sourceHash": "5539d16efa242d03"
     }
   ],
-  "contentHash": "17bfeb3f8b17e064",
+  "contentHash": "3e657e22d35225eb",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -341,7 +341,7 @@
       "text": "Opdrag 3: WhatsApp-boodskappe wat jy elke week stuur"
     },
     {
-      "hash": "56cc37fd60ead598",
+      "hash": "6c1ebaf7063eea32",
       "id": "prompt-3-whatsapp-messages-you-send-every-week.1",
       "kind": "code",
       "placeholders": [
@@ -358,7 +358,7 @@
         }
       ],
       "sourceHash": "6d3811a57fc30cd2",
-      "text": "Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika. Die stem van my handelsmerk is:\n\n[PLAK JOU STEMGIDS]\n\nSkryf vir my kort WhatsApp-boodskapsjablone vir hierdie 8 situasies. Elkeen\nmoet korter as 60 woorde wees, beleefd, en maklik om op ’n foon te lees.\n\n1. Iemand vra \"hoeveel?\" en ek het meer inligting nodig voordat ek ’n kwotasie gee\n2. ’n Kwotasie stuur\n3. Opvolg op ’n kwotasie ná 3 dae sonder antwoord\n4. ’n Bespreking bevestig met datum, tyd en adres\n5. ’n Kliënt die dag tevore herinner\n6. ’n Kliënt sê dat ek laat is\n7. Beleefd vir betaling vra wanneer ’n faktuur agterstallig is\n8. Vir ’n Google-resensie vra nadat ’n werk goed afgeloop het\n\nGebruik [VIERKANTIGE HAKIES] vir enigiets wat ek moet invul.\n\nGee my elke boodskap twee keer: een keer in Engels en een keer in ’n warmer, minder\nformele toon.",
+      "text": "Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika. Die stem van my handelsmerk is:\n\n[PLAK JOU STEMGIDS]\n\nSkryf vir my kort WhatsApp-boodskapsjablone vir hierdie 8 situasies. Elkeen\nmoet korter as 60 woorde wees, beleefd, en maklik om op ’n foon te lees.\n\n1. Iemand vra \"hoeveel?\" en ek het meer inligting nodig voordat ek ’n kwotasie gee\n2. ’n Kwotasie stuur\n3. ’n Kwotasie opvolg ná 3 dae sonder antwoord\n4. ’n Bespreking bevestig met datum, tyd en adres\n5. ’n Kliënt die dag tevore herinner\n6. Vir ’n kliënt sê dat ek laat is\n7. Beleefd vir betaling vra wanneer ’n faktuur agterstallig is\n8. Vir ’n Google-resensie vra nadat ’n werk goed afgeloop het\n\nGebruik [VIERKANTIGE HAKIES] vir enigiets wat ek moet invul.\n\nGee my elke boodskap twee keer: een keer in Engels en een keer in ’n warmer, minder\nformele toon.",
       "variant": "prompt"
     },
     {
@@ -678,7 +678,7 @@
       "sourceHash": "dc855774236e1488"
     }
   ],
-  "contentHash": "4812f34cdcb36cb6",
+  "contentHash": "90b5823f37f7903d",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

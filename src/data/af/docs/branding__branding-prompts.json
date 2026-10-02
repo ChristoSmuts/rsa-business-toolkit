@@ -1362,10 +1362,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Die KI kan nie een van hierdie dinge doen nie. Jy moet."
+          "v": "Die KI kan nie een van hierdie dinge doen nie. Jy moet dit doen."
         }
       ],
-      "hash": "9ea0eeed9466fbbb",
+      "hash": "aadd7f63d1693f43",
       "id": "before-you-commit-to-a-name.1",
       "kind": "paragraph",
       "sourceHash": "02a30f3c308f6434"
@@ -1595,7 +1595,7 @@
       "sourceHash": "39156b8ed443fa42"
     },
     {
-      "hash": "c7ce5c71e340eac2",
+      "hash": "33b9bce5c78f9be3",
       "id": "prompt-5-logo-direction.2",
       "kind": "code",
       "placeholders": [
@@ -1612,7 +1612,7 @@
         }
       ],
       "sourceHash": "8e7a2185543d4279",
-      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nMy besigheidsnaam is: [NAAM]\n\nBeskryf 5 verskillende rigtings vir die logo. Moenie ’n prent genereer nie.\nBeskryf hulle in woorde, so presies dat ’n ontwerper elkeen kan teken\nsonder om my ’n vraag te vra.\n\nSê vir elke rigting:\n- Die idee in een sin\n- Net lettertipe, of lettertipe plus ’n beeldmerk\n- As dit net lettertipe is: die EEN doelbewuste aanpassing wat dit joune maak\n (’n veranderde letter, twee letters wat verbind is, een letter in kleur, ’n\n teken in die plek van ’n letter, ongewone spasiëring). \"Net die naam in ’n mooi\n font\" is nie ’n rigting nie.\n- As dit ’n beeldmerk is: presies watter werklike voorwerp of vorm dit wys, en hoe dit\n verband hou met die kenmerkende detail in my kortbeskrywing\n- ’n Voorgestelde lettertipe van Google Fonts, en waarom\n- Waarom dit by my kliënte pas\n- Waar dit swak sou lyk (klein op ’n foon, op ’n voertuig, in een\n kleur, op ’n hemp geborduur)\n\nReëls:\n- Minstens twee rigtings moet net lettertipe wees\n- Minstens een moet die kenmerkende detail uit my kortbeskrywing gebruik\n- Geen swiepe, blare, oneindigheidslusse, seshoeke, aardbolle of abstrakte\n menslike figure wat uit sirkels en boë gemaak is nie\n- Geen kleurverlope, geen 3D, geen skaduwees, geen gloede nie\n- Niks wat net so sin sou maak vir ’n heeltemal ander bedryf nie\n- Moenie Montserrat, Poppins, Raleway of Lato voorstel nie\n\nHierdie logo moet werk:\n- Baie klein, as ’n profielfoto, omtrent so groot soos ’n duimnael\n- In net een kleur, vir ’n stempel of borduurwerk\n- In swart en wit gedruk op ’n goedkoop faktuur\n- Groot op ’n voertuig, leesbaar van oorkant die pad\n\nNommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
+      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING]\n\nMy besigheidsnaam is: [NAAM]\n\nBeskryf 5 verskillende rigtings vir die logo. Moenie ’n prent genereer nie.\nBeskryf hulle in woorde, so presies dat ’n ontwerper elkeen kan teken\nsonder om my ’n vraag te vra.\n\nSê vir my by elke rigting:\n- Die idee in een sin\n- Net lettertipe, of lettertipe plus ’n beeldmerk\n- As dit net lettertipe is: die EEN doelbewuste aanpassing wat dit joune maak\n (’n veranderde letter, twee letters wat verbind is, een letter in kleur, ’n\n teken in die plek van ’n letter, ongewone spasiëring). \"Net die naam in ’n mooi\n font\" is nie ’n rigting nie.\n- As dit ’n beeldmerk is: presies watter werklike voorwerp of vorm dit wys, en hoe dit\n verband hou met die kenmerkende detail in my kortbeskrywing\n- ’n Voorgestelde lettertipe van Google Fonts, en waarom\n- Waarom dit by my kliënte pas\n- Waar dit swak sou lyk (klein op ’n foon, op ’n voertuig, in een\n kleur, op ’n hemp geborduur)\n\nReëls:\n- Minstens twee rigtings moet net lettertipe wees\n- Minstens een moet die kenmerkende detail uit my kortbeskrywing gebruik\n- Geen swiepe, blare, oneindigheidslusse, seshoeke, aardbolle of abstrakte\n menslike figure wat uit sirkels en boë gemaak is nie\n- Geen kleurverlope, geen 3D, geen skaduwees, geen gloede nie\n- Niks wat net so sin sou maak vir ’n heeltemal ander bedryf nie\n- Moenie Montserrat, Poppins, Raleway of Lato voorstel nie\n\nHierdie logo moet werk:\n- Baie klein, as ’n profielfoto, omtrent so groot soos ’n duimnael\n- In net een kleur, vir ’n stempel of borduurwerk\n- In swart en wit gedruk op ’n goedkoop faktuur\n- Groot op ’n voertuig, leesbaar van oorkant die pad\n\nNommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.",
       "variant": "prompt"
     },
     {
@@ -2334,11 +2334,11 @@
       "text": "Antwoorde op Opdrag 0"
     },
     {
-      "hash": "8f9322ae640c24ae",
+      "hash": "79b9c048509ff901",
       "id": "prompt-0-answers.1",
       "kind": "code",
       "sourceHash": "783ee184d05d2a47",
-      "text": "1. Wat ek verkoop: gebruikte bakkies en klein bestelwaens, 5 tot 12 jaar oud, onder\n R250,000, meestal aan vakmense.\n2. Wie dit koop: mans en vroue van 28 tot 55 wat ’n vak of ’n klein afleweringsbesigheid\n bedryf, en ’n werkvoertuig koop, nie ’n gesinsmotor nie. Vir hulle is dit belangrik\n of dit sal loop, en of hulle my kan vertrou.\n3. Vir wie dit NIE is nie: mense wat ’n goedkoop motor wil hê sonder dat vrae gevra word.\n4. Waar ek dit verkoop: ’n klein werf aan die nywerheidskant van die Paarl, plus\n Facebook Marketplace.\n5. Wat my anders maak: ek was 14 jaar lank ’n dieselwerktuigkundige. Ek\n inspekteer self elke voertuig en skryf elke fout neer voordat ek\n dit adverteer.\n6. Prysvlak: middel.\n7. Tale: Afrikaans en Engels, ’n bietjie isiXhosa.\n8. Gevoel: soos om by ’n werktuigkundige te koop wat jy reeds ken.\n9. Bewonder: ’n plaaslike bandewinkel waar die eienaar altyd op die vloer is.\n10. Wil nie hê nie: enigiets wat soos ’n groot stadshandelaar lyk, geen\n chroom nie, geen \"luuksheid\" nie.\n11. Fisiese detail: ek hou ’n knipbord met die foutelys op elke voertuig, en die\n kliënt neem die knipbord saam.",
+      "text": "1. Wat ek verkoop: gebruikte bakkies en klein bestelwaens, 5 tot 12 jaar oud, onder\n R250,000, meestal aan vakmense.\n2. Wie dit koop: mans en vroue van 28 tot 55 wat ’n vak of ’n klein afleweringsbesigheid\n bedryf, en ’n werkvoertuig koop, nie ’n gesinsmotor nie. Vir hulle is dit belangrik\n of dit sal loop, en of hulle my kan vertrou.\n3. Vir wie dit NIE is nie: mense wat ’n goedkoop motor wil hê sonder dat vrae gevra word.\n4. Waar ek dit verkoop: ’n klein werf aan die nywerheidskant van die Paarl, plus\n Facebook Marketplace.\n5. Wat my anders maak: ek was 14 jaar lank ’n dieselwerktuigkundige. Ek\n inspekteer self elke voertuig en skryf elke fout neer voordat ek\n dit adverteer.\n6. Prysvlak: middel.\n7. Tale: Afrikaans en Engels, ’n bietjie isiXhosa.\n8. Gevoel: soos om by ’n werktuigkundige te koop wat jy reeds ken.\n9. Bewonder: ’n plaaslike bandewinkel waar die eienaar altyd op die werkvloer is.\n10. Wil nie hê nie: enigiets wat soos ’n motorhandelaar in ’n groot stad lyk, geen\n chroom nie, geen \"luuksheid\" nie.\n11. Fisiese detail: ek hou ’n knipbord met die foutelys op elke voertuig, en die\n kliënt neem die knipbord saam.",
       "variant": "snippet"
     },
     {
@@ -2468,7 +2468,7 @@
       "sourceHash": "8f3fc3ce6304deed"
     }
   ],
-  "contentHash": "76ab47fd3607a97b",
+  "contentHash": "0857c1e030f901ff",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
