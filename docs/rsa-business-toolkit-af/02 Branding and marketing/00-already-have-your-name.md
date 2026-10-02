@@ -2,7 +2,7 @@
 
 Dit is vir jou as jou besigheidsnaam reeds vasstaan — by CIPC geregistreer, of net besluit en in gebruik — en jy weet waaronder jy wil handel dryf.
 
-[Handelsmerkopdragte](01-branding-prompts.md) neem aan dat jy van niks af begin. Jy doen nie. Hierdie lêer sê vir jou watter dele om oor te slaan, watter dele jy steeds nodig het, en watter drie kontroles steeds die moeite werd is al is die naam reeds gekies.
+[Handelsmerkopdragte](01-branding-prompts.md) neem aan dat jy van niks af begin. Jy begin nie van niks af nie. Hierdie lêer sê vir jou watter dele om oor te slaan, watter dele jy steeds nodig het, en watter drie kontroles steeds die moeite werd is al is die naam reeds gekies.
 
 ## Die kort antwoord
 
@@ -27,7 +27,7 @@ Dus: slaan een opdrag oor, pas een aan, en doen die ander nege. Maak [Handelsmer
 
 ’n Geregistreerde maatskappynaam is nie dieselfde as om ’n handelsmerk te besit nie. Hierdie kontroles neem twintig minute.
 
-**1. Die domein en die gebruikersname.** Kyk of jou handelsnaam by twee of drie Suid-Afrikaanse domeinverkopers beskikbaar is, en op Instagram, Facebook en TikTok. As dit reeds gevat is, hoef jy nie jou naam te verander nie, maar jy moet dit nou weet, voordat dit op ’n voertuig kom. Jy kan dalk uiteindelik as "Mokoena Motors" handel dryf terwyl die domein mokoenamotors.co.za gevat is en mokoenamotorssa.co.za beskikbaar is. Besluit dit voordat jy druk.
+**1. Die domein en die gebruikersname.** Kyk of jou handelsnaam by twee of drie Suid-Afrikaanse domeinverkopers beskikbaar is, en op Instagram, Facebook en TikTok. As dit nie meer beskikbaar is nie, hoef jy nie jou naam te verander nie, maar jy moet dit nou weet, voordat dit op ’n voertuig kom. Jy kan dalk uiteindelik as "Mokoena Motors" handel dryf terwyl die domein mokoenamotors.co.za reeds in gebruik is en mokoenamotorssa.co.za beskikbaar is. Besluit dit voordat jy druk.
 
 **2. Die handelsmerk.** Soek in CIPC se handelsmerkdatabasis na jou handelsnaam in jou klas goedere of dienste.
 
@@ -35,7 +35,7 @@ Dus: slaan een opdrag oor, pas een aan, en doen die ander nege. Maak [Handelsmer
 
 Jy hoef nie in die eerste jaar ’n handelsmerk te registreer nie. Jy moet wel weet of iemand anders reeds een hou.
 
-**3. Sê dit hardop.** Sê die handelsnaam vir iemand wat elke taal wat jou kliënte praat as moedertaal praat, en vra hoe dit vir hulle klink. Doen dit selfs al is die naam reeds geregistreer. Dit is goedkoper om dit nou uit te vind as ná die uithangborde.
+**3. Sê dit hardop.** Sê die handelsnaam vir ’n moedertaalspreker van elke taal wat jou kliënte praat, en vra hoe dit vir hulle klink. Doen dit selfs al is die naam reeds geregistreer. Dit is goedkoper om dit nou uit te vind as ná die uithangborde.
 
 ## As die naam geregistreer is, maar jy twyfel nou
 
@@ -47,7 +47,7 @@ Die volle besonderhede, ook wanneer ’n naamsverandering die moeite werd is, is
 
 ## Die reël wat op jou van toepassing is omdat die naam geregistreer is
 
-Artikel 32 van die Companies Act vereis dat die maatskappy se geregistreerde naam en registrasienommer op al sy dokumente verskyn: fakture, kwitansies, afleweringsbriewe, briewe, bestellings en kennisgewings, ook e-posse en jou webwerf.
+Artikel 32 van die Companies Act vereis dat die maatskappy se geregistreerde naam en registrasienommer op al sy dokumente verskyn: fakture, kwitansies, afleweringsnotas, briewe, bestellings en kennisgewings, ook e-posse en jou webwerf.
 
 As jy dus onder ’n handelsnaam bemark, wys albei:
 
@@ -62,7 +62,7 @@ Die sjablone in [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%
 
 Net as jou naam nie verduidelik wat jy doen nie.
 
-"Mokoena Plumbing" het geen slagspreuk nodig nie. "Kumba" wel. "Clipboard Motors" ook, want die naam is maklik om te onthou, maar dit verduidelik nie homself nie.
+"Mokoena Plumbing" het geen slagspreuk nodig nie. "Kumba" wel. "Clipboard Motors" ook, want die naam is maklik om te onthou, maar nie selfverduidelikend nie.
 
 As jy een nodig het, gebruik Opdrag 4 in die hooflêer vir handelsmerke. As jou naam reeds jou vak noem, slaan dit oor en gebruik die spasie vir iets beters.
 
@@ -80,7 +80,7 @@ Ek dryf handel as: [HANDELSNAAM, as dit verskil]
 
 Ek verander nie die naam nie. Moenie alternatiewe voorstel nie.
 
-Ek wil verstaan watter handelsmerke reeds in my mark bestaan in
+Ek wil verstaan hoe die handelsmerke in my mark reeds lyk in
 [DORP/STAD], Suid-Afrika, vir [BESIGHEIDSTIPE].
 
 Gegrond op wat tipies is vir hierdie soort besigheid in Suid-Afrika,
@@ -100,7 +100,7 @@ Beantwoord dan twee vrae oor my bestaande naam:
    ’n lettervorm, of na niks in die besonder nie?
 6. Is daar iets aan my naam wat visueel teen my sou werk:
    te lank vir ’n voertuigdeur, moeilik om in lettertipe te set, maklik om te verwar
-   met ’n mededinger, of ongemaklik in klein groottes? Wees eerlik.
+   met ’n mededinger, of lomp in klein groottes? Wees eerlik.
 
 Gee my dan 5 spesifieke maniere waarop ek doelbewus anders as die res
 van die vak kan lyk, sonder om onprofessioneel te lyk en sonder om
@@ -110,7 +110,7 @@ Nommer die 5 maniere 1 tot 5. Sê dan vir my watter een die swakste is en waarom
 Stop dan.
 ```
 
-Vraag 6 is die nuttige een. ’n Naam wat jy nie kan verander nie, is ’n beperking waarom die logo moet werk, en dit is beter om daarvan te weet voordat jy ’n rigting kies as daarna.
+Vraag 6 is die nuttige een. ’n Naam wat jy nie kan verander nie, is ’n beperking waaromheen die logo moet werk, en dit is beter om daarvan te weet voordat jy ’n rigting kies as daarna.
 
 Kyk dan self na die werklikheid. Soek op Google en Facebook na jou vak plus jou dorp, en kyk na tien mededingers. Skryf hulle kleure neer. Plak wat jy vind in Opdrag 5.
 

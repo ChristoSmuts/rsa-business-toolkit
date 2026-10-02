@@ -6,7 +6,7 @@ Gebruik dit ná Opdrag 4 en voor Opdrag 5 in [Handelsmerkopdragte](01-branding-p
 
 Daarsonder neem drie opdragte elk hulle eie besluit oor die estetika, en hulle kan van mekaar verskil.
 
-Opdrag 5 gee jou rigtings vir die logo. Opdrag 7 gee jou kleure en lettertipe. Opdrag 8 gee jou fotografie. Elkeen is op sy eie goed. Maar niks sê vir hulle om met mekaar ooreen te stem nie, so jy kan uiteindelik ’n ruwe werkswinkel-logo hê, ’n sagte pastelpalet, en kliniese fotografie teen ’n wit agtergrond. Drie goeie antwoorde wat nie aan dieselfde besigheid behoort nie.
+Opdrag 5 gee jou rigtings vir die logo. Opdrag 7 gee jou kleure en lettertipe. Opdrag 8 gee jou fotografie. Elkeen is op sy eie goed. Maar niks sê vir hulle om met mekaar ooreen te stem nie, so jy kan uiteindelik ’n stoere werkswinkellogo hê, ’n sagte pastelpalet, en kliniese fotografie teen ’n wit agtergrond. Drie goeie antwoorde wat nie aan dieselfde besigheid behoort nie.
 
 ’n Ontwerper stel eers die stemming vas, en lei dan alles daarvan af. Dit is daardie stap wat ontbreek.
 
@@ -22,7 +22,7 @@ Die bewering wat oral herhaal word, dat 62 tot 90% van ’n vinnige oordeel oor 
 
 Wat wel staande bly, is nouer en nuttiger. Labrecque en Milne het in die Journal of the Academy of Marketing Science (2012) gevind dat **ooreenstemming tussen ’n handelsmerk se kleur en sy waargenome persoonlikheid voorkeur beter voorspel as die kleur self.** Met ander woorde, die vraag is nie "wat beteken groen" nie, dit is "pas hierdie kleur by wat my besigheid werklik is, en onderskei dit my van die winkel verder af in die straat".
 
-Daarom vra die opdragte hieronder oor pas en verskil, en nooit oor wat kleure beteken nie. As ’n KI begin vertel wat ’n kleur beteken, ignoreer daardie deel van die antwoord.
+Daarom vra die opdragte hieronder hoe goed iets pas en hoe dit verskil, en nooit oor wat kleure beteken nie. As ’n KI begin vertel wat ’n kleur beteken, ignoreer daardie deel van die antwoord.
 
 ## Opdrag A: die visuele wêreld
 
@@ -39,7 +39,7 @@ stemming vasstel sodat al drie met mekaar ooreenstem.
 Gee my 5 verskillende visuele wêrelde vir hierdie besigheid.
 
 ’n Visuele wêreld is ’n kort beskrywing van die wêreld waarin die handelsmerk
-leef. Beskryf elkeen in woorde, soos ’n ontwerper dit sou opdra.
+leef. Beskryf elkeen in woorde, soos ’n ontwerper dit in ’n kortbeskrywing sou uiteensit.
 
 Gee my vir elke wêreld:
 - ’n Naam van twee of drie woorde
@@ -56,7 +56,7 @@ Reëls:
 - Grond minstens twee wêrelde op die kenmerkende detail in my kortbeskrywing.
 - Moenie vir my sê wat kleure beteken of watter emosies hulle veroorsaak nie. Ek stel
   nie belang in kleursielkunde nie.
-- Geen stemmingsbordwoorde sonder inhoud nie: verhewe, saamgestel, tydloos,
+- Geen stemmingsbordwoorde sonder inhoud nie: verhewe, gekureer, tydloos,
   outentiek, premium, pasgemaak.
 - Minstens een wêreld moet doelbewus eenvoudig wees, want eenvoudig en
   konsekwent klop interessant en onkonsekwent.
@@ -133,7 +133,7 @@ Die praktiese reël: gegote viniel vir enigiets op ’n voertuig of op ’n kurw
 
 ## Die goedkoop weergawe is gewoonlik goed genoeg
 
-Opdrag B is nie daar om jou na duur materiale te praat nie. Vir die meeste eenpersoonbesighede is die goedkoop weergawe die regte keuse, want:
+Opdrag B is nie daar om jou duur materiale aan te praat nie. Vir die meeste eenpersoonbesighede is die goedkoop weergawe die regte keuse, want:
 
 - Jou handelsmerk sal waarskynlik in die tweede jaar iets verander
 - ’n Verslete uithangbord by ’n besigheid wat werk, lyk besig, nie arm nie

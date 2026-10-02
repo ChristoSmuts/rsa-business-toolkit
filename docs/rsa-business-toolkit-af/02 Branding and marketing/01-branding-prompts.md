@@ -37,11 +37,11 @@ Eenvoudige betekenisse van die terme in hierdie lêer. Die volledige lys is in d
 
 Jy gaan ’n KI-hulpmiddel gebruik. Elke mededinger in jou dorp ook. As jy die eerste ding aanvaar wat dit vir jou gee, sal jy uiteindelik dieselfde handelsmerk as hulle hê.
 
-Dit is nie ’n klein probleem nie. ’n Handelsmerk wat soos almal s’n lyk, gee ’n kliënt geen rede om jou te kies nie, so die enigste ding wat oorbly om op mee te ding, is prys. Vir ’n eenpersoonbesigheid is dit die slegste plek om te wees.
+Dit is nie ’n klein probleem nie. ’n Handelsmerk wat soos almal s’n lyk, gee ’n kliënt geen rede om jou te kies nie, so die enigste ding waarop jy nog kan meeding, is prys. Vir ’n eenpersoonbesigheid is dit die slegste plek om te wees.
 
 ### Die visuele kenmerke
 
-Hieraan kan jy handelsmerke herken wat deur KI gegenereer is of uit ’n sjabloon kom. Vermy almal.
+Hieraan kan jy handelsmerke herken wat deur KI gegenereer is of uit ’n sjabloon kom. Vermy hulle almal.
 
 ’n Abstrakte beeldmerk wat aan enige besigheid kan behoort: ’n swiep, ’n blaar, ’n oneindigheidslus, ’n seshoek, ’n aardbol, ’n mens wat uit ’n sirkel en ’n boog gemaak is. Bedek die naam, en niemand sal die bedryf kan raai nie.
 
@@ -57,7 +57,7 @@ Skuinsrande, gloede en enige soort vals diepte.
 
 ### Die taalkenmerke
 
-"Bemagtig", "verhef", "ontsluit", "herdefinieer", "jou betroubare vennoot in", "waar gehalte en diens ontmoet".
+"Bemagtig", "verhef", "ontsluit", "herdefinieer", "jou betroubare vennoot in", "waar gehalte en diens mekaar ontmoet".
 
 Slagspreuke van drie woorde met punte: "Gehalte. Diens. Vertroue."
 
@@ -79,7 +79,7 @@ Enige voordeel sonder ’n getal, sonder bewys en sonder ’n spesifieke detail 
 
 ### Die toets wat die meeste saak maak
 
-Neem jou klaar logo, slagspreuk of beskrywing. Sit ’n mededinger se naam in die plek van joune.
+Neem jou voltooide logo, slagspreuk of beskrywing. Sit ’n mededinger se naam in die plek van joune.
 
 Werk dit steeds? As dit wel werk, is dit generies. Gaan een stap terug.
 
@@ -92,7 +92,7 @@ KI-hulpmiddels sal hierdie dinge doen as jy vra, en sal selfversekerd klink. Hul
 | Die KI kan nie betroubaar... | Dus moet jy... |
 |---|---|
 | bevestig dat ’n naam by CIPC of as handelsmerk beskikbaar is nie | self by CIPC en in CIPC se handelsmerkdatabasis soek |
-| bevestig dat ’n naam geen onbeskofte of ongelukkige betekenis in ’n ander taal het nie | iemand vra wat elke taal wat jou kliënte praat as moedertaal praat |
+| bevestig dat ’n naam geen onbeskofte of ongelukkige betekenis in ’n ander taal het nie | ’n moedertaalspreker van elke taal wat jou kliënte praat, vra |
 | kleurkontrasverhoudings uitwerk nie | die hekskodes in ’n gratis kontroleerder plak: webaim.org/resources/contrastchecker |
 | nagaan of ’n logo reeds bestaan nie | ’n omgekeerde beeldsoektog op die finale prent doen |
 | ’n werklike logolêer maak nie | die finale logo in Inkscape of Canva in ’n werklike font set, of betaal vir ’n vektorhertekening |
@@ -108,7 +108,7 @@ Fonts van Google Fonts is gratis vir kommersiële gebruik onder die Open Font Li
 
 ### Watter KI-hulpmiddel
 
-Enige huidige klets-KI werk: Claude, ChatGPT, Gemini, Copilot. Vir name, die ontleding van mededingers en die kritiekopdragte, gebruik die sterkste model waartoe jy toegang het, want daardie stappe vra oordeel. Gratis vlakke is goed genoeg vir konsepte.
+Enige huidige klets-KI werk: Claude, ChatGPT, Gemini, Copilot. Vir naamgewing, die ontleding van mededingers en die kritiekopdragte, gebruik die sterkste model waartoe jy toegang het, want daardie stappe vra oordeel. Gratis weergawes is goed genoeg vir konsepte.
 
 ---
 
@@ -254,7 +254,7 @@ Hier is my handelsmerk-kortbeskrywing:
 
 [PLAK JOU HANDELSMERK-KORTBESKRYWING]
 
-Ek wil verstaan watter handelsmerke reeds in my mark bestaan in
+Ek wil verstaan hoe die handelsmerke in my mark reeds lyk in
 [DORP/STAD], Suid-Afrika, vir [BESIGHEIDSTIPE].
 
 Gegrond op wat tipies is vir hierdie soort besigheid in Suid-Afrika,
@@ -332,9 +332,9 @@ Die KI kan nie een van hierdie dinge doen nie. Jy moet.
 2. Soek in CIPC se handelsmerkdatabasis na dieselfde naam in jou klas goedere of dienste.
 3. Kyk of `yourname.co.za` by twee of drie Suid-Afrikaanse domeinverkopers beskikbaar is.
 4. Soek die naam op Instagram, Facebook, TikTok en Google.
-5. Sê die naam vir iemand wat elke taal wat jou kliënte praat as moedertaal praat, en vra hoe dit klink.
+5. Sê die naam vir ’n moedertaalspreker van elke taal wat jou kliënte praat, en vra hoe dit klink.
 
-As die domein en die gebruikersname gevat is, kies ’n ander naam. Doen dit voordat jy enigiets druk.
+As die domein en die gebruikersname reeds in gebruik is, kies ’n ander naam. Doen dit voordat jy enigiets druk.
 
 ### As jy ’n Pty Ltd het, of gaan hê
 
@@ -395,7 +395,7 @@ sonder om my ’n vraag te vra.
 Sê vir elke rigting:
 - Die idee in een sin
 - Net lettertipe, of lettertipe plus ’n beeldmerk
-- As dit net lettertipe is: die EEN doelbewuste aanpassing wat dit eie maak
+- As dit net lettertipe is: die EEN doelbewuste aanpassing wat dit joune maak
  (’n veranderde letter, twee letters wat verbind is, een letter in kleur, ’n
  teken in die plek van ’n letter, ongewone spasiëring). "Net die naam in ’n mooi
  font" is nie ’n rigting nie.
@@ -470,7 +470,7 @@ Ek het hierdie rigting vir die logo gekies, en dit sluit ’n beeldmerk in:
 [PLAK DIE RIGTING]
 
 Skryf 5 opdragte wat ek in ’n KI-beeldgenerator kan plak om NET DIE
-BEELDMERK te maak. Geen teks, geen letters, geen woorde nêrens in die prent nie.
+BEELDMERK te maak. Geen teks, geen letters, geen woorde enige plek in die prent nie.
 
 Elke opdrag moet vra vir:
 - ’n Plat, swart simbool in een kleur op ’n gewone wit agtergrond
@@ -479,7 +479,7 @@ Elke opdrag moet vra vir:
 - Geen kleurverloop, geen skaduwee, geen 3D, geen gloed, geen skuinsrand, geen weerkaatsing nie
 - In vektorstyl, soos ’n stensil of ’n stempel
 
-Verskil die 5 opdragte volgens konstruksie (geometries, met die hand gesny, net lyne,
+Wissel die 5 opdragte af volgens konstruksie (geometries, met die hand gesny, net lyne,
 soliede silhoeët, negatiewe ruimte). Hou dieselfde voorwerp regdeur.
 
 Sê dan vir my:
@@ -585,7 +585,7 @@ Nommer die rigtings 1 tot 5. Sê dan vir my watter een die swakste is en waarom.
 Stop dan.
 ```
 
-Daardie "een reël" is wat ’n herkenbare voer skep. Dit kan so eenvoudig wees soos: altyd op dieselfde grys stuk afvalplank geneem, altyd in oggendlig, altyd met my hande in die raam.
+Daardie "een reël" is wat ’n herkenbare voer (feed) skep. Dit kan so eenvoudig wees soos: altyd op dieselfde grys stuk afvalplank geneem, altyd in oggendlig, altyd met my hande in die raam.
 
 ---
 
@@ -645,7 +645,7 @@ Reëls:
  anders maak, gestel as ’n feit
 - Sluit die kenmerkende detail uit my kortbeskrywing in
 - Geen verbode woorde nie: passievol, betroubaar, gehalte, oplossings, reis
-- Eindig met wat om volgende te doen (stuur ’n boodskap, bel, kom kuier)
+- Eindig met wat om volgende te doen (stuur ’n boodskap, bel, besoek)
 
 Nommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop dan.
 ```
@@ -699,7 +699,7 @@ Dit wys hoe goeie resultate lyk, sodat jy weet aan watter standaard jy die KI mo
 ### Antwoorde op Opdrag 0
 
 ```
-1. Wat ek verkoop: gebruikte bakkies en klein bussies, 5 tot 12 jaar oud, onder
+1. Wat ek verkoop: gebruikte bakkies en klein bestelwaens, 5 tot 12 jaar oud, onder
  R250,000, meestal aan vakmense.
 2. Wie dit koop: mans en vroue van 28 tot 55 wat ’n vak of ’n klein afleweringsbesigheid
  bedryf, en ’n werkvoertuig koop, nie ’n gesinsmotor nie. Vir hulle is dit belangrik
@@ -723,7 +723,7 @@ Dit wys hoe goeie resultate lyk, sodat jy weet aan watter standaard jy die KI mo
 ### Hoe ’n goeie kortbeskrywing lyk
 
 ```
-AANBOD: Gebruikte bakkies en klein bussies, 5 tot 12 jaar oud, onder R250,000,
+AANBOD: Gebruikte bakkies en klein bestelwaens, 5 tot 12 jaar oud, onder R250,000,
 geïnspekteer en met ’n foutelys voor die verkoop.
 TEIKENMARK: Vakmense en klein afleweringsbedrywe in die Paarl-omgewing
 wat ’n werkvoertuig koop. Nie vir kopers wat goedkoop en geen vrae wil hê nie.
@@ -741,7 +741,7 @@ motorhandelaar nie, geen chroom, geen luukse taal nie.
 ```
 1. Van Wyk Bakkies
  Van die eienaar se van plus wat hy verkoop. Eenvoudig, eerlik, plaaslik.
- Risiko: algemene van, so die domein is dalk gevat. Klink soos: niks
+ Risiko: algemene van, so die domein is dalk reeds in gebruik. Klink soos: niks
  bekend wat problematies is nie, kyk by iemand wat isiXhosa praat.
  Domein: vanwykbakkies.co.za
 
@@ -752,14 +752,14 @@ motorhandelaar nie, geen chroom, geen luukse taal nie.
  verstaan. Domein: clipboardmotors.co.za
 
 3. Fault List Bakkies
- Reguit. Maak van die bedryf se swakheid die verkoopspunt.
+ Padlangs. Maak van die bedryf se swakheid die verkoopspunt.
  Risiko: "fault" kan vir sommige kopers negatief klink. Klink soos: "fout"
  in Afrikaans beteken ’n vergissing, wat die betekenis versterk eerder as om
  dit te ondermyn. Domein: faultlist.co.za
 
 4. Werksbakkie
  Afrikaans vir "work bakkie". Een woord, maklik op ’n voertuigdeur.
- Risiko: minder duidelik vir kopers wat eerste Engels praat. Klink soos: niks
+ Risiko: minder duidelik vir kopers wie se eerste taal Engels is. Klink soos: niks
  problematies in Engels nie; kyk by isiXhosa. Domein: werksbakkie.co.za
 
 5. Paarl Diesel Yard

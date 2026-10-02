@@ -2,7 +2,7 @@
 
 Jy het ’n naam, ’n logo, kleure, lettertipe en ’n stem. Hierdie lêer maak daarvan lêers wat jy werklik kan gebruik, en kontroleer of dit professioneel lyk voordat jy geld spandeer.
 
-Die meeste klein besighede slaan hierdie stap oor en ontdek dan die probleem by die uithangbordmaker, by die drukker, of om drieuur in die oggend wanneer ’n kliënt vra vir "die logo in vektor".
+Die meeste klein besighede slaan hierdie stap oor en ontdek dan die probleem by die uithangbordmaker, by die drukker, of om drie-uur in die oggend wanneer ’n kliënt vra vir "die logo in vektor".
 
 ## Woorde wat in hierdie lêer gebruik word
 
@@ -90,7 +90,7 @@ Drukkers vra vrae wat mense verras. Hier is die antwoorde.
 
 **Pantone.** As presiese kleur saak maak, byvoorbeeld op verpakking, vra oor ’n Pantone-steunkleur. Dit kos meer. Vir die meeste klein besighede is dit nie nodig nie.
 
-**Borduurwerk.** Hemde en pette het ’n eenvoudige, growwe ontwerp in een kleur nodig. Fyn lyne en klein teks verdwyn in garing. Dit is waarom die weergawe van jou logo in een kleur bestaan.
+**Borduurwerk.** Hemde en pette het ’n eenvoudige, stewige ontwerp in een kleur nodig. Fyn lyne en klein teks verdwyn in garing. Dit is waarom die weergawe van jou logo in een kleur bestaan.
 
 **Viniel en uithangborde.** Uithangbordmakers het vektor nodig. ’n PNG sal geweier word, of sal met sagte rande terugkom.
 
@@ -118,7 +118,7 @@ Sjablone is in [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%2
 
 Naam, besigheidsnaam, rol, foon, e-pos, webwerf. Hoogstens een kleurlyn. Geen groot prente nie, geen aanhalings nie, geen "gestuur van my foon" nie, geen ikone vir sosiale media wat in die helfte van die e-posprogramme breek nie.
 
-### 5. Voertuigtekens
+### 5. Voertuigbelettering
 
 Dikwels die goedkoopste advertensie wat ’n plaaslike besigheid kan koop, en ’n aftrekbare uitgawe.
 
@@ -138,7 +138,7 @@ As jy ’n perseel het: naam, wat jy doen, ure. Leesbaar van oorkant die pad.
 
 ### 9. Verpakking en etikette
 
-As jy ’n fisiese produk verkoop. Vir kos, kyk eers na [Kosbesigheid](../04%20Your%20kind%20of%20business/02-food-business.md), want etikettering word gereguleer kragtens R146 of 2012, en as jy dit verkeerd kry, moet jy oor druk.
+As jy ’n fisiese produk verkoop. Vir kos, kyk eers na [Kosbesigheid](../04%20Your%20kind%20of%20business/02-food-business.md), want etikettering word gereguleer kragtens R146 van 2012, en as jy dit verkeerd kry, moet jy herdruk.
 
 ### 10. Uniform of hemp
 
@@ -152,7 +152,7 @@ Ek is die eienaar en die enigste werker.
 My handelsmerkgids sê: [PLAK DIE HANDELSMERKGIDS VAN EEN BLADSY]
 
 Lys die handelsmerktoepassings wat ek moet maak, in volgorde van hoeveel elkeen
-my waarskynlik sal verdien, vir my spesifieke soort besigheid.
+vir my waarskynlik sal verdien, vir my spesifieke soort besigheid.
 
 Sê vir my by elkeen:
 - Wat presies daarop kom
@@ -188,7 +188,7 @@ Doen elkeen van hierdie toetse voordat jy geld spandeer. Hulle neem tien minute 
 
 **Die drie-sekonde-toets.** Wys jou besigheidskaartjie of voertuig vir drie sekondes vir iemand. Vra wat die besigheid doen en wat die foonnommer was. As hulle nie albei kan beantwoord nie, is daar te veel daarop.
 
-**Die eenvormigheidstoets.** Sit jou faktuur, jou besigheidskaartjie, jou WhatsApp-profiel en een plasing op sosiale media langs mekaar. Lyk hulle soos dieselfde besigheid? Gebrek aan eenvormigheid is die algemeenste rede waarom klein handelsmerke amateuragtig lyk, en dit kos niks om reg te maak nie.
+**Die konsekwentheidstoets.** Sit jou faktuur, jou besigheidskaartjie, jou WhatsApp-profiel en een plasing op sosiale media langs mekaar. Lyk hulle soos dieselfde besigheid? Gebrek aan konsekwentheid is die algemeenste rede waarom klein handelsmerke amateuragtig lyk, en dit kos niks om reg te maak nie.
 
 ---
 
@@ -225,7 +225,7 @@ Gaan deur elkeen van hierdie punte en antwoord reguit:
  weerspreek hulle mekaar?
 7. Wat is die enkele swakste element, en waarmee sou jy dit vervang?
 8. Is enige deel hiervan deur ’n beeldhulpmiddel gegenereer eerder as in ’n
- werklike font geset of geteken? Indien wel, sê vir my watter dele ek dalk sukkel om te besit
+ werklike font geset of geteken? Indien wel, sê vir my watter dele ek dalk sal sukkel om te besit
  of te beskerm, en wat ek met die hand moet oordoen.
 
 Eindig met die drie veranderinge wat dit die meeste sou verbeter, in volgorde van
@@ -253,20 +253,20 @@ Doen self, gratis:
 - Foto’s van jou eie werk op jou foon
 - Jou faktuur- en kwotasiesjablone
 
-Die moeite werd om voor te betaal, in hierdie volgorde, wanneer jy geld het:
+Dit is die moeite werd om hiervoor te betaal, in hierdie volgorde, wanneer jy geld het:
 
 1. **’n Vektorhertekening van jou logo.** Die ontwerpaankoop met die hoogste waarde vir ’n klein besigheid. Kry twee of drie kwotasies.
-2. **Voertuigtekens.** Verdien sy koste vinniger terug as byna enigiets anders vir ’n plaaslike besigheid.
+2. **Voertuigbelettering.** Verdien sy koste vinniger terug as byna enigiets anders vir ’n plaaslike besigheid.
 3. **’n Uithangbord vir jou perseel**, as jy een het.
-4. **’n Behoorlike fotosessie**, net sodra jy werk het wat die moeite werd is om af te neem.
+4. **’n Behoorlike fotosessie**, eers wanneer jy werk het wat die moeite werd is om af te neem.
 5. **’n Ontwerper om jou handelsmerk te hersien**, goedkoper as ’n ontwerper om dit te bou, en dikwels nuttiger.
 
-Nie die moeite werd om in die eerste jaar voor te betaal nie:
+Dit is nie die moeite werd om in die eerste jaar hiervoor te betaal nie:
 
 - ’n Volledige pakket vir handelsmerkidentiteit
 - ’n Webwerf, voordat jy kliënte het
 - Gedrukte brosjures
-- Handelsware met jou handelsmerk van enige soort
+- Enige soort handelsware met jou handelsmerk
 
 ---
 

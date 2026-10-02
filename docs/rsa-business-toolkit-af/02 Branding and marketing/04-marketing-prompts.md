@@ -18,7 +18,7 @@ Dit is gratis, en dit is die ding met die hoogste waarde wat ’n plaaslike besi
 
 Gaan na business.google.com. Eis jou besigheid op. Vul alles in: ure, diensgebied, foon, WhatsApp-skakel, kategorieë, en minstens 10 foto’s.
 
-Vra dan elke tevrede kliënt vir ’n resensie. Resensies is die grootste enkele faktor in of jy bo jou mededingers verskyn.
+Vra dan elke tevrede kliënt vir ’n resensie. Resensies is die grootste enkele faktor wat bepaal of jy bo jou mededingers verskyn.
 
 ### 2. WhatsApp Business
 
@@ -85,7 +85,7 @@ Gee my vir elke plasing:
 - Watter foto of video om te neem, so beskryf dat ek dit op my foon kan neem
  in minder as 5 minute
 - 5 hutsmerke waarna ’n Suid-Afrikaanse kliënt werklik sou soek
-- Een reël wat die leser sê wat om volgende te doen
+- Een reël wat vir die leser sê wat om volgende te doen
 
 Reëls:
 - Eenvoudige taal
@@ -154,8 +154,8 @@ Nommer hulle 1 tot 5. Stop ná die 5 opsies.
 Ek is ’n [BESIGHEIDSTIPE] in Suid-Afrika wat [PRODUK OF DIENS] verkoop teen
 omtrent [PRYS].
 
-Lys die 10 vrae of bekommernisse wat ’n Suid-Afrikaanse kliënt die meeste keer
-om by ’n klein, onbekende besigheid soos myne te koop.
+Lys die 10 vrae of bekommernisse wat ’n Suid-Afrikaanse kliënt die meeste daarvan
+weerhou om by ’n klein, onbekende besigheid soos myne te koop.
 
 Skryf vir elkeen ’n kort antwoord wat ek op WhatsApp, op my pryslys
 en op sosiale media kan gebruik. Korter as 40 woorde elk.
@@ -177,13 +177,13 @@ Gratis gereedskap:
 - GIMP — gratis fotoredigeerder vir die rekenaar
 - Jou foonkamera — beter as enige voorraadfoto vir ’n plaaslike besigheid
 
-Raad: werklike foto’s van jou werklike werk klop ontwerpte grafika byna elke keer vir ’n klein plaaslike besigheid. ’n Duidelike foto van ’n klaar werk, in daglig geneem, presteer beter as ’n gepoleerde grafika uit ’n sjabloon.
+Raad: werklike foto’s van jou werklike werk klop ontwerpte grafika byna elke keer vir ’n klein plaaslike besigheid. ’n Duidelike foto van ’n voltooide werk, in daglig geneem, presteer beter as ’n gepoleerde grafika uit ’n sjabloon.
 
 Hou prentlêers klein. Baie van jou kliënte betaal per megagreep vir data. Voer prente vir sosiale media onder 500 KB uit.
 
 ## Wat om in jou eerste jaar te ignoreer
 
-Betaalde advertensies. Moenie geld aan advertensies spandeer voordat jy presies weet watter boodskap verkope bring nie. Gewone plasings en ’n Google Business Profile leer jou dit gratis.
+Betaalde advertensies. Moenie geld aan advertensies spandeer voordat jy presies weet watter boodskap verkope bring nie. Onbetaalde plasings en ’n Google Business Profile leer jou dit gratis.
 
 Daagliks plaas. Drie goeie plasings per week klop sewe haastige plasings. Niemand tel nie.
 
