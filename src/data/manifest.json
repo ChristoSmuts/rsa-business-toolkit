@@ -1,5 +1,5 @@
 {
-  "contentHash": "8c8443c51f0ae7e7",
+  "contentHash": "0ac45fe087784a05",
   "docs": {
     "branding/already-have-your-name": {
       "appliesTo": {
@@ -16,7 +16,7 @@
       "section": "branding",
       "slug": "already-have-your-name",
       "titles": {
-        "af": "Het jy reeds jou naam? Begin hier",
+        "af": "Het jy reeds jou naam? (kortpad)",
         "en": "Already have your name (shortcut)"
       }
     },
@@ -73,7 +73,7 @@
       "section": "branding",
       "slug": "marketing-prompts",
       "titles": {
-        "af": "Bemarkingsopdragte en -bates",
+        "af": "Bemarkingsopdragte",
         "en": "Marketing prompts"
       }
     },
@@ -92,7 +92,7 @@
       "section": "branding",
       "slug": "mood-and-materials",
       "titles": {
-        "af": "Stemming en materiale: besluit dit voor die logo",
+        "af": "Stemming en materiale (ná opdrag 4)",
         "en": "Mood and materials (use after Prompt 4)"
       }
     },
@@ -113,7 +113,7 @@
       "section": "business-types",
       "slug": "beauty",
       "titles": {
-        "af": "Besigheidstipe: skoonheid en persoonlike versorging",
+        "af": "Skoonheid en persoonlike versorging",
         "en": "Beauty and personal care"
       }
     },
@@ -134,7 +134,7 @@
       "section": "business-types",
       "slug": "food",
       "titles": {
-        "af": "Besigheidstipe: kos en drinkgoed",
+        "af": "Kosbesigheid",
         "en": "Food business"
       }
     },
@@ -174,7 +174,7 @@
       "section": "business-types",
       "slug": "professional-creative",
       "titles": {
-        "af": "Besigheidstipe: professionele en kreatiewe werk",
+        "af": "Professionele en kreatiewe werk",
         "en": "Professional and creative work"
       }
     },
@@ -195,7 +195,7 @@
       "section": "business-types",
       "slug": "retail-online",
       "titles": {
-        "af": "Besigheidstipe: kleinhandel en aanlyn verkoop",
+        "af": "Kleinhandel en aanlynwinkel",
         "en": "Retail and online shop"
       }
     },
@@ -216,7 +216,7 @@
       "section": "business-types",
       "slug": "services-trades",
       "titles": {
-        "af": "Besigheidstipe: dienste en ambagte",
+        "af": "Dienste en ambagte",
         "en": "Services and trades"
       }
     },
@@ -237,7 +237,7 @@
       "section": "business-types",
       "slug": "vehicle-dealer",
       "titles": {
-        "af": "Besigheidstipe: voertuie koop en verkoop",
+        "af": "Voertuighandelaar",
         "en": "Vehicle dealer"
       }
     },
@@ -256,7 +256,7 @@
       "section": "core",
       "slug": "adding-new-lines",
       "titles": {
-        "af": "Nuwe besigheidslyne by jou Pty voeg",
+        "af": "Nuwe besigheidslyne byvoeg",
         "en": "Adding new lines of business"
       }
     },
@@ -332,7 +332,7 @@
       "section": "core",
       "slug": "start-here",
       "titles": {
-        "af": "Begin hier",
+        "af": "Kern: begin hier",
         "en": "Core: start here"
       }
     },
@@ -370,7 +370,7 @@
       "section": "core",
       "slug": "vehicles",
       "titles": {
-        "af": "Voertuie en jou besigheid",
+        "af": "Voertuie vir jou besigheid",
         "en": "Vehicles for your business"
       }
     },
@@ -408,7 +408,7 @@
       "section": "core",
       "slug": "working-from-home-and-safety",
       "titles": {
-        "af": "Bestuur dit van die huis af, en ontmoet kliënte veilig",
+        "af": "Van die huis af werk en veilig ontmoet",
         "en": "Working from home and meeting safely"
       }
     },
@@ -522,7 +522,7 @@
       "section": "paperwork",
       "slug": "invoice",
       "titles": {
-        "af": "FAKTUUR",
+        "af": "Faktuur, NIE BTW-geregistreer nie (sjabloon)",
         "en": "Invoice, NOT VAT registered (template)"
       }
     },
@@ -541,7 +541,7 @@
       "section": "paperwork",
       "slug": "privacy-notice",
       "titles": {
-        "af": "PRIVAATHEIDSKENNISGEWING",
+        "af": "Privaatheidskennisgewing, POPIA (sjabloon)",
         "en": "Privacy notice, POPIA (template)"
       }
     },
@@ -560,7 +560,7 @@
       "section": "paperwork",
       "slug": "quotation",
       "titles": {
-        "af": "KWOTASIE",
+        "af": "Kwotasie (sjabloon)",
         "en": "Quotation (template)"
       }
     },
@@ -579,7 +579,7 @@
       "section": "paperwork",
       "slug": "receipt",
       "titles": {
-        "af": "KWITANSIE",
+        "af": "Kwitansie (sjabloon)",
         "en": "Receipt (template)"
       }
     },
@@ -598,7 +598,7 @@
       "section": "paperwork",
       "slug": "tax-invoice",
       "titles": {
-        "af": "BELASTINGFAKTUUR",
+        "af": "Belastingfaktuur, BTW-geregistreer (sjabloon)",
         "en": "Tax invoice, VAT registered (template)"
       }
     },
@@ -617,7 +617,7 @@
       "section": "paperwork",
       "slug": "which-template-to-use-when",
       "titles": {
-        "af": "Dokumente en sjablone",
+        "af": "Watter sjabloon wanneer",
         "en": "Which template to use when"
       }
     },
@@ -636,7 +636,7 @@
       "section": "start",
       "slug": "how-this-was-made",
       "titles": {
-        "af": "KI-openbaarmaking",
+        "af": "Hoe dit gemaak is en hoe om dit na te gaan",
         "en": "How this was made and how to check it"
       }
     },
@@ -674,7 +674,7 @@
       "section": "start",
       "slug": "start-here",
       "titles": {
-        "af": "Suid-Afrikaanse gereedskapstel vir klein besighede",
+        "af": "Begin hier",
         "en": "Start here"
       }
     },
@@ -693,7 +693,7 @@
       "section": "start",
       "slug": "what-has-changed",
       "titles": {
-        "af": "Veranderingslys en verskille",
+        "af": "Wat het verander",
         "en": "What has changed"
       }
     }

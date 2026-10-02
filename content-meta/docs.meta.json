@@ -107,7 +107,8 @@
       "order": 1,
       "kind": "guide",
       "title": {
-        "en": "Start here"
+        "en": "Start here",
+        "af": "Begin hier"
       },
       "tags": ["orientation"],
       "blockOverrides": {
@@ -124,7 +125,8 @@
       "order": 2,
       "kind": "guide",
       "title": {
-        "en": "How to use this toolkit"
+        "en": "How to use this toolkit",
+        "af": "Hoe om hierdie gereedskapstel te gebruik"
       },
       "tags": ["orientation"],
       "hideSections": ["making-the-files-easier-to-use"],
@@ -142,7 +144,8 @@
       "order": 3,
       "kind": "guide",
       "title": {
-        "en": "How this was made and how to check it"
+        "en": "How this was made and how to check it",
+        "af": "Hoe dit gemaak is en hoe om dit na te gaan"
       },
       "tags": ["orientation", "ai-disclosure"]
     },
@@ -154,7 +157,8 @@
       "order": 4,
       "kind": "guide",
       "title": {
-        "en": "What has changed"
+        "en": "What has changed",
+        "af": "Wat het verander"
       },
       "summary": {
         "en": "What changed in the toolkit, and where the Google Drive copy and the markdown copy still differ."
@@ -170,7 +174,8 @@
       "order": 1,
       "kind": "guide",
       "title": {
-        "en": "Core: start here"
+        "en": "Core: start here",
+        "af": "Kern: begin hier"
       },
       "tags": ["orientation"],
       "sourceFixes": [
@@ -197,7 +202,8 @@
       "order": 2,
       "kind": "guide",
       "title": {
-        "en": "Register: what you actually need"
+        "en": "Register: what you actually need",
+        "af": "Registreer: wat jy regtig nodig het"
       },
       "tags": ["registration"]
     },
@@ -209,7 +215,8 @@
       "order": 3,
       "kind": "guide",
       "title": {
-        "en": "Tax and SARS"
+        "en": "Tax and SARS",
+        "af": "Belasting en SARS"
       },
       "tags": ["tax"]
     },
@@ -221,7 +228,8 @@
       "order": 4,
       "kind": "guide",
       "title": {
-        "en": "What you need to sell things"
+        "en": "What you need to sell things",
+        "af": "Wat jy nodig het om dinge te verkoop"
       },
       "tags": ["licensing", "consumer-law"]
     },
@@ -233,7 +241,8 @@
       "order": 5,
       "kind": "guide",
       "title": {
-        "en": "Vehicles for your business"
+        "en": "Vehicles for your business",
+        "af": "Voertuie vir jou besigheid"
       },
       "tags": ["vehicles"]
     },
@@ -245,7 +254,8 @@
       "order": 6,
       "kind": "guide",
       "title": {
-        "en": "Running a Pty Ltd"
+        "en": "Running a Pty Ltd",
+        "af": "Bestuur van ’n Pty Ltd"
       },
       "summary": {
         "en": "What a company costs you in time and duties every year, what goes wrong when you stop filing, and when the company does not protect you."
@@ -263,7 +273,8 @@
       "order": 7,
       "kind": "guide",
       "title": {
-        "en": "Paying yourself from a Pty Ltd"
+        "en": "Paying yourself from a Pty Ltd",
+        "af": "Betaal jouself uit ’n Pty Ltd"
       },
       "appliesTo": {
         "entity": "pty"
@@ -278,7 +289,8 @@
       "order": 8,
       "kind": "guide",
       "title": {
-        "en": "Adding new lines of business"
+        "en": "Adding new lines of business",
+        "af": "Nuwe besigheidslyne byvoeg"
       },
       "appliesTo": {
         "entity": "pty"
@@ -293,7 +305,8 @@
       "order": 9,
       "kind": "guide",
       "title": {
-        "en": "Working from home and meeting safely"
+        "en": "Working from home and meeting safely",
+        "af": "Van die huis af werk en veilig ontmoet"
       },
       "tags": ["home", "safety", "payments"]
     },
@@ -305,7 +318,8 @@
       "order": 10,
       "kind": "guide",
       "title": {
-        "en": "You are the business"
+        "en": "You are the business",
+        "af": "Jy is die besigheid"
       },
       "tags": ["continuity", "getting-paid"]
     },
@@ -317,7 +331,8 @@
       "order": 1,
       "kind": "guide",
       "title": {
-        "en": "Already have your name (shortcut)"
+        "en": "Already have your name (shortcut)",
+        "af": "Het jy reeds jou naam? (kortpad)"
       },
       "tags": ["prompts"],
       "fenceVariant": "prompt",
@@ -333,7 +348,8 @@
       "order": 2,
       "kind": "guide",
       "title": {
-        "en": "Branding prompts"
+        "en": "Branding prompts",
+        "af": "Handelsmerkopdragte"
       },
       "summary": {
         "en": "Eleven AI prompts, in order, for your brief, name, tagline, logo, colours, type, photographs, voice and about text. Each prompt gives you 5 options to refine."
@@ -354,7 +370,8 @@
       "order": 3,
       "kind": "guide",
       "title": {
-        "en": "Mood and materials (use after Prompt 4)"
+        "en": "Mood and materials (use after Prompt 4)",
+        "af": "Stemming en materiale (ná opdrag 4)"
       },
       "summary": {
         "en": "Settle the overall mood and the physical materials before the logo, so your logo, colours and photographs agree. Includes what South African sun does to signage."
@@ -370,7 +387,8 @@
       "order": 4,
       "kind": "guide",
       "title": {
-        "en": "Brand applications and polish"
+        "en": "Brand applications and polish",
+        "af": "Handelsmerktoepassings en afronding"
       },
       "tags": ["prompts"],
       "fenceVariant": "prompt"
@@ -383,7 +401,8 @@
       "order": 5,
       "kind": "guide",
       "title": {
-        "en": "Marketing prompts"
+        "en": "Marketing prompts",
+        "af": "Bemarkingsopdragte"
       },
       "summary": {
         "en": "Where South African small businesses actually find customers, plus AI prompts for content pillars, posts, WhatsApp messages and your Google Business Profile."
@@ -399,7 +418,8 @@
       "order": 1,
       "kind": "guide",
       "title": {
-        "en": "Which template to use when"
+        "en": "Which template to use when",
+        "af": "Watter sjabloon wanneer"
       },
       "tags": ["templates"],
       "fenceOverrides": {
@@ -415,7 +435,8 @@
       "order": 2,
       "kind": "guide",
       "title": {
-        "en": "Free tools"
+        "en": "Free tools",
+        "af": "Gratis gereedskap"
       },
       "tags": ["tools"],
       "fenceOverrides": {
@@ -430,7 +451,8 @@
       "order": 3,
       "kind": "template",
       "title": {
-        "en": "Quotation (template)"
+        "en": "Quotation (template)",
+        "af": "Kwotasie (sjabloon)"
       },
       "tags": ["template"]
     },
@@ -442,7 +464,8 @@
       "order": 4,
       "kind": "template",
       "title": {
-        "en": "Invoice, NOT VAT registered (template)"
+        "en": "Invoice, NOT VAT registered (template)",
+        "af": "Faktuur, NIE BTW-geregistreer nie (sjabloon)"
       },
       "tags": ["template"]
     },
@@ -454,7 +477,8 @@
       "order": 5,
       "kind": "template",
       "title": {
-        "en": "Tax invoice, VAT registered (template)"
+        "en": "Tax invoice, VAT registered (template)",
+        "af": "Belastingfaktuur, BTW-geregistreer (sjabloon)"
       },
       "tags": ["template", "vat"]
     },
@@ -466,7 +490,8 @@
       "order": 6,
       "kind": "template",
       "title": {
-        "en": "Receipt (template)"
+        "en": "Receipt (template)",
+        "af": "Kwitansie (sjabloon)"
       },
       "tags": ["template"]
     },
@@ -478,7 +503,8 @@
       "order": 7,
       "kind": "template",
       "title": {
-        "en": "Privacy notice, POPIA (template)"
+        "en": "Privacy notice, POPIA (template)",
+        "af": "Privaatheidskennisgewing, POPIA (sjabloon)"
       },
       "tags": ["template", "popia"]
     },
@@ -490,7 +516,8 @@
       "order": 1,
       "kind": "guide",
       "title": {
-        "en": "Pick your business type"
+        "en": "Pick your business type",
+        "af": "Kies jou besigheidstipe"
       },
       "summary": {
         "en": "Find your kind of business in one table, see how much setup work each type carries, and what everyone needs regardless of type."
@@ -505,7 +532,8 @@
       "order": 2,
       "kind": "guide",
       "title": {
-        "en": "Vehicle dealer"
+        "en": "Vehicle dealer",
+        "af": "Voertuighandelaar"
       },
       "summary": {
         "en": "Vehicle dealing has three registration layers other businesses do not have, and one legal risk that can destroy a small dealer in a single transaction."
@@ -523,7 +551,8 @@
       "order": 3,
       "kind": "guide",
       "title": {
-        "en": "Food business"
+        "en": "Food business",
+        "af": "Kosbesigheid"
       },
       "summary": {
         "en": "For anyone who handles, prepares, stores, transports or sells food for money: what you need before you may open, and how long it really takes."
@@ -541,7 +570,8 @@
       "order": 4,
       "kind": "guide",
       "title": {
-        "en": "Beauty and personal care"
+        "en": "Beauty and personal care",
+        "af": "Skoonheid en persoonlike versorging"
       },
       "summary": {
         "en": "Hairdressing, barbering, nails, beauty therapy, lashes, massage, tattooing and piercing: the licence, inspection, insurance and booking rules."
@@ -559,7 +589,8 @@
       "order": 5,
       "kind": "guide",
       "title": {
-        "en": "Retail and online shop"
+        "en": "Retail and online shop",
+        "af": "Kleinhandel en aanlynwinkel"
       },
       "summary": {
         "en": "Selling physical products in a shop, at a market or online: licences, second-hand goods, online selling law, warranties and importing."
@@ -577,7 +608,8 @@
       "order": 6,
       "kind": "guide",
       "title": {
-        "en": "Services and trades"
+        "en": "Services and trades",
+        "af": "Dienste en ambagte"
       },
       "summary": {
         "en": "Plumbers, electricians, builders, cleaners, couriers and other trades: registration, safety, quoting, deposits and insurance."
@@ -595,7 +627,8 @@
       "order": 7,
       "kind": "guide",
       "title": {
-        "en": "Professional and creative work"
+        "en": "Professional and creative work",
+        "af": "Professionele en kreatiewe werk"
       },
       "summary": {
         "en": "Consultants, designers, developers, writers, tutors and other freelancers: the turnover tax trap, contracts, intellectual property and getting paid."
@@ -613,7 +646,8 @@
       "order": 1,
       "kind": "glossary",
       "title": {
-        "en": "Glossary"
+        "en": "Glossary",
+        "af": "Woordelys"
       },
       "tags": ["reference"]
     },
@@ -625,7 +659,8 @@
       "order": 2,
       "kind": "checklist",
       "title": {
-        "en": "Master checklist"
+        "en": "Master checklist",
+        "af": "Hoofkontrolelys"
       },
       "summary": {
         "en": "One printable checklist: everyone's steps in order, extra steps for a Pty Ltd, additions per business type, a recurring calendar and the four things that cause real trouble."
@@ -640,7 +675,8 @@
       "order": 3,
       "kind": "sources",
       "title": {
-        "en": "Sources and verification register"
+        "en": "Sources and verification register",
+        "af": "Bronne- en verifikasieregister"
       },
       "tags": ["reference"],
       "special": {
