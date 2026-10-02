@@ -31,9 +31,11 @@ interface Props {
   caption: string;
   /** The heading's tag in its outline, from `headingTags`; `headingTag(depth)` when absent. */
   headingTag?: 'h2' | 'h3' | 'h4' | undefined;
+  /** True for the first tasklist in its block list. */
+  firstTasklist?: boolean | undefined;
 }
 
-const { block, context, caption, headingTag: tag } = Astro.props;
+const { block, context, caption, headingTag: tag, firstTasklist = false } = Astro.props;
 const t = useTranslations(context.contentLang);
 const Heading = tag ?? (block.kind === 'heading' ? headingTag(block.depth) : 'h2');
 ---
@@ -81,7 +83,7 @@ const Heading = tag ?? (block.kind === 'heading' ? headingTag(block.depth) : 'h2
     </ul>
   )
 ) : block.kind === 'tasklist' ? (
-  <TaskListBlock block={block} context={context} />
+  <TaskListBlock block={block} context={context} first={firstTasklist} />
 ) : block.kind === 'table' ? (
   <TableBlock block={block} context={context} caption={caption} />
 ) : block.kind === 'code' ? (

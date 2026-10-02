@@ -26,10 +26,12 @@ const lang = isFallbackContent(context)
   ? (getLocale(context.contentLang)?.hreflang ?? context.contentLang)
   : undefined;
 const tags = headingTags(blocks);
+const firstTasklist = blocks.findIndex((block) => block.kind === 'tasklist');
 const visible = blocks
   .map((block, index) => ({
     block,
     headingTag: tags[index],
+    firstTasklist: index === firstTasklist,
     caption: nearestHeadingText(blocks, index) ?? fallbackCaption,
     redundant: isRedundantRule(blocks, index),
   }))
@@ -43,6 +45,7 @@ const visible = blocks
       context={context}
       caption={entry.caption}
       headingTag={entry.headingTag}
+      firstTasklist={entry.firstTasklist}
     />
   ))}
 </div>

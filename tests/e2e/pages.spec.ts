@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
+import { CHECKLIST_SAVES } from '../../src/lib/routes';
 import { allHtmlRoutes, htmlFileForRoute, REPO_ROOT } from './helpers/routes';
 
 /**
@@ -94,6 +95,21 @@ test.describe('the head of every built page', () => {
         has(new RegExp(`<meta property="${property}" content="[^"]+"`), property);
       }
       has(/<meta name="theme-color"/, 'theme-color');
+    }
+    expect(problems).toEqual([]);
+  });
+
+  test('every page with a checklist says, once, that ticks are not saved yet', ({
+    basePath: _basePath,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Reads dist/, no browser needed.');
+    test.skip(CHECKLIST_SAVES, 'Ticks are saved (WP-30), so there is nothing to warn about.');
+    const problems: string[] = [];
+    for (const route of allHtmlRoutes().filter((r) => !/^(af\/)?design-system\//.test(r))) {
+      const html = readFileSync(htmlFileForRoute(route), 'utf8');
+      if (!html.includes('type="checkbox"')) continue;
+      const notes = html.split('st-tasklist__not-saved').length - 1;
+      if (notes !== 1) problems.push(`/${route}: ${notes} not-saved line(s)`);
     }
     expect(problems).toEqual([]);
   });
@@ -230,6 +246,45 @@ test.describe('navigation between real pages', () => {
       );
     expect(await page.locator('figure.st-code[data-variant="prompt"]').count()).toBeGreaterThan(5);
     expect(overflowing).toBe(0);
+  });
+
+  test('stand-alone targets on real pages are at least 44px (B4, B5)', async ({
+    page,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
+    await page.setViewportSize({ width: 375, height: 800 });
+    // The same rule as design-system.spec.ts, on the pages that carry the breadcrumb, the pager,
+    // the common-question links and inline checklists (review WP-20 pass 5).
+    for (const route of ['core/register/', 'af/business-types/food/', 'search/', 'contents/']) {
+      await open(page, route);
+      const small = await page.evaluate(() => {
+        const found: string[] = [];
+        for (const el of document.querySelectorAll<HTMLElement>(
+          'main a[href], main button, main input, main summary, main [tabindex="0"]',
+        )) {
+          const style = getComputedStyle(el);
+          if (style.display === 'none' || style.visibility === 'hidden') continue;
+          const parentText = el.parentElement?.textContent?.trim() ?? '';
+          if (el.tagName === 'A' && parentText !== (el.textContent?.trim() ?? '')) {
+            if (!el.classList.contains('st-link-block')) continue;
+          }
+          const target = el.classList.contains('st-card__link')
+            ? el.closest('.st-card')
+            : el.matches('input[type="checkbox"], input[type="radio"]')
+              ? el.closest('label')
+              : el;
+          const box = (target ?? el).getBoundingClientRect();
+          if (box.width === 0 && box.height === 0) continue;
+          if (box.width < 43.5 || box.height < 43.5) {
+            found.push(
+              `"${el.textContent?.trim().slice(0, 30)}" ${Math.round(box.width)}x${Math.round(box.height)}`,
+            );
+          }
+        }
+        return found;
+      });
+      expect(small, `/${route}`).toEqual([]);
+    }
   });
 
   test('a section landing lists its documents in order', async ({ page, basePath }) => {

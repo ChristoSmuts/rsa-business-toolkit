@@ -159,8 +159,8 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
     /*
      * Not sticky on a phone: the bar wraps to two or three rows (wordmark, search and language,
      * menu) and, with JavaScript off, carries every menu stacked. Pinned, it covered up to 40% of
-     * a 320px screen and every anchor target under it (review WP-20 pass 3). `base.css` drops the
-     * matching scroll padding at the same breakpoint.
+     * a 320px screen and every anchor target under it (review WP-20 pass 3). While it is static,
+     * `trackTopbar()` publishes an offset of 0, so the scroll padding below drops with it.
      */
     .st-topbar {
       position: static;
@@ -205,6 +205,9 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
    * (src/scripts/navigation.ts, `trackTopbar`). Without JavaScript it is unset, and the bar is never
    * sticky then, so 0 is right. A fixed 72px was wrong whenever the bar wrapped: 123px at 1024px
    * with JavaScript, 93px without (review WP-20 pass 4).
+   *
+   * This rule owns the scroll padding. `html:root` outranks the `html` rule in WP-11's `base.css`
+   * (`calc(var(--st-topbar) + …)`), which therefore never applies on a page with this header.
    */
   html:root {
     scroll-padding-block-start: calc(var(--st-topbar-offset, 0px) + var(--st-space-4));

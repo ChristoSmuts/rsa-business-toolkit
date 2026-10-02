@@ -310,7 +310,9 @@ rows, and without JavaScript it carries the theme hint and, below 1024px, every 
 would cover anchor targets and focus. Where it is sticky its height still varies (one row at 1280px,
 two at 1024px), so the scroll padding is not a constant: `trackTopbar()` in
 `src/scripts/navigation.ts` publishes the bar's measured height as `--st-topbar-offset` (0 while the
-bar is not sticky), and `SiteHeader.astro` sets `scroll-padding-block-start` from it.
+bar is not sticky), and `SiteHeader.astro` sets `scroll-padding-block-start` from it. That rule owns the
+scroll padding on every page with the header: it outranks the `html` rule in `base.css`, so a change
+there has no effect on those pages.
 
 Fenced blocks: prompts, snippets and examples are prose and wrap; template previews and listings
 are layouts, keep `white-space: pre`, and are the only ones that can scroll, as a named region.

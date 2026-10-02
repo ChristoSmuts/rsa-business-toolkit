@@ -160,3 +160,15 @@ const contentsHref = href(locale, APP_ROUTES.contents);
     font-weight: var(--st-weight-semibold);
   }
 </style>
+
+<style is:global>
+  /*
+   * The answer links are rendered by <Inline> (a docref), so this page's scoped styles cannot reach
+   * them. Each stands alone on its line, so each is a full 44px target (review WP-20 pass 5).
+   */
+  .st-search__answer a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--st-target);
+  }
+</style>

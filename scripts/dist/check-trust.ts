@@ -37,14 +37,48 @@ function textOf(fragment: string): string {
  * `{reviewer}` as wildcards. The notice must say one of them: "Written by AI … who checked it …"
  * is the core of D5, and a layout that drops or rewrites it must not build (review WP-20 pass 4).
  */
-export function noticeSentences(locale: Locale): RegExp[] {
+export interface NoticeShape {
+  /** The page lists sources of its own ("the sources below"). */
+  readonly pageSources: boolean;
+  /** The status names a person who checked the page. */
+  readonly humanChecked: boolean;
+}
+
+/** Turns a dictionary sentence into a pattern with `{date}` and `{reviewer}` as wildcards. */
+function sentencePattern(sentence: string): RegExp {
+  const escaped = sentence.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(escaped.replace(/\\\{(date|reviewer)\\\}/g, '.+?'));
+}
+
+/**
+ * The AI notice sentence a page must say (`trust.aiNotice.body*`), chosen the way `trustNotice()`
+ * chooses it: "the sources below" only when the page lists sources of its own, and "{reviewer}
+ * checked it" only when the status credits a person. With all four accepted, a page with no
+ * sources could tell readers to check "the sources below" and still build (review WP-20 pass 5).
+ * Without a shape, every variant is returned (used to recognise any notice at all).
+ */
+export function noticeSentences(locale: Locale, shape?: NoticeShape): RegExp[] {
   const dict = (locale === 'af' ? af : en) as { trust: { aiNotice: Record<string, string> } };
-  return Object.entries(dict.trust.aiNotice)
-    .filter(([key]) => key.startsWith('body'))
-    .map(([, sentence]) => {
-      const escaped = sentence.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      return new RegExp(escaped.replace(/\\\{(date|reviewer)\\\}/g, '.+?'));
-    });
+  const bodies = dict.trust.aiNotice;
+  if (!shape) {
+    return Object.entries(bodies)
+      .filter(([key]) => key.startsWith('body'))
+      .map(([, sentence]) => sentencePattern(sentence));
+  }
+  const key = shape.humanChecked
+    ? shape.pageSources
+      ? 'bodyHumanChecked'
+      : 'bodyHumanCheckedNoPageSources'
+    : shape.pageSources
+      ? 'body'
+      : 'bodyNoPageSources';
+  return [sentencePattern(bodies[key] ?? '')];
+}
+
+/** The status sentence of a human check, as a pattern (`trust.status.humanChecked`). */
+function humanStatus(locale: Locale): RegExp {
+  const dict = (locale === 'af' ? af : en) as { trust: { status: Record<string, string> } };
+  return sentencePattern(dict.trust.status['humanChecked'] ?? '');
 }
 
 function pageLocale(html: string): Locale {
@@ -66,36 +100,55 @@ export function trustProblems(html: string): string[] {
   if (!(TRUST_KINDS as readonly string[]).includes(kind)) {
     problems.push(`unknown document kind "${kind}"`);
   }
+  const locale = pageLocale(html);
+  const sourcesStart = html.search(/<section\b[^>]*aria-labelledby="sources-for-this-page"/);
+  const section = sourcesStart === -1 ? '' : sliceElement(html, sourcesStart, 'section');
+  const listsSources = /class="st-source"/.test(section);
+
   const header = /<article\b[^>]*>\s*<header\b[\s\S]*?<\/header>/.exec(
     html.slice(article.index),
   )?.[0];
   if (!header?.includes('st-ai-notice')) {
     problems.push('no AI notice in the article header');
   } else {
-    if (!header.includes('st-ai-notice__status')) problems.push('the AI notice has no status');
+    const status = /<p class="st-ai-notice__status"[^>]*>([\s\S]*?)<\/p>/.exec(header)?.[1];
+    if (status === undefined) problems.push('the AI notice has no status');
     const said = textOf(header);
-    if (!noticeSentences(pageLocale(html)).some((sentence) => sentence.test(said))) {
-      problems.push('the AI notice does not say who wrote and checked the page');
+    const shape: NoticeShape = {
+      pageSources: listsSources,
+      humanChecked: status !== undefined && humanStatus(locale).test(textOf(status)),
+    };
+    const says = (candidate: NoticeShape): boolean =>
+      noticeSentences(locale, candidate).some((sentence) => sentence.test(said));
+    if (!says(shape)) {
+      problems.push(
+        says({ ...shape, pageSources: !shape.pageSources })
+          ? shape.pageSources
+            ? 'the AI notice points at the register although the page lists its own sources'
+            : 'the AI notice says "the sources below" but the page lists none'
+          : says({ ...shape, humanChecked: !shape.humanChecked })
+            ? 'the AI notice and its status disagree on who checked the page'
+            : 'the AI notice does not say who wrote and checked the page',
+      );
     }
     if (!/href="[^"]*\/start\/how-this-was-made\/"/.test(header)) {
       problems.push('the AI notice does not link "How this was made"');
     }
   }
-  const sourcesStart = html.search(/<section\b[^>]*aria-labelledby="sources-for-this-page"/);
   if (sourcesStart === -1) {
     problems.push('no "Sources for this page" section');
     return problems;
   }
-  const section = sliceElement(html, sourcesStart, 'section');
-  const listsSources = /class="st-source"/.test(section);
   const note = /<p class="st-hint"[^>]*>([\s\S]*?)<\/p>/.exec(section)?.[1] ?? '';
   const linksRegister = /href="[^"]*\/sources\/"/.test(section);
   const isRegister = /\bdata-doc="lookup\/sources"/.test(html);
   if (!listsSources) {
-    if (textOf(note).length < 30)
+    if (textOf(note).length < 30) {
       problems.push('"Sources for this page" lists nothing and has no note');
-    if (!linksRegister && !isRegister)
+    }
+    if (!linksRegister && !isRegister) {
       problems.push('"Sources for this page" does not link the register');
+    }
   }
   return problems;
 }

@@ -10,6 +10,11 @@ const notice =
   '<p>Written by AI (Claude, Anthropic). An AI checked it against the sources below on 13 September 2026. No person has checked it yet. Rules change: check the official source before you act. Not legal, tax or financial advice.</p>' +
   '<p class="st-ai-notice__status"><span>AI-checked</span></p>' +
   '<p><a href="/business-toolkit/start/how-this-was-made/">How this was made</a></p></aside>';
+/** The same notice with the sentence for a page that has no sources of its own. */
+const noteNotice = notice.replace(
+  /<p>Written by AI[^<]*<\/p>/,
+  '<p>Written by AI (Claude, Anthropic). An AI checked it on 13 September 2026 against the sources in the sources register, where official sources are marked. No person has checked it yet. Rules change: check the official source before you act. Not legal, tax or financial advice.</p>',
+);
 const listed =
   '<section class="st-sources" aria-labelledby="sources-for-this-page"><h2 id="sources-for-this-page">Sources</h2>' +
   '<p class="st-hint">2 sources</p><ul><li class="st-source">SARS</li></ul>' +
@@ -26,7 +31,7 @@ function page(kind: string, header: string, body: string, doc = 'x/y'): string {
 describe('trustProblems (build plan D5 on the rendered page)', () => {
   it('passes a page with its notice and a list of sources, or a note and the register link', () => {
     expect(trustProblems(page('guide', notice, listed))).toEqual([]);
-    expect(trustProblems(page('guide', notice, noted))).toEqual([]);
+    expect(trustProblems(page('guide', noteNotice, noted))).toEqual([]);
   });
 
   it('ignores a page that is not a document page', () => {
@@ -52,7 +57,7 @@ describe('trustProblems (build plan D5 on the rendered page)', () => {
   });
 
   it('fails a page without "Sources for this page"', () => {
-    expect(trustProblems(page('checklist', notice, '<p>Body</p>'))).toEqual([
+    expect(trustProblems(page('checklist', noteNotice, '<p>Body</p>'))).toEqual([
       'no "Sources for this page" section',
     ]);
   });
@@ -62,6 +67,7 @@ describe('trustProblems (build plan D5 on the rendered page)', () => {
       '<section class="st-sources" aria-labelledby="sources-for-this-page"><h2 id="sources-for-this-page">S</h2>' +
       '<p class="st-hint">None.</p></section>';
     expect(trustProblems(page('guide', notice, empty))).toEqual([
+      'the AI notice says "the sources below" but the page lists none',
       '"Sources for this page" lists nothing and has no note',
       '"Sources for this page" does not link the register',
     ]);
@@ -69,7 +75,7 @@ describe('trustProblems (build plan D5 on the rendered page)', () => {
 
   it('lets the register itself go without a link to itself', () => {
     const own = noted.replace(/<p><a href="[^"]*sources\/">[^<]*<\/a><\/p>/, '');
-    expect(trustProblems(page('sources', notice, own, 'lookup/sources'))).toEqual([]);
+    expect(trustProblems(page('sources', noteNotice, own, 'lookup/sources'))).toEqual([]);
   });
 
   it('fails a kind it does not know, so a new kind is a decision, not a gap', () => {
@@ -84,6 +90,27 @@ describe('trustProblems (build plan D5 on the rendered page)', () => {
 });
 
 describe('the AI notice sentence', () => {
+  it('must match what the page shows: "the sources below" only over a list', () => {
+    expect(trustProblems(page('guide', notice, noted))).toEqual([
+      'the AI notice says "the sources below" but the page lists none',
+    ]);
+    expect(trustProblems(page('guide', noteNotice, listed))).toEqual([
+      'the AI notice points at the register although the page lists its own sources',
+    ]);
+  });
+
+  it('credits a person only when the status names one', () => {
+    const human = notice.replace(
+      /<p>Written by AI[^<]*<\/p>/,
+      '<p>Written by AI (Claude, Anthropic). Jane Doe checked it against the sources below on 13 September 2026. Rules change: check the official source before you act. Not legal, tax or financial advice.</p>',
+    );
+    expect(trustProblems(page('guide', human, listed))).toEqual([
+      'the AI notice and its status disagree on who checked the page',
+    ]);
+    const withStatus = human.replace('<span>AI-checked</span>', '<span>Checked by Jane Doe</span>');
+    expect(trustProblems(page('guide', withStatus, listed))).toEqual([]);
+  });
+
   it("requires one of the page language's notice sentences, with any date", () => {
     const silent = notice.replace(/<p>Written by AI[^<]*<\/p>/, '<p>Some other words.</p>');
     expect(trustProblems(page('guide', silent, listed))).toEqual([

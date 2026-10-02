@@ -45,7 +45,6 @@ import {
   splitAroundParam,
 } from '../lib/pages';
 import { href } from '../lib/paths';
-import { CHECKLIST_SAVES } from '../lib/routes';
 
 interface Props {
   locale: Locale;
@@ -172,7 +171,6 @@ const relatedTypes = businessType
         {doc.kind === 'checklist' && (
           <Callout variant="note" label={t('doc.note')}>
             <p>{t('trust.checklistReminder')}</p>
-            {!CHECKLIST_SAVES && <p>{t('checklist.notSaved')}</p>}
           </Callout>
         )}
 

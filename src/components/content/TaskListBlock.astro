@@ -13,16 +13,25 @@ import Inline from './Inline.astro';
 import { useTranslations } from '../../i18n';
 import type { ContentContext } from '../../lib/content/context';
 import type { Block } from '../../lib/content/schema';
+import { CHECKLIST_SAVES } from '../../lib/routes';
 
 interface Props {
   block: Extract<Block, { kind: 'tasklist' }>;
   context: ContentContext;
+  /**
+   * The first checklist on the page says, once, that ticks are not saved yet, until WP-30 saves
+   * them (`CHECKLIST_SAVES`). Every checklist page gets it, not only `/checklist/` (review p5).
+   */
+  first?: boolean | undefined;
 }
 
-const { block, context } = Astro.props;
+const { block, context, first = false } = Astro.props;
 const t = useTranslations(context.contentLang);
 ---
 
+{first && !CHECKLIST_SAVES && (
+  <p class="st-hint st-tasklist__not-saved">{t('checklist.notSaved')}</p>
+)}
 <fieldset class="st-tasklist">
   {block.group ? (
     <legend>

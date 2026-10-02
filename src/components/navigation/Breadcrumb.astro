@@ -66,6 +66,14 @@ const last = crumbs.length - 1;
     overflow-wrap: anywhere;
   }
 
+  /* A crumb link stands alone, so it is a full 44px target (B4, B5; review WP-20 pass 5). */
+  .st-breadcrumb__item a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--st-target);
+    min-inline-size: var(--st-target);
+  }
+
   /* On a phone the trail is "‹ parent" only; the current page is the heading right below it. */
   @media (width < 768px) {
     .st-breadcrumb__item:not([data-position='parent']) {
