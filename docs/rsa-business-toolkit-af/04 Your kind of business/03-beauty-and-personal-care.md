@@ -2,7 +2,7 @@
 
 Lees eers `01-core/`. Hierdie lêer voeg die reëls by wat net geld vir besighede wat aan mense se liggame werk.
 
-Dit dek haarkappers, barbiers, naels, skoonheidsterapie, wimpers, massering, tatoeëring en lyfringe.
+Dit dek haarkappery, barbierswerk, naels, skoonheidsterapie, wimpers, massering, tatoeëring en lyfringe.
 
 ## Woorde wat in hierdie lêer gebruik word
 
@@ -14,7 +14,7 @@ Gewone betekenisse van die terme wat in hierdie lêer gebruik word. Die volledig
 | EHP | Die munisipale gesondheidsinspekteur. |
 | Sonering | Of jou adres vir besigheid gebruik mag word. |
 | Aanspreeklikheidsversekering vir behandelings | Dekking vir wanneer ’n behandeling ’n kliënt skade aandoen. |
-| Plektoets (patch test) | ’n Klein toets op die vel voor ’n chemiese behandeling. Teken dit aan. |
+| Veltoets (patch test) | ’n Klein toets op die vel voor ’n chemiese behandeling. Teken dit aan. |
 
 ---
 
@@ -34,7 +34,7 @@ Waarna die inspekteur gewoonlik kyk: fasiliteite om hande te was, ventilasie, of
 
 ## Tatoeëer- en lyfringateljees
 
-Hulle kry die strengste inspeksie in hierdie kategorie, omdat hulle die vel breek.
+Hulle kry die strengste inspeksie in hierdie kategorie, omdat hulle die vel deurboor.
 
 Verwag vrae oor steriliseringstoerusting, naalde vir eenmalige gebruik, houers vir skerp voorwerpe, kontrakte vir afvalverwydering, en rekords van kliënte en lotnommers.
 
@@ -44,7 +44,7 @@ Praat met jou omgewingsgesondheidspraktisyn voordat jy ’n huurkontrak teken. D
 
 Dit is algemeen en gewoonlik wettig. Maar jy het soneringsgoedkeuring nodig, en gewoonlik ’n aparte behandelingskamer met sy eie wasbak.
 
-Vra die stadsbeplanningsafdeling oor jou sonering voordat jy geld aan ’n kamer bestee. Sommige residensiële sonerings laat ’n tuisbedrywigheid (home occupation) toe, met beperkings op die getal kliënte, parkering en tekens.
+Vra die stadsbeplanningsafdeling oor jou sonering voordat jy geld aan ’n kamer bestee. Sommige residensiële sonerings laat ’n tuisbedrywigheid (home occupation) toe, met beperkings op die getal kliënte, parkering en uithangborde.
 
 ## As jy produkte maak of verkoop
 

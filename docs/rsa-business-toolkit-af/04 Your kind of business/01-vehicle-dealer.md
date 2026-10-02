@@ -221,7 +221,7 @@ Jou beskerming is dus bekendmaking, op skrif, gebrek vir gebrek.
 
 Laat elke voertuig inspekteer voordat jy dit adverteer. Skryf elke fout neer wat jy vind. Neem ’n foto van elkeen.
 
-Sit ’n gebrekeskedule in jou koopooreenkoms. Nie "verkoop soos dit staan" nie. ’n Genommerde lys: "1. Lugversorging koel nie. 2. Bestuurdersdeur se bekleding is los. 3. Agterbande op 3mm en sal binne 6 maande vervang moet word. 4. Olie syfer by die kleptoppakking uit."
+Sit ’n gebrekeskedule in jou koopooreenkoms. Nie "verkoop soos dit staan" nie. ’n Genommerde lys: "1. Lugversorging koel nie. 2. Bestuurdersdeur se bekleding is los. 3. Agterbande op 3mm en sal binne 6 maande vervang moet word. 4. Olie syfer by die klepdekselpakking uit."
 
 Laat die koper elke reël parafeer en die skedule teken.
 
@@ -372,7 +372,7 @@ As jy ’n koper toelaat om jou in paaiemente te betaal, is jy ’n kredietversk
 
 Enige persoon wat ’n kredietverskaffer is onder ’n kredietooreenkoms waarop die wet van toepassing is, moet by die National Credit Regulator (nasionale kredietreguleerder) registreer voordat hy krediet verleen. Die getal of grootte van die lenings maak nie meer saak nie.
 
-Die ou geldelike drempel is weg. Daar is geen vrystelling vir klein handelaars nie. Om as kredietverskaffer te registreer, is ’n ernstige onderneming met deurlopende verslagdoeningspligte.
+Die ou geldelike drempel is weg. Daar is geen vrystelling vir klein handelaars nie. Om as kredietverskaffer te registreer, is ’n ernstige verbintenis met deurlopende verslagdoeningspligte.
 
 Die eenvoudige antwoord vir ’n klein handelaar: moenie jou eie paaiementbepalings aanbied nie. Verwys die koper na ’n bank of ’n geregistreerde finansieringshuis. Neem die volle betaling voor aflewering.
 
@@ -384,7 +384,7 @@ Werk eerder saam met ’n gelisensieerde verskaffer. Hulle sal jou korrek aanste
 
 ### Ingevoerde voertuie
 
-Ingevoerde voertuie bring ’n aparte stapel vereistes mee: doeaneklaring by SARS en bewys dat die invoerreg betaal is, ’n SAPS-klaring, ’n magtigingsbrief van die SABS, en ’n korrekte inskrywing op eNaTIS.
+Ingevoerde voertuie bring ’n aparte stapel vereistes mee: doeaneklaring by SARS en bewys dat die invoerreg betaal is, ’n SAPS-klaring, ’n magtigingsbrief (letter of authority) van die SABS, en ’n korrekte inskrywing op eNaTIS.
 
 As ’n motorvoertuig buite die Republiek geregistreer is, het jy die registrasie- en lisensiëringsdokumente nodig wat uitgereik is in die land waar die voertuig geregistreer is, ’n klaring van die motorvoertuig deur die South African Police Service (Suid-Afrikaanse Polisiediens), en ’n magtigingsbrief wat deur die South African Bureau of Standards uitgereik is. Die Customs and Excise Division (afdeling Doeane en Aksyns) van SARS verskaf die vereiste bewys dat aan hulle regulasies voldoen is.
 
@@ -418,7 +418,7 @@ Die kort weergawe vir ’n handelaar:
 
 ## Groei verder as voertuie
 
-Die meeste handelaars voeg lyne by: bande, diens, onderdele, motorversorging (detailing), soms ’n onverwante besigheid onder dieselfde maatskappy.
+Die meeste handelaars voeg lyne by: bande, diensbeurte, onderdele, motorversorging (detailing), soms ’n onverwante besigheid onder dieselfde maatskappy.
 
 Lees [Nuwe besigheidslyne byvoeg](../01%20Core%20-%20applies%20to%20everyone/08-adding-new-lines.md) voordat jy dit doen. Dit dek handelsname, en watter dokumente steeds die geregistreerde maatskappynaam moet dra. Dit dek watter lisensies elke nuwe lyn nodig het. En dit verduidelik die belastingstrik wat mense vang wat ’n tweede maatskappy stig: as jy aandele in meer as een maatskappy besit, kan dit jou die laer belastingkoerse vir ’n Small Business Corporation (kleinsakekorporasie) op albei kos.
 
@@ -426,7 +426,7 @@ Die kort raad vir ’n handelaar: hou een maatskappy, gebruik handelsname, en ve
 
 ## Versekering
 
-Dit is waar klein handelaars die meeste onderverseker is.
+Dit is waar klein handelaars die dikwelste onderverseker is.
 
 Jy het dekking nodig wat ’n gewone motorpolis jou nie gee nie:
 

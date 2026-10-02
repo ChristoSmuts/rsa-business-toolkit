@@ -90,7 +90,7 @@ Die meeste ambagte het een nodig. Lees [Voertuie vir jou besigheid](../01%20Core
 
 Ekstra reëls geld as jou voertuig vol gelaai meer as 3,500 kg weeg, of as jy passasiers vir geld vervoer. Jy het ’n Professional Driving Permit (professionele bestuurspermit) en elke jaar ’n padwaardigheidstoets nodig. Vir passasiersvervoer het jy ook ’n bedryfslisensie nodig.
 
-Tekens op jou voertuig is gewoonlik die goedkoopste advertensie wat ’n plaaslike ambag kan koop, en dit is ’n aftrekbare uitgawe.
+Voertuigbelettering is gewoonlik die goedkoopste advertensie wat ’n plaaslike ambag kan koop, en dit is ’n aftrekbare uitgawe.
 
 ## Notas oor handelsmerk en bemarking
 
@@ -100,7 +100,7 @@ Gebruik `02-branding-and-marketing/`. Vir ’n plaaslike ambag is die volgorde v
 2. Resensies van elke tevrede kliënt
 3. WhatsApp Business met vinnige antwoorde en ’n katalogus van algemene werke met pryse
 4. Plaaslike Facebook-gemeenskapsgroepe
-5. Tekens op jou voertuig
+5. Voertuigbelettering
 
 Sosiale media is vyfde, nie eerste nie. ’n Loodgieter met 40 Google-resensies klop ’n loodgieter met 4,000 Instagram-volgers.
 
