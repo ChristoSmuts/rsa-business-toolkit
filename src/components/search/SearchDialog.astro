@@ -63,39 +63,41 @@ const ids = {
 >
   <dialog class="st-search-dialog" aria-labelledby={ids.title}>
     <div class="st-search-dialog__inner">
-      <div class="st-search-dialog__head">
-        <h2 class="st-search-dialog__title" id={ids.title}>
-          {t('search.dialogTitle')}
-        </h2>
-        <button type="button" class="st-search-dialog__close" data-search-close>
-          <Icon name="lucide:x" label={t('search.close')} />
-        </button>
+      <div class="st-search-dialog__top">
+        <div class="st-search-dialog__head">
+          <h2 class="st-search-dialog__title" id={ids.title}>
+            {t('search.dialogTitle')}
+          </h2>
+          <button type="button" class="st-search-dialog__close" data-search-close>
+            <Icon name="lucide:x" label={t('search.close')} />
+          </button>
+        </div>
+        <form class="st-search-dialog__form" action={data.page} method="get" role="search">
+          <label class="st-search-dialog__label" for={ids.input}>
+            {t('search.label')}
+          </label>
+          <input
+            id={ids.input}
+            class="st-search-dialog__input"
+            type="search"
+            name="q"
+            role="combobox"
+            aria-expanded="false"
+            aria-controls={ids.listbox}
+            aria-autocomplete="list"
+            aria-describedby={ids.help}
+            placeholder={t('search.placeholder')}
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            enterkeyhint="search"
+          />
+          <p class="st-visually-hidden" id={ids.help}>
+            {t('search.instructions')}
+          </p>
+        </form>
+        <p class="st-search-dialog__status" id={ids.status} role="status" aria-live="polite"></p>
       </div>
-      <form class="st-search-dialog__form" action={data.page} method="get" role="search">
-        <label class="st-search-dialog__label" for={ids.input}>
-          {t('search.label')}
-        </label>
-        <input
-          id={ids.input}
-          class="st-search-dialog__input"
-          type="search"
-          name="q"
-          role="combobox"
-          aria-expanded="false"
-          aria-controls={ids.listbox}
-          aria-autocomplete="list"
-          aria-describedby={ids.help}
-          placeholder={t('search.placeholder')}
-          autocomplete="off"
-          autocapitalize="off"
-          spellcheck="false"
-          enterkeyhint="search"
-        />
-        <p class="st-visually-hidden" id={ids.help}>
-          {t('search.instructions')}
-        </p>
-      </form>
-      <p class="st-search-dialog__status" id={ids.status} role="status" aria-live="polite"></p>
       <div class="st-search-dialog__body">
         <div
           class="st-search-results"
@@ -104,6 +106,11 @@ const ids = {
           aria-label={t('search.resultsLabel')}
           hidden
         ></div>
+        <p class="st-search-dialog__all" data-search-all hidden>
+          <a class="st-link-block" href={data.page}>
+            {t('search.pageTitle')}
+          </a>
+        </p>
         <div class="st-search-dialog__failed" data-search-failed hidden>
           <p>{t('search.failed')}</p>
           <p>
@@ -155,12 +162,14 @@ const ids = {
     border: 0;
     background-color: var(--st-surface);
     color: var(--st-text);
-    overflow: hidden;
-  }
 
-  .st-search-dialog[open] {
-    display: flex;
-    flex-direction: column;
+    /*
+     * The dialog itself scrolls, not a box inside it: a scrolling box holding only the results
+     * (whose options are reached with the arrow keys, not Tab) would be a scroll region the
+     * keyboard cannot reach (axe scrollable-region-focusable). The field stays in view (sticky).
+     */
+    overflow: auto;
+    overscroll-behavior: contain;
   }
 
   .st-search-dialog::backdrop {
@@ -168,12 +177,22 @@ const ids = {
   }
 
   .st-search-dialog__inner {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--st-space-3);
-    min-block-size: 0;
-    padding: var(--st-space-4);
+    padding: 0 var(--st-space-4) var(--st-space-4);
+  }
+
+  .st-search-dialog__top {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-3);
+    padding-block: var(--st-space-4) var(--st-space-2);
+    border-block-end: var(--st-border-width) solid var(--st-border);
+    background-color: var(--st-surface);
   }
 
   .st-search-dialog__head {
@@ -224,13 +243,6 @@ const ids = {
     overflow-wrap: anywhere;
   }
 
-  .st-search-dialog__body {
-    flex: 1 1 auto;
-    min-block-size: 0;
-    overflow: auto;
-    overscroll-behavior: contain;
-  }
-
   .st-search-dialog__subtitle {
     font-size: var(--st-text-lg);
   }
@@ -241,6 +253,7 @@ const ids = {
     gap: var(--st-space-2);
   }
 
+  .st-search-dialog__all[hidden],
   .st-search-dialog__empty[hidden],
   .st-search-dialog__failed[hidden] {
     display: none;

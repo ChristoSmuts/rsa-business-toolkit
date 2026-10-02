@@ -26,6 +26,7 @@ import {
   queryFrom,
   StSearchPage,
   StSearchSuggest,
+  suggestionQueries,
   wordsFromPath,
 } from '../../src/scripts/search-page';
 import { readContext } from '../../src/scripts/search-render';
@@ -110,6 +111,7 @@ function dialogMarkup(): string {
         </form>
         <p role="status"></p>
         <div id="lb" role="listbox" aria-label="Search results" hidden></div>
+        <p data-search-all hidden><a href="/search/">Search</a></p>
         <div data-search-failed hidden><a href="/contents/">Contents</a></div>
         <section data-search-empty><a href="/core/register/">Do I need to register a company?</a></section>
       </dialog>
@@ -287,6 +289,35 @@ describe('<st-search>', () => {
     );
   });
 
+  it('closes on a chosen result and leaves focus on the result, not on the opener', async () => {
+    const opener = document.getElementById('opener')!;
+    opener.focus();
+    host.open(opener);
+    const controller = (await host.controller()) as SearchDialogController;
+    await controller.search('statements');
+    const option = document.querySelector<HTMLAnchorElement>('[role="option"]')!;
+    // Stay on the result's page, so choosing it moves to the heading instead of loading a page.
+    window.history.replaceState(null, '', new URL(option.href).pathname);
+    key(document.getElementById('q')!, { key: 'Enter' });
+    expect(document.querySelector('dialog')!.open).toBe(false);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(document.activeElement?.id).toBe('financial-statements');
+    expect(window.location.hash).toBe('#financial-statements');
+  });
+
+  it('shows the failed state when the results code cannot load', async () => {
+    const failing = Object.assign(host, {
+      controller: () => Promise.reject(new Error('offline')),
+    });
+    failing.open();
+    await vi.waitFor(() =>
+      expect(document.querySelector<HTMLElement>('[data-search-failed]')!.hidden).toBe(false),
+    );
+    expect(document.querySelector<HTMLElement>('[data-search-empty]')!.hidden).toBe(true);
+    // Back to the class's own method for the shared teardown.
+    Reflect.deleteProperty(failing, 'controller');
+  });
+
   it('stops listening when it is removed', () => {
     document.querySelector('st-search')!.remove();
     expect(key(document.body, { key: '/' }).defaultPrevented).toBe(false);
@@ -357,7 +388,6 @@ describe('the results listbox', () => {
     const enter = key(input(), { key: 'Enter' });
     expect(enter.defaultPrevented).toBe(true);
     expect(opened).toEqual([options()[2]!.href]);
-    expect(document.querySelector('dialog')!.open).toBe(false);
   });
 
   it('opens the first result on Enter when none is active, and an option on a click', async () => {
@@ -391,6 +421,30 @@ describe('the results listbox', () => {
     const prevented = afterOwnHandlers(input().form!, 'submit');
     input().form!.dispatchEvent(new Event('submit', { cancelable: true }));
     expect(prevented()).toBe(false);
+  });
+
+  it('shows a few results per section, and links the search page for the rest', async () => {
+    const many: SearchEntry[] = Array.from({ length: 5 }, (_, i) => ({
+      ...entries[0]!,
+      key: `levy-${String(i)}`,
+      anchor: `levy-${String(i)}`,
+      title: `Levy ${String(i)}`,
+      text: 'levy',
+    }));
+    const saved = indexBody;
+    indexBody = JSON.parse(serialiseIndex('en', ['lookup'], many).json) as unknown;
+    try {
+      await controller.search('levy');
+    } finally {
+      indexBody = saved;
+    }
+    expect(options()).toHaveLength(3);
+    const all = document.querySelector<HTMLElement>('[data-search-all]')!;
+    expect(all.hidden).toBe(false);
+    expect(all.querySelector('a')?.getAttribute('href')).toBe('/search/?q=levy');
+    expect(all.textContent).toBe('See all 5 results on the search page');
+    await controller.search('PIS');
+    expect(all.hidden).toBe(true);
   });
 
   it('says when nothing matched and keeps the common questions', async () => {
@@ -658,6 +712,12 @@ describe('<st-search-suggest>', () => {
     expect(wordsFromPath('/a/index.html')).toBe('');
     expect(wordsFromPath('/%E0%A4%A/x-y')).toBe('%E0%A4%A');
     expect(queryFrom('/search/?q=%20VAT264%20')).toBe('VAT264');
+    expect(suggestionQueries('business-types/vehicle-dealr/')).toEqual([
+      'vehicle dealr',
+      'business types vehicle dealr',
+    ]);
+    expect(suggestionQueries('vat-guide/')).toEqual(['vat guide']);
+    expect(suggestionQueries('/')).toEqual([]);
     expect(queryFrom('/search/')).toBe('');
   });
 
@@ -684,14 +744,14 @@ describe('<st-search-suggest>', () => {
     mountHtml(`<st-search-suggest ${dataAttributes()} hidden></st-search-suggest>`);
     const element = document.querySelector<StSearchSuggest>('st-search-suggest')!;
     const context = readContext(element);
-    await element.suggest('PIS', context);
+    await element.suggest(['zzzzzz', 'PIS'], context);
     expect(element.querySelectorAll('li')).toHaveLength(2);
     element.replaceChildren();
     element.hidden = true;
-    await element.suggest('zzzzzz', context);
+    await element.suggest(['zzzzzz'], context);
     expect(element.hidden).toBe(true);
     stubFetch(false);
-    await element.suggest('PIS', context, createSearchClient({ url: '/x.json', locale: 'en' }));
+    await element.suggest(['PIS'], context, createSearchClient({ url: '/x.json', locale: 'en' }));
     expect(element.hidden).toBe(true);
   });
 });

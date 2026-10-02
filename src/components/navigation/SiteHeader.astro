@@ -63,7 +63,7 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
         <Icon name="lucide:search" size="1em" />
         <span>{t('nav.search')}</span>
         {/* A visual hint only: the script announces the keys as `aria-keyshortcuts`. */}
-        <span class="st-topbar__kbd js-only" aria-hidden="true">
+        <span class="st-topbar__kbd js-only" aria-hidden="true" data-search-key-hint>
           <Kbd>/</Kbd>
         </span>
       </a>

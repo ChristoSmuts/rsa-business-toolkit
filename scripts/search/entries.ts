@@ -219,21 +219,39 @@ export function sectionEntries(input: IndexInput, doc: Doc): SearchEntry[] {
   return out;
 }
 
-/** "Words used in this file": one entry per term, opening the page's word list. */
-export function termEntries(input: IndexInput, doc: Doc): SearchEntry[] {
-  const anchor = doc.headings.some((heading) => heading.id === TERMS_HEADING_ID)
+/** A term as it appears in prose: `Register (noun)` → `register`. */
+function termWords(term: string): string {
+  return foldTerm(term.replace(/\s*\([^)]*\)/g, '')).trim();
+}
+
+/**
+ * "Words used in this file": one entry per term. It opens the first part of the page whose text
+ * uses the term, because that is where the term is explained in context; the word list itself
+ * (a `<details>`, not a heading) is the fallback when no part uses it.
+ */
+export function termEntries(
+  input: IndexInput,
+  doc: Doc,
+  sections: readonly SearchEntry[] = sectionEntries(input, doc),
+): SearchEntry[] {
+  const list = doc.headings.some((heading) => heading.id === TERMS_HEADING_ID)
     ? TERMS_HEADING_ID
     : undefined;
   const sectionTitle = sectionTitleFor(input.manifest, input.lang, doc.section);
-  return doc.terms.map((term, index) =>
-    entry(
+  return doc.terms.map((term, index) => {
+    const words = termWords(term.term);
+    const usedIn = sections.find(
+      (section) =>
+        section.anchor !== undefined && words !== '' && foldTerm(section.text).includes(words),
+    );
+    return entry(
       'term',
       {
         key: `${doc.id}~term~${String(index)}`,
         doc: doc.id,
-        anchor,
+        anchor: usedIn?.anchor ?? list,
         title: term.term,
-        docTitle: doc.title,
+        docTitle: usedIn === undefined ? doc.title : `${usedIn.docTitle} › ${usedIn.title}`,
         path: [sectionTitle, doc.title].join(' › '),
         text: cleanText(term.meaning),
         excerpt: excerptOf(term.meaning),
@@ -242,8 +260,8 @@ export function termEntries(input: IndexInput, doc: Doc): SearchEntry[] {
         ...docFacets(doc),
       },
       input,
-    ),
-  );
+    );
+  });
 }
 
 export function glossaryEntries(input: IndexInput): SearchEntry[] {
@@ -264,7 +282,8 @@ export function glossaryEntries(input: IndexInput): SearchEntry[] {
         doc: docId,
         anchor: item.id,
         title: item.term,
-        docTitle,
+        // The kind already says "Glossary"; the group says which part of it.
+        docTitle: `${docTitle} › ${item.group}`,
         path: [sectionTitle, docTitle, item.group].join(' › '),
         text: cleanText(definition),
         excerpt: excerptOf(definition),
@@ -369,10 +388,13 @@ export function buildEntries(input: IndexInput): SearchEntry[] {
   return [
     ...answerEntries(input),
     ...glossary,
-    ...ordered.flatMap((doc) => [
-      ...sectionEntries(input, doc),
-      ...termEntries(input, doc).filter((term) => !defined.has(foldTerm(term.title))),
-    ]),
+    ...ordered.flatMap((doc) => {
+      const sections = sectionEntries(input, doc);
+      return [
+        ...sections,
+        ...termEntries(input, doc, sections).filter((term) => !defined.has(foldTerm(term.title))),
+      ];
+    }),
     ...taskEntries(input, docsById),
   ];
 }

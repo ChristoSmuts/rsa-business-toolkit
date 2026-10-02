@@ -176,7 +176,19 @@ export function runSearch(
   };
   let hits = index.search.search(q, { ...searchOptions, combineWith: 'AND' });
   if (hits.length === 0) hits = index.search.search(q, { ...searchOptions, combineWith: 'OR' });
-  return hits.slice(0, options.limit ?? DEFAULT_LIMIT).map((hit) => toResult(hit, locale, base));
+  // Two entries can open the same place (a term and the section that explains it): keep the
+  // better one, so the list never offers the same destination twice.
+  const limit = options.limit ?? DEFAULT_LIMIT;
+  const seen = new Set<string>();
+  const results: SearchResult[] = [];
+  for (const hit of hits) {
+    if (results.length === limit) break;
+    const result = toResult(hit, locale, base);
+    if (seen.has(result.href)) continue;
+    seen.add(result.href);
+    results.push(result);
+  }
+  return results;
 }
 
 /**

@@ -45,7 +45,7 @@ function main(): void {
     const over = gzip > INDEX_BUDGET_GZIP;
     failed ||= over;
     console.log(
-      `search:build: ${built.file}: ${String(built.entries)} entries, ${kb(built.json.length)} raw, ${kb(gzip)} gzip` +
+      `search:build: ${built.file}: ${String(built.entries)} entries, ${kb(Buffer.byteLength(built.json))} raw, ${kb(gzip)} gzip` +
         (over ? ` — OVER the ${kb(INDEX_BUDGET_GZIP)} budget` : ''),
     );
   }

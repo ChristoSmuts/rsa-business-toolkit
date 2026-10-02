@@ -26,8 +26,17 @@ export interface DialogController {
 
 export interface DialogDeps {
   readonly settings: SearchSettings;
+  /** Close the dialog and open a result. */
   readonly openResult: (url: string) => void;
 }
+
+/**
+ * Results shown per section in the dialog. Groups follow the order of their best result, so one
+ * busy section (the glossary, the checklist and the register are all "Look it up") would otherwise
+ * push the second-best result of another section far down. The rest are one link away, on the
+ * search page.
+ */
+export const PER_GROUP = 3;
 
 /** Wait this long after the last key press before searching. */
 export const DEBOUNCE_MS = 120;
@@ -45,6 +54,7 @@ export class SearchDialogController implements DialogController {
   readonly #status: HTMLElement;
   readonly #empty: HTMLElement | null;
   readonly #failed: HTMLElement | null;
+  readonly #all: HTMLElement | null;
   #options: HTMLAnchorElement[] = [];
   #active = -1;
   #timer: ReturnType<typeof setTimeout> | undefined;
@@ -66,6 +76,7 @@ export class SearchDialogController implements DialogController {
     this.#status = status;
     this.#empty = host.querySelector('[data-search-empty]');
     this.#failed = host.querySelector('[data-search-failed]');
+    this.#all = host.querySelector('[data-search-all]');
     input.addEventListener('input', this.#onInput);
     input.addEventListener('keydown', this.#onKeydown);
     input.form?.addEventListener('submit', this.#onSubmit);
@@ -124,9 +135,8 @@ export class SearchDialogController implements DialogController {
     this.activate(option);
   };
 
-  /** Open a result: close the dialog, then go to the heading. */
+  /** Open a result. The element closes the dialog and goes to the heading (`DialogDeps`). */
   activate(option: HTMLAnchorElement): void {
-    this.#host.querySelector('dialog')?.close();
     this.#deps.openResult(option.href);
   }
 
@@ -189,6 +199,7 @@ export class SearchDialogController implements DialogController {
   }
 
   #clearOptions(): void {
+    if (this.#all) this.#all.hidden = true;
     this.#listbox.replaceChildren();
     this.#listbox.hidden = true;
     this.#options = [];
@@ -224,7 +235,10 @@ export class SearchDialogController implements DialogController {
     }
     if (this.#empty) this.#empty.hidden = true;
     let n = 0;
-    for (const group of groupResults(results)) {
+    let shown = 0;
+    for (const full of groupResults(results)) {
+      const group = { ...full, results: full.results.slice(0, PER_GROUP) };
+      shown += group.results.length;
       const name = sectionName(this.#context, group.section);
       const element = doc.createElement('div');
       element.className = 'st-search-results__group';
@@ -252,6 +266,14 @@ export class SearchDialogController implements DialogController {
     this.#listbox.hidden = false;
     this.#input.setAttribute('aria-expanded', 'true');
     this.#setStatus(tr('search.results', { count: results.length }));
+    const link = this.#all?.querySelector('a');
+    if (this.#all && link && shown < results.length) {
+      const url = new URL(this.#context.page, this.#host.ownerDocument.baseURI);
+      url.searchParams.set('q', query);
+      link.href = `${url.pathname}${url.search}`;
+      link.textContent = tr('search.seeAll', { count: results.length });
+      this.#all.hidden = false;
+    }
   }
 }
 

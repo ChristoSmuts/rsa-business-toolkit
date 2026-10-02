@@ -232,6 +232,17 @@ describe('runSearch', () => {
     expect(results[0]?.kind).toBe('glossary');
   });
 
+  it('offers each destination once, keeping the better result', () => {
+    const twin = entry({
+      key: 'twin',
+      anchor: 'belasting',
+      title: 'Belasting twin',
+      text: 'belasting',
+    });
+    const results = runSearch(index('af', [...ENTRIES, twin]), 'belasting', 'af');
+    expect(results.filter((r) => r.anchor === 'belasting')).toHaveLength(1);
+  });
+
   it('stops at the limit', () => {
     expect(runSearch(af, 'register', 'af', { limit: 1 })).toHaveLength(1);
   });

@@ -91,6 +91,7 @@ const doc = {
   terms: [
     { term: 'Turnover', meaning: 'Money in.' },
     { term: 'SBC', meaning: 'Small business corporation.' },
+    { term: 'Detail (noun)', meaning: 'A small part.' },
   ],
   headings: [{ id: 'words-used-in-this-file', depth: 2, text: 'Words used' }],
   blocks: [
@@ -268,10 +269,11 @@ describe('sectionEntries', () => {
 });
 
 describe('the other kinds', () => {
-  it('turns "Words used" terms into entries that open the word list', () => {
-    expect(termEntries(input, doc).map((e) => [e.title, e.anchor])).toEqual([
-      ['Turnover', 'words-used-in-this-file'],
-      ['SBC', 'words-used-in-this-file'],
+  it('opens a "Words used" term where the page uses it, else at the word list', () => {
+    expect(termEntries(input, doc).map((e) => [e.title, e.anchor, e.docTitle])).toEqual([
+      ['Turnover', 'words-used-in-this-file', 'Tax'],
+      ['SBC', 'words-used-in-this-file', 'Tax'],
+      ['Detail (noun)', 'vat-detail', 'Tax › vat › vat-detail'],
     ]);
     const noList = { ...doc, headings: [] } as unknown as Doc;
     expect(termEntries(input, noList)[0]?.anchor).toBeUndefined();
@@ -282,7 +284,7 @@ describe('the other kinds', () => {
       expect.objectContaining({
         key: 'lookup/glossary#sbc',
         route: 'glossary/',
-        docTitle: 'Glossary',
+        docTitle: 'Glossary › Tax',
         path: 'Look it up › Glossary › Tax',
         weight: 3,
         lang: 'en',

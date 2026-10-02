@@ -179,6 +179,20 @@ export function wordsFromPath(pathname: string): string {
     .join(' ');
 }
 
+/**
+ * What to search for on the 404 page, most specific first: the words of the last part of the
+ * address, then of all of it. `business-types/vehicle-dealr/` → `vehicle dealr`, then
+ * `business types vehicle dealr` (the section words alone would rank the section's own pages first).
+ */
+export function suggestionQueries(path: string): string[] {
+  const last =
+    path
+      .split('/')
+      .filter((part) => part !== '')
+      .at(-1) ?? '';
+  return [...new Set([wordsFromPath(last), wordsFromPath(path)])].filter((query) => query !== '');
+}
+
 export class StSearchSuggest extends HTMLElement {
   connectedCallback(): void {
     const context = readContext(this);
@@ -189,19 +203,25 @@ export class StSearchSuggest extends HTMLElement {
     const rest = window.location.pathname.startsWith(base)
       ? window.location.pathname.slice(base.length)
       : window.location.pathname;
-    const words = wordsFromPath(rest);
-    if (words === '' || searchSettings().lowData) return;
-    void this.suggest(words, context);
+    const queries = suggestionQueries(rest);
+    if (queries.length === 0 || searchSettings().lowData) return;
+    void this.suggest(queries, context);
   }
 
+  /** Show the results of the first query that finds anything. */
   async suggest(
-    words: string,
+    queries: readonly string[],
     context: SearchContext,
     client: SearchClient = createSearchClient({ url: context.index, locale: context.locale }),
   ): Promise<void> {
-    let results: SearchResult[];
+    let results: SearchResult[] = [];
+    let words = '';
     try {
-      results = await client.search(words, { limit: SUGGESTIONS });
+      for (const query of queries) {
+        words = query;
+        results = await client.search(query, { limit: SUGGESTIONS });
+        if (results.length > 0) break;
+      }
     } catch {
       return;
     }

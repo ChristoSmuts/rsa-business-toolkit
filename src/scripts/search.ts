@@ -184,7 +184,22 @@ export class StSearch extends HTMLElement {
     if (target instanceof Element && target.closest('[data-search-close]')) this.close();
   };
 
+  /** Set while a chosen result closes the dialog: focus then goes to the result, not back. */
+  #leaving = false;
+
+  /** Open a chosen result: close the dialog without returning focus, then go to the result. */
+  readonly #choose = (url: string): void => {
+    this.#leaving = true;
+    this.close();
+    openResult(url);
+  };
+
   readonly #onClose = (): void => {
+    if (this.#leaving) {
+      this.#leaving = false;
+      this.#returnFocus = null;
+      return;
+    }
     const back = this.#returnFocus;
     this.#returnFocus = null;
     // The opener may have been inside the phone menu, which closed when it was used.
@@ -204,10 +219,15 @@ export class StSearch extends HTMLElement {
     this.#dialog?.addEventListener('close', this.#onClose);
     document.addEventListener('click', this.#onDocumentClick);
     document.addEventListener('keydown', this.#onKeydown);
-    const keys = searchSettings().shortcuts ? '/ Control+K' : 'Control+K';
+    const { shortcuts } = searchSettings();
+    const keys = shortcuts ? '/ Control+K' : 'Control+K';
     for (const opener of document.querySelectorAll('[data-search-open]')) {
       opener.setAttribute('aria-haspopup', 'dialog');
       opener.setAttribute('aria-keyshortcuts', keys);
+      // The `/` hint promises a key that is switched off.
+      for (const hint of opener.querySelectorAll<HTMLElement>('[data-search-key-hint]')) {
+        hint.hidden = !shortcuts;
+      }
     }
   }
 
@@ -221,7 +241,7 @@ export class StSearch extends HTMLElement {
   /** The results half, imported once. */
   controller(): Promise<DialogController> {
     this.#controller ??= import('./search-ui').then(({ createDialogController }) =>
-      createDialogController(this, { settings: searchSettings(), openResult }),
+      createDialogController(this, { settings: searchSettings(), openResult: this.#choose }),
     );
     return this.#controller;
   }
@@ -232,7 +252,18 @@ export class StSearch extends HTMLElement {
     this.#returnFocus = opener;
     dialog.showModal();
     dialog.querySelector<HTMLInputElement>('input[type="search"]')?.focus();
-    void this.controller().then((controller) => controller.opened());
+    this.controller().then(
+      (controller) => controller.opened(),
+      () => {
+        // The results code could not load (offline, a stale page after a deploy): show the
+        // failed state the page rendered, with its link to the contents.
+        this.#controller = undefined;
+        const failed = this.querySelector<HTMLElement>('[data-search-failed]');
+        const empty = this.querySelector<HTMLElement>('[data-search-empty]');
+        if (failed) failed.hidden = false;
+        if (empty) empty.hidden = true;
+      },
+    );
   }
 
   close(): void {

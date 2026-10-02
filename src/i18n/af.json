@@ -698,6 +698,10 @@
       "one": "{count} resultaat",
       "other": "{count} resultate"
     },
+    "seeAll": {
+      "one": "Sien die {count} resultaat op die soekbladsy",
+      "other": "Sien al {count} resultate op die soekbladsy"
+    },
     "resultsLabel": "Soekresultate",
     "groupLabel": "Soekresultate in {section}",
     "resultPath": "{doc} › {heading}",

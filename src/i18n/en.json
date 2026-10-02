@@ -698,6 +698,10 @@
       "one": "{count} result",
       "other": "{count} results"
     },
+    "seeAll": {
+      "one": "See the {count} result on the search page",
+      "other": "See all {count} results on the search page"
+    },
     "resultsLabel": "Search results",
     "groupLabel": "Results in {section}",
     "resultPath": "{doc} › {heading}",
