@@ -53,11 +53,13 @@ interface Props {
   doc: Doc;
   glossary: GlossaryFile | undefined;
   sources: SourcesFile | undefined;
+  /** The language `sources` is in; English until `lookup/sources` is translated. */
+  sourcesLang: Locale;
   /** Every business type, for the effort meter and the related-type hints. */
   businessTypes: readonly BusinessType[];
 }
 
-const { locale, manifest, doc, glossary, sources, businessTypes } = Astro.props;
+const { locale, manifest, doc, glossary, sources, sourcesLang, businessTypes } = Astro.props;
 /** The document that is the business-types hub; B6 gives it the type tiles above its text. */
 const BUSINESS_TYPES_HUB = 'business-types/pick-your-business-type';
 assertDocTrust(doc);
@@ -73,6 +75,7 @@ const context = createContentContext({
   manifest,
   glossary,
   sources,
+  sourcesLang,
   docId: doc.id,
 });
 

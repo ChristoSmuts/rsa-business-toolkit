@@ -24,6 +24,12 @@ export interface ContentContext {
   readonly manifest: Manifest;
   readonly glossary: GlossaryFile | undefined;
   readonly sources: SourcesFile | undefined;
+  /**
+   * The language of `sources`. The register is one document (`lookup/sources`) translated on its
+   * own schedule, so a translated page can carry the English register until the Afrikaans one
+   * exists. Register text is then marked with this language, not with `contentLang`.
+   */
+  readonly sourcesLang: Locale;
   /** Every URL the register marks as official, for the `Official` badge on external links. */
   readonly officialUrls: ReadonlySet<string>;
   /** The document being rendered, when there is one. Used for task ids and same-page anchors. */
@@ -36,16 +42,20 @@ export interface ContentContextInput {
   readonly contentLang?: Locale | undefined;
   readonly glossary?: GlossaryFile | undefined;
   readonly sources?: SourcesFile | undefined;
+  /** Defaults to `contentLang`. */
+  readonly sourcesLang?: Locale | undefined;
   readonly docId?: string | undefined;
 }
 
 export function createContentContext(input: ContentContextInput): ContentContext {
+  const contentLang = input.contentLang ?? input.locale;
   return {
     locale: input.locale,
-    contentLang: input.contentLang ?? input.locale,
+    contentLang,
     manifest: input.manifest,
     glossary: input.glossary,
     sources: input.sources,
+    sourcesLang: input.sourcesLang ?? contentLang,
     officialUrls: officialUrls(input.sources),
     docId: input.docId,
   };

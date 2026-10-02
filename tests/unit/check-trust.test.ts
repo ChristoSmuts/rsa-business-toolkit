@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   expectedDocumentPages,
+  isProtectedText,
   langProblems,
   noticeSentences,
   textNodesWithLang,
@@ -196,6 +197,32 @@ describe('language of parts on an Afrikaans page', () => {
     const enName = '<html lang="en-ZA"><body><p>CC0 1.0</p><p>SARS EMP201</p></body></html>';
     const afName = '<html lang="af-ZA"><body><p>CC0 1.0</p><p>SARS EMP201</p></body></html>';
     expect(langProblems(afName, enName)).toEqual([]);
+  });
+
+  it('treats names TERMS-af.json keeps in English as the same in both languages', () => {
+    for (const text of [
+      'SARS:',
+      'BizPortal',
+      'eNaTIS / NaTIS',
+      'RWC / CoR',
+      'PrDP',
+      'Consumer Protection Act 68 of 2008.',
+      'Voetstoots',
+      'Bona vacantia',
+      'CoR 14.3',
+      'WhatsApp Business',
+    ]) {
+      expect(isProtectedText(text), text).toBe(true);
+    }
+    for (const text of ['Tax and SARS', 'Running a Pty Ltd', 'Master checklist', 'Act']) {
+      expect(isProtectedText(text), text).toBe(false);
+    }
+  });
+
+  it('skips template amounts and single-letter placeholders', () => {
+    const enText = '<html lang="en-ZA"><body><p>R 0.00</p><p>[X]</p></body></html>';
+    const afText = '<html lang="af-ZA"><body><p>R 0.00</p><p>[X]</p></body></html>';
+    expect(langProblems(afText, enText)).toEqual([]);
   });
 
   it('fails English text that inherits Afrikaans', () => {

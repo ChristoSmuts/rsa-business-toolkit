@@ -15,6 +15,7 @@ import { normaliseBase } from '../base-path';
 import { decodeEntities, listFiles, resolveDistRoot, routeOfHtmlFile } from './audit-links';
 import af from '../../src/i18n/af.json';
 import en from '../../src/i18n/en.json';
+import termsAf from '../translate/TERMS-af.json';
 
 /** Document kinds whose pages D5 governs: every kind the content pipeline emits. */
 export const TRUST_KINDS = ['guide', 'template', 'checklist', 'glossary', 'sources'] as const;
@@ -241,11 +242,50 @@ function sharedStrings(): Set<string> {
  * URLs and domain names, and codes: one all-caps token with a digit (VAT201, EMP201) or of at
  * most five letters (SARS, CIPC), or a short run of such tokens ("CC0 1.0"). Upper-case words
  * ("TAX INVOICE") are words, and are checked (review WP-20 passes 8, 9). Names such as "Google Drive"
- * cannot be told apart from English words; the translation package extends `sharedStrings` or this
- * pattern when its first document lands (backlog, review WP-20 pass 7).
+ * cannot be told apart from English words, so `isProtectedText` takes them from TERMS-af.json.
  */
 const LANGUAGE_NEUTRAL =
-  /^(?:[^\p{L}]+|R[\d.,]+(?: million)?|(?:https?:\/\/)?[\w-]+(?:\.[\w-]+)+(?:\/\S*)?|(?:(?:(?=[\p{Lu}\d&./-]*\d)[\p{Lu}\d&./-]{2,}|\p{Lu}{2,5})(?: |$))+)$/u;
+  /^(?:[^\p{L}]+|R ?[\d.,]+(?: million)?|\[\p{Lu}\]|(?:https?:\/\/)?[\w-]+(?:\.[\w-]+)+(?:\/\S*)?|(?:(?:(?=[\p{Lu}\d&./-]*\d)[\p{Lu}\d&./-]{2,}|\p{Lu}{2,5})(?: |$))+)$/u;
+
+/**
+ * Names `scripts/translate/TERMS-af.json` keeps in English in every language (SARS, eFiling, Act
+ * names, form codes), longest first so "WhatsApp Business" is removed before "WhatsApp".
+ */
+export const PROTECTED_NAMES: readonly string[] = [
+  ...new Set([
+    ...termsAf.keepVerbatim,
+    ...termsAf.formCodes,
+    ...termsAf.terms.filter((term) => term.keepVerbatim).map((term) => term.en),
+  ]),
+].sort((a, b) => b.length - a.length);
+
+const escapeRegExp = (text: string): string => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/**
+ * True when text is made only of protected names, an Act's "68 of 2008", punctuation, and short
+ * codes ("RWC / CoR", "SARS:", "Consumer Protection Act 68 of 2008."). Such text is the same on both
+ * twins because the style guide keeps it, not because a translation is missing. A code here is a
+ * `LANGUAGE_NEUTRAL` token or two to four letters with at least two capitals (CoR, PrDP).
+ */
+export function isProtectedText(text: string, names: readonly string[] = PROTECTED_NAMES): boolean {
+  let rest = text;
+  for (const name of names) {
+    rest = rest.replace(
+      new RegExp(`(?<![\\p{L}\\d])${escapeRegExp(name)}(?![\\p{L}\\d])`, 'giu'),
+      ' ',
+    );
+  }
+  rest = rest.replace(/\b\d+ of \d{4}\b/g, ' ');
+  return rest
+    .split(/[\s/]+/)
+    .filter((token) => token !== '')
+    .every(
+      (token) =>
+        !/\p{L}/u.test(token) ||
+        LANGUAGE_NEUTRAL.test(token) ||
+        /^(?=(?:\P{Lu}*\p{Lu}){2})\p{L}{2,4}$/u.test(token),
+    );
+}
 
 /**
  * Language of parts on an Afrikaans page (build plan B5, WCAG 3.1.2; reviews WP-20 passes 6, 7), in
@@ -263,7 +303,13 @@ export function langProblems(afHtml: string, enHtml: string, shared = sharedStri
     found.push(message);
   };
   for (const node of textNodesWithLang(afHtml)) {
-    if (node.code || shared.has(node.text) || LANGUAGE_NEUTRAL.test(node.text)) continue;
+    if (
+      node.code ||
+      shared.has(node.text) ||
+      LANGUAGE_NEUTRAL.test(node.text) ||
+      isProtectedText(node.text)
+    )
+      continue;
     const inEnglish = english.has(node.text);
     // English text read with an Afrikaans voice: it inherits af-ZA and the English twin has it.
     if (node.lang.startsWith('af') && inEnglish) {

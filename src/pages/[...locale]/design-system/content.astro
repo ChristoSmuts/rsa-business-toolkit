@@ -42,6 +42,7 @@ import type { Block } from '../../../lib/content/schema';
 import { documentCrumbs } from '../../../lib/nav';
 import { href } from '../../../lib/paths';
 import { localeStaticPaths } from '../../../lib/i18n-routes';
+import { docContentLang } from '../../../lib/pages';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -61,13 +62,18 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const manifest = await loadManifest();
 
-// No language has its own copy of a document yet except English, so this is the fallback path.
 const contentLang: Locale = hasTranslation(manifest, DEMO_DOC_ID, locale) ? locale : DEFAULT_LOCALE;
 const doc = await loadDoc(contentLang, DEMO_DOC_ID);
 if (!doc) throw new Error(`${DEMO_DOC_ID} is missing from src/data. Run \`pnpm content:build\`.`);
-const noteDoc = await loadDoc(contentLang, NOTE_DOC_ID);
 const glossary = await loadGlossary(contentLang);
-const sources = await loadSources(contentLang);
+// The register is translated on its own schedule (see `ContentContext.sourcesLang`).
+const sourcesLang = docContentLang(manifest, 'lookup/sources', contentLang);
+const sources = await loadSources(sourcesLang);
+// Documents are translated one at a time, so the note's document has its own language too.
+const noteLang = docContentLang(manifest, NOTE_DOC_ID, locale);
+const noteDoc = await loadDoc(noteLang, NOTE_DOC_ID);
+if (!noteDoc)
+  throw new Error(`${NOTE_DOC_ID} is missing from src/data. Run \`pnpm content:build\`.`);
 
 const context = createContentContext({
   locale,
@@ -75,7 +81,17 @@ const context = createContentContext({
   manifest,
   glossary,
   sources,
+  sourcesLang,
   docId: doc.id,
+});
+
+const noteContext = createContentContext({
+  locale,
+  contentLang: noteLang,
+  manifest,
+  sources,
+  sourcesLang,
+  docId: noteDoc.id,
 });
 
 const contentLangTag =
@@ -221,22 +237,20 @@ const coveredFeatures = [...new Set(coverage.flatMap((item) => item.features))].
             englishHref={englishHref}
           />
         </div>
-        {noteDoc && (
-          <div class="dsc-item" data-demo="source-note">
-            <p class="st-hint" lang="en-ZA">
-              A page with no sources of its own shows its note and the two links instead of an empty
-              list. This one is <code>{noteDoc.id}</code>.
-            </p>
-            <SourcesForPage
-              sources={noteDoc.sources}
-              sourceNote={noteDoc.sourceNote}
-              context={context}
-              locale={locale}
-              headingLevel={3}
-              id="dsc-source-note"
-            />
-          </div>
-        )}
+        <div class="dsc-item" data-demo="source-note">
+          <p class="st-hint" lang="en-ZA">
+            A page with no sources of its own shows its note and the two links instead of an empty
+            list. This one is <code>{noteDoc.id}</code>.
+          </p>
+          <SourcesForPage
+            sources={noteDoc.sources}
+            sourceNote={noteDoc.sourceNote}
+            context={noteContext}
+            locale={locale}
+            headingLevel={3}
+            id="dsc-source-note"
+          />
+        </div>
         <div class="dsc-item" data-demo="inline-runs">
           <p class="st-hint" lang="en-ZA">
             Inline runs inside one sentence, from the document above:
