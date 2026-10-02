@@ -1,4 +1,5 @@
 import AxeBuilder from '@axe-core/playwright';
+import type { Page, TestInfo } from '@playwright/test';
 import { expect, test, type Theme } from './fixtures';
 import { discoverPageRoutes, routeLabel, routeUrl } from './helpers/routes';
 
@@ -44,6 +45,69 @@ function attachmentName(route: string, theme: Theme): string {
   const slug = route.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '') || 'home';
   return `axe-${theme}-${slug}.json`;
 }
+
+async function expectNoBlocking(page: Page, label: string, testInfo: TestInfo): Promise<void> {
+  const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze();
+  await testInfo.attach(`axe-${label.replace(/[^a-z0-9]+/gi, '-')}.json`, {
+    body: JSON.stringify(results, null, 2),
+    contentType: 'application/json',
+  });
+  const blocking = results.violations.filter((v) => BLOCKING_IMPACTS.has(v.impact ?? ''));
+  expect(
+    blocking.map((violation) => violation.id),
+    `${blocking.length} serious/critical axe violation(s) with ${label}:\n` +
+      formatViolations(blocking),
+  ).toEqual([]);
+}
+
+/**
+ * WP-30: the states a page load does not show — each confirm dialog open, the language banner, the
+ * storage warning — in both themes.
+ */
+test.describe('axe with the interactive states open', () => {
+  for (const theme of THEMES) {
+    test(`the "Remove all ticks?" dialog (${theme})`, async ({ page, setTheme }, testInfo) => {
+      await setTheme(theme);
+      await page.goto('checklist/');
+      await page.locator('st-checklist input[type="checkbox"]').first().check();
+      await page.getByRole('button', { name: 'Remove ticks' }).click();
+      await expect(page.getByRole('dialog', { name: 'Remove all ticks?' })).toBeVisible();
+      await expectNoBlocking(page, `checklist reset dialog ${theme}`, testInfo);
+    });
+
+    test(`the "Clear all your data?" dialog (${theme})`, async ({ page, setTheme }, testInfo) => {
+      await setTheme(theme);
+      await page.goto('about/');
+      await page.getByRole('button', { name: 'Clear all my data' }).click();
+      await expect(page.getByRole('dialog', { name: 'Clear all your data?' })).toBeVisible();
+      await expectNoBlocking(page, `clear data dialog ${theme}`, testInfo);
+    });
+
+    test(`the language banner and the storage warning (${theme})`, async ({
+      page,
+      setTheme,
+      seedStorage,
+    }, testInfo) => {
+      await setTheme(theme);
+      await seedStorage({ 'st.lang': 'af' });
+      await page.goto('./');
+      await expect(page.locator('st-lang-banner')).toBeVisible();
+      await expectNoBlocking(page, `language banner ${theme}`, testInfo);
+
+      await page.addInitScript(() => {
+        Object.defineProperty(window, 'localStorage', {
+          configurable: true,
+          get() {
+            throw new DOMException('The operation is insecure.', 'SecurityError');
+          },
+        });
+      });
+      await page.goto('checklist/');
+      await expect(page.locator('st-storage-notice')).toBeVisible();
+      await expectNoBlocking(page, `storage warning ${theme}`, testInfo);
+    });
+  }
+});
 
 const { routes, skipReason } = discoverPageRoutes();
 

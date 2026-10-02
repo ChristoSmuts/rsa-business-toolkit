@@ -70,6 +70,10 @@ export default getViteConfig({
       thresholds: {
         'scripts/content/**': { statements: 97, branches: 85, functions: 98, lines: 97 },
         'src/lib/content/**': { statements: 85, branches: 72, functions: 100, lines: 85 },
+        // WP-30: what the site keeps on the device. The brief's floor is 90%; measured with the
+        // unit and dom projects together (the store's tests need a real `localStorage`).
+        'src/lib/store.ts': { statements: 95, branches: 90, functions: 100, lines: 95 },
+        'src/lib/storage/**': { statements: 95, branches: 90, functions: 100, lines: 95 },
         'scripts/build-content.ts': { statements: 0, branches: 0, functions: 0, lines: 0 },
         'scripts/translate/status.ts': { statements: 0, branches: 0, functions: 0, lines: 0 },
       },
