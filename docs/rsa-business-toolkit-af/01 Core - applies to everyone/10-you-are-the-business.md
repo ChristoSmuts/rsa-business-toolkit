@@ -108,7 +108,7 @@ Alles hierbo is wat jy doen nadat dit verkeerd geloop het. Die goedkoper beheerm
 - Stuur die faktuur op die dag wat jy klaarmaak, nie aan die einde van die maand nie.
 - Stel bepalings oor laat betaling op skrif voor die werk, want rente op ’n agterstallige bedrag is net afdwingbaar as dit vooraf ooreengekom is.
 - Vir kreatiewe of professionele werk, dra eienaarskap oor by volle betaling eerder as by aflewering.
-- Wag totdat die geld in jou saldo is voordat jy enigiets oorhandig. Sien [Tuiswerk en veilige ontmoetings](09-working-from-home-and-safety.md).
+- Wag totdat die geld in jou saldo is voordat jy enigiets oorhandig. Sien [Van die huis af werk en veilig ontmoet](09-working-from-home-and-safety.md).
 
 ---
 

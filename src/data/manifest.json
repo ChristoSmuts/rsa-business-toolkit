@@ -1,5 +1,5 @@
 {
-  "contentHash": "089c0a48d5b57024",
+  "contentHash": "dbc497228b991ac1",
   "docs": {
     "branding/already-have-your-name": {
       "appliesTo": {
@@ -92,7 +92,7 @@
       "section": "branding",
       "slug": "mood-and-materials",
       "titles": {
-        "af": "Stemming en materiale (ná opdrag 4)",
+        "af": "Stemming en materiale (gebruik ná Opdrag 4)",
         "en": "Mood and materials (use after Prompt 4)"
       }
     },
@@ -617,7 +617,7 @@
       "section": "paperwork",
       "slug": "which-template-to-use-when",
       "titles": {
-        "af": "Watter sjabloon wanneer",
+        "af": "Watter sjabloon om wanneer te gebruik",
         "en": "Which template to use when"
       }
     },

@@ -2741,7 +2741,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Tuiswerk en veilige ontmoetings"
+              "v": "Van die huis af werk en veilig ontmoet"
             }
           ],
           "doc": "core/working-from-home-and-safety",
@@ -2752,7 +2752,7 @@
           "v": " heeltemal. Dit dek waar om te ontmoet, wat om van die koper te kry voor die ontmoeting, hoe om ’n toetsrit te hanteer sonder om die voertuig te verloor, waarom ’n skermskoot van ’n betalingsbewys nooit genoeg is nie, hoe om kontant na te gaan, en die algemene swendelarye wat op verkopers gemik is. Vir ’n handelaar maak die bedrae wat ter sprake is daardie gewoontes verpligtend, nie opsioneel nie."
         }
       ],
-      "hash": "ee2fb481de6e234a",
+      "hash": "5279088cdc76817f",
       "id": "dealing-from-home-with-no-yard.4",
       "kind": "paragraph",
       "sourceHash": "37c367da45e84cba"
@@ -3406,7 +3406,7 @@
       "sourceHash": "3cbbad0d8e4dd749"
     }
   ],
-  "contentHash": "be89bd8e0dc7b30c",
+  "contentHash": "2313ea546c372b91",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

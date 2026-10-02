@@ -19,7 +19,7 @@ Werk hierdie stappe in volgorde deur. Moenie vorentoe spring nie.
 1. Verkoop iets en word betaal. Al is dit net een keer. Dit bewys dat mense dit wil hê.
 2. Open ’n aparte bankrekening vir besigheidsgeld. Hou besigheidsgeld en huisgeld van die eerste dag af apart. Vra die bank wat jou limiete vir kitsbetalings is; jy sal dit nodig hê.
 
- As jy van die huis af sonder ’n winkel gaan werk, lees [Tuiswerk en veilige ontmoetings](09-working-from-home-and-safety.md) voor jou eerste verkoping. Dit is kort, en dit dek die gewoontes wat keer dat jy geswendel word.
+ As jy van die huis af sonder ’n winkel gaan werk, lees [Van die huis af werk en veilig ontmoet](09-working-from-home-and-safety.md) voor jou eerste verkoping. Dit is kort, en dit dek die gewoontes wat keer dat jy geswendel word.
 
 3. Kies ’n naam en ’n eenvoudige voorkoms. Gebruik die lêer [Handelsmerkopdragte](../02%20Branding%20and%20marketing/01-branding-prompts.md).
 4. Maak jou kwotasie- en faktuursjablone. Gebruik die lêer [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
@@ -44,7 +44,7 @@ Net as jy ’n maatskappy geregistreer het:
 - [Betaal jouself uit ’n Pty Ltd](07-paying-yourself.md) — die drie wettige maniere om geld uit te haal, en die belasting op elkeen.
 - [Nuwe besigheidslyne byvoeg](08-adding-new-lines.md) — sywaarts groei onder een maatskappy: handelsname, lisensies per lyn, en waarom ’n tweede maatskappy jou jou belastingkoers kan kos.
 - [Jy is die besigheid](10-you-are-the-business.md) — wat gebeur as jy nie kan werk nie, hoe om agter ’n onbetaalde faktuur aan te gaan, en wie die besigheid kan bestuur as jy nie daar is nie. Die een dokument wat oor jou gaan eerder as oor die besigheid.
-- [Tuiswerk en veilige ontmoetings](09-working-from-home-and-safety.md) — om dit van die huis af te bestuur sonder ’n winkel of werf, handel per foon en WhatsApp, veilig betaal word, die algemene swendelary, en om kliënte sonder risiko te ontmoet vir ’n inspeksie of ’n toetsrit.
+- [Van die huis af werk en veilig ontmoet](09-working-from-home-and-safety.md) — om dit van die huis af te bestuur sonder ’n winkel of werf, handel per foon en WhatsApp, veilig betaal word, die algemene swendelary, en om kliënte sonder risiko te ontmoet vir ’n inspeksie of ’n toetsrit.
 
 Opdragte en sjablone:
 

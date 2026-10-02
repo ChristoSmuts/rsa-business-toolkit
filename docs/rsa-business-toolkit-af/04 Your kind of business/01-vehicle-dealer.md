@@ -406,7 +406,7 @@ Baie klein handelaars begin so: voorraad word aanlyn geadverteer, die gesprek ge
 
 **Jou huis word die geregistreerde perseel.** Jou SAPS-registrasie vir tweedehandse goedere, jou BRNC en jou maatskappy se adres is almal by jou huis. ’n Polisiebeampte kan die perseel en jou register daar inspekteer. Dit is normaal. Hou die register en sertifikaat byderhand.
 
-**Elke besigtiging is ’n ontmoeting met ’n vreemdeling.** Lees [Tuiswerk en veilige ontmoetings](../01%20Core%20-%20applies%20to%20everyone/09-working-from-home-and-safety.md) heeltemal. Dit dek waar om te ontmoet, wat om van die koper te kry voor die ontmoeting, hoe om ’n toetsrit te hanteer sonder om die voertuig te verloor, waarom ’n skermskoot van ’n betalingsbewys nooit genoeg is nie, hoe om kontant na te gaan, en die algemene swendelarye wat op verkopers gemik is. Vir ’n handelaar maak die bedrae wat ter sprake is daardie gewoontes verpligtend, nie opsioneel nie.
+**Elke besigtiging is ’n ontmoeting met ’n vreemdeling.** Lees [Van die huis af werk en veilig ontmoet](../01%20Core%20-%20applies%20to%20everyone/09-working-from-home-and-safety.md) heeltemal. Dit dek waar om te ontmoet, wat om van die koper te kry voor die ontmoeting, hoe om ’n toetsrit te hanteer sonder om die voertuig te verloor, waarom ’n skermskoot van ’n betalingsbewys nooit genoeg is nie, hoe om kontant na te gaan, en die algemene swendelarye wat op verkopers gemik is. Vir ’n handelaar maak die bedrae wat ter sprake is daardie gewoontes verpligtend, nie opsioneel nie.
 
 Die kort weergawe vir ’n handelaar:
 
