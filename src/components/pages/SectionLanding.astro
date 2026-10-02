@@ -16,7 +16,7 @@ import { getLocale, type Locale } from '../../i18n/locales';
 import { docHref, docTitle, docTitleLang, sectionTitle } from '../../lib/content/manifest';
 import type { Doc, Manifest } from '../../lib/content/schema';
 import type { Crumb } from '../../lib/nav';
-import { sectionHue } from '../../lib/pages';
+import { latestCheck, sectionHue } from '../../lib/pages';
 import { href } from '../../lib/paths';
 import { APP_ROUTES, NAV_DOC_IDS } from '../../lib/routes';
 
@@ -26,11 +26,10 @@ interface Props {
   sectionId: string;
   /** The section's documents in order, each in the language it is rendered in. */
   docs: readonly Doc[];
-  /** The date the sources register was checked. */
-  checkedOn: string;
 }
 
-const { locale, manifest, sectionId, docs, checkedOn } = Astro.props;
+const { locale, manifest, sectionId, docs } = Astro.props;
+const checkedOn = latestCheck(docs);
 const t = useTranslations(locale);
 const title = sectionTitle(manifest, sectionId, locale);
 const hue = sectionHue(sectionId) ?? 'start';
@@ -83,7 +82,7 @@ const description = t(`nav.sections.${sectionId}.description` as TranslationKey)
   </ol>
 
   <p class="st-hint">
-    {t('site.checkedOn', { date: formatDate(locale, checkedOn) })}{' '}
+    {checkedOn && t('site.checkedOn', { date: formatDate(locale, checkedOn) })}{' '}
     {howMadeHref && <a href={howMadeHref}>{t('trust.aiNotice.link')}</a>}
   </p>
 </div>

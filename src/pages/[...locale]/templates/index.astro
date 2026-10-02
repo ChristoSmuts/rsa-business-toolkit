@@ -9,10 +9,10 @@ import SectionHeader from '../../../components/ui/SectionHeader.astro';
 import Breadcrumb from '../../../components/navigation/Breadcrumb.astro';
 import { formatDate, useTranslations, type TranslationKey } from '../../../i18n';
 import type { Locale } from '../../../i18n/locales';
-import { loadManifest, loadSources } from '../../../lib/content/collections';
+import { loadDoc, loadManifest } from '../../../lib/content/collections';
 import { docHref, sectionDocIds } from '../../../lib/content/manifest';
 import { localeStaticPaths } from '../../../lib/i18n-routes';
-import { docContentLang, pageTitle } from '../../../lib/pages';
+import { docContentLang, latestCheck, pageTitle } from '../../../lib/pages';
 import { href } from '../../../lib/paths';
 import { APP_ROUTES, NAV_DOC_IDS, TEMPLATES_FILLABLE } from '../../../lib/routes';
 
@@ -27,7 +27,6 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 const manifest = await loadManifest();
-const sources = await loadSources(docContentLang(manifest, NAV_DOC_IDS.sources, locale));
 const intro = t(TEMPLATES_FILLABLE ? 'templates.indexIntro' : 'templates.indexIntroStatic');
 const howMadeHref = docHref(manifest, NAV_DOC_IDS.howThisWasMade, locale);
 const whichHref = docHref(manifest, 'paperwork/which-template-to-use-when', locale);
@@ -44,6 +43,10 @@ const templates = sectionDocIds(manifest, 'paperwork')
       description: t(`templates.items.${slug}.description` as TranslationKey),
     };
   });
+const templateDocs = await Promise.all(
+  templates.map((item) => loadDoc(docContentLang(manifest, item.id, locale), item.id)),
+);
+const checkedOn = latestCheck(templateDocs.filter((doc) => doc !== undefined));
 ---
 
 <Page
@@ -79,9 +82,9 @@ const templates = sectionDocIds(manifest, 'paperwork')
         </li>
       ))}
     </ul>
-    {sources && (
+    {checkedOn && (
       <p class="st-hint">
-        {t('site.checkedOn', { date: formatDate(locale, sources.checkedOn) })}{' '}
+        {t('site.checkedOn', { date: formatDate(locale, checkedOn) })}{' '}
         {howMadeHref && <a href={howMadeHref}>{t('trust.aiNotice.link')}</a>}
       </p>
     )}

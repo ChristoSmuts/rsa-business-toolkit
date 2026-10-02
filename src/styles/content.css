@@ -111,6 +111,17 @@
   min-inline-size: 0;
 }
 
+/*
+ * Prompts, snippets and examples are prose a reader reads, copies and edits, so they wrap at the
+ * column edge and keep their own line breaks. Template previews and listings (a folder tree) are
+ * layouts, which wrapping would garble, so they keep `white-space: pre` and scroll in their named
+ * region. B5 lets only layouts scroll at 320px (review WP-20 pass 4).
+ */
+.st-code:is([data-variant='prompt'], [data-variant='snippet'], [data-variant='example']) pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 .st-code pre {
   padding: var(--st-space-4);
   border: var(--st-border-width) solid var(--st-border);

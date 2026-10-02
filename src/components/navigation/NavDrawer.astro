@@ -24,7 +24,8 @@ interface Props {
   route: string;
   sections: readonly NavLink[];
   tools: readonly NavLink[];
-  searchHref: string;
+  /** Absent until search is built (`SEARCH_AVAILABLE`). */
+  searchHref?: string | undefined;
   /** Absent until the wizard is built (`WIZARD_AVAILABLE`). */
   wizardHref?: string | undefined;
 }
@@ -51,9 +52,11 @@ const titleId = `${id}-title`;
             {t('nav.findMyPath')}
           </a>
         )}
-        <a class="st-link-block" href={searchHref}>
-          {t('nav.search')}
-        </a>
+        {searchHref && (
+          <a class="st-link-block" href={searchHref}>
+            {t('nav.search')}
+          </a>
+        )}
         <NavMenu label={t('nav.read')} links={sections} route={route} descriptions open />
         <NavMenu label={t('nav.tools')} links={tools} route={route} descriptions />
       </nav>

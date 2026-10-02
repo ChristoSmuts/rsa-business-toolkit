@@ -73,3 +73,33 @@ test.describe('the header navigates without JavaScript', () => {
     });
   }
 });
+
+test.describe('anchors without JavaScript', () => {
+  // Without JavaScript nothing can measure the bar, so it must never be sticky (review WP-20 pass 4).
+  for (const width of [375, 1024, 1280]) {
+    test(`a heading reached by a link is not hidden under the top bar at ${width}px`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width, height: 800 });
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      for (const prefix of ['', 'af/']) {
+        const response = await page.goto(`${prefix}core/register/`);
+        expect(response?.status()).toBe(200);
+        const toc = page.locator(width >= 1280 ? '.st-toc--column' : '.st-toc--details');
+        if (width < 1280) await toc.locator('summary').click();
+        await toc.locator('a[href="#how-to-register-a-company-yourself"]').click();
+        await expect(page).toHaveURL(/#how-to-register-a-company-yourself$/);
+        const { barBottom, targetTop } = await page.evaluate(() => ({
+          barBottom: document.querySelector('.st-topbar')?.getBoundingClientRect().bottom ?? 0,
+          targetTop:
+            document.getElementById('how-to-register-a-company-yourself')?.getBoundingClientRect()
+              .top ?? -1,
+        }));
+        expect(
+          targetTop,
+          `/${prefix} at ${width}px: bar ends at ${barBottom}`,
+        ).toBeGreaterThanOrEqual(Math.max(0, barBottom));
+      }
+    });
+  }
+});

@@ -526,7 +526,7 @@ describe('t', () => {
     expect(t('en', 'nav.next', { title: 'Tax and SARS' })).toBe('Next: Tax and SARS');
     expect(t('af', 'myPath.progress', { done: 3, total: 10 })).toBe('3 van 10 klaar');
     expect(t('en', 'site.checkedOn', { date: '13 September 2026' })).toBe(
-      'An AI checked the facts against the sources in the sources register on 13 September 2026.',
+      'An AI checked the facts against the sources in the sources register, most recently on 13 September 2026.',
     );
     expect(t('en', 'templates.vat', { rate: 15 })).toBe('VAT (15%)');
     expect(t('af', 'home.threeNumbers.heading', { year: 2026 })).toBe(

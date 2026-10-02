@@ -41,6 +41,13 @@ export const SEARCH_AVAILABLE: boolean = false;
  */
 export const TEMPLATES_FILLABLE: boolean = false;
 
+/**
+ * Whether checklist ticks are saved on the device (WP-30). Until then the checkboxes work but a
+ * reload clears them, so the wording says "print and tick", and the master checklist says plainly
+ * that ticks are not saved yet (review WP-20 pass 4).
+ */
+export const CHECKLIST_SAVES: boolean = false;
+
 /** Document ids that the navigation links to by name. */
 export const NAV_DOC_IDS = {
   checklist: 'lookup/checklist',

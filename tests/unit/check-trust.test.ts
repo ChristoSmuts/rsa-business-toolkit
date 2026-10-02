@@ -1,8 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { expectedDocumentPages, trustProblems } from '../../scripts/dist/check-trust';
+import {
+  expectedDocumentPages,
+  noticeSentences,
+  trustProblems,
+} from '../../scripts/dist/check-trust';
 
 const notice =
   '<aside class="st-callout st-ai-notice"><p>About this page</p>' +
+  '<p>Written by AI (Claude, Anthropic). An AI checked it against the sources below on 13 September 2026. No person has checked it yet. Rules change: check the official source before you act. Not legal, tax or financial advice.</p>' +
   '<p class="st-ai-notice__status"><span>AI-checked</span></p>' +
   '<p><a href="/business-toolkit/start/how-this-was-made/">How this was made</a></p></aside>';
 const listed =
@@ -41,6 +46,7 @@ describe('trustProblems (build plan D5 on the rendered page)', () => {
     const bare = '<aside class="st-callout st-ai-notice"><p>About this page</p></aside>';
     expect(trustProblems(page('guide', bare, listed))).toEqual([
       'the AI notice has no status',
+      'the AI notice does not say who wrote and checked the page',
       'the AI notice does not link "How this was made"',
     ]);
   });
@@ -74,5 +80,24 @@ describe('trustProblems (build plan D5 on the rendered page)', () => {
 
   it('expects every manifest document in every enabled locale', () => {
     expect(expectedDocumentPages()).toBe(72);
+  });
+});
+
+describe('the AI notice sentence', () => {
+  it("requires one of the page language's notice sentences, with any date", () => {
+    const silent = notice.replace(/<p>Written by AI[^<]*<\/p>/, '<p>Some other words.</p>');
+    expect(trustProblems(page('guide', silent, listed))).toEqual([
+      'the AI notice does not say who wrote and checked the page',
+    ]);
+    const later = notice.replace('13 September 2026', '1 January 2027');
+    expect(trustProblems(page('guide', later, listed))).toEqual([]);
+  });
+
+  it('reads the Afrikaans sentences on an Afrikaans page', () => {
+    expect(noticeSentences('af').length).toBe(noticeSentences('en').length);
+    const english = `<html lang="af-ZA">${page('guide', notice, listed)}</html>`;
+    expect(trustProblems(english)).toEqual([
+      'the AI notice does not say who wrote and checked the page',
+    ]);
   });
 });

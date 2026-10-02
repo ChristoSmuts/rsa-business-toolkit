@@ -10,9 +10,11 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { ENABLED_LOCALES } from '../../src/i18n/locales';
+import { ENABLED_LOCALES, type Locale } from '../../src/i18n/locales';
 import { normaliseBase } from '../base-path';
-import { listFiles, resolveDistRoot, routeOfHtmlFile } from './audit-links';
+import { decodeEntities, listFiles, resolveDistRoot, routeOfHtmlFile } from './audit-links';
+import af from '../../src/i18n/af.json';
+import en from '../../src/i18n/en.json';
 
 /** Document kinds whose pages D5 governs: every kind the content pipeline emits. */
 export const TRUST_KINDS = ['guide', 'template', 'checklist', 'glossary', 'sources'] as const;
@@ -23,12 +25,30 @@ function sliceElement(html: string, start: number, tag: string): string {
   return close === -1 ? html.slice(start) : html.slice(start, close + tag.length + 3);
 }
 
-/** Visible text of an HTML fragment, roughly: tags dropped, whitespace collapsed. */
+/** Visible text of an HTML fragment, roughly: tags dropped, entities decoded, spaces collapsed. */
 function textOf(fragment: string): string {
-  return fragment
-    .replace(/<[^>]+>/g, ' ')
+  return decodeEntities(fragment.replace(/<[^>]+>/g, ' '))
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+/**
+ * The AI notice sentences of a language (`trust.aiNotice.body*`), as patterns with `{date}` and
+ * `{reviewer}` as wildcards. The notice must say one of them: "Written by AI … who checked it …"
+ * is the core of D5, and a layout that drops or rewrites it must not build (review WP-20 pass 4).
+ */
+export function noticeSentences(locale: Locale): RegExp[] {
+  const dict = (locale === 'af' ? af : en) as { trust: { aiNotice: Record<string, string> } };
+  return Object.entries(dict.trust.aiNotice)
+    .filter(([key]) => key.startsWith('body'))
+    .map(([, sentence]) => {
+      const escaped = sentence.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      return new RegExp(escaped.replace(/\\\{(date|reviewer)\\\}/g, '.+?'));
+    });
+}
+
+function pageLocale(html: string): Locale {
+  return /<html\b[^>]*\blang="af/.test(html) ? 'af' : 'en';
 }
 
 /**
@@ -53,6 +73,10 @@ export function trustProblems(html: string): string[] {
     problems.push('no AI notice in the article header');
   } else {
     if (!header.includes('st-ai-notice__status')) problems.push('the AI notice has no status');
+    const said = textOf(header);
+    if (!noticeSentences(pageLocale(html)).some((sentence) => sentence.test(said))) {
+      problems.push('the AI notice does not say who wrote and checked the page');
+    }
     if (!/href="[^"]*\/start\/how-this-was-made\/"/.test(header)) {
       problems.push('the AI notice does not link "How this was made"');
     }

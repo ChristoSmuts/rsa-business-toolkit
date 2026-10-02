@@ -125,17 +125,6 @@ html {
   hanging-punctuation: first last;
 }
 
-/*
- * Below 1024px the top bar is not sticky (SiteHeader.astro): it wraps to two or three rows on a
- * phone, and stacks every menu when JavaScript is off, so a sticky bar would cover anchor targets
- * and focused elements. With nothing pinned at the top, a target only needs breathing room.
- */
-@media (width < 1024px) {
-  html {
-    scroll-padding-block-start: var(--st-space-4);
-  }
-}
-
 @media (prefers-reduced-motion: no-preference) {
   html:focus-within {
     scroll-behavior: smooth;

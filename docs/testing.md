@@ -121,10 +121,14 @@ in every project.
   every page's head must equal the one `sitemap-0.xml` gives the same URL. An Afrikaans page that
   shows the English document is still the Afrikaans page for its URL (Afrikaans `<html lang>`,
   navigation and notices), so it is self-canonical and listed in both.
-- **The top bar never hides what a link scrolls to.** At 320×568, 375×667 and 1280×800, in both
-  languages, following a contents link must leave the heading below the bar's bottom edge. Below
-  1024px the bar is not sticky (it wraps to several rows on a phone, and stacks every menu without
-  JavaScript); from 1024px it is one row inside the 72px scroll padding.
+- **The top bar never hides what a link scrolls to.** At 320, 375, 1024, 1100 and 1280px in both
+  languages (and at 375, 1024 and 1280px in the `nojs` project), following a contents link must
+  leave the heading below the bar's bottom edge. The scroll padding follows the bar's measured
+  height, so a bar that wraps to two rows at 1024px still clears its targets.
+- **Prompts wrap on a phone.** At 320px no prompt or snippet on `branding/branding-prompts/` scrolls
+  sideways; only layouts (template previews, listings) may.
+- `dist:trust` also requires the AI notice to say one of the page language's `trust.aiNotice.body*`
+  sentences, with any date and reviewer.
 - **Navigation only real routes can show:** the breadcrumb through a section, the pager crossing
   from one section into the next, a section landing's cards in order, switching language on a real
   document with an anchor that exists on the other side, the Afrikaans fallback with `lang="en-ZA"`

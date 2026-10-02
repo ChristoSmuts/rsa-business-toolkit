@@ -29,7 +29,8 @@ export class StCodeScroll extends HTMLElement {
 
   #update(): void {
     const pre = this.#pre;
-    if (!pre) return;
+    // A prose block (no label) wraps and never scrolls, so it never becomes a region.
+    if (!pre?.dataset['label']) return;
     const scrollable = pre.scrollWidth > pre.clientWidth + 1;
     const label = pre.dataset['label'];
     if (scrollable) {

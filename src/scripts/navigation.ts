@@ -79,5 +79,26 @@ export class StLangSwitch extends HTMLElement {
   }
 }
 
+/**
+ * Publishes the sticky top bar's real height as `--st-topbar-offset` on `<html>`, so the scroll
+ * padding in SiteHeader.astro keeps anchor targets and focus below it at every width, however the
+ * bar wraps (review WP-20 pass 4). While the bar is not sticky (below 1024px) the offset is 0.
+ */
+export function trackTopbar(doc: Document = document): void {
+  const bar = doc.querySelector<HTMLElement>('.st-topbar');
+  if (!bar) return;
+  const root = doc.documentElement;
+  const update = (): void => {
+    const sticky = getComputedStyle(bar).position === 'sticky';
+    const height = sticky ? Math.ceil(bar.getBoundingClientRect().height) : 0;
+    root.style.setProperty('--st-topbar-offset', `${height}px`);
+  };
+  new ResizeObserver(update).observe(bar);
+  window.addEventListener('resize', update);
+  update();
+}
+
+trackTopbar();
+
 if (!customElements.get('st-nav-drawer')) customElements.define('st-nav-drawer', StNavDrawer);
 if (!customElements.get('st-lang-switch')) customElements.define('st-lang-switch', StLangSwitch);

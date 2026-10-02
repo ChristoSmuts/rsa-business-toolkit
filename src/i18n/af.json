@@ -5,7 +5,7 @@
     "description": "’n Gratis gids vir een persoon wat ’n besigheid in Suid-Afrika begin en bestuur. Gewone taal, feite wat ’n KI in die Engelse teks nagegaan het, kontrolelyste en sjablone.",
     "disclaimerShort": "Deur KI geskryf. ’n KI het die Engelse teks teen die bronne in die bronneregister nagegaan. Nie regs-, belasting- of finansiële advies nie.",
     "disclaimerLong": "’n KI-assistent (Claude, gemaak deur Anthropic) het hierdie gids geskryf. ’n KI het die fooie, drempels, vormnommers en wetlike reëls in die Engelse teks nagegaan teen die Suid-Afrikaanse bronne in die bronneregister, waar amptelike bronne gemerk is. Geen mens het hulle nagegaan nie. KI kan steeds foute maak, en reëls verander dikwels. Maak die amptelike skakel oop en kontroleer die getal self voordat jy iets betaal, teken of indien. Dit is algemene inligting. Dit is nie regs-, belasting- of finansiële advies nie.",
-    "checkedOn": "’n KI het die feite in die Engelse teks op {date} teen die bronne in die bronneregister nagegaan.",
+    "checkedOn": "’n KI het die feite in die Engelse teks teen die bronne in die bronneregister nagegaan, laas op {date}.",
     "howThisWasMade": "Hoe dit gemaak is en hoe om dit na te gaan",
     "titleTemplate": "{page} · {section} · {site}",
     "titleTemplateShort": "{page} · {site}",
@@ -50,6 +50,7 @@
     "toolDescriptions": {
       "myPath": "Jou stappe, in volgorde",
       "checklist": "Merk elke item af wanneer jy klaar is",
+      "checklistStatic": "Elke stap in een lys, om uit te druk en af te merk",
       "templates": "Vul in en druk",
       "templatesStatic": "Wat elke dokument moet wys",
       "glossary": "Kort woorde verduidelik",
@@ -129,7 +130,7 @@
     "heroTitle": "Begin en bestuur jou besigheid in Suid-Afrika",
     "heroLead": "’n Gratis gids vir een persoon wat die eienaar en die enigste werker is. Gewone taal, feite wat ’n KI in die Engelse teks nagegaan het, en net die stappe wat vir jou geld.",
     "heroLeadStatic": "’n Gratis gids vir een persoon wat die eienaar en die enigste werker is. Gewone taal en feite wat ’n KI in die Engelse teks nagegaan het.",
-    "heroVerify": "Deur KI geskryf. ’n KI het die feite in die Engelse teks op {date} teen die bronne in die bronneregister nagegaan. Geen mens het hulle nog nagegaan nie. Kontroleer die amptelike skakel voordat jy betaal of teken.",
+    "heroVerify": "Deur KI geskryf. ’n KI het die feite in die Engelse teks teen die bronne in die bronneregister nagegaan, laas op {date}. Geen mens het hulle nog nagegaan nie. Kontroleer die amptelike skakel voordat jy betaal of teken.",
     "findMyPath": "Vind my roete",
     "findMyPathHint": "Beantwoord {total} kort vrae",
     "knowWhatINeed": "Ek weet wat ek nodig het",
@@ -148,6 +149,7 @@
       "checklist": {
         "title": "As jy weet wat jy nodig het",
         "body": "Maak die hoofkontrolelys oop. Merk elke item af wanneer jy klaar is.",
+        "bodyStatic": "Maak die hoofkontrolelys oop. Druk dit uit en merk elke item af soos jy vorder.",
         "action": "Maak die kontrolelys oop"
       }
     },
@@ -178,8 +180,8 @@
     },
     "trust": {
       "label": "Waarom jy hierdie gids kan gebruik",
-      "checked": "Engelse teks op {date} deur KI nagegaan",
-      "sources": "Bronne gelys waar feite gestel word, met amptelike bronne gemerk",
+      "checked": "Engelse teks laas op {date} deur KI nagegaan",
+      "sources": "Elke bladsy lys sy bronne of verwys na die bronneregister",
       "free": "Gratis, en jy het nie ’n rekening nodig nie",
       "private": "Jou antwoorde bly op hierdie toestel",
       "howThisWasMade": "Hoe dit gemaak is"
@@ -442,6 +444,7 @@
     "storageUnavailable": "Jou merkies kan nie op hierdie toestel gestoor word nie. Dit kan gebeur as jy privaat blaai. Jy kan steeds items afmerk, maar die merkies is weg wanneer jy die bladsy toemaak.",
     "saved": "Merkies word net op hierdie toestel gestoor.",
     "noJs": "JavaScript is af. Jy kan items afmerk, maar die merkies word nie gestoor nie.",
+    "notSaved": "Merkies op hierdie bladsy word nog nie gestoor nie. Druk die lys uit om tred te hou.",
     "keyToShortWords": "Verklaring van die kort woorde",
     "keyShort": "Kort woord",
     "keyMeans": "Beteken",

@@ -7,7 +7,12 @@ import {
   sectionLinks,
   toolLinks,
 } from '../../../src/lib/nav';
-import { APP_ROUTES, NAV_DOC_IDS, WIZARD_AVAILABLE } from '../../../src/lib/routes';
+import {
+  APP_ROUTES,
+  NAV_DOC_IDS,
+  SEARCH_AVAILABLE,
+  WIZARD_AVAILABLE,
+} from '../../../src/lib/routes';
 import { realManifest } from './data';
 
 const manifest = realManifest();
@@ -78,9 +83,10 @@ describe('toolLinks', () => {
 });
 
 describe('footerLinks', () => {
-  it('is Contents, About and How this was made', () => {
+  it('is Contents, the common questions while search is not built, About and How this was made', () => {
     expect(footerLinks(manifest, 'en', en).map((link) => link.route)).toEqual([
       APP_ROUTES.contents,
+      ...(SEARCH_AVAILABLE ? [] : [APP_ROUTES.search]),
       APP_ROUTES.about,
       'start/how-this-was-made/',
     ]);

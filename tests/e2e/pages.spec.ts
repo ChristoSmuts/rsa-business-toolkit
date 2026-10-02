@@ -156,9 +156,12 @@ test.describe('navigation between real pages', () => {
     );
   });
 
+  // Every width where the bar changes shape: phone, wrapped tablet rows (review WP-20 pass 4), wide.
   for (const [width, height] of [
     [320, 568],
     [375, 667],
+    [1024, 768],
+    [1100, 800],
     [1280, 800],
   ] as const) {
     test(`a heading reached by a link is not hidden under the top bar at ${width}px`, async ({
@@ -214,6 +217,19 @@ test.describe('navigation between real pages', () => {
       await expect(link).not.toHaveAttribute('aria-label', /.*/);
       await expect(link.locator(`span[lang="${tag}"]`)).toHaveCount(1);
     }
+  });
+
+  test('prompts wrap on a phone: only layouts scroll sideways (B5)', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
+    await page.setViewportSize({ width: 320, height: 740 });
+    await open(page, 'branding/branding-prompts/');
+    const overflowing = await page
+      .locator('figure.st-code:is([data-variant="prompt"], [data-variant="snippet"]) pre')
+      .evaluateAll(
+        (nodes) => nodes.filter((node) => node.scrollWidth > node.clientWidth + 1).length,
+      );
+    expect(await page.locator('figure.st-code[data-variant="prompt"]').count()).toBeGreaterThan(5);
+    expect(overflowing).toBe(0);
   });
 
   test('a section landing lists its documents in order', async ({ page, basePath }) => {

@@ -25,6 +25,12 @@ export interface HomeNumber {
   readonly zeroBand?: { readonly rate: number; readonly amount: string } | undefined;
   /** Register entry id (`src/data/<lang>/sources.json`) that supports the figure. */
   readonly sourceId: string;
+  /**
+   * The words in that entry's "supports" text that state this figure. The test requires the amount,
+   * the old amount and the date inside this one clause, so a date the entry gives for something
+   * else ("from 2 March 2026", the interest rate) cannot pass for this figure's (review WP-20 p4).
+   */
+  readonly supportsClause: string;
 }
 
 export const HOME_NUMBERS: readonly HomeNumber[] = [
@@ -35,6 +41,8 @@ export const HOME_NUMBERS: readonly HomeNumber[] = [
     oldAmount: 'R1 million',
     from: '2026-04-01',
     sourceId: 'sars--what-is-the-new-threshold-for-vat-registration',
+    supportsClause:
+      'compulsory VAT registration threshold rose from R1 million to R2.3 million on 1 April 2026',
   },
   {
     id: 'vat-voluntary',
@@ -43,6 +51,7 @@ export const HOME_NUMBERS: readonly HomeNumber[] = [
     // "Not R50,000" is left out: the guide says it, but no register entry does (review WP-20 pass 3).
     from: '2026-04-01',
     sourceId: 'sars--budget-2026-frequently-asked-questions',
+    supportsClause: 'R120,000 voluntary from 1 April 2026',
   },
   {
     id: 'turnover-tax',
@@ -52,6 +61,7 @@ export const HOME_NUMBERS: readonly HomeNumber[] = [
     // supported, and every figure on this card must be. Add `zeroBand` back once the register
     // cites an official source for the band (a `fix(content):` change, WP-47).
     sourceId: 'sars--turnover-tax',
+    supportsClause: 'the R2.3 million threshold',
   },
 ];
 

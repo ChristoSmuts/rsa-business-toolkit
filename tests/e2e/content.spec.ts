@@ -11,7 +11,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
-import { WIZARD_AVAILABLE } from '../../src/lib/routes';
+import { SEARCH_AVAILABLE, WIZARD_AVAILABLE } from '../../src/lib/routes';
 import { ALL_FEATURES, selectCoverage } from '../../src/lib/content/coverage';
 import { docrefText } from '../../src/lib/content/manifest';
 import { normaliseText, plainText } from '../../src/lib/content/render';
@@ -137,7 +137,10 @@ const SHRINK_WRAPPED: readonly ShrinkWrapped[] = [
   { box: '.st-segmented__option', text: '.st-segmented__option > span:not([class])', width: 1024 },
   { box: '.st-toc__summary', text: null, width: 1024 },
   { box: '.st-lang__link', text: null, width: 320 },
-  { box: '.st-topbar__search', text: '.st-topbar__search > span:not([class])', width: 320 },
+  // The header's search link exists only once search is built (`SEARCH_AVAILABLE`, WP-33).
+  ...(SEARCH_AVAILABLE
+    ? [{ box: '.st-topbar__search', text: '.st-topbar__search > span:not([class])', width: 320 }]
+    : []),
   { box: '.st-topbar__menu-button', text: '.st-topbar__menu-button > span', width: 320 },
 ];
 
@@ -311,8 +314,9 @@ test.describe('content rendering', () => {
     await expect(figure).toBeVisible();
     await expect(figure.locator('button')).toHaveCount(0);
     await expect(figure.locator('mark.st-placeholder').first()).toBeVisible();
-    // A preformatted block scrolls sideways on a phone, so a keyboard has to reach it (WCAG 2.1.1).
-    await expect(figure.locator('pre')).toHaveAttribute('tabindex', '0');
+    // A prompt wraps (it is prose), so it never scrolls and is not a tab stop of its own. Only
+    // layouts (template previews, listings) scroll and keep their named region (review WP-20 p4).
+    await expect(figure.locator('pre')).not.toHaveAttribute('tabindex', /.*/);
     const clipped = await figure.locator('pre').evaluate((node) => {
       const style = getComputedStyle(node);
       return style.maxHeight !== 'none' || style.overflowY === 'hidden';
@@ -566,6 +570,7 @@ test.describe('navigation', () => {
       .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('href') ?? ''));
     expect(hrefs).toEqual([
       '/business-toolkit/contents/',
+      ...(SEARCH_AVAILABLE ? [] : ['/business-toolkit/search/']),
       '/business-toolkit/about/',
       '/business-toolkit/start/how-this-was-made/',
     ]);

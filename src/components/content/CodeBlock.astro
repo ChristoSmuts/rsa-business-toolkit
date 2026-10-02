@@ -11,9 +11,10 @@
  * are inside the `<pre>`, so selecting and copying the block by hand still yields the text with
  * its `[BRACKETS]`.
  *
- * The `<pre>` keeps `white-space: pre` — a template preview is a layout, and wrapping it would
- * garble it — so it scrolls sideways on a phone and is therefore a scrollable region, which WCAG
- * 2.1.1 says a keyboard must reach. The server renders it as a named region with `tabindex="0"`;
+ * Prompts, snippets and examples wrap (`content.css`), because they are prose. Template previews
+ * and listings keep `white-space: pre` — they are layouts, and wrapping would garble them — so they
+ * scroll sideways on a phone and are scrollable regions, which WCAG 2.1.1 says a keyboard must
+ * reach. The server renders it as a named region with `tabindex="0"`;
  * axe reported every fenced block as `scrollable-region-focusable` without it. A block that fits
  * would then be an unnamed, silent tab stop, so `<st-code-scroll>` drops the stop and the role
  * while nothing overflows, as `TableScroll` does for tables. With JavaScript off every block keeps
@@ -36,15 +37,17 @@ const t = useTranslations(context.contentLang);
 const label = t('doc.codeRegion', { caption });
 const segments = splitPlaceholders(block.text, block.placeholders);
 const hasPlaceholders = segments.some((segment) => segment.kind === 'placeholder');
+/** Layouts keep `white-space: pre` and can scroll; prose variants wrap and never do. */
+const scrolls = block.variant === 'template-preview' || block.variant === 'listing';
 ---
 
 <figure class="st-code" data-variant={block.variant}>
   <st-code-scroll>
     <pre
-      role="region"
-      tabindex="0"
-      aria-label={label}
-      data-label={label}
+      role={scrolls ? 'region' : undefined}
+      tabindex={scrolls ? 0 : undefined}
+      aria-label={scrolls ? label : undefined}
+      data-label={scrolls ? label : undefined}
     ><code>{segments.map((segment) => (segment.kind === 'text' ? segment.value : <mark class="st-placeholder" data-placeholder={segment.run.style}>{segment.value}</mark>))}</code></pre>
   </st-code-scroll>
   {hasPlaceholders && <figcaption>{t('prompts.placeholderHint')}</figcaption>}

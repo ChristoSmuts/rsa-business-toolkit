@@ -212,3 +212,15 @@ export function sectionHue(sectionId: string): SectionHue | undefined {
   };
   return hues[sectionId];
 }
+
+/**
+ * The most recent `verification.checkedOn` among some documents (`YYYY-MM-DD` sorts as a date).
+ * Pages that summarise many documents say "most recently on {date}" with this, because the
+ * documents were not all checked on one day (review WP-20 pass 4).
+ */
+export function latestCheck(docs: readonly Pick<Doc, 'verification'>[]): string | undefined {
+  return docs
+    .map((doc) => doc.verification.checkedOn)
+    .sort()
+    .at(-1);
+}

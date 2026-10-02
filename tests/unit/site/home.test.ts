@@ -26,14 +26,17 @@ describe('the home page figures', () => {
     }
   });
 
-  it('state only figures and dates their own source supports', () => {
+  it('state only figures and dates their own source supports, in one clause', () => {
     for (const item of HOME_NUMBERS) {
-      const text = supports(item.sourceId);
-      expect(text, item.sourceId).toContain(item.amount);
-      // Only the cited entry counts. The guide's own text is not a source (reviews WP-20 p2, p3).
-      if (item.oldAmount) expect(text, `${item.id} old figure`).toContain(item.oldAmount);
-      if (item.from) expect(text, `${item.id} date`).toContain(formatDate('en', item.from));
-      if (item.zeroBand) expect(text, item.sourceId).toContain(item.zeroBand.amount);
+      // Only the cited entry counts, and only the clause that states this figure (reviews p2-p4).
+      expect(supports(item.sourceId), item.sourceId).toContain(item.supportsClause);
+      expect(item.supportsClause, item.id).toContain(item.amount);
+      if (item.oldAmount)
+        expect(item.supportsClause, `${item.id} old figure`).toContain(item.oldAmount);
+      if (item.from) {
+        expect(item.supportsClause, `${item.id} date`).toContain(formatDate('en', item.from));
+      }
+      if (item.zeroBand) expect(item.supportsClause, item.id).toContain(item.zeroBand.amount);
     }
   });
 

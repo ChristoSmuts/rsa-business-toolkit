@@ -297,12 +297,23 @@ Three flags in `src/lib/routes.ts` keep the site from offering what is not built
   `/` hint, and the home page's actions are "Read Core: start here" and the contents.
 - `TEMPLATES_FILLABLE` (WP-32): the templates index and the drawer describe what the template pages
   are now, what each document must show with a sample layout, not a form to fill in.
+- `CHECKLIST_SAVES` (WP-30): the checklist is described as a list to print and tick, and the master
+  checklist says its ticks are not saved yet.
+
+With `SEARCH_AVAILABLE` off, the header and drawer carry no Search link; the search page's common
+questions are linked from the footer instead.
 
 Each package sets its flag to `true` in the change that builds the feature.
 
-Below 1024px the top bar is not sticky: on a phone it wraps to two or three rows, and with
-JavaScript off it carries every menu stacked, so pinned it would cover anchor targets and focus.
-`base.css` drops the scroll padding to match.
+The top bar is sticky only from 1024px and only with JavaScript. On a phone it wraps to two or three
+rows, and without JavaScript it carries the theme hint and, below 1024px, every menu, so pinned it
+would cover anchor targets and focus. Where it is sticky its height still varies (one row at 1280px,
+two at 1024px), so the scroll padding is not a constant: `trackTopbar()` in
+`src/scripts/navigation.ts` publishes the bar's measured height as `--st-topbar-offset` (0 while the
+bar is not sticky), and `SiteHeader.astro` sets `scroll-padding-block-start` from it.
+
+Fenced blocks: prompts, snippets and examples are prose and wrap; template previews and listings
+are layouts, keep `white-space: pre`, and are the only ones that can scroll, as a named region.
 
 On an Afrikaans route that falls back to the English document, the English text is marked
 `lang="en-ZA"` wherever it appears: the blocks, the `<h1>`, the summary, the terms, the table of

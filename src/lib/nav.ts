@@ -10,7 +10,14 @@ import type { Locale } from '../i18n/locales';
 import { docHref, docTitle, docTitleLang, orderedSections, sectionHref } from './content/manifest';
 import type { Manifest, SectionId } from './content/schema';
 import { href } from './paths';
-import { APP_ROUTES, NAV_DOC_IDS, TEMPLATES_FILLABLE, WIZARD_AVAILABLE } from './routes';
+import {
+  APP_ROUTES,
+  CHECKLIST_SAVES,
+  NAV_DOC_IDS,
+  SEARCH_AVAILABLE,
+  TEMPLATES_FILLABLE,
+  WIZARD_AVAILABLE,
+} from './routes';
 import { DEFAULT_LOCALE } from '../i18n/locales';
 
 export interface NavLink {
@@ -66,7 +73,11 @@ export function toolLinks(manifest: Manifest, locale: Locale, t: Translator): Na
       label: t('nav.myPath'),
       description: t('nav.toolDescriptions.myPath'),
     },
-    fromDoc(NAV_DOC_IDS.checklist, 'nav.checklist', 'nav.toolDescriptions.checklist'),
+    fromDoc(
+      NAV_DOC_IDS.checklist,
+      'nav.checklist',
+      CHECKLIST_SAVES ? 'nav.toolDescriptions.checklist' : 'nav.toolDescriptions.checklistStatic',
+    ),
     {
       id: 'templates',
       href: href(locale, APP_ROUTES.templates),
@@ -84,16 +95,24 @@ export function toolLinks(manifest: Manifest, locale: Locale, t: Translator): Na
   return links.filter((link): link is NavLink => link !== undefined && link !== false);
 }
 
-/** Contents, About and "How this was made": the footer's own links. */
+/** Contents, Common questions (until search is built), About and "How this was made". */
 export function footerLinks(manifest: Manifest, locale: Locale, t: Translator): NavLink[] {
   const howMade = docHref(manifest, NAV_DOC_IDS.howThisWasMade, locale);
   const howMadeRoute = manifest.docs[NAV_DOC_IDS.howThisWasMade]?.route;
-  const links: (NavLink | undefined)[] = [
+  const links: (NavLink | false | undefined)[] = [
     {
       id: 'contents',
       href: href(locale, APP_ROUTES.contents),
       route: APP_ROUTES.contents,
       label: t('nav.contents'),
+    },
+    // While search is not built, its page is what it holds: the common questions (WP-33 restores
+    // the header link instead).
+    !SEARCH_AVAILABLE && {
+      id: 'common-questions',
+      href: href(locale, APP_ROUTES.search),
+      route: APP_ROUTES.search,
+      label: t('search.commonQuestions'),
     },
     {
       id: 'about',
@@ -110,7 +129,7 @@ export function footerLinks(manifest: Manifest, locale: Locale, t: Translator): 
           label: t('site.howThisWasMade'),
         },
   ];
-  return links.filter((link): link is NavLink => link !== undefined);
+  return links.filter((link): link is NavLink => link !== undefined && link !== false);
 }
 
 /** Breadcrumb trail for a document page: home › section › document. */

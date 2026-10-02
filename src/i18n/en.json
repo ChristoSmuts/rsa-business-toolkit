@@ -5,7 +5,7 @@
     "description": "A free guide for one person who starts and runs a business in South Africa. Plain words, AI-checked facts, checklists and templates.",
     "disclaimerShort": "Written by AI, and checked by AI against the sources in the sources register. Not legal, tax or financial advice.",
     "disclaimerLong": "An AI assistant (Claude, made by Anthropic) wrote this guide. An AI checked the fees, thresholds, form numbers and legal rules against the South African sources in the sources register, where official ones are marked. No person has checked them. AI can still be wrong, and rules change often. Before you pay, sign or file something, open the official link and check the number yourself. This is general information. It is not legal, tax or financial advice.",
-    "checkedOn": "An AI checked the facts against the sources in the sources register on {date}.",
+    "checkedOn": "An AI checked the facts against the sources in the sources register, most recently on {date}.",
     "howThisWasMade": "How this was made and how to check it",
     "titleTemplate": "{page} · {section} · {site}",
     "titleTemplateShort": "{page} · {site}",
@@ -50,6 +50,7 @@
     "toolDescriptions": {
       "myPath": "Your steps, in order",
       "checklist": "Tick each item when you finish it",
+      "checklistStatic": "Every step in one list, to print and tick",
       "templates": "Fill in and print",
       "templatesStatic": "What each document must show",
       "glossary": "Short words explained",
@@ -129,7 +130,7 @@
     "heroTitle": "Start and run your business in South Africa",
     "heroLead": "A free guide for one person who is the owner and the only worker. Plain words, AI-checked facts, and only the steps that apply to you.",
     "heroLeadStatic": "A free guide for one person who is the owner and the only worker. Plain words and AI-checked facts.",
-    "heroVerify": "Written by AI. An AI checked the facts against the sources in the sources register on {date}. No person has checked them yet. Check the official link before you pay or sign.",
+    "heroVerify": "Written by AI. An AI checked the facts against the sources in the sources register, most recently on {date}. No person has checked them yet. Check the official link before you pay or sign.",
     "findMyPath": "Find my path",
     "findMyPathHint": "Answer {total} short questions",
     "knowWhatINeed": "I know what I need",
@@ -148,6 +149,7 @@
       "checklist": {
         "title": "If you know what you need",
         "body": "Open the master checklist. Tick each item when you finish it.",
+        "bodyStatic": "Open the master checklist. Print it and tick each item as you go.",
         "action": "Open the checklist"
       }
     },
@@ -178,8 +180,8 @@
     },
     "trust": {
       "label": "Why you can use this guide",
-      "checked": "An AI checked the facts on {date}",
-      "sources": "Sources listed where facts are stated, with official ones marked",
+      "checked": "An AI last checked the facts on {date}",
+      "sources": "Each page lists its sources or points to the sources register",
       "free": "Free, and you do not need an account",
       "private": "Your answers stay on this device",
       "howThisWasMade": "How this was made"
@@ -442,6 +444,7 @@
     "storageUnavailable": "Your ticks cannot be saved on this device. This can happen in private browsing. You can still tick items, but the ticks are lost when you close the page.",
     "saved": "Ticks are saved on this device only.",
     "noJs": "JavaScript is off. You can tick items, but the ticks are not saved.",
+    "notSaved": "Ticks on this page are not saved yet. Print the list to keep track.",
     "keyToShortWords": "Key to the short words",
     "keyShort": "Short word",
     "keyMeans": "Means",

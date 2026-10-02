@@ -14,6 +14,7 @@ import {
   pageTitle,
   routeParam,
   sectionHue,
+  latestCheck,
   splitAroundParam,
 } from '../../../src/lib/pages';
 import { APP_ROUTES } from '../../../src/lib/routes';
@@ -197,5 +198,22 @@ describe('splitAroundParam', () => {
     expect(splitAroundParam((title) => af('nav.next', { title }))).toEqual(['Volgende: ', '']);
     expect(splitAroundParam((title) => en('nav.previous', { title }))).toEqual(['Previous: ', '']);
     expect(splitAroundParam(() => 'no marker')).toEqual(['no marker', '']);
+  });
+});
+
+describe('latestCheck', () => {
+  it('is the most recent check date among the documents', () => {
+    const checked = (checkedOn: string) => ({
+      verification: { status: 'ai-checked' as const, checkedOn },
+    });
+    expect(latestCheck([checked('2026-09-13'), checked('2026-09-14'), checked('2026-09-01')])).toBe(
+      '2026-09-14',
+    );
+    expect(latestCheck([])).toBeUndefined();
+  });
+
+  it('is not the same date for every page in the corpus, which is why pages say "most recently"', () => {
+    const dates = new Set(realDocs().map((doc) => doc.verification.checkedOn));
+    expect(latestCheck(realDocs())).toBe([...dates].sort().at(-1));
   });
 });

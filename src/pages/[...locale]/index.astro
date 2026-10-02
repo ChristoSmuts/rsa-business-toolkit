@@ -19,9 +19,15 @@ import { loadManifest, loadSources } from '../../lib/content/collections';
 import { docHref, sectionHref } from '../../lib/content/manifest';
 import { HOME_FOUR_THINGS, HOME_NUMBERS_YEAR, resolveHomeNumbers } from '../../lib/home';
 import { localeStaticPaths } from '../../lib/i18n-routes';
-import { docContentLang } from '../../lib/pages';
+import { docContentLang, latestCheck } from '../../lib/pages';
 import { href } from '../../lib/paths';
-import { APP_ROUTES, NAV_DOC_IDS, SEARCH_AVAILABLE, WIZARD_AVAILABLE } from '../../lib/routes';
+import {
+  APP_ROUTES,
+  CHECKLIST_SAVES,
+  NAV_DOC_IDS,
+  SEARCH_AVAILABLE,
+  WIZARD_AVAILABLE,
+} from '../../lib/routes';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -36,7 +42,13 @@ const t = useTranslations(locale);
 const manifest = await loadManifest();
 const sources = await loadSources(docContentLang(manifest, NAV_DOC_IDS.sources, locale));
 if (!sources) throw new Error('The sources register is missing. Run `pnpm content:build`.');
-const checkedOn = formatDate(locale, sources.checkedOn);
+/** The figures' own source check: the register's date. */
+const registerCheckedOn = formatDate(locale, sources.checkedOn);
+/** The whole guide: the most recent check of any page ("most recently on"). */
+const allDocs = (await getCollection('docs', (entry) => entry.data.lang === 'en')).map(
+  (entry) => entry.data,
+);
+const checkedOn = formatDate(locale, latestCheck(allDocs) ?? sources.checkedOn);
 const numbers = resolveHomeNumbers(sources);
 
 const howMadeHref = docHref(manifest, NAV_DOC_IDS.howThisWasMade, locale);
@@ -65,7 +77,11 @@ const whereToStart = [
   {
     key: 'checklist',
     title: t('home.whereToStart.checklist.title'),
-    body: t('home.whereToStart.checklist.body'),
+    body: t(
+      CHECKLIST_SAVES
+        ? 'home.whereToStart.checklist.body'
+        : 'home.whereToStart.checklist.bodyStatic',
+    ),
     action: t('home.whereToStart.checklist.action'),
     href: checklistHref,
   },
@@ -182,7 +198,7 @@ const whereToStart = [
                 {t('home.threeNumbers.from', { date: formatDate(locale, item.from) })}
               </p>
             )}
-            <p class="st-hint">{t('trust.fact.checked', { date: checkedOn })}</p>
+            <p class="st-hint">{t('trust.fact.checked', { date: registerCheckedOn })}</p>
             {/* The link says "Official source"; home.test.ts guarantees every cited source is. */}
             <p class="st-cluster">
               <a class="st-link-block" href={item.sourceUrl} rel="noopener noreferrer">

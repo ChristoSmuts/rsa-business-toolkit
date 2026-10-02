@@ -24,7 +24,7 @@ import type { Locale } from '../../i18n/locales';
 import { sectionLinks, toolLinks } from '../../lib/nav';
 import { href } from '../../lib/paths';
 import type { Manifest } from '../../lib/content/schema';
-import { APP_ROUTES, WIZARD_AVAILABLE } from '../../lib/routes';
+import { APP_ROUTES, SEARCH_AVAILABLE, WIZARD_AVAILABLE } from '../../lib/routes';
 
 interface Props {
   locale: Locale;
@@ -38,7 +38,8 @@ const t = useTranslations(locale);
 const sections = sectionLinks(manifest, locale, t);
 const tools = toolLinks(manifest, locale, t);
 const homeHref = href(locale, APP_ROUTES.home);
-const searchHref = href(locale, APP_ROUTES.search);
+// Until WP-33 there is nothing to search with; the page's common questions are in the footer.
+const searchHref = SEARCH_AVAILABLE ? href(locale, APP_ROUTES.search) : undefined;
 const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefined;
 ---
 
@@ -55,10 +56,12 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
       <NavMenu label={t('nav.read')} links={sections} route={route} />
       <NavMenu label={t('nav.tools')} links={tools} route={route} />
     </nav>
-    <a class="st-topbar__search" href={searchHref}>
-      <Icon name="lucide:search" size="1em" />
-      <span>{t('nav.search')}</span>
-    </a>
+    {searchHref && (
+      <a class="st-topbar__search" href={searchHref}>
+        <Icon name="lucide:search" size="1em" />
+        <span>{t('nav.search')}</span>
+      </a>
+    )}
     <LanguageSwitcher class="st-topbar__lang" locale={locale} route={route} />
     <div class="st-topbar__theme">
       <ThemeControl locale={locale} />
@@ -192,5 +195,27 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
     .st-topbar {
       border-block-end: 1px solid CanvasText;
     }
+  }
+</style>
+
+<style is:global>
+  /*
+   * Anchor targets and focused elements scroll to just below the bar, whatever its real height.
+   * `--st-topbar-offset` is the bar's measured height while it is sticky and 0 while it scrolls away
+   * (src/scripts/navigation.ts, `trackTopbar`). Without JavaScript it is unset, and the bar is never
+   * sticky then, so 0 is right. A fixed 72px was wrong whenever the bar wrapped: 123px at 1024px
+   * with JavaScript, 93px without (review WP-20 pass 4).
+   */
+  html:root {
+    scroll-padding-block-start: calc(var(--st-topbar-offset, 0px) + var(--st-space-4));
+  }
+
+  /*
+   * Without JavaScript the bar is never sticky: the theme control's hint and, below 1024px, every
+   * menu make it two rows or more, and nothing could measure it for the padding above. This beats
+   * the component's scoped `position: sticky` on specificity.
+   */
+  html:not(.js) .st-topbar {
+    position: static;
   }
 </style>
