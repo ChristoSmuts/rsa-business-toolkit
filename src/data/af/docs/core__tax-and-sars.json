@@ -1087,10 +1087,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Daar is ’n limiet. Artikel 20A van die Income Tax Act kan verliese uit sekere bedrywe \"omhein\" (\"ring-fence\"), veral waar jy ’n hoë verdiener is en die aktiwiteit jaar ná jaar geld verloor, of waar dit soos ’n stokperdjie lyk. As jy beplan om besigheidsverliese teen ’n salaris te gebruik, kry eers ’n uur se advies van ’n belastingpraktisyn."
+          "v": "Daar is ’n beperking. Artikel 20A van die Income Tax Act kan verliese uit sekere bedrywe \"omhein\" (\"ring-fence\"), veral waar jy ’n hoë verdiener is en die aktiwiteit jaar ná jaar geld verloor, of waar dit soos ’n stokperdjie lyk. As jy beplan om besigheidsverliese teen ’n salaris te gebruik, kry eers ’n uur se advies van ’n belastingpraktisyn."
         }
       ],
-      "hash": "315b802b0d122239",
+      "hash": "1b9e3f37d2f2d581",
       "id": "a-fifth-option-if-you-have-a-salary-as-well.2",
       "kind": "paragraph",
       "sourceHash": "fce8148ab3009a8f"
@@ -1113,10 +1113,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Bydraes tot ’n aftree-annuïteit is aftrekbaar, oor die algemeen tot 27.5% van die groter van vergoeding of belasbare inkomste, met ’n perk in rand. Die 2026-begroting het die perk op aftreebydraes na R430,000 per jaar verhoog, van R350,000."
+          "v": "Bydraes tot ’n aftree-annuïteit is aftrekbaar, oor die algemeen tot 27.5% van die groter van vergoeding of belasbare inkomste, met ’n perk in rand. Die 2026-begroting het die perk op aftreebydraes van R350,000 na R430,000 per jaar verhoog."
         }
       ],
-      "hash": "01c8fba55359134b",
+      "hash": "8a55e352836c0e2d",
       "id": "retirement-contributions.1",
       "kind": "paragraph",
       "sourceHash": "a9d4ec66ddd100c8"
@@ -1530,7 +1530,7 @@
       "sourceHash": "cbc3a48ec3dc57e9"
     }
   ],
-  "contentHash": "b53689727d89e6ff",
+  "contentHash": "cbfed8c7d6cbb996",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

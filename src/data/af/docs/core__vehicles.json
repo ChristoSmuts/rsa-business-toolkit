@@ -368,10 +368,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Die voertuigstelsel het ’n ID-nommer vir elke eienaar nodig. ’n Maatskappy het geen ID-nommer nie, so die verkeersdepartement gee dit een. Die sertifikaat wat daardie nommer wys, is die BRNC. Dit is ’n ander dokument as jou CIPC-sertifikaat, en jy het albei nodig."
+          "v": "Die voertuigstelsel het ’n ID-nommer vir elke eienaar nodig. ’n Maatskappy het geen ID-nommer nie, so die verkeersdepartement gee vir die maatskappy een. Die sertifikaat wat daardie nommer wys, is die BRNC. Dit is ’n ander dokument as jou CIPC-sertifikaat, en jy het albei nodig."
         }
       ],
-      "hash": "e515546f79885a75",
+      "hash": "4b5714adb6182fb5",
       "id": "if-you-have-a-registered-company.3",
       "kind": "callout",
       "pairsWith": "if-you-have-a-registered-company.2",
@@ -1095,7 +1095,7 @@
       "sourceHash": "2e1fcdfb63c776b5"
     }
   ],
-  "contentHash": "9b4efd47df50fa6b",
+  "contentHash": "1228665c8f9784cc",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

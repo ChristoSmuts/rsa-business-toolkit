@@ -464,10 +464,10 @@
         },
         {
           "t": "text",
-          "v": " voordat jy registreer. Dit gee elke indiening wat ’n maatskappy elke jaar verskuldig is, en wat gebeur wanneer dit gemis word. Lees dit eerste, nie ná registrasie nie."
+          "v": " voordat jy registreer. Dit sit elke indiening uiteen wat ’n maatskappy elke jaar verskuldig is, en wat gebeur wanneer dit gemis word. Lees dit eerste, nie ná registrasie nie."
         }
       ],
-      "hash": "1f043d9ef9fb5f36",
+      "hash": "6affa9e327847ea1",
       "id": "which-one-should-you-choose.5",
       "kind": "paragraph",
       "sourceHash": "31608011a3abc614"
@@ -834,10 +834,10 @@
       "c": [
         {
           "t": "text",
-          "v": "’n Handelsmerk is iets anders as ’n maatskappynaam. ’n Maatskappynaam keer niemand om dieselfde handelsmerk te gebruik nie. ’n Geregistreerde handelsmerk doen dit wel. Handelsmerke kos ’n paar duisend rand en neem lank. Moenie dit in jaar een doen nie, tensy jou handelsmerk die hele produk is."
+          "v": "’n Handelsmerk is iets anders as ’n maatskappynaam. ’n Maatskappynaam keer niemand om dieselfde handelsmerk te gebruik nie. ’n Geregistreerde handelsmerk doen dit wel. Geregistreerde handelsmerke kos ’n paar duisend rand en neem lank. Moenie dit in jaar een doen nie, tensy jou handelsmerk die hele produk is."
         }
       ],
-      "hash": "1d8b3f3dc35c44ac",
+      "hash": "89bb0814f0bb4328",
       "id": "choosing-the-name.4",
       "kind": "paragraph",
       "sourceHash": "c7a35b97424324df"
@@ -1435,7 +1435,7 @@
       "sourceHash": "bce5c280bfc5098a"
     }
   ],
-  "contentHash": "92c433a6e2cf2570",
+  "contentHash": "9ad3f6ec8985b2bc",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

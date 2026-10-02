@@ -387,10 +387,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Kontak die departement van omgewingsgesondheid van die munisipaliteit waar jou perseel geleë is, en vra die aansoekvorm vir die COA. ’n Omgewingsgesondheidspraktisyn (EHP) sal die perseel inspekteer om te kyk of dit aan R638 voldoen. As jy voldoen, word die COA uitgereik. Indien nie, gee die EHP vir jou ’n lys van verbeterings wat vereis word."
+          "v": "Kontak die departement van omgewingsgesondheid van die munisipaliteit waar jou perseel geleë is, en vra die aansoekvorm vir die COA aan. ’n Omgewingsgesondheidspraktisyn (EHP) sal die perseel inspekteer om te kyk of dit aan R638 voldoen. As jy voldoen, word die COA uitgereik. Indien nie, gee die EHP vir jou ’n lys van verbeterings wat vereis word."
         }
       ],
-      "hash": "0fc3277f504d3367",
+      "hash": "1717f5f0398f8a8c",
       "id": "if-you-sell-food.6",
       "kind": "paragraph",
       "sourceHash": "3c0b8f80350c68cc"
@@ -1105,10 +1105,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Sommige werk mag net deur geregistreerde professionele persone gedoen word. Algemene voorbeelde: elektrisiëns wat nakomingsertifikate uitreik, loodgieters, gasinstalleerders, ingenieurs, eiendomsagente, finansiële adviseurs, sekuriteitsdienste en gesondheidswerkers."
+          "v": "Sommige werk mag net deur geregistreerde professionele persone gedoen word. Algemene voorbeelde: elektrisiëns wat nakomingsertifikate uitreik, loodgieters, gasinstalleerders, ingenieurs, eiendomsagente, finansiële adviseurs, sekuriteitsdienste en gesondheidspraktisyns."
         }
       ],
-      "hash": "6af2ff296710cf95",
+      "hash": "c5a18018aa756c53",
       "id": "if-you-provide-professional-or-regulated-services.1",
       "kind": "paragraph",
       "sourceHash": "feba5fd255c8044a"
@@ -1344,7 +1344,7 @@
       "sourceHash": "0f6bf7e5d95d8cee"
     }
   ],
-  "contentHash": "f24be99b97353c5c",
+  "contentHash": "d164f18257a5f179",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
