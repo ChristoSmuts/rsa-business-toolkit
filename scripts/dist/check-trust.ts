@@ -259,57 +259,44 @@ export const PROTECTED_NAMES: readonly string[] = [
   ]),
 ].sort((a, b) => b.length - a.length);
 
-/** Every text run inside the links of some inline runs (a register entry's "supports" text). */
-function linkTexts(runs: readonly unknown[]): string[] {
-  const out: string[] = [];
-  const text = (items: readonly unknown[]): string =>
-    items
-      .map((item) => {
-        const run = item as { t?: string; v?: string; c?: unknown[] };
-        return run.v ?? (run.c ? text(run.c) : '');
-      })
-      .join('');
-  for (const item of runs) {
-    const run = item as { t?: string; c?: unknown[] };
-    if (run.t === 'link' && run.c) out.push(text(run.c));
-    else if (run.c) out.push(...linkTexts(run.c));
-  }
-  return out;
+interface RegisterTitles {
+  entries: readonly { id: string; title: string }[];
+  acts: readonly { id: string; name: string }[];
 }
 
 /**
- * Titles of the works and publishers the English register cites ("Flip the Market", "SARS — Guide
- * to Provisional Tax", "Werksmans Attorneys"), whole and split at " — ", ", " and " / ". They are
- * proper names, which WCAG 3.1.2 does not ask to be marked, and the style guide keeps named
- * publications and secondary sources in English so a reader can search for them.
+ * Register titles the Afrikaans translation kept exactly as the English register has them: the
+ * translators' own decision that a title is a name to search for (named publications, secondary
+ * titles, publishers, Act names), so it is the same on both twins without being untranslated.
+ * Whole, plus the publisher before " — " or the first ", " ("Govchain", "Flip the Market"),
+ * because the register's prose names the publisher alone. A title the translation changed is
+ * never a name here (review WP-40 integration pass 1, major 1).
  */
-export function registerNames(register: {
-  entries: readonly { title: string; supports?: readonly unknown[] | undefined }[];
-  acts: readonly { name: string }[];
-}): string[] {
-  const names = new Set<string>();
-  const add = (text: string): void => {
-    const trimmed = text.trim();
-    if (trimmed === '') return;
-    names.add(trimmed);
-    for (const part of trimmed.split(/ — |, | \/ /)) if (part.trim() !== '') names.add(part.trim());
+export function registerNames(english: RegisterTitles, afrikaans: RegisterTitles): string[] {
+  const names = new Set<string>(OTHER_NAMES);
+  const kept = new Set([
+    ...afrikaans.entries.map((entry) => `${entry.id}\u0000${entry.title}`),
+    ...afrikaans.acts.map((act) => `${act.id}\u0000${act.name}`),
+  ]);
+  const add = (id: string, title: string): void => {
+    if (!kept.has(`${id}\u0000${title}`)) return;
+    names.add(title);
+    const publisher = title.split(/ — |, /)[0]?.trim();
+    if (publisher && publisher !== title) names.add(publisher);
   };
-  for (const entry of register.entries) {
-    add(entry.title);
-    for (const text of linkTexts(entry.supports ?? [])) add(text);
-  }
-  for (const act of register.acts) add(act.name);
-  for (const name of OTHER_NAMES) names.add(name);
+  for (const entry of english.entries) add(entry.id, entry.title);
+  for (const act of english.acts) add(act.id, act.name);
   return [...names];
 }
 
 /**
- * Proper names the register's prose cites outside its titles and links (law firms, journals,
- * regulators named mid-sentence), and official names the translation keeps in English (CIPC's
+ * Proper names the register's prose cites outside its titles (law firms, journals, regulators
+ * named mid-sentence, institutions the style guide keeps in English), and official names the translation keeps in English (CIPC's
  * "Letter of Good Standing", WP-40 batch 2 and 3 notes).
  */
 const OTHER_NAMES = [
   'Annual Review of Psychology',
+  'B-BBEE Commission',
   'Financial Sector Conduct Authority',
   'Journal of the Academy of Marketing Science',
   'Letter of Good Standing',
@@ -357,7 +344,15 @@ const namePatterns = new Map<string, RegExp>();
 function namePattern(name: string): RegExp {
   let pattern = namePatterns.get(name);
   if (!pattern) {
-    pattern = new RegExp(`(?<![\\p{L}\\d])${escapeRegExp(name)}(?![\\p{L}\\d])`, 'giu');
+    // Case-sensitive: "Tax calendar" in a sentence is words, not the title "SARS — Tax calendar".
+    // A lower-case term-list name ("voetstoots") also matches with a capital, as a headword.
+    const first = name.charAt(0);
+    const head =
+      first === first.toUpperCase() ? escapeRegExp(first) : `[${first}${first.toUpperCase()}]`;
+    pattern = new RegExp(
+      `(?<![\\p{L}\\d])${head}${escapeRegExp(name.slice(1))}(?![\\p{L}\\d])`,
+      'gu',
+    );
     namePatterns.set(name, pattern);
   }
   return pattern;
@@ -433,14 +428,18 @@ export function langProblems(
   return found;
 }
 
-/** Protected names plus the English register's titles and publishers, longest first. */
+/** Protected names plus the register titles both languages share, longest first. */
 export function namesForCheck(repoRoot = path.resolve('.')): string[] {
-  const register = JSON.parse(
-    readFileSync(path.join(repoRoot, 'src', 'data', 'en', 'sources.json'), 'utf8'),
-  ) as Parameters<typeof registerNames>[0];
-  return [...new Set([...PROTECTED_NAMES, ...registerNames(register)])].sort(
-    (a, b) => b.length - a.length,
-  );
+  const read = (lang: string): RegisterTitles | undefined => {
+    const file = path.join(repoRoot, 'src', 'data', lang, 'sources.json');
+    return existsSync(file)
+      ? (JSON.parse(readFileSync(file, 'utf8')) as RegisterTitles)
+      : undefined;
+  };
+  const english = read('en');
+  const afrikaans = read('af');
+  const shared = english && afrikaans ? registerNames(english, afrikaans) : [...OTHER_NAMES];
+  return [...new Set([...PROTECTED_NAMES, ...shared])].sort((a, b) => b.length - a.length);
 }
 
 /** Document pages the build must contain: every manifest document in every enabled locale. */
@@ -465,7 +464,11 @@ export function runCli(
   let afPages = 0;
   for (const file of files) {
     const html = readFileSync(path.join(root, ...file.split('/')), 'utf8');
-    if (file.startsWith('af/') && !file.startsWith('af/design-system/')) {
+    // The design-system pages are an English reference, except the content gallery, which is
+    // where the English-fallback state is still shown (review WP-40 integration pass 1).
+    const reference =
+      file.startsWith('af/design-system/') && !file.startsWith('af/design-system/content/');
+    if (file.startsWith('af/') && !reference) {
       const twin = path.join(root, ...file.slice(3).split('/'));
       if (existsSync(twin)) {
         afPages++;
