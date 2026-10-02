@@ -326,7 +326,7 @@ Nommer hulle 1 tot 5. Sê dan vir my watter een die swakste is en waarom. Stop d
 
 ### Voordat jy op ’n naam besluit
 
-Die KI kan nie een van hierdie dinge doen nie. Jy moet.
+Die KI kan nie een van hierdie dinge doen nie. Jy moet dit doen.
 
 1. Soek die naam op www.bizportal.gov.za of op die CIPC-webwerf.
 2. Soek in CIPC se handelsmerkdatabasis na dieselfde naam in jou klas goedere of dienste.
@@ -392,7 +392,7 @@ Beskryf 5 verskillende rigtings vir die logo. Moenie ’n prent genereer nie.
 Beskryf hulle in woorde, so presies dat ’n ontwerper elkeen kan teken
 sonder om my ’n vraag te vra.
 
-Sê vir elke rigting:
+Sê vir my by elke rigting:
 - Die idee in een sin
 - Net lettertipe, of lettertipe plus ’n beeldmerk
 - As dit net lettertipe is: die EEN doelbewuste aanpassing wat dit joune maak
@@ -713,8 +713,8 @@ Dit wys hoe goeie resultate lyk, sodat jy weet aan watter standaard jy die KI mo
 6. Prysvlak: middel.
 7. Tale: Afrikaans en Engels, ’n bietjie isiXhosa.
 8. Gevoel: soos om by ’n werktuigkundige te koop wat jy reeds ken.
-9. Bewonder: ’n plaaslike bandewinkel waar die eienaar altyd op die vloer is.
-10. Wil nie hê nie: enigiets wat soos ’n groot stadshandelaar lyk, geen
+9. Bewonder: ’n plaaslike bandewinkel waar die eienaar altyd op die werkvloer is.
+10. Wil nie hê nie: enigiets wat soos ’n motorhandelaar in ’n groot stad lyk, geen
  chroom nie, geen "luuksheid" nie.
 11. Fisiese detail: ek hou ’n knipbord met die foutelys op elke voertuig, en die
  kliënt neem die knipbord saam.

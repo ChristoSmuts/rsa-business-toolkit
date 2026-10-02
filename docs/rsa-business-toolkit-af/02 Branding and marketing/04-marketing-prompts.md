@@ -110,10 +110,10 @@ moet korter as 60 woorde wees, beleefd, en maklik om op ’n foon te lees.
 
 1. Iemand vra "hoeveel?" en ek het meer inligting nodig voordat ek ’n kwotasie gee
 2. ’n Kwotasie stuur
-3. Opvolg op ’n kwotasie ná 3 dae sonder antwoord
+3. ’n Kwotasie opvolg ná 3 dae sonder antwoord
 4. ’n Bespreking bevestig met datum, tyd en adres
 5. ’n Kliënt die dag tevore herinner
-6. ’n Kliënt sê dat ek laat is
+6. Vir ’n kliënt sê dat ek laat is
 7. Beleefd vir betaling vra wanneer ’n faktuur agterstallig is
 8. Vir ’n Google-resensie vra nadat ’n werk goed afgeloop het
 

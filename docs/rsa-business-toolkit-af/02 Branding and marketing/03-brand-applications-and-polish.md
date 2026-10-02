@@ -178,7 +178,7 @@ Doen elkeen van hierdie toetse voordat jy geld spandeer. Hulle neem tien minute 
 
 **Die duimnaeltoets.** Verklein dit tot omtrent die grootte van ’n WhatsApp-profielfoto op ’n foon. Kan jy steeds sien wat dit is?
 
-**Die knyp-oog-toets.** Knyp jou oë toe totdat dit vervaag. Is die vorm steeds kenmerkend, of word dit ’n grys klont?
+**Die knyp-oog-toets.** Knyp jou oë half toe totdat dit vervaag. Is die vorm steeds kenmerkend, of word dit ’n grys klont?
 
 **Die fotostaattoets.** Druk dit, maak ’n fotostaat van die drukstuk, en maak dan ’n fotostaat van die afskrif. So lyk jou logo nadat dit deur drie van jou kliënte se kantore was.
 
