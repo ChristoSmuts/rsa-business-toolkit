@@ -164,11 +164,17 @@ Projects `chromium`, `webkit` and `mobile` (WP-33, build plan A7 and B3 flow 3):
   every request for `search/<lang>.<hash>.json`); typing `SAPS 601` gives options with `<mark>`ed
   matches; ArrowDown and Enter open the first one, and the page that opens has the URL's `#hash` on a
   heading (`h2`–`h4`) that has focus and the `.st-search-target` highlight;
-- Ctrl+K opens it with the common questions showing; Escape closes it and focus goes back;
+- Ctrl+K opens it with the common questions showing; one Escape closes it, even with text in the
+  field, and focus goes back;
+- `VAT 264` typed with a space after an earlier query, then Enter at once, opens a `VAT264` result
+  (review WP-33 pass 1, majors 1 and 2);
+- the status line is in the accessibility tree before any search;
+- an index that answers 500 gives the failed state, with the sentence once and the contents link;
 - `/` typed into a field stays in the field;
 - the header control opens it, and a result on the same page moves there without a load and focuses
   the heading;
-- Afrikaans results link under `/af/` and mark English text with `lang="en-ZA"` and "Engels";
+- Afrikaans results (`omsetbelasting`) link under `/af/` and carry no English mark, now that every
+  document is translated (the mark itself is tested on fixtures);
 - no results says so and keeps the contents link;
 - `/search/?q=VAT264` runs the query in place, echoes it and lists the vehicle dealer's "conditions"
   section; a new search updates `?q=` without reloading the page;
@@ -181,7 +187,9 @@ which links the contents and every page of the guide) and axe with the dialog op
 `a11y.spec.ts`.
 
 The unit side is `tests/unit/search/` (the index built in memory from the real `src/data`: the A7
-ranking cases, anchors, fallback language marks, the 400 KB gzip budget per language; fixtures for
+ranking cases including `belastng` on the real Afrikaans data, spaced and joined form codes,
+`e-filing`, anchors, no English marks in the translated Afrikaans index and the English fallback on a
+copy of the data without Afrikaans, the 400 KB gzip budget per language; fixtures for
 the tokenizer, the client, filters, URLs and highlighting) and `tests/dom/search.test.ts` (the
 elements in happy-dom: openers, shortcuts, focus return, the listbox keyboard, every state, arrival
 focus, the search page and the 404 suggestion).
@@ -198,14 +206,14 @@ Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, r
 
 ## JavaScript budget: `pnpm dist:budget`
 
-Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-02, at the end of WP-33:
+Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-02, at the end of WP-33 review pass 1, with the Afrikaans translation merged:
 
 | What | Gzip |
 | --- | --- |
 | Largest document page (`branding/already-have-your-name/`) | 7.7 KB |
-| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 16.6 KB |
-| Imported when search first opens (results code, client, MiniSearch) | 10.3 KB |
-| Search index, English / Afrikaans (fetched when search opens; budget 400 KB each) | 163.2 / 163.8 KB |
+| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 16.9 KB |
+| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 10.8 KB |
+| Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 165.3 / 181.9 KB |
 
 WP-30 adds the store, the checklists, copy buttons, the table of contents and the settings to every document page; its numbers replace these when it merges.
 

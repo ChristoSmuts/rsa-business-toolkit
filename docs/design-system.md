@@ -342,7 +342,10 @@ English voice. Everything around the content, and every URL, stays in the reader
 
 **Pattern.** The field is an ARIA 1.2 combobox that owns a listbox. Focus stays in the field; the up
 and down arrows move `aria-activedescendant` (wrapping), Enter opens the active option or the first
-one, Escape closes the dialog. Results are grouped by section, each group a `role="group"` named
+one, and Escape closes the dialog in one press, even with text in the field (the field's own
+clear-on-Escape is overridden, because the instructions promise "Press Escape to close search").
+Enter always acts on the text in the field: pressed before the debounced search has run, it searches
+that text first and opens its first result, never an option left from the previous query. Results are grouped by section, each group a `role="group"` named
 "Results in {section}" (`search.groupLabel`) with a visible, `aria-hidden` section name. Groups follow
 their best result, and the dialog shows at most three results per section, so one busy section (the
 glossary, the checklist and the register are all "Look it up") cannot push the second-best result far
@@ -350,22 +353,43 @@ down; "See all {count} results on the search page" (`search.seeAll`) links `/sea
 rest. Each option is
 an `<a role="option">` with a real `href`, so a middle click or "open in new tab" still works. Inside
 an option: the title, then "page › heading" and the kind ("Glossary", "Checklist item"), then a short
-excerpt; matched words are `<mark>` (`--st-mark-bg`, verified with `--st-text` at 14.28:1 and 7.36:1).
+excerpt. The option's name is the title alone (`aria-labelledby`) and the rest is its description
+(`aria-describedby`), so arrowing through the list reads one short name per option; matched words are `<mark>` (`--st-mark-bg`, verified with `--st-text` at 14.28:1 and 7.36:1).
 An English result on an Afrikaans page carries `lang="en-ZA"` on its English text and a visible
 "Engels" tag. The active option has the focus ring (`--st-focus`), not only a tint.
 
 **States.** Empty (the common questions), loading ("Loading search…", only after 150 ms), results
-with a count, no results (the common questions stay, with the contents link) and failed (with the
-contents link). The status line is the live region for all of them.
+with a count ("3 of 30 results shown", `search.resultsShown`, when the per-section cap hides some),
+no results (the common questions stay, with the contents link) and failed (the sentence once, in the
+status line, and the contents link). The status line is the live region for all of them. It is
+never `display: none`: empty, it is only visually hidden, so it is in the accessibility tree before
+the first count arrives. On `/search/` the same holds: the results region is never hidden, only its
+heading until there is a query.
+
+**Queries.** Words are folded and stop words dropped, and at most 12 words are searched (the fields
+also take at most 200 characters). Two neighbours that are one thing written two ways are searched
+as "both words, or the joined form": letters then a number in any case (`VAT 264`, `vat 264`,
+`SAPS 601` find what `VAT264` and `saps601` find) and a hyphenated word (`e-filing` finds `eFiling`).
+Every word must match first; when that finds nothing, any word may, leaving out lone numbers and
+single letters, so a junk query says "nothing found" instead of listing every "Prompt 1".
+
+**Not built: filter chips.** B3 flow 3 puts filter chips in the empty state. The brief for this
+package (step 3) does not, and it leaves the only filter with a clear use, "my business types", to
+WP-31 because it needs the profile. The client already filters by section, kind, entity and business
+type (`SearchOptions`), so the chips are markup and wiring only; section chips alone add a control
+that the grouping by section and the search page already cover. They go to WP-31 with the
+business-type filter (`docs/reviews/backlog.md`).
 
 **Choosing a result.** On another page: the script remembers the target in `sessionStorage`
-(`st.search.arrival`, removed on the next page load) and the destination focuses the heading and
+(`st.search.arrival`, behind the small `arrivalStore` wrapper in `src/scripts/search.ts`, removed on
+the next page load) and the destination focuses the heading and
 gives it `.st-search-target`, a two-second `--st-mark-bg` fade; with `prefers-reduced-motion` it does
 not fade and the class is removed after the same two seconds. On the same page: no load, the hash
 changes and the heading takes focus. Focus does not go back to the opener then.
 
 **Weight.** Nothing about search loads with a page except `<st-search>` and the dialog markup. The
-results code and MiniSearch (10.3 KB gzip) and the index (about 163 KB gzip) are fetched when the
+results code and MiniSearch (10.8 KB gzip) and the index (165 KB gzip in English, 182 KB in
+Afrikaans) are fetched when the
 dialog first opens; with low data, the index waits for the first key press. The dialog scrolls as a
 whole, with the title and field sticky at its top: a scrolling box that held only the results,
 whose options are not Tab stops, would be a region the keyboard cannot scroll.
