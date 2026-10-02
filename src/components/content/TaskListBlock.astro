@@ -2,8 +2,11 @@
 /**
  * A checklist inside a document: native checkboxes in labels, grouped in a `<fieldset>`.
  *
- * Each checkbox carries the task id the pipeline generated (`core/register:1a2b3c4d`), which is
- * the same id `/checklist/` uses, so a tick is saved once and every page showing the task agrees.
+ * Each checkbox's `id` is the task id the pipeline generated (`core/register:1a2b3c4d`). Its
+ * `data-task` is the key its tick is saved under: the same id, or, for a task that repeats one on
+ * `/checklist/` (`content-meta/task-links.json`, emitted as `sameAs`), the master checklist's id.
+ * So ticking a linked task on its document ticks it on `/checklist/` too, and the other way round;
+ * a task that is not linked has a tick of its own. Task ids are the same in every language.
  * Nothing here needs JavaScript: the boxes tick, and without the store the ticks simply do not
  * persist.
  *
@@ -44,7 +47,8 @@ const siteT = useTranslations(context.locale);
 const siteLang = isFallbackContent(context)
   ? (getLocale(context.locale)?.hreflang ?? context.locale)
   : undefined;
-const ids = block.items.map((task) => task.id);
+/** The keys the ticks are saved under (see above). */
+const ids = block.items.map((task) => task.sameAs ?? task.id);
 const progressTemplate = siteT('checklist.progress', { done: '{done}', total: '{total}' });
 ---
 
@@ -56,7 +60,9 @@ const progressTemplate = siteT('checklist.progress', { done: '{done}', total: '{
 {first && CHECKLIST_SAVES && (
   <div class="st-stack st-stack-sm st-tasklist__notes st-no-print" lang={siteLang}>
     <p class="st-hint st-tasklist__no-js no-js-only">{siteT('checklist.noJs')}</p>
-    <p class="st-hint st-tasklist__saved js-only">{siteT('checklist.saved')}</p>
+    <st-storage-notice class="st-storage-notice js-only" data-show="available">
+      <p class="st-hint st-tasklist__saved">{siteT('checklist.saved')}</p>
+    </st-storage-notice>
     <st-storage-notice class="st-storage-notice" hidden>
       <Callout variant="warning" label={siteT('doc.warning')}>
         <p>{siteT('checklist.storageUnavailable')}</p>
@@ -75,7 +81,7 @@ const progressTemplate = siteT('checklist.progress', { done: '{done}', total: '{
     )}
     {block.items.map((task) => (
       <label class="st-check">
-        <input type="checkbox" id={task.id} value={task.id} data-task={task.id} />
+        <input type="checkbox" id={task.id} value={task.id} data-task={task.sameAs ?? task.id} />
         <span>
           <Inline runs={task.c} context={context} />
         </span>

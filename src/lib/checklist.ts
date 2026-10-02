@@ -11,7 +11,7 @@ export interface ChecklistPart {
   readonly id: string;
   /** The heading's text, in the document's language. */
   readonly title: string;
-  /** Every task id in the part, in page order. */
+  /** The key every task in the part is ticked under (`sameAs ?? id`), in page order. */
   readonly taskIds: readonly string[];
 }
 
@@ -32,7 +32,7 @@ export function checklistParts(blocks: readonly Block[]): ChecklistPart[] {
         current = { id: '', title: '', taskIds: [] };
         parts.push(current);
       }
-      current.taskIds.push(...block.items.map((task) => task.id));
+      current.taskIds.push(...block.items.map((task) => task.sameAs ?? task.id));
     }
   }
   return parts.filter((part) => part.taskIds.length > 0);
@@ -45,7 +45,9 @@ export interface DocChecklist {
 
 /**
  * The checklists on every page except `exclude`, in reading order (sections, then documents in
- * their section). Task ids are the same in every language, so the English task list serves all.
+ * their section), as the keys their ticks are saved under: a task linked to a master-checklist
+ * task (`sameAs`) counts under that task's id, so its tick shows in both places. Task ids and
+ * links are the same in every language, so the English task list serves all.
  */
 export function checklistsByDoc(
   manifest: Manifest,
@@ -56,7 +58,7 @@ export function checklistsByDoc(
   for (const task of tasks.tasks) {
     if (task.doc === exclude) continue;
     const list = byDoc.get(task.doc) ?? [];
-    list.push(task.id);
+    list.push(task.sameAs ?? task.id);
     byDoc.set(task.doc, list);
   }
   const ordered: DocChecklist[] = [];

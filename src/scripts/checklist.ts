@@ -1,7 +1,9 @@
 /*
  * Checklists (build plan B3 flow 8, B6, C2). Ticks live in the `checks` store (`st.checks.v1`,
- * `{ [taskId]: ISO date-time }`), keyed by the task id the pipeline gives every item, so any page
- * that shows a task shows the same tick, in either language and in every open tab.
+ * `{ [key]: ISO date-time }`). The key is each checkbox's `data-task`: the task id, or for a task
+ * that repeats one on `/checklist/` the master task's id (`sameAs`, `TaskListBlock.astro`). So a
+ * task shows the same tick wherever it appears (its document and `/checklist/`, either language,
+ * every open tab); a task that is not linked has its own.
  *
  * <st-checklist>          wraps one server-rendered `<fieldset>` of native checkboxes
  *                         (`data-task`). Ticking writes the store; the store sets the boxes.

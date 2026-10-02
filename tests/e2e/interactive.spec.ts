@@ -47,6 +47,15 @@ const DOC_TASKS = (
 ).map((item) => item.id);
 
 const CHECKLIST = 'checklist/';
+
+/** A document task that repeats a master-checklist task (`content-meta/task-links.json`). */
+const LINKED_DOC = 'business-types/services-trades/';
+const LINKED = readJson<{ tasks: { id: string; doc: string; sameAs?: string }[] }>(
+  'src',
+  'data',
+  'en',
+  'tasks.json',
+).tasks.find((task) => task.doc === 'business-types/services-trades' && task.sameAs);
 const PROMPTS = 'branding/branding-prompts/';
 const FIRST_PROMPT =
   readJson<{ blocks: CodeBlock[] }>(
@@ -73,7 +82,7 @@ async function storedChecks(page: Page): Promise<Record<string, string>> {
 }
 
 test.describe('checklists', () => {
-  test('a tick on a document survives a reload and shows on /checklist/ and in Afrikaans', async ({
+  test('a tick on a document survives a reload, is counted on /checklist/ and shows in Afrikaans', async ({
     page,
   }) => {
     expect(DOC_TASKS.length).toBeGreaterThan(1);
@@ -102,6 +111,36 @@ test.describe('checklists', () => {
     await page.goto(`af/${DOC}`);
     await expect(page.locator(`input[data-task="${first}"]`)).toBeChecked();
     expect(DOC_ID).toBe(first?.split(':')[0]);
+  });
+
+  test('a linked task ticked on its document is ticked on /checklist/, and the other way round', async ({
+    page,
+  }) => {
+    expect(LINKED?.sameAs, 'services-trades has a task linked to /checklist/').toBeTruthy();
+    const docBox = `input[id="${LINKED?.id ?? ''}"]`;
+    const masterBox = `input[id="${LINKED?.sameAs ?? ''}"]`;
+
+    await page.goto(LINKED_DOC);
+    await page.locator(docBox).check();
+    expect(Object.keys(await storedChecks(page))).toEqual([LINKED?.sameAs]);
+    await page.goto(CHECKLIST);
+    await expect(page.locator(masterBox)).toBeChecked();
+    await expect(page.locator('.st-checklist-summary__overall [data-progress-text]')).toHaveText(
+      /^1 of \d+ done$/,
+    );
+
+    // Unticking on /checklist/ unticks it on the document too.
+    await page.locator(masterBox).uncheck();
+    await page.goto(LINKED_DOC);
+    await expect(page.locator(docBox)).not.toBeChecked();
+
+    // Ticking on /checklist/ ticks it on the document, in either language.
+    await page.goto(CHECKLIST);
+    await page.locator(masterBox).check();
+    await page.goto(LINKED_DOC);
+    await expect(page.locator(docBox)).toBeChecked();
+    await page.goto(`af/${LINKED_DOC}`);
+    await expect(page.locator(docBox)).toBeChecked();
   });
 
   test('/checklist/ counts ticks, filters what is not done yet and removes ticks after asking', async ({

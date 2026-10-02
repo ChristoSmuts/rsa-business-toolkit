@@ -156,7 +156,10 @@ JavaScript still reaches every section and tool.
 `tests/e2e/interactive.spec.ts` (projects `chromium`, `webkit` and `mobile`) drives the built site:
 
 - **Checklists.** A tick on `core/what-you-need-to-sell-things/` survives a reload, is counted under
-  "Checklists on other pages" on `/checklist/`, and is ticked on the Afrikaans twin. On `/checklist/`
+  "Checklists on other pages" on `/checklist/`, and is ticked on the Afrikaans twin. A task linked
+  to a master task (`sameAs`, `content-meta/task-links.json`; "Get public liability insurance" on
+  `business-types/services-trades/`) ticked on its document is ticked on `/checklist/` and counted in
+  the ring; unticked or ticked there, it follows on the document, in English and Afrikaans. On `/checklist/`
   the ring, the part bars and the group lines count ticks; "Not done yet" hides ticked items and
   "Everything" brings them back; "Remove ticks" opens its dialog with "Keep my ticks" focused,
   Escape cancels and returns focus to the button, and confirming empties `st.checks.v1` and says so.

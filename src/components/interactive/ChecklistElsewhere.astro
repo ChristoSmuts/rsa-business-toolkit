@@ -1,10 +1,11 @@
 ---
 /**
  * "Checklists on other pages", at the end of `/checklist/`. Several documents carry a short
- * checklist of their own, with task ids that are theirs alone, so a tick there could never show
- * in the master list's boxes. This section is where it does show: a link to each of those pages
- * with "2 of 6 done" counted from the same `checks` store. The links work without JavaScript; the
- * counts are `.js-only`.
+ * checklist of their own. Where one of their tasks repeats a task in the master list
+ * (`content-meta/task-links.json`), both share one tick, so it is already ticked above. The rest
+ * of their tasks appear only on their own page; this section links each of those pages with
+ * "2 of 6 done", counted from the same `checks` store over all the page's tasks, linked or not.
+ * The links work without JavaScript; the counts are `.js-only`.
  */
 import { useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
