@@ -14,7 +14,8 @@ pnpm build          # astro build + pnpm dist:audit
 | ------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `pnpm test`         | `tests/unit`, `tests/dom`                    | Pure functions (Vitest), including the link audit and the harness rules below                                 |
 | `pnpm dist:audit`   | `scripts/dist/audit-links.ts`                | Every HTML file in `dist/`: base path, broken targets and `#fragments`, `<base>`, third-party resources and hints, external forms and meta refresh, inline `on*` handlers, `noopener`, `http:`, `javascript:` |
-| `pnpm test:e2e`     | `tests/e2e` (chromium, webkit, mobile, nojs) | Page contract, CSP, no third-party requests, 404 page, no-JS reading, content rendering and navigation        |
+| `pnpm dist:budget`  | `scripts/dist/js-budget.ts`                  | The JavaScript each built page loads up front, gzipped, against 25 KB (document pages) and 45 KB (tool pages); also prints what opening search costs |
+| `pnpm test:e2e`     | `tests/e2e` (chromium, webkit, mobile, nojs) | Page contract, CSP, no third-party requests, 404 page, no-JS reading, content rendering, navigation and search |
 | `pnpm test:a11y`    | `tests/e2e/a11y.spec.ts`                     | axe (WCAG 2.0/2.1 A and AA) on every page in light and dark themes                                            |
 | `pnpm test:visual`  | `tests/e2e/visual.spec.ts`                   | Screenshot comparison (added in a later package)                                                              |
 | `pnpm lhci`         | `tests/lighthouse/lighthouserc.cjs`          | Lighthouse scores and size budgets, desktop and mobile                                                        |
@@ -155,14 +156,58 @@ JavaScript still reaches every section and tool.
 
 Requests `nonexistent-<random>/` and `af/nonexistent-<random>/` under the base path and expects status 404, a visible `<h1>` and no URL problems (`documentUrlProblems`). The tests skip, with the reason shown, until `dist/404.html` exists. The browser's own "status of 404" console message is allowed in these tests. `/404.html` itself also goes through the page contract, the no-JS check and axe.
 
+### Search: `search.spec.ts`
+
+Projects `chromium`, `webkit` and `mobile` (WP-33, build plan A7 and B3 flow 3):
+
+- `/` opens the dialog on a document page; no index request is made before that (the test watches
+  every request for `search/<lang>.<hash>.json`); typing `SAPS 601` gives options with `<mark>`ed
+  matches; ArrowDown and Enter open the first one, and the page that opens has the URL's `#hash` on a
+  heading (`h2`–`h4`) that has focus and the `.st-search-target` highlight;
+- Ctrl+K opens it with the common questions showing; Escape closes it and focus goes back;
+- `/` typed into a field stays in the field;
+- the header control opens it, and a result on the same page moves there without a load and focuses
+  the heading;
+- Afrikaans results link under `/af/` and mark English text with `lang="en-ZA"` and "Engels";
+- no results says so and keeps the contents link;
+- `/search/?q=VAT264` runs the query in place, echoes it and lists the vehicle dealer's "conditions"
+  section; a new search updates `?q=` without reloading the page;
+- the 404 page for `business-types/vehicle-dealr/` suggests the vehicle dealer page.
+
+The automatic network guard fails any of these tests on a request to another origin, so the suite
+also proves that search never leaves the site. The no-JS half is in `nojs.spec.ts` ("search without
+JavaScript": the header control is a plain link, and `/search/?q=` in both languages reloads the page,
+which links the contents and every page of the guide) and axe with the dialog open is in
+`a11y.spec.ts`.
+
+The unit side is `tests/unit/search/` (the index built in memory from the real `src/data`: the A7
+ranking cases, anchors, fallback language marks, the 400 KB gzip budget per language; fixtures for
+the tokenizer, the client, filters, URLs and highlighting) and `tests/dom/search.test.ts` (the
+elements in happy-dom: openers, shortcuts, focus return, the listbox keyboard, every state, arrival
+focus, the search page and the 404 suggestion).
+
 ### Accessibility: `a11y.spec.ts`
 
-Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, runs axe with the tags `wcag2a`, `wcag2aa`, `wcag21a` and `wcag21aa`. The theme is checked again right before the analysis.
+Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, runs axe with the tags `wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa` and `best-practice`. The theme is checked again right before the analysis.
 
 - `serious` and `critical` violations fail the test.
 - `moderate` and `minor` violations are recorded as annotations (`a11y-moderate`, `a11y-minor`); they do not fail the test.
 - The per-test timeout is `PW_A11Y_TIMEOUT` (milliseconds): 60 s in CI, 90 s locally. `--timeout` on the command line overrides it.
-- Build plan C6 also lists the `best-practice` tag. The package brief left it out on purpose. Add it in the package that adds the search dialog, where rules such as `aria-dialog-name` start to matter.
+- The `best-practice` tag (build plan C6) came in with the search dialog (WP-33), where rules such as `aria-dialog-name` start to matter.
+- **With the search dialog open** (WP-33): on `core/register/` and `af/business-types/vehicle-dealer/`, in both themes, axe runs twice, once on the empty state (the common questions) and once with `VAT264` typed and the first option active.
+
+## JavaScript budget: `pnpm dist:budget`
+
+Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-02, at the end of WP-33:
+
+| What | Gzip |
+| --- | --- |
+| Largest document page (`branding/already-have-your-name/`) | 7.7 KB |
+| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 16.6 KB |
+| Imported when search first opens (results code, client, MiniSearch) | 10.3 KB |
+| Search index, English / Afrikaans (fetched when search opens; budget 400 KB each) | 163.2 / 163.8 KB |
+
+WP-30 adds the store, the checklists, copy buttons, the table of contents and the settings to every document page; its numbers replace these when it merges.
 
 ## Fixtures
 

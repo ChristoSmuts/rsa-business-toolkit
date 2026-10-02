@@ -290,8 +290,8 @@ step. The language switcher is plain links either way; `<st-lang-switch>` only a
 | `src/components/pages/BusinessTypeTiles.astro` | home, `business-types/` | The six types as tiles with effort meters. The hub document shows them above its text (B6); it leaves out the General tile, which would link to itself. |
 | `src/components/pages/SectionLanding.astro` | `start/`, `core/`, `branding/`, `paperwork/`, `look-it-up/` | Cards built from each document's own summary and reading time. |
 | `src/pages/[...locale]/index.astro` | home | The three 2026 figures come from `src/lib/home.ts`, each tied to an official register entry; `tests/unit/site/home.test.ts` fails if a figure is not in its source's own "supports" text. |
-| `contents.astro`, `templates/index.astro`, `about.astro`, `search.astro` | the app pages | The search page is a GET form, one sentence saying full search is not ready (the same with or without JavaScript; the loading and failure messages belong to WP-33's client), and the common questions from "How to use this toolkit". About leaves out shortcuts and settings until the packages that build them land; the header leaves out the `/` hint until WP-33 adds the shortcut. |
-| `src/pages/404.astro` | `/404.html` | Both languages on one page, because the server cannot know which one the reader wanted. |
+| `contents.astro`, `templates/index.astro`, `about.astro`, `search.astro` | the app pages | The search page is a GET form to itself; with JavaScript it runs `?q=` in place (see [Search](#search-wp-33)), without it it says search needs JavaScript and lists every page, after the common questions from "How to use this toolkit". About leaves out shortcuts and settings until the packages that build them land. |
+| `src/pages/404.astro` | `/404.html` | Both languages on one page, because the server cannot know which one the reader wanted. With JavaScript, the block in the address's language suggests pages for the words in the missing address. |
 | `src/layouts/Page.astro` | all of the above | Canonical, `hreflang` with `x-default`, Open Graph and a description. Every page is listed in every enabled locale, matching the sitemap; an Afrikaans fallback page is the Afrikaans page for its URL. |
 
 Three flags in `src/lib/routes.ts` keep the site from offering what is not built:
@@ -299,15 +299,14 @@ Three flags in `src/lib/routes.ts` keep the site from offering what is not built
 - `WIZARD_AVAILABLE` (WP-31): no page links to the wizard or My path. The Tools menu, the drawer, the
   "Find my path" button, the trust line about "your answers" and the hero's "only the steps that
   apply to you" are left out.
-- `SEARCH_AVAILABLE` (WP-33): `/search/` and the 404 page show no search form, the header shows no
-  `/` hint, and the home page's actions are "Read Core: start here" and the contents.
+- `SEARCH_AVAILABLE` (WP-33, now `true`): when off, `/search/` and the 404 page show no search form,
+  the header and drawer show no search control or dialog, the home page's second action is the
+  contents instead of "I know what I need", and the footer links the search page as "Common
+  questions".
 - `TEMPLATES_FILLABLE` (WP-32): the templates index and the drawer describe what the template pages
   are now, what each document must show with a sample layout, not a form to fill in.
 - `CHECKLIST_SAVES` (WP-30): the checklist is described as a list to print and tick, and the master
   checklist says its ticks are not saved yet.
-
-With `SEARCH_AVAILABLE` off, the header and drawer carry no Search link; the search page's common
-questions are linked from the footer instead.
 
 Each package sets its flag to `true` in the change that builds the feature.
 
@@ -329,6 +328,47 @@ contents, the breadcrumb and sidebar titles, and the register's own text in "Sou
 Inside the blocks the labels and document titles are English too (`ContentContext.contentLang`), so a
 fallback block is one English island rather than English text with Afrikaans labels read in an
 English voice. Everything around the content, and every URL, stays in the reader's language.
+
+### Search (WP-33)
+
+| File | What it is |
+| --- | --- |
+| `src/components/search/SearchDialog.astro` | The dialog, rendered by `SiteHeader` on every page with the header: a native `<dialog>` (Escape, backdrop and the focus trap come free), the form, an empty listbox, a polite status line, the failed state and, as the empty state, the first eight common questions. `js-only`: without JavaScript the header's search control is an ordinary link to `/search/`. |
+| `src/scripts/search.ts` | `<st-search>`, the small eager half: opens the dialog from any `[data-search-open]` (the header control, the drawer link, the home page's "I know what I need"), from `/` and from Ctrl+K (⌘K), never while focus is in a field or another dialog is open; returns focus on close; and on arrival from a result focuses and highlights the target. |
+| `src/scripts/search-ui.ts` | The results, imported when the dialog first opens, together with MiniSearch. |
+| `src/scripts/search-page.ts` | `<st-search-page>` (the search page) and `<st-search-suggest>` (the 404 page). |
+| `src/scripts/search-render.ts` | The DOM of one result, shared by all three. `createElement` and `textContent` only: result text is never parsed as HTML. |
+| `src/styles/search.css` | Result and highlight styles, global because the script builds the results. |
+
+**Pattern.** The field is an ARIA 1.2 combobox that owns a listbox. Focus stays in the field; the up
+and down arrows move `aria-activedescendant` (wrapping), Enter opens the active option or the first
+one, Escape closes the dialog. Results are grouped by section, each group a `role="group"` named
+"Results in {section}" (`search.groupLabel`) with a visible, `aria-hidden` section name. Groups follow
+their best result, and the dialog shows at most three results per section, so one busy section (the
+glossary, the checklist and the register are all "Look it up") cannot push the second-best result far
+down; "See all {count} results on the search page" (`search.seeAll`) links `/search/?q=` for the
+rest. Each option is
+an `<a role="option">` with a real `href`, so a middle click or "open in new tab" still works. Inside
+an option: the title, then "page › heading" and the kind ("Glossary", "Checklist item"), then a short
+excerpt; matched words are `<mark>` (`--st-mark-bg`, verified with `--st-text` at 14.28:1 and 7.36:1).
+An English result on an Afrikaans page carries `lang="en-ZA"` on its English text and a visible
+"Engels" tag. The active option has the focus ring (`--st-focus`), not only a tint.
+
+**States.** Empty (the common questions), loading ("Loading search…", only after 150 ms), results
+with a count, no results (the common questions stay, with the contents link) and failed (with the
+contents link). The status line is the live region for all of them.
+
+**Choosing a result.** On another page: the script remembers the target in `sessionStorage`
+(`st.search.arrival`, removed on the next page load) and the destination focuses the heading and
+gives it `.st-search-target`, a two-second `--st-mark-bg` fade; with `prefers-reduced-motion` it does
+not fade and the class is removed after the same two seconds. On the same page: no load, the hash
+changes and the heading takes focus. Focus does not go back to the opener then.
+
+**Weight.** Nothing about search loads with a page except `<st-search>` and the dialog markup. The
+results code and MiniSearch (10.3 KB gzip) and the index (about 163 KB gzip) are fetched when the
+dialog first opens; with low data, the index waits for the first key press. The dialog scrolls as a
+whole, with the title and field sticky at its top: a scrolling box that held only the results,
+whose options are not Tab stops, would be a region the keyboard cannot scroll.
 
 ### Illustrations
 
@@ -390,6 +430,7 @@ Verification status, officialness and "not confirmed" are the three places a pag
 - Only the CSS chunk that carries the design tokens is named `stoep.[hash].css`; page CSS keeps Rollup's own name (`assetFileNames` matches on `originalFileNames`). Three files all called `stoep.*` could not be told apart in DevTools or a budget report.
 - Module scripts run after parsing but, in WebKit, **before stylesheets that come later in `<head>`** have applied (Astro emits page CSS links after its scripts). A script that reads computed styles must therefore check that the tokens resolve — and it must check on **the element it is about to measure**, not on `documentElement`. See [The live contrast panel](#the-live-contrast-panel) for why the difference is not academic.
 - `localStorage` is allowed in `src/scripts/**` (ESLint allow-list), because `theme-init` must run before any module loads. Other code uses `src/lib/store.ts`.
+- **Budget** (build plan B3 flow 9, C2): 25 KB gzip of JavaScript on a document page, 45 KB on a tool page, counting every script a page loads before the reader does anything (`pnpm dist:budget`, run by `pnpm build`; `docs/testing.md` has the current numbers).
 - In `astro dev` the same imports work: `?url` returns the source path of `theme-init.js`, which Vite serves as JavaScript, and processed scripts load as dev modules.
 
 ### The live contrast panel
