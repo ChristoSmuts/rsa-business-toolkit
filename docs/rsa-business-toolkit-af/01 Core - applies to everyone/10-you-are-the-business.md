@@ -5,7 +5,7 @@ Alles anders in hierdie gereedskapstel gaan oor die besigheid. Hierdie een gaan 
 Drie dinge volg daaruit, en nie een daarvan word elders gedek nie:
 
 1. As jy nie kan werk nie, hou die inkomste op. Watter beskerming jy het, hang af van hoe jou besigheid gestruktureer is, en een struktuur het byna niks.
-2. As ’n kliënt nie betaal nie, hang dit ook van jou struktuur af hoe jy agter die geld aan gaan. Een struktuur het ’n gratis hof. Die ander een nie.
+2. As ’n kliënt nie betaal nie, hang dit ook van jou struktuur af hoe jy agter die geld aan gaan. Een struktuur het ’n gratis hof. Die ander een het nie.
 3. As iets met jou gebeur, moet iemand die besigheid kan bestuur of sluit. Vir ’n maatskappy is dit baie moeiliker as wat mense verwag.
 
 ## Woorde wat in hierdie lêer gebruik word
@@ -178,7 +178,7 @@ Wat om in te sluit:
 - [ ] Ek weet of ek tot UIF kan bydra, en het doelbewus besluit eerder as per toeval
 - [ ] As ek ’n maatskappy het en myself ’n salaris betaal: vir COIDA geregistreer, Return of Earnings ingedien, Letter of Good Standing geldig
 - [ ] ’n Kwotasie vir inkomstebeskerming gekry, en die wagtydperk nagegaan voordat dit betaal
-- [ ] Het ’n kontantbuffer in ’n aparte rekening, bereken in maande wat ek nie kan werk nie
+- [ ] Het ’n kontantbuffer in ’n aparte rekening, bereken in maande wat ek nie sou kan werk nie
 
 **Betaal word**
 

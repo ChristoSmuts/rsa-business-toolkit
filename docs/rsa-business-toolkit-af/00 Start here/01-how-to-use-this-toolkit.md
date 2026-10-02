@@ -139,7 +139,7 @@ Nommer hulle 1 tot 5. Ná die 5 opsies, stop en vra my weer.
 
 ### As die KI vooruit hardloop
 
-Sommige KI-programme sal drie stappe gelyk beantwoord. Wanneer dit gebeur, sê:
+Sommige KI-programme sal drie stappe tegelyk beantwoord. Wanneer dit gebeur, sê:
 
 ```
 Stop. Gaan terug na net stap [X]. Gee my 5 opsies vir daardie stap en
@@ -156,7 +156,7 @@ Elke moeilike een word gevolg deur ’n reël wat so begin:
 
 > **In gewone taal:**...
 
-Daardie reël sê dieselfde ding in alledaagse taal. As die regsin jou verwar, slaan dit oor en lees die gewone reël. Jy verloor niks.
+Daardie reël sê dieselfde ding in alledaagse taal. As die sin in regstaal jou verwar, slaan dit oor en lees die gewone reël. Jy verloor niks.
 
 Elke swaar lêer begin ook met ’n kort tabel met die naam "Woorde wat in hierdie lêer gebruik word". Lees dit eerste. Elke afkorting in die gereedskapstel word ook in die [Woordelys](../05%20Look%20it%20up/01-glossary.md) verduidelik.
 

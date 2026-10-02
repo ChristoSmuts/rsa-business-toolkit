@@ -77,11 +77,11 @@ Twee dinge is nagegaan voordat dit geskryf is:
 ## Verandering 3: ontbrekende intreedokument in die Core-vouer (regstelling)
 
 **Datum:** 14 September 2026
-**Rede:** ’n Nommeringsfout, raakgesien deur die gebruiker. In Drive het die vouer 01 Core van 02 tot 09 geloop sonder ’n 01, want [Kern: begin hier](../01%20Core%20-%20applies%20to%20everyone/01-core-start-here.md) is by die hoof-START HERE ingevou toe Drive gebou is. Die resultaat het gelyk soos ’n ontbrekende lêer, en dit het Core gelaat as die enigste vouer sonder sy eie intreedokument. Elke ander vouer het een.
+**Rede:** ’n Nommeringsfout, raakgesien deur die gebruiker. In Drive het die vouer 01 Core van 02 tot 09 geloop sonder ’n 01, want [Kern: begin hier](../01%20Core%20-%20applies%20to%20everyone/01-core-start-here.md) was by die hoof-START HERE ingevou toe Drive gebou is. Die resultaat het gelyk soos ’n ontbrekende lêer, en daardeur was Core die enigste vouer sonder sy eie intreedokument. Elke ander vouer het een.
 
 ### Bygevoeg
 
-Drive-dokument "01 Start here - what is in this folder" in die vouer 01 Core. Dit bevat die leesvolgorde, ’n tabel van die agt kerndokumente met wanneer om elkeen te lees, watter een op watter lesers van toepassing is, en ’n kort nota wat verduidelik dat die nommering by 02 begin omdat hierdie dokument 01 is.
+Drive-dokument "01 Start here - what is in this folder" in die vouer 01 Core. Dit bevat die leesvolgorde, ’n tabel van die agt kerndokumente met wanneer om elkeen te lees, watter dokumente op watter lesers van toepassing is, en ’n kort nota wat verduidelik dat die nommering by 02 begin omdat hierdie dokument 01 is.
 
 Dit is doelbewus nie ’n kopie van die hoof-START HERE nie. Die hoof-START HERE is ’n indeks van die hele gereedskapstel; hierdie een help jou om jou weg binne die Core-vouer te vind.
 
@@ -185,6 +185,6 @@ Vir ’n klein verandering, wysig die Google Doc direk. Die dokument-ID bly dies
 
 Vir ’n volledige herskrywing van een dokument, maak die bestaande Google Doc oop, kies alles, vee dit uit en plak die nuwe inhoud. Die ID bly, want die lêer bly.
 
-**Moet nooit aflaai, wysig en weer oplaai nie.** Dit skep ’n nuwe lêer met ’n nuwe ID, en elke skakel in die gereedskapstel sal steeds na die ou een wys.
+**Moet nooit aflaai, wysig en weer oplaai nie.** Dit skep ’n nuwe lêer met ’n nuwe ID, en elke skakel in die gereedskapstel sou steeds na die ou een wys.
 
 Werk hierdie veranderingslys by wanneer jy enige van die twee kopieë verander.
