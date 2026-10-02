@@ -4,7 +4,13 @@
     "en": "docs/rsa-business-toolkit",
     "af": "docs/rsa-business-toolkit-af"
   },
-  "ignore": ["INDEX.md", "README.md", "SA-Business-Toolkit-complete.md", "TRANSLATION-NOTES.md"],
+  "ignore": [
+    "INDEX.md",
+    "LICENSE.md",
+    "README.md",
+    "SA-Business-Toolkit-complete.md",
+    "TRANSLATION-NOTES.md"
+  ],
   "linkify": {
     "ignoreDomains": [
       "a.co.za",

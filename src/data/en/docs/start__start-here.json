@@ -475,10 +475,25 @@
       "c": [
         {
           "t": "text",
-          "v": "Use it, copy it, change it, give it to someone else. No attribution required."
+          "v": "This guide is in the public domain under "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "CC0 1.0"
+            }
+          ],
+          "external": true,
+          "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". Use it, copy it, change it, give it to someone else, for any purpose. No attribution required."
         }
       ],
-      "hash": "b1a7b28f861206ec",
+      "hash": "69d6b6dbdbde29ec",
       "id": "licence.1",
       "kind": "paragraph"
     },
@@ -486,7 +501,7 @@
       "c": [
         {
           "t": "text",
-          "v": "If you pass it on, keep "
+          "v": "If you pass it on, please keep "
         },
         {
           "c": [
@@ -517,12 +532,12 @@
           "v": " with it, so the next person knows how it was made and can check the facts."
         }
       ],
-      "hash": "24ae72fac342dccb",
+      "hash": "362e5b12722137bc",
       "id": "licence.2",
       "kind": "paragraph"
     }
   ],
-  "contentHash": "5bbcddca3a33acff",
+  "contentHash": "f72643a487c91a5f",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -176,9 +176,9 @@ Three numbers changed in 2026 and most websites still have them wrong:
 
 ### Licence
 
-Use it, copy it, change it, give it to someone else. No attribution required.
+This guide is in the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). Use it, copy it, change it, give it to someone else, for any purpose. No attribution required.
 
-If you pass it on, keep [How this was made and how to check it](#doc-how-this-was-made-and-how-to-check-it) and [Sources and verification register](#doc-sources-and-verification-register) with it, so the next person knows how it was made and can check the facts.
+If you pass it on, please keep [How this was made and how to check it](#doc-how-this-was-made-and-how-to-check-it) and [Sources and verification register](#doc-sources-and-verification-register) with it, so the next person knows how it was made and can check the facts.
 
 ---
 

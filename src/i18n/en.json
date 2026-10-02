@@ -785,7 +785,7 @@
     "aiSummary": "An AI assistant (Claude, made by Anthropic) wrote this guide. It checked fees, thresholds, form numbers and legal rules against the South African sources in the sources register, where official ones are marked. No lawyer, accountant or tax practitioner reviewed it. Check the official link before you act.",
     "aiLink": "Read how this was made and how to check it",
     "licenceHeading": "Licence",
-    "licence": "Use it, copy it, change it, give it to someone else. You do not need to name the authors. If you give it to someone else, keep the page on how this was made and the sources with it.",
+    "licence": "The guide’s text is in the public domain ({contentLicence}): use it, copy it, change it and give it to someone else, for any purpose, without naming the authors. The website’s code is open source under the MIT licence. If you pass the guide on, please keep the page on how it was made and the sources with it.",
     "shortcuts": {
       "heading": "Keyboard shortcuts",
       "key": "Key",

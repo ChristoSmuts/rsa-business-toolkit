@@ -175,6 +175,7 @@ interface ParamNames {
   'sources.count': 'count';
   'sources.copyLinkTo': 'title';
   'sources.noMatches': 'query';
+  'about.licence': 'contentLicence';
   'designSystem.contrast': 'ratio';
   'notFound.suggestion': 'title';
   'a11y.progress': 'percent';

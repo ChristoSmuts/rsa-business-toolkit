@@ -26,6 +26,8 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+/** The guide's text licence, as `docs/rsa-business-toolkit/LICENSE.md` names it. */
+const CONTENT_LICENCE = 'CC0 1.0';
 const t = useTranslations(locale);
 const manifest = await loadManifest();
 const howMadeHref = docHref(manifest, NAV_DOC_IDS.howThisWasMade, locale);
@@ -69,7 +71,7 @@ const sourcesHref = docHref(manifest, NAV_DOC_IDS.sources, locale);
 
     <section class="st-stack" aria-labelledby="about-licence">
       <h2 id="about-licence">{t('about.licenceHeading')}</h2>
-      <p>{t('about.licence')}</p>
+      <p>{t('about.licence', { contentLicence: CONTENT_LICENCE })}</p>
     </section>
   </div>
 </Page>

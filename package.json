@@ -2,6 +2,7 @@
   "name": "sa-business-toolkit",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "description": "Bilingual, searchable guide for one-person South African businesses, built from the SA Business Toolkit markdown.",
   "packageManager": "pnpm@11.22.0",
