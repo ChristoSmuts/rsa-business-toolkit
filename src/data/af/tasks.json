@@ -116,6 +116,627 @@
       "order": 5
     },
     {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Verklaring van voordelige eienaarskap ingedien en op datum"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Elke jaar"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:44c17e09",
+      "order": 6,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "CIPC se jaarlikse opgawe ingedien binne 30 werksdae ná die herdenkingsdatum van die registrasie"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Elke jaar"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:b79af9c6",
+      "order": 7,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Jaarlikse finansiële state opgestel"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Elke jaar"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:00f5fc24",
+      "order": 8,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Public Interest Score aan die einde van die jaar bereken"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Elke jaar"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:b0853b54",
+      "order": 9,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Financial Accountability Supplement of state saam met die jaarlikse opgawe ingedien"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Elke jaar"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:95b86e75",
+      "order": 10,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "ITR14 by SARS ingedien binne 12 maande ná die einde van die finansiële jaar"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Elke jaar"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:724ea4bf",
+      "order": 11,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Twee IRP6-voorlopige opgawes ingedien"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Elke jaar"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:60d623d8",
+      "order": 12,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Vouer met maatskappyrekords bygewerk met alle besluite wat geneem is"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Elke jaar"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:7ec2806c",
+      "order": 13,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "EMP201 ingedien en betaal teen die 7de van die volgende maand"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Elke maand, as die maatskappy jou of iemand anders ’n salaris betaal"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:2f83b8dc",
+      "order": 14,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "EMP501-rekonsiliasie ingedien"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Twee keer per jaar, as jy as werkgewer geregistreer is"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:7debec73",
+      "order": 15,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.4",
+      "c": [
+        {
+          "t": "text",
+          "v": "Maatskappygeld streng apart gehou van persoonlike geld"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Deurlopend"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:adba8c60",
+      "order": 16,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.4",
+      "c": [
+        {
+          "t": "text",
+          "v": "Kontrakte namens die maatskappy geteken, nie in jou eie naam nie"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Deurlopend"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:c2f17e61",
+      "order": 17,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "your-pty-ltd-annual-checklist.4",
+      "c": [
+        {
+          "t": "text",
+          "v": "Saldo van die leningsrekening nagegaan voor die einde van elke finansiële jaar"
+        }
+      ],
+      "doc": "core/running-a-pty-ltd",
+      "group": [
+        {
+          "t": "text",
+          "v": "Deurlopend"
+        }
+      ],
+      "heading": "your-pty-ltd-annual-checklist",
+      "id": "core/running-a-pty-ltd:295a6e78",
+      "order": 18,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Die ooreenstemmende lêer in "
+        },
+        {
+          "label": "04-business-types/",
+          "section": "business-types",
+          "t": "docref"
+        },
+        {
+          "t": "text",
+          "v": " nagegaan vir lisensies wat die nuwe lyn nodig het"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:8febf321",
+      "order": 19,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bevestig dat die sonering die nuwe bedrywigheid op my perseel toelaat"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:b3d4e816",
+      "order": 20,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "My versekeraar laat weet en skriftelike bevestiging van dekking ontvang"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:7342bbc4",
+      "order": 21,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "SAPS binne 30 dae in kennis gestel as dit my registrasie vir tweedehandse goedere verander"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:1f424128",
+      "order": 22,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Oor die handelsnaam besluit, en die domein, sosiale-media-name en handelsmerke nagegaan"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:47e5c318",
+      "order": 23,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "\"Handeldrywende as\" plus die geregistreerde naam en nommer op die nuwe lyn se dokumente gesit"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:57d2420f",
+      "order": 24,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Nagegaan of die nuwe lyn my posisie vir omsetbelasting of SBC raak"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:7cc8050d",
+      "order": 25,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Teen ’n tweede maatskappy besluit, of eers advies oor die SBC-gevolg gekry"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:a12236e9",
+      "order": 26,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "checklist-before-you-add-a-line.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Lyn-kolom by die kasboek gevoeg"
+        }
+      ],
+      "doc": "core/adding-new-lines",
+      "heading": "checklist-before-you-add-a-line",
+      "id": "core/adding-new-lines:6b8d242c",
+      "order": 27,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "setup.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Nagegaan dat my sonering, titelakte en kompleksreëls toelaat wat ek by die huis doen"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "setup",
+      "id": "core/working-from-home-and-safety:bbeb1c8a",
+      "order": 28
+    },
+    {
+      "block": "setup.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "My huishoudelike versekeraar laat weet van die besigheid en sy voorraad"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "setup",
+      "id": "core/working-from-home-and-safety:1a704bb5",
+      "order": 29
+    },
+    {
+      "block": "setup.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Ligging in my foon se kamera afgeskakel voordat ek by die huis foto’s van voorraad neem"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "setup",
+      "id": "core/working-from-home-and-safety:8a10fb7e",
+      "order": 30
+    },
+    {
+      "block": "setup.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Aparte WhatsApp Business-nommer"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "setup",
+      "id": "core/working-from-home-and-safety:98801a6b",
+      "order": 31
+    },
+    {
+      "block": "setup.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "My bank gevra wat my limiete vir PayShap en onmiddellike betalings is"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "setup",
+      "id": "core/working-from-home-and-safety:b77d1f44",
+      "order": 32
+    },
+    {
+      "block": "every-sale.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Transaksie bevestig in ’n teksboodskap waarop die kliënt \"ja\" geantwoord het"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-sale",
+      "id": "core/working-from-home-and-safety:bfe6c798",
+      "order": 33
+    },
+    {
+      "block": "every-sale.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Geld in my saldo weerspieël voordat enigiets my hande verlaat het"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-sale",
+      "id": "core/working-from-home-and-safety:cad4290c",
+      "order": 34
+    },
+    {
+      "block": "every-sale.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Geen terugbetaling van ’n \"oorbetaling\" voordat die oorspronklike betaling verreken is nie, en net na dieselfde rekening"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-sale",
+      "id": "core/working-from-home-and-safety:70251e55",
+      "order": 35
+    },
+    {
+      "block": "every-sale.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Kontant nagegaan met kyk, voel, kantel, of by ’n bank se toonbank gedeponeer"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-sale",
+      "id": "core/working-from-home-and-safety:6bd83244",
+      "order": 36
+    },
+    {
+      "block": "every-meeting.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Openbare plek, daglig, kameras"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-meeting",
+      "id": "core/working-from-home-and-safety:288efaaa",
+      "order": 37
+    },
+    {
+      "block": "every-meeting.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "ID of rybewys voor die ontmoeting ontvang"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-meeting",
+      "id": "core/working-from-home-and-safety:a5d45d69",
+      "order": 38
+    },
+    {
+      "block": "every-meeting.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Iemand ingelig, ligging gedeel, iemand saam met my"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-meeting",
+      "id": "core/working-from-home-and-safety:05820320",
+      "order": 39
+    },
+    {
+      "block": "every-meeting.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Sleutels in my hand totdat ek in die voertuig is, en terug in my hand voordat ek uitklim"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-meeting",
+      "id": "core/working-from-home-and-safety:9c2a1aaa",
+      "order": 40
+    },
+    {
+      "block": "every-meeting.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "ID-afskrifte daarna uitgevee as daar geen transaksie was nie"
+        }
+      ],
+      "doc": "core/working-from-home-and-safety",
+      "heading": "every-meeting",
+      "id": "core/working-from-home-and-safety:10807585",
+      "order": 41
+    },
+    {
       "block": "protection.1",
       "c": [
         {
@@ -126,7 +747,7 @@
       "doc": "core/you-are-the-business",
       "heading": "protection",
       "id": "core/you-are-the-business:277f7921",
-      "order": 6
+      "order": 42
     },
     {
       "block": "protection.1",
@@ -139,7 +760,7 @@
       "doc": "core/you-are-the-business",
       "heading": "protection",
       "id": "core/you-are-the-business:69e6fedf",
-      "order": 7,
+      "order": 43,
       "when": {
         "entity": "pty"
       }
@@ -155,7 +776,7 @@
       "doc": "core/you-are-the-business",
       "heading": "protection",
       "id": "core/you-are-the-business:6be42aa2",
-      "order": 8
+      "order": 44
     },
     {
       "block": "protection.1",
@@ -168,7 +789,7 @@
       "doc": "core/you-are-the-business",
       "heading": "protection",
       "id": "core/you-are-the-business:84889f74",
-      "order": 9
+      "order": 45
     },
     {
       "block": "getting-paid.1",
@@ -181,7 +802,7 @@
       "doc": "core/you-are-the-business",
       "heading": "getting-paid",
       "id": "core/you-are-the-business:80860154",
-      "order": 10
+      "order": 46
     },
     {
       "block": "getting-paid.1",
@@ -194,7 +815,7 @@
       "doc": "core/you-are-the-business",
       "heading": "getting-paid",
       "id": "core/you-are-the-business:91c38f5a",
-      "order": 11
+      "order": 47
     },
     {
       "block": "getting-paid.1",
@@ -207,7 +828,7 @@
       "doc": "core/you-are-the-business",
       "heading": "getting-paid",
       "id": "core/you-are-the-business:21970149",
-      "order": 12
+      "order": 48
     },
     {
       "block": "getting-paid.1",
@@ -220,7 +841,7 @@
       "doc": "core/you-are-the-business",
       "heading": "getting-paid",
       "id": "core/you-are-the-business:b6fe6cfd",
-      "order": 13
+      "order": 49
     },
     {
       "block": "continuity.1",
@@ -233,7 +854,7 @@
       "doc": "core/you-are-the-business",
       "heading": "continuity",
       "id": "core/you-are-the-business:8e6615a6",
-      "order": 14
+      "order": 50
     },
     {
       "block": "continuity.1",
@@ -246,7 +867,7 @@
       "doc": "core/you-are-the-business",
       "heading": "continuity",
       "id": "core/you-are-the-business:b554cb87",
-      "order": 15
+      "order": 51
     },
     {
       "block": "continuity.1",
@@ -259,7 +880,7 @@
       "doc": "core/you-are-the-business",
       "heading": "continuity",
       "id": "core/you-are-the-business:b5a8d0d2",
-      "order": 16
+      "order": 52
     },
     {
       "block": "continuity.1",
@@ -272,7 +893,7 @@
       "doc": "core/you-are-the-business",
       "heading": "continuity",
       "id": "core/you-are-the-business:c7f7b0fd",
-      "order": 17
+      "order": 53
     },
     {
       "block": "continuity.1",
@@ -285,7 +906,7 @@
       "doc": "core/you-are-the-business",
       "heading": "continuity",
       "id": "core/you-are-the-business:e3e2729b",
-      "order": 18
+      "order": 54
     }
   ]
 }

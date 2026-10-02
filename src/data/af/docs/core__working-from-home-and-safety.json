@@ -1,0 +1,2427 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Baie eenpersoonbesighede het geen winkel, geen werf en geen kantoor nie. Die besigheid leef op ’n foon. Kliënte vind jou aanlyn, praat met jou op WhatsApp, en as hulle die produk moet sien, ontmoet jy hulle êrens."
+        }
+      ],
+      "hash": "1a90911058f86447",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "b6d431a0ae324b2c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit werk goed. Dit is goedkoop, dit is wettig vir die meeste besighede, en dit is hoe ’n groot deel van Suid-Afrika se klein besighede werk. Dit vra net ’n paar gewoontes wat ’n winkel nie nodig het nie."
+        }
+      ],
+      "hash": "880c9e328deba06b",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "26d366fcb4985f87"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hierdie lêer dek drie dinge: wat die reëls toelaat wanneer jy van die huis af werk, hoe om geld te hanteer wanneer jy die kliënt nooit sien nie, en hoe om ’n vreemdeling te ontmoet om ’n produk of ’n voertuig te oorhandig sonder om jouself in gevaar te stel."
+        }
+      ],
+      "hash": "57395c85c53b3b49",
+      "id": "intro.3",
+      "kind": "paragraph",
+      "sourceHash": "56dce6a7b92f0aa5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die risiko’s is werklik. Hulle is ook hanteerbaar met ’n handvol gewoontes. Niks hier behoort jou te keer om handel te dryf nie."
+        }
+      ],
+      "hash": "b946799962cd3245",
+      "id": "intro.4",
+      "kind": "paragraph",
+      "sourceHash": "e7b35257c3517004"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "43a551e739f9eb81",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Eenvoudige betekenisse van die terme wat in hierdie lêer gebruik word. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die munisipale kategorie wat klein, stil besighede in ’n huis sonder spesiale toestemming toelaat."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Tuisonderneming / tuisbedrywigheid (home enterprise / home occupation)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Munisipale toestemming vir ’n besigheidsgebruik wat verder gaan as wat jou sonering by verstek toelaat."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Vergunningsgebruik (consent use)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die bestuursliggaam van ’n kompleks of landgoed. Dit het sy eie reëls bo en behalwe dié van die munisipaliteit."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Beheerliggaam / huiseienaarsvereniging (body corporate / HOA)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Proof of payment (betalingsbewys). ’n Skermskoot of PDF wat wys dat ’n oordrag gedoen is. Maklik om te vervals."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "POP"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die geld is werklik in jou rekeningsaldo, nie net \"hangend\" (\"pending\") nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Weerspieël / verreken (reflected / cleared)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Kitsbetaling van bank tot bank wat binne sekondes aankom en nie teruggedraai kan word nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "PayShap"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Ander vinnige betaalopsies. Hulle kom ook vinnig aan."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Kits-EFT / RTC (instant EFT)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n \"Koper\" betaal doelbewus te veel en vra dan die verskil terug. Die oorspronklike betaling was nooit eg nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Oorbetalingswendelary (overpayment scam)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Liggingsdata wat in ’n foto versteek is. Dit kan wys waar jy woon."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Liggingsmerker (geotag)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Eenmalige PIN (one-time PIN). Die kode wat jou bank vir jou stuur. Deel dit nooit met enigiemand nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "OTP"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die bankbedryf se liggaam teen bedrog."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "SABRIC"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "3d52897c7b613be4"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die kort weergawe"
+        }
+      ],
+      "depth": 2,
+      "hash": "967cf8f99c158f05",
+      "id": "the-short-version",
+      "kind": "heading",
+      "sourceHash": "67354f8180841866",
+      "text": "Die kort weergawe"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy kan die meeste besighede sonder enige spesiale toestemming van die huis af bedryf, solank die huis steeds soos ’n huis lyk en optree."
+        }
+      ],
+      "hash": "b9c57f6e144a1b89",
+      "id": "the-short-version.1",
+      "kind": "paragraph",
+      "sourceHash": "7af3fd3078864ad3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Moet nooit iets oorhandig voordat die geld in jou rekeningsaldo is nie. ’n Skermskoot is nie geld nie."
+        }
+      ],
+      "hash": "ad2bf8a83d25a9eb",
+      "id": "the-short-version.2",
+      "kind": "paragraph",
+      "sourceHash": "9e80142311e25d4e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ontmoet vreemdelinge op besige, openbare plekke met kameras. Neem iemand saam. Hou die sleutels."
+        }
+      ],
+      "hash": "84f094c42c0ba144",
+      "id": "the-short-version.3",
+      "kind": "paragraph",
+      "sourceHash": "915a89174ae97377"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n voertuighandelaar is wat van die huis af werk, is om voorraad by die huis te hou die een ding wat gewoonlik die soneringsreëls oortree. Lees die afdeling oor voertuie hieronder."
+        }
+      ],
+      "hash": "f5e960e6fc66a55a",
+      "id": "the-short-version.4",
+      "kind": "paragraph",
+      "sourceHash": "40552c00966dcac6"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "the-short-version.5",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 1: wat die reëls toelaat wanneer jy van die huis af werk"
+        }
+      ],
+      "depth": 2,
+      "hash": "0a4edfe577c61652",
+      "id": "part-1-what-the-rules-allow-when-you-work-from-home",
+      "kind": "heading",
+      "sourceHash": "7c4f81797a2b8e1b",
+      "text": "Deel 1: wat die reëls toelaat wanneer jy van die huis af werk"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sonering"
+        }
+      ],
+      "depth": 3,
+      "hash": "1a8d97f91bd6df9f",
+      "id": "zoning",
+      "kind": "heading",
+      "sourceHash": "087c056f5a6c24d7",
+      "text": "Sonering"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Elke eiendom het ’n sonering. Die meeste huise is vir bewoning gesoneer, nie vir besigheid nie. Maar elke munisipaliteit laat ’n mate van besigheidsgebruik in ’n huis toe."
+        }
+      ],
+      "hash": "b120f0ba9ad3d642",
+      "id": "zoning.1",
+      "kind": "paragraph",
+      "sourceHash": "8b4888f25ba1f1b4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om alleen van die huis af in ’n tuiskantoor te werk, sal hoogs onwaarskynlik wetlik of prakties probleme veroorsaak, en jy sal waarskynlik toegelaat word om kleinskaalse besigheidsbedrywighede sonder toestemming te bedryf waar hulle binne jou munisipaliteit se kategorie \"mikrobesigheid\" (\"micro-business\") of \"tuisonderneming\" (\"home enterprise\") val. Sodra jou bedrywighede verder gaan, met perke op die soort besigheid, die getal personeel, die deel van die huis wat gebruik word, parkering, geraas en oorlas, sal jy waarskynlik by die munisipaliteit om toestemming moet aansoek doen."
+        }
+      ],
+      "hash": "3045b8342aa1acab",
+      "id": "zoning.2",
+      "kind": "paragraph",
+      "sourceHash": "96386564416ef2af"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As dit net jy, ’n foon, ’n skootrekenaar en ’n spaarkamer is, het jy byna seker geen toestemming nodig nie. As kliënte begin opdaag, personeel daar begin werk, of die huis soos ’n besigheid begin lyk, moet jy vra."
+        }
+      ],
+      "hash": "8bef39f2f27b388c",
+      "id": "zoning.3",
+      "kind": "callout",
+      "pairsWith": "zoning.2",
+      "sourceHash": "8cb8fd8a864a1da0",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die gewone voorwaardes vir ’n tuisonderneming, wat van munisipaliteit tot munisipaliteit verskil:"
+        }
+      ],
+      "hash": "01f2059b5993b27e",
+      "id": "zoning.4",
+      "kind": "paragraph",
+      "sourceHash": "5b06556ff57f45ba"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die besigheid moet ondergeskik bly aan die feit dat jy daar woon. Nie meer as een of twee werknemers wat nie daar woon nie. Geen uithangborde behalwe ’n klein naambordjie nie. Geen opberging van goedere, materiale of voertuie wat die eiendom ’n kommersiële voorkoms gee nie."
+        }
+      ],
+      "hash": "5fd39401df840bc8",
+      "id": "zoning.5",
+      "kind": "paragraph",
+      "sourceHash": "0d13c3996c0eaa07"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sulke uitsonderings laat gewoonlik toe dat hoogstens ’n kwart van die huis se vloeroppervlak vir besigheid gebruik word, mits die bedrywigheid onopvallend bly en nie oormatige verkeer, geraas of risiko veroorsaak nie."
+        }
+      ],
+      "hash": "31f2d5bee34478ff",
+      "id": "zoning.6",
+      "kind": "paragraph",
+      "sourceHash": "bff985f9dd5f717c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die bedrywighede wat gewoonlik verder gaan as ’n tuisonderneming en vergunningsgebruik (consent use) nodig het: ’n salon of besigheid met persoonlike dienste met ’n bestendige stroom kliënte, ’n gastehuis, kosvervaardiging of spyseniering met aansienlike voorbereiding of opberging, of meer personeel as wat toegelaat word."
+        }
+      ],
+      "hash": "80683ef51b317b73",
+      "id": "zoning.7",
+      "kind": "paragraph",
+      "sourceHash": "b93d9249cda109c9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Besigheid sonder kliënte by die huis, waar alles per foon en by ontmoetingsplekke gebeur, is die maklikste geval. Dit is die model wat hierdie lêer aanneem."
+        }
+      ],
+      "hash": "bb6c35607e344189",
+      "id": "zoning.8",
+      "kind": "paragraph",
+      "sourceHash": "5e433ca6023ba007"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Twee ekstra lae"
+        }
+      ],
+      "depth": 3,
+      "hash": "6a1eb9aed99ab3aa",
+      "id": "two-extra-layers",
+      "kind": "heading",
+      "sourceHash": "31bc53a43aa2a10c",
+      "text": "Twee ekstra lae"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Komplekse en landgoedere."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Howe het herhaaldelik bevestig dat ’n beheerliggaam (body corporate) se gedragsreëls afdwingbaar is, selfs wanneer hulle strenger as munisipale sonering is. Lees jou skema se gedragsreëls voordat jy begin. In deeltitelskemas kan besigheidsbedrywighede toegelaat word as al die eienaars van die deel skriftelik toestemming gee."
+        }
+      ],
+      "hash": "463f95702f7526a5",
+      "id": "two-extra-layers.1",
+      "kind": "paragraph",
+      "sourceHash": "38f84d81b3a924d2"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Titelakte."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Kyk of jou titelakte beperkende voorwaardes het, en kyk na die eiendom se soneringsertifikaat. ’n Besoek aan ’n munisipale of private stadsbeplanner gee jou sekerheid. Party ouer titelaktes verbied enige handel vanaf die eiendom. Dit is apart van sonering."
+        }
+      ],
+      "hash": "8932371430746e6c",
+      "id": "two-extra-layers.2",
+      "kind": "paragraph",
+      "sourceHash": "4cdd4229ad625df8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om jou huisadres amptelik te gebruik"
+        }
+      ],
+      "depth": 3,
+      "hash": "c47ac9340ede0488",
+      "id": "using-your-home-address-officially",
+      "kind": "heading",
+      "sourceHash": "2bcc9af797491918",
+      "text": "Om jou huisadres amptelik te gebruik"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy kan jou huis gebruik as die geregistreerde adres van ’n maatskappy, as die adres op jou SARS-profiel, as die perseel op jou SAPS-registrasie vir tweedehandse goedere, en as die adresbewys vir ’n BRNC. ’n Munisipale rekening of bankstaat in jou naam, wat jonger as drie maande is, is wat elkeen hiervan vra."
+        }
+      ],
+      "hash": "36bb0af7556eb181",
+      "id": "using-your-home-address-officially.1",
+      "kind": "paragraph",
+      "sourceHash": "fad9fac4e43e94f0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die adres sal dan in openbare rekords en op elke faktuur verskyn. As dit jou bekommer, los ’n posbus dit nie op nie, want die meeste registrasies vereis ’n fisiese adres. Aanvaar dit, en hanteer die veiligheidskant met die gewoontes in Deel 3."
+        }
+      ],
+      "hash": "faabfa20f7b6477a",
+      "id": "using-your-home-address-officially.2",
+      "kind": "paragraph",
+      "sourceHash": "a8c7b3b7fce860e9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Versekering"
+        }
+      ],
+      "depth": 3,
+      "hash": "319a2fe2058e62b4",
+      "id": "insurance",
+      "kind": "heading",
+      "sourceHash": "a2f6de42f9f4aee9",
+      "text": "Versekering"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As daar ’n brand is wat deur besigheidstoerusting veroorsaak word, of ’n kliënt op jou eiendom struikel en val, dek jou gewone huishoudelike polis jou dalk glad nie. Sê vir jou huishoudelike versekeraar dat jy ’n besigheid van die huis af bedryf, en watter toerusting of voorraad daar is. Vra spesifiek oor openbare aanspreeklikheid en oor dekking vir voorraad. Dit kos gewoonlik min om by te voeg, en as jy dit nie doen nie, is dit ’n geweierde eis wat wag om te gebeur."
+        }
+      ],
+      "hash": "0b5144e8be63b2c0",
+      "id": "insurance.1",
+      "kind": "paragraph",
+      "sourceHash": "201c51f419f97864"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Aftrekking vir ’n tuiskantoor"
+        }
+      ],
+      "depth": 3,
+      "hash": "83cbad8c8daedcc9",
+      "id": "home-office-deduction",
+      "kind": "heading",
+      "sourceHash": "4d511f7e722f32ab",
+      "text": "Aftrekking vir ’n tuiskantoor"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n kamer het wat net vir die besigheid gebruik word, kan jy dalk ’n deel van jou huiskoste teen belasting eis. Die reëls is streng. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Belasting en SARS"
+            }
+          ],
+          "doc": "core/tax-and-sars",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "3c5925d24689dee4",
+      "id": "home-office-deduction.1",
+      "kind": "paragraph",
+      "sourceHash": "1ef8f9aa84cda65d"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "home-office-deduction.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 2: besigheid doen per foon, WhatsApp en stemboodskap"
+        }
+      ],
+      "depth": 2,
+      "hash": "bb7092ae33de59af",
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note",
+      "kind": "heading",
+      "sourceHash": "a85a24c226368b8c",
+      "text": "Deel 2: besigheid doen per foon, WhatsApp en stemboodskap"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die meeste van jou kontak met kliënte sal boodskappe, oproepe en stemboodskappe wees. Dit is reg so. Dit vra drie gewoontes."
+        }
+      ],
+      "hash": "e3ddb8cc091ac9bd",
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.1",
+      "kind": "paragraph",
+      "sourceHash": "fa1fd1bfa8d5d15e"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bevestig alles wat saak maak skriftelik."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " ’n Stemboodskap wat sê \"R4,500 met aflewering ingesluit, Donderdag\" is maklik om verkeerd te onthou en onmoontlik om te deursoek. Stuur ná ’n stemboodskap of ’n oproep ’n kort teksopsomming: wat, hoeveel, wanneer, waar. Vra hulle om \"ja\" (\"yes\") te antwoord. Daardie teks is jou ooreenkoms."
+        }
+      ],
+      "hash": "8173882e0c5072f4",
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.2",
+      "kind": "paragraph",
+      "sourceHash": "311fac59e55b90d8"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Gebruik een besigheidsnommer."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " WhatsApp Business op ’n aparte SIM, nie jou persoonlike nommer nie. Jou persoonlike nommer bly privaat, jou besigheidsgesprekke bly op een plek, en jy kan die nommer eendag aan iemand anders oorgee. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bemarkingsopdragte"
+            }
+          ],
+          "doc": "branding/marketing-prompts",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " oor hoe om dit op te stel."
+        }
+      ],
+      "hash": "5235a5dc83de5761",
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.3",
+      "kind": "paragraph",
+      "sourceHash": "100c2a2d960ede6b"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Hou die rekords."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Voer WhatsApp-gesprekke uit of maak ’n rugsteun daarvan vir enige verkoping waaroor daar ’n argument kan kom. Stemboodskappe oor ’n transaksie is ook besigheidsrekords. Kragtens POPIA moet jy ook versigtig wees met wat jy hou: afskrifte van kliënte se ID’s en hulle adresse behoort op ’n veilige plek gebêre te word, net so lank gehou te word as wat jy hulle nodig het, en nooit aangestuur te word nie. Jou privaatheidskennisgewing in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Watter sjabloon om wanneer te gebruik"
+            }
+          ],
+          "doc": "paperwork/which-template-to-use-when",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " sê vir kliënte wat jy hou en waarom."
+        }
+      ],
+      "hash": "58d48943fc1f662a",
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.4",
+      "kind": "paragraph",
+      "sourceHash": "2bf188115f26cc63"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Moenie jou huisadres in advertensies of foto’s sit nie."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Wees versigtig om nie te veel inligting in die advertensie of oor die foon te gee nie. Maak seker dat foto’s wat jy aanlyn plaas nie liggingsmerkerdata (geotag) bevat nie, wat jou huisadres kan verklap. Die meeste fone laat jou die ligging in die kamera-instellings afskakel. Doen dit voordat jy by die huis foto’s van voorraad neem. Gee jou area, nie jou straat nie."
+        }
+      ],
+      "hash": "3a84bf62209be7b9",
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.5",
+      "kind": "paragraph",
+      "sourceHash": "c61b35591c9b28f3"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.6",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 3: geld, wanneer jy die kliënt nooit sien nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "ab9fd67443dd0676",
+      "id": "part-3-money-when-you-never-see-the-customer",
+      "kind": "heading",
+      "sourceHash": "6851d1e6e01e4a94",
+      "text": "Deel 3: geld, wanneer jy die kliënt nooit sien nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is waar die meeste verliese gebeur, en byna almal is vermybaar met een reël."
+        }
+      ],
+      "hash": "602e2e4b243e99e9",
+      "id": "part-3-money-when-you-never-see-the-customer.1",
+      "kind": "paragraph",
+      "sourceHash": "a3ccb0d01c9f8517"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die een reël"
+        }
+      ],
+      "depth": 3,
+      "hash": "ccf17a28667f6705",
+      "id": "the-one-rule",
+      "kind": "heading",
+      "sourceHash": "87603a99f079977b",
+      "text": "Die een reël"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Niks verlaat jou hande voordat die geld in jou rekeningsaldo is nie."
+        }
+      ],
+      "hash": "72ba147612277127",
+      "id": "the-one-rule.1",
+      "kind": "paragraph",
+      "sourceHash": "9048e83327606a11"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Moet niks vrystel nie, niks aflewer nie, en niks begin wat jou geld kos nie, totdat die geld in jou rekeningsaldo weerspieël word (reflected), nie \"hangend\" nie. As jou bank se toep nie die geld in jou saldo gewys het nie, is jy nie betaal nie."
+        }
+      ],
+      "hash": "41baf855ee6905ad",
+      "id": "the-one-rule.2",
+      "kind": "paragraph",
+      "sourceHash": "c78daf2f03b50cb4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Nie ’n skermskoot nie. Nie ’n SMS nie. Nie ’n PDF op ’n bank se briefhoof nie. Nie ’n oproep van \"die bank\" nie. Jou eie banktoep wat wys dat die saldo gestyg het."
+        }
+      ],
+      "hash": "5c583a723293e8cc",
+      "id": "the-one-rule.3",
+      "kind": "paragraph",
+      "sourceHash": "0477dddc275019ca"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Skermskoot, SMS of kennisgewing wat ’n kliënt vir jou wys, is nooit bewys dat ’n betaling deurgegaan het nie. Net jou eie portaal of toep kan dit bevestig."
+        }
+      ],
+      "hash": "c23aa27caf0a81ff",
+      "id": "the-one-rule.4",
+      "kind": "paragraph",
+      "sourceHash": "fe17e25b9d5feb6e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Waarom hierdie reël bestaan"
+        }
+      ],
+      "depth": 3,
+      "hash": "62dc25a00de75dc7",
+      "id": "why-this-rule-exists",
+      "kind": "heading",
+      "sourceHash": "56ca0d90376c7bfd",
+      "text": "Waarom hierdie reël bestaan"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vals betalingsbewyse is die algemeenste swendelary wat op klein verkopers in Suid-Afrika gemik is. Dit is nie nuut nie en dit is nie skaars nie."
+        }
+      ],
+      "hash": "c0b7b68356d7ddf8",
+      "id": "why-this-rule-exists.1",
+      "kind": "paragraph",
+      "sourceHash": "256da5878ce5f233"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vals betalingsbewyse word algemener namate swendelaars die spel opstoot. Gumtree South Africa het ’n verkoper beskryf wat ’n vals betalingsbewys gestuur is, en die swendelaar het selfs ’n Uber gestuur om die goedere te gaan haal. Die rekening daaragter is twee dae vroeër oopgemaak en het in daardie twee dae 24 keer dieselfde ding gedoen."
+        }
+      ],
+      "hash": "da46006cc73799f6",
+      "id": "why-this-rule-exists.2",
+      "kind": "paragraph",
+      "sourceHash": "488f3d52faab0595"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Volgens SABRIC se misdaadstatistiek vir 2024 het voorvalle van digitale bankbedrog met 86% gestyg, en die verliese met 74% tot R1.888 miljard."
+        }
+      ],
+      "hash": "87566912f711572b",
+      "id": "why-this-rule-exists.3",
+      "kind": "paragraph",
+      "sourceHash": "53aa84df95473ef0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is ’n gewone besigheidsrisiko, soos winkeldiefstal vir ’n winkel is. Die gewoonte hierbo keer byna alles daarvan."
+        }
+      ],
+      "hash": "d6c144f253c0ed98",
+      "id": "why-this-rule-exists.4",
+      "kind": "callout",
+      "pairsWith": "why-this-rule-exists.3",
+      "sourceHash": "07fd9127dfd9c9a3",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gebruik kitsbetaalmetodes"
+        }
+      ],
+      "depth": 3,
+      "hash": "2cb43dab3d16898e",
+      "id": "use-instant-payment-methods",
+      "kind": "heading",
+      "sourceHash": "b1ab315006ac434a",
+      "text": "Gebruik kitsbetaalmetodes"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gewone EFT kan ’n dag of twee neem om te weerspieël, en dit is presies die gaping wat swendelaars gebruik. Suid-Afrika het nou kitsopsies wat die gaping verwyder."
+        }
+      ],
+      "hash": "5e3cd81d1f108b0b",
+      "id": "use-instant-payment-methods.1",
+      "kind": "paragraph",
+      "sourceHash": "64892cf53e3badad"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "PayShap ondersteun enkelbetalings tot R50,000, verhoog van R3,000 in November 2024, maar elke bank stel sy eie perke per transaksie en per dag binne daardie plafon. Betalings word binne minder as tien sekondes verreken (cleared), 24 uur per dag, sonder afsnytye. Die kliënt hoef nie ’n ShapID te hê nie; hulle kan na jou gewone rekeningnommer betaal, en dit word steeds binne sekondes verreken."
+        }
+      ],
+      "hash": "3158059b5c592ffc",
+      "id": "use-instant-payment-methods.2",
+      "kind": "paragraph",
+      "sourceHash": "27178932115ff06e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "PayShap en Real-Time Clearing (intydse verrekening) gee jou onmiddellike bevestiging en kan nie teruggedraai word nie."
+        }
+      ],
+      "hash": "4e4c17a5f0e85924",
+      "id": "use-instant-payment-methods.3",
+      "kind": "paragraph",
+      "sourceHash": "06ebc32aa88cce3d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n verkoping onder jou bank se PayShap-limiet, vra die kliënt om per PayShap of onmiddellike betaling te betaal terwyl jy na jou toep kyk. Die geld kom aan voordat hulle loop. Vir groter bedrae doen ’n onmiddellike betaling deur hulle banktoep dieselfde werk teen ’n hoër fooi, of julle ontmoet by ’n banktak en die oordrag word by die toonbank gedoen."
+        }
+      ],
+      "hash": "3af4b121e9618e13",
+      "id": "use-instant-payment-methods.4",
+      "kind": "paragraph",
+      "sourceHash": "eaee5f58f5d088b4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vra jou bank wat jou eie PayShap-limiet is. Dit verskil van bank tot bank en van rekening tot rekening."
+        }
+      ],
+      "hash": "62436af7958e6952",
+      "id": "use-instant-payment-methods.5",
+      "kind": "paragraph",
+      "sourceHash": "dcd3df05a7bfe6c4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die swendelary, eenvoudig gestel"
+        }
+      ],
+      "depth": 3,
+      "hash": "feecb6942636bb3e",
+      "id": "the-scams-plainly",
+      "kind": "heading",
+      "sourceHash": "172c0a48b927c168",
+      "text": "Die swendelary, eenvoudig gestel"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy sal sommige hiervan teëkom. As jy weet hoe hulle lyk, is dit die grootste deel van jou verdediging."
+        }
+      ],
+      "hash": "1607b486964a2cec",
+      "id": "the-scams-plainly.1",
+      "kind": "paragraph",
+      "sourceHash": "9c505dbe5b96b758"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "247fd2d6f0c27b05",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Hoe dit lyk"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Wat werklik gebeur"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Wat om te doen"
+          }
+        ]
+      ],
+      "id": "the-scams-plainly.2",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "’n Oortuigende betalingsbewys kom aan. Die koper is haastig."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Die oordrag is nooit gedoen nie, of is gedoen en sal teruggedraai word."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Wag vir jou saldo. Moet nooit goedere op grond van ’n POP vrystel nie."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Die koper betaal \"per ongeluk\" te veel en vra die verskil terug."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Die oorspronklike betaling misluk later, word teruggedraai, of het nooit bestaan nie."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Betaal niks terug voordat die oorspronklike betaling al dae lank verreken is nie. Betaal net terug na die rekening waarvandaan dit gekom het."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Die koper kan nie kom nie, en stuur ’n bestuurder, koerier of Uber om dit te gaan haal."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Die patroon waarteen SAPS waarsku: ’n vals aankoopbewys, ’n vals ID, en dan ’n bestuurder wat gestuur word om dit te gaan haal."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Geen afhaal deur ’n derde party voordat die geld weerspieël nie. Daarna is dit reg."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "’n Oproep of stemboodskap van \"jou bank\" oor ’n verdagte betaling, wat jou vra om iets in jou toep goed te keur."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Sosiale manipulasie. Hulle praat jou om om self ’n betaling goed te keur."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Sit die foon neer. Bel jou bank op die nommer op jou kaart. Keur nooit iets goed op iemand anders se opdrag nie."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "’n Betaalskakel of ’n skakel vir ’n \"afleweringsfooi\" kom per boodskap aan."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "’n Uitvissingsblad (phishing). Een aanmelding, en jou rekening is hulle s’n."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Meld nooit aan deur ’n skakel wat iemand vir jou gestuur het nie. Maak jou toep self oop."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Iemand vra vir die OTP wat die bank pas vir jou gestuur het, om watter rede ook al."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Die OTP magtig ’n betaling uit jou rekening."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Nooit. Nie aan ’n kliënt nie, nie aan \"die bank\" nie, nie aan enigiemand nie."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Betaling per tjek."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Tjeks neem tyd om verreken te word; die koper haal die goedere en kanselleer dan die tjek."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Moenie tjeks aanvaar nie. Suid-Afrikaanse banke het aan die einde van 2020 opgehou om hulle te aanvaar, so ’n \"tjek\" vandag is op sigself ’n rooi vlag."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Die koper stem dadelik tot jou volle prys in, vra geen vrae nie, is oorsee, of wil die gesprek na ’n ander nommer skuif."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Klassieke rooi vlae vir ’n vals koper."
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Gaan stadiger. Regte kopers onderhandel en vra dinge."
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "84b1305a42a50cb9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om ’n verkoping weens versigtigheid te verloor, kos jou niks. Om die goedere te verloor, kos jou alles."
+        }
+      ],
+      "hash": "0344699bc39b506e",
+      "id": "the-scams-plainly.3",
+      "kind": "paragraph",
+      "sourceHash": "5b126414ad1350ad"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy kontant neem"
+        }
+      ],
+      "depth": 3,
+      "hash": "09dd1cf83f9b7260",
+      "id": "if-you-take-cash",
+      "kind": "heading",
+      "sourceHash": "2a5ecc85311876c5",
+      "text": "As jy kontant neem"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kontant is wettig, en vir klein bedrae is dit eenvoudig. Vir groot bedrae hou dit twee risiko’s in: vals note, en dat jy op pad na die bank beroof word."
+        }
+      ],
+      "hash": "cf8777f0c0653e4e",
+      "id": "if-you-take-cash.1",
+      "kind": "paragraph",
+      "sourceHash": "dc4377a158eacbd1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die Suid-Afrikaanse Reserwebank (South African Reserve Bank) leer ’n toets in drie stappe."
+        }
+      ],
+      "hash": "637a88b612caf179",
+      "id": "if-you-take-cash.2",
+      "kind": "paragraph",
+      "sourceHash": "1e9760b3f4301149"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kyk, voel en kantel. Voel: die portret en die woorde SOUTH AFRICAN RESERVE BANK voel effens verhewe of grof. Die verhewe lyne in die onderste hoeke tel op saam met die waarde, een lyn op ’n R10 tot vyf op ’n R200. Kantel: die metaaldraad weerkaats lig en verander van kleur, en die syfers regs onder is met ink gedruk wat van kleur verander."
+        }
+      ],
+      "hash": "1b8e6a194168ee6d",
+      "id": "if-you-take-cash.3",
+      "kind": "paragraph",
+      "sourceHash": "8ae8a0f36de47648"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kyk: wanneer jy die noot teen die lig hou, word die sekuriteitsdraad ’n aaneenlopende soliede lyn, en die watermerk is ’n ingebedde beeld van Nelson Mandela links op die voorkant van die noot."
+        }
+      ],
+      "hash": "3a8f4195b41b0ae6",
+      "id": "if-you-take-cash.4",
+      "kind": "paragraph",
+      "sourceHash": "492335ecd9ea5d7d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vals note kan verbasend oortuigend wees. Selfs as die persoon wat jou betaal dink hulle is eg en jy aanvaar hulle in goeie trou, ly jy steeds die verlies. Volgens wet kan vals geld nie vir regte geld omgeruil word nie."
+        }
+      ],
+      "hash": "aac09c53e9921d6c",
+      "id": "if-you-take-cash.5",
+      "kind": "paragraph",
+      "sourceHash": "bd30f2d0ac98780d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Enigiemand wat vals note in hulle besit kry, moet dit by die naaste polisiestasie aanmeld. Die SARB het ook ’n gratis Currency App wat die sekuriteitskenmerke wys."
+        }
+      ],
+      "hash": "6e4753d640150882",
+      "id": "if-you-take-cash.6",
+      "kind": "paragraph",
+      "sourceHash": "d48d9c8d3a37c4ed"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir enige bedrag waaroor jy jou moet bekommer, is die eenvoudigste beskerming: doen die kontanttransaksie binne-in ’n banktak, waar die geld nagegaan kan word om te sien of dit eg is voordat jy dit deponeer. Die koper deponeer direk by die toonbank in jou rekening. Jy kyk hoe dit weerspieël. Niemand loop met ’n koevert rond nie."
+        }
+      ],
+      "hash": "5a9aa44cc34dea63",
+      "id": "if-you-take-cash.7",
+      "kind": "paragraph",
+      "sourceHash": "9c7e0e542a390a8a"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n voertuighandelaar"
+        }
+      ],
+      "depth": 3,
+      "hash": "3c68983c7da55595",
+      "id": "for-a-vehicle-dealer",
+      "kind": "heading",
+      "sourceHash": "6edeb05a5c4d2b1b",
+      "text": "Vir ’n voertuighandelaar"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voertuigverkope is groot. PayShap-limiete sal dikwels te laag wees. Die opsies wat werk:"
+        }
+      ],
+      "hash": "67bcf6a8d49786be",
+      "id": "for-a-vehicle-dealer.1",
+      "kind": "paragraph",
+      "sourceHash": "fed4cfea6d5da307"
+    },
+    {
+      "hash": "f5b898e70d5d87d9",
+      "id": "for-a-vehicle-dealer.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Onmiddellike betaling uit die koper se banktoep terwyl jy na jou saldo kyk"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Ontmoet by die koper se bank; die oordrag word by die toonbank gedoen"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Oordrag van bank tot bank die dag tevore, met afhaal eers sodra dit weerspieël het"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "65ac584b844d15c9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Moet nooit sleutels, die registrasiesertifikaat of ’n getekende NCO oorhandig voordat die volle bedrag in jou saldo is nie. Moenie die sleutels of dokumente oorhandig voordat die volle betaling verreken is nie."
+        }
+      ],
+      "hash": "a3eae28ebf0a827e",
+      "id": "for-a-vehicle-dealer.3",
+      "kind": "paragraph",
+      "sourceHash": "d84de3c921b05806"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "for-a-vehicle-dealer.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 4: ’n kliënt ontmoet vir ’n inspeksie of ’n toetsrit"
+        }
+      ],
+      "depth": 2,
+      "hash": "689f0df2508b5f56",
+      "id": "part-4-meeting-a-customer-to-inspect-or-test-drive",
+      "kind": "heading",
+      "sourceHash": "df7bc508aff0b810",
+      "text": "Deel 4: ’n kliënt ontmoet vir ’n inspeksie of ’n toetsrit"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Op ’n stadium moet ’n kliënt die produk sien voordat hy of sy betaal, of die voertuig bestuur. Dit beteken jy ontmoet ’n vreemdeling. Die gewoontes hieronder is wat die sekuriteitsbedryf en die motorbedryf albei aanbeveel. Volg hulle, en dit is ’n roetinedeel van besigheid doen."
+        }
+      ],
+      "hash": "ee273c080b046536",
+      "id": "part-4-meeting-a-customer-to-inspect-or-test-drive.1",
+      "kind": "paragraph",
+      "sourceHash": "af7ae410a0844b2c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kies die plek"
+        }
+      ],
+      "depth": 3,
+      "hash": "28739a57757796ee",
+      "id": "choose-the-place",
+      "kind": "heading",
+      "sourceHash": "9a32a7d424ed0064",
+      "text": "Kies die plek"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ontmoet op ’n openbare plek. Moet nooit op stil of verlate plekke ontmoet nie. ’n Goed beligte openbare plek, soos ’n vulstasie of ’n polisiestasie."
+        }
+      ],
+      "hash": "c49d887f56c0cd5e",
+      "id": "choose-the-place.1",
+      "kind": "paragraph",
+      "sourceHash": "e07a3422541d8287"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Goeie keuses: die parkeerterrein van ’n polisiestasie, ’n bank, ’n besige vulstasie met kameras, of ’n winkelsentrum se parkeerterrein gedurende besigheidsure. Kies ’n plek wat jy ken, met mense rondom en kameras teenwoordig."
+        }
+      ],
+      "hash": "fb75dad813e0fdb6",
+      "id": "choose-the-place.2",
+      "kind": "paragraph",
+      "sourceHash": "2f107e7023c72bcf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Nie by jou huis nie. Jy sou normaalweg nie vreemdelinge na jou huis nooi nie, so moenie dit doen terwyl jy verkoop nie. Neem eerder die voertuig na ’n openbare plek."
+        }
+      ],
+      "hash": "c9c6310047eda5c8",
+      "id": "choose-the-place.3",
+      "kind": "paragraph",
+      "sourceHash": "6a606931c2db78fb"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Nie by hulle huis nie, vir ’n eerste ontmoeting."
+        }
+      ],
+      "hash": "083bb233c9a4da2c",
+      "id": "choose-the-place.4",
+      "kind": "paragraph",
+      "sourceHash": "d19c6b9ecd38028d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daglig. Nie ná donker nie."
+        }
+      ],
+      "hash": "8ae2ff1479d19224",
+      "id": "choose-the-place.5",
+      "kind": "paragraph",
+      "sourceHash": "6d06859c8cfd269b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Suid-Afrika het nie ’n formele skema vir ’n \"veilige ruilsone\" (\"safe exchange zone\") by polisiestasies nie. Baie stasies is gelukkig dat mense in die besoekersparkering ontmoet. Vra by jou plaaslike stasie voordat jy daarop staatmaak."
+        }
+      ],
+      "hash": "b789ab19618966c9",
+      "id": "choose-the-place.6",
+      "kind": "paragraph",
+      "sourceHash": "b28c415b88e7c37b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voordat jy gaan"
+        }
+      ],
+      "depth": 3,
+      "hash": "1848e1fb51258fce",
+      "id": "before-you-go",
+      "kind": "heading",
+      "sourceHash": "e2281c817fae1f8a",
+      "text": "Voordat jy gaan"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Kry eers hulle besonderhede."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Laat hulle vir jou ’n afskrif van hulle ID of rybewys stuur voor die ontmoeting, \"om die papierwerk op te stel sodat die transaksie op die dag vinniger gaan\". ’n Regte koper stuur dit. Kragtens POPIA moet jy dit veilig hou en dit uitvee sodra die transaksie klaar is of laat vaar is."
+        }
+      ],
+      "hash": "9c2399c2b817741a",
+      "id": "before-you-go.1",
+      "kind": "paragraph",
+      "sourceHash": "83d42a5246de7e40"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Sê vir iemand."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Laat ’n vriend of familielid weet waar jy sal wees en wie jy gaan ontmoet. Deel jou lewendige ligging op WhatsApp met hulle vir die hele tyd."
+        }
+      ],
+      "hash": "7e9bdd40b30cfc5b",
+      "id": "before-you-go.2",
+      "kind": "paragraph",
+      "sourceHash": "159b7afc2eea3744"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Neem iemand saam."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Laat ’n vriend of familielid jou vergesel, sowel wanneer jy die koper ontmoet as op die toetsrit. Twee mense verander die hele berekening vir enigiemand met slegte bedoelings."
+        }
+      ],
+      "hash": "cdfcb6df83cabbe9",
+      "id": "before-you-go.3",
+      "kind": "paragraph",
+      "sourceHash": "80d890fdb9a6fe74"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Vertrou die gevoel."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " As iets nie reg lyk nie, of dit onveilig voel, vertrou jou instink en verwyder jouself uit die situasie. Dit kan beteken dat jy hulle glad nie ontmoet nie, of dat jy loop sodra iets verkeerd voel. Hê ’n rugsteunplan."
+        }
+      ],
+      "hash": "1fb17db79f4ce090",
+      "id": "before-you-go.4",
+      "kind": "paragraph",
+      "sourceHash": "cc78275827e3274b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tydens ’n toetsrit"
+        }
+      ],
+      "depth": 3,
+      "hash": "c2f158bfecd77f00",
+      "id": "during-a-test-drive",
+      "kind": "heading",
+      "sourceHash": "6c6cb5ae13107b8e",
+      "text": "Tydens ’n toetsrit"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is waar voertuie van verkopers gesteel word, en elkeen van hierdie reëls bestaan weens ’n werklike geval."
+        }
+      ],
+      "hash": "65f4e4247a68ca35",
+      "id": "during-a-test-drive.1",
+      "kind": "paragraph",
+      "sourceHash": "46febf7553543a1e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hulle gaan jou voertuig bestuur, so hulle moet hulle rybewys saambring. Vra vir ’n afskrif of neem ’n foto. ’n Egte koper sal nie omgee nie; ’n misdadiger word afgeskrik. Kyk of die gesig op die rybewys die persoon voor jou is, en of dit ooreenstem met die ID wat hulle gestuur het."
+        }
+      ],
+      "hash": "a412b10b65709687",
+      "id": "during-a-test-drive.2",
+      "kind": "paragraph",
+      "sourceHash": "8e0b5d5f8741dac5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Moenie die sleutels oorhandig voordat jy self in die voertuig is nie, en kry hulle terug voordat jy uitklim. Anders kan hulle net wegry."
+        }
+      ],
+      "hash": "1d7237e8eb87d906",
+      "id": "during-a-test-drive.3",
+      "kind": "paragraph",
+      "sourceHash": "ceaf41c13aa23ddb"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Moet nooit ’n koper alleen ’n toetsrit laat doen nie, want hulle kom dalk nooit terug nie. Hou jou sleutels heeltyd dop. Party diewe ruil die sleutels tydens die besigtiging om en kom later terug om die voertuig te steel."
+        }
+      ],
+      "hash": "d5e8c98257adba55",
+      "id": "during-a-test-drive.4",
+      "kind": "paragraph",
+      "sourceHash": "4cb3e240be7518b2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hou die brandstof laag. ’n Byna leë tenk beperk hoe ver iemand kan gaan."
+        }
+      ],
+      "hash": "26314405f1a4cb84",
+      "id": "during-a-test-drive.5",
+      "kind": "paragraph",
+      "sourceHash": "61304e31021b11c4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou metgesel bly by die koper se eie voertuig en sy of haar metgesel, as hulle een saamgebring het. Dit is jou voertuig; jy besluit wie saamry."
+        }
+      ],
+      "hash": "b12fdc0cb0496ca6",
+      "id": "during-a-test-drive.6",
+      "kind": "paragraph",
+      "sourceHash": "dc7982916a89fb5c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Maak seker dat jou versekering dek wanneer ’n voornemende koper bestuur. Vir ’n handelaar is dit motorhandelversekering met dekking vir toetsritte, wat in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Voertuighandelaar"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " bespreek word. Vir ’n private verkoper: bel jou versekeraar en vra."
+        }
+      ],
+      "hash": "404efa3f21a5511a",
+      "id": "during-a-test-drive.7",
+      "kind": "paragraph",
+      "sourceHash": "0a93d806d26f440a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ná die ontmoeting"
+        }
+      ],
+      "depth": 3,
+      "hash": "d003d6cb3d88b4c0",
+      "id": "after-the-meeting",
+      "kind": "heading",
+      "sourceHash": "9d122fcc516095ab",
+      "text": "Ná die ontmoeting"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As die transaksie deurgaan: eers weerspieël die betaling, dan die sleutels en papiere, dan word die NCO dieselfde dag ingedien. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Voertuighandelaar"
+            }
+          ],
+          "doc": "business-types/vehicle-dealer",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " vir die volle papierwerk."
+        }
+      ],
+      "hash": "ba55c20c94254891",
+      "id": "after-the-meeting.1",
+      "kind": "paragraph",
+      "sourceHash": "b39cbfe75750e8a0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As dit nie deurgaan nie: vee die ID-afskrifte uit wat vir jou gestuur is. Jy het geen rede om hulle te hou nie."
+        }
+      ],
+      "hash": "f970722c4022b74b",
+      "id": "after-the-meeting.2",
+      "kind": "paragraph",
+      "sourceHash": "9cc8f892c49e0e0f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ander produkte as voertuie"
+        }
+      ],
+      "depth": 3,
+      "hash": "fe80091e077985f1",
+      "id": "for-products-other-than-vehicles",
+      "kind": "heading",
+      "sourceHash": "891545094d1f4aa3",
+      "text": "Vir ander produkte as voertuie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dieselfde reëls, vereenvoudig. Ontmoet in die openbaar, in daglig, met iemand saam. Laat die kliënt die produk inspekteer. Hulle betaal per kitsoordrag terwyl jy na jou toep kyk. Dan oorhandig jy dit. ’n Kliënt wat daarop aandring om die item \"aan iemand te gaan wys\" voordat hy of sy betaal, is nie ’n kliënt nie."
+        }
+      ],
+      "hash": "c8a0b6ba01a5b13b",
+      "id": "for-products-other-than-vehicles.1",
+      "kind": "paragraph",
+      "sourceHash": "faf40e35e2ba72f3"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "for-products-other-than-vehicles.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 5: as iets skeefloop"
+        }
+      ],
+      "depth": 2,
+      "hash": "fe1faf32a7a4760f",
+      "id": "part-5-if-something-goes-wrong",
+      "kind": "heading",
+      "sourceHash": "b50c90aad166d1bb",
+      "text": "Deel 5: as iets skeefloop"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "’n Vals betaling, en die goedere is weg."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Maak ’n saak oop by jou naaste SAPS-stasie en kry die saaknommer. Meld dit aan by jou bank se bedroglyn. Meld die koper se rekening of profiel aan by die platform waarop hulle jou gekontak het. Hou elke boodskap. Dit is onwaarskynlik dat jy iets terugkry, maar die saaknommer maak saak vir versekering en vir die bank se ondersoek."
+        }
+      ],
+      "hash": "e35fa8ac90db8dd4",
+      "id": "part-5-if-something-goes-wrong.1",
+      "kind": "paragraph",
+      "sourceHash": "f1ce6969b66def57"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "’n Vals noot."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Meld dit by jou naaste polisiestasie aan. Moenie probeer om dit verder te gee nie; dit is ’n misdaad."
+        }
+      ],
+      "hash": "b71963a4c413257a",
+      "id": "part-5-if-something-goes-wrong.2",
+      "kind": "paragraph",
+      "sourceHash": "f7f90d7f09203a28"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Iemand het in jou bankrekening ingekom."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Bel dadelik jou bank se bedroglyn, op die nommer agter op jou kaart. Verander wagwoorde. Meld dit by SABRIC aan by "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.sabric.co.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.sabric.co.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "cce5c23124a4e962",
+      "id": "part-5-if-something-goes-wrong.3",
+      "kind": "paragraph",
+      "sourceHash": "742c1b9cc59c94ea"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "’n Toetsrit wat in diefstal geëindig het."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " SAPS dadelik, dan jou versekeraar en jou opsporingsmaatskappy as daar ’n opspoorder in is. Die foto van die rybewys wat jy geneem het, is nou die belangrikste ding wat jy het."
+        }
+      ],
+      "hash": "7b6c7567def58879",
+      "id": "part-5-if-something-goes-wrong.4",
+      "kind": "paragraph",
+      "sourceHash": "c9d2cf3e454a731a"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Jy voel bedreig by ’n ontmoeting."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Loop. Moenie oor die produk stry nie. Niks wat jy verkoop, is dit werd nie."
+        }
+      ],
+      "hash": "86d68e859deded3c",
+      "id": "part-5-if-something-goes-wrong.5",
+      "kind": "paragraph",
+      "sourceHash": "e0cad79e55ba767b"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "part-5-if-something-goes-wrong.6",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou kontrolelys"
+        }
+      ],
+      "depth": 2,
+      "hash": "913a4f09fb30d35c",
+      "id": "your-checklist",
+      "kind": "heading",
+      "sourceHash": "44586aab28889f46",
+      "text": "Jou kontrolelys"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opstelling"
+        }
+      ],
+      "depth": 4,
+      "hash": "a7d19682b5e3a6e9",
+      "id": "setup",
+      "kind": "heading",
+      "pseudo": true,
+      "sourceHash": "f2326246a4d6f360",
+      "text": "Opstelling"
+    },
+    {
+      "hash": "111d5748ff0a7dc8",
+      "id": "setup.1",
+      "items": [
+        {
+          "block": "setup.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Nagegaan dat my sonering, titelakte en kompleksreëls toelaat wat ek by die huis doen"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:bbeb1c8a"
+        },
+        {
+          "block": "setup.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "My huishoudelike versekeraar laat weet van die besigheid en sy voorraad"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:1a704bb5"
+        },
+        {
+          "block": "setup.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Ligging in my foon se kamera afgeskakel voordat ek by die huis foto’s van voorraad neem"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:8a10fb7e"
+        },
+        {
+          "block": "setup.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Aparte WhatsApp Business-nommer"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:98801a6b"
+        },
+        {
+          "block": "setup.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "My bank gevra wat my limiete vir PayShap en onmiddellike betalings is"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:b77d1f44"
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "dc49901ac4a6f01f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Elke verkoping"
+        }
+      ],
+      "depth": 4,
+      "hash": "03f8069ac291deb8",
+      "id": "every-sale",
+      "kind": "heading",
+      "pseudo": true,
+      "sourceHash": "6971ebca57a6b41d",
+      "text": "Elke verkoping"
+    },
+    {
+      "hash": "650b344e62da047d",
+      "id": "every-sale.1",
+      "items": [
+        {
+          "block": "every-sale.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Transaksie bevestig in ’n teksboodskap waarop die kliënt \"ja\" geantwoord het"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:bfe6c798"
+        },
+        {
+          "block": "every-sale.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Geld in my saldo weerspieël voordat enigiets my hande verlaat het"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:cad4290c"
+        },
+        {
+          "block": "every-sale.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Geen terugbetaling van ’n \"oorbetaling\" voordat die oorspronklike betaling verreken is nie, en net na dieselfde rekening"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:70251e55"
+        },
+        {
+          "block": "every-sale.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Kontant nagegaan met kyk, voel, kantel, of by ’n bank se toonbank gedeponeer"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:6bd83244"
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "95e887522605922b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Elke ontmoeting"
+        }
+      ],
+      "depth": 4,
+      "hash": "ee53fe42f4fa340f",
+      "id": "every-meeting",
+      "kind": "heading",
+      "pseudo": true,
+      "sourceHash": "859f9e44e84779e6",
+      "text": "Elke ontmoeting"
+    },
+    {
+      "hash": "0f51e515c183a81b",
+      "id": "every-meeting.1",
+      "items": [
+        {
+          "block": "every-meeting.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Openbare plek, daglig, kameras"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:288efaaa"
+        },
+        {
+          "block": "every-meeting.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "ID of rybewys voor die ontmoeting ontvang"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:a5d45d69"
+        },
+        {
+          "block": "every-meeting.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Iemand ingelig, ligging gedeel, iemand saam met my"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:05820320"
+        },
+        {
+          "block": "every-meeting.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Sleutels in my hand totdat ek in die voertuig is, en terug in my hand voordat ek uitklim"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:9c2a1aaa"
+        },
+        {
+          "block": "every-meeting.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "ID-afskrifte daarna uitgevee as daar geen transaksie was nie"
+            }
+          ],
+          "doc": "core/working-from-home-and-safety",
+          "id": "core/working-from-home-and-safety:10807585"
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "94ab969df7ca2072"
+    }
+  ],
+  "contentHash": "c77944a46dcf6340",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Bestuur dit van die huis af, en ontmoet kliënte veilig",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "the-short-version",
+      "text": "Die kort weergawe"
+    },
+    {
+      "depth": 2,
+      "id": "part-1-what-the-rules-allow-when-you-work-from-home",
+      "text": "Deel 1: wat die reëls toelaat wanneer jy van die huis af werk"
+    },
+    {
+      "depth": 3,
+      "id": "zoning",
+      "text": "Sonering"
+    },
+    {
+      "depth": 3,
+      "id": "two-extra-layers",
+      "text": "Twee ekstra lae"
+    },
+    {
+      "depth": 3,
+      "id": "using-your-home-address-officially",
+      "text": "Om jou huisadres amptelik te gebruik"
+    },
+    {
+      "depth": 3,
+      "id": "insurance",
+      "text": "Versekering"
+    },
+    {
+      "depth": 3,
+      "id": "home-office-deduction",
+      "text": "Aftrekking vir ’n tuiskantoor"
+    },
+    {
+      "depth": 2,
+      "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note",
+      "text": "Deel 2: besigheid doen per foon, WhatsApp en stemboodskap"
+    },
+    {
+      "depth": 2,
+      "id": "part-3-money-when-you-never-see-the-customer",
+      "text": "Deel 3: geld, wanneer jy die kliënt nooit sien nie"
+    },
+    {
+      "depth": 3,
+      "id": "the-one-rule",
+      "text": "Die een reël"
+    },
+    {
+      "depth": 3,
+      "id": "why-this-rule-exists",
+      "text": "Waarom hierdie reël bestaan"
+    },
+    {
+      "depth": 3,
+      "id": "use-instant-payment-methods",
+      "text": "Gebruik kitsbetaalmetodes"
+    },
+    {
+      "depth": 3,
+      "id": "the-scams-plainly",
+      "text": "Die swendelary, eenvoudig gestel"
+    },
+    {
+      "depth": 3,
+      "id": "if-you-take-cash",
+      "text": "As jy kontant neem"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ]
+      },
+      "depth": 3,
+      "id": "for-a-vehicle-dealer",
+      "text": "Vir ’n voertuighandelaar"
+    },
+    {
+      "depth": 2,
+      "id": "part-4-meeting-a-customer-to-inspect-or-test-drive",
+      "text": "Deel 4: ’n kliënt ontmoet vir ’n inspeksie of ’n toetsrit"
+    },
+    {
+      "depth": 3,
+      "id": "choose-the-place",
+      "text": "Kies die plek"
+    },
+    {
+      "depth": 3,
+      "id": "before-you-go",
+      "text": "Voordat jy gaan"
+    },
+    {
+      "depth": 3,
+      "id": "during-a-test-drive",
+      "text": "Tydens ’n toetsrit"
+    },
+    {
+      "depth": 3,
+      "id": "after-the-meeting",
+      "text": "Ná die ontmoeting"
+    },
+    {
+      "depth": 3,
+      "id": "for-products-other-than-vehicles",
+      "text": "Vir ander produkte as voertuie"
+    },
+    {
+      "depth": 2,
+      "id": "part-5-if-something-goes-wrong",
+      "text": "Deel 5: as iets skeefloop"
+    },
+    {
+      "depth": 2,
+      "id": "your-checklist",
+      "text": "Jou kontrolelys"
+    },
+    {
+      "depth": 4,
+      "id": "setup",
+      "pseudo": true,
+      "text": "Opstelling"
+    },
+    {
+      "depth": 4,
+      "id": "every-sale",
+      "pseudo": true,
+      "text": "Elke verkoping"
+    },
+    {
+      "depth": 4,
+      "id": "every-meeting",
+      "pseudo": true,
+      "text": "Elke ontmoeting"
+    }
+  ],
+  "id": "core/working-from-home-and-safety",
+  "kind": "guide",
+  "lang": "af",
+  "order": 9,
+  "readingTime": 18,
+  "related": [
+    "business-types/vehicle-dealer",
+    "core/tax-and-sars",
+    "branding/marketing-prompts",
+    "paperwork/which-template-to-use-when"
+  ],
+  "route": "core/working-from-home-and-safety/",
+  "section": "core",
+  "slug": "working-from-home-and-safety",
+  "sourcePath": "01 Core - applies to everyone/09-working-from-home-and-safety.md",
+  "sources": {
+    "acts": [],
+    "entries": [
+      "south-african-reserve-bank--banknote-security-features",
+      "iol--the-mercury",
+      "the-citizen-local-titles",
+      "sabric--south-african-banking-risk-information-centre",
+      "techcentral",
+      "solmate",
+      "netcash",
+      "ewn-gumtree-flags-fake-payment-scam",
+      "cape-argus",
+      "flip-the-market",
+      "bizcommunity--gumtree",
+      "tracker-south-africa",
+      "carscoza",
+      "motorhappy",
+      "ashersons-attorneys",
+      "yebo-business-1",
+      "findanattorney",
+      "looksee-standard-bank",
+      "leapfrog"
+    ]
+  },
+  "summary": "Baie eenpersoonbesighede het geen winkel, geen werf en geen kantoor nie. Die besigheid leef op ’n foon.",
+  "tags": [
+    "home",
+    "safety",
+    "payments"
+  ],
+  "terms": [
+    {
+      "meaning": "Die munisipale kategorie wat klein, stil besighede in ’n huis sonder spesiale toestemming toelaat.",
+      "term": "Tuisonderneming / tuisbedrywigheid (home enterprise / home occupation)"
+    },
+    {
+      "meaning": "Munisipale toestemming vir ’n besigheidsgebruik wat verder gaan as wat jou sonering by verstek toelaat.",
+      "term": "Vergunningsgebruik (consent use)"
+    },
+    {
+      "meaning": "Die bestuursliggaam van ’n kompleks of landgoed. Dit het sy eie reëls bo en behalwe dié van die munisipaliteit.",
+      "term": "Beheerliggaam / huiseienaarsvereniging (body corporate / HOA)"
+    },
+    {
+      "meaning": "Proof of payment (betalingsbewys). ’n Skermskoot of PDF wat wys dat ’n oordrag gedoen is. Maklik om te vervals.",
+      "term": "POP"
+    },
+    {
+      "meaning": "Die geld is werklik in jou rekeningsaldo, nie net \"hangend\" (\"pending\") nie.",
+      "term": "Weerspieël / verreken (reflected / cleared)"
+    },
+    {
+      "meaning": "’n Kitsbetaling van bank tot bank wat binne sekondes aankom en nie teruggedraai kan word nie.",
+      "term": "PayShap"
+    },
+    {
+      "meaning": "Ander vinnige betaalopsies. Hulle kom ook vinnig aan.",
+      "term": "Kits-EFT / RTC (instant EFT)"
+    },
+    {
+      "meaning": "’n \"Koper\" betaal doelbewus te veel en vra dan die verskil terug. Die oorspronklike betaling was nooit eg nie.",
+      "term": "Oorbetalingswendelary (overpayment scam)"
+    },
+    {
+      "meaning": "Liggingsdata wat in ’n foto versteek is. Dit kan wys waar jy woon.",
+      "term": "Liggingsmerker (geotag)"
+    },
+    {
+      "meaning": "Eenmalige PIN (one-time PIN). Die kode wat jou bank vir jou stuur. Deel dit nooit met enigiemand nie.",
+      "term": "OTP"
+    },
+    {
+      "meaning": "Die bankbedryf se liggaam teen bedrog.",
+      "term": "SABRIC"
+    }
+  ],
+  "title": "Bestuur dit van die huis af, en ontmoet kliënte veilig",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

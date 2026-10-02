@@ -1,5 +1,5 @@
 {
-  "contentHash": "05b12d58c94f5835",
+  "contentHash": "89e0a295c093f8f2",
   "docs": {
     "branding/already-have-your-name": {
       "appliesTo": {
@@ -226,13 +226,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 8,
       "route": "core/adding-new-lines/",
       "section": "core",
       "slug": "adding-new-lines",
       "titles": {
+        "af": "Nuwe besigheidslyne by jou Pty voeg",
         "en": "Adding new lines of business"
       }
     },
@@ -243,13 +245,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 7,
       "route": "core/paying-yourself/",
       "section": "core",
       "slug": "paying-yourself",
       "titles": {
+        "af": "Betaal jouself uit ’n Pty Ltd",
         "en": "Paying yourself from a Pty Ltd"
       }
     },
@@ -279,13 +283,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 6,
       "route": "core/running-a-pty-ltd/",
       "section": "core",
       "slug": "running-a-pty-ltd",
       "titles": {
+        "af": "Bestuur van ’n Pty Ltd",
         "en": "Running a Pty Ltd"
       }
     },
@@ -372,13 +378,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 9,
       "route": "core/working-from-home-and-safety/",
       "section": "core",
       "slug": "working-from-home-and-safety",
       "titles": {
+        "af": "Bestuur dit van die huis af, en ontmoet kliënte veilig",
         "en": "Working from home and meeting safely"
       }
     },
@@ -662,7 +670,7 @@
   },
   "langs": {
     "af": {
-      "docCount": 17,
+      "docCount": 21,
       "status": "partial"
     },
     "en": {

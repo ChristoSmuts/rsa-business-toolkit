@@ -1,0 +1,1418 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "pty"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die geld in die maatskappy se bankrekening is nie joune nie. Dit behoort aan die maatskappy."
+        }
+      ],
+      "hash": "37a4b0b743302405",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "2c9af7088d7853f1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daar is drie wettige maniere om dit na jou persoonlike rekening te skuif. Elkeen het ’n ander belastinggevolg. Om sleg te kies, of glad nie te kies nie, is die algemeenste duur fout in eenpersoonmaatskappye."
+        }
+      ],
+      "hash": "baa1dc023ee0f52a",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "76b72183472d5f85"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "278a1b9bde0ec1b2",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Eenvoudige betekenisse van die terme wat in hierdie lêer gebruik word. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die maatskappy betaal jou as ’n werknemer. PAYE word afgetrek."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Salaris"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die maatskappy betaal wins aan jou as die eienaar uit. 20% belasting."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Dividend"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die rekord van geld wat jy en die maatskappy mekaar skuld, buiten salaris en dividende."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Leningsrekening (loan account)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die maatskappy skuld jou. Goed."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Leningsrekening in krediet"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Jy skuld die maatskappy. Dit skep ’n belastingprobleem."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Leningsrekening in debiet"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Belasting wat elke maand van ’n salaris afgetrek word."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "PAYE"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die maandelikse vorm wat PAYE en UIF verklaar."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "EMP201"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die koers wat SARS gebruik om te bepaal of ’n lening te goedkoop is. 7.75% vanaf Desember 2025."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Amptelike rentekoers (official rate of interest)"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "8e96a1d61c81fd6a"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die probleem wat hierdie lêer oplos"
+        }
+      ],
+      "depth": 2,
+      "hash": "0b7b67c738646e57",
+      "id": "the-problem-this-file-solves",
+      "kind": "heading",
+      "sourceHash": "eb20f3645181bf48",
+      "text": "Die probleem wat hierdie lêer oplos"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "So lyk dit wanneer dit skeefloop. Een Suid-Afrikaanse rekeningkundige firma beskryf die patroon in eienaarbestuurde maatskappye:"
+        }
+      ],
+      "hash": "b8bc4720b8ba5684",
+      "id": "the-problem-this-file-solves.1",
+      "kind": "paragraph",
+      "sourceHash": "006856f40616614b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Persoonlike uitgawes, lewenskoste en debietorders word deur die besigheidsrekening betaal. Die besigheid het voortdurend ’n kontanttekort. Die direkteur kry nie ’n maandelikse salaris nie. Die eienaar spandeer die geld soos hy of sy goeddink, op grond daarvan dat al die geld en wins syne of hare is om te gebruik, omdat hy of sy die enigste aandeelhouer en direkteur is. Die probleem is dat die eienaar geld uit die entiteit se rekening gebruik het sonder om raak te sien dat daar belastinggevolge is."
+        }
+      ],
+      "hash": "23ebf78728594446",
+      "id": "the-problem-this-file-solves.2",
+      "kind": "paragraph",
+      "sourceHash": "3b3109635184a8e4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die patroon wat moeilikheid veroorsaak: huisuitgawes uit die maatskappy se rekening betaal, jouself nooit ’n behoorlike salaris betaal nie, en maatskappygeld spandeer asof dit joune is omdat jy die enigste eienaar is. Elkeen daarvan skep ’n belastingrekening wat jy nie beplan het nie."
+        }
+      ],
+      "hash": "4663b80582dfd83d",
+      "id": "the-problem-this-file-solves.3",
+      "kind": "callout",
+      "pairsWith": "the-problem-this-file-solves.2",
+      "sourceHash": "60909e383132ffee",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As dit jou beskryf, lees verder. Dit kan reggemaak word, maar dit is baie goedkoper om dit voor die einde van die finansiële jaar reg te maak as daarna."
+        }
+      ],
+      "hash": "945d134378a85407",
+      "id": "the-problem-this-file-solves.4",
+      "kind": "paragraph",
+      "sourceHash": "a6982728a2fcefa7"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "the-problem-this-file-solves.5",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opsie 1: salaris"
+        }
+      ],
+      "depth": 2,
+      "hash": "f0d9950f0e662e01",
+      "id": "option-1-salary",
+      "kind": "heading",
+      "sourceHash": "5de4443a413e2eb9",
+      "text": "Opsie 1: salaris"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die maatskappy sit jou op sy betaalstaat en betaal jou ’n maandelikse bedrag."
+        }
+      ],
+      "hash": "e1728084d2961aac",
+      "id": "option-1-salary.1",
+      "kind": "paragraph",
+      "sourceHash": "8894bfbc68eeb90d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat dit meebring"
+        }
+      ],
+      "depth": 3,
+      "hash": "8a90e925fd5afc51",
+      "id": "what-it-triggers",
+      "kind": "heading",
+      "sourceHash": "775e957509f217fd",
+      "text": "Wat dit meebring"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die maatskappy word ’n werkgewer en moet vir betaalstaatbelastings registreer."
+        }
+      ],
+      "hash": "b3a957e0ae5b0d70",
+      "id": "what-it-triggers.1",
+      "kind": "paragraph",
+      "sourceHash": "578a95063879184d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die maatskappy moet werknemersbelasting (PAYE) aftrek van die bedrae wat aan direkteure betaal word, en maandeliks EMP201-opgawes by SARS indien. Dieselfde geld in eienaarbestuurde besighede waar daar net een direkteur en geen werknemers is nie."
+        }
+      ],
+      "hash": "af896c8da28ebc04",
+      "id": "what-it-triggers.2",
+      "kind": "paragraph",
+      "sourceHash": "d4fa28b5164c69e0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die EMP201 is teen die 7de van die volgende maand verskuldig. ’n EMP501-rekonsiliasie word twee keer per jaar ingedien."
+        }
+      ],
+      "hash": "6d3ce1c8976ab90b",
+      "id": "what-it-triggers.3",
+      "kind": "paragraph",
+      "sourceHash": "a2947a480b6db576"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ignoreer enigiets wat jy oor \"geagte vergoeding\" (\"deemed remuneration\") lees"
+        }
+      ],
+      "depth": 3,
+      "hash": "d6e556c011c4f8c4",
+      "id": "ignore-anything-you-read-about-deemed-remuneration",
+      "kind": "heading",
+      "sourceHash": "c5cccd5babfa4398",
+      "text": "Ignoreer enigiets wat jy oor \"geagte vergoeding\" (\"deemed remuneration\") lees"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Baie Suid-Afrikaanse belastingartikels beskryf nog ’n reël waarvolgens ’n privaat maatskappy se direkteur se PAYE bereken word op ’n nosionele maandelikse salaris wat uit verlede jaar se verdienste bereken word."
+        }
+      ],
+      "hash": "667a0374d903b36b",
+      "id": "ignore-anything-you-read-about-deemed-remuneration.1",
+      "kind": "paragraph",
+      "sourceHash": "6a801c159852537f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daardie reël bestaan nie meer nie. Paragraaf 11C van die Vierde Bylae, wat die formule vir geagte vergoeding geskep het, is met ingang van 1 Maart 2017 herroep. Vanaf 1 Maart 2017 behoort geagte vergoeding nie meer gebruik te word nie, en direkteure se vergoeding is onderhewig aan PAYE op die werklike vergoeding, soos by gewone werknemers."
+        }
+      ],
+      "hash": "715e87df163591ca",
+      "id": "ignore-anything-you-read-about-deemed-remuneration.2",
+      "kind": "paragraph",
+      "sourceHash": "da80c45308cd6f5c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "PAYE word bereken op wat die maatskappy jou werklik betaal, maand vir maand, op dieselfde manier as vir enige werknemer."
+        }
+      ],
+      "hash": "d835ec340190160a",
+      "id": "ignore-anything-you-read-about-deemed-remuneration.3",
+      "kind": "paragraph",
+      "sourceHash": "8047c104af2227ab"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is die moeite werd om te weet, want verskeie betaalstaatartikels wat baie gelees word, verduidelik nog die ou reël asof dit geld. As iemand geagte vergoeding vir jou aanhaal, vra hulle om dit teen die huidige Vierde Bylae te bevestig."
+        }
+      ],
+      "hash": "dc62314afd88dfbb",
+      "id": "ignore-anything-you-read-about-deemed-remuneration.4",
+      "kind": "paragraph",
+      "sourceHash": "e15b53666af54d0e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat wel nog vir onreëlmatige betaling geld: artikel 7B van die Income Tax Act behandel veranderlike vergoeding, soos ’n bonus of kommissie, asof dit toeval op die datum waarop dit werklik betaal word. ’n Enkelbedrag wat in maand twaalf betaal word, word in maand twaalf belas. Jy word nie gepenaliseer omdat jy onreëlmatig trek nie, maar sodra die maatskappy jou enige vergoeding betaal, moet dit as werkgewer registreer en ’n EMP201 indien vir die maande waarin dit jou betaal."
+        }
+      ],
+      "hash": "c6d53dc2ec325fda",
+      "id": "ignore-anything-you-read-about-deemed-remuneration.5",
+      "kind": "paragraph",
+      "sourceHash": "d897ec23642a2e67"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "UIF: bronne verskil"
+        }
+      ],
+      "depth": 3,
+      "hash": "c396ef40747c1245",
+      "id": "uif-sources-disagree",
+      "kind": "heading",
+      "sourceHash": "4d6d4c109cd81cd5",
+      "text": "UIF: bronne verskil"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wees hier versigtig, want Suid-Afrikaanse bronne bots werklik oor of ’n enigste direkteur tot UIF moet bydra."
+        }
+      ],
+      "hash": "b8d85d6cf0af2a4b",
+      "id": "uif-sources-disagree.1",
+      "kind": "paragraph",
+      "sourceHash": "a7bbf2ccf8e6a437"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Een standpunt: direkteure moet registreer selfs as hulle die enigste werknemer van hulle eie maatskappy is. As ’n direkteur ’n salaris, loon of gestruktureerde vergoeding deur die maatskappy se betaalstaat verdien, moet die besigheid werknemersbelasting aftrek, en UIF-reëls geld vir direkteure wat wetlik as werknemers geklassifiseer word."
+        }
+      ],
+      "hash": "25d7e5ac58bf5cf1",
+      "id": "uif-sources-disagree.2",
+      "kind": "paragraph",
+      "sourceHash": "ce196c6d8d9cd47b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die ander standpunt: waar die direkteur nie ’n werknemer kragtens ’n dienskontrak is nie en direkteursfooie eerder as ’n salaris ontvang, geld UIF en SDL dalk nie."
+        }
+      ],
+      "hash": "62e3b6925cbc36c7",
+      "id": "uif-sources-disagree.3",
+      "kind": "paragraph",
+      "sourceHash": "ef9c71e4b68180ac"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die onderskeid draai om of jy ’n werknemer van die maatskappy is kragtens die Unemployment Insurance Act, en dit hang af van hoe jy werklik aangestel en betaal word, nie van wat jy dit noem nie."
+        }
+      ],
+      "hash": "68ccf14e3b510615",
+      "id": "uif-sources-disagree.4",
+      "kind": "paragraph",
+      "sourceHash": "3227eeb0cf09b4c6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is ’n werklike vurk in die pad met werklike geld daaraan verbonde. Kry eerder ’n uur met ’n belastingpraktisyn of betaalstaatspesialis as om te raai. Watter kant toe dit ook al val, dokumenteer die grondslag vir die besluit."
+        }
+      ],
+      "hash": "f5c6c21b52dedf19",
+      "id": "uif-sources-disagree.5",
+      "kind": "paragraph",
+      "sourceHash": "d99db0189135225f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SDL geld oor die algemeen eers sodra die jaarlikse betaalstaat ’n drempel oorskry, so ’n eenpersoonmaatskappy bereik dit gewoonlik nie."
+        }
+      ],
+      "hash": "a91a3fe9dac2e334",
+      "id": "uif-sources-disagree.6",
+      "kind": "paragraph",
+      "sourceHash": "e9e97366e9dedcde"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Een punt wat gewoonlik in hierdie argument verlore raak. UIF word byna altyd voorgestel as ’n koste om te vermy. Vir ’n eenpersoonmaatskappy kan dit ook die enigste siekte- of kraamvoordeel wees waartoe jy ooit toegang sal hê, want die eienaar van ’n eenmansaak (sole proprietor) mag glad nie bydra nie. Weeg dit op voordat jy jou pad daaruit argumenteer. Sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Jy is die besigheid"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "5fa82e7ab832b884",
+      "id": "uif-sources-disagree.7",
+      "kind": "paragraph",
+      "sourceHash": "735695934f66b9c3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wanneer salaris sin maak"
+        }
+      ],
+      "depth": 3,
+      "hash": "9edbdd7456c0d114",
+      "id": "when-salary-makes-sense",
+      "kind": "heading",
+      "sourceHash": "6d389bb8fb52acb8",
+      "text": "Wanneer salaris sin maak"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Salaris is aftrekbaar vir die maatskappy, wat die maatskappy se belasbare inkomste verminder. Dit word in jou hande belas teen jou persoonlike marginale koers, en die persoonlike belastingdrempel beteken dat die eerste R99,000 van jou totale belasbare inkomste geen belasting lok nie as jy jonger as 65 is."
+        }
+      ],
+      "hash": "b06e8333ddf7a2d3",
+      "id": "when-salary-makes-sense.1",
+      "kind": "paragraph",
+      "sourceHash": "a3c9c96a01a1cc23"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n eenpersoonmaatskappy met beskeie wins is ’n salaris tot omtrent by die belastingdrempel dikwels die skoonste beginpunt: geen belasting vir jou nie, ’n aftrekking vir die maatskappy, en ’n duidelike papierspoor."
+        }
+      ],
+      "hash": "5e0b080a3d139574",
+      "id": "when-salary-makes-sense.2",
+      "kind": "paragraph",
+      "sourceHash": "708159142ec36f31"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Salaris gee jou ook iets wat dividende nie gee nie: bewys van gereelde inkomste, wat saak maak vir ’n verbandaansoek of ’n aansoek om motorfinansiering."
+        }
+      ],
+      "hash": "d9a4e5ef0b3baebb",
+      "id": "when-salary-makes-sense.3",
+      "kind": "paragraph",
+      "sourceHash": "e63756f03654cc59"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "when-salary-makes-sense.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opsie 2: dividend"
+        }
+      ],
+      "depth": 2,
+      "hash": "4ee01cbbc70feecf",
+      "id": "option-2-dividend",
+      "kind": "heading",
+      "sourceHash": "df3a5986fc9b6044",
+      "text": "Opsie 2: dividend"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die maatskappy verklaar ’n dividend uit wins ná belasting. Jy ontvang dit as aandeelhouer."
+        }
+      ],
+      "hash": "19ed13705d2613ba",
+      "id": "option-2-dividend.1",
+      "kind": "paragraph",
+      "sourceHash": "1a7c52e0282b4503"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat dit kos"
+        }
+      ],
+      "depth": 3,
+      "hash": "4ac6e6219f485fd9",
+      "id": "what-it-costs",
+      "kind": "heading",
+      "sourceHash": "61d2096489d19bcc",
+      "text": "Wat dit kos"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dividendbelasting is 20%, wat die maatskappy terughou en oorbetaal."
+        }
+      ],
+      "hash": "6539072341be58d5",
+      "id": "what-it-costs.1",
+      "kind": "paragraph",
+      "sourceHash": "5c45066383039f54"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dividende word uit die maatskappy se wins ná belasting betaal en tel nie as salaris nie. Jy verklaar hulle deur ’n besluit van die direksie, en hulle is onderhewig aan dividendbelasting, tans 20%."
+        }
+      ],
+      "hash": "2be0679953860c5d",
+      "id": "what-it-costs.2",
+      "kind": "paragraph",
+      "sourceHash": "78a27dc08bfb9960"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Dividend is nie aftrekbaar vir die maatskappy nie. Die geld word dus twee keer belas: een keer as maatskappywins, en dan weer teen 20% in jou hande."
+        }
+      ],
+      "hash": "db15209fcb63c70f",
+      "id": "what-it-costs.3",
+      "kind": "paragraph",
+      "sourceHash": "ced0e1899d659457"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die twee voorwaardes"
+        }
+      ],
+      "depth": 3,
+      "hash": "be95513b375ceaa5",
+      "id": "the-two-conditions",
+      "kind": "heading",
+      "sourceHash": "ce7abb579caa40d5",
+      "text": "Die twee voorwaardes"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Daar moet wins wees."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " ’n Dividend mag oor die algemeen net uit wins verklaar word, nie uit kapitaal nie. Dit is gevestigde Suid-Afrikaanse reg sedert Cohen NO v Segal, wat in 1970 in die Witwatersrand Local Division beslis is. Daar het twee direkteure die opbrengs van die verkoop van ’n maatskappy se eiendom tussen hulself verdeel en dit toe kwansuis as ’n dividend verklaar. Die hof het bevind dat ’n dividend oor die algemeen net uit wins verklaar mag word, en dat om een uit kapitaal te verklaar, buite die maatskappy se bevoegdhede val."
+        }
+      ],
+      "hash": "351c2514e42e3878",
+      "id": "the-two-conditions.1",
+      "kind": "paragraph",
+      "sourceHash": "aedf560c1634720d"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Die solvensie- en likiditeitstoets."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Voordat die direksie ’n dividend verklaar, moet dit tevrede wees dat die maatskappy die artikel 4-toets in die Companies Act slaag: die bates is meer as die laste, en die maatskappy kan sy skuld oor die volgende 12 maande betaal soos dit betaalbaar word. ’n Direksie met een direkteur moet dit steeds toepas en aanteken dat dit gedoen is."
+        }
+      ],
+      "hash": "4dc194eb9e6e54fa",
+      "id": "the-two-conditions.2",
+      "kind": "paragraph",
+      "sourceHash": "1ad15f6d1bea6793"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Doen die papierwerk"
+        }
+      ],
+      "depth": 3,
+      "hash": "be29b9c9c12726e2",
+      "id": "do-the-paperwork",
+      "kind": "heading",
+      "sourceHash": "44dc8fa6706a2d38",
+      "text": "Doen die papierwerk"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Skryf ’n kort besluit: die datum, die bedrag, die aandeelhouer, en ’n verklaring dat die solvensie- en likiditeitstoets oorweeg is en geslaag is. Liasseer dit by jou maatskappyrekords."
+        }
+      ],
+      "hash": "3dc85b2761466b0d",
+      "id": "do-the-paperwork.1",
+      "kind": "paragraph",
+      "sourceHash": "907ff67630d9acae"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Oordrag sonder ’n besluit daaragter is nie ’n dividend nie. Dit is ’n lening, en dit bring jou by opsie 3."
+        }
+      ],
+      "hash": "c4e49facd9888a9b",
+      "id": "do-the-paperwork.2",
+      "kind": "paragraph",
+      "sourceHash": "4e6755ba5b051a96"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "do-the-paperwork.3",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Opsie 3: leningsrekening"
+        }
+      ],
+      "depth": 2,
+      "hash": "f31c4e7f251adced",
+      "id": "option-3-loan-account",
+      "kind": "heading",
+      "sourceHash": "a2f0a07b0f486be6",
+      "text": "Opsie 3: leningsrekening"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die leningsrekening teken geld aan wat tussen jou en die maatskappy beweeg, buiten salaris en dividende."
+        }
+      ],
+      "hash": "9925f81c8ad90747",
+      "id": "option-3-loan-account.1",
+      "kind": "paragraph",
+      "sourceHash": "fe4e0d7e64eb21e8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daar is twee rigtings, en hulle is heeltemal verskillend."
+        }
+      ],
+      "hash": "fe40bc54a3c3516b",
+      "id": "option-3-loan-account.2",
+      "kind": "paragraph",
+      "sourceHash": "d917c88061d733fe"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Leningsrekening in krediet: die maatskappy skuld jou"
+        }
+      ],
+      "depth": 3,
+      "hash": "7a25987f2fb83d3e",
+      "id": "credit-loan-account-the-company-owes-you",
+      "kind": "heading",
+      "sourceHash": "d80bed3dcd43ea44",
+      "text": "Leningsrekening in krediet: die maatskappy skuld jou"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit gebeur wanneer jy jou eie geld in die maatskappy sit, of ’n maatskappyuitgawe met jou persoonlike kaart betaal."
+        }
+      ],
+      "hash": "7cf0da52ed3c5a0d",
+      "id": "credit-loan-account-the-company-owes-you.1",
+      "kind": "paragraph",
+      "sourceHash": "3ca0c207e7da4e89"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is die goeie rigting. As die maatskappy jou geld op die leningsrekening skuld omdat jy jou besigheid gefinansier het, kan die besigheid jou leningsrekening terugbetaal met geld wat in die besigheid beskikbaar is."
+        }
+      ],
+      "hash": "e8dda03d8a608de2",
+      "id": "credit-loan-account-the-company-owes-you.2",
+      "kind": "paragraph",
+      "sourceHash": "78079a058ac16257"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Terugbetaling van ’n leningsrekening in krediet is nie inkomste nie. Dit is die maatskappy wat jou eie geld teruggee. Geen belasting nie."
+        }
+      ],
+      "hash": "cf04ca2630a013b7",
+      "id": "credit-loan-account-the-company-owes-you.3",
+      "kind": "paragraph",
+      "sourceHash": "7b5dcdf89b1ae9f7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die meeste eenpersoonmaatskappye begin hier, omdat die stigter die eerste paar maande persoonlik finansier. Teken elke rand aan wat jy insit. Baie eienaars vergeet, en betaal dan belasting op geld wat hulle belastingvry kon uitgehaal het."
+        }
+      ],
+      "hash": "9b21d521d4272bd4",
+      "id": "credit-loan-account-the-company-owes-you.4",
+      "kind": "paragraph",
+      "sourceHash": "0f45dbd5be1087ae"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Leningsrekening in debiet: jy skuld die maatskappy"
+        }
+      ],
+      "depth": 3,
+      "hash": "4ba4e2fd3ebb2ebf",
+      "id": "debit-loan-account-you-owe-the-company",
+      "kind": "heading",
+      "sourceHash": "6a3a0bf505acca51",
+      "text": "Leningsrekening in debiet: jy skuld die maatskappy"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit gebeur wanneer jy geld uithaal sonder om dit salaris of ’n dividend te noem. Persoonlike aankope met die maatskappy se kaart. ’n Oordrag na jou persoonlike rekening \"om later uit te sorteer\"."
+        }
+      ],
+      "hash": "9ed804432aa77033",
+      "id": "debit-loan-account-you-owe-the-company.1",
+      "kind": "paragraph",
+      "sourceHash": "0455dad2959ef682"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is die duur rigting."
+        }
+      ],
+      "hash": "d934ea2d99213608",
+      "id": "debit-loan-account-you-owe-the-company.2",
+      "kind": "paragraph",
+      "sourceHash": "f570893e7d7f6ae4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As ’n direkteur nie noukeurig hou by wat teen sy of haar leningsrekening aangeteken word nie, kan dit in debiet beland. Dit beteken dat die direkteur nou die maatskappy geld skuld."
+        }
+      ],
+      "hash": "cc3a7add08de3518",
+      "id": "debit-loan-account-you-owe-the-company.3",
+      "kind": "paragraph",
+      "sourceHash": "ef15930952eebec8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die belastingprobleem: ’n rentevrye lening, of ’n lening teen lae rente, van ’n maatskappy aan ’n aandeelhouer lei tot ’n geagte dividend kragtens artikel 64E(4) van die Income Tax Act."
+        }
+      ],
+      "hash": "c60198c4165c7475",
+      "id": "debit-loan-account-you-owe-the-company.4",
+      "kind": "paragraph",
+      "sourceHash": "16e638734fe8cd18"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Waar ’n lening in debiet bestaan en die rente wat op die uitstaande saldo gehef word, laer is as die amptelike rentekoers, ontstaan daar uit die verskil ’n dividend in natura (dividend in specie). Die dividend word geag op die laaste dag van die jaar van aanslag betaal te gewees het, en die maatskappy is aanspreeklik vir die dividendbelasting."
+        }
+      ],
+      "hash": "64044bde7845029b",
+      "id": "debit-loan-account-you-owe-the-company.5",
+      "kind": "paragraph",
+      "sourceHash": "49174b5bb35bcd32"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy jou maatskappy geld skuld en nie ’n behoorlike rentekoers daarop betaal nie, behandel SARS die rente wat ontbreek asof die maatskappy jou op die laaste dag van die jaar ’n dividend betaal het. Die maatskappy skuld dan 20% belasting daarop."
+        }
+      ],
+      "hash": "d17d4bf75812532d",
+      "id": "debit-loan-account-you-owe-the-company.6",
+      "kind": "callout",
+      "pairsWith": "debit-loan-account-you-owe-the-company.5",
+      "sourceHash": "4bb65580a9ff102d",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die amptelike koers word deur SARS gepubliseer en verander. Vanaf 1 Desember 2025 is die amptelike koers vir die byvoordeel op rentevrye lenings of lenings teen lae rente 7.75% per jaar."
+        }
+      ],
+      "hash": "35ec149415629e4c",
+      "id": "debit-loan-account-you-owe-the-company.7",
+      "kind": "paragraph",
+      "sourceHash": "35df18f50fafbeff"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "’n Teenstrydigheid wat jy moet ken."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Party Suid-Afrikaanse bronne sê die geagte dividend is 20% van die hele leningsaldo. Ander sê dit is net op die rente wat prysgegee is, met ander woorde die tekort tussen die amptelike koers en wat jy werklik betaal het. The Tax Faculty stel die standpunt duidelik: die kapitaal word nie as ’n dividend geag nie, en die rente sal oploop, wat ’n belastingrisiko inhou as die lening en die opgeloopte rente in die toekoms afgeskryf word."
+        }
+      ],
+      "hash": "e1c10bbdb3114de1",
+      "id": "debit-loan-account-you-owe-the-company.8",
+      "kind": "paragraph",
+      "sourceHash": "a6e8eacd123be83f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hierdie gereedskapstel neem die standpunt dat dit net die prysgegewe rente is, want dit is wat die bewoording van artikel 64E(4) en SARS se eie riglyne ondersteun. Maar die meningsverskil in die mark is werklik, so moenie net op hierdie lêer staatmaak vir ’n wesenlike leningsrekening nie. SARS publiseer ’n Comprehensive Guide to Dividends Tax (omvattende gids oor dividendbelasting), met ’n skakel in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bronne- en verifikasieregister"
+            }
+          ],
+          "doc": "lookup/sources",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "95fb186d7195a73f",
+      "id": "debit-loan-account-you-owe-the-company.9",
+      "kind": "paragraph",
+      "sourceHash": "73699810ecfd90bc"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Moet dit nooit laat afskryf nie."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " As die maatskappy die lening afskryf, is die eienaar aanspreeklik vir inkomstebelasting op die hele leningsbedrag. ’n Groeiende lening in debiet wat nooit terugbetaal kan word nie, is ’n belastingrekening wat stadig opbou."
+        }
+      ],
+      "hash": "bed52b0887478eae",
+      "id": "debit-loan-account-you-owe-the-company.10",
+      "kind": "paragraph",
+      "sourceHash": "aeee348ad1e1cec9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om ’n leningsrekening in debiet reg te stel"
+        }
+      ],
+      "depth": 3,
+      "hash": "da870c8916b440f3",
+      "id": "fixing-a-debit-loan-account",
+      "kind": "heading",
+      "sourceHash": "82bf4589d55c63d7",
+      "text": "Om ’n leningsrekening in debiet reg te stel"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het drie opsies, en die eerste twee moet voor die einde van die finansiële jaar gedoen word:"
+        }
+      ],
+      "hash": "e3d9834304d0cd3c",
+      "id": "fixing-a-debit-loan-account.1",
+      "kind": "paragraph",
+      "sourceHash": "31010a5c936aefab"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verklaar ’n dividend gelyk aan die waarde van die debietsaldo en betaal die dividendbelasting aan SARS. Verklaar addisionele salaris of ’n bonus gelyk aan die netto waarde van die leningsrekening. Of hef rente-inkomste op die leningsaldo teen ’n koers wat aan die amptelike koers gekoppel is, om te verhoed dat ’n geagte dividend ontstaan."
+        }
+      ],
+      "hash": "9296ba4189fd4254",
+      "id": "fixing-a-debit-loan-account.2",
+      "kind": "paragraph",
+      "sourceHash": "3060b1540864d892"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Drie maniere om dit reg te stel: verklaar ’n dividend om te dek wat jy skuld en betaal die 20% belasting; of teken dit aan as ekstra salaris en betaal PAYE daarop; of hef op jouself rente teen die amptelike koers sodat daar geen ontbrekende rente is nie."
+        }
+      ],
+      "hash": "a4c7da1eb1dcd145",
+      "id": "fixing-a-debit-loan-account.3",
+      "kind": "callout",
+      "pairsWith": "fixing-a-debit-loan-account.2",
+      "sourceHash": "ead0e73d654e6233",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die eerste twee opsies moet voor die einde van die finansiële jaar uitgeoefen word, sodat die dividend betyds verklaar word en die EMP501 vir daardie jaar die salaris weerspieël."
+        }
+      ],
+      "hash": "cde855f4de4bd01f",
+      "id": "fixing-a-debit-loan-account.4",
+      "kind": "paragraph",
+      "sourceHash": "27ca71461dcb9c02"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Praktiese advies van dieselfde bron: hersien jou leningsrekeningstaat maandeliks, nie jaarliks nie. Teen die tyd dat die finansiële state opgestel word, gewoonlik ses maande ná die einde van die jaar, is dit te laat om ’n dividend vir die afgesluite jaar te verklaar."
+        }
+      ],
+      "hash": "38caecb8a20c489b",
+      "id": "fixing-a-debit-loan-account.5",
+      "kind": "paragraph",
+      "sourceHash": "1a6e7a983fae32bd"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "fixing-a-debit-loan-account.6",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Watter een om te gebruik"
+        }
+      ],
+      "depth": 2,
+      "hash": "c4a629b56fa1f24a",
+      "id": "which-to-use",
+      "kind": "heading",
+      "sourceHash": "2e5be24ed53d278d",
+      "text": "Watter een om te gebruik"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daar is nie een regte antwoord nie. Dit hang af van jou wins, jou ander inkomste, en waarvoor jy die geld nodig het."
+        }
+      ],
+      "hash": "f6ee1ca8470a0587",
+      "id": "which-to-use.1",
+      "kind": "paragraph",
+      "sourceHash": "f727d4fbe7498e16"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Algemene struktuur vir ’n eenpersoonmaatskappy, as ’n beginpunt en nie as advies nie:"
+        }
+      ],
+      "hash": "cbd5e5c28bf9a336",
+      "id": "which-to-use.2",
+      "kind": "paragraph",
+      "sourceHash": "4e24fa4a280afa01"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Trek ’n beskeie gereelde salaris, ongeveer tot by die persoonlike belastingdrempel, sodat dit vir die maatskappy aftrekbaar en vir jou belastingvry is. Neem enigiets verder as ’n verklaarde dividend, met ’n besluit, sodra die wins en solvensie dit toelaat. Hou die leningsrekening op nul of in krediet, en gaan dit maandeliks na."
+        }
+      ],
+      "hash": "fb5e238df0ad53cb",
+      "id": "which-to-use.3",
+      "kind": "paragraph",
+      "sourceHash": "d85beffbaf1d80a5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die beste struktuur hang af van jou lewenstylbehoeftes, jou belastingkategorie en jou langtermyndoelwitte vir die besigheid."
+        }
+      ],
+      "hash": "aec743a3befb78cb",
+      "id": "which-to-use.4",
+      "kind": "paragraph",
+      "sourceHash": "20f4a80df7bc9d6e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Werk dit een keer op jou werklike getalle uit, saam met ’n belastingpraktisyn, in jou eerste jaar. Die verskil tussen ’n goeie struktuur en ’n slordige een op R500,000 wins is groot genoeg om baie keer vir die advies te betaal."
+        }
+      ],
+      "hash": "a088c9ac9c17d53a",
+      "id": "which-to-use.5",
+      "kind": "paragraph",
+      "sourceHash": "7c25fa5b36c11f34"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "which-to-use.6",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die reëls wat dit alles voorkom"
+        }
+      ],
+      "depth": 2,
+      "hash": "23cfe1c11d2994d6",
+      "id": "the-rules-that-prevent-all-of-this",
+      "kind": "heading",
+      "sourceHash": "a8e76f53a5af6a94",
+      "text": "Die reëls wat dit alles voorkom"
+    },
+    {
+      "hash": "d15932284b1263c1",
+      "id": "the-rules-that-prevent-all-of-this.1",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Moet nooit ’n persoonlike uitgawe uit die maatskappy se rekening betaal nie. Nie een keer nie. Betaal jouself, en betaal dan die uitgawe."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Teken elke rand aan wat jy in die maatskappy sit. Dit is geld wat jy belastingvry kan terugneem."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Gaan die saldo van die leningsrekening na voor die einde van elke finansiële jaar, nie daarna nie."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Skryf ’n besluit vir elke dividend, op die dag waarop jy dit verklaar."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "As jy jouself ’n salaris betaal, laat dit behoorlik deur die betaalstaat loop met ’n EMP201 elke maand."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Besluit die UIF-vraag saam met ’n professionele persoon eerder as om aan te neem dat dit die een of die ander kant toe val."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "3bc06366b14907c6",
+      "start": 1
+    }
+  ],
+  "contentHash": "36c356707f98a064",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Betaal jouself uit ’n Pty Ltd",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "the-problem-this-file-solves",
+      "text": "Die probleem wat hierdie lêer oplos"
+    },
+    {
+      "depth": 2,
+      "id": "option-1-salary",
+      "text": "Opsie 1: salaris"
+    },
+    {
+      "depth": 3,
+      "id": "what-it-triggers",
+      "text": "Wat dit meebring"
+    },
+    {
+      "depth": 3,
+      "id": "ignore-anything-you-read-about-deemed-remuneration",
+      "text": "Ignoreer enigiets wat jy oor \"geagte vergoeding\" (\"deemed remuneration\") lees"
+    },
+    {
+      "depth": 3,
+      "id": "uif-sources-disagree",
+      "text": "UIF: bronne verskil"
+    },
+    {
+      "depth": 3,
+      "id": "when-salary-makes-sense",
+      "text": "Wanneer salaris sin maak"
+    },
+    {
+      "depth": 2,
+      "id": "option-2-dividend",
+      "text": "Opsie 2: dividend"
+    },
+    {
+      "depth": 3,
+      "id": "what-it-costs",
+      "text": "Wat dit kos"
+    },
+    {
+      "depth": 3,
+      "id": "the-two-conditions",
+      "text": "Die twee voorwaardes"
+    },
+    {
+      "depth": 3,
+      "id": "do-the-paperwork",
+      "text": "Doen die papierwerk"
+    },
+    {
+      "depth": 2,
+      "id": "option-3-loan-account",
+      "text": "Opsie 3: leningsrekening"
+    },
+    {
+      "depth": 3,
+      "id": "credit-loan-account-the-company-owes-you",
+      "text": "Leningsrekening in krediet: die maatskappy skuld jou"
+    },
+    {
+      "depth": 3,
+      "id": "debit-loan-account-you-owe-the-company",
+      "text": "Leningsrekening in debiet: jy skuld die maatskappy"
+    },
+    {
+      "depth": 3,
+      "id": "fixing-a-debit-loan-account",
+      "text": "Om ’n leningsrekening in debiet reg te stel"
+    },
+    {
+      "depth": 2,
+      "id": "which-to-use",
+      "text": "Watter een om te gebruik"
+    },
+    {
+      "depth": 2,
+      "id": "the-rules-that-prevent-all-of-this",
+      "text": "Die reëls wat dit alles voorkom"
+    }
+  ],
+  "id": "core/paying-yourself",
+  "kind": "guide",
+  "lang": "af",
+  "order": 7,
+  "readingTime": 12,
+  "related": [
+    "core/you-are-the-business"
+  ],
+  "route": "core/paying-yourself/",
+  "section": "core",
+  "slug": "paying-yourself",
+  "sourcePath": "01 Core - applies to everyone/07-paying-yourself.md",
+  "sources": {
+    "acts": [
+      "income-tax-act-58-of-1962",
+      "companies-act-71-of-2008"
+    ],
+    "entries": [
+      "sars--tax-calendar",
+      "xero-za-sars-tax-tables-20262027",
+      "sars--comprehensive-guide-to-dividends-tax",
+      "sars--budget-2026-faq",
+      "polity--ensafrica-directors-of-private-companies-and-paye",
+      "simplepay-deemed-remuneration",
+      "the-tax-faculty-dividends-interest-on-loan",
+      "mms-cloud-accounting",
+      "the-beancounter",
+      "govchain",
+      "uif-and-the-self-employed"
+    ]
+  },
+  "summary": "Die geld in die maatskappy se bankrekening is nie joune nie. Dit behoort aan die maatskappy.",
+  "tags": [
+    "pty",
+    "tax"
+  ],
+  "terms": [
+    {
+      "meaning": "Die maatskappy betaal jou as ’n werknemer. PAYE word afgetrek.",
+      "term": "Salaris"
+    },
+    {
+      "meaning": "Die maatskappy betaal wins aan jou as die eienaar uit. 20% belasting.",
+      "term": "Dividend"
+    },
+    {
+      "meaning": "Die rekord van geld wat jy en die maatskappy mekaar skuld, buiten salaris en dividende.",
+      "term": "Leningsrekening (loan account)"
+    },
+    {
+      "meaning": "Die maatskappy skuld jou. Goed.",
+      "term": "Leningsrekening in krediet"
+    },
+    {
+      "meaning": "Jy skuld die maatskappy. Dit skep ’n belastingprobleem.",
+      "term": "Leningsrekening in debiet"
+    },
+    {
+      "meaning": "Belasting wat elke maand van ’n salaris afgetrek word.",
+      "term": "PAYE"
+    },
+    {
+      "meaning": "Die maandelikse vorm wat PAYE en UIF verklaar.",
+      "term": "EMP201"
+    },
+    {
+      "meaning": "Die koers wat SARS gebruik om te bepaal of ’n lening te goedkoop is. 7.75% vanaf Desember 2025.",
+      "term": "Amptelike rentekoers (official rate of interest)"
+    }
+  ],
+  "title": "Betaal jouself uit ’n Pty Ltd",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}
