@@ -38,21 +38,21 @@ As eenmansaak-eienaar het jy dus: geen werkloosheidsvoordeel, geen siektevoordee
 
 ### Pty Ltd wat jou ’n salaris betaal: jy het dalk iets
 
-’n Eenpersoonmaatskappy verander dit, en dit is een van die min werklike voordele van inlywing wat niemand noem wanneer mense praat oor of jy moet registreer of nie.
+’n Eenpersoonmaatskappy verander dit, en dit is een van die min werklike voordele van inlywing wat niemand noem nie wanneer mense praat oor of jy moet registreer of nie.
 
 **COIDA is die duideliker een.** Die wet se omskrywing van ’n werknemer sluit ’n werkende direkteur van ’n maatskappy in wat ’n dienskontrak aangegaan het, vir sover hy of sy binne die bestek van daardie diens optree. Dit sluit aandeelhouers of stil vennote uit wat net dividende of ’n winsaandeel ontvang. Riglyne vir 2026 stel dit duidelik: ’n werkende direkteur wat ’n maandelikse salaris kry, kwalifiseer as ’n werknemer, moet geregistreer wees, en moet ’n Return of Earnings (verdiensteopgawe) indien, selfs waar daardie direkteur die enigste werknemer is.
 
-Dit maak saak, want COIDA is presies die dekking wat ’n eenmansaak-eienaar nie kan kry nie: dit betaal uit vir ’n besering aan diens.
+Dit maak saak, want COIDA is presies die dekking wat ’n eenmansaak-eienaar nie kan kry nie: dit betaal uit vir ’n besering op diens.
 
 **UIF is die betwiste een.** Sommige bronne sê dat ’n direkteur op die maatskappy se betaalstaat ’n werknemer vir UIF is en moet bydra, wat ook sou beteken dat hy of sy kan eis. Ander sê dat UIF nie geld waar die direkteur direkteursfooie neem eerder as ’n salaris kragtens ’n dienskontrak nie. [Betaal jouself uit ’n Pty Ltd](07-paying-yourself.md) stel albei standpunte uiteen.
 
 Die punt vir hierdie lêer is die een wat gemis word. **UIF word gewoonlik as ’n koste beskryf. Vir ’n eenpersoonmaatskappy is dit dalk ook die enigste siektevoordeel waartoe jy ooit toegang sal hê.** As jy van plan was om ’n argument te vind om nie by te dra nie, weeg dit eers op.
 
-Die werkloosheidsvoordeel is die vreemde een vir ’n enigste direkteur, want om werkloos te raak by jou eie maatskappy is ’n vreemde gebeurtenis. Die siekte- en kraamvoordele is die realistiese voordele.
+Die werkloosheidsvoordeel is die vreemde een vir die enigste direkteur, want om werkloos te raak by jou eie maatskappy is ’n vreemde gebeurtenis. Die siekte- en kraamvoordele is die realistiese voordele.
 
 ### Wat albei strukture steeds nodig het
 
-**Inkomstebeskerming of ongeskiktheidsdekking.** Private versekering wat ’n maandelikse inkomste betaal as jy nie kan werk nie. Vir ’n eenpersoonbesigheid is dit waarskynlik belangriker as die dekking vir openbare aanspreeklikheid wat elders in hierdie gereedskapstel aanbeveel word, want openbare aanspreeklikheid beskerm teen iets wat jy dalk aan iemand anders doen, en inkomstebeskerming beskerm teen die ding wat die waarskynlikste met jou self sal gebeur.
+**Inkomstebeskerming of ongeskiktheidsdekking.** Private versekering wat ’n maandelikse inkomste betaal as jy nie kan werk nie. Vir ’n eenpersoonbesigheid kan ’n mens redeneer dat dit belangriker is as die dekking vir openbare aanspreeklikheid wat elders in hierdie gereedskapstel aanbeveel word, want openbare aanspreeklikheid beskerm teen iets wat jy dalk aan iemand anders doen, en inkomstebeskerming beskerm teen die ding wat die waarskynlikste met jouself sal gebeur.
 
 Vra ’n makelaar vir inkomstebeskerming, en vra spesifiek wat die wagtydperk is voordat dit betaal, want ’n polis wat ná drie maande begin betaal, help nie met ’n besering van ses weke nie.
 
@@ -64,14 +64,14 @@ Vra ’n makelaar vir inkomstebeskerming, en vra spesifiek wat die wagtydperk is
 
 ## Deel 2: wanneer ’n kliënt nie betaal nie
 
-### Die leer van stappe
+### Die invorderingstappe
 
 Die meeste onbetaalde fakture word in die eerste twee stappe opgelos. Werk hulle in volgorde deur en hou elke boodskap.
 
 1. **’n Vriendelike herinnering**, drie dae ná die vervaldatum. Aanvaar dat dit vergeet is, want gewoonlik is dit.
 2. **’n Ferm herinnering**, ’n week later, wat die bedrag, die faktuurnommer en die datum waarop dit betaal moes word, herhaal.
 3. **’n Finale eis**, met ’n duidelike sperdatum, wat sê wat volgende gebeur. Sit dit op skrif, nie in ’n stemboodskap nie.
-4. **’n Aanmaningsbrief.** Dit is die formele stap voor die hof. ’n Prokureur sal een teen ’n redelike fooi skryf, en verbasend baie skulde word op hierdie punt betaal, want die briefhoof verander die gesprek.
+4. **’n Aanmaningsbrief.** Dit is die formele stap voor die hof. ’n Prokureur sal een teen ’n beskeie fooi skryf, en verbasend baie skulde word op hierdie punt betaal, want die briefhoof verander die gesprek.
 5. **Die hof.** Watter hof hang af van hoe jou besigheid gestruktureer is. Sien hieronder.
 
 **Moenie jare wag nie.** ’n Geldeis moet oor die algemeen binne drie jaar ná die datum waarop die skuld ontstaan het, ingestel word, anders verjaar dit en jy verloor dit.
@@ -98,7 +98,7 @@ Die limiet is R30,000, vasgestel in Government Gazette (Staatskoerant) 55038, Go
 - Jy kan nie teen die Staat eis nie, en eise kan nie teen munisipaliteite of plaaslike regering ingestel word nie.
 - As jou eis meer as R30,000 is, mag jy afstand doen van die bedrag bo die limiet om die eis binne die limiet te bring. Soms die moeite werd om regskoste te vermy.
 
-**Dit hoort in die gesprek oor of jy moet registreer.** As jy ’n maatskappy registreer, verloor jy toegang tot die goedkoopste roete om skuld in die land in te vorder, en niemand wat R175 teen beperkte aanspreeklikheid opweeg, word dit vertel nie.
+**Dit hoort in die gesprek oor of jy moet registreer.** As jy ’n maatskappy registreer, verloor jy toegang tot die goedkoopste roete in die land om skuld in te vorder, en niemand wat R175 teen beperkte aanspreeklikheid opweeg, word dit vertel nie.
 
 ### Voorkoming is beter as invordering
 
@@ -108,7 +108,7 @@ Alles hierbo is wat jy doen nadat dit verkeerd geloop het. Die goedkoper beheerm
 - Stuur die faktuur op die dag wat jy klaarmaak, nie aan die einde van die maand nie.
 - Stel bepalings oor laat betaling op skrif voor die werk, want rente op ’n agterstallige bedrag is net afdwingbaar as dit vooraf ooreengekom is.
 - Vir kreatiewe of professionele werk, dra eienaarskap oor by volle betaling eerder as by aflewering.
-- Wag totdat die geld in jou saldo weerspieël (reflected) voordat jy enigiets oorhandig. Sien [Tuiswerk en veilige ontmoetings](09-working-from-home-and-safety.md).
+- Wag totdat die geld in jou saldo is voordat jy enigiets oorhandig. Sien [Tuiswerk en veilige ontmoetings](09-working-from-home-and-safety.md).
 
 ---
 
@@ -122,7 +122,7 @@ Jy en die besigheid is regtens dieselfde persoon, so die besigheid vorm deel van
 
 ’n Maatskappy is ’n aparte regspersoon met ewigdurende opvolging, maar **dit kan net deur sy direkteure optree.** Kragtens die Companies Act hou ’n persoon op om ’n direkteur te wees wanneer hy of sy sterf.
 
-Wanneer ’n enigste direkteur sterf, is die maatskappy dus magteloos. En omdat direkteure deur aandeelhouers aangestel word, en die enigste aandeelhouer dieselfde persoon is, is daar niemand oor wat ’n plaasvervanger kan aanstel nie.
+Wanneer die enigste direkteur sterf, is die maatskappy dus magteloos. En omdat direkteure deur aandeelhouers aangestel word, en die enigste aandeelhouer dieselfde persoon is, is daar niemand oor wat ’n plaasvervanger kan aanstel nie.
 
 Wat dan gebeur:
 
@@ -132,13 +132,13 @@ Wat dan gebeur:
 
 Intussen kan niemand iets teken nie, die bankrekening sit in werklikheid vas, salarisse en verpligtinge teenoor SARS word nie betaal nie, en CIPC se sperdatums hou aan loop.
 
-Suid-Afrika het ’n werklike voorbeeld. In die Saga Wines-saak het ’n enigste direkteur en aandeelhouer gesterf sonder ’n testament wat oor haar Suid-Afrikaanse aandele gehandel het, en die maatskappy se finansiële bestuurder moes ’n dringende aansoek in die Hooggeregshof bring om tussentydse bevoegdhede te kry sodat die besigheid kon funksioneer.
+Suid-Afrika het ’n werklike voorbeeld. In die Saga Wines-saak het die enigste direkteur en aandeelhouer gesterf sonder ’n testament wat oor haar Suid-Afrikaanse aandele gehandel het, en die maatskappy se finansiële bestuurder moes ’n dringende aansoek in die Hooggeregshof bring om tussentydse bevoegdhede te kry sodat die besigheid kon funksioneer.
 
 **Ongeskiktheid kan erger as die dood wees**, want daar is geen boedel nie en dus geen eksekuteur nie. ’n Persoon wat ’n beroerte gehad het, is steeds die direkteur, steeds die aandeelhouer, en steeds nie in staat om op te tree nie. Om dit op te los, kan ’n kurator vereis wat deur die Hooggeregshof aangestel word. Vra ’n prokureur wat jou opsies is voordat jy hulle nodig het.
 
 ### Die vier oplossings, goedkoopste eerste
 
-**1. Stel ’n tweede direkteur aan.** Die enkele doeltreffendste oplossing. ’n Eggenoot, ’n volwasse kind, ’n betroubare sakevennoot. As een direkteur sterf of ongeskik raak, kan die ander dadelik optree en die maatskappy hou aan werk. Om ’n direkteursverandering by CIPC in te dien, is gratis.
+**1. Stel ’n tweede direkteur aan.** Die heel doeltreffendste oplossing. ’n Eggenoot, ’n volwasse kind, ’n betroubare sakevennoot. As een direkteur sterf of ongeskik raak, kan die ander dadelik optree en die maatskappy hou aan werk. Om ’n direkteursverandering by CIPC in te dien, is gratis.
 
 Wees bewus van een afweging wat hierdie gereedskapstel reeds uitlig. As jy ’n *aandeelhouer* byvoeg wat nie ’n direkteur is nie, kan dit jou die vrystelling van ’n eienaarbestuurde maatskappy van oudit en onafhanklike oorsig kos, wat in [Bestuur van ’n Pty Ltd](06-running-a-pty-ltd.md) beskryf word. As jy ’n tweede *direkteur* byvoeg, het dit nie daardie uitwerking nie. As jy albei doen, kyk wat die gevolg vir die Public Interest Score (openbare-belangtelling) is.
 

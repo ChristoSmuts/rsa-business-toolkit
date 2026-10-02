@@ -90,11 +90,11 @@ Dit is ’n uitgewerkte roete vir een spesifieke leser. Lees in hierdie volgorde
 7. [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) — bou die faktuur vir ’n BTW-geregistreerde besigheid en die verkoopooreenkoms met ’n bylae van gebreke
 8. [Handelsmerkopdragte](../02%20Branding%20and%20marketing/01-branding-prompts.md) — gee die handelsmerk ’n naam, nie die maatskappy nie
 9. [Tuiswerk en veilige ontmoetings](../01%20Core%20-%20applies%20to%20everyone/09-working-from-home-and-safety.md) — as jy geen werf het nie: sonering vir voorraad by die huis, en elke besigtiging en toetsrit
-10. [Nuwe besigheidslyne byvoeg](../01%20Core%20-%20applies%20to%20everyone/08-adding-new-lines.md) — voordat jy bande, diens of enigiets anders byvoeg
+10. [Nuwe besigheidslyne byvoeg](../01%20Core%20-%20applies%20to%20everyone/08-adding-new-lines.md) — voordat jy bande, diensbeurte of enigiets anders byvoeg
 
 Die volgorde vir die eerste 90 dae, rofweg:
 
-Weke 1 tot 2: bevestig die geregistreerde verteenwoordiger by SARS, dien voordelige eienaarskap (beneficial ownership) in, open die maatskappy se bankrekening, doen by die verkeersdepartement aansoek om die BRNC, dien die SAPS 601-aansoek as handelaar in.
+Weke 1 tot 2: bevestig die geregistreerde verteenwoordiger by SARS, dien inligting oor voordelige eienaarskap (beneficial ownership) in, open die maatskappy se bankrekening, doen by die verkeersdepartement aansoek om die BRNC, dien die SAPS 601-aansoek as handelaar in.
 
 Weke 2 tot 4: bevestiging van sonering vir die perseel (of vir voorraad wat by die huis gehou word), motorhandelversekering in plek, motorhandelnommers as dit nodig is, verkoopooreenkoms en bylae van gebreke gebou, SAPS-register opgestel.
 

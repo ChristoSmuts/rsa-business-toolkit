@@ -26,7 +26,7 @@ Wat dit doen:
 
 - Dit deel al 12 handelsmerkopdragte in as oorslaan / aanpas / steeds doen. Die antwoord is: **slaan een oor, pas een aan, doen die ander nege.**
 - Dit gee ’n vervanging vir Opdrag 2 wat die naampatrone weglaat en twee vrae byvoeg wat die oorspronklike nooit gevra het nie: wat suggereer my naam reeds visueel, en skep dit visuele beperkings (te lank vir ’n voertuigdeur, lomp in klein groottes, moeilik om in ’n lettertipe te set).
-- Dit teken die drie kontroles aan wat steeds die moeite werd is wanneer ’n maatskappynaam geregistreer is: domein en handvatsels, ’n CIPC-handelsmerksoektog, en om die naam hardop te sê vir sprekers van die tale wat ter sake is.
+- Dit teken die drie kontroles aan wat steeds die moeite werd is wanneer ’n maatskappynaam geregistreer is: domein en gebruikersname, ’n CIPC-handelsmerksoektog, en om die naam hardop te sê vir sprekers van die tale wat ter sake is.
 - Dit verduidelik dat ’n CIPC-maatskappynaam niks in die mark beskerm nie.
 - Dit herhaal die vereiste van artikel 32, wat nou geld omdat die naam geregistreer is.
 
@@ -37,7 +37,7 @@ Wat dit doen:
 | Lêer | Wat bygevoeg is | In Drive? |
 |---|---|---|
 | [Handelsmerkopdragte](../02%20Branding%20and%20marketing/01-branding-prompts.md) | Een reël bo-aan: "Het jy reeds jou naam? ... lees eers [Het jy reeds jou naam? (kortpad)](../02%20Branding%20and%20marketing/00-already-have-your-name.md)." | **NEE — moet geplak word** |
-| [Registreer: wat jy regtig nodig het](../01%20Core%20-%20applies%20to%20everyone/02-register.md) | Een reël onder "Kies die naam" | **NEE — moet geplak word** |
+| [Registreer: wat jy regtig nodig het](../01%20Core%20-%20applies%20to%20everyone/02-register.md) | Een reël onder "Die naam kies" | **NEE — moet geplak word** |
 | [Hoe om hierdie gereedskapstel te gebruik](01-how-to-use-this-toolkit.md) | Nuwe ry in die opsoektabel van Roete 3 | **NEE — moet geplak word** |
 | [Kern: begin hier](../01%20Core%20-%20applies%20to%20everyone/01-core-start-here.md) | Nuwe inskrywing in die lêerindeks | **NEE — sien nota hieronder** |
 | [Begin hier](00-start-here.md) | Nuwe reël in die vouerboom | **NEE — sien nota hieronder** |
@@ -101,7 +101,7 @@ Die hoof-START HERE het twee markdown-lêers opgeneem: [Begin hier](00-start-her
 
 ### Bygevoeg
 
-[Jy is die besigheid](../01%20Core%20-%20applies%20to%20everyone/10-you-are-the-business.md) — geen veiligheidsnet as jy nie kan werk nie, die leer van stappe vir ’n onbetaalde faktuur, en kontinuïteit as jy nie daar is nie.
+[Jy is die besigheid](../01%20Core%20-%20applies%20to%20everyone/10-you-are-the-business.md) — geen veiligheidsnet as jy nie kan werk nie, die invorderingstappe vir ’n onbetaalde faktuur, en kontinuïteit as jy nie daar is nie.
 
 ### Reggestel
 
