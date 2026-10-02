@@ -103,3 +103,39 @@ test.describe('anchors without JavaScript', () => {
     });
   }
 });
+
+/**
+ * Search without JavaScript (WP-33, build plan C2): the header control is a plain link to the search
+ * page, whose GET form reloads it with `?q=`. The page says search needs JavaScript and answers
+ * with every page of the guide; the results region and the dialog stay hidden.
+ */
+test.describe('search without JavaScript', () => {
+  test('the header search control is a link to the search page', async ({ page, basePath }) => {
+    await page.goto('core/register/');
+    const control = page.locator('.st-topbar__search');
+    await expect(control).toHaveAttribute('href', `${basePath}search/`);
+    await control.click();
+    await expect(page).toHaveURL(new RegExp(`${basePath}search/$`));
+    await expect(page.locator('dialog.st-search-dialog')).toBeHidden();
+  });
+
+  for (const prefix of ['', 'af/']) {
+    test(`/${prefix}search/?q= submits to itself and lists every page`, async ({
+      page,
+      basePath,
+    }) => {
+      await page.goto(`${prefix}search/`);
+      await page.locator('#st-search-q').fill('VAT264');
+      await page.locator('#st-search-q').press('Enter');
+      await expect(page).toHaveURL(new RegExp(`${basePath}${prefix}search/\\?q=VAT264$`));
+      await expect(page.locator('.no-js-only').getByRole('link').first()).toHaveAttribute(
+        'href',
+        `${basePath}${prefix}contents/`,
+      );
+      await expect(page.locator('[data-search-region]')).toBeHidden();
+      const pages = page.locator('.st-search__pages a');
+      expect(await pages.count(), 'every page of the guide is linked').toBeGreaterThanOrEqual(36);
+      await expect(pages.first()).toHaveAttribute('href', new RegExp(`^${basePath}${prefix}`));
+    });
+  }
+});
