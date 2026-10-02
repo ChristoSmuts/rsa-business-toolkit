@@ -384,10 +384,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Elke handelsnaam behoort sy eie domein en sosiale-media-name te hê, en, as dit saak maak, sy eie soektog na handelsmerke. Die maatskappynaam beskerm niks in die mark nie."
+          "v": "Elke handelsnaam behoort sy eie domein en gebruikersname op sosiale media te hê, en, as dit saak maak, sy eie soektog na handelsmerke. Die maatskappynaam beskerm niks in die mark nie."
         }
       ],
-      "hash": "9814d6ce26747a89",
+      "hash": "757f6e08b0740d5f",
       "id": "what-the-law-requires-either-way.5",
       "kind": "paragraph",
       "sourceHash": "4f94819109ac7189"
@@ -762,7 +762,7 @@
       "text": "Kontrolelys voordat jy ’n lyn byvoeg"
     },
     {
-      "hash": "5aed332408a0517b",
+      "hash": "34087f5780d96349",
       "id": "checklist-before-you-add-a-line.1",
       "items": [
         {
@@ -835,7 +835,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Oor die handelsnaam besluit, en die domein, sosiale-media-name en handelsmerke nagegaan"
+              "v": "Oor die handelsnaam besluit, en die domein, gebruikersname en handelsmerke nagegaan"
             }
           ],
           "doc": "core/adding-new-lines",
@@ -905,7 +905,7 @@
       "sourceHash": "db3a15341570de7b"
     }
   ],
-  "contentHash": "cfaff67177cad9fd",
+  "contentHash": "e23689fa092247ba",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
