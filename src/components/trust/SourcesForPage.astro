@@ -59,9 +59,10 @@ if (count !== listed) {
 /**
  * Text in another language than the page is marked, while the labels around it are not. The
  * entries are in the register's language, which can lag the page's: an Afrikaans page carries the
- * English register until `lookup/sources` is translated. The note comes from
- * `content-meta/provenance.json`, which is written in English only (backlog: translate the notes),
- * so it is English on every page whatever language the document is in.
+ * English register until `lookup/sources` is translated. The source note and an entry's reason for
+ * having no link come from `content-meta/` (`provenance.json`, `docs.meta.json`), which is written
+ * in English only (backlog: translate them), so they are English on every page whatever language
+ * the document is in.
  */
 const noteLang = locale === DEFAULT_LOCALE ? undefined : getLocale(DEFAULT_LOCALE)?.hreflang;
 const dataLang =
@@ -132,7 +133,7 @@ const noteLinks = (sourceNote?.see ?? [])
               </p>
             )}
             {entry.noUrlReason && (
-              <p class="st-hint" lang={dataLang}>
+              <p class="st-hint" lang={noteLang}>
                 {entry.noUrlReason}
               </p>
             )}
