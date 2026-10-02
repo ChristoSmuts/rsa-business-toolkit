@@ -220,6 +220,33 @@ export function officialUrls(sources: SourcesFile | undefined): ReadonlySet<stri
   return urls;
 }
 
+/**
+ * Ids of the entries (and Acts) whose title, and whose no-link reason, a translated register keeps
+ * exactly as the English register has them. The translator kept those in English on purpose (named
+ * publications, secondary titles; reasons come from English-only `content-meta/`), so the page
+ * marks them English (WCAG 3.1.2). Compared by id, so the two registers' order does not matter.
+ */
+export function keptInEnglish(
+  english: SourcesFile | undefined,
+  translated: SourcesFile | undefined,
+): { titles: Set<string>; reasons: Set<string> } {
+  const titles = new Set<string>();
+  const reasons = new Set<string>();
+  if (!english || !translated) return { titles, reasons };
+  const byId = new Map(english.entries.map((entry) => [entry.id, entry]));
+  for (const entry of translated.entries) {
+    const twin = byId.get(entry.id);
+    if (!twin) continue;
+    if (twin.title === entry.title) titles.add(entry.id);
+    if (entry.noUrlReason !== undefined && twin.noUrlReason === entry.noUrlReason)
+      reasons.add(entry.id);
+  }
+  // Act names stay English by the style guide; marked the same way, keyed by the act's id.
+  const acts = new Map(english.acts.map((act) => [act.id, act.name]));
+  for (const act of translated.acts) if (acts.get(act.id) === act.name) titles.add(act.id);
+  return { titles, reasons };
+}
+
 /** True when the register marks this URL, in any of its spellings, as official. */
 export function isOfficialUrl(official: ReadonlySet<string>, url: string): boolean {
   return official.has(officialUrlKey(url));

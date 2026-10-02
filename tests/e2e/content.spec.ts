@@ -428,13 +428,32 @@ test.describe('the D5 trust pieces', () => {
     const english = notice.first().locator('a');
     await expect(english).toHaveAttribute('hreflang', 'en-ZA');
     await expect(english).not.toHaveAttribute('lang', /.*/);
-    // Inside the English blocks, no label or title is Afrikaans.
-    const afrikaansInBlocks = await page.evaluate(() =>
-      [...document.querySelectorAll('article .st-blocks')].some((node) =>
-        /Kern: geld vir almal|Rol sywaarts/.test(node.textContent ?? ''),
-      ),
+    // Inside the English blocks, no label or title is Afrikaans: not the fixed labels, and none
+    // of the documents' or sections' Afrikaans titles (review WP-40 integration pass 1, minor 1).
+    const afrikaansTitles = [...Object.values(MANIFEST.docs), ...MANIFEST.sections]
+      .map((entry) => entry.titles.af)
+      .filter((title): title is string => title !== undefined && title.length > 8);
+    const afrikaansInBlocks = await page.evaluate(
+      (titles) =>
+        [...document.querySelectorAll('article .st-blocks')].flatMap((node) =>
+          [...titles, 'Kern: geld vir almal', 'Rol sywaarts'].filter((title) =>
+            (node.textContent ?? '').includes(title),
+          ),
+        ),
+      afrikaansTitles,
     );
-    expect(afrikaansInBlocks).toBe(false);
+    expect(afrikaansInBlocks).toEqual([]);
+    // The English register on an Afrikaans page: its text is marked English, the labels are not.
+    const sources = page.locator('#dsc-sources').locator('xpath=..');
+    const titles = sources.locator('.st-source__title span[lang]');
+    expect(await titles.count()).toBeGreaterThan(0);
+    for (const lang of await titles.evaluateAll((nodes) =>
+      nodes.map((node) => node.getAttribute('lang')),
+    )) {
+      expect(lang).toBe('en-ZA');
+    }
+    await expect(sources.locator('.st-badge').first()).not.toHaveAttribute('lang', /.*/);
+    await expect(sources.locator('h2, h3').first()).not.toHaveAttribute('lang', /.*/);
     // The AI notice comes first, the translation notice directly under it (build plan D5).
     const order = await page.evaluate(() => {
       const header = document.querySelector('article > header');
