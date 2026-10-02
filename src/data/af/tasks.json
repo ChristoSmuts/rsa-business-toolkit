@@ -1,4 +1,291 @@
 {
   "lang": "af",
-  "tasks": []
+  "tasks": [
+    {
+      "block": "your-licence-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Kom my besigheidstipe in die kategorieë van die Businesses Act voor? Indien wel, doen eers aansoek om die munisipale lisensie."
+        }
+      ],
+      "doc": "core/what-you-need-to-sell-things",
+      "group": [
+        {
+          "t": "text",
+          "v": "Werk deur hierdie vrae voordat jy jou eerste bestelling aanneem"
+        }
+      ],
+      "heading": "your-licence-checklist",
+      "id": "core/what-you-need-to-sell-things:11a093c7",
+      "order": 0
+    },
+    {
+      "block": "your-licence-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Hanteer ek kos? Indien wel, kry geakkrediteerde opleiding en doen dan aansoek om die COA."
+        }
+      ],
+      "doc": "core/what-you-need-to-sell-things",
+      "group": [
+        {
+          "t": "text",
+          "v": "Werk deur hierdie vrae voordat jy jou eerste bestelling aanneem"
+        }
+      ],
+      "heading": "your-licence-checklist",
+      "id": "core/what-you-need-to-sell-things:f92fd7a6",
+      "order": 1
+    },
+    {
+      "block": "your-licence-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Is my perseel vir hierdie aktiwiteit gesoneer? Vra die munisipale departement van stadsbeplanning."
+        }
+      ],
+      "doc": "core/what-you-need-to-sell-things",
+      "group": [
+        {
+          "t": "text",
+          "v": "Werk deur hierdie vrae voordat jy jou eerste bestelling aanneem"
+        }
+      ],
+      "heading": "your-licence-checklist",
+      "id": "core/what-you-need-to-sell-things:d7735147",
+      "order": 2
+    },
+    {
+      "block": "your-licence-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Het my produk ’n magtigingsbrief of SAHPRA-goedkeuring nodig?"
+        }
+      ],
+      "doc": "core/what-you-need-to-sell-things",
+      "group": [
+        {
+          "t": "text",
+          "v": "Werk deur hierdie vrae voordat jy jou eerste bestelling aanneem"
+        }
+      ],
+      "heading": "your-licence-checklist",
+      "id": "core/what-you-need-to-sell-things:1f881041",
+      "order": 3
+    },
+    {
+      "block": "your-licence-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Verkoop ek aanlyn? Indien wel, sit die inligting van artikel 43 van ECTA op die webwerf en skryf ’n terugsendingsbeleid wat die reël van sewe dae respekteer."
+        }
+      ],
+      "doc": "core/what-you-need-to-sell-things",
+      "group": [
+        {
+          "t": "text",
+          "v": "Werk deur hierdie vrae voordat jy jou eerste bestelling aanneem"
+        }
+      ],
+      "heading": "your-licence-checklist",
+      "id": "core/what-you-need-to-sell-things:965f9d12",
+      "order": 4
+    },
+    {
+      "block": "your-licence-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Het my bedryf ’n professionele liggaam waarby ek moet registreer?"
+        }
+      ],
+      "doc": "core/what-you-need-to-sell-things",
+      "group": [
+        {
+          "t": "text",
+          "v": "Werk deur hierdie vrae voordat jy jou eerste bestelling aanneem"
+        }
+      ],
+      "heading": "your-licence-checklist",
+      "id": "core/what-you-need-to-sell-things:249c67a5",
+      "order": 5
+    },
+    {
+      "block": "protection.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Ek weet of ek tot UIF kan bydra, en het doelbewus besluit eerder as per toeval"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "protection",
+      "id": "core/you-are-the-business:277f7921",
+      "order": 6
+    },
+    {
+      "block": "protection.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "As ek ’n maatskappy het en myself ’n salaris betaal: vir COIDA geregistreer, Return of Earnings ingedien, Letter of Good Standing geldig"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "protection",
+      "id": "core/you-are-the-business:69e6fedf",
+      "order": 7,
+      "when": {
+        "entity": "pty"
+      }
+    },
+    {
+      "block": "protection.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Kwotasie vir inkomstebeskerming gekry, en die wagtydperk nagegaan voordat dit betaal"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "protection",
+      "id": "core/you-are-the-business:6be42aa2",
+      "order": 8
+    },
+    {
+      "block": "protection.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Het ’n kontantbuffer in ’n aparte rekening, bereken in maande wat ek nie kan werk nie"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "protection",
+      "id": "core/you-are-the-business:84889f74",
+      "order": 9
+    },
+    {
+      "block": "getting-paid.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Deposito ontvang voordat ek materiaal koop of met werk begin"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "getting-paid",
+      "id": "core/you-are-the-business:80860154",
+      "order": 10
+    },
+    {
+      "block": "getting-paid.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Bepalings oor laat betaling op skrif ooreengekom voor die werk, nie daarna nie"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "getting-paid",
+      "id": "core/you-are-the-business:91c38f5a",
+      "order": 11
+    },
+    {
+      "block": "getting-paid.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Ek weet watter hof ek mag gebruik, gegewe hoe my besigheid gestruktureer is"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "getting-paid",
+      "id": "core/you-are-the-business:21970149",
+      "order": 12
+    },
+    {
+      "block": "getting-paid.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Niks wat aan my geskuld word, is amper drie jaar oud nie"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "getting-paid",
+      "id": "core/you-are-the-business:b6fe6cfd",
+      "order": 13
+    },
+    {
+      "block": "continuity.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Tweede direkteur aangestel, of ’n doelbewuste besluit om dit nie te doen nie"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "continuity",
+      "id": "core/you-are-the-business:8e6615a6",
+      "order": 14
+    },
+    {
+      "block": "continuity.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Nagegaan of my MOI ’n eksekuteur toelaat om ’n direkteur aan te stel"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "continuity",
+      "id": "core/you-are-the-business:b554cb87",
+      "order": 15
+    },
+    {
+      "block": "continuity.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Testament wat oor die aandele handel, in ooreenstemming met die MOI"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "continuity",
+      "id": "core/you-are-the-business:b5a8d0d2",
+      "order": 16
+    },
+    {
+      "block": "continuity.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Die eenbladsy-rekord geskryf, en iemand weet waar dit is"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "continuity",
+      "id": "core/you-are-the-business:c7f7b0fd",
+      "order": 17
+    },
+    {
+      "block": "continuity.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Rekord in die afgelope twaalf maande hersien"
+        }
+      ],
+      "doc": "core/you-are-the-business",
+      "heading": "continuity",
+      "id": "core/you-are-the-business:e3e2729b",
+      "order": 18
+    }
+  ]
 }

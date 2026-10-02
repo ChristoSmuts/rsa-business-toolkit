@@ -1,0 +1,1540 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sommige besighede mag nie handel dryf voordat hulle ’n lisensie het nie. Ander het niks nodig nie. Hierdie lêer sê vir jou watter een jy is."
+        }
+      ],
+      "hash": "4c8121245d6fe295",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "123e0bae1dbe2e29"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Begin by jou munisipaliteit, nie by Google nie. Die reëls verskil tussen Kaapstad, Johannesburg, eThekwini en elke klein dorp. Die persoon wat jy soek, is die omgewingsgesondheidspraktisyn (Environmental Health Practitioner) of die besigheidslisensiëringsbeampte (Business Licensing Officer) by jou plaaslike munisipale kantoor."
+        }
+      ],
+      "hash": "73fb0895e8a0140b",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "83064cfafb2cf664"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "25ef77f030d9b445",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Eenvoudige betekenisse van die terme wat in hierdie lêer gebruik word. Die volledige lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Jou plaaslike raad. Dit reik besigheidslisensies uit."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Munisipaliteit"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Amptelike toestemming om vanuit ’n spesifieke gebou handel te dryf."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Lisensie"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid). Die permit wat elke kosbesigheid moet hê."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "COA"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die munisipale gesondheidsinspekteur."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "EHP"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Consumer Protection Act. Die wet wat aan kliënte regte gee wat jy nie kan wegneem nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "CPA"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die wet vir aanlynverkope."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "ECTA"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die kliënt se reg om te kanselleer en ’n terugbetaling te kry sonder ’n rede."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Afkoelperiode (cooling-off)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Waarborg wat die wet by elke verkoop insluit, selfs as jy nooit een neergeskryf het nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Geïmpliseerde waarborg (implied warranty)"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "1f51c644371e945b"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die algemene reël"
+        }
+      ],
+      "depth": 2,
+      "hash": "92742f0c0112348f",
+      "id": "the-general-rule",
+      "kind": "heading",
+      "sourceHash": "47fa7c311e2750fa",
+      "text": "Die algemene reël"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vereistes vir besigheids- en handelslisensies word deur die Businesses Act 71 of 1991 gereël. Niemand mag sekere diensverwante besighede bedryf nie, tensy hulle ’n lisensie het wat uitgereik is deur die raad, plaaslike owerheid of munisipaliteit waar die besigheidsperseel geleë is."
+        }
+      ],
+      "hash": "5cac663bf7b3e268",
+      "id": "the-general-rule.1",
+      "kind": "paragraph",
+      "sourceHash": "05b77d914a3d467f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sommige soorte besighede het ’n lisensie van die plaaslike munisipaliteit nodig voordat hulle mag oopmaak. Die lisensie is vir die gebou waar jy handel dryf, nie vir jou persoonlik nie."
+        }
+      ],
+      "hash": "ec0c8cca6d8fda10",
+      "id": "the-general-rule.2",
+      "kind": "callout",
+      "pairsWith": "the-general-rule.1",
+      "sourceHash": "c98fcfba4b282ba4",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die lisensie is aan die perseel gekoppel, nie aan jou nie. As jy trek, doen jy weer aansoek."
+        }
+      ],
+      "hash": "9681598ac9b6db9e",
+      "id": "the-general-rule.3",
+      "kind": "paragraph",
+      "sourceHash": "96f64200ada19360"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy mag nie begin handel dryf in ’n besigheid wat ’n lisensie vereis voordat die lisensie uitgereik is nie. Om sonder ’n geldige lisensie handel te dryf, is strafbaar met ’n boete."
+        }
+      ],
+      "hash": "aa014d7855d8f228",
+      "id": "the-general-rule.4",
+      "kind": "paragraph",
+      "sourceHash": "0587fcf86be90a21"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy kan nie oopmaak voordat die lisensie in jou hand is nie. As jy vroeg oopmaak, kan jy beboet word."
+        }
+      ],
+      "hash": "aff96574e7703db9",
+      "id": "the-general-rule.5",
+      "kind": "callout",
+      "pairsWith": "the-general-rule.4",
+      "sourceHash": "450cb3b023a20879",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die kategorieë wat gewoonlik ’n munisipale handelslisensie vereis, sluit in kleinhandel en diens van kos (restaurante, wegneemetes, kafees, straatkosverkopers, spyseniering, spaza-winkels) en gesondheidsinstellings (gesondheids-, skoonheids- of liggaamsbehandelingsdienste, insluitend haarkappers, barbiers, skoonheidsalonne, naelsalonne en tatoeëerateljees)."
+        }
+      ],
+      "hash": "aefbb5488844ce98",
+      "id": "the-general-rule.6",
+      "kind": "paragraph",
+      "sourceHash": "3e833788bb2013e9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die twee groot groepe wat ’n munisipale lisensie nodig het, is enigiemand wat kos verkoop of voorberei, en enigiemand wat aan mense se liggame werk: hare, naels, skoonheid, masserings, tatoeëermerke."
+        }
+      ],
+      "hash": "2b63f41e6914db7e",
+      "id": "the-general-rule.7",
+      "kind": "callout",
+      "pairsWith": "the-general-rule.6",
+      "sourceHash": "13c88c011e976efb",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vermaaklikheidsplekke, bioskope, nagklubs en besighede wat toerusting verhuur, val gewoonlik ook daaronder. Kontroleer jou plaaslike verordeninge."
+        }
+      ],
+      "hash": "db0f454deec7bc8e",
+      "id": "the-general-rule.8",
+      "kind": "paragraph",
+      "sourceHash": "f1bc397c266be2b8"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "food"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy kos verkoop"
+        }
+      ],
+      "depth": 2,
+      "hash": "b8e388a435a9731c",
+      "id": "if-you-sell-food",
+      "kind": "heading",
+      "sourceHash": "5417783ec78c27ce",
+      "text": "As jy kos verkoop"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is die area wat vir klein besighede die meeste gereguleer word, en die een wat mense die meeste verkeerd kry."
+        }
+      ],
+      "hash": "3ff4372ca60a72dd",
+      "id": "if-you-sell-food.1",
+      "kind": "paragraph",
+      "sourceHash": "2a002488c6667b00"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het ’n Certificate of Acceptability (COA) nodig."
+        }
+      ],
+      "hash": "3baf223adb69e72b",
+      "id": "if-you-sell-food.2",
+      "kind": "paragraph",
+      "sourceHash": "6eb38681bee9340a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Regulasie R638 van 2018 stel algemene higiënevereistes vir kospersele en vereis dat alle besighede wat verwerkte kos hanteer en kos vir wins verkoop, ’n Certificate of Acceptability moet hê."
+        }
+      ],
+      "hash": "2fb1f57f99ccdda9",
+      "id": "if-you-sell-food.3",
+      "kind": "paragraph",
+      "sourceHash": "0ba7cc9b013aa8d8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die COA geld vir enige kosperseel waar kos hanteer, voorberei, gestoor, vervoer of aan die publiek verkoop word. Dit geld ewe veel vir ’n restaurant, ’n spaza-winkel, ’n spysenieringsmaatskappy en ’n kombuis by ’n lodge."
+        }
+      ],
+      "hash": "e5b47e10518bc7af",
+      "id": "if-you-sell-food.4",
+      "kind": "paragraph",
+      "sourceHash": "8873e3a0560e0c64"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hoe om dit te kry:"
+        }
+      ],
+      "hash": "b660279cc2759da4",
+      "id": "if-you-sell-food.5",
+      "kind": "paragraph",
+      "sourceHash": "dec09352b0730fa0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kontak die departement van omgewingsgesondheid van die munisipaliteit waar jou perseel geleë is, en vra die aansoekvorm vir die COA. ’n Omgewingsgesondheidspraktisyn (EHP) sal die perseel inspekteer om te kyk of dit aan R638 voldoen. As jy voldoen, word die COA uitgereik. Indien nie, gee die EHP vir jou ’n lys van verbeterings wat vereis word."
+        }
+      ],
+      "hash": "0fc3277f504d3367",
+      "id": "if-you-sell-food.6",
+      "kind": "paragraph",
+      "sourceHash": "3c0b8f80350c68cc"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vra jou munisipaliteit se gesondheidsdepartement vir die vorm vir die kossertifikaat. ’n Gesondheidsinspekteur sal kom kyk. As jou kombuis slaag, kry jy die sertifikaat. Indien nie, gee hulle vir jou ’n lys van dinge om reg te maak."
+        }
+      ],
+      "hash": "38ff896698a99753",
+      "id": "if-you-sell-food.7",
+      "kind": "callout",
+      "pairsWith": "if-you-sell-food.6",
+      "sourceHash": "13c263e46f529acc",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die ding wat die meeste aansoeke laat misluk: opleiding kragtens regulasie 10 van R638 is nie opsioneel nie. Jy kan nie ’n COA kry sonder geakkrediteerde opleiding in voedselveiligheid vir die persoon in beheer en elke koshanteerder nie."
+        }
+      ],
+      "hash": "087900686d63a984",
+      "id": "if-you-sell-food.8",
+      "kind": "paragraph",
+      "sourceHash": "d086b740c2751715"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ander dinge wat ’n kosbesigheid dalk nodig het, afhangende van wat jy doen:"
+        }
+      ],
+      "hash": "3ef1e1b99a046b51",
+      "id": "if-you-sell-food.9",
+      "kind": "paragraph",
+      "sourceHash": "ce99d77e93db29f8"
+    },
+    {
+      "hash": "60ca65f339bd213c",
+      "id": "if-you-sell-food.10",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "’n Besigheidslisensie kragtens die Businesses Act 71 of 1991"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Soneringsertifikaat, as jou perseel nie vir besigheidsgebruik gesoneer is nie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Brandnakomingsertifikaat (SANS 10400-T)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Nakomingsertifikaat vir gas, as jy met gas kook"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Dranklisensie, as jy alkohol verkoop"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "29670f119f4ebccc"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Realisties gesproke, verwag twee tot ses maande, afhangende van hoe vinnig jou munisipaliteit werk en hoe gereed jou perseel is. CIPC-registrasie neem dae, opleiding een tot drie weke, voorbereiding van die perseel twee tot agt weke, en die COA-aansoek twee tot agt weke. ’n Dranklisensie alleen kan drie tot twaalf maande byvoeg."
+        }
+      ],
+      "hash": "65be0f0dac39eef0",
+      "id": "if-you-sell-food.11",
+      "kind": "paragraph",
+      "sourceHash": "14f03145317d04b5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om ’n kosbesigheid wettig te kry, neem van begin tot einde twee tot ses maande. Alkohol neem baie langer. Moenie ’n huurkontrak teken met die verwagting om volgende maand oop te maak nie."
+        }
+      ],
+      "hash": "27f49a72f5e170fb",
+      "id": "if-you-sell-food.12",
+      "kind": "callout",
+      "pairsWith": "if-you-sell-food.11",
+      "sourceHash": "f8dcbbca58553fee",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om van die huis af te verkoop, is moontlik, maar daar word fyn dopgehou. Jy het oor die algemeen soneringsgoedkeuring nodig en ’n kombuisarea wat van die gesin se woonruimte geskei is."
+        }
+      ],
+      "hash": "dad59b329827dc2a",
+      "id": "if-you-sell-food.13",
+      "kind": "paragraph",
+      "sourceHash": "abc301d490823118"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die COA is spesifiek vir die perseel en kan nie na ’n nuwe plek of ’n nuwe eienaar oorgedra word nie. Dit het geen vaste vervaldatum kragtens R638 nie, maar dit word ongeldig wanneer belangrike voorwaardes verander."
+        }
+      ],
+      "hash": "1aa9c1c4a67af1cf",
+      "id": "if-you-sell-food.14",
+      "kind": "paragraph",
+      "sourceHash": "5821b66be3b0dd4f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kosetikette is ’n aparte stel reëls. Regulasie R146 van 2012 reël die etikettering en advertering van voedsel, insluitend waarskuwings oor allergene. As jy enigiets verpak, lees R146 voordat jy etikette druk."
+        }
+      ],
+      "hash": "e55572f5004ad535",
+      "id": "if-you-sell-food.15",
+      "kind": "paragraph",
+      "sourceHash": "feb2f67a6fd3a506"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Een uitsondering wat die moeite werd is om te ken: onverwerkte landbouprodukte wat verkoop word soos hulle uit die grond kom, word anders behandel as verwerkte kos. As jy net rou produkte verkoop, bevestig jou posisie by jou munisipaliteit eerder as om dit aan te neem."
+        }
+      ],
+      "hash": "668e6943095a4dec",
+      "id": "if-you-sell-food.16",
+      "kind": "paragraph",
+      "sourceHash": "a93c89171c695763"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "beauty"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy skoonheids- of liggaamsbehandelings verkoop"
+        }
+      ],
+      "depth": 2,
+      "hash": "aa092297a7119165",
+      "id": "if-you-sell-beauty-or-body-treatments",
+      "kind": "heading",
+      "sourceHash": "fe21d2dcecf7b06c",
+      "text": "As jy skoonheids- of liggaamsbehandelings verkoop"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Haarkappery, naels, skoonheidsterapie, masserings en tatoeëring is gesondheidsinstellings kragtens die Businesses Act. Jy het ’n munisipale lisensie nodig en gewoonlik ’n gesondheidsinspeksie."
+        }
+      ],
+      "hash": "fa77c62d21523d3a",
+      "id": "if-you-sell-beauty-or-body-treatments.1",
+      "kind": "paragraph",
+      "sourceHash": "0908c721e1654a6b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tatoeëer- en lyfringateljees word ekstra fyn dopgehou oor die wegdoen van skerp voorwerpe en sterilisasie. Praat met jou EHP voordat jy ’n huurkontrak teken."
+        }
+      ],
+      "hash": "98b7ee81e544c88a",
+      "id": "if-you-sell-beauty-or-body-treatments.2",
+      "kind": "paragraph",
+      "sourceHash": "a2e27730f1d2baf2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy skoonheidsmiddels maak of invoer, geld die Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 vir die produk self. Etikettering en bewerings oor bestanddele word gereguleer. Moenie beweer dat ’n produk ’n mediese toestand behandel nie, tensy jy gereed is dat dit as ’n medisyne geklassifiseer word."
+        }
+      ],
+      "hash": "e291f168c725a179",
+      "id": "if-you-sell-beauty-or-body-treatments.3",
+      "kind": "paragraph",
+      "sourceHash": "8bd2fd607a3fa70d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy alkohol verkoop"
+        }
+      ],
+      "depth": 2,
+      "hash": "fc3a02a5cf99abff",
+      "id": "if-you-sell-alcohol",
+      "kind": "heading",
+      "sourceHash": "c062cbfd2a2d2e7e",
+      "text": "As jy alkohol verkoop"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het ’n dranklisensie van jou provinsiale drankowerheid nodig, nie van die munisipaliteit nie. Elke provinsie het sy eie raad en sy eie vorms."
+        }
+      ],
+      "hash": "4add6c229e47d9ad",
+      "id": "if-you-sell-alcohol.1",
+      "kind": "paragraph",
+      "sourceHash": "857afd482eac0fdd"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is stadig en dit is nie goedkoop nie. Begroot maande, nie weke nie. Jy kan nie alkohol verkoop terwyl die aansoek hangend is nie."
+        }
+      ],
+      "hash": "c9c6747ffe86ad1c",
+      "id": "if-you-sell-alcohol.2",
+      "kind": "paragraph",
+      "sourceHash": "ff1687cac8f9e4c5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy medisyne, aanvullings of gesondheidsprodukte verkoop"
+        }
+      ],
+      "depth": 2,
+      "hash": "a3858e688a32afbf",
+      "id": "if-you-sell-medicines-supplements-or-health-products",
+      "kind": "heading",
+      "sourceHash": "c4bd0897b55d7994",
+      "text": "As jy medisyne, aanvullings of gesondheidsprodukte verkoop"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "SAHPRA reguleer medisyne, komplementêre medisyne en mediese toestelle. Om geskeduleerde medisyne te verkoop, vereis ’n gelisensieerde apteek of ’n gelisensieerde uitreiker."
+        }
+      ],
+      "hash": "da1f9a04dc539c83",
+      "id": "if-you-sell-medicines-supplements-or-health-products.1",
+      "kind": "paragraph",
+      "sourceHash": "b2af1c22df3519c0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gesondheidsaanvullings is in ’n grys area wat strenger word. As jou produk ’n gesondheidsbewering maak, kontroleer SAHPRA se standpunt voordat jy begin verkoop."
+        }
+      ],
+      "hash": "2a8d6142aa250086",
+      "id": "if-you-sell-medicines-supplements-or-health-products.2",
+      "kind": "paragraph",
+      "sourceHash": "c17d0052186e8b09"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "vehicle-dealer",
+          "retail-online"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy tweedehandse goedere verkoop"
+        }
+      ],
+      "depth": 2,
+      "hash": "90ef184dd5d1e618",
+      "id": "if-you-sell-second-hand-goods",
+      "kind": "heading",
+      "sourceHash": "a540336eb629a7fc",
+      "text": "As jy tweedehandse goedere verkoop"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die Second-Hand Goods Act 6 of 2009 geld. Handelaars in gebruikte goedere, insluitend skrootmetaal en gebruikte elektronika, moet by SAPS registreer en ’n register hou van wat hulle koop, by wie, en wanneer."
+        }
+      ],
+      "hash": "7ff89f725933f91c",
+      "id": "if-you-sell-second-hand-goods.1",
+      "kind": "paragraph",
+      "sourceHash": "fef05c9007dcef0e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit vang meer mense as wat jy sou verwag. As jy gebruikte fone koop om weer te verkoop, geld dit vir jou."
+        }
+      ],
+      "hash": "c5b664a1c7ab62a5",
+      "id": "if-you-sell-second-hand-goods.2",
+      "kind": "paragraph",
+      "sourceHash": "cf019f6945436091"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy aanlyn verkoop"
+        }
+      ],
+      "depth": 2,
+      "hash": "6ea5566c58e433f4",
+      "id": "if-you-sell-online",
+      "kind": "heading",
+      "sourceHash": "2b514941fd925809",
+      "text": "As jy aanlyn verkoop"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Twee wette geld bo en behalwe alles hierbo: die Consumer Protection Act 68 of 2008 en die Electronic Communications and Transactions Act 25 of 2002 (ECTA)."
+        }
+      ],
+      "hash": "fcea08a7aec14a33",
+      "id": "if-you-sell-online.1",
+      "kind": "paragraph",
+      "sourceHash": "5bc4120e338e1110"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou webwerf of aanlynwinkel moet die inligting wys wat in artikel 43 van ECTA gelys word. Artikel 43 vereis dat verskaffers die volle prys van goedere of dienste bekend maak, insluitend bykomende koste, en inligting oor hulle regstatus en fisiese adres gee."
+        }
+      ],
+      "hash": "ad0a45bfb303316e",
+      "id": "if-you-sell-online.2",
+      "kind": "paragraph",
+      "sourceHash": "67887f0ca5ef8300"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sit ten minste dit op jou webwerf:"
+        }
+      ],
+      "hash": "0ee82d5cf8821e8c",
+      "id": "if-you-sell-online.3",
+      "kind": "paragraph",
+      "sourceHash": "706db7c6d536952c"
+    },
+    {
+      "hash": "413c53c823401dff",
+      "id": "if-you-sell-online.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Jou volle amptelike naam en, as jy geregistreer is, jou maatskappyregistrasienommer"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n Fisiese adres (nie net ’n posbus nie)"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "’n E-posadres en foonnommer"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die volle prys, insluitend aflewering en enige ander koste"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jou beleid oor terugsendings en terugbetalings"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jou privaatheidskennisgewing"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "e36010b8fa07e4d4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou betaalproses moet ’n stap insluit waar die kliënt die hele bestelling kan nagaan, insluitend produkte, hoeveelhede, pryse, afleweringskoste en bepalings, en enige foute kan regmaak voordat hy of sy die bestelling afhandel. Dit voldoen aan artikel 43(2). As jy dit nie bied nie, kry die verbruiker ’n kansellasiereg van 14 dae kragtens artikel 43(3)."
+        }
+      ],
+      "hash": "ad81a52f432fb855",
+      "id": "if-you-sell-online.5",
+      "kind": "paragraph",
+      "sourceHash": "801d9c4efdaadb59"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voordat die kliënt betaal, moet jou webwerf vir hom of haar ’n opsomming wys van alles wat hy of sy koop, met alle koste, en hom of haar foute laat regmaak. As jy hierdie stap oorslaan, kry die kliënt 14 dae om te kanselleer."
+        }
+      ],
+      "hash": "c759e9372accfc79",
+      "id": "if-you-sell-online.6",
+      "kind": "callout",
+      "pairsWith": "if-you-sell-online.5",
+      "sourceHash": "1f2e0f08202841ad",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die reg op ’n afkoelperiode:"
+        }
+      ],
+      "hash": "cfe88f990116d83d",
+      "id": "if-you-sell-online.7",
+      "kind": "paragraph",
+      "sourceHash": "42b58e31b92d2461"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Artikel 44 van ECTA laat ’n verbruiker toe om ’n elektroniese transaksie sonder rede en sonder boete te kanselleer binne sewe dae nadat hy of sy die goedere ontvang het, of nadat die ooreenkoms vir dienste gesluit is. Dit geld waar die verbruiker ’n natuurlike persoon is, ongeag die waarde van die transaksie, onderhewig aan die uitsluitings in artikel 42(2)."
+        }
+      ],
+      "hash": "2ede8fa8779d07e4",
+      "id": "if-you-sell-online.8",
+      "kind": "paragraph",
+      "sourceHash": "ec3e8117e693c770"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Persoon wat van jou webwerf koop, kan van plan verander en dit binne sewe dae terugstuur vir ’n volle terugbetaling. Hulle het nie ’n rede nodig nie. Dit geld vir enige bedrag."
+        }
+      ],
+      "hash": "ddec4e9b54e032ac",
+      "id": "if-you-sell-online.9",
+      "kind": "callout",
+      "pairsWith": "if-you-sell-online.8",
+      "sourceHash": "ebcb3ce94e5b23cb",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die enigste koste wat jy vir die kansellasie aan die verbruiker mag oordra, is die direkte koste om die goedere terug te stuur."
+        }
+      ],
+      "hash": "b034c3eb67fe646a",
+      "id": "if-you-sell-online.10",
+      "kind": "paragraph",
+      "sourceHash": "544e116cec24fbbf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die venster van sewe dae is deur die wet bepaal, en jy kan dit nie by kontrak uitsluit nie. ’n Bordjie met \"geen terugbetalings nie\" (\"no refunds\") op ’n aanlynwinkel is nie afdwingbaar teen ’n eis in die afkoelperiode nie. Moenie ’n gewone winkel se terugsendingsbeleid op ’n webwerf kopieer nie."
+        }
+      ],
+      "hash": "955fc9bd549c43c8",
+      "id": "if-you-sell-online.11",
+      "kind": "paragraph",
+      "sourceHash": "20b17cfaa66d13a9"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daar is uitsonderings. By dienste verval die reg op ’n afkoelperiode sodra die dienste gebruik word, en sekere transaksies is uitgesluit, insluitend sommige finansiële dienste en veilings."
+        }
+      ],
+      "hash": "657304a7c8a9d0fd",
+      "id": "if-you-sell-online.12",
+      "kind": "paragraph",
+      "sourceHash": "8688d065a47245c1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Afleweringstyd: kragtens artikel 46 moet jy die bestelling binne 30 dae nadat jy dit ontvang het, uitvoer, tensy jy iets anders met die kliënt ooreengekom het. As jy nie kan lewer nie omdat die goedere nie beskikbaar is nie, moet jy die kliënt onmiddellik in kennis stel en enige betaling binne 30 dae ná daardie kennisgewing terugbetaal."
+        }
+      ],
+      "hash": "85d6b315118f498b",
+      "id": "if-you-sell-online.13",
+      "kind": "paragraph",
+      "sourceHash": "c5b4e48b7d0edd07"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy moet binne 30 dae aflewer, tensy jy ’n ander tyd met die kliënt ooreengekom het. As jy glad nie kan aflewer nie, sê dit onmiddellik vir hulle en betaal hulle binne 30 dae terug."
+        }
+      ],
+      "hash": "ebeb6d371b40c527",
+      "id": "if-you-sell-online.14",
+      "kind": "callout",
+      "pairsWith": "if-you-sell-online.13",
+      "sourceHash": "9f5f960502343c28",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Praktiese punt: as jy op jou produkbladsy aflewering binne 3 dae belowe, word daardie belofte jou ooreenkoms. Belowe wat jy regtig kan doen."
+        }
+      ],
+      "hash": "1edce820b4bae121",
+      "id": "if-you-sell-online.15",
+      "kind": "paragraph",
+      "sourceHash": "7e98a8e7bb38f886"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy enigiets invoer"
+        }
+      ],
+      "depth": 2,
+      "hash": "3b6823e9e6466785",
+      "id": "if-you-import-anything",
+      "kind": "heading",
+      "sourceHash": "2e5dccf23b52cb26",
+      "text": "As jy enigiets invoer"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het ’n invoerderskode van SARS Doeane (SARS Customs) nodig. Aansoek is gratis deur die SARS-webwerf, en dit is apart van jou inkomstebelastingregistrasie."
+        }
+      ],
+      "hash": "b29ff82b6487d24b",
+      "id": "if-you-import-anything.1",
+      "kind": "paragraph",
+      "sourceHash": "fba86de89c537120"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy sal invoerbelasting plus 15% BTW op die gelande waarde by die grens betaal, selfs as jy nie vir BTW geregistreer is nie. Daardie BTW is ’n werklike koste vir jou as jy dit nie kan terugeis nie, so bou dit in jou pryse in voordat jy bestel."
+        }
+      ],
+      "hash": "b686cd254be3584b",
+      "id": "if-you-import-anything.2",
+      "kind": "paragraph",
+      "sourceHash": "fafdc53db7b61e21"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sommige goedere het ’n magtigingsbrief (Letter of Authority) van die National Regulator for Compulsory Specifications (NRCS) nodig voordat hulle in Suid-Afrika verkoop mag word. Dit dek baie elektriese produkte, beligting en sommige motoronderdele. Invoerders word heeltyd hierdeur gevang. Kontroleer voordat jy ’n houer bestel."
+        }
+      ],
+      "hash": "68103e3fe54ed375",
+      "id": "if-you-import-anything.3",
+      "kind": "paragraph",
+      "sourceHash": "adcd801cb2e6fd59"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy aan die regering verkoop"
+        }
+      ],
+      "depth": 2,
+      "hash": "cead7d0ae3d10f73",
+      "id": "if-you-sell-to-government",
+      "kind": "heading",
+      "sourceHash": "53dfdcacd8fb9f57",
+      "text": "As jy aan die regering verkoop"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy moet op die Central Supplier Database (sentrale verskafferdatabasis) by "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "www.csd.gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://www.csd.gov.za",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " registreer. Dit is gratis."
+        }
+      ],
+      "hash": "69b9d642a8a5f19f",
+      "id": "if-you-sell-to-government.1",
+      "kind": "paragraph",
+      "sourceHash": "494b0721d9d6f82f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het ook ’n geldige belastingnakomingstatus by SARS nodig, en ’n B-BBEE-beëdigde verklaring of -sertifikaat (sien "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Registreer: wat jy regtig nodig het"
+            }
+          ],
+          "doc": "core/register",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ")."
+        }
+      ],
+      "hash": "30337c3ab6eb2d26",
+      "id": "if-you-sell-to-government.2",
+      "kind": "paragraph",
+      "sourceHash": "645904aca77f756a"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "services-trades",
+          "professional-creative"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy professionele of gereguleerde dienste lewer"
+        }
+      ],
+      "depth": 2,
+      "hash": "83625f7a767a2486",
+      "id": "if-you-provide-professional-or-regulated-services",
+      "kind": "heading",
+      "sourceHash": "b644a4c55394cccc",
+      "text": "As jy professionele of gereguleerde dienste lewer"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sommige werk mag net deur geregistreerde professionele persone gedoen word. Algemene voorbeelde: elektrisiëns wat nakomingsertifikate uitreik, loodgieters, gasinstalleerders, ingenieurs, eiendomsagente, finansiële adviseurs, sekuriteitsdienste en gesondheidswerkers."
+        }
+      ],
+      "hash": "6af2ff296710cf95",
+      "id": "if-you-provide-professional-or-regulated-services.1",
+      "kind": "paragraph",
+      "sourceHash": "feba5fd255c8044a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jou bedryf ’n professionele liggaam het, is registrasie by daardie liggaam gewoonlik nie opsioneel nie. As jy daarsonder werk, kan dit jou kliënt se versekering ongeldig maak, en dit stel jou ook bloot."
+        }
+      ],
+      "hash": "bcf91ddec87468b0",
+      "id": "if-you-provide-professional-or-regulated-services.2",
+      "kind": "paragraph",
+      "sourceHash": "ac4f0a9f6f6030af"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As niks hierbo geld nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "6a178333d7d6e5a9",
+      "id": "if-none-of-the-above-applies",
+      "kind": "heading",
+      "sourceHash": "17c16badf740a2dc",
+      "text": "As niks hierbo geld nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Baie besighede het glad geen lisensie nodig nie. Konsultasie, ontwerp, skryfwerk, sagteware, privaat onderrig, fotografie, administratiewe dienste, boekhouding, skoonmaak, tuinwerk en die meeste handwerk val hier."
+        }
+      ],
+      "hash": "fb1898b8905168dc",
+      "id": "if-none-of-the-above-applies.1",
+      "kind": "paragraph",
+      "sourceHash": "28bd21a374f2e227"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het steeds die algemene verpligtinge: SARS, POPIA, en eerlike advertensies kragtens die Consumer Protection Act."
+        }
+      ],
+      "hash": "e3cd0234ddc4cc14",
+      "id": "if-none-of-the-above-applies.2",
+      "kind": "paragraph",
+      "sourceHash": "dbdd067dd42e61e3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Reëls wat geld vir almal wat enigiets verkoop"
+        }
+      ],
+      "depth": 2,
+      "hash": "2eb1169e4848e7be",
+      "id": "rules-that-apply-to-everyone-selling-anything",
+      "kind": "heading",
+      "sourceHash": "201f3c1f97cd5c1f",
+      "text": "Reëls wat geld vir almal wat enigiets verkoop"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die Consumer Protection Act gee jou kliënte regte wat jy nie kan wegteken nie."
+        }
+      ],
+      "hash": "645a259b76717a29",
+      "id": "rules-that-apply-to-everyone-selling-anything.1",
+      "kind": "paragraph",
+      "sourceHash": "3e07d9f024de0755"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verbruikers is geregtig op goedere wat redelik geskik is vir hulle gewone doel, van goeie gehalte en in goeie werkende toestand is, vry van gebreke is, redelik duursaam is, en aan toepaslike standaarde voldoen."
+        }
+      ],
+      "hash": "286754e02cb88d62",
+      "id": "rules-that-apply-to-everyone-selling-anything.2",
+      "kind": "paragraph",
+      "sourceHash": "b5cbb8838b4a552c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daar is ’n geïmpliseerde waarborg van ses maande op goedere. As goedere binne ses maande breek, kan die kliënt oor die algemeen ’n herstel, vervanging of terugbetaling eis, en die keuse is gewoonlik syne of hare, nie joune nie."
+        }
+      ],
+      "hash": "879031f7be2fe2f4",
+      "id": "rules-that-apply-to-everyone-selling-anything.3",
+      "kind": "paragraph",
+      "sourceHash": "02e078e76524f3f5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou advertensies moet waar wees. Moenie ’n resultaat beweer wat jy nie kan lewer nie."
+        }
+      ],
+      "hash": "243e05d3ce7b996a",
+      "id": "rules-that-apply-to-everyone-selling-anything.4",
+      "kind": "paragraph",
+      "sourceHash": "eb04d2bae6c97638"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou pryse moet vertoon word. As twee pryse vertoon word, geld die laer een oor die algemeen."
+        }
+      ],
+      "hash": "33e0f2f8d212ab1c",
+      "id": "rules-that-apply-to-everyone-selling-anything.5",
+      "kind": "paragraph",
+      "sourceHash": "23126943bb2f009e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou lisensiekontrolelys"
+        }
+      ],
+      "depth": 2,
+      "hash": "ae5c1de8b30cb708",
+      "id": "your-licence-checklist",
+      "kind": "heading",
+      "sourceHash": "22a9850f09216a8d",
+      "text": "Jou lisensiekontrolelys"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Werk deur hierdie vrae voordat jy jou eerste bestelling aanneem"
+        }
+      ],
+      "hash": "6ee481db4313aabe",
+      "id": "your-licence-checklist.1",
+      "items": [
+        {
+          "block": "your-licence-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Kom my besigheidstipe in die kategorieë van die Businesses Act voor? Indien wel, doen eers aansoek om die munisipale lisensie."
+            }
+          ],
+          "doc": "core/what-you-need-to-sell-things",
+          "id": "core/what-you-need-to-sell-things:11a093c7"
+        },
+        {
+          "block": "your-licence-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Hanteer ek kos? Indien wel, kry geakkrediteerde opleiding en doen dan aansoek om die COA."
+            }
+          ],
+          "doc": "core/what-you-need-to-sell-things",
+          "id": "core/what-you-need-to-sell-things:f92fd7a6"
+        },
+        {
+          "block": "your-licence-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Is my perseel vir hierdie aktiwiteit gesoneer? Vra die munisipale departement van stadsbeplanning."
+            }
+          ],
+          "doc": "core/what-you-need-to-sell-things",
+          "id": "core/what-you-need-to-sell-things:d7735147"
+        },
+        {
+          "block": "your-licence-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Het my produk ’n magtigingsbrief of SAHPRA-goedkeuring nodig?"
+            }
+          ],
+          "doc": "core/what-you-need-to-sell-things",
+          "id": "core/what-you-need-to-sell-things:1f881041"
+        },
+        {
+          "block": "your-licence-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Verkoop ek aanlyn? Indien wel, sit die inligting van artikel 43 van ECTA op die webwerf en skryf ’n terugsendingsbeleid wat die reël van sewe dae respekteer."
+            }
+          ],
+          "doc": "core/what-you-need-to-sell-things",
+          "id": "core/what-you-need-to-sell-things:965f9d12"
+        },
+        {
+          "block": "your-licence-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Het my bedryf ’n professionele liggaam waarby ek moet registreer?"
+            }
+          ],
+          "doc": "core/what-you-need-to-sell-things",
+          "id": "core/what-you-need-to-sell-things:249c67a5"
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "c3b1fdb1280507f5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy al ses met nee beantwoord het, kan jy vandag handel dryf."
+        }
+      ],
+      "hash": "732f9ebe781cfee5",
+      "id": "your-licence-checklist.2",
+      "kind": "paragraph",
+      "sourceHash": "0f6bf7e5d95d8cee"
+    }
+  ],
+  "contentHash": "86db685c50713afe",
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Wat jy nodig het om dinge te verkoop",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "the-general-rule",
+      "text": "Die algemene reël"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "food"
+        ]
+      },
+      "depth": 2,
+      "id": "if-you-sell-food",
+      "text": "As jy kos verkoop"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "beauty"
+        ]
+      },
+      "depth": 2,
+      "id": "if-you-sell-beauty-or-body-treatments",
+      "text": "As jy skoonheids- of liggaamsbehandelings verkoop"
+    },
+    {
+      "depth": 2,
+      "id": "if-you-sell-alcohol",
+      "text": "As jy alkohol verkoop"
+    },
+    {
+      "depth": 2,
+      "id": "if-you-sell-medicines-supplements-or-health-products",
+      "text": "As jy medisyne, aanvullings of gesondheidsprodukte verkoop"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "vehicle-dealer",
+          "retail-online"
+        ]
+      },
+      "depth": 2,
+      "id": "if-you-sell-second-hand-goods",
+      "text": "As jy tweedehandse goedere verkoop"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      },
+      "depth": 2,
+      "id": "if-you-sell-online",
+      "text": "As jy aanlyn verkoop"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "retail-online"
+        ]
+      },
+      "depth": 2,
+      "id": "if-you-import-anything",
+      "text": "As jy enigiets invoer"
+    },
+    {
+      "depth": 2,
+      "id": "if-you-sell-to-government",
+      "text": "As jy aan die regering verkoop"
+    },
+    {
+      "appliesTo": {
+        "businessTypes": [
+          "services-trades",
+          "professional-creative"
+        ]
+      },
+      "depth": 2,
+      "id": "if-you-provide-professional-or-regulated-services",
+      "text": "As jy professionele of gereguleerde dienste lewer"
+    },
+    {
+      "depth": 2,
+      "id": "if-none-of-the-above-applies",
+      "text": "As niks hierbo geld nie"
+    },
+    {
+      "depth": 2,
+      "id": "rules-that-apply-to-everyone-selling-anything",
+      "text": "Reëls wat geld vir almal wat enigiets verkoop"
+    },
+    {
+      "depth": 2,
+      "id": "your-licence-checklist",
+      "text": "Jou lisensiekontrolelys"
+    }
+  ],
+  "id": "core/what-you-need-to-sell-things",
+  "kind": "guide",
+  "lang": "af",
+  "order": 4,
+  "readingTime": 11,
+  "related": [
+    "core/register"
+  ],
+  "route": "core/what-you-need-to-sell-things/",
+  "section": "core",
+  "slug": "what-you-need-to-sell-things",
+  "sourcePath": "01 Core - applies to everyone/04-what-you-need-to-sell-things.md",
+  "sources": {
+    "acts": [
+      "consumer-protection-act-68-of-2008",
+      "electronic-communications-and-transactions-act-25-of-2002",
+      "businesses-act-71-of-1991",
+      "foodstuffs-cosmetics-and-disinfectants-act-54-of-1972",
+      "second-hand-goods-act-6-of-2009"
+    ],
+    "entries": [
+      "national-consumer-commission--consumer-protection-in-e-commerce",
+      "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
+      "dommisse-attorneys",
+      "mj-kotze-inc-what-is-ecta",
+      "lawtons-africa",
+      "saps--second-hand-goods-act-6-of-2009-full-text",
+      "hanekom-attorneys-webuycars-consent-order",
+      "regulation-r638-of-2018",
+      "regulation-r146-of-2012",
+      "food-focus",
+      "asc-food-safety",
+      "businesses-act-71-of-1991"
+    ]
+  },
+  "summary": "Sommige besighede mag nie handel dryf voordat hulle ’n lisensie het nie. Ander het niks nodig nie. Hierdie lêer sê vir jou watter een jy is.",
+  "tags": [
+    "licensing",
+    "consumer-law"
+  ],
+  "terms": [
+    {
+      "meaning": "Jou plaaslike raad. Dit reik besigheidslisensies uit.",
+      "term": "Munisipaliteit"
+    },
+    {
+      "meaning": "Amptelike toestemming om vanuit ’n spesifieke gebou handel te dryf.",
+      "term": "Lisensie"
+    },
+    {
+      "meaning": "Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid). Die permit wat elke kosbesigheid moet hê.",
+      "term": "COA"
+    },
+    {
+      "meaning": "Die munisipale gesondheidsinspekteur.",
+      "term": "EHP"
+    },
+    {
+      "meaning": "Consumer Protection Act. Die wet wat aan kliënte regte gee wat jy nie kan wegneem nie.",
+      "term": "CPA"
+    },
+    {
+      "meaning": "Die wet vir aanlynverkope.",
+      "term": "ECTA"
+    },
+    {
+      "meaning": "Die kliënt se reg om te kanselleer en ’n terugbetaling te kry sonder ’n rede.",
+      "term": "Afkoelperiode (cooling-off)"
+    },
+    {
+      "meaning": "’n Waarborg wat die wet by elke verkoop insluit, selfs as jy nooit een neergeskryf het nie.",
+      "term": "Geïmpliseerde waarborg (implied warranty)"
+    }
+  ],
+  "title": "Wat jy nodig het om dinge te verkoop",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-13",
+    "status": "ai-checked"
+  }
+}

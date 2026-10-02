@@ -1,5 +1,5 @@
 {
-  "contentHash": "6a5fc1bd535f01c1",
+  "contentHash": "05b12d58c94f5835",
   "docs": {
     "branding/already-have-your-name": {
       "appliesTo": {
@@ -260,13 +260,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 2,
       "route": "core/register/",
       "section": "core",
       "slug": "register",
       "titles": {
+        "af": "Registreer: wat jy regtig nodig het",
         "en": "Register: what you actually need"
       }
     },
@@ -313,13 +315,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 3,
       "route": "core/tax-and-sars/",
       "section": "core",
       "slug": "tax-and-sars",
       "titles": {
+        "af": "Belasting en SARS",
         "en": "Tax and SARS"
       }
     },
@@ -330,13 +334,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 5,
       "route": "core/vehicles/",
       "section": "core",
       "slug": "vehicles",
       "titles": {
+        "af": "Voertuie en jou besigheid",
         "en": "Vehicles for your business"
       }
     },
@@ -347,13 +353,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 4,
       "route": "core/what-you-need-to-sell-things/",
       "section": "core",
       "slug": "what-you-need-to-sell-things",
       "titles": {
+        "af": "Wat jy nodig het om dinge te verkoop",
         "en": "What you need to sell things"
       }
     },
@@ -381,13 +389,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 10,
       "route": "core/you-are-the-business/",
       "section": "core",
       "slug": "you-are-the-business",
       "titles": {
+        "af": "Jy is die besigheid",
         "en": "You are the business"
       }
     },
@@ -580,13 +590,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 3,
       "route": "start/how-this-was-made/",
       "section": "start",
       "slug": "how-this-was-made",
       "titles": {
+        "af": "KI-openbaarmaking",
         "en": "How this was made and how to check it"
       }
     },
@@ -597,13 +609,15 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 2,
       "route": "start/how-to-use/",
       "section": "start",
       "slug": "how-to-use",
       "titles": {
+        "af": "Hoe om hierdie gereedskapstel te gebruik",
         "en": "How to use this toolkit"
       }
     },
@@ -633,20 +647,22 @@
       },
       "kind": "guide",
       "langs": [
-        "en"
+        "en",
+        "af"
       ],
       "order": 4,
       "route": "start/what-has-changed/",
       "section": "start",
       "slug": "what-has-changed",
       "titles": {
+        "af": "Veranderingslys en verskille",
         "en": "What has changed"
       }
     }
   },
   "langs": {
     "af": {
-      "docCount": 9,
+      "docCount": 17,
       "status": "partial"
     },
     "en": {

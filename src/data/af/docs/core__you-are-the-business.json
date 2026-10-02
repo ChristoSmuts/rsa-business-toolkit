@@ -1,0 +1,1922 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "all"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Alles anders in hierdie gereedskapstel gaan oor die besigheid. Hierdie een gaan oor jou, want in ’n eenpersoonbesigheid is jy nie die eienaar van die bate nie. Jy is die bate."
+        }
+      ],
+      "hash": "d049e4edf1ca8201",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "cca5ba6886a62907"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Drie dinge volg daaruit, en nie een daarvan word elders gedek nie:"
+        }
+      ],
+      "hash": "5c4ec9a4a4254c30",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "946e23d63ba91184"
+    },
+    {
+      "hash": "54000d56c4b15319",
+      "id": "intro.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "As jy nie kan werk nie, hou die inkomste op. Watter beskerming jy het, hang af van hoe jou besigheid gestruktureer is, en een struktuur het byna niks."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "As ’n kliënt nie betaal nie, hang dit ook van jou struktuur af hoe jy agter die geld aan gaan. Een struktuur het ’n gratis hof. Die ander een nie."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "As iets met jou gebeur, moet iemand die besigheid kan bestuur of sluit. Vir ’n maatskappy is dit baie moeiliker as wat mense verwag."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "d6f374d06b2cf504",
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "212fc6ff061a036a",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Eenvoudige betekenisse van die terme in hierdie lêer. Die volle lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Unemployment Insurance Fund (Werkloosheidversekeringsfonds). Betaal jou as jy nie kan werk nie. Werknemers dra by; selfstandige mense kan oor die algemeen nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "UIF"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die fonds vir beserings by die werk. Betaal uit as jy beseer word terwyl jy werk."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "COIDA"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Bewys dat jou COIDA-rekening op datum is. Verval elke jaar. Word dikwels vir tenderwerk benodig."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Letter of Good Standing"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Private versekering wat jou ’n maandelikse inkomste betaal as siekte of ’n besering keer dat jy werk."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Inkomstebeskerming"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Formele skriftelike eis om betaling, gewoonlik die laaste stap voor die hof."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Aanmaningsbrief"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Skuld wat jy te lank laat staan, kan nie meer geëis word nie. Drie jaar vir die meeste gewone skulde."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Verjaring"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die persoon wat die Master of the High Court aanstel om ’n oorledene se boedel af te handel."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Eksekuteur"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die kantoor wat toesig hou oor bestorwe boedels."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Master of the High Court (Meester van die Hooggeregshof)"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Memorandum of Incorporation (akte van oprigting). Die maatskappy se reëlboek."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "MOI"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "0ecf18865dcf8b8a"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 1: as jy nie kan werk nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "9c28a05ddfd638dd",
+      "id": "part-1-if-you-cannot-work",
+      "kind": "heading",
+      "sourceHash": "efd44e0c1f04beb1",
+      "text": "Deel 1: as jy nie kan werk nie"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Eenmansaak: jy het niks"
+        }
+      ],
+      "depth": 3,
+      "hash": "741908c03f90de5b",
+      "id": "sole-proprietor-you-have-nothing",
+      "kind": "heading",
+      "sourceHash": "fb3cceb9d5a18499",
+      "text": "Eenmansaak: jy het niks"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is nie ’n oordrywing nie. Artikel 1 van die Unemployment Insurance Contributions Act omskryf ’n werknemer as ’n natuurlike persoon wat vergoeding vir gelewerde dienste ontvang, maar sluit ’n onafhanklike kontrakteur uitdruklik uit. ’n Eenmansaak-eienaar kan dus nie tot UIF bydra nie, want ’n eenmansaak-eienaar kan nie ’n werknemer wees wat werkloos word nie."
+        }
+      ],
+      "hash": "ae84b94b85c77220",
+      "id": "sole-proprietor-you-have-nothing.1",
+      "kind": "paragraph",
+      "sourceHash": "2118fe5c798627fa"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Met COIDA is dit dieselfde storie. Sy omskrywing van ’n werknemer dek iemand wat kragtens ’n dienskontrak werk, en ’n werkende direkteur van ’n maatskappy, maar ’n eenmansaak-eienaar of ’n vennoot is nie ’n werknemer kragtens die wet nie."
+        }
+      ],
+      "hash": "a0dd4452c00a2a0f",
+      "id": "sole-proprietor-you-have-nothing.2",
+      "kind": "paragraph",
+      "sourceHash": "29ef519bad4ce837"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As eenmansaak-eienaar het jy dus: geen werkloosheidsvoordeel, geen siektevoordeel, geen kraamvoordeel en geen dekking as jy beseer word terwyl jy werk nie. Breek jou pols op ’n Dinsdag en jou inkomste is nul totdat jy weer kan werk."
+        }
+      ],
+      "hash": "974ad9227c313d43",
+      "id": "sole-proprietor-you-have-nothing.3",
+      "kind": "paragraph",
+      "sourceHash": "17f76985dc3e9c90"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Pty Ltd wat jou ’n salaris betaal: jy het dalk iets"
+        }
+      ],
+      "depth": 3,
+      "hash": "1649dbb21b09bd9a",
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some",
+      "kind": "heading",
+      "sourceHash": "01fdaf40a5e3b083",
+      "text": "Pty Ltd wat jou ’n salaris betaal: jy het dalk iets"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Eenpersoonmaatskappy verander dit, en dit is een van die min werklike voordele van inlywing wat niemand noem wanneer mense praat oor of jy moet registreer of nie."
+        }
+      ],
+      "hash": "3ca41e6a6920b80f",
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some.1",
+      "kind": "paragraph",
+      "sourceHash": "f18dfc8f2419f21b"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "COIDA is die duideliker een."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die wet se omskrywing van ’n werknemer sluit ’n werkende direkteur van ’n maatskappy in wat ’n dienskontrak aangegaan het, vir sover hy of sy binne die bestek van daardie diens optree. Dit sluit aandeelhouers of stil vennote uit wat net dividende of ’n winsaandeel ontvang. Riglyne vir 2026 stel dit duidelik: ’n werkende direkteur wat ’n maandelikse salaris kry, kwalifiseer as ’n werknemer, moet geregistreer wees, en moet ’n Return of Earnings (verdiensteopgawe) indien, selfs waar daardie direkteur die enigste werknemer is."
+        }
+      ],
+      "hash": "da9ec8c681fb4852",
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some.2",
+      "kind": "paragraph",
+      "sourceHash": "c0f476164fc09cba"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit maak saak, want COIDA is presies die dekking wat ’n eenmansaak-eienaar nie kan kry nie: dit betaal uit vir ’n besering aan diens."
+        }
+      ],
+      "hash": "3af750701b5e7c02",
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some.3",
+      "kind": "paragraph",
+      "sourceHash": "77e84061cdbb8c31"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "UIF is die betwiste een."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Sommige bronne sê dat ’n direkteur op die maatskappy se betaalstaat ’n werknemer vir UIF is en moet bydra, wat ook sou beteken dat hy of sy kan eis. Ander sê dat UIF nie geld waar die direkteur direkteursfooie neem eerder as ’n salaris kragtens ’n dienskontrak nie. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Betaal jouself uit ’n Pty Ltd"
+            }
+          ],
+          "doc": "core/paying-yourself",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " stel albei standpunte uiteen."
+        }
+      ],
+      "hash": "7100c378bf4aa586",
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some.4",
+      "kind": "paragraph",
+      "sourceHash": "225e8738c823211b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die punt vir hierdie lêer is die een wat gemis word. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "UIF word gewoonlik as ’n koste beskryf. Vir ’n eenpersoonmaatskappy is dit dalk ook die enigste siektevoordeel waartoe jy ooit toegang sal hê."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " As jy van plan was om ’n argument te vind om nie by te dra nie, weeg dit eers op."
+        }
+      ],
+      "hash": "b9bc75ae434a7114",
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some.5",
+      "kind": "paragraph",
+      "sourceHash": "99d05e37ce780458"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die werkloosheidsvoordeel is die vreemde een vir ’n enigste direkteur, want om werkloos te raak by jou eie maatskappy is ’n vreemde gebeurtenis. Die siekte- en kraamvoordele is die realistiese voordele."
+        }
+      ],
+      "hash": "56885c16ff13e224",
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some.6",
+      "kind": "paragraph",
+      "sourceHash": "6f2980d1cb196671"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat albei strukture steeds nodig het"
+        }
+      ],
+      "depth": 3,
+      "hash": "a44472ab4a482c12",
+      "id": "what-both-structures-still-need",
+      "kind": "heading",
+      "sourceHash": "c3b82792ba7fee96",
+      "text": "Wat albei strukture steeds nodig het"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Inkomstebeskerming of ongeskiktheidsdekking."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Private versekering wat ’n maandelikse inkomste betaal as jy nie kan werk nie. Vir ’n eenpersoonbesigheid is dit waarskynlik belangriker as die dekking vir openbare aanspreeklikheid wat elders in hierdie gereedskapstel aanbeveel word, want openbare aanspreeklikheid beskerm teen iets wat jy dalk aan iemand anders doen, en inkomstebeskerming beskerm teen die ding wat die waarskynlikste met jou self sal gebeur."
+        }
+      ],
+      "hash": "bea611614a7c62a2",
+      "id": "what-both-structures-still-need.1",
+      "kind": "paragraph",
+      "sourceHash": "ac3d6f45beb1da02"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vra ’n makelaar vir inkomstebeskerming, en vra spesifiek wat die wagtydperk is voordat dit betaal, want ’n polis wat ná drie maande begin betaal, help nie met ’n besering van ses weke nie."
+        }
+      ],
+      "hash": "f450412c9ae21a46",
+      "id": "what-both-structures-still-need.2",
+      "kind": "paragraph",
+      "sourceHash": "2893595adb4ca5ff"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "’n Kontantbuffer."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Nie ’n belegging nie, net geld in ’n aparte rekening wat jy nie aanraak nie. Genoeg om huur te betaal vir die aantal maande wat jy nie sou kan werk nie. Dit is die hele veiligheidsnet vir ’n eenmansaak-eienaar en die eerste verdedigingslinie vir ’n maatskappy."
+        }
+      ],
+      "hash": "9664a0ebd375b1a4",
+      "id": "what-both-structures-still-need.3",
+      "kind": "paragraph",
+      "sourceHash": "8ce141624a5c0ccb"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "COIDA-registrasie en ’n Letter of Good Standing, as jy ’n maatskappy het en jouself ’n salaris betaal."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die Letter of Good Standing verval elke jaar, en jy sal ’n geldige een nodig hê om vir regeringswerk te tender."
+        }
+      ],
+      "hash": "ca85b10caf3cc858",
+      "id": "what-both-structures-still-need.4",
+      "kind": "paragraph",
+      "sourceHash": "8d9e5fbe065e7495"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "what-both-structures-still-need.5",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 2: wanneer ’n kliënt nie betaal nie"
+        }
+      ],
+      "depth": 2,
+      "hash": "57f49b5753c7b9b0",
+      "id": "part-2-when-a-customer-does-not-pay",
+      "kind": "heading",
+      "sourceHash": "f2bce52bffff64d3",
+      "text": "Deel 2: wanneer ’n kliënt nie betaal nie"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die leer van stappe"
+        }
+      ],
+      "depth": 3,
+      "hash": "d86f3902229a4934",
+      "id": "the-escalation-ladder",
+      "kind": "heading",
+      "sourceHash": "739fbfe5a511639b",
+      "text": "Die leer van stappe"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die meeste onbetaalde fakture word in die eerste twee stappe opgelos. Werk hulle in volgorde deur en hou elke boodskap."
+        }
+      ],
+      "hash": "d8f8543e072d40fa",
+      "id": "the-escalation-ladder.1",
+      "kind": "paragraph",
+      "sourceHash": "591645a580aaa069"
+    },
+    {
+      "hash": "644c07e8c5bd3064",
+      "id": "the-escalation-ladder.2",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "’n Vriendelike herinnering"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", drie dae ná die vervaldatum. Aanvaar dat dit vergeet is, want gewoonlik is dit."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "’n Ferm herinnering"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", ’n week later, wat die bedrag, die faktuurnommer en die datum waarop dit betaal moes word, herhaal."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "’n Finale eis"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ", met ’n duidelike sperdatum, wat sê wat volgende gebeur. Sit dit op skrif, nie in ’n stemboodskap nie."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "’n Aanmaningsbrief."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Dit is die formele stap voor die hof. ’n Prokureur sal een teen ’n redelike fooi skryf, en verbasend baie skulde word op hierdie punt betaal, want die briefhoof verander die gesprek."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Die hof."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Watter hof hang af van hoe jou besigheid gestruktureer is. Sien hieronder."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": true,
+      "sourceHash": "309c1cb079086fa4",
+      "start": 1
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Moenie jare wag nie."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " ’n Geldeis moet oor die algemeen binne drie jaar ná die datum waarop die skuld ontstaan het, ingestel word, anders verjaar dit en jy verloor dit."
+        }
+      ],
+      "hash": "363485aaad22d3cd",
+      "id": "the-escalation-ladder.3",
+      "kind": "paragraph",
+      "sourceHash": "07db382527b12bed"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Small Claims Court: net as jy ’n natuurlike persoon is"
+        }
+      ],
+      "depth": 3,
+      "hash": "d34165c0baf86e2b",
+      "id": "small-claims-court-only-if-you-are-a-natural-person",
+      "kind": "heading",
+      "sourceHash": "819c84ca482302e4",
+      "text": "Small Claims Court: net as jy ’n natuurlike persoon is"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit is die reël wat maatskappy-eienaars onverhoeds betrap."
+        }
+      ],
+      "hash": "d13f605e160cb6e5",
+      "id": "small-claims-court-only-if-you-are-a-natural-person.1",
+      "kind": "paragraph",
+      "sourceHash": "82fec69605ac5d5c"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Artikel 7(1) van die Small Claims Courts Act 61 of 1984 bepaal dat net ’n natuurlike persoon ’n aksie mag instel, en dat ’n regspersoon net as verweerder ’n party mag word."
+        }
+      ],
+      "hash": "371e8a8e7e94d2b0",
+      "id": "small-claims-court-only-if-you-are-a-natural-person.2",
+      "kind": "paragraph",
+      "sourceHash": "3b0ebad60c749eff"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dus:"
+        }
+      ],
+      "hash": "1615c0130bc80958",
+      "id": "small-claims-court-only-if-you-are-a-natural-person.3",
+      "kind": "paragraph",
+      "sourceHash": "14b8aecd3aaaa33e"
+    },
+    {
+      "align": [
+        null,
+        null,
+        null
+      ],
+      "hash": "eb7887c94263c217",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Jy is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jy word R25,000 geskuld"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Kan jy die Small Claims Court (Kleineisehof) gebruik?"
+          }
+        ]
+      ],
+      "id": "small-claims-court-only-if-you-are-a-natural-person.4",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "t": "text",
+              "v": "’n Eenmansaak-eienaar"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Ja, die skuld is joune"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Ja."
+                }
+              ],
+              "t": "strong"
+            },
+            {
+              "t": "text",
+              "v": " Gratis, geen prokureur nie, verhore dikwels ná ure."
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "’n Pty Ltd"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Die skuld is die maatskappy s’n"
+            }
+          ],
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Nee."
+                }
+              ],
+              "t": "strong"
+            },
+            {
+              "t": "text",
+              "v": " Jy moet ’n prokureur opdrag gee en na die landdroshof gaan."
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "4f67ba0db8078243"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die limiet is R30,000, vasgestel in Government Gazette (Staatskoerant) 55038, Government Notice (Goewermentskennisgewing) 7717 van 20 Julie 2026, van krag vanaf 1 Augustus 2026. Dit het die R20,000-limiet vervang wat sedert 2019 gegeld het, en baie webwerwe noem nog die ou syfer."
+        }
+      ],
+      "hash": "4d33c17de7851f80",
+      "id": "small-claims-court-only-if-you-are-a-natural-person.5",
+      "kind": "paragraph",
+      "sourceHash": "e312b515dcfa7e59"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Paar verdere punte wat die moeite werd is om te weet:"
+        }
+      ],
+      "hash": "79a6a19ae77b0bfa",
+      "id": "small-claims-court-only-if-you-are-a-natural-person.6",
+      "kind": "paragraph",
+      "sourceHash": "4753555755909b8a"
+    },
+    {
+      "hash": "f2e73f1b312ae796",
+      "id": "small-claims-court-only-if-you-are-a-natural-person.7",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "’n Eis kan steeds in die Small Claims Court teen jou maatskappy "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "ingestel word"
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": ". ’n Regspersoon mag as verweerder deelneem, en ’n benoemde direkteur of beampte mag namens dit verskyn. Die nadeel werk net in een rigting."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Geen regsverteenwoordiging word toegelaat nie. Jy verskyn self, en die kommissaris vra vrae eerder as om jou ’n saak te laat beredeneer."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jy kan nie teen die Staat eis nie, en eise kan nie teen munisipaliteite of plaaslike regering ingestel word nie."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "As jou eis meer as R30,000 is, mag jy afstand doen van die bedrag bo die limiet om die eis binne die limiet te bring. Soms die moeite werd om regskoste te vermy."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "1698fad68005b4d3"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Dit hoort in die gesprek oor of jy moet registreer."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " As jy ’n maatskappy registreer, verloor jy toegang tot die goedkoopste roete om skuld in die land in te vorder, en niemand wat R175 teen beperkte aanspreeklikheid opweeg, word dit vertel nie."
+        }
+      ],
+      "hash": "5bc9cea5b36dd063",
+      "id": "small-claims-court-only-if-you-are-a-natural-person.8",
+      "kind": "paragraph",
+      "sourceHash": "37852f7e2f984471"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voorkoming is beter as invordering"
+        }
+      ],
+      "depth": 3,
+      "hash": "89f4f35dea18fdd7",
+      "id": "prevention-beats-collection",
+      "kind": "heading",
+      "sourceHash": "cb5bfd68b91b76b9",
+      "text": "Voorkoming is beter as invordering"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Alles hierbo is wat jy doen nadat dit verkeerd geloop het. Die goedkoper beheermaatreëls kom vroeër:"
+        }
+      ],
+      "hash": "ce31d5145718ddf9",
+      "id": "prevention-beats-collection.1",
+      "kind": "paragraph",
+      "sourceHash": "f0553588d9a29fa5"
+    },
+    {
+      "hash": "9a11a309cc81b6a3",
+      "id": "prevention-beats-collection.2",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Vra ’n deposito. Sien "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Watter sjabloon om wanneer te gebruik"
+              }
+            ],
+            "doc": "paperwork/which-template-to-use-when",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Stuur die faktuur op die dag wat jy klaarmaak, nie aan die einde van die maand nie."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Stel bepalings oor laat betaling op skrif voor die werk, want rente op ’n agterstallige bedrag is net afdwingbaar as dit vooraf ooreengekom is."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Vir kreatiewe of professionele werk, dra eienaarskap oor by volle betaling eerder as by aflewering."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Wag totdat die geld in jou saldo weerspieël (reflected) voordat jy enigiets oorhandig. Sien "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Tuiswerk en veilige ontmoetings"
+              }
+            ],
+            "doc": "core/working-from-home-and-safety",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "7c6f8d2d3e8edaeb"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "prevention-beats-collection.3",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Deel 3: as iets met jou gebeur"
+        }
+      ],
+      "depth": 2,
+      "hash": "758190f4f7a70d5e",
+      "id": "part-3-if-something-happens-to-you",
+      "kind": "heading",
+      "sourceHash": "10eed8354dbcdc40",
+      "text": "Deel 3: as iets met jou gebeur"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Eenmansaak"
+        }
+      ],
+      "depth": 3,
+      "hash": "f8e6188bec0f95fa",
+      "id": "sole-proprietor",
+      "kind": "heading",
+      "sourceHash": "543332baaa7c5b7c",
+      "text": "Eenmansaak"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy en die besigheid is regtens dieselfde persoon, so die besigheid vorm deel van jou boedel. Jou familie sal toegang nodig hê tot die bankrekening, die kliëntelys en enige deposito’s wat kliënte reeds betaal het. Skryf die eenbladsy-rekord hieronder."
+        }
+      ],
+      "hash": "66f29a67604e0d13",
+      "id": "sole-proprietor.1",
+      "kind": "paragraph",
+      "sourceHash": "077cd124536031b1"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "Pty Ltd: dit is die ernstige een"
+        }
+      ],
+      "depth": 3,
+      "hash": "b7794fb424d92d2b",
+      "id": "pty-ltd-this-is-the-serious-one",
+      "kind": "heading",
+      "sourceHash": "b32ff06d87097e93",
+      "text": "Pty Ltd: dit is die ernstige een"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Maatskappy is ’n aparte regspersoon met ewigdurende opvolging, maar "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "dit kan net deur sy direkteure optree."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Kragtens die Companies Act hou ’n persoon op om ’n direkteur te wees wanneer hy of sy sterf."
+        }
+      ],
+      "hash": "ccee6e84a5188ea7",
+      "id": "pty-ltd-this-is-the-serious-one.1",
+      "kind": "paragraph",
+      "sourceHash": "33f06a483b555eef"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wanneer ’n enigste direkteur sterf, is die maatskappy dus magteloos. En omdat direkteure deur aandeelhouers aangestel word, en die enigste aandeelhouer dieselfde persoon is, is daar niemand oor wat ’n plaasvervanger kan aanstel nie."
+        }
+      ],
+      "hash": "5d6358ea0b0733e6",
+      "id": "pty-ltd-this-is-the-serious-one.2",
+      "kind": "paragraph",
+      "sourceHash": "57cfb4a71875362f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat dan gebeur:"
+        }
+      ],
+      "hash": "069246580d86f0a8",
+      "id": "pty-ltd-this-is-the-serious-one.3",
+      "kind": "paragraph",
+      "sourceHash": "9fcf19f4382acdb8"
+    },
+    {
+      "hash": "9f02102d4a815736",
+      "id": "pty-ltd-this-is-the-serious-one.4",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Die aandele val in die bestorwe boedel. Die boedel moet binne 14 dae kragtens artikel 13(1) van die Administration of Estates Act 66 of 1965 by die Master of the High Court aangemeld word."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die Master stel ’n eksekuteur aan. Dit neem gewoonlik enigiets van twee weke tot drie maande."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Of die eksekuteur dan ’n direkteur kan aanstel, "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "hang af van wat jou MOI sê."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " As die MOI nie vir die eksekuteur daardie bevoegdheid gee nie, is die oplossing ’n aansoek by die hof, wat duur is en na die hof se diskresie toegestaan word."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "2e2bbda013818b5d"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Intussen kan niemand iets teken nie, die bankrekening sit in werklikheid vas, salarisse en verpligtinge teenoor SARS word nie betaal nie, en CIPC se sperdatums hou aan loop."
+        }
+      ],
+      "hash": "efdf3745d359497f",
+      "id": "pty-ltd-this-is-the-serious-one.5",
+      "kind": "paragraph",
+      "sourceHash": "0551e4ff16a34a5e"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Suid-Afrika het ’n werklike voorbeeld. In die Saga Wines-saak het ’n enigste direkteur en aandeelhouer gesterf sonder ’n testament wat oor haar Suid-Afrikaanse aandele gehandel het, en die maatskappy se finansiële bestuurder moes ’n dringende aansoek in die Hooggeregshof bring om tussentydse bevoegdhede te kry sodat die besigheid kon funksioneer."
+        }
+      ],
+      "hash": "bea16e2380684bb6",
+      "id": "pty-ltd-this-is-the-serious-one.6",
+      "kind": "paragraph",
+      "sourceHash": "98ad45fab370fed4"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Ongeskiktheid kan erger as die dood wees"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": ", want daar is geen boedel nie en dus geen eksekuteur nie. ’n Persoon wat ’n beroerte gehad het, is steeds die direkteur, steeds die aandeelhouer, en steeds nie in staat om op te tree nie. Om dit op te los, kan ’n kurator vereis wat deur die Hooggeregshof aangestel word. Vra ’n prokureur wat jou opsies is voordat jy hulle nodig het."
+        }
+      ],
+      "hash": "296273b0f6b617ae",
+      "id": "pty-ltd-this-is-the-serious-one.7",
+      "kind": "paragraph",
+      "sourceHash": "685b56cea72f1522"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die vier oplossings, goedkoopste eerste"
+        }
+      ],
+      "depth": 3,
+      "hash": "b3e399a47e20afee",
+      "id": "the-four-fixes-cheapest-first",
+      "kind": "heading",
+      "sourceHash": "a7ed93fab389a862",
+      "text": "Die vier oplossings, goedkoopste eerste"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "1. Stel ’n tweede direkteur aan."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die enkele doeltreffendste oplossing. ’n Eggenoot, ’n volwasse kind, ’n betroubare sakevennoot. As een direkteur sterf of ongeskik raak, kan die ander dadelik optree en die maatskappy hou aan werk. Om ’n direkteursverandering by CIPC in te dien, is gratis."
+        }
+      ],
+      "hash": "4bbeb51353e2400d",
+      "id": "the-four-fixes-cheapest-first.1",
+      "kind": "paragraph",
+      "sourceHash": "0be39d0552dadab1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wees bewus van een afweging wat hierdie gereedskapstel reeds uitlig. As jy ’n "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "aandeelhouer"
+            }
+          ],
+          "t": "em"
+        },
+        {
+          "t": "text",
+          "v": " byvoeg wat nie ’n direkteur is nie, kan dit jou die vrystelling van ’n eienaarbestuurde maatskappy van oudit en onafhanklike oorsig kos, wat in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bestuur van ’n Pty Ltd"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " beskryf word. As jy ’n tweede "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "direkteur"
+            }
+          ],
+          "t": "em"
+        },
+        {
+          "t": "text",
+          "v": " byvoeg, het dit nie daardie uitwerking nie. As jy albei doen, kyk wat die gevolg vir die Public Interest Score (openbare-belangtelling) is."
+        }
+      ],
+      "hash": "f3498b22e3e1be76",
+      "id": "the-four-fixes-cheapest-first.2",
+      "kind": "paragraph",
+      "sourceHash": "a366fa83efa33bb9"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "2. Gaan jou MOI na."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Vind uit of dit ’n eksekuteur toelaat om ’n direkteur aan te stel. As jy ’n standaardmaatskappy op BizPortal geregistreer het, moenie aanneem dat dit so is nie. Dit is ’n vraag vir ’n prokureur, en dit is ’n kort een."
+        }
+      ],
+      "hash": "497356468f090370",
+      "id": "the-four-fixes-cheapest-first.3",
+      "kind": "paragraph",
+      "sourceHash": "aa9f7b5b7e7b19b9"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "3. Skryf ’n testament wat oor die aandele handel"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": ", en maak seker dat dit met die MOI strook. ’n Testament wat die aandele nalaat aan iemand wat die MOI nie erken as iemand wat kan optree nie, los nie die probleem op nie."
+        }
+      ],
+      "hash": "72fe54e1438d5fc3",
+      "id": "the-four-fixes-cheapest-first.4",
+      "kind": "paragraph",
+      "sourceHash": "8463d92ea346563b"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "4. Oorweeg om die aandele in ’n trust te hou"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": ", sodat trustees dadelik as aandeelhouer kan optree. Dit is die swaarste opsie, dit het sy eie koste en belastinggevolge, en dit is net die moeite werd vir ’n besigheid met werklike waarde. Kry advies voordat jy dit doen."
+        }
+      ],
+      "hash": "da26d4861daee310",
+      "id": "the-four-fixes-cheapest-first.5",
+      "kind": "paragraph",
+      "sourceHash": "055618c0f6249432"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die eenbladsy-rekord"
+        }
+      ],
+      "depth": 3,
+      "hash": "847a5a94d63c8809",
+      "id": "the-one-page-record",
+      "kind": "heading",
+      "sourceHash": "38633851bc25f27a",
+      "text": "Die eenbladsy-rekord"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Skryf dit, hou dit êrens waar ’n betroubare persoon dit kan kry, en werk dit een keer per jaar by. Dit kos ’n uur, en dit is die verskil tussen ’n familie wat jou besigheid ordelik sluit en een wat dit verloor."
+        }
+      ],
+      "hash": "91c6f8006127f1b6",
+      "id": "the-one-page-record.1",
+      "kind": "paragraph",
+      "sourceHash": "8c0f1dc2d8c6ef9f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat om in te sluit:"
+        }
+      ],
+      "hash": "3c6b392f83d7481c",
+      "id": "the-one-page-record.2",
+      "kind": "paragraph",
+      "sourceHash": "01432391c7a4e95c"
+    },
+    {
+      "hash": "f83f575852164611",
+      "id": "the-one-page-record.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Wie om eerste te bel: jou rekenmeester, jou prokureur, jou kontakpersoon by die bank"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die geregistreerde maatskappynaam en registrasienommer, en waar die CoR 14.3 is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Waar die MOI, aandelesertifikaat en maatskappyrekords gehou word"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die bank, die rekening, en wie gemagtig is om dit te bedryf"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Of daar ’n tweede direkteur is, en wie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Jou SARS-belastingnommer en eFiling-besonderhede, en wie jou geregistreerde verteenwoordiger is"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Enige lisensie of registrasie wat hernu moet word, en wanneer: SAPS-registrasie vir tweedehandse goedere, munisipale lisensie, B-BBEE-beëdigde verklaring, COIDA Letter of Good Standing"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Kliënte wat ’n deposito betaal het vir werk wat nog nie gedoen is nie, en hoeveel"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Geld wat aan jou geskuld word, en deur wie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Geld wat jy skuld, en aan wie"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Waar die wagwoordbestuurder is, en hoe om daarin te kom"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Waar die handelsmerklêers is, as iemand die besigheid sal voortsit"
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "50f22e0c6ee3fd78"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Moenie wagwoorde in hierdie dokument sit nie."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Sit die ligging van die wagwoordbestuurder in, en wie die hoofsleutel hou."
+        }
+      ],
+      "hash": "90cda8ba200d3840",
+      "id": "the-one-page-record.4",
+      "kind": "paragraph",
+      "sourceHash": "a55ef8500685e119"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "the-one-page-record.5",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kontrolelys"
+        }
+      ],
+      "depth": 2,
+      "hash": "99697455a006a03f",
+      "id": "checklist",
+      "kind": "heading",
+      "sourceHash": "fe7899d3da62ca07",
+      "text": "Kontrolelys"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Beskerming"
+        }
+      ],
+      "depth": 4,
+      "hash": "84af9e1979eeb9ca",
+      "id": "protection",
+      "kind": "heading",
+      "pseudo": true,
+      "sourceHash": "465444f39efbe504",
+      "text": "Beskerming"
+    },
+    {
+      "hash": "012ad7204e9833ee",
+      "id": "protection.1",
+      "items": [
+        {
+          "block": "protection.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Ek weet of ek tot UIF kan bydra, en het doelbewus besluit eerder as per toeval"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:277f7921"
+        },
+        {
+          "block": "protection.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "As ek ’n maatskappy het en myself ’n salaris betaal: vir COIDA geregistreer, Return of Earnings ingedien, Letter of Good Standing geldig"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:69e6fedf",
+          "when": {
+            "entity": "pty"
+          }
+        },
+        {
+          "block": "protection.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "’n Kwotasie vir inkomstebeskerming gekry, en die wagtydperk nagegaan voordat dit betaal"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:6be42aa2"
+        },
+        {
+          "block": "protection.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Het ’n kontantbuffer in ’n aparte rekening, bereken in maande wat ek nie kan werk nie"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:84889f74"
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "67e42909037c58d2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Betaal word"
+        }
+      ],
+      "depth": 4,
+      "hash": "5725e19c822f1666",
+      "id": "getting-paid",
+      "kind": "heading",
+      "pseudo": true,
+      "sourceHash": "cf8342d4a655c0dc",
+      "text": "Betaal word"
+    },
+    {
+      "hash": "279aebdbcb22d5c7",
+      "id": "getting-paid.1",
+      "items": [
+        {
+          "block": "getting-paid.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Deposito ontvang voordat ek materiaal koop of met werk begin"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:80860154"
+        },
+        {
+          "block": "getting-paid.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Bepalings oor laat betaling op skrif ooreengekom voor die werk, nie daarna nie"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:91c38f5a"
+        },
+        {
+          "block": "getting-paid.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Ek weet watter hof ek mag gebruik, gegewe hoe my besigheid gestruktureer is"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:21970149"
+        },
+        {
+          "block": "getting-paid.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Niks wat aan my geskuld word, is amper drie jaar oud nie"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:b6fe6cfd"
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "6a11c7295e900b16"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kontinuïteit"
+        }
+      ],
+      "depth": 4,
+      "hash": "51f09826b6da6bf5",
+      "id": "continuity",
+      "kind": "heading",
+      "pseudo": true,
+      "sourceHash": "8941e06016a928fa",
+      "text": "Kontinuïteit"
+    },
+    {
+      "hash": "d712d0bbb916cc87",
+      "id": "continuity.1",
+      "items": [
+        {
+          "block": "continuity.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "’n Tweede direkteur aangestel, of ’n doelbewuste besluit om dit nie te doen nie"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:8e6615a6"
+        },
+        {
+          "block": "continuity.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Nagegaan of my MOI ’n eksekuteur toelaat om ’n direkteur aan te stel"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:b554cb87"
+        },
+        {
+          "block": "continuity.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "’n Testament wat oor die aandele handel, in ooreenstemming met die MOI"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:b5a8d0d2"
+        },
+        {
+          "block": "continuity.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Die eenbladsy-rekord geskryf, en iemand weet waar dit is"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:c7f7b0fd"
+        },
+        {
+          "block": "continuity.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Rekord in die afgelope twaalf maande hersien"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "id": "core/you-are-the-business:e3e2729b"
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "79ab900f53dc5dc7"
+    }
+  ],
+  "contentHash": "5bf438b7e4ae2148",
+  "generated": {
+    "date": "2026-09-14",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Jy is die besigheid",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "part-1-if-you-cannot-work",
+      "text": "Deel 1: as jy nie kan werk nie"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "depth": 3,
+      "id": "sole-proprietor-you-have-nothing",
+      "text": "Eenmansaak: jy het niks"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 3,
+      "id": "pty-ltd-paying-you-a-salary-you-may-have-some",
+      "text": "Pty Ltd wat jou ’n salaris betaal: jy het dalk iets"
+    },
+    {
+      "depth": 3,
+      "id": "what-both-structures-still-need",
+      "text": "Wat albei strukture steeds nodig het"
+    },
+    {
+      "depth": 2,
+      "id": "part-2-when-a-customer-does-not-pay",
+      "text": "Deel 2: wanneer ’n kliënt nie betaal nie"
+    },
+    {
+      "depth": 3,
+      "id": "the-escalation-ladder",
+      "text": "Die leer van stappe"
+    },
+    {
+      "depth": 3,
+      "id": "small-claims-court-only-if-you-are-a-natural-person",
+      "text": "Small Claims Court: net as jy ’n natuurlike persoon is"
+    },
+    {
+      "depth": 3,
+      "id": "prevention-beats-collection",
+      "text": "Voorkoming is beter as invordering"
+    },
+    {
+      "depth": 2,
+      "id": "part-3-if-something-happens-to-you",
+      "text": "Deel 3: as iets met jou gebeur"
+    },
+    {
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "depth": 3,
+      "id": "sole-proprietor",
+      "text": "Eenmansaak"
+    },
+    {
+      "appliesTo": {
+        "entity": "pty"
+      },
+      "depth": 3,
+      "id": "pty-ltd-this-is-the-serious-one",
+      "text": "Pty Ltd: dit is die ernstige een"
+    },
+    {
+      "depth": 3,
+      "id": "the-four-fixes-cheapest-first",
+      "text": "Die vier oplossings, goedkoopste eerste"
+    },
+    {
+      "depth": 3,
+      "id": "the-one-page-record",
+      "text": "Die eenbladsy-rekord"
+    },
+    {
+      "depth": 2,
+      "id": "checklist",
+      "text": "Kontrolelys"
+    },
+    {
+      "depth": 4,
+      "id": "protection",
+      "pseudo": true,
+      "text": "Beskerming"
+    },
+    {
+      "depth": 4,
+      "id": "getting-paid",
+      "pseudo": true,
+      "text": "Betaal word"
+    },
+    {
+      "depth": 4,
+      "id": "continuity",
+      "pseudo": true,
+      "text": "Kontinuïteit"
+    }
+  ],
+  "id": "core/you-are-the-business",
+  "kind": "guide",
+  "lang": "af",
+  "order": 10,
+  "readingTime": 13,
+  "related": [
+    "core/paying-yourself",
+    "paperwork/which-template-to-use-when",
+    "core/working-from-home-and-safety",
+    "core/running-a-pty-ltd"
+  ],
+  "route": "core/you-are-the-business/",
+  "section": "core",
+  "slug": "you-are-the-business",
+  "sourcePath": "01 Core - applies to everyone/10-you-are-the-business.md",
+  "sources": {
+    "acts": [
+      "companies-act-71-of-2008"
+    ],
+    "entries": [
+      "govchain-how-to-register-a-company-directly-with-cipc",
+      "clearcomply-public-interest-score",
+      "department-of-justice--small-claims-courts",
+      "department-of-justice--media-statement-22-july-2026",
+      "flip-the-market",
+      "uif-and-the-self-employed",
+      "coida-and-working-directors",
+      "small-claims-court-who-may-sue",
+      "death-of-a-sole-director-and-shareholder"
+    ]
+  },
+  "summary": "Alles anders in hierdie gereedskapstel gaan oor die besigheid. Hierdie een gaan oor jou, want in ’n eenpersoonbesigheid is jy nie die eienaar van die bate nie. Jy is die bate.",
+  "tags": [
+    "continuity",
+    "getting-paid"
+  ],
+  "terms": [
+    {
+      "meaning": "Unemployment Insurance Fund (Werkloosheidversekeringsfonds). Betaal jou as jy nie kan werk nie. Werknemers dra by; selfstandige mense kan oor die algemeen nie.",
+      "term": "UIF"
+    },
+    {
+      "meaning": "Die fonds vir beserings by die werk. Betaal uit as jy beseer word terwyl jy werk.",
+      "term": "COIDA"
+    },
+    {
+      "meaning": "Bewys dat jou COIDA-rekening op datum is. Verval elke jaar. Word dikwels vir tenderwerk benodig.",
+      "term": "Letter of Good Standing"
+    },
+    {
+      "meaning": "Private versekering wat jou ’n maandelikse inkomste betaal as siekte of ’n besering keer dat jy werk.",
+      "term": "Inkomstebeskerming"
+    },
+    {
+      "meaning": "’n Formele skriftelike eis om betaling, gewoonlik die laaste stap voor die hof.",
+      "term": "Aanmaningsbrief"
+    },
+    {
+      "meaning": "’n Skuld wat jy te lank laat staan, kan nie meer geëis word nie. Drie jaar vir die meeste gewone skulde.",
+      "term": "Verjaring"
+    },
+    {
+      "meaning": "Die persoon wat die Master of the High Court aanstel om ’n oorledene se boedel af te handel.",
+      "term": "Eksekuteur"
+    },
+    {
+      "meaning": "Die kantoor wat toesig hou oor bestorwe boedels.",
+      "term": "Master of the High Court (Meester van die Hooggeregshof)"
+    },
+    {
+      "meaning": "Memorandum of Incorporation (akte van oprigting). Die maatskappy se reëlboek.",
+      "term": "MOI"
+    }
+  ],
+  "title": "Jy is die besigheid",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-09-14",
+    "status": "ai-checked"
+  }
+}
