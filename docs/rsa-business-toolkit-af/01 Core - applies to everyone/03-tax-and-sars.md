@@ -149,11 +149,11 @@ SBC-status is nie outomaties nie. As enige voorwaarde nie nagekom word nie, geld
 
 As jy ’n werk het en ’n besigheid aan die kant bedryf, kan ’n verlies in die besigheid oor die algemeen jou totale belasbare inkomste in daardie jaar verminder. Dit is werklik en wettig.
 
-Daar is ’n limiet. Artikel 20A van die Income Tax Act kan verliese uit sekere bedrywe "omhein" ("ring-fence"), veral waar jy ’n hoë verdiener is en die aktiwiteit jaar ná jaar geld verloor, of waar dit soos ’n stokperdjie lyk. As jy beplan om besigheidsverliese teen ’n salaris te gebruik, kry eers ’n uur se advies van ’n belastingpraktisyn.
+Daar is ’n beperking. Artikel 20A van die Income Tax Act kan verliese uit sekere bedrywe "omhein" ("ring-fence"), veral waar jy ’n hoë verdiener is en die aktiwiteit jaar ná jaar geld verloor, of waar dit soos ’n stokperdjie lyk. As jy beplan om besigheidsverliese teen ’n salaris te gebruik, kry eers ’n uur se advies van ’n belastingpraktisyn.
 
 ### Aftreebydraes
 
-Bydraes tot ’n aftree-annuïteit is aftrekbaar, oor die algemeen tot 27.5% van die groter van vergoeding of belasbare inkomste, met ’n perk in rand. Die 2026-begroting het die perk op aftreebydraes na R430,000 per jaar verhoog, van R350,000.
+Bydraes tot ’n aftree-annuïteit is aftrekbaar, oor die algemeen tot 27.5% van die groter van vergoeding of belasbare inkomste, met ’n perk in rand. Die 2026-begroting het die perk op aftreebydraes van R350,000 na R430,000 per jaar verhoog.
 
 Dit help net as jy belasbare inkomste het om te verminder en kontant oor het. Dit is nie nuttig in ’n jaar waarin jy onder die drempel verdien nie.
 

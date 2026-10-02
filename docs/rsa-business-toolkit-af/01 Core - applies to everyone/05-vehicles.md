@@ -48,7 +48,7 @@ Dit is die moeite werd as jy verskeie voertuie onder ’n handelsnaam bedryf, of
 
 eNaTIS, die nasionale verkeersregister, identifiseer elke voertuigeienaar met ’n identiteitsnommer. ’n Persoon gebruik sy of haar SA ID. ’n Maatskappy het nie een nie, so die registrasie-owerheid reik ’n besigheidsregisternommer daaraan uit die eerste keer dat dit ’n voertuig moet besit. Die Business Register Number Certificate (BRNC) is die dokument wat daardie nommer aanteken, en dit word by jou plaaslike verkeersdepartement kragtens die National Road Traffic Act, 1996 uitgereik.
 
-> **In gewone taal:** Die voertuigstelsel het ’n ID-nommer vir elke eienaar nodig. ’n Maatskappy het geen ID-nommer nie, so die verkeersdepartement gee dit een. Die sertifikaat wat daardie nommer wys, is die BRNC. Dit is ’n ander dokument as jou CIPC-sertifikaat, en jy het albei nodig.
+> **In gewone taal:** Die voertuigstelsel het ’n ID-nommer vir elke eienaar nodig. ’n Maatskappy het geen ID-nommer nie, so die verkeersdepartement gee vir die maatskappy een. Die sertifikaat wat daardie nommer wys, is die BRNC. Dit is ’n ander dokument as jou CIPC-sertifikaat, en jy het albei nodig.
 
 Dit is nie jou CIPC-registrasiesertifikaat nie. Die CoR 14.3 bewys dat jou maatskappy bestaan. Die BRNC laat dit toe om voertuie te besit. By die toonbank sal hulle vir albei vra.
 

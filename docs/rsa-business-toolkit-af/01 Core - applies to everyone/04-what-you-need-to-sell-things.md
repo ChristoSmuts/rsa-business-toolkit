@@ -51,7 +51,7 @@ Die COA geld vir enige kosperseel waar kos hanteer, voorberei, gestoor, vervoer 
 
 Hoe om dit te kry:
 
-Kontak die departement van omgewingsgesondheid van die munisipaliteit waar jou perseel geleë is, en vra die aansoekvorm vir die COA. ’n Omgewingsgesondheidspraktisyn (EHP) sal die perseel inspekteer om te kyk of dit aan R638 voldoen. As jy voldoen, word die COA uitgereik. Indien nie, gee die EHP vir jou ’n lys van verbeterings wat vereis word.
+Kontak die departement van omgewingsgesondheid van die munisipaliteit waar jou perseel geleë is, en vra die aansoekvorm vir die COA aan. ’n Omgewingsgesondheidspraktisyn (EHP) sal die perseel inspekteer om te kyk of dit aan R638 voldoen. As jy voldoen, word die COA uitgereik. Indien nie, gee die EHP vir jou ’n lys van verbeterings wat vereis word.
 
 > **In gewone taal:** Vra jou munisipaliteit se gesondheidsdepartement vir die vorm vir die kossertifikaat. ’n Gesondheidsinspekteur sal kom kyk. As jou kombuis slaag, kry jy die sertifikaat. Indien nie, gee hulle vir jou ’n lys van dinge om reg te maak.
 
@@ -156,7 +156,7 @@ Jy het ook ’n geldige belastingnakomingstatus by SARS nodig, en ’n B-BBEE-be
 
 ## As jy professionele of gereguleerde dienste lewer
 
-Sommige werk mag net deur geregistreerde professionele persone gedoen word. Algemene voorbeelde: elektrisiëns wat nakomingsertifikate uitreik, loodgieters, gasinstalleerders, ingenieurs, eiendomsagente, finansiële adviseurs, sekuriteitsdienste en gesondheidswerkers.
+Sommige werk mag net deur geregistreerde professionele persone gedoen word. Algemene voorbeelde: elektrisiëns wat nakomingsertifikate uitreik, loodgieters, gasinstalleerders, ingenieurs, eiendomsagente, finansiële adviseurs, sekuriteitsdienste en gesondheidspraktisyns.
 
 As jou bedryf ’n professionele liggaam het, is registrasie by daardie liggaam gewoonlik nie opsioneel nie. As jy daarsonder werk, kan dit jou kliënt se versekering ongeldig maak, en dit stel jou ook bloot.
 

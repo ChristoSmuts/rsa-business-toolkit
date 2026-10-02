@@ -62,7 +62,7 @@ Registreer ’n Pty as:
 - Jy ’n voertuig in die besigheid se naam moet registreer (sien [Voertuie vir jou besigheid](05-vehicles.md))
 - Jy later ’n vennoot of belegger gaan inbring
 
-Lees [Bestuur van ’n Pty Ltd](06-running-a-pty-ltd.md) voordat jy registreer. Dit gee elke indiening wat ’n maatskappy elke jaar verskuldig is, en wat gebeur wanneer dit gemis word. Lees dit eerste, nie ná registrasie nie.
+Lees [Bestuur van ’n Pty Ltd](06-running-a-pty-ltd.md) voordat jy registreer. Dit sit elke indiening uiteen wat ’n maatskappy elke jaar verskuldig is, en wat gebeur wanneer dit gemis word. Lees dit eerste, nie ná registrasie nie.
 
 ### Twee afwegings wat niemand noem nie
 
@@ -108,7 +108,7 @@ Voordat jy op ’n naam verlief raak, kontroleer drie dinge in hierdie volgorde:
 2. Kontroleer die domein. Gaan na enige Suid-Afrikaanse domeinverkoper en kyk of `jounaam.co.za` beskikbaar is. ’n `.co.za`-domein is goedkoop, gewoonlik ver onder R200 per jaar, maar pryse verskil tussen verkopers, so vergelyk twee of drie. Koop dit selfs al gaan jy nog nie ’n webwerf bou nie.
 3. Kontroleer Instagram, Facebook en TikTok vir die gebruikersnaam.
 
-’n Handelsmerk is iets anders as ’n maatskappynaam. ’n Maatskappynaam keer niemand om dieselfde handelsmerk te gebruik nie. ’n Geregistreerde handelsmerk doen dit wel. Handelsmerke kos ’n paar duisend rand en neem lank. Moenie dit in jaar een doen nie, tensy jou handelsmerk die hele produk is.
+’n Handelsmerk is iets anders as ’n maatskappynaam. ’n Maatskappynaam keer niemand om dieselfde handelsmerk te gebruik nie. ’n Geregistreerde handelsmerk doen dit wel. Geregistreerde handelsmerke kos ’n paar duisend rand en neem lank. Moenie dit in jaar een doen nie, tensy jou handelsmerk die hele produk is.
 
 ## Besigheidsbankrekening
 
