@@ -113,10 +113,16 @@ const label = t('nav.onThisPageCount', { count: items.length });
   }
 
   @media (width >= 1280px) {
+    /*
+     * A sticky grid item stretches to its row unless told not to, and with a viewport-high cap its
+     * own grid then spreads the title and the list over the whole screen.
+     */
     .st-toc--column {
       position: sticky;
       inset-block-start: calc(var(--st-topbar) + var(--st-space-4));
       display: grid;
+      align-self: start;
+      align-content: start;
       grid-template-columns: minmax(0, 1fr);
       gap: var(--st-space-2);
       max-block-size: calc(100vh - var(--st-topbar) - var(--st-space-6));
