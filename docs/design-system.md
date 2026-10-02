@@ -271,8 +271,9 @@ Two rules the content renderers follow that a page package should not undo:
 
 The top bar's Read and Tools menus share a `name`, so the browser keeps one open at a time with no
 script. `navigation.ts` adds what `<details>` lacks: Escape closes the open menu and returns focus to
-its summary, and a click or focus outside closes it, so an open list never rides the sticky bar over
-the article.
+its summary (heard on the document, so it works after a Safari click that focuses nothing), a click
+or focus outside closes it, and scrolling closes it, moving focus to the summary if it was inside,
+so an open list never rides the sticky bar over the article.
 
 Without JavaScript the drawer cannot open, and it does not have to: below 1024px `SiteHeader` shows
 the same `<details>` menus stacked whenever `<html>` has no `js` class, so a phone with scripting off

@@ -55,6 +55,8 @@ test.describe('the D5 trust pieces on every document page', () => {
         // The AI notice is the first callout in the header, with its link to how this was made.
         const first = header.locator('.st-callout').first();
         await expect(first).toHaveClass(/st-ai-notice/);
+        // Present is not enough: a stray rule could hide it on every page (review WP-20 pass 8).
+        await expect(first).toBeVisible();
         await expect(first.locator('a')).toHaveAttribute(
           'href',
           `${basePath}${prefix}start/how-this-was-made/`,
@@ -63,6 +65,12 @@ test.describe('the D5 trust pieces on every document page', () => {
         const sources = page.locator('#sources-for-this-page').locator('xpath=..');
         await expect(sources).toBeVisible();
         const entries = await sources.locator('.st-source').count();
+        const emptyEntries = await sources
+          .locator('.st-source')
+          .evaluateAll(
+            (nodes) => nodes.filter((node) => (node.textContent ?? '').trim().length < 3).length,
+          );
+        expect(emptyEntries, 'a source entry with no text').toBe(0);
         const note = (await sources.locator('p.st-hint').first().innerText()).trim();
         expect(entries > 0 || note.length > 10, 'sources listed, or a note saying why not').toBe(
           true,
@@ -366,6 +374,16 @@ test.describe('navigation between real pages', () => {
     await read.locator('summary').click();
     await page.mouse.wheel(0, 800);
     await expect.poll(() => isOpen(read)).toBe(false);
+
+    // Scrolling from the keyboard inside the open menu closes it without losing focus: focus goes
+    // back to the summary, as with Escape (review WP-20 pass 8).
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await read.locator('summary').focus();
+    await page.keyboard.press('Enter');
+    await read.locator('a').first().focus();
+    for (let step = 0; step < 4; step++) await page.keyboard.press('ArrowDown');
+    await expect.poll(() => isOpen(read)).toBe(false);
+    await expect(read.locator('summary')).toBeFocused();
 
     // Tabbing past the last link closes it.
     await read.locator('summary').click();

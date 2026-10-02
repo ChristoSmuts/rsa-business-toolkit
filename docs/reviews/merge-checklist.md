@@ -74,10 +74,10 @@ WP-12 merged as `33bf2a8` after clean passes 3 and 4. The items below are delega
 
 ## When WP-20 (the site) merges
 
-Branch `claude/lucid-bell-t5acdn`, based on `main` at `b010d5b` (it carries `wp/site` through `9de5fa2` and a merge of `main`). Six review passes: M1 pass 1, then whole-package passes 2–6 (`docs/reviews/WP-20-*.md`).
+Branch `claude/lucid-bell-t5acdn`, based on `main` at `b010d5b` (it carries `wp/site` through `9de5fa2` and a merge of `main`). Review passes: M1 pass 1, then whole-package passes 2 onward (`docs/reviews/WP-20-*.md`).
 
 - [ ] Confirm the two shared-file edits recorded in `backlog.md`: `package.json` (`build` now runs `dist:audit` and `dist:trust`, and adds the `dist:trust` script) and the new `scripts/dist/check-trust.ts`. Every workflow runs `pnpm build`, so CI and deploy pick the check up with no workflow change.
 - [ ] Confirm the WP-11 edits recorded in `backlog.md`: `TableScroll.astro` (`position: relative`), `Card.astro` (`titleLang`) and one link in `src/pages/design-system.astro`.
-- [ ] Run WebKit locally (`pnpm exec playwright test --project=webkit`). It was not available in the environment where passes 2–6 ran; chromium, mobile, nojs and a11y were.
+- [ ] Run WebKit locally (`pnpm exec playwright test --project=webkit`). It was not available in the environment where the WP-20 passes ran; chromium, mobile, nojs and a11y were.
 - [ ] Each later package flips its flag in `src/lib/routes.ts` in the change that builds the feature: `WIZARD_AVAILABLE` (WP-31), `SEARCH_AVAILABLE` (WP-33), `TEMPLATES_FILLABLE` (WP-32), `CHECKLIST_SAVES` (WP-30). The tests read the flags, so they follow.
 - [ ] `KNOWN_FUTURE_ROUTES` and `PAGE_CHECK_EXCEPTIONS` are both empty; keep them so. A package that links a route before building it should hide the link behind its flag instead.

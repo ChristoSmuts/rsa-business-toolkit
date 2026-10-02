@@ -107,7 +107,10 @@ export function trustProblems(html: string): string[] {
   const locale = pageLocale(html);
   const sourcesStart = html.search(/<section\b[^>]*aria-labelledby="sources-for-this-page"/);
   const section = sourcesStart === -1 ? '' : sliceElement(html, sourcesStart, 'section');
-  const listsSources = /class="st-source"/.test(section);
+  // A listed source must say something: an empty `<li class="st-source">` lists nothing (pass 8).
+  const listsSources = [...section.matchAll(/<li class="st-source"[^>]*>([\s\S]*?)<\/li>/g)].some(
+    (entry) => textOf(entry[1] ?? '').length >= 3,
+  );
 
   const header = /<article\b[^>]*>\s*<header\b[\s\S]*?<\/header>/.exec(
     html.slice(article.index),
@@ -235,12 +238,14 @@ function sharedStrings(): Set<string> {
 /**
  * Text CLAUDE.md requires to stay byte-identical in Afrikaans, so it is the same in both twins
  * without being English: numbers, rand amounts as the English markdown writes them ("R2.3 million"),
- * URLs and domain names, and all-caps codes (VAT201, SARS, EMP201). Names such as "Google Drive"
+ * URLs and domain names, and codes: one all-caps token with a digit (VAT201, EMP201) or of at
+ * most five letters (SARS, CIPC). Upper-case words with spaces ("TAX INVOICE") are words, and are
+ * checked (review WP-20 pass 8). Names such as "Google Drive"
  * cannot be told apart from English words; the translation package extends `sharedStrings` or this
  * pattern when its first document lands (backlog, review WP-20 pass 7).
  */
 const LANGUAGE_NEUTRAL =
-  /^(?:[^\p{L}]+|R[\d.,]+(?: million)?|(?:https?:\/\/)?[\w-]+(?:\.[\w-]+)+(?:\/\S*)?|[\p{Lu}\d][\p{Lu}\d /&.-]*)$/u;
+  /^(?:[^\p{L}]+|R[\d.,]+(?: million)?|(?:https?:\/\/)?[\w-]+(?:\.[\w-]+)+(?:\/\S*)?|(?=[\p{Lu}\d&./-]*\d)[\p{Lu}\d&./-]{2,}|\p{Lu}{2,5})$/u;
 
 /**
  * Language of parts on an Afrikaans page (build plan B5, WCAG 3.1.2; reviews WP-20 passes 6, 7), in

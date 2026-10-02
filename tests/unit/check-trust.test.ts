@@ -64,6 +64,13 @@ describe('trustProblems (build plan D5 on the rendered page)', () => {
     ]);
   });
 
+  it('does not count an empty source entry as a listed source', () => {
+    const hollow = listed.replace('<li class="st-source">SARS</li>', '<li class="st-source"></li>');
+    expect(trustProblems(page('guide', notice, hollow))).toContain(
+      'the AI notice says "the sources below" but the page lists none',
+    );
+  });
+
   it('fails a sources section that renders empty, as when the register does not resolve', () => {
     const empty =
       '<section class="st-sources" aria-labelledby="sources-for-this-page"><h2 id="sources-for-this-page">S</h2>' +
@@ -175,6 +182,14 @@ describe('language of parts on an Afrikaans page', () => {
     const afText =
       '<html lang="af-ZA"><body><p><code>VAT201</code></p><p>www.bizportal.gov.za</p><p>SARS</p><p>EMP201</p></body></html>';
     expect(langProblems(afText, enText)).toEqual([]);
+  });
+
+  it('checks upper-case words: only single-token codes are neutral', () => {
+    const enText = '<html lang="en-ZA"><body><h1>TAX INVOICE</h1><p>CIPC</p></body></html>';
+    const afText = '<html lang="af-ZA"><body><h1>TAX INVOICE</h1><p>CIPC</p></body></html>';
+    expect(langProblems(afText, enText)).toEqual([
+      'English text marked as Afrikaans: "TAX INVOICE"',
+    ]);
   });
 
   it('fails English text that inherits Afrikaans', () => {

@@ -144,7 +144,12 @@ export function enhanceTopbarMenus(doc: Document = document, win: Window = windo
     'scroll',
     () => {
       const menu = openMenu();
-      if (menu && Math.abs(win.scrollY - openedAt) > SCROLL_CLOSE) menu.open = false;
+      if (!menu || Math.abs(win.scrollY - openedAt) <= SCROLL_CLOSE) return;
+      // Closing a menu that holds focus would drop focus to <body>; put it on the summary, as
+      // Escape does (review WP-20 pass 8).
+      const hadFocus = menu.contains(doc.activeElement);
+      menu.open = false;
+      if (hadFocus) menu.querySelector('summary')?.focus({ preventScroll: true });
     },
     { passive: true },
   );
