@@ -236,6 +236,18 @@ describe('<st-checklist-tools>', () => {
     expect(document.querySelector('[role="status"]')?.textContent).toBe('All ticks were removed.');
   });
 
+  it('applies a filter the browser restored before the script ran', () => {
+    setChecked('t:1', true);
+    mount(
+      tools()
+        .replace('value="all" checked', 'value="all"')
+        .replace('value="not-done"', 'value="not-done" checked'),
+    );
+    expect(box('t:1').closest('label')?.hidden).toBe(true);
+    expect(box('t:2').closest('label')?.hidden).toBe(false);
+    document.querySelector<HTMLInputElement>('input[value="all"]')?.click();
+  });
+
   it('treats Escape (no return value) as cancel', async () => {
     setChecked('t:1', true);
     mount(tools());

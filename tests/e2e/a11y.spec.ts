@@ -103,7 +103,7 @@ test.describe('axe with the interactive states open', () => {
         });
       });
       await page.goto('checklist/');
-      await expect(page.locator('st-storage-notice')).toBeVisible();
+      await expect(page.locator('st-storage-notice:not([data-show])')).toBeVisible();
       await expectNoBlocking(page, `storage warning ${theme}`, testInfo);
     });
   }

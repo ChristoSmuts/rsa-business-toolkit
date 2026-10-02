@@ -8,8 +8,8 @@
  *   (the page's `<link rel="help">`), Alt+← and Alt+→ follow the pager's `rel="prev"` and
  *   `rel="next"` links, and Escape closes an open "On this page" list. Native `<dialog>`s close on
  *   Escape by themselves, and the top bar menus in `navigation.ts`. Nothing fires while focus is in
- *   a field, and `?` only while single-key shortcuts are on. A shortcut with nothing to do (no
- *   pager on the page) leaves the key to the browser.
+ *   a field or while a dialog is open, and `?` only while single-key shortcuts are on. A shortcut
+ *   with nothing to do (no pager on the page) leaves the key to the browser.
  */
 import { isTypingTarget, matchShortcut, type ShortcutAction } from '../lib/shortcuts';
 import { lowData, shortcuts } from '../lib/store';
@@ -28,6 +28,8 @@ function shortcutLink(
 
 export function handleShortcut(event: KeyboardEvent, doc: Document = document): void {
   if (isTypingTarget(event.target)) return;
+  // A modal dialog owns the keyboard: nothing behind it may act (its own Escape is native).
+  if (doc.querySelector('dialog[open]')) return;
   if (event.key === 'Escape') {
     closeOpenToc(doc);
     return;

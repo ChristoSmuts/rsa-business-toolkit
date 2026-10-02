@@ -120,7 +120,7 @@ test.describe('the interactive pieces without JavaScript', () => {
       'JavaScript is off. You can tick items, but the ticks are not saved.',
     );
     await expect(page.locator('.st-tasklist__saved')).toBeHidden();
-    await expect(page.locator('st-storage-notice')).toBeHidden();
+    await expect(page.locator('st-storage-notice:not([data-show])')).toBeHidden();
     await expect(page.locator('st-checklist-progress').first()).toBeHidden();
     await expect(page.locator('.st-checklist-summary')).toBeHidden();
     await expect(page.locator('dialog.st-dialog')).toBeHidden();

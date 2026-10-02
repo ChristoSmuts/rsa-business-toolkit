@@ -137,6 +137,8 @@ describe('<st-storage-notice>', () => {
 
   it('shows once a write fails, and still lets the setting work for the page view', () => {
     mount('<st-storage-notice hidden><p>Not saved</p></st-storage-notice>');
+    mount('<st-storage-notice data-show="available" id="saved"><p>Saved</p></st-storage-notice>');
+    expect((document.getElementById('saved') as HTMLElement).hidden).toBe(false);
     mount(SETTINGS);
     vi.spyOn(localStorage, 'setItem').mockImplementation(() => {
       throw new DOMException('full', 'QuotaExceededError');
@@ -144,5 +146,7 @@ describe('<st-storage-notice>', () => {
     switchFor('lowData').click();
     expect(lowData.get()).toBe(true);
     expect((document.querySelector('st-storage-notice') as HTMLElement).hidden).toBe(false);
+    // The "saved on this device" line goes, so it never contradicts the warning.
+    expect((document.getElementById('saved') as HTMLElement).hidden).toBe(true);
   });
 });

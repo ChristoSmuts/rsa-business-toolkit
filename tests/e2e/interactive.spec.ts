@@ -192,6 +192,29 @@ test.describe('checklists', () => {
     expect(await storedChecks(page)).toEqual({});
   });
 
+  test('a "Not done yet" filter the browser restores is applied', async ({ page }) => {
+    await page.goto(CHECKLIST);
+    const first = page.locator('st-checklist input[type="checkbox"]').first();
+    await first.check();
+    await page.getByRole('radio', { name: 'Not done yet' }).check();
+    await expect(first).toBeHidden();
+    // A reload that keeps form state, as Firefox does and Back without the cache does.
+    await page.evaluate(() => {
+      const radio = document.querySelector<HTMLInputElement>('input[value="not-done"]');
+      const tools = radio?.closest('st-checklist-tools');
+      if (!radio || !tools) return;
+      const parent = tools.parentElement;
+      const next = tools.nextSibling;
+      tools.remove();
+      document.querySelectorAll<HTMLLabelElement>('st-checklist label').forEach((label) => {
+        label.hidden = false;
+      });
+      parent?.insertBefore(tools, next);
+    });
+    await expect(page.getByRole('radio', { name: 'Not done yet' })).toBeChecked();
+    await expect(first).toBeHidden();
+  });
+
   test('ticks still work for the page view when storage throws, and the page says so', async ({
     page,
   }) => {
@@ -204,9 +227,11 @@ test.describe('checklists', () => {
       });
     });
     await page.goto(DOC);
-    const notice = page.locator('st-storage-notice');
+    const notice = page.locator('st-storage-notice:not([data-show])');
     await expect(notice).toBeVisible();
     await expect(notice).toContainText(en.checklist.storageUnavailable);
+    // The "saved on this device" line goes, so the page never says both.
+    await expect(page.locator('.st-tasklist__saved')).toBeHidden();
     const box = page.locator('st-checklist input[type="checkbox"]').first();
     await box.check();
     await expect(box).toBeChecked();
@@ -218,7 +243,7 @@ test.describe('checklists', () => {
   test('the storage notice stays hidden while storage works', async ({ page }) => {
     await page.goto(DOC);
     await expect(page.locator('.st-tasklist__saved')).toBeVisible();
-    await expect(page.locator('st-storage-notice')).toBeHidden();
+    await expect(page.locator('st-storage-notice:not([data-show])')).toBeHidden();
     await expect(page.locator('.st-tasklist__no-js')).toBeHidden();
   });
 });

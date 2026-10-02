@@ -10,7 +10,8 @@
  *
  * `<st-toc>` (`src/scripts/toc.ts`, WP-30) adds scroll-spy: the link to the section being read
  * gets `aria-current="location"`. Below 1280px it also fills a sticky "Now reading" pill under the
- * top bar, which links back to this list. The element is `display: contents`, so the column stays
+ * top bar, which links back to this list; its name says so ("Now reading: Tax basics. Open the
+ * list of sections."). The element is `display: contents`, so the column stays
  * the grid item and the pill sticks inside the article. The reading-progress ring is a later
  * package.
  *
@@ -56,7 +57,13 @@ const detailsId = 'st-on-this-page';
         </nav>
       </details>
       <div class="st-toc__pill-track js-only st-no-print">
-        <a class="st-toc__pill" href={`#${detailsId}`} data-toc-pill hidden>
+        <a
+          class="st-toc__pill"
+          href={`#${detailsId}`}
+          data-toc-pill
+          data-label-template={t('nav.currentSectionLabel', { title: '{title}' })}
+          hidden
+        >
           <span class="st-toc__pill-label">{t('nav.currentSection')}</span>
           <span class="st-toc__pill-text" data-toc-pill-text lang={contentLang}></span>
         </a>

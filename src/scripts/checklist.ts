@@ -151,9 +151,12 @@ export class StChecklistTools extends HTMLElement {
     this.#status = this.querySelector('[role="status"]');
     this.addEventListener('change', this.#onFilter);
     this.#reset?.addEventListener('click', this.#onReset);
+    // The browser may restore the radios (Back without the back/forward cache, a Firefox
+    // reload); the lists connected first and applied "all", so apply what the radios now say.
     const chosen = this.querySelector<HTMLInputElement>('input[type="radio"]:checked');
     if (chosen && (chosen.value === 'all' || chosen.value === 'not-done')) {
       currentFilter = chosen.value;
+      this.ownerDocument.dispatchEvent(new CustomEvent(FILTER_EVENT, { detail: chosen.value }));
     }
   }
 

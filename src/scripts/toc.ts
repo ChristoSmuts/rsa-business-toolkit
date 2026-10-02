@@ -12,6 +12,7 @@
  * that `prefers-reduced-motion` would object to: the pill's fade uses `--st-duration-base`, which
  * the tokens set to 0 under reduced motion, and nothing scrolls by itself.
  */
+import { interpolate } from '../i18n';
 
 /**
  * Index of the current heading: the last one whose top is at or above `line`, or -1 before the
@@ -112,7 +113,12 @@ export class StToc extends HTMLElement {
         if (position === index) link.setAttribute('aria-current', 'location');
         else link.removeAttribute('aria-current');
       });
-      if (this.#pillText) this.#pillText.textContent = this.#links[index]?.textContent ?? '';
+      const title = this.#links[index]?.textContent ?? '';
+      if (this.#pillText) this.#pillText.textContent = title;
+      // The visible "Now reading <title>" names the section; the name also says where the link
+      // goes, the list of sections (WCAG 2.4.4, review WP-30 pass 1).
+      const template = this.#pill?.dataset['labelTemplate'];
+      if (template) this.#pill?.setAttribute('aria-label', interpolate(template, { title }));
     }
     if (this.#pill) {
       const listGone = this.#details ? this.#details.getBoundingClientRect().bottom < line : true;

@@ -164,8 +164,10 @@ JavaScript still reaches every section and tool.
   "Everything" brings them back; "Remove ticks" opens its dialog with "Keep my ticks" focused,
   Escape cancels and returns focus to the button, and confirming empties `st.checks.v1` and says so.
 - **Storage that throws.** An init script makes `window.localStorage` throw before any page script
-  runs: the storage warning shows, and ticks and progress still work for the page view. With working
-  storage the warning stays hidden.
+  runs: the storage warning shows, the "saved on this device" line goes, and ticks and progress
+  still work for the page view. With working storage the warning stays hidden.
+- **A restored filter.** "Not done yet" chosen, then the tools element reconnected with the radio
+  still checked (what a form-restoring reload does): the ticked item stays hidden.
 - **Copy** (Chromium only, which is where Playwright can grant clipboard permissions): the clipboard
   holds the first prompt on `branding/branding-prompts/` **byte for byte** equal to that block's
   `text` in `src/data`, so `compressHTML` or a template change that alters whitespace inside the

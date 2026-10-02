@@ -54,7 +54,7 @@ const DETAILS = `
         <li><a href="#missing">Missing</a></li>
       </ul></nav>
     </details>
-    <div><a href="#st-on-this-page" data-toc-pill hidden><span>Now reading</span> <span data-toc-pill-text></span></a></div>
+    <div><a href="#st-on-this-page" data-toc-pill data-label-template="Now reading: {title}. Open the list of sections." hidden><span>Now reading</span> <span data-toc-pill-text></span></a></div>
   </st-toc>`;
 
 const current = (): string[] =>
@@ -91,6 +91,7 @@ describe('<st-toc>', () => {
     const pill = document.querySelector<HTMLAnchorElement>('[data-toc-pill]');
     expect(pill?.hidden).toBe(false);
     expect(document.querySelector('[data-toc-pill-text]')?.textContent).toBe('Two A');
+    expect(pill?.getAttribute('aria-label')).toBe('Now reading: Two A. Open the list of sections.');
     pill?.click();
     expect(document.querySelector('details')?.open).toBe(true);
   });

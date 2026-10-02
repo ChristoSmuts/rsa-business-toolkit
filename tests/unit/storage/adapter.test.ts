@@ -102,6 +102,27 @@ describe('createStorageAdapter when storage fails', () => {
   });
 });
 
+describe('createStorageAdapter with an odd storage', () => {
+  it('skips a key slot that reads null, and a key whose value vanished, when it falls back', () => {
+    const backing = fakeStorage({ 'st.a': '1', 'st.gone': 'x', 'st.b': '2' });
+    const odd = {
+      ...backing,
+      get length() {
+        return backing.data.size + 1;
+      },
+      key: (index: number) => backing.key(index),
+      getItem: (key: string) => (key === 'st.gone' ? null : backing.getItem(key)),
+      setItem: (key: string, value: string) => backing.setItem(key, value),
+      removeItem: (key: string) => backing.removeItem(key),
+    };
+    const adapter = createStorageAdapter(() => odd);
+    expect(adapter.keys().sort()).toEqual(['st.a', 'st.b', 'st.gone']);
+    backing.failWrites = true;
+    adapter.set('st.c', '3');
+    expect(adapter.keys().sort()).toEqual(['st.a', 'st.b', 'st.c']);
+  });
+});
+
 describe('browserStorage', () => {
   it('is undefined outside a browser', () => {
     expect(browserStorage()).toBeUndefined();

@@ -171,9 +171,31 @@ if (typeof window !== 'undefined') {
 
 const isoDateTime = z.iso.datetime({ offset: true });
 
+/**
+ * A map of independent entries (`{ [taskId]: date }`): an entry that fails `value` is dropped and
+ * the rest are kept. A plain record schema would fail the whole map on one bad entry, and the
+ * per-key reset would then remove every tick (review WP-30 pass 1). Anything that is not an object
+ * is still a corrupt key, reset as a whole.
+ */
+export function entriesOf<V>(value: Schema<V>): Schema<Readonly<Record<string, V>>> {
+  return {
+    safeParse(data) {
+      if (typeof data !== 'object' || data === null || Array.isArray(data)) {
+        return { success: false };
+      }
+      const kept: Record<string, V> = {};
+      for (const [key, entry] of Object.entries(data)) {
+        const result = value.safeParse(entry);
+        if (result.success) kept[key] = result.data;
+      }
+      return { success: true, data: kept };
+    },
+  };
+}
+
 /** `{ [taskId]: ISO date-time }`. */
 export type Checks = Readonly<Record<string, string>>;
-const checksSchema: Schema<Checks> = z.record(z.string(), isoDateTime);
+const checksSchema: Schema<Checks> = entriesOf(isoDateTime);
 export const checks = persistentValue<Checks>('st.checks.v1', checksSchema, {});
 
 /** Ticks or unticks one task. */
@@ -216,7 +238,7 @@ export const lang = persistentValue<Locale | null>('st.lang', localeSchema, null
 
 /** `{ [promptId]: ISO date-time last copied }`. */
 export type PromptsCopied = Readonly<Record<string, string>>;
-const promptsSchema: Schema<PromptsCopied> = z.record(z.string(), isoDateTime);
+const promptsSchema: Schema<PromptsCopied> = entriesOf(isoDateTime);
 export const promptsCopied = persistentValue<PromptsCopied>('st.prompts.v1', promptsSchema, {});
 
 export function markPromptCopied(promptId: string, now: Date = new Date()): void {

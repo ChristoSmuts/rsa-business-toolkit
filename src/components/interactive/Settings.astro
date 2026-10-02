@@ -2,6 +2,9 @@
 /**
  * Settings on `/about/` (build plan B1): single-key shortcuts, low data, and clear all my data.
  *
+ * While search is not built (`SEARCH_AVAILABLE`), the help lines do not mention `/` or loading
+ * search, which would promise what is not there (review WP-30 pass 1).
+ *
  * Every control saves on the device, so it needs JavaScript: without it the controls are hidden
  * and one line says some tools need JavaScript. When the device will not keep settings,
  * `<st-storage-notice>` says they last only until the page closes.
@@ -11,6 +14,7 @@ import Callout from '../ui/Callout.astro';
 import ConfirmDialog from '../ui/ConfirmDialog.astro';
 import { useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
+import { SEARCH_AVAILABLE } from '../../lib/routes';
 
 interface Props {
   locale: Locale;
@@ -23,13 +27,15 @@ const switches = [
   {
     setting: 'shortcuts',
     label: t('about.settings.shortcuts'),
-    help: t('about.settings.shortcutsHelp'),
+    help: t(
+      SEARCH_AVAILABLE ? 'about.settings.shortcutsHelp' : 'about.settings.shortcutsHelpStatic',
+    ),
     on: true,
   },
   {
     setting: 'lowData',
     label: t('about.settings.lowData'),
-    help: t('about.settings.lowDataHelp'),
+    help: t(SEARCH_AVAILABLE ? 'about.settings.lowDataHelp' : 'about.settings.lowDataHelpStatic'),
     on: false,
   },
 ] as const;

@@ -68,6 +68,7 @@ interface ParamNames {
   'nav.pathProgress': 'done' | 'total';
   'nav.sectionToggle': 'section';
   'nav.onThisPageCount': 'count';
+  'nav.currentSectionLabel': 'title';
   'nav.previous': 'title';
   'nav.next': 'title';
   'lang.switchTo': 'language';

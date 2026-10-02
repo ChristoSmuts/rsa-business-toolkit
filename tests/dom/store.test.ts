@@ -67,7 +67,7 @@ describe('the store over working localStorage', () => {
 
   it('resets a corrupt key on its own and keeps the others', async () => {
     localStorage.setItem('st.checks.v1', '{"a:1": 12');
-    localStorage.setItem('st.prompts.v1', JSON.stringify({ p: 'not a date' }));
+    localStorage.setItem('st.prompts.v1', JSON.stringify(['not', 'a', 'map']));
     localStorage.setItem('st.lang', 'xx');
     localStorage.setItem('st.theme', 'dark');
     const store = await loadStore();
@@ -78,6 +78,25 @@ describe('the store over working localStorage', () => {
     expect(localStorage.getItem('st.checks.v1')).toBeNull();
     expect(localStorage.getItem('st.prompts.v1')).toBeNull();
     expect(localStorage.getItem('st.lang')).toBeNull();
+  });
+
+  it('drops one bad tick and keeps every good one', async () => {
+    const good = '2026-10-01T10:00:00.000Z';
+    localStorage.setItem(
+      'st.checks.v1',
+      JSON.stringify({ 'a:1': good, 'a:2': 'yesterday', 'a:3': good, 'a:4': 7 }),
+    );
+    localStorage.setItem('st.prompts.v1', JSON.stringify({ p1: good, p2: null }));
+    const store = await loadStore();
+    expect(store.checks.get()).toEqual({ 'a:1': good, 'a:3': good });
+    expect(store.promptsCopied.get()).toEqual({ p1: good });
+    // The next write stores the cleaned map.
+    store.setChecked('a:5', true, new Date(good));
+    expect(Object.keys(JSON.parse(localStorage.getItem('st.checks.v1') ?? '{}'))).toEqual([
+      'a:1',
+      'a:3',
+      'a:5',
+    ]);
   });
 
   it('setting null removes the key; reset returns to the default', async () => {

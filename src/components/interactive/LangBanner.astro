@@ -8,8 +8,13 @@
  * - "Stay on this page" saves English as the choice, so the offer does not come back.
  * - Close hides it for this page view only.
  *
- * Server-rendered `hidden`; `<st-lang-banner>` (`src/scripts/lang-banner.ts`) shows it. Without
- * JavaScript nothing is saved, so there is nothing to offer.
+ * It shows from the first paint, so it never pushes the page down when the module arrives (review
+ * WP-30 pass 1, minor 3): `theme-init.js` sets `<html data-st-lang-offer>` before the body is
+ * parsed when `st.lang` is not the page's language, and the global rule below shows the banner.
+ * With two languages there is one banner, so that is exact; with more, every banner shows until
+ * the module hides the ones that do not match. `<st-lang-banner>` (`src/scripts/lang-banner.ts`)
+ * keeps the attribute in step with the store and hides the banner (`hidden`) on "Stay" or close.
+ * Without JavaScript nothing is saved, so the banner never shows.
  */
 import Button from '../ui/Button.astro';
 import Icon from '../ui/Icon.astro';
@@ -48,7 +53,6 @@ const offers =
     data-locale={offer.code}
     data-stay-locale={locale}
     lang={offer.lang}
-    hidden
   >
     <section class="st-lang-banner__inner" aria-labelledby={`st-lang-banner-${offer.code}`}>
       <Icon name="lucide:languages" size="1.5em" />
@@ -77,11 +81,18 @@ const offers =
   import '../../scripts/lang-banner';
 </script>
 
-<style>
+<style is:global>
+  /* Shown only when `theme-init.js` found another saved language (see above). */
   .st-lang-banner {
-    display: block;
+    display: none;
   }
 
+  :root[data-st-lang-offer] .st-lang-banner {
+    display: block;
+  }
+</style>
+
+<style>
   .st-lang-banner__inner {
     display: flex;
     flex-wrap: wrap;

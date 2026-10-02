@@ -60,6 +60,15 @@ describe('keyboard shortcuts', () => {
     expect(next).toHaveBeenCalledTimes(1);
   });
 
+  it('does nothing behind an open dialog', () => {
+    mount(`${PAGER}<dialog open><button>Cancel</button></dialog>`);
+    const previous = vi.fn((event: Event) => event.preventDefault());
+    document.getElementById('prev')?.addEventListener('click', previous);
+    const event = press('ArrowLeft', { altKey: true }, document.body);
+    expect(previous).not.toHaveBeenCalled();
+    expect(event.defaultPrevented).toBe(false);
+  });
+
   it('leaves Alt+← to the browser when the page has no pager', () => {
     const event = press('ArrowLeft', { altKey: true }, document.body);
     expect(event.defaultPrevented).toBe(false);

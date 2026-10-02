@@ -6,7 +6,7 @@ import { mount } from './helpers';
 
 const BANNER = `
   <main id="main" tabindex="-1">
-    <st-lang-banner data-locale="af" data-stay-locale="en" lang="af-ZA" hidden>
+    <st-lang-banner data-locale="af" data-stay-locale="en" lang="af-ZA">
       <section aria-labelledby="m"><p id="m">Laas het jy hierdie gids in Afrikaans gelees.</p>
         <a href="/business-toolkit/af/">Gaan voort in Afrikaans</a>
         <button type="button" data-lang-banner-stay>Bly op hierdie bladsy</button>
@@ -42,6 +42,17 @@ describe('<st-lang-banner>', () => {
     mount(BANNER);
     expect(banner().hidden).toBe(false);
     expect(window.location.href).toBe(before);
+  });
+
+  it('keeps <html data-st-lang-offer> (which the CSS shows it by) in step with the store', () => {
+    mount(BANNER);
+    lang.set('af');
+    expect(document.documentElement.dataset['stLangOffer']).toBe('af');
+    lang.set('en');
+    expect(document.documentElement.hasAttribute('data-st-lang-offer')).toBe(false);
+    lang.set('af');
+    lang.set(null);
+    expect(document.documentElement.hasAttribute('data-st-lang-offer')).toBe(false);
   });
 
   it('"Stay on this page" saves English and moves focus to the page', () => {

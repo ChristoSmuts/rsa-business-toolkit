@@ -66,18 +66,18 @@ export function createStorageAdapter(
     backing = undefined;
   }
 
-  /** Moves to memory for the rest of the session, keeping whatever can still be read. */
-  const fail = (): void => {
-    const old = backing;
+  /**
+   * Moves to memory for the rest of the session, keeping whatever `old` can still give. Memory is
+   * empty until the first failure, so nothing in it can be overwritten here.
+   */
+  const fail = (old: KeyValueStorage): void => {
     backing = undefined;
     available.set(false);
-    if (!old) return;
     try {
       for (let index = 0; index < old.length; index++) {
         const key = old.key(index);
-        if (key === null || memory.has(key)) continue;
-        const value = old.getItem(key);
-        if (value !== null) memory.set(key, value);
+        const value = key === null ? null : old.getItem(key);
+        if (key !== null && value !== null) memory.set(key, value);
       }
     } catch {
       // Nothing more can be read; memory holds what this session wrote.
@@ -92,7 +92,7 @@ export function createStorageAdapter(
         try {
           return backing.getItem(key);
         } catch {
-          fail();
+          fail(backing);
         }
       }
       return memory.get(key) ?? null;
@@ -103,7 +103,7 @@ export function createStorageAdapter(
           backing.setItem(key, value);
           return true;
         } catch {
-          fail();
+          fail(backing);
         }
       }
       memory.set(key, value);
@@ -115,7 +115,7 @@ export function createStorageAdapter(
       try {
         backing.removeItem(key);
       } catch {
-        fail();
+        fail(backing);
         memory.delete(key);
       }
     },
@@ -129,7 +129,7 @@ export function createStorageAdapter(
           }
           return keys;
         } catch {
-          fail();
+          fail(backing);
         }
       }
       return [...memory.keys()];
