@@ -10,10 +10,11 @@
     "node": ">=22.12 <25"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build && pnpm dist:audit && pnpm dist:trust",
+    "dev": "pnpm search:build && astro dev",
+    "build": "pnpm search:build && astro build && pnpm dist:audit && pnpm dist:trust && pnpm dist:budget",
     "dist:audit": "tsx scripts/dist/audit-links.ts",
     "dist:trust": "tsx scripts/dist/check-trust.ts",
+    "dist:budget": "tsx scripts/dist/js-budget.ts",
     "lhci": "node scripts/ci/run-lhci.mjs",
     "preview": "astro preview",
     "astro": "astro",
@@ -30,6 +31,7 @@
     "test:visual": "playwright test --project visual",
     "test:visual:update": "playwright test --project visual --update-snapshots",
     "content:build": "tsx scripts/build-content.ts",
+    "search:build": "tsx scripts/build-search-index.ts",
     "content:check": "tsx scripts/build-content.ts --check",
     "content:drift": "tsx scripts/build-content.ts --drift",
     "content:fidelity": "tsx scripts/build-content.ts --fidelity-only",
