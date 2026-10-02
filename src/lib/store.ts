@@ -236,8 +236,9 @@ export const seenVersion = persistentValue<string | null>('st.seenVersion', vers
 });
 
 /**
- * Whether single-key shortcuts may fire. WP-33 checks this before handling `/` and Ctrl+K, and
- * `isTypingTarget()` from `src/lib/shortcuts.ts` before handling any key.
+ * Whether single-key shortcuts may fire. WP-33 checks this before handling `/` (Ctrl+K is not a
+ * single key, so it ignores the setting), and `isTypingTarget()` from `src/lib/shortcuts.ts` before
+ * handling any key.
  */
 export function shortcutsEnabled(): boolean {
   return shortcuts.get();
