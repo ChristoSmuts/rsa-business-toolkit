@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { useTranslations } from '../../../src/i18n';
+import type { Locale } from '../../../src/i18n/locales';
 import type { Manifest } from '../../../src/lib/content/schema';
 import {
   assertDocTrust,
@@ -94,7 +95,7 @@ describe('contentStaticPaths', () => {
 
 describe('languages of a document', () => {
   /** The corpus is translated over time, so these build their own state rather than read it. */
-  function withLangs(langs: string[]): typeof manifest {
+  function withLangs(langs: Locale[]): typeof manifest {
     const copy = clone();
     const entry = copy.docs['core/register'];
     if (entry) entry.langs = langs;
