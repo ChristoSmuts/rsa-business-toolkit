@@ -406,7 +406,7 @@ test.describe('the D5 trust pieces', () => {
     ]);
   });
 
-  test('the Afrikaans page says the content is not translated yet and marks it as English', async ({
+  test('the Afrikaans gallery shows the fallback: content not translated yet, marked as English', async ({
     page,
   }) => {
     await open(page, AF);
@@ -418,9 +418,11 @@ test.describe('the D5 trust pieces', () => {
     // Everything else that is English text is marked as English too (review WP-20 M1 pass 1).
     await expect(page.locator('article h1')).toHaveAttribute('lang', 'en-ZA');
     await expect(page.locator('.st-toc--details .st-toc__list')).toHaveAttribute('lang', 'en-ZA');
-    await expect(page.locator('.st-breadcrumb [aria-current="page"]')).toHaveAttribute(
+    // The breadcrumb is chrome: every document has an Afrikaans navigation title (WP-40), so the
+    // crumb is Afrikaans even while the text below it falls back to English.
+    await expect(page.locator('.st-breadcrumb [aria-current="page"]')).not.toHaveAttribute(
       'lang',
-      'en-ZA',
+      /.*/,
     );
     // The link to the English page is in Afrikaans: it names the target's language, not its own.
     const english = notice.first().locator('a');

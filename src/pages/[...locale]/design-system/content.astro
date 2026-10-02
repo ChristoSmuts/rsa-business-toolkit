@@ -37,7 +37,7 @@ import TermsBlock from '../../../components/content/TermsBlock.astro';
 import { createContentContext } from '../../../lib/content/context';
 import { selectCoverage } from '../../../lib/content/coverage';
 import { loadDoc, loadGlossary, loadManifest, loadSources } from '../../../lib/content/collections';
-import { docTitle, hasTranslation, sectionTitle } from '../../../lib/content/manifest';
+import { docTitle, sectionTitle } from '../../../lib/content/manifest';
 import type { Block } from '../../../lib/content/schema';
 import { documentCrumbs } from '../../../lib/nav';
 import { href } from '../../../lib/paths';
@@ -62,7 +62,12 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const manifest = await loadManifest();
 
-const contentLang: Locale = hasTranslation(manifest, DEMO_DOC_ID, locale) ? locale : DEFAULT_LOCALE;
+/*
+ * Outside English this gallery always shows the English fallback: it is the reference for how a
+ * page renders before its translation exists (or after its English changed), and since every
+ * document has an Afrikaans text no real page shows that state any more (WP-40).
+ */
+const contentLang: Locale = DEFAULT_LOCALE;
 const doc = await loadDoc(contentLang, DEMO_DOC_ID);
 if (!doc) throw new Error(`${DEMO_DOC_ID} is missing from src/data. Run \`pnpm content:build\`.`);
 const glossary = await loadGlossary(contentLang);

@@ -434,35 +434,33 @@ test.describe('navigation between real pages', () => {
     await expect(page.locator(`[id="${anchor ?? ''}"]`)).toHaveCount(1);
   });
 
-  test('an Afrikaans document page shows English with the fallback notice', async ({ page }) => {
+  // Every document has an Afrikaans text since WP-40, so these check the translated state. The
+  // English-fallback state is shown and tested on the Afrikaans `/design-system/content/` gallery.
+  test('an Afrikaans document page is in Afrikaans, with the machine-translation notice', async ({
+    page,
+  }) => {
     await open(page, 'af/core/register/');
     await expect(page.locator('html')).toHaveAttribute('lang', 'af-ZA');
-    await expect(page.locator('article .st-blocks')).toHaveAttribute('lang', 'en-ZA');
-    await expect(page.locator('article h1')).toHaveAttribute('lang', 'en-ZA');
+    await expect(page.locator('article .st-blocks').first()).not.toHaveAttribute('lang', /.*/);
+    await expect(page.locator('article h1')).not.toHaveAttribute('lang', /.*/);
+    await expect(page.locator('article h1')).toContainText('Registreer');
     const callouts = page.locator('article > header .st-callout');
-    await expect(callouts.nth(1)).toContainText('Afrikaans');
-    // The chrome around the content is Afrikaans.
+    await expect(callouts.nth(1)).toContainText('Masjienvertaling');
     await expect(page.locator('.st-topbar')).toContainText('Lees');
-    // English titles in Afrikaans sentences carry their own lang (review WP-20 pass 2).
-    await expect(page.locator('.st-pager a[rel="next"] span[lang]')).toHaveAttribute(
-      'lang',
-      'en-ZA',
-    );
-    await expect(page.locator('.st-pager a[rel="next"]')).toContainText('Volgende');
+    const next = page.locator('.st-pager a[rel="next"]');
+    await expect(next).toContainText('Volgende');
+    await expect(next.locator('span[lang]')).toHaveCount(0);
   });
 
-  test('English document titles on Afrikaans landings and contents are marked', async ({
+  test('document titles on Afrikaans landings and contents are Afrikaans and unmarked', async ({
     page,
   }) => {
     await open(page, 'af/core/');
-    await expect(page.locator('.st-card__title').first()).toHaveAttribute('lang', 'en-ZA');
+    await expect(page.locator('.st-card__title').first()).not.toHaveAttribute('lang', /.*/);
+    await expect(page.locator('.st-card__title').first()).toContainText('Kern: begin hier');
     await open(page, 'af/contents/');
-    const doc = page.locator('.st-contents__doc').first();
-    await expect(doc).toHaveAttribute('lang', 'en-ZA');
-    const list = page.locator('.st-contents__headings').first();
-    await expect(list).not.toHaveAttribute('lang', /.*/);
-    await expect(list.locator('a').first()).toHaveAttribute('lang', 'en-ZA');
-    // The English landing marks nothing: every title is in the page's language.
+    await expect(page.locator('.st-contents__doc').first()).not.toHaveAttribute('lang', /.*/);
+    // The English landing marks nothing either.
     await open(page, 'core/');
     await expect(page.locator('.st-card__title').first()).not.toHaveAttribute('lang', /.*/);
   });
