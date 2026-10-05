@@ -345,7 +345,12 @@ and down arrows move `aria-activedescendant` (wrapping), Enter opens the active 
 one, and Escape closes the dialog in one press, even with text in the field (the field's own
 clear-on-Escape is overridden, because the instructions promise "Press Escape to close search").
 Enter always acts on the text in the field: pressed before the debounced search has run, it searches
-that text first and opens its first result, never an option left from the previous query. Results are grouped by section, each group a `role="group"` named
+that text first and opens its first result, never an option left from the previous query. If the
+dialog closes, or the text changes, before that search answers (the first search can wait for the
+whole index), the Enter is cancelled and nothing opens. If it finds nothing, the one Enter goes to
+`/search/?q=`, as it does when the results are already on screen. If the results code itself cannot
+load, the failed state shows and the status line says "Search could not load." (the page renders the
+sentence on the status line as `data-failed-text`, because the eager script has no translator). Results are grouped by section, each group a `role="group"` named
 "Results in {section}" (`search.groupLabel`) with a visible, `aria-hidden` section name. Groups follow
 their best result, and the dialog shows at most three results per section, so one busy section (the
 glossary, the checklist and the register are all "Look it up") cannot push the second-best result far
@@ -367,9 +372,13 @@ the first count arrives. On `/search/` the same holds: the results region is nev
 heading until there is a query.
 
 **Queries.** Words are folded and stop words dropped, and at most 12 words are searched (the fields
-also take at most 200 characters). Two neighbours that are one thing written two ways are searched
-as "both words, or the joined form": letters then a number in any case (`VAT 264`, `vat 264`,
-`SAPS 601` find what `VAT264` and `saps601` find) and a hyphenated word (`e-filing` finds `eFiling`).
+also take at most 200 characters). Two neighbours that may be one thing written two ways form a
+pair: letters then a number in any case (`VAT 264`, `vat 264`, `SAPS 601`) and a hyphenated word
+(`e-filing`). A stop word before a number is not a code (`on 1 March` keeps the `1`), unless it is
+written in capitals (`IT 12`). Each pair is decided once against the index: when the guide holds the
+joined form as a term (`vat264`, `efiling`, and `saps601` through the index's own alias), only that is
+searched, exactly, so `VAT 264` ranks precisely as `VAT264`; otherwise both words are searched as any
+two words, so `page 2` or `stap 1` never widen to every "page" through a fuzzy joined form.
 Every word must match first; when that finds nothing, any word may, leaving out lone numbers and
 single letters, so a junk query says "nothing found" instead of listing every "Prompt 1".
 
@@ -388,7 +397,7 @@ not fade and the class is removed after the same two seconds. On the same page: 
 changes and the heading takes focus. Focus does not go back to the opener then.
 
 **Weight.** Nothing about search loads with a page except `<st-search>` and the dialog markup. The
-results code and MiniSearch (10.8 KB gzip) and the index (165 KB gzip in English, 182 KB in
+results code and MiniSearch (11.0 KB gzip) and the index (165 KB gzip in English, 182 KB in
 Afrikaans) are fetched when the
 dialog first opens; with low data, the index waits for the first key press. The dialog scrolls as a
 whole, with the title and field sticky at its top: a scrolling box that held only the results,
