@@ -5,20 +5,25 @@
 // module loads. It reads `st.theme` (a bare string), `st.lowData` (JSON `true`) and `st.lang` (a
 // bare string) in the formats the store writes them; keep them in step with the `theme`, `lowData`
 // and `lang` stores. `data-st-lang-offer` (the saved language, when it is not the page's) lets CSS
-// show the language banner from the first paint.
+// show the language banner from the first paint. `data-st-profile` says answers to "Find my path"
+// are saved (`st.profile.v1` exists; the store validates it), so My path does not flash its empty
+// state (WP-31).
 (function () {
   var root = document.documentElement;
   var saved = null;
   var lowData = null;
   var lang = null;
+  var profile = null;
   try {
     saved = window.localStorage.getItem('st.theme');
     lowData = window.localStorage.getItem('st.lowData');
     lang = window.localStorage.getItem('st.lang');
+    profile = window.localStorage.getItem('st.profile.v1');
   } catch {
     // Storage blocked: follow the system theme, with web fonts.
   }
   if (lowData === 'true') root.setAttribute('data-low-data', '');
+  if (profile) root.setAttribute('data-st-profile', '');
   if (lang && lang !== (root.getAttribute('lang') || '').split('-')[0]) {
     root.setAttribute('data-st-lang-offer', lang);
   }

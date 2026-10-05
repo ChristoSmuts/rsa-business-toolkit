@@ -18,6 +18,7 @@
 import Page from './Page.astro';
 import BusinessTypeTiles from '../components/pages/BusinessTypeTiles.astro';
 import ChecklistElsewhere from '../components/interactive/ChecklistElsewhere.astro';
+import AppliesSwitch from '../components/interactive/AppliesSwitch.astro';
 import ChecklistSummary from '../components/interactive/ChecklistSummary.astro';
 import Badge from '../components/ui/Badge.astro';
 import Callout from '../components/ui/Callout.astro';
@@ -46,8 +47,9 @@ import {
   sectionHue,
   splitAroundParam,
 } from '../lib/pages';
+import { docHasConditions } from '../lib/path-pages';
 import { href } from '../lib/paths';
-import { CHECKLIST_SAVES } from '../lib/routes';
+import { CHECKLIST_SAVES, WIZARD_AVAILABLE } from '../lib/routes';
 
 interface Props {
   locale: Locale;
@@ -106,6 +108,15 @@ const effortLabels = [
   t('businessTypes.effort.high'),
 ] as const;
 const coreHref = sectionHref(manifest, 'core', locale);
+/*
+ * "Only what applies to me" (WP-31): on a page with parts for one entity or some kinds of business.
+ * The master checklist has its own "Show: Only what applies to me" choice instead of the switch.
+ */
+const filterable = WIZARD_AVAILABLE && docHasConditions(doc);
+const scopeMode = doc.kind === 'checklist' ? 'checklist' : 'switch';
+const showSwitch = filterable && scopeMode === 'switch';
+const hiddenOne = t('checklist.hiddenItems', { count: 1 }).replace('1', '{count}');
+const hiddenOther = t('checklist.hiddenItems', { count: 2 }).replace('2', '{count}');
 const relatedTypes = businessType
   ? doc.related
       .map((id) => businessTypes.find((type) => type.doc === id))
@@ -127,7 +138,9 @@ const relatedTypes = businessType
       sectionId={doc.section}
       currentDocId={doc.id}
       locale={locale}
-    />
+    >
+      {showSwitch && <AppliesSwitch slot="after" locale={locale} class="st-doc__applies" />}
+    </SectionSidebar>
 
     <div class="st-stack st-stack-lg st-doc__main">
       <Breadcrumb crumbs={crumbs} locale={locale} />
@@ -231,7 +244,20 @@ const relatedTypes = businessType
           contentLang={contentLangTag}
         />
 
-        <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
+        {showSwitch && <AppliesSwitch locale={locale} class="st-doc__applies-inline" />}
+
+        {filterable ? (
+          <st-applies-scope
+            class="st-doc__scope"
+            data-mode={scopeMode}
+            data-hidden-one={hiddenOne}
+            data-hidden-other={hiddenOther}
+          >
+            <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
+          </st-applies-scope>
+        ) : (
+          <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
+        )}
 
         {doc.kind === 'checklist' && CHECKLIST_SAVES && (
           <ChecklistElsewhere locale={locale} manifest={manifest} docId={doc.id} />
@@ -263,26 +289,32 @@ const relatedTypes = businessType
       </article>
 
       {(pager.previous || pager.next) && (
-        <nav class="st-pager" aria-label={t('nav.pagerLabel')}>
-          {pager.previous && (
-            <a class="st-pager__link" href={pager.previous.href} rel="prev">
-              <span>
-                {previousParts[0]}
-                <span lang={pager.previous.lang}>{pager.previous.title}</span>
-                {previousParts[1]}
-              </span>
-            </a>
-          )}
-          {pager.next && (
-            <a class="st-pager__link st-pager__next" href={pager.next.href} rel="next">
-              <span>
-                {nextParts[0]}
-                <span lang={pager.next.lang}>{pager.next.title}</span>
-                {nextParts[1]}
-              </span>
-            </a>
-          )}
-        </nav>
+        <st-path-pager data-doc={doc.id} data-locale={locale}>
+          <nav class="st-pager" aria-label={t('nav.pagerLabel')}>
+            {pager.previous && (
+              <a class="st-pager__link" href={pager.previous.href} rel="prev">
+                <span>
+                  {previousParts[0]}
+                  <span lang={pager.previous.lang} data-pager-title>
+                    {pager.previous.title}
+                  </span>
+                  {previousParts[1]}
+                </span>
+              </a>
+            )}
+            {pager.next && (
+              <a class="st-pager__link st-pager__next" href={pager.next.href} rel="next">
+                <span>
+                  {nextParts[0]}
+                  <span lang={pager.next.lang} data-pager-title>
+                    {pager.next.title}
+                  </span>
+                  {nextParts[1]}
+                </span>
+              </a>
+            )}
+          </nav>
+        </st-path-pager>
       )}
     </div>
 
@@ -295,7 +327,24 @@ const relatedTypes = businessType
   </div>
 </Page>
 
+<script>
+  import '../scripts/applies';
+  import '../scripts/path-progress';
+</script>
+
 <style>
+  st-applies-scope,
+  st-path-pager {
+    display: block;
+  }
+
+  /* The sidebar holds the switch from 1024px; below that it sits above the blocks. */
+  @media (width >= 1024px) {
+    .st-doc__applies-inline {
+      display: none;
+    }
+  }
+
   .st-doc {
     padding-block: var(--st-space-5) var(--st-space-8);
   }

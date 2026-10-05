@@ -14,6 +14,7 @@
  *   that does nothing would tell the reader something untrue (review WP-20 pass 2).
  */
 import Icon from '../ui/Icon.astro';
+import ProgressRing from '../ui/ProgressRing.astro';
 import Logo from '../illustrations/Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import NavDrawer from './NavDrawer.astro';
@@ -41,6 +42,8 @@ const homeHref = href(locale, APP_ROUTES.home);
 // Until WP-33 there is nothing to search with; the page's common questions are in the footer.
 const searchHref = SEARCH_AVAILABLE ? href(locale, APP_ROUTES.search) : undefined;
 const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefined;
+/** WP-31: "My path: 3 of 10 steps done", shown by `<st-path-progress>` once there is a profile. */
+const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' });
 ---
 
 <header class="st-topbar">
@@ -61,6 +64,23 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
         <Icon name="lucide:search" size="1em" />
         <span>{t('nav.search')}</span>
       </a>
+    )}
+    {WIZARD_AVAILABLE && (
+      <st-path-progress class="st-topbar__path js-only" data-template={pathTemplate} hidden>
+        <a
+          class="st-topbar__path-link"
+          href={href(locale, APP_ROUTES.myPath)}
+          aria-current={route === APP_ROUTES.myPath ? 'page' : undefined}
+        >
+          <span aria-hidden="true" class="st-topbar__path-ring">
+            <ProgressRing value={0} max={1} label={t('nav.myPath')} size={28} showValue={false} />
+          </span>
+          <span aria-hidden="true">{t('nav.myPath')}</span>
+          <span class="st-visually-hidden" data-progress-text>
+            {t('nav.myPath')}
+          </span>
+        </a>
+      </st-path-progress>
     )}
     <LanguageSwitcher class="st-topbar__lang" locale={locale} route={route} />
     <div class="st-topbar__theme">
@@ -87,7 +107,35 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
   />
 </header>
 
+<script>
+  import '../../scripts/path-progress';
+</script>
+
 <style>
+  .st-topbar__path[hidden] {
+    display: none;
+  }
+
+  .st-topbar__path-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--st-space-2);
+    min-block-size: var(--st-target);
+    padding-inline: var(--st-space-2);
+    border-radius: var(--st-radius-md);
+    color: var(--st-text);
+    font-weight: var(--st-weight-semibold);
+    overflow-wrap: anywhere;
+  }
+
+  .st-topbar__path-link:visited {
+    color: var(--st-text);
+  }
+
+  .st-topbar__path-ring {
+    display: inline-flex;
+  }
+
   .st-topbar {
     position: sticky;
     inset-block-start: 0;

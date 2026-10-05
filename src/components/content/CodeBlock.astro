@@ -26,7 +26,7 @@ import { useTranslations } from '../../i18n';
 import { getLocale } from '../../i18n/locales';
 import { isFallbackContent, type ContentContext } from '../../lib/content/context';
 import { splitPlaceholders } from '../../lib/content/render';
-import type { Block } from '../../lib/content/schema';
+import { BUSINESS_TYPE_IDS, type Block } from '../../lib/content/schema';
 
 interface Props {
   block: Extract<Block, { kind: 'code' }>;
@@ -56,6 +56,32 @@ const copyName =
   promptNumber === undefined
     ? undefined
     : siteT('prompts.copyNamed', { n: promptNumber, title: caption });
+/*
+ * "Fill from my profile" (WP-31): the placeholders the profile knows. Today that is the kind of
+ * business; the values are in the reader's language, one per business type.
+ */
+const FILLABLE_KEYS = ['businessType'];
+const fillable =
+  isPrompt &&
+  segments.some(
+    (segment) =>
+      segment.kind === 'placeholder' &&
+      segment.run.key !== undefined &&
+      FILLABLE_KEYS.includes(segment.run.key),
+  );
+const fillValues = JSON.stringify(
+  Object.fromEntries(BUSINESS_TYPE_IDS.map((id) => [id, siteT(`prompts.profileValues.${id}`)])),
+);
+const fillName =
+  promptNumber === undefined
+    ? undefined
+    : siteT('prompts.fillFromProfileNamed', { n: promptNumber, title: caption });
+const undoName =
+  promptNumber === undefined
+    ? undefined
+    : siteT('prompts.undoFillNamed', { n: promptNumber, title: caption });
+const remainingOne = siteT('prompts.placeholdersRemaining', { count: 1 }).replace('1', '{count}');
+const remainingOther = siteT('prompts.placeholdersRemaining', { count: 2 }).replace('2', '{count}');
 const copiedMessage =
   promptNumber === undefined
     ? siteT('prompts.copied')
@@ -69,9 +95,28 @@ const copiedMessage =
       tabindex={scrolls ? 0 : undefined}
       aria-label={scrolls ? label : undefined}
       data-label={scrolls ? label : undefined}
-    ><code>{segments.map((segment) => (segment.kind === 'text' ? segment.value : <mark class="st-placeholder" data-placeholder={segment.run.style}>{segment.value}</mark>))}</code></pre>
+    ><code>{segments.map((segment) => (segment.kind === 'text' ? segment.value : <mark class="st-placeholder" data-placeholder={segment.run.style} data-key={segment.run.key}>{segment.value}</mark>))}</code></pre>
   </st-code-scroll>
   {hasPlaceholders && <figcaption>{t('prompts.placeholderHint')}</figcaption>}
+  {fillable && (
+    <st-prompt-fill
+      class="st-prompt-fill js-only st-no-print"
+      lang={siteLang}
+      data-values={fillValues}
+      data-remaining-one={remainingOne}
+      data-remaining-other={remainingOther}
+      data-all-filled={siteT('prompts.allFilled')}
+      hidden
+    >
+      <Button variant="secondary" data-fill aria-label={fillName} iconStart="lucide:user-round-pen">
+        {siteT('prompts.fillFromProfile')}
+      </Button>
+      <Button variant="ghost" data-undo aria-label={undoName} iconStart="lucide:undo-2" hidden>
+        {siteT('prompts.undoFill')}
+      </Button>
+      <p class="st-hint st-prompt-fill__status" role="status"></p>
+    </st-prompt-fill>
+  )}
   {isPrompt && (
     <st-copy
       class="st-copy st-no-print"
@@ -96,6 +141,7 @@ const copiedMessage =
 <script>
   import '../../scripts/code-scroll';
   import '../../scripts/copy';
+  import '../../scripts/prompt-fill';
 </script>
 
 <style is:global>
@@ -111,6 +157,18 @@ const copiedMessage =
 </style>
 
 <style>
+  .st-prompt-fill {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-2) var(--st-space-3);
+  }
+
+  .st-prompt-fill__status {
+    min-inline-size: 0;
+    flex: 1 1 12rem;
+  }
+
   .st-copy {
     display: flex;
     flex-wrap: wrap;

@@ -19,13 +19,15 @@ export const APP_ROUTES = {
 export type AppRoute = (typeof APP_ROUTES)[keyof typeof APP_ROUTES];
 
 /**
- * Whether the wizard (`find-my-path/`) and My path (`my-path/`) are built. They are WP-31. Until
- * then no page links to them: not the Tools menu, not the drawer, not the home page's primary
- * button, and not the trust line about "your answers", because a link to a page that does not
- * exist is a 404 on the deployed site, whatever the link audit allows (review WP-20 pass 2).
- * WP-31 sets this to `true` in the change that builds the two routes.
+ * Whether the wizard (`find-my-path/`, with its pre-rendered result pages) and My path
+ * (`my-path/`) are built. WP-31 built them. While this was `false` no page linked to them (the
+ * Tools menu, the drawer, the home page's primary button, the trust line about "your answers"),
+ * because a link to a page that does not exist is a 404 on the deployed site (review WP-20 pass 2).
+ * On, those links are back, and the personalisation WP-31 adds is rendered: the top bar's path
+ * ring, the home page's "Your path" card, "Only what applies to me", the path-following pager and
+ * "Fill from my profile".
  */
-export const WIZARD_AVAILABLE: boolean = false;
+export const WIZARD_AVAILABLE: boolean = true;
 
 /**
  * Whether the search client (WP-33) is built. Until then `/search/` and the 404 page show no search
