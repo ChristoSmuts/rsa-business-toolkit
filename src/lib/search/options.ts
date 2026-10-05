@@ -170,7 +170,12 @@ export const MAX_QUERY_TERMS = 12;
  */
 export type QueryPart =
   | string
-  | { readonly pair: readonly [string, string]; readonly joined: string }
+  | {
+      readonly pair: readonly [string, string];
+      readonly joined: string;
+      /** `true` for a hyphenated word (`BTW-registrasie`), absent for a code (`VAT 264`). */
+      readonly hyphen?: true;
+    }
   | { readonly exact: string };
 
 const LETTERS = /^\p{L}{2,6}$/u;
@@ -183,6 +188,8 @@ const LETTERS = /^\p{L}{2,6}$/u;
  */
 export function queryParts(text: string): QueryPart[] {
   const tokens = rawTokens(text).slice(0, MAX_QUERY_TERMS);
+  // A query typed all in capitals (Caps Lock, a copied heading) says nothing by its capitals.
+  const shouting = text === text.toUpperCase();
   const out: QueryPart[] = [];
   for (let index = 0; index < tokens.length; index++) {
     const token = tokens[index]!;
@@ -191,13 +198,23 @@ export function queryParts(text: string): QueryPart[] {
     if (next !== undefined) {
       // A stop word before a number is a date or a count (`on 1 March`, `op 28 Februarie`), not a
       // code, unless it is written in capitals like one (`IT 12`).
-      const codeWord = first !== null || token.text === token.text.toUpperCase();
+      // An all-capitals query (`ON 1 MARCH`) is read as a date too.
+      const codeWord = first !== null || (!shouting && token.text === token.text.toUpperCase());
       const isCode = codeWord && LETTERS.test(token.text) && STARTS_WITH_DIGIT.test(next.text);
-      if (isCode || HYPHEN.test(next.gap)) {
+      const hyphen = HYPHEN.test(next.gap);
+      if (isCode || hyphen) {
         const second = processTerm(next.text);
         const joined = processTerm(`${token.text}${next.text}`);
         if (joined !== null) {
-          out.push(first !== null && second !== null ? { pair: [first, second], joined } : joined);
+          const pair: [string, string] | undefined =
+            first !== null && second !== null ? [first, second] : undefined;
+          out.push(
+            pair === undefined
+              ? joined
+              : isCode && !hyphen
+                ? { pair, joined }
+                : { pair, joined, hyphen: true },
+          );
           index++;
           continue;
         }

@@ -106,6 +106,48 @@ describe('A7 ranking cases', () => {
     expect(tax.every((r) => r.terms.some((t) => t.includes('2026')))).toBe(true);
   });
 
+  // Review WP-33 pass 3, major 1: a hyphenated query searched only its joined form, exactly.
+  it.each([
+    ['af', 'BTW-registrasie', 'BTW registrasie'],
+    ['af', 'BTW-faktuur', 'BTW faktuur'],
+    ['af', 'SARS-registrasie', 'SARS registrasie'],
+    ['af', 'BTW-geregistreer', 'BTW geregistreer'],
+    ['af', 'KI-opdragte', 'KI opdragte'],
+    ['en', 'VAT-registered', 'VAT registered'],
+    ['en', 'small-business', 'small business'],
+    ['en', 'co-owner', 'co owner'],
+  ] as const)('%s "%s" finds at least what "%s" finds', (lang, hyphenated, spaced) => {
+    const built = lang === 'en' ? en : af;
+    const all = (q: string) =>
+      new Set(runSearch(built.index, q, lang, { limit: 5000 }, BASE).map((r) => r.href));
+    const withHyphen = all(hyphenated);
+    const withSpace = all(spaced);
+    expect(withSpace.size).toBeGreaterThan(0);
+    for (const href of withSpace) expect(withHyphen.has(href), href).toBe(true);
+  });
+
+  it.each([
+    ['af', 'BTW-faktuur', 'glossary/#tax-invoice'],
+    ['af', 'BTW-geregistreer', 'glossary/#vat'],
+    ['en', 'VAT-registered', 'glossary/#vat'],
+  ] as const)('%s "%s" brings back the tax invoice template and %s', (lang, query, glossary) => {
+    const built = lang === 'en' ? en : af;
+    const prefix = lang === 'en' ? BASE : `${BASE}af/`;
+    const hrefs = runSearch(built.index, query, lang, { limit: 5000 }, BASE).map((r) => r.href);
+    expect(hrefs).toContain(`${prefix}templates/tax-invoice/`);
+    expect(hrefs).toContain(`${prefix}${glossary}`);
+  });
+
+  it('finishing a hyphenated word keeps every result that holds the whole word', () => {
+    const typing = runSearch(af.index, 'BTW-regis', 'af', { limit: 5000 }, BASE);
+    const whole = new Set(
+      runSearch(af.index, 'BTW-registrasie', 'af', { limit: 5000 }, BASE).map((r) => r.href),
+    );
+    const holdingWord = typing.filter((r) => r.terms.includes('registrasie'));
+    expect(holdingWord.length).toBeGreaterThan(0);
+    for (const result of holdingWord) expect(whole.has(result.href), result.href).toBe(true);
+  });
+
   it('e-filing, eFiling and efiling find the eFiling glossary entry first', () => {
     for (const query of ['e-filing', 'eFiling', 'efiling']) {
       expect(runSearch(en.index, query, 'en', {}, BASE)[0]?.href, query).toBe(

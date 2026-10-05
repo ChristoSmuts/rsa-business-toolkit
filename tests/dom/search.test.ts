@@ -321,6 +321,26 @@ describe('<st-search>', () => {
     Reflect.deleteProperty(failing, 'controller');
   });
 
+  // Review WP-33 pass 3, minor 1: a later open whose results code loads clears the failed state.
+  it('clears the failed state when a later open loads the results code', async () => {
+    const failing = Object.assign(host, {
+      controller: () => Promise.reject(new Error('offline')),
+    });
+    failing.open();
+    await vi.waitFor(() =>
+      expect(document.querySelector('[role="status"]')?.textContent).toBe('Search could not load.'),
+    );
+    host.close();
+    Reflect.deleteProperty(failing, 'controller');
+    host.open();
+    await host.controller();
+    await vi.waitFor(() =>
+      expect(document.querySelector<HTMLElement>('[data-search-failed]')!.hidden).toBe(true),
+    );
+    expect(document.querySelector<HTMLElement>('[data-search-empty]')!.hidden).toBe(false);
+    expect(document.querySelector('[role="status"]')?.textContent).toBe('');
+  });
+
   // Review WP-33 pass 2, major 1: a result chosen for a dialog that has closed must do nothing,
   // and must not leave the next close without its focus return.
   it('ignores a result chosen after the dialog closed, and still returns focus next time', async () => {
@@ -490,6 +510,23 @@ describe('the results listbox', () => {
       release();
       await new Promise((resolve) => setTimeout(resolve, 20));
       expect(opened).toEqual([]);
+    });
+
+    // Review WP-33 pass 3, minor 2: the case the close counter exists for. Re-opening runs the
+    // same text again, so the open check and the text check alone would let the old Enter act.
+    it('does nothing when the dialog closed and re-opened while the index was loading', async () => {
+      input().value = 'statements';
+      key(input(), { key: 'Enter' });
+      const dialog = document.querySelector('dialog')!;
+      dialog.close();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      dialog.showModal();
+      pending.opened();
+      release();
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      expect(opened).toEqual([]);
+      // The re-opened dialog shows the results for its text, ready for a new Enter.
+      await vi.waitFor(() => expect(options().length).toBeGreaterThan(0));
     });
 
     it('does nothing when the text changed while the index was loading', async () => {

@@ -166,23 +166,31 @@ function hasTerm(index: LoadedIndex, term: string): boolean {
 }
 
 /**
- * Decide each pair once, against the index: when the guide writes the joined form (`VAT264`,
- * `efiling`, and `saps601` through the index's own alias for `SAPS 601`), search exactly that, so
- * `VAT 264` ranks precisely as `VAT264` does. Otherwise search both words, as any two words, so
- * `page 2` or `stap 1` never widen to every "page" or "stap" through a fuzzy joined form, and their
- * scores are not added up across two branches.
+ * Decide each code pair once, against the index: when the guide writes the joined form (`VAT264`,
+ * and `saps601` through the index's own alias for `SAPS 601`), search exactly that, so `VAT 264`
+ * ranks precisely as `VAT264` does. Otherwise search both words, as any two words, so `page 2` or
+ * `stap 1` never widen to every "page" or "stap" through a fuzzy joined form.
+ *
+ * A hyphenated pair is never resolved: `BTW-registrasie` must find at least what
+ * `BTW registrasie` finds, with prefix and fuzzy matching, while the reader is still typing and
+ * once the word is whole (review WP-33 pass 3, major 1). `queryTree` searches it as "both words, or
+ * the joined form exactly".
  */
 export function resolvePairs(index: LoadedIndex, parts: readonly QueryPart[]): QueryPart[] {
   return parts.map((part) =>
-    typeof part === 'string' || !('pair' in part) || !hasTerm(index, part.joined)
+    typeof part === 'string' ||
+    !('pair' in part) ||
+    part.hyphen === true ||
+    !hasTerm(index, part.joined)
       ? part
       : { exact: part.joined },
   );
 }
 
 /**
- * The MiniSearch query for a list of parts. A pair is both its words; an exact part (a resolved
- * pair) is matched without prefix or fuzzy matching.
+ * The MiniSearch query for a list of parts. A code pair is both its words; a hyphenated pair is
+ * both its words or the joined form; an exact part (a resolved code) is matched without prefix or
+ * fuzzy matching, and so is a hyphenated pair's joined form.
  */
 export function queryTree(
   parts: readonly QueryPart[],
@@ -195,7 +203,12 @@ export function queryTree(
       if ('exact' in part) {
         return { combineWith: 'OR', queries: [part.exact], prefix: false, fuzzy: false };
       }
-      return { combineWith: 'AND', queries: [...part.pair] };
+      const both: Query = { combineWith: 'AND', queries: [...part.pair] };
+      if (part.hyphen !== true) return both;
+      return {
+        combineWith: 'OR',
+        queries: [both, { combineWith: 'OR', queries: [part.joined], prefix: false, fuzzy: false }],
+      };
     }),
   };
 }

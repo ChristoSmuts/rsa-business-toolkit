@@ -92,6 +92,9 @@ export class SearchDialogController implements DialogController {
     // Low data: the index is fetched when the reader types, not when the dialog opens.
     if (!this.#deps.settings.lowData) void this.#client.load().catch(() => undefined);
     if (this.#input.value.trim() !== '') this.search(this.#input.value);
+    // An empty field shows the common questions, and clears a failed state left by an earlier
+    // open whose results code did not load (review WP-33 pass 3, minor 1).
+    else this.#showEmpty();
   }
 
   readonly #onInput = (): void => {

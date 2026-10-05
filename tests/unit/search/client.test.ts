@@ -147,7 +147,9 @@ describe('options', () => {
       'form',
     ]);
     expect(queryParts('saps 601')).toEqual([{ pair: ['saps', '601'], joined: 'saps601' }]);
-    expect(queryParts('the e-filing')).toEqual([{ pair: ['e', 'filing'], joined: 'efiling' }]);
+    expect(queryParts('the e-filing')).toEqual([
+      { pair: ['e', 'filing'], joined: 'efiling', hyphen: true },
+    ]);
     expect(queryParts('page 2 of the guide')).toEqual([
       { pair: ['page', '2'], joined: 'page2' },
       'guide',
@@ -179,6 +181,37 @@ describe('options', () => {
     });
   });
 
+  // Review WP-33 pass 3, minor 3: the exact branch, by behaviour rather than by shape.
+  it('matches a resolved code exactly: no near miss by prefix or fuzzy matching', () => {
+    const idx = index('en', [
+      entry({ key: 'code', anchor: 'code', title: 'Form VAT264', text: 'VAT264' }),
+      entry({ key: 'longer', anchor: 'longer', title: 'Form VAT2640', text: 'VAT2640' }),
+      entry({ key: 'near', anchor: 'near', title: 'Form VAT265', text: 'VAT265' }),
+    ]);
+    expect(runSearch(idx, 'VAT 264', 'en').map((r) => r.anchor)).toEqual(['code']);
+    // The joined query is still prefix and fuzzy matched, as any word: the exact match is the
+    // spaced code's own rule.
+    expect(runSearch(idx, 'VAT264', 'en').map((r) => r.anchor)).toContain('longer');
+  });
+
+  it('keeps a hyphenated pair as both words or the joined form, never resolved', () => {
+    const idx = index('en', [entry({ key: 'e', title: 'eFiling', text: 'e-filing efiling' })]);
+    const part = { pair: ['e', 'filing'], joined: 'efiling', hyphen: true } as const;
+    expect(resolvePairs(idx, [part])).toEqual([part]);
+    expect(queryTree([part], 'AND')).toEqual({
+      combineWith: 'AND',
+      queries: [
+        {
+          combineWith: 'OR',
+          queries: [
+            { combineWith: 'AND', queries: ['e', 'filing'] },
+            { combineWith: 'OR', queries: ['efiling'], prefix: false, fuzzy: false },
+          ],
+        },
+      ],
+    });
+  });
+
   it('resolves a pair to its joined form only when the index holds that term', () => {
     const idx = index('en', [
       ...ENTRIES,
@@ -197,7 +230,10 @@ describe('options', () => {
   it('keeps the number of a date apart from a stop word, but pairs a capitalised code', () => {
     expect(queryParts('on 1 March')).toEqual(['1', 'march']);
     expect(queryParts('op 28 Februarie')).toEqual(['28', 'februarie']);
-    expect(queryParts('IT 12')).toEqual(['it12']);
+    expect(queryParts('IT 12 form')).toEqual(['it12', 'form']);
+    // Review WP-33 pass 3, nit 1: a query all in capitals says nothing by its capitals.
+    expect(queryParts('ON 1 MARCH')).toEqual(['1', 'march']);
+    expect(queryParts('OP 28 FEBRUARIE')).toEqual(['28', 'februarie']);
   });
 
   it('adds no alias to ordinary words followed by a number', () => {

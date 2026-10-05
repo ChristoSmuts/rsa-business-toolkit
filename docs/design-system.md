@@ -375,10 +375,14 @@ heading until there is a query.
 also take at most 200 characters). Two neighbours that may be one thing written two ways form a
 pair: letters then a number in any case (`VAT 264`, `vat 264`, `SAPS 601`) and a hyphenated word
 (`e-filing`). A stop word before a number is not a code (`on 1 March` keeps the `1`), unless it is
-written in capitals (`IT 12`). Each pair is decided once against the index: when the guide holds the
-joined form as a term (`vat264`, `efiling`, and `saps601` through the index's own alias), only that is
-searched, exactly, so `VAT 264` ranks precisely as `VAT264`; otherwise both words are searched as any
-two words, so `page 2` or `stap 1` never widen to every "page" through a fuzzy joined form.
+written in capitals in a query that is not all capitals (`IT 12 form`; `ON 1 MARCH` is a date). A code
+pair is decided once against the index: when the guide holds the joined form as a term (`vat264`,
+and `saps601` through the index's own alias), only that is searched, exactly, so `VAT 264` ranks
+precisely as `VAT264`; otherwise both words are searched as any two words, so `page 2` or `stap 1`
+never widen to every "page" through a fuzzy joined form. A hyphenated pair is never narrowed that
+way: it is searched as both words (with prefix and fuzzy matching) or the joined form exactly, so
+`BTW-registrasie`, `BTW-faktuur` and `VAT-registered` find at least what the same words with a space
+find, and a word does not lose results when the reader finishes typing it.
 Every word must match first; when that finds nothing, any word may, leaving out lone numbers and
 single letters, so a junk query says "nothing found" instead of listing every "Prompt 1".
 
