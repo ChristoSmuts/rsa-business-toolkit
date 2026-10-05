@@ -1,0 +1,384 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import type { Page } from '@playwright/test';
+import { PathsFileSchema } from '../../src/lib/content/schema';
+import { buildPath, pathDocs } from '../../src/lib/path-engine';
+import { profileOf, resultRoute, singleChoices } from '../../src/lib/profile';
+import { expect, test } from './fixtures';
+import { DEFAULT_DIST_DIR, REPO_ROOT } from './helpers/routes';
+
+/**
+ * WP-31: Find my path, My path and the personalisation, with JavaScript, on the built site. The
+ * no-JavaScript wizard and its result pages are in `nojs.spec.ts`; axe on each step and with the
+ * reset dialog open is in `a11y.spec.ts`.
+ */
+
+const readJson = <T>(...segments: string[]): T =>
+  JSON.parse(readFileSync(path.join(REPO_ROOT, ...segments), 'utf8')) as T;
+const paths = PathsFileSchema.parse(readJson('src', 'data', 'paths.json'));
+const manifest = readJson<{ docs: Record<string, { route: string; appliesTo: never }> }>(
+  'src',
+  'data',
+  'manifest.json',
+);
+const en = readJson<{
+  wizard: { savedTip: string };
+  myPath: { resetDone: string };
+  prompts: { profileValues: Record<string, string> };
+}>('src', 'i18n', 'en.json');
+
+async function stored(page: Page, key: string): Promise<unknown> {
+  return page.evaluate((name) => {
+    const raw = window.localStorage.getItem(name);
+    return raw === null ? null : (JSON.parse(raw) as unknown);
+  }, key);
+}
+
+const visibleSteps = (page: Page) => page.locator('[data-steps] > li:visible');
+
+test.describe('Find my path', () => {
+  test('three steps with the keyboard, focus on each heading, then My path', async ({ page }) => {
+    await page.goto('find-my-path/');
+    const step1 = page.getByRole('heading', { name: /Question 1 of 3/ });
+    await expect(step1).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Question 2 of 3/ })).toBeHidden();
+    await expect(page.locator('[data-stepper="0"]')).toHaveAttribute('aria-current', 'step');
+    const next = page.getByRole('button', { name: 'Next' });
+    await expect(next).toHaveAttribute('aria-disabled', 'true');
+
+    // Keyboard only: focus the first answer, choose with Space, go on with Enter.
+    await page.getByRole('radio', { name: /registered company/ }).focus();
+    await page.keyboard.press('Space');
+    await expect(next).not.toHaveAttribute('aria-disabled', /.*/);
+    await page.keyboard.press('Enter');
+    await expect(page.getByRole('heading', { name: /Question 2 of 3/ })).toBeFocused();
+    await expect(page.locator('[data-stepper="1"]')).toHaveAttribute('aria-current', 'step');
+
+    await page.getByRole('checkbox', { name: /Vehicle dealer/ }).focus();
+    await page.keyboard.press('Space');
+    await page.getByRole('checkbox', { name: /Food business/ }).focus();
+    await page.keyboard.press('Space');
+    await page.keyboard.press('Enter');
+    await expect(page.getByRole('heading', { name: /Question 3 of 3/ })).toBeFocused();
+
+    const growing = page.getByRole('radio', { name: /want to grow/ });
+    await expect(growing).toBeEnabled();
+    await growing.focus();
+    await page.keyboard.press('Space');
+    await page.getByRole('button', { name: 'See my path' }).click();
+
+    await page.waitForURL(/\/my-path\/$/);
+    expect(await stored(page, 'st.profile.v1')).toEqual({
+      entity: 'pty',
+      businessTypes: ['vehicle-dealer', 'food'],
+      stage: 'pty-growing',
+    });
+    await expect(page.locator('[data-status]')).toHaveText(en.wizard.savedTip);
+    // Path 4, with food beside the vehicle dealer at the type step.
+    await expect(visibleSteps(page)).toHaveCount(10);
+    await expect(visibleSteps(page).nth(3).locator('li[data-doc]:visible')).toHaveCount(2);
+  });
+
+  test('“Pty Ltd, growing” is disabled, with its reason, unless the answer is Pty Ltd', async ({
+    page,
+  }) => {
+    await page.goto('find-my-path/');
+    await page.getByRole('radio', { name: /own name/ }).check();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.getByRole('checkbox', { name: /Beauty/ }).check();
+    await page.getByRole('button', { name: 'Next' }).click();
+    const growing = page.getByRole('radio', { name: /want to grow/ });
+    await expect(growing).toBeDisabled();
+    await expect(page.locator('[data-pty-reason]')).toBeVisible();
+    await page.getByRole('button', { name: 'Back' }).click();
+    await page.getByRole('button', { name: 'Back' }).click();
+    await page.getByRole('radio', { name: /registered company/ }).check();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await expect(growing).toBeEnabled();
+    await expect(page.locator('[data-pty-reason]')).toBeHidden();
+  });
+
+  test('“Edit answers” starts from the saved answers', async ({ page, seedStorage }) => {
+    await seedStorage({
+      'st.profile.v1': { entity: 'undecided', businessTypes: ['general'], stage: 'not-started' },
+    });
+    await page.goto('my-path/');
+    await page.getByRole('link', { name: 'Edit answers' }).click();
+    await page.waitForURL(/\/find-my-path\/$/);
+    await expect(page.getByRole('radio', { name: /not decided/ })).toBeChecked();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await expect(page.getByRole('checkbox', { name: /General/ })).toBeChecked();
+  });
+
+  test('in Afrikaans the wizard saves the same answers and My path is Afrikaans', async ({
+    page,
+  }) => {
+    await page.goto('af/find-my-path/');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'af-ZA');
+    await page.locator('input[name="entity"][value="sole-prop"]').check();
+    await page.locator('[data-step="entity"] [data-next]').click();
+    await page.locator('input[name="type"][value="food"]').check();
+    await page.locator('[data-step="type"] [data-next]').click();
+    await page.locator('input[name="stage"][value="not-started"]').check();
+    await page.locator('[data-finish]').click();
+    await page.waitForURL(/\/af\/my-path\/$/);
+    expect(await stored(page, 'st.profile.v1')).toEqual({
+      entity: 'sole-prop',
+      businessTypes: ['food'],
+      stage: 'not-started',
+    });
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('My roete');
+    await expect(visibleSteps(page)).toHaveCount(9);
+    await expect(visibleSteps(page).first().getByRole('link')).toHaveAttribute(
+      'href',
+      /\/af\/core\/start-here\/$/,
+    );
+  });
+
+  test('when the device will not save, the answers go along in the address', async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(window, 'localStorage', {
+        configurable: true,
+        get() {
+          throw new DOMException('The operation is insecure.', 'SecurityError');
+        },
+      });
+    });
+    await page.goto('find-my-path/');
+    await page.getByRole('radio', { name: /own name/ }).check();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.getByRole('checkbox', { name: /Food business/ }).check();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.getByRole('radio', { name: /already sell/ }).check();
+    await expect(page.locator('st-storage-notice')).toBeVisible();
+    await page.getByRole('button', { name: 'See my path' }).click();
+    await page.waitForURL(/\/my-path\/\?entity=sole-prop&type=food&stage=trading$/);
+    await expect(page.locator('st-my-path header st-storage-notice')).toBeVisible();
+    await expect(visibleSteps(page)).toHaveCount(4);
+  });
+});
+
+test.describe('My path', () => {
+  const PROFILE = { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' };
+
+  test('without answers it shows the way to Find my path', async ({ page }) => {
+    await page.goto('my-path/');
+    await expect(
+      page.getByRole('heading', { name: 'You have not answered the questions yet' }),
+    ).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Find my path' }).last()).toHaveAttribute(
+      'href',
+      /\/find-my-path\/$/,
+    );
+    await expect(page.locator('[data-dashboard]')).toBeHidden();
+  });
+
+  test('marks steps as done, and the rings on My path, the top bar and home follow', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({ 'st.profile.v1': PROFILE });
+    await page.goto('my-path/');
+    const first = visibleSteps(page).first();
+    await expect(first.getByRole('link', { name: 'Master checklist' })).toBeVisible();
+    await first.getByRole('button', { name: /Mark .* as done/ }).click();
+    await expect(first.locator('[data-done-badge]')).toBeVisible();
+    await expect(page.locator('[data-progress] [data-progress-text]')).toHaveText('1 of 4 done');
+    expect(Object.keys((await stored(page, 'st.path.v1')) as object)).toEqual(['lookup/checklist']);
+    await first.getByRole('button', { name: /Remove the tick/ }).click();
+    await expect(page.locator('[data-progress] [data-progress-text]')).toHaveText('0 of 4 done');
+    await first.getByRole('button', { name: /Mark .* as done/ }).click();
+
+    const topBar = page.locator('st-path-progress');
+    if (await page.locator('.st-topbar__menu-button').isHidden()) {
+      await expect(topBar.getByRole('link')).toHaveAccessibleName('My path: 1 of 4 steps done');
+    }
+    await page.goto('./');
+    const card = page.locator('st-your-path');
+    await expect(card).toBeVisible();
+    await expect(card.getByRole('link', { name: 'Continue: step 2 of 4' })).toHaveAttribute(
+      'href',
+      /\/core\/tax-and-sars\/$/,
+    );
+  });
+
+  test('the checklist shows only what applies, with ticks shared with /checklist/', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({ 'st.profile.v1': PROFILE });
+    await page.goto('my-path/');
+    const list = page.locator('st-applies-scope');
+    // Part A2 is for a company, Part B's vehicle group for a dealer: hidden, not removed.
+    await expect(list.locator('#part-a2-extra-only-if-you-registered-a-pty-ltd')).toBeHidden();
+    await expect(list.locator('#part-a2-extra-only-if-you-registered-a-pty-ltd')).toHaveCount(1);
+    await expect(list.locator('#vehicle-dealer')).toBeHidden();
+    await expect(list.locator('#food')).toBeVisible();
+    await expect(list.locator('#my-path-food')).toBeVisible();
+    await expect(list.locator('#my-path-beauty')).toBeHidden();
+    const box = list.locator('st-checklist input[type="checkbox"]:visible').first();
+    const task = await box.getAttribute('data-task');
+    await box.check();
+    await page.goto('checklist/');
+    await expect(page.locator(`input[data-task="${task}"]`).first()).toBeChecked();
+  });
+
+  test('“Remove my answers” asks, keeps the ticks, and focuses the heading', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({
+      'st.profile.v1': PROFILE,
+      'st.checks.v1': { 'lookup/checklist:5cce7722': '2026-10-01T10:00:00.000Z' },
+    });
+    await page.goto('my-path/');
+    const remove = page.getByRole('button', { name: 'Remove my answers' });
+    await remove.click();
+    const dialog = page.getByRole('dialog', { name: 'Remove your answers?' });
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByRole('button', { name: 'Cancel' })).toBeFocused();
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+    await expect(remove).toBeFocused();
+    expect(await stored(page, 'st.profile.v1')).toEqual(PROFILE);
+
+    await remove.click();
+    await dialog.getByRole('button', { name: 'Remove answers' }).click();
+    await expect(page.locator('[data-status]')).toHaveText(en.myPath.resetDone);
+    await expect(page.getByRole('heading', { level: 1 })).toBeFocused();
+    expect(await stored(page, 'st.profile.v1')).toBeNull();
+    expect(await stored(page, 'st.checks.v1')).toEqual({
+      'lookup/checklist:5cce7722': '2026-10-01T10:00:00.000Z',
+    });
+    await expect(page.locator('[data-empty]')).toBeVisible();
+  });
+});
+
+test.describe('personalisation elsewhere', () => {
+  test('the pager follows the path on a page that is on it', async ({ page, seedStorage }) => {
+    await seedStorage({
+      'st.profile.v1': { entity: 'pty', businessTypes: ['vehicle-dealer'], stage: 'pty-growing' },
+    });
+    await page.goto('core/start-here/');
+    await expect(page.locator('a[rel="next"]')).toHaveAttribute(
+      'href',
+      /\/core\/running-a-pty-ltd\/$/,
+    );
+    await page.goto('core/vehicles/');
+    await expect(page.locator('a[rel="next"]')).toHaveAttribute(
+      'href',
+      /\/core\/tax-and-sars\/#route-4-small-business-corporation-rates-companies-only$/,
+    );
+    await expect(page.locator('a[rel="prev"]')).toHaveAttribute(
+      'href',
+      /\/business-types\/vehicle-dealer\/$/,
+    );
+  });
+
+  test('“Only what applies to me” collapses a section into its marker, and Show brings it back', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({
+      'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+    });
+    await page.goto('core/tax-and-sars/');
+    // Two copies (sidebar from 1024px, above the text below that); one is shown at any width.
+    await expect(page.locator('st-applies-switch input[role="switch"]')).toHaveCount(2);
+    const shown = page.getByRole('switch', { name: 'Only what applies to me' });
+    await expect(shown).toHaveCount(1);
+    await shown.check();
+    expect(await stored(page, 'st.onlyMine')).toBe(true);
+    const heading = page.locator('#what-sars-wants-from-a-company');
+    await expect(heading).toBeHidden();
+    const marker = page.locator('[data-marker-for="what-sars-wants-from-a-company"]');
+    await expect(marker).toContainText('Hidden: this part is only for a Pty Ltd.');
+    await marker.getByRole('button', { name: /Show hidden part/ }).click();
+    await expect(heading).toBeVisible();
+    await expect(heading).toBeFocused();
+    await expect(page.locator('#what-sars-wants-from-a-sole-proprietor')).toBeVisible();
+
+    // The choice is remembered on the next page with parts to hide.
+    await page.goto('core/vehicles/');
+    await expect(page.locator('#if-you-have-a-registered-company')).toBeHidden();
+  });
+
+  test('without answers the switch points at Find my path', async ({ page }) => {
+    await page.goto('core/tax-and-sars/');
+    await expect(page.getByRole('switch')).toHaveCount(0);
+    await expect(
+      page.locator('st-applies-switch [data-no-profile]').locator('visible=true'),
+    ).toContainText('Answer the questions in Find my path');
+  });
+
+  test('/checklist/ offers “Only what applies to me” only with answers', async ({
+    page,
+    seedStorage,
+  }) => {
+    await page.goto('checklist/');
+    await expect(page.getByRole('radio', { name: 'Only what applies to me' })).toBeHidden();
+    await seedStorage({
+      'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+    });
+    await page.reload();
+    await page.getByRole('radio', { name: 'Only what applies to me' }).check();
+    await expect(page.locator('#part-a2-extra-only-if-you-registered-a-pty-ltd')).toBeHidden();
+    await expect(
+      page.locator('[data-marker-for="part-a2-extra-only-if-you-registered-a-pty-ltd"]'),
+    ).toBeVisible();
+    await expect(page.locator('.st-tasklist__hidden:visible').first()).toHaveText(
+      /items? (is|are) hidden because they? do(es)? not apply to you/,
+    );
+    await page.getByRole('radio', { name: 'Everything' }).check();
+    await expect(page.locator('#part-a2-extra-only-if-you-registered-a-pty-ltd')).toBeVisible();
+  });
+
+  test('“Fill from my profile” fills the kind of business, says what is left, and undoes', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({
+      'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+    });
+    await page.goto('branding/marketing-prompts/');
+    const figure = page.locator('figure:has(st-prompt-fill)').first();
+    const mark = figure.locator('mark[data-key="businessType"]').first();
+    await expect(mark).toHaveText('[BUSINESS TYPE]');
+    await figure.getByRole('button', { name: /Fill prompt \d+ from my profile/ }).click();
+    await expect(mark).toHaveText(en.prompts.profileValues['food'] ?? '');
+    await expect(figure.locator('st-prompt-fill [role="status"]')).toHaveText(
+      /blanks? left to fill in|All blanks are filled in/,
+    );
+    const undo = figure.getByRole('button', { name: /Undo filling in prompt/ });
+    await expect(undo).toBeFocused();
+    await undo.click();
+    await expect(mark).toHaveText('[BUSINESS TYPE]');
+  });
+});
+
+test.describe('the pre-rendered result pages', () => {
+  const choices = singleChoices();
+
+  test('every one lists exactly the steps buildPath gives, in both languages', ({
+    basePath,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Reads dist/ only; one project is enough.');
+    for (const locale of ['', 'af/']) {
+      for (const choice of choices) {
+        const route = `${locale}${resultRoute('find-my-path/', choice)}`;
+        const html = readFileSync(path.join(DEFAULT_DIST_DIR, route, 'index.html'), 'utf8');
+        const expected = pathDocs(buildPath(profileOf(choice), manifest as never, paths)).map(
+          (item) =>
+            `${locale}${manifest.docs[item.doc]?.route ?? '?'}${item.anchor ? `#${item.anchor}` : ''}`,
+        );
+        const links = [
+          ...html.matchAll(/<h3 class="st-step__title"[^>]*>\s*<a href="([^"]+)"/g),
+        ].map((match) => (match[1] ?? '').slice(basePath.length));
+        expect(links, route).toEqual(expected);
+        expect(html, route).toContain('<meta name="robots" content="noindex');
+      }
+    }
+    expect(choices).toHaveLength(49);
+  });
+});

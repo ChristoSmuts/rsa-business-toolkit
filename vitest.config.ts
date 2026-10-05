@@ -74,6 +74,11 @@ export default getViteConfig({
         // unit and dom projects together (the store's tests need a real `localStorage`).
         'src/lib/store.ts': { statements: 95, branches: 90, functions: 100, lines: 95 },
         'src/lib/storage/**': { statements: 95, branches: 90, functions: 100, lines: 95 },
+        // WP-31: the path engine and the profile. The brief's floor is 90% on the engine.
+        'src/lib/path-engine.ts': { statements: 95, branches: 95, functions: 100, lines: 95 },
+        'src/lib/profile.ts': { statements: 95, branches: 90, functions: 100, lines: 95 },
+        'src/lib/profile-store.ts': { statements: 95, branches: 90, functions: 100, lines: 95 },
+        'src/lib/path-pages.ts': { statements: 95, branches: 85, functions: 95, lines: 95 },
         'scripts/build-content.ts': { statements: 0, branches: 0, functions: 0, lines: 0 },
         'scripts/translate/status.ts': { statements: 0, branches: 0, functions: 0, lines: 0 },
       },
