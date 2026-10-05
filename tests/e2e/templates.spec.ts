@@ -137,7 +137,9 @@ test.describe('the tax invoice', () => {
     await page.getByLabel('Bank', { exact: true }).fill('FNB');
     await page.getByLabel('Customer name').fill('Thandi');
     await page.getByLabel('Invoice number').fill('INV-0041');
-    await page.getByRole('button', { name: en.templates.items['tax-invoice']?.startNext }).click();
+    await page
+      .getByRole('button', { name: en.templates.items['tax-invoice']?.startNext ?? '' })
+      .click();
     await expect(page.getByLabel('Invoice number')).toHaveValue('INV-0042');
     await expect(page.getByLabel('Business name')).toHaveValue('Mokoena Repairs');
     await expect(page.getByLabel('Bank', { exact: true })).toHaveValue('FNB');
@@ -221,7 +223,7 @@ test.describe('the other templates', () => {
       `R${NBSP}2${NBSP}500.00`,
     );
     await showForm(page);
-    await page.getByRole('button', { name: en.templates.items.receipt?.startNext }).click();
+    await page.getByRole('button', { name: en.templates.items.receipt?.startNext ?? '' }).click();
     await expect(page.getByLabel('Receipt number')).toHaveValue('REC-0004');
     expect(await stored(page, 'st.template.receipt.v1')).toContain('REC-0004');
   });
