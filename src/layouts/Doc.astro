@@ -18,6 +18,7 @@
 import Page from './Page.astro';
 import BusinessTypeTiles from '../components/pages/BusinessTypeTiles.astro';
 import ChecklistElsewhere from '../components/interactive/ChecklistElsewhere.astro';
+import AppliesScope from '../components/interactive/AppliesScope.astro';
 import AppliesSwitch from '../components/interactive/AppliesSwitch.astro';
 import ChecklistSummary from '../components/interactive/ChecklistSummary.astro';
 import Badge from '../components/ui/Badge.astro';
@@ -115,8 +116,6 @@ const coreHref = sectionHref(manifest, 'core', locale);
 const filterable = WIZARD_AVAILABLE && docHasConditions(doc);
 const scopeMode = doc.kind === 'checklist' ? 'checklist' : 'switch';
 const showSwitch = filterable && scopeMode === 'switch';
-const hiddenOne = t('checklist.hiddenItems', { count: 1 }).replace('1', '{count}');
-const hiddenOther = t('checklist.hiddenItems', { count: 2 }).replace('2', '{count}');
 const relatedTypes = businessType
   ? doc.related
       .map((id) => businessTypes.find((type) => type.doc === id))
@@ -247,14 +246,9 @@ const relatedTypes = businessType
         {showSwitch && <AppliesSwitch locale={locale} placement="inline" />}
 
         {filterable ? (
-          <st-applies-scope
-            class="st-doc__scope"
-            data-mode={scopeMode}
-            data-hidden-one={hiddenOne}
-            data-hidden-other={hiddenOther}
-          >
+          <AppliesScope locale={locale} mode={scopeMode}>
             <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
-          </st-applies-scope>
+          </AppliesScope>
         ) : (
           <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
         )}
@@ -328,12 +322,10 @@ const relatedTypes = businessType
 </Page>
 
 <script>
-  import '../scripts/applies';
   import '../scripts/path-progress';
 </script>
 
 <style>
-  st-applies-scope,
   st-path-pager {
     display: block;
   }

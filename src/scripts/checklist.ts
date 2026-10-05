@@ -28,7 +28,9 @@ export type ChecklistFilter = 'all' | 'mine' | 'not-done';
 function isFilter(value: unknown): value is ChecklistFilter {
   return value === 'all' || value === 'mine' || value === 'not-done';
 }
-export const FILTER_EVENT = 'st-checklist-filter';
+import { FILTER_EVENT } from './checklist-filter';
+
+export { FILTER_EVENT };
 
 let currentFilter: ChecklistFilter = 'all';
 

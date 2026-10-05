@@ -191,25 +191,50 @@ describe('<st-my-path>', () => {
   });
 });
 
+/** The path elements draw once the lazily loaded path data is in; wait for the last draw. */
+async function drawn(selector: string): Promise<void> {
+  const element = document.querySelector(selector) as unknown as { rendered: Promise<void> };
+  await element.rendered;
+}
+
 describe('<st-path-progress>', () => {
   const BAR = `<st-path-progress data-template="My path: {done} of {total} steps done" hidden>
     <a href="#">${RING}<span data-progress-text>My path</span></a></st-path-progress>`;
 
-  it('shows only with answers and counts the steps done', () => {
+  it('shows only with answers and counts the steps done', async () => {
     mount(BAR);
-    const element = document.querySelector('st-path-progress')!;
+    const element = document.querySelector('st-path-progress') as StPathProgress;
     expect(element).toBeInstanceOf(StPathProgress);
-    expect((element as HTMLElement).hidden).toBe(true);
+    expect(element.hidden).toBe(true);
     profile.set({ entity: 'pty', businessTypes: ['vehicle-dealer'], stage: 'pty-growing' });
-    expect((element as HTMLElement).hidden).toBe(false);
+    await drawn('st-path-progress');
+    expect(element.hidden).toBe(false);
     expect(element.querySelector('[data-progress-text]')?.textContent).toBe(
       'My path: 0 of 10 steps done',
     );
     pathDone.set({ 'core/start-here': '2026-10-01T10:00:00.000Z' });
+    await drawn('st-path-progress');
     expect(element.querySelector('[data-progress-text]')?.textContent).toBe(
       'My path: 1 of 10 steps done',
     );
     expect(element.querySelector('.st-ring__text')?.textContent).toBe('10%');
+    profile.reset();
+    await drawn('st-path-progress');
+    expect(element.hidden).toBe(true);
+  });
+
+  it('a draw that a newer change overtook does nothing, and nothing draws after disconnecting', async () => {
+    mount(BAR);
+    const element = document.querySelector('st-path-progress') as StPathProgress;
+    profile.set({ entity: 'pty', businessTypes: ['vehicle-dealer'], stage: 'pty-growing' });
+    profile.reset();
+    await element.rendered;
+    await Promise.resolve();
+    expect(element.hidden).toBe(true);
+    profile.set({ entity: 'pty', businessTypes: ['vehicle-dealer'], stage: 'pty-growing' });
+    element.remove();
+    await element.rendered;
+    expect(element.hidden).toBe(true);
   });
 });
 
@@ -218,10 +243,11 @@ describe('<st-your-path>', () => {
     ${RING}<p data-progress-text></p>
     <a href="/business-toolkit/af/my-path/" data-continue><span class="st-btn__label">Maak my roete oop</span></a></st-your-path>`;
 
-  it('links the next step’s first page in the page’s language', () => {
+  it('links the next step’s first page in the page’s language', async () => {
     profile.set({ entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' });
     pathDone.set({ 'lookup/checklist': '2026-10-01T10:00:00.000Z' });
     mount(CARD);
+    await drawn('st-your-path');
     const element = document.querySelector('st-your-path') as StYourPath;
     expect(element.hidden).toBe(false);
     const link = element.querySelector<HTMLAnchorElement>('a[data-continue]')!;
@@ -230,7 +256,7 @@ describe('<st-your-path>', () => {
     expect(element.querySelector('[data-progress-text]')?.textContent).toBe('1 van 4 klaar');
   });
 
-  it('hides “Continue” when every step is done, and the card without answers', () => {
+  it('hides “Continue” when every step is done, and the card without answers', async () => {
     profile.set({ entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' });
     pathDone.set(
       Object.fromEntries(
@@ -240,9 +266,11 @@ describe('<st-your-path>', () => {
       ),
     );
     mount(CARD);
+    await drawn('st-your-path');
     const element = document.querySelector('st-your-path') as StYourPath;
     expect(element.querySelector<HTMLElement>('a[data-continue]')!.hidden).toBe(true);
     profile.reset();
+    await drawn('st-your-path');
     expect(element.hidden).toBe(true);
   });
 });
@@ -255,11 +283,12 @@ describe('<st-path-pager>', () => {
   const link = (rel: string): HTMLAnchorElement =>
     document.querySelector<HTMLAnchorElement>(`a[rel="${rel}"]`)!;
 
-  it('follows the path when the document is on it, and the section order otherwise', () => {
+  it('follows the path when the document is on it, and the section order otherwise', async () => {
     mount(PAGER('core/start-here'));
     expect(document.querySelector('st-path-pager')).toBeInstanceOf(StPathPager);
     expect(link('next').getAttribute('href')).toBe('/business-toolkit/core/register/');
     profile.set({ entity: 'pty', businessTypes: ['vehicle-dealer'], stage: 'pty-growing' });
+    await drawn('st-path-pager');
     expect(link('next').getAttribute('href')).toBe(href('en', 'core/running-a-pty-ltd/'));
     expect(link('next').querySelector('[data-pager-title]')?.textContent).toBe('Running a Pty Ltd');
     expect(link('next').querySelector('[data-pager-title]')?.hasAttribute('lang')).toBe(false);
@@ -267,20 +296,24 @@ describe('<st-path-pager>', () => {
     expect(link('prev').getAttribute('href')).toBe('/business-toolkit/start/what-has-changed/');
     expect(document.querySelector('st-path-pager')?.hasAttribute('data-on-path')).toBe(true);
     profile.reset();
+    await drawn('st-path-pager');
     expect(link('next').getAttribute('href')).toBe('/business-toolkit/core/register/');
     expect(link('next').querySelector('[data-pager-title]')?.getAttribute('lang')).toBe('en-ZA');
+    expect(document.querySelector('st-path-pager')?.hasAttribute('data-on-path')).toBe(false);
   });
 
-  it('leaves a document that is not on the path alone', () => {
+  it('leaves a document that is not on the path alone', async () => {
     profile.set({ entity: 'pty', businessTypes: ['vehicle-dealer'], stage: 'pty-growing' });
     mount(PAGER('lookup/glossary'));
+    await drawn('st-path-pager');
     expect(link('next').getAttribute('href')).toBe('/business-toolkit/core/register/');
     expect(document.querySelector('st-path-pager')?.hasAttribute('data-on-path')).toBe(false);
   });
 
-  it('uses the anchor a path step names', () => {
+  it('uses the anchor a path step names', async () => {
     profile.set({ entity: 'pty', businessTypes: ['vehicle-dealer'], stage: 'pty-growing' });
     mount(PAGER('core/vehicles'));
+    await drawn('st-path-pager');
     expect(link('next').getAttribute('href')).toBe(
       href('en', 'core/tax-and-sars/#route-4-small-business-corporation-rates-companies-only'),
     );

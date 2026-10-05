@@ -8,6 +8,7 @@
  */
 import Page from '../../layouts/Page.astro';
 import Blocks from '../../components/content/Blocks.astro';
+import AppliesScope from '../../components/interactive/AppliesScope.astro';
 import TaskListBlock from '../../components/content/TaskListBlock.astro';
 import Breadcrumb from '../../components/navigation/Breadcrumb.astro';
 import Badge from '../../components/ui/Badge.astro';
@@ -191,7 +192,7 @@ const progressTemplate = t('myPath.progress', { done: '{done}', total: '{total}'
         <section class="st-stack" aria-labelledby="my-path-checklist">
           <h2 id="my-path-checklist">{t('myPath.checklistHeading')}</h2>
           <p class="st-hint">{t('trust.checklistReminder')}</p>
-          <st-applies-scope class="st-stack" data-mode="always">
+          <AppliesScope locale={locale} mode="always">
             <Blocks
               blocks={parts}
               context={context(checklistDoc)}
@@ -214,7 +215,7 @@ const progressTemplate = t('myPath.progress', { done: '{done}', total: '{total}'
                 ))}
               </section>
             ))}
-          </st-applies-scope>
+          </AppliesScope>
         </section>
 
         <section class="st-stack st-stack-sm js-only" aria-labelledby="my-path-reset">
@@ -252,7 +253,6 @@ const progressTemplate = t('myPath.progress', { done: '{done}', total: '{total}'
 
 <style>
   st-my-path,
-  st-applies-scope,
   st-storage-notice {
     display: block;
   }

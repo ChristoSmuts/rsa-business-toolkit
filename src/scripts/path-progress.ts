@@ -9,83 +9,120 @@
  * <st-path-pager>     wraps a document's Previous / Next: when the document is on the reader's
  *                     path, the links follow the path instead of the section order. A side with
  *                     no path neighbour keeps the section-order link.
+ *
+ * This module is on every page (the top bar), so it stays small: the path data and the engine
+ * (`path-data.ts`, about 3 KB gzipped) load only once there is a profile, the way search loads its
+ * index only when it is opened. A reader who never answered the questions never downloads them.
  */
 import { interpolate } from '../i18n';
-import { pathNeighbours, pathProgress, type PathItem } from '../lib/path-engine';
+import type { PathItem } from '../lib/path-engine';
+import type { Profile } from '../lib/profile';
 import { pathDone, profile } from '../lib/profile-store';
-import { drawRing, pageLocale, pathDocHref, pathDocTitle, readerPath } from './path-data';
 
 type Stop = () => void;
+type PathData = typeof import('./path-data');
 
-function follow(render: () => void): Stop[] {
-  return [profile.subscribe(render), pathDone.subscribe(render)];
+let pending: Promise<PathData> | undefined;
+/** The path data and engine, loaded once, on first need. */
+export function loadPathData(): Promise<PathData> {
+  pending ??= import('./path-data');
+  return pending;
 }
 
-export class StPathProgress extends HTMLElement {
+/**
+ * Draws after the data has loaded, for the profile current then; a draw that a newer change
+ * overtook does nothing. `rendered` is the last one, so tests can wait for it.
+ */
+abstract class PathElement extends HTMLElement {
   #stops: Stop[] = [];
+  #ticket = 0;
+  rendered: Promise<void> = Promise.resolve();
+
+  protected watch(): Stop[] {
+    return [profile.subscribe(() => this.update()), pathDone.subscribe(() => this.update())];
+  }
 
   connectedCallback(): void {
-    this.#stops = follow(() => this.render());
+    this.#stops = this.watch();
   }
 
   disconnectedCallback(): void {
     for (const stop of this.#stops) stop();
     this.#stops = [];
+    this.#ticket++;
   }
 
-  render(): void {
+  update(): Promise<void> {
+    const ticket = ++this.#ticket;
     const who = profile.get();
-    this.hidden = who === null;
-    if (!who) return;
-    const { done, total } = pathProgress(readerPath(who), pathDone.get());
+    if (!who) {
+      this.empty();
+      this.rendered = Promise.resolve();
+      return this.rendered;
+    }
+    this.rendered = loadPathData().then((data) => {
+      if (ticket === this.#ticket) this.draw(data, who);
+    });
+    return this.rendered;
+  }
+
+  /** No profile. */
+  protected abstract empty(): void;
+  protected abstract draw(data: PathData, who: Profile): void;
+}
+
+export class StPathProgress extends PathElement {
+  protected empty(): void {
+    this.hidden = true;
+  }
+
+  protected draw(data: PathData, who: Profile): void {
+    const { done, total } = data.pathProgress(data.readerPath(who), pathDone.get());
     const text = interpolate(this.dataset['template'] ?? '{done}/{total}', { done, total });
-    drawRing(this, done, total, text);
+    data.drawRing(this, done, total, text);
     const label = this.querySelector('[data-progress-text]');
     if (label) label.textContent = text;
+    this.hidden = false;
   }
 }
 
-export class StYourPath extends HTMLElement {
-  #stops: Stop[] = [];
-
-  connectedCallback(): void {
-    this.#stops = follow(() => this.render());
+export class StYourPath extends PathElement {
+  protected empty(): void {
+    this.hidden = true;
   }
 
-  disconnectedCallback(): void {
-    for (const stop of this.#stops) stop();
-    this.#stops = [];
-  }
-
-  render(): void {
-    const who = profile.get();
-    this.hidden = who === null;
-    if (!who) return;
-    const locale = pageLocale(this);
-    const path = readerPath(who);
-    const { done, total, next } = pathProgress(path, pathDone.get());
+  protected draw(data: PathData, who: Profile): void {
+    const locale = data.pageLocale(this);
+    const { done, total, next } = data.pathProgress(data.readerPath(who), pathDone.get());
     const progress = interpolate(this.dataset['progress'] ?? '{done}/{total}', { done, total });
-    drawRing(this, done, total, progress);
+    data.drawRing(this, done, total, progress);
     const text = this.querySelector('[data-progress-text]');
     if (text) text.textContent = progress;
     const resume = this.querySelector<HTMLAnchorElement>('a[data-continue]');
-    if (!resume) return;
-    const first = next?.items[0];
-    const target = first ? pathDocHref(locale, first.doc, first.anchor) : undefined;
-    resume.hidden = !next || !target;
-    if (next && target) {
-      resume.href = target;
-      const label = resume.querySelector('.st-btn__label') ?? resume;
-      label.textContent = interpolate(this.dataset['continue'] ?? '{n}', { n: next.n, total });
+    if (resume) {
+      const first = next?.items[0];
+      const target = first ? data.pathDocHref(locale, first.doc, first.anchor) : undefined;
+      resume.hidden = !next || !target;
+      if (next && target) {
+        resume.href = target;
+        const label = resume.querySelector('.st-btn__label') ?? resume;
+        label.textContent = interpolate(this.dataset['continue'] ?? '{n}', { n: next.n, total });
+      }
     }
+    this.hidden = false;
   }
 }
 
-export class StPathPager extends HTMLElement {
-  #original = new Map<HTMLAnchorElement, { href: string; title: string; lang: string | null }>();
-  #stops: Stop[] = [];
+interface Link {
+  readonly href: string;
+  readonly title: string;
+  readonly lang: string | null;
+}
 
-  connectedCallback(): void {
+export class StPathPager extends PathElement {
+  #original = new Map<HTMLAnchorElement, Link>();
+
+  protected override watch(): Stop[] {
     for (const link of this.querySelectorAll<HTMLAnchorElement>('a[rel="prev"], a[rel="next"]')) {
       const title = link.querySelector('[data-pager-title]');
       this.#original.set(link, {
@@ -94,43 +131,42 @@ export class StPathPager extends HTMLElement {
         lang: title?.getAttribute('lang') ?? null,
       });
     }
-    this.#stops = [profile.subscribe(() => this.render())];
+    return [profile.subscribe(() => this.update())];
   }
 
-  disconnectedCallback(): void {
-    for (const stop of this.#stops) stop();
-    this.#stops = [];
+  override disconnectedCallback(): void {
+    super.disconnectedCallback();
     this.#original.clear();
   }
 
-  render(): void {
-    const who = profile.get();
-    const doc = this.dataset['doc'] ?? '';
-    const around = who ? pathNeighbours(readerPath(who), doc) : undefined;
-    const locale = pageLocale(this);
-    this.toggleAttribute('data-on-path', around?.onPath === true);
+  protected empty(): void {
+    this.removeAttribute('data-on-path');
+    for (const [link, original] of this.#original) this.#set(link, original);
+  }
+
+  protected draw(data: PathData, who: Profile): void {
+    const around = data.pathNeighbours(data.readerPath(who), this.dataset['doc'] ?? '');
+    const locale = data.pageLocale(this);
+    this.toggleAttribute('data-on-path', around.onPath);
     for (const [link, original] of this.#original) {
-      const item: PathItem | undefined =
-        link.rel === 'prev' ? around?.previous : link.rel === 'next' ? around?.next : undefined;
-      const target = item ? pathDocHref(locale, item.doc, item.anchor) : undefined;
-      const title = link.querySelector('[data-pager-title]');
-      if (item && target) {
-        const named = pathDocTitle(locale, item.doc);
-        link.href = target;
-        if (title) {
-          title.textContent = named.title;
-          if (named.lang) title.setAttribute('lang', named.lang);
-          else title.removeAttribute('lang');
-        }
-      } else {
-        link.href = original.href;
-        if (title) {
-          title.textContent = original.title;
-          if (original.lang) title.setAttribute('lang', original.lang);
-          else title.removeAttribute('lang');
-        }
+      const item: PathItem | undefined = link.rel === 'prev' ? around.previous : around.next;
+      const target = item ? data.pathDocHref(locale, item.doc, item.anchor) : undefined;
+      if (!item || !target) {
+        this.#set(link, original);
+        continue;
       }
+      const named = data.pathDocTitle(locale, item.doc);
+      this.#set(link, { href: target, title: named.title, lang: named.lang ?? null });
     }
+  }
+
+  #set(link: HTMLAnchorElement, value: Link): void {
+    link.href = value.href;
+    const title = link.querySelector('[data-pager-title]');
+    if (!title) return;
+    title.textContent = value.title;
+    if (value.lang) title.setAttribute('lang', value.lang);
+    else title.removeAttribute('lang');
   }
 }
 

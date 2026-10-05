@@ -20,7 +20,7 @@
 import { applies, appliesFromAttributes } from '../lib/path-engine';
 import type { Profile } from '../lib/profile';
 import { onlyMine, profile } from '../lib/profile-store';
-import { FILTER_EVENT } from './checklist';
+import { FILTER_EVENT } from './checklist-filter';
 
 export const FILTERED = 'st-filtered';
 

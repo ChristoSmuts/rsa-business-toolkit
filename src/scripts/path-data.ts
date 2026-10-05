@@ -7,6 +7,9 @@
 import pathsJson from '../data/paths.json';
 import type { PathsFile } from '../lib/content/schema';
 import { buildPath, type PathResult } from '../lib/path-engine';
+
+/** What the path elements need from the engine, so they import nothing of it before a profile. */
+export { pathNeighbours, pathProgress } from '../lib/path-engine';
 import type { Profile } from '../lib/profile';
 import { DEFAULT_LOCALE, href, isLocale, type Locale } from '../lib/paths';
 
