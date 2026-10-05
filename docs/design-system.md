@@ -301,8 +301,10 @@ Three flags in `src/lib/routes.ts` keep the site from offering what is not built
   apply to you" are left out.
 - `SEARCH_AVAILABLE` (WP-33): `/search/` and the 404 page show no search form, the header shows no
   `/` hint, and the home page's actions are "Read Core: start here" and the contents.
-- `TEMPLATES_FILLABLE` (WP-32): the templates index and the drawer describe what the template pages
-  are now, what each document must show with a sample layout, not a form to fill in.
+- `TEMPLATES_FILLABLE` (WP-32, **on**): each template page is a form with a live preview
+  (`TemplateTool`, see [Fillable templates](#fillable-templates-wp-32)), and the templates index and
+  the Tools menu say "fill in and print". Off, they describe a sample layout and the template pages
+  render as plain documents.
 - `CHECKLIST_SAVES` (WP-30, **on**): while it was off, the checklist was described as a list to
   print and tick and every checklist page said its ticks were not saved yet. On, see
   [Interactive pieces](#interactive-pieces-wp-30).
@@ -352,6 +354,7 @@ status lines. Each piece works, or is absent, without JavaScript: `tests/e2e/noj
 | `<st-setting>` | `settings.ts` | `Settings` (`/about/`) | One `role="switch"` checkbox bound to `shortcuts` or `lowData`. A switch changed before the module connected is kept and saved. While `SEARCH_AVAILABLE` is off the help lines use the `…Static` strings, which do not mention `/` or loading search. | Hidden; one line says some tools need JavaScript. |
 | `<st-clear-data>` | `settings.ts` | `Settings` | "Clear all my data": `ConfirmDialog`, then `clearAll()` and "All your data was removed from this device." | Hidden. |
 | `<st-lang-banner>` | `lang-banner.ts` | `LangBanner` (English home only) | Shown from the first paint, so it never shifts the page: `theme-init.js` sets `<html data-st-lang-offer>` when `st.lang` is not the page's language, a CSS rule per language shows the banner whose `data-locale` matches it, and the element keeps it in step with the store. Shown while `st.lang` is a language other than the page's: the message and actions in **that** language, with its `lang`. "Gaan voort in Afrikaans" is a plain link (never a redirect); "Stay on this page" saves the page's language; close hides it for this page view. Focus moves to `<main>` when it goes. A saved value that is not an enabled language shows nothing: the first-paint rule is per language. | Not shown: `theme-init.js` sets the attribute that shows it, and it needs JavaScript too. |
+| `<st-template-form>` | `template-form.ts` | `TemplateTool` | Binds a template's form to its draft (`st.template.<slug>.v1`), fills the A4 preview (dates in words, amounts with `formatRand`), works out line amounts, subtotal, VAT and total in an `aria-live` region, and counts the required items ("12 of 20 required items present", with a link to each one missing). Print calls `window.print()`; Start next keeps business and bank details and increments the number; Clear asks in a `ConfirmDialog`. A value typed before it connected is kept. The only markup it writes is the preview's list items, one per line the reader typed. | The form is the printable sheet; no preview, tabs, totals or buttons. |
 | `<st-theme-toggle>` | `theme-control.ts` | `ThemeControl` | Now on the `theme` store; the module applies the store to `<html>` and the theme-color metas whatever changes it (a toggle, another tab, clear my data). | As before. |
 | `<st-lang-switch>` | `navigation.ts` | `LanguageSwitcher` | Also saves the language followed in `st.lang`. | Plain links. |
 
@@ -371,6 +374,38 @@ and its rows appear in the `/about/` table when `SEARCH_AVAILABLE` is on.
 
 Low data: the `lowData` store sets `<html data-low-data>`, which `tokens.css` already maps to the
 system fonts and no pattern. `theme-init.js` applies it before paint from `st.lowData`.
+
+### Fillable templates (WP-32)
+
+A template document (`kind: 'template'`) renders through `Doc.astro` as usual: breadcrumb, AI notice,
+translation notice, "An AI checked the legal rules for what this document must show on {date}",
+sources and pager. What changes is the middle. `parseTemplate()` (`src/lib/templates/placeholders.ts`)
+splits the blocks at the template's two `---` rules: the text **before** (how to use it, the rules
+to follow) and **after** ("The seven things a full tax invoice must show") render as on any document,
+so **every rule a reader is shown comes from the markdown**; the template itself becomes
+`TemplateTool`. The page has no contents list: its headings are the form's groups, which carry the
+heading ids, so `#to` or `#payment-details` still lands on the right part.
+
+| Piece | File | Notes |
+| --- | --- | --- |
+| Parser | `src/lib/templates/placeholders.ts` | Pure. Every `[PLACEHOLDER]` and every sample written as text (`QUO-0001`, `R 0.00`, `4XXXXXXXXX`) is a field. Names come from block ids and positions, so the Afrikaans template gives the same names and a draft opens in either language. Labels are the template's: a table row's label, a placeholder that stands alone, or the sentence around a slot with `…` in its place. Business details carry a `profileKey` and are named by the dictionary (`templates.fields.*`) unless the template names them itself (`Information Officer: [Your full name]`). Optional: the nested `[If a company: …]` line and an instruction placeholder in running text. A paragraph with no slot is text in its group, so the form is the whole document. |
+| Totals | `src/lib/templates/totals.ts` | Whole cents. Line = quantity × unit price, rounded; VAT at the template's own rate (`VAT @ 15%`) on the subtotal, rounded once; an empty quantity counts as 1, as the templates write. `parseNumber` reads `1 500.50`, `1,500.50` and `1500,50`. |
+| Draft | `src/lib/templates/draft.ts` | `st.template.<slug>.v1` through `persistentValue`, schema in `zod/mini`. Holds only what differs from the defaults; an empty draft removes the key. |
+| Form | `TemplateTool.astro`, `TemplateField.astro`, `TemplateLines.astro` | Groups are fieldsets in the template's order ("Your business", "Document details", then one per heading). No `required` attribute and no submit: validation is soft. `autocomplete` on business fields only. `MAX_LINES` (10) line rows are rendered; rows past the template's own are opened by "Add line". |
+| Preview | `TemplateSheet.astro`, `SheetRuns.astro` | The template's own layout with a `<span data-field>` per slot; while empty a slot shows the template's words, highlighted with `--st-mark-bg`, and an optional slot shows nothing. `SheetRuns.astro` is in `.prettierignore` for the reason `Inline.astro` is. |
+| Element | `src/scripts/template-form.ts` | `<st-template-form>`; see the table above. |
+
+Layout: `st-template-form` is a size container. At 52rem and wider the form and the preview sit side
+by side; narrower, "Fill in" and "Preview" are ARIA tabs (arrow keys, Home, End), and the element
+adds the `tabpanel` roles only while the tabs are on screen. Required items, the actions and the
+clear dialog follow. Template pages drop the contents column at 1280px so the tool has the room.
+
+**Printing.** The preview carries `data-print-sheet`, so only the sheet prints, at the page's full
+width (`print.css` turns the sheet's ancestors into plain blocks, or the document grid's sidebar
+track squeezed it into 272px). With the tabs on "Fill in" the preview still prints. Without
+JavaScript the preview is not shown and the **form** is the sheet: it also carries
+`data-print-sheet`, prints the title, labels, values on ruled lines, the template's text and blank
+totals to write in, and a line under the notice says to use the browser's Print command.
 
 #### The store (`src/lib/store.ts`, `src/lib/storage/`)
 
@@ -475,7 +510,7 @@ Verification status, officialness and "not confirmed" are the three places a pag
 - Only the CSS chunk that carries the design tokens is named `stoep.[hash].css`; page CSS keeps Rollup's own name (`assetFileNames` matches on `originalFileNames`). Three files all called `stoep.*` could not be told apart in DevTools or a budget report.
 - Module scripts run after parsing but, in WebKit, **before stylesheets that come later in `<head>`** have applied (Astro emits page CSS links after its scripts). A script that reads computed styles must therefore check that the tokens resolve — and it must check on **the element it is about to measure**, not on `documentElement`. See [The live contrast panel](#the-live-contrast-panel) for why the difference is not academic.
 - `localStorage` is allowed only in `src/lib/store.ts` and `src/lib/storage/**` (ESLint allow-list; `src/scripts/**` left it with WP-30). `theme-init.js` reads `st.theme`, `st.lowData` and `st.lang` itself, because it must run before any module loads; it is plain JavaScript, outside the TypeScript rule, and the one documented exception.
-- **JavaScript budget** (plan B3 flow 9: 25 KB gzipped on document pages). Measured on the WP-30 build: the heaviest document pages load 14 script files, 39.9 KB raw and **15.9 KB gzipped** (each file gzipped on its own and summed, `theme-init` included); the store chunk (nanostores and `zod/mini`) is 7.2 KB of that. `/about/` is 13.2 KB and the home page 12.8 KB. How to measure: `docs/testing.md`.
+- **JavaScript budget** (plan B3 flow 9: 25 KB gzipped on document pages). Measured on the WP-30 build: the heaviest document pages load 14 script files, 39.9 KB raw and **15.9 KB gzipped** (each file gzipped on its own and summed, `theme-init` included); the store chunk (nanostores and `zod/mini`) is 7.2 KB of that. `/about/` is 13.2 KB and the home page 12.8 KB. How to measure: `docs/testing.md`. **Tool pages** (45 KB budget): each template page loads 13 files, 52.8 KB raw and **19.8 KB gzipped** on the WP-32 build; `<st-template-form>` is 4.4 KB of that and the store chunk, which now also carries the `zod/mini` object and record schemas, 9.2 KB. The page passes month names and `date.format` in data attributes, so no dictionary is bundled.
 - In `astro dev` the same imports work: `?url` returns the source path of `theme-init.js`, which Vite serves as JavaScript, and processed scripts load as dev modules.
 
 ### The live contrast panel
@@ -537,7 +572,7 @@ One last piece of wording. An unparseable token fails its pair, which is the rig
   corpus's five-column-plus tables (a cash book and a vehicle logbook) are column headings with no
   rows, so the labelling path renders nothing today and `tests/e2e/content.spec.ts` can only check
   that the region asks for the mode. The first wide table with rows will exercise it.
-- **Print** rules (sheet-only printing, hidden chrome) have no automated check yet. The templates package must verify sheet-only printing with `emulateMedia('print')` once a template page exists.
+- **Print** rules: sheet-only printing is checked on the template pages under `emulateMedia('print')` (with and without JavaScript, `tests/e2e/templates.spec.ts` and `nojs.spec.ts`), and Chromium renders the tax invoice to an A4 PDF. A real print dialog, paper margins and other browsers' print engines are checked by hand only.
 - **Manual assistive-technology checks** (NVDA with Firefox, TalkBack with Chrome, plan B5) were not run for this package; there are no real pages yet. They are deferred to the pages packages, which own the six B5 journeys.
 - **WebKit heading weight (port artifact, to confirm on real Safari).** Playwright's Windows WebKit draws Fraunces heavy at every weight: an explicit `"wght" 300` still renders black. It is the rasteriser, not the CSS — measured advance widths are identical to Chromium (600: 369.5px, 900: 395.5px, 300: 343.7px), so the variation axis *is* being applied, and Chromium at the same weights looks right. **The type tokens were deliberately not changed for it.** Check once on real Safari (macOS and iOS) before assuming anything is wrong with the font setup; if it reproduces there, it belongs in a bug against the font or the engine, not in `tokens.css`.
 
@@ -615,7 +650,7 @@ Where the system states it:
 - Checkboxes print as empty boxes, unless `<html data-print-ticks>` is set.
 - When an element has `data-print-sheet`, only that element prints (templates). Everything that is not the sheet, inside it or one of its ancestors gets `display: none`, so no blank pages are left behind and the sheet stays in normal flow.
 - Headings avoid breaks after; table rows, figures, callouts and code avoid breaks inside; table headers repeat.
-- Not yet verified automatically (see Known limits).
+- Verified automatically on the template pages (see Known limits for what is not).
 
 ## Forced colours and preferences
 

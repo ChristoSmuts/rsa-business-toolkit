@@ -229,6 +229,43 @@ by any unit test; this predates WP-30 and is the same at `2744d07`.)
 build the heaviest document pages are 15.9 KB (14 files, 39.9 KB raw); see
 [design-system.md](design-system.md#scripts-csp-and-javascript-budget) for the split.
 
+### Fillable templates (WP-32)
+
+`tests/e2e/templates.spec.ts` (projects `chromium`, `webkit` and `mobile`): on the tax invoice,
+filling binds the preview (the business name, the VAT number, the date in words), three washers at
+R 0.35 plus a R 450 call-out give a subtotal of R 451.05, VAT of R 67.66 (on the line total) and
+R 518.71, and a reload keeps the draft and its two lines; the required-items count goes up as fields
+are filled and a missing item's link focuses its field; Clear opens its dialog with "Keep what I
+typed" focused, Escape cancels and returns focus, confirming empties the form and removes
+`st.template.tax-invoice.v1`; Start next keeps business and bank details and moves INV-0041 to
+INV-0042 (the payment reference follows); Print calls a stubbed `window.print`, and under
+`emulateMedia('print')` only the sheet is laid out, at more than 80% of the page width, with the
+header, footer, AI notice, form, actions and sources hidden (Chromium also renders an A4 PDF). On a
+phone the preview prints although the "Fill in" tab is chosen. Also: a quotation has no VAT row and
+its lists print one item per line, a receipt formats an amount and starts REC-0004, the privacy
+notice starts with the template's lines and has no Start next, and the Afrikaans tax invoice opens
+the same draft, labels its fields in Afrikaans and prints the Afrikaans template's own heading.
+
+`nojs.spec.ts`: the quotation is a form with all ten line rows, the no-JS print line and the totals
+line, and no preview, tabs, required items or buttons; the privacy notice prints the form as the
+sheet, with what was typed and the template's text, at page width. `a11y.spec.ts`: axe on a filled
+tax invoice with an invalid price and an extra line, with "Clear this form?" open, and on the
+Afrikaans quotation's preview tab at 390px, in both themes (every template page is also in the
+sitemap run).
+
+Unit (`tests/unit/templates/`): the parser on all five templates, English and Afrikaans give the same
+fields, groups, kinds and sample values, every heading is a group, and the labels, hints, options,
+follows and optional fields of each template; totals in cents (no float drift, VAT rounded once on the
+line total, half away from zero, empty quantity as 1), number parsing, `nextNumber`, the date
+helper, the draft helpers and the profile hook. Dom (`tests/dom/template-form.test.ts`): first visit
+writes nothing, binding and saving, follows, conditional lines, lists, totals, invalid numbers, add
+and remove line with focus, restore, typed-before-connect, Start next, Clear through the dialog,
+print, no submit, profile pre-fill, another tab and Clear all my data, tabs by keyboard, and
+disconnect.
+
+**JavaScript budget on tool pages** (45 KB gzipped): 19.8 KB on every template page, both languages
+(13 files, 52.8 KB raw).
+
 ### 404: `not-found.spec.ts`
 
 Requests `nonexistent-<random>/` and `af/nonexistent-<random>/` under the base path and expects status 404, a visible `<h1>` and no URL problems (`documentUrlProblems`). The tests skip, with the reason shown, until `dist/404.html` exists. The browser's own "status of 404" console message is allowed in these tests. `/404.html` itself also goes through the page contract, the no-JS check and axe.
