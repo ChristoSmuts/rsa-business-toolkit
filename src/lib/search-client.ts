@@ -17,6 +17,7 @@ import {
   INDEX_VERSION,
   indexOptions,
   prefix,
+  matchRule,
   queryParts,
   type QueryPart,
 } from './search/options';
@@ -187,27 +188,43 @@ export function resolvePairs(index: LoadedIndex, parts: readonly QueryPart[]): Q
   );
 }
 
+/** One term, with its matching rule (`matchRule`). */
+function leaf(term: string, last: boolean): Query {
+  return { combineWith: 'OR', queries: [term], ...matchRule(term, last) };
+}
+
 /**
- * The MiniSearch query for a list of parts. A code pair is both its words; a hyphenated pair is
- * both its words or the joined form; an exact part (a resolved code) is matched without prefix or
- * fuzzy matching, and so is a hyphenated pair's joined form.
+ * The MiniSearch query for a list of parts, every term with its own matching rule
+ * (`matchRule`, the query-kind table in `docs/design-system.md`):
+ * - a word: `matchRule`, as the last word (still being typed) or not;
+ * - a code pair (`page 2`) that the index does not hold joined: both its words, each by its rule;
+ * - an exact part (a resolved code, `VAT 264` → `vat264`): by the code rule, as `VAT264` is;
+ * - a hyphenated pair: both its words, or the joined form; the joined form is prefix-matched while
+ *   it is being typed (`e-fil` → `efiling`) and never fuzzy-matched.
+ *
+ * `typing` is `true` when the query ends inside a word, so its last term is still being typed.
  */
 export function queryTree(
   parts: readonly QueryPart[],
   combineWith: 'AND' | 'OR',
+  typing = true,
 ): Exclude<Query, string> {
   return {
     combineWith,
-    queries: parts.map((part): Query => {
-      if (typeof part === 'string') return part;
-      if ('exact' in part) {
-        return { combineWith: 'OR', queries: [part.exact], prefix: false, fuzzy: false };
-      }
-      const both: Query = { combineWith: 'AND', queries: [...part.pair] };
+    queries: parts.map((part, index): Query => {
+      const last = typing && index === parts.length - 1;
+      if (typeof part === 'string') return leaf(part, last);
+      // A resolved code follows the code rule, exactly as the joined spelling does, so `VAT 264`
+      // and `VAT264` agree: never fuzzy, prefix-matched only while it is being typed.
+      if ('exact' in part) return leaf(part.exact, last);
+      const both: Query = {
+        combineWith: 'AND',
+        queries: [leaf(part.pair[0], false), leaf(part.pair[1], last)],
+      };
       if (part.hyphen !== true) return both;
       return {
         combineWith: 'OR',
-        queries: [both, { combineWith: 'OR', queries: [part.joined], prefix: false, fuzzy: false }],
+        queries: [both, { combineWith: 'OR', queries: [part.joined], prefix: last, fuzzy: false }],
       };
     }),
   };
@@ -226,8 +243,26 @@ export function runSearch(
   options: SearchOptions = {},
   base?: string,
 ): SearchResult[] {
+  return runSearchCounted(index, query, locale, options, base).results;
+}
+
+/** Results up to the limit, and how many there are in all (review WP-33 pass 4, minor 2). */
+export interface CountedResults {
+  readonly results: SearchResult[];
+  /** Every distinct destination the query matched, however many `results` holds. */
+  readonly total: number;
+}
+
+/** `runSearch`, with the true total: "12 of 59 results shown", "See all 59 results". */
+export function runSearchCounted(
+  index: LoadedIndex,
+  query: string,
+  locale: Locale,
+  options: SearchOptions = {},
+  base?: string,
+): CountedResults {
   const raw = queryParts(query);
-  if (raw.length === 0) return [];
+  if (raw.length === 0) return { results: [], total: 0 };
   const searchOptions = {
     bm25: BM25,
     prefix,
@@ -239,10 +274,13 @@ export function runSearch(
       matchesFilters(hit as unknown as StoredFields, options),
   };
   const parts = resolvePairs(index, raw);
-  let hits = index.search.search(queryTree(parts, 'AND'), searchOptions);
+  const typing = /[\p{L}\p{N}]$/u.test(query);
+  let hits = index.search.search(queryTree(parts, 'AND', typing), searchOptions);
   const strong = parts.filter((part) => !weak(part));
   if (hits.length === 0 && strong.length > 0) {
-    hits = index.search.search(queryTree(strong, 'OR'), searchOptions);
+    // Only the last part of the full query is still being typed.
+    const lastStrong = strong.at(-1) === parts.at(-1);
+    hits = index.search.search(queryTree(strong, 'OR', typing && lastStrong), searchOptions);
   }
   // Two entries can open the same place (a term and the section that explains it): keep the
   // better one, so the list never offers the same destination twice.
@@ -250,13 +288,12 @@ export function runSearch(
   const seen = new Set<string>();
   const results: SearchResult[] = [];
   for (const hit of hits) {
-    if (results.length === limit) break;
     const result = toResult(hit, locale, base);
     if (seen.has(result.href)) continue;
     seen.add(result.href);
-    results.push(result);
+    if (results.length < limit) results.push(result);
   }
-  return results;
+  return { results, total: seen.size };
 }
 
 /**
@@ -352,6 +389,8 @@ export interface SearchClient {
   /** `true` once the index is loaded. */
   readonly ready: boolean;
   search(query: string, options?: SearchOptions): Promise<SearchResult[]>;
+  /** `search`, with how many results there are in all. */
+  searchCounted(query: string, options?: SearchOptions): Promise<CountedResults>;
 }
 
 /**
@@ -388,6 +427,10 @@ export function createSearchClient(options: SearchClientOptions): SearchClient {
     async search(query, searchOptions) {
       const index = await load();
       return runSearch(index, query, options.locale, searchOptions, options.base);
+    },
+    async searchCounted(query, searchOptions) {
+      const index = await load();
+      return runSearchCounted(index, query, options.locale, searchOptions, options.base);
     },
   };
 }

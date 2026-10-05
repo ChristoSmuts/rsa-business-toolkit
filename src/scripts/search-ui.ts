@@ -12,6 +12,7 @@
  */
 import {
   createSearchClient,
+  type CountedResults,
   groupResults,
   type SearchClient,
   type SearchResult,
@@ -135,6 +136,9 @@ export class SearchDialogController implements DialogController {
 
   readonly #onDialogClose = (): void => {
     this.#closes++;
+    // Drop any search still waiting for the index: its answer must not fill the dialog when it
+    // opens again, perhaps with an empty field (review WP-33 pass 4, minor 1).
+    this.#sequence++;
     clearTimeout(this.#timer);
   };
 
@@ -228,9 +232,9 @@ export class SearchDialogController implements DialogController {
       : setTimeout(() => {
           if (sequence === this.#sequence) this.#setStatus(tr('search.loading'));
         }, LOADING_DELAY_MS);
-    let results: SearchResult[];
+    let counted: CountedResults;
     try {
-      results = await this.#client.search(q);
+      counted = await this.#client.searchCounted(q);
     } catch {
       clearTimeout(loading);
       if (sequence === this.#sequence) this.#showFailed();
@@ -239,7 +243,7 @@ export class SearchDialogController implements DialogController {
       clearTimeout(loading);
     }
     if (sequence !== this.#sequence) return;
-    this.#render(results, q);
+    this.#render(counted.results, q, counted.total);
   }
 
   #setStatus(text: string): void {
@@ -257,6 +261,8 @@ export class SearchDialogController implements DialogController {
   }
 
   #showEmpty(): void {
+    // An answer to an older query must not replace the common questions.
+    this.#sequence++;
     this.#shownQuery = '';
     this.#clearOptions();
     this.#setStatus('');
@@ -272,7 +278,8 @@ export class SearchDialogController implements DialogController {
     this.#setStatus(this.#context.tr('search.failed'));
   }
 
-  #render(results: readonly SearchResult[], query: string): void {
+  /** `total` is every result the query matched; `results` is the first of them (the client's cap). */
+  #render(results: readonly SearchResult[], query: string, total: number): void {
     const { tr } = this.#context;
     const doc = this.#host.ownerDocument;
     this.#shownQuery = query;
@@ -333,16 +340,16 @@ export class SearchDialogController implements DialogController {
     this.#listbox.hidden = false;
     this.#input.setAttribute('aria-expanded', 'true');
     this.#setStatus(
-      shown < results.length
-        ? tr('search.resultsShown', { shown, count: results.length })
-        : tr('search.results', { count: results.length }),
+      shown < total
+        ? tr('search.resultsShown', { shown, count: total })
+        : tr('search.results', { count: total }),
     );
     const link = this.#all?.querySelector('a');
-    if (this.#all && link && shown < results.length) {
+    if (this.#all && link && shown < total) {
       const url = new URL(this.#context.page, this.#host.ownerDocument.baseURI);
       url.searchParams.set('q', query);
       link.href = `${url.pathname}${url.search}`;
-      link.textContent = tr('search.seeAll', { count: results.length });
+      link.textContent = tr('search.seeAll', { count: total });
       this.#all.hidden = false;
     }
   }

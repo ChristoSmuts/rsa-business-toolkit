@@ -150,7 +150,9 @@ export class StSearchPage extends HTMLElement {
     if (status && !client.ready) status.textContent = context.tr('search.loading');
     let results: SearchResult[];
     try {
-      results = await client.search(query);
+      // The search page is the full list: every result, so its count is the true total and
+      // "See all" in the dialog keeps its promise (review WP-33 pass 4, minor 2).
+      results = await client.search(query, { limit: Number.POSITIVE_INFINITY });
     } catch {
       if (sequence !== this.#sequence) return;
       list?.replaceChildren();

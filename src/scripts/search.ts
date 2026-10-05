@@ -197,6 +197,15 @@ export class StSearch extends HTMLElement {
     this.close();
   };
 
+  /**
+   * An empty query goes nowhere, even before the results code has loaded (which has its own guard
+   * once it has): Enter in the empty field keeps the reader on their page (review WP-33 pass 4,
+   * nit 1).
+   */
+  readonly #onSubmit = (event: Event): void => {
+    if ((this.#field()?.value.trim() ?? '') === '') event.preventDefault();
+  };
+
   readonly #onClick = (event: Event): void => {
     const target = event.target;
     if (target instanceof Element && target.closest('[data-search-close]')) this.close();
@@ -239,6 +248,7 @@ export class StSearch extends HTMLElement {
     this.addEventListener('click', this.#onClick);
     this.#dialog?.addEventListener('close', this.#onClose);
     this.#field()?.addEventListener('keydown', this.#onFieldKeydown);
+    this.#field()?.form?.addEventListener('submit', this.#onSubmit);
     document.addEventListener('click', this.#onDocumentClick);
     document.addEventListener('keydown', this.#onKeydown);
     this.applySettings();
@@ -265,6 +275,7 @@ export class StSearch extends HTMLElement {
     this.removeEventListener('click', this.#onClick);
     this.#dialog?.removeEventListener('close', this.#onClose);
     this.#field()?.removeEventListener('keydown', this.#onFieldKeydown);
+    this.#field()?.form?.removeEventListener('submit', this.#onSubmit);
     document.removeEventListener('click', this.#onDocumentClick);
     document.removeEventListener('keydown', this.#onKeydown);
   }

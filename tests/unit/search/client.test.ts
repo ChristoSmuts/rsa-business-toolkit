@@ -23,6 +23,7 @@ import {
   fuzzy,
   INDEX_VERSION,
   KIND_WEIGHT,
+  matchRule,
   MAX_QUERY_TERMS,
   prefix,
   processTerm,
@@ -174,42 +175,77 @@ describe('options', () => {
     ).toEqual({
       combineWith: 'AND',
       queries: [
-        { combineWith: 'AND', queries: ['vat', '264'] },
+        {
+          combineWith: 'AND',
+          queries: [
+            { combineWith: 'OR', queries: ['vat'], prefix: true, fuzzy: false },
+            { combineWith: 'OR', queries: ['264'], prefix: false, fuzzy: false },
+          ],
+        },
         { combineWith: 'OR', queries: ['saps601'], prefix: false, fuzzy: false },
-        'form',
+        { combineWith: 'OR', queries: ['form'], prefix: true, fuzzy: false },
       ],
     });
   });
 
+  // Review WP-33 pass 4: one rule per kind of term (the query-kind table in design-system.md).
+  it.each([
+    ['notional', true, { prefix: true, fuzzy: 0.2 }],
+    ['vat', true, { prefix: true, fuzzy: false }],
+    ['e', true, { prefix: false, fuzzy: false }],
+    ['vat264', true, { prefix: true, fuzzy: false }],
+    ['vat264', false, { prefix: false, fuzzy: false }],
+    ['r500,000', false, { prefix: false, fuzzy: false }],
+    ['r50', true, { prefix: true, fuzzy: false }],
+    ['2026', true, { prefix: false, fuzzy: false }],
+    ['14.3', true, { prefix: false, fuzzy: false }],
+  ] as const)('matchRule(%s, last=%s)', (term, last, rule) => {
+    expect(matchRule(term, last)).toEqual(rule);
+  });
+
   // Review WP-33 pass 3, minor 3: the exact branch, by behaviour rather than by shape.
-  it('matches a resolved code exactly: no near miss by prefix or fuzzy matching', () => {
+  it('matches a code, spaced or joined, never by fuzzy matching, and by prefix only while typed', () => {
     const idx = index('en', [
       entry({ key: 'code', anchor: 'code', title: 'Form VAT264', text: 'VAT264' }),
       entry({ key: 'longer', anchor: 'longer', title: 'Form VAT2640', text: 'VAT2640' }),
       entry({ key: 'near', anchor: 'near', title: 'Form VAT265', text: 'VAT265' }),
     ]);
-    expect(runSearch(idx, 'VAT 264', 'en').map((r) => r.anchor)).toEqual(['code']);
-    // The joined query is still prefix and fuzzy matched, as any word: the exact match is the
-    // spaced code's own rule.
-    expect(runSearch(idx, 'VAT264', 'en').map((r) => r.anchor)).toContain('longer');
+    const anchors = (q: string) => runSearch(idx, q, 'en').map((r) => r.anchor);
+    // A finished code (followed by more text) matches itself only.
+    expect(anchors('VAT 264 form')).toEqual(['code']);
+    expect(anchors('VAT 264 ')).toEqual(['code']);
+    expect(anchors('VAT264 ')).toEqual(['code']);
+    // While typed, the code is a prefix of longer codes, spaced and joined alike, but never one
+    // edit away from a neighbour (VAT265).
+    expect(anchors('VAT 264').sort()).toEqual(['code', 'longer']);
+    expect(anchors('VAT264').sort()).toEqual(['code', 'longer']);
   });
 
   it('keeps a hyphenated pair as both words or the joined form, never resolved', () => {
     const idx = index('en', [entry({ key: 'e', title: 'eFiling', text: 'e-filing efiling' })]);
     const part = { pair: ['e', 'filing'], joined: 'efiling', hyphen: true } as const;
     expect(resolvePairs(idx, [part])).toEqual([part]);
-    expect(queryTree([part], 'AND')).toEqual({
+    const tree = (typing: boolean) => ({
       combineWith: 'AND',
       queries: [
         {
           combineWith: 'OR',
           queries: [
-            { combineWith: 'AND', queries: ['e', 'filing'] },
-            { combineWith: 'OR', queries: ['efiling'], prefix: false, fuzzy: false },
+            {
+              combineWith: 'AND',
+              queries: [
+                { combineWith: 'OR', queries: ['e'], prefix: false, fuzzy: false },
+                { combineWith: 'OR', queries: ['filing'], prefix: true, fuzzy: 0.2 },
+              ],
+            },
+            // Prefix-matched while typed (`e-fil` → `efiling`), never fuzzy.
+            { combineWith: 'OR', queries: ['efiling'], prefix: typing, fuzzy: false },
           ],
         },
       ],
     });
+    expect(queryTree([part], 'AND')).toEqual(tree(true));
+    expect(queryTree([part], 'AND', false)).toEqual(tree(false));
   });
 
   it('resolves a pair to its joined form only when the index holds that term', () => {

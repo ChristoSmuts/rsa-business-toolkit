@@ -9,7 +9,12 @@ import { INDEX_BUDGET_GZIP, serialiseIndex } from '../../../scripts/search/build
 import { buildEntries } from '../../../scripts/search/entries';
 import { loadIndexInput } from '../../../scripts/search/load';
 import type { Locale } from '../../../src/i18n/locales';
-import { loadIndex, runSearch, type LoadedIndex } from '../../../src/lib/search-client';
+import {
+  loadIndex,
+  runSearch,
+  runSearchCounted,
+  type LoadedIndex,
+} from '../../../src/lib/search-client';
 import { SEARCH_ENTRY_KINDS, type SearchEntry } from '../../../src/lib/search/types';
 
 const BASE = '/business-toolkit/';
@@ -146,6 +151,120 @@ describe('A7 ranking cases', () => {
     const holdingWord = typing.filter((r) => r.terms.includes('registrasie'));
     expect(holdingWord.length).toBeGreaterThan(0);
     for (const result of holdingWord) expect(whole.has(result.href), result.href).toBe(true);
+  });
+
+  // Review WP-33 pass 4: the query-kind table in docs/design-system.md ("Search", "Queries"), one
+  // row per kind, on both real indexes. `first` is the first result's href (after the locale
+  // prefix); `every` is a term every result must hold; `none` is a term no result may hold;
+  // `empty` means the honest answer is "nothing found".
+  interface Row {
+    readonly kind: string;
+    readonly lang: 'en' | 'af';
+    readonly query: string;
+    readonly first?: string;
+    readonly every?: string;
+    readonly none?: string;
+    readonly empty?: true;
+    readonly sameAs?: string;
+    /** Finds at least everything this query finds. */
+    readonly atLeast?: string;
+    /** A term the first result holds. */
+    readonly firstTerm?: string;
+  }
+  const ROWS: readonly Row[] = [
+    { kind: 'word', lang: 'en', query: 'PIS', first: 'glossary/#pis' },
+    { kind: 'word', lang: 'af', query: 'omsetbelasting', first: 'glossary/#turnover-tax' },
+    { kind: 'partial word', lang: 'en', query: 'notion', first: 'glossary/#notional-input-tax' },
+    { kind: 'word with a typo', lang: 'af', query: 'belastng', firstTerm: 'belasting' },
+    {
+      kind: 'code, joined',
+      lang: 'en',
+      query: 'SAPS604',
+      first: 'business-types/vehicle-dealer/#keeping-your-registration-valid',
+      every: 'saps604',
+    },
+    { kind: 'code, joined', lang: 'en', query: 'EMP501 due', every: 'emp501', none: 'emp201' },
+    { kind: 'code, joined', lang: 'en', query: 'ITR14 deadline', every: 'itr14', none: 'itr12' },
+    { kind: 'code, joined', lang: 'af', query: 'ITR14 sperdatum', every: 'itr14', none: 'itr12' },
+    { kind: 'code, being typed', lang: 'en', query: 'VAT26', first: 'glossary/#vat264' },
+    { kind: 'code, spaced', lang: 'en', query: 'VAT 264', sameAs: 'VAT264' },
+    { kind: 'code, spaced', lang: 'en', query: 'SAPS 604', sameAs: 'SAPS604' },
+    { kind: 'code, spaced', lang: 'af', query: 'VAT 264', sameAs: 'VAT264' },
+    { kind: 'code with a typo', lang: 'en', query: 'VAT246', empty: true },
+    { kind: 'code with a typo', lang: 'en', query: 'EMP502', empty: true },
+    { kind: 'rand amount', lang: 'en', query: 'R500,000', every: 'r500,000' },
+    { kind: 'rand amount', lang: 'en', query: 'R300,000', every: 'r300,000' },
+    { kind: 'rand amount', lang: 'en', query: 'R1 million', every: 'r1', none: 'r10' },
+    { kind: 'rand amount', lang: 'en', query: 'R123,456', empty: true },
+    { kind: 'rand amount, being typed', lang: 'en', query: 'R500,00', every: 'r500,000' },
+    { kind: 'year', lang: 'en', query: 'Tax 2026', every: '2026' },
+    { kind: 'number', lang: 'en', query: 'page 2', every: '2' },
+    { kind: 'hyphenated word', lang: 'af', query: 'BTW-registrasie', atLeast: 'BTW registrasie' },
+    { kind: 'hyphenated word', lang: 'en', query: 'VAT-registered', atLeast: 'VAT registered' },
+    {
+      kind: 'hyphenated word, being typed',
+      lang: 'en',
+      query: 'e-fil',
+      first: 'glossary/#efiling',
+    },
+    { kind: 'Afrikaans compound', lang: 'af', query: 'kontrolelys', firstTerm: 'kontrolelys' },
+    { kind: 'stop words', lang: 'en', query: 'the PIS of a company', first: 'glossary/#pis' },
+    {
+      kind: 'stop words',
+      lang: 'af',
+      query: 'die omsetbelasting',
+      first: 'glossary/#turnover-tax',
+    },
+    { kind: 'punctuation', lang: 'en', query: '"PIS"?!', first: 'glossary/#pis' },
+  ];
+
+  it.each(ROWS.map((row) => [row.kind, row.lang, row.query, row] as const))(
+    '%s (%s): "%s"',
+    (_kind, lang, query, row) => {
+      const built = lang === 'en' ? en : af;
+      const prefix = lang === 'en' ? BASE : `${BASE}af/`;
+      const results = runSearch(built.index, query, lang, { limit: 5000 }, BASE);
+      if (row.empty) {
+        expect(results.map((r) => r.href)).toEqual([]);
+        return;
+      }
+      expect(results.length).toBeGreaterThan(0);
+      if (row.first !== undefined) expect(results[0]?.href).toBe(`${prefix}${row.first}`);
+      if (row.firstTerm !== undefined) expect(results[0]?.terms).toContain(row.firstTerm);
+      if (row.atLeast !== undefined) {
+        const found = new Set(results.map((r) => r.href));
+        for (const other of runSearch(built.index, row.atLeast, lang, { limit: 5000 }, BASE)) {
+          expect(found.has(other.href), other.href).toBe(true);
+        }
+      }
+      for (const result of results) {
+        if (row.every !== undefined) {
+          expect(
+            result.terms.some((t) => t.startsWith(row.every!)),
+            result.href,
+          ).toBe(true);
+        }
+        if (row.none !== undefined) expect(result.terms, result.href).not.toContain(row.none);
+      }
+      if (row.sameAs !== undefined) {
+        const hrefs = (q: string) =>
+          runSearch(built.index, q, lang, { limit: 10 }, BASE).map((r) => r.href);
+        expect(hrefs(query)).toEqual(hrefs(row.sameAs));
+      }
+    },
+  );
+
+  it('R500,000 has R500,000 in the terms of every top-3 result', () => {
+    for (const result of runSearch(en.index, 'R500,000', 'en', { limit: 3 }, BASE)) {
+      expect(result.terms).toContain('r500,000');
+    }
+  });
+
+  it('counts every result, however many the cap returns', () => {
+    const counted = runSearchCounted(en.index, 'VAT', 'en', {}, BASE);
+    expect(counted.results).toHaveLength(30);
+    expect(counted.total).toBe(runSearch(en.index, 'VAT', 'en', { limit: 5000 }, BASE).length);
+    expect(counted.total).toBeGreaterThan(30);
   });
 
   it('e-filing, eFiling and efiling find the eFiling glossary entry first', () => {

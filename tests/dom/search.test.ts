@@ -6,7 +6,11 @@
  */
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { serialiseIndex } from '../../scripts/search/build';
-import { createSearchClient, type SearchClient } from '../../src/lib/search-client';
+import {
+  createSearchClient,
+  SearchIndexError,
+  type SearchClient,
+} from '../../src/lib/search-client';
 import { KIND_WEIGHT } from '../../src/lib/search/options';
 import type { SearchEntry } from '../../src/lib/search/types';
 import { searchStrings } from '../../src/lib/search/ui-data';
@@ -361,6 +365,19 @@ describe('<st-search>', () => {
     await vi.waitFor(() => expect(document.activeElement).toBe(opener));
   });
 
+  // Review WP-33 pass 4, nit 1: before the results code loads, Enter in the empty field must not
+  // leave the page for /search/?q=.
+  it('keeps an empty query on the page even before the results code has loaded', () => {
+    const form = (document.getElementById('q') as HTMLInputElement).form!;
+    const empty = new Event('submit', { cancelable: true });
+    form.dispatchEvent(empty);
+    expect(empty.defaultPrevented).toBe(true);
+    (document.getElementById('q') as HTMLInputElement).value = 'VAT';
+    const prevented = afterOwnHandlers(form, 'submit');
+    form.dispatchEvent(new Event('submit', { cancelable: true }));
+    expect(prevented()).toBe(false);
+  });
+
   // Review WP-33 pass 1, minor 3: Escape in a search field first cleared it.
   it('closes on Escape in the field even with text in it', () => {
     host.open();
@@ -465,6 +482,8 @@ describe('the results listbox', () => {
   describe('Enter before the index has loaded (review WP-33 pass 2, major 1)', () => {
     let release: () => void;
     let pending: SearchDialogController;
+    /** Set to make the held load fail when it is released. */
+    let failLoad = false;
 
     beforeEach(() => {
       // Fresh markup, so only this controller listens to the field.
@@ -475,15 +494,24 @@ describe('the results listbox', () => {
       const gate = new Promise<void>((resolve) => {
         release = resolve;
       });
+      failLoad = false;
+      const held = async (): Promise<void> => {
+        await gate;
+        if (failLoad) throw new SearchIndexError('The search index answered 500.');
+        loaded = true;
+      };
       const slow: SearchClient = {
         load: () => real.load(),
         get ready() {
           return loaded;
         },
         async search(query, options) {
-          await gate;
-          loaded = true;
+          await held();
           return real.search(query, options);
+        },
+        async searchCounted(query, options) {
+          await held();
+          return real.searchCounted(query, options);
         },
       };
       pending = new SearchDialogController(
@@ -527,6 +555,40 @@ describe('the results listbox', () => {
       expect(opened).toEqual([]);
       // The re-opened dialog shows the results for its text, ready for a new Enter.
       await vi.waitFor(() => expect(options().length).toBeGreaterThan(0));
+    });
+
+    // Review WP-33 pass 4, minor 3: a failed load leaves the reader on the failed state.
+    it('stays on the failed state, without submitting, when the load fails after Enter', async () => {
+      const submit = vi.fn();
+      input().form!.requestSubmit = submit;
+      input().value = 'statements';
+      key(input(), { key: 'Enter' });
+      failLoad = true;
+      release();
+      await vi.waitFor(() =>
+        expect(document.querySelector<HTMLElement>('[data-search-failed]')!.hidden).toBe(false),
+      );
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      expect(submit).not.toHaveBeenCalled();
+      expect(opened).toEqual([]);
+    });
+
+    // Review WP-33 pass 4, minor 1: a search still waiting for the index when the dialog closes
+    // must not fill the dialog when it opens again with an empty field.
+    it('drops a pending search when the dialog closes, even if it re-opens empty', async () => {
+      input().value = 'statements';
+      void pending.search('statements');
+      input().value = '';
+      const dialog = document.querySelector('dialog')!;
+      dialog.close();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      dialog.showModal();
+      pending.opened();
+      release();
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      expect(options()).toHaveLength(0);
+      expect(document.querySelector<HTMLElement>('[data-search-empty]')!.hidden).toBe(false);
+      expect(document.querySelector('[role="status"]')?.textContent).toBe('');
     });
 
     it('does nothing when the text changed while the index was loading', async () => {
@@ -598,7 +660,7 @@ describe('the results listbox', () => {
   });
 
   it('shows a few results per section, and links the search page for the rest', async () => {
-    const many: SearchEntry[] = Array.from({ length: 5 }, (_, i) => ({
+    const many: SearchEntry[] = Array.from({ length: 40 }, (_, i) => ({
       ...entries[0]!,
       key: `levy-${String(i)}`,
       anchor: `levy-${String(i)}`,
@@ -617,9 +679,9 @@ describe('the results listbox', () => {
     const all = document.querySelector<HTMLElement>('[data-search-all]')!;
     expect(all.hidden).toBe(false);
     expect(all.querySelector('a')?.getAttribute('href')).toBe('/search/?q=levy');
-    expect(all.textContent).toBe('See all 5 results on the search page');
+    expect(all.textContent).toBe('See all 40 results on the search page');
     // Review WP-33 pass 1, minor 2: announce what the arrow keys can reach.
-    expect(document.querySelector('[role="status"]')?.textContent).toBe('3 of 5 results shown');
+    expect(document.querySelector('[role="status"]')?.textContent).toBe('3 of 40 results shown'); // the true total, not the client's cap of 30 (review WP-33 pass 4, minor 2)
     (document.getElementById('q') as HTMLInputElement).value = 'PIS';
     await controller.search('PIS');
     expect(all.hidden).toBe(true);
@@ -823,6 +885,29 @@ describe('<st-search-page>', () => {
   }
 
   const title = () => document.querySelector<HTMLElement>('[data-search-title]')!;
+
+  // Review WP-33 pass 4, minor 2: the search page is the full list, past the client's cap of 30.
+  it('lists every result and counts them all', async () => {
+    const many: SearchEntry[] = Array.from({ length: 40 }, (_, i) => ({
+      ...entries[0]!,
+      key: `levy-${String(i)}`,
+      anchor: `levy-${String(i)}`,
+      title: `Levy ${String(i)}`,
+      text: 'levy',
+    }));
+    const saved = indexBody;
+    indexBody = JSON.parse(serialiseIndex('en', ['lookup'], many).json) as unknown;
+    try {
+      stubFetch();
+      mount('/search/?q=levy');
+      await vi.waitFor(() =>
+        expect(document.querySelectorAll('[data-search-result]')).toHaveLength(40),
+      );
+      expect(document.querySelector('[role="status"]')?.textContent).toBe('40 results');
+    } finally {
+      indexBody = saved;
+    }
+  });
 
   it('runs ?q= in place and echoes the query', async () => {
     stubFetch();

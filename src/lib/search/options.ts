@@ -243,14 +243,48 @@ export function processTerm(term: string): string | null {
   return folded;
 }
 
-/** Per-term fuzzy distance: 0.2 for terms longer than four characters, otherwise exact. */
-export function fuzzy(term: string): number | false {
-  return term.length > FUZZY_MIN_LENGTH ? FUZZY : false;
+/** How one query term is matched against the index terms. */
+export interface MatchRule {
+  readonly prefix: boolean;
+  readonly fuzzy: number | false;
 }
 
-/** Per-term prefix matching: on for terms of two characters or more. */
+const HAS_DIGIT = /\p{N}/u;
+const NUMBER_ONLY = /^[\p{N}.,]+$/u;
+
+/**
+ * The matching rule for one query term: the one place that says it, for every kind of term
+ * (`docs/design-system.md`, "Search", the query-kind table; review WP-33 pass 4).
+ *
+ * - A bare number or year (`2`, `2026`, `14.3`) is matched whole: a value, not a stem.
+ * - Any other term with a digit in it (a joined code `VAT264`, an amount `R500,000`) is never fuzzy: one edit turns `EMP501` into `EMP201` and `R500,000` into
+ *   `R200,000`, a different form or a different amount. It is prefix-matched only while the reader
+ *   is still typing it (`last`), so `R50` finds `R50,000` but a finished `R1` in `R1 million` does
+ *   not match `R10`.
+ * - A word of letters is prefix-matched from two letters (A7: prefix matching does the stemming
+ *   work in every language) and fuzzy-matched (0.2) when longer than four letters (A7, for typos).
+ * - A single letter is matched whole.
+ *
+ * `last` means the term is the last one in the query and the reader has not typed past it.
+ */
+export function matchRule(term: string, last: boolean): MatchRule {
+  // A bare number or year is a value: `2` is not `20`, `2026` is not `20261`.
+  if (NUMBER_ONLY.test(term)) return { prefix: false, fuzzy: false };
+  if (HAS_DIGIT.test(term)) return { prefix: last, fuzzy: false };
+  return {
+    prefix: term.length >= PREFIX_MIN_LENGTH,
+    fuzzy: term.length > FUZZY_MIN_LENGTH ? FUZZY : false,
+  };
+}
+
+/** Per-term fuzzy distance, for a term the query tree has not set a rule for (`matchRule`). */
+export function fuzzy(term: string): number | false {
+  return matchRule(term, true).fuzzy;
+}
+
+/** Per-term prefix matching, for a term the query tree has not set a rule for (`matchRule`). */
 export function prefix(term: string): boolean {
-  return term.length >= PREFIX_MIN_LENGTH;
+  return matchRule(term, true).prefix;
 }
 
 /** The options a MiniSearch instance is created and loaded with, on both sides. */
