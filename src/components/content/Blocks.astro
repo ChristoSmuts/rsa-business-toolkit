@@ -27,9 +27,15 @@ const lang = isFallbackContent(context)
   : undefined;
 const tags = headingTags(blocks);
 const firstTasklist = blocks.findIndex((block) => block.kind === 'tasklist');
+/** Prompts are numbered in page order, for their copy buttons' names ("Copy prompt 2: …"). */
+let prompts = 0;
+const promptNumbers = blocks.map((block) =>
+  block.kind === 'code' && block.variant === 'prompt' ? ++prompts : undefined,
+);
 const visible = blocks
   .map((block, index) => ({
     block,
+    promptNumber: promptNumbers[index],
     headingTag: tags[index],
     firstTasklist: index === firstTasklist,
     caption: nearestHeadingText(blocks, index) ?? fallbackCaption,
@@ -46,6 +52,7 @@ const visible = blocks
       caption={entry.caption}
       headingTag={entry.headingTag}
       firstTasklist={entry.firstTasklist}
+      promptNumber={entry.promptNumber}
     />
   ))}
 </div>

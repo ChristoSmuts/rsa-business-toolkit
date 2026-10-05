@@ -1631,6 +1631,7 @@
           ],
           "doc": "core/running-a-pty-ltd",
           "id": "core/running-a-pty-ltd:44c17e09",
+          "sameAs": "lookup/checklist:a39426e1",
           "when": {
             "entity": "pty"
           }
@@ -1645,6 +1646,7 @@
           ],
           "doc": "core/running-a-pty-ltd",
           "id": "core/running-a-pty-ltd:b79af9c6",
+          "sameAs": "lookup/checklist:b79af9c6",
           "when": {
             "entity": "pty"
           }
@@ -1659,6 +1661,7 @@
           ],
           "doc": "core/running-a-pty-ltd",
           "id": "core/running-a-pty-ltd:00f5fc24",
+          "sameAs": "lookup/checklist:00f5fc24",
           "when": {
             "entity": "pty"
           }
@@ -1673,6 +1676,7 @@
           ],
           "doc": "core/running-a-pty-ltd",
           "id": "core/running-a-pty-ltd:b0853b54",
+          "sameAs": "lookup/checklist:b0853b54",
           "when": {
             "entity": "pty"
           }
@@ -1687,6 +1691,7 @@
           ],
           "doc": "core/running-a-pty-ltd",
           "id": "core/running-a-pty-ltd:95b86e75",
+          "sameAs": "lookup/checklist:95b86e75",
           "when": {
             "entity": "pty"
           }
@@ -1701,6 +1706,7 @@
           ],
           "doc": "core/running-a-pty-ltd",
           "id": "core/running-a-pty-ltd:724ea4bf",
+          "sameAs": "lookup/checklist:63d6082e",
           "when": {
             "entity": "pty"
           }
@@ -1715,6 +1721,7 @@
           ],
           "doc": "core/running-a-pty-ltd",
           "id": "core/running-a-pty-ltd:60d623d8",
+          "sameAs": "lookup/checklist:60d623d8",
           "when": {
             "entity": "pty"
           }
@@ -1757,6 +1764,7 @@
           ],
           "doc": "core/running-a-pty-ltd",
           "id": "core/running-a-pty-ltd:2f83b8dc",
+          "sameAs": "lookup/checklist:fe35c42c",
           "when": {
             "entity": "pty"
           }

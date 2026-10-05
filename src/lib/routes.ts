@@ -42,11 +42,14 @@ export const SEARCH_AVAILABLE: boolean = false;
 export const TEMPLATES_FILLABLE: boolean = false;
 
 /**
- * Whether checklist ticks are saved on the device (WP-30). Until then the checkboxes work but a
- * reload clears them, so the wording says "print and tick", and the master checklist says plainly
- * that ticks are not saved yet (review WP-20 pass 4).
+ * Whether checklist ticks are saved on the device. WP-30 built it (`<st-checklist>`, the `checks`
+ * store). Off, the checkboxes work but a reload clears them: the wording says "print and tick" and
+ * every checklist page says ticks are not saved yet (review WP-20 pass 4). On, the Tools menu says
+ * "Tick each item when you finish it", `/checklist/` gets its progress, filter and reset, and the
+ * first checklist on a page says ticks are saved on this device (or, without JavaScript, that they
+ * are not saved). `tests/e2e/pages.spec.ts` checks the line for whichever value is set.
  */
-export const CHECKLIST_SAVES: boolean = false;
+export const CHECKLIST_SAVES: boolean = true;
 
 /** Document ids that the navigation links to by name. */
 export const NAV_DOC_IDS = {

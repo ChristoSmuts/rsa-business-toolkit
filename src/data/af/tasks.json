@@ -133,6 +133,7 @@
       "heading": "your-pty-ltd-annual-checklist",
       "id": "core/running-a-pty-ltd:44c17e09",
       "order": 6,
+      "sameAs": "lookup/checklist:a39426e1",
       "when": {
         "entity": "pty"
       }
@@ -155,6 +156,7 @@
       "heading": "your-pty-ltd-annual-checklist",
       "id": "core/running-a-pty-ltd:b79af9c6",
       "order": 7,
+      "sameAs": "lookup/checklist:b79af9c6",
       "when": {
         "entity": "pty"
       }
@@ -177,6 +179,7 @@
       "heading": "your-pty-ltd-annual-checklist",
       "id": "core/running-a-pty-ltd:00f5fc24",
       "order": 8,
+      "sameAs": "lookup/checklist:00f5fc24",
       "when": {
         "entity": "pty"
       }
@@ -199,6 +202,7 @@
       "heading": "your-pty-ltd-annual-checklist",
       "id": "core/running-a-pty-ltd:b0853b54",
       "order": 9,
+      "sameAs": "lookup/checklist:b0853b54",
       "when": {
         "entity": "pty"
       }
@@ -221,6 +225,7 @@
       "heading": "your-pty-ltd-annual-checklist",
       "id": "core/running-a-pty-ltd:95b86e75",
       "order": 10,
+      "sameAs": "lookup/checklist:95b86e75",
       "when": {
         "entity": "pty"
       }
@@ -243,6 +248,7 @@
       "heading": "your-pty-ltd-annual-checklist",
       "id": "core/running-a-pty-ltd:724ea4bf",
       "order": 11,
+      "sameAs": "lookup/checklist:63d6082e",
       "when": {
         "entity": "pty"
       }
@@ -265,6 +271,7 @@
       "heading": "your-pty-ltd-annual-checklist",
       "id": "core/running-a-pty-ltd:60d623d8",
       "order": 12,
+      "sameAs": "lookup/checklist:60d623d8",
       "when": {
         "entity": "pty"
       }
@@ -309,6 +316,7 @@
       "heading": "your-pty-ltd-annual-checklist",
       "id": "core/running-a-pty-ltd:2f83b8dc",
       "order": 14,
+      "sameAs": "lookup/checklist:fe35c42c",
       "when": {
         "entity": "pty"
       }
@@ -591,7 +599,8 @@
       "doc": "core/working-from-home-and-safety",
       "heading": "setup",
       "id": "core/working-from-home-and-safety:8a10fb7e",
-      "order": 30
+      "order": 30,
+      "sameAs": "lookup/checklist:8a10fb7e"
     },
     {
       "block": "setup.1",
@@ -643,7 +652,8 @@
       "doc": "core/working-from-home-and-safety",
       "heading": "every-sale",
       "id": "core/working-from-home-and-safety:cad4290c",
-      "order": 34
+      "order": 34,
+      "sameAs": "lookup/checklist:057de8cb"
     },
     {
       "block": "every-sale.1",
@@ -1033,6 +1043,7 @@
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:ddf401f6",
       "order": 61,
+      "sameAs": "lookup/checklist:57a8c2a4",
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1057,6 +1068,7 @@
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:9df05312",
       "order": 62,
+      "sameAs": "lookup/checklist:9aefc6b4",
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1177,6 +1189,7 @@
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:621643ad",
       "order": 67,
+      "sameAs": "lookup/checklist:cdc31934",
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1201,6 +1214,7 @@
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:70c5bd63",
       "order": 68,
+      "sameAs": "lookup/checklist:b196800c",
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1561,6 +1575,7 @@
       "heading": "your-checklist",
       "id": "business-types/food:c239e886",
       "order": 83,
+      "sameAs": "lookup/checklist:32e8d8b8",
       "when": {
         "businessTypes": [
           "food"
@@ -1579,6 +1594,7 @@
       "heading": "your-checklist",
       "id": "business-types/food:4d4cb4db",
       "order": 84,
+      "sameAs": "lookup/checklist:527a8410",
       "when": {
         "businessTypes": [
           "food"
@@ -1597,6 +1613,7 @@
       "heading": "your-checklist",
       "id": "business-types/food:a7fe56ab",
       "order": 85,
+      "sameAs": "lookup/checklist:b857c0d6",
       "when": {
         "businessTypes": [
           "food"
@@ -1615,6 +1632,7 @@
       "heading": "your-checklist",
       "id": "business-types/food:0f8340c3",
       "order": 86,
+      "sameAs": "lookup/checklist:8b8c0d43",
       "when": {
         "businessTypes": [
           "food"
@@ -1633,6 +1651,7 @@
       "heading": "your-checklist",
       "id": "business-types/food:7ee08e59",
       "order": 87,
+      "sameAs": "lookup/checklist:58836809",
       "when": {
         "businessTypes": [
           "food"
@@ -1651,6 +1670,7 @@
       "heading": "your-checklist",
       "id": "business-types/food:02658eb1",
       "order": 88,
+      "sameAs": "lookup/checklist:09952c25",
       "when": {
         "businessTypes": [
           "food"
@@ -1669,6 +1689,7 @@
       "heading": "your-checklist",
       "id": "business-types/food:690c42ea",
       "order": 89,
+      "sameAs": "lookup/checklist:1f166d50",
       "when": {
         "businessTypes": [
           "food"
@@ -1723,6 +1744,7 @@
       "heading": "your-checklist",
       "id": "business-types/beauty:4154a207",
       "order": 92,
+      "sameAs": "lookup/checklist:08c14d32",
       "when": {
         "businessTypes": [
           "beauty"
@@ -1741,6 +1763,7 @@
       "heading": "your-checklist",
       "id": "business-types/beauty:3e9fa384",
       "order": 93,
+      "sameAs": "lookup/checklist:5ddbfd24",
       "when": {
         "businessTypes": [
           "beauty"
@@ -1759,6 +1782,7 @@
       "heading": "your-checklist",
       "id": "business-types/beauty:acd577dc",
       "order": 94,
+      "sameAs": "lookup/checklist:4f9e60d7",
       "when": {
         "businessTypes": [
           "beauty"
@@ -1777,6 +1801,7 @@
       "heading": "your-checklist",
       "id": "business-types/beauty:78e1ef6f",
       "order": 95,
+      "sameAs": "lookup/checklist:23f8909e",
       "when": {
         "businessTypes": [
           "beauty"
@@ -1795,6 +1820,7 @@
       "heading": "your-checklist",
       "id": "business-types/beauty:1ee82848",
       "order": 96,
+      "sameAs": "lookup/checklist:796521bf",
       "when": {
         "businessTypes": [
           "beauty"
@@ -1813,6 +1839,7 @@
       "heading": "your-checklist",
       "id": "business-types/beauty:3f035f6f",
       "order": 97,
+      "sameAs": "lookup/checklist:f7fc2eff",
       "when": {
         "businessTypes": [
           "beauty"
@@ -1831,6 +1858,7 @@
       "heading": "your-checklist",
       "id": "business-types/beauty:22a2e898",
       "order": 98,
+      "sameAs": "lookup/checklist:a036463c",
       "when": {
         "businessTypes": [
           "beauty"
@@ -1867,6 +1895,7 @@
       "heading": "your-checklist",
       "id": "business-types/retail-online:51431599",
       "order": 100,
+      "sameAs": "lookup/checklist:92ad1d52",
       "when": {
         "businessTypes": [
           "retail-online"
@@ -1888,6 +1917,7 @@
       "heading": "your-checklist",
       "id": "business-types/retail-online:7606eb50",
       "order": 101,
+      "sameAs": "lookup/checklist:1a0745a3",
       "when": {
         "businessTypes": [
           "retail-online"
@@ -1909,6 +1939,7 @@
       "heading": "your-checklist",
       "id": "business-types/retail-online:3f057ea5",
       "order": 102,
+      "sameAs": "lookup/checklist:eea37d29",
       "when": {
         "businessTypes": [
           "retail-online"
@@ -1927,6 +1958,7 @@
       "heading": "your-checklist",
       "id": "business-types/retail-online:857a560f",
       "order": 103,
+      "sameAs": "lookup/checklist:3b8c77ff",
       "when": {
         "businessTypes": [
           "retail-online"
@@ -1945,6 +1977,7 @@
       "heading": "your-checklist",
       "id": "business-types/retail-online:3997af12",
       "order": 104,
+      "sameAs": "lookup/checklist:5a7f3f39",
       "when": {
         "businessTypes": [
           "retail-online"
@@ -1981,6 +2014,7 @@
       "heading": "your-checklist",
       "id": "business-types/retail-online:46751df3",
       "order": 106,
+      "sameAs": "lookup/checklist:63f5e0ad",
       "when": {
         "businessTypes": [
           "retail-online"
@@ -2017,6 +2051,7 @@
       "heading": "your-checklist",
       "id": "business-types/services-trades:6b14de08",
       "order": 108,
+      "sameAs": "lookup/checklist:aa9275cd",
       "when": {
         "businessTypes": [
           "services-trades"
@@ -2035,6 +2070,7 @@
       "heading": "your-checklist",
       "id": "business-types/services-trades:06447813",
       "order": 109,
+      "sameAs": "lookup/checklist:bac9170c",
       "when": {
         "businessTypes": [
           "services-trades"
@@ -2053,6 +2089,7 @@
       "heading": "your-checklist",
       "id": "business-types/services-trades:3e62bd56",
       "order": 110,
+      "sameAs": "lookup/checklist:2bb7976e",
       "when": {
         "businessTypes": [
           "services-trades"
@@ -2071,6 +2108,7 @@
       "heading": "your-checklist",
       "id": "business-types/services-trades:4931924a",
       "order": 111,
+      "sameAs": "lookup/checklist:82477245",
       "when": {
         "businessTypes": [
           "services-trades"
@@ -2089,6 +2127,7 @@
       "heading": "your-checklist",
       "id": "business-types/services-trades:6fa9b54e",
       "order": 112,
+      "sameAs": "lookup/checklist:a448e918",
       "when": {
         "businessTypes": [
           "services-trades"
@@ -2107,6 +2146,7 @@
       "heading": "your-checklist",
       "id": "business-types/services-trades:92e8509e",
       "order": 113,
+      "sameAs": "lookup/checklist:22905c13",
       "when": {
         "businessTypes": [
           "services-trades"
@@ -2161,6 +2201,7 @@
       "heading": "your-checklist",
       "id": "business-types/professional-creative:fc5121e3",
       "order": 116,
+      "sameAs": "lookup/checklist:956d9895",
       "when": {
         "businessTypes": [
           "professional-creative"
@@ -2179,6 +2220,7 @@
       "heading": "your-checklist",
       "id": "business-types/professional-creative:4c50b1ae",
       "order": 117,
+      "sameAs": "lookup/checklist:e97fe964",
       "when": {
         "businessTypes": [
           "professional-creative"
@@ -2215,6 +2257,7 @@
       "heading": "your-checklist",
       "id": "business-types/professional-creative:1c124945",
       "order": 119,
+      "sameAs": "lookup/checklist:0b186a56",
       "when": {
         "businessTypes": [
           "professional-creative"
@@ -2233,6 +2276,7 @@
       "heading": "your-checklist",
       "id": "business-types/professional-creative:66134f08",
       "order": 120,
+      "sameAs": "lookup/checklist:afe2d3be",
       "when": {
         "businessTypes": [
           "professional-creative"
@@ -2251,6 +2295,7 @@
       "heading": "your-checklist",
       "id": "business-types/professional-creative:09f007d9",
       "order": 121,
+      "sameAs": "lookup/checklist:53da774d",
       "when": {
         "businessTypes": [
           "professional-creative"

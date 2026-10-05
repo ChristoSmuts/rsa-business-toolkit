@@ -33,9 +33,18 @@ interface Props {
   headingTag?: 'h2' | 'h3' | 'h4' | undefined;
   /** True for the first tasklist in its block list. */
   firstTasklist?: boolean | undefined;
+  /** A prompt's number on the page, for its copy button (WP-30). */
+  promptNumber?: number | undefined;
 }
 
-const { block, context, caption, headingTag: tag, firstTasklist = false } = Astro.props;
+const {
+  block,
+  context,
+  caption,
+  headingTag: tag,
+  firstTasklist = false,
+  promptNumber,
+} = Astro.props;
 const t = useTranslations(context.contentLang);
 const Heading = tag ?? (block.kind === 'heading' ? headingTag(block.depth) : 'h2');
 ---
@@ -87,7 +96,7 @@ const Heading = tag ?? (block.kind === 'heading' ? headingTag(block.depth) : 'h2
 ) : block.kind === 'table' ? (
   <TableBlock block={block} context={context} caption={caption} />
 ) : block.kind === 'code' ? (
-  <CodeBlock block={block} context={context} caption={caption} />
+  <CodeBlock block={block} context={context} caption={caption} promptNumber={promptNumber} />
 ) : block.kind === 'terms' ? (
   <TermsBlock block={block} context={context} />
 ) : block.kind === 'glossary' ? (

@@ -6,8 +6,14 @@
  * - `variant="column"`: the third grid column, shown from 1280px.
  *
  * Only one of the two is displayed at any width, so a screen reader is never offered the list
- * twice. Scroll-spy and the reading-progress ring are later packages; the list itself is plain
- * links to heading ids, which work with no JavaScript at all.
+ * twice. The list itself is plain links to heading ids, which work with no JavaScript at all.
+ *
+ * `<st-toc>` (`src/scripts/toc.ts`, WP-30) adds scroll-spy: the link to the section being read
+ * gets `aria-current="location"`. Below 1280px it also fills a sticky "Now reading" pill under the
+ * top bar, which links back to this list; its name says so ("Now reading: Tax basics. Open the
+ * list of sections."). The element is `display: contents`, so the column stays
+ * the grid item and the pill sticks inside the article. The reading-progress ring is a later
+ * package.
  *
  * Pseudo headings (depth 4, a bold lead-in line) and hidden headings are left out: the contents
  * of a page should be its sections, not every bold line in it.
@@ -31,13 +37,42 @@ const items = headings.filter(
   (heading) => heading.depth <= 3 && !heading.pseudo && !heading.hidden,
 );
 const label = t('nav.onThisPageCount', { count: items.length });
+/** The `<details>` the pill links back to. */
+const detailsId = 'st-on-this-page';
 ---
 
 {items.length > 0 &&
   (variant === 'details' ? (
-    <details class:list={['st-toc', 'st-toc--details', 'st-no-print', className]}>
-      <summary class="st-toc__summary">{label}</summary>
-      <nav aria-label={t('nav.onThisPage')}>
+    <st-toc class="st-toc-host">
+      <details class:list={['st-toc', 'st-toc--details', 'st-no-print', className]} id={detailsId}>
+        <summary class="st-toc__summary">{label}</summary>
+        <nav aria-label={t('nav.onThisPage')}>
+          <ul class="st-toc__list" role="list" lang={contentLang}>
+            {items.map((heading) => (
+              <li data-depth={heading.depth}>
+                <a href={`#${heading.id}`}>{heading.text}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </details>
+      <div class="st-toc__pill-track js-only st-no-print">
+        <a
+          class="st-toc__pill"
+          href={`#${detailsId}`}
+          data-toc-pill
+          data-label-template={t('nav.currentSectionLabel', { title: '{title}' })}
+          hidden
+        >
+          <span class="st-toc__pill-label">{t('nav.currentSection')}</span>
+          <span class="st-toc__pill-text" data-toc-pill-text lang={contentLang}></span>
+        </a>
+      </div>
+    </st-toc>
+  ) : (
+    <st-toc class="st-toc-host">
+      <nav class:list={['st-toc', 'st-toc--column', className]} aria-label={t('nav.onThisPage')}>
+        <p class="st-toc__title">{t('nav.onThisPage')}</p>
         <ul class="st-toc__list" role="list" lang={contentLang}>
           {items.map((heading) => (
             <li data-depth={heading.depth}>
@@ -46,21 +81,30 @@ const label = t('nav.onThisPageCount', { count: items.length });
           ))}
         </ul>
       </nav>
-    </details>
-  ) : (
-    <nav class:list={['st-toc', 'st-toc--column', className]} aria-label={t('nav.onThisPage')}>
-      <p class="st-toc__title">{t('nav.onThisPage')}</p>
-      <ul class="st-toc__list" role="list" lang={contentLang}>
-        {items.map((heading) => (
-          <li data-depth={heading.depth}>
-            <a href={`#${heading.id}`}>{heading.text}</a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    </st-toc>
   ))}
 
+<script>
+  import '../../scripts/toc';
+</script>
+
+<style is:global>
+  /*
+   * Below 1280px, with JavaScript, a page with the "Now reading" pill keeps room for it in the
+   * scroll padding (`SiteHeader.astro` adds `--st-toc-pill-space` to the top bar's offset).
+   */
+  @media (width < 1280px) {
+    html.js:has(.st-toc__pill-track) {
+      --st-toc-pill-space: calc(var(--st-target) + var(--st-space-2));
+    }
+  }
+</style>
+
 <style>
+  .st-toc-host {
+    display: contents;
+  }
+
   .st-toc__summary {
     display: flex;
     align-items: center;
@@ -99,6 +143,77 @@ const label = t('nav.onThisPageCount', { count: items.length });
     padding-inline-start: var(--st-space-4);
   }
 
+  /* The section being read (scroll-spy). A bar and weight, never colour alone. */
+  .st-toc__list a[aria-current='location'] {
+    box-shadow: inset var(--st-stripe-width) 0 0 var(--st-primary);
+    padding-inline-start: var(--st-space-3);
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-toc__list li[data-depth='3'] a[aria-current='location'] {
+    padding-inline-start: var(--st-space-5);
+  }
+
+  /*
+   * The "Now reading" pill. Its track is sticky inside the article and has no height, so the pill
+   * hangs below the top bar without moving the text when it appears or goes. The pill is always
+   * one line (a long title ends in an ellipsis; the link's name is still the whole title), so its
+   * height is known, and the global rule below adds it to the scroll padding: a heading reached by
+   * a contents link, or focus moved by the keyboard, lands below the pill, not under it.
+   */
+  .st-toc__pill-track {
+    position: sticky;
+    inset-block-start: var(--st-topbar-offset, 0);
+    z-index: var(--st-z-sticky);
+    block-size: 0;
+  }
+
+  .st-toc__pill {
+    display: flex;
+    align-items: center;
+    gap: var(--st-space-2);
+    inline-size: fit-content;
+    max-inline-size: 100%;
+    min-block-size: var(--st-target);
+    margin-block-start: var(--st-space-2);
+    padding-inline: var(--st-space-4);
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-pill);
+    background-color: var(--st-surface);
+    box-shadow: var(--st-shadow-1);
+    color: var(--st-text);
+    animation: st-toc-pill-in var(--st-duration-base) var(--st-ease) both;
+  }
+
+  .st-toc__pill:visited {
+    color: var(--st-text);
+  }
+
+  .st-toc__pill-label {
+    flex: none;
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-semibold);
+  }
+
+  /*
+   * One line by design, inside a box capped at the column's width, so `nowrap` cannot widen the
+   * page here (see design-system.md, Wrapping and min-content).
+   */
+  .st-toc__pill-text {
+    min-inline-size: 0;
+    overflow: hidden;
+    font-weight: var(--st-weight-semibold);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @keyframes st-toc-pill-in {
+    from {
+      opacity: 0;
+    }
+  }
+
   /* Exactly one of the two presentations is shown at any width. */
   @media (width >= 1280px) {
     .st-toc--details {
@@ -109,6 +224,19 @@ const label = t('nav.onThisPageCount', { count: items.length });
   @media (width < 1280px) {
     .st-toc--column {
       display: none;
+    }
+  }
+
+  @media (width >= 1280px) {
+    .st-toc__pill-track {
+      display: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .st-toc__list a[aria-current='location'] {
+      box-shadow: none;
+      border-inline-start: var(--st-stripe-width) solid CanvasText;
     }
   }
 

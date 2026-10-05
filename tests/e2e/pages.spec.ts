@@ -29,7 +29,9 @@ const MANIFEST = JSON.parse(
   readFileSync(path.join(REPO_ROOT, 'src', 'data', 'manifest.json'), 'utf8'),
 ) as { docs: Record<string, ManifestDoc> };
 /** The two dictionaries, read from disk: Playwright's loader will not import JSON modules. */
-type Dictionary = { checklist: { notSaved: string } };
+type Dictionary = {
+  checklist: { notSaved: string; noJs: string; saved: string; storageUnavailable: string };
+};
 const readDictionary = (lang: string): Dictionary =>
   JSON.parse(
     readFileSync(path.join(REPO_ROOT, 'src', 'i18n', `${lang}.json`), 'utf8'),
@@ -126,20 +128,31 @@ test.describe('the head of every built page', () => {
     expect(problems).toEqual([]);
   });
 
-  test('every page with a checklist says, once, that ticks are not saved yet', ({
+  test('every page with a checklist says, once, whether ticks are saved', ({
     basePath: _basePath,
   }, testInfo) => {
     test.skip(testInfo.project.name !== 'chromium', 'Reads dist/, no browser needed.');
-    test.skip(CHECKLIST_SAVES, 'Ticks are saved (WP-30), so there is nothing to warn about.');
+    // Both values of the flag are checked, so flipping it back cannot leave the wrong line behind.
+    // Saving (WP-30): the line is the no-JavaScript one ("ticks are not saved"), hidden once the
+    // script runs, and beside it the "saved on this device" line and the storage warning.
+    const marker = CHECKLIST_SAVES ? 'st-tasklist__no-js' : 'st-tasklist__not-saved';
+    const stale = CHECKLIST_SAVES ? 'st-tasklist__not-saved' : 'st-tasklist__no-js';
     const problems: string[] = [];
     for (const route of allHtmlRoutes().filter((r) => !/^(af\/)?design-system\//.test(r))) {
       const html = readFileSync(htmlFileForRoute(route), 'utf8');
-      if (!html.includes('type="checkbox"')) continue;
-      const notes = html.split('st-tasklist__not-saved').length - 1;
-      if (notes !== 1) problems.push(`/${route}: ${notes} not-saved line(s)`);
+      if (!html.includes('type="checkbox"') || !html.includes('data-task=')) continue;
+      const notes = html.split(marker).length - 1;
+      if (notes !== 1) problems.push(`/${route}: ${notes} "${marker}" line(s)`);
+      if (html.includes(stale)) problems.push(`/${route}: still has the "${stale}" line`);
       // It is about the site, so it is in the reader's language even on an English fallback page.
-      const expected = (route.startsWith('af/') ? af : en).checklist.notSaved;
+      const dictionary = route.startsWith('af/') ? af : en;
+      const expected = CHECKLIST_SAVES ? dictionary.checklist.noJs : dictionary.checklist.notSaved;
       if (!html.includes(expected)) problems.push(`/${route}: the line is not "${expected}"`);
+      if (CHECKLIST_SAVES) {
+        for (const line of [dictionary.checklist.saved, dictionary.checklist.storageUnavailable]) {
+          if (html.split(line).length - 1 !== 1) problems.push(`/${route}: not once: "${line}"`);
+        }
+      }
     }
     expect(problems).toEqual([]);
   });

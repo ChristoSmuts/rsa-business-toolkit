@@ -290,7 +290,7 @@ step. The language switcher is plain links either way; `<st-lang-switch>` only a
 | `src/components/pages/BusinessTypeTiles.astro` | home, `business-types/` | The six types as tiles with effort meters. The hub document shows them above its text (B6); it leaves out the General tile, which would link to itself. |
 | `src/components/pages/SectionLanding.astro` | `start/`, `core/`, `branding/`, `paperwork/`, `look-it-up/` | Cards built from each document's own summary and reading time. |
 | `src/pages/[...locale]/index.astro` | home | The three 2026 figures come from `src/lib/home.ts`, each tied to an official register entry; `tests/unit/site/home.test.ts` fails if a figure is not in its source's own "supports" text. |
-| `contents.astro`, `templates/index.astro`, `about.astro`, `search.astro` | the app pages | The search page is a GET form, one sentence saying full search is not ready (the same with or without JavaScript; the loading and failure messages belong to WP-33's client), and the common questions from "How to use this toolkit". About leaves out shortcuts and settings until the packages that build them land; the header leaves out the `/` hint until WP-33 adds the shortcut. |
+| `contents.astro`, `templates/index.astro`, `about.astro`, `search.astro` | the app pages | The search page is a GET form, one sentence saying full search is not ready (the same with or without JavaScript; the loading and failure messages belong to WP-33's client), and the common questions from "How to use this toolkit". About lists the shortcuts that work and has the settings (WP-30; the search keys join the table with `SEARCH_AVAILABLE`); the header leaves out the `/` hint until WP-33 adds the shortcut. |
 | `src/pages/404.astro` | `/404.html` | Both languages on one page, because the server cannot know which one the reader wanted. |
 | `src/layouts/Page.astro` | all of the above | Canonical, `hreflang` with `x-default`, Open Graph and a description. Every page is listed in every enabled locale, matching the sitemap; an Afrikaans fallback page is the Afrikaans page for its URL. |
 
@@ -303,8 +303,9 @@ Three flags in `src/lib/routes.ts` keep the site from offering what is not built
   `/` hint, and the home page's actions are "Read Core: start here" and the contents.
 - `TEMPLATES_FILLABLE` (WP-32): the templates index and the drawer describe what the template pages
   are now, what each document must show with a sample layout, not a form to fill in.
-- `CHECKLIST_SAVES` (WP-30): the checklist is described as a list to print and tick, and the master
-  checklist says its ticks are not saved yet.
+- `CHECKLIST_SAVES` (WP-30, **on**): while it was off, the checklist was described as a list to
+  print and tick and every checklist page said its ticks were not saved yet. On, see
+  [Interactive pieces](#interactive-pieces-wp-30).
 
 With `SEARCH_AVAILABLE` off, the header and drawer carry no Search link; the search page's common
 questions are linked from the footer instead.
@@ -318,7 +319,9 @@ two at 1024px), so the scroll padding is not a constant: `trackTopbar()` in
 `src/scripts/navigation.ts` publishes the bar's measured height as `--st-topbar-offset` (0 while the
 bar is not sticky), and `SiteHeader.astro` sets `scroll-padding-block-start` from it. That rule owns the
 scroll padding on every page with the header: it outranks the `html` rule in `base.css`, so a change
-there has no effect on those pages.
+there has no effect on those pages. Below 1280px, on a page with the table of contents and with
+JavaScript, it also adds `--st-toc-pill-space` (one 44px line plus a gap), the room the "Now
+reading" pill takes, so a heading reached by a link lands below the pill rather than under it.
 
 Fenced blocks: prompts, snippets and examples are prose and wrap; template previews and listings
 are layouts, keep `white-space: pre`, and are the only ones that can scroll, as a named region.
@@ -329,6 +332,88 @@ contents, the breadcrumb and sidebar titles, and the register's own text in "Sou
 Inside the blocks the labels and document titles are English too (`ContentContext.contentLang`), so a
 fallback block is one English island rather than English text with Afrikaans labels read in an
 English voice. Everything around the content, and every URL, stays in the reader's language.
+
+### Interactive pieces (WP-30)
+
+Every piece follows plan C2: a vanilla custom element wraps markup Astro already rendered, its
+constructor does nothing, `connectedCallback` reads the store and wires listeners,
+`disconnectedCallback` removes them, and keyboard use is the native control's (buttons, checkboxes,
+radios, links, `<dialog>`). The only markup a script adds is text: the copy button's label and the
+status lines. Each piece works, or is absent, without JavaScript: `tests/e2e/nojs.spec.ts`.
+
+| Element | Script | Rendered by | What it does | Without JavaScript |
+| --- | --- | --- | --- | --- |
+| `<st-checklist>` | `checklist.ts` | `TaskListBlock` | Wraps one `<fieldset>` of checkboxes. A box the reader changed before the module connected (it is clickable from first paint) is saved as the reader's choice, not overwritten. A tick writes the `checks` store under the box's `data-task`: the task id, or, for a document task that repeats one on `/checklist/`, the master task's id (`sameAs`, from `content-meta/task-links.json`). So a linked task is ticked in both places, and the Afrikaans twin and other tabs follow; a task that is not linked keeps a tick of its own. Honours the `/checklist/` filter. | The boxes tick; one line says ticks are not saved (`.st-tasklist__no-js`, `.no-js-only`). |
+| `<st-checklist-progress>` | `checklist.ts` | `TaskListBlock`, `ChecklistSummary`, `ChecklistElsewhere` | "3 of 7 done" for the ids in `data-tasks`, from `data-template`; fills a `<progress>` (`aria-hidden`; the text says it), a `[data-progress-text]` and a `ProgressRing` (its `aria-label` too). `data-complete` when all are done. | `.js-only`: a count that cannot change would be wrong. |
+| `<st-checklist-tools>` | `checklist.ts` | `ChecklistSummary` | `/checklist/` only: the "Show" radios (Everything / Not done yet) and "Remove ticks", which asks in a `ConfirmDialog` and then says "All ticks were removed." in a polite status line. "Not done yet" hides what is ticked **when it is chosen**; a box ticked afterwards stays put, so focus never vanishes. A choice the browser restores (Back, a reload that keeps form state) is applied when the element connects. "Only what applies to me" is WP-31. | Hidden with the summary. |
+| `<st-storage-notice>` | `storage-notice.ts` | `TaskListBlock` (first checklist), `Settings` | Rendered `hidden`; shown while `storageAvailable` is `false`. A warning `Callout` with the right `storage.*` / `checklist.storageUnavailable` text. With `data-show="available"` it is the opposite: the "Ticks are saved on this device only" line wraps itself in one, so it goes when the warning comes and the page never says both. | Stays hidden. |
+| `<st-copy>` | `copy.ts` | `CodeBlock` (prompts only) | Shows its `hidden` button. Copies the prompt's `<pre>` text exactly, says "Copied" with a tick in place of the copy icon for two seconds and "Prompt 2 copied" in its `role="status"` line; if the clipboard refuses, selects the text and says how to copy it. Records the prompt in `promptsCopied` (`<doc id>#<block id>`). The button's visible text is `prompts.copy`, its name `prompts.copyNamed` ("Copy prompt 2: Logo brief"). | No button. The text is all there and copyable by hand. |
+| `<st-toc>` | `toc.ts` | `TableOfContents` (both variants) | `display: contents`. Scroll-spy: the link to the last heading that has passed the scroll-padding line gets `aria-current="location"` (a stripe and weight, never colour alone). Below 1280px a sticky one-line "Now reading" pill names it once the list has scrolled away; it links back to the list and opens it, and its name says so (`nav.currentSectionLabel`: "Now reading: Tax basics. Open the list of sections."). No smooth scrolling of its own; the pill's fade is a duration token that reduced motion sets to 0. | Plain anchors; no pill. |
+| `<st-setting>` | `settings.ts` | `Settings` (`/about/`) | One `role="switch"` checkbox bound to `shortcuts` or `lowData`. A switch changed before the module connected is kept and saved. While `SEARCH_AVAILABLE` is off the help lines use the `…Static` strings, which do not mention `/` or loading search. | Hidden; one line says some tools need JavaScript. |
+| `<st-clear-data>` | `settings.ts` | `Settings` | "Clear all my data": `ConfirmDialog`, then `clearAll()` and "All your data was removed from this device." | Hidden. |
+| `<st-lang-banner>` | `lang-banner.ts` | `LangBanner` (English home only) | Shown from the first paint, so it never shifts the page: `theme-init.js` sets `<html data-st-lang-offer>` when `st.lang` is not the page's language, a CSS rule per language shows the banner whose `data-locale` matches it, and the element keeps it in step with the store. Shown while `st.lang` is a language other than the page's: the message and actions in **that** language, with its `lang`. "Gaan voort in Afrikaans" is a plain link (never a redirect); "Stay on this page" saves the page's language; close hides it for this page view. Focus moves to `<main>` when it goes. A saved value that is not an enabled language shows nothing: the first-paint rule is per language. | Not shown: `theme-init.js` sets the attribute that shows it, and it needs JavaScript too. |
+| `<st-theme-toggle>` | `theme-control.ts` | `ThemeControl` | Now on the `theme` store; the module applies the store to `<html>` and the theme-color metas whatever changes it (a toggle, another tab, clear my data). | As before. |
+| `<st-lang-switch>` | `navigation.ts` | `LanguageSwitcher` | Also saves the language followed in `st.lang`. | Plain links. |
+
+`ConfirmDialog` (`src/components/ui/ConfirmDialog.astro`, script `confirm-dialog.ts`) is the one
+dialog pattern: a native modal `<dialog>` named by its heading and described by its body, buttons in
+a `<form method="dialog">` (the browser closes it and sets `returnValue`), the safe choice first and
+focused, Escape counts as cancel, and focus returns to the control that opened it.
+
+Shortcuts (`src/lib/shortcuts.ts`, handled in `src/scripts/site.ts`, loaded by `Page.astro` on every
+page): `?` goes to the list on `/about/` (the page's `<link rel="help">`, focusing its heading when
+already there), Alt+← / Alt+→ follow the pager's `rel="prev"` / `rel="next"` and leave the key to
+the browser when there is no pager, Escape closes an open "On this page" list (dialogs and the top
+bar menus already close on Escape). Nothing fires while focus is in a text field, a select or
+editable content (`isTypingTarget`) or while a `<dialog>` is open, and `?` only while single-key shortcuts are on. `/` and Ctrl+K
+are WP-33's: its listener checks `isTypingTarget(event.target)` and, for `/`, `shortcutsEnabled()`,
+and its rows appear in the `/about/` table when `SEARCH_AVAILABLE` is on.
+
+Low data: the `lowData` store sets `<html data-low-data>`, which `tokens.css` already maps to the
+system fonts and no pattern. `theme-init.js` applies it before paint from `st.lowData`.
+
+#### The store (`src/lib/store.ts`, `src/lib/storage/`)
+
+Everything the site remembers is on the device, under keys that start with `st.`. The store's own
+doc comment is the reference; in short:
+
+```ts
+import * as z from 'zod/mini'; // client code: `zod/mini`, much smaller than `zod`
+import { persistentValue, storageAvailable, clearAll } from '../lib/store';
+
+export const profile = persistentValue('st.profile.v1', profileSchema, null); // WP-31
+export const draft = persistentValue(`st.template.${id}.v1`, draftSchema, emptyDraft); // WP-32
+
+profile.get();                    // the value, or the default when unset or invalid
+profile.subscribe((p) => …);      // now and on every change, including from another tab
+profile.set(next);                // JSON, stamps st.meta.v1 on the first write; null removes it
+profile.reset();                  // removes the key
+storageAvailable.get();           // false: show the matching storage.* notice
+```
+
+| Export | Signature | Notes |
+| --- | --- | --- |
+| `persistentValue` | `<T>(key: string, schema: Schema<T>, fallback: T, options?: { codec?: Codec }) => PersistentStore<T>` | `Schema<T>` is anything with Zod's `safeParse`. One store per key: the same key with the same schema returns the same store, with another schema it throws. A key outside `st.` throws. |
+| `PersistentStore<T>` | nanostores `WritableAtom<T>` plus `key`, `set(value)`, `reset()` | Works with `computed()` and every nanostores helper. |
+| `storageAvailable` | `ReadableAtom<boolean>` | `false` when `localStorage` is blocked or a write failed; the stores then live in memory for the page view. |
+| `clearAll` | `() => string[]` | Removes every `st.` key (and nothing else) and puts every store back to its default. Returns the keys removed. |
+| `checks`, `setChecked(key, done, now?)`, `countDone(map, keys)`, `renameChecks(renames)` | | `st.checks.v1`, `{ [key]: ISO date-time }`. The key is a checkbox's `data-task`: `sameAs ?? id`. An entry that is not a date-time is dropped on read and the rest kept (`entriesOf`), so one bad entry never costs every tick. `renameChecks` moves ticks from keys that changed (`src/data/task-keys.json`; rewording a task changes its id, see `content-meta/README.md`). The store runs it itself when it loads, once per page and writing only when a tick moved, so **every reader of `checks` sees current keys** with no call of its own. |
+| `theme` | `PersistentStore<'system' \| 'light' \| 'dark'>` | `st.theme`, a bare string (read by `theme-init.js`). |
+| `lang` | `PersistentStore<Locale \| null>` | `st.lang`, a bare string. |
+| `promptsCopied`, `markPromptCopied(id, now?)` | | `st.prompts.v1`, `{ [promptId]: ISO date-time }`, read like `checks`. |
+| `entriesOf` | `<V>(value: Schema<V>) => Schema<Record<string, V>>` | For a map of independent entries: drops the entries that fail `value` instead of resetting the whole key. |
+| `shortcuts`, `shortcutsEnabled()` | `PersistentStore<boolean>`, `() => boolean` | `st.shortcuts`, default `true`. |
+| `lowData` | `PersistentStore<boolean>` | `st.lowData`, default `false`. |
+| `seenVersion` | `PersistentStore<string \| null>` | `st.seenVersion`, for the "what has changed" notice. |
+
+`src/lib/storage/migrate.ts` holds `SCHEMA_VERSION`, `MIGRATIONS` (forward only; `MIGRATIONS[n]`
+moves data from `n - 1` to `n`), `st.meta.v1 = { schema, createdAt }`, the per-key reset
+(`readValue`) and `clearAll(adapter)`. A change to a stored shape raises `SCHEMA_VERSION` and adds a
+migration, or uses a new key (`.v2`). `src/lib/storage/adapter.ts` is the `localStorage` wrapper that
+never throws.
+
+`theme-init.js` is the one documented exception to "only the store reads storage": it must run
+before any module, so it reads `st.theme`, `st.lowData` and `st.lang` itself, in the formats the store writes. The store is built on `nanostores` alone; it does not use `@nanostores/persistent` (removed), because its adapter has to survive a throwing `localStorage`.
 
 ### Illustrations
 
@@ -389,7 +474,8 @@ Verification status, officialness and "not confirmed" are the three places a pag
 - `astro.config.ts` sets `vite.build.assetsInlineLimit` to a **function**, not to `0`. Astro inlines a processed script bundle, and Vite a `?url` asset (as a `data:` URI), when it is under that limit, and `script-src 'self'` would block both; but a flat `0` also switched off Astro's `inlineStylesheets: 'auto'`, so a page with a few hundred bytes of scoped CSS paid for an extra render-blocking request. The function returns `false` for everything except `.css`, where it returns `undefined` and the default size limit applies. Result: zero inline `<script>` on any page, and small stylesheets inline again (`style-src` already allows `'unsafe-inline'`). E2e tests check both on `/` and `/design-system/`.
 - Only the CSS chunk that carries the design tokens is named `stoep.[hash].css`; page CSS keeps Rollup's own name (`assetFileNames` matches on `originalFileNames`). Three files all called `stoep.*` could not be told apart in DevTools or a budget report.
 - Module scripts run after parsing but, in WebKit, **before stylesheets that come later in `<head>`** have applied (Astro emits page CSS links after its scripts). A script that reads computed styles must therefore check that the tokens resolve — and it must check on **the element it is about to measure**, not on `documentElement`. See [The live contrast panel](#the-live-contrast-panel) for why the difference is not academic.
-- `localStorage` is allowed in `src/scripts/**` (ESLint allow-list), because `theme-init` must run before any module loads. Other code uses `src/lib/store.ts`.
+- `localStorage` is allowed only in `src/lib/store.ts` and `src/lib/storage/**` (ESLint allow-list; `src/scripts/**` left it with WP-30). `theme-init.js` reads `st.theme`, `st.lowData` and `st.lang` itself, because it must run before any module loads; it is plain JavaScript, outside the TypeScript rule, and the one documented exception.
+- **JavaScript budget** (plan B3 flow 9: 25 KB gzipped on document pages). Measured on the WP-30 build: the heaviest document pages load 14 script files, 39.9 KB raw and **15.9 KB gzipped** (each file gzipped on its own and summed, `theme-init` included); the store chunk (nanostores and `zod/mini`) is 7.2 KB of that. `/about/` is 13.2 KB and the home page 12.8 KB. How to measure: `docs/testing.md`.
 - In `astro dev` the same imports work: `?url` returns the source path of `theme-init.js`, which Vite serves as JavaScript, and processed scripts load as dev modules.
 
 ### The live contrast panel
@@ -443,7 +529,7 @@ One last piece of wording. An unparseable token fails its pair, which is the rig
 
 ## Known limits
 
-- **Low data and preloads.** The two `<link rel="preload">` font files (about 97 KB) are still fetched in low-data mode; a meta-level preload cannot react to a runtime toggle, and `prefers-reduced-data` ships in no stable browser. Revisit when the footer toggle lands.
+- **Low data and preloads.** The two `<link rel="preload">` font files (about 97 KB) are still fetched in low-data mode; a meta-level preload cannot react to a runtime toggle, and `prefers-reduced-data` ships in no stable browser. The toggle landed on `/about/` (WP-30) and this is still true: the preloads come after `theme-init.js` in `<head>`, so it cannot remove them, and moving them would cost every other reader the early font request. The fonts themselves are not used in low-data mode.
 - **Safari table semantics.** Stacked cells are `display: grid`. Playwright's accessibility snapshot keeps table, rowheader and cell roles in Chromium and WebKit, but that is computed from the DOM. Real VoiceOver on Safari has not been checked; the Table component can add explicit ARIA table roles if needed.
 - **`:has()`** drives the card ring and the segmented control's checked style. Browsers without `:has()` get the ring on the card link; the checked segment then shows only the native radio state to assistive technology, not the fill.
 - **The stacked table mode has no data to run on.** `TableScroll wide` stacks a table into labelled

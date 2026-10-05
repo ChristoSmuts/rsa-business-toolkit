@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
@@ -15,6 +15,7 @@ import {
   QuickAnswersFileSchema,
   SECTION_IDS,
   SourcesFileSchema,
+  TaskKeysFileSchema,
   TasksFileSchema,
   type Doc,
   type InlineRun,
@@ -179,6 +180,75 @@ describe('committed content data', () => {
       );
       expect(tasks.map((task) => task.id)).toEqual(fromDocs);
     }
+  });
+
+  it('links document tasks to master-checklist tasks: both exist, no chains, none twice, same in every language', () => {
+    const links = (
+      readJson(join(repoRoot, 'content-meta', 'task-links.json')) as {
+        links: Record<string, string>;
+      }
+    ).links;
+    const en = TasksFileSchema.parse(readJson(join(dataDir, 'en', 'tasks.json'))).tasks;
+    const enTask = new Map(en.map((task) => [task.id, task]));
+    const checklistDoc = enDocs.find((doc) => doc.kind === 'checklist')?.id;
+    const problems: string[] = [];
+    const targets = new Set<string>();
+    for (const [from, to] of Object.entries(links)) {
+      const source = enTask.get(from);
+      const target = enTask.get(to);
+      if (!source || !target) problems.push(`${from} -> ${to}: unknown task`);
+      else if (target.doc !== checklistDoc || source.doc === checklistDoc)
+        problems.push(`${from} -> ${to}: not a document task to a master-checklist task`);
+      if (to in links) problems.push(`${from} -> ${to}: chain`);
+      if (targets.has(to)) problems.push(`${to}: linked twice`);
+      targets.add(to);
+      if (source && source.sameAs !== to) problems.push(`${from}: sameAs is ${source.sameAs}`);
+    }
+    // Every emitted link comes from the file, in tasks.json and in the documents, in every language.
+    for (const [lang, docs] of docsByLang) {
+      const tasks = TasksFileSchema.parse(readJson(join(dataDir, lang, 'tasks.json'))).tasks;
+      for (const task of tasks)
+        if (task.sameAs !== links[task.id]) problems.push(`${lang} ${task.id}: ${task.sameAs}`);
+      for (const doc of docs)
+        for (const block of doc.blocks)
+          if (block.kind === 'tasklist')
+            for (const item of block.items)
+              if (item.sameAs !== links[item.id])
+                problems.push(`${lang} ${doc.id} ${item.id}: ${item.sameAs}`);
+    }
+    expect(Object.keys(links).length).toBeGreaterThan(0);
+    expect(problems).toEqual([]);
+  });
+
+  /*
+   * Ticks are saved under task keys (`sameAs ?? id`), and a task id is a hash of its wording. So a
+   * key that a released build used must never just disappear: rewording a task needs an entry in
+   * `content-meta/task-renames.json`, and the store moves the tick (`renameChecks`). The released
+   * keys are committed in `content-meta/released-task-keys.json`. After adding tasks, record them:
+   *   pnpm exec cross-env TASK_KEYS_UPDATE=1 vitest run --project content -t "released task key"
+   */
+  it('keeps every released task key, or carries it to a new one', () => {
+    const path = join(repoRoot, 'content-meta', 'released-task-keys.json');
+    const en = TasksFileSchema.parse(readJson(join(dataDir, 'en', 'tasks.json'))).tasks;
+    const current = [...new Set(en.map((task) => task.sameAs ?? task.id))].sort();
+    const renames = TaskKeysFileSchema.parse(readJson(join(dataDir, 'task-keys.json'))).renames;
+    if (process.env['TASK_KEYS_UPDATE'] === '1') {
+      const released = existsSync(path) ? (readJson(path) as { keys: string[] }).keys : [];
+      const keys = [...new Set([...released, ...current])];
+      writeFileSync(path, `${JSON.stringify({ version: 1, keys: keys.sort() }, null, 2)}\n`);
+    }
+    const released = (readJson(path) as { keys: string[] }).keys;
+    const live = new Set(current);
+    const lost = released.filter((key) => !live.has(key) && !live.has(renames[key] ?? ''));
+    expect(
+      lost,
+      'released task keys that no longer exist: add each to content-meta/task-renames.json (old id -> new id); see content-meta/README.md',
+    ).toEqual([]);
+    const unrecorded = current.filter((key) => !released.includes(key));
+    expect(
+      unrecorded,
+      'task keys not yet recorded: run the TASK_KEYS_UPDATE command in content-meta/README.md',
+    ).toEqual([]);
   });
 
   it('has 121 glossary entries in 7 groups with unique ids', () => {

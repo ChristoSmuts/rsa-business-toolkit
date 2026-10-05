@@ -103,3 +103,60 @@ test.describe('anchors without JavaScript', () => {
     });
   }
 });
+
+/**
+ * WP-30: every interactive piece is an enhancement. Without JavaScript the checkboxes still tick
+ * and say they are not saved, and no control that needs the store is offered.
+ */
+test.describe('the interactive pieces without JavaScript', () => {
+  test('a checklist ticks, says ticks are not saved, and shows no progress or tools', async ({
+    page,
+  }) => {
+    await page.goto('checklist/');
+    const notSaved = page.locator('.st-tasklist__no-js');
+    await expect(notSaved).toHaveCount(1);
+    await expect(notSaved).toBeVisible();
+    await expect(notSaved).toHaveText(
+      'JavaScript is off. You can tick items, but the ticks are not saved.',
+    );
+    await expect(page.locator('.st-tasklist__saved')).toBeHidden();
+    await expect(page.locator('st-storage-notice:not([data-show])')).toBeHidden();
+    await expect(page.locator('st-checklist-progress').first()).toBeHidden();
+    await expect(page.locator('.st-checklist-summary')).toBeHidden();
+    await expect(page.locator('dialog.st-dialog')).toBeHidden();
+    const box = page.locator('st-checklist input[type="checkbox"]').first();
+    await box.check();
+    await expect(box).toBeChecked();
+    // The links to the other checklists work without the counts.
+    await expect(page.locator('#st-checklist-elsewhere ~ ul a').first()).toBeVisible();
+  });
+
+  test('prompts show no copy button, and the text is all there', async ({ page }) => {
+    await page.goto('branding/branding-prompts/');
+    const figure = page.locator('figure.st-code[data-variant="prompt"]').first();
+    await expect(figure.locator('pre')).toBeVisible();
+    await expect(figure.locator('st-copy button')).toBeHidden();
+  });
+
+  test('the table of contents is plain links, with no "Now reading" pill', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 800 });
+    await page.goto('core/register/');
+    await expect(page.locator('[data-toc-pill]')).toBeHidden();
+    await expect(page.locator('[aria-current="location"]')).toHaveCount(0);
+  });
+
+  test('settings say they need JavaScript and offer no controls', async ({ page }) => {
+    await page.goto('about/');
+    await expect(page.locator('#keyboard-shortcuts')).toBeVisible();
+    await expect(
+      page.getByText('Some tools need JavaScript. You can still read every page.'),
+    ).toBeVisible();
+    await expect(page.getByRole('switch')).toHaveCount(0);
+    await expect(page.getByRole('button', { name: 'Clear all my data' })).toHaveCount(0);
+  });
+
+  test('the home page shows no language banner', async ({ page }) => {
+    await page.goto('./');
+    await expect(page.locator('st-lang-banner')).toBeHidden();
+  });
+});

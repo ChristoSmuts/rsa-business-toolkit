@@ -9,10 +9,13 @@
  * <st-lang-switch> keeps the reader's place when they switch language: the server cannot know the
  *                  fragment, so the hrefs follow the current `location.hash` here (plan B3,
  *                  flow 7). They are recomputed on every change, including back to no fragment,
- *                  so a switch never jumps to a heading the reader has already left.
+ *                  so a switch never jumps to a heading the reader has already left. Following
+ *                  one saves the choice (`lang`, `st.lang`), which only ever offers a banner on
+ *                  the next visit to the home page; it never redirects (WP-30).
  */
 import { switchLocaleUrl } from '../lib/i18n-routes';
 import { isEnabledLocale } from '../i18n/locales';
+import { lang } from '../lib/store';
 
 export class StNavDrawer extends HTMLElement {
   #dialog: HTMLDialogElement | null = null;
@@ -67,13 +70,22 @@ export class StLangSwitch extends HTMLElement {
     }
   };
 
+  readonly #onClick = (event: Event): void => {
+    const target = event.target;
+    const link = target instanceof Element ? target.closest('a[data-locale]') : null;
+    const locale = link instanceof HTMLElement ? link.dataset['locale'] : undefined;
+    if (isEnabledLocale(locale)) lang.set(locale);
+  };
+
   connectedCallback(): void {
     this.#apply();
+    this.addEventListener('click', this.#onClick);
     window.addEventListener('hashchange', this.#apply);
     window.addEventListener('popstate', this.#apply);
   }
 
   disconnectedCallback(): void {
+    this.removeEventListener('click', this.#onClick);
     window.removeEventListener('hashchange', this.#apply);
     window.removeEventListener('popstate', this.#apply);
   }

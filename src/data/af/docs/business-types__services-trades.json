@@ -803,6 +803,7 @@
           ],
           "doc": "business-types/services-trades",
           "id": "business-types/services-trades:6b14de08",
+          "sameAs": "lookup/checklist:aa9275cd",
           "when": {
             "businessTypes": [
               "services-trades"
@@ -819,6 +820,7 @@
           ],
           "doc": "business-types/services-trades",
           "id": "business-types/services-trades:06447813",
+          "sameAs": "lookup/checklist:bac9170c",
           "when": {
             "businessTypes": [
               "services-trades"
@@ -835,6 +837,7 @@
           ],
           "doc": "business-types/services-trades",
           "id": "business-types/services-trades:3e62bd56",
+          "sameAs": "lookup/checklist:2bb7976e",
           "when": {
             "businessTypes": [
               "services-trades"
@@ -851,6 +854,7 @@
           ],
           "doc": "business-types/services-trades",
           "id": "business-types/services-trades:4931924a",
+          "sameAs": "lookup/checklist:82477245",
           "when": {
             "businessTypes": [
               "services-trades"
@@ -867,6 +871,7 @@
           ],
           "doc": "business-types/services-trades",
           "id": "business-types/services-trades:6fa9b54e",
+          "sameAs": "lookup/checklist:a448e918",
           "when": {
             "businessTypes": [
               "services-trades"
@@ -883,6 +888,7 @@
           ],
           "doc": "business-types/services-trades",
           "id": "business-types/services-trades:92e8509e",
+          "sameAs": "lookup/checklist:22905c13",
           "when": {
             "businessTypes": [
               "services-trades"

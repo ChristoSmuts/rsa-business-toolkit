@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "links": {
+    "core/running-a-pty-ltd:44c17e09": "lookup/checklist:a39426e1",
+    "core/running-a-pty-ltd:b79af9c6": "lookup/checklist:b79af9c6",
+    "core/running-a-pty-ltd:00f5fc24": "lookup/checklist:00f5fc24",
+    "core/running-a-pty-ltd:b0853b54": "lookup/checklist:b0853b54",
+    "core/running-a-pty-ltd:95b86e75": "lookup/checklist:95b86e75",
+    "core/running-a-pty-ltd:724ea4bf": "lookup/checklist:63d6082e",
+    "core/running-a-pty-ltd:60d623d8": "lookup/checklist:60d623d8",
+    "core/running-a-pty-ltd:2f83b8dc": "lookup/checklist:fe35c42c",
+    "core/working-from-home-and-safety:8a10fb7e": "lookup/checklist:8a10fb7e",
+    "business-types/vehicle-dealer:ddf401f6": "lookup/checklist:57a8c2a4",
+    "business-types/vehicle-dealer:9df05312": "lookup/checklist:9aefc6b4",
+    "business-types/vehicle-dealer:621643ad": "lookup/checklist:cdc31934",
+    "business-types/vehicle-dealer:70c5bd63": "lookup/checklist:b196800c",
+    "business-types/food:c239e886": "lookup/checklist:32e8d8b8",
+    "business-types/food:4d4cb4db": "lookup/checklist:527a8410",
+    "business-types/food:a7fe56ab": "lookup/checklist:b857c0d6",
+    "business-types/food:0f8340c3": "lookup/checklist:8b8c0d43",
+    "business-types/food:7ee08e59": "lookup/checklist:58836809",
+    "business-types/food:02658eb1": "lookup/checklist:09952c25",
+    "business-types/food:690c42ea": "lookup/checklist:1f166d50",
+    "business-types/beauty:4154a207": "lookup/checklist:08c14d32",
+    "business-types/beauty:3e9fa384": "lookup/checklist:5ddbfd24",
+    "business-types/beauty:acd577dc": "lookup/checklist:4f9e60d7",
+    "business-types/beauty:78e1ef6f": "lookup/checklist:23f8909e",
+    "business-types/beauty:1ee82848": "lookup/checklist:796521bf",
+    "business-types/beauty:3f035f6f": "lookup/checklist:f7fc2eff",
+    "business-types/retail-online:51431599": "lookup/checklist:92ad1d52",
+    "business-types/retail-online:7606eb50": "lookup/checklist:1a0745a3",
+    "business-types/retail-online:3f057ea5": "lookup/checklist:eea37d29",
+    "business-types/retail-online:857a560f": "lookup/checklist:3b8c77ff",
+    "business-types/retail-online:3997af12": "lookup/checklist:5a7f3f39",
+    "business-types/retail-online:46751df3": "lookup/checklist:63f5e0ad",
+    "business-types/services-trades:6b14de08": "lookup/checklist:aa9275cd",
+    "business-types/services-trades:06447813": "lookup/checklist:bac9170c",
+    "business-types/services-trades:3e62bd56": "lookup/checklist:2bb7976e",
+    "business-types/services-trades:4931924a": "lookup/checklist:82477245",
+    "business-types/services-trades:6fa9b54e": "lookup/checklist:a448e918",
+    "business-types/professional-creative:fc5121e3": "lookup/checklist:956d9895",
+    "business-types/professional-creative:4c50b1ae": "lookup/checklist:e97fe964",
+    "business-types/professional-creative:1c124945": "lookup/checklist:0b186a56",
+    "business-types/professional-creative:09f007d9": "lookup/checklist:53da774d",
+    "core/working-from-home-and-safety:cad4290c": "lookup/checklist:057de8cb",
+    "business-types/beauty:22a2e898": "lookup/checklist:a036463c",
+    "business-types/services-trades:92e8509e": "lookup/checklist:22905c13",
+    "business-types/professional-creative:66134f08": "lookup/checklist:afe2d3be"
+  },
+  "considered": {
+    "business-types/beauty:92352a66": {
+      "with": "lookup/checklist:88cba814",
+      "reason": "Different scope: the master task covers any work from home or fixed premises, broader than this document's zoning check."
+    },
+    "business-types/food:c251f427": {
+      "with": "lookup/checklist:88cba814",
+      "reason": "Different scope: the master task covers any work from home or fixed premises, broader than this document's zoning check."
+    },
+    "business-types/retail-online:05b6a4b6": {
+      "with": "lookup/checklist:5dfc9c4d",
+      "reason": "Different scope: a trader's licence against whether any licence is needed."
+    },
+    "business-types/retail-online:eead27a2": {
+      "with": "lookup/checklist:1b7c3802",
+      "reason": "Different action: publishing a privacy notice against writing one."
+    },
+    "business-types/services-trades:7aeedd49": {
+      "with": "lookup/checklist:c835f118",
+      "reason": "Different action: confirming whether registration is required is not registering."
+    },
+    "business-types/services-trades:a9a8c6bf": {
+      "with": "lookup/checklist:f77f50f7",
+      "reason": "Different action: the master adds a catalogue."
+    },
+    "business-types/vehicle-dealer:81105d14": {
+      "with": "lookup/checklist:5d35feb9",
+      "reason": "Different action: the master also requires registering if needed."
+    },
+    "business-types/vehicle-dealer:856d737a": {
+      "with": "lookup/checklist:e441a4c4",
+      "reason": "Different scope: a per-purchase habit against a process set up once."
+    },
+    "business-types/vehicle-dealer:85d9f1a4": {
+      "with": "lookup/checklist:88cba814",
+      "reason": "Different scope: the master task covers any work from home or fixed premises, broader than this document's zoning check."
+    },
+    "business-types/vehicle-dealer:96c81d0e": {
+      "with": "lookup/checklist:8ef76a00",
+      "reason": "Closest call (review pass 2 accepts either): the document adds confirming you are not on turnover tax."
+    },
+    "business-types/vehicle-dealer:9d53e703": {
+      "with": "lookup/checklist:8dbe5551",
+      "reason": "Different action: getting insurance quotes is not having the insurance."
+    },
+    "business-types/vehicle-dealer:e5ee625b": {
+      "with": "lookup/checklist:eb465a87",
+      "reason": "Different action: the master is waiting until the licence is issued."
+    },
+    "core/adding-new-lines:57d2420f": {
+      "with": "lookup/checklist:d21f5efe",
+      "reason": "Different scope: the document is the new line's documents only; the master is every document."
+    },
+    "core/running-a-pty-ltd:295a6e78": {
+      "with": "lookup/checklist:12b6eab2",
+      "reason": "Different action: the document says the loan account is checked, the master says checked and cleared."
+    },
+    "core/running-a-pty-ltd:7ec2806c": {
+      "with": "lookup/checklist:eb8bf210",
+      "reason": "Different action: the document's folder is updated every year, the master's is created once."
+    },
+    "core/running-a-pty-ltd:adba8c60": {
+      "with": "lookup/checklist:c7242bd4",
+      "reason": "Different scope: a positive habit against one item of the master's Never list."
+    },
+    "core/working-from-home-and-safety:05820320": {
+      "with": "lookup/checklist:b620b7df",
+      "reason": "The master combines telling someone and company with the public place; one link per master task."
+    },
+    "core/working-from-home-and-safety:1a704bb5": {
+      "with": "lookup/checklist:53e717ac",
+      "reason": "The master combines telling the insurer with the zoning check; one link per master task."
+    },
+    "core/working-from-home-and-safety:288efaaa": {
+      "with": "lookup/checklist:b620b7df",
+      "reason": "The master combines a public place with telling someone and having someone with you; one link per master task."
+    },
+    "core/working-from-home-and-safety:9c2a1aaa": {
+      "with": "lookup/checklist:8a68f28a",
+      "reason": "The master is for a vehicle and combines the keys with the ID and test drives; one link per master task."
+    },
+    "core/working-from-home-and-safety:a5d45d69": {
+      "with": "lookup/checklist:8a68f28a",
+      "reason": "The master is for a vehicle and combines the ID with keys and test drives; one link per master task."
+    },
+    "core/working-from-home-and-safety:b77d1f44": {
+      "with": "lookup/checklist:1c9a465a",
+      "reason": "The master combines the bank limits with opening a separate account."
+    },
+    "core/working-from-home-and-safety:bbeb1c8a": {
+      "with": "lookup/checklist:53e717ac",
+      "reason": "The master combines this zoning check with telling the insurer; one link per master task."
+    }
+  }
+}

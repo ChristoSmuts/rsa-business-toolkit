@@ -314,7 +314,10 @@ test.describe('content rendering', () => {
     await open(page, EN);
     const figure = page.locator('.dsc-item[data-features~="code:prompt"] figure.st-code');
     await expect(figure).toBeVisible();
-    await expect(figure.locator('button')).toHaveCount(0);
+    // The only control is the copy button (WP-30), which the script shows; without JavaScript it
+    // stays hidden (`tests/e2e/interactive.spec.ts`, nojs project).
+    await expect(figure.locator('button')).toHaveCount(1);
+    await expect(figure.locator('st-copy button')).toBeVisible();
     await expect(figure.locator('mark.st-placeholder').first()).toBeVisible();
     // A prompt wraps (it is prose), so it never scrolls and is not a tab stop of its own. Only
     // layouts (template previews, listings) scroll and keep their named region (review WP-20 p4).

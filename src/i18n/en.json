@@ -79,6 +79,7 @@
       "other": "On this page ({count} sections)"
     },
     "currentSection": "Now reading",
+    "currentSectionLabel": "Now reading: {title}. Open the list of sections.",
     "pagerLabel": "Previous and next page",
     "previous": "Previous: {title}",
     "next": "Next: {title}",
@@ -450,7 +451,12 @@
     "keyMeans": "Means",
     "calendarWhen": "When",
     "calendarWhat": "What",
-    "tickedOn": "Ticked on {date}"
+    "tickedOn": "Ticked on {date}",
+    "summaryHeading": "Your progress",
+    "elsewhere": {
+      "heading": "Checklists on other pages",
+      "lead": "Some pages have a short checklist of their own. A tick there is saved too, and counted here."
+    }
   },
   "templates": {
     "indexTitle": "Templates",
@@ -810,8 +816,10 @@
       "heading": "Settings",
       "shortcuts": "Single-key shortcuts",
       "shortcutsHelp": "Turn this off if / or ? causes problems, for example when you use speech input.",
+      "shortcutsHelpStatic": "Turn this off if ? causes problems, for example when you use speech input.",
       "lowData": "Low data mode",
       "lowDataHelp": "Uses the fonts on your device and loads search only when you open it.",
+      "lowDataHelpStatic": "Uses the fonts on your device instead of the guide’s own fonts.",
       "on": "On",
       "off": "Off",
       "clearData": "Clear all my data",

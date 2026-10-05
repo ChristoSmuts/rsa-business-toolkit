@@ -79,6 +79,7 @@
       "other": "Op hierdie bladsy ({count} afdelings)"
     },
     "currentSection": "Jy lees nou",
+    "currentSectionLabel": "Jy lees nou: {title}. Maak die lys van afdelings oop.",
     "pagerLabel": "Vorige en volgende bladsy",
     "previous": "Vorige: {title}",
     "next": "Volgende: {title}",
@@ -450,7 +451,12 @@
     "keyMeans": "Beteken",
     "calendarWhen": "Wanneer",
     "calendarWhat": "Wat",
-    "tickedOn": "Afgemerk op {date}"
+    "tickedOn": "Afgemerk op {date}",
+    "summaryHeading": "Jou vordering",
+    "elsewhere": {
+      "heading": "Kontrolelyste op ander bladsye",
+      "lead": "Party bladsye het ’n kort kontrolelys van hul eie. ’n Merkie daar word ook gestoor en hier getel."
+    }
   },
   "templates": {
     "indexTitle": "Sjablone",
@@ -810,8 +816,10 @@
       "heading": "Instellings",
       "shortcuts": "Eentoetskortpaaie",
       "shortcutsHelp": "Skakel dit af as / of ? probleme veroorsaak, byvoorbeeld as jy spraakinvoer gebruik.",
+      "shortcutsHelpStatic": "Skakel dit af as ? probleme veroorsaak, byvoorbeeld as jy spraakinvoer gebruik.",
       "lowData": "Laedatamodus",
       "lowDataHelp": "Gebruik die lettertipes op jou toestel en laai die soektog net wanneer jy dit oopmaak.",
+      "lowDataHelpStatic": "Gebruik die lettertipes op jou toestel in plaas van die gids se eie lettertipes.",
       "on": "Aan",
       "off": "Af",
       "clearData": "Vee al my data uit",

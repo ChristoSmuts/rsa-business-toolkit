@@ -3035,6 +3035,7 @@
           ],
           "doc": "business-types/vehicle-dealer",
           "id": "business-types/vehicle-dealer:ddf401f6",
+          "sameAs": "lookup/checklist:57a8c2a4",
           "when": {
             "businessTypes": [
               "vehicle-dealer"
@@ -3051,6 +3052,7 @@
           ],
           "doc": "business-types/vehicle-dealer",
           "id": "business-types/vehicle-dealer:9df05312",
+          "sameAs": "lookup/checklist:9aefc6b4",
           "when": {
             "businessTypes": [
               "vehicle-dealer"
@@ -3131,6 +3133,7 @@
           ],
           "doc": "business-types/vehicle-dealer",
           "id": "business-types/vehicle-dealer:621643ad",
+          "sameAs": "lookup/checklist:cdc31934",
           "when": {
             "businessTypes": [
               "vehicle-dealer"
@@ -3147,6 +3150,7 @@
           ],
           "doc": "business-types/vehicle-dealer",
           "id": "business-types/vehicle-dealer:70c5bd63",
+          "sameAs": "lookup/checklist:b196800c",
           "when": {
             "businessTypes": [
               "vehicle-dealer"

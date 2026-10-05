@@ -1,0 +1,141 @@
+---
+/**
+ * "Gaan voort in Afrikaans" (build plan B3 flow 7). On the English home page, when the reader
+ * last chose another language in the switcher (`st.lang`), offer that language's home page.
+ * It never redirects. The banner is written in the language it offers, and marked with its `lang`.
+ *
+ * - The action is a plain link to that language's home page.
+ * - "Stay on this page" saves English as the choice, so the offer does not come back.
+ * - Close hides it for this page view only.
+ *
+ * It shows from the first paint, so it never pushes the page down when the module arrives (review
+ * WP-30 pass 1, minor 3): `theme-init.js` sets `<html data-st-lang-offer>` before the body is
+ * parsed when `st.lang` is not the page's language, and the global rule below shows the banner whose
+ * `data-locale` equals it. Any other value (a hand-edited or stale key) shows nothing, so nothing
+ * flashes (review WP-30 pass 2, nit 2). **Each language the banner can offer needs its own rule
+ * below;** `tests/unit/lang-banner.test.ts` fails when an enabled language has none.
+ * `<st-lang-banner>` (`src/scripts/lang-banner.ts`) keeps the attribute in step with the store and
+ * hides the banner (`hidden`) on "Stay" or close.
+ * Without JavaScript nothing is saved, so the banner never shows.
+ */
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import { useTranslations } from '../../i18n';
+import { DEFAULT_LOCALE, ENABLED_LOCALES, getLocale, type Locale } from '../../i18n/locales';
+import { href } from '../../lib/paths';
+import { APP_ROUTES } from '../../lib/routes';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const offers =
+  locale === DEFAULT_LOCALE
+    ? ENABLED_LOCALES.filter((code) => code !== locale).map((code) => {
+        const meta = getLocale(code);
+        const tr = useTranslations(code);
+        const language = meta?.nativeName ?? code;
+        return {
+          code,
+          lang: meta?.hreflang ?? code,
+          href: href(code, APP_ROUTES.home),
+          message: tr('lang.continueBanner.message', { language }),
+          action: tr('lang.continueBanner.action', { language }),
+          stay: tr('lang.continueBanner.stay'),
+          dismiss: tr('lang.continueBanner.dismiss'),
+        };
+      })
+    : [];
+---
+
+{offers.map((offer) => (
+  <st-lang-banner
+    class="st-lang-banner st-no-print"
+    data-locale={offer.code}
+    data-stay-locale={locale}
+    lang={offer.lang}
+  >
+    <section class="st-lang-banner__inner" aria-labelledby={`st-lang-banner-${offer.code}`}>
+      <Icon name="lucide:languages" size="1.5em" />
+      <p class="st-lang-banner__message" id={`st-lang-banner-${offer.code}`}>
+        {offer.message}
+      </p>
+      <div class="st-lang-banner__actions">
+        <Button href={offer.href}>{offer.action}</Button>
+        <Button variant="secondary" data-lang-banner-stay>
+          {offer.stay}
+        </Button>
+        <button
+          type="button"
+          class="st-lang-banner__close"
+          data-lang-banner-dismiss
+          aria-label={offer.dismiss}
+        >
+          <Icon name="lucide:x" size="1.25em" />
+        </button>
+      </div>
+    </section>
+  </st-lang-banner>
+))}
+
+<script>
+  import '../../scripts/lang-banner';
+</script>
+
+<style is:global>
+  /* Shown only when `theme-init.js` found another saved language (see above). */
+  .st-lang-banner {
+    display: none;
+  }
+
+  :root[data-st-lang-offer='af'] .st-lang-banner[data-locale='af'] {
+    display: block;
+  }
+</style>
+
+<style>
+  .st-lang-banner__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-3);
+    padding: var(--st-space-3) var(--st-space-4);
+    border: var(--st-border-width) solid var(--st-info-text);
+    border-radius: var(--st-radius-lg);
+    background-color: var(--st-info-bg);
+    color: var(--st-info-text);
+  }
+
+  .st-lang-banner__message {
+    flex: 1 1 14rem;
+    min-inline-size: 0;
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-lang-banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-2);
+    min-inline-size: 0;
+  }
+
+  .st-lang-banner__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--st-target);
+    min-block-size: var(--st-target);
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface);
+    color: var(--st-text);
+  }
+
+  @media (forced-colors: active) {
+    .st-lang-banner__inner {
+      border-color: CanvasText;
+    }
+  }
+</style>

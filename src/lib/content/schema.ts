@@ -182,6 +182,12 @@ export const TaskSchema = z.strictObject({
   when: ApplicabilitySchema.optional(),
   doc: DocIdSchema,
   block: BlockIdSchema,
+  /**
+   * The master-checklist task this one repeats (`content-meta/task-links.json`). A tick is saved
+   * under `sameAs ?? id`, so ticking either copy ticks both. Taken from the English task, so it is
+   * the same in every language.
+   */
+  sameAs: TaskIdSchema.optional(),
 });
 export type Task = z.infer<typeof TaskSchema>;
 
@@ -575,6 +581,8 @@ export const TaskRecordSchema = z.strictObject({
   heading: HeadingIdSchema.optional(),
   group: InlineRunsSchema.optional(),
   order: z.number().int().nonnegative(),
+  /** See `TaskSchema.sameAs`. */
+  sameAs: TaskIdSchema.optional(),
 });
 export type TaskRecord = z.infer<typeof TaskRecordSchema>;
 
@@ -583,6 +591,18 @@ export const TasksFileSchema = z.strictObject({
   tasks: z.array(TaskRecordSchema),
 });
 export type TasksFile = z.infer<typeof TasksFileSchema>;
+
+/**
+ * `src/data/task-keys.json`: every key a tick may have been saved under that is no longer a key,
+ * mapped to the key now (a linked task's own id -> its master task; a reworded task's old id -> the
+ * new one, from `content-meta/task-renames.json`). `src/scripts/checklist.ts` moves saved ticks by
+ * it. Language-independent.
+ */
+export const TaskKeysFileSchema = z.strictObject({
+  version: z.literal(1),
+  renames: z.record(TaskIdSchema, TaskIdSchema),
+});
+export type TaskKeysFile = z.infer<typeof TaskKeysFileSchema>;
 
 export const QuickAnswerSchema = z.strictObject({
   id: HeadingIdSchema,
