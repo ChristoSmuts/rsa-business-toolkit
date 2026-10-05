@@ -44,6 +44,9 @@ export function fixtureConfigPaths(): ConfigPaths {
     legacyRefs: join(fixturesDir, 'meta', 'legacy-refs.json'),
     sourceMap: join(fixturesDir, 'meta', 'source-map.json'),
     provenance: join(fixturesDir, 'meta', 'provenance.json'),
+    // The fixtures hold a few documents; links and renames name real ones and would not resolve.
+    taskLinks: undefined,
+    taskRenames: undefined,
   };
 }
 

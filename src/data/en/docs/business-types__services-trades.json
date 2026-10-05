@@ -843,6 +843,7 @@
           ],
           "doc": "business-types/services-trades",
           "id": "business-types/services-trades:92e8509e",
+          "sameAs": "lookup/checklist:22905c13",
           "when": {
             "businessTypes": [
               "services-trades"

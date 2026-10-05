@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import { defaultConfigPaths, loadConfig } from '../../../scripts/content/config';
 import { IssueCollector } from '../../../scripts/content/errors';
-import { linkTasks } from '../../../scripts/content/special/checklist';
+import { linkTasks, taskKeyRenames } from '../../../scripts/content/special/checklist';
 import type { Block } from '../../../src/lib/content/schema';
 import { fixtureConfigPaths } from './helpers';
 
@@ -112,11 +112,70 @@ describe('linkTasks', () => {
     expect(sameAs(built, 'business-types/food:cccccccc')).toBeUndefined();
   });
 
-  it('skips a link whose documents are not both in the build', () => {
+  it('rejects a link into a document that does not exist (a typo), rather than skipping it', () => {
     const issues = new IssueCollector();
     linkTasks(docs(), { 'core/vehicles:aaaaaaaa': 'lookup/checklist:11111111' }, issues);
-    linkTasks(docs(), { 'core/register:aaaaaaaa': 'lookup/missing:11111111' }, issues);
+    linkTasks(docs(), { 'core/register:aaaaaaaa': 'lookup/checklst:11111111' }, issues);
+    expect(issues.issues.map((issue) => issue.code)).toEqual([
+      'task-link-unknown',
+      'task-link-unknown',
+    ]);
+  });
+});
+
+describe('taskKeyRenames', () => {
+  function linked() {
+    const built = docs();
+    linkTasks(
+      built,
+      { 'core/register:aaaaaaaa': 'lookup/checklist:11111111' },
+      new IssueCollector(),
+    );
+    return built;
+  }
+
+  it("maps every linked task's own id to its master task, and an old id to the current key", () => {
+    const issues = new IssueCollector();
+    const renames = taskKeyRenames(
+      linked(),
+      {
+        'core/register:00000000': 'core/register:aaaaaaaa',
+        'core/register:99999999': 'core/register:bbbbbbbb',
+      },
+      issues,
+    );
     expect(issues.issues).toEqual([]);
+    expect(renames).toEqual({
+      // The renamed task is linked, so its old id goes straight to the master key.
+      'core/register:00000000': 'lookup/checklist:11111111',
+      'core/register:99999999': 'core/register:bbbbbbbb',
+      'core/register:aaaaaaaa': 'lookup/checklist:11111111',
+    });
+  });
+
+  it.each([
+    [
+      'a new id that is not a task',
+      { 'core/register:00000000': 'core/register:ffffffff' },
+      'task-rename-unknown',
+    ],
+    [
+      'an old id that is still a task',
+      { 'core/register:bbbbbbbb': 'core/register:aaaaaaaa' },
+      'task-rename-current',
+    ],
+    [
+      'a chain',
+      {
+        'core/register:00000000': 'core/register:bbbbbbbb',
+        'core/register:bbbbbbbb': 'core/register:aaaaaaaa',
+      },
+      'task-rename-chain',
+    ],
+  ])('rejects %s', (_label, renames, code) => {
+    const issues = new IssueCollector();
+    taskKeyRenames(linked(), renames, issues);
+    expect(issues.issues.map((issue) => issue.code)).toContain(code);
   });
 });
 
@@ -134,6 +193,12 @@ describe('content-meta/task-links.json', () => {
     expect(loadConfig(missing).taskLinks).toEqual({ version: 1, links: {} });
     const noPath = { ...fixtureConfigPaths(), taskLinks: undefined };
     expect(loadConfig(noPath).taskLinks.links).toEqual({});
+    expect(loadConfig(noPath).taskRenames).toEqual({ version: 1, renames: {} });
+    const renames = join(dir, 'renames.json');
+    writeFileSync(renames, JSON.stringify({ version: 1, renames: {} }));
+    expect(
+      loadConfig({ ...fixtureConfigPaths(), taskRenames: renames }).taskRenames.renames,
+    ).toEqual({});
   });
 
   it('refuses a link that is not a task id', () => {

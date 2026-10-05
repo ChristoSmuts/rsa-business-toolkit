@@ -8,6 +8,7 @@ import {
   ManifestSchema,
   QuickAnswersFileSchema,
   SourcesFileSchema,
+  TaskKeysFileSchema,
   TasksFileSchema,
   type Block,
   type Doc,
@@ -16,6 +17,7 @@ import {
   type Manifest,
   type QuickAnswersFile,
   type SourcesFile,
+  type TaskKeysFile,
   type TasksFile,
   type TranslationStatus,
 } from '../../src/lib/content/schema';
@@ -51,7 +53,7 @@ import {
   type DocProvenance,
 } from './provenance';
 import { createDocIndex, type DocIndex } from './refs';
-import { assignTaskIds, collectTaskRecords, linkTasks } from './special/checklist';
+import { assignTaskIds, collectTaskRecords, linkTasks, taskKeyRenames } from './special/checklist';
 import { assignGlossaryIds, buildGlossaryFile } from './special/glossary';
 import { buildQuickAnswers } from './special/quick-answers';
 import { buildSourcesFile } from './special/sources';
@@ -480,15 +482,16 @@ export function buildContent(options: BuildOptions): BuildResult {
 
   const usedOverrides = new Set<string>();
   for (const parsed of enParsed) assignTaskIds(parsed.blocks, parsed.entry.id, issues);
-  linkTasks(
-    enParsed.map((parsed) => ({
-      id: parsed.entry.id,
-      kind: parsed.entry.kind,
-      blocks: parsed.blocks,
-    })),
-    config.taskLinks.links,
-    issues,
-  );
+  const linkable = enParsed.map((parsed) => ({
+    id: parsed.entry.id,
+    kind: parsed.entry.kind,
+    blocks: parsed.blocks,
+  }));
+  linkTasks(linkable, config.taskLinks.links, issues);
+  const taskKeys: TaskKeysFile = {
+    version: 1,
+    renames: taskKeyRenames(linkable, config.taskRenames.renames, issues),
+  };
   const applicability = enParsed.flatMap((parsed) =>
     applyApplicability(parsed, config, usedOverrides),
   );
@@ -647,6 +650,7 @@ export function buildContent(options: BuildOptions): BuildResult {
       add(`${build.lang}/quick-answers.json`, build.quickAnswers, QuickAnswersFileSchema);
     add(`${build.lang}/tasks.json`, build.tasks, TasksFileSchema);
   }
+  add('task-keys.json', taskKeys, TaskKeysFileSchema);
   add('manifest.json', buildManifest(config, langs, computeContentHash(files)), ManifestSchema);
   issues.throwIfAny();
 
@@ -654,7 +658,7 @@ export function buildContent(options: BuildOptions): BuildResult {
     config,
     outDir,
     files,
-    managedPrefixes: [...langs.map((build) => `${build.lang}/`), 'manifest.json'],
+    managedPrefixes: [...langs.map((build) => `${build.lang}/`), 'manifest.json', 'task-keys.json'],
     langs,
     findings,
     applicability,

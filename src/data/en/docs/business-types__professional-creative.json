@@ -861,6 +861,7 @@
           ],
           "doc": "business-types/professional-creative",
           "id": "business-types/professional-creative:66134f08",
+          "sameAs": "lookup/checklist:afe2d3be",
           "when": {
             "businessTypes": [
               "professional-creative"

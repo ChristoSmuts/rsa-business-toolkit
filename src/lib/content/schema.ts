@@ -592,6 +592,18 @@ export const TasksFileSchema = z.strictObject({
 });
 export type TasksFile = z.infer<typeof TasksFileSchema>;
 
+/**
+ * `src/data/task-keys.json`: every key a tick may have been saved under that is no longer a key,
+ * mapped to the key now (a linked task's own id -> its master task; a reworded task's old id -> the
+ * new one, from `content-meta/task-renames.json`). `src/scripts/checklist.ts` moves saved ticks by
+ * it. Language-independent.
+ */
+export const TaskKeysFileSchema = z.strictObject({
+  version: z.literal(1),
+  renames: z.record(TaskIdSchema, TaskIdSchema),
+});
+export type TaskKeysFile = z.infer<typeof TaskKeysFileSchema>;
+
 export const QuickAnswerSchema = z.strictObject({
   id: HeadingIdSchema,
   question: InlineRunsSchema,

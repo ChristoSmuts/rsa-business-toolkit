@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
@@ -15,6 +15,7 @@ import {
   QuickAnswersFileSchema,
   SECTION_IDS,
   SourcesFileSchema,
+  TaskKeysFileSchema,
   TasksFileSchema,
   type Doc,
   type InlineRun,
@@ -217,6 +218,37 @@ describe('committed content data', () => {
     }
     expect(Object.keys(links).length).toBeGreaterThan(0);
     expect(problems).toEqual([]);
+  });
+
+  /*
+   * Ticks are saved under task keys (`sameAs ?? id`), and a task id is a hash of its wording. So a
+   * key that a released build used must never just disappear: rewording a task needs an entry in
+   * `content-meta/task-renames.json`, and the store moves the tick (`renameChecks`). The released
+   * keys are committed in `content-meta/released-task-keys.json`. After adding tasks, record them:
+   *   pnpm exec cross-env TASK_KEYS_UPDATE=1 vitest run --project content -t "released task key"
+   */
+  it('keeps every released task key, or carries it to a new one', () => {
+    const path = join(repoRoot, 'content-meta', 'released-task-keys.json');
+    const en = TasksFileSchema.parse(readJson(join(dataDir, 'en', 'tasks.json'))).tasks;
+    const current = [...new Set(en.map((task) => task.sameAs ?? task.id))].sort();
+    const renames = TaskKeysFileSchema.parse(readJson(join(dataDir, 'task-keys.json'))).renames;
+    if (process.env['TASK_KEYS_UPDATE'] === '1') {
+      const released = existsSync(path) ? (readJson(path) as { keys: string[] }).keys : [];
+      const keys = [...new Set([...released, ...current])];
+      writeFileSync(path, `${JSON.stringify({ version: 1, keys: keys.sort() }, null, 2)}\n`);
+    }
+    const released = (readJson(path) as { keys: string[] }).keys;
+    const live = new Set(current);
+    const lost = released.filter((key) => !live.has(key) && !live.has(renames[key] ?? ''));
+    expect(
+      lost,
+      'released task keys that no longer exist: add each to content-meta/task-renames.json (old id -> new id)',
+    ).toEqual([]);
+    const unrecorded = current.filter((key) => !released.includes(key));
+    expect(
+      unrecorded,
+      'task keys not yet recorded: run the TASK_KEYS_UPDATE command in this test',
+    ).toEqual([]);
   });
 
   it('has 121 glossary entries in 7 groups with unique ids', () => {

@@ -702,6 +702,7 @@
           ],
           "doc": "business-types/beauty",
           "id": "business-types/beauty:22a2e898",
+          "sameAs": "lookup/checklist:a036463c",
           "when": {
             "businessTypes": [
               "beauty"

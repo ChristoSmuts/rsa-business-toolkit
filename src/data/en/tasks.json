@@ -652,7 +652,8 @@
       "doc": "core/working-from-home-and-safety",
       "heading": "every-sale",
       "id": "core/working-from-home-and-safety:cad4290c",
-      "order": 34
+      "order": 34,
+      "sameAs": "lookup/checklist:057de8cb"
     },
     {
       "block": "every-sale.1",
@@ -1857,6 +1858,7 @@
       "heading": "your-checklist",
       "id": "business-types/beauty:22a2e898",
       "order": 98,
+      "sameAs": "lookup/checklist:a036463c",
       "when": {
         "businessTypes": [
           "beauty"
@@ -2144,6 +2146,7 @@
       "heading": "your-checklist",
       "id": "business-types/services-trades:92e8509e",
       "order": 113,
+      "sameAs": "lookup/checklist:22905c13",
       "when": {
         "businessTypes": [
           "services-trades"
@@ -2273,6 +2276,7 @@
       "heading": "your-checklist",
       "id": "business-types/professional-creative:66134f08",
       "order": 120,
+      "sameAs": "lookup/checklist:afe2d3be",
       "when": {
         "businessTypes": [
           "professional-creative"

@@ -350,8 +350,26 @@ export type Provenance = z.infer<typeof ProvenanceSchema>;
 export const TaskLinksSchema = z.strictObject({
   version: z.literal(1),
   links: z.record(TaskIdSchema, TaskIdSchema),
+  /**
+   * Pairs that were compared and deliberately left unlinked, with the reason, so the next editor
+   * can tell a decision from a pair nobody looked at. Not used by the build.
+   */
+  considered: z
+    .record(TaskIdSchema, z.strictObject({ with: TaskIdSchema, reason: z.string().min(10) }))
+    .optional(),
 });
 export type TaskLinks = z.infer<typeof TaskLinksSchema>;
+
+/**
+ * `content-meta/task-renames.json`: an old task id -> the task that replaced it, for a task whose
+ * wording changed after release (its id is a hash of the text), so saved ticks follow it. See
+ * `taskKeyRenames` and `content-meta/README.md`.
+ */
+export const TaskRenamesSchema = z.strictObject({
+  version: z.literal(1),
+  renames: z.record(TaskIdSchema, TaskIdSchema),
+});
+export type TaskRenames = z.infer<typeof TaskRenamesSchema>;
 
 export interface ContentConfig {
   docsMeta: DocsMeta;
@@ -364,6 +382,8 @@ export interface ContentConfig {
   provenance: Provenance;
   /** Empty when the file does not exist (the unit-test fixtures have none). */
   taskLinks: TaskLinks;
+  /** Empty when the file does not exist. */
+  taskRenames: TaskRenames;
 }
 
 export interface ConfigPaths {
@@ -376,6 +396,7 @@ export interface ConfigPaths {
   sourceMap: string;
   provenance: string;
   taskLinks?: string | undefined;
+  taskRenames?: string | undefined;
 }
 
 export function defaultConfigPaths(metaDir: string): ConfigPaths {
@@ -389,6 +410,7 @@ export function defaultConfigPaths(metaDir: string): ConfigPaths {
     sourceMap: join(metaDir, 'source-map.json'),
     provenance: join(metaDir, 'provenance.json'),
     taskLinks: join(metaDir, 'task-links.json'),
+    taskRenames: join(metaDir, 'task-renames.json'),
   };
 }
 
@@ -420,6 +442,10 @@ export function loadConfig(paths: ConfigPaths): ContentConfig {
       paths.taskLinks !== undefined && existsSync(paths.taskLinks)
         ? readJson(paths.taskLinks, TaskLinksSchema)
         : { version: 1, links: {} },
+    taskRenames:
+      paths.taskRenames !== undefined && existsSync(paths.taskRenames)
+        ? readJson(paths.taskRenames, TaskRenamesSchema)
+        : { version: 1, renames: {} },
   };
 }
 
