@@ -60,6 +60,21 @@ describe('<st-checklist>', () => {
     expect(element.childElementCount).toBe(0);
   });
 
+  it('saves a box the reader changed before the script connected, instead of undoing it', () => {
+    setChecked('t:2', true);
+    const template = document.createElement('template');
+    template.innerHTML = group(['t:1', 't:2', 't:3']);
+    const boxes = template.content.querySelectorAll<HTMLInputElement>('input');
+    // Ticked t:1 before the module ran; t:2 (saved, not touched) and t:3 keep their defaults.
+    (boxes[0] as HTMLInputElement).checked = true;
+    document.body.append(template.content);
+    expect(box('t:1').checked).toBe(true);
+    expect(box('t:2').checked).toBe(true);
+    expect(box('t:3').checked).toBe(false);
+    expect(Object.keys(checks.get()).sort()).toEqual(['t:1', 't:2']);
+    expect(JSON.parse(localStorage.getItem('st.checks.v1') ?? '{}')).toHaveProperty('t:1');
+  });
+
   it('shows saved ticks when it connects', () => {
     setChecked('t:2', true);
     mount(group(['t:1', 't:2']));

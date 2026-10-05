@@ -67,6 +67,27 @@ const FIRST_PROMPT =
     'branding__branding-prompts.json',
   ).blocks.find((block) => block.kind === 'code' && block.variant === 'prompt')?.text ?? '';
 
+/**
+ * Holds every bundled module back until `release()`; only the blocking `theme-init.js` runs. This
+ * is the window a slow phone has between first paint and the modules connecting.
+ */
+async function holdModules(page: Page, baseURL: string | undefined): Promise<() => void> {
+  let release: () => void = () => {};
+  const held = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  await routeSameOrigin(
+    page,
+    baseURL,
+    (url) => /\/_astro\/.+\.js$/.test(url.pathname) && !url.pathname.includes('theme-init'),
+    async (route) => {
+      await held;
+      await route.continue();
+    },
+  );
+  return release;
+}
+
 /** Every `st.` key in the page's storage, sorted. */
 async function stKeys(page: Page): Promise<string[]> {
   return page.evaluate(() =>
@@ -142,6 +163,38 @@ test.describe('checklists', () => {
     await expect(page.locator(docBox)).toBeChecked();
     await page.goto(`af/${LINKED_DOC}`);
     await expect(page.locator(docBox)).toBeChecked();
+  });
+
+  test('a box ticked before the checklist script runs is kept and saved', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdModules(page, baseURL);
+    await page.goto(LINKED_DOC, { waitUntil: 'commit' });
+    const first = page.locator('st-checklist input[type="checkbox"]').first();
+    await first.check();
+    expect(await page.evaluate(() => customElements.get('st-checklist') === undefined)).toBe(true);
+    release();
+    await page.waitForLoadState('load');
+    await page.waitForFunction(() => customElements.get('st-checklist') !== undefined);
+    await expect(first).toBeChecked();
+    await page.reload();
+    await expect(page.locator('st-checklist input[type="checkbox"]').first()).toBeChecked();
+  });
+
+  test('a switch turned off before the settings script runs stays off and is saved', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdModules(page, baseURL);
+    await page.goto('about/', { waitUntil: 'commit' });
+    const toggle = page.getByRole('switch', { name: 'Single-key shortcuts' });
+    await toggle.uncheck();
+    release();
+    await page.waitForLoadState('load');
+    await page.waitForFunction(() => customElements.get('st-setting') !== undefined);
+    await expect(toggle).not.toBeChecked();
+    expect(await page.evaluate(() => window.localStorage.getItem('st.shortcuts'))).toBe('false');
   });
 
   test('a tick saved under a key that has since changed moves to the key used now', async ({
@@ -407,6 +460,8 @@ test.describe('keyboard shortcuts', () => {
     await expect(page).toHaveURL(/\/about\/#keyboard-shortcuts$/);
     await expect(page.locator('#keyboard-shortcuts')).toBeVisible();
 
+    // Switch only once its element is defined, as a reader would after the page settles.
+    await page.waitForFunction(() => customElements.get('st-setting') !== undefined);
     await page.getByRole('switch', { name: 'Single-key shortcuts' }).uncheck();
     await page.goto(DOC);
     await page.locator('body').press('?');
@@ -460,20 +515,7 @@ test.describe('language', () => {
     baseURL,
   }) => {
     await seedStorage({ 'st.lang': 'af' });
-    let release: () => void = () => {};
-    const held = new Promise<void>((resolve) => {
-      release = resolve;
-    });
-    // Hold every bundled module; only the blocking theme-init script may run.
-    await routeSameOrigin(
-      page,
-      baseURL,
-      (url) => /\/_astro\/.+\.js$/.test(url.pathname) && !url.pathname.includes('theme-init'),
-      async (route) => {
-        await held;
-        await route.continue();
-      },
-    );
+    const release = await holdModules(page, baseURL);
     await page.goto('./', { waitUntil: 'commit' });
     const banner = page.locator('st-lang-banner');
     await expect(banner).toBeVisible();
@@ -485,15 +527,22 @@ test.describe('language', () => {
     await page.waitForLoadState('load');
   });
 
-  test('a saved value that is not an enabled language shows no banner at any point', async ({
+  test('a saved value that is not an enabled language shows no banner, even before the modules run', async ({
     page,
     seedStorage,
+    baseURL,
   }) => {
     await seedStorage({ 'st.lang': 'fr' });
+    const release = await holdModules(page, baseURL);
     await page.goto('./', { waitUntil: 'commit' });
-    await expect(page.locator('st-lang-banner')).toBeHidden();
+    const banner = page.locator('st-lang-banner');
+    // Parsed and styled, with no module to hide it: only the first-paint CSS decides.
+    await expect(banner).toBeAttached();
+    await expect(page.locator('html')).toHaveAttribute('data-st-lang-offer', 'fr');
+    await expect(banner).toBeHidden();
+    release();
     await page.waitForLoadState('load');
-    await expect(page.locator('st-lang-banner')).toBeHidden();
+    await expect(banner).toBeHidden();
   });
 
   test('closing the banner hides it for this page view only', async ({ page, seedStorage }) => {

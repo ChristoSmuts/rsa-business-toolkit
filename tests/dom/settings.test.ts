@@ -36,6 +36,21 @@ afterEach(() => {
 });
 
 describe('<st-setting>', () => {
+  it('saves a switch the reader changed before the script connected, instead of undoing it', () => {
+    const template = document.createElement('template');
+    template.innerHTML = SETTINGS;
+    const shortcutsBox = template.content.querySelector<HTMLInputElement>(
+      '[data-setting="shortcuts"] input',
+    ) as HTMLInputElement;
+    shortcutsBox.checked = false;
+    document.body.append(template.content);
+    expect(switchFor('shortcuts').checked).toBe(false);
+    expect(shortcuts.get()).toBe(false);
+    expect(localStorage.getItem('st.shortcuts')).toBe('false');
+    // Untouched, the stored value wins over the server default.
+    expect(switchFor('lowData').checked).toBe(lowData.get());
+  });
+
   it('shows the stored value when it connects', () => {
     shortcuts.set(false);
     lowData.set(true);

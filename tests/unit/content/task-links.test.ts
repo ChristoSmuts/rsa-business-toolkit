@@ -4,7 +4,11 @@ import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import { defaultConfigPaths, loadConfig } from '../../../scripts/content/config';
 import { IssueCollector } from '../../../scripts/content/errors';
-import { linkTasks, taskKeyRenames } from '../../../scripts/content/special/checklist';
+import {
+  checkConsidered,
+  linkTasks,
+  taskKeyRenames,
+} from '../../../scripts/content/special/checklist';
 import type { Block } from '../../../src/lib/content/schema';
 import { fixtureConfigPaths } from './helpers';
 
@@ -208,5 +212,35 @@ describe('content-meta/task-links.json', () => {
       JSON.stringify({ version: 1, links: { nope: 'lookup/checklist:11111111' } }),
     );
     expect(() => loadConfig({ ...fixtureConfigPaths(), taskLinks: bad })).toThrow(/invalid/);
+  });
+});
+
+describe('checkConsidered', () => {
+  it('accepts pairs of real tasks that are not linked', () => {
+    const issues = new IssueCollector();
+    checkConsidered(
+      docs(),
+      { 'core/register:aaaaaaaa': { with: 'lookup/checklist:11111111' } },
+      {},
+      issues,
+    );
+    expect(issues.issues).toEqual([]);
+  });
+
+  it('rejects a stale id and a pair that is also linked', () => {
+    const issues = new IssueCollector();
+    checkConsidered(
+      docs(),
+      {
+        'core/register:ffffffff': { with: 'lookup/checklist:11111111' },
+        'core/register:aaaaaaaa': { with: 'lookup/checklist:22222222' },
+      },
+      { 'core/register:aaaaaaaa': 'lookup/checklist:11111111' },
+      issues,
+    );
+    expect(issues.issues.map((issue) => issue.code)).toEqual([
+      'task-considered',
+      'task-considered',
+    ]);
   });
 });

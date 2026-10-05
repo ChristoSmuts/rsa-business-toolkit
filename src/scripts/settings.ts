@@ -27,6 +27,9 @@ export class StSetting extends HTMLElement {
     this.#box = this.querySelector('input[type="checkbox"]');
     if (!this.#store || !this.#box) return;
     this.#box.addEventListener('change', this.#onChange);
+    // Switched before this module ran (the switch shows from first paint): keep and save the
+    // reader's choice instead of putting the stored value back over it (review WP-30 pass 3).
+    if (this.#box.checked !== this.#box.defaultChecked) this.#store.set(this.#box.checked);
     this.#unsubscribe = this.#store.subscribe((on) => {
       if (this.#box) this.#box.checked = on;
     });

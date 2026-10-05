@@ -180,3 +180,30 @@ export function taskKeyRenames(
   }
   return Object.fromEntries(Object.entries(result).sort(([a], [b]) => a.localeCompare(b)));
 }
+
+/**
+ * `task-links.json` `considered`: pairs deliberately left unlinked. The build does not use them, but
+ * a stale entry (a task reworded since) would mislead the next editor, so both ids must be tasks
+ * and the document task must not be linked after all (`task-considered`).
+ */
+export function checkConsidered(
+  docs: readonly LinkableDoc[],
+  considered: Readonly<Record<string, { with: string }>>,
+  links: Readonly<Record<string, string>>,
+  issues: IssueCollector,
+): void {
+  const ids = new Set<string>();
+  for (const doc of docs)
+    for (const block of doc.blocks)
+      if (block.kind === 'tasklist') for (const task of block.items) ids.add(task.id);
+  for (const [from, entry] of Object.entries(considered)) {
+    if (!ids.has(from) || !ids.has(entry.with)) {
+      issues.add(
+        'task-considered',
+        `task-links.json considers "${from}" with "${entry.with}", and one of them is not a task`,
+      );
+    } else if (from in links) {
+      issues.add('task-considered', `task-links.json both links and considers "${from}"`);
+    }
+  }
+}

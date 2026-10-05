@@ -18,14 +18,9 @@
  * that has focus never vanishes from under the keyboard.
  */
 import { interpolate } from '../i18n';
-import taskKeys from '../data/task-keys.json';
-import { checks, countDone, renameChecks, setChecked, type Checks } from '../lib/store';
+import { checks, countDone, setChecked, type Checks } from '../lib/store';
 import { announce, askToConfirm } from './confirm-dialog';
 import './storage-notice';
-
-// A tick saved under a key that has since changed (a reworded task, a task linked after it was
-// ticked) moves to the key used now, before any list reads the store.
-renameChecks(taskKeys.renames);
 
 export type ChecklistFilter = 'all' | 'not-done';
 export const FILTER_EVENT = 'st-checklist-filter';
@@ -57,6 +52,14 @@ export class StChecklist extends HTMLElement {
     this.#boxes = [...this.querySelectorAll<HTMLInputElement>('input[type="checkbox"][data-task]')];
     this.addEventListener('change', this.#onChange);
     this.ownerDocument.addEventListener(FILTER_EVENT, this.#onFilter);
+    // A box the reader changed before this module ran (it is clickable from first paint, and
+    // module scripts are deferred) differs from its server-rendered default: that is the reader's
+    // choice, so save it rather than overwrite it from the store (review WP-30 pass 3). A box the
+    // browser restored on Back already holds what the store holds, so saving it changes nothing.
+    for (const box of this.#boxes) {
+      const id = box.dataset['task'];
+      if (id && box.checked !== box.defaultChecked) setChecked(id, box.checked);
+    }
     this.#unsubscribe = checks.subscribe((map) => this.#render(map));
     this.applyFilter(currentFilter);
   }

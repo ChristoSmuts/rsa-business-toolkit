@@ -242,12 +242,12 @@ describe('committed content data', () => {
     const lost = released.filter((key) => !live.has(key) && !live.has(renames[key] ?? ''));
     expect(
       lost,
-      'released task keys that no longer exist: add each to content-meta/task-renames.json (old id -> new id)',
+      'released task keys that no longer exist: add each to content-meta/task-renames.json (old id -> new id); see content-meta/README.md',
     ).toEqual([]);
     const unrecorded = current.filter((key) => !released.includes(key));
     expect(
       unrecorded,
-      'task keys not yet recorded: run the TASK_KEYS_UPDATE command in this test',
+      'task keys not yet recorded: run the TASK_KEYS_UPDATE command in content-meta/README.md',
     ).toEqual([]);
   });
 

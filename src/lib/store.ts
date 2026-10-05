@@ -35,7 +35,7 @@
  *
  * | Store           | Key               | Value                                       |
  * | --------------- | ----------------- | ------------------------------------------- |
- * | `checks`        | `st.checks.v1`    | `{ [taskId]: ISO date-time it was ticked }` |
+ * | `checks`        | `st.checks.v1`    | `{ [key]: ISO date-time it was ticked }`    |
  * | `theme`         | `st.theme`        | `system`, `light` or `dark` (bare string)   |
  * | `lang`          | `st.lang`         | an enabled locale code (bare string)        |
  * | `promptsCopied` | `st.prompts.v1`   | `{ [promptId]: ISO date-time last copied }` |
@@ -44,11 +44,16 @@
  * | `seenVersion`   | `st.seenVersion`  | the content version last seen (bare string) |
  * | (meta)          | `st.meta.v1`      | `{ schema, createdAt }`                     |
  *
+ * `checks` keys are a checkbox's `data-task` (`sameAs ?? id`). When this module loads it moves any
+ * tick saved under a key that has since changed (`src/data/task-keys.json`, `renameChecks`), so
+ * every reader of `checks` (a checklist, WP-31's My path) sees current keys without doing anything.
+ *
  * `st.theme` and `st.lowData` are also read by the blocking `src/scripts/theme-init.js`, before any
  * module loads; that file is the one documented exception to "only the store reads storage".
  */
 import { atom, type ReadableAtom, type WritableAtom } from 'nanostores';
 import * as z from 'zod/mini';
+import taskKeys from '../data/task-keys.json';
 import { isEnabledLocale, type Locale } from '../i18n/locales';
 import { browserStorage, createStorageAdapter, type StorageAdapter } from './storage/adapter';
 import {
@@ -226,6 +231,12 @@ export function renameChecks(renames: Readonly<Record<string, string>>): number 
   if (moved > 0) checks.set(next);
   return moved;
 }
+
+// Every reader of `checks` gets the current keys: a tick saved under a key that has since changed
+// (a reworded task, a task linked after it was ticked; `src/data/task-keys.json`) moves when the
+// store loads, once per page. It writes only when a tick moved, so a first visit still writes
+// nothing (review WP-30 pass 3).
+renameChecks(taskKeys.renames);
 
 /** How many of `ids` are ticked in `map`. */
 export function countDone(map: Checks, ids: readonly string[]): number {

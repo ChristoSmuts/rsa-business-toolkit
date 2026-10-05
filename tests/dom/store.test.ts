@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import * as z from 'zod/mini';
+import taskKeys from '../../src/data/task-keys.json';
 
 type Store = typeof import('../../src/lib/store');
 
@@ -126,6 +127,24 @@ describe('the store over working localStorage', () => {
     expect(Object.keys(store.checks.get())).toEqual(['core/register:2']);
     expect(store.countDone(store.checks.get(), ['core/register:1', 'core/register:2'])).toBe(1);
     expect(JSON.parse(localStorage.getItem('st.checks.v1') ?? '{}')).toEqual(store.checks.get());
+  });
+
+  it('moves a tick under a changed key when the store loads, for any reader of checks', async () => {
+    const keys = taskKeys as { renames: Record<string, string> };
+    const [from, to] = Object.entries(keys.renames)[0] ?? ['', ''];
+    const when = '2026-10-01T10:00:00.000Z';
+    localStorage.setItem('st.checks.v1', JSON.stringify({ [from]: when }));
+    const store = await loadStore();
+    expect(store.checks.get()).toEqual({ [to]: when });
+    expect(JSON.parse(localStorage.getItem('st.checks.v1') ?? '{}')).toEqual({ [to]: when });
+  });
+
+  it('renameChecks writes nothing when no tick moves', async () => {
+    const store = await loadStore();
+    store.setChecked('kept:1', true);
+    const write = vi.spyOn(localStorage, 'setItem');
+    expect(store.renameChecks({ 'absent:1': 'kept:2' })).toBe(0);
+    expect(write).not.toHaveBeenCalled();
   });
 
   it('moves ticks whose key changed, and keeps a tick already under the new key', async () => {

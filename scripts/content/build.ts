@@ -53,7 +53,13 @@ import {
   type DocProvenance,
 } from './provenance';
 import { createDocIndex, type DocIndex } from './refs';
-import { assignTaskIds, collectTaskRecords, linkTasks, taskKeyRenames } from './special/checklist';
+import {
+  assignTaskIds,
+  checkConsidered,
+  collectTaskRecords,
+  linkTasks,
+  taskKeyRenames,
+} from './special/checklist';
 import { assignGlossaryIds, buildGlossaryFile } from './special/glossary';
 import { buildQuickAnswers } from './special/quick-answers';
 import { buildSourcesFile } from './special/sources';
@@ -488,6 +494,7 @@ export function buildContent(options: BuildOptions): BuildResult {
     blocks: parsed.blocks,
   }));
   linkTasks(linkable, config.taskLinks.links, issues);
+  checkConsidered(linkable, config.taskLinks.considered ?? {}, config.taskLinks.links, issues);
   const taskKeys: TaskKeysFile = {
     version: 1,
     renames: taskKeyRenames(linkable, config.taskRenames.renames, issues),

@@ -31,6 +31,17 @@ The build fails when:
 The build ignores it. Add to it when you decide against a link, so the next editor can tell a
 decision from a pair nobody looked at.
 
+The build also checks `considered`: both ids must be tasks, and a considered task must not be
+linked as well, so a reworded task cannot leave a stale entry behind.
+
+### Removing or retargeting a link after release
+
+Removing a link, or pointing it at another master task, changes the document task's key. The old
+key is still a live key, because the master task still owns it, so nothing moves the tick and the
+released-keys test passes. The master copy stays ticked, but **readers who ticked the document
+copy find it unticked**. Moving the tick would be wrong, because the master task's tick belongs to
+the master task. So decide knowingly, and say so in the commit.
+
 ## `task-renames.json` and `released-task-keys.json`
 
 `released-task-keys.json` lists every key a released build has used.
