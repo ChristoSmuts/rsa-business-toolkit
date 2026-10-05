@@ -1,0 +1,142 @@
+---
+/**
+ * `/find-my-path/result/<entity>/<type>/<stage>/` (build plan C1, C2; WP-31): the path for one set
+ * of answers with one kind of business, pre-rendered so the wizard works without JavaScript. The
+ * 49 combinations per language are `singleChoices()` in `src/lib/profile.ts` ("Pty Ltd, growing"
+ * only with a Pty Ltd). More than one kind of business needs JavaScript; the wizard says so.
+ *
+ * The steps come from the same `buildPath` the browser runs for My path. Nothing is saved, and the
+ * page says so. It is `noindex` and left out of the sitemap: it repeats the guide for one reader.
+ */
+import Page from '../../../../../../layouts/Page.astro';
+import Breadcrumb from '../../../../../../components/navigation/Breadcrumb.astro';
+import Badge from '../../../../../../components/ui/Badge.astro';
+import PathSteps from '../../../../../../components/wizard/PathSteps.astro';
+import { useTranslations } from '../../../../../../i18n';
+import { DEFAULT_LOCALE, ENABLED_LOCALES, type Locale } from '../../../../../../i18n/locales';
+import { loadDoc, loadManifest, loadPaths } from '../../../../../../lib/content/collections';
+import { docHref } from '../../../../../../lib/content/manifest';
+import { docContentLang, pageTitle } from '../../../../../../lib/pages';
+import { buildPath } from '../../../../../../lib/path-engine';
+import { resultCards } from '../../../../../../lib/path-pages';
+import { href } from '../../../../../../lib/paths';
+import {
+  profileOf,
+  resultRoute,
+  singleChoices,
+  type SingleChoice,
+} from '../../../../../../lib/profile';
+import { APP_ROUTES, NAV_DOC_IDS } from '../../../../../../lib/routes';
+
+export function getStaticPaths() {
+  return ENABLED_LOCALES.flatMap((locale) =>
+    singleChoices().map((choice) => ({
+      params: {
+        locale: locale === DEFAULT_LOCALE ? undefined : locale,
+        entity: choice.entity,
+        type: choice.type,
+        stage: choice.stage,
+      },
+      props: { locale, choice },
+    })),
+  );
+}
+
+interface Props {
+  locale: Locale;
+  choice: SingleChoice;
+}
+
+const { locale, choice } = Astro.props as Props;
+const t = useTranslations(locale);
+const manifest = await loadManifest();
+const paths = await loadPaths();
+const sourceId = paths.source;
+const source = await loadDoc(docContentLang(manifest, sourceId, locale), sourceId);
+if (!source) throw new Error(`${sourceId} is missing from src/data. Run \`pnpm content:build\`.`);
+const profile = profileOf(choice);
+const path = buildPath(profile, manifest, paths);
+const lists = { [path.stage]: path.list };
+const steps = resultCards(path).map((card, index) => ({
+  ...card,
+  n: index + 1,
+  why: path.steps[index]?.why ?? false,
+}));
+const wizardHref = href(locale, APP_ROUTES.wizard);
+const checklistHref = docHref(manifest, NAV_DOC_IDS.checklist, locale);
+const answers = [
+  { label: t(`entity.${choice.entity}`), variant: 'entity' as const },
+  { label: t(`businessTypes.${choice.type}.name`), variant: 'type' as const },
+  { label: t(`stage.${choice.stage}`), variant: 'status' as const },
+];
+---
+
+<Page
+  locale={locale}
+  manifest={manifest}
+  route={resultRoute(APP_ROUTES.wizard, choice)}
+  title={pageTitle(t, t('wizard.result.title'), t('wizard.title'))}
+  description={t('wizard.result.intro')}
+  noindex
+>
+  <div class="st-container st-stack st-stack-lg st-result-page">
+    <Breadcrumb
+      crumbs={[
+        { href: href(locale, APP_ROUTES.home), label: t('nav.home') },
+        { href: wizardHref, label: t('wizard.title') },
+        { href: undefined, label: t('wizard.result.title') },
+      ]}
+      locale={locale}
+    />
+    <header class="st-stack st-stack-sm">
+      <h1>{t('wizard.result.title')}</h1>
+      <p class="st-lead">{t('wizard.result.intro')}</p>
+    </header>
+
+    <section class="st-stack st-stack-sm" aria-labelledby="result-answers">
+      <h2 id="result-answers">{t('myPath.profileLabel')}</h2>
+      <ul class="st-cluster st-result-page__chips" role="list" data-answers>
+        {answers.map((answer) => (
+          <li>
+            <Badge variant={answer.variant} icon={null}>
+              {answer.label}
+            </Badge>
+          </li>
+        ))}
+      </ul>
+      <p class="st-hint">{t('wizard.noJs')}</p>
+      <p>
+        <a class="st-link-block" href={wizardHref}>
+          {t('myPath.editAnswers')}
+        </a>
+      </p>
+    </section>
+
+    <section class="st-stack" aria-labelledby="result-steps">
+      <h2 id="result-steps" class="st-visually-hidden">
+        {t('wizard.result.title')}
+      </h2>
+      <PathSteps locale={locale} manifest={manifest} source={source} lists={lists} steps={steps} />
+    </section>
+
+    {checklistHref && (
+      <p>
+        <a class="st-link-block" href={checklistHref}>
+          {t('home.whereToStart.checklist.action')}
+        </a>
+      </p>
+    )}
+  </div>
+</Page>
+
+<style>
+  .st-result-page {
+    max-inline-size: var(--st-measure);
+    padding-block: var(--st-space-5) var(--st-space-8);
+  }
+
+  .st-result-page__chips {
+    padding: 0;
+    list-style: none;
+  }
+</style>

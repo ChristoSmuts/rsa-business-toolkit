@@ -56,7 +56,9 @@ export default defineConfig({
     icon({ include: { lucide: ['*'] } }),
     sitemap({
       i18n: { defaultLocale: DEFAULT_LOCALE, locales: sitemapLocales() },
-      filter: (page) => !page.includes('/design-system/'),
+      // The wizard's no-JavaScript result pages are `noindex`: they repeat the guide for one reader.
+      filter: (page) =>
+        !page.includes('/design-system/') && !page.includes('/find-my-path/result/'),
     }),
   ],
 });

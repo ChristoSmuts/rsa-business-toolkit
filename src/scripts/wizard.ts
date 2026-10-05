@@ -1,0 +1,195 @@
+/*
+ * <st-wizard>: "Find my path" (build plan B3 flow 1, B5, C2; WP-31).
+ *
+ * The server renders one GET form with three questions, which works without JavaScript (see
+ * `Wizard.astro`). This element turns it into three steps:
+ * - one question at a time, with Back and Next, and a stepper with `aria-current="step"`;
+ * - focus moves to the step's heading on Next and Back;
+ * - the kinds of business become checkboxes (the server renders radios, one choice without
+ *   JavaScript), in the order the reader ticks them: the first is the primary type;
+ * - "Pty Ltd, growing" is disabled, with its reason shown, unless the answer to step 1 is Pty Ltd;
+ * - Next and "See my path" stay `aria-disabled` until the step is answered, and say so;
+ * - Enter in a field goes to the next step rather than submitting;
+ * - "See my path" saves the profile (`st.profile.v1`) and opens My path. If the device will not
+ *   keep it, the answers go along in the address instead, so My path can still show them.
+ * Answers saved earlier are filled in, so "Edit answers" starts from them.
+ */
+import {
+  parseProfile,
+  profileQuery,
+  QUERY,
+  stageAllowed,
+  type EntityChoice,
+  type Profile,
+  type StageChoice,
+  type TypeChoice,
+} from '../lib/profile';
+import { profile, storageAvailable } from '../lib/profile-store';
+import './storage-notice';
+
+export class StWizard extends HTMLElement {
+  #form: HTMLFormElement | null = null;
+  #steps: HTMLElement[] = [];
+  #current = 0;
+  /** The kinds of business in the order they were ticked. */
+  #order: TypeChoice[] = [];
+
+  /** Leaves the page. Replaced in tests. */
+  navigate: (url: string) => void = (url) => {
+    window.location.assign(url);
+  };
+
+  readonly #onChange = (event: Event): void => {
+    const input = event.target;
+    if (!(input instanceof HTMLInputElement)) return;
+    if (input.name === QUERY.type) {
+      const value = input.value as TypeChoice;
+      this.#order = this.#order.filter((type) => type !== value);
+      if (input.checked) this.#order.push(value);
+    }
+    this.#update();
+  };
+
+  readonly #onClick = (event: Event): void => {
+    const button = event.target instanceof Element ? event.target.closest('button') : null;
+    if (!button || button.getAttribute('aria-disabled') === 'true') return;
+    if (button.hasAttribute('data-next')) this.go(this.#current + 1);
+    else if (button.hasAttribute('data-back')) this.go(this.#current - 1);
+  };
+
+  readonly #onSubmit = (event: SubmitEvent): void => {
+    event.preventDefault();
+    if (!this.#stepValid(this.#current)) {
+      this.#firstInput(this.#current)?.focus();
+      return;
+    }
+    if (this.#current < this.#steps.length - 1) this.go(this.#current + 1);
+    else this.finish();
+  };
+
+  connectedCallback(): void {
+    this.#form = this.querySelector('form');
+    this.#steps = [...this.querySelectorAll<HTMLElement>('[data-step]')];
+    if (!this.#form || this.#steps.length === 0) return;
+    for (const input of this.#inputs(QUERY.type)) input.type = 'checkbox';
+    this.#restore(profile.get());
+    this.#form.addEventListener('change', this.#onChange);
+    this.#form.addEventListener('click', this.#onClick);
+    this.#form.addEventListener('submit', this.#onSubmit);
+    this.dataset['ready'] = '';
+    this.#show(0);
+  }
+
+  disconnectedCallback(): void {
+    this.#form?.removeEventListener('change', this.#onChange);
+    this.#form?.removeEventListener('click', this.#onClick);
+    this.#form?.removeEventListener('submit', this.#onSubmit);
+  }
+
+  /** The step shown now (0-based). */
+  get current(): number {
+    return this.#current;
+  }
+
+  /** Shows step `index` and moves focus to its heading. Refuses to pass an unanswered step. */
+  go(index: number): void {
+    if (index < 0 || index >= this.#steps.length || index === this.#current) return;
+    if (index > this.#current && !this.#stepValid(this.#current)) return;
+    this.#show(index);
+    this.#steps[index]?.querySelector<HTMLElement>('[data-step-heading]')?.focus();
+  }
+
+  /** The answers as a profile, or `null` while one is missing. */
+  answers(): Profile | null {
+    return parseProfile({
+      entity: this.#checked(QUERY.entity)[0],
+      businessTypes: this.#order,
+      stage: this.#checked(QUERY.stage)[0],
+    });
+  }
+
+  /** Saves the answers and opens My path. */
+  finish(): void {
+    const answers = this.answers();
+    if (!answers) return;
+    profile.set(answers);
+    const target = new URL(this.dataset['myPath'] ?? '', window.location.href);
+    if (storageAvailable.get()) target.search = 'saved=1';
+    else target.search = profileQuery(answers);
+    this.navigate(target.href);
+  }
+
+  #inputs(name: string): HTMLInputElement[] {
+    return [...(this.#form?.querySelectorAll<HTMLInputElement>(`input[name="${name}"]`) ?? [])];
+  }
+
+  #checked(name: string): string[] {
+    return this.#inputs(name)
+      .filter((input) => input.checked && !input.disabled)
+      .map((input) => input.value);
+  }
+
+  #firstInput(index: number): HTMLInputElement | null {
+    return this.#steps[index]?.querySelector('input:not([disabled])') ?? null;
+  }
+
+  #restore(saved: Profile | null): void {
+    if (saved) {
+      for (const input of this.#inputs(QUERY.entity)) input.checked = input.value === saved.entity;
+      for (const input of this.#inputs(QUERY.type))
+        input.checked = saved.businessTypes.includes(input.value as TypeChoice);
+      for (const input of this.#inputs(QUERY.stage)) input.checked = input.value === saved.stage;
+      this.#order = [...saved.businessTypes];
+    } else {
+      // A form the browser restored (Back) keeps its ticks; take them in page order.
+      this.#order = this.#checked(QUERY.type) as TypeChoice[];
+    }
+  }
+
+  #stepValid(index: number): boolean {
+    const name = this.#steps[index]?.dataset['step'];
+    if (name === QUERY.entity) return this.#checked(QUERY.entity).length === 1;
+    if (name === QUERY.type) return this.#order.length > 0;
+    if (name === QUERY.stage) {
+      const stage = this.#checked(QUERY.stage)[0] as StageChoice | undefined;
+      const entity = this.#checked(QUERY.entity)[0] as EntityChoice | undefined;
+      return stage !== undefined && stageAllowed(stage, entity);
+    }
+    return true;
+  }
+
+  #show(index: number): void {
+    this.#current = index;
+    this.#steps.forEach((step, position) => {
+      step.hidden = position !== index;
+    });
+    for (const item of this.querySelectorAll<HTMLElement>('[data-stepper]')) {
+      if (Number(item.dataset['stepper']) === index) item.setAttribute('aria-current', 'step');
+      else item.removeAttribute('aria-current');
+    }
+    this.#update();
+  }
+
+  /** Keeps "Pty Ltd, growing", the hints and the buttons in step with the answers. */
+  #update(): void {
+    const entity = this.#checked(QUERY.entity)[0] as EntityChoice | undefined;
+    for (const input of this.#inputs(QUERY.stage)) {
+      const allowed = stageAllowed(input.value as StageChoice, entity);
+      input.disabled = !allowed;
+      if (!allowed) input.checked = false;
+    }
+    for (const reason of this.querySelectorAll<HTMLElement>('[data-pty-reason]'))
+      reason.hidden = stageAllowed('pty-growing', entity);
+    this.#steps.forEach((step, index) => {
+      const valid = this.#stepValid(index);
+      for (const button of step.querySelectorAll<HTMLElement>('[data-next], [data-finish]')) {
+        if (valid) button.removeAttribute('aria-disabled');
+        else button.setAttribute('aria-disabled', 'true');
+      }
+      for (const hint of step.querySelectorAll<HTMLElement>('[data-next-hint]'))
+        hint.hidden = valid;
+    });
+  }
+}
+
+if (!customElements.get('st-wizard')) customElements.define('st-wizard', StWizard);

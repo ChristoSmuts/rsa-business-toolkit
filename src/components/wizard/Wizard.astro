@@ -1,0 +1,452 @@
+---
+/**
+ * "Find my path" (build plan B3 flow 1, B5, C2; WP-31): three questions in one GET form.
+ *
+ * **Without JavaScript** the three questions show one under the other, the kinds of business are
+ * radios (one choice; the page says more need JavaScript), and the form lands on a pre-rendered
+ * result page for the answers (`find-my-path/result/<entity>/<type>/<stage>/`). A static host
+ * cannot route a query string to a page, so every one of the 49 result pages has its own submit
+ * button with that page as its `formaction`, and CSS shows only the one that matches the checked
+ * answers (`:has()`; `wizardNoJsCss()`, which the page puts in its `<head>`). Until every question is answered, a line asks for an answer
+ * instead; "Pty Ltd, growing" without a Pty Ltd says why it cannot be chosen.
+ *
+ * **With JavaScript** `<st-wizard>` (`src/scripts/wizard.ts`) makes it three steps and saves the
+ * answers. Those controls (stepper, Back, Next, "See my path") are `.js-only`; the result buttons
+ * are `.no-js-only`.
+ */
+import Button from '../ui/Button.astro';
+import Callout from '../ui/Callout.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { BusinessType, Manifest } from '../../lib/content/schema';
+import { docHref } from '../../lib/content/manifest';
+import {
+  ENTITY_CHOICES,
+  GENERAL,
+  QUERY,
+  resultRoute,
+  singleChoices,
+  STAGE_CHOICES,
+} from '../../lib/profile';
+import { resultKey, wizardInputId } from '../../lib/path-pages';
+import { href } from '../../lib/paths';
+import { APP_ROUTES } from '../../lib/routes';
+
+interface Props {
+  locale: Locale;
+  manifest: Manifest;
+  businessTypes: readonly BusinessType[];
+}
+
+const { locale, manifest, businessTypes } = Astro.props;
+const t = useTranslations(locale);
+const total = 3;
+const stepTitles = [t('wizard.steps.entity'), t('wizard.steps.types'), t('wizard.steps.stage')];
+const differenceHref = docHref(manifest, 'core/register', locale, 'two-ways-to-trade');
+const myPathHref = href(locale, APP_ROUTES.myPath);
+const id = wizardInputId;
+
+const types = [...businessTypes]
+  .sort((a, b) => a.order - b.order)
+  .map((type) => ({
+    value: type.id as string,
+    label: t(`businessTypes.${type.id}.name`),
+    body: t(`businessTypes.${type.id}.description`),
+    effort: t('wizard.types.effort', { level: t(`businessTypes.effort.${type.effort}`) }),
+  }));
+types.push({
+  value: GENERAL,
+  label: t('businessTypes.general.name'),
+  body: t('businessTypes.general.description'),
+  effort: '',
+});
+
+const results = singleChoices().map((choice) => ({
+  key: resultKey(choice),
+  href: href(locale, resultRoute(APP_ROUTES.wizard, choice)),
+}));
+---
+
+<st-wizard class="st-wizard" data-my-path={myPathHref}>
+  <ol class="st-wizard__stepper js-only" aria-label={t('wizard.stepsLabel')} role="list">
+    {stepTitles.map((title, index) => (
+      <li data-stepper={index}>
+        <span class="st-wizard__stepper-n">{t('wizard.stepOf', { n: index + 1, total })}</span>
+        <span>{title}</span>
+      </li>
+    ))}
+  </ol>
+
+  <form class="st-wizard__form st-stack st-stack-lg" method="get" action={myPathHref}>
+    <section
+      class="st-wizard__step st-stack"
+      data-step={QUERY.entity}
+      aria-labelledby="wz-h-entity"
+    >
+      <h2 id="wz-h-entity" data-step-heading tabindex="-1">
+        {t('wizard.stepHeading', { n: 1, total, title: stepTitles[0] ?? '' })}
+      </h2>
+      <fieldset class="st-wizard__fieldset" aria-describedby="wz-help-entity">
+        <legend>{t('wizard.entity.question')}</legend>
+        <p class="st-hint" id="wz-help-entity">
+          {t('wizard.entity.help')}
+        </p>
+        <div class="st-wizard__choices">
+          {ENTITY_CHOICES.map((value) => (
+            <label class="st-choice" for={id(QUERY.entity, value)}>
+              <input
+                type="radio"
+                name={QUERY.entity}
+                value={value}
+                id={id(QUERY.entity, value)}
+                aria-describedby={`${id(QUERY.entity, value)}-body`}
+              />
+              <span class="st-choice__text">
+                <span class="st-choice__label">{t(`wizard.entity.options.${value}.label`)}</span>
+                <span class="st-choice__body" id={`${id(QUERY.entity, value)}-body`}>
+                  {t(`wizard.entity.options.${value}.body`)}
+                </span>
+              </span>
+            </label>
+          ))}
+        </div>
+        {differenceHref && (
+          <p>
+            <a href={differenceHref}>{t('wizard.entity.difference')}</a>
+          </p>
+        )}
+      </fieldset>
+      <div class="st-wizard__nav js-only">
+        <Button data-next aria-describedby="wz-next-hint-entity" iconEnd="lucide:arrow-right">
+          {t('wizard.next')}
+        </Button>
+        <p class="st-hint" id="wz-next-hint-entity" data-next-hint>
+          {t('wizard.nextDisabled')}
+        </p>
+      </div>
+    </section>
+
+    <section class="st-wizard__step st-stack" data-step={QUERY.type} aria-labelledby="wz-h-type">
+      <h2 id="wz-h-type" data-step-heading tabindex="-1">
+        {t('wizard.stepHeading', { n: 2, total, title: stepTitles[1] ?? '' })}
+      </h2>
+      <fieldset class="st-wizard__fieldset" aria-describedby="wz-help-type wz-general-type">
+        <legend>{t('wizard.types.question')}</legend>
+        <p class="st-hint js-only" id="wz-help-type">
+          {t('wizard.types.help')}
+        </p>
+        <p class="st-hint" id="wz-general-type">
+          {t('wizard.types.generalHelp')}
+        </p>
+        <p class="st-hint no-js-only">{t('wizard.noJsOneType')}</p>
+        <div class="st-wizard__choices">
+          {types.map((type) => (
+            <label class="st-choice" for={id(QUERY.type, type.value)}>
+              <input
+                type="radio"
+                name={QUERY.type}
+                value={type.value}
+                id={id(QUERY.type, type.value)}
+                aria-describedby={`${id(QUERY.type, type.value)}-body`}
+              />
+              <span class="st-choice__text">
+                <span class="st-choice__label">{type.label}</span>
+                <span class="st-choice__body" id={`${id(QUERY.type, type.value)}-body`}>
+                  {type.body}
+                  {type.effort && (
+                    <Fragment>
+                      {' '}
+                      <span class="st-choice__effort">{type.effort}</span>
+                    </Fragment>
+                  )}
+                </span>
+              </span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+      <div class="st-wizard__nav js-only">
+        <Button variant="secondary" data-back iconStart="lucide:arrow-left">
+          {t('wizard.back')}
+        </Button>
+        <Button data-next aria-describedby="wz-next-hint-type" iconEnd="lucide:arrow-right">
+          {t('wizard.next')}
+        </Button>
+        <p class="st-hint" id="wz-next-hint-type" data-next-hint>
+          {t('wizard.types.required')}
+        </p>
+      </div>
+    </section>
+
+    <section class="st-wizard__step st-stack" data-step={QUERY.stage} aria-labelledby="wz-h-stage">
+      <h2 id="wz-h-stage" data-step-heading tabindex="-1">
+        {t('wizard.stepHeading', { n: 3, total, title: stepTitles[2] ?? '' })}
+      </h2>
+      <fieldset class="st-wizard__fieldset" aria-describedby="wz-help-stage">
+        <legend>{t('wizard.stage.question')}</legend>
+        <p class="st-hint" id="wz-help-stage">
+          {t('wizard.stage.help')}
+        </p>
+        <div class="st-wizard__choices">
+          {STAGE_CHOICES.map((value) => (
+            <label class="st-choice" for={id(QUERY.stage, value)}>
+              <input
+                type="radio"
+                name={QUERY.stage}
+                value={value}
+                id={id(QUERY.stage, value)}
+                aria-describedby={
+                  value === 'pty-growing'
+                    ? `${id(QUERY.stage, value)}-body wz-pty-reason`
+                    : `${id(QUERY.stage, value)}-body`
+                }
+              />
+              <span class="st-choice__text">
+                <span class="st-choice__label">{t(`wizard.stage.options.${value}.label`)}</span>
+                <span class="st-choice__body" id={`${id(QUERY.stage, value)}-body`}>
+                  {t(`wizard.stage.options.${value}.body`)}
+                </span>
+                {value === 'pty-growing' && (
+                  <span class="st-choice__reason" id="wz-pty-reason" data-pty-reason>
+                    {t('wizard.stage.ptyGrowingDisabled', { step: 1 })}
+                  </span>
+                )}
+              </span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+      <div class="st-wizard__nav js-only">
+        <Button variant="secondary" data-back iconStart="lucide:arrow-left">
+          {t('wizard.back')}
+        </Button>
+        <Button type="submit" data-finish aria-describedby="wz-next-hint-stage">
+          {t('wizard.seeMyPath')}
+        </Button>
+        <p class="st-hint" id="wz-next-hint-stage" data-next-hint>
+          {t('wizard.nextDisabled')}
+        </p>
+      </div>
+    </section>
+
+    <div class="st-wizard__results no-js-only">
+      <p class="st-hint st-wizard__incomplete">{t('wizard.nextDisabled')}</p>
+      <p class="st-hint st-wizard__pty-only">{t('wizard.stage.ptyGrowingDisabled', { step: 1 })}</p>
+      {results.map((result) => (
+        <Button
+          type="submit"
+          size="lg"
+          class="st-wizard__result"
+          data-result={result.key}
+          formaction={result.href}
+        >
+          {t('wizard.seeMyPath')}
+        </Button>
+      ))}
+    </div>
+
+    <div class="st-stack st-stack-sm js-only">
+      <p class="st-hint">{t('wizard.savedTip')}</p>
+      <st-storage-notice hidden>
+        <Callout variant="warning" label={t('doc.warning')}>
+          <p>{t('storage.wizardUnavailable')}</p>
+        </Callout>
+      </st-storage-notice>
+    </div>
+  </form>
+</st-wizard>
+
+<script>
+  import '../../scripts/wizard';
+</script>
+
+<style is:global>
+  /* Before the element connects, a reader with JavaScript sees only the first question. */
+  html.js st-wizard:not([data-ready]) .st-wizard__step:not([data-step='entity']) {
+    display: none;
+  }
+
+  /*
+   * The 49 no-JavaScript result buttons: hidden until the generated `:has()` rules above show the
+   * one for the checked answers. `Button` scopes its own `display`, so this needs the extra class.
+   */
+  .st-wizard__results .st-btn.st-wizard__result {
+    display: none;
+  }
+</style>
+
+<style>
+  st-wizard,
+  st-storage-notice {
+    display: block;
+  }
+
+  .st-wizard {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-5);
+    max-inline-size: var(--st-measure);
+  }
+
+  .st-wizard__stepper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--st-space-2);
+    padding: 0;
+    list-style: none;
+  }
+
+  .st-wizard__stepper li {
+    display: grid;
+    flex: 1 1 8rem;
+    min-inline-size: 0;
+    padding: var(--st-space-2) var(--st-space-3);
+    border-block-start: 4px solid var(--st-border);
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+    overflow-wrap: anywhere;
+  }
+
+  .st-wizard__stepper li[aria-current='step'] {
+    border-block-start-color: var(--st-primary);
+    color: var(--st-text);
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-wizard__stepper-n {
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-wizard__step[hidden] {
+    display: none;
+  }
+
+  .st-wizard__step h2:focus {
+    outline: none;
+  }
+
+  .st-wizard__step h2:focus-visible {
+    outline: 2px solid var(--st-focus);
+    outline-offset: 2px;
+  }
+
+  .st-wizard__fieldset {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-3);
+    min-inline-size: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .st-wizard__fieldset legend {
+    padding: 0;
+    font-size: var(--st-text-lg);
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-wizard__choices {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-2);
+  }
+
+  .st-choice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--st-space-3);
+    min-block-size: var(--st-target);
+    padding: var(--st-space-3) var(--st-space-4);
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface);
+    cursor: pointer;
+  }
+
+  .st-choice:has(input:checked) {
+    border-width: 2px;
+    border-color: var(--st-primary);
+    background-color: var(--st-primary-soft);
+    color: var(--st-on-primary-soft);
+  }
+
+  .st-choice:has(input:disabled) {
+    border-style: dashed;
+    background-color: var(--st-surface-2);
+    color: var(--st-text-muted);
+    cursor: not-allowed;
+  }
+
+  .st-choice input {
+    flex-shrink: 0;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    margin-block-start: 0.15rem;
+    accent-color: var(--st-primary);
+  }
+
+  .st-choice__text {
+    display: grid;
+    gap: var(--st-space-1);
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .st-choice__label {
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-choice__body,
+  .st-choice__reason {
+    font-size: var(--st-text-sm);
+  }
+
+  .st-choice__effort {
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-choice__reason {
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-choice__reason[hidden] {
+    display: none;
+  }
+
+  .st-wizard__nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-3);
+  }
+
+  .st-wizard__nav p[hidden] {
+    display: none;
+  }
+
+  .st-wizard__nav p {
+    flex: 1 1 12rem;
+    min-inline-size: 0;
+  }
+
+  .st-wizard__results {
+    display: grid;
+    justify-items: start;
+    gap: var(--st-space-2);
+  }
+
+  .st-wizard__pty-only {
+    display: none;
+  }
+
+  @media (forced-colors: active) {
+    .st-choice:has(input:checked) {
+      border-color: Highlight;
+    }
+
+    .st-wizard__stepper li[aria-current='step'] {
+      border-block-start-color: Highlight;
+    }
+  }
+</style>

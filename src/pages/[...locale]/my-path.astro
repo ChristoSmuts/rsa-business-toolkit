@@ -1,0 +1,292 @@
+---
+/**
+ * `/my-path/` (build plan B1, B6; WP-31): the reader's answers, their steps in order with what is
+ * done, their checklist, and "Remove my answers". The answers are on the device, so the page is
+ * the same for everyone and `<st-my-path>` (`src/scripts/my-path.ts`) shows what fits the
+ * profile. Without JavaScript, or before the questions are answered, it is the empty state with
+ * "Find my path"; the wizard's no-JavaScript answers land on pre-rendered result pages instead.
+ */
+import Page from '../../layouts/Page.astro';
+import Blocks from '../../components/content/Blocks.astro';
+import TaskListBlock from '../../components/content/TaskListBlock.astro';
+import Breadcrumb from '../../components/navigation/Breadcrumb.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Button from '../../components/ui/Button.astro';
+import Callout from '../../components/ui/Callout.astro';
+import ConfirmDialog from '../../components/ui/ConfirmDialog.astro';
+import EmptyState from '../../components/ui/EmptyState.astro';
+import ProgressRing from '../../components/ui/ProgressRing.astro';
+import PathSteps from '../../components/wizard/PathSteps.astro';
+import { useTranslations } from '../../i18n';
+import { DEFAULT_LOCALE, type Locale } from '../../i18n/locales';
+import {
+  loadDoc,
+  loadGlossary,
+  loadManifest,
+  loadPaths,
+  loadSources,
+} from '../../lib/content/collections';
+import { createContentContext } from '../../lib/content/context';
+import { docTitle, docTitleLang } from '../../lib/content/manifest';
+import type { Doc } from '../../lib/content/schema';
+import { localeStaticPaths } from '../../lib/i18n-routes';
+import { docContentLang, pageTitle } from '../../lib/pages';
+import { allStepCards, checklistPartBlocks, docTaskLists } from '../../lib/path-pages';
+import { href } from '../../lib/paths';
+import { ENTITY_CHOICES, QUERY, STAGE_CHOICES, TYPE_CHOICES } from '../../lib/profile';
+import { APP_ROUTES, NAV_DOC_IDS } from '../../lib/routes';
+
+export function getStaticPaths() {
+  return localeStaticPaths();
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const manifest = await loadManifest();
+const paths = await loadPaths();
+const wizardHref = href(locale, APP_ROUTES.wizard);
+
+async function requireDoc(id: string): Promise<Doc> {
+  const doc = await loadDoc(docContentLang(manifest, id, locale), id);
+  if (!doc) throw new Error(`${id} is missing from src/data. Run \`pnpm content:build\`.`);
+  return doc;
+}
+
+const source = await requireDoc(paths.source);
+const lists = Object.fromEntries(paths.rules.map((rule) => [rule.stage, rule.list]));
+const steps = allStepCards(paths).map((card, index) => ({ ...card, n: index + 1, why: true }));
+
+const checklistDoc = await requireDoc(paths.checklist.doc);
+const contentLang = checklistDoc.lang as Locale;
+const sourcesLang = docContentLang(manifest, NAV_DOC_IDS.sources, contentLang);
+const registers = {
+  own: await loadSources(sourcesLang),
+  english: sourcesLang === DEFAULT_LOCALE ? undefined : await loadSources(DEFAULT_LOCALE),
+};
+const glossary = await loadGlossary(contentLang);
+const context = (doc: Doc) =>
+  createContentContext({
+    locale,
+    contentLang: doc.lang as Locale,
+    manifest,
+    glossary,
+    sources: registers.own,
+    sourcesLang,
+    englishSources: registers.english,
+    docId: doc.id,
+  });
+const parts = checklistPartBlocks(
+  checklistDoc,
+  paths.checklist.parts.map((part) => part.heading),
+);
+const typeDocs = await Promise.all(
+  paths.businessTypes.map(async (type) => ({ type: type.id, doc: await requireDoc(type.doc) })),
+);
+
+const chips = [
+  ...ENTITY_CHOICES.map((value) => ({
+    key: `${QUERY.entity}:${value}`,
+    label: t(`entity.${value}`),
+    variant: 'entity' as const,
+  })),
+  ...TYPE_CHOICES.map((value) => ({
+    key: `${QUERY.type}:${value}`,
+    label: t(`businessTypes.${value}.name`),
+    variant: 'type' as const,
+  })),
+  ...STAGE_CHOICES.map((value) => ({
+    key: `${QUERY.stage}:${value}`,
+    label: t(`stage.${value}`),
+    variant: 'status' as const,
+  })),
+];
+const progressTemplate = t('myPath.progress', { done: '{done}', total: '{total}' });
+---
+
+<Page
+  locale={locale}
+  manifest={manifest}
+  route={APP_ROUTES.myPath}
+  title={pageTitle(t, t('myPath.title'))}
+  description={t('myPath.intro')}
+>
+  <div class="st-container st-stack st-stack-lg st-my-path-page">
+    <Breadcrumb
+      crumbs={[
+        { href: href(locale, APP_ROUTES.home), label: t('nav.home') },
+        { href: undefined, label: t('myPath.title') },
+      ]}
+      locale={locale}
+    />
+    <st-my-path
+      class="st-my-path st-stack st-stack-lg"
+      data-saved-tip={t('wizard.savedTip')}
+      data-reset-done={t('myPath.resetDone')}
+      data-progress={progressTemplate}
+    >
+      <header class="st-stack st-stack-sm">
+        <h1 tabindex="-1">{t('myPath.title')}</h1>
+        <p class="st-lead">{t('myPath.intro')}</p>
+        <p class="st-hint" role="status" data-status></p>
+        <st-storage-notice class="js-only" hidden>
+          <Callout variant="warning" label={t('doc.warning')}>
+            <p>{t('storage.wizardUnavailable')}</p>
+          </Callout>
+        </st-storage-notice>
+      </header>
+
+      <div class="st-my-path__empty" data-empty>
+        <EmptyState title={t('myPath.empty.title')} icon="lucide:map">
+          <p>{t('myPath.empty.body', { total: 3 })}</p>
+          <p class="st-hint no-js-only">{t('wizard.noJs')}</p>
+          <Fragment slot="actions">
+            <Button href={wizardHref} size="lg" iconEnd="lucide:arrow-right">
+              {t('myPath.empty.action')}
+            </Button>
+          </Fragment>
+        </EmptyState>
+      </div>
+
+      <div class="st-my-path__dashboard st-stack st-stack-lg" data-dashboard hidden>
+        <section class="st-stack st-stack-sm" aria-labelledby="my-path-answers">
+          <h2 id="my-path-answers">{t('myPath.profileLabel')}</h2>
+          <ul class="st-cluster st-my-path__chips" role="list">
+            {chips.map((chip) => (
+              <li data-chip={chip.key} hidden>
+                <Badge variant={chip.variant} icon={null}>
+                  {chip.label}
+                </Badge>
+              </li>
+            ))}
+          </ul>
+          <p>
+            <a class="st-link-block" href={wizardHref}>
+              {t('myPath.editAnswers')}
+            </a>
+          </p>
+        </section>
+
+        <section class="st-stack" aria-labelledby="my-path-steps">
+          <div class="st-my-path__steps-head">
+            <h2 id="my-path-steps">{t('wizard.result.title')}</h2>
+            <p class="st-my-path__progress" data-progress>
+              <ProgressRing value={0} max={1} label={progressTemplate} size={56} />
+              <span data-progress-text aria-hidden="true"></span>
+            </p>
+          </div>
+          <PathSteps
+            locale={locale}
+            manifest={manifest}
+            source={source}
+            lists={lists}
+            steps={steps}
+            interactive
+          />
+        </section>
+
+        <section class="st-stack" aria-labelledby="my-path-checklist">
+          <h2 id="my-path-checklist">{t('myPath.checklistHeading')}</h2>
+          <p class="st-hint">{t('trust.checklistReminder')}</p>
+          <st-applies-scope class="st-stack" data-mode="always">
+            <Blocks
+              blocks={parts}
+              context={context(checklistDoc)}
+              fallbackCaption={docTitle(manifest, checklistDoc.id, locale)}
+              nested
+            />
+            <h3 id="my-path-type-checklists">{t('myPath.typeChecklists')}</h3>
+            {typeDocs.map(({ type, doc }) => (
+              <section
+                class="st-stack st-stack-sm"
+                data-applies
+                data-types={type}
+                aria-labelledby={`my-path-${type}`}
+              >
+                <h4 id={`my-path-${type}`} lang={docTitleLang(manifest, doc.id, locale)}>
+                  {docTitle(manifest, doc.id, locale)}
+                </h4>
+                {docTaskLists(doc).map((block) => (
+                  <TaskListBlock block={block} context={context(doc)} />
+                ))}
+              </section>
+            ))}
+          </st-applies-scope>
+        </section>
+
+        <section class="st-stack st-stack-sm js-only" aria-labelledby="my-path-reset">
+          <h2 id="my-path-reset" class="st-visually-hidden">
+            {t('myPath.reset')}
+          </h2>
+          <div class="st-cluster">
+            <Button variant="danger" iconStart="lucide:user-x" data-reset aria-haspopup="dialog">
+              {t('myPath.reset')}
+            </Button>
+          </div>
+          <ConfirmDialog
+            id="st-profile-reset"
+            title={t('myPath.resetConfirm.title')}
+            body={t('myPath.resetConfirm.body')}
+            confirmLabel={t('myPath.resetConfirm.confirm')}
+            cancelLabel={t('common.cancel')}
+          />
+        </section>
+      </div>
+    </st-my-path>
+  </div>
+</Page>
+
+<script>
+  import '../../scripts/my-path';
+</script>
+
+<style is:global>
+  /* `theme-init.js` sets `data-st-profile` before paint when answers are saved: no empty state flash. */
+  html[data-st-profile] st-my-path:not([data-ready]) .st-my-path__empty {
+    visibility: hidden;
+  }
+</style>
+
+<style>
+  st-my-path,
+  st-applies-scope,
+  st-storage-notice {
+    display: block;
+  }
+
+  .st-my-path-page {
+    padding-block: var(--st-space-5) var(--st-space-8);
+  }
+
+  .st-my-path {
+    max-inline-size: var(--st-measure);
+  }
+
+  .st-my-path [hidden] {
+    display: none;
+  }
+
+  .st-my-path__chips {
+    padding: 0;
+    list-style: none;
+  }
+
+  .st-my-path__steps-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--st-space-3);
+  }
+
+  .st-my-path__progress {
+    display: flex;
+    align-items: center;
+    gap: var(--st-space-2);
+    margin: 0;
+    font-weight: var(--st-weight-semibold);
+  }
+</style>
