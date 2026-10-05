@@ -134,7 +134,63 @@ test.describe('the search dialog', () => {
     await expect(page.getByRole('option').first()).toBeVisible();
     await field(page).fill('VAT 264');
     await page.keyboard.press('Enter');
-    await expect(page).toHaveURL(/#vat264$|#the-conditions-you-must-meet$|#vehicle-dealer$/);
+    // Exactly the first result for VAT264 (review WP-33 pass 2, minor 3).
+    await expect(page).toHaveURL(/\/glossary\/#vat264$/);
+  });
+
+  /** Hold every index request until `release()` is called. */
+  async function holdIndex(page: Page, baseURL: string | undefined): Promise<() => void> {
+    let release: () => void = () => undefined;
+    const gate = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    await routeSameOrigin(
+      page,
+      baseURL,
+      (url) => /\/search\/[a-z]{2,3}\.[0-9a-f]{10}\.json$/.test(url.pathname),
+      async (route) => {
+        await gate;
+        await route.continue();
+      },
+    );
+    return () => release();
+  }
+
+  // Review WP-33 pass 2, major 1 and minor 3: Enter while the index is still loading.
+  test('Enter while the index loads opens the result for the text when it arrives', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdIndex(page, baseURL);
+    await open(page, DOC);
+    await page.keyboard.press('/');
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    await expect(dialog(page)).toBeVisible();
+    release();
+    await expect(page).toHaveURL(/\/glossary\/#pis$/);
+  });
+
+  test('Enter while the index loads, then Escape: nothing opens', async ({ page, baseURL }) => {
+    const release = await holdIndex(page, baseURL);
+    await open(page, DOC);
+    const before = page.url();
+    await page.keyboard.press('/');
+    await field(page).fill('notional input tax');
+    await page.keyboard.press('Enter');
+    await page.keyboard.press('Escape');
+    await expect(dialog(page)).toBeHidden();
+    const indexLoaded = page.waitForResponse((response) =>
+      /\/search\/[a-z]{2,3}\.[0-9a-f]{10}\.json$/.test(new URL(response.url()).pathname),
+    );
+    release();
+    await indexLoaded;
+    // Give the search time to finish and (wrongly) act.
+    await page.waitForFunction(
+      () => new Promise((resolve) => setTimeout(() => resolve(true), 500)),
+    );
+    expect(page.url()).toBe(before);
+    await expect(page.locator('.st-search-target')).toHaveCount(0);
   });
 
   test('the status line is in the accessibility tree before any search', async ({ page }) => {
