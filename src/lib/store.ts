@@ -208,6 +208,25 @@ export function setChecked(taskId: string, done: boolean, now: Date = new Date()
   checks.set(next);
 }
 
+/**
+ * Moves saved ticks whose key changed (`src/data/task-keys.json`: a reworded task's old id, or a
+ * task that was linked to a master task after it was ticked) to the key used now. A tick already
+ * saved under the new key wins. Returns how many were moved; writes only when one was.
+ */
+export function renameChecks(renames: Readonly<Record<string, string>>): number {
+  const next: Record<string, string> = { ...checks.get() };
+  let moved = 0;
+  for (const [from, to] of Object.entries(renames)) {
+    const when = next[from];
+    if (when === undefined) continue;
+    if (!(to in next)) next[to] = when;
+    delete next[from];
+    moved++;
+  }
+  if (moved > 0) checks.set(next);
+  return moved;
+}
+
 /** How many of `ids` are ticked in `map`. */
 export function countDone(map: Checks, ids: readonly string[]): number {
   let done = 0;

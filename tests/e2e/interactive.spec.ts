@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
+import { routeSameOrigin } from './helpers/network';
 import { REPO_ROOT } from './helpers/routes';
 
 /**
@@ -141,6 +142,18 @@ test.describe('checklists', () => {
     await expect(page.locator(docBox)).toBeChecked();
     await page.goto(`af/${LINKED_DOC}`);
     await expect(page.locator(docBox)).toBeChecked();
+  });
+
+  test('a tick saved under a key that has since changed moves to the key used now', async ({
+    page,
+    seedStorage,
+  }) => {
+    // Saved under the document task's own id, as before it was linked to its master task.
+    const when = '2026-10-01T10:00:00.000Z';
+    await seedStorage({ 'st.checks.v1': { [LINKED?.id ?? 'x']: when } });
+    await page.goto(CHECKLIST);
+    await expect(page.locator(`input[id="${LINKED?.sameAs ?? ''}"]`)).toBeChecked();
+    expect(await storedChecks(page)).toEqual({ [LINKED?.sameAs ?? '']: when });
   });
 
   test('/checklist/ counts ticks, filters what is not done yet and removes ticks after asking', async ({
@@ -438,6 +451,48 @@ test.describe('language', () => {
     await expect(banner).toBeHidden();
     expect(await page.evaluate(() => window.localStorage.getItem('st.lang'))).toBe('en');
     await page.reload();
+    await expect(page.locator('st-lang-banner')).toBeHidden();
+  });
+
+  test('the banner shows before any module runs, so it never pushes the page down', async ({
+    page,
+    seedStorage,
+    baseURL,
+  }) => {
+    await seedStorage({ 'st.lang': 'af' });
+    let release: () => void = () => {};
+    const held = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    // Hold every bundled module; only the blocking theme-init script may run.
+    await routeSameOrigin(
+      page,
+      baseURL,
+      (url) => /\/_astro\/.+\.js$/.test(url.pathname) && !url.pathname.includes('theme-init'),
+      async (route) => {
+        await held;
+        await route.continue();
+      },
+    );
+    await page.goto('./', { waitUntil: 'commit' });
+    const banner = page.locator('st-lang-banner');
+    await expect(banner).toBeVisible();
+    expect(await page.evaluate(() => customElements.get('st-lang-banner') === undefined)).toBe(
+      true,
+    );
+    release();
+    await expect(banner).toBeVisible();
+    await page.waitForLoadState('load');
+  });
+
+  test('a saved value that is not an enabled language shows no banner at any point', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({ 'st.lang': 'fr' });
+    await page.goto('./', { waitUntil: 'commit' });
+    await expect(page.locator('st-lang-banner')).toBeHidden();
+    await page.waitForLoadState('load');
     await expect(page.locator('st-lang-banner')).toBeHidden();
   });
 

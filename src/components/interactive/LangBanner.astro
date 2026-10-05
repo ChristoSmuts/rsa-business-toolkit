@@ -10,10 +10,12 @@
  *
  * It shows from the first paint, so it never pushes the page down when the module arrives (review
  * WP-30 pass 1, minor 3): `theme-init.js` sets `<html data-st-lang-offer>` before the body is
- * parsed when `st.lang` is not the page's language, and the global rule below shows the banner.
- * With two languages there is one banner, so that is exact; with more, every banner shows until
- * the module hides the ones that do not match. `<st-lang-banner>` (`src/scripts/lang-banner.ts`)
- * keeps the attribute in step with the store and hides the banner (`hidden`) on "Stay" or close.
+ * parsed when `st.lang` is not the page's language, and the global rule below shows the banner whose
+ * `data-locale` equals it. Any other value (a hand-edited or stale key) shows nothing, so nothing
+ * flashes (review WP-30 pass 2, nit 2). **Each language the banner can offer needs its own rule
+ * below;** `tests/unit/lang-banner.test.ts` fails when an enabled language has none.
+ * `<st-lang-banner>` (`src/scripts/lang-banner.ts`) keeps the attribute in step with the store and
+ * hides the banner (`hidden`) on "Stay" or close.
  * Without JavaScript nothing is saved, so the banner never shows.
  */
 import Button from '../ui/Button.astro';
@@ -87,7 +89,7 @@ const offers =
     display: none;
   }
 
-  :root[data-st-lang-offer] .st-lang-banner {
+  :root[data-st-lang-offer='af'] .st-lang-banner[data-locale='af'] {
     display: block;
   }
 </style>

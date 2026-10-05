@@ -18,9 +18,14 @@
  * that has focus never vanishes from under the keyboard.
  */
 import { interpolate } from '../i18n';
-import { checks, countDone, setChecked, type Checks } from '../lib/store';
+import taskKeys from '../data/task-keys.json';
+import { checks, countDone, renameChecks, setChecked, type Checks } from '../lib/store';
 import { announce, askToConfirm } from './confirm-dialog';
 import './storage-notice';
+
+// A tick saved under a key that has since changed (a reworded task, a task linked after it was
+// ticked) moves to the key used now, before any list reads the store.
+renameChecks(taskKeys.renames);
 
 export type ChecklistFilter = 'all' | 'not-done';
 export const FILTER_EVENT = 'st-checklist-filter';

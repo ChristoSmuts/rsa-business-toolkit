@@ -166,6 +166,11 @@ JavaScript still reaches every section and tool.
 - **Storage that throws.** An init script makes `window.localStorage` throw before any page script
   runs: the storage warning shows, the "saved on this device" line goes, and ticks and progress
   still work for the page view. With working storage the warning stays hidden.
+- **A changed key.** A tick seeded under a linked task's own id (as saved before the link) is
+  moved to the master key when `/checklist/` loads (`renameChecks`, `src/data/task-keys.json`).
+- **The banner before paint.** With every bundled module held back by `routeSameOrigin`, the
+  banner is already visible (only `theme-init.js` has run); a saved `st.lang` that is not an
+  enabled language shows no banner at any point.
 - **A restored filter.** "Not done yet" chosen, then the tools element reconnected with the radio
   still checked (what a form-restoring reload does): the ticked item stays hidden.
 - **Copy** (Chromium only, which is where Playwright can grant clipboard permissions): the clipboard
@@ -192,6 +197,11 @@ with no progress, summary, tools or dialog; prompts have no copy button; the con
 and no `aria-current`; `/about/` offers no switch and no "Clear all my data", only the line that
 some tools need JavaScript; the home page shows no banner. `pages.spec.ts` reads every built page
 with a checklist and checks its saving line for whichever value `CHECKLIST_SAVES` has.
+
+**Task keys** (`tests/content/validate.test.ts`, `content:check`): every key in
+`content-meta/released-task-keys.json` must still be a key or be carried to one by
+`content-meta/task-renames.json`, and every current key must be recorded there. See
+`content-meta/README.md` for the rule and the update command.
 
 `a11y.spec.ts` also runs axe, in both themes, with the "Remove all ticks?" dialog open, with the
 "Clear all your data?" dialog open, with the language banner showing and with the storage warning

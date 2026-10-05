@@ -128,6 +128,26 @@ describe('the store over working localStorage', () => {
     expect(JSON.parse(localStorage.getItem('st.checks.v1') ?? '{}')).toEqual(store.checks.get());
   });
 
+  it('moves ticks whose key changed, and keeps a tick already under the new key', async () => {
+    const store = await loadStore();
+    const a = new Date('2026-10-01T10:00:00.000Z');
+    const b = new Date('2026-10-02T10:00:00.000Z');
+    store.setChecked('old:1', true, a);
+    store.setChecked('old:2', true, a);
+    store.setChecked('new:2', true, b);
+    store.setChecked('other:3', true, a);
+    const moved = store.renameChecks({ 'old:1': 'new:1', 'old:2': 'new:2', 'gone:9': 'new:9' });
+    expect(moved).toBe(2);
+    expect(store.checks.get()).toEqual({
+      'new:1': a.toISOString(),
+      'new:2': b.toISOString(),
+      'other:3': a.toISOString(),
+    });
+    const before = localStorage.getItem('st.checks.v1');
+    expect(store.renameChecks({ 'old:1': 'new:1' })).toBe(0);
+    expect(localStorage.getItem('st.checks.v1')).toBe(before);
+  });
+
   it('records copied prompts', async () => {
     const store = await loadStore();
     store.markPromptCopied('branding/x#b1', new Date('2026-10-02T09:30:00.000Z'));
