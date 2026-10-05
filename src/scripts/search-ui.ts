@@ -55,6 +55,7 @@ export class SearchDialogController implements DialogController {
   readonly #empty: HTMLElement | null;
   readonly #failed: HTMLElement | null;
   readonly #all: HTMLElement | null;
+  readonly #dialog: HTMLDialogElement | null;
   #options: HTMLAnchorElement[] = [];
   #active = -1;
   #timer: ReturnType<typeof setTimeout> | undefined;
@@ -83,6 +84,8 @@ export class SearchDialogController implements DialogController {
     input.addEventListener('keydown', this.#onKeydown);
     input.form?.addEventListener('submit', this.#onSubmit);
     listbox.addEventListener('click', this.#onOptionClick);
+    this.#dialog = host.querySelector('dialog');
+    this.#dialog?.addEventListener('close', this.#onDialogClose);
   }
 
   opened(): void {
@@ -107,12 +110,30 @@ export class SearchDialogController implements DialogController {
   async enterCurrent(): Promise<void> {
     clearTimeout(this.#timer);
     const query = this.#input.value.trim();
+    const closes = this.#closes;
     await this.search(query);
+    // The first search can wait for the whole index. If the reader closed the dialog meanwhile
+    // (Escape, the close button, the backdrop), or changed the text, the Enter is cancelled
+    // (review WP-33 pass 2, major 1).
+    if (closes !== this.#closes || !this.#dialog?.open) return;
+    if (this.#shownQuery !== query || this.#input.value.trim() !== query) return;
     const first = this.#options[0];
-    if (first && this.#shownQuery === query && this.#input.value.trim() === query) {
+    if (first) {
       this.activate(first);
+    } else if (this.#failed?.hidden !== false) {
+      // Nothing found: one Enter goes to the search page, as it does when the results are
+      // already on screen (review WP-33 pass 2, nit 2).
+      this.#input.form?.requestSubmit();
     }
   }
+
+  /** Counts the times the dialog closed, so work started before a close is dropped. */
+  #closes = 0;
+
+  readonly #onDialogClose = (): void => {
+    this.#closes++;
+    clearTimeout(this.#timer);
+  };
 
   readonly #onKeydown = (event: KeyboardEvent): void => {
     if (event.isComposing) return;

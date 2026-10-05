@@ -164,9 +164,14 @@ export function tokenize(text: string): string[] {
 /** Most query words searched; a pasted paragraph is cut here so a search stays fast. */
 export const MAX_QUERY_TERMS = 12;
 
-/** One word of a query, or a pair that may also be written joined. */
+/**
+ * One word of a query; a pair that may also be written joined; or (after the client has checked the
+ * index, `resolvePairs`) the joined form to match exactly.
+ */
 export type QueryPart =
-  string | { readonly pair: readonly [string, string]; readonly joined: string };
+  | string
+  | { readonly pair: readonly [string, string]; readonly joined: string }
+  | { readonly exact: string };
 
 const LETTERS = /^\p{L}{2,6}$/u;
 
@@ -184,7 +189,10 @@ export function queryParts(text: string): QueryPart[] {
     const next = tokens[index + 1];
     const first = processTerm(token.text);
     if (next !== undefined) {
-      const isCode = LETTERS.test(token.text) && STARTS_WITH_DIGIT.test(next.text);
+      // A stop word before a number is a date or a count (`on 1 March`, `op 28 Februarie`), not a
+      // code, unless it is written in capitals like one (`IT 12`).
+      const codeWord = first !== null || token.text === token.text.toUpperCase();
+      const isCode = codeWord && LETTERS.test(token.text) && STARTS_WITH_DIGIT.test(next.text);
       if (isCode || HYPHEN.test(next.gap)) {
         const second = processTerm(next.text);
         const joined = processTerm(`${token.text}${next.text}`);

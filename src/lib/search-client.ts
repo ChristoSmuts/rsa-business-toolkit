@@ -160,9 +160,29 @@ function weak(part: QueryPart): boolean {
   return typeof part === 'string' && (part.length < 2 || /^[\d.,]+$/.test(part));
 }
 
+/** `true` when the index holds `term` as a whole term (no prefix, no fuzzy match). */
+function hasTerm(index: LoadedIndex, term: string): boolean {
+  return index.search.search(term, { prefix: false, fuzzy: false }).length > 0;
+}
+
 /**
- * The MiniSearch query for a list of parts. A pair is "both words, or the joined form", so a
- * spaced code (`VAT 264`) and a joined one (`VAT264`) find the same pages.
+ * Decide each pair once, against the index: when the guide writes the joined form (`VAT264`,
+ * `efiling`, and `saps601` through the index's own alias for `SAPS 601`), search exactly that, so
+ * `VAT 264` ranks precisely as `VAT264` does. Otherwise search both words, as any two words, so
+ * `page 2` or `stap 1` never widen to every "page" or "stap" through a fuzzy joined form, and their
+ * scores are not added up across two branches.
+ */
+export function resolvePairs(index: LoadedIndex, parts: readonly QueryPart[]): QueryPart[] {
+  return parts.map((part) =>
+    typeof part === 'string' || !('pair' in part) || !hasTerm(index, part.joined)
+      ? part
+      : { exact: part.joined },
+  );
+}
+
+/**
+ * The MiniSearch query for a list of parts. A pair is both its words; an exact part (a resolved
+ * pair) is matched without prefix or fuzzy matching.
  */
 export function queryTree(
   parts: readonly QueryPart[],
@@ -170,14 +190,13 @@ export function queryTree(
 ): Exclude<Query, string> {
   return {
     combineWith,
-    queries: parts.map((part) =>
-      typeof part === 'string'
-        ? part
-        : {
-            combineWith: 'OR',
-            queries: [{ combineWith: 'AND', queries: [...part.pair] }, part.joined],
-          },
-    ),
+    queries: parts.map((part): Query => {
+      if (typeof part === 'string') return part;
+      if ('exact' in part) {
+        return { combineWith: 'OR', queries: [part.exact], prefix: false, fuzzy: false };
+      }
+      return { combineWith: 'AND', queries: [...part.pair] };
+    }),
   };
 }
 
@@ -194,8 +213,8 @@ export function runSearch(
   options: SearchOptions = {},
   base?: string,
 ): SearchResult[] {
-  const parts = queryParts(query);
-  if (parts.length === 0) return [];
+  const raw = queryParts(query);
+  if (raw.length === 0) return [];
   const searchOptions = {
     bm25: BM25,
     prefix,
@@ -206,6 +225,7 @@ export function runSearch(
     filter: (hit: MiniSearchResult): boolean =>
       matchesFilters(hit as unknown as StoredFields, options),
   };
+  const parts = resolvePairs(index, raw);
   let hits = index.search.search(queryTree(parts, 'AND'), searchOptions);
   const strong = parts.filter((part) => !weak(part));
   if (hits.length === 0 && strong.length > 0) {

@@ -97,7 +97,13 @@ const ids = {
             {t('search.instructions')}
           </p>
         </form>
-        <p class="st-search-dialog__status" id={ids.status} role="status" aria-live="polite"></p>
+        <p
+          class="st-search-dialog__status"
+          id={ids.status}
+          role="status"
+          aria-live="polite"
+          data-failed-text={t('search.failed')}
+        ></p>
       </div>
       <div class="st-search-dialog__body">
         <div

@@ -11,6 +11,7 @@ import {
   loadIndex,
   markTerms,
   queryTree,
+  resolvePairs,
   resultHref,
   runSearch,
   SearchIndexError,
@@ -165,14 +166,38 @@ describe('options', () => {
     expect(queryParts(words.join(' '))).toHaveLength(MAX_QUERY_TERMS);
   });
 
-  it('searches a pair as both words or the joined form', () => {
-    expect(queryTree([{ pair: ['vat', '264'], joined: 'vat264' }, 'form'], 'AND')).toEqual({
+  it('searches a pair as both words, and a resolved pair exactly', () => {
+    expect(
+      queryTree([{ pair: ['vat', '264'], joined: 'vat264' }, { exact: 'saps601' }, 'form'], 'AND'),
+    ).toEqual({
       combineWith: 'AND',
       queries: [
-        { combineWith: 'OR', queries: [{ combineWith: 'AND', queries: ['vat', '264'] }, 'vat264'] },
+        { combineWith: 'AND', queries: ['vat', '264'] },
+        { combineWith: 'OR', queries: ['saps601'], prefix: false, fuzzy: false },
         'form',
       ],
     });
+  });
+
+  it('resolves a pair to its joined form only when the index holds that term', () => {
+    const idx = index('en', [
+      ...ENTRIES,
+      entry({ key: 'code', title: 'Form VAT264', text: 'VAT264' }),
+    ]);
+    expect(
+      resolvePairs(idx, [
+        { pair: ['vat', '264'], joined: 'vat264' },
+        { pair: ['page', '2'], joined: 'page2' },
+        'form',
+      ]),
+    ).toEqual([{ exact: 'vat264' }, { pair: ['page', '2'], joined: 'page2' }, 'form']);
+  });
+
+  // Review WP-33 pass 2, nit 3: "on 1 March" paired the stop word with the date.
+  it('keeps the number of a date apart from a stop word, but pairs a capitalised code', () => {
+    expect(queryParts('on 1 March')).toEqual(['1', 'march']);
+    expect(queryParts('op 28 Februarie')).toEqual(['28', 'februarie']);
+    expect(queryParts('IT 12')).toEqual(['it12']);
   });
 
   it('adds no alias to ordinary words followed by a number', () => {

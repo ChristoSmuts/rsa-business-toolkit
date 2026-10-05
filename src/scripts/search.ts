@@ -207,6 +207,9 @@ export class StSearch extends HTMLElement {
 
   /** Open a chosen result: close the dialog without returning focus, then go to the result. */
   readonly #choose = (url: string): void => {
+    // Never act for a dialog that is no longer open (review WP-33 pass 2, major 1); and only mark
+    // the close as "leaving" when there is a close to come, or the flag would outlive it.
+    if (!this.#dialog?.open) return;
     this.#leaving = true;
     this.close();
     openResult(url);
@@ -294,6 +297,10 @@ export class StSearch extends HTMLElement {
         const empty = this.querySelector<HTMLElement>('[data-search-empty]');
         if (failed) failed.hidden = false;
         if (empty) empty.hidden = true;
+        // Say why, in the live region: this script has no translator, so the page renders the
+        // sentence on the status line (review WP-33 pass 2, minor 2).
+        const status = this.querySelector<HTMLElement>('[role="status"]');
+        if (status) status.textContent = status.dataset['failedText'] ?? '';
       },
     );
   }

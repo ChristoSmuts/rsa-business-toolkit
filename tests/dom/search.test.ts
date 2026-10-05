@@ -109,7 +109,7 @@ function dialogMarkup(): string {
         <form action="/search/" method="get" role="search">
           <input id="q" type="search" name="q" role="combobox" aria-expanded="false" aria-controls="lb" />
         </form>
-        <p role="status"></p>
+        <p role="status" data-failed-text="Search could not load."></p>
         <div id="lb" role="listbox" aria-label="Search results" hidden></div>
         <p data-search-all hidden><a href="/search/">Search</a></p>
         <div data-search-failed hidden><a href="/contents/">Contents</a></div>
@@ -315,8 +315,30 @@ describe('<st-search>', () => {
       expect(document.querySelector<HTMLElement>('[data-search-failed]')!.hidden).toBe(false),
     );
     expect(document.querySelector<HTMLElement>('[data-search-empty]')!.hidden).toBe(true);
+    // Review WP-33 pass 2, minor 2: and say why, in the live region.
+    expect(document.querySelector('[role="status"]')?.textContent).toBe('Search could not load.');
     // Back to the class's own method for the shared teardown.
     Reflect.deleteProperty(failing, 'controller');
+  });
+
+  // Review WP-33 pass 2, major 1: a result chosen for a dialog that has closed must do nothing,
+  // and must not leave the next close without its focus return.
+  it('ignores a result chosen after the dialog closed, and still returns focus next time', async () => {
+    const opener = document.getElementById('opener')!;
+    host.open(opener);
+    const controller = (await host.controller()) as SearchDialogController;
+    (document.getElementById('q') as HTMLInputElement).value = 'statements';
+    await controller.search('statements');
+    const option = document.querySelector<HTMLAnchorElement>('[role="option"]')!;
+    const before = window.location.href;
+    host.close();
+    controller.activate(option);
+    expect(window.location.href).toBe(before);
+    expect(window.sessionStorage.getItem(ARRIVAL_KEY)).toBeNull();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    host.open(opener);
+    host.close();
+    await vi.waitFor(() => expect(document.activeElement).toBe(opener));
   });
 
   // Review WP-33 pass 1, minor 3: Escape in a search field first cleared it.
@@ -418,6 +440,77 @@ describe('the results listbox', () => {
     expect(key(input(), { key: 'Enter' }).defaultPrevented).toBe(true);
     await vi.waitFor(() => expect(opened).toHaveLength(1));
     expect(opened[0]).toMatch(/\/core\/running-a-pty-ltd\/#financial-statements$/);
+  });
+
+  describe('Enter before the index has loaded (review WP-33 pass 2, major 1)', () => {
+    let release: () => void;
+    let pending: SearchDialogController;
+
+    beforeEach(() => {
+      // Fresh markup, so only this controller listens to the field.
+      mountHtml(dialogMarkup());
+      document.querySelector('dialog')!.showModal();
+      const real = createSearchClient({ url: '/search/en.test.json', locale: 'en', base: '/' });
+      let loaded = false;
+      const gate = new Promise<void>((resolve) => {
+        release = resolve;
+      });
+      const slow: SearchClient = {
+        load: () => real.load(),
+        get ready() {
+          return loaded;
+        },
+        async search(query, options) {
+          await gate;
+          loaded = true;
+          return real.search(query, options);
+        },
+      };
+      pending = new SearchDialogController(
+        document.querySelector('st-search')!,
+        { settings: { shortcuts: true, lowData: true }, openResult: (url) => opened.push(url) },
+        slow,
+      );
+    });
+
+    it('opens the result for the text once the index arrives, if the dialog is still open', async () => {
+      input().value = 'statements';
+      expect(key(input(), { key: 'Enter' }).defaultPrevented).toBe(true);
+      expect(opened).toEqual([]);
+      release();
+      await vi.waitFor(() => expect(opened).toHaveLength(1));
+      expect(opened[0]).toMatch(/\/core\/running-a-pty-ltd\/#financial-statements$/);
+      void pending;
+    });
+
+    it('does nothing when the dialog closed while the index was loading', async () => {
+      input().value = 'statements';
+      key(input(), { key: 'Enter' });
+      document.querySelector('dialog')!.close();
+      release();
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      expect(opened).toEqual([]);
+    });
+
+    it('does nothing when the text changed while the index was loading', async () => {
+      input().value = 'statements';
+      key(input(), { key: 'Enter' });
+      input().value = 'PIS';
+      release();
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      expect(opened).toEqual([]);
+    });
+  });
+
+  // Review WP-33 pass 2, nit 2: one fast Enter with no results goes to the search page.
+  it('submits to the search page when a fast Enter finds nothing', async () => {
+    const form = input().form!;
+    const submit = vi.fn();
+    form.requestSubmit = submit;
+    input().value = 'zzzzzz';
+    key(input(), { key: 'Enter' });
+    await vi.waitFor(() => expect(submit).toHaveBeenCalledTimes(1));
+    expect(opened).toEqual([]);
   });
 
   it('names each option by its title and describes it with the rest', async () => {

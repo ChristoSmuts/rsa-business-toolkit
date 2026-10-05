@@ -58,15 +58,53 @@ describe('A7 ranking cases', () => {
     }
   });
 
-  // Review WP-33 pass 1, major 1: a spaced code made the query stricter (1 result), not looser.
-  it.each(['VAT 264', 'vat 264', 'VAT 264 form'])(
-    '"%s" finds what VAT264 finds: the glossary entry and the conditions section',
+  // Review WP-33 pass 1, major 1 (a spaced code found 1 result) and pass 2, minor 4 (A7 says top 3).
+  it.each(['VAT 264', 'vat 264'])(
+    '"%s" ranks exactly as VAT264: the conditions section in the top 3',
     (query) => {
-      const hrefs = runSearch(en.index, query, 'en', {}, BASE).map((result) => result.href);
-      expect(hrefs).toContain(`${BASE}glossary/#vat264`);
-      expect(hrefs).toContain(`${BASE}business-types/vehicle-dealer/#the-conditions-you-must-meet`);
+      expect(top(en.index, query)).toContain(
+        `${BASE}business-types/vehicle-dealer/#the-conditions-you-must-meet`,
+      );
+      expect(top(en.index, query, 10)).toEqual(top(en.index, 'VAT264', 10));
     },
   );
+
+  it('"VAT 264 form" still finds the glossary entry and the conditions section', () => {
+    const hrefs = runSearch(en.index, 'VAT 264 form', 'en', {}, BASE).map((r) => r.href);
+    expect(hrefs).toContain(`${BASE}glossary/#vat264`);
+    expect(hrefs).toContain(`${BASE}business-types/vehicle-dealer/#the-conditions-you-must-meet`);
+  });
+
+  // Review WP-33 pass 2, minor 1: the joined form of "page 2" fuzzy-matched every "page".
+  it.each([
+    ['en', 'page 2'],
+    ['en', 'route 3'],
+    ['en', 'step 1'],
+    ['en', 'part 2'],
+    ['en', 'prompt 7'],
+    ['af', 'stap 1'],
+    ['af', 'deel 2'],
+  ] as const)('%s "%s" finds only entries that hold the number', (lang, query) => {
+    const built = lang === 'en' ? en : af;
+    const number = query.split(' ')[1]!;
+    const results = runSearch(built.index, query, lang, { limit: 1000 }, BASE);
+    expect(results.length).toBeGreaterThan(0);
+    for (const result of results) {
+      expect(
+        result.terms.some((term) => term.includes(number)),
+        result.href,
+      ).toBe(true);
+    }
+  });
+
+  it('real codes keep working: SAPS 601 and Tax 2026', () => {
+    expect(top(en.index, 'saps 601', 1)).toEqual([
+      `${BASE}business-types/vehicle-dealer/#how-to-register`,
+    ]);
+    const tax = runSearch(en.index, 'Tax 2026', 'en', { limit: 1000 }, BASE);
+    expect(tax.length).toBeGreaterThan(0);
+    expect(tax.every((r) => r.terms.some((t) => t.includes('2026')))).toBe(true);
+  });
 
   it('e-filing, eFiling and efiling find the eFiling glossary entry first', () => {
     for (const query of ['e-filing', 'eFiling', 'efiling']) {
