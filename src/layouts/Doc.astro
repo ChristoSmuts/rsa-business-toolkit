@@ -30,6 +30,7 @@ import TableOfContents from '../components/navigation/TableOfContents.astro';
 import AiNotice from '../components/trust/AiNotice.astro';
 import SourcesForPage from '../components/trust/SourcesForPage.astro';
 import TranslationNotice from '../components/trust/TranslationNotice.astro';
+import TemplateTool from '../components/templates/TemplateTool.astro';
 import { formatDate, useTranslations } from '../i18n';
 import { DEFAULT_LOCALE, getLocale, type Locale } from '../i18n/locales';
 import { createContentContext } from '../lib/content/context';
@@ -47,7 +48,9 @@ import {
   splitAroundParam,
 } from '../lib/pages';
 import { href } from '../lib/paths';
-import { CHECKLIST_SAVES } from '../lib/routes';
+import { CHECKLIST_SAVES, TEMPLATES_FILLABLE } from '../lib/routes';
+import { isTemplateSlug } from '../lib/templates/draft';
+import { parseTemplate } from '../lib/templates/placeholders';
 
 interface Props {
   locale: Locale;
@@ -94,6 +97,13 @@ const previousParts = splitAroundParam((title) => t('nav.previous', { title }));
 const nextParts = splitAroundParam((title) => t('nav.next', { title }));
 const hue = sectionHue(doc.section);
 const { terms, rest } = splitTermsBlocks(doc.blocks);
+/**
+ * A template becomes a form with a live preview (WP-32): its text before and after the template
+ * renders as on any document, and the template itself is `TemplateTool`. Its headings are the
+ * form's groups, so it has no contents list of its own.
+ */
+const templateSlug = doc.kind === 'template' && isTemplateSlug(doc.slug) ? doc.slug : undefined;
+const template = TEMPLATES_FILLABLE && templateSlug ? parseTemplate(doc) : undefined;
 const translationStatus = isFallback ? 'fallback' : doc.translation.status;
 const englishHref = locale === DEFAULT_LOCALE ? undefined : href(DEFAULT_LOCALE, route);
 
@@ -121,7 +131,10 @@ const relatedTypes = businessType
   description={doc.summary}
   ogType="article"
 >
-  <div class="st-container st-doc-grid st-doc" data-section={hue}>
+  <div
+    class:list={['st-container st-doc-grid st-doc', { 'st-doc--tool': template }]}
+    data-section={hue}
+  >
     <SectionSidebar
       manifest={manifest}
       sectionId={doc.section}
@@ -224,14 +237,29 @@ const relatedTypes = businessType
           </details>
         )}
 
-        <TableOfContents
-          headings={doc.headings}
-          locale={locale}
-          variant="details"
-          contentLang={contentLangTag}
-        />
-
-        <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
+        {template && templateSlug ? (
+          <Fragment>
+            <Blocks blocks={template.before} context={context} fallbackCaption={doc.title} />
+            <TemplateTool
+              locale={locale}
+              slug={templateSlug}
+              model={template}
+              context={context}
+              textLang={contentLangTag}
+            />
+            <Blocks blocks={template.after} context={context} fallbackCaption={doc.title} />
+          </Fragment>
+        ) : (
+          <Fragment>
+            <TableOfContents
+              headings={doc.headings}
+              locale={locale}
+              variant="details"
+              contentLang={contentLangTag}
+            />
+            <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
+          </Fragment>
+        )}
 
         {doc.kind === 'checklist' && CHECKLIST_SAVES && (
           <ChecklistElsewhere locale={locale} manifest={manifest} docId={doc.id} />
@@ -286,12 +314,14 @@ const relatedTypes = businessType
       )}
     </div>
 
-    <TableOfContents
-      headings={doc.headings}
-      locale={locale}
-      variant="column"
-      contentLang={contentLangTag}
-    />
+    {!template && (
+      <TableOfContents
+        headings={doc.headings}
+        locale={locale}
+        variant="column"
+        contentLang={contentLangTag}
+      />
+    )}
   </div>
 </Page>
 
@@ -302,6 +332,13 @@ const relatedTypes = businessType
 
   .st-doc__main {
     min-inline-size: 0;
+  }
+
+  /* A fillable template has no contents column: the form and its preview take the room. */
+  @media (width >= 1280px) {
+    .st-doc--tool {
+      grid-template-columns: var(--st-sidebar) minmax(0, 1fr);
+    }
   }
 
   .st-doc__section {

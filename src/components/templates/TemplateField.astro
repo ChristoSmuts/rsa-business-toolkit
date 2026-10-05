@@ -1,0 +1,121 @@
+---
+/**
+ * One control of a template form: a label, the template's hint, the input, and (for numbers and
+ * amounts) an error line the script shows when the text is not a number.
+ *
+ * The label is the template's own wording (`TemplateField.label`), except for business details,
+ * which the dictionary names (`templates.fields.<profileKey>`), because the same field appears in
+ * five templates and in the profile. Optional fields say so in the label. Nothing here blocks
+ * printing: there is no `required` attribute, and the form never submits.
+ */
+import Icon from '../ui/Icon.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { ProfileKey, TemplateField } from '../../lib/templates/placeholders';
+import { fieldId } from '../../lib/templates/ids';
+
+interface Props {
+  field: TemplateField;
+  locale: Locale;
+  /** `lang` for the template's own words when they are not in the page's language. */
+  textLang?: string | undefined;
+  /**
+   * The label repeats the group's legend (a list under its own heading): it stays the control's
+   * name but is not shown or printed twice.
+   */
+  hideLabel?: boolean | undefined;
+}
+
+const { field, locale, textLang, hideLabel = false } = Astro.props;
+const t = useTranslations(locale);
+const id = fieldId(field.name);
+const hintId = `${id}-hint`;
+const errorId = `${id}-error`;
+const listId = `${id}-options`;
+
+const AUTOCOMPLETE: Record<ProfileKey, string> = {
+  businessName: 'organization',
+  ownerName: 'name',
+  phone: 'tel',
+  email: 'email',
+  address: 'street-address',
+  registeredName: 'off',
+  registrationNumber: 'off',
+  vatNumber: 'off',
+};
+const fromDictionary = field.profileKey !== undefined && !field.ownLabel;
+const label =
+  field.profileKey && !field.ownLabel ? t(`templates.fields.${field.profileKey}`) : field.label;
+const numeric = field.kind === 'money' || field.kind === 'number';
+const type =
+  field.kind === 'email'
+    ? 'email'
+    : field.kind === 'tel'
+      ? 'tel'
+      : field.kind === 'date'
+        ? 'date'
+        : 'text';
+const hints = [field.hint, field.kind === 'list' ? t('templates.onePerLine') : undefined].filter(
+  (hint): hint is string => Boolean(hint),
+);
+const describedBy = [hints.length > 0 ? hintId : undefined].filter(Boolean).join(' ') || undefined;
+const common = {
+  id,
+  name: field.name,
+  'data-kind': field.kind,
+  'data-required': field.required ? '' : undefined,
+  'data-carry': field.carry ? '' : undefined,
+  'data-follows': field.follows,
+  'data-number': field.documentNumber ? '' : undefined,
+  'data-profile-key': field.profileKey,
+  'data-error-id': numeric ? errorId : undefined,
+  'data-sample': field.kind === 'list' && field.sample !== '' ? field.sample : undefined,
+  'aria-describedby': describedBy,
+  autocomplete: field.profileKey ? AUTOCOMPLETE[field.profileKey] : 'off',
+};
+---
+
+<div class="st-field st-tfield" data-field-wrap={field.name}>
+  <label for={id} class:list={[{ 'st-visually-hidden': hideLabel }]}>
+    <span lang={fromDictionary ? undefined : textLang}>{label}</span>
+    {!field.required && <span class="st-tfield__optional"> {t('templates.optional')}</span>}
+  </label>
+  {hints.length > 0 && (
+    <p class="st-hint" id={hintId}>
+      {hints.map((hint, index) => (
+        <span lang={index === 0 && field.hint ? textLang : undefined}>{hint} </span>
+      ))}
+    </p>
+  )}
+  {field.kind === 'list' ? (
+    <textarea {...common} rows="5" set:text={field.defaultValue}></textarea>
+  ) : (
+    <input
+      {...common}
+      type={type}
+      value={field.defaultValue}
+      inputmode={numeric ? 'decimal' : undefined}
+      spellcheck={type === 'text' && !numeric ? undefined : 'false'}
+      list={field.options ? listId : undefined}
+    />
+  )}
+  {field.options && (
+    <datalist id={listId}>
+      {field.options.map((option) => (
+        <option value={option} />
+      ))}
+    </datalist>
+  )}
+  {numeric && (
+    <p class="st-error-text" id={errorId} hidden>
+      <Icon name="lucide:circle-alert" /> {t('templates.notANumber', { example: '1500.00' })}
+    </p>
+  )}
+</div>
+
+<style>
+  .st-tfield__optional {
+    color: var(--st-text-muted);
+    font-weight: var(--st-weight-regular);
+  }
+</style>

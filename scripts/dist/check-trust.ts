@@ -302,6 +302,9 @@ const OTHER_NAMES = [
   'Financial Sector Conduct Authority',
   'Journal of the Academy of Marketing Science',
   'Letter of Good Standing',
+  // The company line of every template keeps "Reg. No." in Afrikaans too (STYLE-GUIDE-af.md, the
+  // template headers; WP-40 batch 0 notes). WP-32's form prints it as its own text run.
+  'Reg. No.',
   'Shandu Attorneys',
   'Werksmans Attorneys',
 ];
@@ -313,6 +316,8 @@ const OTHER_NAMES = [
  * Each entry was read in context in WP-40 integration; add one only after doing the same.
  */
 export const SAME_IN_AFRIKAANS: ReadonlySet<string> = new Set([
+  // The payment-details row label of the invoices, "Bank" in both templates (WP-32).
+  'Bank',
   'Dividend',
   'Drive',
   'Favicon',

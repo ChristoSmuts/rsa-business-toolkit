@@ -36,10 +36,12 @@ export const WIZARD_AVAILABLE: boolean = false;
 export const SEARCH_AVAILABLE: boolean = false;
 
 /**
- * Whether the templates can be filled in and printed (WP-32). Until then every description says
- * what the template pages are now: what each document must show, with a sample layout.
+ * Whether the templates can be filled in and printed (WP-32, built). On, each template page is a
+ * form with a live preview (`TemplateTool`), and the templates index and the Tools menu say "fill in
+ * and print". Off, every description says what the pages would then be: what each document must
+ * show, with a sample layout, and the template pages render as plain documents.
  */
-export const TEMPLATES_FILLABLE: boolean = false;
+export const TEMPLATES_FILLABLE: boolean = true;
 
 /**
  * Whether checklist ticks are saved on the device. WP-30 built it (`<st-checklist>`, the `checks`

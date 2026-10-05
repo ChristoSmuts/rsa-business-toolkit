@@ -466,19 +466,27 @@
     "items": {
       "quotation": {
         "name": "Kwotasie",
-        "description": "Sê vir ’n kliënt wat die prys is voordat jy die werk doen."
+        "description": "Sê vir ’n kliënt wat die prys is voordat jy die werk doen.",
+        "startNext": "Begin volgende kwotasie",
+        "startNextDone": "Kwotasie {number} is begin."
       },
       "invoice": {
         "name": "Faktuur",
-        "description": "Vra vir betaling as jy nie vir BTW geregistreer is nie."
+        "description": "Vra vir betaling as jy nie vir BTW geregistreer is nie.",
+        "startNext": "Begin volgende faktuur",
+        "startNextDone": "Faktuur {number} is begin."
       },
       "tax-invoice": {
         "name": "Belastingfaktuur",
-        "description": "Vra vir betaling as jy vir BTW geregistreer is."
+        "description": "Vra vir betaling as jy vir BTW geregistreer is.",
+        "startNext": "Begin volgende belastingfaktuur",
+        "startNextDone": "Belastingfaktuur {number} is begin."
       },
       "receipt": {
         "name": "Kwitansie",
-        "description": "Wys dat ’n kliënt jou betaal het."
+        "description": "Wys dat ’n kliënt jou betaal het.",
+        "startNext": "Begin volgende kwitansie",
+        "startNextDone": "Kwitansie {number} is begin."
       },
       "privacy-notice": {
         "name": "Privaatheidskennisgewing",
@@ -492,15 +500,7 @@
     "preview": "Voorskou",
     "groups": {
       "business": "Jou besigheid",
-      "customer": "Kliënt",
-      "document": "Dokumentbesonderhede",
-      "items": "Items",
-      "scope": "Wat die prys insluit",
-      "timing": "Wanneer",
-      "payment": "Betalingsbesonderhede",
-      "receipt": "Betaling ontvang",
-      "acceptance": "Aanvaarding",
-      "notes": "Notas"
+      "document": "Dokumentbesonderhede"
     },
     "fields": {
       "businessName": "Besigheidsnaam",
@@ -509,137 +509,38 @@
       "email": "E-posadres",
       "address": "Fisiese adres",
       "vatNumber": "BTW-registrasienommer",
-      "vatNumberHint": "Vul dit net in as SARS vir jou ’n BTW-nommer gegee het.",
       "registeredName": "Geregistreerde maatskappynaam",
       "registrationNumber": "Maatskappyregistrasienommer",
-      "registrationNumberHint": "As jy ’n Pty Ltd het, vereis die wet dit op elke kwotasie, faktuur en kwitansie.",
-      "tradingAs": "Handelsnaam",
-      "tradingAsHint": "Net as jou maatskappy ’n ander naam as sy geregistreerde naam gebruik.",
-      "tradingAsLine": "’n Handelsnaam van {company}, Reg.nr. {number}",
-      "customerName": "Kliënt se naam",
-      "customerAddress": "Kliënt se adres",
-      "customerContact": "Kliënt se telefoon of e-pos",
-      "customerVatNumber": "Kliënt se BTW-nommer",
-      "customerVatNumberHint": "Net as die kliënt vir BTW geregistreer is. Verpligtend op ’n belastingfaktuur bo {amount}.",
-      "quoteNumber": "Kwotasienommer",
-      "invoiceNumber": "Faktuurnommer",
-      "receiptNumber": "Kwitansienommer",
-      "numberHint": "Gebruik nommers in volgorde sonder gapings, byvoorbeeld {example}.",
-      "date": "Datum",
-      "dateOfIssue": "Uitreikingsdatum",
-      "validUntil": "Geldig tot",
-      "dueDate": "Vervaldatum",
-      "validForDays": "Aantal dae wat die kwotasie geldig is",
-      "depositPercent": "Deposito voordat die werk begin (% van die totaal)",
-      "balanceDue": "Wanneer die saldo betaal moet word",
-      "workStarts": "Werk begin op",
-      "duration": "Hoe lank die werk duur",
-      "included": "Wat ingesluit is",
-      "notIncluded": "Wat nie ingesluit is nie",
-      "notIncludedHint": "Skryf dit neer. Die meeste argumente gaan oor werk wat die kliënt gedink het by die prys ingesluit is.",
-      "termsLink": "Skakel na jou bepalings en voorwaardes",
-      "bank": "Bank",
-      "accountName": "Rekeningnaam",
-      "accountNameHint": "Presies soos dit op die rekening verskyn.",
-      "accountNumber": "Rekeningnommer",
-      "branchCode": "Takkode",
-      "reference": "Betalingsverwysing",
-      "referenceHint": "Vra die kliënt om die faktuurnommer te gebruik.",
-      "latePayment": "Laatbetalingsvoorwaardes",
-      "dateReceived": "Datum ontvang",
-      "receivedFrom": "Ontvang van",
-      "amountReceived": "Bedrag ontvang",
-      "paymentMethod": "Betaalmetode",
-      "forInvoice": "Vir faktuur",
-      "balanceOwing": "Uitstaande saldo",
-      "informationOfficer": "Inligtingsbeampte",
-      "lastUpdated": "Laas bygewerk",
-      "acceptedBy": "Aanvaar deur",
-      "signature": "Handtekening",
-      "blankLine": "(leë lyn om in te vul)",
-      "printName": "Naam (drukletters)",
-      "signatureDate": "Datum",
-      "notes": "Notas"
-    },
-    "paymentMethods": {
-      "eft": "EFT",
-      "payshap": "PayShap",
-      "cash": "Kontant",
-      "card": "Kaart"
-    },
-    "privacy": {
-      "whoWeAre": "Wie ons is",
-      "whatWeCollect": "Wat ons insamel",
-      "whyWeCollect": "Waarom ons dit insamel",
-      "whoWeShareWith": "Met wie ons dit deel",
-      "howLongWeKeepIt": "Hoe lank ons dit bewaar",
-      "marketing": "Bemarking",
-      "yourRights": "Jou regte",
-      "listHint": "Voeg items by of verwyder items sodat dit waar is vir jou besigheid.",
-      "addListItem": "Voeg ’n item by",
-      "removeListItem": "Verwyder item: {text}",
-      "removeListItemEmpty": "Verwyder leë item {n}",
-      "registerFirst": "Registreer jouself as die Inligtingsbeampte voordat jy hierdie kennisgewing gebruik. Dit is gratis."
-    },
-    "line": {
-      "description": "Beskrywing",
-      "quantity": "Hoeveelheid",
-      "unitPrice": "Eenheidsprys",
-      "amount": "Bedrag",
-      "placeholder": "Item of diens"
+      "blankLine": "(leë lyn om in te vul)"
     },
     "addLine": "Voeg reël by",
     "removeLine": "Verwyder reël: {description}",
-    "removeLineEmpty": "Verwyder leë reël {n}",
-    "subtotal": "Subtotaal",
-    "subtotalExclVat": "Subtotaal (BTW uitgesluit)",
     "vat": "BTW ({rate}%)",
-    "total": "Totaal",
-    "totalInclVat": "Totaal (BTW ingesluit)",
-    "amountDue": "Verskuldig",
     "totalsLabel": "Totale",
-    "noVatNotice": "Jy is nie vir BTW geregistreer nie. Hierdie faktuur wys nie BTW, ’n BTW-nommer of die woorde “Tax Invoice” nie.",
-    "ptyNotice": "’n Pty Ltd moet sy geregistreerde naam en registrasienommer wys. Die wet vereis dit.",
     "requiredItems": "{present} van {total} verpligte items is ingevul",
-    "missing": "Ontbreek: {list}",
     "allPresent": "Alle verpligte items is ingevul.",
-    "required": {
-      "taxInvoice": {
-        "heading": "Die {total} dinge wat ’n volledige belastingfaktuur moet wys",
-        "lead": "Vir enige verkoping bo {amount}.",
-        "words": "Die woorde “Tax Invoice”, “VAT Invoice” of “Invoice”",
-        "supplier": "Jou naam, adres en BTW-registrasienommer",
-        "recipient": "Die kliënt se naam en adres, en die kliënt se BTW-nommer as die kliënt vir BTW geregistreer is",
-        "numberAndDate": "’n Reeksnommer en die uitreikingsdatum",
-        "description": "’n Beskrywing van die goedere of dienste",
-        "quantity": "Die hoeveelheid of volume",
-        "values": "Die waarde van die lewering, die BTW wat gehef is en die totaal"
-      },
-      "thresholds": {
-        "none": "By {amount} of minder het jy nie ’n belastingfaktuur nodig nie.",
-        "abridged": "Van {from} tot {to} is ’n kort (verkorte) belastingfaktuur toegelaat.",
-        "full": "Bo {amount} het jy ’n volledige belastingfaktuur nodig."
-      },
-      "issueWithin": "Reik die belastingfaktuur binne {days} dae na die verkoping uit.",
-      "secondHand": "As jy tweedehandse goedere verkoop, moet die beskrywing dit sê."
-    },
-    "receiptWarning": "Stuur net ’n kwitansie wanneer die geld in jou rekeningsaldo is. Moenie dit stuur terwyl die betaling nog hangende is nie.",
     "print": "Druk of stoor as PDF",
     "printHint": "Kies Stoor as PDF in die drukvenster om ’n kopie te hou.",
     "clear": "Maak vorm skoon",
     "clearConfirm": {
       "title": "Maak hierdie vorm skoon?",
       "body": "Dit verwyder alles wat jy in hierdie vorm op hierdie toestel getik het.",
-      "confirm": "Maak vorm skoon"
+      "confirm": "Maak vorm skoon",
+      "cancel": "Hou wat ek getik het"
     },
     "clearDone": "Die vorm is skoongemaak.",
-    "startNext": "Begin volgende faktuur",
-    "startNextDone": "Faktuur {number} is begin.",
-    "startNextHint": "Hou jou besigheidsbesonderhede en gebruik die volgende faktuurnommer.",
+    "startNextHint": "Hou jou besigheids- en bankbesonderhede en gebruik die volgende nommer.",
     "savedNotice": "Wat jy tik, word net op hierdie toestel gestoor. Niks word êrens heen gestuur nie.",
     "previewLabel": "Bladsyvoorskou",
-    "previewEmpty": "Vul die vorm in om jou bladsy hier te sien.",
-    "prefilled": "Jou besigheidsbesonderhede is uit jou gestoorde antwoorde ingevul."
+    "prefilled": "Jou besigheidsbesonderhede is uit jou gestoorde antwoorde ingevul.",
+    "optional": "(opsioneel)",
+    "onePerLine": "Sit elke item op ’n eie reël.",
+    "notANumber": "Tik ’n getal, byvoorbeeld {example}.",
+    "lineLegend": "Reël {n}",
+    "removeLineShort": "Verwyder reël",
+    "totalsNoJs": "Sonder JavaScript word die totale nie uitgewerk nie. Skryf dit op die gedrukte bladsy.",
+    "noJsPrint": "Gebruik jou blaaier se Druk-opdrag om te druk. Sonder JavaScript word wat jy tik nie gestoor nie.",
+    "requiredHeading": "Verpligte items"
   },
   "validation": {
     "summaryTitle": "Kyk weer na hierdie antwoorde",
