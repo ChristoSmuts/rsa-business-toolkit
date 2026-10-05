@@ -11,7 +11,7 @@
  */
 import * as z from 'zod/mini';
 import { persistentValue, type PersistentStore, type Schema } from '../store';
-import type { LineInput } from './totals';
+import { lineResult, QUANTITY, readCents, readNumber, type LineInput } from './totals';
 
 /** The five template slugs, the last part of each template's route. */
 export const TEMPLATE_SLUGS = [
@@ -45,11 +45,72 @@ const lineSchema = z.object({
   unitPrice: z.string(),
 });
 
-/** One schema object for every draft key, so `persistentValue` sees one owner per key. */
-export const draftSchema: Schema<Draft> = z.object({
-  values: z.record(z.string(), z.string()),
-  lines: z.array(lineSchema).check(z.maxLength(MAX_LINES)),
-});
+/** The longest value a draft keeps for one field. */
+export const MAX_VALUE_LENGTH = 5000;
+
+const textSchema = z.string().check(z.maxLength(MAX_VALUE_LENGTH));
+
+/**
+ * One schema object for every draft key, so `persistentValue` sees one owner per key.
+ *
+ * Lenient by entry, like `entriesOf` in the store (review WP-32 pass 1, blocker 1): a value that is
+ * not a string, or is too long, and a line that is not three strings, are dropped and the rest of
+ * the draft is kept. Only a draft that is not an object at all is reset as a whole.
+ */
+export const draftSchema: Schema<Draft> = {
+  safeParse(data) {
+    if (typeof data !== 'object' || data === null || Array.isArray(data)) {
+      return { success: false };
+    }
+    const raw = data as { values?: unknown; lines?: unknown };
+    const values: Record<string, string> = {};
+    if (typeof raw.values === 'object' && raw.values !== null && !Array.isArray(raw.values)) {
+      for (const [name, value] of Object.entries(raw.values)) {
+        const parsed = textSchema.safeParse(value);
+        if (parsed.success) values[name] = parsed.data;
+      }
+    }
+    const lines: LineInput[] = [];
+    if (Array.isArray(raw.lines)) {
+      for (const line of raw.lines) {
+        const parsed = lineSchema.safeParse(line);
+        if (parsed.success && lines.length < MAX_LINES) lines.push(parsed.data);
+      }
+    }
+    return { success: true, data: { values, lines } };
+  },
+};
+
+/**
+ * Removes values a form cannot use from a draft (an amount or quantity over the limits in
+ * `totals.ts`, from an older version or edited by hand): the field goes back to its default and
+ * everything else is kept. `kinds` names the fields that hold numbers. Returns the names dropped.
+ */
+export function dropOutOfRange(
+  draft: Draft,
+  kinds: Readonly<Record<string, 'money' | 'number'>>,
+): { draft: Draft; dropped: string[] } {
+  const dropped: string[] = [];
+  const values: Record<string, string> = {};
+  for (const [name, value] of Object.entries(draft.values)) {
+    const kind = kinds[name];
+    const read =
+      kind === 'money' ? readCents(value) : kind ? readNumber(value, QUANTITY) : undefined;
+    if (read?.kind === 'invalid' && read.problem === 'tooLarge') dropped.push(name);
+    else values[name] = value;
+  }
+  const lines = draft.lines.map((line, index) => {
+    const result = lineResult(line);
+    if (result.quantityProblem !== 'tooLarge' && result.priceProblem !== 'tooLarge') return line;
+    dropped.push(`lines.${index}`);
+    return {
+      description: line.description,
+      quantity: result.quantityProblem === 'tooLarge' ? '' : line.quantity,
+      unitPrice: '',
+    };
+  });
+  return { draft: { values, lines }, dropped };
+}
 
 export const draftKey = (slug: TemplateSlug): string => `st.template.${slug}.v1`;
 

@@ -136,10 +136,12 @@ interface ParamNames {
   'templates.items.receipt.startNextDone': 'number';
   'templates.openNamed': 'name';
   'templates.removeLine': 'description';
-  'templates.vat': 'rate';
   'templates.requiredItems': 'present' | 'total';
   'templates.notANumber': 'example';
   'templates.lineLegend': 'n';
+  'templates.ambiguous': 'example';
+  'templates.tooManyDecimals': 'example';
+  'templates.tooLarge': 'max';
   'validation.summaryCount': 'count';
   'validation.goToField': 'field';
   'validation.required': 'field';

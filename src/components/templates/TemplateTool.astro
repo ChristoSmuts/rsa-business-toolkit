@@ -52,7 +52,12 @@ const startNextKey = `templates.items.${slug}.startNext` as TranslationKey;
 const startNextDoneKey = `templates.items.${slug}.startNextDone` as TranslationKey;
 const required = requiredItems(model).map((item) => ({
   ...item,
-  label: item.profileKey ? t(`templates.fields.${item.profileKey}`) : item.label,
+  // A conditional item is listed with the template's own condition (review pass 1, major 4).
+  label: item.profileKey
+    ? t(`templates.fields.${item.profileKey}`)
+    : item.requiredAbove !== undefined
+      ? (fields.get(item.name)?.condition ?? item.label)
+      : item.label,
   fromTemplate: item.profileKey === undefined,
   href: `#${item.name === 'lines' ? fieldId(lineNames(0).description) : fieldId(item.name)}`,
 }));
@@ -123,6 +128,7 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
 
   <div class="st-tool__panes">
     <div class="st-tool__pane" id="st-tool-pane-form" data-pane="form">
+      {/* The printed sheet without JavaScript; the script moves `data-print-sheet` to the preview. */}
       <form class="st-tform st-stack" data-print-sheet novalidate>
         <p class="st-tform__print-title" aria-hidden="true" lang={textLang}>
           {model.title}
@@ -147,7 +153,7 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
                 ) : null;
               }
               if (item.kind === 'text') {
-                return (
+                const text = (
                   <p class="st-tgroup__text" lang={textLang}>
                     {item.block.lines.map((line, index) => (
                       <Fragment>
@@ -156,6 +162,17 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
                       </Fragment>
                     ))}
                   </p>
+                );
+                return item.omit ? (
+                  <div class="st-tgroup__item" data-omit-wrap>
+                    {text}
+                    <label class="st-check st-tgroup__omit">
+                      <input type="checkbox" name={item.omit} value="1" data-omit={item.block.id} />
+                      {t('templates.leaveOut')}
+                    </label>
+                  </div>
+                ) : (
+                  text
                 );
               }
               return lines ? (
@@ -192,10 +209,11 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
     <h2 class="st-tool__heading" id="st-tool-required-heading">
       {t('templates.requiredHeading')}
     </h2>
+    <p class="st-hint">{t('templates.requiredNote')}</p>
     <p role="status" data-required-count></p>
     <ul class="st-tool__missing" role="list" data-missing>
       {required.map((item) => (
-        <li data-required-item={item.name}>
+        <li data-required-item={item.name} data-required-above={item.requiredAbove}>
           <a class="st-link-block" href={item.href} lang={item.fromTemplate ? textLang : undefined}>
             {item.label}
           </a>
@@ -347,6 +365,21 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
     display: none;
   }
 
+  /* Each link stands alone on its line: a full target, however short its text (pass 1, minor 6). */
+  .st-tool__missing a {
+    min-inline-size: var(--st-target);
+  }
+
+  .st-tgroup__item {
+    display: grid;
+    gap: var(--st-space-1);
+  }
+
+  .st-tgroup__item:has([data-omit]:checked) .st-tgroup__text {
+    color: var(--st-text-muted);
+    text-decoration: line-through;
+  }
+
   @media print {
     /* With the script, the preview is the sheet; without it, the form is. */
     html.js .st-tform {
@@ -382,6 +415,21 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
     .st-tform textarea {
       field-sizing: content;
       resize: none;
+    }
+
+    /* Placeholders, focus and the "Leave this out" switches are not on paper (pass 1, minor 8). */
+    .st-tform ::placeholder {
+      color: transparent;
+    }
+
+    .st-tform :focus,
+    .st-tform :focus-visible {
+      outline: none;
+    }
+
+    .st-tgroup__omit,
+    .st-tgroup__item:has([data-omit]:checked) {
+      display: none;
     }
 
     .st-tform input,

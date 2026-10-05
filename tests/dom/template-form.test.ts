@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { clearAll } from '../../src/lib/store';
+import { clearAll, handleStorageEvent } from '../../src/lib/store';
 import { templateDraft } from '../../src/lib/templates/draft';
 
 const profile = vi.hoisted(() => ({ details: null as Record<string, string> | null }));
@@ -19,10 +19,10 @@ const row = (index: number, extra: boolean): string => `
       <legend>Line ${index + 1}</legend>
       <input id="d${index}" name="lines.${index}.description" placeholder="Item or service" />
       <input id="q${index}" name="lines.${index}.quantity" value="1" data-error-id="q${index}-error" />
-      <p id="q${index}-error" hidden>Type a number</p>
+      <p id="q${index}-error" hidden data-message-format="Cannot read" data-message-ambiguous="Two ways" data-message-decimals="Two decimals" data-message-too-large="Too large"><span data-error-message>Cannot read</span></p>
       <input id="p${index}" name="lines.${index}.unitPrice" placeholder="0.00" data-error-id="p${index}-error" />
-      <p id="p${index}-error" hidden>Type a number</p>
-      <output data-line-amount></output>
+      <p id="p${index}-error" hidden data-message-format="Cannot read" data-message-ambiguous="Two ways" data-message-decimals="Two decimals" data-message-too-large="Too large"><span data-error-message>Cannot read</span></p>
+      <span data-line-amount></span>
       <button type="button" data-remove-line="${index}" aria-label="Remove line: Line ${index + 1}">Remove line</button>
     </fieldset>
   </li>`;
@@ -45,34 +45,39 @@ const TOOL = `
     <button type="button" role="tab" id="tab-preview" data-tab="preview" aria-selected="false" tabindex="-1">Preview</button>
   </div>
   <div data-pane="form">
-    <form novalidate>
+    <form novalidate data-print-sheet>
       <input name="businessName" data-kind="text" data-required data-carry data-profile-key="businessName" />
       <input name="registeredName" data-kind="text" data-carry data-profile-key="registeredName" />
       <input name="number" data-kind="text" data-required data-number value="INV-0001" />
-      <input name="issued" type="date" data-kind="date" data-required />
-      <input name="customer" data-kind="text" data-required />
+      <input id="issued" name="issued" type="text" data-type="date" data-kind="date" data-required />
+      <input id="customer" name="customer" data-kind="text" data-required />
+      <input id="customerVat" name="customerVat" data-kind="text" data-required-above="500000" />
       <input name="bank" data-kind="text" data-required data-carry />
       <input name="reference" data-kind="text" data-required data-follows="number" />
       <input name="paid" data-kind="money" data-error-id="paid-error" />
-      <p id="paid-error" hidden>Type a number</p>
+      <p id="paid-error" hidden data-message-format="Cannot read" data-message-ambiguous="Two ways" data-message-decimals="Two decimals" data-message-too-large="Too large"><span data-error-message>Cannot read</span></p>
+      <p data-text-item>Thank you.</p>
+      <input type="checkbox" name="omit:thanks" value="1" data-omit="thanks" />
       <textarea name="items" data-kind="list" data-sample="[Be specific]"></textarea>
       <ol>${row(0, false)}${row(1, true)}${row(2, true)}</ol>
       <button type="button" data-add-line>Add line</button>
       <div aria-live="polite">
-        <output data-total="subtotal"></output><output data-total="vat"></output><output data-total="total"></output>
+        <span data-total="subtotal"></span><span data-total="vat"></span><span data-total="total"></span>
       </div>
+      <p data-totals-blocked hidden>A line cannot be read.</p>
     </form>
   </div>
   <section data-pane="preview" aria-labelledby="preview-heading">
     <h2 id="preview-heading">Page preview</h2>
-    <div class="st-tsheet">
-      <span data-field="businessName" data-sample="[YOUR BUSINESS NAME]">[YOUR BUSINESS NAME]</span>
-      <span class="st-tsheet__line" data-when="registeredName" hidden>Trading as <span data-field="registeredName" data-sample=""></span></span>
-      <span data-field="number" data-sample="INV-0001">INV-0001</span>
-      <span data-field="issued" data-sample="[DD Month YYYY]">[DD Month YYYY]</span>
-      <span data-field="reference" data-sample="INV-0001">INV-0001</span>
-      <span data-field="paid" data-sample="R 0.00">R 0.00</span>
-      <ul data-list="items"><li>[Be specific]</li></ul>
+    <div class="st-tsheet" data-sheet>
+      <span data-field="businessName" data-empty data-sample="[YOUR BUSINESS NAME]"></span>
+      <span class="st-tsheet__line" data-when="registeredName" hidden>Trading as <span data-field="registeredName" data-empty data-sample=""></span></span>
+      <span data-field="number" data-empty data-sample="INV-0001"></span>
+      <span data-field="issued" data-empty data-sample="[DD Month YYYY]"></span>
+      <span data-field="reference" data-empty data-sample="INV-0001"></span>
+      <span data-field="paid" data-empty data-sample="R 0.00"></span>
+      <p data-block="thanks">Thank you.</p>
+      <ul data-list="items"><li><span data-empty data-sample="[Be specific]"></span></li></ul>
       <table><tbody>
         <tr data-sample-line><td>[Goods or services supplied]</td></tr>
         ${[0, 1, 2]
@@ -89,7 +94,8 @@ const TOOL = `
   <ul>
     <li data-required-item="businessName"><a href="#">Business name</a></li>
     <li data-required-item="number"><a href="#">Invoice number</a></li>
-    <li data-required-item="customer"><a href="#">Customer name</a></li>
+    <li data-required-item="customer"><a href="#customer">Customer name</a></li>
+    <li data-required-item="customerVat" data-required-above="500000"><a href="#customerVat">Customer VAT number, if they are a vendor — required on invoices over R5,000</a></li>
     <li data-required-item="reference"><a href="#">Reference</a></li>
     <li data-required-item="lines"><a href="#">Supply</a></li>
   </ul>
@@ -134,8 +140,15 @@ describe('<st-template-form>', () => {
     mount(TOOL);
     expect(el()).toBeInstanceOf(StTemplateForm);
     expect(localStorage.getItem('st.template.tax-invoice.v1')).toBeNull();
-    expect(slot('businessName').textContent).toBe('[YOUR BUSINESS NAME]');
+    // An empty slot has no text: the sample is only data-sample, so it never prints.
+    expect(slot('businessName').textContent).toBe('');
     expect(slot('businessName').hasAttribute('data-empty')).toBe(true);
+    expect(slot('businessName').dataset['sample']).toBe('[YOUR BUSINESS NAME]');
+    // Exactly one sheet prints: the preview, now that the script runs.
+    expect(document.querySelectorAll('[data-print-sheet]')).toHaveLength(1);
+    expect(document.querySelector('.st-tsheet')?.hasAttribute('data-print-sheet')).toBe(true);
+    // A date is a picker once the script runs.
+    expect((control('issued') as HTMLInputElement).type).toBe('date');
     expect(document.querySelector('[data-required-count]')?.textContent).toBe(
       '2 of 5 required items present',
     );
@@ -180,7 +193,9 @@ describe('<st-template-form>', () => {
       'Labour',
     ]);
     type('items', '');
-    expect(document.querySelector('[data-list] li')?.textContent).toBe('[Be specific]');
+    const sample = document.querySelector<HTMLElement>('[data-list] li span');
+    expect(sample?.textContent).toBe('');
+    expect(sample?.dataset['sample']).toBe('[Be specific]');
   });
 
   it('works out line amounts, VAT on the line total and the total', () => {
@@ -386,5 +401,142 @@ describe('<st-template-form>', () => {
     input.value = 'After';
     input.dispatchEvent(new Event('input', { bubbles: true }));
     expect(localStorage.getItem('st.template.tax-invoice.v1')).toBeNull();
+  });
+});
+
+describe('<st-template-form>: review WP-32 pass 1', () => {
+  it('never throws on a huge line, keeps saving, and Clear still works (blocker 1)', async () => {
+    mount(TOOL);
+    type('lines.0.description', 'Huge');
+    type('lines.0.quantity', '1000000');
+    expect(() => type('lines.0.unitPrice', '100000')).not.toThrow();
+    const price = control('lines.0.unitPrice');
+    expect(price.getAttribute('aria-invalid')).toBe('true');
+    expect(document.querySelector('#p0-error [data-error-message]')?.textContent).toBe('Too large');
+    expect(document.querySelector('[data-line-amount]')?.textContent).toBe('');
+    type('customer', 'Still saved');
+    expect((stored() as { values: Record<string, string> }).values['customer']).toBe('Still saved');
+  });
+
+  it('opens a draft saved with an out-of-range amount: drops it, keeps the rest', async () => {
+    templateDraft('tax-invoice').set({
+      values: { customer: 'Thandi', paid: '99999999999999999999' },
+      lines: [{ description: 'Huge', quantity: '1000000000', unitPrice: '100000' }],
+    });
+    expect(() => mount(TOOL)).not.toThrow();
+    expect(control('customer').value).toBe('Thandi');
+    expect(control('paid').value).toBe('');
+    expect(control('lines.0.description').value).toBe('Huge');
+    expect(control('lines.0.unitPrice').value).toBe('');
+    expect(stored()).toEqual({
+      values: { customer: 'Thandi' },
+      lines: [{ description: 'Huge', quantity: '', unitPrice: '' }],
+    });
+    // Everything still works.
+    type('customer', 'Next');
+    expect((stored() as { values: Record<string, string> }).values['customer']).toBe('Next');
+    const dialog = document.querySelector('dialog') as HTMLDialogElement;
+    dialog.showModal = vi.fn();
+    click('[data-clear]');
+    dialog.returnValue = 'confirm';
+    dialog.dispatchEvent(new Event('close'));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(localStorage.getItem('st.template.tax-invoice.v1')).toBeNull();
+  });
+
+  it('opens a corrupt draft with the good parts kept', () => {
+    localStorage.setItem(
+      'st.template.tax-invoice.v1',
+      JSON.stringify({ values: { customer: 'Kept', businessName: 5 }, lines: 'x' }),
+    );
+    // The store reads the key again, as a reload would.
+    handleStorageEvent('st.template.tax-invoice.v1');
+    expect(() => mount(TOOL)).not.toThrow();
+    expect(control('customer').value).toBe('Kept');
+    expect(control('businessName').value).toBe('');
+  });
+
+  it('refuses an ambiguous amount with its own message, and prints it blank (major 3)', () => {
+    mount(TOOL);
+    type('paid', '1.500');
+    expect(control('paid').getAttribute('aria-invalid')).toBe('true');
+    expect(document.querySelector('#paid-error [data-error-message]')?.textContent).toBe(
+      'Two ways',
+    );
+    expect(slot('paid').textContent).toBe('');
+    type('paid', '1.500,50');
+    expect(control('paid').hasAttribute('aria-invalid')).toBe(false);
+    expect(slot('paid').textContent).toBe(`R${NBSP}1${NBSP}500.50`);
+  });
+
+  it('leaves the totals blank while a used line cannot be read (minor 2)', () => {
+    mount(TOOL);
+    type('lines.0.description', 'Labour');
+    type('lines.0.unitPrice', '400');
+    type('lines.0.quantity', '2 hrs');
+    expect(document.querySelector('form [data-total="total"]')?.textContent).toBe('');
+    expect(document.querySelector<HTMLElement>('[data-totals-blocked]')?.hidden).toBe(false);
+    expect(document.querySelector('[data-required-item="lines"]')?.hasAttribute('hidden')).toBe(
+      false,
+    );
+    const row = document.querySelector('.st-tsheet tr[data-line="0"]');
+    expect(row?.querySelector('[data-cell="quantity"]')?.textContent).toBe('');
+    type('lines.0.quantity', '2');
+    expect(document.querySelector('form [data-total="total"]')?.textContent).toBe(`R${NBSP}920.00`);
+  });
+
+  it('counts the customer VAT number only above the template threshold (major 4)', () => {
+    mount(TOOL);
+    const vat = document.querySelector<HTMLElement>('[data-required-item="customerVat"]');
+    type('lines.0.description', 'Small');
+    type('lines.0.unitPrice', '100');
+    expect(vat?.hidden).toBe(true);
+    const below = document.querySelector('[data-required-count]')?.textContent;
+    expect(below).toBe('3 of 5 required items present');
+    type('lines.0.unitPrice', '9000');
+    expect(vat?.hidden).toBe(false);
+    expect(document.querySelector('[data-required-count]')?.textContent).toBe(
+      '3 of 6 required items present',
+    );
+    type('businessName', 'B');
+    type('customer', 'C');
+    expect(document.querySelector('[data-required-count]')?.textContent).not.toBe(
+      'All required items are present.',
+    );
+    type('customerVat', '4123456789');
+    expect(document.querySelector('[data-required-count]')?.textContent).toBe(
+      'All required items are present.',
+    );
+  });
+
+  it('a missing item link shows the form tab first, then focuses the field (major 5)', () => {
+    mount(TOOL);
+    click('[data-tab="preview"]');
+    expect(el().dataset['view']).toBe('preview');
+    click('[data-required-item="customer"] a');
+    expect(el().dataset['view']).toBe('form');
+    expect(document.activeElement).toBe(control('customer'));
+  });
+
+  it('leaves a paragraph of template text out of the document, and keeps that (minor 5)', () => {
+    mount(TOOL);
+    const box = control('omit:thanks') as HTMLInputElement;
+    box.checked = true;
+    box.dispatchEvent(new Event('input', { bubbles: true }));
+    expect(document.querySelector('[data-block="thanks"]')?.hasAttribute('data-omitted')).toBe(
+      true,
+    );
+    expect((stored() as { values: Record<string, string> }).values['omit:thanks']).toBe('1');
+    document.body.innerHTML = '';
+    mount(TOOL);
+    expect((control('omit:thanks') as HTMLInputElement).checked).toBe(true);
+  });
+
+  it('gives the form back the print sheet when it disconnects', () => {
+    mount(TOOL);
+    const element = el();
+    const form = element.querySelector('form') as HTMLFormElement;
+    element.remove();
+    expect(form.hasAttribute('data-print-sheet')).toBe(true);
   });
 });

@@ -3,7 +3,9 @@
  * The live A4 preview of a template (build plan B3 flow 5): the template's own layout, from the
  * markdown, with each slot bound to a form field by `<st-template-form>`.
  *
- * It is what prints (`data-print-sheet`, `src/styles/print.css`). Headings here are `h3` under the
+ * It is what prints with JavaScript: `<st-template-form>` gives it `data-print-sheet`
+ * (`src/styles/print.css`) when it connects, and takes it from the form, so exactly one sheet
+ * prints in either mode (review WP-32 pass 1, major 1). Headings here are `h3` under the
  * preview's own `h2`; the ids stay on the form's groups, so anchors into the template keep working
  * and no id appears twice.
  *
@@ -33,13 +35,12 @@ const zero = formatRand(locale, 0);
 const lines = model.lines;
 const listDefault = (name: string): string[] => {
   const field = fields.get(name);
-  if (!field) return [];
-  if (field.defaultValue !== '') return field.defaultValue.split('\n');
-  return field.sample === '' ? [] : [field.sample];
+  return field && field.defaultValue !== '' ? field.defaultValue.split('\n') : [];
 };
+const listSample = (name: string): string => fields.get(name)?.sample ?? '';
 ---
 
-<div class="st-tsheet" data-print-sheet lang={textLang}>
+<div class="st-tsheet" data-sheet lang={textLang}>
   <p class="st-tsheet__title">{model.title}</p>
   {model.sheet.map((block) => {
     switch (block.kind) {
@@ -51,7 +52,7 @@ const listDefault = (name: string): string[] => {
         );
       case 'paragraph':
         return (
-          <p>
+          <p data-block={block.id}>
             {block.lines.map((line, index) => (
               <span
                 class="st-tsheet__line"
@@ -87,12 +88,22 @@ const listDefault = (name: string): string[] => {
             {listDefault(block.name).map((item) => (
               <li>{item}</li>
             ))}
+            {listDefault(block.name).length === 0 && listSample(block.name) !== '' && (
+              <li>
+                <span class="st-tsheet__value" data-empty="" data-sample={listSample(block.name)} />
+              </li>
+            )}
           </ol>
         ) : (
           <ul data-list={block.name}>
             {listDefault(block.name).map((item) => (
               <li>{item}</li>
             ))}
+            {listDefault(block.name).length === 0 && listSample(block.name) !== '' && (
+              <li>
+                <span class="st-tsheet__value" data-empty="" data-sample={listSample(block.name)} />
+              </li>
+            )}
           </ul>
         );
       case 'lines':
@@ -111,9 +122,11 @@ const listDefault = (name: string): string[] => {
               {Array.from({ length: lines.rows }, () => (
                 <tr data-sample-line>
                   <td>
-                    <span class="st-tsheet__value" data-empty="">
-                      [{lines.sample}]
-                    </span>
+                    <span
+                      class="st-tsheet__value"
+                      data-empty=""
+                      data-sample={`[${lines.sample}]`}
+                    />
                   </td>
                   <td class="st-num">{lines.quantity}</td>
                   <td class="st-num">{zero}</td>
@@ -206,23 +219,57 @@ const listDefault = (name: string): string[] => {
     font-weight: var(--st-weight-bold);
   }
 
-  /* A slot not filled in yet: the template's own words, marked like a placeholder. */
-  .st-tsheet .st-tsheet__value[data-empty]:not(:empty) {
+  /*
+   * A slot not filled in yet has no text of its own. On screen it shows the template's words from
+   * `data-sample`, marked like a placeholder; on paper it is a blank line to write on, never the
+   * sample (an empty "Balance still owing" printed "R 0.00", review pass 1, major 2).
+   */
+  .st-tsheet__value[data-empty]:not([data-sample=''])::before {
+    content: attr(data-sample);
     padding-inline: 0.15em;
     border-radius: var(--st-radius-sm);
     background-color: var(--st-mark-bg);
     color: var(--st-text);
   }
 
+  /* Short tables never split across two pages (pass 1, nit 5). */
+  .st-tsheet__details,
+  .st-tsheet__lines tfoot {
+    break-inside: avoid;
+  }
+
   @media print {
     .st-tsheet {
       padding: 0;
-      font-size: 1rem;
+      font-size: inherit;
     }
 
-    /* A slot left empty prints as its template text, without the screen highlight. */
-    .st-tsheet .st-tsheet__value[data-empty]:not(:empty) {
+    .st-tsheet__value[data-empty]:not([data-sample=''])::before {
+      content: '';
+      display: inline-block;
+      min-inline-size: 10em;
+      padding: 0;
+      border-block-end: var(--st-border-width) solid var(--st-text);
       background: none;
+      vertical-align: baseline;
     }
+
+    /* The template's sample rows are for the screen only. */
+    .st-tsheet [data-sample-line] {
+      display: none;
+    }
+
+    /* Totals that could not be worked out print as lines to write on. */
+    .st-tsheet td[data-total]:empty::before {
+      content: '';
+      display: inline-block;
+      min-inline-size: 6em;
+      border-block-end: var(--st-border-width) solid var(--st-text);
+    }
+  }
+
+  /* Omitted text (`Leave this out`) is not on the document. */
+  .st-tsheet [data-omitted] {
+    display: none;
   }
 </style>

@@ -9,6 +9,7 @@ import {
   runsText,
   splitNested,
   splitTemplate,
+  thresholdCents,
   type TemplateField,
   type TemplateModel,
 } from '../../../src/lib/templates/placeholders';
@@ -239,6 +240,50 @@ describe('parseTemplate on the five templates', () => {
   });
 });
 
+describe('conditions from the template (review pass 1, major 4 and minor 7)', () => {
+  it('keeps the template condition on a conditional slot, and its threshold', () => {
+    const vat = field(model('en', 'tax-invoice'), 'to.1:2');
+    expect(vat).toMatchObject({
+      required: false,
+      condition: 'Customer VAT number, if they are a vendor — required on invoices over R5,000',
+      requiredAbove: 500_000,
+      printLabel: 'Customer VAT number',
+    });
+    expect(field(model('af', 'tax-invoice'), 'to.1:2')).toMatchObject({
+      requiredAbove: 500_000,
+      printLabel: 'Kliënt se BTW-nommer',
+    });
+    expect(field(model('en', 'quotation'), 'registeredName').condition).toContain(
+      'this is required by law',
+    );
+    // An instruction with no condition stays plainly optional.
+    expect(field(model('en', 'invoice'), 'payment-details.3:1').condition).toBeUndefined();
+  });
+
+  it('prints a label before a slot that is all instruction', () => {
+    const sheet = model('en', 'tax-invoice').sheet.find((block) => block.id === 'to.1');
+    expect(sheet?.kind === 'paragraph' && sheet.lines[2]?.runs[0]).toEqual({
+      t: 'text',
+      v: 'Customer VAT number: ',
+    });
+  });
+
+  it('reads thresholds written the English way, in any language', () => {
+    expect(thresholdCents('required on invoices over R5,000')).toBe(500_000);
+    expect(thresholdCents('bo R50')).toBe(5000);
+    expect(thresholdCents('over R1,234.50')).toBe(123_450);
+    expect(thresholdCents('no amount here')).toBeUndefined();
+  });
+
+  it('lets every paragraph of template text be left out, except signature lines', () => {
+    const quotation = model('en', 'quotation');
+    const acceptance = quotation.groups.find((g) => g.id === 'acceptance');
+    expect(acceptance?.items.every((item) => item.kind === 'text' && !item.omit)).toBe(true);
+    const marketing = model('en', 'privacy-notice').groups.find((g) => g.id === 'marketing');
+    expect(marketing?.items[0]).toMatchObject({ kind: 'text', omit: 'omit:marketing.1' });
+  });
+});
+
 describe('requiredItems', () => {
   it('lists every required field once, in form order, and "at least one line" where lines are', () => {
     const items = requiredItems(model('en', 'tax-invoice'));
@@ -252,6 +297,7 @@ describe('requiredItems', () => {
       'intro.5:r1',
       'to.1:0',
       'to.1:1',
+      'to.1:2',
       'lines',
       'payment-details.1:r0',
       'payment-details.1:r1',
@@ -259,6 +305,8 @@ describe('requiredItems', () => {
       'payment-details.1:r3',
       'payment-details.1:r4',
     ]);
+    // The customer's VAT number counts above the template's own threshold (pass 1, major 4).
+    expect(items.find((item) => item.name === 'to.1:2')?.requiredAbove).toBe(500_000);
     // Named by the dictionary unless the template names the slot itself.
     expect(items.find((item) => item.name === 'phone')?.profileKey).toBe('phone');
     expect(items.find((item) => item.name === 'vatNumber')?.profileKey).toBeUndefined();
@@ -267,7 +315,62 @@ describe('requiredItems', () => {
 
   it.each(TEMPLATE_SLUGS)('%s: optional fields are never required items', (slug) => {
     const m = model('en', slug);
-    const optional = new Set(m.fields.filter((f) => !f.required).map((f) => f.name));
+    const optional = new Set(
+      m.fields.filter((f) => !f.required && f.requiredAbove === undefined).map((f) => f.name),
+    );
     expect(requiredItems(m).filter((item) => optional.has(item.name))).toEqual([]);
+  });
+});
+
+describe('parseTemplate on shapes the five templates do not have', () => {
+  const doc = (blocks: unknown[]): Pick<Doc, 'h1' | 'blocks'> =>
+    ({ h1: 'SHEET', blocks }) as Pick<Doc, 'h1' | 'blocks'>;
+  const text = (v: string) => ({ t: 'text', v });
+  const slot = (v: string, style = 'field', nested = false) => ({
+    t: 'placeholder',
+    v,
+    style,
+    ...(nested ? { nested: true } : {}),
+  });
+  const hash = '0000000000000000';
+
+  it('names the slots of a nested line generically when it has not two of them', () => {
+    const m = parseTemplate(
+      doc([
+        { id: 'a.1', hash, kind: 'hr' },
+        {
+          id: 'a.2',
+          hash,
+          kind: 'paragraph',
+          c: [slot('If paid: by [A], [B] and [C]', 'instruction', true)],
+        },
+      ]),
+    );
+    expect(m.fields.map((f) => f.name)).toEqual(['a.2:0.0', 'a.2:0.1', 'a.2:0.2']);
+    expect(m.fields.every((f) => !f.required && f.profileKey === undefined)).toBe(true);
+  });
+
+  it('reads an amount written as text in a sentence, and two slots in one table cell', () => {
+    const m = parseTemplate(
+      doc([
+        { id: 'a.1', hash, kind: 'paragraph', c: [text('Deposit paid: R 0.00')] },
+        {
+          id: 'a.2',
+          hash,
+          kind: 'table',
+          align: [null, null],
+          header: [[text('Field')], [text('Detail')]],
+          rows: [[[text('Between')], [slot('From'), text(' and '), slot('To')]]],
+        },
+      ]),
+    );
+    expect(m.fields.find((f) => f.name === 'a.1:0')).toMatchObject({
+      kind: 'money',
+      label: 'Deposit paid',
+      required: true,
+    });
+    expect(m.fields.map((f) => f.name)).toContain('a.2:r0.1');
+    expect(m.lines).toBeUndefined();
+    expect(m.numberField).toBeUndefined();
   });
 });

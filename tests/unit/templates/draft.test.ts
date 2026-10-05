@@ -5,7 +5,9 @@ import {
   draftSchema,
   EMPTY_DRAFT,
   isTemplateSlug,
+  dropOutOfRange,
   MAX_LINES,
+  MAX_VALUE_LENGTH,
   nextDraft,
   prefill,
   templateDraft,
@@ -24,18 +26,47 @@ describe('draft keys and schema', () => {
     expect(isTemplateSlug('cv')).toBe(false);
   });
 
-  it('accepts a draft and refuses anything else', () => {
-    expect(draftSchema.safeParse({ values: { a: 'b' }, lines: [] }).success).toBe(true);
-    expect(draftSchema.safeParse({ values: { a: 1 }, lines: [] }).success).toBe(false);
-    expect(draftSchema.safeParse({ values: {}, lines: [{ description: 'x' }] }).success).toBe(
-      false,
+  it('keeps every good entry of a draft and drops each bad one (review pass 1, blocker 1)', () => {
+    const good = { description: 'x', quantity: '1', unitPrice: '1' };
+    expect(
+      draftSchema.safeParse({
+        values: { a: 'b', bad: 1, long: 'x'.repeat(MAX_VALUE_LENGTH + 1) },
+        lines: [good, { description: 'x' }, 'line', good],
+      }),
+    ).toEqual({ success: true, data: { values: { a: 'b' }, lines: [good, good] } });
+    const tooMany = Array.from({ length: MAX_LINES + 1 }, () => good);
+    const parsed = draftSchema.safeParse({ values: {}, lines: tooMany });
+    expect(parsed.success && parsed.data.lines).toHaveLength(MAX_LINES);
+    // Missing parts are empty, not a reason to lose the draft.
+    expect(draftSchema.safeParse({ lines: 'x' })).toEqual({
+      success: true,
+      data: { values: {}, lines: [] },
+    });
+  });
+
+  it('resets only a draft that is not an object', () => {
+    expect(draftSchema.safeParse(null).success).toBe(false);
+    expect(draftSchema.safeParse([]).success).toBe(false);
+    expect(draftSchema.safeParse('draft').success).toBe(false);
+  });
+
+  it('drops an amount or quantity over the limits and keeps the rest', () => {
+    const { draft, dropped } = dropOutOfRange(
+      {
+        values: { paid: '99999999999', days: '30', deposit: '5000000', name: 'Thandi' },
+        lines: [
+          { description: 'Huge', quantity: '1000000000', unitPrice: '100000' },
+          { description: 'Fine', quantity: '2', unitPrice: '10' },
+        ],
+      },
+      { paid: 'money', days: 'number', deposit: 'number' },
     );
-    const tooMany = Array.from({ length: MAX_LINES + 1 }, () => ({
-      description: 'x',
-      quantity: '1',
-      unitPrice: '1',
-    }));
-    expect(draftSchema.safeParse({ values: {}, lines: tooMany }).success).toBe(false);
+    expect(draft.values).toEqual({ days: '30', name: 'Thandi' });
+    expect(draft.lines).toEqual([
+      { description: 'Huge', quantity: '', unitPrice: '' },
+      { description: 'Fine', quantity: '2', unitPrice: '10' },
+    ]);
+    expect(dropped).toEqual(['paid', 'deposit', 'lines.0']);
   });
 });
 

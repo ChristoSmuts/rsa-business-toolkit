@@ -45,6 +45,10 @@ async function showPreview(page: Page, label = en.templates.preview): Promise<vo
   const tab = page.getByRole('tab', { name: label });
   if (await tab.isVisible()) await tab.click();
 }
+/** The `content` of an element's `::before`, as the current media computes it. */
+const beforeContent = (locator: ReturnType<Page['locator']>): Promise<string> =>
+  locator.evaluate((element) => getComputedStyle(element, '::before').content);
+
 async function showForm(page: Page, label = en.templates.fillIn): Promise<void> {
   const tab = page.getByRole('tab', { name: label });
   if (await tab.isVisible()) await tab.click();
@@ -182,8 +186,92 @@ test.describe('the tax invoice', () => {
     const width = await sheet(page).evaluate((element) => element.getBoundingClientRect().width);
     const viewport = page.viewportSize()?.width ?? 0;
     expect(width).toBeGreaterThan(viewport * 0.8);
+    // Exactly one sheet prints (review WP-32 pass 1, major 1).
+    await expect(page.locator('[data-print-sheet]')).toHaveCount(1);
+    await expect(page.locator('[data-print-sheet]')).toHaveClass(/st-tsheet/);
+    // An empty slot prints a blank line, not its sample (major 2).
+    const customer = sheet(page).locator('[data-field="to.1:0"]');
+    await expect(customer).toHaveText('');
+    expect(await beforeContent(customer)).toBe('""');
+    expect(await sheet(page).innerText()).not.toContain('[');
     const pdf = await page.pdf({ format: 'A4' }).catch(() => undefined);
     if (pdf) expect(pdf.byteLength).toBeGreaterThan(1000);
+  });
+
+  test('a huge amount is refused, never breaks the page, and a reload still works', async ({
+    page,
+  }) => {
+    await page.goto('templates/tax-invoice/');
+    await page.getByRole('textbox', { name: 'Description' }).first().fill('Huge');
+    await page.getByRole('textbox', { name: 'Qty' }).first().fill('1000000');
+    const price = page.getByRole('textbox', { name: 'Unit price' }).first();
+    await price.fill('100000');
+    await expect(price).toHaveAttribute('aria-invalid', 'true');
+    await expect(page.locator('#st-tf-lines-0-unitPrice-error')).toContainText('The most is R');
+    await expect(page.locator('[data-totals-blocked]')).toBeVisible();
+    await page.reload();
+    await showForm(page);
+    await page.getByLabel('Customer name').fill('Still saved');
+    expect(await stored(page)).toContain('Still saved');
+    await page.getByRole('button', { name: en.templates.clear }).click();
+    await expect(page.getByRole('dialog', { name: en.templates.clearConfirm.title })).toBeVisible();
+  });
+
+  test('an ambiguous amount is refused with a message, never read as R 1.50', async ({ page }) => {
+    await page.goto('templates/receipt/');
+    const amount = page.getByLabel('Amount received');
+    await amount.fill('1.500');
+    await expect(amount).toHaveAttribute('aria-invalid', 'true');
+    await expect(page.locator('#st-tf-intro-4-r3-error')).toContainText('two different amounts');
+    await amount.fill('1.500,50');
+    await expect(amount).not.toHaveAttribute('aria-invalid', 'true');
+    await showPreview(page);
+    await expect(sheet(page).locator('[data-field="intro.4:r3"]')).toHaveText(
+      `R${NBSP}1${NBSP}500.50`,
+    );
+  });
+
+  test('the customer VAT number follows the template rule over R5,000, and prints labelled', async ({
+    page,
+  }) => {
+    await page.goto('templates/tax-invoice/');
+    const vatItem = page.locator('[data-required-item="to.1:2"]');
+    // The form states the template's condition, not "(optional)".
+    const label = page.locator('label[for="st-tf-to-1-2"]');
+    await expect(label).not.toContainText('(optional)');
+    await expect(page.locator('#st-tf-to-1-2-hint')).toContainText(
+      'required on invoices over R5,000',
+    );
+    await page.getByRole('textbox', { name: 'Description' }).first().fill('Geyser');
+    await page.getByRole('textbox', { name: 'Unit price' }).first().fill('100');
+    await expect(vatItem).toBeHidden();
+    await page.getByRole('textbox', { name: 'Unit price' }).first().fill('9000');
+    await expect(vatItem).toContainText('if they are a vendor');
+    await expect(page.locator('[data-required-count]')).not.toHaveText(en.templates.allPresent);
+    await page.getByLabel('Customer VAT number').fill('4987654321');
+    await showPreview(page);
+    await expect(sheet(page)).toContainText('Customer VAT number: 4987654321');
+  });
+
+  test('on a phone, a missing item link leaves the Preview tab and focuses its field', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('templates/tax-invoice/');
+    await page.getByRole('tab', { name: en.templates.preview }).click();
+    await expect(page.locator('form.st-tform')).toBeHidden();
+    const link = page.locator('[data-missing] li:not([hidden]) a').first();
+    await link.click();
+    await expect(page.getByRole('tab', { name: en.templates.fillIn })).toHaveAttribute(
+      'aria-selected',
+      'true',
+    );
+    await expect(page.getByLabel('Business name')).toBeFocused();
+    // Each link is a full target, however short its text (pass 1, minor 6).
+    const widths = await page
+      .locator('[data-missing] li:not([hidden]) a')
+      .evaluateAll((links) => links.map((a) => a.getBoundingClientRect().width));
+    expect(Math.min(...widths)).toBeGreaterThanOrEqual(44);
   });
 
   test('a price that is not a number is marked and explained', async ({ page }) => {
@@ -212,6 +300,66 @@ test.describe('the other templates', () => {
       'Two coats',
       'Primer',
     ]);
+  });
+
+  test('an empty receipt slot prints blank, never its sample value (review pass 1, major 2)', async ({
+    page,
+  }) => {
+    await page.goto('templates/receipt/');
+    await page.getByLabel('Business name').fill('Mokoena Repairs');
+    await page.getByLabel('Amount received').fill('2500');
+    await page.emulateMedia({ media: 'print' });
+    await expect(page.locator('[data-print-sheet]')).toHaveCount(1);
+    const printed = await sheet(page).innerText();
+    expect(printed).toContain('REC-0001');
+    expect(printed).not.toContain('INV-0001');
+    expect(printed).not.toContain(`R${NBSP}0.00`);
+    expect(printed).not.toContain('[');
+    for (const name of ['intro.4:r5', 'intro.4:r6', 'intro.4:r2']) {
+      const slot = sheet(page).locator(`[data-field="${name}"]`);
+      await expect(slot).toHaveText('');
+      expect(await beforeContent(slot), name).toBe('""');
+    }
+    // On screen the slot still shows the template's words.
+    await page.emulateMedia({ media: 'screen' });
+    expect(await beforeContent(sheet(page).locator('[data-field="intro.4:r5"]'))).toBe(
+      '"INV-0001"',
+    );
+  });
+
+  test('a quotation prints no stray space after a slot, and its tables keep together', async ({
+    page,
+  }) => {
+    await page.goto('templates/quotation/');
+    await page.getByLabel('Deposit of …% before work starts.').fill('50');
+    await page.getByLabel('This quote is valid for … days.').fill('30');
+    await showPreview(page);
+    const text = await sheet(page).innerText();
+    expect(text).toContain('Deposit of 50% before work starts.');
+    expect(text).toContain('valid for 30 days.');
+    // An empty slot is blank text (its sample is CSS only), so only filled slots are checked.
+    expect(text).not.toMatch(/50 %|30 days ?\s+\./);
+    expect(
+      await sheet(page)
+        .locator('.st-tsheet__details')
+        .first()
+        .evaluate((table) => getComputedStyle(table).breakInside),
+    ).toBe('avoid');
+    // Line amounts are not live regions of their own; the totals region speaks (nit 1).
+    await expect(page.locator('.st-tline output, .st-ttotals output')).toHaveCount(0);
+  });
+
+  test('a privacy notice paragraph can be left out of the document', async ({ page }) => {
+    await page.goto('templates/privacy-notice/');
+    const marketing = page.locator('#marketing');
+    await marketing.getByRole('checkbox').check();
+    await showPreview(page);
+    await expect(sheet(page).locator('[data-block="marketing.1"]')).toBeHidden();
+    await page.reload();
+    await showForm(page);
+    await expect(page.locator('#marketing').getByRole('checkbox')).toBeChecked();
+    await page.emulateMedia({ media: 'print' });
+    expect(await sheet(page).innerText()).not.toContain('marketing messages');
   });
 
   test('a receipt formats an amount and keeps its own number', async ({ page }) => {
@@ -251,7 +399,10 @@ test.describe('the other templates', () => {
     await showPreview(page, af.templates.preview);
     // The heading is whatever the Afrikaans template says (docs/reviews/WP-40-owner-items.md).
     await expect(sheet(page).locator('.st-tsheet__title')).toHaveText('BELASTINGFAKTUUR');
-    await expect(sheet(page).locator('[data-field="intro.5:r1"]')).toHaveText('[DD Maand JJJJ]');
+    await expect(sheet(page).locator('[data-field="intro.5:r1"]')).toHaveAttribute(
+      'data-sample',
+      '[DD Maand JJJJ]',
+    );
   });
 });
 

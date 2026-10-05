@@ -76,6 +76,19 @@ export interface TemplateField {
   readonly documentNumber?: true;
   /** While this field is empty it shows the value of the named field (the payment reference). */
   readonly follows?: string;
+  /**
+   * The template's own condition for an optional slot ("If a company: …", "if they are a vendor —
+   * required on invoices over R5,000"). The page shows it in place of "(optional)", so the form
+   * never says less than the template (review WP-32 pass 1, major 4).
+   */
+  readonly condition?: string;
+  /**
+   * The slot is required once the document's total is above this many cents, as the template's
+   * condition says ("required on invoices over R5,000").
+   */
+  readonly requiredAbove?: number;
+  /** Printed before the value on the sheet, when the template's slot is all instruction. */
+  readonly printLabel?: string;
 }
 
 export type GroupRole = 'business' | 'details' | 'section';
@@ -87,7 +100,16 @@ export type GroupRole = 'business' | 'details' | 'section';
  */
 export type GroupItem =
   | { readonly kind: 'field'; readonly name: string }
-  | { readonly kind: 'text'; readonly block: Extract<SheetBlock, { kind: 'paragraph' }> }
+  | {
+      readonly kind: 'text';
+      readonly block: Extract<SheetBlock, { kind: 'paragraph' }>;
+      /**
+       * The control that leaves this paragraph off the document, when it can be left off: every
+       * paragraph of the template's own text except signature lines. The privacy notice asks the
+       * reader to "delete any line that is not true for your business" (review pass 1, minor 5).
+       */
+      readonly omit?: string;
+    }
   | { readonly kind: 'lines' };
 
 export interface TemplateGroup {
@@ -332,6 +354,13 @@ function colonLabel(sentence: string, mark: string): string | undefined {
   return label === '' || label.includes(MARK_OPEN) ? undefined : label;
 }
 
+function runsHaveSigline(runs: readonly InlineRun[]): boolean {
+  return runs.some(
+    (run) =>
+      run.t === 'sigline' || ((run.t === 'strong' || run.t === 'em') && runsHaveSigline(run.c)),
+  );
+}
+
 /** The sentence of `text` that holds `mark`. */
 function sentenceAround(text: string, mark: string): string {
   const sentences = text.split(/(?<=[.!?])\s+/);
@@ -450,6 +479,8 @@ function paragraphField(
     const colon = new RegExp(`^(.*?):\\s*${mark}\\s*$`).exec(sentence);
     label = collapse(shown(colon?.[1] ?? sentence));
   }
+  const condition = instruction && hint ? hint : undefined;
+  const above = condition ? thresholdCents(condition) : undefined;
   return {
     name,
     kind,
@@ -457,10 +488,24 @@ function paragraphField(
     group,
     required: !instruction,
     ...(hint ? { hint } : {}),
+    ...(condition ? { condition } : {}),
+    ...(above === undefined ? {} : { requiredAbove: above }),
+    // A slot that is all instruction prints its value under a label from the template's words.
+    ...(instruction && pure && hint ? { printLabel: label } : {}),
     sample: `[${run.v}]`,
     defaultValue: '',
     carry: false,
   };
+}
+
+/**
+ * `R5,000` in a condition, as cents. The templates write thresholds the English way (a comma for
+ * thousands), byte-identical in every language, so this does not depend on the page's language.
+ */
+export function thresholdCents(text: string): number | undefined {
+  const match = /\bR ?(\d{1,3}(?:,\d{3})*|\d+)(?:\.(\d{2}))?\b/.exec(text);
+  if (!match?.[1]) return undefined;
+  return Number(match[1].replace(/,/g, '')) * 100 + Number(match[2] ?? 0);
 }
 
 function parseParagraph(
@@ -503,6 +548,7 @@ function parseParagraph(
             group: group(),
             required: false,
             hint,
+            condition: hint,
             sample: `[${part.v}]`,
             defaultValue: '',
             carry: true,
@@ -527,8 +573,16 @@ function parseParagraph(
       else optional.push(field.name);
     });
     // A nested company line prints only its middle part, with its own fields.
-    const runs =
-      nestedRuns.length > 0 && slots.length === 1 ? nestedRuns : renameFields(marked, names);
+    const printLabel =
+      slots.length === 1 && names[0]
+        ? builder.fields.find((candidate) => candidate.name === names[0])?.printLabel
+        : undefined;
+    const runs: SheetRun[] =
+      nestedRuns.length > 0 && slots.length === 1
+        ? nestedRuns
+        : printLabel
+          ? [{ t: 'text', v: `${printLabel}: ` }, ...renameFields(marked, names)]
+          : renameFields(marked, names);
     const hasRequired = required;
     lines.push(!hasRequired && optional.length > 0 ? { runs, when: optional } : { runs });
   });
@@ -716,7 +770,11 @@ export function parseTemplate(doc: Pick<Doc, 'h1' | 'blocks'>): TemplateModel {
         if (!hasSlot && parsed.kind === 'paragraph') {
           builder.groups
             .get(current ?? groupFor('business'))
-            ?.items.push({ kind: 'text', block: parsed });
+            ?.items.push(
+              runsHaveSigline(block.c)
+                ? { kind: 'text', block: parsed }
+                : { kind: 'text', block: parsed, omit: `omit:${block.id}` },
+            );
         }
         return;
       }
@@ -773,6 +831,8 @@ export function parseTemplate(doc: Pick<Doc, 'h1' | 'blocks'>): TemplateModel {
 export interface RequiredItem {
   readonly name: string;
   readonly label: string;
+  /** Counted only once the total is above this many cents (`TemplateField.requiredAbove`). */
+  readonly requiredAbove?: number;
   /** Set when the page names the item from the dictionary (`templates.fields.<key>`). */
   readonly profileKey?: ProfileKey;
 }
@@ -782,12 +842,13 @@ export function requiredItems(model: TemplateModel): RequiredItem[] {
   for (const group of model.groups) {
     for (const name of group.fields) {
       const field = model.fields.find((candidate) => candidate.name === name);
-      if (!field?.required) continue;
-      items.push(
-        field.profileKey && !field.ownLabel
-          ? { name, label: field.label, profileKey: field.profileKey }
-          : { name, label: field.label },
-      );
+      if (!field || (!field.required && field.requiredAbove === undefined)) continue;
+      items.push({
+        name,
+        label: field.label,
+        ...(field.profileKey && !field.ownLabel ? { profileKey: field.profileKey } : {}),
+        ...(field.requiredAbove === undefined ? {} : { requiredAbove: field.requiredAbove }),
+      });
     }
     if (group.lines && model.lines) items.push({ name: 'lines', label: model.lines.label });
   }

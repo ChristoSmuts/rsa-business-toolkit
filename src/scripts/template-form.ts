@@ -26,6 +26,7 @@ import { formatRand, interpolate } from '../i18n';
 import type { PersistentStore } from '../lib/store';
 import {
   draftFrom,
+  dropOutOfRange,
   EMPTY_DRAFT,
   isTemplateSlug,
   MAX_LINES,
@@ -39,13 +40,17 @@ import { formatIsoDate } from '../lib/templates/format';
 import { lineNames } from '../lib/templates/ids';
 import { readBusinessDetails } from '../lib/templates/profile';
 import {
+  lineBlocked,
   lineResult,
   nextNumber,
-  parseCents,
-  parseNumber,
+  QUANTITY,
+  readCents,
+  readNumber,
   toRand,
   totalsOf,
   type LineInput,
+  type NumberProblem,
+  type Totals,
 } from '../lib/templates/totals';
 import { announce, askToConfirm } from './confirm-dialog';
 import './storage-notice';
@@ -54,6 +59,42 @@ type Control = HTMLInputElement | HTMLTextAreaElement;
 type View = 'form' | 'preview';
 
 const sameDraft = (a: Draft, b: Draft): boolean => JSON.stringify(a) === JSON.stringify(b);
+
+/**
+ * `formatRand` that never throws. `totals.ts` already keeps every amount far below the limit
+ * `formatRand` refuses, so this is the second guard: whatever was saved, render and connect must
+ * not throw, or the page stays broken on every load (review WP-32 pass 1, blocker 1).
+ */
+export function safeRand(locale: 'en' | 'af', cents: number): string {
+  try {
+    return formatRand(locale, toRand(cents));
+  } catch {
+    return '';
+  }
+}
+
+/** A control's value as the draft keeps it: a "Leave this out" box is `1` or empty. */
+function valueOf(control: Control): string {
+  if (control instanceof HTMLInputElement && control.type === 'checkbox') {
+    return control.checked ? '1' : '';
+  }
+  return control.value;
+}
+
+function defaultOf(control: Control): string {
+  if (control instanceof HTMLInputElement && control.type === 'checkbox') {
+    return control.defaultChecked ? '1' : '';
+  }
+  return control.defaultValue;
+}
+
+function setValue(control: Control, value: string): void {
+  if (control instanceof HTMLInputElement && control.type === 'checkbox') {
+    control.checked = value === '1';
+  } else if (control.value !== value) {
+    control.value = value;
+  }
+}
 
 export class StTemplateForm extends HTMLElement {
   #form: HTMLFormElement | null = null;
@@ -84,6 +125,14 @@ export class StTemplateForm extends HTMLElement {
 
   readonly #onClick = (event: Event): void => {
     const target = event.target instanceof Element ? event.target : null;
+    // A missing item's link: on a phone the form may be the hidden tab, so show it, then focus the
+    // field (review pass 1, major 5).
+    const link = target?.closest<HTMLAnchorElement>('[data-required-item] a');
+    if (link && this.contains(link)) {
+      event.preventDefault();
+      this.goTo(link.hash.slice(1));
+      return;
+    }
     const button = target?.closest<HTMLElement>(
       '[data-add-line], [data-remove-line], [data-print], [data-clear], [data-start-next], [data-tab]',
     );
@@ -125,8 +174,19 @@ export class StTemplateForm extends HTMLElement {
     for (const control of this.#form.querySelectorAll<Control>('input[name], textarea[name]')) {
       if (control.name.startsWith('lines.')) continue;
       this.#controls.set(control.name, control);
-      this.#defaults[control.name] = control.defaultValue;
+      this.#defaults[control.name] = defaultOf(control);
+      // A date is a text field without JavaScript; with it, a date picker (pass 1, minor 8).
+      if (
+        control instanceof HTMLInputElement &&
+        control.dataset['type'] === 'date' &&
+        (control.value === '' || /^\d{4}-\d{2}-\d{2}$/.test(control.value))
+      ) {
+        control.type = 'date';
+      }
     }
+    // Exactly one sheet prints: without JavaScript the form, with it the preview (pass 1, major 1).
+    this.#form.removeAttribute('data-print-sheet');
+    this.querySelector('[data-sheet]')?.setAttribute('data-print-sheet', '');
     this.#rows = [...this.querySelectorAll<HTMLElement>('.st-tline')];
     this.#templateRows = this.#rows.filter((row) => !row.hasAttribute('data-extra')).length;
 
@@ -134,12 +194,18 @@ export class StTemplateForm extends HTMLElement {
     // draft, the same rule as the checklist's.
     const typed = new Map<string, string>();
     for (const [name, control] of this.#controls) {
-      if (control.value !== control.defaultValue) typed.set(name, control.value);
+      if (valueOf(control) !== defaultOf(control)) typed.set(name, valueOf(control));
     }
     const typedLines = this.#readLines(this.#rows.length);
     const typedLineCount = lastUsed(typedLines) + 1;
 
-    const draft = this.#store.get();
+    // An amount over the limits (an older draft, or one edited by hand) is dropped, the rest kept.
+    const kinds: Record<string, 'money' | 'number'> = {};
+    for (const [name, control] of this.#controls) {
+      const kind = control.dataset['kind'];
+      if (kind === 'money' || kind === 'number') kinds[name] = kind;
+    }
+    const { draft, dropped } = dropOutOfRange(this.#store.get(), kinds);
     const values = valuesOf(draft, this.#defaults);
     for (const [name, value] of typed) values[name] = value;
     const lines = typedLineCount > 0 ? typedLines.slice(0, typedLineCount) : draft.lines;
@@ -153,7 +219,9 @@ export class StTemplateForm extends HTMLElement {
 
     this.#apply(filled.values, lines);
     this.#lastSaved = this.#store.get();
-    if (typed.size > 0 || typedLineCount > 0 || filled.filled.length > 0) this.#save();
+    if (typed.size > 0 || typedLineCount > 0 || filled.filled.length > 0 || dropped.length > 0) {
+      this.#save();
+    }
     if (filled.filled.length > 0) this.#say(this.dataset['prefilled'] ?? '');
 
     this.#form.addEventListener('input', this.#onInput);
@@ -174,6 +242,8 @@ export class StTemplateForm extends HTMLElement {
   }
 
   disconnectedCallback(): void {
+    this.querySelector('[data-sheet]')?.removeAttribute('data-print-sheet');
+    this.#form?.setAttribute('data-print-sheet', '');
     this.#form?.removeEventListener('input', this.#onInput);
     this.#form?.removeEventListener('submit', this.#onSubmit);
     this.removeEventListener('click', this.#onClick);
@@ -188,8 +258,17 @@ export class StTemplateForm extends HTMLElement {
   /** The value of every field now, by name. */
   values(): Record<string, string> {
     const out: Record<string, string> = {};
-    for (const [name, control] of this.#controls) out[name] = control.value;
+    for (const [name, control] of this.#controls) out[name] = valueOf(control);
     return out;
+  }
+
+  /** Shows the form (the "Fill in" tab on a phone) and moves focus to the element `id`. */
+  goTo(id: string): void {
+    if (this.#tabsActive) this.select('form');
+    const target = id ? this.ownerDocument.getElementById(id) : null;
+    if (!target || !this.contains(target)) return;
+    target.scrollIntoView?.({ block: 'center' });
+    target.focus();
   }
 
   /** The line rows shown now. */
@@ -268,9 +347,14 @@ export class StTemplateForm extends HTMLElement {
     for (const control of this.#controls.values()) {
       const kind = control.dataset['kind'];
       if (kind === 'money' || kind === 'number') {
-        const value = parseNumber(control.value);
-        setInvalid(control, value !== undefined && Number.isNaN(value));
+        const read =
+          kind === 'money' ? readCents(control.value) : readNumber(control.value, QUANTITY);
+        setInvalid(control, read.kind === 'invalid' ? read.problem : undefined);
       }
+    }
+    for (const box of this.querySelectorAll<HTMLInputElement>('[data-omit]')) {
+      const block = this.querySelector(`.st-tsheet [data-block="${box.dataset['omit'] ?? ''}"]`);
+      block?.toggleAttribute('data-omitted', box.checked);
     }
 
     for (const slot of this.querySelectorAll<HTMLElement>('.st-tsheet [data-field]')) {
@@ -280,7 +364,9 @@ export class StTemplateForm extends HTMLElement {
       const raw = (values[name] ?? '').trim() || (follows ? (values[follows] ?? '').trim() : '');
       const shown =
         raw === '' ? '' : display(raw, control?.dataset['kind'], { months, dateFormat, locale });
-      slot.textContent = shown === '' ? (slot.dataset['sample'] ?? '') : shown;
+      // While empty the slot has no text: the sample is only `data-sample`, shown by CSS on screen
+      // and never printed (pass 1, major 2).
+      if (slot.textContent !== shown) slot.textContent = shown;
       slot.toggleAttribute('data-empty', shown === '');
     }
     for (const line of this.querySelectorAll<HTMLElement>('.st-tsheet [data-when]')) {
@@ -305,19 +391,20 @@ export class StTemplateForm extends HTMLElement {
         const span = document.createElement('span');
         span.className = 'st-tsheet__value';
         span.setAttribute('data-empty', '');
-        span.textContent = sample;
+        span.setAttribute('data-sample', sample);
         li.append(span);
         children.push(li);
       }
       list.replaceChildren(...children);
     }
 
-    this.#renderLines(lines, locale);
-    this.#renderRequired(values, lines);
+    const rate = this.dataset['vatRate'] ? Number(this.dataset['vatRate']) : undefined;
+    const totals = totalsOf(lines, rate);
+    this.#renderLines(lines, locale, totals);
+    this.#renderRequired(values, lines, totals);
   }
 
-  #renderLines(lines: readonly LineInput[], locale: 'en' | 'af'): void {
-    const rate = this.dataset['vatRate'] ? Number(this.dataset['vatRate']) : undefined;
+  #renderLines(lines: readonly LineInput[], locale: 'en' | 'af', totals: Totals): void {
     const used = lines.map((line) => lineResult(line));
     const anyUsed = used.some((result) => result.used);
     lines.forEach((line, index) => {
@@ -325,12 +412,11 @@ export class StTemplateForm extends HTMLElement {
       if (!result) return;
       const amount = this.#rows[index]?.querySelector('[data-line-amount]');
       if (amount)
-        amount.textContent =
-          result.cents === undefined ? '' : formatRand(locale, toRand(result.cents));
+        amount.textContent = result.cents === undefined ? '' : safeRand(locale, result.cents);
       const quantity = this.#lineControl(index, 'quantity');
       const price = this.#lineControl(index, 'unitPrice');
-      if (quantity) setInvalid(quantity, result.quantityInvalid);
-      if (price) setInvalid(price, result.priceInvalid);
+      if (quantity) setInvalid(quantity, result.quantityProblem);
+      if (price) setInvalid(price, result.priceProblem);
       const remove = this.#rows[index]?.querySelector('[data-remove-line]');
       const legend = interpolate(this.dataset['lineLegend'] ?? '{n}', { n: index + 1 });
       remove?.setAttribute(
@@ -349,23 +435,20 @@ export class StTemplateForm extends HTMLElement {
       const result = used[index];
       row.hidden = !line || !result?.used;
       if (!line || !result) continue;
-      const price = parseCents(line.unitPrice);
+      // A value that cannot be read prints blank, not as typed (pass 1, minor 2).
+      const price = readCents(line.unitPrice);
+      const quantity = readNumber(line.quantity, QUANTITY);
       setCell(row, 'description', line.description.trim());
-      setCell(row, 'quantity', line.quantity.trim() || '1');
       setCell(
         row,
-        'unitPrice',
-        price === undefined || Number.isNaN(price)
-          ? line.unitPrice.trim()
-          : formatRand(locale, toRand(price)),
+        'quantity',
+        quantity.kind === 'empty' ? '1' : quantity.kind === 'ok' ? line.quantity.trim() : '',
       );
-      setCell(
-        row,
-        'amount',
-        result.cents === undefined ? '' : formatRand(locale, toRand(result.cents)),
-      );
+      setCell(row, 'unitPrice', price.kind === 'ok' ? safeRand(locale, price.value) : '');
+      setCell(row, 'amount', result.cents === undefined ? '' : safeRand(locale, result.cents));
     }
-    const totals = totalsOf(lines, rate);
+    // While a used line cannot be read the totals would leave it out, so they stay blank (to write
+    // on paper) and the form says why (pass 1, minor 2).
     const byKind: Record<string, number> = {
       subtotal: totals.subtotal,
       vat: totals.vat,
@@ -373,23 +456,38 @@ export class StTemplateForm extends HTMLElement {
     };
     for (const output of this.querySelectorAll<HTMLElement>('[data-total]')) {
       const cents = byKind[output.dataset['total'] ?? ''];
-      const text = cents === undefined ? '' : formatRand(locale, toRand(cents));
+      const text = cents === undefined || totals.blocked ? '' : safeRand(locale, cents);
       if (output.textContent !== text) output.textContent = text;
     }
+    const blocked = this.querySelector<HTMLElement>('[data-totals-blocked]');
+    if (blocked) blocked.hidden = !totals.blocked;
     const add = this.querySelector<HTMLElement>('[data-add-line]');
     if (add) add.hidden = this.#shown >= Math.min(MAX_LINES, this.#rows.length);
   }
 
-  #renderRequired(values: Readonly<Record<string, string>>, lines: readonly LineInput[]): void {
-    const items = [...this.querySelectorAll<HTMLElement>('[data-required-item]')];
+  #renderRequired(
+    values: Readonly<Record<string, string>>,
+    lines: readonly LineInput[],
+    totals: Totals,
+  ): void {
+    // An item the template requires only above an amount ("required on invoices over R5,000")
+    // counts once the total is above it (review pass 1, major 4).
+    const items = [...this.querySelectorAll<HTMLElement>('[data-required-item]')].filter((item) => {
+      const above = item.dataset['requiredAbove'];
+      const applies = above === undefined || totals.total > Number(above);
+      if (!applies) item.hidden = true;
+      return applies;
+    });
     let present = 0;
     for (const item of items) {
       const name = item.dataset['requiredItem'] ?? '';
       let ok: boolean;
       if (name === 'lines') {
-        ok = lines.some(
-          (line) => line.description.trim() !== '' && lineResult(line).cents !== undefined,
-        );
+        ok =
+          !lines.map(lineResult).some(lineBlocked) &&
+          lines.some(
+            (line) => line.description.trim() !== '' && lineResult(line).cents !== undefined,
+          );
       } else {
         const follows = this.#controls.get(name)?.dataset['follows'];
         ok =
@@ -413,8 +511,7 @@ export class StTemplateForm extends HTMLElement {
   /** Puts values and lines into the form and redraws. */
   #apply(values: Readonly<Record<string, string>>, lines: readonly LineInput[]): void {
     for (const [name, control] of this.#controls) {
-      const value = values[name] ?? this.#defaults[name] ?? '';
-      if (control.value !== value) control.value = value;
+      setValue(control, values[name] ?? this.#defaults[name] ?? '');
     }
     this.#writeLines(
       lines,
@@ -528,11 +625,11 @@ export function display(
 ): string {
   if (kind === 'date') return formatIsoDate(raw, options.months, options.dateFormat) ?? raw;
   if (kind === 'money') {
-    const cents = parseCents(raw);
-    return cents === undefined || Number.isNaN(cents)
-      ? raw
-      : formatRand(options.locale, toRand(cents));
+    // An amount that cannot be read prints blank, never as a different amount (pass 1, major 3).
+    const cents = readCents(raw);
+    return cents.kind === 'ok' ? safeRand(options.locale, cents.value) : '';
   }
+  if (kind === 'number') return readNumber(raw, QUANTITY).kind === 'ok' ? raw : '';
   return raw;
 }
 
@@ -541,11 +638,24 @@ function setCell(row: HTMLElement, cell: string, text: string): void {
   if (element && element.textContent !== text) element.textContent = text;
 }
 
-/** Marks a number field that is not a number, and links its message. */
-function setInvalid(control: Control, invalid: boolean): void {
+const MESSAGE_KEY: Record<NumberProblem, string> = {
+  format: 'messageFormat',
+  ambiguous: 'messageAmbiguous',
+  decimals: 'messageDecimals',
+  tooLarge: 'messageTooLarge',
+};
+
+/** Marks a number field that cannot be used, says why, and links the message. */
+function setInvalid(control: Control, problem: NumberProblem | undefined): void {
+  const invalid = problem !== undefined;
   const errorId = control.dataset['errorId'];
   const error = errorId ? control.ownerDocument.getElementById(errorId) : null;
-  if (error) error.hidden = !invalid;
+  if (error) {
+    error.hidden = !invalid;
+    const message = error.querySelector('[data-error-message]');
+    const text = problem ? error.dataset[MESSAGE_KEY[problem]] : undefined;
+    if (message && text && message.textContent !== text) message.textContent = text;
+  }
   const described = (control.getAttribute('aria-describedby') ?? '').split(' ').filter(Boolean);
   const without = described.filter((id) => id !== errorId);
   if (invalid) {

@@ -13,6 +13,7 @@ import { useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
 import type { ProfileKey, TemplateField } from '../../lib/templates/placeholders';
 import { fieldId } from '../../lib/templates/ids';
+import { numberMessages } from '../../lib/templates/messages';
 
 interface Props {
   field: TemplateField;
@@ -47,14 +48,21 @@ const fromDictionary = field.profileKey !== undefined && !field.ownLabel;
 const label =
   field.profileKey && !field.ownLabel ? t(`templates.fields.${field.profileKey}`) : field.label;
 const numeric = field.kind === 'money' || field.kind === 'number';
-const type =
-  field.kind === 'email'
-    ? 'email'
-    : field.kind === 'tel'
-      ? 'tel'
-      : field.kind === 'date'
-        ? 'date'
-        : 'text';
+/*
+ * A date is a text field until the script makes it a date picker (`data-type="date"`): without
+ * JavaScript an empty date input prints the browser's own pattern ("mm/dd/yyyy", a US order) on
+ * the sheet (review pass 1, minor 8), while a text field prints blank and takes "5 October 2026".
+ */
+const type = field.kind === 'email' ? 'email' : field.kind === 'tel' ? 'tel' : 'text';
+const datePattern = field.kind === 'date' ? field.sample.replace(/^\[|\]$/g, '') : undefined;
+const messages = numeric
+  ? numberMessages(t, locale, field.kind === 'money' ? 'money' : 'number')
+  : {};
+/*
+ * A conditional slot says its condition, in the template's words (the hint), instead of
+ * "(optional)", so the form never says less than the template (review pass 1, major 4).
+ */
+const optional = !field.required && field.condition === undefined;
 const hints = [field.hint, field.kind === 'list' ? t('templates.onePerLine') : undefined].filter(
   (hint): hint is string => Boolean(hint),
 );
@@ -70,6 +78,8 @@ const common = {
   'data-profile-key': field.profileKey,
   'data-error-id': numeric ? errorId : undefined,
   'data-sample': field.kind === 'list' && field.sample !== '' ? field.sample : undefined,
+  'data-type': field.kind === 'date' ? 'date' : undefined,
+  'data-required-above': field.requiredAbove,
   'aria-describedby': describedBy,
   autocomplete: field.profileKey ? AUTOCOMPLETE[field.profileKey] : 'off',
 };
@@ -78,7 +88,7 @@ const common = {
 <div class="st-field st-tfield" data-field-wrap={field.name}>
   <label for={id} class:list={[{ 'st-visually-hidden': hideLabel }]}>
     <span lang={fromDictionary ? undefined : textLang}>{label}</span>
-    {!field.required && <span class="st-tfield__optional"> {t('templates.optional')}</span>}
+    {optional && <span class="st-tfield__optional"> {t('templates.optional')}</span>}
   </label>
   {hints.length > 0 && (
     <p class="st-hint" id={hintId}>
@@ -94,6 +104,7 @@ const common = {
       {...common}
       type={type}
       value={field.defaultValue}
+      placeholder={datePattern}
       inputmode={numeric ? 'decimal' : undefined}
       spellcheck={type === 'text' && !numeric ? undefined : 'false'}
       list={field.options ? listId : undefined}
@@ -107,8 +118,9 @@ const common = {
     </datalist>
   )}
   {numeric && (
-    <p class="st-error-text" id={errorId} hidden>
-      <Icon name="lucide:circle-alert" /> {t('templates.notANumber', { example: '1500.00' })}
+    <p class="st-error-text" id={errorId} hidden {...messages}>
+      <Icon name="lucide:circle-alert" />
+      <span data-error-message>{messages['data-message-format']}</span>
     </p>
   )}
 </div>

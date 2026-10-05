@@ -16,6 +16,7 @@ import type { Locale } from '../../i18n/locales';
 import type { ContentContext } from '../../lib/content/context';
 import { MAX_LINES } from '../../lib/templates/draft';
 import { fieldId, lineNames } from '../../lib/templates/ids';
+import { numberMessages } from '../../lib/templates/messages';
 import type { LineItems } from '../../lib/templates/placeholders';
 
 interface Props {
@@ -28,6 +29,8 @@ interface Props {
 const { lines, locale, context, textLang } = Astro.props;
 const t = useTranslations(locale);
 const headerText = (index: number) => lines.header[index] ?? [];
+const quantityMessages = numberMessages(t, locale, 'number');
+const priceMessages = numberMessages(t, locale, 'money');
 ---
 
 <div class="st-stack st-stack-sm">
@@ -77,8 +80,9 @@ const headerText = (index: number) => lines.header[index] ?? [];
                   data-line-part="quantity"
                   data-error-id={`${ids.quantity}-error`}
                 />
-                <p class="st-error-text" id={`${ids.quantity}-error`} hidden>
-                  <Icon name="lucide:circle-alert" /> {t('templates.notANumber', { example: '2' })}
+                <p class="st-error-text" id={`${ids.quantity}-error`} hidden {...quantityMessages}>
+                  <Icon name="lucide:circle-alert" />
+                  <span data-error-message>{quantityMessages['data-message-format']}</span>
                 </p>
               </div>
               <div class="st-field">
@@ -98,9 +102,9 @@ const headerText = (index: number) => lines.header[index] ?? [];
                   data-line-part="unitPrice"
                   data-error-id={`${ids.unitPrice}-error`}
                 />
-                <p class="st-error-text" id={`${ids.unitPrice}-error`} hidden>
-                  <Icon name="lucide:circle-alert" />{' '}
-                  {t('templates.notANumber', { example: '1500.00' })}
+                <p class="st-error-text" id={`${ids.unitPrice}-error`} hidden {...priceMessages}>
+                  <Icon name="lucide:circle-alert" />
+                  <span data-error-message>{priceMessages['data-message-format']}</span>
                 </p>
               </div>
               <div class="st-field st-tline__amount">
@@ -109,12 +113,8 @@ const headerText = (index: number) => lines.header[index] ?? [];
                     <Inline runs={headerText(3)} context={context} />
                   </span>
                 </span>
-                <output
-                  id={amountId}
-                  for={`${ids.quantity} ${ids.unitPrice}`}
-                  aria-labelledby={`${amountId}-label`}
-                  data-line-amount
-                />
+                {/* Not an <output>: that is a live region, and the totals already speak. */}
+                <span id={amountId} data-line-amount />
               </div>
             </div>
             <Button
@@ -147,12 +147,16 @@ const headerText = (index: number) => lines.header[index] ?? [];
             <Inline runs={row.label} context={context} />
           </dt>
           <dd>
-            <output class="st-ttotals__value" data-total={row.kind} />
+            <span class="st-ttotals__value" data-total={row.kind} />
           </dd>
         </div>
       ))}
     </dl>
   </div>
+  <p class="st-error-text" data-totals-blocked hidden>
+    <Icon name="lucide:circle-alert" />
+    {t('templates.totalsBlocked')}
+  </p>
   <p class="st-hint no-js-only">{t('templates.totalsNoJs')}</p>
 </div>
 
@@ -246,7 +250,7 @@ const headerText = (index: number) => lines.header[index] ?? [];
       display: none;
     }
 
-    /* Totals the script did not work out print as lines to write on. */
+    /* The totals print as lines to write on when they were not worked out. */
     .st-ttotals__value:empty {
       display: inline-block;
       min-inline-size: 8em;
