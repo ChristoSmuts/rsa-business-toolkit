@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "source": "start/how-to-use",
+  "rules": [
+    {
+      "stage": "not-started",
+      "list": "path-1-i-have-not-started-yet.2",
+      "steps": [
+        { "item": 0, "docs": ["core/start-here"] },
+        { "item": 1, "docs": ["business-types/pick-your-business-type"] },
+        { "item": 2, "docs": ["$businessTypes"] },
+        { "item": 3, "docs": ["core/what-you-need-to-sell-things"] },
+        {
+          "item": 4,
+          "docs": ["branding/branding-prompts", "branding/brand-applications-and-polish"]
+        },
+        { "item": 5, "docs": ["paperwork/free-tools"] },
+        { "item": 6, "docs": ["paperwork/which-template-to-use-when"] },
+        { "item": 7, "docs": ["core/tax-and-sars"] },
+        { "item": 8, "docs": ["core/register"] },
+        { "item": 9, "docs": ["core/running-a-pty-ltd", "core/paying-yourself"] }
+      ]
+    },
+    {
+      "stage": "trading",
+      "list": "path-2-i-am-already-trading-and-want-to-get-compliant.1",
+      "steps": [
+        { "item": 0, "docs": ["lookup/checklist"] },
+        { "item": 1, "docs": ["core/tax-and-sars"] },
+        { "item": 2, "docs": ["$businessTypes"] },
+        { "item": 3, "docs": ["core/register#popia-register-your-information-officer"] }
+      ]
+    },
+    {
+      "stage": "pty-growing",
+      "list": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.2",
+      "steps": [
+        { "item": 0, "docs": ["core/start-here"] },
+        { "item": 1, "docs": ["core/running-a-pty-ltd"] },
+        { "item": 2, "docs": ["core/paying-yourself"] },
+        {
+          "item": 3,
+          "docs": ["$businessTypes"],
+          "whyWhen": { "businessTypes": ["vehicle-dealer"] }
+        },
+        {
+          "item": 4,
+          "docs": ["core/vehicles"],
+          "when": { "businessTypes": ["vehicle-dealer"] }
+        },
+        {
+          "item": 5,
+          "docs": ["core/tax-and-sars#route-4-small-business-corporation-rates-companies-only"],
+          "whyWhen": { "businessTypes": ["vehicle-dealer"] }
+        },
+        {
+          "item": 6,
+          "docs": ["paperwork/which-template-to-use-when"],
+          "whyWhen": { "businessTypes": ["vehicle-dealer"] }
+        },
+        { "item": 7, "docs": ["branding/branding-prompts"] },
+        {
+          "item": 8,
+          "docs": ["core/working-from-home-and-safety"],
+          "whyWhen": { "businessTypes": ["vehicle-dealer"] }
+        },
+        {
+          "item": 9,
+          "docs": ["core/adding-new-lines"],
+          "whyWhen": { "businessTypes": ["vehicle-dealer"] }
+        }
+      ]
+    }
+  ],
+  "checklist": {
+    "doc": "lookup/checklist",
+    "parts": [
+      { "heading": "part-a-everyone-in-order" },
+      { "heading": "part-a2-extra-only-if-you-registered-a-pty-ltd" },
+      { "heading": "part-b-additions-by-business-type" },
+      { "heading": "part-c-recurring-calendar" }
+    ]
+  }
+}

@@ -13,10 +13,12 @@ import {
   IsoDateSchema,
   LangSchema,
   namesAPerson,
+  PathsConfigSchema,
   SectionIdSchema,
   TaskIdSchema,
   TranslationStatusSchema,
   type Lang,
+  type PathsConfig,
 } from '../../src/lib/content/schema';
 
 const TagSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
@@ -384,6 +386,8 @@ export interface ContentConfig {
   taskLinks: TaskLinks;
   /** Empty when the file does not exist. */
   taskRenames: TaskRenames;
+  /** The reading-path rules (WP-31); `undefined` when the file does not exist (unit fixtures). */
+  paths: PathsConfig | undefined;
 }
 
 export interface ConfigPaths {
@@ -397,6 +401,7 @@ export interface ConfigPaths {
   provenance: string;
   taskLinks?: string | undefined;
   taskRenames?: string | undefined;
+  paths?: string | undefined;
 }
 
 export function defaultConfigPaths(metaDir: string): ConfigPaths {
@@ -411,6 +416,7 @@ export function defaultConfigPaths(metaDir: string): ConfigPaths {
     provenance: join(metaDir, 'provenance.json'),
     taskLinks: join(metaDir, 'task-links.json'),
     taskRenames: join(metaDir, 'task-renames.json'),
+    paths: join(metaDir, 'paths.json'),
   };
 }
 
@@ -446,6 +452,10 @@ export function loadConfig(paths: ConfigPaths): ContentConfig {
       paths.taskRenames !== undefined && existsSync(paths.taskRenames)
         ? readJson(paths.taskRenames, TaskRenamesSchema)
         : { version: 1, renames: {} },
+    paths:
+      paths.paths !== undefined && existsSync(paths.paths)
+        ? readJson(paths.paths, PathsConfigSchema)
+        : undefined,
   };
 }
 

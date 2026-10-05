@@ -1,0 +1,493 @@
+{
+  "businessTypes": [
+    {
+      "doc": "business-types/vehicle-dealer",
+      "id": "vehicle-dealer"
+    },
+    {
+      "doc": "business-types/food",
+      "id": "food"
+    },
+    {
+      "doc": "business-types/beauty",
+      "id": "beauty"
+    },
+    {
+      "doc": "business-types/retail-online",
+      "id": "retail-online"
+    },
+    {
+      "doc": "business-types/services-trades",
+      "id": "services-trades"
+    },
+    {
+      "doc": "business-types/professional-creative",
+      "id": "professional-creative"
+    }
+  ],
+  "checklist": {
+    "doc": "lookup/checklist",
+    "parts": [
+      {
+        "heading": "part-a-everyone-in-order"
+      },
+      {
+        "heading": "part-a2-extra-only-if-you-registered-a-pty-ltd"
+      },
+      {
+        "heading": "part-b-additions-by-business-type"
+      },
+      {
+        "heading": "part-c-recurring-calendar"
+      }
+    ]
+  },
+  "docs": {
+    "branding/brand-applications-and-polish": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "route": "branding/brand-applications-and-polish/",
+      "titles": {
+        "af": "Handelsmerktoepassings en afronding",
+        "en": "Brand applications and polish"
+      }
+    },
+    "branding/branding-prompts": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "route": "branding/branding-prompts/",
+      "titles": {
+        "af": "Handelsmerkopdragte",
+        "en": "Branding prompts"
+      }
+    },
+    "business-types/beauty": {
+      "appliesTo": {
+        "businessTypes": [
+          "beauty"
+        ],
+        "entity": "all"
+      },
+      "route": "business-types/beauty/",
+      "titles": {
+        "af": "Skoonheid en persoonlike versorging",
+        "en": "Beauty and personal care"
+      }
+    },
+    "business-types/food": {
+      "appliesTo": {
+        "businessTypes": [
+          "food"
+        ],
+        "entity": "all"
+      },
+      "route": "business-types/food/",
+      "titles": {
+        "af": "Kosbesigheid",
+        "en": "Food business"
+      }
+    },
+    "business-types/pick-your-business-type": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "route": "business-types/",
+      "titles": {
+        "af": "Kies jou besigheidstipe",
+        "en": "Pick your business type"
+      }
+    },
+    "business-types/professional-creative": {
+      "appliesTo": {
+        "businessTypes": [
+          "professional-creative"
+        ],
+        "entity": "all"
+      },
+      "route": "business-types/professional-creative/",
+      "titles": {
+        "af": "Professionele en kreatiewe werk",
+        "en": "Professional and creative work"
+      }
+    },
+    "business-types/retail-online": {
+      "appliesTo": {
+        "businessTypes": [
+          "retail-online"
+        ],
+        "entity": "all"
+      },
+      "route": "business-types/retail-online/",
+      "titles": {
+        "af": "Kleinhandel en aanlynwinkel",
+        "en": "Retail and online shop"
+      }
+    },
+    "business-types/services-trades": {
+      "appliesTo": {
+        "businessTypes": [
+          "services-trades"
+        ],
+        "entity": "all"
+      },
+      "route": "business-types/services-trades/",
+      "titles": {
+        "af": "Dienste en ambagte",
+        "en": "Services and trades"
+      }
+    },
+    "business-types/vehicle-dealer": {
+      "appliesTo": {
+        "businessTypes": [
+          "vehicle-dealer"
+        ],
+        "entity": "all"
+      },
+      "route": "business-types/vehicle-dealer/",
+      "titles": {
+        "af": "Voertuighandelaar",
+        "en": "Vehicle dealer"
+      }
+    },
+    "core/adding-new-lines": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "pty"
+      },
+      "route": "core/adding-new-lines/",
+      "titles": {
+        "af": "Nuwe besigheidslyne byvoeg",
+        "en": "Adding new lines of business"
+      }
+    },
+    "core/paying-yourself": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "pty"
+      },
+      "route": "core/paying-yourself/",
+      "titles": {
+        "af": "Betaal jouself uit ’n Pty Ltd",
+        "en": "Paying yourself from a Pty Ltd"
+      }
+    },
+    "core/register": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "route": "core/register/",
+      "titles": {
+        "af": "Registreer: wat jy regtig nodig het",
+        "en": "Register: what you actually need"
+      }
+    },
+    "core/running-a-pty-ltd": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "pty"
+      },
+      "route": "core/running-a-pty-ltd/",
+      "titles": {
+        "af": "Bestuur van ’n Pty Ltd",
+        "en": "Running a Pty Ltd"
+      }
+    },
+    "core/start-here": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "route": "core/start-here/",
+      "titles": {
+        "af": "Kern: begin hier",
+        "en": "Core: start here"
+      }
+    },
+    "core/tax-and-sars": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "route": "core/tax-and-sars/",
+      "titles": {
+        "af": "Belasting en SARS",
+        "en": "Tax and SARS"
+      }
+    },
+    "core/vehicles": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "route": "core/vehicles/",
+      "titles": {
+        "af": "Voertuie vir jou besigheid",
+        "en": "Vehicles for your business"
+      }
+    },
+    "core/what-you-need-to-sell-things": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "route": "core/what-you-need-to-sell-things/",
+      "titles": {
+        "af": "Wat jy nodig het om dinge te verkoop",
+        "en": "What you need to sell things"
+      }
+    },
+    "core/working-from-home-and-safety": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "route": "core/working-from-home-and-safety/",
+      "titles": {
+        "af": "Van die huis af werk en veilig ontmoet",
+        "en": "Working from home and meeting safely"
+      }
+    },
+    "lookup/checklist": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "route": "checklist/",
+      "titles": {
+        "af": "Hoofkontrolelys",
+        "en": "Master checklist"
+      }
+    },
+    "paperwork/free-tools": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "route": "paperwork/free-tools/",
+      "titles": {
+        "af": "Gratis gereedskap",
+        "en": "Free tools"
+      }
+    },
+    "paperwork/which-template-to-use-when": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "all"
+      },
+      "route": "paperwork/which-template-to-use-when/",
+      "titles": {
+        "af": "Watter sjabloon om wanneer te gebruik",
+        "en": "Which template to use when"
+      }
+    }
+  },
+  "general": [
+    "retail-online",
+    "services-trades",
+    "professional-creative"
+  ],
+  "rules": [
+    {
+      "list": "path-1-i-have-not-started-yet.2",
+      "stage": "not-started",
+      "steps": [
+        {
+          "docs": [
+            "core/start-here"
+          ],
+          "item": 0
+        },
+        {
+          "docs": [
+            "business-types/pick-your-business-type"
+          ],
+          "item": 1
+        },
+        {
+          "docs": [
+            "$businessTypes"
+          ],
+          "item": 2
+        },
+        {
+          "docs": [
+            "core/what-you-need-to-sell-things"
+          ],
+          "item": 3
+        },
+        {
+          "docs": [
+            "branding/branding-prompts",
+            "branding/brand-applications-and-polish"
+          ],
+          "item": 4
+        },
+        {
+          "docs": [
+            "paperwork/free-tools"
+          ],
+          "item": 5
+        },
+        {
+          "docs": [
+            "paperwork/which-template-to-use-when"
+          ],
+          "item": 6
+        },
+        {
+          "docs": [
+            "core/tax-and-sars"
+          ],
+          "item": 7
+        },
+        {
+          "docs": [
+            "core/register"
+          ],
+          "item": 8
+        },
+        {
+          "docs": [
+            "core/running-a-pty-ltd",
+            "core/paying-yourself"
+          ],
+          "item": 9
+        }
+      ]
+    },
+    {
+      "list": "path-2-i-am-already-trading-and-want-to-get-compliant.1",
+      "stage": "trading",
+      "steps": [
+        {
+          "docs": [
+            "lookup/checklist"
+          ],
+          "item": 0
+        },
+        {
+          "docs": [
+            "core/tax-and-sars"
+          ],
+          "item": 1
+        },
+        {
+          "docs": [
+            "$businessTypes"
+          ],
+          "item": 2
+        },
+        {
+          "docs": [
+            "core/register#popia-register-your-information-officer"
+          ],
+          "item": 3
+        }
+      ]
+    },
+    {
+      "list": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.2",
+      "stage": "pty-growing",
+      "steps": [
+        {
+          "docs": [
+            "core/start-here"
+          ],
+          "item": 0
+        },
+        {
+          "docs": [
+            "core/running-a-pty-ltd"
+          ],
+          "item": 1
+        },
+        {
+          "docs": [
+            "core/paying-yourself"
+          ],
+          "item": 2
+        },
+        {
+          "docs": [
+            "$businessTypes"
+          ],
+          "item": 3,
+          "whyWhen": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "docs": [
+            "core/vehicles"
+          ],
+          "item": 4,
+          "when": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "docs": [
+            "core/tax-and-sars#route-4-small-business-corporation-rates-companies-only"
+          ],
+          "item": 5,
+          "whyWhen": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "docs": [
+            "paperwork/which-template-to-use-when"
+          ],
+          "item": 6,
+          "whyWhen": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "docs": [
+            "branding/branding-prompts"
+          ],
+          "item": 7
+        },
+        {
+          "docs": [
+            "core/working-from-home-and-safety"
+          ],
+          "item": 8,
+          "whyWhen": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        },
+        {
+          "docs": [
+            "core/adding-new-lines"
+          ],
+          "item": 9,
+          "whyWhen": {
+            "businessTypes": [
+              "vehicle-dealer"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "source": "start/how-to-use",
+  "version": 1
+}
