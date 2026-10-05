@@ -481,6 +481,7 @@ test.describe('navigation between real pages', () => {
     );
     let kept = 0;
     let translated = 0;
+    let acts = 0;
     for (const route of [
       'af/core/register/',
       'af/business-types/vehicle-dealer/',
@@ -511,12 +512,14 @@ test.describe('navigation between real pages', () => {
         }
       }
       for (const [name, lang] of marks.acts) {
+        acts++;
         expect(lang, `${route}: ${name}`).toBe(keptActs.has(name) ? 'en-ZA' : null);
       }
     }
     // Both kinds occur, so the loop really tests something.
     expect(kept).toBeGreaterThan(0);
     expect(translated).toBeGreaterThan(0);
+    expect(acts).toBeGreaterThan(0);
   });
 
   test('document titles on Afrikaans landings and contents are Afrikaans and unmarked', async ({

@@ -280,6 +280,21 @@ describe('language of parts on an Afrikaans page', () => {
     ]);
   });
 
+  it('matches names case by case, with a capital allowed on a lower-case term-list name', () => {
+    expect(isProtectedText('Govchain', ['Govchain'])).toBe(true);
+    expect(isProtectedText('govchain', ['Govchain'])).toBe(false);
+    expect(isProtectedText('Voetstoots', ['voetstoots'])).toBe(true);
+    expect(isProtectedText('voetstoots', ['voetstoots'])).toBe(true);
+    expect(isProtectedText('VOETSTOOTS clause', ['voetstoots'])).toBe(false);
+  });
+
+  it('takes no "publisher" from an Act name (review WP-40 integration pass 2, nit 2)', () => {
+    const act = { id: 'fcd', name: 'Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972' };
+    const names = registerNames({ entries: [], acts: [act] }, { entries: [], acts: [act] });
+    expect(names).toContain(act.name);
+    expect(names).not.toContain('Foodstuffs');
+  });
+
   it('treats dates in months spelt alike, sizes and same-in-both labels as neutral', () => {
     expect(isProtectedText('13 September 2026')).toBe(true);
     expect(isProtectedText('13 March 2026')).toBe(false);
