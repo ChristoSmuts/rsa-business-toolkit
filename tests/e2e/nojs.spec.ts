@@ -160,3 +160,50 @@ test.describe('the interactive pieces without JavaScript', () => {
     await expect(page.locator('st-lang-banner')).toBeHidden();
   });
 });
+
+/**
+ * WP-32: without JavaScript a template page is a form that prints as the sheet: the fields are
+ * there and can be typed in, the preview, tabs, required items and buttons are not, one line says
+ * how to print, and print media shows only the form with what was typed.
+ */
+test.describe('a template without JavaScript', () => {
+  test('is a form to type in, with no preview or buttons that need a script', async ({ page }) => {
+    await page.goto('templates/quotation/');
+    await expect(page.getByText('To print, use your browser’s Print command.')).toBeVisible();
+    await expect(page.locator('.st-tool__preview')).toBeHidden();
+    await expect(page.locator('.st-tool__tabs')).toBeHidden();
+    await expect(page.locator('.st-tool__required')).toBeHidden();
+    await expect(page.locator('.st-tool__actions')).toBeHidden();
+    await expect(page.locator('[data-add-line]')).toBeHidden();
+    // Every line row shows, so a longer quote can still be written.
+    await expect(page.locator('.st-tline')).toHaveCount(10);
+    await expect(page.locator('.st-tline').last()).toBeVisible();
+    await page.getByLabel('Customer name').fill('Thandi');
+    await expect(page.getByLabel('Customer name')).toHaveValue('Thandi');
+    await expect(page.getByText('Without JavaScript the totals are not worked out.')).toBeVisible();
+  });
+
+  test('prints the form as the sheet, with what was typed and the template’s own text', async ({
+    page,
+  }) => {
+    await page.goto('templates/privacy-notice/');
+    await page.getByLabel('Business name').fill('Mokoena Repairs');
+    await page.emulateMedia({ media: 'print' });
+    const form = page.locator('form.st-tform');
+    await expect(form).toBeVisible();
+    await expect(page.locator('.st-tform__print-title')).toHaveText('PRIVACY NOTICE');
+    await expect(page.getByLabel('Business name')).toHaveValue('Mokoena Repairs');
+    await expect(form.getByText('We keep records for five years')).toBeVisible();
+    for (const hidden of [
+      'body > header',
+      'body > footer',
+      '.st-ai-notice',
+      '#sources-for-this-page',
+    ]) {
+      await expect(page.locator(hidden).first(), hidden).toBeHidden();
+    }
+    // The sheet uses the page width.
+    const width = await form.evaluate((element) => element.getBoundingClientRect().width);
+    expect(width).toBeGreaterThan((page.viewportSize()?.width ?? 0) * 0.8);
+  });
+});
