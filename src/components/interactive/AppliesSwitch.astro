@@ -15,15 +15,20 @@ import { uid } from '../../scripts/uid';
 
 interface Props {
   locale: Locale;
-  class?: string | undefined;
+  /**
+   * `sidebar` shows from 1024px (inside the section sidebar); `inline` below 1024px (above the
+   * document's text). A page renders both; the media queries live here, because a class passed in
+   * would carry this component's scope, not the page's.
+   */
+  placement: 'sidebar' | 'inline';
 }
 
-const { locale, class: className } = Astro.props;
+const { locale, placement } = Astro.props;
 const t = useTranslations(locale);
 const helpId = uid('st-applies-help');
 ---
 
-<st-applies-switch class:list={['st-applies-switch js-only st-no-print', className]}>
+<st-applies-switch class="st-applies-switch js-only st-no-print" data-placement={placement}>
   <div class="st-applies-switch__control" data-switch hidden>
     <label class="st-check">
       <input type="checkbox" role="switch" aria-describedby={helpId} />
@@ -46,6 +51,12 @@ const helpId = uid('st-applies-help');
 <style>
   st-applies-switch {
     display: block;
+  }
+
+  @media (width >= 1024px) {
+    st-applies-switch[data-placement='inline'] {
+      display: none;
+    }
   }
 
   .st-applies-switch__control {

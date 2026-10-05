@@ -9,7 +9,8 @@
  *   JavaScript), in the order the reader ticks them: the first is the primary type;
  * - "Pty Ltd, growing" is disabled, with its reason shown, unless the answer to step 1 is Pty Ltd;
  * - Next and "See my path" stay `aria-disabled` until the step is answered, and say so;
- * - Enter in a field goes to the next step rather than submitting;
+ * - Enter in an answer goes to the next step (the form's first, disabled submit button stops the
+ *   browser submitting it);
  * - "See my path" saves the profile (`st.profile.v1`) and opens My path. If the device will not
  *   keep it, the answers go along in the address instead, so My path can still show them.
  * Answers saved earlier are filled in, so "Edit answers" starts from them.
@@ -59,13 +60,25 @@ export class StWizard extends HTMLElement {
 
   readonly #onSubmit = (event: SubmitEvent): void => {
     event.preventDefault();
+    this.#advance();
+  };
+
+  /** Enter in an answer: the form's disabled default button blocks submitting, so go on here. */
+  readonly #onKeydown = (event: KeyboardEvent): void => {
+    if (event.key !== 'Enter' || !(event.target instanceof HTMLInputElement)) return;
+    event.preventDefault();
+    this.#advance();
+  };
+
+  /** Next, or "See my path" on the last step; an unanswered step keeps focus on its answers. */
+  #advance(): void {
     if (!this.#stepValid(this.#current)) {
       this.#firstInput(this.#current)?.focus();
       return;
     }
     if (this.#current < this.#steps.length - 1) this.go(this.#current + 1);
     else this.finish();
-  };
+  }
 
   connectedCallback(): void {
     this.#form = this.querySelector('form');
@@ -76,6 +89,7 @@ export class StWizard extends HTMLElement {
     this.#form.addEventListener('change', this.#onChange);
     this.#form.addEventListener('click', this.#onClick);
     this.#form.addEventListener('submit', this.#onSubmit);
+    this.#form.addEventListener('keydown', this.#onKeydown);
     this.dataset['ready'] = '';
     this.#show(0);
   }
@@ -84,6 +98,7 @@ export class StWizard extends HTMLElement {
     this.#form?.removeEventListener('change', this.#onChange);
     this.#form?.removeEventListener('click', this.#onClick);
     this.#form?.removeEventListener('submit', this.#onSubmit);
+    this.#form?.removeEventListener('keydown', this.#onKeydown);
   }
 
   /** The step shown now (0-based). */

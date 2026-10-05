@@ -78,6 +78,19 @@ const results = singleChoices().map((choice) => ({
   </ol>
 
   <form class="st-wizard__form st-stack st-stack-lg" method="get" action={myPathHref}>
+    {/*
+      The form's default button, first in tree order and disabled, so Enter in a field never
+      submits by itself: without JavaScript it would send the answers through whichever result
+      button comes first; with JavaScript `<st-wizard>` handles Enter as Next.
+    */}
+    <button
+      type="submit"
+      class="st-wizard__no-enter"
+      disabled
+      hidden
+      aria-hidden="true"
+      tabindex="-1"
+    ></button>
     <section
       class="st-wizard__step st-stack"
       data-step={QUERY.entity}
@@ -99,10 +112,13 @@ const results = singleChoices().map((choice) => ({
                 name={QUERY.entity}
                 value={value}
                 id={id(QUERY.entity, value)}
+                aria-labelledby={`${id(QUERY.entity, value)}-label`}
                 aria-describedby={`${id(QUERY.entity, value)}-body`}
               />
               <span class="st-choice__text">
-                <span class="st-choice__label">{t(`wizard.entity.options.${value}.label`)}</span>
+                <span class="st-choice__label" id={`${id(QUERY.entity, value)}-label`}>
+                  {t(`wizard.entity.options.${value}.label`)}
+                </span>
                 <span class="st-choice__body" id={`${id(QUERY.entity, value)}-body`}>
                   {t(`wizard.entity.options.${value}.body`)}
                 </span>
@@ -147,10 +163,13 @@ const results = singleChoices().map((choice) => ({
                 name={QUERY.type}
                 value={type.value}
                 id={id(QUERY.type, type.value)}
+                aria-labelledby={`${id(QUERY.type, type.value)}-label`}
                 aria-describedby={`${id(QUERY.type, type.value)}-body`}
               />
               <span class="st-choice__text">
-                <span class="st-choice__label">{type.label}</span>
+                <span class="st-choice__label" id={`${id(QUERY.type, type.value)}-label`}>
+                  {type.label}
+                </span>
                 <span class="st-choice__body" id={`${id(QUERY.type, type.value)}-body`}>
                   {type.body}
                   {type.effort && (
@@ -195,6 +214,7 @@ const results = singleChoices().map((choice) => ({
                 name={QUERY.stage}
                 value={value}
                 id={id(QUERY.stage, value)}
+                aria-labelledby={`${id(QUERY.stage, value)}-label`}
                 aria-describedby={
                   value === 'pty-growing'
                     ? `${id(QUERY.stage, value)}-body wz-pty-reason`
@@ -202,7 +222,9 @@ const results = singleChoices().map((choice) => ({
                 }
               />
               <span class="st-choice__text">
-                <span class="st-choice__label">{t(`wizard.stage.options.${value}.label`)}</span>
+                <span class="st-choice__label" id={`${id(QUERY.stage, value)}-label`}>
+                  {t(`wizard.stage.options.${value}.label`)}
+                </span>
                 <span class="st-choice__body" id={`${id(QUERY.stage, value)}-body`}>
                   {t(`wizard.stage.options.${value}.body`)}
                 </span>

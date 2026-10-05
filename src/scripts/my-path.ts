@@ -85,7 +85,10 @@ export class StMyPath extends HTMLElement {
     this.#renderChips(who);
     this.#renderSteps(this.#path, done);
     const { done: count, total } = pathProgress(this.#path, done);
-    const text = interpolate(this.dataset['progress'] ?? '{done}/{total}', { done: count, total });
+    const text = interpolate(this.dataset['progressTemplate'] ?? '{done}/{total}', {
+      done: count,
+      total,
+    });
     const progress = this.querySelector<HTMLElement>('[data-progress]');
     if (progress) {
       drawRing(progress, count, total, text);

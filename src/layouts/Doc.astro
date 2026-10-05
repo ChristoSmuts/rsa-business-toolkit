@@ -139,7 +139,7 @@ const relatedTypes = businessType
       currentDocId={doc.id}
       locale={locale}
     >
-      {showSwitch && <AppliesSwitch slot="after" locale={locale} class="st-doc__applies" />}
+      {showSwitch && <AppliesSwitch slot="after" locale={locale} placement="sidebar" />}
     </SectionSidebar>
 
     <div class="st-stack st-stack-lg st-doc__main">
@@ -244,7 +244,7 @@ const relatedTypes = businessType
           contentLang={contentLangTag}
         />
 
-        {showSwitch && <AppliesSwitch locale={locale} class="st-doc__applies-inline" />}
+        {showSwitch && <AppliesSwitch locale={locale} placement="inline" />}
 
         {filterable ? (
           <st-applies-scope
@@ -336,13 +336,6 @@ const relatedTypes = businessType
   st-applies-scope,
   st-path-pager {
     display: block;
-  }
-
-  /* The sidebar holds the switch from 1024px; below that it sits above the blocks. */
-  @media (width >= 1024px) {
-    .st-doc__applies-inline {
-      display: none;
-    }
   }
 
   .st-doc {
