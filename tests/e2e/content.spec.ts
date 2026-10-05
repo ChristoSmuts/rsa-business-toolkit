@@ -428,14 +428,15 @@ test.describe('the D5 trust pieces', () => {
     const english = notice.first().locator('a');
     await expect(english).toHaveAttribute('hreflang', 'en-ZA');
     await expect(english).not.toHaveAttribute('lang', /.*/);
-    // Inside the English blocks, no label or title is Afrikaans: not the fixed labels, and none
-    // of the documents' or sections' Afrikaans titles (review WP-40 integration pass 1, minor 1).
+    // Inside the English blocks, anywhere on the page (the coverage list too), no label or title
+    // is Afrikaans: not the fixed labels, and none of the documents' or sections' Afrikaans titles
+    // (review WP-40 integration passes 1 and 2).
     const afrikaansTitles = [...Object.values(MANIFEST.docs), ...MANIFEST.sections]
       .map((entry) => entry.titles.af)
       .filter((title): title is string => title !== undefined && title.length > 8);
     const afrikaansInBlocks = await page.evaluate(
       (titles) =>
-        [...document.querySelectorAll('article .st-blocks')].flatMap((node) =>
+        [...document.querySelectorAll('.st-blocks')].flatMap((node) =>
           [...titles, 'Kern: geld vir almal', 'Rol sywaarts'].filter((title) =>
             (node.textContent ?? '').includes(title),
           ),

@@ -229,10 +229,11 @@ export function officialUrls(sources: SourcesFile | undefined): ReadonlySet<stri
 export function keptInEnglish(
   english: SourcesFile | undefined,
   translated: SourcesFile | undefined,
-): { titles: Set<string>; reasons: Set<string> } {
+): { titles: Set<string>; acts: Set<string>; reasons: Set<string> } {
   const titles = new Set<string>();
+  const acts = new Set<string>();
   const reasons = new Set<string>();
-  if (!english || !translated) return { titles, reasons };
+  if (!english || !translated) return { titles, acts, reasons };
   const byId = new Map(english.entries.map((entry) => [entry.id, entry]));
   for (const entry of translated.entries) {
     const twin = byId.get(entry.id);
@@ -241,10 +242,11 @@ export function keptInEnglish(
     if (entry.noUrlReason !== undefined && twin.noUrlReason === entry.noUrlReason)
       reasons.add(entry.id);
   }
-  // Act names stay English by the style guide; marked the same way, keyed by the act's id.
-  const acts = new Map(english.acts.map((act) => [act.id, act.name]));
-  for (const act of translated.acts) if (acts.get(act.id) === act.name) titles.add(act.id);
-  return { titles, reasons };
+  // Act names stay English by the style guide; marked the same way, in their own set because an
+  // Act's id can equal an entry's (`businesses-act-71-of-1991` is both).
+  const names = new Map(english.acts.map((act) => [act.id, act.name]));
+  for (const act of translated.acts) if (names.get(act.id) === act.name) acts.add(act.id);
+  return { titles, acts, reasons };
 }
 
 /** True when the register marks this URL, in any of its spellings, as official. */

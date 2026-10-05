@@ -452,6 +452,73 @@ test.describe('navigation between real pages', () => {
     await expect(next.locator('span[lang]')).toHaveCount(0);
   });
 
+  test('register titles the Afrikaans register kept in English are marked English, no others', async ({
+    page,
+  }) => {
+    // Review WP-40 integration pass 2, major: nothing else fails if this marking is removed,
+    // because dist:trust excuses exactly these titles as names.
+    type Register = {
+      entries: { id: string; title: string }[];
+      acts: { id: string; name: string }[];
+    };
+    const read = (lang: string): Register =>
+      JSON.parse(
+        readFileSync(path.join(REPO_ROOT, 'src', 'data', lang, 'sources.json'), 'utf8'),
+      ) as Register;
+    const english = read('en');
+    const afrikaans = read('af');
+    const keptTitles = new Set(
+      afrikaans.entries
+        .filter(
+          (entry) => english.entries.find((twin) => twin.id === entry.id)?.title === entry.title,
+        )
+        .map((entry) => entry.title),
+    );
+    const keptActs = new Set(
+      afrikaans.acts
+        .filter((act) => english.acts.find((twin) => twin.id === act.id)?.name === act.name)
+        .map((act) => act.name),
+    );
+    let kept = 0;
+    let translated = 0;
+    for (const route of [
+      'af/core/register/',
+      'af/business-types/vehicle-dealer/',
+      'af/business-types/food/',
+    ]) {
+      await open(page, route);
+      const marks = await page.evaluate(() => {
+        const sources = document.querySelector('.st-sources');
+        const titles = [
+          ...(sources?.querySelectorAll(
+            '.st-source__title > a > span:first-child, .st-source__title > .st-source__name',
+          ) ?? []),
+        ];
+        const acts = [...(sources?.querySelectorAll('.st-source ul .st-source__name') ?? [])];
+        const read = (node: Element): [string, string | null] => [
+          (node.textContent ?? '').trim(),
+          node.getAttribute('lang'),
+        ];
+        return { titles: titles.map(read), acts: acts.map(read) };
+      });
+      for (const [title, lang] of marks.titles) {
+        if (keptTitles.has(title)) {
+          kept++;
+          expect(lang, `${route}: ${title}`).toBe('en-ZA');
+        } else {
+          translated++;
+          expect(lang, `${route}: ${title}`).toBeNull();
+        }
+      }
+      for (const [name, lang] of marks.acts) {
+        expect(lang, `${route}: ${name}`).toBe(keptActs.has(name) ? 'en-ZA' : null);
+      }
+    }
+    // Both kinds occur, so the loop really tests something.
+    expect(kept).toBeGreaterThan(0);
+    expect(translated).toBeGreaterThan(0);
+  });
+
   test('document titles on Afrikaans landings and contents are Afrikaans and unmarked', async ({
     page,
   }) => {

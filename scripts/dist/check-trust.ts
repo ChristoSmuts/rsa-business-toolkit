@@ -278,14 +278,16 @@ export function registerNames(english: RegisterTitles, afrikaans: RegisterTitles
     ...afrikaans.entries.map((entry) => `${entry.id}\u0000${entry.title}`),
     ...afrikaans.acts.map((act) => `${act.id}\u0000${act.name}`),
   ]);
-  const add = (id: string, title: string): void => {
+  const add = (id: string, title: string, publisher: boolean): void => {
     if (!kept.has(`${id}\u0000${title}`)) return;
     names.add(title);
-    const publisher = title.split(/ — |, /)[0]?.trim();
-    if (publisher && publisher !== title) names.add(publisher);
+    // Only an entry's title starts with its publisher; an Act name's first word is a word
+    // ("Foodstuffs, Cosmetics and Disinfectants Act"), not a name (integration pass 2, nit 2).
+    const head = publisher ? title.split(/ — |, /)[0]?.trim() : undefined;
+    if (head && head !== title) names.add(head);
   };
-  for (const entry of english.entries) add(entry.id, entry.title);
-  for (const act of english.acts) add(act.id, act.name);
+  for (const entry of english.entries) add(entry.id, entry.title, true);
+  for (const act of english.acts) add(act.id, act.name, false);
   return [...names];
 }
 

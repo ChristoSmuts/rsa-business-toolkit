@@ -37,6 +37,7 @@ export interface ContentContext {
    */
   readonly keptInEnglish: {
     readonly titles: ReadonlySet<string>;
+    readonly acts: ReadonlySet<string>;
     readonly reasons: ReadonlySet<string>;
   };
   /** Every URL the register marks as official, for the `Official` badge on external links. */
@@ -70,7 +71,7 @@ export function createContentContext(input: ContentContextInput): ContentContext
     sourcesLang,
     keptInEnglish:
       sourcesLang === DEFAULT_LOCALE
-        ? { titles: new Set(), reasons: new Set() }
+        ? { titles: new Set(), acts: new Set(), reasons: new Set() }
         : keptInEnglish(input.englishSources, input.sources),
     officialUrls: officialUrls(input.sources),
     docId: input.docId,

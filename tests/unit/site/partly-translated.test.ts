@@ -58,6 +58,7 @@ describe('the sources register in another language than the page', () => {
       englishSources: english,
     });
     expect(context.keptInEnglish.titles.size).toBe(0);
+    expect(context.keptInEnglish.acts.size).toBe(0);
     expect(context.keptInEnglish.reasons.size).toBe(0);
   });
 
@@ -72,7 +73,7 @@ describe('the sources register in another language than the page', () => {
       (entry) => english.entries.find((twin) => twin.id === entry.id)?.title !== entry.title,
     );
     expect(translated && kept.titles.has(translated.id)).toBe(false);
-    for (const act of afrikaans.acts) expect(kept.titles.has(act.id), act.id).toBe(true);
+    for (const act of afrikaans.acts) expect(kept.acts.has(act.id), act.id).toBe(true);
     for (const entry of afrikaans.entries.filter((e) => e.noUrlReason !== undefined)) {
       expect(kept.reasons.has(entry.id), entry.id).toBe(true);
     }
@@ -80,6 +81,6 @@ describe('the sources register in another language than the page', () => {
 
   it('is empty without an English register to compare with', () => {
     const kept = keptInEnglish(undefined, afrikaans as SourcesFile);
-    expect(kept.titles.size + kept.reasons.size).toBe(0);
+    expect(kept.titles.size + kept.acts.size + kept.reasons.size).toBe(0);
   });
 });
