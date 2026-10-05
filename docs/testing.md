@@ -189,7 +189,7 @@ which links the contents and every page of the guide) and axe with the dialog op
 `a11y.spec.ts`.
 
 The unit side is `tests/unit/search/` (the index built in memory from the real `src/data`: the A7
-ranking cases including `belastng` on the real Afrikaans data, spaced and joined form codes,
+ranking cases including `belastng` on the real Afrikaans data, the query-kind table of `docs/design-system.md` row by row on both real indexes (codes, amounts, numbers, hyphens, stop words, punctuation), spaced and joined form codes,
 `e-filing`, anchors, no English marks in the translated Afrikaans index and the English fallback on a
 copy of the data without Afrikaans, the 400 KB gzip budget per language; fixtures for
 the tokenizer, the client, filters, URLs and highlighting) and `tests/dom/search.test.ts` (the

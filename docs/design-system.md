@@ -371,20 +371,33 @@ never `display: none`: empty, it is only visually hidden, so it is in the access
 the first count arrives. On `/search/` the same holds: the results region is never hidden, only its
 heading until there is a query.
 
-**Queries.** Words are folded and stop words dropped, and at most 12 words are searched (the fields
-also take at most 200 characters). Two neighbours that may be one thing written two ways form a
-pair: letters then a number in any case (`VAT 264`, `vat 264`, `SAPS 601`) and a hyphenated word
-(`e-filing`). A stop word before a number is not a code (`on 1 March` keeps the `1`), unless it is
-written in capitals in a query that is not all capitals (`IT 12 form`; `ON 1 MARCH` is a date). A code
-pair is decided once against the index: when the guide holds the joined form as a term (`vat264`,
-and `saps601` through the index's own alias), only that is searched, exactly, so `VAT 264` ranks
-precisely as `VAT264`; otherwise both words are searched as any two words, so `page 2` or `stap 1`
-never widen to every "page" through a fuzzy joined form. A hyphenated pair is never narrowed that
-way: it is searched as both words (with prefix and fuzzy matching) or the joined form exactly, so
-`BTW-registrasie`, `BTW-faktuur` and `VAT-registered` find at least what the same words with a space
-find, and a word does not lose results when the reader finishes typing it.
-Every word must match first; when that finds nothing, any word may, leaving out lone numbers and
-single letters, so a junk query says "nothing found" instead of listing every "Prompt 1".
+**Queries.** One table says how every kind of query term is matched, and the code follows it: the
+rule for a single term is `matchRule()` in `src/lib/search/options.ts`, the pairs are built by
+`queryParts()` there and resolved by `resolvePairs()` / `queryTree()` in `src/lib/search-client.ts`.
+`tests/unit/search/index.test.ts` ("the query-kind table") runs one or more queries per row on both
+real indexes, English and Afrikaans. "Last" below means the last term of the query while the reader
+is still typing it (the query ends inside a word); a term followed by more text is finished.
+
+| Kind | Example | Rule | Why |
+| --- | --- | --- | --- |
+| Word | `PIS`, `omsetbelasting` | prefix from 2 letters; fuzzy 0.2 when longer than 4 letters | A7: prefix and fuzzy matching stand in for stemming in every language, and catch typos (`belastng`). |
+| Partial word | `notion` | the same rule: prefix | The reader is typing; `notion` must reach `notional`. |
+| Single letter | `e` (in `e-filing`) | exact | A one-letter prefix matches nearly every term. |
+| Code, joined | `VAT264`, `SAPS604`, `ITR14` | never fuzzy; prefix only while last | One edit is another form (`EMP501`/`EMP201`, `ITR14`/`ITR12`, `SAPS604`/`SAPS601`). Prefix while typing lets `VAT26` reach `VAT264`. |
+| Code, spaced | `VAT 264`, `vat 264`, `SAPS 601` | when the index holds the joined form: that, by the joined-code rule; otherwise both words, each by its rule | The spaced and joined spellings must give the same answer; `page 2` must not become every "page". |
+| Code with a typo | `VAT246`, `EMP502` | the joined-code rule: nothing is found | A near miss is a different form, so "nothing found" is the honest answer; the reader can try the spaced form. |
+| Rand amount | `R500,000`, `R1 million` | never fuzzy; prefix only while last | Two edits turn `R500,000` into `R200,000`, a different amount. A finished `R1` must not match `R10`; `R500,00` while typing reaches `R500,000`. |
+| Number, year | `2026`, `14.3`, `2` | exact | A value, not a stem: `2` is not `20`, `2026` is not `20261`. Lone numbers are left out of the any-word fallback. |
+| Hyphenated word | `BTW-registrasie`, `VAT-registered`, `e-filing` | both words (each by its rule) or the joined form; the joined form is prefix-matched only while last and never fuzzy | Must find at least what the spaced words find, also while typing (`e-fil` reaches `efiling`). The index holds the joined alias (`efiling`). |
+| Afrikaans compound | `kontrolelys`, `belastingjaar` | the word rule | No stemmer exists for Afrikaans (ADR 0003): prefix and fuzzy matching do that work. |
+| Stop words | `the`, `die`, `op` | dropped; one before a number is not a code (`on 1 March` keeps the `1`) unless written in capitals in a query that is not all capitals (`IT 12 form`) | They carry no meaning for search; a date is not a code. |
+| Punctuation | `"PIS"?!`, `R120,000`, `14.3` | separates terms, except `.` and `,` between digits (amounts and numbers stay whole) and a hyphen (the pair above) | Amounts and section numbers are single values. |
+
+Every term must match first; when that finds nothing, any term may, leaving out lone numbers and
+single letters, so a junk query says "nothing found" instead of listing every "Prompt 1". At most 12
+terms are searched (the fields take at most 200 characters). Counts are true totals: the dialog says
+"12 of 59 results shown" and "See all 59 results on the search page", and the search page lists all
+of them; only the dialog's list stops at 30.
 
 **Not built: filter chips.** B3 flow 3 puts filter chips in the empty state. The brief for this
 package (step 3) does not, and it leaves the only filter with a clear use, "my business types", to
