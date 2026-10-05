@@ -379,7 +379,11 @@
     "seeMyPath": "Sien my roete",
     "savedTip": "Net op hierdie toestel gestoor. Niks word êrens heen gestuur nie.",
     "noJs": "JavaScript is af. Jy kan steeds die vrae beantwoord en ’n roete sien, maar jou antwoorde word nie gestoor nie.",
-    "noJsOneType": "Sonder JavaScript kan jy een soort besigheid kies. Skakel JavaScript aan om meer as een te kies."
+    "noJsOneType": "Sonder JavaScript kan jy een soort besigheid kies. Skakel JavaScript aan om meer as een te kies.",
+    "result": {
+      "title": "Jou roete",
+      "intro": "Dit is die stappe vir jou antwoorde, in volgorde. Maak elke bladsy oop wanneer jy daar kom."
+    }
   },
   "myPath": {
     "title": "My roete",
@@ -408,7 +412,8 @@
       "body": "Dit verwyder jou antwoorde van hierdie toestel. Jou merkies op die kontrolelys bly.",
       "confirm": "Verwyder antwoorde"
     },
-    "resetDone": "Jou antwoorde is verwyder."
+    "resetDone": "Jou antwoorde is verwyder.",
+    "typeChecklists": "Van die bladsye vir jou soort besigheid"
   },
   "checklist": {
     "title": "Hoofkontrolelys",
@@ -683,7 +688,15 @@
     "showLessNamed": "Wys minder van opdrag {n}: {title}",
     "placeholderHint": "Woorde in [vierkantige hakies] is oop plekke. Vervang dit met jou eie besonderhede.",
     "stepperLabel": "Opdragte in hierdie lêer",
-    "promptLabel": "Opdrag {n}: {title}"
+    "promptLabel": "Opdrag {n}: {title}",
+    "profileValues": {
+      "vehicle-dealer": "voertuighandelaar",
+      "food": "kosbesigheid",
+      "beauty": "skoonheids- en persoonlike versorgingsbesigheid",
+      "retail-online": "kleinhandel- en aanlynwinkel",
+      "services-trades": "dienste- en ambagsbesigheid",
+      "professional-creative": "professionele en kreatiewe besigheid"
+    }
   },
   "search": {
     "label": "Soek in die gids",

@@ -379,7 +379,11 @@
     "seeMyPath": "See my path",
     "savedTip": "Saved on this device only. Nothing is sent anywhere.",
     "noJs": "JavaScript is off. You can still answer the questions and see a path, but your answers are not saved.",
-    "noJsOneType": "Without JavaScript you can choose one kind of business. To choose more than one, turn on JavaScript."
+    "noJsOneType": "Without JavaScript you can choose one kind of business. To choose more than one, turn on JavaScript.",
+    "result": {
+      "title": "Your path",
+      "intro": "These are the steps for your answers, in order. Open each page when you get to it."
+    }
   },
   "myPath": {
     "title": "My path",
@@ -408,7 +412,8 @@
       "body": "This removes your answers from this device. Your checklist ticks stay.",
       "confirm": "Remove answers"
     },
-    "resetDone": "Your answers were removed."
+    "resetDone": "Your answers were removed.",
+    "typeChecklists": "From the pages for your kind of business"
   },
   "checklist": {
     "title": "Master checklist",
@@ -683,7 +688,15 @@
     "showLessNamed": "Show less of prompt {n}: {title}",
     "placeholderHint": "Words in [square brackets] are blanks. Replace them with your own details.",
     "stepperLabel": "Prompts in this file",
-    "promptLabel": "Prompt {n}: {title}"
+    "promptLabel": "Prompt {n}: {title}",
+    "profileValues": {
+      "vehicle-dealer": "vehicle dealer",
+      "food": "food business",
+      "beauty": "beauty and personal care business",
+      "retail-online": "retail and online shop",
+      "services-trades": "services and trades business",
+      "professional-creative": "professional and creative business"
+    }
   },
   "search": {
     "label": "Search the guide",
