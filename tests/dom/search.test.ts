@@ -81,6 +81,33 @@ const entries: SearchEntry[] = [
     section: 'lookup',
     weight: KIND_WEIGHT.task,
   },
+  // `R1` while typed reaches `R146` too; finished (Enter, the search page) it is R1 alone.
+  {
+    key: 'd',
+    kind: 'glossary',
+    doc: 'lookup/glossary',
+    route: 'glossary/',
+    anchor: 'r146',
+    title: 'R146',
+    docTitle: 'Glossary',
+    path: 'Look it up › Glossary',
+    text: 'A form for a refund.',
+    section: 'lookup',
+    weight: KIND_WEIGHT.glossary,
+  },
+  {
+    key: 'e',
+    kind: 'section',
+    doc: 'core/start-here',
+    route: 'core/start-here/',
+    anchor: 'numbers',
+    title: 'About the numbers',
+    docTitle: 'Start here',
+    path: 'Core › Start here',
+    text: 'Amounts such as R1 million are rounded.',
+    section: 'core',
+    weight: KIND_WEIGHT.section,
+  },
 ];
 
 const manifest = realManifest();
@@ -304,7 +331,8 @@ describe('<st-search>', () => {
     // Stay on the result's page, so choosing it moves to the heading instead of loading a page.
     window.history.replaceState(null, '', new URL(option.href).pathname);
     key(document.getElementById('q')!, { key: 'Enter' });
-    expect(document.querySelector('dialog')!.open).toBe(false);
+    // Enter first searches the finished query, then opens its first result.
+    await vi.waitFor(() => expect(document.querySelector('dialog')!.open).toBe(false));
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(document.activeElement?.id).toBe('financial-statements');
     expect(window.location.hash).toBe('#financial-statements');
@@ -574,7 +602,8 @@ describe('the results listbox', () => {
     });
 
     // Review WP-33 pass 4, minor 1: a search still waiting for the index when the dialog closes
-    // must not fill the dialog when it opens again with an empty field.
+    // must not fill the dialog when it opens again with an empty field. Pass 5, nit: the answer
+    // arrives while the dialog is closed, so only the close itself can drop it.
     it('drops a pending search when the dialog closes, even if it re-opens empty', async () => {
       input().value = 'statements';
       void pending.search('statements');
@@ -582,6 +611,10 @@ describe('the results listbox', () => {
       const dialog = document.querySelector('dialog')!;
       dialog.close();
       await new Promise((resolve) => setTimeout(resolve, 0));
+      release();
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      expect(options()).toHaveLength(0);
+      expect(document.querySelector('[role="status"]')?.textContent).toBe('');
       dialog.showModal();
       pending.opened();
       release();
@@ -625,11 +658,25 @@ describe('the results listbox', () => {
     );
   });
 
+  // Review WP-33 pass 5, minor: Enter finishes the query. `R1` while typed shows R146 first;
+  // Enter opens what `R1` itself finds.
+  it('treats the query as finished on Enter: R1 opens R1, never R146', async () => {
+    input().value = 'R1';
+    await controller.search('R1');
+    expect(options()[0]!.getAttribute('href')).toBe('/glossary/#r146');
+    expect(key(input(), { key: 'Enter' }).defaultPrevented).toBe(true);
+    await vi.waitFor(() => expect(opened).toHaveLength(1));
+    expect(opened[0]).toMatch(/\/core\/start-here\/#numbers$/);
+    // The finished query is now on screen: R146 is gone.
+    expect(options().map((o) => o.getAttribute('href'))).toEqual(['/core/start-here/#numbers']);
+  });
+
   it('opens the first result on Enter when none is active, and an option on a click', async () => {
     (document.getElementById('q') as HTMLInputElement).value = 'PIS';
     await controller.search('PIS');
     key(input(), { key: 'Enter' });
-    expect(opened).toEqual([options()[0]!.href]);
+    // The shown results were found while typing: Enter searches the finished query first.
+    await vi.waitFor(() => expect(opened).toEqual([options()[0]!.href]));
     options()[1]!
       .querySelector('span')!
       .dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 }));
@@ -907,6 +954,18 @@ describe('<st-search-page>', () => {
     } finally {
       indexBody = saved;
     }
+  });
+
+  // Review WP-33 pass 5, minor: a submitted query is finished, so `R1` does not find R146.
+  it('reads ?q= as a finished query', async () => {
+    stubFetch();
+    mount('/search/?q=R1');
+    await vi.waitFor(() =>
+      expect(document.querySelectorAll('[data-search-result]')).toHaveLength(1),
+    );
+    expect(document.querySelector('[data-search-result]')?.getAttribute('href')).toBe(
+      '/core/start-here/#numbers',
+    );
   });
 
   it('runs ?q= in place and echoes the query', async () => {

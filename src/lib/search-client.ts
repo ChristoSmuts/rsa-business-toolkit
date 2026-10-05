@@ -47,6 +47,11 @@ export interface SearchOptions {
   /** Only results that apply to at least one of these business types (or to every type). */
   readonly businessTypes?: readonly string[] | undefined;
   readonly limit?: number | undefined;
+  /**
+   * `true` while the reader is still typing the last term (the live dialog), `false` for a
+   * finished query (Enter, the search page). Absent: a query that ends inside a word is being typed.
+   */
+  readonly typing?: boolean | undefined;
 }
 
 export interface SearchResult {
@@ -161,71 +166,60 @@ function weak(part: QueryPart): boolean {
   return typeof part === 'string' && (part.length < 2 || /^[\d.,]+$/.test(part));
 }
 
-/** `true` when the index holds `term` as a whole term (no prefix, no fuzzy match). */
-function hasTerm(index: LoadedIndex, term: string): boolean {
-  return index.search.search(term, { prefix: false, fuzzy: false }).length > 0;
-}
-
-/**
- * Decide each code pair once, against the index: when the guide writes the joined form (`VAT264`,
- * and `saps601` through the index's own alias for `SAPS 601`), search exactly that, so `VAT 264`
- * ranks precisely as `VAT264` does. Otherwise search both words, as any two words, so `page 2` or
- * `stap 1` never widen to every "page" or "stap" through a fuzzy joined form.
- *
- * A hyphenated pair is never resolved: `BTW-registrasie` must find at least what
- * `BTW registrasie` finds, with prefix and fuzzy matching, while the reader is still typing and
- * once the word is whole (review WP-33 pass 3, major 1). `queryTree` searches it as "both words, or
- * the joined form exactly".
- */
-export function resolvePairs(index: LoadedIndex, parts: readonly QueryPart[]): QueryPart[] {
-  return parts.map((part) =>
-    typeof part === 'string' ||
-    !('pair' in part) ||
-    part.hyphen === true ||
-    !hasTerm(index, part.joined)
-      ? part
-      : { exact: part.joined },
-  );
-}
-
 /** One term, with its matching rule (`matchRule`). */
 function leaf(term: string, last: boolean): Query {
   return { combineWith: 'OR', queries: [term], ...matchRule(term, last) };
 }
 
+/** Words, each by its own rule, all required; the last may be still being typed. */
+function allOf(words: readonly string[], last: boolean): Query {
+  return {
+    combineWith: 'AND',
+    queries: words.map((word, index) => leaf(word, last && index === words.length - 1)),
+  };
+}
+
 /**
- * The MiniSearch query for a list of parts, every term with its own matching rule
- * (`matchRule`, the query-kind table in `docs/design-system.md`):
- * - a word: `matchRule`, as the last word (still being typed) or not;
- * - a code pair (`page 2`) that the index does not hold joined: both its words, each by its rule;
- * - an exact part (a resolved code, `VAT 264` → `vat264`): by the code rule, as `VAT264` is;
- * - a hyphenated pair: both its words, or the joined form; the joined form is prefix-matched while
- *   it is being typed (`e-fil` → `efiling`) and never fuzzy-matched.
+ * How a spaced code is read in one pass of `runSearchCounted`: as its joined form (`vat264`, by the
+ * code rule) or as its words (`vat`, `264`, each by its own rule).
+ */
+export type CodeReading = 'joined' | 'words';
+
+/**
+ * The MiniSearch query for a list of parts, every term with its own matching rule (`matchRule`,
+ * the query-kind table in `docs/design-system.md`):
+ * - a word: `matchRule`, as the last term still being typed or not;
+ * - a spaced code: its joined form by the code rule (`codes: 'joined'`), or its words
+ *   (`codes: 'words'`); the client runs both and puts the joined reading's results first;
+ * - a hyphenated word: its words (stop words left out), or the whole chain joined, which is
+ *   prefix-matched while it is being typed (`e-fil` → `efiling`) and never fuzzy-matched.
  *
- * `typing` is `true` when the query ends inside a word, so its last term is still being typed.
+ * `typing` is `true` when the last term of the query is still being typed.
  */
 export function queryTree(
   parts: readonly QueryPart[],
   combineWith: 'AND' | 'OR',
   typing = true,
+  codes: CodeReading = 'joined',
 ): Exclude<Query, string> {
   return {
     combineWith,
     queries: parts.map((part, index): Query => {
       const last = typing && index === parts.length - 1;
       if (typeof part === 'string') return leaf(part, last);
-      // A resolved code follows the code rule, exactly as the joined spelling does, so `VAT 264`
-      // and `VAT264` agree: never fuzzy, prefix-matched only while it is being typed.
-      if ('exact' in part) return leaf(part.exact, last);
-      const both: Query = {
-        combineWith: 'AND',
-        queries: [leaf(part.pair[0], false), leaf(part.pair[1], last)],
-      };
-      if (part.hyphen !== true) return both;
-      return {
+      if ('code' in part) {
+        return codes === 'joined' || part.code.length === 0
+          ? leaf(part.joined, last)
+          : allOf(part.code, last);
+      }
+      const joined: Query = {
         combineWith: 'OR',
-        queries: [both, { combineWith: 'OR', queries: [part.joined], prefix: last, fuzzy: false }],
+        queries: [part.joined],
+        prefix: last,
+        fuzzy: false,
       };
+      if (part.hyphen.length === 0) return joined;
+      return { combineWith: 'OR', queries: [allOf(part.hyphen, last), joined] };
     }),
   };
 }
@@ -273,14 +267,30 @@ export function runSearchCounted(
     filter: (hit: MiniSearchResult): boolean =>
       matchesFilters(hit as unknown as StoredFields, options),
   };
-  const parts = resolvePairs(index, raw);
-  const typing = /[\p{L}\p{N}]$/u.test(query);
-  let hits = index.search.search(queryTree(parts, 'AND', typing), searchOptions);
+  const parts = raw;
+  // The caller says whether the reader is still typing: the live dialog does, Enter and the
+  // search page do not (a submitted query is finished). Without a say, a query that ends inside a
+  // word is being typed.
+  const typing = options.typing ?? /[\p{L}\p{N}]$/u.test(query);
+  const hasCode = parts.some((part) => typeof part !== 'string' && 'code' in part);
+  /**
+   * Run `list` as one combined query. A spaced code is read both ways: its joined form first (so
+   * `VAT 264` ranks as `VAT264` and `SAPS 60` reaches `SAPS601` while typed), then its words (so
+   * `VAT 15%` never finds less than `VAT` and `15`). Results of the joined reading come first.
+   */
+  const run = (list: readonly QueryPart[], combine: 'AND' | 'OR', last: boolean) => {
+    const first = index.search.search(queryTree(list, combine, last, 'joined'), searchOptions);
+    if (!hasCode) return first;
+    const ids = new Set(first.map((hit) => hit.id));
+    const words = index.search.search(queryTree(list, combine, last, 'words'), searchOptions);
+    return [...first, ...words.filter((hit) => !ids.has(hit.id))];
+  };
+  let hits = run(parts, 'AND', typing);
   const strong = parts.filter((part) => !weak(part));
   if (hits.length === 0 && strong.length > 0) {
     // Only the last part of the full query is still being typed.
     const lastStrong = strong.at(-1) === parts.at(-1);
-    hits = index.search.search(queryTree(strong, 'OR', typing && lastStrong), searchOptions);
+    hits = run(strong, 'OR', typing && lastStrong);
   }
   // Two entries can open the same place (a term and the section that explains it): keep the
   // better one, so the list never offers the same destination twice.

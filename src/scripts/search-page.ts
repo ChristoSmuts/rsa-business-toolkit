@@ -152,7 +152,8 @@ export class StSearchPage extends HTMLElement {
     try {
       // The search page is the full list: every result, so its count is the true total and
       // "See all" in the dialog keeps its promise (review WP-33 pass 4, minor 2).
-      results = await client.search(query, { limit: Number.POSITIVE_INFINITY });
+      // A submitted query is finished: `R1` is R1, not R146 (review WP-33 pass 5).
+      results = await client.search(query, { limit: Number.POSITIVE_INFINITY, typing: false });
     } catch {
       if (sequence !== this.#sequence) return;
       list?.replaceChildren();
@@ -225,7 +226,7 @@ export class StSearchSuggest extends HTMLElement {
     try {
       for (const query of queries) {
         words = query;
-        results = await client.search(query, { limit: SUGGESTIONS });
+        results = await client.search(query, { limit: SUGGESTIONS, typing: false });
         if (results.length > 0) break;
       }
     } catch {

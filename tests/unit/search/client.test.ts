@@ -11,7 +11,6 @@ import {
   loadIndex,
   markTerms,
   queryTree,
-  resolvePairs,
   resultHref,
   runSearch,
   SearchIndexError,
@@ -25,6 +24,7 @@ import {
   KIND_WEIGHT,
   matchRule,
   MAX_QUERY_TERMS,
+  normaliseNumber,
   prefix,
   processTerm,
   queryParts,
@@ -114,6 +114,7 @@ function index(lang: 'en' | 'af' = 'af', entries: SearchEntry[] = ENTRIES) {
 
 describe('options', () => {
   it('keeps form codes whole and joins a spaced code into an alias', () => {
+    // `R120,000` is folded to `r120000` by processTerm, not here.
     expect(tokenize('Form VAT264 and SAPS 601, CoR 14.3 and R120,000.')).toEqual([
       'Form',
       'VAT264',
@@ -129,35 +130,79 @@ describe('options', () => {
     ]);
   });
 
-  it('joins a hyphenated word as well', () => {
-    expect(tokenize('Use e-filing and second‑hand')).toEqual([
+  it('joins a hyphen chain as one alias, after the chain', () => {
+    expect(tokenize('Use e-filing and pay-as-you-earn')).toEqual([
       'Use',
       'e',
-      'efiling',
       'filing',
+      'efiling',
       'and',
-      'second',
-      'secondhand',
-      'hand',
+      'pay',
+      'as',
+      'you',
+      'earn',
+      'payasyouearn',
     ]);
   });
 
-  it('turns a spaced code or a hyphenated word in a query into a pair, in any case', () => {
+  // Review WP-33 pass 5, major 3: South African ways of writing amounts and tax years.
+  it('writes every amount one way and expands a short tax year', () => {
+    expect(foldTerm('R120,000')).toBe('r120000');
+    expect(foldTerm('R2,300,000')).toBe('r2300000');
+    expect(foldTerm('R2,3')).toBe('r2.3');
+    expect(foldTerm('R2.3')).toBe('r2.3');
+    expect(foldTerm('14.3')).toBe('14.3');
+    expect(normaliseNumber('vat264')).toBe('vat264');
+    expect(tokenize('R120 000 or R 120 000 or R1 200 000')).toEqual([
+      'R120000',
+      'or',
+      'R120000',
+      'or',
+      'R1200000',
+    ]);
+    expect(tokenize('R2.3 million and R1 miljoen')).toEqual([
+      'R2.3',
+      'R2300000',
+      'million',
+      'and',
+      'R1',
+      'R1000000',
+      'miljoen',
+    ]);
+    // The guide and copied text use no-break and narrow no-break spaces between the groups.
+    expect(tokenize('R120 000 and R1 200 000')).toEqual(['R120000', 'and', 'R1200000']);
+    expect(tokenize('2026/27 and 2026/2027')).toEqual(['2026', '2027', 'and', '2026', '2027']);
+    // Only groups of three after an amount join: a year and a count stay apart.
+    expect(tokenize('In 2026 100 people paid R50 each')).toEqual([
+      'In',
+      '2026',
+      '100',
+      'people',
+      'paid',
+      'R50',
+      'each',
+    ]);
+  });
+
+  it('turns a spaced code or a hyphenated word in a query into one part, in any case', () => {
     expect(queryParts('VAT 264 form')).toEqual([
-      { pair: ['vat', '264'], joined: 'vat264' },
+      { code: ['vat', '264'], joined: 'vat264' },
       'form',
     ]);
-    expect(queryParts('saps 601')).toEqual([{ pair: ['saps', '601'], joined: 'saps601' }]);
-    expect(queryParts('the e-filing')).toEqual([
-      { pair: ['e', 'filing'], joined: 'efiling', hyphen: true },
-    ]);
+    expect(queryParts('saps 601')).toEqual([{ code: ['saps', '601'], joined: 'saps601' }]);
+    expect(queryParts('the e-filing')).toEqual([{ hyphen: ['e', 'filing'], joined: 'efiling' }]);
     expect(queryParts('page 2 of the guide')).toEqual([
-      { pair: ['page', '2'], joined: 'page2' },
+      { code: ['page', '2'], joined: 'page2' },
       'guide',
     ]);
-    // A stop word in a pair leaves only the joined form.
-    expect(queryParts('the-end')).toEqual(['theend']);
+    // Review WP-33 pass 5, minor: a stop-word half leaves the other words, and the whole chain.
+    expect(queryParts('pay-as-you-earn')).toEqual([
+      { hyphen: ['pay', 'earn'], joined: 'payasyouearn' },
+    ]);
+    expect(queryParts('in-house')).toEqual([{ hyphen: ['house'], joined: 'inhouse' }]);
+    expect(queryParts('the-end')).toEqual([{ hyphen: ['end'], joined: 'theend' }]);
     expect(queryParts('VAT264')).toEqual(['vat264']);
+    expect(queryParts('R120 000')).toEqual(['r120000']);
     expect(queryParts('   ')).toEqual([]);
   });
 
@@ -169,10 +214,16 @@ describe('options', () => {
     expect(queryParts(words.join(' '))).toHaveLength(MAX_QUERY_TERMS);
   });
 
-  it('searches a pair as both words, and a resolved pair exactly', () => {
-    expect(
-      queryTree([{ pair: ['vat', '264'], joined: 'vat264' }, { exact: 'saps601' }, 'form'], 'AND'),
-    ).toEqual({
+  it('reads a spaced code as its joined form or as its words', () => {
+    const parts = [{ code: ['vat', '264'], joined: 'vat264' }, 'form'] as const;
+    expect(queryTree(parts, 'AND', false, 'joined')).toEqual({
+      combineWith: 'AND',
+      queries: [
+        { combineWith: 'OR', queries: ['vat264'], prefix: false, fuzzy: false },
+        { combineWith: 'OR', queries: ['form'], prefix: true, fuzzy: false },
+      ],
+    });
+    expect(queryTree(parts, 'AND', false, 'words')).toEqual({
       combineWith: 'AND',
       queries: [
         {
@@ -182,7 +233,6 @@ describe('options', () => {
             { combineWith: 'OR', queries: ['264'], prefix: false, fuzzy: false },
           ],
         },
-        { combineWith: 'OR', queries: ['saps601'], prefix: false, fuzzy: false },
         { combineWith: 'OR', queries: ['form'], prefix: true, fuzzy: false },
       ],
     });
@@ -195,8 +245,10 @@ describe('options', () => {
     ['e', true, { prefix: false, fuzzy: false }],
     ['vat264', true, { prefix: true, fuzzy: false }],
     ['vat264', false, { prefix: false, fuzzy: false }],
-    ['r500,000', false, { prefix: false, fuzzy: false }],
+    ['r500000', false, { prefix: false, fuzzy: false }],
+    ['r500000', true, { prefix: false, fuzzy: false }],
     ['r50', true, { prefix: true, fuzzy: false }],
+    ['r2.3', true, { prefix: true, fuzzy: false }],
     ['2026', true, { prefix: false, fuzzy: false }],
     ['14.3', true, { prefix: false, fuzzy: false }],
   ] as const)('matchRule(%s, last=%s)', (term, last, rule) => {
@@ -221,12 +273,31 @@ describe('options', () => {
     expect(anchors('VAT264').sort()).toEqual(['code', 'longer']);
   });
 
-  it('keeps a hyphenated pair as both words or the joined form, never resolved', () => {
-    const idx = index('en', [entry({ key: 'e', title: 'eFiling', text: 'e-filing efiling' })]);
-    const part = { pair: ['e', 'filing'], joined: 'efiling', hyphen: true } as const;
-    expect(resolvePairs(idx, [part])).toEqual([part]);
+  it('searches a hyphenated word as its words or the whole chain joined', () => {
+    const part = { hyphen: ['e', 'filing'], joined: 'efiling' } as const;
     const tree = (typing: boolean) => ({
       combineWith: 'AND',
+      queries: [
+        {
+          combineWith: 'OR',
+          queries: [
+            {
+              combineWith: 'AND',
+              queries: [
+                { combineWith: 'OR', queries: ['e'], prefix: false, fuzzy: false },
+                { combineWith: 'OR', queries: ['filing'], prefix: typing, fuzzy: 0.2 },
+              ],
+            },
+            // Prefix-matched while typed (`e-fil` → `efiling`), never fuzzy.
+            { combineWith: 'OR', queries: ['efiling'], prefix: typing, fuzzy: false },
+          ],
+        },
+      ],
+    });
+    expect(queryTree([part], 'AND')).toEqual(tree(true));
+    // `filing` keeps its own word rule (prefix from two letters) whether typed or not.
+    expect(queryTree([part], 'AND', false)).toEqual({
+      ...tree(false),
       queries: [
         {
           combineWith: 'OR',
@@ -238,35 +309,23 @@ describe('options', () => {
                 { combineWith: 'OR', queries: ['filing'], prefix: true, fuzzy: 0.2 },
               ],
             },
-            // Prefix-matched while typed (`e-fil` → `efiling`), never fuzzy.
-            { combineWith: 'OR', queries: ['efiling'], prefix: typing, fuzzy: false },
+            { combineWith: 'OR', queries: ['efiling'], prefix: false, fuzzy: false },
           ],
         },
       ],
     });
-    expect(queryTree([part], 'AND')).toEqual(tree(true));
-    expect(queryTree([part], 'AND', false)).toEqual(tree(false));
-  });
-
-  it('resolves a pair to its joined form only when the index holds that term', () => {
-    const idx = index('en', [
-      ...ENTRIES,
-      entry({ key: 'code', title: 'Form VAT264', text: 'VAT264' }),
-    ]);
-    expect(
-      resolvePairs(idx, [
-        { pair: ['vat', '264'], joined: 'vat264' },
-        { pair: ['page', '2'], joined: 'page2' },
-        'form',
-      ]),
-    ).toEqual([{ exact: 'vat264' }, { pair: ['page', '2'], joined: 'page2' }, 'form']);
+    // Only stop words left: the whole chain alone.
+    expect(queryTree([{ hyphen: [], joined: 'theend' }], 'AND', false)).toEqual({
+      combineWith: 'AND',
+      queries: [{ combineWith: 'OR', queries: ['theend'], prefix: false, fuzzy: false }],
+    });
   });
 
   // Review WP-33 pass 2, nit 3: "on 1 March" paired the stop word with the date.
   it('keeps the number of a date apart from a stop word, but pairs a capitalised code', () => {
     expect(queryParts('on 1 March')).toEqual(['1', 'march']);
     expect(queryParts('op 28 Februarie')).toEqual(['28', 'februarie']);
-    expect(queryParts('IT 12 form')).toEqual(['it12', 'form']);
+    expect(queryParts('IT 12 form')).toEqual([{ code: ['12'], joined: 'it12' }, 'form']);
     // Review WP-33 pass 3, nit 1: a query all in capitals says nothing by its capitals.
     expect(queryParts('ON 1 MARCH')).toEqual(['1', 'march']);
     expect(queryParts('OP 28 FEBRUARIE')).toEqual(['28', 'februarie']);

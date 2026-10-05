@@ -121,7 +121,16 @@ const CODE_PREFIX = /^(?=(?:[^A-Z]*[A-Z]){2})[A-Za-z]{2,6}$/;
 const STARTS_WITH_DIGIT = /^\p{N}/u;
 
 /** A hyphen (or a non-breaking hyphen) and nothing else between two tokens: `e-filing`. */
-const HYPHEN = /^[-\u2010\u2011]$/;
+const HYPHEN = /^[-‐‑]$/;
+/** One space (plain, no-break or narrow no-break) between the groups of an amount: `R120 000`. */
+const GROUP_SPACE = /^[ \u00a0\u202f]$/;
+/** An amount so far: `R`, `R120`, `R1200` (before its next group of three digits). */
+const RAND_SO_FAR = /^R\d*$/i;
+const THREE_DIGITS = /^\d{3}$/;
+const YEAR = /^\d{4}$/;
+const SHORT_YEAR = /^\d{2}$/;
+/** `million` / `miljoen` after an amount: `R2.3 million` is also `R2300000`. */
+const MILLION = /^(?:million|miljoen)$/i;
 
 interface RawToken {
   readonly text: string;
@@ -129,34 +138,77 @@ interface RawToken {
   readonly gap: string;
 }
 
+/**
+ * Tokens, with the South African ways of writing an amount or a tax year made one token, the same
+ * at index time and at query time (the query-kind table, `docs/design-system.md`):
+ * - `R120 000`, `R 120 000` (groups of three after a space) → `R120000`, as `R120,000` folds to;
+ * - `2026/27` → `2026` and `2027`, as the guide writes `2026/2027`.
+ */
 function rawTokens(text: string): RawToken[] {
   const out: RawToken[] = [];
   let end = 0;
   for (const match of text.matchAll(TOKEN)) {
-    out.push({ text: match[0], gap: text.slice(end, match.index) });
+    const gap = text.slice(end, match.index);
     end = match.index + match[0].length;
+    const previous = out.at(-1);
+    let token = match[0];
+    if (previous !== undefined && GROUP_SPACE.test(gap) && RAND_SO_FAR.test(previous.text)) {
+      const joinable = previous.text.length === 1 ? /^\d+$/.test(token) : THREE_DIGITS.test(token);
+      if (joinable) {
+        out[out.length - 1] = { text: `${previous.text}${token}`, gap: previous.gap };
+        continue;
+      }
+    }
+    if (
+      previous !== undefined &&
+      gap === '/' &&
+      YEAR.test(previous.text) &&
+      SHORT_YEAR.test(token)
+    ) {
+      token = `${previous.text.slice(0, 2)}${token}`;
+    }
+    out.push({ text: token, gap });
   }
   return out;
 }
 
+/** The value of a folded amount (`r2.3` → 2.3), or `undefined` when it is not one. */
+function randValue(folded: string): number | undefined {
+  const match = /^r(\d+(?:\.\d+)?)$/.exec(folded);
+  return match?.[1] === undefined ? undefined : Number(match[1]);
+}
+
 /**
- * Split text into raw tokens, adding a joined alias in two cases:
- * - a form code written with a space: `SAPS 601` gives `SAPS`, `601` and `SAPS601`, so `saps601`
- *   finds it too. Only where the letters are a code (two or more capitals), so ordinary prose
- *   (`page 2`) does not grow the index;
- * - a hyphenated word: `e-filing` gives `e`, `filing` and `efiling`, so `eFiling` and `e-filing`
- *   meet.
- * A query is not tokenised this way: `queryParts` makes each such pair an alternative instead.
+ * Split text into raw tokens, adding aliases so other spellings of the same thing meet:
+ * - a form code written with a space: `SAPS 601` also gives `SAPS601`, only where the letters are a
+ *   code (two or more capitals), so ordinary prose (`page 2`) does not grow the index;
+ * - a hyphenated word, as one joined chain: `e-filing` also gives `efiling`, `pay-as-you-earn`
+ *   also gives `payasyouearn`;
+ * - an amount in millions: `R2.3 million` / `R2.3 miljoen` also give `R2300000`, so `R2,300,000`
+ *   and `R2 300 000` find it.
+ * A query is not tokenised this way: `queryParts` builds alternatives instead.
  */
 export function tokenize(text: string): string[] {
   const tokens = rawTokens(text);
   const out: string[] = [];
+  let chain = '';
   tokens.forEach((token, index) => {
     out.push(token.text);
     const next = tokens[index + 1];
-    if (next === undefined) return;
-    const code = CODE_PREFIX.test(token.text) && STARTS_WITH_DIGIT.test(next.text);
-    if (code || HYPHEN.test(next.gap)) out.push(`${token.text}${next.text}`);
+    if (next !== undefined && CODE_PREFIX.test(token.text) && STARTS_WITH_DIGIT.test(next.text)) {
+      out.push(`${token.text}${next.text}`);
+    }
+    if (next !== undefined && MILLION.test(next.text) && GROUP_SPACE.test(next.gap)) {
+      const value = randValue(foldTerm(token.text));
+      if (value !== undefined) out.push(`R${String(Math.round(value * 1_000_000))}`);
+    }
+    // Hyphen chains: the whole chain joined, once it ends.
+    if (next !== undefined && HYPHEN.test(next.gap)) {
+      chain = chain === '' ? `${token.text}${next.text}` : `${chain}${next.text}`;
+    } else if (chain !== '') {
+      out.push(chain);
+      chain = '';
+    }
   });
   return out;
 }
@@ -165,26 +217,22 @@ export function tokenize(text: string): string[] {
 export const MAX_QUERY_TERMS = 12;
 
 /**
- * One word of a query; a pair that may also be written joined; or (after the client has checked the
- * index, `resolvePairs`) the joined form to match exactly.
+ * One part of a query:
+ * - a word (folded);
+ * - a code written with a space (`VAT 264`, `vat 264`, `SAPS 60` while typing): its words without
+ *   stop words, and the joined form;
+ * - a hyphenated word (`BTW-registrasie`, `pay-as-you-earn`): its words without stop words, and the
+ *   whole chain joined.
  */
 export type QueryPart =
   | string
-  | {
-      readonly pair: readonly [string, string];
-      readonly joined: string;
-      /** `true` for a hyphenated word (`BTW-registrasie`), absent for a code (`VAT 264`). */
-      readonly hyphen?: true;
-    }
-  | { readonly exact: string };
+  | { readonly code: readonly string[]; readonly joined: string }
+  | { readonly hyphen: readonly string[]; readonly joined: string };
 
 const LETTERS = /^\p{L}{2,6}$/u;
 
 /**
- * The words of a query, folded, without stop words, at most `MAX_QUERY_TERMS`. Two neighbours
- * that are one thing written two ways become a pair: letters followed by a number (`vat 264`,
- * `SAPS 601`, in any case) or a hyphenated word (`e-filing`). The client searches a pair as
- * "both words, or the joined form", so `VAT 264` finds every page that writes `VAT264`.
+ * The parts of a query, at most `MAX_QUERY_TERMS` tokens. See `QueryPart` and the query-kind table.
  */
 export function queryParts(text: string): QueryPart[] {
   const tokens = rawTokens(text).slice(0, MAX_QUERY_TERMS);
@@ -195,26 +243,27 @@ export function queryParts(text: string): QueryPart[] {
     const token = tokens[index]!;
     const next = tokens[index + 1];
     const first = processTerm(token.text);
+    // A hyphen chain: every token joined by a hyphen to the one before.
+    if (next !== undefined && HYPHEN.test(next.gap)) {
+      let last = index + 1;
+      while (tokens[last + 1] !== undefined && HYPHEN.test(tokens[last + 1]!.gap)) last++;
+      const chain = tokens.slice(index, last + 1);
+      const joined = processTerm(chain.map((t) => t.text).join(''));
+      const words = chain.map((t) => processTerm(t.text)).filter((w): w is string => w !== null);
+      if (joined !== null) out.push({ hyphen: words, joined });
+      index = last;
+      continue;
+    }
     if (next !== undefined) {
       // A stop word before a number is a date or a count (`on 1 March`, `op 28 Februarie`), not a
-      // code, unless it is written in capitals like one (`IT 12`).
-      // An all-capitals query (`ON 1 MARCH`) is read as a date too.
+      // code, unless it is written in capitals like one (`IT 12`) in a query not all in capitals.
       const codeWord = first !== null || (!shouting && token.text === token.text.toUpperCase());
-      const isCode = codeWord && LETTERS.test(token.text) && STARTS_WITH_DIGIT.test(next.text);
-      const hyphen = HYPHEN.test(next.gap);
-      if (isCode || hyphen) {
-        const second = processTerm(next.text);
+      if (codeWord && LETTERS.test(token.text) && STARTS_WITH_DIGIT.test(next.text)) {
         const joined = processTerm(`${token.text}${next.text}`);
+        const second = processTerm(next.text);
         if (joined !== null) {
-          const pair: [string, string] | undefined =
-            first !== null && second !== null ? [first, second] : undefined;
-          out.push(
-            pair === undefined
-              ? joined
-              : isCode && !hyphen
-                ? { pair, joined }
-                : { pair, joined, hyphen: true },
-          );
+          const words = [first, second].filter((w): w is string => w !== null);
+          out.push({ code: words, joined });
           index++;
           continue;
         }
@@ -225,12 +274,31 @@ export function queryParts(text: string): QueryPart[] {
   return out;
 }
 
-/** Lowercase and strip diacritics (`ê` → `e`, `ë` → `e`), so `sê` and `se` are the same term. */
+/** An amount or a number: an optional `R`, then digits with `.` or `,` between them. */
+const NUMBER_LIKE = /^r?\d[\d.,]*$/;
+
+/**
+ * One spelling for an amount: thousands separators go (`R120,000` → `r120000`), and a decimal comma
+ * becomes a point (`R2,3` → `r2.3`, the Afrikaans way of writing `R2.3`). A comma is a thousands
+ * separator when exactly three digits follow it; otherwise, at the end, it is a decimal comma.
+ */
+export function normaliseNumber(folded: string): string {
+  if (!NUMBER_LIKE.test(folded)) return folded;
+  return folded.replace(/,(?=\d{3}(?!\d))/g, '').replace(/,(\d{1,2})$/, '.$1');
+}
+
+/**
+ * Lowercase and strip diacritics (`ê` → `e`, `ë` → `e`), so `sê` and `se` are the same term, and
+ * write every amount one way (`normaliseNumber`). Used at index time, at query time and to mark
+ * matches, so all three agree.
+ */
 export function foldTerm(term: string): string {
-  return term
-    .normalize('NFD')
-    .replace(/\p{M}+/gu, '')
-    .toLowerCase();
+  return normaliseNumber(
+    term
+      .normalize('NFD')
+      .replace(/\p{M}+/gu, '')
+      .toLowerCase(),
+  );
 }
 
 /**
@@ -251,16 +319,22 @@ export interface MatchRule {
 
 const HAS_DIGIT = /\p{N}/u;
 const NUMBER_ONLY = /^[\p{N}.,]+$/u;
+const AMOUNT = /^r\d[\d.]*$/;
+
+function digits(term: string): number {
+  return term.replace(/\D/g, '').length;
+}
 
 /**
  * The matching rule for one query term: the one place that says it, for every kind of term
  * (`docs/design-system.md`, "Search", the query-kind table; review WP-33 pass 4).
  *
  * - A bare number or year (`2`, `2026`, `14.3`) is matched whole: a value, not a stem.
- * - Any other term with a digit in it (a joined code `VAT264`, an amount `R500,000`) is never fuzzy: one edit turns `EMP501` into `EMP201` and `R500,000` into
- *   `R200,000`, a different form or a different amount. It is prefix-matched only while the reader
- *   is still typing it (`last`), so `R50` finds `R50,000` but a finished `R1` in `R1 million` does
- *   not match `R10`.
+ * - Any other term with a digit in it (a joined code `VAT264`, an amount `R500000`) is never
+ *   fuzzy: one edit turns `EMP501` into `EMP201` and `R500000` into `R200000`, a different form or
+ *   a different amount. It is prefix-matched only while the reader is still typing it (`last`), so
+ *   `SAPS60` finds `SAPS601` and `R50` finds `R50000`, but a finished `R1` does not match `R146`.
+ *   An amount stops being prefix-matched at four digits: `R500000` must not reach `R50000000`.
  * - A word of letters is prefix-matched from two letters (A7: prefix matching does the stemming
  *   work in every language) and fuzzy-matched (0.2) when longer than four letters (A7, for typos).
  * - A single letter is matched whole.
@@ -270,6 +344,9 @@ const NUMBER_ONLY = /^[\p{N}.,]+$/u;
 export function matchRule(term: string, last: boolean): MatchRule {
   // A bare number or year is a value: `2` is not `20`, `2026` is not `20261`.
   if (NUMBER_ONLY.test(term)) return { prefix: false, fuzzy: false };
+  // An amount is a value too, once it has four digits or more: `R500000` must not reach
+  // `R50000000` (R50 million). While the first digits are typed (`R50`) it reaches its amounts.
+  if (AMOUNT.test(term)) return { prefix: last && digits(term) <= 3, fuzzy: false };
   if (HAS_DIGIT.test(term)) return { prefix: last, fuzzy: false };
   return {
     prefix: term.length >= PREFIX_MIN_LENGTH,

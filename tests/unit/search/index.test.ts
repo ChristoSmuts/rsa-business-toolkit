@@ -15,6 +15,7 @@ import {
   runSearchCounted,
   type LoadedIndex,
 } from '../../../src/lib/search-client';
+import { processTerm, tokenize } from '../../../src/lib/search/options';
 import { SEARCH_ENTRY_KINDS, type SearchEntry } from '../../../src/lib/search/types';
 
 const BASE = '/business-toolkit/';
@@ -153,20 +154,33 @@ describe('A7 ranking cases', () => {
     for (const result of holdingWord) expect(whole.has(result.href), result.href).toBe(true);
   });
 
-  // Review WP-33 pass 4: the query-kind table in docs/design-system.md ("Search", "Queries"), one
-  // row per kind, on both real indexes. `first` is the first result's href (after the locale
-  // prefix); `every` is a term every result must hold; `none` is a term no result may hold;
-  // `empty` means the honest answer is "nothing found".
+  // Review WP-33 pass 4 and 5: the query-kind table in docs/design-system.md ("Search",
+  // "Queries"), one row per kind, on both real indexes. Hrefs are after the locale prefix.
   interface Row {
     readonly kind: string;
     readonly lang: 'en' | 'af';
     readonly query: string;
+    /** `true`: the reader is still typing the last term (the live dialog); `false`: Enter. */
+    readonly typing?: boolean;
+    /** The first result's href. */
     readonly first?: string;
+    /** Hrefs found in the first three results. */
+    readonly top3?: readonly string[];
+    /** A term prefix every result holds. */
     readonly every?: string;
+    /** A term no result may hold. */
     readonly none?: string;
+    /** Every matched term holding a digit is one of these (a number is never prefix-matched). */
+    readonly digitTerms?: readonly string[];
+    /** Every matched term is one of these. */
+    readonly onlyTerms?: readonly string[];
+    /** The honest answer is "nothing found". */
     readonly empty?: true;
+    /** Exactly the same results, in the same order. */
     readonly sameAs?: string;
-    /** Finds at least everything this query finds. */
+    /** The results begin with this query's results, in order (a spaced code: joined first). */
+    readonly startsWith?: string;
+    /** Finds at least everything this query finds (a spaced code: its two words). */
     readonly atLeast?: string;
     /** A term the first result holds. */
     readonly firstTerm?: string;
@@ -176,6 +190,7 @@ describe('A7 ranking cases', () => {
     { kind: 'word', lang: 'af', query: 'omsetbelasting', first: 'glossary/#turnover-tax' },
     { kind: 'partial word', lang: 'en', query: 'notion', first: 'glossary/#notional-input-tax' },
     { kind: 'word with a typo', lang: 'af', query: 'belastng', firstTerm: 'belasting' },
+    { kind: 'single letter', lang: 'en', query: 'e', onlyTerms: ['e'] },
     {
       kind: 'code, joined',
       lang: 'en',
@@ -187,20 +202,138 @@ describe('A7 ranking cases', () => {
     { kind: 'code, joined', lang: 'en', query: 'ITR14 deadline', every: 'itr14', none: 'itr12' },
     { kind: 'code, joined', lang: 'af', query: 'ITR14 sperdatum', every: 'itr14', none: 'itr12' },
     { kind: 'code, being typed', lang: 'en', query: 'VAT26', first: 'glossary/#vat264' },
-    { kind: 'code, spaced', lang: 'en', query: 'VAT 264', sameAs: 'VAT264' },
-    { kind: 'code, spaced', lang: 'en', query: 'SAPS 604', sameAs: 'SAPS604' },
-    { kind: 'code, spaced', lang: 'af', query: 'VAT 264', sameAs: 'VAT264' },
+    // A spaced code: the joined code's results first, then everything its two words find.
+    { kind: 'code, spaced', lang: 'en', query: 'VAT 264', sameAs: 'VAT264', atLeast: '264 VAT' },
+    { kind: 'code, spaced', lang: 'en', query: 'vat 264', sameAs: 'VAT264', atLeast: '264 vat' },
+    {
+      kind: 'code, spaced',
+      lang: 'en',
+      query: 'SAPS 604',
+      startsWith: 'SAPS604',
+      atLeast: '604 SAPS',
+    },
+    {
+      kind: 'code, spaced',
+      lang: 'af',
+      query: 'VAT 264',
+      startsWith: 'VAT264',
+      atLeast: '264 VAT',
+    },
+    {
+      kind: 'code, spaced',
+      lang: 'en',
+      query: 'VAT 15%',
+      startsWith: 'VAT15',
+      atLeast: '15% VAT',
+      top3: ['templates/tax-invoice/#supply'],
+    },
+    { kind: 'code, spaced', lang: 'af', query: 'BTW 15%', startsWith: 'BTW15', atLeast: '15% BTW' },
+    {
+      kind: 'code, spaced',
+      lang: 'en',
+      query: 'brand 5',
+      startsWith: 'brand5',
+      atLeast: '5 brand',
+    },
+    {
+      kind: 'code, spaced',
+      lang: 'en',
+      query: 'under 100',
+      startsWith: 'under100',
+      atLeast: '100 under',
+    },
+    { kind: 'code, spaced', lang: 'af', query: 'werk 5', startsWith: 'werk5', atLeast: '5 werk' },
+    // The number is still being typed: the joined form is prefix-matched, like `SAPS60`.
+    {
+      kind: 'code, spaced, being typed',
+      lang: 'en',
+      query: 'SAPS 60',
+      typing: true,
+      startsWith: 'SAPS60',
+      first: 'business-types/vehicle-dealer/#how-to-register',
+    },
+    {
+      kind: 'code, spaced, being typed',
+      lang: 'en',
+      query: 'VAT 26',
+      typing: true,
+      startsWith: 'VAT26',
+      first: 'glossary/#vat264',
+    },
+    {
+      kind: 'code, spaced, being typed',
+      lang: 'en',
+      query: 'EMP 20',
+      typing: true,
+      startsWith: 'EMP20',
+      first: 'glossary/#emp201',
+    },
+    {
+      kind: 'code, spaced, being typed',
+      lang: 'af',
+      query: 'SAPS 60',
+      typing: true,
+      startsWith: 'SAPS60',
+      first: 'business-types/vehicle-dealer/#how-to-register',
+    },
     { kind: 'code with a typo', lang: 'en', query: 'VAT246', empty: true },
     { kind: 'code with a typo', lang: 'en', query: 'EMP502', empty: true },
-    { kind: 'rand amount', lang: 'en', query: 'R500,000', every: 'r500,000' },
-    { kind: 'rand amount', lang: 'en', query: 'R300,000', every: 'r300,000' },
+    { kind: 'rand amount', lang: 'en', query: 'R500,000', every: 'r500000' },
+    { kind: 'rand amount', lang: 'en', query: 'R500 000', sameAs: 'R500,000' },
+    { kind: 'rand amount', lang: 'en', query: 'R300,000', every: 'r300000' },
+    { kind: 'rand amount', lang: 'en', query: 'R120 000', sameAs: 'R120,000', every: 'r120000' },
+    { kind: 'rand amount', lang: 'en', query: 'R120000', sameAs: 'R120,000' },
+    { kind: 'rand amount', lang: 'en', query: 'R 120 000', sameAs: 'R120,000' },
+    { kind: 'rand amount', lang: 'af', query: 'R120 000', sameAs: 'R120,000', every: 'r120000' },
     { kind: 'rand amount', lang: 'en', query: 'R1 million', every: 'r1', none: 'r10' },
+    {
+      kind: 'rand amount, in millions',
+      lang: 'en',
+      query: 'R1,000,000',
+      atLeast: 'R1 million',
+      digitTerms: ['r1000000'],
+    },
+    {
+      kind: 'rand amount, in millions',
+      lang: 'en',
+      query: 'R2 300 000',
+      sameAs: 'R2,300,000',
+      atLeast: 'R2.3 million',
+    },
+    {
+      kind: 'rand amount, decimal comma',
+      lang: 'en',
+      query: 'R2,3',
+      sameAs: 'R2.3',
+      every: 'r2.3',
+    },
+    {
+      kind: 'rand amount, decimal comma',
+      lang: 'af',
+      query: 'R2,3 miljoen',
+      sameAs: 'R2.3 miljoen',
+      top3: ['core/tax-and-sars/#vat-probably-not-yet'],
+    },
     { kind: 'rand amount', lang: 'en', query: 'R123,456', empty: true },
-    { kind: 'rand amount, being typed', lang: 'en', query: 'R500,00', every: 'r500,000' },
+    // Finished (Enter, the search page): `R1` is R1, never R146.
+    { kind: 'rand amount, finished', lang: 'en', query: 'R1', typing: false, digitTerms: ['r1'] },
+    { kind: 'rand amount, being typed', lang: 'en', query: 'R500', typing: true, every: 'r500' },
     { kind: 'year', lang: 'en', query: 'Tax 2026', every: '2026' },
-    { kind: 'number', lang: 'en', query: 'page 2', every: '2' },
+    { kind: 'year', lang: 'af', query: '2027', digitTerms: ['2027'] },
+    { kind: 'tax year', lang: 'en', query: '2026/27', sameAs: '2026/2027', every: '2027' },
+    { kind: 'tax year', lang: 'af', query: '2026/27', sameAs: '2026/2027', every: '2027' },
+    { kind: 'number', lang: 'en', query: '20', digitTerms: ['20'] },
+    { kind: 'number', lang: 'en', query: 'page 2', typing: false, digitTerms: ['2', 'page2'] },
+    { kind: 'number', lang: 'af', query: 'stap 1', typing: false, digitTerms: ['1', 'stap1'] },
     { kind: 'hyphenated word', lang: 'af', query: 'BTW-registrasie', atLeast: 'BTW registrasie' },
     { kind: 'hyphenated word', lang: 'en', query: 'VAT-registered', atLeast: 'VAT registered' },
+    {
+      kind: 'hyphenated word, stop-word halves',
+      lang: 'en',
+      query: 'pay-as-you-earn',
+      top3: ['glossary/#paye'],
+    },
+    { kind: 'hyphenated word, stop-word halves', lang: 'en', query: 'in-house', atLeast: 'house' },
     {
       kind: 'hyphenated word, being typed',
       lang: 'en',
@@ -216,6 +349,25 @@ describe('A7 ranking cases', () => {
       first: 'glossary/#turnover-tax',
     },
     { kind: 'punctuation', lang: 'en', query: '"PIS"?!', first: 'glossary/#pis' },
+    {
+      kind: 'mixed',
+      lang: 'en',
+      query: 'Companies Act 71 of 2008',
+      top3: ['sources/#legislation-this-toolkit-relies-on'],
+    },
+    {
+      kind: 'mixed',
+      lang: 'en',
+      query: 'tax year 2026/27',
+      first: 'core/tax-and-sars/#your-tax-year-calendar',
+    },
+    {
+      kind: 'mixed',
+      lang: 'en',
+      query: 'ITR 14 deadline',
+      startsWith: 'ITR14 deadline',
+    },
+    { kind: 'mixed', lang: 'en', query: 'VAT rate 15%', first: 'glossary/#vat' },
   ];
 
   it.each(ROWS.map((row) => [row.kind, row.lang, row.query, row] as const))(
@@ -223,19 +375,29 @@ describe('A7 ranking cases', () => {
     (_kind, lang, query, row) => {
       const built = lang === 'en' ? en : af;
       const prefix = lang === 'en' ? BASE : `${BASE}af/`;
-      const results = runSearch(built.index, query, lang, { limit: 5000 }, BASE);
+      const search = (q: string) =>
+        runSearch(built.index, q, lang, { limit: 5000, typing: row.typing }, BASE);
+      const results = search(query);
+      const hrefs = results.map((r) => r.href);
       if (row.empty) {
-        expect(results.map((r) => r.href)).toEqual([]);
+        expect(hrefs).toEqual([]);
         return;
       }
       expect(results.length).toBeGreaterThan(0);
-      if (row.first !== undefined) expect(results[0]?.href).toBe(`${prefix}${row.first}`);
+      if (row.first !== undefined) expect(hrefs[0]).toBe(`${prefix}${row.first}`);
+      for (const href of row.top3 ?? []) expect(hrefs.slice(0, 3)).toContain(`${prefix}${href}`);
       if (row.firstTerm !== undefined) expect(results[0]?.terms).toContain(row.firstTerm);
       if (row.atLeast !== undefined) {
-        const found = new Set(results.map((r) => r.href));
-        for (const other of runSearch(built.index, row.atLeast, lang, { limit: 5000 }, BASE)) {
-          expect(found.has(other.href), other.href).toBe(true);
-        }
+        const found = new Set(hrefs);
+        const other = search(row.atLeast);
+        expect(other.length).toBeGreaterThan(0);
+        for (const result of other) expect(found.has(result.href), result.href).toBe(true);
+      }
+      if (row.sameAs !== undefined) expect(hrefs).toEqual(search(row.sameAs).map((r) => r.href));
+      if (row.startsWith !== undefined) {
+        const joined = search(row.startsWith).map((r) => r.href);
+        expect(joined.length).toBeGreaterThan(0);
+        expect(hrefs.slice(0, joined.length)).toEqual(joined);
       }
       for (const result of results) {
         if (row.every !== undefined) {
@@ -245,18 +407,54 @@ describe('A7 ranking cases', () => {
           ).toBe(true);
         }
         if (row.none !== undefined) expect(result.terms, result.href).not.toContain(row.none);
+        for (const term of result.terms) {
+          if (row.digitTerms !== undefined && /\d/.test(term)) {
+            expect(row.digitTerms, `${result.href}: ${term}`).toContain(term);
+          }
+          if (row.onlyTerms !== undefined) {
+            expect(row.onlyTerms, `${result.href}: ${term}`).toContain(term);
+          }
+        }
       }
-      if (row.sameAs !== undefined) {
-        const hrefs = (q: string) =>
-          runSearch(built.index, q, lang, { limit: 10 }, BASE).map((r) => r.href);
-        expect(hrefs(query)).toEqual(hrefs(row.sameAs));
+    },
+  );
+
+  // Review WP-33 pass 5, major 1: a spaced pair never finds less than its two words. Every
+  // letters-then-digits term in either index, written with a space, against the same two words
+  // the other way round (which is never read as a code). Only the results that hold the number
+  // count: when no entry holds both words, a query falls back to its words without the number.
+  it.each(['en', 'af'] as const)(
+    '%s: every spaced code finds at least what its two words find',
+    (lang) => {
+      const built = lang === 'en' ? en : af;
+      const codes = new Set<string>();
+      for (const entry of built.entries) {
+        for (const token of tokenize(`${entry.title} ${entry.path} ${entry.text}`)) {
+          const term = processTerm(token);
+          if (term !== null && /^\p{L}{2,6}\d+$/u.test(term)) codes.add(term);
+        }
       }
+      expect(codes.size).toBeGreaterThan(20);
+      const all = (q: string) =>
+        runSearch(built.index, q, lang, { limit: 5000, typing: false }, BASE);
+      let checked = 0;
+      for (const code of codes) {
+        const [, letters, digits] = /^(\p{L}+)(\d+)$/u.exec(code)!;
+        const spaced = new Set(all(`${letters} ${digits}`).map((r) => r.href));
+        const words = all(`${digits} ${letters}`).filter((r) => r.terms.includes(digits!));
+        if (words.length > 0) checked++;
+        for (const { href } of words) {
+          expect(spaced.has(href), `"${letters} ${digits}" lacks ${href}`).toBe(true);
+        }
+      }
+      // Pairs such as `brand 5`, `under 100`, `VAT 15`, `page 2` hold both words apart somewhere.
+      expect(checked).toBeGreaterThan(5);
     },
   );
 
   it('R500,000 has R500,000 in the terms of every top-3 result', () => {
     for (const result of runSearch(en.index, 'R500,000', 'en', { limit: 3 }, BASE)) {
-      expect(result.terms).toContain('r500,000');
+      expect(result.terms).toContain('r500000');
     }
   });
 
