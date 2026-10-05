@@ -372,11 +372,15 @@ the first count arrives. On `/search/` the same holds: the results region is nev
 heading until there is a query.
 
 **Queries.** One table says how every kind of query term is matched, and the code follows it: the
-rule for a single term is `matchRule()` in `src/lib/search/options.ts`, the pairs are built by
-`queryParts()` there and resolved by `resolvePairs()` / `queryTree()` in `src/lib/search-client.ts`.
+rule for a single term is `matchRule()` in `src/lib/search/options.ts`; the same file writes amounts
+and tax years one way (`tokenize()`, `foldTerm()`, used both when the index is built and when a
+query is read) and splits a query into parts (`queryParts()`); `queryTree()` and
+`runSearchCounted()` in `src/lib/search-client.ts` turn the parts into the search.
 `tests/unit/search/index.test.ts` ("the query-kind table") runs one or more queries per row on both
 real indexes, English and Afrikaans. "Last" below means the last term of the query while the reader
-is still typing it (the query ends inside a word); a term followed by more text is finished.
+is still typing it. The live dialog is typing when the field ends inside a word; Enter, the search
+page (`/search/?q=`) and the 404 suggestions always search a finished query, so `R1` there is R1 and
+never R146.
 
 | Kind | Example | Rule | Why |
 | --- | --- | --- | --- |
@@ -384,14 +388,20 @@ is still typing it (the query ends inside a word); a term followed by more text 
 | Partial word | `notion` | the same rule: prefix | The reader is typing; `notion` must reach `notional`. |
 | Single letter | `e` (in `e-filing`) | exact | A one-letter prefix matches nearly every term. |
 | Code, joined | `VAT264`, `SAPS604`, `ITR14` | never fuzzy; prefix only while last | One edit is another form (`EMP501`/`EMP201`, `ITR14`/`ITR12`, `SAPS604`/`SAPS601`). Prefix while typing lets `VAT26` reach `VAT264`. |
-| Code, spaced | `VAT 264`, `vat 264`, `SAPS 601` | when the index holds the joined form: that, by the joined-code rule; otherwise both words, each by its rule | The spaced and joined spellings must give the same answer; `page 2` must not become every "page". |
+| Code, spaced | `VAT 264`, `vat 264`, `VAT 15%`, `brand 5`, `under 100` | two readings, joined first: the joined form by the joined-code rule, then both words, each by its own rule | Never finds less than the two words as ordinary terms (`VAT 15%` finds the VAT glossary entry and "Working with 15%"), and ranks exactly as the joined spelling when that is a code (`VAT 264` = `VAT264`). |
+| Code, spaced, being typed | `SAPS 60`, `VAT 26`, `EMP 20` | as above; the joined form is prefix-matched because the number is last | Both spellings reach the same form while it is typed (`SAPS 60` and `SAPS60` both reach `SAPS601`). |
 | Code with a typo | `VAT246`, `EMP502` | the joined-code rule: nothing is found | A near miss is a different form, so "nothing found" is the honest answer; the reader can try the spaced form. |
-| Rand amount | `R500,000`, `R1 million` | never fuzzy; prefix only while last | Two edits turn `R500,000` into `R200,000`, a different amount. A finished `R1` must not match `R10`; `R500,00` while typing reaches `R500,000`. |
+| Rand amount | `R500,000`, `R500 000`, `R 500 000`, `R500000` | one spelling at index and query time (`r500000`): thousands separators and the spaces between groups of three go; never fuzzy; prefix only while last with at most three digits | South Africans write amounts all four ways. Two edits turn `R500,000` into `R200,000`, a different amount; `R500000` must not reach R50 million. `R50` while typing reaches `R50 000`. |
+| Rand amount, decimal comma | `R2,3 miljoen`, `R2,3` | a comma with one or two digits after it, at the end, is a decimal point: `R2.3` | The Afrikaans way of writing `R2.3`; a comma before exactly three digits stays a thousands separator. |
+| Rand amount, in millions | `R1,000,000`, `R2 300 000` | `R1 million`, `R2.3 miljoen` in the guide also index `R1000000`, `R2300000` | The guide writes millions in words; a reader may type the digits. |
 | Number, year | `2026`, `14.3`, `2` | exact | A value, not a stem: `2` is not `20`, `2026` is not `20261`. Lone numbers are left out of the any-word fallback. |
-| Hyphenated word | `BTW-registrasie`, `VAT-registered`, `e-filing` | both words (each by its rule) or the joined form; the joined form is prefix-matched only while last and never fuzzy | Must find at least what the spaced words find, also while typing (`e-fil` reaches `efiling`). The index holds the joined alias (`efiling`). |
+| Tax year | `2026/27`, `2026/2027` | a four-digit year, `/` and two digits become both full years, at index and query time | The guide writes `2026/2027`; readers and SARS write `2026/27`. |
+| Hyphenated word | `BTW-registrasie`, `VAT-registered`, `e-filing` | its words (each by its rule) or the whole chain joined; the joined form is prefix-matched only while last and never fuzzy | Must find at least what the spaced words find, also while typing (`e-fil` reaches `efiling`). The index holds the joined alias (`efiling`). |
+| Hyphenated word with stop words | `pay-as-you-earn`, `in-house` | its words without the stop words (`pay`, `earn`; `house`), or the whole chain joined (`payasyouearn`) | A stop word inside the chain must not lose the chain: `pay-as-you-earn` finds PAYE, `in-house` finds what `house` finds. |
 | Afrikaans compound | `kontrolelys`, `belastingjaar` | the word rule | No stemmer exists for Afrikaans (ADR 0003): prefix and fuzzy matching do that work. |
 | Stop words | `the`, `die`, `op` | dropped; one before a number is not a code (`on 1 March` keeps the `1`) unless written in capitals in a query that is not all capitals (`IT 12 form`) | They carry no meaning for search; a date is not a code. |
-| Punctuation | `"PIS"?!`, `R120,000`, `14.3` | separates terms, except `.` and `,` between digits (amounts and numbers stay whole) and a hyphen (the pair above) | Amounts and section numbers are single values. |
+| Punctuation | `"PIS"?!`, `R120,000`, `14.3` | separates terms, except `.` and `,` between digits (amounts and numbers stay whole) and a hyphen (above) | Amounts and section numbers are single values. |
+| Mixed | `Companies Act 71 of 2008`, `tax year 2026/27`, `ITR 14 deadline`, `VAT rate 15%` | each part by its own row | One query may hold words, codes, numbers and years; each keeps its rule. |
 
 Every term must match first; when that finds nothing, any term may, leaving out lone numbers and
 single letters, so a junk query says "nothing found" instead of listing every "Prompt 1". At most 12
@@ -414,7 +424,7 @@ not fade and the class is removed after the same two seconds. On the same page: 
 changes and the heading takes focus. Focus does not go back to the opener then.
 
 **Weight.** Nothing about search loads with a page except `<st-search>` and the dialog markup. The
-results code and MiniSearch (11.3 KB gzip) and the index (165 KB gzip in English, 182 KB in
+results code and MiniSearch (11.7 KB gzip) and the index (165 KB gzip in English, 182 KB in
 Afrikaans) are fetched when the
 dialog first opens; with low data, the index waits for the first key press. The dialog scrolls as a
 whole, with the title and field sticky at its top: a scrolling box that held only the results,
