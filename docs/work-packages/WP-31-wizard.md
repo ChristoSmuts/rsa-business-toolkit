@@ -27,3 +27,21 @@ Unit tests for the engine and the matching rule (≥90% coverage of `src/lib/pat
 ## Definition of done
 
 As WP-30: `gate:fast`, `build`, chromium, mobile and nojs e2e, `test:a11y`, JS budgets recorded, docs updated, two consecutive clean review passes, the second by a different reviewer instance.
+
+## Hand-over
+
+- **Pre-rendered pages.** 49 result pages per language (3 entities × 7 type choices × the allowed
+  stages; "Pty Ltd, growing" only with a Pty Ltd), 98 in all, plus `/find-my-path/` and `/my-path/`
+  in both languages: the build went from 96 to 198 HTML files. The result pages are `noindex` and
+  left out of the sitemap.
+- **No-JavaScript form.** A static host cannot route a query string to a page, so each result page
+  has its own submit button (`formaction`) and CSS `:has()` shows the one for the checked answers.
+  Browsers without `:has()` (none current) would see only "Choose an answer first."
+- **JavaScript budgets** (gzipped, per file, summed): heaviest document page 24.1 KB (25 KB budget),
+  My path 25.6 KB and `/checklist/` 23.0 KB (45 KB budget), home 17.8 KB. The path data loads lazily
+  (3.2 KB) once a profile exists.
+- **For WP-32 and WP-33.** Read the profile with `readProfile()`, `profileEntity()` and
+  `profileBusinessTypes()` from `src/lib/profile-store.ts`. WP-33's "My business types" filter chips
+  are not built here; `profileBusinessTypes()` is what they need.
+- **Not built.** The section landing's "Start with…" (B6) is not in this brief and is left out.
+  "Done" on a step is the reader's own mark (`st.path.v1`), not derived from checklist ticks.
