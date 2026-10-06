@@ -277,8 +277,8 @@ out, 44px links, no date pattern or focus ring on the no-JS printout, and no `<o
 on lines. Coverage floors: `src/lib/templates/**` and `src/scripts/template-form.ts`
 (`vitest.config.ts`).
 
-**JavaScript budget on tool pages** (45 KB gzipped): 19.8 KB on every template page, both languages
-(13 files, 52.8 KB raw).
+**JavaScript budget on tool pages** (45 KB gzipped): 20.3 KB on every template page, both languages
+(13 files, 53.1 KB raw).
 
 ### 404: `not-found.spec.ts`
 
