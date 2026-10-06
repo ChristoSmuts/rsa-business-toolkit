@@ -6,6 +6,7 @@ import {
   filterByProfile,
   FILTERED,
   sectionOf,
+  showList,
   StAppliesScope,
   StAppliesSwitch,
 } from '../../src/scripts/applies';
@@ -140,6 +141,37 @@ describe('a sub-heading for everyone under a heading that is not (review WP-31 p
   });
 });
 
+describe('a sub-heading whose own condition applies under a heading that does not (pass 4, minor 1)', () => {
+  it('stays visible for that reader, with what is under it', () => {
+    mount(`
+      <div class="st-hidden-marker" data-marker-for="company" hidden><button type="button">Show</button></div>
+      <h2 id="company" data-depth="2" data-applies data-entity="pty" tabindex="-1">If you trade as a company</h2>
+      <p id="company-text">Company</p>
+      <div class="st-hidden-marker" data-marker-for="dealers" hidden><button type="button">Show</button></div>
+      <h3 id="dealers" data-depth="3" data-applies data-types="vehicle-dealer" tabindex="-1">For dealers</h3>
+      <p id="dealers-text">Dealers</p>
+      <h2 id="next" data-depth="2">Next</h2>`);
+    filterByProfile(
+      document.body,
+      { entity: 'sole-prop', businessTypes: ['vehicle-dealer'], stage: 'trading' },
+      { markers: true },
+    );
+    expect(filtered('company')).toBe(true);
+    expect(filtered('company-text')).toBe(true);
+    expect(filtered('dealers')).toBe(false);
+    expect(filtered('dealers-text')).toBe(false);
+    expect(marker('dealers').hidden).toBe(true);
+    expect(marker('dealers').classList.contains(FILTERED)).toBe(false);
+    // A sole proprietor in food: neither applies, both collapse.
+    filterByProfile(
+      document.body,
+      { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+      { markers: true },
+    );
+    expect(filtered('dealers-text')).toBe(true);
+  });
+});
+
 describe('filterByProfile', () => {
   const sole = { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' } as const;
 
@@ -195,6 +227,10 @@ describe('filterByProfile', () => {
     const show = line.querySelector<HTMLButtonElement>('[data-show-list]')!;
     expect(show.hidden).toBe(false);
     expect(show.textContent).toBe('Show 1 hidden item');
+    // It focuses the item it brought back, not the list's first (pass 4, nit 2).
+    showList(el('some-beauty'));
+    expect(document.activeElement).toBe(el('sb2').querySelector('input'));
+    expect(filtered('sb2')).toBe(false);
   });
 
   it('shows both entities to an undecided reader and filters only by type', () => {

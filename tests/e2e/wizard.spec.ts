@@ -349,7 +349,7 @@ test.describe('personalisation elsewhere', () => {
   });
 
   test(
-    'if the home card’s module never loads, its kept space goes after a second (pass 3, minor 1)',
+    'if the home card’s module fails to load, its kept space goes (pass 3, minor 1)',
     {
       annotation: allowConsoleError(
         '/net::ERR_FAILED/',
@@ -378,6 +378,45 @@ test.describe('personalisation elsewhere', () => {
         .toBe(0);
     },
   );
+
+  test('when the home page’s scripts come late, the card moves nothing (pass 4, minor 2)', async ({
+    page,
+    seedStorage,
+    baseURL,
+  }) => {
+    test.setTimeout(30_000);
+    await seedStorage({ 'st.profile.v1': FOOD });
+    await routeSameOrigin(
+      page,
+      baseURL,
+      (url) => url.pathname.endsWith('.js') && !url.pathname.includes('theme-init'),
+      async (route) => {
+        await new Promise((resolve) => setTimeout(resolve, 2500));
+        await route.continue();
+      },
+    );
+    await page.addInitScript(() => {
+      const w = window as unknown as { __shifts: number[] };
+      w.__shifts = [];
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries() as (PerformanceEntry & {
+          value: number;
+          hadRecentInput: boolean;
+        })[]) {
+          if (!entry.hadRecentInput && entry.value > 0.001) w.__shifts.push(entry.value);
+        }
+      }).observe({ type: 'layout-shift', buffered: true });
+    });
+    await page.goto('./');
+    await expect(page.locator('st-your-path')).toBeVisible({ timeout: 15_000 });
+    await page.waitForTimeout(500);
+    const shifts = await page.evaluate(
+      () => (window as unknown as { __shifts: number[] }).__shifts,
+    );
+    // The kept space waits for the card, so only small shifts from other late scripts remain.
+    const total = shifts.reduce((sum, value) => sum + value, 0);
+    expect(total, `shifts: ${shifts.join(', ')}`).toBeLessThanOrEqual(0.1);
+  });
 
   test('the home card does not move the page when it appears (pass 2, minor 4)', async ({
     page,

@@ -139,15 +139,21 @@ function hiddenLine(line: HTMLElement, text: string, showText: string | undefine
   if (showText !== undefined) (show.querySelector('.st-btn__label') ?? show).textContent = showText;
 }
 
-/** Brings back every item of a checklist the filter emptied, and focuses its first box. */
+/**
+ * Brings back every hidden item of a checklist and focuses the first box that was hidden, so the
+ * reader lands on what came back (review WP-31 pass 4, nit 2); the list's first box otherwise.
+ */
 export function showList(list: HTMLElement): void {
+  const back = list.querySelector<HTMLInputElement>(
+    `label.st-check.${FILTERED} input[type="checkbox"]`,
+  );
   for (const element of list.querySelectorAll(`.${FILTERED}`)) element.classList.remove(FILTERED);
   const line = list.querySelector<HTMLElement>('.st-tasklist__hidden');
   if (line) {
     line.hidden = true;
     hiddenLine(line, '', undefined);
   }
-  list.querySelector<HTMLInputElement>('input[type="checkbox"]')?.focus();
+  (back ?? list.querySelector<HTMLInputElement>('input[type="checkbox"]'))?.focus();
 }
 
 /** Hides what does not apply to `who` inside `root`. Returns how many parts were hidden. */

@@ -63,28 +63,17 @@ const resume = t('home.yourPath.continue', { n: '{n}', total: '{total}' });
 </script>
 
 <style is:global>
-  /* `!important` to win over the global `[hidden] { display: none !important }`: the card keeps
-     its box, invisible and out of the accessibility tree, until the script shows or drops it. */
-  html.js[data-st-profile] st-your-path[hidden]:not([data-no-path]) {
+  /*
+   * `!important` to win over the global `[hidden] { display: none !important }`: the card keeps
+   * its box, invisible and out of the accessibility tree, until the script shows or drops it, however
+   * long the module takes, so a slow load moves nothing (review WP-31 pass 4, minor 2). Only a
+   * script that failed to load (`data-st-script-failed`, set by `theme-init.js`) gives the space back,
+   * so a dropped request leaves no gap above the hero (pass 3, minor 1).
+   */
+  html.js[data-st-profile]:not([data-st-script-failed]) st-your-path[hidden]:not([data-no-path]) {
     display: block !important;
     overflow: hidden;
     visibility: hidden;
-  }
-
-  /*
-   * If the module has not connected after a second (a dropped request on a poor connection), give
-   * the space back rather than leave an invisible box above the hero (review WP-31 pass 3, minor 1).
-   * Once it has connected (`data-connected`) the box stays while the path is rebuilt.
-   */
-  html.js[data-st-profile] st-your-path[hidden]:not([data-no-path], [data-connected]) {
-    animation: st-your-path-give-up 0s 1s forwards;
-  }
-
-  @keyframes st-your-path-give-up {
-    to {
-      block-size: 0;
-      margin: 0;
-    }
   }
 </style>
 

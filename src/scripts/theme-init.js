@@ -1,5 +1,5 @@
 // @ts-check
-/* global document, window, Element */
+/* global document, window, Element, HTMLScriptElement */
 // Blocking theme init, copied verbatim (unminified) via `?url`: keep it tiny, ES2019, no imports.
 // The documented exception to "only the store reads storage"; docs/design-system.md, "Scripts, CSP
 // and JavaScript budget", says what it reads and sets and why.
@@ -33,6 +33,14 @@
     }
   }
   root.classList.add('js');
+  // A script that fails to load: the home card gives back the space it kept (YourPathCard.astro).
+  window.addEventListener(
+    'error',
+    function (event) {
+      if (event.target instanceof HTMLScriptElement) root.setAttribute('data-st-script-failed', '');
+    },
+    true,
+  );
   // Disabled and loading buttons stay focusable (aria-disabled), so swallow their activation.
   document.addEventListener(
     'click',
