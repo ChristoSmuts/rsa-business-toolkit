@@ -15,3 +15,4 @@ tests/e2e/__screenshots__/
 # and kept formatted by hand. `tests/e2e/content.spec.ts` compares the rendered text of every
 # paragraph with the text in `src/data`, so a reformat fails the suite rather than shipping.
 src/components/content/Inline.astro
+src/components/templates/SheetRuns.astro

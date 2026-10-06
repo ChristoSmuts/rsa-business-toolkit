@@ -83,6 +83,33 @@ test.describe('axe with the interactive states open', () => {
       await expectNoBlocking(page, `clear data dialog ${theme}`, testInfo);
     });
 
+    test(`a filled tax invoice and its "Clear this form?" dialog (${theme})`, async ({
+      page,
+      setTheme,
+    }, testInfo) => {
+      await setTheme(theme);
+      await page.goto('templates/tax-invoice/');
+      await page.getByLabel('Business name').fill('Mokoena Repairs');
+      await page.getByRole('textbox', { name: 'Unit price' }).first().fill('ten');
+      await page.getByRole('button', { name: 'Add line' }).click();
+      await expectNoBlocking(page, `filled tax invoice ${theme}`, testInfo);
+      await page.getByRole('button', { name: 'Clear form' }).click();
+      await expect(page.getByRole('dialog', { name: 'Clear this form?' })).toBeVisible();
+      await expectNoBlocking(page, `clear form dialog ${theme}`, testInfo);
+    });
+
+    test(`the Afrikaans quotation on a phone, preview tab (${theme})`, async ({
+      page,
+      setTheme,
+    }, testInfo) => {
+      await setTheme(theme);
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto('af/templates/quotation/');
+      await page.getByRole('tab', { name: 'Voorskou' }).click();
+      await expect(page.locator('.st-tsheet')).toBeVisible();
+      await expectNoBlocking(page, `af quotation preview ${theme}`, testInfo);
+    });
+
     test(`the language banner and the storage warning (${theme})`, async ({
       page,
       setTheme,

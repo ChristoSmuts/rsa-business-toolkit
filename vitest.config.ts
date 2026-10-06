@@ -52,7 +52,12 @@ export default getViteConfig({
     ],
     coverage: {
       provider: 'v8',
-      include: ['src/lib/**/*.ts', 'src/i18n/**/*.ts', 'scripts/**/*.ts'],
+      include: [
+        'src/lib/**/*.ts',
+        'src/i18n/**/*.ts',
+        'scripts/**/*.ts',
+        'src/scripts/template-form.ts',
+      ],
       exclude: ['**/*.test.ts', 'scripts/ci/**'],
       /**
        * The content pipeline decides what ships, so every file it owns has a floor just under the
@@ -74,6 +79,10 @@ export default getViteConfig({
         // unit and dom projects together (the store's tests need a real `localStorage`).
         'src/lib/store.ts': { statements: 95, branches: 90, functions: 100, lines: 95 },
         'src/lib/storage/**': { statements: 95, branches: 90, functions: 100, lines: 95 },
+        // WP-32: what prints on a customer's quote or invoice (review WP-32 pass 1, minor 4).
+        // Floors just under the measurement with the unit and dom projects together.
+        'src/lib/templates/**': { statements: 98, branches: 91, functions: 100, lines: 99 },
+        'src/scripts/template-form.ts': { statements: 93, branches: 75, functions: 98, lines: 98 },
         'scripts/build-content.ts': { statements: 0, branches: 0, functions: 0, lines: 0 },
         'scripts/translate/status.ts': { statements: 0, branches: 0, functions: 0, lines: 0 },
       },

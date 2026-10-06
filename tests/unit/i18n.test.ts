@@ -528,7 +528,7 @@ describe('t', () => {
     expect(t('en', 'site.checkedOn', { date: '13 September 2026' })).toBe(
       'An AI checked the facts against the sources in the sources register, most recently on 13 September 2026.',
     );
-    expect(t('en', 'templates.vat', { rate: 15 })).toBe('VAT (15%)');
+    expect(t('en', 'templates.lineLegend', { n: 15 })).toBe('Line 15');
     expect(t('af', 'home.threeNumbers.heading', { year: 2026 })).toBe(
       'Drie getalle wat in 2026 verander het',
     );

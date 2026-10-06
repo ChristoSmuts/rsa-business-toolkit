@@ -1,0 +1,39 @@
+---
+/**
+ * The inline runs of a template's A4 preview (`SheetRun`, `src/lib/templates/placeholders.ts`).
+ *
+ * A field is a `<span data-field>` that `<st-template-form>` fills with what the reader typed.
+ * While it is empty its text is empty too: the template's own slot (`[Customer name]`, `R 0.00`)
+ * is only `data-sample`, which the screen shows through CSS and print never shows (review WP-32
+ * pass 1, major 2: an empty "Balance still owing" printed "R 0.00"). An optional field has no
+ * sample. Text and line breaks are written here, not through `Inline`, whose template starts with
+ * whitespace and printed "50 %" (pass 1, minor 1). Every other run is the document's own and goes
+ * through `Inline`, so signature lines and emphasis render exactly as on a document page. An
+ * external link is written here too, as a plain link: through `Inline` it carried the site's
+ * "Official" badge, and the space before it, onto the customer's document (review pass 3, nit 1).
+ *
+ * Listed in `.prettierignore` for the reason `Inline.astro` is: a line break between two runs
+ * would be a space the reader sees ("Ltd ,"). Keep each branch on one line.
+ */
+import Inline from '../content/Inline.astro';
+import type { ContentContext } from '../../lib/content/context';
+import type { SheetRun, TemplateField } from '../../lib/templates/placeholders';
+
+interface Props {
+  runs: readonly SheetRun[];
+  context: ContentContext;
+  fields: ReadonlyMap<string, TemplateField>;
+}
+
+const { runs, context, fields } = Astro.props;
+const Self = Astro.self;
+const sampleOf = (name: string): string => (fields.get(name)?.required || fields.get(name)?.requiredAbove !== undefined ? (fields.get(name)?.sample ?? '') : '');
+---
+{runs.map((run) =>
+  run.t === 'field' ? <span class="st-tsheet__value" data-field={run.name} data-empty="" data-sample={sampleOf(run.name)} />
+  : run.t === 'sheet-strong' ? <strong><Self runs={run.c} context={context} fields={fields} /></strong>
+  : run.t === 'text' ? run.v
+  : run.t === 'br' ? <br />
+  : run.t === 'link' && 'external' in run ? <a href={run.href} rel="noopener noreferrer"><Self runs={run.c} context={context} fields={fields} /></a>
+  : <Inline runs={[run]} context={context} />
+)}

@@ -1,0 +1,472 @@
+---
+/**
+ * A fillable template (WP-32, build plan B3 flow 5 and B6): the notice that drafts stay on this
+ * device · [Fill in / Preview tabs] · the form, grouped like the template · the live A4 preview ·
+ * the required items · the actions (Print or save as PDF, Start next, Clear).
+ *
+ * Everything is server-rendered from the template's own markdown (`parseTemplate`), and
+ * `<st-template-form>` (`src/scripts/template-form.ts`) only binds it: it saves the draft, fills the
+ * preview, works out the totals and counts the required items. Without JavaScript the form itself
+ * is the printable sheet (`data-print-sheet` on the form, styled for paper below), the preview,
+ * tabs, required items and buttons are not shown, and one line says how to print.
+ *
+ * Group ids are the template's heading ids, so a link to `#to` or `#payment-details` (the contents,
+ * search, another page) lands on the matching part of the form.
+ */
+import SheetRuns from './SheetRuns.astro';
+import TemplateField from './TemplateField.astro';
+import TemplateLines from './TemplateLines.astro';
+import TemplateSheet from './TemplateSheet.astro';
+import Button from '../ui/Button.astro';
+import Callout from '../ui/Callout.astro';
+import ConfirmDialog from '../ui/ConfirmDialog.astro';
+import Icon from '../ui/Icon.astro';
+import { useTranslations, type TranslationKey } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { ContentContext } from '../../lib/content/context';
+import type { TemplateSlug } from '../../lib/templates/draft';
+import { fieldId, lineNames } from '../../lib/templates/ids';
+import {
+  requiredItems,
+  type TemplateField as Field,
+  type TemplateModel,
+} from '../../lib/templates/placeholders';
+
+interface Props {
+  locale: Locale;
+  slug: TemplateSlug;
+  model: TemplateModel;
+  context: ContentContext;
+  /** `lang` for the template's own words when they are not in the page's language. */
+  textLang?: string | undefined;
+}
+
+const { locale, slug, model, context, textLang } = Astro.props;
+const t = useTranslations(locale);
+const fields = new Map<string, Field>(model.fields.map((field) => [field.name, field]));
+const lines = model.lines;
+const months = Array.from({ length: 12 }, (_, index) =>
+  t(`date.months.${index + 1}` as TranslationKey),
+);
+const startNextKey = `templates.items.${slug}.startNext` as TranslationKey;
+const startNextDoneKey = `templates.items.${slug}.startNextDone` as TranslationKey;
+const required = requiredItems(model).map((item) => ({
+  ...item,
+  // A conditional item is listed with the template's own condition (review pass 1, major 4).
+  label: item.profileKey
+    ? t(`templates.fields.${item.profileKey}`)
+    : item.requiredAbove !== undefined
+      ? (fields.get(item.name)?.condition ?? item.label)
+      : item.label,
+  fromTemplate: item.profileKey === undefined,
+  href: `#${item.name === 'lines' ? fieldId(lineNames(0).description) : fieldId(item.name)}`,
+}));
+const groupId = (id: string, role: string): string => (role === 'section' ? id : `st-tgroup-${id}`);
+const groupLabel = (group: TemplateModel['groups'][number]): string =>
+  group.role === 'business'
+    ? t('templates.groups.business')
+    : group.role === 'details'
+      ? t('templates.groups.document')
+      : (group.label ?? '');
+---
+
+<st-template-form
+  class="st-tool"
+  data-template={slug}
+  data-months={JSON.stringify(months)}
+  data-date-format={t('date.format', { day: '{day}', month: '{month}', year: '{year}' })}
+  data-locale={locale}
+  data-required-text={t('templates.requiredItems', { present: '{present}', total: '{total}' })}
+  data-all-present={t('templates.allPresent')}
+  data-clear-done={t('templates.clearDone')}
+  data-start-next-done={model.numberField ? t(startNextDoneKey, { number: '{number}' }) : undefined}
+  data-prefilled={t('templates.prefilled')}
+  data-remove-line={t('templates.removeLine', { description: '{description}' })}
+  data-line-legend={t('templates.lineLegend', { n: '{n}' })}
+  data-vat-rate={lines?.vatRate}
+>
+  <div class="st-stack st-stack-sm">
+    <st-storage-notice class="js-only" data-show="available">
+      <p class="st-hint st-tool__saved">
+        <Icon name="lucide:hard-drive" />
+        {t('templates.savedNotice')}
+      </p>
+    </st-storage-notice>
+    <st-storage-notice hidden>
+      <Callout variant="warning" label={t('doc.warning')}>
+        <p>{t('storage.templatesUnavailable')}</p>
+      </Callout>
+    </st-storage-notice>
+    <p class="st-hint no-js-only">{t('templates.noJsPrint')}</p>
+  </div>
+
+  <div class="st-tool__tabs js-only" role="tablist" aria-label={t('templates.tabsLabel')}>
+    <button
+      type="button"
+      role="tab"
+      class="st-tool__tab"
+      id="st-tool-tab-form"
+      aria-controls="st-tool-pane-form"
+      aria-selected="true"
+      data-tab="form"
+    >
+      {t('templates.fillIn')}
+    </button>
+    <button
+      type="button"
+      role="tab"
+      class="st-tool__tab"
+      id="st-tool-tab-preview"
+      aria-controls="st-tool-pane-preview"
+      aria-selected="false"
+      tabindex="-1"
+      data-tab="preview"
+    >
+      {t('templates.preview')}
+    </button>
+  </div>
+
+  <div class="st-tool__panes">
+    <div class="st-tool__pane" id="st-tool-pane-form" data-pane="form">
+      {/* The printed sheet without JavaScript; the script moves `data-print-sheet` to the preview. */}
+      <form class="st-tform st-stack" data-print-sheet novalidate>
+        <p class="st-tform__print-title" aria-hidden="true" lang={textLang}>
+          {model.title}
+        </p>
+        {model.groups.map((group) => (
+          <fieldset class="st-tgroup st-stack" id={groupId(group.id, group.role)}>
+            <legend class="st-tgroup__legend">
+              <span lang={group.role === 'section' ? textLang : undefined}>
+                {groupLabel(group)}
+              </span>
+            </legend>
+            {group.items.map((item) => {
+              if (item.kind === 'field') {
+                const field = fields.get(item.name);
+                return field ? (
+                  <TemplateField
+                    field={field}
+                    locale={locale}
+                    textLang={textLang}
+                    hideLabel={field.kind === 'list' && field.label === group.label}
+                  />
+                ) : null;
+              }
+              if (item.kind === 'text') {
+                const text = (
+                  <p class="st-tgroup__text" lang={textLang}>
+                    {item.block.lines.map((line, index) => (
+                      <Fragment>
+                        <SheetRuns runs={line.runs} context={context} fields={fields} />
+                        {index < item.block.lines.length - 1 && <br />}
+                      </Fragment>
+                    ))}
+                  </p>
+                );
+                return item.omit ? (
+                  <div class="st-tgroup__item" data-omit-wrap>
+                    {text}
+                    <label class="st-check st-tgroup__omit">
+                      <input
+                        type="checkbox"
+                        name={item.omit}
+                        value="1"
+                        data-omit={item.block.id}
+                        data-carry
+                      />
+                      {t('templates.leaveOut')}
+                    </label>
+                  </div>
+                ) : (
+                  text
+                );
+              }
+              return lines ? (
+                <TemplateLines
+                  lines={lines}
+                  locale={locale}
+                  context={context}
+                  textLang={textLang}
+                />
+              ) : null;
+            })}
+          </fieldset>
+        ))}
+      </form>
+    </div>
+
+    <section
+      class="st-tool__pane st-tool__preview st-stack st-stack-sm"
+      id="st-tool-pane-preview"
+      data-pane="preview"
+      aria-labelledby="st-tool-preview-heading"
+    >
+      <h2 class="st-tool__heading" id="st-tool-preview-heading">
+        {t('templates.previewLabel')}
+      </h2>
+      <TemplateSheet model={model} context={context} locale={locale} textLang={textLang} />
+    </section>
+  </div>
+
+  <section
+    class="st-tool__required js-only st-stack st-stack-sm"
+    aria-labelledby="st-tool-required-heading"
+  >
+    <h2 class="st-tool__heading" id="st-tool-required-heading">
+      {t('templates.requiredHeading')}
+    </h2>
+    <p class="st-hint">{t('templates.requiredNote')}</p>
+    <p role="status" data-required-count></p>
+    <ul class="st-tool__missing" role="list" data-missing>
+      {required.map((item) => (
+        <li data-required-item={item.name} data-required-above={item.requiredAbove}>
+          <a class="st-link-block" href={item.href} lang={item.fromTemplate ? textLang : undefined}>
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <div class="st-tool__actions js-only st-stack st-stack-sm">
+    <div class="st-cluster">
+      <Button iconStart="lucide:printer" data-print>
+        {t('templates.print')}
+      </Button>
+      {model.numberField && (
+        <Button
+          variant="secondary"
+          iconStart="lucide:file-plus"
+          data-start-next
+          aria-describedby="st-tool-next-hint"
+        >
+          {t(startNextKey)}
+        </Button>
+      )}
+      <Button variant="ghost" iconStart="lucide:eraser" data-clear>
+        {t('templates.clear')}
+      </Button>
+    </div>
+    <p class="st-hint">{t('templates.printHint')}</p>
+    {model.numberField && (
+      <p class="st-hint" id="st-tool-next-hint">
+        {t('templates.startNextHint')}
+      </p>
+    )}
+    <p class="st-tool__status" role="status" data-announce></p>
+    <ConfirmDialog
+      id="st-tool-clear"
+      title={t('templates.clearConfirm.title')}
+      body={t('templates.clearConfirm.body')}
+      confirmLabel={t('templates.clearConfirm.confirm')}
+      cancelLabel={t('templates.clearConfirm.cancel')}
+    />
+  </div>
+</st-template-form>
+
+<script>
+  import '../../scripts/template-form';
+</script>
+
+<style is:global>
+  st-template-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-5);
+    container-type: inline-size;
+  }
+
+  st-storage-notice {
+    display: block;
+  }
+
+  .st-tool__saved {
+    display: flex;
+    gap: var(--st-space-2);
+    align-items: baseline;
+  }
+
+  .st-tool__heading {
+    font-size: var(--st-text-lg);
+  }
+
+  .st-tool__panes {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-6);
+    align-items: start;
+  }
+
+  .st-tool__tabs {
+    display: flex;
+    gap: var(--st-space-1);
+    border-block-end: var(--st-border-width) solid var(--st-border-strong);
+  }
+
+  .st-tool__tab {
+    flex: 1 1 0;
+    min-inline-size: 0;
+    min-block-size: var(--st-target);
+    padding: var(--st-space-2) var(--st-space-3);
+    border: 0;
+    border-block-end: 3px solid transparent;
+    background: none;
+    color: var(--st-text);
+    font-weight: var(--st-weight-semibold);
+    overflow-wrap: anywhere;
+  }
+
+  .st-tool__tab[aria-selected='true'] {
+    border-block-end-color: var(--st-primary);
+    color: var(--st-primary);
+  }
+
+  /* Narrow: one pane at a time, chosen with the tabs. */
+  @container (inline-size < 52rem) {
+    html.js st-template-form:not([data-view='preview']) [data-pane='preview'],
+    html.js st-template-form[data-view='preview'] [data-pane='form'] {
+      display: none;
+    }
+  }
+
+  /* Wide: form and preview side by side, no tabs. */
+  @container (inline-size >= 52rem) {
+    .st-tool__panes {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .st-tool__tabs {
+      display: none;
+    }
+  }
+
+  /* The preview needs the script; without it the form is the printable sheet. */
+  html:not(.js) .st-tool__preview {
+    display: none;
+  }
+
+  .st-tgroup {
+    padding: var(--st-space-4);
+    border: var(--st-border-width) solid var(--st-border);
+    border-radius: var(--st-radius-md);
+  }
+
+  .st-tgroup__legend {
+    padding-inline: var(--st-space-2);
+    font-size: var(--st-text-md);
+  }
+
+  .st-tform__print-title {
+    display: none;
+  }
+
+  .st-tool__missing {
+    display: grid;
+    gap: var(--st-space-1);
+    padding: 0;
+    list-style: none;
+  }
+
+  .st-tool__missing li[hidden] {
+    display: none;
+  }
+
+  /* Each link stands alone on its line: a full target, however short its text (pass 1, minor 6). */
+  .st-tool__missing a {
+    min-inline-size: var(--st-target);
+  }
+
+  .st-tgroup__item {
+    display: grid;
+    gap: var(--st-space-1);
+  }
+
+  /* The site's "Official" badge is not part of the template's text (review pass 2, minor 4). */
+  .st-tgroup__text .st-badge[data-variant] {
+    display: none;
+  }
+
+  .st-tgroup__item:has([data-omit]:checked) .st-tgroup__text {
+    color: var(--st-text-muted);
+    text-decoration: line-through;
+  }
+
+  @media print {
+    /* With the script, the preview is the sheet; without it, the form is. */
+    html.js .st-tform {
+      display: none !important;
+    }
+
+    html.js .st-tool__preview {
+      display: block !important;
+    }
+
+    .st-tool__heading,
+    .st-tool__tabs {
+      display: none !important;
+    }
+
+    /* The form as a sheet of paper: values on lines, no boxes or hints. */
+    .st-tform__print-title {
+      display: block;
+      font-weight: var(--st-weight-bold);
+    }
+
+    /* A part of the template prints on one page (review pass 2, minor 1). */
+    .st-tgroup {
+      padding: 0;
+      border: 0;
+      break-inside: avoid;
+    }
+
+    .st-tform .st-hint,
+    .st-tform .st-error-text {
+      display: none;
+    }
+
+    /* Every line of a list prints, however many the reader wrote. */
+    .st-tform textarea {
+      field-sizing: content;
+      resize: none;
+    }
+
+    /* Placeholders, focus and the "Leave this out" switches are not on paper (pass 1, minor 8). */
+    .st-tform ::placeholder {
+      color: transparent;
+    }
+
+    .st-tform :focus,
+    .st-tform :focus-visible {
+      outline: none;
+    }
+
+    .st-tform input:is(:focus, :focus-visible),
+    .st-tform textarea:is(:focus, :focus-visible) {
+      border-color: var(--st-text);
+    }
+
+    .st-tgroup__omit,
+    .st-tgroup__item:has([data-omit]:checked) {
+      display: none;
+    }
+
+    /* A part whose text is all left out does not print. `:has()` cannot nest, so: only legend and text items, and no box left unticked. */
+    .st-tgroup:has([data-omit]):not(
+        :has(> :not(legend, .st-tgroup__item, .st-tfield--list)),
+        :has([data-omit]:not(:checked)),
+        :has(textarea:not(:placeholder-shown))
+      ) {
+      display: none;
+    }
+
+    .st-tform input,
+    .st-tform textarea {
+      min-block-size: 0;
+      padding: 0;
+      border: 0;
+      border-block-end: var(--st-border-width) solid var(--st-text);
+      border-radius: 0;
+      background: none;
+    }
+  }
+</style>

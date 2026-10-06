@@ -466,19 +466,27 @@
     "items": {
       "quotation": {
         "name": "Quotation",
-        "description": "Tell a customer the price before you do the work."
+        "description": "Tell a customer the price before you do the work.",
+        "startNext": "Start next quotation",
+        "startNextDone": "Quotation {number} started."
       },
       "invoice": {
         "name": "Invoice",
-        "description": "Ask for payment when you are not registered for VAT."
+        "description": "Ask for payment when you are not registered for VAT.",
+        "startNext": "Start next invoice",
+        "startNextDone": "Invoice {number} started."
       },
       "tax-invoice": {
         "name": "Tax invoice",
-        "description": "Ask for payment when you are registered for VAT."
+        "description": "Ask for payment when you are registered for VAT.",
+        "startNext": "Start next tax invoice",
+        "startNextDone": "Tax invoice {number} started."
       },
       "receipt": {
         "name": "Receipt",
-        "description": "Show that a customer paid you."
+        "description": "Show that a customer paid you.",
+        "startNext": "Start next receipt",
+        "startNextDone": "Receipt {number} started."
       },
       "privacy-notice": {
         "name": "Privacy notice",
@@ -492,15 +500,7 @@
     "preview": "Preview",
     "groups": {
       "business": "Your business",
-      "customer": "Customer",
-      "document": "Document details",
-      "items": "Items",
-      "scope": "What the price includes",
-      "timing": "When",
-      "payment": "Payment details",
-      "receipt": "Payment received",
-      "acceptance": "Acceptance",
-      "notes": "Notes"
+      "document": "Document details"
     },
     "fields": {
       "businessName": "Business name",
@@ -509,137 +509,45 @@
       "email": "Email address",
       "address": "Physical address",
       "vatNumber": "VAT registration number",
-      "vatNumberHint": "Only fill this in when SARS has given you a VAT number.",
       "registeredName": "Registered company name",
       "registrationNumber": "Company registration number",
-      "registrationNumberHint": "If you have a Pty Ltd, the law requires this on every quote, invoice and receipt.",
-      "tradingAs": "Trading name",
-      "tradingAsHint": "Only if your company uses a name that is not its registered name.",
-      "tradingAsLine": "A trading name of {company}, Reg. No. {number}",
-      "customerName": "Customer name",
-      "customerAddress": "Customer address",
-      "customerContact": "Customer phone or email",
-      "customerVatNumber": "Customer VAT number",
-      "customerVatNumberHint": "Only if the customer is registered for VAT. Required on a tax invoice over {amount}.",
-      "quoteNumber": "Quote number",
-      "invoiceNumber": "Invoice number",
-      "receiptNumber": "Receipt number",
-      "numberHint": "Use numbers in order with no gaps, for example {example}.",
-      "date": "Date",
-      "dateOfIssue": "Date of issue",
-      "validUntil": "Valid until",
-      "dueDate": "Due date",
-      "validForDays": "Number of days the quote is valid",
-      "depositPercent": "Deposit before work starts (% of the total)",
-      "balanceDue": "When the balance is due",
-      "workStarts": "Work starts",
-      "duration": "How long the work takes",
-      "included": "What is included",
-      "notIncluded": "What is not included",
-      "notIncludedHint": "Write it down. Most arguments are about work the customer thought was in the price.",
-      "termsLink": "Link to your terms and conditions",
-      "bank": "Bank",
-      "accountName": "Account name",
-      "accountNameHint": "Exactly as it appears on the account.",
-      "accountNumber": "Account number",
-      "branchCode": "Branch code",
-      "reference": "Payment reference",
-      "referenceHint": "Ask the customer to use the invoice number.",
-      "latePayment": "Late payment terms",
-      "dateReceived": "Date received",
-      "receivedFrom": "Received from",
-      "amountReceived": "Amount received",
-      "paymentMethod": "Payment method",
-      "forInvoice": "For invoice",
-      "balanceOwing": "Balance still owing",
-      "informationOfficer": "Information Officer",
-      "lastUpdated": "Last updated",
-      "acceptedBy": "Accepted by",
-      "signature": "Signature",
-      "blankLine": "(blank line to fill in)",
-      "printName": "Name (print)",
-      "signatureDate": "Date",
-      "notes": "Notes"
-    },
-    "paymentMethods": {
-      "eft": "EFT",
-      "payshap": "PayShap",
-      "cash": "Cash",
-      "card": "Card"
-    },
-    "privacy": {
-      "whoWeAre": "Who we are",
-      "whatWeCollect": "What we collect",
-      "whyWeCollect": "Why we collect it",
-      "whoWeShareWith": "Who we share it with",
-      "howLongWeKeepIt": "How long we keep it",
-      "marketing": "Marketing",
-      "yourRights": "Your rights",
-      "listHint": "Add or remove lines so this is true for your business.",
-      "addListItem": "Add a line",
-      "removeListItem": "Remove line: {text}",
-      "removeListItemEmpty": "Remove empty line {n}",
-      "registerFirst": "Before you use this notice, register yourself as the Information Officer. It is free."
-    },
-    "line": {
-      "description": "Description",
-      "quantity": "Quantity",
-      "unitPrice": "Unit price",
-      "amount": "Amount",
-      "placeholder": "Item or service"
+      "blankLine": "(blank line to fill in)"
     },
     "addLine": "Add line",
     "removeLine": "Remove line: {description}",
-    "removeLineEmpty": "Remove empty line {n}",
-    "subtotal": "Subtotal",
-    "subtotalExclVat": "Subtotal (excl. VAT)",
-    "vat": "VAT ({rate}%)",
-    "total": "Total",
-    "totalInclVat": "Total (incl. VAT)",
-    "amountDue": "Amount due",
     "totalsLabel": "Totals",
-    "noVatNotice": "You are not registered for VAT. This invoice has no VAT line, no VAT number and not the words “Tax Invoice”.",
-    "ptyNotice": "A Pty Ltd must show its registered name and registration number. The law requires it.",
     "requiredItems": "{present} of {total} required items present",
-    "missing": "Missing: {list}",
-    "allPresent": "All required items are present.",
-    "required": {
-      "taxInvoice": {
-        "heading": "The {total} things a full tax invoice must show",
-        "lead": "For any sale over {amount}.",
-        "words": "The words “Tax Invoice”, “VAT Invoice” or “Invoice”",
-        "supplier": "Your name, address and VAT registration number",
-        "recipient": "The customer’s name and address, and their VAT number if they are registered",
-        "numberAndDate": "A serial number and the date of issue",
-        "description": "A description of the goods or services",
-        "quantity": "The quantity or volume",
-        "values": "The value of the supply, the VAT charged and the total"
-      },
-      "thresholds": {
-        "none": "At {amount} or less, you do not need a tax invoice.",
-        "abridged": "From {from} up to {to}, a short (abridged) tax invoice is allowed.",
-        "full": "Above {amount}, you need a full tax invoice."
-      },
-      "issueWithin": "Issue the tax invoice within {days} days of the sale.",
-      "secondHand": "If you sell second-hand goods, the description must say so."
-    },
-    "receiptWarning": "Only send a receipt when the money is in your account balance. Do not send it while the payment is still pending.",
+    "allPresent": "Every item this form checks is filled in.",
     "print": "Print or save as PDF",
     "printHint": "In the print window, choose Save as PDF to keep a copy.",
     "clear": "Clear form",
     "clearConfirm": {
       "title": "Clear this form?",
       "body": "This removes everything you typed in this form on this device.",
-      "confirm": "Clear form"
+      "confirm": "Clear form",
+      "cancel": "Keep what I typed"
     },
     "clearDone": "The form was cleared.",
-    "startNext": "Start next invoice",
-    "startNextDone": "Invoice {number} started.",
-    "startNextHint": "Keeps your business details and uses the next invoice number.",
+    "startNextHint": "Keeps your business and bank details and uses the next number.",
     "savedNotice": "What you type is saved on this device only. Nothing is sent anywhere.",
     "previewLabel": "Page preview",
-    "previewEmpty": "Fill in the form to see your page here.",
-    "prefilled": "Your business details were filled in from your saved answers."
+    "prefilled": "Your business details were filled in from your saved answers.",
+    "optional": "(optional)",
+    "onePerLine": "Put each item on its own line.",
+    "notANumber": "We cannot read this number. Write it like {example}.",
+    "lineLegend": "Line {n}",
+    "removeLineShort": "Remove line",
+    "totalsNoJs": "Without JavaScript the totals are not worked out. Write them on the printed page.",
+    "noJsPrint": "To print, use your browser’s Print command. Without JavaScript, what you type is not saved.",
+    "requiredHeading": "Required items",
+    "ambiguous": "This could be read as two different amounts. Write it like {example}, with a full stop before the cents.",
+    "tooManyDecimals": "An amount has at most two decimals. Write it like {example}.",
+    "tooLarge": "This is more than the form can work with. The most is {max}.",
+    "requiredNote": "This only checks that each item has something in it. It does not check that the document is correct or complete.",
+    "totalsBlocked": "A line has a number that cannot be read, so the totals are not shown. Fix the line that is marked.",
+    "leaveOut": "Leave this out of the document",
+    "ambiguousQuantity": "This could be read two ways. Write fifteen hundred as {thousands}, or one and a half as {decimal}.",
+    "tooLong": "This field holds up to {max} characters. Anything after that is not kept."
   },
   "validation": {
     "summaryTitle": "Check these answers",

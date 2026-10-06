@@ -160,3 +160,113 @@ test.describe('the interactive pieces without JavaScript', () => {
     await expect(page.locator('st-lang-banner')).toBeHidden();
   });
 });
+
+/**
+ * WP-32: without JavaScript a template page is a form that prints as the sheet: the fields are
+ * there and can be typed in, the preview, tabs, required items and buttons are not, one line says
+ * how to print, and print media shows only the form with what was typed.
+ */
+test.describe('a template without JavaScript', () => {
+  test('is a form to type in, with no preview or buttons that need a script', async ({ page }) => {
+    await page.goto('templates/quotation/');
+    await expect(page.getByText('To print, use your browser’s Print command.')).toBeVisible();
+    await expect(page.locator('.st-tool__preview')).toBeHidden();
+    await expect(page.locator('.st-tool__tabs')).toBeHidden();
+    await expect(page.locator('.st-tool__required')).toBeHidden();
+    await expect(page.locator('.st-tool__actions')).toBeHidden();
+    await expect(page.locator('[data-add-line]')).toBeHidden();
+    // Every line row shows, so a longer quote can still be written.
+    await expect(page.locator('.st-tline')).toHaveCount(10);
+    await expect(page.locator('.st-tline').last()).toBeVisible();
+    await page.getByLabel('Customer name').fill('Thandi');
+    await expect(page.getByLabel('Customer name')).toHaveValue('Thandi');
+    await expect(page.getByText('Without JavaScript the totals are not worked out.')).toBeVisible();
+  });
+
+  test('prints the form as the sheet, with what was typed and the template’s own text', async ({
+    page,
+  }) => {
+    await page.goto('templates/privacy-notice/');
+    await page.getByLabel('Business name').fill('Mokoena Repairs');
+    await page.emulateMedia({ media: 'print' });
+    const form = page.locator('form.st-tform');
+    await expect(form).toBeVisible();
+    await expect(page.locator('.st-tform__print-title')).toHaveText('PRIVACY NOTICE');
+    await expect(page.getByLabel('Business name')).toHaveValue('Mokoena Repairs');
+    await expect(form.getByText('We keep records for five years')).toBeVisible();
+    for (const hidden of [
+      'body > header',
+      'body > footer',
+      '.st-ai-notice',
+      '#sources-for-this-page',
+      // Exactly one sheet: the unfilled preview never prints (review WP-32 pass 1, major 1).
+      '.st-tool__preview',
+      '.st-tsheet',
+      '.st-tgroup__omit',
+    ]) {
+      await expect(page.locator(hidden).first(), hidden).toBeHidden();
+    }
+    await expect(page.locator('[data-print-sheet]')).toHaveCount(1);
+    // No site badge on the document (review pass 2, minor 4).
+    expect(await form.innerText()).not.toContain('Official');
+    // The sheet uses the page width.
+    const width = await form.evaluate((element) => element.getBoundingClientRect().width);
+    expect(width).toBeGreaterThan((page.viewportSize()?.width ?? 0) * 0.8);
+  });
+
+  test('leaving out the only paragraph of a section leaves out its heading (review pass 2, minor 5)', async ({
+    page,
+  }) => {
+    await page.goto('templates/privacy-notice/');
+    await page.locator('#marketing').getByRole('checkbox').check();
+    await page.emulateMedia({ media: 'print' });
+    await expect(page.locator('#marketing')).toBeHidden();
+    await expect(page.locator('#your-rights')).toBeVisible();
+    await expect(page.locator('#how-long-we-keep-it')).toBeVisible();
+  });
+
+  test('a section left out with its list emptied does not print (review pass 3, minor 1)', async ({
+    page,
+  }) => {
+    await page.goto('templates/privacy-notice/');
+    const section = page.locator('#who-we-share-it-with');
+    await section.getByRole('checkbox').check();
+    await section.getByRole('textbox').fill('');
+    await page.emulateMedia({ media: 'print' });
+    await expect(section).toBeHidden();
+    await expect(page.locator('#how-long-we-keep-it')).toBeVisible();
+  });
+
+  test('prints an empty receipt slot blank: no sample, no date pattern, no focus ring', async ({
+    page,
+  }) => {
+    await page.goto('templates/receipt/');
+    const date = page.getByLabel('Date received');
+    // A text field without JavaScript, so an empty one prints blank (pass 1, minor 8).
+    await expect(date).toHaveAttribute('type', 'text');
+    await page.getByLabel('Business name').fill('Mokoena Repairs');
+    await date.focus();
+    await page.emulateMedia({ media: 'print' });
+    await expect(page.locator('[data-print-sheet]')).toHaveCount(1);
+    await expect(page.locator('.st-tsheet')).toBeHidden();
+    const style = await date.evaluate((input) => {
+      const placeholder = getComputedStyle(input, '::placeholder');
+      const own = getComputedStyle(input);
+      return {
+        placeholder: placeholder.color,
+        outline: own.outlineStyle,
+        line: own.borderBottomColor,
+        text: getComputedStyle(input.closest('form') ?? input).color,
+      };
+    });
+    expect(style.placeholder).toBe('rgba(0, 0, 0, 0)');
+    expect(style.outline).toBe('none');
+    // The line under a focused field prints in the text colour, not the focus colour.
+    expect(style.line).toBe(style.text);
+    // The form shows only what was typed: the samples are not values.
+    const values = await page
+      .locator('form.st-tform input:not([type="checkbox"])')
+      .evaluateAll((inputs) => inputs.map((input) => (input as HTMLInputElement).value));
+    expect(values.filter((value) => /INV-0001|R 0\.00/.test(value))).toEqual([]);
+  });
+});

@@ -1,0 +1,261 @@
+---
+/**
+ * The line items of a quotation or invoice, inside the form (WP-32): `MAX_LINES` rows, each a
+ * fieldset ("Line 1") with the template's own column names as labels, the line's amount, and a
+ * "Remove line" button; then "Add line" and the totals in an `aria-live` region.
+ *
+ * Rows past the template's own are `data-extra`: hidden with JavaScript until "Add line" opens
+ * them, all shown without it (an extra row nobody filled in does not print). The totals are
+ * worked out by `<st-template-form>`; without JavaScript they stay blank, to write on the paper.
+ */
+import Inline from '../content/Inline.astro';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { ContentContext } from '../../lib/content/context';
+import { MAX_LINES, MAX_VALUE_LENGTH } from '../../lib/templates/draft';
+import { fieldId, lineNames } from '../../lib/templates/ids';
+import { numberMessages } from '../../lib/templates/messages';
+import type { LineItems } from '../../lib/templates/placeholders';
+
+interface Props {
+  lines: LineItems;
+  locale: Locale;
+  context: ContentContext;
+  textLang?: string | undefined;
+}
+
+const { lines, locale, context, textLang } = Astro.props;
+const t = useTranslations(locale);
+const headerText = (index: number) => lines.header[index] ?? [];
+const quantityMessages = numberMessages(t, locale, 'number');
+const priceMessages = numberMessages(t, locale, 'money');
+---
+
+<div class="st-stack st-stack-sm">
+  <ol class="st-tlines" role="list">
+    {Array.from({ length: MAX_LINES }, (_, index) => {
+      const names = lineNames(index);
+      const ids = {
+        description: fieldId(names.description),
+        quantity: fieldId(names.quantity),
+        unitPrice: fieldId(names.unitPrice),
+      };
+      const amountId = `${fieldId(`lines.${index}`)}-amount`;
+      return (
+        <li class="st-tline" data-line={index} data-extra={index >= lines.rows ? '' : undefined}>
+          <fieldset class="st-tline__set">
+            <legend class="st-tline__legend">{t('templates.lineLegend', { n: index + 1 })}</legend>
+            <div class="st-tline__grid">
+              <div class="st-field st-tline__description">
+                <label for={ids.description}>
+                  <span lang={textLang}>
+                    <Inline runs={headerText(0)} context={context} />
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  id={ids.description}
+                  name={names.description}
+                  placeholder={lines.sample}
+                  maxlength={MAX_VALUE_LENGTH}
+                  autocomplete="off"
+                  data-line-part="description"
+                />
+              </div>
+              <div class="st-field">
+                <label for={ids.quantity}>
+                  <span lang={textLang}>
+                    <Inline runs={headerText(1)} context={context} />
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  id={ids.quantity}
+                  name={names.quantity}
+                  value={lines.quantity}
+                  inputmode="decimal"
+                  autocomplete="off"
+                  spellcheck="false"
+                  data-line-part="quantity"
+                  data-error-id={`${ids.quantity}-error`}
+                />
+                <p class="st-error-text" id={`${ids.quantity}-error`} hidden {...quantityMessages}>
+                  <Icon name="lucide:circle-alert" />
+                  <span data-error-message>{quantityMessages['data-message-format']}</span>
+                </p>
+              </div>
+              <div class="st-field">
+                <label for={ids.unitPrice}>
+                  <span lang={textLang}>
+                    <Inline runs={headerText(2)} context={context} />
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  id={ids.unitPrice}
+                  name={names.unitPrice}
+                  placeholder="0.00"
+                  inputmode="decimal"
+                  autocomplete="off"
+                  spellcheck="false"
+                  data-line-part="unitPrice"
+                  data-error-id={`${ids.unitPrice}-error`}
+                />
+                <p class="st-error-text" id={`${ids.unitPrice}-error`} hidden {...priceMessages}>
+                  <Icon name="lucide:circle-alert" />
+                  <span data-error-message>{priceMessages['data-message-format']}</span>
+                </p>
+              </div>
+              <div class="st-field st-tline__amount">
+                <span class="st-tline__amount-label" id={`${amountId}-label`}>
+                  <span lang={textLang}>
+                    <Inline runs={headerText(3)} context={context} />
+                  </span>
+                </span>
+                {/* Not an <output>: that is a live region, and the totals already speak. */}
+                <span id={amountId} data-line-amount />
+              </div>
+            </div>
+            <Button
+              variant="ghost"
+              class="js-only st-tline__remove"
+              iconStart="lucide:x"
+              data-remove-line={index}
+              aria-label={t('templates.removeLine', {
+                description: t('templates.lineLegend', { n: index + 1 }),
+              })}
+            >
+              {t('templates.removeLineShort')}
+            </Button>
+          </fieldset>
+        </li>
+      );
+    })}
+  </ol>
+  <p class="js-only">
+    <Button variant="secondary" iconStart="lucide:plus" data-add-line>
+      {t('templates.addLine')}
+    </Button>
+  </p>
+  <div class="st-ttotals" aria-live="polite" aria-atomic="true" data-totals>
+    <p class="st-visually-hidden">{t('templates.totalsLabel')}</p>
+    <dl class="st-ttotals__list">
+      {lines.totals.map((row) => (
+        <div class="st-ttotals__row" data-total-row={row.kind}>
+          <dt lang={textLang}>
+            <Inline runs={row.label} context={context} />
+          </dt>
+          <dd>
+            <span class="st-ttotals__value" data-total={row.kind} />
+          </dd>
+        </div>
+      ))}
+    </dl>
+    <p class="st-error-text" data-totals-blocked hidden>
+      <Icon name="lucide:circle-alert" />
+      {t('templates.totalsBlocked')}
+    </p>
+  </div>
+  <p class="st-hint no-js-only">{t('templates.totalsNoJs')}</p>
+</div>
+
+<style is:global>
+  .st-tlines {
+    display: grid;
+    gap: var(--st-space-3);
+    padding: 0;
+    list-style: none;
+  }
+
+  html.js .st-tline[data-extra]:not([data-open]) {
+    display: none;
+  }
+
+  .st-tline__set {
+    display: grid;
+    gap: var(--st-space-2);
+    padding: var(--st-space-3);
+    border: var(--st-border-width) solid var(--st-border);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface-2);
+  }
+
+  .st-tline__legend {
+    font-size: var(--st-text-sm);
+  }
+
+  .st-tline__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--st-space-2) var(--st-space-3);
+  }
+
+  .st-tline__description {
+    grid-column: 1 / -1;
+  }
+
+  .st-tline__amount {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--st-space-2);
+    align-items: baseline;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .st-tline__amount-label {
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-tline__set > .st-tline__remove {
+    justify-self: start;
+  }
+
+  .st-ttotals__list {
+    display: grid;
+    gap: var(--st-space-1);
+    margin: 0;
+  }
+
+  .st-ttotals__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--st-space-2);
+    padding-block: var(--st-space-1);
+    border-block-end: var(--st-border-width) solid var(--st-border);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .st-ttotals__row:last-child {
+    font-weight: var(--st-weight-bold);
+  }
+
+  .st-ttotals__row dd {
+    margin: 0;
+  }
+
+  @media print {
+    .st-tline__set {
+      padding: 0;
+      border: 0;
+      background: none;
+    }
+
+    /* An extra line nobody filled in does not print. */
+    .st-tline[data-extra]:has([data-line-part='description']:placeholder-shown):has(
+        [data-line-part='unitPrice']:placeholder-shown
+      ) {
+      display: none;
+    }
+
+    /* The totals print as lines to write on when they were not worked out. */
+    .st-ttotals__value:empty {
+      display: inline-block;
+      min-inline-size: 8em;
+      border-block-end: var(--st-border-width) solid var(--st-text);
+    }
+  }
+</style>

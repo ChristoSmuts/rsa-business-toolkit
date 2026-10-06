@@ -1,0 +1,349 @@
+---
+/**
+ * The live A4 preview of a template (build plan B3 flow 5): the template's own layout, from the
+ * markdown, with each slot bound to a form field by `<st-template-form>`.
+ *
+ * It is what prints with JavaScript: `<st-template-form>` gives it `data-print-sheet`
+ * (`src/styles/print.css`) when it connects, and takes it from the form, so exactly one sheet
+ * prints in either mode (review WP-32 pass 1, major 1). Headings here are `h3` under the
+ * preview's own `h2`; the ids stay on the form's groups, so anchors into the template keep working
+ * and no id appears twice.
+ *
+ * Line rows: `MAX_LINES` rows are rendered `hidden` and the script shows the ones in use, so it adds
+ * no markup. The template's sample rows stand in while no line has anything in it. List items are
+ * the one exception: the script writes one `<li>` per line of the reader's text, as a result list.
+ */
+import Inline from '../content/Inline.astro';
+import SheetRuns from './SheetRuns.astro';
+import { formatRand } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { ContentContext } from '../../lib/content/context';
+import { MAX_LINES } from '../../lib/templates/draft';
+import type { TemplateField, TemplateModel } from '../../lib/templates/placeholders';
+
+interface Props {
+  model: TemplateModel;
+  context: ContentContext;
+  locale: Locale;
+  /** `lang` for the sheet when the template is not in the page's language. */
+  textLang?: string | undefined;
+}
+
+const { model, context, locale, textLang } = Astro.props;
+const fields = new Map<string, TemplateField>(model.fields.map((field) => [field.name, field]));
+const zero = formatRand(locale, 0);
+const lines = model.lines;
+const listDefault = (name: string): string[] => {
+  const field = fields.get(name);
+  return field && field.defaultValue !== '' ? field.defaultValue.split('\n') : [];
+};
+const listSample = (name: string): string => fields.get(name)?.sample ?? '';
+/**
+ * The sheet in sections: the blocks before the first heading, then each heading with the blocks
+ * under it. A section is kept on one page when printed (review WP-32 pass 2, minor 1: the
+ * signature block and the payment table split across two sheets), and a section whose text is all
+ * left out goes with its heading (pass 2, minor 5).
+ */
+const sections = model.sheet.reduce<(typeof model.sheet)[number][][]>((all, block) => {
+  if (block.kind === 'heading' || all.length === 0) all.push([]);
+  all.at(-1)?.push(block);
+  return all;
+}, []);
+---
+
+<div class="st-tsheet" data-sheet lang={textLang}>
+  <p class="st-tsheet__title">{model.title}</p>
+  {sections.map((section) => (
+    <div class="st-tsheet__section">
+      {section.map((block) => {
+        switch (block.kind) {
+          case 'heading':
+            return (
+              <h3 class="st-tsheet__heading">
+                <Inline runs={block.c} context={context} />
+              </h3>
+            );
+          case 'paragraph':
+            return (
+              <p data-block={block.id}>
+                {block.lines.map((line, index) => (
+                  <span
+                    class="st-tsheet__line"
+                    data-when={line.when?.join(' ')}
+                    hidden={line.when ? true : undefined}
+                  >
+                    <SheetRuns runs={line.runs} context={context} fields={fields} />
+                    {index < block.lines.length - 1 && <br />}
+                  </span>
+                ))}
+              </p>
+            );
+          case 'details':
+            return (
+              <table class="st-tsheet__details">
+                <tbody>
+                  {block.rows.map((row) => (
+                    <tr>
+                      <th scope="row">
+                        <Inline runs={row.label} context={context} />
+                      </th>
+                      <td>
+                        <SheetRuns runs={row.value.runs} context={context} fields={fields} />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            );
+          case 'list':
+            return block.ordered ? (
+              <ol data-list={block.name}>
+                {listDefault(block.name).map((item) => (
+                  <li>{item}</li>
+                ))}
+                {listDefault(block.name).length === 0 && listSample(block.name) !== '' && (
+                  <li>
+                    <span
+                      class="st-tsheet__value"
+                      data-empty=""
+                      data-sample={listSample(block.name)}
+                    />
+                  </li>
+                )}
+              </ol>
+            ) : (
+              <ul data-list={block.name}>
+                {listDefault(block.name).map((item) => (
+                  <li>{item}</li>
+                ))}
+                {listDefault(block.name).length === 0 && listSample(block.name) !== '' && (
+                  <li>
+                    <span
+                      class="st-tsheet__value"
+                      data-empty=""
+                      data-sample={listSample(block.name)}
+                    />
+                  </li>
+                )}
+              </ul>
+            );
+          case 'lines':
+            return lines ? (
+              <table class="st-tsheet__lines">
+                <thead>
+                  <tr>
+                    {lines.header.map((cell, index) => (
+                      <th scope="col" class:list={[{ 'st-num': index > 0 }]}>
+                        <Inline runs={cell} context={context} />
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {Array.from({ length: lines.rows }, () => (
+                    <tr data-sample-line>
+                      <td>
+                        <span
+                          class="st-tsheet__value"
+                          data-empty=""
+                          data-sample={`[${lines.sample}]`}
+                        />
+                      </td>
+                      <td class="st-num">{lines.quantity}</td>
+                      <td class="st-num">{zero}</td>
+                      <td class="st-num">{zero}</td>
+                    </tr>
+                  ))}
+                  {Array.from({ length: MAX_LINES }, (_, index) => (
+                    <tr data-line={index} hidden>
+                      <td data-cell="description" />
+                      <td class="st-num" data-cell="quantity" />
+                      <td class="st-num" data-cell="unitPrice" />
+                      <td class="st-num" data-cell="amount" />
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  {lines.totals.map((row) => (
+                    <tr data-total-row={row.kind}>
+                      <th scope="row" colspan="3">
+                        <Inline runs={row.label} context={context} />
+                      </th>
+                      <td class="st-num" data-total={row.kind}>
+                        {zero}
+                      </td>
+                    </tr>
+                  ))}
+                </tfoot>
+              </table>
+            ) : null;
+        }
+      })}
+    </div>
+  ))}
+</div>
+
+<style is:global>
+  .st-tsheet {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-3);
+    padding: var(--st-space-5);
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-sm);
+    background-color: var(--st-surface);
+    box-shadow: var(--st-shadow-1);
+    font-size: var(--st-text-sm);
+    overflow-wrap: break-word;
+  }
+
+  .st-tsheet__title {
+    font-family: var(--st-font-display);
+    font-size: var(--st-text-xl);
+    font-weight: var(--st-weight-bold);
+    letter-spacing: 0.04em;
+  }
+
+  .st-tsheet__heading {
+    margin-block-start: var(--st-space-2);
+    font-size: var(--st-text-md);
+  }
+
+  .st-tsheet :is(ul, ol) {
+    padding-inline-start: var(--st-space-5);
+  }
+
+  .st-tsheet table {
+    font-size: inherit;
+  }
+
+  .st-tsheet :is(th, td) {
+    padding: var(--st-space-1) var(--st-space-2);
+    border-block-end: var(--st-border-width) solid var(--st-border);
+    text-align: start;
+    vertical-align: top;
+  }
+
+  .st-tsheet__details th {
+    inline-size: 40%;
+    font-weight: var(--st-weight-semibold);
+  }
+
+  /* Amounts never wrap inside: `formatRand` joins them with no-break spaces. */
+  .st-tsheet__lines .st-num {
+    text-align: end;
+  }
+
+  .st-tsheet__lines tfoot th {
+    text-align: end;
+  }
+
+  .st-tsheet__lines tfoot tr:last-child :is(th, td) {
+    font-weight: var(--st-weight-bold);
+  }
+
+  /*
+   * A slot not filled in yet has no text of its own. On screen it shows the template's words from
+   * `data-sample`, marked like a placeholder; on paper it is a blank line to write on, never the
+   * sample (an empty "Balance still owing" printed "R 0.00", review pass 1, major 2).
+   */
+  .st-tsheet__value[data-empty]:not([data-sample=''])::before {
+    content: attr(data-sample);
+    padding-inline: 0.15em;
+    border-radius: var(--st-radius-sm);
+    background-color: var(--st-mark-bg);
+    color: var(--st-text);
+  }
+
+  .st-tsheet__section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-2);
+  }
+
+  /*
+   * A section of the template with nothing left in it (every paragraph left out, every list
+   * emptied) is not on the document, heading included (pass 2, minor 5; pass 3, minor 1).
+   */
+  .st-tsheet__section:has(> h3):not(:has(> :not(h3, [data-omitted], ul:empty, ol:empty))) {
+    display: none;
+  }
+
+  /* The site's "Official" badge belongs to the guide, not to a document the reader hands out. */
+  .st-tsheet .st-badge[data-variant] {
+    display: none;
+  }
+
+  @media print {
+    /*
+     * Plain blocks on paper: Chromium does not keep a grid item together, so the sheet and its
+     * sections are blocks, each section kept on one page, with tighter spacing so a quotation fits
+     * one A4 sheet (pass 2, minor 1).
+     */
+    .st-tsheet,
+    .st-tsheet__section {
+      display: block;
+      padding: 0;
+      font-size: inherit;
+    }
+
+    .st-tsheet__section {
+      margin-block-start: 0.6em;
+      break-inside: avoid;
+    }
+
+    .st-tsheet__section > * + * {
+      margin-block-start: 0.3em;
+    }
+
+    /* The body leading (1.6) suits reading on screen; a document on paper sets tighter. */
+    .st-tsheet {
+      line-height: var(--st-leading-snug);
+    }
+
+    .st-tsheet__title {
+      margin-block-end: 0.3em;
+    }
+
+    .st-tsheet__heading {
+      margin-block: 0 0.2em;
+      font-size: 1.05em;
+    }
+
+    .st-tsheet :is(th, td) {
+      padding-block: 0.15em;
+    }
+
+    .st-tsheet__section:has(> h3):not(:has(> :not(h3, [data-omitted], ul:empty, ol:empty))) {
+      display: none;
+    }
+
+    .st-tsheet__value[data-empty]:not([data-sample=''])::before {
+      content: '';
+      display: inline-block;
+      min-inline-size: 10em;
+      padding: 0;
+      border-block-end: var(--st-border-width) solid var(--st-text);
+      background: none;
+      vertical-align: baseline;
+    }
+
+    /* The template's sample rows are for the screen only. */
+    .st-tsheet [data-sample-line] {
+      display: none;
+    }
+
+    /* Totals that could not be worked out print as lines to write on. */
+    .st-tsheet td[data-total]:empty::before {
+      content: '';
+      display: inline-block;
+      min-inline-size: 6em;
+      border-block-end: var(--st-border-width) solid var(--st-text);
+    }
+  }
+
+  /* Omitted text (`Leave this out`) is not on the document. */
+  .st-tsheet [data-omitted] {
+    display: none;
+  }
+</style>
