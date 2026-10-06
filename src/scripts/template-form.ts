@@ -490,9 +490,11 @@ export class StTemplateForm extends HTMLElement {
           );
       } else {
         const follows = this.#controls.get(name)?.dataset['follows'];
+        // A number the form refuses is not filled in: it prints blank (review pass 2, minor 3).
         ok =
-          (values[name] ?? '').trim() !== '' ||
-          (follows !== undefined && (values[follows] ?? '').trim() !== '');
+          (values[name] ?? '').trim() !== '' &&
+          readable(values[name] ?? '', this.#controls.get(name)?.dataset['kind']);
+        if (!ok && follows !== undefined) ok = (values[follows] ?? '').trim() !== '';
       }
       item.hidden = ok;
       if (ok) present++;
@@ -631,6 +633,13 @@ export function display(
   }
   if (kind === 'number') return readNumber(raw, QUANTITY).kind === 'ok' ? raw : '';
   return raw;
+}
+
+/** Text the form can use for a field of `kind`: any text, or a number it can read. */
+function readable(value: string, kind: string | undefined): boolean {
+  if (kind === 'money') return readCents(value).kind === 'ok';
+  if (kind === 'number') return readNumber(value, QUANTITY).kind === 'ok';
+  return true;
 }
 
 function setCell(row: HTMLElement, cell: string, text: string): void {

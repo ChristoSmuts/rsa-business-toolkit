@@ -142,6 +142,7 @@ interface ParamNames {
   'templates.ambiguous': 'example';
   'templates.tooManyDecimals': 'example';
   'templates.tooLarge': 'max';
+  'templates.ambiguousQuantity': 'decimal' | 'thousands';
   'validation.summaryCount': 'count';
   'validation.goToField': 'field';
   'validation.required': 'field';

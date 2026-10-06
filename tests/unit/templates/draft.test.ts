@@ -33,7 +33,11 @@ describe('draft keys and schema', () => {
         values: { a: 'b', bad: 1, long: 'x'.repeat(MAX_VALUE_LENGTH + 1) },
         lines: [good, { description: 'x' }, 'line', good],
       }),
-    ).toEqual({ success: true, data: { values: { a: 'b' }, lines: [good, good] } });
+    ).toEqual({
+      success: true,
+      // Too long: the part that fits is kept, never the whole field lost (review pass 2, minor 2).
+      data: { values: { a: 'b', long: 'x'.repeat(MAX_VALUE_LENGTH) }, lines: [good, good] },
+    });
     const tooMany = Array.from({ length: MAX_LINES + 1 }, () => good);
     const parsed = draftSchema.safeParse({ values: {}, lines: tooMany });
     expect(parsed.success && parsed.data.lines).toHaveLength(MAX_LINES);

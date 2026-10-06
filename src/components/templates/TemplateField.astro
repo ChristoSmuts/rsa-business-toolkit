@@ -14,6 +14,7 @@ import type { Locale } from '../../i18n/locales';
 import type { ProfileKey, TemplateField } from '../../lib/templates/placeholders';
 import { fieldId } from '../../lib/templates/ids';
 import { numberMessages } from '../../lib/templates/messages';
+import { MAX_VALUE_LENGTH } from '../../lib/templates/draft';
 
 interface Props {
   field: TemplateField;
@@ -81,6 +82,9 @@ const common = {
   'data-type': field.kind === 'date' ? 'date' : undefined,
   'data-required-above': field.requiredAbove,
   'aria-describedby': describedBy,
+  // The draft keeps at most this much of a field; the control says so while typing, so nothing is
+  // dropped on the next load (review pass 2, minor 2).
+  maxlength: field.kind === 'date' ? undefined : MAX_VALUE_LENGTH,
   autocomplete: field.profileKey ? AUTOCOMPLETE[field.profileKey] : 'off',
 };
 ---

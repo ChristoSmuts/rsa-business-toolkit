@@ -13,9 +13,12 @@ describe('numberMessages', () => {
     );
   });
 
-  it('gives a quantity one message for every reading problem, in Afrikaans too', () => {
+  it('gives a quantity its own message for "1.500", in Afrikaans too (review pass 2, nit 2)', () => {
     const messages = numberMessages(useTranslations('af'), 'af', 'number');
-    expect(messages['data-message-ambiguous']).toBe(messages['data-message-format']);
+    expect(messages['data-message-ambiguous']).toBe(
+      'Dit kan op twee maniere gelees word. Skryf eenduisend vyfhonderd as 1500, of een en ’n half as 1.5.',
+    );
+    expect(messages['data-message-decimals']).toBe(messages['data-message-format']);
     expect(messages['data-message-format']).toContain('Skryf dit soos 2');
     expect(messages['data-message-too-large']).toContain('1 000 000');
   });

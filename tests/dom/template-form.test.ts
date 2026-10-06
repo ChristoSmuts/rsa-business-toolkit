@@ -63,8 +63,8 @@ const TOOL = `
       <button type="button" data-add-line>Add line</button>
       <div aria-live="polite">
         <span data-total="subtotal"></span><span data-total="vat"></span><span data-total="total"></span>
+        <p data-totals-blocked hidden>A line cannot be read.</p>
       </div>
-      <p data-totals-blocked hidden>A line cannot be read.</p>
     </form>
   </div>
   <section data-pane="preview" aria-labelledby="preview-heading">
@@ -95,6 +95,7 @@ const TOOL = `
     <li data-required-item="businessName"><a href="#">Business name</a></li>
     <li data-required-item="number"><a href="#">Invoice number</a></li>
     <li data-required-item="customer"><a href="#customer">Customer name</a></li>
+    <li data-required-item="paid"><a href="#paid">Amount received</a></li>
     <li data-required-item="customerVat" data-required-above="500000"><a href="#customerVat">Customer VAT number, if they are a vendor — required on invoices over R5,000</a></li>
     <li data-required-item="reference"><a href="#">Reference</a></li>
     <li data-required-item="lines"><a href="#">Supply</a></li>
@@ -150,7 +151,7 @@ describe('<st-template-form>', () => {
     // A date is a picker once the script runs.
     expect((control('issued') as HTMLInputElement).type).toBe('date');
     expect(document.querySelector('[data-required-count]')?.textContent).toBe(
-      '2 of 5 required items present',
+      '2 of 6 required items present',
     );
   });
 
@@ -492,17 +493,18 @@ describe('<st-template-form>: review WP-32 pass 1', () => {
     type('lines.0.unitPrice', '100');
     expect(vat?.hidden).toBe(true);
     const below = document.querySelector('[data-required-count]')?.textContent;
-    expect(below).toBe('3 of 5 required items present');
+    expect(below).toBe('3 of 6 required items present');
     type('lines.0.unitPrice', '9000');
     expect(vat?.hidden).toBe(false);
     expect(document.querySelector('[data-required-count]')?.textContent).toBe(
-      '3 of 6 required items present',
+      '3 of 7 required items present',
     );
     type('businessName', 'B');
     type('customer', 'C');
     expect(document.querySelector('[data-required-count]')?.textContent).not.toBe(
       'All required items are present.',
     );
+    type('paid', '10');
     type('customerVat', '4123456789');
     expect(document.querySelector('[data-required-count]')?.textContent).toBe(
       'All required items are present.',
@@ -538,5 +540,24 @@ describe('<st-template-form>: review WP-32 pass 1', () => {
     const form = element.querySelector('form') as HTMLFormElement;
     element.remove();
     expect(form.hasAttribute('data-print-sheet')).toBe(true);
+  });
+
+  it('does not count an amount it refuses as filled in (review pass 2, minor 3)', () => {
+    mount(TOOL);
+    const item = document.querySelector<HTMLElement>('[data-required-item="paid"]');
+    type('paid', 'R1,500');
+    expect(item?.hidden).toBe(false);
+    type('paid', 'R1 500');
+    expect(item?.hidden).toBe(true);
+  });
+
+  it('says inside the live totals why they went blank (review pass 2, nit 5)', () => {
+    mount(TOOL);
+    type('lines.0.description', 'Labour');
+    type('lines.0.quantity', '2 hrs');
+    type('lines.0.unitPrice', '400');
+    const message = document.querySelector<HTMLElement>('[data-totals-blocked]');
+    expect(message?.hidden).toBe(false);
+    expect(message?.closest('[aria-live]')).not.toBeNull();
   });
 });

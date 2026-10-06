@@ -44,6 +44,10 @@ describe('readCents: the formats people write amounts in (review WP-32 pass 1, m
     ['.5', 50],
     ['0.500', 'decimals'],
     ['-250', -25_000],
+    // A discount as people write it (review pass 2, nit 1).
+    ['-R250', -25_000],
+    ['-R 1 500.50', -150_050],
+    ['R-250', -25_000],
   ])('%s → %s', (input, expected) => {
     expect(cents(input)).toBe(expected);
   });

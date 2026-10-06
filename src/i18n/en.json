@@ -545,7 +545,8 @@
     "tooLarge": "This is more than the form can work with. The most is {max}.",
     "requiredNote": "This only checks that each item has something in it. It does not check that the document is correct or complete.",
     "totalsBlocked": "A line has a number that cannot be read, so the totals are not shown. Fix the line that is marked.",
-    "leaveOut": "Leave this out of the document"
+    "leaveOut": "Leave this out of the document",
+    "ambiguousQuantity": "This could be read two ways. Write fifteen hundred as {thousands}, or one and a half as {decimal}."
   },
   "validation": {
     "summaryTitle": "Check these answers",

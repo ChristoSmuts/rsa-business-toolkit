@@ -545,7 +545,8 @@
     "tooLarge": "Dit is meer as wat die vorm kan hanteer. Die meeste is {max}.",
     "requiredNote": "Dit kyk net of elke item iets in het. Dit kyk nie of die dokument korrek of volledig is nie.",
     "totalsBlocked": "’n Reël het ’n getal wat nie gelees kan word nie, daarom word die totale nie gewys nie. Maak die gemerkte reël reg.",
-    "leaveOut": "Laat dit uit die dokument uit"
+    "leaveOut": "Laat dit uit die dokument uit",
+    "ambiguousQuantity": "Dit kan op twee maniere gelees word. Skryf eenduisend vyfhonderd as {thousands}, of een en ’n half as {decimal}."
   },
   "validation": {
     "summaryTitle": "Kyk weer na hierdie antwoorde",

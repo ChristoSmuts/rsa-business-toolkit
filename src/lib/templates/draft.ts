@@ -48,8 +48,6 @@ const lineSchema = z.object({
 /** The longest value a draft keeps for one field. */
 export const MAX_VALUE_LENGTH = 5000;
 
-const textSchema = z.string().check(z.maxLength(MAX_VALUE_LENGTH));
-
 /**
  * One schema object for every draft key, so `persistentValue` sees one owner per key.
  *
@@ -66,8 +64,8 @@ export const draftSchema: Schema<Draft> = {
     const values: Record<string, string> = {};
     if (typeof raw.values === 'object' && raw.values !== null && !Array.isArray(raw.values)) {
       for (const [name, value] of Object.entries(raw.values)) {
-        const parsed = textSchema.safeParse(value);
-        if (parsed.success) values[name] = parsed.data;
+        // Too long: keep what fits rather than lose the whole field (review pass 2, minor 2).
+        if (typeof value === 'string') values[name] = value.slice(0, MAX_VALUE_LENGTH);
       }
     }
     const lines: LineInput[] = [];

@@ -66,7 +66,8 @@ function grouped(text: string, mark: string): boolean {
  * blank text, and says why when the text is not a number this form can use.
  */
 export function readNumber(input: string, options: ReadOptions): ReadNumber {
-  let text = input.replace(/\s/g, '').replace(/^R/i, '');
+  // `R 250`, `-R250` and `R-250` (pass 2, nit 1): the rand sign goes, a minus stays.
+  let text = input.replace(/\s/g, '').replace(/^(-?)R/i, '$1');
   if (text === '') return { kind: 'empty' };
   let sign = 1;
   if (text.startsWith('-')) {

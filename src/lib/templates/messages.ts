@@ -25,7 +25,10 @@ export function numberMessages(
   const format = t('templates.notANumber', { example });
   return {
     'data-message-format': format,
-    'data-message-ambiguous': kind === 'money' ? t('templates.ambiguous', { example }) : format,
+    'data-message-ambiguous':
+      kind === 'money'
+        ? t('templates.ambiguous', { example })
+        : t('templates.ambiguousQuantity', { thousands: '1500', decimal: '1.5' }),
     'data-message-decimals':
       kind === 'money' ? t('templates.tooManyDecimals', { example }) : format,
     'data-message-too-large': t('templates.tooLarge', { max }),

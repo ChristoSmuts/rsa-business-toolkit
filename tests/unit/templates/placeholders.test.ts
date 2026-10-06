@@ -179,8 +179,9 @@ describe('parseTemplate on the five templates', () => {
     expect(field(m, 'payment-details.1:r0')).toMatchObject({ label: 'Bank', carry: true });
     expect(field(m, 'payment-details.1:r1').hint).toBe('Exactly as it appears on the account');
     // An instruction in running text is optional.
+    // An instruction with no condition is a slot to fill, not "(optional)" (review pass 2, nit 3).
     expect(field(m, 'payment-details.3:1')).toMatchObject({
-      required: false,
+      required: true,
       label: 'State your late payment terms here',
     });
     expect(field(m, 'payment-details.3:0')).toMatchObject({

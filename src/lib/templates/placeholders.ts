@@ -486,7 +486,9 @@ function paragraphField(
     kind,
     label,
     group,
-    required: !instruction,
+    // An instruction is a slot to fill ("State your late payment terms here."), unless the
+    // template gives it a condition (review pass 2, nit 3).
+    required: condition === undefined,
     ...(hint ? { hint } : {}),
     ...(condition ? { condition } : {}),
     ...(above === undefined ? {} : { requiredAbove: above }),
