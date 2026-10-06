@@ -1,6 +1,6 @@
 # WP-31: Find my path and My path
 
-Status: built and handed over; review passes 1 and 2 findings fixed.
+Status: built and handed over; review passes 1, 2 and 3 findings fixed.
 
 Read first: `CLAUDE.md`, `docs/build-plan.md` A5, B1, B3 flows 1 and 2, B6 (home, section landing, document, checklist, My path) and C2, the store's API as WP-30 documented it (`src/lib/store.ts` doc comment and `docs/design-system.md`), `docs/i18n.md`, `docs/testing.md`.
 
@@ -41,8 +41,8 @@ As WP-30: `gate:fast`, `build`, chromium, mobile and nojs e2e, `test:a11y`, JS b
   pages, grouped by how you trade.
 - **JavaScript budgets** (`pnpm dist:budget`, run by `pnpm build`: gzipped level 9, per file,
   summed, without and with a saved profile): heaviest document page `/af/business-types/food/`
-  21.7 KB / 21.7 KB (25 KB budget, 3.3 KB left for WP-33); My path 24.2 KB, `/checklist/` 21.2 KB,
-  Find my path 19.9 KB (45 KB budget); home 17.3 KB, 20.1 KB when it rebuilds the stored path. Before
+  21.9 KB / 21.9 KB (25 KB budget, 3.1 KB left for WP-33); My path 24.5 KB, `/checklist/` 21.5 KB,
+  Find my path 20.1 KB (45 KB budget); home 17.5 KB, 20.3 KB when it rebuilds the stored path. Before
   review pass 1 the heaviest document page was 24.0 KB without a profile and 26.3 KB with one.
 - **No Zod in the browser for the profile.** Build 1 asked for Zod in the store helper. The
   profile is checked by `parseProfile` (`src/lib/profile.ts`), hand-written, with the same rules
