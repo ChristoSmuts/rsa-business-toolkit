@@ -17,13 +17,27 @@ import type { SearchEntryKind } from './types';
  * The client refuses an index with another version and shows the failed state, rather than
  * returning wrong results.
  */
-export const INDEX_VERSION = 1;
+export const INDEX_VERSION = 2;
 
 /** Fields that are searched. `text` is the body; `title` and `path` are boosted. */
 export const SEARCH_FIELDS = ['title', 'path', 'text'] as const;
 
 /** Fields stored with each entry and returned with a result (short keys keep the index small). */
-export const STORE_FIELDS = ['k', 'd', 'r', 'a', 't', 'p', 's', 'l', 'e', 'b', 'w', 'x'] as const;
+export const STORE_FIELDS = [
+  'k',
+  'd',
+  'r',
+  'a',
+  't',
+  'p',
+  's',
+  'l',
+  'e',
+  'b',
+  'w',
+  'x',
+  'h',
+] as const;
 
 /** Field boosts (A7): a match in a title counts three times, in the breadcrumb path 1.5 times. */
 export const FIELD_BOOST: Readonly<Record<(typeof SEARCH_FIELDS)[number], number>> = {
@@ -48,11 +62,12 @@ export const KIND_WEIGHT: Readonly<Record<SearchEntryKind, number>> = {
 };
 
 /**
- * Pages about the guide, not about running a business, and their weight when a query is about
- * something else (review WP-33 pass 7, minor 1, and pass 8). "How this was made" (with its
- * corrections log) and "What has changed" name many topics next to "deadline" in passing. A result
- * from them whose own heading or page title does not hold every word of the query weighs this
- * much and never leads (`runSearchCounted`); one whose heading holds every word ranks normally.
+ * Pages about the guide, not about running a business, and their weight (review WP-33 passes 7 to
+ * 10). "How this was made" (with its corrections log) and "What has changed" name many topics next
+ * to "deadline" in passing, and their headings name other pages. Every result from them weighs
+ * this much (`boostDocument`); one that holds the query's words only in its text, not its heading,
+ * also ranks with the any-word results. A query that names one of them by its title leads with it,
+ * as for any page (`titleCoverage`).
  */
 export const DOC_WEIGHT: Readonly<Record<string, number>> = {
   'start/how-this-was-made': 0.25,

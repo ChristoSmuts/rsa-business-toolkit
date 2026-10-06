@@ -214,43 +214,60 @@ export function anyTree(
 }
 
 /**
- * `true` when a query asks for a page by its title: the title holds every part of the query, each
- * by its own rule, and the query covers more than half of the title's words. `how this was made`
- * asks for "How this was made and how to check it"; `check` does not. Stop words do not count.
+ * Words that say nothing about which page is meant, besides `STOP_WORDS`, so the title rule counts
+ * the same in both languages: `het` is a stop word, so `has` is one here too ("What has changed",
+ * "Wat het verander"; review WP-33 pass 10, minor 1).
  */
-export function titleHolds(title: string, parts: readonly QueryPart[], typing: boolean): boolean {
-  const page = title.split(' › ')[0] ?? '';
-  const terms = tokenize(page)
+const TITLE_STOP_WORDS: ReadonlySet<string> = new Set(['has', 'have', 'had']);
+
+/** The words of a title or a query part that count for the title rule. */
+function titleWords(text: string): string[] {
+  return tokenize(text)
     .map((token) => processTerm(token))
-    .filter((term): term is string => term !== null);
-  const holds = (word: string, last: boolean): boolean => {
-    const rule = matchRule(word, last);
-    return terms.some((term) => term === word || (rule.prefix && term.startsWith(word)));
-  };
-  // The query must also cover more than half of the title's words: `check` alone is a word in "How
-  // this was made and how to check it", not a request for that page (review WP-33 pass 9).
-  const covered = terms.filter((term) =>
-    parts.some((part, index) => {
-      const words =
+    .filter((term): term is string => term !== null && !TITLE_STOP_WORDS.has(term));
+}
+
+/** Shortest beginning of a word that, still being typed, may stand for a title word. */
+const TITLE_PREFIX_MIN = 4;
+
+/**
+ * How far a query names a page by one of its titles (the navigation title or the H1 it shows):
+ * 0 unless every part of the query is a word of the title, otherwise the share of the title's words
+ * the query covers. A word counts whole; only the last word of a query of two or more words, while
+ * it is still being typed and at least four letters long, may be the beginning of one (`marketing
+ * prom`). `how this was made` covers all of "How this was made and how to check it" but `check`;
+ * `change` is not "changed", and `ve` or `ver` (the start of many Afrikaans words) names nothing.
+ */
+export function titleCoverage(title: string, parts: readonly QueryPart[], typing: boolean): number {
+  const terms = titleWords(title);
+  if (terms.length === 0) return 0;
+  const words = parts
+    .map((part, index) => {
+      const last = typing && index === parts.length - 1;
+      const forms =
         typeof part === 'string'
           ? [part]
           : [part.joined, ...('code' in part ? part.code : part.hyphen)];
-      const last = typing && index === parts.length - 1;
-      return words.some(
-        (word) => term === word || (matchRule(word, last).prefix && term.startsWith(word)),
-      );
-    }),
-  );
-  return (
-    parts.length > 0 &&
-    covered.length * 2 > terms.length &&
-    parts.every((part, index) => {
-      const last = typing && index === parts.length - 1;
-      if (typeof part === 'string') return holds(part, last);
-      const words = 'code' in part ? part.code : part.hyphen;
-      return holds(part.joined, last) || (words.length > 0 && words.every((w) => holds(w, last)));
+      return {
+        forms: forms.filter((form) => !TITLE_STOP_WORDS.has(form)),
+        prefix: last,
+      };
     })
+    .filter((word) => word.forms.length > 0);
+  if (words.length === 0) return 0;
+  // A word still being typed may stand for a title word only next to a whole one: `marketing
+  // prom` names "Marketing prompts", `change` alone does not name "What has changed".
+  const typed = words.length > 1;
+  const matches = (term: string, form: string, prefix: boolean): boolean =>
+    term === form || (typed && prefix && form.length >= TITLE_PREFIX_MIN && term.startsWith(form));
+  const named = words.every(({ forms, prefix }) =>
+    forms.some((form) => terms.some((term) => matches(term, form, prefix))),
   );
+  if (!named) return 0;
+  const covered = terms.filter((term) =>
+    words.some(({ forms, prefix }) => forms.some((form) => matches(term, form, prefix))),
+  );
+  return covered.length / terms.length;
 }
 
 /** One term, with its matching rule (`matchRule`). */
@@ -412,32 +429,39 @@ export function runSearchCounted(
     any.queries.length > 0
       ? index.search.search(any, searchOptions).filter((hit) => !found.has(hit.id))
       : [];
+  // A query that names a page leads with that page (review WP-33 pass 10): every word of the query
+  // is a word of the page's navigation title or of the H1 it shows, and the query covers more than
+  // half of that title (`how this was made`, `AI disclosure`, `marketing prompts`, `wat het
+  // verander`). The page's first entry, which carries both titles, leads; when several pages
+  // qualify, the one whose title the query covers most, then the first in reading order (`start
+  // here`: the guide's own "Start here" before the Core section's).
+  const titled = every
+    .filter((hit) => typeof hit['h'] === 'string')
+    .map((hit) => ({
+      hit,
+      cover: Math.max(
+        titleCoverage(String(hit['h']), parts, typing),
+        titleCoverage(String(hit['p']).split(' › ')[0] ?? '', parts, typing),
+      ),
+    }))
+    .filter(({ cover }) => cover > 0.5)
+    .sort((a, b) => b.cover - a.cover || Number(a.hit.id) - Number(b.hit.id))[0]?.hit;
+  // Within the all-words results, an entry whose own heading holds every word comes before one
+  // that holds them only in its text: `VAT registration` opens "Do I have to register for VAT?"
+  // before a template that mentions both (review WP-33 pass 10, minor 3).
+  const headed = new Set(allWords({ fields: ['title'] }).map((hit) => hit.id));
   // Pages about the guide ("How this was made", "What has changed"; `DOC_WEIGHT`) weigh a quarter
-  // in every search (`boostDocument`), and (review WP-33 pass 7 to 9):
-  // - asked for by the page's own title (every word of the query is in it: `how this was made`,
-  //   `wat het verander`), the page's first entry leads;
-  // - an entry whose own heading holds every word (`corrections`, `AI generated`) keeps its place
-  //   among the all-words results, by its weighted score, and is never forced to the front, so
-  //   `register` opens the Register page, not a changelog note that names it;
-  // - an entry that holds every word only in its text (the corrections log naming "EMP201" next to
-  //   "deadlines") ranks with the any-word results, so `PAYE deadline` opens the PAYE entry.
+  // in every search (`boostDocument`). Named only in an entry's text, not its heading (the
+  // corrections log naming "EMP201" next to "deadlines"), such an entry ranks with the any-word
+  // results, so `PAYE deadline` opens the PAYE entry (review WP-33 pass 7 to 9).
   const aboutGuide = (hit: MiniSearchResult): boolean => DOC_WEIGHT[String(hit['d'])] !== undefined;
-  const guideHits = every.filter(aboutGuide);
-  const named = new Set(
-    guideHits.length > 0
-      ? allWords({
-          fields: ['title'],
-          filter: (hit: MiniSearchResult) => aboutGuide(hit) && searchOptions.filter(hit),
-        }).map((hit) => hit.id)
-      : [],
-  );
-  // The first entry, in reading order, of an about-the-guide page whose title holds every word.
-  const titled = guideHits
-    .filter((hit) => titleHolds(String(hit['p']), parts, typing))
-    .sort((a, b) => Number(a.id) - Number(b.id))[0];
-  const demoted = (hit: MiniSearchResult): boolean => aboutGuide(hit) && !named.has(hit.id);
+  const demoted = (hit: MiniSearchResult): boolean => aboutGuide(hit) && !headed.has(hit.id);
   const listed = every.filter((hit) => !demoted(hit) && hit !== titled);
-  const all = titled === undefined ? listed : [titled, ...listed];
+  // A heading on a page about the guide that names a common word ("Change 2: …") is not promoted:
+  // those pages keep only their weight.
+  const promoted = (hit: MiniSearchResult): boolean => headed.has(hit.id) && !aboutGuide(hit);
+  const ordered = [...listed.filter(promoted), ...listed.filter((hit) => !promoted(hit))];
+  const all = titled === undefined ? ordered : [titled, ...ordered];
   const rest = [...every.filter((hit) => demoted(hit) && hit !== titled), ...some];
   const hits = [...all, ...rest.sort((a, b) => b.score - a.score)];
   const leading = new Set(all.map((hit) => hit.id));

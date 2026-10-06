@@ -16,6 +16,7 @@ import {
   runSearch,
   runSearchCounted,
   SearchIndexError,
+  titleCoverage,
   type FetchLike,
   type SearchResult,
 } from '../../../src/lib/search-client';
@@ -293,6 +294,52 @@ describe('options', () => {
     // edit away from a neighbour (VAT265).
     expect(anchors('VAT 264').sort()).toEqual(['code', 'longer']);
     expect(anchors('VAT264').sort()).toEqual(['code', 'longer']);
+  });
+
+  // Review WP-33 pass 10, minor 3: within the all-words results, an entry whose own heading holds
+  // every word comes before one that only mentions them, however often.
+  it('lists an entry whose heading holds every word before one whose text does', () => {
+    const idx = index('en', [
+      entry({
+        key: 'mention',
+        anchor: 'mention',
+        kind: 'glossary',
+        title: 'Company tax',
+        text: 'The company tax rate applies. The rate is the company tax rate.',
+      }),
+      entry({
+        key: 'answer',
+        anchor: 'answer',
+        kind: 'task',
+        title: 'Company tax rate',
+        text: 'Twenty-seven percent of taxable income, paid in two provisional payments a year, then a top-up with the return after the year ends, as SARS sets out each year.',
+      }),
+    ]);
+    const anchors = runSearch(idx, 'company tax rate', 'en', { typing: false }).map(
+      (r) => r.anchor,
+    );
+    expect(anchors).toEqual(['answer', 'mention']);
+  });
+
+  // Review WP-33 pass 10: how far a query names a page by its title.
+  it('measures how much of a page title a query names', () => {
+    const cover = (title: string, query: string, typing = false) =>
+      titleCoverage(title, queryParts(query), typing);
+    expect(cover('How this was made and how to check it', 'how this was made')).toBeCloseTo(2 / 3);
+    expect(cover('How this was made and how to check it', 'check')).toBeCloseTo(1 / 3);
+    // `has` counts as `het` does: "What has changed" is one word, as "Wat het verander" is.
+    expect(cover('What has changed', 'what changed')).toBe(1);
+    expect(cover('Wat het verander', 'verander')).toBe(1);
+    // A word counts whole: `change` is not "changed", and a query word outside the title is 0.
+    expect(cover('What has changed', 'change')).toBe(0);
+    expect(cover('What has changed', 'change', true)).toBe(0);
+    expect(cover('Marketing prompts', 'marketing tips')).toBe(0);
+    // While typed, the last word may begin a title word, beside a whole word, from four letters.
+    expect(cover('Marketing prompts', 'marketing prom', true)).toBe(1);
+    expect(cover('Marketing prompts', 'marketing prom', false)).toBe(0);
+    expect(cover('Marketing prompts', 'marketing pr', true)).toBe(0);
+    expect(cover('Wat het verander', 'ver', true)).toBe(0);
+    expect(cover('', 'anything')).toBe(0);
   });
 
   // Review WP-33 pass 6, major 2: the any-word query takes every word of every part.

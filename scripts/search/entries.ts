@@ -174,6 +174,11 @@ export function sectionEntries(input: IndexInput, doc: Doc): SearchEntry[] {
     // A heading with no text of its own (an H2 straight above its H3s) is still found through
     // the breadcrumb of its sub-sections, so it gets no entry of its own.
     if (text !== '') {
+      // The page's first entry also carries the page's titles, the one in the navigation and the
+      // H1 the page shows ("How this was made and how to check it", "AI disclosure"), in the
+      // boosted title field, so a query that names the page finds it (review WP-33 pass 10).
+      const first = out.length === 0;
+      const titles = [...new Set([current.title, doc.title, doc.h1])];
       out.push(
         entry(
           'section',
@@ -182,6 +187,8 @@ export function sectionEntries(input: IndexInput, doc: Doc): SearchEntry[] {
             doc: doc.id,
             anchor: current.anchor,
             title: current.title,
+            indexTitle: first && titles.length > 1 ? titles.join(' · ') : undefined,
+            pageTitle: first ? doc.h1 : undefined,
             docTitle: [doc.title, ...current.parents].join(' › '),
             path: [sectionTitle, doc.title, ...current.parents].join(' › '),
             text,

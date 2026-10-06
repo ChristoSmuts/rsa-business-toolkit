@@ -27,6 +27,11 @@ export interface SearchEntry {
   readonly indexTitle?: string | undefined;
   /** The page it is on, for "page › heading". */
   readonly docTitle: string;
+  /**
+   * Set on the first entry of a page only: the H1 the page shows, which can differ from the title
+   * in the navigation (`docTitle`). With it, a query that names the page leads with the page.
+   */
+  readonly pageTitle?: string | undefined;
   /** Searchable breadcrumb: section › page › parent heading. */
   readonly path: string;
   /** Searchable body text. */
@@ -61,6 +66,8 @@ export interface StoredFields {
   readonly b?: readonly string[];
   readonly w: number;
   readonly x?: string;
+  /** `pageTitle`: the page's H1, on its first entry. */
+  readonly h?: string;
 }
 
 /** The file written to `public/search/<lang>.<hash>.json`. */

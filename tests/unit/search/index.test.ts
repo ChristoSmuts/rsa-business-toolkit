@@ -589,6 +589,82 @@ describe('A7 ranking cases', () => {
     },
     { kind: 'common word', lang: 'af', query: 'register', noGuideIn: 3 },
     { kind: 'common word', lang: 'af', query: 'branding', noGuideIn: 3 },
+    // Review WP-33 pass 10, major: a page is named by its navigation title or by the H1 it shows.
+    {
+      kind: 'page title (H1)',
+      lang: 'en',
+      query: 'AI disclosure',
+      firstDoc: 'start/how-this-was-made',
+    },
+    {
+      kind: 'page title (H1)',
+      lang: 'af',
+      query: 'KI-openbaarmaking',
+      firstDoc: 'start/how-this-was-made',
+    },
+    {
+      kind: 'page title (H1)',
+      lang: 'af',
+      query: 'KI openbaarmaking',
+      firstDoc: 'start/how-this-was-made',
+    },
+    { kind: 'page title (H1)', lang: 'en', query: 'changelog', first: 'start/what-has-changed/' },
+    {
+      kind: 'page title (H1)',
+      lang: 'af',
+      query: 'veranderingslys',
+      first: 'start/what-has-changed/',
+    },
+    { kind: 'page title (H1)', lang: 'en', query: 'redline', first: 'start/what-has-changed/' },
+    // One word of a two-word title does not name the page.
+    { kind: 'page title, one word of it', lang: 'en', query: 'disclosure', noGuideIn: 1 },
+    { kind: 'page title, one word of it', lang: 'en', query: 'AI', noGuideIn: 1 },
+    // Review WP-33 pass 10, minor 1: `has` counts as `het` does.
+    { kind: 'page title', lang: 'en', query: 'what changed', first: 'start/what-has-changed/' },
+    { kind: 'page title', lang: 'en', query: 'changed', first: 'start/what-has-changed/' },
+    // `verander` is the whole of "Wat het verander" after stop words, as `changed` is of "What has
+    // changed": it names the page. Its beginnings while typed do not.
+    { kind: 'page title', lang: 'af', query: 'verander', first: 'start/what-has-changed/' },
+    { kind: 'page title, being typed', lang: 'af', query: 've', typing: true, noGuideIn: 3 },
+    { kind: 'page title, being typed', lang: 'af', query: 'ver', typing: true, noGuideIn: 3 },
+    { kind: 'page title, being typed', lang: 'af', query: 'verande', typing: true, noGuideIn: 3 },
+    // Review WP-33 pass 10, minor 2, and nit 3 (a title word still being typed).
+    {
+      kind: 'page title',
+      lang: 'en',
+      query: 'marketing prompts',
+      firstDoc: 'branding/marketing-prompts',
+    },
+    {
+      kind: 'page title, being typed',
+      lang: 'en',
+      query: 'marketing prom',
+      typing: true,
+      firstDoc: 'branding/marketing-prompts',
+    },
+    { kind: 'page title', lang: 'en', query: 'tax and sars', first: 'core/tax-and-sars/' },
+    { kind: 'page title', lang: 'af', query: 'Belasting en SARS', first: 'core/tax-and-sars/' },
+    {
+      kind: 'page title',
+      lang: 'en',
+      query: 'you are the business',
+      first: 'core/you-are-the-business/',
+    },
+    {
+      kind: 'page title',
+      lang: 'af',
+      query: 'Jy is die besigheid',
+      first: 'core/you-are-the-business/',
+    },
+    // Review WP-33 pass 10, minor 3: an entry whose heading holds every word before one that
+    // holds them only in its text.
+    {
+      kind: 'heading before text',
+      lang: 'af',
+      query: 'BTW-registrasie',
+      typing: false,
+      first: 'core/tax-and-sars/#vat-probably-not-yet',
+    },
     { kind: 'topic + deadline', lang: 'en', query: 'EMP201 deadline', first: 'glossary/#emp201' },
     { kind: 'topic + deadline', lang: 'en', query: 'UIF deadline', first: 'glossary/#uif' },
     { kind: 'topic + deadline', lang: 'en', query: 'ITR14 deadline', first: 'glossary/#itr14' },
@@ -765,6 +841,30 @@ describe('A7 ranking cases', () => {
     expect(log).toBeGreaterThan(1);
     expect(counted.results[log]?.allWords).toBe(false);
     expect(counted.matchedAll).toBe(0);
+  });
+
+  // Review WP-33 pass 10, major: every page's navigation title and H1, in both languages, as
+  // typed and as finished, opens that page. Generated from the data, so a new page is covered.
+  // Two pages share a title ("Start here", "Begin hier"): both then open first and second.
+  it.each(['en', 'af'] as const)('%s: every page title and H1 opens its page', (lang) => {
+    const built = lang === 'en' ? en : af;
+    const input = loadIndexInput(lang);
+    const byTitle = new Map<string, Set<string>>();
+    for (const doc of input.docs) {
+      for (const title of [doc.title, doc.h1]) {
+        const docs = byTitle.get(title) ?? new Set<string>();
+        docs.add(doc.id);
+        byTitle.set(title, docs);
+      }
+    }
+    expect(byTitle.size).toBeGreaterThan(input.docs.length);
+    for (const [title, docs] of byTitle) {
+      for (const typing of [false, true]) {
+        const results = runSearch(built.index, title, lang, { limit: 10, typing }, BASE);
+        const first = results.slice(0, docs.size).map((r) => r.doc);
+        expect(new Set(first), `${title} (typing: ${String(typing)})`).toEqual(docs);
+      }
+    }
   });
 
   // Review WP-33 pass 9, nit: the count is the block listed first, whatever the pages.

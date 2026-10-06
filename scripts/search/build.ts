@@ -36,6 +36,7 @@ export function toIndexedDocument(entry: SearchEntry, id: number): IndexedDocume
     b: entry.businessTypes,
     w: entry.weight,
     x: entry.excerpt,
+    h: entry.pageTitle,
   };
   for (const key of Object.keys(doc)) if (doc[key] === undefined) delete doc[key];
   return doc as unknown as IndexedDocument;
