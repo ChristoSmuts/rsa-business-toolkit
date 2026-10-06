@@ -171,6 +171,8 @@ Projects `chromium`, `webkit` and `mobile` (WP-33, build plan A7 and B3 flow 3):
 - `SAPS 60` and `VAT26` typed, then Enter with no option active, open the first option on screen
   (SAPS 601, `glossary/#vat264`), and `EMP201 deadline` lists `glossary/#emp201` in the dialog and
   in the first five results of `/search/?q=` (review WP-33 pass 6, majors 1 and 2);
+- `VAT26`, then "See all": the search page lists the promised number of results with
+  `glossary/#vat264` first (review WP-33 pass 7, minor 3);
 - with the index request held back: Enter, then the index arrives, opens `glossary/#pis`; Enter, then
   Escape, then the index arrives, opens nothing and highlights nothing (review WP-33 pass 2, major 1);
 - the status line is in the accessibility tree before any search;
@@ -211,13 +213,13 @@ Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, r
 
 ## JavaScript budget: `pnpm dist:budget`
 
-Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-06, at the end of WP-33 review pass 6, with the Afrikaans translation merged:
+Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-06, at the end of WP-33 review pass 7, with the Afrikaans translation merged:
 
 | What | Gzip |
 | --- | --- |
 | Largest document page (`branding/already-have-your-name/`) | 7.9 KB |
-| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 18.2 KB |
-| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 12.1 KB |
+| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 18.4 KB |
+| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 12.3 KB |
 | Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 165.2 / 181.9 KB |
 
 WP-30 adds the store, the checklists, copy buttons, the table of contents and the settings to every document page; its numbers replace these when it merges.

@@ -346,15 +346,17 @@ one, and Escape closes the dialog in one press, even with text in the field (the
 clear-on-Escape is overridden, because the instructions promise "Press Escape to close search").
 Enter acts on what the reader sees and never starts a different search: with the list for the text
 in the field on screen, it opens the active option or the first one (`SAPS 60` opens SAPS 601, the
-first option, even though the code is not typed in full). Only when the list on screen belongs to
-older text (Enter before the debounced search has run, while the index loads, or before the results
-code itself has loaded) does it wait for
+first option, even though the code is not typed in full). An option the reader highlighted with an
+arrow key always wins, even in a list from before the last key press. Only with no option
+highlighted and a list that belongs to older text (Enter before the debounced search has run, while
+the index loads, or before the results code itself has loaded) does it wait for
 the search of the current text, the same search the live list runs, and open its first result. If
 the dialog closes, or the text changes, before that search answers (the first search can wait for
 the whole index), the Enter is cancelled and nothing opens. If it finds nothing, the one Enter goes to
 `/search/?q=`, as it does when the results are already on screen. If the results code itself cannot
 load, the failed state shows and the status line says "Search could not load." (the page renders the
-sentence on the status line as `data-failed-text`, because the eager script has no translator). Results are grouped by section, each group a `role="group"` named
+sentence on the status line as `data-failed-text`, because the eager script has no translator), and
+Enter then submits to `/search/?q=`, a fresh page that works. Results are grouped by section, each group a `role="group"` named
 "Results in {section}" (`search.groupLabel`) with a visible, `aria-hidden` section name. Groups follow
 their best result, and the dialog shows at most three results per section, so one busy section (the
 glossary, the checklist and the register are all "Look it up") cannot push the second-best result far
@@ -413,10 +415,18 @@ best first, and then, always, the results that match some of the words, best fir
 results take every word of every part (a spaced code gives its joined form and its words, a
 hyphenated word its words and the whole chain) and leave out lone numbers and single letters, so a
 junk query (`zzzzqq 1`) and a code with a typo (`VAT246`) still say "nothing found" instead of
-listing every "Prompt 1". At most 12
-terms are searched (the fields take at most 200 characters). Counts are true totals: the dialog says
-"12 of 59 results shown" and "See all 59 results on the search page", and the search page lists all
-of them; only the dialog's list stops at 30.
+listing every "Prompt 1". Pages about the guide rather than about running a business ("How this was
+made" with its corrections log, and "What has changed") weigh a quarter (`DOC_WEIGHT`, multiplied
+with the kind's weight) and never lead as all-words results: they rank with the any-word results by
+their score. The corrections log names many topics next to "deadline" in passing, so without this
+`PAYE deadline` opened it instead of the PAYE entry. At most 12
+terms are searched (the fields take at most 200 characters). Counts are true totals, with how many
+match every word when the others match only some: the dialog says "12 of 375 results shown (24
+match every word)" (`search.matchedAll`) and "See all 375 results on the search page", and the
+search page lists all of them; only the dialog's list stops at 30. "See all" for a list found while
+the last word was still being typed carries `typed=1`, so the search page runs the same search and
+lists what the link promised (`VAT26` reaches VAT264 there too); a search submitted on the page
+itself is finished.
 
 **Not built: filter chips.** B3 flow 3 puts filter chips in the empty state. The brief for this
 package (step 3) does not, and it leaves the only filter with a clear use, "my business types", to
@@ -433,7 +443,7 @@ not fade and the class is removed after the same two seconds. On the same page: 
 changes and the heading takes focus. Focus does not go back to the opener then.
 
 **Weight.** Nothing about search loads with a page except `<st-search>` and the dialog markup. The
-results code and MiniSearch (12.1 KB gzip) and the index (165 KB gzip in English, 182 KB in
+results code and MiniSearch (12.3 KB gzip) and the index (165 KB gzip in English, 182 KB in
 Afrikaans) are fetched when the
 dialog first opens; with low data, the index waits for the first key press. The dialog scrolls as a
 whole, with the title and field sticky at its top: a scrolling box that held only the results,
