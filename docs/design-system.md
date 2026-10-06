@@ -347,7 +347,8 @@ clear-on-Escape is overridden, because the instructions promise "Press Escape to
 Enter acts on what the reader sees and never starts a different search: with the list for the text
 in the field on screen, it opens the active option or the first one (`SAPS 60` opens SAPS 601, the
 first option, even though the code is not typed in full). Only when the list on screen belongs to
-older text (Enter before the debounced search has run, or while the index loads) does it wait for
+older text (Enter before the debounced search has run, while the index loads, or before the results
+code itself has loaded) does it wait for
 the search of the current text, the same search the live list runs, and open its first result. If
 the dialog closes, or the text changes, before that search answers (the first search can wait for
 the whole index), the Enter is cancelled and nothing opens. If it finds nothing, the one Enter goes to

@@ -23,6 +23,8 @@ import { readContext, resultBody, sectionName, type SearchContext } from './sear
 export interface DialogController {
   /** The dialog has just opened. */
   opened(): void;
+  /** Enter, pressed before this code had loaded: open the first result for the text. */
+  enterCurrent(): Promise<void>;
 }
 
 export interface DialogDeps {

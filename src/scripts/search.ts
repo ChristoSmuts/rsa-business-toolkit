@@ -197,13 +197,28 @@ export class StSearch extends HTMLElement {
     this.close();
   };
 
+  /** Set once the results code has loaded; until then Enter is this element's to handle. */
+  #uiReady = false;
+
   /**
-   * An empty query goes nowhere, even before the results code has loaded (which has its own guard
-   * once it has): Enter in the empty field keeps the reader on their page (review WP-33 pass 4,
-   * nit 1).
+   * Enter before the results code has loaded. An empty query goes nowhere: the reader stays on
+   * their page (review WP-33 pass 4, nit 1). Any other query in the open dialog waits for the
+   * results code and then does what Enter does there (open the first result for the text), instead
+   * of leaving for the search page because the reader typed faster than the code loaded. Once the
+   * results code runs, it has its own guards, and a submit reaches `/search/?q=` only when the
+   * dialog found nothing.
    */
   readonly #onSubmit = (event: Event): void => {
-    if ((this.#field()?.value.trim() ?? '') === '') event.preventDefault();
+    if ((this.#field()?.value.trim() ?? '') === '') {
+      event.preventDefault();
+      return;
+    }
+    if (this.#uiReady || !this.#dialog?.open) return;
+    event.preventDefault();
+    this.controller().then(
+      (controller) => controller.enterCurrent(),
+      () => undefined,
+    );
   };
 
   readonly #onClick = (event: Event): void => {
@@ -286,9 +301,14 @@ export class StSearch extends HTMLElement {
 
   /** The results half, imported once. */
   controller(): Promise<DialogController> {
-    this.#controller ??= import('./search-ui').then(({ createDialogController }) =>
-      createDialogController(this, { settings: searchSettings(), openResult: this.#choose }),
-    );
+    this.#controller ??= import('./search-ui').then(({ createDialogController }) => {
+      const controller = createDialogController(this, {
+        settings: searchSettings(),
+        openResult: this.#choose,
+      });
+      this.#uiReady = true;
+      return controller;
+    });
     return this.#controller;
   }
 

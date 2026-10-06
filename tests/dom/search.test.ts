@@ -405,6 +405,26 @@ describe('<st-search>', () => {
     expect(prevented()).toBe(false);
   });
 
+  // Review WP-33 pass 6 (an e2e run on a loaded machine): Enter before the results code has
+  // loaded waits for it and opens the first result, instead of leaving for the search page.
+  it('opens the first result for an Enter that came before the results code loaded', async () => {
+    window.history.replaceState(null, '', '/core/running-a-pty-ltd/');
+    host.open();
+    const field = document.getElementById('q') as HTMLInputElement;
+    field.value = 'statements';
+    const submit = new Event('submit', { cancelable: true });
+    field.form!.dispatchEvent(submit);
+    expect(submit.defaultPrevented).toBe(true);
+    await vi.waitFor(() => expect(dialog().open).toBe(false));
+    expect(window.location.hash).toBe('#financial-statements');
+    // Once the results code runs, a submit is its own business again (only "nothing found").
+    host.open();
+    await host.controller();
+    const later = afterOwnHandlers(field.form!, 'submit');
+    field.form!.dispatchEvent(new Event('submit', { cancelable: true }));
+    expect(later()).toBe(false);
+  });
+
   // Review WP-33 pass 1, minor 3: Escape in a search field first cleared it.
   it('closes on Escape in the field even with text in it', () => {
     host.open();
@@ -694,7 +714,9 @@ describe('the results listbox', () => {
     expect(opened).toHaveLength(2);
   });
 
-  it('ignores arrow keys with no results, and lets Enter submit to the search page', () => {
+  it('ignores arrow keys with no results, and lets Enter submit to the search page', async () => {
+    // The page's own element has loaded its results code too, so the submit is the dialog's.
+    await document.querySelector<StSearch>('st-search')!.controller();
     key(input(), { key: 'ArrowDown' });
     expect(controller.activeIndex).toBe(-1);
     expect(key(input(), { key: 'Enter' }).defaultPrevented).toBe(false);
