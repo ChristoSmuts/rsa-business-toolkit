@@ -1,6 +1,6 @@
 # WP-31: Find my path and My path
 
-Status: brief. Starts once WP-30 (the store) is merged.
+Status: built and handed over; review pass 1 findings fixed, waiting for review pass 2.
 
 Read first: `CLAUDE.md`, `docs/build-plan.md` A5, B1, B3 flows 1 and 2, B6 (home, section landing, document, checklist, My path) and C2, the store's API as WP-30 documented it (`src/lib/store.ts` doc comment and `docs/design-system.md`), `docs/i18n.md`, `docs/testing.md`.
 
@@ -36,10 +36,19 @@ As WP-30: `gate:fast`, `build`, chromium, mobile and nojs e2e, `test:a11y`, JS b
   left out of the sitemap.
 - **No-JavaScript form.** A static host cannot route a query string to a page, so each result page
   has its own submit button (`formaction`) and CSS `:has()` shows the one for the checked answers.
-  Browsers without `:has()` (none current) would see only "Choose an answer first."
-- **JavaScript budgets** (gzipped, per file, summed): heaviest document page 24.1 KB (25 KB budget),
-  My path 25.6 KB and `/checklist/` 23.0 KB (45 KB budget), home 17.8 KB. The path data loads lazily
-  (3.2 KB) once a profile exists.
+  Where `:has()` does not work, the CSS (inside `@supports selector(:has(*))`) does not apply, and
+  the form offers "Or choose your answers from a list" instead: a link to each of the 49 result
+  pages, grouped by how you trade.
+- **JavaScript budgets** (`pnpm dist:budget`, run by `pnpm build`: gzipped level 9, per file,
+  summed, without and with a saved profile): heaviest document page `/af/business-types/food/`
+  21.5 KB / 21.5 KB (25 KB budget, 3.5 KB left for WP-33); My path 24.1 KB, `/checklist/` 21.1 KB,
+  Find my path 19.9 KB (45 KB budget); home 17.3 KB, 20.1 KB when it rebuilds the stored path. Before
+  review pass 1 the heaviest document page was 24.0 KB without a profile and 26.3 KB with one.
+- **The stored path.** Document pages never load the path rules. The wizard, My path and the home
+  page store the reader's path (`st.pathView.v1`: steps, routes and titles, with the hash of
+  `paths.json` and the answers it is for); the top bar's ring and the pager read it. When it is out
+  of date only the home page rebuilds it (lazily); until then a document page shows no ring and keeps
+  its pager in section order.
 - **For WP-32 and WP-33.** Read the profile with `readProfile()`, `profileEntity()` and
   `profileBusinessTypes()` from `src/lib/profile-store.ts`. WP-33's "My business types" filter chips
   are not built here; `profileBusinessTypes()` is what they need.

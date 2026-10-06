@@ -224,10 +224,14 @@ coverage, so the floors bind only when coverage is run. (That run also reports t
 functions floor at 89%, short of its 100%, because `collections.ts` and `context.ts` are not loaded
 by any unit test; this predates WP-30 and is the same at `2744d07`.)
 
-**JavaScript budget.** Plan B3 allows 25 KB gzipped on a document page. To measure, take every
-`<script src>` of a built page and the chunks they import, gzip each and add them up. On the WP-30
-build the heaviest document pages were 15.9 KB (14 files, 39.9 KB raw), on the WP-31 build
-24.1 KB (27 files, 59.6 KB raw); see
+**JavaScript budget.** Plan B3 allows 25 KB gzipped on a document page and 45 KB on a tool page.
+`pnpm dist:budget` (`scripts/dist/check-budget.ts`, the last step of `pnpm build`) measures every
+built page: every `<script src>` and the chunks it imports, each gzipped (level 9) and summed, once
+without a profile and once with the chunks a reader with saved answers can load lazily
+(`PROFILE_CHUNKS`). The build fails when a page is over with a profile, and prints the heaviest page
+of each kind and the room left. On the WP-30 build the heaviest document page was 15.9 KB; on the
+WP-31 build after review pass 1 it is 21.5 KB without and with a profile (it was 24.0 KB and 26.3 KB
+before); see
 [design-system.md](design-system.md#scripts-csp-and-javascript-budget) for the split.
 
 ### Find my path and My path (WP-31)
