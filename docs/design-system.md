@@ -416,10 +416,14 @@ results take every word of every part (a spaced code gives its joined form and i
 hyphenated word its words and the whole chain) and leave out lone numbers and single letters, so a
 junk query (`zzzzqq 1`) and a code with a typo (`VAT246`) still say "nothing found" instead of
 listing every "Prompt 1". Pages about the guide rather than about running a business ("How this was
-made" with its corrections log, and "What has changed") weigh a quarter (`DOC_WEIGHT`, multiplied
-with the kind's weight) and never lead as all-words results: they rank with the any-word results by
-their score. The corrections log names many topics next to "deadline" in passing, so without this
-`PAYE deadline` opened it instead of the PAYE entry. At most 12
+made" with its corrections log, and "What has changed") depend on the query. Asked for by name, when
+an entry's own heading holds every word (`how this was made`, `hoe dit gemaak is`, `what has
+changed`, `wat het verander`, `AI generated`, `KI gegenereer`, `corrections`, `regstellings`), it
+leads: these are the pages a reader opens to judge how far to trust the guide (ADR 0006). Named only
+in passing, when the query is about something else, an entry weighs a quarter (`DOC_WEIGHT`) and
+ranks with the any-word results by that score: the corrections log names many topics next to
+"deadline", and `PAYE deadline` must open the PAYE entry. Either way it counts as matching every
+word when it does. At most 12
 terms are searched (the fields take at most 200 characters). Counts are true totals, with how many
 match every word when the others match only some: the dialog says "12 of 375 results shown (24
 match every word)" (`search.matchedAll`) and "See all 375 results on the search page", and the
@@ -443,7 +447,7 @@ not fade and the class is removed after the same two seconds. On the same page: 
 changes and the heading takes focus. Focus does not go back to the opener then.
 
 **Weight.** Nothing about search loads with a page except `<st-search>` and the dialog markup. The
-results code and MiniSearch (12.3 KB gzip) and the index (165 KB gzip in English, 182 KB in
+results code and MiniSearch (12.4 KB gzip) and the index (165 KB gzip in English, 182 KB in
 Afrikaans) are fetched when the
 dialog first opens; with low data, the index waits for the first key press. The dialog scrolls as a
 whole, with the title and field sticky at its top: a scrolling box that held only the results,
