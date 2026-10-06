@@ -215,7 +215,7 @@ Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzippe
 
 | What | Gzip |
 | --- | --- |
-| Largest document page (`branding/already-have-your-name/`) | 7.8 KB |
+| Largest document page (`branding/already-have-your-name/`) | 7.9 KB |
 | Largest tool page (`search/`, which imports the client and MiniSearch up front) | 18.2 KB |
 | Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 12.1 KB |
 | Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 165.2 / 181.9 KB |
