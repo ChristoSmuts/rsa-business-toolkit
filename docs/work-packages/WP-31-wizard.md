@@ -1,6 +1,6 @@
 # WP-31: Find my path and My path
 
-Status: built and handed over; review passes 1, 2 and 3 findings fixed.
+Status: built and handed over; review passes 1 to 4 findings fixed.
 
 Read first: `CLAUDE.md`, `docs/build-plan.md` A5, B1, B3 flows 1 and 2, B6 (home, section landing, document, checklist, My path) and C2, the store's API as WP-30 documented it (`src/lib/store.ts` doc comment and `docs/design-system.md`), `docs/i18n.md`, `docs/testing.md`.
 

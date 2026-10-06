@@ -414,7 +414,7 @@ migration, or uses a new key (`.v2`). `src/lib/storage/adapter.ts` is the `local
 never throws.
 
 `theme-init.js` is the one documented exception to "only the store reads storage": it must run
-before any module, so it reads `st.theme`, `st.lowData`, `st.lang` and `st.profile.v1` itself, in the formats the store writes; keep it in step with the `theme`, `lowData`, `lang` and `profile` stores. It sets `data-low-data`, `data-theme`, `data-st-lang-offer` (the saved language, when it is not the page's, so the language banner shows from first paint) and `data-st-profile` (saved answers that `parseProfile` would accept, with the same rules, which `tests/dom/theme-init.test.ts` keeps equal, so My path and the home card keep their space only for real answers). It ships unminified, so its comments stay short. The store is built on `nanostores` alone; it does not use `@nanostores/persistent` (removed), because its adapter has to survive a throwing `localStorage`.
+before any module, so it reads `st.theme`, `st.lowData`, `st.lang` and `st.profile.v1` itself, in the formats the store writes; keep it in step with the `theme`, `lowData`, `lang` and `profile` stores. It sets `data-low-data`, `data-theme`, `data-st-lang-offer` (the saved language, when it is not the page's, so the language banner shows from first paint) `data-st-script-failed` (when any script fails to load) and `data-st-profile` (saved answers that `parseProfile` would accept, with the same rules, which `tests/dom/theme-init.test.ts` keeps equal, so My path and the home card keep their space only for real answers). It ships unminified, so its comments stay short. The store is built on `nanostores` alone; it does not use `@nanostores/persistent` (removed), because its adapter has to survive a throwing `localStorage`.
 
 ### Find my path and My path (WP-31)
 
@@ -458,7 +458,7 @@ Rules the pieces follow:
   of `paths.json`, `data-version`) changed. Until then a document page shows no ring and keeps its
   pager in section order. On the path's last page, Next leads to My path.
 - **The top bar from 1024 to 1279px** shows the ring without its "My path" label and the theme control without icons, so the sticky bar keeps one row with answers saved.
-- **The home card keeps its space.** With `html[data-st-profile]` the card's box is kept, invisible, from first paint, so the page does not move when it appears; the card drops it (`data-no-path`) when there are no answers after all, and if its module has not connected after a second the space goes (a CSS animation), so a failed request leaves no gap.
+- **The home card keeps its space.** With `html[data-st-profile]` the card's box is kept, invisible, from first paint, so the page does not move when it appears; the card drops it (`data-no-path`) when there are no answers after all, and only a script that fails to load gives the space back (`data-st-script-failed`, which `theme-init.js` sets from a capturing `error` listener), so a slow load moves nothing and a dropped request leaves no gap.
 - **Rebuilding the stored path** happens only on an element's own triggers (connecting, new answers), never on a change to `st.pathView.v1` from another tab, so two tabs on different builds cannot keep overwriting each other.
 - `theme-init.js` sets `<html data-st-profile>` before paint when answers are saved, so My path does
   not flash its empty state.
