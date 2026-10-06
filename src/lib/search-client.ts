@@ -73,6 +73,8 @@ export interface SearchResult {
   readonly score: number;
   /** The index terms that matched, for highlighting. */
   readonly terms: readonly string[];
+  /** It matches every word of the query; otherwise only some (all words first, then any word). */
+  readonly allWords: boolean;
 }
 
 export interface ResultGroup {
@@ -143,7 +145,12 @@ export function resultHref(locale: Locale, route: string, anchor?: string, base?
   return base === undefined ? href(locale, path) : href(locale, path, base);
 }
 
-function toResult(hit: MiniSearchResult, locale: Locale, base: string | undefined): SearchResult {
+function toResult(
+  hit: MiniSearchResult,
+  locale: Locale,
+  base: string | undefined,
+  allWords = false,
+): SearchResult {
   const stored = hit as unknown as StoredFields & MiniSearchResult;
   return {
     id: Number(hit.id),
@@ -158,10 +165,13 @@ function toResult(hit: MiniSearchResult, locale: Locale, base: string | undefine
     excerpt: stored.x,
     score: hit.score,
     terms: hit.terms,
+    allWords,
   };
 }
 
 type Query = Parameters<MiniSearch['search']>[0];
+/** MiniSearch's own search options. */
+type SearchOptionsOf = NonNullable<Parameters<MiniSearch['search']>[1]>;
 
 /** A word that says too little to be searched on its own: one character, or only digits. */
 function weak(word: string): boolean {
@@ -279,7 +289,7 @@ export interface CountedResults {
   readonly results: SearchResult[];
   /** Every distinct destination the query matched, however many `results` holds. */
   readonly total: number;
-  /** How many of them, at the front, match every part of the query; the rest match some parts. */
+  /** How many of them match every word of the query (`SearchResult.allWords`). */
   readonly matchedAll: number;
 }
 
@@ -330,10 +340,11 @@ export function runSearchCounted(
    * finds less than `VAT` and `15`). For a known code the joined reading comes first; otherwise
    * the two readings are merged by score, an entry found both ways keeping its better score.
    */
-  const allWords = (): MiniSearchResult[] => {
-    const hits = index.search.search(queryTree(parts, typing, 'joined'), searchOptions);
+  const allWords = (only: SearchOptionsOf = {}): MiniSearchResult[] => {
+    const settings = { ...searchOptions, ...only };
+    const hits = index.search.search(queryTree(parts, typing, 'joined'), settings);
     if (codes.length === 0) return hits;
-    const words = index.search.search(queryTree(parts, typing, 'words'), searchOptions);
+    const words = index.search.search(queryTree(parts, typing, 'words'), settings);
     if (knownCode) {
       const ids = new Set(hits.map((hit) => hit.id));
       return [...hits, ...words.filter((hit) => !ids.has(hit.id))];
@@ -353,26 +364,46 @@ export function runSearchCounted(
     any.queries.length > 0
       ? index.search.search(any, searchOptions).filter((hit) => !found.has(hit.id))
       : [];
-  // A page about the guide (`DOC_WEIGHT` below 1: the corrections log naming "EMP201" next to
-  // "deadlines") never leads as an all-words result: it ranks with the any-word results, by its
-  // weighted score, so a topic's own entry comes first (review WP-33 pass 7, minor 1).
-  const aboutGuide = (hit: MiniSearchResult): boolean => (DOC_WEIGHT[String(hit['d'])] ?? 1) < 1;
-  const all = every.filter((hit) => !aboutGuide(hit));
-  const passing = every.filter(aboutGuide);
-  const hits = [...all, ...[...passing, ...some].sort((a, b) => b.score - a.score)];
+  // A page about the guide (`DOC_WEIGHT` below 1) is demoted when the query is about something
+  // else: the corrections log names "EMP201" next to "deadlines" in passing (review WP-33 pass 7,
+  // minor 1). It then weighs a quarter and ranks with the any-word results, so a topic's own entry
+  // comes first. When its own heading holds every word (`how this was made`, `wat het verander`,
+  // `AI generated`), the reader is asking for it by name, and it leads (pass 8, major): these are
+  // the pages a reader opens to judge how far to trust the guide.
+  const docWeight = (hit: MiniSearchResult): number => DOC_WEIGHT[String(hit['d'])] ?? 1;
+  const aboutGuide = (hit: MiniSearchResult): boolean => docWeight(hit) < 1;
+  const named = new Set(
+    every.some(aboutGuide)
+      ? allWords({
+          fields: ['title'],
+          filter: (hit: MiniSearchResult) => aboutGuide(hit) && searchOptions.filter(hit),
+        }).map((hit) => hit.id)
+      : [],
+  );
+  const demoted = (hit: MiniSearchResult): boolean => aboutGuide(hit) && !named.has(hit.id);
+  const weighed = (hit: MiniSearchResult): MiniSearchResult =>
+    demoted(hit) ? { ...hit, score: hit.score * docWeight(hit) } : hit;
+  const all = [
+    ...every.filter((hit) => named.has(hit.id)),
+    ...every.filter((hit) => !aboutGuide(hit)),
+  ];
+  const rest = [...every.filter(demoted), ...some].map(weighed);
+  const hits = [...all, ...rest.sort((a, b) => b.score - a.score)];
   // Two entries can open the same place (a term and the section that explains it): keep the
   // better one, so the list never offers the same destination twice.
   const limit = options.limit ?? DEFAULT_LIMIT;
   const seen = new Set<string>();
   const results: SearchResult[] = [];
   let matchedAll = 0;
-  hits.forEach((hit, rank) => {
-    const result = toResult(hit, locale, base);
-    if (seen.has(result.href)) return;
+  for (const hit of hits) {
+    const result = toResult(hit, locale, base, found.has(hit.id));
+    if (seen.has(result.href)) continue;
     seen.add(result.href);
-    if (rank < all.length) matchedAll++;
+    // Every result that matches every word counts, also a page about the guide ranked lower
+    // (review WP-33 pass 8, nit).
+    if (result.allWords) matchedAll++;
     if (results.length < limit) results.push(result);
-  });
+  }
   return { results, total: seen.size, matchedAll };
 }
 

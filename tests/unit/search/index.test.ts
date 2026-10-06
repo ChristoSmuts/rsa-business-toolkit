@@ -16,7 +16,7 @@ import {
   type LoadedIndex,
   type SearchResult,
 } from '../../../src/lib/search-client';
-import { processTerm, tokenize } from '../../../src/lib/search/options';
+import { DOC_WEIGHT, processTerm, tokenize } from '../../../src/lib/search/options';
 import { SEARCH_ENTRY_KINDS, type SearchEntry } from '../../../src/lib/search/types';
 
 const BASE = '/business-toolkit/';
@@ -47,10 +47,9 @@ function top(index: LoadedIndex, query: string, n = 3, locale: Locale = 'en'): s
   return runSearch(index, query, locale, { limit: n }, BASE).map((result) => result.href);
 }
 
-/** The results that match every word of the query: they come first (all words, then any word). */
+/** The results that match every word of the query (all words first, then any word). */
 function allWords(index: LoadedIndex, query: string, locale: Locale = 'en'): SearchResult[] {
-  const { results, matchedAll } = runSearchCounted(index, query, locale, { limit: 5000 }, BASE);
-  return results.slice(0, matchedAll);
+  return runSearch(index, query, locale, { limit: 5000 }, BASE).filter((r) => r.allWords);
 }
 
 describe('A7 ranking cases', () => {
@@ -430,6 +429,55 @@ describe('A7 ranking cases', () => {
     // Review WP-33 pass 6, major 2 and pass 7, minor 1: a topic and "deadline". The corrections
     // log names both in passing, but it is about the guide: the topic's own entry comes first.
     { kind: 'topic + deadline', lang: 'en', query: 'PAYE deadline', first: 'glossary/#paye' },
+    // Review WP-33 pass 8, major: the pages about the guide, asked for by name, come first.
+    {
+      kind: 'page about the guide, by name',
+      lang: 'en',
+      query: 'how this was made',
+      first: 'start/how-this-was-made/#how-it-was-made',
+    },
+    {
+      kind: 'page about the guide, by name',
+      lang: 'af',
+      query: 'hoe dit gemaak is',
+      first: 'start/how-this-was-made/#how-it-was-made',
+    },
+    {
+      kind: 'page about the guide, by name',
+      lang: 'en',
+      query: 'what has changed',
+      first: 'start/what-has-changed/',
+    },
+    {
+      kind: 'page about the guide, by name',
+      lang: 'af',
+      query: 'wat het verander',
+      first: 'start/what-has-changed/',
+    },
+    {
+      kind: 'page about the guide, by name',
+      lang: 'en',
+      query: 'AI generated',
+      first: 'start/how-this-was-made/#this-toolkit-was-generated-by-ai',
+    },
+    {
+      kind: 'page about the guide, by name',
+      lang: 'af',
+      query: 'KI gegenereer',
+      first: 'start/how-this-was-made/#this-toolkit-was-generated-by-ai',
+    },
+    {
+      kind: 'page about the guide, by name',
+      lang: 'af',
+      query: 'regstellings',
+      first: 'start/how-this-was-made/#corrections-log',
+    },
+    {
+      kind: 'page about the guide, by name',
+      lang: 'en',
+      query: 'corrections',
+      first: 'start/how-this-was-made/#corrections-log',
+    },
     { kind: 'topic + deadline', lang: 'en', query: 'EMP201 deadline', first: 'glossary/#emp201' },
     { kind: 'topic + deadline', lang: 'en', query: 'UIF deadline', first: 'glossary/#uif' },
     { kind: 'topic + deadline', lang: 'en', query: 'ITR14 deadline', first: 'glossary/#itr14' },
@@ -465,8 +513,7 @@ describe('A7 ranking cases', () => {
         runSearchCounted(built.index, q, lang, { limit: 5000, typing: row.typing }, BASE);
       const search = (q: string) => counted(q).results;
       const allWords = (q: string) => {
-        const { results: list, matchedAll } = counted(q);
-        return list.slice(0, matchedAll);
+        return counted(q).results.filter((r) => r.allWords);
       };
       const results = search(query);
       const matched = allWords(query);
@@ -493,7 +540,14 @@ describe('A7 ranking cases', () => {
       }
       if (row.sameAs !== undefined) expect(hrefs).toEqual(search(row.sameAs).map((r) => r.href));
       if (row.startsWith !== undefined) {
-        const joined = allWords(row.startsWith).map((r) => r.href);
+        // The leading run of all-words results (a page about the guide that names the code in
+        // passing ranks later).
+        const list = search(row.startsWith);
+        const lead = list.findIndex((r) => !r.allWords);
+        const joined = list
+          .slice(0, lead < 0 ? list.length : lead)
+          .filter((r) => DOC_WEIGHT[r.doc] === undefined)
+          .map((r) => r.href);
         expect(joined.length).toBeGreaterThan(0);
         expect(hrefs.slice(0, joined.length)).toEqual(joined);
       }
@@ -566,22 +620,40 @@ describe('A7 ranking cases', () => {
     expect(counted.total).toBeGreaterThan(counted.matchedAll);
     const holdsBoth = (r: SearchResult) =>
       r.terms.some((t) => t.startsWith('turnover')) && r.terms.some((t) => t.startsWith('tax'));
-    expect(counted.results.slice(0, counted.matchedAll).every(holdsBoth)).toBe(true);
-    // After them, only pages about the guide hold both words (see the next test).
-    const rest = counted.results.slice(counted.matchedAll).filter(holdsBoth);
-    expect(rest.every((r) => r.doc.startsWith('start/how-this-was-made'))).toBe(true);
+    const first = counted.results.slice(
+      0,
+      counted.results.findIndex((r) => !r.allWords),
+    );
+    expect(first.length).toBeGreaterThan(0);
+    expect(first.every(holdsBoth)).toBe(true);
+    // Every result that matches all words holds both, and the rest never do.
+    for (const result of counted.results)
+      expect(holdsBoth(result), result.href).toBe(result.allWords);
+    // After the first any-word result, only pages about the guide still match all words (they
+    // name the topic in passing: see the next test).
+    const later = counted.results.slice(first.length).filter((r) => r.allWords);
+    expect(later.every((r) => r.doc.startsWith('start/'))).toBe(true);
   });
 
-  // Review WP-33 pass 7, minor 1: a page about the guide holds both words, but it ranks with the
-  // any-word results, by its weighted score, and never counts as an all-words result.
-  it('ranks the corrections log with the any-word results', () => {
+  // Review WP-33 pass 7, minor 1: a page about the guide that names the topic in passing ranks
+  // with the any-word results, by a quarter of its score. Pass 8, nit: it still counts as a
+  // result that matches every word.
+  it('ranks the corrections log with the any-word results when the query is about a topic', () => {
     const counted = runSearchCounted(en.index, 'EMP201 deadline', 'en', { limit: 5000 }, BASE);
     const hrefs = counted.results.map((r) => r.href);
     const log = hrefs.indexOf(`${BASE}start/how-this-was-made/#corrections-log`);
     expect(log).toBeGreaterThan(hrefs.indexOf(`${BASE}glossary/#emp201`));
-    expect(log).toBeGreaterThanOrEqual(counted.matchedAll);
-    const entry = en.entries.find((e) => e.key.startsWith('start/how-this-was-made#'));
-    expect(entry?.weight).toBe(0.25);
+    expect(log).toBeGreaterThan(1);
+    expect(counted.results[log]?.allWords).toBe(true);
+    expect(counted.matchedAll).toBe(counted.results.filter((r) => r.allWords).length);
+    expect(counted.matchedAll).toBeGreaterThan(0);
+  });
+
+  // Review WP-33 pass 8, major: asked for by its heading, a page about the guide leads.
+  it('counts and leads with a page about the guide that is asked for by name', () => {
+    const counted = runSearchCounted(en.index, 'corrections', 'en', { limit: 5000 }, BASE);
+    expect(counted.results[0]?.href).toBe(`${BASE}start/how-this-was-made/#corrections-log`);
+    expect(counted.matchedAll).toBe(counted.total);
   });
 
   it('counts every result, however many the cap returns', () => {

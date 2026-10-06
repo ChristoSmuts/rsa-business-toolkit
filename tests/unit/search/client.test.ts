@@ -281,8 +281,9 @@ describe('options', () => {
     ]);
     // The results that match every word (the any-word results after them also hold `form`).
     const anchors = (q: string) => {
-      const { results, matchedAll } = runSearchCounted(idx, q, 'en');
-      return results.slice(0, matchedAll).map((r) => r.anchor);
+      return runSearchCounted(idx, q, 'en')
+        .results.filter((r) => r.allWords)
+        .map((r) => r.anchor);
     };
     // A finished code (followed by more text) matches itself only.
     expect(anchors('VAT 264 form')).toEqual(['code']);

@@ -48,20 +48,16 @@ export const KIND_WEIGHT: Readonly<Record<SearchEntryKind, number>> = {
 };
 
 /**
- * Ranking weight of a whole document, multiplied with the kind's weight (review WP-33 pass 7,
- * minor 1). "How this was made" (with its corrections log) and "What has changed" are about the
- * guide, not about running a business: they name many topics next to "deadline" in passing, and
- * must not rank above a topic's own entry. Every other document weighs 1.
+ * Pages about the guide, not about running a business, and their weight when a query is about
+ * something else (review WP-33 pass 7, minor 1, and pass 8). "How this was made" (with its
+ * corrections log) and "What has changed" name many topics next to "deadline" in passing. A result
+ * from them whose own heading or page title does not hold every word of the query weighs this
+ * much and never leads (`runSearchCounted`); one whose heading holds every word ranks normally.
  */
 export const DOC_WEIGHT: Readonly<Record<string, number>> = {
   'start/how-this-was-made': 0.25,
   'start/what-has-changed': 0.25,
 };
-
-/** The ranking weight of an entry: its kind's weight times its document's. */
-export function entryWeight(kind: SearchEntryKind, doc: string): number {
-  return KIND_WEIGHT[kind] * (DOC_WEIGHT[doc] ?? 1);
-}
 
 /** Fuzzy distance as a fraction of the term length, for terms longer than `FUZZY_MIN_LENGTH`. */
 export const FUZZY = 0.2;
