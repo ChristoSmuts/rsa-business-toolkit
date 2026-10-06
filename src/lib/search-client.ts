@@ -18,9 +18,11 @@ import {
   INDEX_VERSION,
   indexOptions,
   prefix,
+  processTerm,
   matchRule,
   queryParts,
   type QueryPart,
+  tokenize,
 } from './search/options';
 import type { SearchEntryKind, SerialisedIndex, StoredFields } from './search/types';
 
@@ -73,7 +75,10 @@ export interface SearchResult {
   readonly score: number;
   /** The index terms that matched, for highlighting. */
   readonly terms: readonly string[];
-  /** It matches every word of the query; otherwise only some (all words first, then any word). */
+  /**
+   * It is listed with the results that match every word, which come first; otherwise it matches
+   * only some words, or names them only in passing on a page about the guide.
+   */
   readonly allWords: boolean;
 }
 
@@ -208,6 +213,46 @@ export function anyTree(
   return { combineWith: 'OR', queries };
 }
 
+/**
+ * `true` when a query asks for a page by its title: the title holds every part of the query, each
+ * by its own rule, and the query covers more than half of the title's words. `how this was made`
+ * asks for "How this was made and how to check it"; `check` does not. Stop words do not count.
+ */
+export function titleHolds(title: string, parts: readonly QueryPart[], typing: boolean): boolean {
+  const page = title.split(' › ')[0] ?? '';
+  const terms = tokenize(page)
+    .map((token) => processTerm(token))
+    .filter((term): term is string => term !== null);
+  const holds = (word: string, last: boolean): boolean => {
+    const rule = matchRule(word, last);
+    return terms.some((term) => term === word || (rule.prefix && term.startsWith(word)));
+  };
+  // The query must also cover more than half of the title's words: `check` alone is a word in "How
+  // this was made and how to check it", not a request for that page (review WP-33 pass 9).
+  const covered = terms.filter((term) =>
+    parts.some((part, index) => {
+      const words =
+        typeof part === 'string'
+          ? [part]
+          : [part.joined, ...('code' in part ? part.code : part.hyphen)];
+      const last = typing && index === parts.length - 1;
+      return words.some(
+        (word) => term === word || (matchRule(word, last).prefix && term.startsWith(word)),
+      );
+    }),
+  );
+  return (
+    parts.length > 0 &&
+    covered.length * 2 > terms.length &&
+    parts.every((part, index) => {
+      const last = typing && index === parts.length - 1;
+      if (typeof part === 'string') return holds(part, last);
+      const words = 'code' in part ? part.code : part.hyphen;
+      return holds(part.joined, last) || (words.length > 0 && words.every((w) => holds(w, last)));
+    })
+  );
+}
+
 /** One term, with its matching rule (`matchRule`). */
 function leaf(term: string, last: boolean): Query {
   return { combineWith: 'OR', queries: [term], ...matchRule(term, last) };
@@ -308,8 +353,11 @@ export function runSearchCounted(
     prefix,
     fuzzy,
     boost: { ...FIELD_BOOST },
+    // The kind's weight (stored), times the document's: a page about the guide weighs a quarter
+    // (`DOC_WEIGHT`, review WP-33 pass 7 and 9).
     boostDocument: (_id: unknown, _term: string, stored?: Record<string, unknown>): number =>
-      typeof stored?.['w'] === 'number' ? stored['w'] : 1,
+      (typeof stored?.['w'] === 'number' ? stored['w'] : 1) *
+      (DOC_WEIGHT[String(stored?.['d'])] ?? 1),
     filter: (hit: MiniSearchResult): boolean =>
       matchesFilters(hit as unknown as StoredFields, options),
   };
@@ -364,31 +412,35 @@ export function runSearchCounted(
     any.queries.length > 0
       ? index.search.search(any, searchOptions).filter((hit) => !found.has(hit.id))
       : [];
-  // A page about the guide (`DOC_WEIGHT` below 1) is demoted when the query is about something
-  // else: the corrections log names "EMP201" next to "deadlines" in passing (review WP-33 pass 7,
-  // minor 1). It then weighs a quarter and ranks with the any-word results, so a topic's own entry
-  // comes first. When its own heading holds every word (`how this was made`, `wat het verander`,
-  // `AI generated`), the reader is asking for it by name, and it leads (pass 8, major): these are
-  // the pages a reader opens to judge how far to trust the guide.
-  const docWeight = (hit: MiniSearchResult): number => DOC_WEIGHT[String(hit['d'])] ?? 1;
-  const aboutGuide = (hit: MiniSearchResult): boolean => docWeight(hit) < 1;
+  // Pages about the guide ("How this was made", "What has changed"; `DOC_WEIGHT`) weigh a quarter
+  // in every search (`boostDocument`), and (review WP-33 pass 7 to 9):
+  // - asked for by the page's own title (every word of the query is in it: `how this was made`,
+  //   `wat het verander`), the page's first entry leads;
+  // - an entry whose own heading holds every word (`corrections`, `AI generated`) keeps its place
+  //   among the all-words results, by its weighted score, and is never forced to the front, so
+  //   `register` opens the Register page, not a changelog note that names it;
+  // - an entry that holds every word only in its text (the corrections log naming "EMP201" next to
+  //   "deadlines") ranks with the any-word results, so `PAYE deadline` opens the PAYE entry.
+  const aboutGuide = (hit: MiniSearchResult): boolean => DOC_WEIGHT[String(hit['d'])] !== undefined;
+  const guideHits = every.filter(aboutGuide);
   const named = new Set(
-    every.some(aboutGuide)
+    guideHits.length > 0
       ? allWords({
           fields: ['title'],
           filter: (hit: MiniSearchResult) => aboutGuide(hit) && searchOptions.filter(hit),
         }).map((hit) => hit.id)
       : [],
   );
+  // The first entry, in reading order, of an about-the-guide page whose title holds every word.
+  const titled = guideHits
+    .filter((hit) => titleHolds(String(hit['p']), parts, typing))
+    .sort((a, b) => Number(a.id) - Number(b.id))[0];
   const demoted = (hit: MiniSearchResult): boolean => aboutGuide(hit) && !named.has(hit.id);
-  const weighed = (hit: MiniSearchResult): MiniSearchResult =>
-    demoted(hit) ? { ...hit, score: hit.score * docWeight(hit) } : hit;
-  const all = [
-    ...every.filter((hit) => named.has(hit.id)),
-    ...every.filter((hit) => !aboutGuide(hit)),
-  ];
-  const rest = [...every.filter(demoted), ...some].map(weighed);
+  const listed = every.filter((hit) => !demoted(hit) && hit !== titled);
+  const all = titled === undefined ? listed : [titled, ...listed];
+  const rest = [...every.filter((hit) => demoted(hit) && hit !== titled), ...some];
   const hits = [...all, ...rest.sort((a, b) => b.score - a.score)];
+  const leading = new Set(all.map((hit) => hit.id));
   // Two entries can open the same place (a term and the section that explains it): keep the
   // better one, so the list never offers the same destination twice.
   const limit = options.limit ?? DEFAULT_LIMIT;
@@ -396,11 +448,12 @@ export function runSearchCounted(
   const results: SearchResult[] = [];
   let matchedAll = 0;
   for (const hit of hits) {
-    const result = toResult(hit, locale, base, found.has(hit.id));
+    // The count of results that match every word is the block listed first (review WP-33 pass 9,
+    // nit): a page about the guide that names the words only in passing is listed, and counted,
+    // with the rest.
+    const result = toResult(hit, locale, base, leading.has(hit.id));
     if (seen.has(result.href)) continue;
     seen.add(result.href);
-    // Every result that matches every word counts, also a page about the guide ranked lower
-    // (review WP-33 pass 8, nit).
     if (result.allWords) matchedAll++;
     if (results.length < limit) results.push(result);
   }

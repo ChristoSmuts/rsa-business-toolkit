@@ -143,8 +143,9 @@ test.describe('the search dialog', () => {
   for (const [typed, target] of [
     ['SAPS 60', /\/business-types\/vehicle-dealer\/#how-to-register$/],
     ['VAT26', /\/glossary\/#vat264$/],
-    // Review WP-33 pass 8, major: the page about how the guide was made, asked for by name.
-    ['how this was made', /\/start\/how-this-was-made\/#how-it-was-made$/],
+    // Review WP-33 pass 8, major, and pass 9: the page about how the guide was made, asked for
+    // by its title, leads with its first section.
+    ['how this was made', /\/start\/how-this-was-made\/#this-toolkit-was-generated-by-ai$/],
   ] as const) {
     test(`${typed} typed, then Enter, opens the first option on screen`, async ({ page }) => {
       await open(page, DOC);

@@ -195,6 +195,12 @@ describe('A7 ranking cases', () => {
     readonly atLeastAll?: string;
     /** A term the first result holds. */
     readonly firstTerm?: string;
+    /** The document the first result is on. */
+    readonly firstDoc?: string;
+    /** Hrefs found in the first ten results. */
+    readonly top10?: readonly string[];
+    /** None of this many first results is on a page about the guide (`DOC_WEIGHT`). */
+    readonly noGuideIn?: number;
   }
   const ROWS: readonly Row[] = [
     { kind: 'word', lang: 'en', query: 'PIS', first: 'glossary/#pis' },
@@ -434,13 +440,14 @@ describe('A7 ranking cases', () => {
       kind: 'page about the guide, by name',
       lang: 'en',
       query: 'how this was made',
-      first: 'start/how-this-was-made/#how-it-was-made',
+      // Pass 9: asked for by its title, the page leads with its first section.
+      firstDoc: 'start/how-this-was-made',
     },
     {
       kind: 'page about the guide, by name',
       lang: 'af',
       query: 'hoe dit gemaak is',
-      first: 'start/how-this-was-made/#how-it-was-made',
+      firstDoc: 'start/how-this-was-made',
     },
     {
       kind: 'page about the guide, by name',
@@ -458,13 +465,15 @@ describe('A7 ranking cases', () => {
       kind: 'page about the guide, by name',
       lang: 'en',
       query: 'AI generated',
-      first: 'start/how-this-was-made/#this-toolkit-was-generated-by-ai',
+      // Pass 9: not the page's title, and also a branding question ("Ownership of what the AI
+      // makes" leads): the disclosure keeps its weighted place, in the first ten.
+      top10: ['start/how-this-was-made/#this-toolkit-was-generated-by-ai'],
     },
     {
       kind: 'page about the guide, by name',
       lang: 'af',
       query: 'KI gegenereer',
-      first: 'start/how-this-was-made/#this-toolkit-was-generated-by-ai',
+      top10: ['start/how-this-was-made/#this-toolkit-was-generated-by-ai'],
     },
     {
       kind: 'page about the guide, by name',
@@ -478,6 +487,108 @@ describe('A7 ranking cases', () => {
       query: 'corrections',
       first: 'start/how-this-was-made/#corrections-log',
     },
+    // Review WP-33 pass 9, major: a common word that a heading on a page about the guide names
+    // (the changelog's notes name other pages) opens the topic, never that page.
+    { kind: 'common word', lang: 'en', query: 'register', first: 'core/register/', noGuideIn: 3 },
+    {
+      kind: 'common word',
+      lang: 'en',
+      query: 'name',
+      first: 'glossary/#trading-name',
+      noGuideIn: 3,
+    },
+    {
+      kind: 'common word',
+      lang: 'en',
+      query: 'branding',
+      first: 'branding/branding-prompts/',
+      noGuideIn: 3,
+    },
+    { kind: 'common word', lang: 'en', query: 'business', noGuideIn: 3 },
+    { kind: 'common word', lang: 'en', query: 'business', typing: true, noGuideIn: 3 },
+    // The quarter weight decides this one: "How to check anything in this toolkit" scores more
+    // than "Other things to check" before it is weighed.
+    {
+      kind: 'common word',
+      lang: 'en',
+      query: 'check',
+      first: 'core/vehicles/#other-things-to-check',
+      noGuideIn: 3,
+    },
+    { kind: 'common word', lang: 'en', query: 'change', noGuideIn: 3 },
+    {
+      kind: 'common word',
+      lang: 'en',
+      query: 'start here',
+      first: 'start/start-here/',
+      noGuideIn: 3,
+    },
+    // A changelog note is titled "… paste under the heading "Choosing the name"": it holds both
+    // words in its heading, so it keeps its weighted place (3rd), after the section itself.
+    {
+      kind: 'common word',
+      lang: 'en',
+      query: 'choosing the name',
+      first: 'core/register/#choosing-the-name',
+      noGuideIn: 2,
+    },
+    {
+      kind: 'common word',
+      lang: 'en',
+      query: 'materials',
+      first: 'branding/mood-and-materials/#prompt-b-materials-and-finishes',
+      noGuideIn: 3,
+    },
+    {
+      kind: 'common word, being typed',
+      lang: 'en',
+      query: 'regist',
+      typing: true,
+      first: 'glossary/#registered-name',
+      noGuideIn: 3,
+    },
+    {
+      kind: 'common word, being typed',
+      lang: 'en',
+      query: 'nam',
+      typing: true,
+      first: 'glossary/#trading-name',
+      noGuideIn: 3,
+    },
+    {
+      kind: 'common word, being typed',
+      lang: 'en',
+      query: 'brand',
+      typing: true,
+      first: 'branding/brand-applications-and-polish/',
+      noGuideIn: 3,
+    },
+    { kind: 'common word', lang: 'af', query: 'registreer', first: 'core/register/', noGuideIn: 3 },
+    {
+      kind: 'common word, being typed',
+      lang: 'af',
+      query: 'registreer',
+      typing: true,
+      first: 'core/register/',
+      noGuideIn: 3,
+    },
+    {
+      kind: 'common word',
+      lang: 'af',
+      query: 'naam',
+      first: 'glossary/#registered-name',
+      noGuideIn: 3,
+    },
+    { kind: 'common word', lang: 'af', query: 'besigheid', noGuideIn: 3 },
+    {
+      kind: 'common word',
+      lang: 'af',
+      query: 'materiale',
+      first: 'branding/mood-and-materials/#prompt-b-materials-and-finishes',
+      noGuideIn: 3,
+    },
+    { kind: 'common word', lang: 'af', query: 'register', noGuideIn: 3 },
+    { kind: 'common word', lang: 'af', query: 'branding', noGuideIn: 3 },
     { kind: 'topic + deadline', lang: 'en', query: 'EMP201 deadline', first: 'glossary/#emp201' },
     { kind: 'topic + deadline', lang: 'en', query: 'UIF deadline', first: 'glossary/#uif' },
     { kind: 'topic + deadline', lang: 'en', query: 'ITR14 deadline', first: 'glossary/#itr14' },
@@ -526,6 +637,11 @@ describe('A7 ranking cases', () => {
       if (row.first !== undefined) expect(hrefs[0]).toBe(`${prefix}${row.first}`);
       for (const href of row.top3 ?? []) expect(hrefs.slice(0, 3)).toContain(`${prefix}${href}`);
       if (row.firstTerm !== undefined) expect(results[0]?.terms).toContain(row.firstTerm);
+      if (row.firstDoc !== undefined) expect(results[0]?.doc).toBe(row.firstDoc);
+      for (const href of row.top10 ?? []) expect(hrefs.slice(0, 10)).toContain(`${prefix}${href}`);
+      for (const result of results.slice(0, row.noGuideIn ?? 0)) {
+        expect(DOC_WEIGHT[result.doc], result.href).toBeUndefined();
+      }
       if (row.atLeast !== undefined) {
         const found = new Set(hrefs);
         const other = search(row.atLeast);
@@ -626,9 +742,12 @@ describe('A7 ranking cases', () => {
     );
     expect(first.length).toBeGreaterThan(0);
     expect(first.every(holdsBoth)).toBe(true);
-    // Every result that matches all words holds both, and the rest never do.
-    for (const result of counted.results)
-      expect(holdsBoth(result), result.href).toBe(result.allWords);
+    // Every result listed as matching all words holds both, and only pages about the guide that
+    // name them in passing hold both but are listed with the rest.
+    for (const result of counted.results) {
+      if (result.allWords) expect(holdsBoth(result), result.href).toBe(true);
+      else if (holdsBoth(result)) expect(DOC_WEIGHT[result.doc], result.href).toBeDefined();
+    }
     // After the first any-word result, only pages about the guide still match all words (they
     // name the topic in passing: see the next test).
     const later = counted.results.slice(first.length).filter((r) => r.allWords);
@@ -636,24 +755,46 @@ describe('A7 ranking cases', () => {
   });
 
   // Review WP-33 pass 7, minor 1: a page about the guide that names the topic in passing ranks
-  // with the any-word results, by a quarter of its score. Pass 8, nit: it still counts as a
-  // result that matches every word.
+  // with the any-word results, by a quarter of its score. Pass 9, nit: the count of results that
+  // match every word is the block listed first, so it leaves the log out.
   it('ranks the corrections log with the any-word results when the query is about a topic', () => {
     const counted = runSearchCounted(en.index, 'EMP201 deadline', 'en', { limit: 5000 }, BASE);
     const hrefs = counted.results.map((r) => r.href);
     const log = hrefs.indexOf(`${BASE}start/how-this-was-made/#corrections-log`);
     expect(log).toBeGreaterThan(hrefs.indexOf(`${BASE}glossary/#emp201`));
     expect(log).toBeGreaterThan(1);
-    expect(counted.results[log]?.allWords).toBe(true);
-    expect(counted.matchedAll).toBe(counted.results.filter((r) => r.allWords).length);
-    expect(counted.matchedAll).toBeGreaterThan(0);
+    expect(counted.results[log]?.allWords).toBe(false);
+    expect(counted.matchedAll).toBe(0);
   });
 
-  // Review WP-33 pass 8, major: asked for by its heading, a page about the guide leads.
-  it('counts and leads with a page about the guide that is asked for by name', () => {
-    const counted = runSearchCounted(en.index, 'corrections', 'en', { limit: 5000 }, BASE);
-    expect(counted.results[0]?.href).toBe(`${BASE}start/how-this-was-made/#corrections-log`);
-    expect(counted.matchedAll).toBe(counted.total);
+  // Review WP-33 pass 9, nit: the count is the block listed first, whatever the pages.
+  it('counts exactly the results listed first as matching every word', () => {
+    for (const query of ['corrections', 'EMP201 deadline', 'how this was made', 'register']) {
+      const counted = runSearchCounted(en.index, query, 'en', { limit: 5000 }, BASE);
+      const lead = counted.results.findIndex((r) => !r.allWords);
+      expect(counted.matchedAll, query).toBe(lead < 0 ? counted.results.length : lead);
+      expect(
+        counted.results.filter((r) => r.allWords),
+        query,
+      ).toHaveLength(counted.matchedAll);
+    }
+  });
+
+  // Review WP-33 pass 9, minor: the quarter weight is applied to every result from a page about
+  // the guide, so it can never climb over a topic on its raw score.
+  it('weighs a result from a page about the guide a quarter', () => {
+    const scoreOf = (query: string, href: string) =>
+      runSearch(en.index, query, 'en', { limit: 5000, typing: false }, BASE).find(
+        (r) => r.href === `${BASE}${href}`,
+      )?.score;
+    const check = scoreOf(
+      'check',
+      'start/how-this-was-made/#how-to-check-anything-in-this-toolkit',
+    );
+    const vehicles = scoreOf('check', 'core/vehicles/#other-things-to-check');
+    expect(check).toBeDefined();
+    expect(vehicles).toBeDefined();
+    expect(check!).toBeLessThan(vehicles!);
   });
 
   it('counts every result, however many the cap returns', () => {
