@@ -375,6 +375,11 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
     gap: var(--st-space-1);
   }
 
+  /* The site's "Official" badge is not part of the template's text (review pass 2, minor 4). */
+  .st-tgroup__text .st-badge[data-variant] {
+    display: none;
+  }
+
   .st-tgroup__item:has([data-omit]:checked) .st-tgroup__text {
     color: var(--st-text-muted);
     text-decoration: line-through;
@@ -401,9 +406,11 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
       font-weight: var(--st-weight-bold);
     }
 
+    /* A part of the template prints on one page (review pass 2, minor 1). */
     .st-tgroup {
       padding: 0;
       border: 0;
+      break-inside: avoid;
     }
 
     .st-tform .st-hint,
@@ -434,6 +441,14 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
 
     .st-tgroup__omit,
     .st-tgroup__item:has([data-omit]:checked) {
+      display: none;
+    }
+
+    /* A part whose text is all left out does not print. `:has()` cannot nest, so: only legend and text items, and no box left unticked. */
+    .st-tgroup:has([data-omit]):not(
+        :has(> :not(legend, .st-tgroup__item)),
+        :has([data-omit]:not(:checked))
+      ) {
       display: none;
     }
 

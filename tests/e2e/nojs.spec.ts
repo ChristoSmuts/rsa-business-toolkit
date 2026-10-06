@@ -207,9 +207,22 @@ test.describe('a template without JavaScript', () => {
       await expect(page.locator(hidden).first(), hidden).toBeHidden();
     }
     await expect(page.locator('[data-print-sheet]')).toHaveCount(1);
+    // No site badge on the document (review pass 2, minor 4).
+    expect(await form.innerText()).not.toContain('Official');
     // The sheet uses the page width.
     const width = await form.evaluate((element) => element.getBoundingClientRect().width);
     expect(width).toBeGreaterThan((page.viewportSize()?.width ?? 0) * 0.8);
+  });
+
+  test('leaving out the only paragraph of a section leaves out its heading (review pass 2, minor 5)', async ({
+    page,
+  }) => {
+    await page.goto('templates/privacy-notice/');
+    await page.locator('#marketing').getByRole('checkbox').check();
+    await page.emulateMedia({ media: 'print' });
+    await expect(page.locator('#marketing')).toBeHidden();
+    await expect(page.locator('#your-rights')).toBeVisible();
+    await expect(page.locator('#how-long-we-keep-it')).toBeVisible();
   });
 
   test('prints an empty receipt slot blank: no sample, no date pattern, no focus ring', async ({

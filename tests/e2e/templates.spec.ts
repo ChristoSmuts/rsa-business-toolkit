@@ -45,6 +45,10 @@ async function showPreview(page: Page, label = en.templates.preview): Promise<vo
   const tab = page.getByRole('tab', { name: label });
   if (await tab.isVisible()) await tab.click();
 }
+/** Pages in a PDF Playwright rendered. */
+const pdfPages = (pdf: Buffer): number =>
+  (pdf.toString('latin1').match(/\/Type\s*\/Page[^s]/g) ?? []).length;
+
 /** The `content` of an element's `::before`, as the current media computes it. */
 const beforeContent = (locator: ReturnType<Page['locator']>): Promise<string> =>
   locator.evaluate((element) => getComputedStyle(element, '::before').content);
@@ -212,6 +216,8 @@ test.describe('the tax invoice', () => {
     await expect(price).toHaveAttribute('aria-invalid', 'true');
     await expect(page.locator('#st-tf-lines-0-unitPrice-error')).toContainText('The most is R');
     await expect(page.locator('[data-totals-blocked]')).toBeVisible();
+    // The reason is inside the live totals region, so it is heard (review pass 2, nit 5).
+    await expect(page.locator('[data-totals] [data-totals-blocked]')).toBeVisible();
     await page.reload();
     await showForm(page);
     await page.getByLabel('Customer name').fill('Still saved');
@@ -330,9 +336,7 @@ test.describe('the other templates', () => {
     );
   });
 
-  test('a quotation prints no stray space after a slot, and its tables keep together', async ({
-    page,
-  }) => {
+  test('a quotation prints no stray space after a slot', async ({ page }) => {
     await page.goto('templates/quotation/');
     await page.getByLabel('Deposit of …% before work starts.').fill('50');
     await page.getByLabel('This quote is valid for … days.').fill('30');
@@ -342,12 +346,7 @@ test.describe('the other templates', () => {
     expect(text).toContain('valid for 30 days.');
     // An empty slot is blank text (its sample is CSS only), so only filled slots are checked.
     expect(text).not.toMatch(/50 %|30 days ?\s+\./);
-    expect(
-      await sheet(page)
-        .locator('.st-tsheet__details')
-        .first()
-        .evaluate((table) => getComputedStyle(table).breakInside),
-    ).toBe('avoid');
+    // Keeping tables together is checked on the printed sections (review pass 2, minor 1).
     // Line amounts are not live regions of their own; the totals region speaks (nit 1).
     await expect(page.locator('.st-tline output, .st-ttotals output')).toHaveCount(0);
   });
@@ -362,7 +361,41 @@ test.describe('the other templates', () => {
     await showForm(page);
     await expect(page.locator('#marketing').getByRole('checkbox')).toBeChecked();
     await page.emulateMedia({ media: 'print' });
-    expect(await sheet(page).innerText()).not.toContain('marketing messages');
+    const printed = await sheet(page).innerText();
+    expect(printed).not.toContain('marketing messages');
+    // Its heading goes with it, and the next section follows (review pass 2, minor 5).
+    expect(printed).not.toMatch(/^Marketing$/m);
+    expect(printed).toContain('Your rights');
+  });
+
+  for (const [lang, word] of [
+    ['', 'Official'],
+    ['af/', 'Amptelik'],
+  ] as const) {
+    test(`a printed privacy notice carries no site badge (${word}) (review pass 2, minor 4)`, async ({
+      page,
+    }) => {
+      await page.goto(`${lang}templates/privacy-notice/`);
+      await page.emulateMedia({ media: 'print' });
+      const printed = await sheet(page).innerText();
+      expect(printed).toContain('inforegulator.org.za');
+      expect(printed).not.toContain(word);
+    });
+  }
+
+  test('a field keeps up to the draft limit and says so while typing (review pass 2, minor 2)', async ({
+    page,
+  }) => {
+    await page.goto('templates/quotation/');
+    const included = page.getByRole('textbox', { name: 'What is included' });
+    await expect(included).toHaveAttribute('maxlength', '5000');
+    await expect(page.getByLabel('Customer name')).toHaveAttribute('maxlength', '5000');
+    const long = 'Two coats of paint on every wall\n'.repeat(200);
+    await included.fill(long);
+    const kept = await included.inputValue();
+    expect(kept.length).toBeLessThanOrEqual(5000);
+    await page.reload();
+    await expect(page.getByRole('textbox', { name: 'What is included' })).toHaveValue(kept);
   });
 
   test('a receipt formats an amount and keeps its own number', async ({ page }) => {
@@ -406,6 +439,50 @@ test.describe('the other templates', () => {
       'data-sample',
       '[DD Maand JJJJ]',
     );
+  });
+});
+
+test.describe('what fits on a printed page (review pass 2, minor 1)', () => {
+  test('a quotation with three lines prints on one A4 sheet', async ({
+    page,
+    browserName,
+  }, testInfo) => {
+    test.skip(
+      browserName !== 'chromium' || testInfo.project.name !== 'chromium',
+      'page.pdf is Chromium desktop only',
+    );
+    await page.goto('templates/quotation/');
+    await expect(page.locator('[data-required-count]')).not.toBeEmpty();
+    await page.getByLabel('Business name').fill('Mokoena Repairs');
+    for (let index = 0; index < 3; index++) {
+      await page
+        .getByRole('textbox', { name: 'Description' })
+        .nth(index)
+        .fill(`Room ${index + 1}`);
+      await page.getByRole('textbox', { name: 'Unit price' }).nth(index).fill('1 200');
+    }
+    await page
+      .getByRole('textbox', { name: 'What is included' })
+      .fill('Two coats\nPrimer\nCleaning');
+    await page
+      .getByRole('textbox', { name: 'What is NOT included' })
+      .fill('Ceilings\nDoors\nMoving furniture');
+    await page.emulateMedia({ media: 'print' });
+    expect(pdfPages(await page.pdf({ format: 'A4' }))).toBe(1);
+  });
+
+  test('each section of the sheet keeps together when printed', async ({ page }) => {
+    await page.goto('templates/tax-invoice/');
+    await page.emulateMedia({ media: 'print' });
+    const sections = sheet(page).locator('.st-tsheet__section');
+    expect(await sections.count()).toBeGreaterThan(3);
+    const breaks = await sections.evaluateAll((all) =>
+      all.map((section) => [
+        getComputedStyle(section).display,
+        getComputedStyle(section).breakInside,
+      ]),
+    );
+    expect(new Set(breaks.map((pair) => pair.join(' ')))).toEqual(new Set(['block avoid']));
   });
 });
 

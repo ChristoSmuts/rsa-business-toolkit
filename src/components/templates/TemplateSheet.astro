@@ -38,126 +38,149 @@ const listDefault = (name: string): string[] => {
   return field && field.defaultValue !== '' ? field.defaultValue.split('\n') : [];
 };
 const listSample = (name: string): string => fields.get(name)?.sample ?? '';
+/**
+ * The sheet in sections: the blocks before the first heading, then each heading with the blocks
+ * under it. A section is kept on one page when printed (review WP-32 pass 2, minor 1: the
+ * signature block and the payment table split across two sheets), and a section whose text is all
+ * left out goes with its heading (pass 2, minor 5).
+ */
+const sections = model.sheet.reduce<(typeof model.sheet)[number][][]>((all, block) => {
+  if (block.kind === 'heading' || all.length === 0) all.push([]);
+  all.at(-1)?.push(block);
+  return all;
+}, []);
 ---
 
 <div class="st-tsheet" data-sheet lang={textLang}>
   <p class="st-tsheet__title">{model.title}</p>
-  {model.sheet.map((block) => {
-    switch (block.kind) {
-      case 'heading':
-        return (
-          <h3 class="st-tsheet__heading">
-            <Inline runs={block.c} context={context} />
-          </h3>
-        );
-      case 'paragraph':
-        return (
-          <p data-block={block.id}>
-            {block.lines.map((line, index) => (
-              <span
-                class="st-tsheet__line"
-                data-when={line.when?.join(' ')}
-                hidden={line.when ? true : undefined}
-              >
-                <SheetRuns runs={line.runs} context={context} fields={fields} />
-                {index < block.lines.length - 1 && <br />}
-              </span>
-            ))}
-          </p>
-        );
-      case 'details':
-        return (
-          <table class="st-tsheet__details">
-            <tbody>
-              {block.rows.map((row) => (
-                <tr>
-                  <th scope="row">
-                    <Inline runs={row.label} context={context} />
-                  </th>
-                  <td>
-                    <SheetRuns runs={row.value.runs} context={context} fields={fields} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        );
-      case 'list':
-        return block.ordered ? (
-          <ol data-list={block.name}>
-            {listDefault(block.name).map((item) => (
-              <li>{item}</li>
-            ))}
-            {listDefault(block.name).length === 0 && listSample(block.name) !== '' && (
-              <li>
-                <span class="st-tsheet__value" data-empty="" data-sample={listSample(block.name)} />
-              </li>
-            )}
-          </ol>
-        ) : (
-          <ul data-list={block.name}>
-            {listDefault(block.name).map((item) => (
-              <li>{item}</li>
-            ))}
-            {listDefault(block.name).length === 0 && listSample(block.name) !== '' && (
-              <li>
-                <span class="st-tsheet__value" data-empty="" data-sample={listSample(block.name)} />
-              </li>
-            )}
-          </ul>
-        );
-      case 'lines':
-        return lines ? (
-          <table class="st-tsheet__lines">
-            <thead>
-              <tr>
-                {lines.header.map((cell, index) => (
-                  <th scope="col" class:list={[{ 'st-num': index > 0 }]}>
-                    <Inline runs={cell} context={context} />
-                  </th>
+  {sections.map((section) => (
+    <div class="st-tsheet__section">
+      {section.map((block) => {
+        switch (block.kind) {
+          case 'heading':
+            return (
+              <h3 class="st-tsheet__heading">
+                <Inline runs={block.c} context={context} />
+              </h3>
+            );
+          case 'paragraph':
+            return (
+              <p data-block={block.id}>
+                {block.lines.map((line, index) => (
+                  <span
+                    class="st-tsheet__line"
+                    data-when={line.when?.join(' ')}
+                    hidden={line.when ? true : undefined}
+                  >
+                    <SheetRuns runs={line.runs} context={context} fields={fields} />
+                    {index < block.lines.length - 1 && <br />}
+                  </span>
                 ))}
-              </tr>
-            </thead>
-            <tbody>
-              {Array.from({ length: lines.rows }, () => (
-                <tr data-sample-line>
-                  <td>
+              </p>
+            );
+          case 'details':
+            return (
+              <table class="st-tsheet__details">
+                <tbody>
+                  {block.rows.map((row) => (
+                    <tr>
+                      <th scope="row">
+                        <Inline runs={row.label} context={context} />
+                      </th>
+                      <td>
+                        <SheetRuns runs={row.value.runs} context={context} fields={fields} />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            );
+          case 'list':
+            return block.ordered ? (
+              <ol data-list={block.name}>
+                {listDefault(block.name).map((item) => (
+                  <li>{item}</li>
+                ))}
+                {listDefault(block.name).length === 0 && listSample(block.name) !== '' && (
+                  <li>
                     <span
                       class="st-tsheet__value"
                       data-empty=""
-                      data-sample={`[${lines.sample}]`}
+                      data-sample={listSample(block.name)}
                     />
-                  </td>
-                  <td class="st-num">{lines.quantity}</td>
-                  <td class="st-num">{zero}</td>
-                  <td class="st-num">{zero}</td>
-                </tr>
-              ))}
-              {Array.from({ length: MAX_LINES }, (_, index) => (
-                <tr data-line={index} hidden>
-                  <td data-cell="description" />
-                  <td class="st-num" data-cell="quantity" />
-                  <td class="st-num" data-cell="unitPrice" />
-                  <td class="st-num" data-cell="amount" />
-                </tr>
-              ))}
-            </tbody>
-            <tfoot>
-              {lines.totals.map((row) => (
-                <tr data-total-row={row.kind}>
-                  <th scope="row" colspan="3">
-                    <Inline runs={row.label} context={context} />
-                  </th>
-                  <td class="st-num" data-total={row.kind}>
-                    {zero}
-                  </td>
-                </tr>
-              ))}
-            </tfoot>
-          </table>
-        ) : null;
-    }
-  })}
+                  </li>
+                )}
+              </ol>
+            ) : (
+              <ul data-list={block.name}>
+                {listDefault(block.name).map((item) => (
+                  <li>{item}</li>
+                ))}
+                {listDefault(block.name).length === 0 && listSample(block.name) !== '' && (
+                  <li>
+                    <span
+                      class="st-tsheet__value"
+                      data-empty=""
+                      data-sample={listSample(block.name)}
+                    />
+                  </li>
+                )}
+              </ul>
+            );
+          case 'lines':
+            return lines ? (
+              <table class="st-tsheet__lines">
+                <thead>
+                  <tr>
+                    {lines.header.map((cell, index) => (
+                      <th scope="col" class:list={[{ 'st-num': index > 0 }]}>
+                        <Inline runs={cell} context={context} />
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {Array.from({ length: lines.rows }, () => (
+                    <tr data-sample-line>
+                      <td>
+                        <span
+                          class="st-tsheet__value"
+                          data-empty=""
+                          data-sample={`[${lines.sample}]`}
+                        />
+                      </td>
+                      <td class="st-num">{lines.quantity}</td>
+                      <td class="st-num">{zero}</td>
+                      <td class="st-num">{zero}</td>
+                    </tr>
+                  ))}
+                  {Array.from({ length: MAX_LINES }, (_, index) => (
+                    <tr data-line={index} hidden>
+                      <td data-cell="description" />
+                      <td class="st-num" data-cell="quantity" />
+                      <td class="st-num" data-cell="unitPrice" />
+                      <td class="st-num" data-cell="amount" />
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  {lines.totals.map((row) => (
+                    <tr data-total-row={row.kind}>
+                      <th scope="row" colspan="3">
+                        <Inline runs={row.label} context={context} />
+                      </th>
+                      <td class="st-num" data-total={row.kind}>
+                        {zero}
+                      </td>
+                    </tr>
+                  ))}
+                </tfoot>
+              </table>
+            ) : null;
+        }
+      })}
+    </div>
+  ))}
 </div>
 
 <style is:global>
@@ -232,16 +255,67 @@ const listSample = (name: string): string => fields.get(name)?.sample ?? '';
     color: var(--st-text);
   }
 
-  /* Short tables never split across two pages (pass 1, nit 5). */
-  .st-tsheet__details,
-  .st-tsheet__lines tfoot {
-    break-inside: avoid;
+  .st-tsheet__section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-2);
+  }
+
+  /*
+   * A section of the template with nothing left in it (every paragraph left out) is not on the
+   * document, heading included (pass 2, minor 5).
+   */
+  .st-tsheet__section:has(> h3):not(:has(> :not(h3, [data-omitted]))) {
+    display: none;
+  }
+
+  /* The site's "Official" badge belongs to the guide, not to a document the reader hands out. */
+  .st-tsheet .st-badge[data-variant] {
+    display: none;
   }
 
   @media print {
-    .st-tsheet {
+    /*
+     * Plain blocks on paper: Chromium does not keep a grid item together, so the sheet and its
+     * sections are blocks, each section kept on one page, with tighter spacing so a quotation fits
+     * one A4 sheet (pass 2, minor 1).
+     */
+    .st-tsheet,
+    .st-tsheet__section {
+      display: block;
       padding: 0;
       font-size: inherit;
+    }
+
+    .st-tsheet__section {
+      margin-block-start: 0.6em;
+      break-inside: avoid;
+    }
+
+    .st-tsheet__section > * + * {
+      margin-block-start: 0.3em;
+    }
+
+    /* The body leading (1.6) suits reading on screen; a document on paper sets tighter. */
+    .st-tsheet {
+      line-height: var(--st-leading-snug);
+    }
+
+    .st-tsheet__title {
+      margin-block-end: 0.3em;
+    }
+
+    .st-tsheet__heading {
+      margin-block: 0 0.2em;
+      font-size: 1.05em;
+    }
+
+    .st-tsheet :is(th, td) {
+      padding-block: 0.15em;
+    }
+
+    .st-tsheet__section:has(> h3):not(:has(> :not(h3, [data-omitted]))) {
+      display: none;
     }
 
     .st-tsheet__value[data-empty]:not([data-sample=''])::before {
