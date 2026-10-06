@@ -192,6 +192,40 @@ describe('<st-applies-scope>', () => {
     expect(filtered('sole')).toBe(true);
   });
 
+  it('in checklist mode chooses “Everything” when the answers go (review WP-31 pass 1, minor 6)', () => {
+    profile.set(pty);
+    mount(`
+      <label data-needs-profile><input type="radio" name="st-checklist-filter" value="mine" checked /></label>
+      <label><input type="radio" name="st-checklist-filter" value="all" /></label>
+      <st-applies-scope data-mode="checklist">${BLOCKS}</st-applies-scope>`);
+    const all = document.querySelector<HTMLInputElement>('input[value="all"]')!;
+    const changed = vi.fn();
+    all.addEventListener('change', changed);
+    expect(filtered('sole')).toBe(true);
+    profile.reset();
+    expect(document.querySelector<HTMLElement>('[data-needs-profile]')!.hidden).toBe(true);
+    expect(all.checked).toBe(true);
+    expect(changed).toHaveBeenCalledTimes(1);
+    expect(filtered('sole')).toBe(false);
+  });
+
+  it('brings back a hidden section a link points to, on load and on hashchange (minor 1)', () => {
+    profile.set(pty);
+    onlyMine.set(true);
+    window.history.replaceState(null, '', '#sole-text');
+    mount(`<st-applies-scope data-mode="switch">${BLOCKS}</st-applies-scope>`);
+    expect(filtered('sole')).toBe(false);
+    expect(filtered('sole-text')).toBe(false);
+    expect(marker('sole').hidden).toBe(true);
+    expect(filtered('food')).toBe(true);
+    window.history.replaceState(null, '', '#food');
+    window.dispatchEvent(new HashChangeEvent('hashchange'));
+    expect(filtered('food')).toBe(false);
+    expect(filtered('food-text')).toBe(false);
+    expect(document.activeElement).toBe(el('food'));
+    window.history.replaceState(null, '', window.location.pathname);
+  });
+
   it('in always mode filters without markers, and stops after disconnecting', () => {
     profile.set(pty);
     mount(`<st-applies-scope data-mode="always">${BLOCKS}</st-applies-scope>`);

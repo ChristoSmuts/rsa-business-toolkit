@@ -1,4 +1,5 @@
 import { expect, test } from './fixtures';
+import { routeSameOrigin } from './helpers/network';
 import { enforceCheck, mainTextProblems } from './helpers/page-checks';
 import { discoverPageRoutes, routeLabel, routeUrl } from './helpers/routes';
 
@@ -182,6 +183,7 @@ test.describe('Find my path without JavaScript', () => {
     const submit = page.getByRole('button', { name: 'See my path' });
     await expect(submit).toHaveCount(0);
     await expect(page.locator('.st-wizard__incomplete')).toBeVisible();
+    await expect(page.locator('.st-wizard__fallback')).toBeHidden();
 
     await page.getByRole('radio', { name: /registered company/ }).check();
     await page.getByRole('radio', { name: /Vehicle dealer/ }).check();
@@ -198,6 +200,40 @@ test.describe('Find my path without JavaScript', () => {
       'href',
       /\/core\/start-here\/$/,
     );
+    await expect(page.getByText(/your answers are not saved/)).toBeVisible();
+  });
+
+  test('a browser without :has() gets a list of every result page instead', async ({
+    page,
+    baseURL,
+  }) => {
+    // Such a browser drops every rule of the no-JS wizard CSS, as if it were not there (review
+    // WP-31 pass 1, major 2).
+    await routeSameOrigin(
+      page,
+      baseURL,
+      (url) => url.pathname.endsWith('/find-my-path/'),
+      async (route) => {
+        const response = await route.fetch();
+        const html = (await response.text()).replace(
+          /<style>@supports selector\(:has[^<]*<\/style>/,
+          '',
+        );
+        await route.fulfill({ response, body: html });
+      },
+    );
+    await page.goto('find-my-path/');
+    await expect(page.locator('.st-wizard__result:visible')).toHaveCount(0);
+    await expect(page.locator('.st-wizard__incomplete')).toBeHidden();
+    const list = page.locator('.st-wizard__fallback');
+    await expect(list).toBeVisible();
+    await list.getByText('Or choose your answers from a list').click();
+    await list
+      .getByRole('region', { name: /registered company/ })
+      .getByRole('link', { name: 'Beauty and personal care: Already trading' })
+      .click();
+    await page.waitForURL(/\/find-my-path\/result\/pty\/beauty\/trading\/$/);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Your path');
     await expect(page.getByText(/your answers are not saved/)).toBeVisible();
   });
 

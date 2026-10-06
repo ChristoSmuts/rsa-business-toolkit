@@ -4,7 +4,8 @@ import type { Page } from '@playwright/test';
 import { PathsFileSchema } from '../../src/lib/content/schema';
 import { buildPath, pathDocs } from '../../src/lib/path-engine';
 import { profileOf, resultRoute, singleChoices } from '../../src/lib/profile';
-import { expect, test } from './fixtures';
+import { allowConsoleError, expect, test } from './fixtures';
+import { routeSameOrigin } from './helpers/network';
 import { DEFAULT_DIST_DIR, REPO_ROOT } from './helpers/routes';
 
 /**
@@ -82,19 +83,28 @@ test.describe('Find my path', () => {
   test('“Pty Ltd, growing” is disabled, with its reason, unless the answer is Pty Ltd', async ({
     page,
   }) => {
+    // Each click waits until the step it leads to has focus, so no click lands on a step that is
+    // on its way out (review WP-31 pass 1, minor 7).
+    const question = (n: number) =>
+      page.getByRole('heading', { name: `Question ${n} of 3`, exact: false });
+    const go = async (button: 'Next' | 'Back', to: number): Promise<void> => {
+      await page.locator('[data-step]:not([hidden])').getByRole('button', { name: button }).click();
+      await expect(question(to)).toBeFocused();
+    };
     await page.goto('find-my-path/');
     await page.getByRole('radio', { name: /own name/ }).check();
-    await page.getByRole('button', { name: 'Next' }).click();
+    await go('Next', 2);
     await page.getByRole('checkbox', { name: /Beauty/ }).check();
-    await page.getByRole('button', { name: 'Next' }).click();
+    await go('Next', 3);
     const growing = page.getByRole('radio', { name: /want to grow/ });
     await expect(growing).toBeDisabled();
     await expect(page.locator('[data-pty-reason]')).toBeVisible();
-    await page.getByRole('button', { name: 'Back' }).click();
-    await page.getByRole('button', { name: 'Back' }).click();
+    await go('Back', 2);
+    await go('Back', 1);
     await page.getByRole('radio', { name: /registered company/ }).check();
-    await page.getByRole('button', { name: 'Next' }).click();
-    await page.getByRole('button', { name: 'Next' }).click();
+    await go('Next', 2);
+    await expect(page.getByRole('checkbox', { name: /Beauty/ })).toBeChecked();
+    await go('Next', 3);
     await expect(growing).toBeEnabled();
     await expect(page.locator('[data-pty-reason]')).toBeHidden();
   });
@@ -182,13 +192,24 @@ test.describe('My path', () => {
     await page.goto('my-path/');
     const first = visibleSteps(page).first();
     await expect(first.getByRole('link', { name: 'Master checklist' })).toBeVisible();
-    await first.getByRole('button', { name: /Mark .* as done/ }).click();
+    await first
+      .getByRole('button', { name: 'Mark as done: Master checklist', exact: true })
+      .click();
     await expect(first.locator('[data-done-badge]')).toBeVisible();
     await expect(page.locator('[data-progress] [data-progress-text]')).toHaveText('1 of 4 done');
     expect(Object.keys((await stored(page, 'st.path.v1')) as object)).toEqual(['lookup/checklist']);
-    await first.getByRole('button', { name: /Remove the tick/ }).click();
+    await first
+      .getByRole('button', { name: 'Remove the tick: Master checklist', exact: true })
+      .click();
     await expect(page.locator('[data-progress] [data-progress-text]')).toHaveText('0 of 4 done');
-    await first.getByRole('button', { name: /Mark .* as done/ }).click();
+    await first.getByRole('button', { name: /^Mark as done: / }).click();
+    // The kind-of-business step names only the reader's own kind (review WP-31 pass 1, major 4).
+    await expect(visibleSteps(page).nth(2).locator('[data-mark]')).toHaveAccessibleName(
+      /^Mark as done: Food business/,
+    );
+    await expect(visibleSteps(page).nth(2).locator('[data-mark]')).not.toHaveAccessibleName(
+      /Beauty/,
+    );
 
     const topBar = page.locator('st-path-progress');
     if (await page.locator('.st-topbar__menu-button').isHidden()) {
@@ -201,6 +222,46 @@ test.describe('My path', () => {
       'href',
       /\/core\/tax-and-sars\/$/,
     );
+  });
+
+  test(
+    'if its module does not run, saved answers still leave a way on',
+    {
+      annotation: allowConsoleError(
+        '/net::ERR_FAILED/',
+        "The test blocks My path's module on purpose, and the browser logs the failed request.",
+      ),
+    },
+    async ({ page, seedStorage, baseURL }) => {
+      // The empty state is hidden for saved answers only until the module draws, and at most a
+      // second (review WP-31 pass 1, minor 5).
+      await seedStorage({ 'st.profile.v1': PROFILE });
+      await routeSameOrigin(
+        page,
+        baseURL,
+        (url) => url.pathname.endsWith('.js'),
+        async (route) => {
+          const response = await route.fetch();
+          if ((await response.text()).includes('st-my-path')) await route.abort();
+          else await route.fulfill({ response });
+        },
+      );
+      await page.goto('my-path/');
+      await expect(page.locator('html')).toHaveAttribute('data-st-profile', '');
+      await expect(page.locator('[data-empty]')).toBeVisible({ timeout: 5000 });
+      await expect(page.getByRole('link', { name: 'Find my path' }).last()).toBeVisible();
+    },
+  );
+
+  test('a shared address with answers never replaces saved answers', async ({
+    page,
+    seedStorage,
+  }) => {
+    const saved = { entity: 'pty', businessTypes: ['beauty'], stage: 'trading' };
+    await seedStorage({ 'st.profile.v1': saved });
+    await page.goto('my-path/?entity=sole-prop&type=food&stage=not-started');
+    await expect(page.locator('[data-chip="entity:pty"]')).toBeVisible();
+    expect(await stored(page, 'st.profile.v1')).toEqual(saved);
   });
 
   test('the checklist shows only what applies, with ticks shared with /checklist/', async ({
@@ -260,6 +321,13 @@ test.describe('personalisation elsewhere', () => {
     await seedStorage({
       'st.profile.v1': { entity: 'pty', businessTypes: ['vehicle-dealer'], stage: 'pty-growing' },
     });
+    // A document page reads the path stored on the device and never loads the rules (review
+    // WP-31 pass 1, major 1): until a page that can store it has, it keeps the section order.
+    await page.goto('core/start-here/');
+    await expect(page.locator('a[rel="next"]')).toHaveAttribute('href', /\/core\/register\/$/);
+    await page.goto('./');
+    await expect(page.locator('st-your-path')).toBeVisible();
+    expect(await stored(page, 'st.pathView.v1')).not.toBeNull();
     await page.goto('core/start-here/');
     await expect(page.locator('a[rel="next"]')).toHaveAttribute(
       'href',
@@ -293,7 +361,10 @@ test.describe('personalisation elsewhere', () => {
     const heading = page.locator('#what-sars-wants-from-a-company');
     await expect(heading).toBeHidden();
     const marker = page.locator('[data-marker-for="what-sars-wants-from-a-company"]');
-    await expect(marker).toContainText('Hidden: this part is only for a Pty Ltd.');
+    await expect(marker).toContainText(
+      'Hidden by “Only what applies to me”: What SARS wants from a company',
+    );
+    await expect(marker).not.toContainText('only for');
     await marker.getByRole('button', { name: /Show hidden part/ }).click();
     await expect(heading).toBeVisible();
     await expect(heading).toBeFocused();
@@ -302,6 +373,29 @@ test.describe('personalisation elsewhere', () => {
     // The choice is remembered on the next page with parts to hide.
     await page.goto('core/vehicles/');
     await expect(page.locator('#if-you-have-a-registered-company')).toBeHidden();
+
+    // Selling online and importing are things any kind of business may do: never hidden
+    // (review WP-31 pass 1, major 3).
+    await page.goto('core/what-you-need-to-sell-things/');
+    for (const id of [
+      'if-you-sell-online',
+      'if-you-import-anything',
+      'if-you-sell-beauty-or-body-treatments',
+      'if-you-sell-second-hand-goods',
+    ]) {
+      await expect(page.locator(`#${id}`)).toBeVisible();
+    }
+    await expect(page.locator('.st-hidden-marker:visible')).toHaveCount(0);
+  });
+
+  test('a link to a hidden section shows it', async ({ page, seedStorage }) => {
+    await seedStorage({
+      'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+      'st.onlyMine': true,
+    });
+    await page.goto('core/tax-and-sars/#what-sars-wants-from-a-company');
+    await expect(page.locator('#what-sars-wants-from-a-company')).toBeVisible();
+    await expect(page.locator('#what-sars-wants-from-a-company')).toBeInViewport();
   });
 
   test('without answers the switch points at Find my path', async ({ page }) => {
@@ -345,7 +439,7 @@ test.describe('personalisation elsewhere', () => {
     const figure = page.locator('figure:has(st-prompt-fill)').first();
     const mark = figure.locator('mark[data-key="businessType"]').first();
     await expect(mark).toHaveText('[BUSINESS TYPE]');
-    await figure.getByRole('button', { name: /Fill prompt \d+ from my profile/ }).click();
+    await figure.getByRole('button', { name: /^Fill from my profile: prompt \d+, / }).click();
     await expect(mark).toHaveText(en.prompts.profileValues['food'] ?? '');
     await expect(figure.locator('st-prompt-fill [role="status"]')).toHaveText(
       /blanks? left to fill in|All blanks are filled in/,
@@ -359,6 +453,19 @@ test.describe('personalisation elsewhere', () => {
 
 test.describe('the pre-rendered result pages', () => {
   const choices = singleChoices();
+
+  test('with JavaScript, one saves its answers and opens My path', async ({ page }) => {
+    await page.goto('find-my-path/result/pty/beauty/trading/');
+    await expect(page.getByText(/your answers are not saved/)).toBeHidden();
+    await page.getByRole('button', { name: 'Save these answers' }).click();
+    await page.waitForURL(/\/my-path\/$/);
+    expect(await stored(page, 'st.profile.v1')).toEqual({
+      entity: 'pty',
+      businessTypes: ['beauty'],
+      stage: 'trading',
+    });
+    await expect(page.locator('[data-status]')).toHaveText(en.wizard.savedTip);
+  });
 
   test('every one lists exactly the steps buildPath gives, in both languages', ({
     basePath,

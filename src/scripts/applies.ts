@@ -17,7 +17,7 @@
  * <st-applies-switch>  the switch (a native checkbox with `role="switch"`) bound to `onlyMine`.
  *   Shown only when there is a profile; otherwise one line points at "Find my path".
  */
-import { applies, appliesFromAttributes } from '../lib/path-engine';
+import { applies, appliesFromAttributes } from '../lib/applicability';
 import type { Profile } from '../lib/profile';
 import { onlyMine, profile } from '../lib/profile-store';
 import { FILTER_EVENT } from './checklist-filter';
@@ -47,6 +47,23 @@ export function sectionOf(heading: HTMLElement): HTMLElement[] {
     if (next instanceof HTMLElement) out.push(next);
   }
   return out;
+}
+
+/** The collapsed heading whose section holds `element` (a sibling after it), if any. */
+function sectionHeading(element: HTMLElement): HTMLElement | undefined {
+  for (
+    let before = element.previousElementSibling;
+    before;
+    before = before.previousElementSibling
+  ) {
+    if (
+      before instanceof HTMLElement &&
+      before.matches(`[data-applies][data-depth].${FILTERED}`) &&
+      sectionOf(before).includes(element)
+    )
+      return before;
+  }
+  return undefined;
 }
 
 function markerFor(heading: HTMLElement): HTMLElement | undefined {
@@ -146,6 +163,10 @@ export class StAppliesScope extends HTMLElement {
     this.apply();
   };
 
+  readonly #onHash = (): void => {
+    this.revealHash();
+  };
+
   readonly #onClick = (event: Event): void => {
     const target =
       event.target instanceof Element ? event.target.closest('[data-show-hidden]') : null;
@@ -170,13 +191,37 @@ export class StAppliesScope extends HTMLElement {
     }
     this.#unsubscribe = [profile.subscribe(() => this.apply())];
     if (this.mode === 'switch') this.#unsubscribe.push(onlyMine.subscribe(() => this.apply()));
+    window.addEventListener('hashchange', this.#onHash);
+    this.revealHash();
   }
 
   disconnectedCallback(): void {
     this.removeEventListener('click', this.#onClick);
     this.ownerDocument.removeEventListener(FILTER_EVENT, this.#onFilter);
+    window.removeEventListener('hashchange', this.#onHash);
     for (const stop of this.#unsubscribe) stop();
     this.#unsubscribe = [];
+  }
+
+  /**
+   * A link to something the filter hid (the table of contents, a search result, a shared address
+   * with a `#hash`) brings it back, with its section, and goes to it, rather than scrolling to an
+   * element that is not displayed (review WP-31 pass 1, minor 1).
+   */
+  revealHash(): void {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    const target = id ? this.querySelector<HTMLElement>(`#${CSS.escape(id)}`) : null;
+    if (!target?.closest(`.${FILTERED}`)) return;
+    for (let hidden = target.closest<HTMLElement>(`.${FILTERED}`); hidden;) {
+      const heading = hidden.matches('[data-applies][data-depth]')
+        ? hidden
+        : sectionHeading(hidden);
+      if (heading) showSection(this, heading.id);
+      hidden.classList.remove(FILTERED);
+      hidden = target.closest<HTMLElement>(`.${FILTERED}`);
+    }
+    target.scrollIntoView();
+    if (target.hasAttribute('tabindex')) target.focus();
   }
 
   /** Filters, or shows everything, for the current profile and choice. */
@@ -184,6 +229,18 @@ export class StAppliesScope extends HTMLElement {
     const who = profile.get();
     for (const element of this.ownerDocument.querySelectorAll<HTMLElement>('[data-needs-profile]'))
       element.hidden = who === null;
+    // The answers went (another tab, "Remove my answers") while "Only what applies to me" was the
+    // chosen Show: choose "Everything", so the group never has a hidden choice checked (minor 6).
+    if (!who && this.mode === 'checklist' && this.#mine) {
+      const all = this.ownerDocument.querySelector<HTMLInputElement>(
+        'input[name="st-checklist-filter"][value="all"]',
+      );
+      if (all) {
+        all.checked = true;
+        all.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      this.#mine = false;
+    }
     const on =
       this.mode === 'always' ||
       (this.mode === 'switch' && onlyMine.get()) ||

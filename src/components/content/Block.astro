@@ -23,7 +23,7 @@ import HiddenMarker from './HiddenMarker.astro';
 import { useTranslations } from '../../i18n';
 import type { ContentContext } from '../../lib/content/context';
 import { headingTag, plainText } from '../../lib/content/render';
-import { appliesAttributes } from '../../lib/path-engine';
+import { appliesAttributes } from '../../lib/applicability';
 import type { Block } from '../../lib/content/schema';
 
 interface Props {
@@ -62,12 +62,7 @@ const filterable = block.kind === 'heading' && block.appliesTo && Object.keys(ap
 ) : block.kind === 'heading' ? (
   <Fragment>
     {filterable && block.appliesTo && (
-      <HiddenMarker
-        appliesTo={block.appliesTo}
-        forId={block.id}
-        title={plainText(block.c)}
-        context={context}
-      />
+      <HiddenMarker forId={block.id} title={plainText(block.c)} context={context} />
     )}
     <Heading
       id={block.id}

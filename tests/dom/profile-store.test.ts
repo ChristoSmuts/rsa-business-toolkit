@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import {
   onlyMine,
   pathDone,
+  pathView,
   profile,
   profileBusinessTypes,
   profileEntity,
@@ -55,8 +56,15 @@ describe('the profile store (st.profile.v1)', () => {
     profile.set({ entity: 'pty', businessTypes: ['food'], stage: 'trading' });
     pathDone.set({ 'core/register': '2026-10-01T10:00:00.000Z' });
     onlyMine.set(true);
+    pathView.set({
+      version: 'v',
+      profile: 'entity=pty',
+      steps: [['core/register']],
+      docs: { 'core/register': { route: 'core/register/', titles: { en: 'Register' } } },
+    });
     setChecked('core/register:1a2b3c4d', true);
     resetProfile();
+    expect(pathView.get()).toBeNull();
     expect(readProfile()).toBeNull();
     expect(pathDone.get()).toEqual({});
     expect(onlyMine.get()).toBe(false);

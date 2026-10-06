@@ -6,6 +6,7 @@
  * | `profile`  | `st.profile.v1` | `{ entity, businessTypes[], stage }` (`src/lib/profile.ts`) |
  * | `pathDone` | `st.path.v1`    | `{ [docId]: ISO date-time it was marked as read }`          |
  * | `onlyMine` | `st.onlyMine`   | `true` / `false`: "Only what applies to me", default off    |
+ * | `pathView` | `st.pathView.v1`| the path built for these answers (`src/lib/path-view.ts`)   |
  *
  * A stored profile that fails the schema (another shape, "Pty Ltd, growing" without a Pty Ltd) is
  * removed and reads as `null`; the store does that (`storage/migrate.ts`, per-key reset).
@@ -20,6 +21,7 @@
  */
 import { checks, entriesOf, persistentValue, type PersistentStore } from './store';
 import type { PathDone } from './path-engine';
+import { pathViewSchema, type PathView } from './path-view';
 import * as z from 'zod/mini';
 import {
   expandTypes,
@@ -50,6 +52,13 @@ export const onlyMine: PersistentStore<boolean> = persistentValue<boolean>(
   false,
 );
 
+/** The path built for the saved answers and content version, so most pages need no rules. */
+export const pathView: PersistentStore<PathView | null> = persistentValue<PathView | null>(
+  'st.pathView.v1',
+  pathViewSchema,
+  null,
+);
+
 /** The saved profile, or `null` when there is none. */
 export function readProfile(): Profile | null {
   return profile.get();
@@ -69,7 +78,7 @@ export function profileEntity(): EntityChoice | null {
 }
 
 /**
- * Removes the answers and the "read" marks, and turns "Only what applies to me" off. Checklist
+ * Removes the answers, the "read" marks and the stored path, and turns "Only what applies to me" off. Checklist
  * ticks stay (`myPath.resetConfirm.body` says so): they record what the reader did, not who they
  * said they were.
  */
@@ -77,6 +86,7 @@ export function resetProfile(): void {
   profile.reset();
   pathDone.reset();
   onlyMine.reset();
+  pathView.reset();
 }
 
 /** Re-exported so a page script needs one import for the ticks and the profile. */

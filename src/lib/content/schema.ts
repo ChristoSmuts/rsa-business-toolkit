@@ -791,6 +791,11 @@ export type PathDoc = z.infer<typeof PathDocSchema>;
 export const PathsFileSchema = z
   .strictObject({
     version: z.literal(1),
+    /**
+     * A hash of everything else in the file. A path stored on a reader's device
+     * (`st.pathView.v1`) is rebuilt only when this changes, not on every content change.
+     */
+    hash: HashSchema,
     source: DocIdSchema,
     rules: z.array(PathRuleSchema).length(STAGES.length),
     checklist: PathChecklistSchema,

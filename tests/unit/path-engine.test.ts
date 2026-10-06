@@ -8,7 +8,6 @@ import {
   appliesFromAttributes,
   buildPath,
   conditionMatches,
-  hiddenReason,
   markStep,
   pathDocs,
   pathNeighbours,
@@ -234,23 +233,6 @@ describe('applies (the A5 matching rule)', () => {
       'services-trades',
       'professional-creative',
     ]);
-  });
-});
-
-describe('hiddenReason', () => {
-  const sole: Profile = { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' };
-
-  it('names the entity when that is why, otherwise the business types', () => {
-    expect(hiddenReason({ entity: 'pty' }, sole)).toBe('pty');
-    expect(hiddenReason({ entity: 'sole-prop' }, { ...sole, entity: 'pty' })).toBe('sole-prop');
-    expect(hiddenReason({ businessTypes: ['beauty'] }, sole)).toBe('businessTypes');
-    expect(hiddenReason({ entity: 'sole-prop', businessTypes: ['beauty'] }, sole)).toBe(
-      'businessTypes',
-    );
-    expect(
-      hiddenReason({ entity: 'pty', businessTypes: ['beauty'] }, { ...sole, entity: 'undecided' }),
-    ).toBe('businessTypes');
-    expect(hiddenReason({ businessTypes: ['food'] }, sole)).toBeUndefined();
   });
 });
 

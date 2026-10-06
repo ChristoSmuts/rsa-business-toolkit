@@ -25,7 +25,8 @@ import {
   type StageChoice,
   type TypeChoice,
 } from '../lib/profile';
-import { profile, storageAvailable } from '../lib/profile-store';
+import { pathView, profile, storageAvailable } from '../lib/profile-store';
+import { viewOf } from './path-data';
 import './storage-notice';
 
 export class StWizard extends HTMLElement {
@@ -85,6 +86,9 @@ export class StWizard extends HTMLElement {
     this.#steps = [...this.querySelectorAll<HTMLElement>('[data-step]')];
     if (!this.#form || this.#steps.length === 0) return;
     for (const input of this.#inputs(QUERY.type)) input.type = 'checkbox';
+    // With checkboxes the question is "choose all that fit", not the no-JavaScript "choose one".
+    for (const group of this.querySelectorAll<HTMLElement>('[data-describedby-js]'))
+      group.setAttribute('aria-describedby', group.dataset['describedbyJs'] ?? '');
     this.#restore(profile.get());
     this.#form.addEventListener('change', this.#onChange);
     this.#form.addEventListener('click', this.#onClick);
@@ -128,6 +132,8 @@ export class StWizard extends HTMLElement {
     const answers = this.answers();
     if (!answers) return;
     profile.set(answers);
+    // Store the path too, so the next page's top bar and pager need no rules of their own.
+    pathView.set(viewOf(answers, this.dataset['version'] ?? ''));
     const target = new URL(this.dataset['myPath'] ?? '', window.location.href);
     if (storageAvailable.get()) target.search = 'saved=1';
     else target.search = profileQuery(answers);

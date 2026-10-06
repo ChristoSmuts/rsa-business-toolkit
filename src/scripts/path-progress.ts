@@ -4,42 +4,46 @@
  * so a change in another tab or on My path shows at once.
  *
  * <st-path-progress>  the top bar's "My path" link with its ring: "My path: 3 of 10 steps done".
- * <st-your-path>      the home page's "Your path" card: "Continue: step 4 of 10" (a link to that
- *                     step's first page), "Open my path" and "Edit answers".
+ * <st-your-path>      the home page's card, in `your-path.ts` on the same base class.
  * <st-path-pager>     wraps a document's Previous / Next: when the document is on the reader's
- *                     path, the links follow the path instead of the section order. A side with
- *                     no path neighbour keeps the section-order link.
+ *                     path, the links follow the path instead of the section order; a side with no
+ *                     path neighbour keeps the section order, and the path's last page leads to My
+ *                     path.
  *
- * This module is on every page (the top bar), so it stays small: the path data and the engine
- * (`path-data.ts`, about 3 KB gzipped) load only once there is a profile, the way search loads its
- * index only when it is opened. A reader who never answered the questions never downloads them.
+ * This module is on every page, so it carries no rules and no engine (review WP-31 pass 1, major 1).
+ * It reads the path stored on the device (`st.pathView.v1`, `src/lib/path-view.ts`), which the
+ * wizard and My path write, and the home page rebuilds lazily (`your-path.ts`) when it was built
+ * for other answers or other rules (`data-version`, the hash of `paths.json`). Until then a
+ * document page shows no ring and keeps its pager in section order; it never loads the rules.
  */
-import { interpolate } from '../i18n';
-import type { PathItem } from '../lib/path-engine';
-import type { Profile } from '../lib/profile';
-import { pathDone, profile } from '../lib/profile-store';
+import {
+  viewFor,
+  viewNeighbours,
+  viewProgress,
+  viewRoute,
+  viewTitle,
+  type PathView,
+  type ViewItem,
+} from '../lib/path-view';
+import { href } from '../lib/paths';
+import { profileQuery } from '../lib/profile';
+import { pathDone, pathView, profile } from '../lib/profile-store';
+import { drawRing, pageLocale } from './ring';
 
 type Stop = () => void;
-type PathData = typeof import('./path-data');
 
-let pending: Promise<PathData> | undefined;
-/** The path data and engine, loaded once, on first need. */
-export function loadPathData(): Promise<PathData> {
-  pending ??= import('./path-data');
-  return pending;
+/** The stored path when it fits the saved answers and this build's rules, else `undefined`. */
+export function currentView(version: string): PathView | undefined {
+  const who = profile.get();
+  return who ? viewFor(pathView.get(), version, profileQuery(who)) : undefined;
 }
 
-/**
- * Draws after the data has loaded, for the profile current then; a draw that a newer change
- * overtook does nothing. `rendered` is the last one, so tests can wait for it.
- */
-abstract class PathElement extends HTMLElement {
+export abstract class PathElement extends HTMLElement {
   #stops: Stop[] = [];
-  #ticket = 0;
-  rendered: Promise<void> = Promise.resolve();
 
   protected watch(): Stop[] {
-    return [profile.subscribe(() => this.update()), pathDone.subscribe(() => this.update())];
+    const update = (): void => this.update();
+    return [profile.subscribe(update), pathDone.subscribe(update), pathView.subscribe(update)];
   }
 
   connectedCallback(): void {
@@ -49,26 +53,35 @@ abstract class PathElement extends HTMLElement {
   disconnectedCallback(): void {
     for (const stop of this.#stops) stop();
     this.#stops = [];
-    this.#ticket++;
   }
 
-  update(): Promise<void> {
-    const ticket = ++this.#ticket;
-    const who = profile.get();
-    if (!who) {
-      this.empty();
-      this.rendered = Promise.resolve();
-      return this.rendered;
+  update(): void {
+    const version = this.dataset['version'] ?? '';
+    const view = currentView(version);
+    if (view) {
+      this.draw(view);
+      return;
     }
-    this.rendered = loadPathData().then((data) => {
-      if (ticket === this.#ticket) this.draw(data, who);
-    });
-    return this.rendered;
+    this.empty();
+    if (profile.get()) this.rebuild(version);
   }
 
-  /** No profile. */
+  /**
+   * The stored path is missing or out of date. Document pages leave it at that (no ring, the
+   * pager in section order); the home page, My path and the wizard rebuild it.
+   */
+  protected rebuild(_version: string): void {}
+
+  /** No profile, or the path is being rebuilt. */
   protected abstract empty(): void;
-  protected abstract draw(data: PathData, who: Profile): void;
+  protected abstract draw(view: PathView): void;
+}
+
+/** `{n}`-style template text with the values filled in (`interpolate`, without the import). */
+export function fill(template: string, values: Readonly<Record<string, number>>): string {
+  return template.replace(/\{(\w+)\}/g, (match, name: string) =>
+    name in values ? String(values[name]) : match,
+  );
 }
 
 export class StPathProgress extends PathElement {
@@ -76,39 +89,12 @@ export class StPathProgress extends PathElement {
     this.hidden = true;
   }
 
-  protected draw(data: PathData, who: Profile): void {
-    const { done, total } = data.pathProgress(data.readerPath(who), pathDone.get());
-    const text = interpolate(this.dataset['template'] ?? '{done}/{total}', { done, total });
-    data.drawRing(this, done, total, text);
+  protected draw(view: PathView): void {
+    const { done, total } = viewProgress(view, pathDone.get());
+    const text = fill(this.dataset['template'] ?? '{done}/{total}', { done, total });
+    drawRing(this, done, total, text);
     const label = this.querySelector('[data-progress-text]');
     if (label) label.textContent = text;
-    this.hidden = false;
-  }
-}
-
-export class StYourPath extends PathElement {
-  protected empty(): void {
-    this.hidden = true;
-  }
-
-  protected draw(data: PathData, who: Profile): void {
-    const locale = data.pageLocale(this);
-    const { done, total, next } = data.pathProgress(data.readerPath(who), pathDone.get());
-    const progress = interpolate(this.dataset['progress'] ?? '{done}/{total}', { done, total });
-    data.drawRing(this, done, total, progress);
-    const text = this.querySelector('[data-progress-text]');
-    if (text) text.textContent = progress;
-    const resume = this.querySelector<HTMLAnchorElement>('a[data-continue]');
-    if (resume) {
-      const first = next?.items[0];
-      const target = first ? data.pathDocHref(locale, first.doc, first.anchor) : undefined;
-      resume.hidden = !next || !target;
-      if (next && target) {
-        resume.href = target;
-        const label = resume.querySelector('.st-btn__label') ?? resume;
-        label.textContent = interpolate(this.dataset['continue'] ?? '{n}', { n: next.n, total });
-      }
-    }
     this.hidden = false;
   }
 }
@@ -131,7 +117,8 @@ export class StPathPager extends PathElement {
         lang: title?.getAttribute('lang') ?? null,
       });
     }
-    return [profile.subscribe(() => this.update())];
+    const update = (): void => this.update();
+    return [profile.subscribe(update), pathView.subscribe(update)];
   }
 
   override disconnectedCallback(): void {
@@ -144,19 +131,30 @@ export class StPathPager extends PathElement {
     for (const [link, original] of this.#original) this.#set(link, original);
   }
 
-  protected draw(data: PathData, who: Profile): void {
-    const around = data.pathNeighbours(data.readerPath(who), this.dataset['doc'] ?? '');
-    const locale = data.pageLocale(this);
+  protected draw(view: PathView): void {
+    const around = viewNeighbours(view, this.dataset['doc'] ?? '');
+    const locale = pageLocale(this);
     this.toggleAttribute('data-on-path', around.onPath);
     for (const [link, original] of this.#original) {
-      const item: PathItem | undefined = link.rel === 'prev' ? around.previous : around.next;
-      const target = item ? data.pathDocHref(locale, item.doc, item.anchor) : undefined;
-      if (!item || !target) {
+      const page: ViewItem | undefined = link.rel === 'prev' ? around.previous : around.next;
+      const route = page ? viewRoute(view, page) : undefined;
+      if (page && route) {
+        const named = viewTitle(view, page.doc, locale);
+        this.#set(link, {
+          href: href(locale, route),
+          title: named.title,
+          lang: named.lang ?? null,
+        });
+      } else if (link.rel === 'next' && around.last && this.dataset['myPath']) {
+        // The end of the path: back to My path rather than on in the section order.
+        this.#set(link, {
+          href: this.dataset['myPath'],
+          title: this.dataset['myPathTitle'] ?? '',
+          lang: null,
+        });
+      } else {
         this.#set(link, original);
-        continue;
       }
-      const named = data.pathDocTitle(locale, item.doc);
-      this.#set(link, { href: target, title: named.title, lang: named.lang ?? null });
     }
   }
 
@@ -172,5 +170,4 @@ export class StPathPager extends PathElement {
 
 if (!customElements.get('st-path-progress'))
   customElements.define('st-path-progress', StPathProgress);
-if (!customElements.get('st-your-path')) customElements.define('st-your-path', StYourPath);
 if (!customElements.get('st-path-pager')) customElements.define('st-path-pager', StPathPager);

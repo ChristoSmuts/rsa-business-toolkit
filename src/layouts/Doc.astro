@@ -15,6 +15,7 @@
  * `assertDocTrust` runs first, so a document that would render without sources and without a
  * source note fails the build instead of shipping (D5).
  */
+import pathsData from '../data/paths.json';
 import Page from './Page.astro';
 import BusinessTypeTiles from '../components/pages/BusinessTypeTiles.astro';
 import ChecklistElsewhere from '../components/interactive/ChecklistElsewhere.astro';
@@ -50,7 +51,7 @@ import {
 } from '../lib/pages';
 import { docHasConditions } from '../lib/path-pages';
 import { href } from '../lib/paths';
-import { CHECKLIST_SAVES, WIZARD_AVAILABLE } from '../lib/routes';
+import { APP_ROUTES, CHECKLIST_SAVES, WIZARD_AVAILABLE } from '../lib/routes';
 
 interface Props {
   locale: Locale;
@@ -283,7 +284,13 @@ const relatedTypes = businessType
       </article>
 
       {(pager.previous || pager.next) && (
-        <st-path-pager data-doc={doc.id} data-locale={locale}>
+        <st-path-pager
+          data-doc={doc.id}
+          data-locale={locale}
+          data-version={pathsData.hash}
+          data-my-path={href(locale, APP_ROUTES.myPath)}
+          data-my-path-title={t('nav.myPath')}
+        >
           <nav class="st-pager" aria-label={t('nav.pagerLabel')}>
             {pager.previous && (
               <a class="st-pager__link" href={pager.previous.href} rel="prev">

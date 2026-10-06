@@ -5,12 +5,13 @@
  * 49 combinations per language are `singleChoices()` in `src/lib/profile.ts` ("Pty Ltd, growing"
  * only with a Pty Ltd). More than one kind of business needs JavaScript; the wizard says so.
  *
- * The steps come from the same `buildPath` the browser runs for My path. Nothing is saved, and the
- * page says so. It is `noindex` and left out of the sitemap: it repeats the guide for one reader.
+ * The steps come from the same `buildPath` the browser runs for My path. Without JavaScript nothing
+ * is saved, and the page says so; with JavaScript, "Save these answers" keeps them. It is `noindex` and left out of the sitemap: it repeats the guide for one reader.
  */
 import Page from '../../../../../../layouts/Page.astro';
 import Breadcrumb from '../../../../../../components/navigation/Breadcrumb.astro';
 import Badge from '../../../../../../components/ui/Badge.astro';
+import Button from '../../../../../../components/ui/Button.astro';
 import PathSteps from '../../../../../../components/wizard/PathSteps.astro';
 import { useTranslations } from '../../../../../../i18n';
 import { DEFAULT_LOCALE, ENABLED_LOCALES, type Locale } from '../../../../../../i18n/locales';
@@ -104,7 +105,15 @@ const answers = [
           </li>
         ))}
       </ul>
-      <p class="st-hint">{t('wizard.noJs')}</p>
+      <p class="st-hint no-js-only">{t('wizard.noJs')}</p>
+      <st-save-answers
+        class="js-only"
+        data-profile={JSON.stringify(profile)}
+        data-version={paths.hash}
+        data-my-path={href(locale, APP_ROUTES.myPath)}
+      >
+        <Button iconEnd="lucide:arrow-right">{t('wizard.result.save')}</Button>
+      </st-save-answers>
       <p>
         <a class="st-link-block" href={wizardHref}>
           {t('myPath.editAnswers')}
@@ -129,7 +138,15 @@ const answers = [
   </div>
 </Page>
 
+<script>
+  import '../../../../../../scripts/save-answers';
+</script>
+
 <style>
+  st-save-answers {
+    display: block;
+  }
+
   .st-result-page {
     max-inline-size: var(--st-measure);
     padding-block: var(--st-space-5) var(--st-space-8);

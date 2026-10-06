@@ -248,10 +248,11 @@
       "pty": "Hidden: this part is only for a Pty Ltd.",
       "businessTypes": "Hidden: this part is only for these kinds of business: {types}."
     },
+    "hiddenPart": "Hidden by “Only what applies to me”: {title}",
     "hiddenShow": "Show",
     "showHiddenNamed": "Show hidden part: {title}",
     "onlyWhatApplies": "Only what applies to me",
-    "onlyWhatAppliesHelp": "Hides the parts for other kinds of business. Nothing is removed. You can show them again at any time.",
+    "onlyWhatAppliesHelp": "Hides the parts that are not for how you trade or for your kind of business. Nothing is removed. You can show them again at any time.",
     "onlyWhatAppliesNoProfile": "Answer the questions in Find my path to use this.",
     "plainWords": "In plain words",
     "note": "Note",
@@ -382,8 +383,10 @@
     "noJsOneType": "Without JavaScript you can choose one kind of business. To choose more than one, turn on JavaScript.",
     "result": {
       "title": "Your path",
-      "intro": "These are the steps for your answers, in order. Open each page when you get to it."
-    }
+      "intro": "These are the steps for your answers, in order. Open each page when you get to it.",
+      "save": "Save these answers"
+    },
+    "noJsList": "Or choose your answers from a list"
   },
   "myPath": {
     "title": "My path",
@@ -399,10 +402,10 @@
     "read": "Read",
     "readStep": "Read step {n}: {title}",
     "markDone": "Mark as done",
-    "markDoneNamed": "Mark {title} as done",
+    "markDoneNamed": "Mark as done: {title}",
     "done": "Done",
     "markNotDone": "Remove the tick",
-    "markNotDoneNamed": "Remove the tick from {title}",
+    "markNotDoneNamed": "Remove the tick: {title}",
     "why": "Why this step",
     "checklistHeading": "Your checklist",
     "editAnswers": "Edit answers",
@@ -674,7 +677,7 @@
     "copiedNamed": "Prompt {n} copied",
     "copyFailed": "Could not copy. The text is selected. Copy it with your keyboard, or press and hold it on a phone.",
     "fillFromProfile": "Fill from my profile",
-    "fillFromProfileNamed": "Fill prompt {n} from my profile: {title}",
+    "fillFromProfileNamed": "Fill from my profile: prompt {n}, {title}",
     "undoFill": "Undo",
     "undoFillNamed": "Undo filling in prompt {n}: {title}",
     "placeholdersRemaining": {

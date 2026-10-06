@@ -9,18 +9,20 @@
  * brings that one section back and moves focus to its heading. Without JavaScript nothing is
  * filtered, so the marker never shows.
  *
- * The sentence names the section's own condition (its entity, or else its kinds of business), in
- * the reader's language even inside an English fallback block.
+ * The sentence names the section by its own heading and says only that the switch hid it. It does
+ * not say whom the section is "only for": the guide's headings say that in their own words ("If
+ * you have a registered company"), and a summary of the condition claimed more than the guide does
+ * (review WP-31 pass 1, major 3). It is in the reader's language even inside an English fallback
+ * block; the heading's words keep the content's language.
  */
 import Button from '../ui/Button.astro';
 import Icon from '../ui/Icon.astro';
 import { useTranslations } from '../../i18n';
 import { getLocale } from '../../i18n/locales';
 import { isFallbackContent, type ContentContext } from '../../lib/content/context';
-import type { Applicability } from '../../lib/content/schema';
+import { splitAroundParam } from '../../lib/pages';
 
 interface Props {
-  appliesTo: Applicability;
   /** The heading this marker stands in for. */
   forId: string;
   /** The heading's text, for the button's name ("Show hidden part: …"). */
@@ -28,22 +30,26 @@ interface Props {
   context: ContentContext;
 }
 
-const { appliesTo, forId, title, context } = Astro.props;
+const { forId, title, context } = Astro.props;
 const t = useTranslations(context.locale);
 const siteLang = isFallbackContent(context)
   ? (getLocale(context.locale)?.hreflang ?? context.locale)
   : undefined;
-const types = (appliesTo.businessTypes ?? []).map((type) => t(`businessTypes.${type}.name`));
-const reason =
-  appliesTo.entity === 'pty' || appliesTo.entity === 'sole-prop'
-    ? t(`doc.hiddenFor.${appliesTo.entity}`)
-    : t('doc.hiddenFor.businessTypes', { types: types.join(', ') });
+const contentLang =
+  context.contentLang === context.locale
+    ? undefined
+    : (getLocale(context.contentLang)?.hreflang ?? context.contentLang);
+const [before, after] = splitAroundParam((marker) => t('doc.hiddenPart', { title: marker }));
 ---
 
 <div class="st-hidden-marker st-no-print" data-marker-for={forId} lang={siteLang} hidden>
   <p class="st-hidden-marker__text">
     <Icon name="lucide:eye-off" />
-    <span>{reason}</span>
+    <span>
+      {before}
+      <span lang={contentLang}>{title}</span>
+      {after}
+    </span>
   </p>
   <Button
     variant="secondary"

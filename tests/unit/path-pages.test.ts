@@ -132,6 +132,23 @@ describe('the no-JavaScript wizard CSS', () => {
     expect(css).toContain(
       'html:not(.js) .st-wizard__form:has(#wz-stage-pty-growing:checked):not(:has(#wz-entity-pty:checked)) .st-wizard__pty-only{display:block}',
     );
-    expect(css.split('\n').every((line) => line.startsWith('html:not(.js) '))).toBe(true);
+    expect(
+      css
+        .split('\n')
+        .every((line) => /^(@supports selector\(:has\(\*\)\)\{)?html:not\(\.js\) /.test(line)),
+    ).toBe(true);
+  });
+
+  it('hides the list of every result, and asks for an answer, only where :has() works', () => {
+    // A browser without :has() drops the @supports block and every :has() rule: no result button
+    // shows, so the list of result links must stay (review WP-31 pass 1, major 2).
+    const supports = css.split('\n').filter((line) => line.startsWith('@supports'));
+    expect(supports).toEqual([
+      '@supports selector(:has(*)){html:not(.js) .st-wizard__incomplete{display:block}' +
+        'html:not(.js) .st-wizard__fallback{display:none}}',
+    ]);
+    const plain = css.split('\n').filter((line) => !line.startsWith('@supports'));
+    expect(plain.some((line) => line.includes('.st-wizard__fallback'))).toBe(false);
+    expect(plain.every((line) => line.includes(':has('))).toBe(true);
   });
 });

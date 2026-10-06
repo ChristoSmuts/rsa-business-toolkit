@@ -41,12 +41,16 @@ const { locale, manifest, source, lists, steps, interactive = false } = Astro.pr
 const t = useTranslations(locale);
 const sourceLang = source.lang === locale ? undefined : 'en-ZA';
 const labelTemplate = t('myPath.stepLabel', { n: '{n}' });
+/*
+ * The "Mark as done" button's name ("Mark as done: Core: start here") starts with its visible label
+ * (WCAG 2.5.3) and names only the pages the step shows for this reader, so `<st-my-path>` builds it
+ * from these templates once it knows them (review WP-31 pass 1, majors 4 and 5). Until then the
+ * card is hidden.
+ */
 const cards = steps.map((step) => {
-  const titles = step.docs.map((entry) => docTitle(manifest, entry.doc, locale));
   return {
     ...step,
     whyText: stepWhy(source, lists[step.stage] ?? '', step.item),
-    name: titles.join(', '),
     links: step.docs.map((entry) => ({
       doc: entry.doc,
       href: docHref(manifest, entry.doc, locale, entry.anchor),
@@ -100,9 +104,8 @@ const cards = steps.map((step) => {
             data-mark
             data-label-done={t('myPath.markDone')}
             data-label-undo={t('myPath.markNotDone')}
-            data-name-done={t('myPath.markDoneNamed', { title: card.name })}
-            data-name-undo={t('myPath.markNotDoneNamed', { title: card.name })}
-            aria-label={t('myPath.markDoneNamed', { title: card.name })}
+            data-name-done={t('myPath.markDoneNamed', { title: '{title}' })}
+            data-name-undo={t('myPath.markNotDoneNamed', { title: '{title}' })}
           >
             {t('myPath.markDone')}
           </Button>

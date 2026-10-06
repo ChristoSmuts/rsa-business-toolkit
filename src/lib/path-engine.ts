@@ -12,8 +12,21 @@
  * - `buildPath(profile, manifest, paths)` follows the rule for the reader's stage
  *   (`src/data/paths.json`, built from `content-meta/paths.json`).
  */
-import type { Applicability, DocAppliesTo, PathCondition, PathsFile } from './content/schema';
-import { expandTypes, GENERAL_EXPANDS_TO, type Profile, type TypeId } from './profile';
+import { applies, readerTypes } from './applicability';
+import type { DocAppliesTo, PathCondition, PathsFile } from './content/schema';
+import { GENERAL_EXPANDS_TO, type Profile, type TypeId } from './profile';
+
+/*
+ * The matching rule lives in `applicability.ts`, so the "Only what applies to me" script loads it
+ * without the path engine; it is re-exported here, where A5 puts it.
+ */
+export {
+  applies,
+  appliesAttributes,
+  appliesFromAttributes,
+  readerTypes,
+  type AppliesTo,
+} from './applicability';
 
 /** What the engine needs from the manifest (`Manifest` and `PathsFile` both have it). */
 export interface PathManifest {
@@ -22,57 +35,6 @@ export interface PathManifest {
 
 /** The rules and the business-type data from `src/data/paths.json`. */
 export type PathRules = Pick<PathsFile, 'source' | 'rules' | 'businessTypes' | 'general'>;
-
-/** A document-level or block-level condition. `undefined` applies to everyone. */
-export type AppliesTo = DocAppliesTo | Applicability | undefined;
-
-/** The six-type ids the reader's choices cover (General expanded). */
-export function readerTypes(
-  profile: Profile,
-  general: readonly TypeId[] = GENERAL_EXPANDS_TO,
-): TypeId[] {
-  return expandTypes(profile.businessTypes, general);
-}
-
-/**
- * The A5 matching rule. Tags (`If working from home:`) are not part of the profile, so they never
- * hide anything.
- */
-export function applies(
-  appliesTo: AppliesTo,
-  profile: Profile,
-  general: readonly TypeId[] = GENERAL_EXPANDS_TO,
-): boolean {
-  if (!appliesTo) return true;
-  const entity = appliesTo.entity;
-  const entityOk =
-    entity === undefined ||
-    entity === 'all' ||
-    profile.entity === 'undecided' ||
-    entity === profile.entity;
-  if (!entityOk) return false;
-  const types = appliesTo.businessTypes;
-  if (types === undefined || types === 'all') return true;
-  const mine = readerTypes(profile, general);
-  return types.some((type) => mine.includes(type));
-}
-
-/**
- * Why a part does not apply, for the "Hidden: …" marker: the entity when that is the reason,
- * otherwise the business types. `undefined` when it applies.
- */
-export function hiddenReason(
-  appliesTo: AppliesTo,
-  profile: Profile,
-  general: readonly TypeId[] = GENERAL_EXPANDS_TO,
-): 'sole-prop' | 'pty' | 'businessTypes' | undefined {
-  if (applies(appliesTo, profile, general)) return undefined;
-  const entity = appliesTo?.entity;
-  if ((entity === 'sole-prop' || entity === 'pty') && profile.entity !== 'undecided') {
-    if (entity !== profile.entity) return entity;
-  }
-  return 'businessTypes';
-}
 
 /** A step condition from `paths.json`: every key given must match. */
 export function conditionMatches(
@@ -222,33 +184,4 @@ export function markStep(
     }
   }
   return changed ? next : done;
-}
-
-/**
- * Reads a part's condition back from the attributes the server wrote (`data-entity`,
- * `data-types`, space-separated), so a client script can call `applies` on any element.
- */
-export function appliesFromAttributes(
-  entity: string | undefined,
-  types: string | undefined,
-): Applicability | undefined {
-  const out: { entity?: 'sole-prop' | 'pty'; businessTypes?: TypeId[] } = {};
-  if (entity === 'sole-prop' || entity === 'pty') out.entity = entity;
-  const list = (types ?? '').split(/\s+/).filter(Boolean) as TypeId[];
-  if (list.length > 0) out.businessTypes = list;
-  return out.entity === undefined && out.businessTypes === undefined ? undefined : out;
-}
-
-/** The attributes `appliesFromAttributes` reads, for a server-rendered part. */
-export function appliesAttributes(appliesTo: AppliesTo): {
-  'data-entity'?: string;
-  'data-types'?: string;
-} {
-  const out: { 'data-entity'?: string; 'data-types'?: string } = {};
-  if (!appliesTo) return out;
-  if (appliesTo.entity === 'sole-prop' || appliesTo.entity === 'pty')
-    out['data-entity'] = appliesTo.entity;
-  if (Array.isArray(appliesTo.businessTypes) && appliesTo.businessTypes.length > 0)
-    out['data-types'] = appliesTo.businessTypes.join(' ');
-  return out;
 }

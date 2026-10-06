@@ -6,7 +6,8 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { profile } from '../../src/lib/profile-store';
+import { pathView, profile } from '../../src/lib/profile-store';
+import { PATHS, viewOf } from '../../src/scripts/path-data';
 import { clearAll, storage } from '../../src/lib/store';
 import { StWizard } from '../../src/scripts/wizard';
 import { REPO_ROOT } from '../unit/site/data';
@@ -146,6 +147,8 @@ describe('<st-wizard>', () => {
       stage: 'pty-growing',
     });
     expect(JSON.parse(localStorage.getItem('st.profile.v1') ?? 'null')).toEqual(profile.get());
+    // The path for these answers, which the top bar and the pager read (review WP-31 pass 1, major 1).
+    expect(pathView.get()).toEqual(viewOf(profile.get()!, PATHS.hash));
     expect(wizard.navigate).toHaveBeenCalledWith(expect.stringMatching(/\/my-path\/\?saved=1$/));
   });
 
@@ -181,6 +184,24 @@ describe('<st-wizard>', () => {
     expect(next?.getAttribute('aria-disabled')).toBe('true');
   });
 
+  it('describes the kinds of business for the checkboxes it makes, not the no-JS radios', () => {
+    const template = document.createElement('template');
+    template.innerHTML = markup.en;
+    const described = (root: ParentNode): string[] =>
+      (
+        root.querySelector('[data-step="type"] fieldset')?.getAttribute('aria-describedby') ?? ''
+      ).split(' ');
+    // Without JavaScript: the one-type hint, never the hidden "Choose all that fit" (minor 3).
+    expect(described(template.content)).toContain('wz-nojs-type');
+    expect(described(template.content)).not.toContain('wz-help-type');
+    expect(template.content.querySelector('#wz-nojs-type')?.classList.contains('no-js-only')).toBe(
+      true,
+    );
+    setUp();
+    expect(described(document)).toContain('wz-help-type');
+    expect(described(document)).not.toContain('wz-nojs-type');
+  });
+
   it('renders in Afrikaans with the same contract', () => {
     setUp('af');
     expect(document.querySelector('[data-step-heading]')?.textContent).toContain('Vraag 1 van 3');
@@ -202,6 +223,23 @@ describe('the no-JavaScript form', () => {
       expect(result.getAttribute('formaction')).toBe(
         `/find-my-path/result/${entity}/${type}/${stage}/`,
       );
+    }
+  });
+
+  it('also lists every result page as a link, for a browser without :has()', () => {
+    for (const locale of ['en', 'af'] as const) {
+      const template = document.createElement('template');
+      template.innerHTML = markup[locale];
+      const list = template.content.querySelector('details.st-wizard__fallback')!;
+      expect(list.classList.contains('no-js-only')).toBe(true);
+      const links = [...list.querySelectorAll<HTMLAnchorElement>('a')].map((link) =>
+        link.getAttribute('href'),
+      );
+      const buttons = [
+        ...template.content.querySelectorAll<HTMLButtonElement>('[data-result]'),
+      ].map((result) => result.getAttribute('formaction'));
+      expect(links).toHaveLength(49);
+      expect(new Set(links)).toEqual(new Set(buttons));
     }
   });
 });

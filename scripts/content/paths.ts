@@ -14,6 +14,8 @@
  * change with it.
  */
 import type { IssueCollector } from './errors';
+import { shortHash } from './ids';
+import { stableStringify } from './write';
 import type { ContentConfig } from './config';
 import {
   BUSINESS_TYPES_REF,
@@ -178,8 +180,7 @@ export function buildPathsFile(
     }
     docs[id] = { route: doc.route, titles, appliesTo: doc.appliesTo };
   }
-  return {
-    version: 1,
+  const content = {
     source: paths.source,
     rules: paths.rules,
     checklist: paths.checklist,
@@ -189,4 +190,5 @@ export function buildPathsFile(
     general: [...config.businessTypes.presets.general.expandsTo],
     docs,
   };
+  return { version: 1, hash: shortHash(stableStringify(content)), ...content };
 }

@@ -98,6 +98,7 @@ interface ParamNames {
   'doc.hiddenSections': 'count';
   'doc.showHiddenSections': 'count';
   'doc.hiddenFor.businessTypes': 'types';
+  'doc.hiddenPart': 'title';
   'doc.showHiddenNamed': 'title';
   'doc.copyLinkTo': 'heading';
   'doc.tableRegion': 'caption';

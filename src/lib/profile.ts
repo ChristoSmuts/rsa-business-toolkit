@@ -2,14 +2,16 @@
  * The reader's answers to "Find my path" (build plan A5, B3 flow 1): how they trade, their kinds
  * of business, and where they are now.
  *
- * Pure and small enough for client code: it uses `zod/mini` only, never the full `zod` that
- * `src/lib/content/schema.ts` imports. The value lists repeat that file's `PROFILE_ENTITIES`,
- * `STAGES` and `BUSINESS_TYPE_IDS`; `tests/unit/profile.test.ts` keeps them equal.
+ * Pure and small enough for every page: no schema library at all (the top bar reads the profile on
+ * every page, so a hand-written check costs a few hundred bytes where a `zod/mini` object, array and
+ * refinements cost about 1.4 KB gzipped; review WP-31 pass 1, major 1). The value lists repeat
+ * `PROFILE_ENTITIES`, `STAGES` and `BUSINESS_TYPE_IDS` from `src/lib/content/schema.ts`;
+ * `tests/unit/profile.test.ts` keeps them equal.
  *
  * The stored value is `st.profile.v1` (`src/lib/profile-store.ts`). Without JavaScript the same
  * answers travel as a query string (`profileFromQuery`, `profileQuery`).
  */
-import * as z from 'zod/mini';
+import type { Schema } from './storage/migrate';
 
 export const ENTITY_CHOICES = ['sole-prop', 'pty', 'undecided'] as const;
 export type EntityChoice = (typeof ENTITY_CHOICES)[number];
@@ -48,28 +50,31 @@ export interface Profile {
   readonly stage: StageChoice;
 }
 
-export const profileSchema: z.ZodMiniType<Profile> = z
-  .object({
-    entity: z.enum(ENTITY_CHOICES),
-    businessTypes: z.array(z.enum(TYPE_CHOICES)).check(
-      z.minLength(1),
-      z.maxLength(TYPE_CHOICES.length),
-      z.refine((types) => new Set(types).size === types.length, 'each type once'),
-    ),
-    stage: z.enum(STAGE_CHOICES),
-  })
-  .check(
-    z.refine(
-      (profile) => profile.stage !== 'pty-growing' || profile.entity === 'pty',
-      '"pty-growing" needs a Pty Ltd',
-    ),
-  );
+const isOneOf = <T extends string>(list: readonly T[], value: unknown): value is T =>
+  typeof value === 'string' && (list as readonly string[]).includes(value);
 
-/** A valid profile, or `null`. */
+/** A valid profile, or `null`: the A5 shape, each type once, "Pty Ltd, growing" only for a Pty Ltd. */
 export function parseProfile(value: unknown): Profile | null {
-  const result = profileSchema.safeParse(value);
-  return result.success ? result.data : null;
+  if (typeof value !== 'object' || value === null) return null;
+  const { entity, businessTypes, stage } = value as Record<string, unknown>;
+  if (!isOneOf(ENTITY_CHOICES, entity) || !isOneOf(STAGE_CHOICES, stage)) return null;
+  if (!Array.isArray(businessTypes) || businessTypes.length === 0) return null;
+  const types: TypeChoice[] = [];
+  for (const type of businessTypes as unknown[]) {
+    if (!isOneOf(TYPE_CHOICES, type) || types.includes(type)) return null;
+    types.push(type);
+  }
+  if (stage === 'pty-growing' && entity !== 'pty') return null;
+  return { entity, businessTypes: types, stage };
 }
+
+/** `parseProfile` in the shape the store takes (`persistentValue`). */
+export const profileSchema: Schema<Profile> = {
+  safeParse(data) {
+    const profile = parseProfile(data);
+    return profile ? { success: true, data: profile } : { success: false };
+  },
+};
 
 /** Whether "Pty Ltd, growing" may be chosen with this entity. */
 export function stageAllowed(stage: StageChoice, entity: EntityChoice | undefined): boolean {

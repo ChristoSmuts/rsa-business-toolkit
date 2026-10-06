@@ -23,7 +23,8 @@
     // Storage blocked: follow the system theme, with web fonts.
   }
   if (lowData === 'true') root.setAttribute('data-low-data', '');
-  if (profile) root.setAttribute('data-st-profile', '');
+  // Only for something that looks like saved answers; the store still validates them.
+  if (profile && /^\{.*"entity":"/.test(profile)) root.setAttribute('data-st-profile', '');
   if (lang && lang !== (root.getAttribute('lang') || '').split('-')[0]) {
     root.setAttribute('data-st-lang-offer', lang);
   }

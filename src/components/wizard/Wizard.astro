@@ -30,6 +30,7 @@ import {
 } from '../../lib/profile';
 import { resultKey, wizardInputId } from '../../lib/path-pages';
 import { href } from '../../lib/paths';
+import pathsData from '../../data/paths.json';
 import { APP_ROUTES } from '../../lib/routes';
 
 interface Props {
@@ -61,13 +62,28 @@ types.push({
   effort: '',
 });
 
+/* Without `:has()` the form cannot show the right button, so every result is also a plain link. */
+const fallback = ENTITY_CHOICES.map((entity) => ({
+  entity,
+  label: t(`wizard.entity.options.${entity}.label`),
+  links: singleChoices()
+    .filter((choice) => choice.entity === entity)
+    .map((choice) => ({
+      href: href(locale, resultRoute(APP_ROUTES.wizard, choice)),
+      text: `${
+        choice.type === GENERAL
+          ? t('businessTypes.general.name')
+          : t(`businessTypes.${choice.type}.name`)
+      }: ${t(`stage.${choice.stage}`)}`,
+    })),
+}));
 const results = singleChoices().map((choice) => ({
   key: resultKey(choice),
   href: href(locale, resultRoute(APP_ROUTES.wizard, choice)),
 }));
 ---
 
-<st-wizard class="st-wizard" data-my-path={myPathHref}>
+<st-wizard class="st-wizard" data-my-path={myPathHref} data-version={pathsData.hash}>
   <ol class="st-wizard__stepper js-only" aria-label={t('wizard.stepsLabel')} role="list">
     {stepTitles.map((title, index) => (
       <li data-stepper={index}>
@@ -146,7 +162,11 @@ const results = singleChoices().map((choice) => ({
       <h2 id="wz-h-type" data-step-heading tabindex="-1">
         {t('wizard.stepHeading', { n: 2, total, title: stepTitles[1] ?? '' })}
       </h2>
-      <fieldset class="st-wizard__fieldset" aria-describedby="wz-help-type wz-general-type">
+      <fieldset
+        class="st-wizard__fieldset"
+        aria-describedby="wz-general-type wz-nojs-type"
+        data-describedby-js="wz-help-type wz-general-type"
+      >
         <legend>{t('wizard.types.question')}</legend>
         <p class="st-hint js-only" id="wz-help-type">
           {t('wizard.types.help')}
@@ -154,7 +174,9 @@ const results = singleChoices().map((choice) => ({
         <p class="st-hint" id="wz-general-type">
           {t('wizard.types.generalHelp')}
         </p>
-        <p class="st-hint no-js-only">{t('wizard.noJsOneType')}</p>
+        <p class="st-hint no-js-only" id="wz-nojs-type">
+          {t('wizard.noJsOneType')}
+        </p>
         <div class="st-wizard__choices">
           {types.map((type) => (
             <label class="st-choice" for={id(QUERY.type, type.value)}>
@@ -266,6 +288,22 @@ const results = singleChoices().map((choice) => ({
         </Button>
       ))}
     </div>
+
+    <details class="st-wizard__fallback no-js-only">
+      <summary>{t('wizard.noJsList')}</summary>
+      {fallback.map((group) => (
+        <section aria-labelledby={`wz-list-${group.entity}`}>
+          <h3 id={`wz-list-${group.entity}`}>{group.label}</h3>
+          <ul>
+            {group.links.map((link) => (
+              <li>
+                <a href={link.href}>{link.text}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </details>
 
     <div class="st-stack st-stack-sm js-only">
       <p class="st-hint">{t('wizard.savedTip')}</p>
@@ -458,8 +496,21 @@ const results = singleChoices().map((choice) => ({
     gap: var(--st-space-2);
   }
 
-  .st-wizard__pty-only {
+  .st-wizard__pty-only,
+  .st-wizard__incomplete {
     display: none;
+  }
+
+  .st-wizard__fallback summary {
+    display: flex;
+    align-items: center;
+    min-block-size: var(--st-target);
+    font-weight: var(--st-weight-semibold);
+    cursor: pointer;
+  }
+
+  .st-wizard__fallback h3 {
+    font-size: var(--st-text-md);
   }
 
   @media (forced-colors: active) {

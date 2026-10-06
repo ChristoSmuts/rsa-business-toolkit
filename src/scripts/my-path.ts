@@ -10,7 +10,8 @@
  * - "Remove my answers" asks first, then removes the profile and the marks (ticks stay), says so,
  *   and moves focus to the page heading;
  * - answers in the address (`?entity=…&type=…&stage=…`, sent by the wizard when the device would
- *   not save them) are used, and kept in the address so a reload still shows them;
+ *   not save them) are used when there are no saved answers, and kept in the address so a reload
+ *   still shows them;
  * - `?saved=1` (sent by the wizard) says once that the answers are saved on this device only.
  * The personalised checklist is `<st-applies-scope data-mode="always">` (`applies.ts`).
  */
@@ -24,10 +25,12 @@ import {
   type PathStepResult,
 } from '../lib/path-engine';
 import { profileFromQuery, profileQuery, QUERY, type Profile } from '../lib/profile';
-import { pathDone, profile, resetProfile } from '../lib/profile-store';
+import { pathDone, pathView, profile, resetProfile, storageAvailable } from '../lib/profile-store';
 import './applies';
 import { announce, askToConfirm } from './confirm-dialog';
-import { drawRing, readerPath } from './path-data';
+import { readerPath, viewOf } from './path-data';
+import { currentView } from './path-progress';
+import { drawRing } from './ring';
 import './storage-notice';
 
 function sameProfile(a: Profile | null, b: Profile | null): boolean {
@@ -54,7 +57,12 @@ export class StMyPath extends HTMLElement {
     this.addEventListener('click', this.#onClick);
     const url = new URL(window.location.href);
     const fromAddress = profileFromQuery(url.searchParams);
-    if (fromAddress && !sameProfile(fromAddress, profile.get())) profile.set(fromAddress);
+    // Answers in the address (sent by the wizard when the device would not save them) are used when
+    // there are no saved answers or nothing can be saved. They never replace saved answers: such an
+    // address may be someone else's, shared (review WP-31 pass 1, minor 4).
+    const saved = profile.get();
+    if (fromAddress && !sameProfile(fromAddress, saved) && (!saved || !storageAvailable.get()))
+      profile.set(fromAddress);
     if (url.searchParams.has('saved')) {
       url.searchParams.delete('saved');
       this.replaceUrl(url.href);
@@ -81,6 +89,9 @@ export class StMyPath extends HTMLElement {
       return;
     }
     this.#path = readerPath(who);
+    // Keep the path the top bar and the pager read current (`st.pathView.v1`).
+    const version = this.dataset['version'] ?? '';
+    if (!currentView(version)) pathView.set(viewOf(who, version));
     const done = pathDone.get();
     this.#renderChips(who);
     this.#renderSteps(this.#path, done);
@@ -142,12 +153,16 @@ export class StMyPath extends HTMLElement {
       }
       const why = card.querySelector<HTMLElement>('[data-why]');
       if (why) why.hidden = !step.why;
-      this.#renderDone(card, stepDone(step, done));
+      const titles = [...card.querySelectorAll<HTMLElement>('li[data-doc]:not([hidden]) a')].map(
+        (link) => link.textContent?.trim() ?? '',
+      );
+      this.#renderDone(card, stepDone(step, done), titles.join(', '));
       list.append(card);
     }
   }
 
-  #renderDone(card: HTMLElement, isDone: boolean): void {
+  /** Done or not, with the button's label and its name for the pages this step shows. */
+  #renderDone(card: HTMLElement, isDone: boolean, title: string): void {
     card.toggleAttribute('data-done', isDone);
     const badge = card.querySelector<HTMLElement>('[data-done-badge]');
     if (badge) badge.hidden = !isDone;
@@ -156,7 +171,7 @@ export class StMyPath extends HTMLElement {
     const label = button.querySelector('.st-btn__label') ?? button;
     label.textContent = (isDone ? button.dataset['labelUndo'] : button.dataset['labelDone']) ?? '';
     const name = isDone ? button.dataset['nameUndo'] : button.dataset['nameDone'];
-    if (name) button.setAttribute('aria-label', name);
+    if (name) button.setAttribute('aria-label', interpolate(name, { title }));
   }
 
   #stepOf(card: Element | null): PathStepResult | undefined {

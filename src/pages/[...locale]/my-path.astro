@@ -128,6 +128,7 @@ const progressTemplate = t('myPath.progress', { done: '{done}', total: '{total}'
       data-saved-tip={t('wizard.savedTip')}
       data-reset-done={t('myPath.resetDone')}
       data-progress-template={progressTemplate}
+      data-version={paths.hash}
     >
       <header class="st-stack st-stack-sm">
         <h1 tabindex="-1">{t('myPath.title')}</h1>
@@ -248,6 +249,18 @@ const progressTemplate = t('myPath.progress', { done: '{done}', total: '{total}'
   /* `theme-init.js` sets `data-st-profile` before paint when answers are saved: no empty state flash. */
   html[data-st-profile] st-my-path:not([data-ready]) .st-my-path__empty {
     visibility: hidden;
+    animation: st-my-path-reveal 0s 1s forwards;
+  }
+
+  /*
+   * If the module never runs (a dropped request on a poor connection), the empty state with "Find
+   * my path" comes back after a second rather than leaving a blank page (review WP-31 pass 1,
+   * minor 5). Visibility, not motion, so reduced motion does not apply.
+   */
+  @keyframes st-my-path-reveal {
+    to {
+      visibility: visible;
+    }
   }
 </style>
 

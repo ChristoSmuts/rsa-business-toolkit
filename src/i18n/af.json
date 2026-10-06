@@ -248,10 +248,11 @@
       "pty": "Versteek: hierdie deel is net vir ’n Pty Ltd.",
       "businessTypes": "Versteek: hierdie deel is net vir hierdie soorte besigheid: {types}."
     },
+    "hiddenPart": "Versteek deur “Net wat vir my geld”: {title}",
     "hiddenShow": "Wys",
     "showHiddenNamed": "Wys versteekte deel: {title}",
     "onlyWhatApplies": "Net wat vir my geld",
-    "onlyWhatAppliesHelp": "Versteek die dele vir ander soorte besighede. Niks word verwyder nie. Jy kan dit enige tyd weer wys.",
+    "onlyWhatAppliesHelp": "Versteek die dele wat nie vir jou manier van handeldryf of vir jou soort besigheid is nie. Niks word verwyder nie. Jy kan dit enige tyd weer wys.",
     "onlyWhatAppliesNoProfile": "Beantwoord die vrae in Vind my roete om dit te gebruik.",
     "plainWords": "In gewone taal",
     "note": "Let wel",
@@ -382,8 +383,10 @@
     "noJsOneType": "Sonder JavaScript kan jy een soort besigheid kies. Skakel JavaScript aan om meer as een te kies.",
     "result": {
       "title": "Jou roete",
-      "intro": "Dit is die stappe vir jou antwoorde, in volgorde. Maak elke bladsy oop wanneer jy daar kom."
-    }
+      "intro": "Dit is die stappe vir jou antwoorde, in volgorde. Maak elke bladsy oop wanneer jy daar kom.",
+      "save": "Stoor hierdie antwoorde"
+    },
+    "noJsList": "Of kies jou antwoorde uit ’n lys"
   },
   "myPath": {
     "title": "My roete",
@@ -399,10 +402,10 @@
     "read": "Lees",
     "readStep": "Lees stap {n}: {title}",
     "markDone": "Merk as klaar",
-    "markDoneNamed": "Merk {title} as klaar",
+    "markDoneNamed": "Merk as klaar: {title}",
     "done": "Klaar",
     "markNotDone": "Haal die merkie af",
-    "markNotDoneNamed": "Haal die merkie van {title} af",
+    "markNotDoneNamed": "Haal die merkie af: {title}",
     "why": "Waarom hierdie stap",
     "checklistHeading": "Jou kontrolelys",
     "editAnswers": "Wysig antwoorde",
@@ -674,7 +677,7 @@
     "copiedNamed": "Opdrag {n} gekopieer",
     "copyFailed": "Kon nie kopieer nie. Die teks is gekies. Kopieer dit met jou sleutelbord, of druk lank daarop op ’n foon.",
     "fillFromProfile": "Vul in uit my profiel",
-    "fillFromProfileNamed": "Vul opdrag {n} in uit my profiel: {title}",
+    "fillFromProfileNamed": "Vul in uit my profiel: opdrag {n}, {title}",
     "undoFill": "Ontdoen",
     "undoFillNamed": "Ontdoen die invulling in opdrag {n}: {title}",
     "placeholdersRemaining": {

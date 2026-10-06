@@ -13,6 +13,7 @@
  *   `/` shortcut and its `<Kbd>` hint arrive together with WP-33's search client: a hint for a key
  *   that does nothing would tell the reader something untrue (review WP-20 pass 2).
  */
+import pathsData from '../../data/paths.json';
 import Icon from '../ui/Icon.astro';
 import ProgressRing from '../ui/ProgressRing.astro';
 import Logo from '../illustrations/Logo.astro';
@@ -66,7 +67,12 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
       </a>
     )}
     {WIZARD_AVAILABLE && (
-      <st-path-progress class="st-topbar__path js-only" data-template={pathTemplate} hidden>
+      <st-path-progress
+        class="st-topbar__path js-only"
+        data-template={pathTemplate}
+        data-version={pathsData.hash}
+        hidden
+      >
         <a
           class="st-topbar__path-link"
           href={href(locale, APP_ROUTES.myPath)}

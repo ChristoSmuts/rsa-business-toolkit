@@ -15,9 +15,11 @@ import { APP_ROUTES } from '../../lib/routes';
 
 interface Props {
   locale: Locale;
+  /** `paths.json`'s hash: the stored path is rebuilt when it was built from other rules. */
+  version: string;
 }
 
-const { locale } = Astro.props;
+const { locale, version } = Astro.props;
 const t = useTranslations(locale);
 const progress = t('myPath.progress', { done: '{done}', total: '{total}' });
 const resume = t('home.yourPath.continue', { n: '{n}', total: '{total}' });
@@ -28,6 +30,7 @@ const resume = t('home.yourPath.continue', { n: '{n}', total: '{total}' });
   data-locale={locale}
   data-progress={progress}
   data-continue={resume}
+  data-version={version}
   hidden
 >
   <section class="st-your-path__card" aria-labelledby="home-your-path">
@@ -51,7 +54,7 @@ const resume = t('home.yourPath.continue', { n: '{n}', total: '{total}' });
 </st-your-path>
 
 <script>
-  import '../../scripts/path-progress';
+  import '../../scripts/your-path';
 </script>
 
 <style>
