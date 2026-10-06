@@ -114,6 +114,9 @@ test.describe('the tax invoice', () => {
 
   test('Clear asks first, then empties the form and the draft', async ({ page }) => {
     await page.goto('templates/tax-invoice/');
+    // The buttons show from first paint; wait until the element has connected (it writes the
+    // count), as a reader would see the count before pressing Clear on a loaded phone.
+    await expect(page.locator('[data-required-count]')).not.toBeEmpty();
     await page.getByLabel('Customer name').fill('Thandi');
     const clear = page.getByRole('button', { name: en.templates.clear });
     await clear.click();

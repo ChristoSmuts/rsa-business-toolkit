@@ -227,10 +227,17 @@ test.describe('a template without JavaScript', () => {
     const style = await date.evaluate((input) => {
       const placeholder = getComputedStyle(input, '::placeholder');
       const own = getComputedStyle(input);
-      return { placeholder: placeholder.color, outline: own.outlineStyle };
+      return {
+        placeholder: placeholder.color,
+        outline: own.outlineStyle,
+        line: own.borderBottomColor,
+        text: getComputedStyle(input.closest('form') ?? input).color,
+      };
     });
     expect(style.placeholder).toBe('rgba(0, 0, 0, 0)');
     expect(style.outline).toBe('none');
+    // The line under a focused field prints in the text colour, not the focus colour.
+    expect(style.line).toBe(style.text);
     // The form shows only what was typed: the samples are not values.
     const values = await page
       .locator('form.st-tform input:not([type="checkbox"])')
