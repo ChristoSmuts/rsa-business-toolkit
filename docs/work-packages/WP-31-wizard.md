@@ -1,6 +1,6 @@
 # WP-31: Find my path and My path
 
-Status: built and handed over; review pass 1 findings fixed, waiting for review pass 2.
+Status: built and handed over; review passes 1 and 2 findings fixed.
 
 Read first: `CLAUDE.md`, `docs/build-plan.md` A5, B1, B3 flows 1 and 2, B6 (home, section landing, document, checklist, My path) and C2, the store's API as WP-30 documented it (`src/lib/store.ts` doc comment and `docs/design-system.md`), `docs/i18n.md`, `docs/testing.md`.
 
@@ -13,7 +13,7 @@ Read first: `CLAUDE.md`, `docs/build-plan.md` A5, B1, B3 flows 1 and 2, B6 (home
 
 ## Build
 
-1. **Rules and engine.** `paths.json` per A5, generated or validated by the content pipeline (a `paths` collection whose every doc id and anchor must exist). `src/lib/path-engine.ts`: pure `buildPath(profile, manifest, paths)` and the matching rule `applies(appliesTo, profile)`. The two A5 fixtures are tests: `{pty, [vehicle-dealer], pty-growing}` gives exactly Path 4's ten documents in order; `{undecided, general, not-started}` gives Path 1 with three type documents at step 3. The profile shape is A5's; validate it with Zod in the store helper.
+1. **Rules and engine.** `paths.json` per A5, generated or validated by the content pipeline (a `paths` collection whose every doc id and anchor must exist). `src/lib/path-engine.ts`: pure `buildPath(profile, manifest, paths)` and the matching rule `applies(appliesTo, profile)`. The two A5 fixtures are tests: `{pty, [vehicle-dealer], pty-growing}` gives exactly Path 4's ten documents in order; `{undecided, general, not-started}` gives Path 1 with three type documents at step 3. The profile shape is A5's; validate it in the store helper (built: a hand-written check, `parseProfile` in `src/lib/profile.ts`, instead of Zod; see the hand-over).
 2. **Wizard** (`/find-my-path/`, `<st-wizard>`): three steps per B3 flow 1, as one GET form that works without JavaScript. With JavaScript it becomes stepped, with focus moved to each step's heading, "Pty Ltd, growing" disabled with its reason unless the entity is Pty Ltd, and "See my path" saving the profile.
 3. **Pre-rendered results:** without JavaScript, the form lands on a pre-rendered result page for the answers. Pre-render the single-business-type combinations (entity × one type or general × stage), per locale; more than one type needs JavaScript and the page says so (`wizard.noJsOneType`). Record the page count in the hand-over.
 4. **My path** (`/my-path/`): profile chips, edit answers, progress ring, step cards in order with done/not done, the personalised checklist from the store's ticks, and reset profile with a confirm dialog. Empty state when there is no profile.
@@ -37,18 +37,24 @@ As WP-30: `gate:fast`, `build`, chromium, mobile and nojs e2e, `test:a11y`, JS b
 - **No-JavaScript form.** A static host cannot route a query string to a page, so each result page
   has its own submit button (`formaction`) and CSS `:has()` shows the one for the checked answers.
   Where `:has()` does not work, the CSS (inside `@supports selector(:has(*))`) does not apply, and
-  the form offers "Or choose your answers from a list" instead: a link to each of the 49 result
+  the form offers an open list instead, "Choose your path from this list": a link to each of the 49 result
   pages, grouped by how you trade.
 - **JavaScript budgets** (`pnpm dist:budget`, run by `pnpm build`: gzipped level 9, per file,
   summed, without and with a saved profile): heaviest document page `/af/business-types/food/`
-  21.5 KB / 21.5 KB (25 KB budget, 3.5 KB left for WP-33); My path 24.1 KB, `/checklist/` 21.1 KB,
+  21.7 KB / 21.7 KB (25 KB budget, 3.3 KB left for WP-33); My path 24.2 KB, `/checklist/` 21.2 KB,
   Find my path 19.9 KB (45 KB budget); home 17.3 KB, 20.1 KB when it rebuilds the stored path. Before
   review pass 1 the heaviest document page was 24.0 KB without a profile and 26.3 KB with one.
+- **No Zod in the browser for the profile.** Build 1 asked for Zod in the store helper. The
+  profile is checked by `parseProfile` (`src/lib/profile.ts`), hand-written, with the same rules
+  (known entity and stage, known types without duplicates and at least one, "Pty Ltd, growing" only
+  with a Pty Ltd). It saved about 1.4 KB gzipped on every page (review pass 1, major 1).
 - **The stored path.** Document pages never load the path rules. The wizard, My path and the home
   page store the reader's path (`st.pathView.v1`: steps, routes and titles, with the hash of
   `paths.json` and the answers it is for); the top bar's ring and the pager read it. When it is out
   of date only the home page rebuilds it (lazily); until then a document page shows no ring and keeps
-  its pager in section order.
+  its pager in section order. A path element rebuilds the stored path only on its own triggers
+  (connecting, new answers), never because another tab stored one, so two tabs on different builds
+  do not keep overwriting each other (review pass 2, minor 1).
 - **For WP-32 and WP-33.** Read the profile with `readProfile()`, `profileEntity()` and
   `profileBusinessTypes()` from `src/lib/profile-store.ts`. WP-33's "My business types" filter chips
   are not built here; `profileBusinessTypes()` is what they need.
