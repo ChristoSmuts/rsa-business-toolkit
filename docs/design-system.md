@@ -389,10 +389,10 @@ heading ids, so `#to` or `#payment-details` still lands on the right part.
 | Piece | File | Notes |
 | --- | --- | --- |
 | Parser | `src/lib/templates/placeholders.ts` | Pure. Every `[PLACEHOLDER]` and every sample written as text (`QUO-0001`, `R 0.00`, `4XXXXXXXXX`) is a field. Names come from block ids and positions, so the Afrikaans template gives the same names and a draft opens in either language. Labels are the template's: a table row's label, a placeholder that stands alone, or the sentence around a slot with `…` in its place. Business details carry a `profileKey` and are named by the dictionary (`templates.fields.*`) unless the template names them itself (`Information Officer: [Your full name]`). Optional: the nested `[If a company: …]` line and an instruction placeholder in running text. A paragraph with no slot is text in its group, so the form is the whole document. |
-| Totals | `src/lib/templates/totals.ts` | Whole cents. Line = quantity × unit price, rounded; VAT at the template's own rate (`VAT @ 15%`) on the subtotal, rounded once; an empty quantity counts as 1, as the templates write. `parseNumber` reads `1 500.50`, `1,500.50` and `1500,50`. |
-| Draft | `src/lib/templates/draft.ts` | `st.template.<slug>.v1` through `persistentValue`, schema in `zod/mini`. Holds only what differs from the defaults; an empty draft removes the key. |
+| Totals | `src/lib/templates/totals.ts` | Whole cents. Line = quantity × unit price, rounded once; VAT at the template's own rate (`VAT @ 15%`) on the subtotal, rounded once; an empty quantity counts as 1, as the templates write. `readNumber` takes `1500`, `1 500`, `1,500.50`, `1 500,50`, `1.500,50` and `1,500,000`, and **refuses** what could be read two ways (`1.500`, `1,500`), more than two decimals in an amount and text, each with its own message. Limits: an amount, unit price or line amount at most R 1 000 000 000.00, a quantity at most 1 000 000, so `formatRand` can never throw on what was typed. While a used line cannot be read the totals stay blank and the form says why. |
+| Draft | `src/lib/templates/draft.ts` | `st.template.<slug>.v1` through `persistentValue`. Holds only what differs from the defaults; an empty draft removes the key. The schema is lenient by entry: a bad value or line is dropped and the rest kept, and `dropOutOfRange` drops an amount over the limits when the form opens. |
 | Form | `TemplateTool.astro`, `TemplateField.astro`, `TemplateLines.astro` | Groups are fieldsets in the template's order ("Your business", "Document details", then one per heading). No `required` attribute and no submit: validation is soft. `autocomplete` on business fields only. `MAX_LINES` (10) line rows are rendered; rows past the template's own are opened by "Add line". |
-| Preview | `TemplateSheet.astro`, `SheetRuns.astro` | The template's own layout with a `<span data-field>` per slot; while empty a slot shows the template's words, highlighted with `--st-mark-bg`, and an optional slot shows nothing. `SheetRuns.astro` is in `.prettierignore` for the reason `Inline.astro` is. |
+| Preview | `TemplateSheet.astro`, `SheetRuns.astro` | The template's own layout with a `<span data-field>` per slot. An empty slot has **no text**: the template's words are only `data-sample`, shown on screen by a `::before` highlighted with `--st-mark-bg` and printed as a blank line to write on, so a sample such as `R 0.00` or `INV-0001` never reaches paper. An optional slot shows nothing. A slot that is all instruction prints under a label from the template's words ("Customer VAT number: …"). Every paragraph of template text except signature lines has a "Leave this out of the document" box. `SheetRuns.astro` is in `.prettierignore`, and writes text runs itself (through `Inline` they printed "50 %"). |
 | Element | `src/scripts/template-form.ts` | `<st-template-form>`; see the table above. |
 
 Layout: `st-template-form` is a size container. At 52rem and wider the form and the preview sit side
@@ -400,7 +400,14 @@ by side; narrower, "Fill in" and "Preview" are ARIA tabs (arrow keys, Home, End)
 adds the `tabpanel` roles only while the tabs are on screen. Required items, the actions and the
 clear dialog follow. Template pages drop the contents column at 1280px so the tool has the room.
 
-**Printing.** The preview carries `data-print-sheet`, so only the sheet prints, at the page's full
+**Conditional items.** A slot the template words as conditional shows the template's condition
+instead of "(optional)". When the condition has an amount ("required on invoices over R5,000") the
+item joins the required items once the total is above it. The count says it checks only that items
+are filled in, not that the document is correct ("Every item this form checks is filled in.").
+
+**Printing.** Exactly one sheet prints. The form carries `data-print-sheet` in the HTML; the
+element moves it to the preview when it connects (and back when it disconnects). So the preview
+prints with JavaScript, at the page's full
 width (`print.css` turns the sheet's ancestors into plain blocks, or the document grid's sidebar
 track squeezed it into 272px). With the tabs on "Fill in" the preview still prints. Without
 JavaScript the preview is not shown and the **form** is the sheet: it also carries

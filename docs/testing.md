@@ -263,6 +263,20 @@ and remove line with focus, restore, typed-before-connect, Start next, Clear thr
 print, no submit, profile pre-fill, another tab and Clear all my data, tabs by keyboard, and
 disconnect.
 
+Review pass 1 added, each seen failing without its fix (by mutation): a huge line is refused,
+never throws, keeps saving and Clear still works, and a draft saved with one opens with the bad
+value dropped and the rest kept (blocker 1); with and without JavaScript exactly one
+`[data-print-sheet]` prints, and the unfilled preview is hidden without JavaScript (major 1); an empty
+slot has no text and its print `::before` is `""`, and the receipt's printed text has no `INV-0001`,
+`R 0.00` or bracket (major 2); `1.500` is refused with its message and `1.500,50` is R 1 500.50
+(major 3, with a table of formats in `totals.test.ts`); the customer VAT number counts only above
+R5,000 and the count never says complete without it (major 4); on a phone a missing item's link
+leaves the Preview tab and focuses its field (major 5); no stray space after a slot, blank totals
+while a line cannot be read, VAT rounded once on the subtotal (two lines of R 0.03), a paragraph left
+out, 44px links, no date pattern or focus ring on the no-JS printout, and no `<output>` live regions
+on lines. Coverage floors: `src/lib/templates/**` and `src/scripts/template-form.ts`
+(`vitest.config.ts`).
+
 **JavaScript budget on tool pages** (45 KB gzipped): 19.8 KB on every template page, both languages
 (13 files, 52.8 KB raw).
 
