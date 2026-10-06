@@ -426,7 +426,12 @@ Chromium does not keep a grid item or a table inside one together, which is why 
 grid in print. A section taller than a page can still break. The print leading is 1.3, so a
 three-line quotation fits one A4 sheet (`templates.spec.ts` counts the PDF's pages). The site's
 "Official" badge is not shown on the sheet or in the form's template text. Without JavaScript each
-group of the form keeps together the same way.
+group of the form keeps together the same way, and a group taller than a page still breaks. A
+section counts as empty when its paragraphs are left out and its lists are empty (without
+JavaScript, a list field is empty while its placeholder shows). Start next keeps what belongs to
+the business, not to the document: business and bank details, the late-payment terms and every
+"Leave this out" choice. A field that reaches its 5 000-character limit says that the rest was not
+kept.
 
 #### The store (`src/lib/store.ts`, `src/lib/storage/`)
 

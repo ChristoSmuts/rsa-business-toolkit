@@ -285,6 +285,13 @@ over-long draft value cut, not dropped; a refused amount (`R1,500`) is not count
 only paragraph of "Marketing" leaves out its heading (preview and no-JS print); `-R250` reads as a
 discount; a quantity's own message for "1.500"; and the totals' reason inside their live region.
 
+Review pass 3 added, each seen failing first (the e2e ones against the previous build, the unit
+and dom ones by mutation): a section left out with its list emptied does not print, with and without
+JavaScript; the printed privacy notice's sentence runs straight on from the regulator link
+("…inforegulator.org.za." and "…inforegulator.org.za kla."); Start next on an invoice keeps the
+late-payment terms and a "Leave this out" choice; a field at its limit says so; and a refused day
+count is not counted as filled in.
+
 **JavaScript budget on tool pages** (45 KB gzipped): 20.3 KB on every template page, both languages
 (13 files, 53.1 KB raw).
 
