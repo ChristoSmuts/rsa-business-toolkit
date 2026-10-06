@@ -403,7 +403,11 @@ clear dialog follow. Template pages drop the contents column at 1280px so the to
 **Conditional items.** A slot the template words as conditional shows the template's condition
 instead of "(optional)". When the condition has an amount ("required on invoices over R5,000") the
 item joins the required items once the total is above it. The count says it checks only that items
-are filled in, not that the document is correct ("Every item this form checks is filled in.").
+are filled in, not that the document is correct ("Every item this form checks is filled in."). An
+amount or number the form refuses does not count as filled in. An instruction slot with no
+condition ("State your late payment terms here.") is required, so no slot says "(optional)" unless
+the template's words make it so. Every text control has `maxlength` equal to the draft's per-field
+limit (5 000 characters), and a longer value in an old draft is cut to the limit, never dropped.
 
 **Printing.** Exactly one sheet prints. The form carries `data-print-sheet` in the HTML; the
 element moves it to the preview when it connects (and back when it disconnects). So the preview
@@ -413,6 +417,16 @@ track squeezed it into 272px). With the tabs on "Fill in" the preview still prin
 JavaScript the preview is not shown and the **form** is the sheet: it also carries
 `data-print-sheet`, prints the title, labels, values on ruled lines, the template's text and blank
 totals to write in, and a line under the notice says to use the browser's Print command.
+
+On paper the sheet is in **sections**, one per heading of the template (and one for what comes
+before the first heading). Each section is a plain block with `break-inside: avoid`, so a heading
+stays with its text, a details table or the signature lines never split across two sheets, and a
+section whose text is all left out ("Leave this out of the document") goes with its heading.
+Chromium does not keep a grid item or a table inside one together, which is why the sheet is not a
+grid in print. A section taller than a page can still break. The print leading is 1.3, so a
+three-line quotation fits one A4 sheet (`templates.spec.ts` counts the PDF's pages). The site's
+"Official" badge is not shown on the sheet or in the form's template text. Without JavaScript each
+group of the form keeps together the same way.
 
 #### The store (`src/lib/store.ts`, `src/lib/storage/`)
 

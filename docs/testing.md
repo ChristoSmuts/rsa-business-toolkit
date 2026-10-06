@@ -277,6 +277,14 @@ out, 44px links, no date pattern or focus ring on the no-JS printout, and no `<o
 on lines. Coverage floors: `src/lib/templates/**` and `src/scripts/template-form.ts`
 (`vitest.config.ts`).
 
+Review pass 2 added, each seen failing without its fix: a three-line quotation prints on one A4
+sheet (Chromium desktop, page count read from `page.pdf`) and every printed section is a block with
+`break-inside: avoid`; `maxlength` 5 000 on the fields and a long list kept across a reload, with an
+over-long draft value cut, not dropped; a refused amount (`R1,500`) is not counted as filled in; no
+"Official" or "Amptelik" on the printed privacy notice, with or without JavaScript; leaving out the
+only paragraph of "Marketing" leaves out its heading (preview and no-JS print); `-R250` reads as a
+discount; a quantity's own message for "1.500"; and the totals' reason inside their live region.
+
 **JavaScript budget on tool pages** (45 KB gzipped): 20.3 KB on every template page, both languages
 (13 files, 53.1 KB raw).
 
