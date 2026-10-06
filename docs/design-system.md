@@ -415,22 +415,34 @@ best first, and then, always, the results that match some of the words, best fir
 results take every word of every part (a spaced code gives its joined form and its words, a
 hyphenated word its words and the whole chain) and leave out lone numbers and single letters, so a
 junk query (`zzzzqq 1`) and a code with a typo (`VAT246`) still say "nothing found" instead of
-listing every "Prompt 1". Pages about the guide rather than about running a business ("How this was
-made" with its corrections log, and "What has changed") weigh a quarter in every search
-(`DOC_WEIGHT`). Their headings name other pages ("02 Register - what you actually need",
-"Choosing the name"), so a common word must not open them. Three cases, by the query:
+listing every "Prompt 1".
 
-- **Asked for by the page's title**: every word of the query is in the title, and the query covers
-  more than half of the title's words (`how this was made`, `hoe dit gemaak is`, `what has changed`,
-  `wat het verander`). The page's first section leads. `check` or `change` alone does not ask for a
-  page whose title merely holds the word.
-- **Named in a heading**: the entry's own heading holds every word (`corrections`, `regstellings`,
-  `AI generated`). It keeps its weighted place among the all-words results and is never forced to
-  the front, so `register`, `name`, `branding` and `registreer` open their topic, and `AI generated`
-  opens the branding section about AI-made work, with the disclosure further down the first ten.
-- **Named only in passing**: the words are only in the entry's text. It ranks with the any-word
-  results by its weighted score: the corrections log names many topics next to "deadline", and
-  `PAYE deadline` opens the PAYE entry.
+**A query that names a page leads with that page.** A page has two titles: the one in the
+navigation and the contents (the manifest title, "How this was made and how to check it") and the
+H1 it shows ("AI disclosure"). The first entry of every page carries both in its title field. When
+every word of the query is a word of one of them, and the query covers more than half of that
+title's words, the page's first entry leads: `AI disclosure`, `KI-openbaarmaking`, `how this was
+made`, `marketing prompts`, `tax and sars`, `you are the business`, `what changed`, `verander`.
+Stop words do not count, nor do `has`, `have` and `had` (as `het` does not), so both languages count
+alike. A word counts whole: `change` is not "changed". Only the last word of a longer query, while
+it is still typed and from four letters, may be the beginning of one (`marketing prom`); `ve` or
+`ver` alone names nothing. One word of a two-word title (`disclosure`, `AI`, `check`) does not name
+the page. When two pages qualify, the one the query covers most leads, then the first in reading
+order (`Start here`: the guide's own, then the Core section's). A test asks every page's titles,
+in both languages, typed and finished, for its page.
+
+**Headings before text.** Within the results that match every word, an entry whose own heading holds
+every word comes before one that holds them only in its text (`BTW-registrasie` opens "VAT: probably
+not yet" before the tax invoice template).
+
+**Pages about the guide.** "How this was made" (with its corrections log) and "What has changed"
+weigh a quarter in every search (`DOC_WEIGHT`), and their headings are not moved before the text
+of other pages: the changelog's headings name other pages ("02 Register - what you actually need"),
+so `register`, `name` and `branding` open their topic. An entry of theirs that holds the words only
+in its text ranks with the any-word results: the corrections log names many topics next to
+"deadline", and `PAYE deadline` opens the PAYE entry. Asked for by a title, they lead like any page.
+`AI generated` is not a title, and also a branding question: the branding section on AI-made work
+leads, with the disclosure further down the first ten.
 
 The count of results that match every word is the block listed first. At most 12
 terms are searched (the fields take at most 200 characters). Counts are true totals, with how many
@@ -456,7 +468,7 @@ not fade and the class is removed after the same two seconds. On the same page: 
 changes and the heading takes focus. Focus does not go back to the opener then.
 
 **Weight.** Nothing about search loads with a page except `<st-search>` and the dialog markup. The
-results code and MiniSearch (12.6 KB gzip) and the index (165 KB gzip in English, 182 KB in
+results code and MiniSearch (12.7 KB gzip) and the index (166 KB gzip in English, 182 KB in
 Afrikaans) are fetched when the
 dialog first opens; with low data, the index waits for the first key press. The dialog scrolls as a
 whole, with the title and field sticky at its top: a scrolling box that held only the results,
