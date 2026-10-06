@@ -128,7 +128,17 @@
       }
     }
   ],
-  "tasks": {},
+  "tasks": {
+    "core/you-are-the-business:8e6615a6": {
+      "entity": "pty"
+    },
+    "core/you-are-the-business:b554cb87": {
+      "entity": "pty"
+    },
+    "core/you-are-the-business:b5a8d0d2": {
+      "entity": "pty"
+    }
+  },
   "tableRows": [
     {
       "docs": ["lookup/checklist"],

@@ -121,6 +121,8 @@ Keep the certificate on the wall at the premises, not in a drawer at home.
 
 A vehicle you hold as stock has to sit somewhere on the national system.
 
+For a dealer, a TRN or BRNC is worth having. It separates stock vehicles from your personal vehicle on the system, which matters when fines arrive.
+
 ### If you trade as a company
 
 You need a Business Register Number Certificate (BRNC). Full process, documents, costs, and the proxy rules are in [Vehicles for your business](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
@@ -138,8 +140,6 @@ Or apply for a Traffic Register Number. If you are an organisation that serves a
 > **In plain words:** If you trade under a business name but are not a registered company, you can get a traffic register number so vehicles can be registered under that name.
 
 A traffic register number lets a trading name appear on the vehicle record rather than only your personal ID. Apply at your registering authority. Bring proof of address, ID photographs, and the prescribed fee.
-
-For a dealer, a TRN or BRNC is worth having. It separates stock vehicles from your personal vehicle on the system, which matters when fines arrive.
 
 ---
 

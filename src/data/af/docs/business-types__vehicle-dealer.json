@@ -882,6 +882,18 @@
       "sourceHash": "bd59398b7c3f7764"
     },
     {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n handelaar is ’n TRN of BRNC die moeite werd. Dit skei voorraadvoertuie van jou persoonlike voertuig op die stelsel, wat saak maak wanneer boetes opdaag."
+        }
+      ],
+      "hash": "cf7ad321befa8cff",
+      "id": "layer-2-getting-vehicles-registered-to-the-business.2",
+      "kind": "paragraph",
+      "sourceHash": "16041ebc84eaff44"
+    },
+    {
       "appliesTo": {
         "entity": "pty"
       },
@@ -1016,20 +1028,8 @@
       "sourceHash": "8fa0ae4fc192acbc"
     },
     {
-      "c": [
-        {
-          "t": "text",
-          "v": "Vir ’n handelaar is ’n TRN of BRNC die moeite werd. Dit skei voorraadvoertuie van jou persoonlike voertuig op die stelsel, wat saak maak wanneer boetes opdaag."
-        }
-      ],
-      "hash": "cf7ad321befa8cff",
-      "id": "if-you-trade-as-a-sole-proprietor.6",
-      "kind": "paragraph",
-      "sourceHash": "16041ebc84eaff44"
-    },
-    {
       "hash": "58b63e273b964039",
-      "id": "if-you-trade-as-a-sole-proprietor.7",
+      "id": "if-you-trade-as-a-sole-proprietor.6",
       "kind": "hr",
       "sourceHash": "58b63e273b964039"
     },
@@ -3410,7 +3410,7 @@
       "sourceHash": "3cbbad0d8e4dd749"
     }
   ],
-  "contentHash": "2313ea546c372b91",
+  "contentHash": "66856bc36bc126fe",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
