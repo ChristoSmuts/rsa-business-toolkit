@@ -419,21 +419,29 @@ listing every "Prompt 1".
 
 **A query that names a page leads with that page.** A page has two titles: the one in the
 navigation and the contents (the manifest title, "How this was made and how to check it") and the
-H1 it shows ("AI disclosure"). The first entry of every page carries both in its title field. When
-every word of the query is a word of one of them, and the query covers more than half of that
-title's words, the page's first entry leads: `AI disclosure`, `KI-openbaarmaking`, `how this was
+H1 it shows ("AI disclosure"). Every entry's breadcrumb holds the navigation title, and the first
+entry's also holds the H1; the boosted heading field holds only the entry's own heading, so a page
+title never lifts an overview page above the template asked for (`quote template` opens the
+Quotation template). A page title lifts a page only through this rule: when every word of the
+query is a word of one of the two titles, and the query covers more than half of that title's
+words, the page's first entry leads: `AI disclosure`, `KI-openbaarmaking`, `how this was
 made`, `marketing prompts`, `tax and sars`, `you are the business`, `what changed`, `verander`.
 Stop words do not count, nor do `has`, `have` and `had` (as `het` does not), so both languages count
-alike. A word counts whole: `change` is not "changed". Only the last word of a longer query, while
-it is still typed and from four letters, may be the beginning of one (`marketing prom`); `ve` or
-`ver` alone names nothing. One word of a two-word title (`disclosure`, `AI`, `check`) does not name
+alike. A word counts whole: `change` is not "changed". Only the last word, while it is still typed
+and from four letters, and only after another word as typed (stop words count), may be the
+beginning of one (`marketing prom`, `you are the busine`, `wat het verand`, `KI-openb`); `ve`, `ver`
+or `verande` alone names nothing. One word of a two-word title (`disclosure`, `AI`, `check`) does not name
 the page. When two pages qualify, the one the query covers most leads, then the first in reading
 order (`Start here`: the guide's own, then the Core section's). A test asks every page's titles,
 in both languages, typed and finished, for its page.
 
-**Headings before text.** Within the results that match every word, an entry whose own heading holds
-every word comes before one that holds them only in its text (`BTW-registrasie` opens "VAT: probably
-not yet" before the tax invoice template).
+**Headings before text, and written words before typos.** Within the results that match every word,
+an entry whose own heading holds every word as written (whole words; the last word's beginning while
+it is typed, from four letters; never a typo match) comes before one that holds them only in its
+text (`BTW-registrasie` opens "VAT: probably not yet" before the tax invoice template). Among the
+rest, a result that needs a typo match for a word counts half its score against those that hold
+every word as written: `market stall` lists the retail page's "Do you need a licence" ("market
+stalls need a trading permit") before Marketing prompts' "small businesses".
 
 **Pages about the guide.** "How this was made" (with its corrections log) and "What has changed"
 weigh a quarter in every search (`DOC_WEIGHT`), and their headings are not moved before the text
@@ -468,7 +476,7 @@ not fade and the class is removed after the same two seconds. On the same page: 
 changes and the heading takes focus. Focus does not go back to the opener then.
 
 **Weight.** Nothing about search loads with a page except `<st-search>` and the dialog markup. The
-results code and MiniSearch (12.7 KB gzip) and the index (166 KB gzip in English, 182 KB in
+results code and MiniSearch (12.9 KB gzip) and the index (166 KB gzip in English, 182 KB in
 Afrikaans) are fetched when the
 dialog first opens; with low data, the index waits for the first key press. The dialog scrolls as a
 whole, with the title and field sticky at its top: a scrolling box that held only the results,

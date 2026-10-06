@@ -215,13 +215,13 @@ Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, r
 
 ## JavaScript budget: `pnpm dist:budget`
 
-Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-06, at the end of WP-33 review pass 10, with the Afrikaans translation merged:
+Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-06, at the end of WP-33 review pass 11, with the Afrikaans translation merged:
 
 | What | Gzip |
 | --- | --- |
 | Largest document page (`branding/already-have-your-name/`) | 7.9 KB |
-| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 18.8 KB |
-| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 12.7 KB |
+| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 19.1 KB |
+| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 12.9 KB |
 | Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 165.6 / 182.3 KB |
 
 WP-30 adds the store, the checklists, copy buttons, the table of contents and the settings to every document page; its numbers replace these when it merges.
