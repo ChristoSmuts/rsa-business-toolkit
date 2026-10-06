@@ -167,7 +167,13 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
                   <div class="st-tgroup__item" data-omit-wrap>
                     {text}
                     <label class="st-check st-tgroup__omit">
-                      <input type="checkbox" name={item.omit} value="1" data-omit={item.block.id} />
+                      <input
+                        type="checkbox"
+                        name={item.omit}
+                        value="1"
+                        data-omit={item.block.id}
+                        data-carry
+                      />
                       {t('templates.leaveOut')}
                     </label>
                   </div>
@@ -446,8 +452,9 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
 
     /* A part whose text is all left out does not print. `:has()` cannot nest, so: only legend and text items, and no box left unticked. */
     .st-tgroup:has([data-omit]):not(
-        :has(> :not(legend, .st-tgroup__item)),
-        :has([data-omit]:not(:checked))
+        :has(> :not(legend, .st-tgroup__item, .st-tfield--list)),
+        :has([data-omit]:not(:checked)),
+        :has(textarea:not(:placeholder-shown))
       ) {
       display: none;
     }

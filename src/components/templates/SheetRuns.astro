@@ -8,7 +8,9 @@
  * pass 1, major 2: an empty "Balance still owing" printed "R 0.00"). An optional field has no
  * sample. Text and line breaks are written here, not through `Inline`, whose template starts with
  * whitespace and printed "50 %" (pass 1, minor 1). Every other run is the document's own and goes
- * through `Inline`, so links, signature lines and emphasis render exactly as on a document page.
+ * through `Inline`, so signature lines and emphasis render exactly as on a document page. An
+ * external link is written here too, as a plain link: through `Inline` it carried the site's
+ * "Official" badge, and the space before it, onto the customer's document (review pass 3, nit 1).
  *
  * Listed in `.prettierignore` for the reason `Inline.astro` is: a line break between two runs
  * would be a space the reader sees ("Ltd ,"). Keep each branch on one line.
@@ -32,5 +34,6 @@ const sampleOf = (name: string): string => (fields.get(name)?.required || fields
   : run.t === 'sheet-strong' ? <strong><Self runs={run.c} context={context} fields={fields} /></strong>
   : run.t === 'text' ? run.v
   : run.t === 'br' ? <br />
+  : run.t === 'link' && 'external' in run ? <a href={run.href} rel="noopener noreferrer"><Self runs={run.c} context={context} fields={fields} /></a>
   : <Inline runs={[run]} context={context} />
 )}

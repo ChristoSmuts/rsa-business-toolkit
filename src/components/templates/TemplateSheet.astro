@@ -262,10 +262,10 @@ const sections = model.sheet.reduce<(typeof model.sheet)[number][][]>((all, bloc
   }
 
   /*
-   * A section of the template with nothing left in it (every paragraph left out) is not on the
-   * document, heading included (pass 2, minor 5).
+   * A section of the template with nothing left in it (every paragraph left out, every list
+   * emptied) is not on the document, heading included (pass 2, minor 5; pass 3, minor 1).
    */
-  .st-tsheet__section:has(> h3):not(:has(> :not(h3, [data-omitted]))) {
+  .st-tsheet__section:has(> h3):not(:has(> :not(h3, [data-omitted], ul:empty, ol:empty))) {
     display: none;
   }
 
@@ -314,7 +314,7 @@ const sections = model.sheet.reduce<(typeof model.sheet)[number][][]>((all, bloc
       padding-block: 0.15em;
     }
 
-    .st-tsheet__section:has(> h3):not(:has(> :not(h3, [data-omitted]))) {
+    .st-tsheet__section:has(> h3):not(:has(> :not(h3, [data-omitted], ul:empty, ol:empty))) {
       display: none;
     }
 

@@ -345,6 +345,12 @@ export class StTemplateForm extends HTMLElement {
     const locale = this.dataset['locale'] === 'af' ? 'af' : 'en';
 
     for (const control of this.#controls.values()) {
+      // At the limit, say that the rest of a paste was not kept (review pass 3, nit 3).
+      const tooLong = control
+        .closest('[data-field-wrap]')
+        ?.querySelector<HTMLElement>('[data-too-long]');
+      if (tooLong)
+        tooLong.hidden = !(control.maxLength > 0 && control.value.length >= control.maxLength);
       const kind = control.dataset['kind'];
       if (kind === 'money' || kind === 'number') {
         const read =

@@ -179,11 +179,15 @@ describe('parseTemplate on the five templates', () => {
     expect(field(m, 'payment-details.1:r0')).toMatchObject({ label: 'Bank', carry: true });
     expect(field(m, 'payment-details.1:r1').hint).toBe('Exactly as it appears on the account');
     // An instruction in running text is optional.
-    // An instruction with no condition is a slot to fill, not "(optional)" (review pass 2, nit 3).
+    // An instruction with no condition is a slot to fill, not "(optional)" (review pass 2, nit 3),
+    // and the business's own, so Start next keeps it (review pass 3, nit 5).
     expect(field(m, 'payment-details.3:1')).toMatchObject({
       required: true,
+      carry: true,
       label: 'State your late payment terms here',
     });
+    // The due date is the document's own.
+    expect(field(m, 'payment-details.3:0').carry).toBe(false);
     expect(field(m, 'payment-details.3:0')).toMatchObject({
       required: true,
       label: 'Payment is due by ….',

@@ -50,14 +50,20 @@ const TOOL = `
       <input name="registeredName" data-kind="text" data-carry data-profile-key="registeredName" />
       <input name="number" data-kind="text" data-required data-number value="INV-0001" />
       <input id="issued" name="issued" type="text" data-type="date" data-kind="date" data-required />
-      <input id="customer" name="customer" data-kind="text" data-required />
+      <div data-field-wrap="customer">
+        <input id="customer" name="customer" data-kind="text" data-required maxlength="30" />
+        <p data-too-long hidden>Up to 30 characters.</p>
+      </div>
+      <input id="days" name="days" data-kind="number" data-error-id="days-error" />
+      <p id="days-error" hidden data-message-format="Cannot read" data-message-ambiguous="Two ways" data-message-decimals="Too many" data-message-too-large="Too large"><span data-error-message>Cannot read</span></p>
+      <input id="terms" name="terms" data-kind="text" data-carry />
       <input id="customerVat" name="customerVat" data-kind="text" data-required-above="500000" />
       <input name="bank" data-kind="text" data-required data-carry />
       <input name="reference" data-kind="text" data-required data-follows="number" />
       <input name="paid" data-kind="money" data-error-id="paid-error" />
       <p id="paid-error" hidden data-message-format="Cannot read" data-message-ambiguous="Two ways" data-message-decimals="Two decimals" data-message-too-large="Too large"><span data-error-message>Cannot read</span></p>
       <p data-text-item>Thank you.</p>
-      <input type="checkbox" name="omit:thanks" value="1" data-omit="thanks" />
+      <input type="checkbox" name="omit:thanks" value="1" data-omit="thanks" data-carry />
       <textarea name="items" data-kind="list" data-sample="[Be specific]"></textarea>
       <ol>${row(0, false)}${row(1, true)}${row(2, true)}</ol>
       <button type="button" data-add-line>Add line</button>
@@ -96,6 +102,7 @@ const TOOL = `
     <li data-required-item="number"><a href="#">Invoice number</a></li>
     <li data-required-item="customer"><a href="#customer">Customer name</a></li>
     <li data-required-item="paid"><a href="#paid">Amount received</a></li>
+    <li data-required-item="days"><a href="#days">This quote is valid for … days.</a></li>
     <li data-required-item="customerVat" data-required-above="500000"><a href="#customerVat">Customer VAT number, if they are a vendor — required on invoices over R5,000</a></li>
     <li data-required-item="reference"><a href="#">Reference</a></li>
     <li data-required-item="lines"><a href="#">Supply</a></li>
@@ -151,7 +158,7 @@ describe('<st-template-form>', () => {
     // A date is a picker once the script runs.
     expect((control('issued') as HTMLInputElement).type).toBe('date');
     expect(document.querySelector('[data-required-count]')?.textContent).toBe(
-      '2 of 6 required items present',
+      '2 of 7 required items present',
     );
   });
 
@@ -493,11 +500,11 @@ describe('<st-template-form>: review WP-32 pass 1', () => {
     type('lines.0.unitPrice', '100');
     expect(vat?.hidden).toBe(true);
     const below = document.querySelector('[data-required-count]')?.textContent;
-    expect(below).toBe('3 of 6 required items present');
+    expect(below).toBe('3 of 7 required items present');
     type('lines.0.unitPrice', '9000');
     expect(vat?.hidden).toBe(false);
     expect(document.querySelector('[data-required-count]')?.textContent).toBe(
-      '3 of 7 required items present',
+      '3 of 8 required items present',
     );
     type('businessName', 'B');
     type('customer', 'C');
@@ -505,6 +512,7 @@ describe('<st-template-form>: review WP-32 pass 1', () => {
       'All required items are present.',
     );
     type('paid', '10');
+    type('days', '30');
     type('customerVat', '4123456789');
     expect(document.querySelector('[data-required-count]')?.textContent).toBe(
       'All required items are present.',
@@ -559,5 +567,37 @@ describe('<st-template-form>: review WP-32 pass 1', () => {
     const message = document.querySelector<HTMLElement>('[data-totals-blocked]');
     expect(message?.hidden).toBe(false);
     expect(message?.closest('[aria-live]')).not.toBeNull();
+  });
+
+  it('does not count a number it refuses as filled in (review pass 3, nit 4)', () => {
+    mount(TOOL);
+    const item = document.querySelector<HTMLElement>('[data-required-item="days"]');
+    type('days', '30 days');
+    expect(item?.hidden).toBe(false);
+    expect(control('days').getAttribute('aria-invalid')).toBe('true');
+    type('days', '30');
+    expect(item?.hidden).toBe(true);
+  });
+
+  it('Start next keeps the business terms and the left-out text (review pass 3, nit 5)', () => {
+    mount(TOOL);
+    type('terms', 'Interest at 2% a month after 30 days.');
+    const box = control('omit:thanks') as HTMLInputElement;
+    box.checked = true;
+    box.dispatchEvent(new Event('input', { bubbles: true }));
+    type('customer', 'Thandi');
+    click('[data-start-next]');
+    expect(control('terms').value).toBe('Interest at 2% a month after 30 days.');
+    expect((control('omit:thanks') as HTMLInputElement).checked).toBe(true);
+    expect(control('customer').value).toBe('');
+  });
+
+  it('says when a field reaches its limit, so a cut paste is not silent (review pass 3, nit 3)', () => {
+    mount(TOOL);
+    const message = document.querySelector<HTMLElement>('[data-too-long]');
+    type('customer', 'Short');
+    expect(message?.hidden).toBe(true);
+    type('customer', 'x'.repeat(30));
+    expect(message?.hidden).toBe(false);
   });
 });

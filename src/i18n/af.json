@@ -546,7 +546,8 @@
     "requiredNote": "Dit kyk net of elke item iets in het. Dit kyk nie of die dokument korrek of volledig is nie.",
     "totalsBlocked": "’n Reël het ’n getal wat nie gelees kan word nie, daarom word die totale nie gewys nie. Maak die gemerkte reël reg.",
     "leaveOut": "Laat dit uit die dokument uit",
-    "ambiguousQuantity": "Dit kan op twee maniere gelees word. Skryf eenduisend vyfhonderd as {thousands}, of een en ’n half as {decimal}."
+    "ambiguousQuantity": "Dit kan op twee maniere gelees word. Skryf eenduisend vyfhonderd as {thousands}, of een en ’n half as {decimal}.",
+    "tooLong": "Hierdie veld hou tot {max} karakters. Enigiets daarna word nie gehou nie."
   },
   "validation": {
     "summaryTitle": "Kyk weer na hierdie antwoorde",

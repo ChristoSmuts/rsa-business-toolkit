@@ -496,7 +496,9 @@ function paragraphField(
     ...(instruction && pure && hint ? { printLabel: label } : {}),
     sample: `[${run.v}]`,
     defaultValue: '',
-    carry: false,
+    // The business's own terms ("State your late payment terms here.") are the same on every
+    // document, so Start next keeps them (review pass 3, nit 5).
+    carry: instruction && condition === undefined,
   };
 }
 

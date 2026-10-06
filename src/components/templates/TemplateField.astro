@@ -9,7 +9,7 @@
  * printing: there is no `required` attribute, and the form never submits.
  */
 import Icon from '../ui/Icon.astro';
-import { useTranslations } from '../../i18n';
+import { formatNumber, useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
 import type { ProfileKey, TemplateField } from '../../lib/templates/placeholders';
 import { fieldId } from '../../lib/templates/ids';
@@ -89,7 +89,10 @@ const common = {
 };
 ---
 
-<div class="st-field st-tfield" data-field-wrap={field.name}>
+<div
+  class:list={['st-field st-tfield', { 'st-tfield--list': field.kind === 'list' }]}
+  data-field-wrap={field.name}
+>
   <label for={id} class:list={[{ 'st-visually-hidden': hideLabel }]}>
     <span lang={fromDictionary ? undefined : textLang}>{label}</span>
     {optional && <span class="st-tfield__optional"> {t('templates.optional')}</span>}
@@ -102,7 +105,12 @@ const common = {
     </p>
   )}
   {field.kind === 'list' ? (
-    <textarea {...common} rows="5" set:text={field.defaultValue}></textarea>
+    <textarea
+      {...common}
+      rows="5"
+      placeholder={t('templates.onePerLine')}
+      set:text={field.defaultValue}
+    ></textarea>
   ) : (
     <input
       {...common}
@@ -120,6 +128,11 @@ const common = {
         <option value={option} />
       ))}
     </datalist>
+  )}
+  {field.kind !== 'date' && (
+    <p class="st-hint" data-too-long hidden>
+      {t('templates.tooLong', { max: formatNumber(locale, MAX_VALUE_LENGTH) })}
+    </p>
   )}
   {numeric && (
     <p class="st-error-text" id={errorId} hidden {...messages}>

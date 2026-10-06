@@ -225,6 +225,18 @@ test.describe('a template without JavaScript', () => {
     await expect(page.locator('#how-long-we-keep-it')).toBeVisible();
   });
 
+  test('a section left out with its list emptied does not print (review pass 3, minor 1)', async ({
+    page,
+  }) => {
+    await page.goto('templates/privacy-notice/');
+    const section = page.locator('#who-we-share-it-with');
+    await section.getByRole('checkbox').check();
+    await section.getByRole('textbox').fill('');
+    await page.emulateMedia({ media: 'print' });
+    await expect(section).toBeHidden();
+    await expect(page.locator('#how-long-we-keep-it')).toBeVisible();
+  });
+
   test('prints an empty receipt slot blank: no sample, no date pattern, no focus ring', async ({
     page,
   }) => {

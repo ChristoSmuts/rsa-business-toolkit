@@ -368,9 +368,40 @@ test.describe('the other templates', () => {
     expect(printed).toContain('Your rights');
   });
 
-  for (const [lang, word] of [
-    ['', 'Official'],
-    ['af/', 'Amptelik'],
+  test('a section whose text is left out and whose list is empty does not print (review pass 3, minor 1)', async ({
+    page,
+  }) => {
+    await page.goto('templates/privacy-notice/');
+    await expect(page.locator('[data-required-count]')).not.toBeEmpty();
+    const section = page.locator('#who-we-share-it-with');
+    await section.getByRole('checkbox').check();
+    await section.getByRole('textbox').fill('');
+    await page.emulateMedia({ media: 'print' });
+    const printed = await sheet(page).innerText();
+    expect(printed).not.toContain('Who we share it with');
+    expect(printed).toContain('How long we keep it');
+  });
+
+  test('Start next on an invoice keeps the late-payment terms and the left-out line (review pass 3, nit 5)', async ({
+    page,
+  }) => {
+    await page.goto('templates/invoice/');
+    await expect(page.locator('[data-required-count]')).not.toBeEmpty();
+    const terms = page.getByLabel('State your late payment terms here');
+    await terms.fill('Interest at 2% a month after 30 days.');
+    const leaveOut = page.locator('#payment-details').getByRole('checkbox');
+    await leaveOut.check();
+    await page.getByLabel('Customer name').fill('Thandi');
+    await page.getByRole('button', { name: en.templates.items.invoice?.startNext ?? '' }).click();
+    await expect(page.getByLabel('Invoice number')).toHaveValue('INV-0002');
+    await expect(terms).toHaveValue('Interest at 2% a month after 30 days.');
+    await expect(leaveOut).toBeChecked();
+    await expect(page.getByLabel('Customer name')).toHaveValue('');
+  });
+
+  for (const [lang, word, sentenceEnd] of [
+    ['', 'Official', 'at inforegulator.org.za.'],
+    ['af/', 'Amptelik', 'by inforegulator.org.za kla.'],
   ] as const) {
     test(`a printed privacy notice carries no site badge (${word}) (review pass 2, minor 4)`, async ({
       page,
@@ -380,10 +411,13 @@ test.describe('the other templates', () => {
       const printed = await sheet(page).innerText();
       expect(printed).toContain('inforegulator.org.za');
       expect(printed).not.toContain(word);
+      // The sentence runs on from the link, with no space or hidden text where the badge was
+      // (review pass 3, nit 1).
+      expect(printed).toContain(sentenceEnd);
     });
   }
 
-  test('a field keeps up to the draft limit and says so while typing (review pass 2, minor 2)', async ({
+  test('a field keeps up to the draft limit and says so when a paste is cut (review pass 2 minor 2, pass 3 nit 3)', async ({
     page,
   }) => {
     await page.goto('templates/quotation/');
@@ -393,7 +427,10 @@ test.describe('the other templates', () => {
     const long = 'Two coats of paint on every wall\n'.repeat(200);
     await included.fill(long);
     const kept = await included.inputValue();
-    expect(kept.length).toBeLessThanOrEqual(5000);
+    expect(kept.length).toBe(5000);
+    await expect(
+      page.locator('[data-field-wrap="what-is-included.1"] [data-too-long]'),
+    ).toBeVisible();
     await page.reload();
     await expect(page.getByRole('textbox', { name: 'What is included' })).toHaveValue(kept);
   });
