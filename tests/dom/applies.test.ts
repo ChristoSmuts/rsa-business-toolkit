@@ -57,6 +57,14 @@ const BLOCKS = `
     <p class="st-tasklist__hidden" hidden><span data-hidden-text></span>
       <button type="button" data-show-list hidden>Show</button></p>
   </st-checklist>
+  <st-checklist id="some-beauty">
+    <fieldset>
+      <label class="st-check" id="sb1"><input type="checkbox" data-task="g" /> All</label>
+      <label class="st-check" id="sb2" data-applies data-types="beauty"><input type="checkbox" data-task="h" /> Beauty</label>
+    </fieldset>
+    <p class="st-tasklist__hidden" hidden><span data-hidden-text></span>
+      <button type="button" data-show-list hidden>Show</button></p>
+  </st-checklist>
   <table><tbody>
     <tr id="row-all"><td>All</td></tr>
     <tr id="row-pty" data-applies data-entity="pty"><td>Company</td></tr>
@@ -68,6 +76,8 @@ const marker = (id: string): HTMLElement =>
   document.querySelector<HTMLElement>(`[data-marker-for="${id}"]`)!;
 const hiddenItems = (count: number): string =>
   `${count} ${count === 1 ? 'item is' : 'items are'} hidden`;
+const showItems = (count: number): string =>
+  `Show ${count} hidden ${count === 1 ? 'item' : 'items'}`;
 
 beforeEach(() => {
   clearAll();
@@ -89,6 +99,44 @@ describe('sectionOf', () => {
       'P',
     ]);
     expect(sectionOf(el('food')).map((e) => e.id)).toEqual(['food', 'food-text']);
+  });
+});
+
+describe('a sub-heading for everyone under a heading that is not (review WP-31 pass 3, major 1)', () => {
+  const NESTED = `
+    <div class="st-hidden-marker" data-marker-for="sole-wants" hidden><button type="button" data-show-hidden="sole-wants">Show</button></div>
+    <h2 id="sole-wants" data-depth="2" data-applies data-entity="sole-prop" tabindex="-1">What SARS wants from a sole proprietor</h2>
+    <p id="sole-intro">Sole only</p>
+    <h3 id="provisional" data-depth="3" tabindex="-1">Provisional tax</h3>
+    <p id="provisional-text">Directors too</p>
+    <div class="st-hidden-marker" data-marker-for="sole-again" hidden><button type="button" data-show-hidden="sole-again">Show</button></div>
+    <h3 id="sole-again" data-depth="3" data-applies data-entity="sole-prop" tabindex="-1">Sole again</h3>
+    <p id="sole-again-text">Sole only</p>
+    <div class="st-hidden-marker" data-marker-for="company-wants" hidden><button type="button" data-show-hidden="company-wants">Show</button></div>
+    <h2 id="company-wants" data-depth="2" data-applies data-entity="pty" tabindex="-1">What SARS wants from a company</h2>
+    <p id="company-text">Company</p>`;
+  const pty = { entity: 'pty', businessTypes: ['food'], stage: 'trading' } as const;
+
+  it('stays visible, with what is under it; what follows collapses behind its own marker', () => {
+    mount(NESTED);
+    filterByProfile(document.body, pty, { markers: true });
+    expect(filtered('sole-wants')).toBe(true);
+    expect(filtered('sole-intro')).toBe(true);
+    expect(filtered('provisional')).toBe(false);
+    expect(filtered('provisional-text')).toBe(false);
+    expect(filtered('sole-again')).toBe(true);
+    expect(filtered('sole-again-text')).toBe(true);
+    expect(marker('sole-wants').hidden).toBe(false);
+    expect(marker('sole-again').hidden).toBe(false);
+    expect(filtered('company-wants')).toBe(false);
+  });
+
+  it('“Show” on the parent brings back all of it and leaves no marker inside', () => {
+    mount(`<st-applies-scope data-mode="always">${NESTED}</st-applies-scope>`);
+    filterByProfile(document.body, pty, { markers: true });
+    marker('sole-wants').querySelector('button')!.click();
+    expect(document.querySelectorAll(`.${FILTERED}`)).toHaveLength(0);
+    expect(marker('sole-again').hidden).toBe(true);
   });
 });
 
@@ -119,7 +167,7 @@ describe('filterByProfile', () => {
 
   it('collapses a checklist with every item hidden to its line, with Show (review WP-31 pass 2, minor 2)', () => {
     mount(BLOCKS);
-    filterByProfile(document.body, sole, { markers: true, hiddenItems });
+    filterByProfile(document.body, sole, { markers: true, hiddenItems, showItems });
     const list = el('all-beauty');
     const line = list.querySelector<HTMLElement>('.st-tasklist__hidden')!;
     expect(filtered('all-beauty')).toBe(false);
@@ -127,12 +175,26 @@ describe('filterByProfile', () => {
     expect(line.hidden).toBe(false);
     expect(line.querySelector('[data-hidden-text]')?.textContent).toBe('2 items are hidden');
     expect(line.querySelector<HTMLElement>('[data-show-list]')!.hidden).toBe(false);
+    expect(line.querySelector('[data-show-list]')?.textContent).toBe('Show 2 hidden items');
     // My path (no markers) leaves out such a list altogether.
     filterByProfile(document.body, sole, { markers: false });
     expect(filtered('all-beauty')).toBe(true);
     clearFilter(document.body);
     expect(line.hidden).toBe(true);
     expect(line.querySelector<HTMLElement>('[data-show-list]')!.hidden).toBe(true);
+  });
+
+  it('offers Show on a partly hidden checklist too, named by the count (review WP-31 pass 3, minors 2 and 3)', () => {
+    mount(BLOCKS);
+    filterByProfile(document.body, sole, { markers: true, hiddenItems, showItems });
+    const line = el('some-beauty').querySelector<HTMLElement>('.st-tasklist__hidden')!;
+    expect(filtered('sb1')).toBe(false);
+    expect(filtered('sb2')).toBe(true);
+    expect(line.hidden).toBe(false);
+    expect(line.querySelector('[data-hidden-text]')?.textContent).toBe('1 item is hidden');
+    const show = line.querySelector<HTMLButtonElement>('[data-show-list]')!;
+    expect(show.hidden).toBe(false);
+    expect(show.textContent).toBe('Show 1 hidden item');
   });
 
   it('shows both entities to an undecided reader and filters only by type', () => {
@@ -198,7 +260,7 @@ describe('<st-applies-scope>', () => {
     profile.set(pty);
     onlyMine.set(true);
     mount(
-      `<st-applies-scope data-mode="switch" data-hidden-one="{count} item is hidden" data-hidden-other="{count} items are hidden">${BLOCKS}</st-applies-scope>`,
+      `<st-applies-scope data-mode="switch" data-hidden-one="{count} item is hidden" data-hidden-other="{count} items are hidden" data-show-one="Show {count} hidden item" data-show-other="Show {count} hidden items">${BLOCKS}</st-applies-scope>`,
     );
     expect(filtered('all-beauty-set')).toBe(true);
     el('all-beauty').querySelector<HTMLButtonElement>('[data-show-list]')!.click();

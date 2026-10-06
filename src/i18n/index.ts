@@ -129,6 +129,7 @@ interface ParamNames {
   'checklist.progress': 'done' | 'total';
   'checklist.partProgress': 'done' | 'part' | 'total';
   'checklist.hiddenItems': 'count';
+  'checklist.showHiddenItems': 'count';
   'checklist.tickedOn': 'date';
   'templates.openNamed': 'name';
   'templates.fields.tradingAsLine': 'company' | 'number';

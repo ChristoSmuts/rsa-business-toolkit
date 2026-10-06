@@ -13,7 +13,8 @@ const EM_DASH = ' — ';
  * Why a step is on the path: the words after the em dash in its item of the "Choose your path"
  * list ("Core: start here — the order to do things"), or, in an item without one, the words
  * before its first link ("If you decide yes, Running a Pty Ltd and …" gives "If you decide yes";
- * review WP-31 pass 2, nit 3). The markdown says it, in every language, so the page never invents
+ * review WP-31 pass 2, nit 3) or, when it starts with its link, the words after its last link
+ * ("Register: what you actually need, specifically the POPIA section"; pass 3, nit 1). The markdown says it, in every language, so the page never invents
  * a reason. `undefined` when the item gives none.
  */
 export function stepWhy(source: Doc, listId: string, item: number): string | undefined {
@@ -25,13 +26,22 @@ export function stepWhy(source: Doc, listId: string, item: number): string | und
   const text = plainText(runs);
   const at = text.indexOf(EM_DASH);
   if (at === -1) {
-    const link = (runs ?? []).findIndex((run) => run.t === 'link');
-    if (link <= 0) return undefined;
-    const before = plainText(runs?.slice(0, link))
-      .trim()
-      .replace(/[,:;]$/, '')
-      .trim();
-    return before === '' ? undefined : before;
+    const list = runs ?? [];
+    const first = list.findIndex((run) => run.t === 'link');
+    if (first === -1) return undefined;
+    const tidy = (words: string): string | undefined => {
+      const out = words
+        .trim()
+        .replace(/^[,:;]\s*/, '')
+        .replace(/\s*[,:;]$/, '')
+        .trim();
+      return out === '' ? undefined : out;
+    };
+    // "If you decide yes, [Running a Pty Ltd] and …": the words before the first link.
+    if (first > 0) return tidy(plainText(list.slice(0, first)));
+    // "[Register: …], specifically the POPIA section": the words after the last link (pass 3, nit 1).
+    const last = list.map((run) => run.t).lastIndexOf('link');
+    return tidy(plainText(list.slice(last + 1)));
   }
   const why = text.slice(at + EM_DASH.length).trim();
   return why === '' ? undefined : why;

@@ -49,6 +49,32 @@ export function sectionOf(heading: HTMLElement): HTMLElement[] {
   return out;
 }
 
+/**
+ * The part of a heading's section that collapses for `who`: its section, up to the first deeper
+ * heading that applies to `who`. A sub-heading the content marks as being for everyone (no
+ * `data-applies`: the pipeline gives every heading its parent's condition unless
+ * `applicability.json` says otherwise, as for "Provisional tax" under "What SARS wants from a sole
+ * proprietor") or for this reader stays visible with everything under it (review WP-31 pass 3,
+ * major 1). Later sub-headings that do not apply collapse on their own, behind their own markers.
+ */
+export function hiddenPart(heading: HTMLElement, who: Profile): HTMLElement[] {
+  const depth = depthOf(heading) ?? Number.POSITIVE_INFINITY;
+  const out: HTMLElement[] = [];
+  for (const element of sectionOf(heading)) {
+    const own = element === heading ? undefined : depthOf(element);
+    if (
+      own !== undefined &&
+      own > depth &&
+      (!element.hasAttribute('data-applies') || matches(element, who))
+    )
+      break;
+    out.push(element);
+  }
+  // A marker that stands just before the sub-heading that stays belongs to nothing hidden.
+  while (out.length > 1 && out[out.length - 1]?.classList.contains('st-hidden-marker')) out.pop();
+  return out;
+}
+
 /** The collapsed heading whose section holds `element` (a sibling after it), if any. */
 function sectionHeading(element: HTMLElement): HTMLElement | undefined {
   for (
@@ -84,6 +110,8 @@ export interface FilterOptions {
   readonly markers: boolean;
   /** "{count} items are hidden …", by plural category; the line is left empty without it. */
   readonly hiddenItems?: ((count: number) => string) | undefined;
+  /** "Show {count} hidden items", the line's button; with markers only. */
+  readonly showItems?: ((count: number) => string) | undefined;
 }
 
 /** Shows everything again. */
@@ -93,17 +121,22 @@ export function clearFilter(root: ParentNode): void {
     marker.hidden = true;
   for (const line of root.querySelectorAll<HTMLElement>('.st-tasklist__hidden')) {
     line.hidden = true;
-    hiddenLine(line, '', false);
+    hiddenLine(line, '', undefined);
   }
 }
 
-/** Sets the "{count} items are hidden" line's text, and whether it offers "Show". */
-function hiddenLine(line: HTMLElement, text: string, offerShow: boolean): void {
+/**
+ * Sets the "{count} items are hidden" line's text and its "Show {count} hidden items" button
+ * (`showText`; no button when it is `undefined`). The button's name is its visible text.
+ */
+function hiddenLine(line: HTMLElement, text: string, showText: string | undefined): void {
   const target = line.querySelector('[data-hidden-text]');
   if (target) target.textContent = text;
   else line.textContent = text;
   const show = line.querySelector<HTMLElement>('[data-show-list]');
-  if (show) show.hidden = !offerShow;
+  if (!show) return;
+  show.hidden = showText === undefined;
+  if (showText !== undefined) (show.querySelector('.st-btn__label') ?? show).textContent = showText;
 }
 
 /** Brings back every item of a checklist the filter emptied, and focuses its first box. */
@@ -112,7 +145,7 @@ export function showList(list: HTMLElement): void {
   const line = list.querySelector<HTMLElement>('.st-tasklist__hidden');
   if (line) {
     line.hidden = true;
-    hiddenLine(line, '', false);
+    hiddenLine(line, '', undefined);
   }
   list.querySelector<HTMLInputElement>('input[type="checkbox"]')?.focus();
 }
@@ -123,7 +156,7 @@ export function filterByProfile(root: ParentNode, who: Profile, options: FilterO
   let hidden = 0;
   for (const heading of root.querySelectorAll<HTMLElement>('[data-applies][data-depth]')) {
     if (heading.closest(`.${FILTERED}`) || matches(heading, who)) continue;
-    for (const element of sectionOf(heading)) element.classList.add(FILTERED);
+    for (const element of hiddenPart(heading, who)) element.classList.add(FILTERED);
     hidden++;
     const marker = options.markers ? markerFor(heading) : undefined;
     if (marker) marker.hidden = false;
@@ -142,13 +175,16 @@ export function filterByProfile(root: ParentNode, who: Profile, options: FilterO
     // A list with every item hidden: without markers (My path) it goes; with them it collapses to
     // its line, which says so and offers "Show", never an empty "Your checklist" (review WP-31
     // pass 2, minor 2).
-    if (all && (!options.markers || !line || !options.hiddenItems)) {
+    if (all && (!options.markers || !line || !options.hiddenItems || !options.showItems)) {
       list.classList.add(FILTERED);
       continue;
     }
     if (all) list.querySelector('fieldset')?.classList.add(FILTERED);
+    // Hidden items are always one button away, whether some or all of the list went (review
+    // WP-31 pass 3, minor 2).
     if (line && out > 0 && options.hiddenItems) {
-      hiddenLine(line, options.hiddenItems(out), all);
+      const show = options.markers ? options.showItems?.(out) : undefined;
+      hiddenLine(line, options.hiddenItems(out), show);
       line.hidden = false;
     }
   }
@@ -162,6 +198,8 @@ export function showSection(root: ParentNode, headingId: string): void {
   for (const element of sectionOf(heading)) {
     element.classList.remove(FILTERED);
     for (const inner of element.querySelectorAll(`.${FILTERED}`)) inner.classList.remove(FILTERED);
+    // Everything in the section is back, so a sub-section's own marker goes too.
+    if (element.classList.contains('st-hidden-marker')) element.hidden = true;
   }
   const marker = markerFor(heading);
   if (marker) marker.hidden = true;
@@ -170,9 +208,12 @@ export function showSection(root: ParentNode, headingId: string): void {
 
 type Mode = 'switch' | 'checklist' | 'always';
 
-function pluralLine(element: HTMLElement): ((count: number) => string) | undefined {
-  const one = element.dataset['hiddenOne'];
-  const other = element.dataset['hiddenOther'];
+function pluralLine(
+  element: HTMLElement,
+  name: 'hidden' | 'show',
+): ((count: number) => string) | undefined {
+  const one = element.dataset[`${name}One`];
+  const other = element.dataset[`${name}Other`];
   if (!one || !other) return undefined;
   const rules = new Intl.PluralRules(element.closest('[lang]')?.getAttribute('lang') ?? 'en');
   return (count) => (rules.select(count) === 'one' ? one : other).replace('{count}', String(count));
@@ -281,7 +322,8 @@ export class StAppliesScope extends HTMLElement {
     if (who && on) {
       filterByProfile(this, who, {
         markers: this.mode !== 'always',
-        hiddenItems: pluralLine(this),
+        hiddenItems: pluralLine(this, 'hidden'),
+        showItems: pluralLine(this, 'show'),
       });
     } else {
       clearFilter(this);

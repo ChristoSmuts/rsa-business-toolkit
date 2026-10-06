@@ -39,6 +39,12 @@ describe('stepWhy', () => {
     expect(stepWhy(afDoc('start/how-to-use'), list, 9)).toBe('As jy ja besluit');
   });
 
+  it('is the words after the link in an item that starts with it and has no dash (pass 3, nit 1)', () => {
+    const path2 = 'path-2-i-am-already-trading-and-want-to-get-compliant.1';
+    expect(stepWhy(realDoc('start/how-to-use'), path2, 3)).toBe('specifically the POPIA section');
+    expect(stepWhy(afDoc('start/how-to-use'), path2, 3)).toBe('spesifiek die afdeling oor POPIA');
+  });
+
   it('is undefined when the item gives no reason, or does not exist', () => {
     expect(stepWhy(realDoc('start/how-to-use'), list, 2)).toBeUndefined();
     expect(stepWhy(realDoc('start/how-to-use'), list, 99)).toBeUndefined();

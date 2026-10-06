@@ -17,6 +17,9 @@ const t = useTranslations(locale);
 /** "{count} items are hidden …" for one and for more, with the number as a placeholder. */
 const hiddenOne = t('checklist.hiddenItems', { count: 1 }).replace('1', '{count}');
 const hiddenOther = t('checklist.hiddenItems', { count: 2 }).replace('2', '{count}');
+/** The line's button, "Show 3 hidden items" (review WP-31 pass 3, minor 3). */
+const showOne = t('checklist.showHiddenItems', { count: 1 }).replace('1', '{count}');
+const showOther = t('checklist.showHiddenItems', { count: 2 }).replace('2', '{count}');
 ---
 
 <st-applies-scope
@@ -24,6 +27,8 @@ const hiddenOther = t('checklist.hiddenItems', { count: 2 }).replace('2', '{coun
   data-mode={mode}
   data-hidden-one={hiddenOne}
   data-hidden-other={hiddenOther}
+  data-show-one={showOne}
+  data-show-other={showOther}
 >
   <slot />
 </st-applies-scope>

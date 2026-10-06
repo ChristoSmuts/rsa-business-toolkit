@@ -436,6 +436,10 @@
       "one": "{count} item is versteek omdat dit nie vir jou geld nie",
       "other": "{count} items is versteek omdat hulle nie vir jou geld nie"
     },
+    "showHiddenItems": {
+      "one": "Wys {count} versteekte item",
+      "other": "Wys {count} versteekte items"
+    },
     "print": "Druk",
     "printWithTicks": "Druk met my merkies",
     "reset": "Verwyder merkies",

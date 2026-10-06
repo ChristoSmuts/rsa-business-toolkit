@@ -348,6 +348,37 @@ test.describe('personalisation elsewhere', () => {
     }
   });
 
+  test(
+    'if the home card’s module never loads, its kept space goes after a second (pass 3, minor 1)',
+    {
+      annotation: allowConsoleError(
+        '/net::ERR_FAILED/',
+        "The test blocks the home card's module on purpose, and the browser logs the failed request.",
+      ),
+    },
+    async ({ page, seedStorage, baseURL }) => {
+      await seedStorage({ 'st.profile.v1': FOOD });
+      await routeSameOrigin(
+        page,
+        baseURL,
+        (url) => url.pathname.endsWith('.js'),
+        async (route) => {
+          const response = await route.fetch();
+          if ((await response.text()).includes('st-your-path')) await route.abort();
+          else await route.fulfill({ response });
+        },
+      );
+      await page.goto('./');
+      await expect(page.locator('html')).toHaveAttribute('data-st-profile', '');
+      const card = page.locator('st-your-path');
+      await expect
+        .poll(() => card.evaluate((element) => element.getBoundingClientRect().height), {
+          timeout: 5000,
+        })
+        .toBe(0);
+    },
+  );
+
   test('the home card does not move the page when it appears (pass 2, minor 4)', async ({
     page,
     seedStorage,
@@ -419,9 +450,78 @@ test.describe('personalisation elsewhere', () => {
     await expect(line).toBeVisible();
     await expect(line).toContainText(/items? (is|are) hidden because/);
     await expect(list.locator('fieldset')).toBeHidden();
-    await line.getByRole('button', { name: 'Show' }).click();
+    await line.getByRole('button', { name: /^Show \d+ hidden items?$/ }).click();
     await expect(list.locator('fieldset')).toBeVisible();
     await expect(list.locator('input[type="checkbox"]').first()).toBeFocused();
+  });
+
+  test('a partly hidden checklist offers “Show 1 hidden item” (pass 3, minors 2 and 3)', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({ 'st.profile.v1': FOOD, 'st.onlyMine': true });
+    await page.goto('core/you-are-the-business/');
+    await expect(page.locator('.st-tasklist__hidden:visible').first()).toContainText(
+      '1 item is hidden because it does not apply to you',
+    );
+    // A stable handle on that list: the line stops matching `:visible` once it is used.
+    const index = await page.locator('st-checklist').evaluateAll((lists) =>
+      lists.findIndex((list) => {
+        const found = list.querySelector<HTMLElement>('.st-tasklist__hidden');
+        return found !== null && !found.hidden;
+      }),
+    );
+    const list = page.locator('st-checklist').nth(index);
+    const line = list.locator('.st-tasklist__hidden');
+    const before = await list.locator('label.st-check:visible').count();
+    await line.getByRole('button', { name: 'Show 1 hidden item', exact: true }).click();
+    await expect(list.locator('label.st-check:visible')).toHaveCount(before + 1);
+    await expect(line).toBeHidden();
+  });
+
+  for (const prefix of ['', 'af/']) {
+    test(`“Provisional tax” stays for a Pty Ltd reader with the switch on (${prefix || 'en'}; pass 3, major 1)`, async ({
+      page,
+      seedStorage,
+    }) => {
+      await seedStorage({
+        'st.profile.v1': { entity: 'pty', businessTypes: ['vehicle-dealer'], stage: 'pty-growing' },
+        'st.onlyMine': true,
+      });
+      await page.goto(`${prefix}core/tax-and-sars/`);
+      await expect(page.locator('#what-sars-wants-from-a-sole-proprietor')).toBeHidden();
+      await expect(
+        page.locator('[data-marker-for="what-sars-wants-from-a-sole-proprietor"]'),
+      ).toBeVisible();
+      await expect(page.locator('#provisional-tax')).toBeVisible();
+      await expect(page.locator('#provisional-tax ~ p').first()).toBeVisible();
+      await expect(page.locator('#what-sars-wants-from-a-company')).toBeVisible();
+    });
+  }
+
+  test('saved answers the store rejects do not move the home page (pass 3, minor 1)', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({ 'st.profile.v1': '{"entity":"pty","bad":1}' });
+    await page.addInitScript(() => {
+      const w = window as unknown as { __cls: number };
+      w.__cls = 0;
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries() as (PerformanceEntry & {
+          value: number;
+          hadRecentInput: boolean;
+        })[]) {
+          if (!entry.hadRecentInput) w.__cls += entry.value;
+        }
+      }).observe({ type: 'layout-shift', buffered: true });
+    });
+    await page.goto('./');
+    await expect(page.locator('html')).not.toHaveAttribute('data-st-profile', /.*/);
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await page.waitForTimeout(500);
+    const cls = await page.evaluate(() => (window as unknown as { __cls: number }).__cls);
+    expect(cls).toBeLessThanOrEqual(0.1);
   });
 
   test('the pager follows the path on a page that is on it', async ({ page, seedStorage }) => {

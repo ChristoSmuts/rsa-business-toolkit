@@ -436,6 +436,10 @@
       "one": "{count} item is hidden because it does not apply to you",
       "other": "{count} items are hidden because they do not apply to you"
     },
+    "showHiddenItems": {
+      "one": "Show {count} hidden item",
+      "other": "Show {count} hidden items"
+    },
     "print": "Print",
     "printWithTicks": "Print with my ticks",
     "reset": "Remove ticks",

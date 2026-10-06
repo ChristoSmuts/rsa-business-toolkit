@@ -1,13 +1,8 @@
 // @ts-check
 /* global document, window, Element */
-// Blocking theme init, copied verbatim via `?url` (see Base.astro). Keep tiny, ES2019, no imports.
-// The one documented exception to "only src/lib/store.ts reads storage": it must run before any
-// module loads. It reads `st.theme` (a bare string), `st.lowData` (JSON `true`) and `st.lang` (a
-// bare string) in the formats the store writes them; keep them in step with the `theme`, `lowData`
-// and `lang` stores. `data-st-lang-offer` (the saved language, when it is not the page's) lets CSS
-// show the language banner from the first paint. `data-st-profile` says answers to "Find my path"
-// are saved (`st.profile.v1` exists; the store validates it), so My path does not flash its empty
-// state (WP-31).
+// Blocking theme init, copied verbatim (unminified) via `?url`: keep it tiny, ES2019, no imports.
+// The documented exception to "only the store reads storage"; docs/design-system.md, "Scripts, CSP
+// and JavaScript budget", says what it reads and sets and why.
 (function () {
   var root = document.documentElement;
   var saved = null;
@@ -23,8 +18,7 @@
     // Storage blocked: follow the system theme, with web fonts.
   }
   if (lowData === 'true') root.setAttribute('data-low-data', '');
-  // Only for something that looks like saved answers; the store still validates them.
-  if (profile && /^\{.*"entity":"/.test(profile)) root.setAttribute('data-st-profile', '');
+  if (answers(profile)) root.setAttribute('data-st-profile', '');
   if (lang && lang !== (root.getAttribute('lang') || '').split('-')[0]) {
     root.setAttribute('data-st-lang-offer', lang);
   }
@@ -51,4 +45,28 @@
     },
     true,
   );
+
+  // `parseProfile`'s rules (src/lib/profile.ts; tests/dom/theme-init.test.ts keeps them equal).
+  /** @param {string | null} raw */
+  function answers(raw) {
+    var v;
+    try {
+      v = JSON.parse(raw || '');
+    } catch {
+      return false;
+    }
+    var t = v && v.businessTypes;
+    if (!Array.isArray(t) || !t.length) return false;
+    var ok =
+      'vehicle-dealer food beauty retail-online services-trades professional-creative general'
+        .split(' ')
+        .concat('sole-prop', 'pty', 'undecided', 'not-started', 'trading', 'pty-growing');
+    for (var i = 0; i < t.length; i++) {
+      var k = ok.indexOf(t[i]);
+      if (k < 0 || k > 6 || t.indexOf(t[i]) < i) return false;
+    }
+    var e = ok.indexOf(v.entity);
+    var s = ok.indexOf(v.stage);
+    return e > 6 && e < 10 && s > 9 && (v.stage !== 'pty-growing' || v.entity === 'pty');
+  }
 })();

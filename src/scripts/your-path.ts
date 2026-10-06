@@ -23,6 +23,12 @@ export class StYourPath extends PathElement {
   /** The last rebuild, for tests. */
   rebuilt: Promise<void> = Promise.resolve();
 
+  override connectedCallback(): void {
+    // The space kept for the card before first paint now waits for the path, however long.
+    this.setAttribute('data-connected', '');
+    super.connectedCallback();
+  }
+
   protected empty(): void {
     this.hidden = true;
     // No answers: give back the space kept for the card before first paint. While the path is
