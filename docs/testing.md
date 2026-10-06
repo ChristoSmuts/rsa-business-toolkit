@@ -168,6 +168,9 @@ Projects `chromium`, `webkit` and `mobile` (WP-33, build plan A7 and B3 flow 3):
   field, and focus goes back;
 - `VAT 264` typed with a space after an earlier query, then Enter at once, opens exactly
   `glossary/#vat264` (review WP-33 pass 1, majors 1 and 2; pass 2, minor 3);
+- `SAPS 60` and `VAT26` typed, then Enter with no option active, open the first option on screen
+  (SAPS 601, `glossary/#vat264`), and `EMP201 deadline` lists `glossary/#emp201` in the dialog and
+  in the first five results of `/search/?q=` (review WP-33 pass 6, majors 1 and 2);
 - with the index request held back: Enter, then the index arrives, opens `glossary/#pis`; Enter, then
   Escape, then the index arrives, opens nothing and highlights nothing (review WP-33 pass 2, major 1);
 - the status line is in the accessibility tree before any search;
@@ -189,7 +192,7 @@ which links the contents and every page of the guide) and axe with the dialog op
 `a11y.spec.ts`.
 
 The unit side is `tests/unit/search/` (the index built in memory from the real `src/data`: the A7
-ranking cases including `belastng` on the real Afrikaans data, the query-kind table of `docs/design-system.md` row by row on both real indexes (codes spaced, joined and being typed, amounts in every South African spelling, tax years, numbers, single letters, hyphens, stop words, punctuation, mixed queries, typing against finished), every letters-then-digits term in both indexes searched spaced against its two words, spaced and joined form codes,
+ranking cases including `belastng` on the real Afrikaans data, the query-kind table of `docs/design-system.md` row by row on both real indexes (codes spaced, joined and being typed, amounts in every South African spelling including `R1m`, tax years including `2026-27`, all words then any word (`EMP201 deadline`), numbers, single letters, hyphens, stop words, punctuation, mixed queries, typing against finished), every letters-then-digits term in both indexes searched spaced against its two words, spaced and joined form codes,
 `e-filing`, anchors, no English marks in the translated Afrikaans index and the English fallback on a
 copy of the data without Afrikaans, the 400 KB gzip budget per language; fixtures for
 the tokenizer, the client, filters, URLs and highlighting) and `tests/dom/search.test.ts` (the
@@ -208,13 +211,13 @@ Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, r
 
 ## JavaScript budget: `pnpm dist:budget`
 
-Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-05, at the end of WP-33 review pass 5, with the Afrikaans translation merged:
+Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-06, at the end of WP-33 review pass 6, with the Afrikaans translation merged:
 
 | What | Gzip |
 | --- | --- |
 | Largest document page (`branding/already-have-your-name/`) | 7.8 KB |
-| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 17.8 KB |
-| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 11.7 KB |
+| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 18.2 KB |
+| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 12.1 KB |
 | Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 165.2 / 181.9 KB |
 
 WP-30 adds the store, the checklists, copy buttons, the table of contents and the settings to every document page; its numbers replace these when it merges.
