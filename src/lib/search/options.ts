@@ -129,6 +129,17 @@ const RAND_SO_FAR = /^R\d*$/i;
 const THREE_DIGITS = /^\d{3}$/;
 const YEAR = /^\d{4}$/;
 const SHORT_YEAR = /^\d{2}$/;
+/** Between the two halves of a tax year: `2026/27`, `2026-27`, `2026–27`. */
+const TAX_YEAR_GAP = /^[/\-‐‑–]$/;
+/** `R1m`, `R2.3m`, `R2,3m`: an amount in millions, written short. */
+const SHORT_MILLIONS = /^R(\d+(?:[.,]\d+)?)m$/i;
+
+/** `R1m` → `R1000000`, as `R1 million` is also indexed; `undefined` when it is not one. */
+function inMillions(token: string): string | undefined {
+  const match = SHORT_MILLIONS.exec(token);
+  if (match?.[1] === undefined) return undefined;
+  return `R${String(Math.round(Number(match[1].replace(',', '.')) * 1_000_000))}`;
+}
 /** `million` / `miljoen` after an amount: `R2.3 million` is also `R2300000`. */
 const MILLION = /^(?:million|miljoen)$/i;
 
@@ -159,13 +170,25 @@ function rawTokens(text: string): RawToken[] {
         continue;
       }
     }
+    // `R2.3m`: the amount and its `m` are one token in millions (`R1m` is matched whole below).
+    if (previous !== undefined && gap === '' && /^m$/i.test(token)) {
+      const millions = inMillions(`${previous.text}m`);
+      if (millions !== undefined) {
+        out[out.length - 1] = { text: millions, gap: previous.gap };
+        continue;
+      }
+    }
+    token = inMillions(token) ?? token;
+    // A tax year: `2026/27` or `2026-27`, only when the short year is the year after.
     if (
       previous !== undefined &&
-      gap === '/' &&
+      TAX_YEAR_GAP.test(gap) &&
       YEAR.test(previous.text) &&
-      SHORT_YEAR.test(token)
+      SHORT_YEAR.test(token) &&
+      Number(token) === (Number(previous.text) + 1) % 100
     ) {
-      token = `${previous.text.slice(0, 2)}${token}`;
+      out.push({ text: String(Number(previous.text) + 1), gap: '/' });
+      continue;
     }
     out.push({ text: token, gap });
   }

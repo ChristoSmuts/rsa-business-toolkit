@@ -64,11 +64,6 @@ export class SearchDialogController implements DialogController {
   #sequence = 0;
   /** The query the options on screen belong to; Enter never opens an option of another one. */
   #shownQuery = '';
-  /**
-   * `true` when the options on screen were found while the last word was still being typed
-   * (`R1` reaching `R146`). Enter finishes the query: it searches again as typed in full.
-   */
-  #shownTyping = false;
 
   constructor(host: HTMLElement, deps: DialogDeps, client?: SearchClient) {
     this.#host = host;
@@ -113,15 +108,17 @@ export class SearchDialogController implements DialogController {
 
   /**
    * Enter while the options on screen belong to an older query (the reader typed and pressed
-   * Enter within the debounce, or before the answer came), or to the same query still being typed:
-   * search the current text now as a finished query (`R1` is R1, not R146; review WP-33 pass 5)
-   * and open its first result.
+   * Enter within the debounce, or before the answer came): search the current text now, exactly
+   * as the live list would, and open its first result. Enter never searches anything else: what
+   * it opens is what the list shows, or would show, for the text in the field (review WP-33
+   * pass 6, major 1).
    */
   async enterCurrent(): Promise<void> {
     clearTimeout(this.#timer);
-    const query = this.#input.value.trim();
+    const text = this.#input.value;
+    const query = text.trim();
     const closes = this.#closes;
-    await this.search(query, false);
+    await this.search(text);
     // The first search can wait for the whole index. If the reader closed the dialog meanwhile
     // (Escape, the close button, the backdrop), or changed the text, the Enter is cancelled
     // (review WP-33 pass 2, major 1).
@@ -160,8 +157,9 @@ export class SearchDialogController implements DialogController {
         this.move(-1);
         break;
       case 'Enter': {
-        const typed = this.#active < 0 && this.#shownTyping;
-        if (this.#input.value.trim() !== this.#shownQuery || typed) {
+        // The ARIA combobox pattern: Enter opens the active option, or the first one. Only when
+        // the list does not yet belong to the text in the field does it wait for that list.
+        if (this.#input.value.trim() !== this.#shownQuery) {
           event.preventDefault();
           void this.enterCurrent();
           break;
@@ -226,11 +224,12 @@ export class SearchDialogController implements DialogController {
   }
 
   /**
-   * Run a query and show its state. Returns when the results (or the failure) are shown.
-   * `typing`: the last word is still being typed; by default, when the text as typed (before
-   * trimming) ends inside a word. `R1 ` with a space after it is finished.
+   * Run a query and show its state. Returns when the results (or the failure) are shown. The last
+   * word is still being typed when the text as typed (before trimming) ends inside a word: `R1`
+   * reaches `R146`, `R1 ` with a space after it does not.
    */
-  async search(query: string, typing = /[\p{L}\p{N}]$/u.test(query)): Promise<void> {
+  async search(query: string): Promise<void> {
+    const typing = /[\p{L}\p{N}]$/u.test(query);
     const sequence = ++this.#sequence;
     const q = query.trim();
     if (q === '') {
@@ -254,7 +253,6 @@ export class SearchDialogController implements DialogController {
       clearTimeout(loading);
     }
     if (sequence !== this.#sequence) return;
-    this.#shownTyping = typing;
     this.#render(counted.results, q, counted.total);
   }
 
@@ -276,7 +274,6 @@ export class SearchDialogController implements DialogController {
     // An answer to an older query must not replace the common questions.
     this.#sequence++;
     this.#shownQuery = '';
-    this.#shownTyping = false;
     this.#clearOptions();
     this.#setStatus('');
     if (this.#failed) this.#failed.hidden = true;
@@ -285,7 +282,6 @@ export class SearchDialogController implements DialogController {
 
   #showFailed(): void {
     this.#shownQuery = this.#input.value.trim();
-    this.#shownTyping = false;
     this.#clearOptions();
     if (this.#empty) this.#empty.hidden = true;
     if (this.#failed) this.#failed.hidden = false;

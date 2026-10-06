@@ -49,7 +49,8 @@ export interface SearchOptions {
   readonly limit?: number | undefined;
   /**
    * `true` while the reader is still typing the last term (the live dialog), `false` for a
-   * finished query (Enter, the search page). Absent: a query that ends inside a word is being typed.
+   * finished query (the search page, the 404 suggestions). Absent: a query that ends inside a word
+   * is being typed.
    */
   readonly typing?: boolean | undefined;
 }
@@ -162,8 +163,38 @@ function toResult(hit: MiniSearchResult, locale: Locale, base: string | undefine
 type Query = Parameters<MiniSearch['search']>[0];
 
 /** A word that says too little to be searched on its own: one character, or only digits. */
-function weak(part: QueryPart): boolean {
-  return typeof part === 'string' && (part.length < 2 || /^[\d.,]+$/.test(part));
+function weak(word: string): boolean {
+  return word.length < 2 || /^[\d.,]+$/.test(word);
+}
+
+/**
+ * The any-word query: every word of every part, by its own rule, any of them enough. A spaced code
+ * gives its joined form and its words, a hyphenated word its words and the whole chain. Lone
+ * numbers and single letters are left out (`weak`): matched alone they would turn a junk query
+ * into a list of every "Prompt 1", where "nothing found" is the honest answer.
+ */
+export function anyTree(
+  parts: readonly QueryPart[],
+  typing: boolean,
+): { combineWith: 'OR'; queries: Query[] } {
+  const queries: Query[] = [];
+  parts.forEach((part, index) => {
+    const last = typing && index === parts.length - 1;
+    const words =
+      typeof part === 'string'
+        ? [part]
+        : [part.joined, ...('code' in part ? part.code : part.hyphen)];
+    words.forEach((word, position) => {
+      if (weak(word)) return;
+      // The joined form of a hyphenated word is never fuzzy, as in `queryTree`.
+      const joinedHyphen = typeof part !== 'string' && 'hyphen' in part && position === 0;
+      // The joined form and the last word are the ones still being typed.
+      const typed = last && (position === 0 || position === words.length - 1);
+      const rule = joinedHyphen ? { prefix: typed, fuzzy: false } : matchRule(word, typed);
+      queries.push({ combineWith: 'OR', queries: [word], ...rule });
+    });
+  });
+  return { combineWith: 'OR', queries };
 }
 
 /** One term, with its matching rule (`matchRule`). */
@@ -186,11 +217,12 @@ function allOf(words: readonly string[], last: boolean): Query {
 export type CodeReading = 'joined' | 'words';
 
 /**
- * The MiniSearch query for a list of parts, every term with its own matching rule (`matchRule`,
- * the query-kind table in `docs/design-system.md`):
+ * The all-words query for a list of parts, every part required and every term with its own
+ * matching rule (`matchRule`, the query-kind table in `docs/design-system.md`):
  * - a word: `matchRule`, as the last term still being typed or not;
  * - a spaced code: its joined form by the code rule (`codes: 'joined'`), or its words
- *   (`codes: 'words'`); the client runs both and puts the joined reading's results first;
+ *   (`codes: 'words'`); the client runs both (a known code's joined reading first, otherwise
+ *   merged by score);
  * - a hyphenated word: its words (stop words left out), or the whole chain joined, which is
  *   prefix-matched while it is being typed (`e-fil` → `efiling`) and never fuzzy-matched.
  *
@@ -198,12 +230,11 @@ export type CodeReading = 'joined' | 'words';
  */
 export function queryTree(
   parts: readonly QueryPart[],
-  combineWith: 'AND' | 'OR',
   typing = true,
   codes: CodeReading = 'joined',
 ): Exclude<Query, string> {
   return {
-    combineWith,
+    combineWith: 'AND',
     queries: parts.map((part, index): Query => {
       const last = typing && index === parts.length - 1;
       if (typeof part === 'string') return leaf(part, last);
@@ -225,10 +256,12 @@ export function queryTree(
 }
 
 /**
- * Run a query on a loaded index. Every word must match first (`AND`); when that finds nothing,
- * any word may (`OR`), so a long question still finds the pages that answer part of it. The `OR`
- * pass leaves out lone numbers and single letters: matched alone they would turn a junk query into
- * a list of every "Prompt 1" and "Option 1", where "nothing found" is the honest answer.
+ * Run a query on a loaded index: all words first, then any word. Results that match every part
+ * come first, best first; then, always, results that match some of the parts, best first, so
+ * `EMP201 deadline` lists the one page with both words and then the EMP201 entries that give the
+ * date in other words. The any-word results leave out lone numbers and single letters: matched
+ * alone they would turn a junk query into a list of every "Prompt 1", where "nothing found" is the
+ * honest answer.
  */
 export function runSearch(
   index: LoadedIndex,
@@ -245,6 +278,8 @@ export interface CountedResults {
   readonly results: SearchResult[];
   /** Every distinct destination the query matched, however many `results` holds. */
   readonly total: number;
+  /** How many of them, at the front, match every part of the query; the rest match some parts. */
+  readonly matchedAll: number;
 }
 
 /** `runSearch`, with the true total: "12 of 59 results shown", "See all 59 results". */
@@ -256,7 +291,7 @@ export function runSearchCounted(
   base?: string,
 ): CountedResults {
   const raw = queryParts(query);
-  if (raw.length === 0) return { results: [], total: 0 };
+  if (raw.length === 0) return { results: [], total: 0, matchedAll: 0 };
   const searchOptions = {
     bm25: BM25,
     prefix,
@@ -268,42 +303,71 @@ export function runSearchCounted(
       matchesFilters(hit as unknown as StoredFields, options),
   };
   const parts = raw;
-  // The caller says whether the reader is still typing: the live dialog does, Enter and the
-  // search page do not (a submitted query is finished). Without a say, a query that ends inside a
-  // word is being typed.
+  // The caller says whether the reader is still typing: the live dialog does; the search page and
+  // the 404 suggestions do not (a submitted query is finished). Without a say, a query that ends
+  // inside a word is being typed.
   const typing = options.typing ?? /[\p{L}\p{N}]$/u.test(query);
-  const hasCode = parts.some((part) => typeof part !== 'string' && 'code' in part);
+  const codes = parts.filter(
+    (part): part is Extract<QueryPart, { code: unknown }> =>
+      typeof part !== 'string' && 'code' in part,
+  );
+  // A spaced code whose joined form names a glossary or "Words used" entry (`VAT 264`, `SAPS 60`
+  // while typed) is that code: its joined reading ranks first, exactly as the joined spelling.
+  // Any other spaced pair (`VAT 15%`, `brand 5`) is two words that happen to sit together.
+  const knownCode = codes.some((part) => {
+    const last = typing && part === parts.at(-1);
+    const named = index.search.search(leaf(part.joined, last), {
+      ...searchOptions,
+      fields: ['title'],
+      filter: (hit: MiniSearchResult) => hit['k'] === 'glossary' || hit['k'] === 'term',
+    });
+    return named.length > 0;
+  });
   /**
-   * Run `list` as one combined query. A spaced code is read both ways: its joined form first (so
-   * `VAT 264` ranks as `VAT264` and `SAPS 60` reaches `SAPS601` while typed), then its words (so
-   * `VAT 15%` never finds less than `VAT` and `15`). Results of the joined reading come first.
+   * Every part matched, best first. A spaced code is read both ways, as its joined form (`VAT 264`
+   * as `VAT264`; `SAPS 60` reaches `SAPS601` while typed) and as its two words (so `VAT 15%` never
+   * finds less than `VAT` and `15`). For a known code the joined reading comes first; otherwise
+   * the two readings are merged by score, an entry found both ways keeping its better score.
    */
-  const run = (list: readonly QueryPart[], combine: 'AND' | 'OR', last: boolean) => {
-    const first = index.search.search(queryTree(list, combine, last, 'joined'), searchOptions);
-    if (!hasCode) return first;
-    const ids = new Set(first.map((hit) => hit.id));
-    const words = index.search.search(queryTree(list, combine, last, 'words'), searchOptions);
-    return [...first, ...words.filter((hit) => !ids.has(hit.id))];
+  const allWords = (): MiniSearchResult[] => {
+    const hits = index.search.search(queryTree(parts, typing, 'joined'), searchOptions);
+    if (codes.length === 0) return hits;
+    const words = index.search.search(queryTree(parts, typing, 'words'), searchOptions);
+    if (knownCode) {
+      const ids = new Set(hits.map((hit) => hit.id));
+      return [...hits, ...words.filter((hit) => !ids.has(hit.id))];
+    }
+    const best = new Map(hits.map((hit) => [hit.id, hit]));
+    for (const hit of words) {
+      const known = best.get(hit.id);
+      if (known === undefined || hit.score > known.score) best.set(hit.id, hit);
+    }
+    return [...best.values()].sort((a, b) => b.score - a.score);
   };
-  let hits = run(parts, 'AND', typing);
-  const strong = parts.filter((part) => !weak(part));
-  if (hits.length === 0 && strong.length > 0) {
-    // Only the last part of the full query is still being typed.
-    const lastStrong = strong.at(-1) === parts.at(-1);
-    hits = run(strong, 'OR', typing && lastStrong);
+  // All words first, then any word, best first (review WP-33 pass 6, major 2).
+  const all = allWords();
+  const found = new Set(all.map((hit) => hit.id));
+  const any = anyTree(parts, typing);
+  const hits = [...all];
+  if (any.queries.length > 0) {
+    for (const hit of index.search.search(any, searchOptions)) {
+      if (!found.has(hit.id)) hits.push(hit);
+    }
   }
   // Two entries can open the same place (a term and the section that explains it): keep the
   // better one, so the list never offers the same destination twice.
   const limit = options.limit ?? DEFAULT_LIMIT;
   const seen = new Set<string>();
   const results: SearchResult[] = [];
-  for (const hit of hits) {
+  let matchedAll = 0;
+  hits.forEach((hit, rank) => {
     const result = toResult(hit, locale, base);
-    if (seen.has(result.href)) continue;
+    if (seen.has(result.href)) return;
     seen.add(result.href);
+    if (rank < all.length) matchedAll++;
     if (results.length < limit) results.push(result);
-  }
-  return { results, total: seen.size };
+  });
+  return { results, total: seen.size, matchedAll };
 }
 
 /**
@@ -329,6 +393,8 @@ export interface TextSegment {
 
 const WORD = /[\p{L}\p{N}]+(?:[.,]\p{N}+)*/gu;
 const CODE_ALIAS = /^(\p{L}{2,6})(\p{N}[\p{N}.,]*)$/u;
+/** A whole amount of a million rand or more: `r2300000`. */
+const MILLIONS = /^r(\d{7,})$/;
 
 /**
  * The words to mark for a set of matched index terms. A joined form-code alias (`saps601`) is also
@@ -343,6 +409,14 @@ export function markTerms(terms: readonly string[]): Set<string> {
     if (alias?.[1] !== undefined && alias[2] !== undefined) {
       out.add(alias[1]);
       out.add(alias[2]);
+    }
+    // `r2300000` also matches the text "R2.3 million" through its index alias (review WP-33
+    // pass 6, minor 3): mark the amount as written and its word.
+    const millions = MILLIONS.exec(folded);
+    if (millions?.[1] !== undefined) {
+      out.add(`r${String(Number(millions[1]) / 1_000_000)}`);
+      out.add('million');
+      out.add('miljoen');
     }
   }
   return out;

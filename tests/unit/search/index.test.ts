@@ -14,6 +14,7 @@ import {
   runSearch,
   runSearchCounted,
   type LoadedIndex,
+  type SearchResult,
 } from '../../../src/lib/search-client';
 import { processTerm, tokenize } from '../../../src/lib/search/options';
 import { SEARCH_ENTRY_KINDS, type SearchEntry } from '../../../src/lib/search/types';
@@ -46,6 +47,12 @@ function top(index: LoadedIndex, query: string, n = 3, locale: Locale = 'en'): s
   return runSearch(index, query, locale, { limit: n }, BASE).map((result) => result.href);
 }
 
+/** The results that match every word of the query: they come first (all words, then any word). */
+function allWords(index: LoadedIndex, query: string, locale: Locale = 'en'): SearchResult[] {
+  const { results, matchedAll } = runSearchCounted(index, query, locale, { limit: 5000 }, BASE);
+  return results.slice(0, matchedAll);
+}
+
 describe('A7 ranking cases', () => {
   it('VAT264 puts the vehicle dealer\'s "The conditions you must meet" in the top 3', () => {
     expect(top(en.index, 'VAT264')).toContain(
@@ -71,7 +78,9 @@ describe('A7 ranking cases', () => {
       expect(top(en.index, query)).toContain(
         `${BASE}business-types/vehicle-dealer/#the-conditions-you-must-meet`,
       );
-      expect(top(en.index, query, 10)).toEqual(top(en.index, 'VAT264', 10));
+      const hrefs = (list: SearchResult[]) => list.map((result) => result.href);
+      expect(hrefs(allWords(en.index, query))).toEqual(hrefs(allWords(en.index, 'VAT264')));
+      expect(top(en.index, query, 8)).toEqual(top(en.index, 'VAT264', 8));
     },
   );
 
@@ -81,7 +90,8 @@ describe('A7 ranking cases', () => {
     expect(hrefs).toContain(`${BASE}business-types/vehicle-dealer/#the-conditions-you-must-meet`);
   });
 
-  // Review WP-33 pass 2, minor 1: the joined form of "page 2" fuzzy-matched every "page".
+  // Review WP-33 pass 2, minor 1: the joined form of "page 2" fuzzy-matched every "page". Every
+  // result that matches all words holds the number, and they come before the any-word results.
   it.each([
     ['en', 'page 2'],
     ['en', 'route 3'],
@@ -90,10 +100,10 @@ describe('A7 ranking cases', () => {
     ['en', 'prompt 7'],
     ['af', 'stap 1'],
     ['af', 'deel 2'],
-  ] as const)('%s "%s" finds only entries that hold the number', (lang, query) => {
+  ] as const)('%s "%s" finds the entries that hold the number first', (lang, query) => {
     const built = lang === 'en' ? en : af;
     const number = query.split(' ')[1]!;
-    const results = runSearch(built.index, query, lang, { limit: 1000 }, BASE);
+    const results = allWords(built.index, query, lang);
     expect(results.length).toBeGreaterThan(0);
     for (const result of results) {
       expect(
@@ -107,7 +117,7 @@ describe('A7 ranking cases', () => {
     expect(top(en.index, 'saps 601', 1)).toEqual([
       `${BASE}business-types/vehicle-dealer/#how-to-register`,
     ]);
-    const tax = runSearch(en.index, 'Tax 2026', 'en', { limit: 1000 }, BASE);
+    const tax = allWords(en.index, 'Tax 2026');
     expect(tax.length).toBeGreaterThan(0);
     expect(tax.every((r) => r.terms.some((t) => t.includes('2026')))).toBe(true);
   });
@@ -166,7 +176,7 @@ describe('A7 ranking cases', () => {
     readonly first?: string;
     /** Hrefs found in the first three results. */
     readonly top3?: readonly string[];
-    /** A term prefix every result holds. */
+    /** A term prefix every result that matches all words holds. */
     readonly every?: string;
     /** A term no result may hold. */
     readonly none?: string;
@@ -178,10 +188,12 @@ describe('A7 ranking cases', () => {
     readonly empty?: true;
     /** Exactly the same results, in the same order. */
     readonly sameAs?: string;
-    /** The results begin with this query's results, in order (a spaced code: joined first). */
+    /** The results begin with this query's all-words results, in order (a known code). */
     readonly startsWith?: string;
     /** Finds at least everything this query finds (a spaced code: its two words). */
     readonly atLeast?: string;
+    /** Finds at least everything this query finds with all its words. */
+    readonly atLeastAll?: string;
     /** A term the first result holds. */
     readonly firstTerm?: string;
   }
@@ -203,8 +215,20 @@ describe('A7 ranking cases', () => {
     { kind: 'code, joined', lang: 'af', query: 'ITR14 sperdatum', every: 'itr14', none: 'itr12' },
     { kind: 'code, being typed', lang: 'en', query: 'VAT26', first: 'glossary/#vat264' },
     // A spaced code: the joined code's results first, then everything its two words find.
-    { kind: 'code, spaced', lang: 'en', query: 'VAT 264', sameAs: 'VAT264', atLeast: '264 VAT' },
-    { kind: 'code, spaced', lang: 'en', query: 'vat 264', sameAs: 'VAT264', atLeast: '264 vat' },
+    {
+      kind: 'code, spaced',
+      lang: 'en',
+      query: 'VAT 264',
+      startsWith: 'VAT264',
+      atLeast: '264 VAT',
+    },
+    {
+      kind: 'code, spaced',
+      lang: 'en',
+      query: 'vat 264',
+      startsWith: 'VAT264',
+      atLeast: '264 vat',
+    },
     {
       kind: 'code, spaced',
       lang: 'en',
@@ -223,26 +247,30 @@ describe('A7 ranking cases', () => {
       kind: 'code, spaced',
       lang: 'en',
       query: 'VAT 15%',
-      startsWith: 'VAT15',
       atLeast: '15% VAT',
-      top3: ['templates/tax-invoice/#supply'],
+      // `VAT15` is an incidental pair, not a code: the readings are merged by score (pass 6).
+      first: 'glossary/#vat',
     },
-    { kind: 'code, spaced', lang: 'af', query: 'BTW 15%', startsWith: 'BTW15', atLeast: '15% BTW' },
+    {
+      kind: 'code, spaced',
+      lang: 'af',
+      query: 'BTW 15%',
+      first: 'glossary/#vat',
+      atLeast: '15% BTW',
+    },
     {
       kind: 'code, spaced',
       lang: 'en',
       query: 'brand 5',
-      startsWith: 'brand5',
       atLeast: '5 brand',
     },
     {
       kind: 'code, spaced',
       lang: 'en',
       query: 'under 100',
-      startsWith: 'under100',
       atLeast: '100 under',
     },
-    { kind: 'code, spaced', lang: 'af', query: 'werk 5', startsWith: 'werk5', atLeast: '5 werk' },
+    { kind: 'code, spaced', lang: 'af', query: 'werk 5', atLeast: '5 werk' },
     // The number is still being typed: the joined form is prefix-matched, like `SAPS60`.
     {
       kind: 'code, spaced, being typed',
@@ -290,7 +318,7 @@ describe('A7 ranking cases', () => {
       kind: 'rand amount, in millions',
       lang: 'en',
       query: 'R1,000,000',
-      atLeast: 'R1 million',
+      atLeastAll: 'R1 million',
       digitTerms: ['r1000000'],
     },
     {
@@ -298,7 +326,7 @@ describe('A7 ranking cases', () => {
       lang: 'en',
       query: 'R2 300 000',
       sameAs: 'R2,300,000',
-      atLeast: 'R2.3 million',
+      atLeastAll: 'R2.3 million',
     },
     {
       kind: 'rand amount, decimal comma',
@@ -315,6 +343,36 @@ describe('A7 ranking cases', () => {
       top3: ['core/tax-and-sars/#vat-probably-not-yet'],
     },
     { kind: 'rand amount', lang: 'en', query: 'R123,456', empty: true },
+    // Review WP-33 pass 6, minor 2: amounts in millions written short.
+    {
+      kind: 'rand amount, in millions, short',
+      lang: 'en',
+      query: 'R1m',
+      atLeastAll: 'R1 million',
+      digitTerms: ['r1000000'],
+    },
+    {
+      kind: 'rand amount, in millions, short',
+      lang: 'af',
+      query: 'R1m',
+      atLeastAll: 'R1 miljoen',
+      digitTerms: ['r1000000'],
+    },
+    {
+      kind: 'rand amount, in millions, short',
+      lang: 'en',
+      query: 'R10m',
+      top3: ['glossary/#qse'],
+      digitTerms: ['r10000000'],
+    },
+    { kind: 'rand amount, in millions, short', lang: 'en', query: 'R2.3m', sameAs: 'R2 300 000' },
+    {
+      kind: 'rand amount, in millions, short',
+      lang: 'af',
+      query: 'R2,3m',
+      sameAs: 'R2 300 000',
+      atLeastAll: 'R2.3 miljoen',
+    },
     // Finished (Enter, the search page): `R1` is R1, never R146.
     { kind: 'rand amount, finished', lang: 'en', query: 'R1', typing: false, digitTerms: ['r1'] },
     { kind: 'rand amount, being typed', lang: 'en', query: 'R500', typing: true, every: 'r500' },
@@ -322,6 +380,8 @@ describe('A7 ranking cases', () => {
     { kind: 'year', lang: 'af', query: '2027', digitTerms: ['2027'] },
     { kind: 'tax year', lang: 'en', query: '2026/27', sameAs: '2026/2027', every: '2027' },
     { kind: 'tax year', lang: 'af', query: '2026/27', sameAs: '2026/2027', every: '2027' },
+    { kind: 'tax year', lang: 'en', query: '2026-27', sameAs: '2026/27' },
+    { kind: 'tax year', lang: 'af', query: '2026-27', sameAs: '2026/27' },
     { kind: 'number', lang: 'en', query: '20', digitTerms: ['20'] },
     { kind: 'number', lang: 'en', query: 'page 2', typing: false, digitTerms: ['2', 'page2'] },
     { kind: 'number', lang: 'af', query: 'stap 1', typing: false, digitTerms: ['1', 'stap1'] },
@@ -366,8 +426,39 @@ describe('A7 ranking cases', () => {
       lang: 'en',
       query: 'ITR 14 deadline',
       startsWith: 'ITR14 deadline',
+      top3: ['glossary/#itr14'],
     },
-    { kind: 'mixed', lang: 'en', query: 'VAT rate 15%', first: 'glossary/#vat' },
+    // Review WP-33 pass 6, major 2: all words first, then any word. The one page that names both
+    // comes first; the code's own entries, which give the date in other words, follow.
+    {
+      kind: 'all words, then any word',
+      lang: 'en',
+      query: 'EMP201 deadline',
+      first: 'start/how-this-was-made/#corrections-log',
+      top3: ['glossary/#emp201'],
+    },
+    {
+      kind: 'all words, then any word',
+      lang: 'en',
+      query: 'ITR14 deadline',
+      first: 'start/how-this-was-made/#corrections-log',
+      top3: ['glossary/#itr14'],
+    },
+    {
+      kind: 'all words, then any word',
+      lang: 'af',
+      query: 'EMP201 sperdatum',
+      first: 'start/how-this-was-made/#corrections-log',
+      top3: ['glossary/#emp201'],
+    },
+    {
+      kind: 'all words, then any word',
+      lang: 'af',
+      query: 'ITR14 sperdatum',
+      first: 'start/how-this-was-made/#corrections-log',
+      top3: ['glossary/#itr14'],
+    },
+    { kind: 'mixed', lang: 'en', query: 'VAT rate 15%', top3: ['glossary/#vat'] },
   ];
 
   it.each(ROWS.map((row) => [row.kind, row.lang, row.query, row] as const))(
@@ -375,9 +466,15 @@ describe('A7 ranking cases', () => {
     (_kind, lang, query, row) => {
       const built = lang === 'en' ? en : af;
       const prefix = lang === 'en' ? BASE : `${BASE}af/`;
-      const search = (q: string) =>
-        runSearch(built.index, q, lang, { limit: 5000, typing: row.typing }, BASE);
+      const counted = (q: string) =>
+        runSearchCounted(built.index, q, lang, { limit: 5000, typing: row.typing }, BASE);
+      const search = (q: string) => counted(q).results;
+      const allWords = (q: string) => {
+        const { results: list, matchedAll } = counted(q);
+        return list.slice(0, matchedAll);
+      };
       const results = search(query);
+      const matched = allWords(query);
       const hrefs = results.map((r) => r.href);
       if (row.empty) {
         expect(hrefs).toEqual([]);
@@ -393,19 +490,27 @@ describe('A7 ranking cases', () => {
         expect(other.length).toBeGreaterThan(0);
         for (const result of other) expect(found.has(result.href), result.href).toBe(true);
       }
+      if (row.atLeastAll !== undefined) {
+        const found = new Set(hrefs);
+        const other = allWords(row.atLeastAll);
+        expect(other.length).toBeGreaterThan(0);
+        for (const result of other) expect(found.has(result.href), result.href).toBe(true);
+      }
       if (row.sameAs !== undefined) expect(hrefs).toEqual(search(row.sameAs).map((r) => r.href));
       if (row.startsWith !== undefined) {
-        const joined = search(row.startsWith).map((r) => r.href);
+        const joined = allWords(row.startsWith).map((r) => r.href);
         expect(joined.length).toBeGreaterThan(0);
         expect(hrefs.slice(0, joined.length)).toEqual(joined);
       }
-      for (const result of results) {
+      for (const result of matched) {
         if (row.every !== undefined) {
           expect(
             result.terms.some((t) => t.startsWith(row.every!)),
             result.href,
           ).toBe(true);
         }
+      }
+      for (const result of results) {
         if (row.none !== undefined) expect(result.terms, result.href).not.toContain(row.none);
         for (const term of result.terms) {
           if (row.digitTerms !== undefined && /\d/.test(term)) {
@@ -456,6 +561,20 @@ describe('A7 ranking cases', () => {
     for (const result of runSearch(en.index, 'R500,000', 'en', { limit: 3 }, BASE)) {
       expect(result.terms).toContain('r500000');
     }
+  });
+
+  // Review WP-33 pass 6, major 2: any word after all words, always, not only when all words find
+  // nothing.
+  it('lists the any-word results after the all-words results', () => {
+    const counted = runSearchCounted(en.index, 'EMP201 deadline', 'en', { limit: 5000 }, BASE);
+    expect(counted.matchedAll).toBe(1);
+    expect(counted.total).toBeGreaterThan(10);
+    const rest = counted.results.slice(counted.matchedAll);
+    expect(rest.every((r) => !(r.terms.includes('emp201') && r.terms.includes('deadline')))).toBe(
+      true,
+    );
+    // The any-word results are best first: the EMP201 glossary entry leads them.
+    expect(rest[0]?.href).toBe(`${BASE}glossary/#emp201`);
   });
 
   it('counts every result, however many the cap returns', () => {

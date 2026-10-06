@@ -138,6 +138,31 @@ test.describe('the search dialog', () => {
     await expect(page).toHaveURL(/\/glossary\/#vat264$/);
   });
 
+  // Review WP-33 pass 6, major 1: Enter opens the option on screen, also for a code that is only
+  // partly typed.
+  for (const [typed, target] of [
+    ['SAPS 60', /\/business-types\/vehicle-dealer\/#how-to-register$/],
+    ['VAT26', /\/glossary\/#vat264$/],
+  ] as const) {
+    test(`${typed} typed, then Enter, opens the first option on screen`, async ({ page }) => {
+      await open(page, DOC);
+      await page.keyboard.press('/');
+      await field(page).fill(typed);
+      await expect(page.getByRole('option').first()).toHaveAttribute('href', target);
+      await page.keyboard.press('Enter');
+      await expect(page).toHaveURL(target);
+    });
+  }
+
+  // Review WP-33 pass 6, major 2: all words first, then any word.
+  test('EMP201 deadline lists the EMP201 glossary entry in the dialog', async ({ page }) => {
+    await open(page, DOC);
+    await page.keyboard.press('/');
+    await field(page).fill('EMP201 deadline');
+    await expect(page.getByRole('option').first()).toBeVisible();
+    await expect(page.locator('[role="option"][href$="/glossary/#emp201"]')).toBeVisible();
+  });
+
   /** Hold every index request until `release()` is called. */
   async function holdIndex(page: Page, baseURL: string | undefined): Promise<() => void> {
     let release: () => void = () => undefined;
@@ -245,6 +270,19 @@ test.describe('the search page', () => {
     await expect(
       page.locator(`[data-search-result][href$="${DOC}#the-conditions-you-must-meet"]`),
     ).toBeVisible();
+  });
+
+  // Review WP-33 pass 6, major 2: the code's own entry is on the first screen of results.
+  test('?q=EMP201 deadline lists the EMP201 glossary entry in the first results', async ({
+    page,
+  }) => {
+    await open(page, 'search/?q=EMP201%20deadline');
+    const results = page.locator('[data-search-result]');
+    await expect(results.first()).toBeVisible();
+    const first = await results.evaluateAll((list) =>
+      list.slice(0, 5).map((result) => result.getAttribute('href') ?? ''),
+    );
+    expect(first.some((href) => href.endsWith('/glossary/#emp201'))).toBe(true);
   });
 
   test('a new search updates ?q= without reloading the page', async ({ page }) => {

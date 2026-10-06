@@ -5,6 +5,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { serialiseIndex } from '../../../scripts/search/build';
 import {
+  anyTree,
   createSearchClient,
   groupResults,
   highlight,
@@ -13,6 +14,7 @@ import {
   queryTree,
   resultHref,
   runSearch,
+  runSearchCounted,
   SearchIndexError,
   type FetchLike,
   type SearchResult,
@@ -172,6 +174,21 @@ describe('options', () => {
     // The guide and copied text use no-break and narrow no-break spaces between the groups.
     expect(tokenize('R120 000 and R1 200 000')).toEqual(['R120000', 'and', 'R1200000']);
     expect(tokenize('2026/27 and 2026/2027')).toEqual(['2026', '2027', 'and', '2026', '2027']);
+    // Review WP-33 pass 6: `2026-27` is the same tax year; `2026/03` (a year and a month, or a
+    // path) is not one, because 03 is not the year after 2026.
+    expect(tokenize('2026-27 or 2026–27')).toEqual(['2026', '2027', 'or', '2026', '2027']);
+    expect(tokenize('2026/03 and 2026/28')).toEqual(['2026', '03', 'and', '2026', '28']);
+    expect(tokenize('1999/00')).toEqual(['1999', '2000']);
+    // Review WP-33 pass 6, minor 2: millions written short.
+    expect(tokenize('R1m, R10m, R2.3m and R2,3m')).toEqual([
+      'R1000000',
+      'R10000000',
+      'R2300000',
+      'and',
+      'R2300000',
+    ]);
+    expect(queryParts('R1m turnover')).toEqual(['r1000000', 'turnover']);
+    expect(queryParts('2026-27')).toEqual(['2026', '2027']);
     // Only groups of three after an amount join: a year and a count stay apart.
     expect(tokenize('In 2026 100 people paid R50 each')).toEqual([
       'In',
@@ -216,14 +233,14 @@ describe('options', () => {
 
   it('reads a spaced code as its joined form or as its words', () => {
     const parts = [{ code: ['vat', '264'], joined: 'vat264' }, 'form'] as const;
-    expect(queryTree(parts, 'AND', false, 'joined')).toEqual({
+    expect(queryTree(parts, false, 'joined')).toEqual({
       combineWith: 'AND',
       queries: [
         { combineWith: 'OR', queries: ['vat264'], prefix: false, fuzzy: false },
         { combineWith: 'OR', queries: ['form'], prefix: true, fuzzy: false },
       ],
     });
-    expect(queryTree(parts, 'AND', false, 'words')).toEqual({
+    expect(queryTree(parts, false, 'words')).toEqual({
       combineWith: 'AND',
       queries: [
         {
@@ -262,7 +279,11 @@ describe('options', () => {
       entry({ key: 'longer', anchor: 'longer', title: 'Form VAT2640', text: 'VAT2640' }),
       entry({ key: 'near', anchor: 'near', title: 'Form VAT265', text: 'VAT265' }),
     ]);
-    const anchors = (q: string) => runSearch(idx, q, 'en').map((r) => r.anchor);
+    // The results that match every word (the any-word results after them also hold `form`).
+    const anchors = (q: string) => {
+      const { results, matchedAll } = runSearchCounted(idx, q, 'en');
+      return results.slice(0, matchedAll).map((r) => r.anchor);
+    };
     // A finished code (followed by more text) matches itself only.
     expect(anchors('VAT 264 form')).toEqual(['code']);
     expect(anchors('VAT 264 ')).toEqual(['code']);
@@ -271,6 +292,48 @@ describe('options', () => {
     // edit away from a neighbour (VAT265).
     expect(anchors('VAT 264').sort()).toEqual(['code', 'longer']);
     expect(anchors('VAT264').sort()).toEqual(['code', 'longer']);
+  });
+
+  // Review WP-33 pass 6, major 2: the any-word query takes every word of every part.
+  it('builds the any-word query from every word, leaving out lone numbers and single letters', () => {
+    const parts = [
+      'deadline',
+      { code: ['saps', '60'], joined: 'saps60' },
+      { hyphen: ['e', 'filing'], joined: 'efiling' },
+    ] as const;
+    expect(anyTree(parts, false)).toEqual({
+      combineWith: 'OR',
+      queries: [
+        { combineWith: 'OR', queries: ['deadline'], prefix: true, fuzzy: 0.2 },
+        { combineWith: 'OR', queries: ['saps60'], prefix: false, fuzzy: false },
+        { combineWith: 'OR', queries: ['saps'], prefix: true, fuzzy: false },
+        { combineWith: 'OR', queries: ['efiling'], prefix: false, fuzzy: false },
+        { combineWith: 'OR', queries: ['filing'], prefix: true, fuzzy: 0.2 },
+      ],
+    });
+    // While typed, the last part's joined form is prefix-matched.
+    expect(anyTree([{ code: ['saps', '60'], joined: 'saps60' }], true).queries[0]).toEqual({
+      combineWith: 'OR',
+      queries: ['saps60'],
+      prefix: true,
+      fuzzy: false,
+    });
+    expect(anyTree(['1', 'e'], false).queries).toEqual([]);
+  });
+
+  it('lists all-words results first, then any-word results, best first', () => {
+    const idx = index('en', [
+      entry({ key: 'both', anchor: 'both', title: 'Corrections', text: 'EMP201 deadline' }),
+      entry({ key: 'code', anchor: 'code', title: 'EMP201', text: 'Paid by the 7th' }),
+      entry({ key: 'word', anchor: 'word', title: 'Other', text: 'a deadline' }),
+      entry({ key: 'none', anchor: 'none', title: 'Unrelated', text: 'nothing here' }),
+    ]);
+    const counted = runSearchCounted(idx, 'EMP201 deadline', 'en', { typing: false });
+    expect(counted.results.map((r) => r.anchor)).toEqual(['both', 'code', 'word']);
+    expect(counted.matchedAll).toBe(1);
+    expect(counted.total).toBe(3);
+    // A junk word with a lone number still finds nothing.
+    expect(runSearch(idx, 'zzzzqq 1', 'en')).toEqual([]);
   });
 
   it('searches a hyphenated word as its words or the whole chain joined', () => {
@@ -294,9 +357,9 @@ describe('options', () => {
         },
       ],
     });
-    expect(queryTree([part], 'AND')).toEqual(tree(true));
+    expect(queryTree([part])).toEqual(tree(true));
     // `filing` keeps its own word rule (prefix from two letters) whether typed or not.
-    expect(queryTree([part], 'AND', false)).toEqual({
+    expect(queryTree([part], false)).toEqual({
       ...tree(false),
       queries: [
         {
@@ -315,7 +378,7 @@ describe('options', () => {
       ],
     });
     // Only stop words left: the whole chain alone.
-    expect(queryTree([{ hyphen: [], joined: 'theend' }], 'AND', false)).toEqual({
+    expect(queryTree([{ hyphen: [], joined: 'theend' }], false)).toEqual({
       combineWith: 'AND',
       queries: [{ combineWith: 'OR', queries: ['theend'], prefix: false, fuzzy: false }],
     });
@@ -490,6 +553,22 @@ describe('highlight', () => {
       { text: 'belasting', mark: true },
       { text: ' is due.', mark: false },
     ]);
+  });
+
+  // Review WP-33 pass 6, minor 3: a match through the "in millions" alias marks what is written.
+  it('marks an amount in millions through its alias', () => {
+    expect(highlight('Below R2.3 million a year', ['r2300000'])).toEqual([
+      { text: 'Below ', mark: false },
+      { text: 'R2.3', mark: true },
+      { text: ' ', mark: false },
+      { text: 'million', mark: true },
+      { text: ' a year', mark: false },
+    ]);
+    expect(highlight('Onder R1 miljoen', ['r1000000']).filter((s) => s.mark)).toEqual([
+      { text: 'R1', mark: true },
+      { text: 'miljoen', mark: true },
+    ]);
+    expect(markTerms(['r120000']).has('million')).toBe(false);
   });
 
   it('marks the two written halves of a joined form-code alias', () => {

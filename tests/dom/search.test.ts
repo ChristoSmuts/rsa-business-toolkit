@@ -331,8 +331,7 @@ describe('<st-search>', () => {
     // Stay on the result's page, so choosing it moves to the heading instead of loading a page.
     window.history.replaceState(null, '', new URL(option.href).pathname);
     key(document.getElementById('q')!, { key: 'Enter' });
-    // Enter first searches the finished query, then opens its first result.
-    await vi.waitFor(() => expect(document.querySelector('dialog')!.open).toBe(false));
+    expect(document.querySelector('dialog')!.open).toBe(false);
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(document.activeElement?.id).toBe('financial-statements');
     expect(window.location.hash).toBe('#financial-statements');
@@ -660,23 +659,25 @@ describe('the results listbox', () => {
 
   // Review WP-33 pass 5, minor: Enter finishes the query. `R1` while typed shows R146 first;
   // Enter opens what `R1` itself finds.
-  it('treats the query as finished on Enter: R1 opens R1, never R146', async () => {
+  // Review WP-33 pass 6, major 1: Enter acts on what the reader sees. `R1` while typed shows
+  // R146 first, and Enter opens it, at once, without searching again.
+  it('opens the first option on screen with Enter, never a result of another search', async () => {
     input().value = 'R1';
     await controller.search('R1');
     expect(options()[0]!.getAttribute('href')).toBe('/glossary/#r146');
+    const searchCounted = vi.spyOn(client, 'searchCounted');
     expect(key(input(), { key: 'Enter' }).defaultPrevented).toBe(true);
-    await vi.waitFor(() => expect(opened).toHaveLength(1));
-    expect(opened[0]).toMatch(/\/core\/start-here\/#numbers$/);
-    // The finished query is now on screen: R146 is gone.
-    expect(options().map((o) => o.getAttribute('href'))).toEqual(['/core/start-here/#numbers']);
+    expect(opened).toEqual([options()[0]!.href]);
+    expect(searchCounted).not.toHaveBeenCalled();
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    expect(opened).toHaveLength(1);
   });
 
   it('opens the first result on Enter when none is active, and an option on a click', async () => {
     (document.getElementById('q') as HTMLInputElement).value = 'PIS';
     await controller.search('PIS');
     key(input(), { key: 'Enter' });
-    // The shown results were found while typing: Enter searches the finished query first.
-    await vi.waitFor(() => expect(opened).toEqual([options()[0]!.href]));
+    expect(opened).toEqual([options()[0]!.href]);
     options()[1]!
       .querySelector('span')!
       .dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 }));
@@ -1063,6 +1064,19 @@ describe('<st-search-suggest>', () => {
     );
     expect(en.querySelector('p a')?.getAttribute('lang')).toBe('en-ZA');
     expect(document.getElementById('af')!.hidden).toBe(true);
+  });
+
+  // Review WP-33 pass 6, nit 2: the words of a missing address are a finished query, so `r1`
+  // there is R1 and not R146.
+  it('searches the words of the address as a finished query', async () => {
+    stubFetch();
+    mountHtml(`<st-search-suggest ${dataAttributes()} hidden></st-search-suggest>`);
+    const element = document.querySelector<StSearchSuggest>('st-search-suggest')!;
+    await element.suggest(['R1'], readContext(element));
+    expect(element.hidden).toBe(false);
+    expect([...element.querySelectorAll('a')].map((a) => a.getAttribute('href'))).toEqual([
+      '/core/start-here/#numbers',
+    ]);
   });
 
   it('lists further suggestions, and stays hidden when nothing matches or the index fails', async () => {
