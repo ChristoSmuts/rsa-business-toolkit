@@ -321,6 +321,52 @@ describe('options', () => {
     expect(anchors).toEqual(['answer', 'mention']);
   });
 
+  // Review WP-33 pass 11, minor 1: a heading lifts an entry only when it holds the words as
+  // written; "small" is not `stall`, "marketing" is not `market`.
+  it('lifts only a heading that holds the words as written', () => {
+    const idx = index('en', [
+      entry({ key: 'near', anchor: 'near', title: 'Small business marketing', text: 'Customers.' }),
+      entry({
+        key: 'answer',
+        anchor: 'answer',
+        title: 'Do you need a licence',
+        text: 'A market stall needs a trading permit from the market, not a business licence.',
+      }),
+    ]);
+    const anchors = (typing: boolean) =>
+      runSearch(idx, 'market stall', 'en', { typing }).map((r) => r.anchor);
+    expect(anchors(false)).toEqual(['answer', 'near']);
+    expect(anchors(true)).toEqual(['answer', 'near']);
+  });
+
+  // Review WP-33 pass 11, nit 3: when two pages are named, the one whose title the query covers
+  // more leads, even when the other comes first in reading order.
+  it('leads with the page whose title the query covers more', () => {
+    const idx = index('en', [
+      entry({
+        key: 'online',
+        doc: 'core/tax-and-sars',
+        title: 'Tax returns online and on paper',
+        docTitle: 'Tax returns online and on paper',
+        pageTitle: 'Tax returns online and on paper',
+        text: 'Tax returns can be filed online.',
+      }),
+      entry({
+        key: 'returns',
+        doc: 'core/register',
+        route: 'core/register/',
+        title: 'Tax returns online',
+        docTitle: 'Tax returns online',
+        pageTitle: 'Tax returns online',
+        text: 'Tax returns, online.',
+      }),
+    ]);
+    // "Tax returns online and on paper": 3 of 4 words; "Tax returns online": 3 of 3.
+    expect(runSearch(idx, 'tax returns online', 'en', { typing: false })[0]?.doc).toBe(
+      'core/register',
+    );
+  });
+
   // Review WP-33 pass 10: how far a query names a page by its title.
   it('measures how much of a page title a query names', () => {
     const cover = (title: string, query: string, typing = false) =>
@@ -339,6 +385,13 @@ describe('options', () => {
     expect(cover('Marketing prompts', 'marketing prom', false)).toBe(0);
     expect(cover('Marketing prompts', 'marketing pr', true)).toBe(0);
     expect(cover('Wat het verander', 'ver', true)).toBe(0);
+    // Pass 11, nit 1: after another word as typed (stop words count), a one-word title's word may
+    // be typed: `wat het verand`. Alone, `verande` names nothing.
+    const typed = (title: string, query: string) =>
+      titleCoverage(title, queryParts(query), true, query.split(/[^\p{L}\p{N}]+/u).length);
+    expect(typed('Wat het verander', 'wat het verand')).toBe(1);
+    expect(typed('Wat het verander', 'verande')).toBe(0);
+    expect(typed('KI-openbaarmaking', 'KI-openb')).toBe(1);
     expect(cover('', 'anything')).toBe(0);
   });
 

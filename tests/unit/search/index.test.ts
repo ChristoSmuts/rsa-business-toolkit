@@ -656,6 +656,40 @@ describe('A7 ranking cases', () => {
       query: 'Jy is die besigheid',
       first: 'core/you-are-the-business/',
     },
+    // Review WP-33 pass 11, nit 1: a one-word title leads while that word is typed, after another
+    // word (stop words count); alone, its beginning names nothing (`verande` above).
+    {
+      kind: 'page title, being typed',
+      lang: 'en',
+      query: 'you are the busine',
+      typing: true,
+      first: 'core/you-are-the-business/',
+    },
+    {
+      kind: 'page title, being typed',
+      lang: 'af',
+      query: 'jy is die besighe',
+      typing: true,
+      first: 'core/you-are-the-business/',
+    },
+    {
+      kind: 'page title, being typed',
+      lang: 'af',
+      query: 'wat het verand',
+      typing: true,
+      first: 'start/what-has-changed/',
+    },
+    {
+      kind: 'page title, being typed',
+      lang: 'af',
+      query: 'KI-openb',
+      typing: true,
+      firstDoc: 'start/how-this-was-made',
+    },
+    // Review WP-33 pass 11, minor 2: a page's title is not in its first entry's heading field, so
+    // the overview page does not beat the template asked for.
+    { kind: 'template', lang: 'en', query: 'quote template', first: 'templates/quotation/' },
+    { kind: 'template', lang: 'af', query: 'kwotasie sjabloon', first: 'templates/quotation/' },
     // Review WP-33 pass 10, minor 3: an entry whose heading holds every word before one that
     // holds them only in its text.
     {
@@ -864,6 +898,25 @@ describe('A7 ranking cases', () => {
         const first = results.slice(0, docs.size).map((r) => r.doc);
         expect(new Set(first), `${title} (typing: ${String(typing)})`).toEqual(docs);
       }
+    }
+  });
+
+  // Review WP-33 pass 11, minor 1: a heading lifts an entry only when it holds the words as
+  // written. "Where South African small businesses actually get customers" (Marketing prompts)
+  // holds `market` and `stall` only as "marketing" and "small"; the retail page's "Do you need a
+  // licence", which says market stalls need a trading permit, ranks above it.
+  it('does not lift a heading that only resembles the words: market stall', () => {
+    for (const typing of [false, true]) {
+      const hrefs = runSearch(en.index, 'market stall', 'en', { limit: 5000, typing }, BASE).map(
+        (r) => r.href,
+      );
+      const licence = hrefs.indexOf(`${BASE}business-types/retail-online/#do-you-need-a-licence`);
+      const marketing = hrefs.indexOf(
+        `${BASE}branding/marketing-prompts/#where-south-african-small-businesses-actually-get-customers`,
+      );
+      expect(licence).toBeGreaterThanOrEqual(0);
+      expect(marketing === -1 || licence < marketing, `typing: ${String(typing)}`).toBe(true);
+      expect(hrefs[0]).not.toMatch(/\/branding\//);
     }
   });
 

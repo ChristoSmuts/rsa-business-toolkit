@@ -238,7 +238,12 @@ const TITLE_PREFIX_MIN = 4;
  * prom`). `how this was made` covers all of "How this was made and how to check it" but `check`;
  * `change` is not "changed", and `ve` or `ver` (the start of many Afrikaans words) names nothing.
  */
-export function titleCoverage(title: string, parts: readonly QueryPart[], typing: boolean): number {
+export function titleCoverage(
+  title: string,
+  parts: readonly QueryPart[],
+  typing: boolean,
+  tokens = parts.length,
+): number {
   const terms = titleWords(title);
   if (terms.length === 0) return 0;
   const words = parts
@@ -255,9 +260,11 @@ export function titleCoverage(title: string, parts: readonly QueryPart[], typing
     })
     .filter((word) => word.forms.length > 0);
   if (words.length === 0) return 0;
-  // A word still being typed may stand for a title word only next to a whole one: `marketing
-  // prom` names "Marketing prompts", `change` alone does not name "What has changed".
-  const typed = words.length > 1;
+  // A word still being typed may stand for a title word only after another word, stop words
+  // included (`tokens`, the words as typed): `marketing prom` names "Marketing prompts", `wat het
+  // verand` names "Wat het verander" (review WP-33 pass 11, nit 1); `change` or `verande` alone
+  // names nothing.
+  const typed = tokens > 1;
   const matches = (term: string, form: string, prefix: boolean): boolean =>
     term === form || (typed && prefix && form.length >= TITLE_PREFIX_MIN && term.startsWith(form));
   const named = words.every(({ forms, prefix }) =>
@@ -268,6 +275,56 @@ export function titleCoverage(title: string, parts: readonly QueryPart[], typing
     words.some(({ forms, prefix }) => forms.some((form) => matches(term, form, prefix))),
   );
   return covered.length / terms.length;
+}
+
+/**
+ * The all-words query for an entry's own heading as written: every word whole, the last one, while
+ * it is typed and four letters or more, also as a beginning; never fuzzy.
+ */
+export function headingTree(parts: readonly QueryPart[], typing: boolean): Exclude<Query, string> {
+  const exact = (word: string, last: boolean): Query => ({
+    combineWith: 'OR',
+    queries: [word],
+    prefix: last && word.length >= TITLE_PREFIX_MIN,
+    fuzzy: false,
+  });
+  return {
+    combineWith: 'AND',
+    queries: parts.map((part, index): Query => {
+      const last = typing && index === parts.length - 1;
+      if (typeof part === 'string') return exact(part, last);
+      const words = 'code' in part ? part.code : part.hyphen;
+      const joined = exact(part.joined, last);
+      if (words.length === 0) return joined;
+      return {
+        combineWith: 'OR',
+        queries: [
+          joined,
+          {
+            combineWith: 'AND',
+            queries: words.map((word, at) => exact(word, last && at === words.length - 1)),
+          },
+        ],
+      };
+    }),
+  };
+}
+
+/** The share of its score a result keeps when it needs a typo match for one of the words. */
+export const TYPO_SHARE = 0.5;
+
+/**
+ * `true` when the matched index terms hold every part of the query as written: the word itself or
+ * a longer word it begins (`stall` in "stalls"), never only a typo match (`stall` as "small").
+ */
+export function holdsAsWritten(terms: readonly string[], parts: readonly QueryPart[]): boolean {
+  const has = (word: string): boolean =>
+    terms.some((term) => term === word || term.startsWith(word));
+  return parts.every((part) => {
+    if (typeof part === 'string') return has(part);
+    const words = 'code' in part ? part.code : part.hyphen;
+    return has(part.joined) || (words.length > 0 && words.every(has));
+  });
 }
 
 /** One term, with its matching rule (`matchRule`). */
@@ -435,21 +492,29 @@ export function runSearchCounted(
   // verander`). The page's first entry, which carries both titles, leads; when several pages
   // qualify, the one whose title the query covers most, then the first in reading order (`start
   // here`: the guide's own "Start here" before the Core section's).
+  // The words as typed, stop words and the halves of a hyphenated word included.
+  const tokens = query.split(/[^\p{L}\p{N}]+/u).filter((word) => word !== '').length;
   const titled = every
     .filter((hit) => typeof hit['h'] === 'string')
     .map((hit) => ({
       hit,
       cover: Math.max(
-        titleCoverage(String(hit['h']), parts, typing),
-        titleCoverage(String(hit['p']).split(' › ')[0] ?? '', parts, typing),
+        titleCoverage(String(hit['h']), parts, typing, tokens),
+        titleCoverage(String(hit['p']).split(' › ')[0] ?? '', parts, typing, tokens),
       ),
     }))
     .filter(({ cover }) => cover > 0.5)
     .sort((a, b) => b.cover - a.cover || Number(a.hit.id) - Number(b.hit.id))[0]?.hit;
-  // Within the all-words results, an entry whose own heading holds every word comes before one
-  // that holds them only in its text: `VAT registration` opens "Do I have to register for VAT?"
-  // before a template that mentions both (review WP-33 pass 10, minor 3).
-  const headed = new Set(allWords({ fields: ['title'] }).map((hit) => hit.id));
+  // Within the all-words results, an entry whose own heading holds every word, as written,
+  // comes before one that holds them only in its text: `BTW-registrasie` opens "BTW: waarskynlik
+  // nog nie" before the tax invoice template (review WP-33 pass 10, minor 3). Only whole words
+  // count, or the beginning of the last word while it is typed (four letters or more), never a
+  // fuzzy match: `stall` is not "small" (pass 11, minor 1).
+  const headed = new Set(
+    index.search
+      .search(headingTree(parts, typing), { ...searchOptions, fields: ['title'] })
+      .map((hit) => hit.id),
+  );
   // Pages about the guide ("How this was made", "What has changed"; `DOC_WEIGHT`) weigh a quarter
   // in every search (`boostDocument`). Named only in an entry's text, not its heading (the
   // corrections log naming "EMP201" next to "deadlines"), such an entry ranks with the any-word
@@ -460,7 +525,23 @@ export function runSearchCounted(
   // A heading on a page about the guide that names a common word ("Change 2: …") is not promoted:
   // those pages keep only their weight.
   const promoted = (hit: MiniSearchResult): boolean => headed.has(hit.id) && !aboutGuide(hit);
-  const ordered = [...listed.filter(promoted), ...listed.filter((hit) => !promoted(hit))];
+  // A result that needs a typo match for a word (`stall` as "small") counts half its score
+  // against those that hold every word as written: `market stall` lists the retail page's "Do you
+  // need a licence" ("market stalls") before Marketing prompts' "small businesses" (review WP-33
+  // pass 11, minor 1). The others keep their order.
+  const others = listed.filter((hit) => !promoted(hit));
+  const written = others.filter((hit) => holdsAsWritten(hit.terms, parts));
+  const typo = others
+    .filter((hit) => !holdsAsWritten(hit.terms, parts))
+    .map((hit) => ({ hit, score: hit.score * TYPO_SHARE }))
+    .sort((a, b) => b.score - a.score);
+  const merged: MiniSearchResult[] = [];
+  for (const hit of written) {
+    while (typo.length > 0 && typo[0]!.score > hit.score) merged.push(typo.shift()!.hit);
+    merged.push(hit);
+  }
+  merged.push(...typo.map(({ hit }) => hit));
+  const ordered = [...listed.filter(promoted), ...merged];
   const all = titled === undefined ? ordered : [titled, ...ordered];
   const rest = [...every.filter((hit) => demoted(hit) && hit !== titled), ...some];
   const hits = [...all, ...rest.sort((a, b) => b.score - a.score)];
