@@ -232,6 +232,11 @@ describe('the no-JavaScript form', () => {
       template.innerHTML = markup[locale];
       const list = template.content.querySelector('details.st-wizard__fallback')!;
       expect(list.classList.contains('no-js-only')).toBe(true);
+      // Where it shows, it is the only way on: open, and telling the reader to use it (pass 2,
+      // minor 5).
+      expect(list.hasAttribute('open')).toBe(true);
+      expect(list.querySelector('summary')?.textContent).not.toMatch(/^(Or|Of) /);
+      expect(list.querySelector('summary + .st-hint')?.textContent).toBeTruthy();
       const links = [...list.querySelectorAll<HTMLAnchorElement>('a')].map((link) =>
         link.getAttribute('href'),
       );

@@ -243,11 +243,6 @@
       "one": "Wys {count} versteekte afdeling",
       "other": "Wys {count} versteekte afdelings"
     },
-    "hiddenFor": {
-      "sole-prop": "Versteek: hierdie deel is net vir ’n eenmansaak.",
-      "pty": "Versteek: hierdie deel is net vir ’n Pty Ltd.",
-      "businessTypes": "Versteek: hierdie deel is net vir hierdie soorte besigheid: {types}."
-    },
     "hiddenPart": "Versteek deur “Net wat vir my geld”: {title}",
     "hiddenShow": "Wys",
     "showHiddenNamed": "Wys versteekte deel: {title}",
@@ -386,7 +381,8 @@
       "intro": "Dit is die stappe vir jou antwoorde, in volgorde. Maak elke bladsy oop wanneer jy daar kom.",
       "save": "Stoor hierdie antwoorde"
     },
-    "noJsList": "Of kies jou antwoorde uit ’n lys"
+    "noJsList": "Kies jou roete uit hierdie lys",
+    "noJsListHint": "Jou blaaier kan nie die knoppie vir die antwoorde hierbo wys nie. Kies hoe jy handel dryf, dan jou soort besigheid en waar jy nou is."
   },
   "myPath": {
     "title": "My roete",

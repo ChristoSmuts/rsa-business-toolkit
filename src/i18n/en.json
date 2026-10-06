@@ -243,11 +243,6 @@
       "one": "Show {count} hidden section",
       "other": "Show {count} hidden sections"
     },
-    "hiddenFor": {
-      "sole-prop": "Hidden: this part is only for a sole proprietor.",
-      "pty": "Hidden: this part is only for a Pty Ltd.",
-      "businessTypes": "Hidden: this part is only for these kinds of business: {types}."
-    },
     "hiddenPart": "Hidden by “Only what applies to me”: {title}",
     "hiddenShow": "Show",
     "showHiddenNamed": "Show hidden part: {title}",
@@ -386,7 +381,8 @@
       "intro": "These are the steps for your answers, in order. Open each page when you get to it.",
       "save": "Save these answers"
     },
-    "noJsList": "Or choose your answers from a list"
+    "noJsList": "Choose your path from this list",
+    "noJsListHint": "Your browser cannot show the button for the answers above. Choose how you trade, then your kind of business and where you are now."
   },
   "myPath": {
     "title": "My path",

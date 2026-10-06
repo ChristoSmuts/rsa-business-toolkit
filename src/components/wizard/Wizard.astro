@@ -289,8 +289,11 @@ const results = singleChoices().map((choice) => ({
       ))}
     </div>
 
-    <details class="st-wizard__fallback no-js-only">
+    {/* Shown only where :has() does not work (the page's no-JS CSS hides it elsewhere), and then
+         it is the way on: open, and saying so (review WP-31 pass 2, minor 5). */}
+    <details class="st-wizard__fallback no-js-only" open>
       <summary>{t('wizard.noJsList')}</summary>
+      <p class="st-hint">{t('wizard.noJsListHint')}</p>
       {fallback.map((group) => (
         <section aria-labelledby={`wz-list-${group.entity}`}>
           <h3 id={`wz-list-${group.entity}`}>{group.label}</h3>

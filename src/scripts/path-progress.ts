@@ -41,9 +41,19 @@ export function currentView(version: string): PathView | undefined {
 export abstract class PathElement extends HTMLElement {
   #stops: Stop[] = [];
 
+  /**
+   * Only the page's own triggers (connecting, new answers) may rebuild the stored path. A change to
+   * the stored path itself, which may come from another tab on another build, is only drawn:
+   * rebuilding then would write this build's path back, the other tab would write its own, and so
+   * on for as long as both are open (review WP-31 pass 2, minor 1).
+   */
   protected watch(): Stop[] {
-    const update = (): void => this.update();
-    return [profile.subscribe(update), pathDone.subscribe(update), pathView.subscribe(update)];
+    const draw = (): void => this.update(false);
+    return [
+      profile.subscribe(() => this.update(true)),
+      pathDone.subscribe(draw),
+      pathView.subscribe(draw),
+    ];
   }
 
   connectedCallback(): void {
@@ -55,7 +65,8 @@ export abstract class PathElement extends HTMLElement {
     this.#stops = [];
   }
 
-  update(): void {
+  /** Draws the stored path; when it is missing or out of date, rebuilds it only if `mayRebuild`. */
+  update(mayRebuild = false): void {
     const version = this.dataset['version'] ?? '';
     const view = currentView(version);
     if (view) {
@@ -63,7 +74,7 @@ export abstract class PathElement extends HTMLElement {
       return;
     }
     this.empty();
-    if (profile.get()) this.rebuild(version);
+    if (mayRebuild && profile.get()) this.rebuild(version);
   }
 
   /**
@@ -117,8 +128,8 @@ export class StPathPager extends PathElement {
         lang: title?.getAttribute('lang') ?? null,
       });
     }
-    const update = (): void => this.update();
-    return [profile.subscribe(update), pathView.subscribe(update)];
+    const draw = (): void => this.update(false);
+    return [profile.subscribe(draw), pathView.subscribe(draw)];
   }
 
   override disconnectedCallback(): void {

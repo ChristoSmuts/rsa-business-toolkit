@@ -25,6 +25,9 @@ export class StYourPath extends PathElement {
 
   protected empty(): void {
     this.hidden = true;
+    // No answers: give back the space kept for the card before first paint. While the path is
+    // only being rebuilt, keep it, so the card appears without moving the page.
+    this.toggleAttribute('data-no-path', !profile.get());
   }
 
   protected override rebuild(version: string): void {

@@ -81,7 +81,9 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
           <span aria-hidden="true" class="st-topbar__path-ring">
             <ProgressRing value={0} max={1} label={t('nav.myPath')} size={28} showValue={false} />
           </span>
-          <span aria-hidden="true">{t('nav.myPath')}</span>
+          <span aria-hidden="true" class="st-topbar__path-label">
+            {t('nav.myPath')}
+          </span>
           <span class="st-visually-hidden" data-progress-text>
             {t('nav.myPath')}
           </span>
@@ -140,6 +142,28 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
 
   .st-topbar__path-ring {
     display: inline-flex;
+  }
+
+  /*
+   * From 1024 to 1279px the bar is sticky and tight: with the ring and its "My path" label it
+   * wrapped to two rows, 71 to 123px (review WP-31 pass 2, minor 3). There the ring stands alone
+   * and the theme control drops its icons (its words stay). The link's name stays "My path: 3 of
+   * 10 steps done" (the visually hidden progress text). `wizard.spec.ts` checks one row.
+   */
+  @media (width < 1280px) {
+    .st-topbar__path-label {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .st-topbar__path-link {
+      min-inline-size: var(--st-target);
+      justify-content: center;
+    }
   }
 
   .st-topbar {
@@ -253,6 +277,13 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
 </style>
 
 <style is:global>
+  /* The theme control's icons, between 1024 and 1279px (see the top bar's own styles above). */
+  @media (1024px <= width < 1280px) {
+    .st-topbar__theme .st-segmented__icon {
+      display: none;
+    }
+  }
+
   /*
    * Anchor targets and focused elements scroll to just below the bar, whatever its real height.
    * `--st-topbar-offset` is the bar's measured height while it is sticky and 0 while it scrolls away

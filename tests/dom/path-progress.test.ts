@@ -108,6 +108,27 @@ describe('<st-your-path>', () => {
     expect(document.querySelector<HTMLElement>('st-path-progress')!.hidden).toBe(false);
   });
 
+  it('never writes back a path another tab stored (review WP-31 pass 2, minor 1)', async () => {
+    answer(FOOD);
+    mount(CARD);
+    await card().rebuilt;
+    const set = vi.spyOn(pathView, 'set');
+    // A tab on another build stores its own path; this tab hears it as a store change.
+    pathView.set(viewOf(FOOD, 'another-build'));
+    await card().rebuilt;
+    await Promise.resolve();
+    expect(set).toHaveBeenCalledTimes(1);
+    expect(pathView.get()?.version).toBe('another-build');
+    expect(card().hidden).toBe(true);
+    // New answers in this tab are its own trigger: it stores the path for them.
+    set.mockClear();
+    const beauty = { ...FOOD, businessTypes: ['beauty'] } as Profile;
+    profile.set(beauty);
+    await card().rebuilt;
+    expect(pathView.get()).toEqual(viewOf(beauty, PATHS.hash));
+    expect(card().hidden).toBe(false);
+  });
+
   it('hides “Continue” when every step is done, and the card without answers', () => {
     answer(FOOD);
     pathDone.set(

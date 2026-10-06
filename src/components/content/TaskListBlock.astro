@@ -20,6 +20,7 @@
  * their own, so those get a visually hidden legend instead of an empty one.
  */
 import Inline from './Inline.astro';
+import Button from '../ui/Button.astro';
 import Callout from '../ui/Callout.astro';
 import { useTranslations } from '../../i18n';
 import { isFallbackContent, type ContentContext } from '../../lib/content/context';
@@ -96,7 +97,14 @@ const filterable = conditions.some((attrs) => Object.keys(attrs).length > 0);
       </label>
     ))}
   </fieldset>
-  {filterable && <p class="st-hint st-tasklist__hidden st-no-print" lang={siteLang} hidden></p>}
+  {filterable && (
+    <div class="st-hint st-tasklist__hidden st-no-print" lang={siteLang} hidden>
+      <span data-hidden-text />
+      <Button variant="secondary" data-show-list hidden>
+        {siteT('doc.hiddenShow')}
+      </Button>
+    </div>
+  )}
   {CHECKLIST_SAVES && (
     <st-checklist-progress
       class="st-tasklist__progress js-only st-no-print"
@@ -115,6 +123,13 @@ const filterable = conditions.some((attrs) => Object.keys(attrs).length > 0);
 </script>
 
 <style>
+  .st-tasklist__hidden:not([hidden]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-2) var(--st-space-3);
+  }
+
   st-checklist,
   st-storage-notice {
     display: block;

@@ -6,7 +6,7 @@
  * data-types`). This module hides the parts whose condition does not match the reader's profile,
  * with the A5 rule (`applies` in `src/lib/path-engine.ts`). **Nothing is removed from the page**:
  * a hidden part gets the class `.st-filtered` (`display: none`), and a heading's section collapses
- * into the "Hidden: … Show" marker rendered before it (`HiddenMarker.astro`). "Show" brings back
+ * into the "Hidden by … Show" marker rendered before it (`HiddenMarker.astro`). "Show" brings back
  * that one section and moves focus to its heading.
  *
  * <st-applies-scope data-mode="…">  the part of the page that is filtered:
@@ -80,7 +80,7 @@ function matches(element: HTMLElement, who: Profile): boolean {
 }
 
 export interface FilterOptions {
-  /** Show the "Hidden: … Show" marker for each collapsed section. */
+  /** Show the "Hidden by … Show" marker for each collapsed section. */
   readonly markers: boolean;
   /** "{count} items are hidden …", by plural category; the line is left empty without it. */
   readonly hiddenItems?: ((count: number) => string) | undefined;
@@ -93,8 +93,28 @@ export function clearFilter(root: ParentNode): void {
     marker.hidden = true;
   for (const line of root.querySelectorAll<HTMLElement>('.st-tasklist__hidden')) {
     line.hidden = true;
-    line.textContent = '';
+    hiddenLine(line, '', false);
   }
+}
+
+/** Sets the "{count} items are hidden" line's text, and whether it offers "Show". */
+function hiddenLine(line: HTMLElement, text: string, offerShow: boolean): void {
+  const target = line.querySelector('[data-hidden-text]');
+  if (target) target.textContent = text;
+  else line.textContent = text;
+  const show = line.querySelector<HTMLElement>('[data-show-list]');
+  if (show) show.hidden = !offerShow;
+}
+
+/** Brings back every item of a checklist the filter emptied, and focuses its first box. */
+export function showList(list: HTMLElement): void {
+  for (const element of list.querySelectorAll(`.${FILTERED}`)) element.classList.remove(FILTERED);
+  const line = list.querySelector<HTMLElement>('.st-tasklist__hidden');
+  if (line) {
+    line.hidden = true;
+    hiddenLine(line, '', false);
+  }
+  list.querySelector<HTMLInputElement>('input[type="checkbox"]')?.focus();
 }
 
 /** Hides what does not apply to `who` inside `root`. Returns how many parts were hidden. */
@@ -117,13 +137,18 @@ export function filterByProfile(root: ParentNode, who: Profile, options: FilterO
     if (list.closest(`.${FILTERED}`)) continue;
     const items = [...list.querySelectorAll<HTMLElement>('label.st-check')];
     const out = items.filter((item) => item.classList.contains(FILTERED)).length;
-    if (items.length > 0 && out === items.length) {
+    const line = list.querySelector<HTMLElement>('.st-tasklist__hidden');
+    const all = items.length > 0 && out === items.length;
+    // A list with every item hidden: without markers (My path) it goes; with them it collapses to
+    // its line, which says so and offers "Show", never an empty "Your checklist" (review WP-31
+    // pass 2, minor 2).
+    if (all && (!options.markers || !line || !options.hiddenItems)) {
       list.classList.add(FILTERED);
       continue;
     }
-    const line = list.querySelector<HTMLElement>('.st-tasklist__hidden');
+    if (all) list.querySelector('fieldset')?.classList.add(FILTERED);
     if (line && out > 0 && options.hiddenItems) {
-      line.textContent = options.hiddenItems(out);
+      hiddenLine(line, options.hiddenItems(out), all);
       line.hidden = false;
     }
   }
@@ -168,6 +193,14 @@ export class StAppliesScope extends HTMLElement {
   };
 
   readonly #onClick = (event: Event): void => {
+    const list =
+      event.target instanceof Element
+        ? event.target.closest('[data-show-list]')?.closest('st-checklist')
+        : null;
+    if (list instanceof HTMLElement) {
+      showList(list);
+      return;
+    }
     const target =
       event.target instanceof Element ? event.target.closest('[data-show-hidden]') : null;
     if (!(target instanceof HTMLElement)) return;

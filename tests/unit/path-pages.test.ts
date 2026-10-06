@@ -34,6 +34,11 @@ describe('stepWhy', () => {
     expect(stepWhy(afDoc('start/how-to-use'), list, 0)).toBe('die volgorde om dinge te doen');
   });
 
+  it('is the words before the first link in an item without a dash (pass 2, nit 3)', () => {
+    expect(stepWhy(realDoc('start/how-to-use'), list, 9)).toBe('If you decide yes');
+    expect(stepWhy(afDoc('start/how-to-use'), list, 9)).toBe('As jy ja besluit');
+  });
+
   it('is undefined when the item gives no reason, or does not exist', () => {
     expect(stepWhy(realDoc('start/how-to-use'), list, 2)).toBeUndefined();
     expect(stepWhy(realDoc('start/how-to-use'), list, 99)).toBeUndefined();

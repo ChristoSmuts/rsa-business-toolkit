@@ -3,8 +3,13 @@
  * The home page's "Your path" card (build plan B3 flow 2, B6; WP-31): the ring, "Continue: step 4
  * of 10" (a link to that step's first page), "Open my path" and "Edit answers".
  *
- * Rendered `hidden`; `<st-your-path>` (`src/scripts/path-progress.ts`) shows it when the reader
+ * Rendered `hidden`; `<st-your-path>` (`src/scripts/your-path.ts`) shows it when the reader
  * has answers on the device and keeps it in step with them. Without JavaScript it never shows.
+ *
+ * With answers saved (`html[data-st-profile]`, set by `theme-init.js` before first paint) its space
+ * is kept from the start, invisible, so the page below does not move when it appears (review
+ * WP-31 pass 2, minor 4). The element drops that space (`data-no-path`) once it knows there are no
+ * answers after all.
  */
 import Button from '../ui/Button.astro';
 import ProgressRing from '../ui/ProgressRing.astro';
@@ -57,9 +62,22 @@ const resume = t('home.yourPath.continue', { n: '{n}', total: '{total}' });
   import '../../scripts/your-path';
 </script>
 
+<style is:global>
+  /* `!important` to win over the global `[hidden] { display: none !important }`: the card keeps
+     its box, invisible and out of the accessibility tree, until the script shows or drops it. */
+  html.js[data-st-profile] st-your-path[hidden]:not([data-no-path]) {
+    display: block !important;
+    visibility: hidden;
+  }
+</style>
+
 <style>
   st-your-path {
     display: block;
+  }
+
+  .st-your-path__body [data-progress-text] {
+    min-block-size: 1lh;
   }
 
   .st-your-path__card {

@@ -49,6 +49,14 @@ const BLOCKS = `
       <label class="st-check" data-applies data-entity="pty"><input type="checkbox" data-task="d" /> Company</label>
     </fieldset>
   </st-checklist>
+  <st-checklist id="all-beauty">
+    <fieldset id="all-beauty-set">
+      <label class="st-check" data-applies data-types="beauty"><input type="checkbox" data-task="e" /> Beauty</label>
+      <label class="st-check" data-applies data-types="beauty"><input type="checkbox" data-task="f" /> Beauty</label>
+    </fieldset>
+    <p class="st-tasklist__hidden" hidden><span data-hidden-text></span>
+      <button type="button" data-show-list hidden>Show</button></p>
+  </st-checklist>
   <table><tbody>
     <tr id="row-all"><td>All</td></tr>
     <tr id="row-pty" data-applies data-entity="pty"><td>Company</td></tr>
@@ -109,6 +117,24 @@ describe('filterByProfile', () => {
     expect(filtered('row-all')).toBe(false);
   });
 
+  it('collapses a checklist with every item hidden to its line, with Show (review WP-31 pass 2, minor 2)', () => {
+    mount(BLOCKS);
+    filterByProfile(document.body, sole, { markers: true, hiddenItems });
+    const list = el('all-beauty');
+    const line = list.querySelector<HTMLElement>('.st-tasklist__hidden')!;
+    expect(filtered('all-beauty')).toBe(false);
+    expect(filtered('all-beauty-set')).toBe(true);
+    expect(line.hidden).toBe(false);
+    expect(line.querySelector('[data-hidden-text]')?.textContent).toBe('2 items are hidden');
+    expect(line.querySelector<HTMLElement>('[data-show-list]')!.hidden).toBe(false);
+    // My path (no markers) leaves out such a list altogether.
+    filterByProfile(document.body, sole, { markers: false });
+    expect(filtered('all-beauty')).toBe(true);
+    clearFilter(document.body);
+    expect(line.hidden).toBe(true);
+    expect(line.querySelector<HTMLElement>('[data-show-list]')!.hidden).toBe(true);
+  });
+
   it('shows both entities to an undecided reader and filters only by type', () => {
     mount(BLOCKS);
     filterByProfile(
@@ -166,6 +192,19 @@ describe('<st-applies-scope>', () => {
     expect(marker('sole').hidden).toBe(true);
     expect(document.activeElement).toBe(el('sole'));
     expect(filtered('food')).toBe(true);
+  });
+
+  it('“Show” on an emptied checklist brings its items back and focuses the first box', () => {
+    profile.set(pty);
+    onlyMine.set(true);
+    mount(
+      `<st-applies-scope data-mode="switch" data-hidden-one="{count} item is hidden" data-hidden-other="{count} items are hidden">${BLOCKS}</st-applies-scope>`,
+    );
+    expect(filtered('all-beauty-set')).toBe(true);
+    el('all-beauty').querySelector<HTMLButtonElement>('[data-show-list]')!.click();
+    expect(el('all-beauty').querySelectorAll(`.${FILTERED}`)).toHaveLength(0);
+    expect(el('all-beauty').querySelector<HTMLElement>('.st-tasklist__hidden')!.hidden).toBe(true);
+    expect(document.activeElement).toBe(el('all-beauty').querySelector('input'));
   });
 
   it('in checklist mode follows “Only what applies to me” and shows that choice only with a profile', () => {

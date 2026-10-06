@@ -37,6 +37,13 @@ async function stored(page: Page, key: string): Promise<unknown> {
 
 const visibleSteps = (page: Page) => page.locator('[data-steps] > li:visible');
 
+/** Opens My path once, which stores the reader's path for the top bar, the pager and home. */
+async function storePath(page: Page): Promise<void> {
+  await page.goto('my-path/');
+  await expect(visibleSteps(page).first()).toBeVisible();
+  expect(await stored(page, 'st.pathView.v1')).not.toBeNull();
+}
+
 test.describe('Find my path', () => {
   test('three steps with the keyboard, focus on each heading, then My path', async ({ page }) => {
     await page.goto('find-my-path/');
@@ -317,6 +324,106 @@ test.describe('My path', () => {
 });
 
 test.describe('personalisation elsewhere', () => {
+  const FOOD = { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' };
+
+  test('the top bar keeps one row with answers from 1024px (review WP-31 pass 2, minor 3)', async ({
+    page,
+    seedStorage,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Sets its own desktop widths.');
+    await seedStorage({ 'st.profile.v1': FOOD });
+    await storePath(page);
+    for (const width of [1024, 1100, 1180, 1280]) {
+      await page.setViewportSize({ width, height: 700 });
+      for (const route of ['core/tax-and-sars/', 'af/core/tax-and-sars/']) {
+        await page.goto(route);
+        const bar = page.locator('.st-topbar');
+        await expect(bar.locator('st-path-progress')).toBeVisible();
+        await expect(bar.locator('st-path-progress a')).toHaveAccessibleName(
+          /(My path|My roete): /,
+        );
+        const height = await bar.evaluate((element) => element.getBoundingClientRect().height);
+        expect(height, `${route} at ${width}px`).toBeLessThan(80);
+      }
+    }
+  });
+
+  test('the home card does not move the page when it appears (pass 2, minor 4)', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({ 'st.profile.v1': FOOD });
+    await storePath(page);
+    await page.addInitScript(() => {
+      const w = window as unknown as { __cls: number };
+      w.__cls = 0;
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries() as (PerformanceEntry & {
+          value: number;
+          hadRecentInput: boolean;
+        })[]) {
+          if (!entry.hadRecentInput) w.__cls += entry.value;
+        }
+      }).observe({ type: 'layout-shift', buffered: true });
+    });
+    await page.goto('./');
+    await expect(page.locator('st-your-path')).toBeVisible();
+    await page.waitForTimeout(500);
+    const cls = await page.evaluate(() => (window as unknown as { __cls: number }).__cls);
+    expect(cls).toBeLessThanOrEqual(0.1);
+  });
+
+  test('two tabs on different builds do not keep rewriting the stored path (pass 2, minor 1)', async ({
+    page,
+    context,
+    seedStorage,
+  }) => {
+    await seedStorage({ 'st.profile.v1': FOOD });
+    await page.goto('./');
+    await expect(page.locator('st-your-path')).toBeVisible();
+    const other = await context.newPage();
+    await other.goto('./');
+    await expect(other.locator('st-your-path')).toBeVisible();
+    await other.evaluate(() => {
+      const w = window as unknown as { __writes: number };
+      w.__writes = 0;
+      window.addEventListener('storage', (event) => {
+        if (event.key === 'st.pathView.v1') w.__writes++;
+      });
+    });
+    // The first tab behaves as if it were from an older build.
+    await page.evaluate(() => {
+      const card = document.querySelector<HTMLElement & { update(rebuild: boolean): void }>(
+        'st-your-path',
+      )!;
+      card.dataset['version'] = 'an-older-build';
+      card.update(true);
+    });
+    await page.waitForTimeout(2000);
+    const writes = await other.evaluate(() => (window as unknown as { __writes: number }).__writes);
+    expect(writes).toBeLessThanOrEqual(2);
+    await other.close();
+  });
+
+  test('a checklist with nothing left for the reader says so and offers Show (pass 2, minor 2)', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({ 'st.profile.v1': FOOD, 'st.onlyMine': true });
+    await page.goto('business-types/beauty/');
+    const list = page
+      .locator('st-checklist')
+      .filter({ has: page.locator('[data-show-list]') })
+      .first();
+    const line = list.locator('.st-tasklist__hidden');
+    await expect(line).toBeVisible();
+    await expect(line).toContainText(/items? (is|are) hidden because/);
+    await expect(list.locator('fieldset')).toBeHidden();
+    await line.getByRole('button', { name: 'Show' }).click();
+    await expect(list.locator('fieldset')).toBeVisible();
+    await expect(list.locator('input[type="checkbox"]').first()).toBeFocused();
+  });
+
   test('the pager follows the path on a page that is on it', async ({ page, seedStorage }) => {
     await seedStorage({
       'st.profile.v1': { entity: 'pty', businessTypes: ['vehicle-dealer'], stage: 'pty-growing' },

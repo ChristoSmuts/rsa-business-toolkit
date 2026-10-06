@@ -11,17 +11,28 @@ const EM_DASH = ' — ';
 
 /**
  * Why a step is on the path: the words after the em dash in its item of the "Choose your path"
- * list ("Core: start here — the order to do things"). The markdown says it, in every language,
- * so the page never invents a reason. `undefined` when the item gives none.
+ * list ("Core: start here — the order to do things"), or, in an item without one, the words
+ * before its first link ("If you decide yes, Running a Pty Ltd and …" gives "If you decide yes";
+ * review WP-31 pass 2, nit 3). The markdown says it, in every language, so the page never invents
+ * a reason. `undefined` when the item gives none.
  */
 export function stepWhy(source: Doc, listId: string, item: number): string | undefined {
   const list = source.blocks.find(
     (block): block is Extract<Block, { kind: 'list' }> =>
       block.id === listId && block.kind === 'list',
   );
-  const text = plainText(list?.items[item]);
+  const runs = list?.items[item];
+  const text = plainText(runs);
   const at = text.indexOf(EM_DASH);
-  if (at === -1) return undefined;
+  if (at === -1) {
+    const link = (runs ?? []).findIndex((run) => run.t === 'link');
+    if (link <= 0) return undefined;
+    const before = plainText(runs?.slice(0, link))
+      .trim()
+      .replace(/[,:;]$/, '')
+      .trim();
+    return before === '' ? undefined : before;
+  }
   const why = text.slice(at + EM_DASH.length).trim();
   return why === '' ? undefined : why;
 }

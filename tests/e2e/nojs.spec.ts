@@ -184,6 +184,7 @@ test.describe('Find my path without JavaScript', () => {
     await expect(submit).toHaveCount(0);
     await expect(page.locator('.st-wizard__incomplete')).toBeVisible();
     await expect(page.locator('.st-wizard__fallback')).toBeHidden();
+    await expect(page.getByText('Choose your path from this list')).toBeHidden();
 
     await page.getByRole('radio', { name: /registered company/ }).check();
     await page.getByRole('radio', { name: /Vehicle dealer/ }).check();
@@ -227,7 +228,10 @@ test.describe('Find my path without JavaScript', () => {
     await expect(page.locator('.st-wizard__incomplete')).toBeHidden();
     const list = page.locator('.st-wizard__fallback');
     await expect(list).toBeVisible();
-    await list.getByText('Or choose your answers from a list').click();
+    // Open from the start, and saying it is the way on (review WP-31 pass 2, minor 5).
+    await expect(list).toHaveAttribute('open', '');
+    await expect(list.locator('summary')).toHaveText('Choose your path from this list');
+    await expect(list.getByText(/Your browser cannot show the button/)).toBeVisible();
     await list
       .getByRole('region', { name: /registered company/ })
       .getByRole('link', { name: 'Beauty and personal care: Already trading' })
