@@ -425,38 +425,33 @@ describe('A7 ranking cases', () => {
       kind: 'mixed',
       lang: 'en',
       query: 'ITR 14 deadline',
-      startsWith: 'ITR14 deadline',
       top3: ['glossary/#itr14'],
     },
-    // Review WP-33 pass 6, major 2: all words first, then any word. The one page that names both
-    // comes first; the code's own entries, which give the date in other words, follow.
+    // Review WP-33 pass 6, major 2 and pass 7, minor 1: a topic and "deadline". The corrections
+    // log names both in passing, but it is about the guide: the topic's own entry comes first.
+    { kind: 'topic + deadline', lang: 'en', query: 'PAYE deadline', first: 'glossary/#paye' },
+    { kind: 'topic + deadline', lang: 'en', query: 'EMP201 deadline', first: 'glossary/#emp201' },
+    { kind: 'topic + deadline', lang: 'en', query: 'UIF deadline', first: 'glossary/#uif' },
+    { kind: 'topic + deadline', lang: 'en', query: 'ITR14 deadline', first: 'glossary/#itr14' },
     {
-      kind: 'all words, then any word',
+      kind: 'topic + deadline, being typed',
       lang: 'en',
-      query: 'EMP201 deadline',
-      first: 'start/how-this-was-made/#corrections-log',
-      top3: ['glossary/#emp201'],
+      query: 'EMP201 dead',
+      typing: true,
+      first: 'glossary/#emp201',
     },
     {
-      kind: 'all words, then any word',
-      lang: 'en',
-      query: 'ITR14 deadline',
-      first: 'start/how-this-was-made/#corrections-log',
-      top3: ['glossary/#itr14'],
-    },
-    {
-      kind: 'all words, then any word',
+      kind: 'topic + deadline',
       lang: 'af',
       query: 'EMP201 sperdatum',
-      first: 'start/how-this-was-made/#corrections-log',
-      top3: ['glossary/#emp201'],
+      first: 'glossary/#emp201',
     },
+    { kind: 'topic + deadline', lang: 'af', query: 'ITR14 sperdatum', first: 'glossary/#itr14' },
     {
       kind: 'all words, then any word',
-      lang: 'af',
-      query: 'ITR14 sperdatum',
-      first: 'start/how-this-was-made/#corrections-log',
-      top3: ['glossary/#itr14'],
+      lang: 'en',
+      query: 'sell second hand cars',
+      first: 'core/what-you-need-to-sell-things/#if-you-sell-second-hand-goods',
     },
     { kind: 'mixed', lang: 'en', query: 'VAT rate 15%', top3: ['glossary/#vat'] },
   ];
@@ -566,15 +561,27 @@ describe('A7 ranking cases', () => {
   // Review WP-33 pass 6, major 2: any word after all words, always, not only when all words find
   // nothing.
   it('lists the any-word results after the all-words results', () => {
+    const counted = runSearchCounted(en.index, 'turnover tax', 'en', { limit: 5000 }, BASE);
+    expect(counted.matchedAll).toBeGreaterThan(0);
+    expect(counted.total).toBeGreaterThan(counted.matchedAll);
+    const holdsBoth = (r: SearchResult) =>
+      r.terms.some((t) => t.startsWith('turnover')) && r.terms.some((t) => t.startsWith('tax'));
+    expect(counted.results.slice(0, counted.matchedAll).every(holdsBoth)).toBe(true);
+    // After them, only pages about the guide hold both words (see the next test).
+    const rest = counted.results.slice(counted.matchedAll).filter(holdsBoth);
+    expect(rest.every((r) => r.doc.startsWith('start/how-this-was-made'))).toBe(true);
+  });
+
+  // Review WP-33 pass 7, minor 1: a page about the guide holds both words, but it ranks with the
+  // any-word results, by its weighted score, and never counts as an all-words result.
+  it('ranks the corrections log with the any-word results', () => {
     const counted = runSearchCounted(en.index, 'EMP201 deadline', 'en', { limit: 5000 }, BASE);
-    expect(counted.matchedAll).toBe(1);
-    expect(counted.total).toBeGreaterThan(10);
-    const rest = counted.results.slice(counted.matchedAll);
-    expect(rest.every((r) => !(r.terms.includes('emp201') && r.terms.includes('deadline')))).toBe(
-      true,
-    );
-    // The any-word results are best first: the EMP201 glossary entry leads them.
-    expect(rest[0]?.href).toBe(`${BASE}glossary/#emp201`);
+    const hrefs = counted.results.map((r) => r.href);
+    const log = hrefs.indexOf(`${BASE}start/how-this-was-made/#corrections-log`);
+    expect(log).toBeGreaterThan(hrefs.indexOf(`${BASE}glossary/#emp201`));
+    expect(log).toBeGreaterThanOrEqual(counted.matchedAll);
+    const entry = en.entries.find((e) => e.key.startsWith('start/how-this-was-made#'));
+    expect(entry?.weight).toBe(0.25);
   });
 
   it('counts every result, however many the cap returns', () => {

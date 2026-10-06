@@ -15,10 +15,15 @@ import {
   type CountedResults,
   groupResults,
   type SearchClient,
-  type SearchResult,
 } from '../lib/search-client';
 import type { SearchSettings } from './search';
-import { readContext, resultBody, sectionName, type SearchContext } from './search-render';
+import {
+  countStatus,
+  readContext,
+  resultBody,
+  sectionName,
+  type SearchContext,
+} from './search-render';
 
 export interface DialogController {
   /** The dialog has just opened. */
@@ -159,14 +164,17 @@ export class SearchDialogController implements DialogController {
         this.move(-1);
         break;
       case 'Enter': {
-        // The ARIA combobox pattern: Enter opens the active option, or the first one. Only when
-        // the list does not yet belong to the text in the field does it wait for that list.
-        if (this.#input.value.trim() !== this.#shownQuery) {
+        // The ARIA combobox pattern: Enter opens the active option, or the first one. An option
+        // the reader highlighted always wins, even in a list from before the last key press
+        // (review WP-33 pass 7, nit 2). Only with no option highlighted, and a list that does not
+        // yet belong to the text in the field, does it wait for that text's list.
+        const active = this.#options[this.#active];
+        if (!active && this.#input.value.trim() !== this.#shownQuery) {
           event.preventDefault();
           void this.enterCurrent();
           break;
         }
-        const option = this.#options[this.#active] ?? this.#options[0];
+        const option = active ?? this.#options[0];
         if (option) {
           event.preventDefault();
           this.activate(option);
@@ -255,7 +263,7 @@ export class SearchDialogController implements DialogController {
       clearTimeout(loading);
     }
     if (sequence !== this.#sequence) return;
-    this.#render(counted.results, q, counted.total);
+    this.#render(counted, q, typing);
   }
 
   #setStatus(text: string): void {
@@ -290,8 +298,13 @@ export class SearchDialogController implements DialogController {
     this.#setStatus(this.#context.tr('search.failed'));
   }
 
-  /** `total` is every result the query matched; `results` is the first of them (the client's cap). */
-  #render(results: readonly SearchResult[], query: string, total: number): void {
+  /**
+   * `counted.total` is every result the query matched, `counted.matchedAll` how many of them match
+   * every word, and `counted.results` the first of them (the client's cap). `typing`: the list was
+   * found while the last word was still being typed, which the "See all" link passes on.
+   */
+  #render(counted: CountedResults, query: string, typing: boolean): void {
+    const { results, total, matchedAll } = counted;
     const { tr } = this.#context;
     const doc = this.#host.ownerDocument;
     this.#shownQuery = query;
@@ -352,14 +365,22 @@ export class SearchDialogController implements DialogController {
     this.#listbox.hidden = false;
     this.#input.setAttribute('aria-expanded', 'true');
     this.#setStatus(
-      shown < total
-        ? tr('search.resultsShown', { shown, count: total })
-        : tr('search.results', { count: total }),
+      countStatus(
+        tr,
+        shown < total
+          ? tr('search.resultsShown', { shown, count: total })
+          : tr('search.results', { count: total }),
+        matchedAll,
+        total,
+      ),
     );
     const link = this.#all?.querySelector('a');
     if (this.#all && link && shown < total) {
       const url = new URL(this.#context.page, this.#host.ownerDocument.baseURI);
       url.searchParams.set('q', query);
+      // The search page then runs the same search, so it lists the results the link promises:
+      // `VAT26` while typed reaches VAT264 there too (review WP-33 pass 7, minor 3).
+      if (typing) url.searchParams.set('typed', '1');
       link.href = `${url.pathname}${url.search}`;
       link.textContent = tr('search.seeAll', { count: total });
       this.#all.hidden = false;

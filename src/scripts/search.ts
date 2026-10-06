@@ -199,6 +199,11 @@ export class StSearch extends HTMLElement {
 
   /** Set once the results code has loaded; until then Enter is this element's to handle. */
   #uiReady = false;
+  /**
+   * Set once loading the results code has failed (offline, or a stale page after a deploy whose
+   * old chunk is gone). Enter then submits to `/search/?q=`, a fresh page that works.
+   */
+  #uiFailed = false;
 
   /**
    * Enter before the results code has loaded. An empty query goes nowhere: the reader stays on
@@ -213,11 +218,17 @@ export class StSearch extends HTMLElement {
       event.preventDefault();
       return;
     }
-    if (this.#uiReady || !this.#dialog?.open) return;
+    if (this.#uiReady || this.#uiFailed || !this.#dialog?.open) return;
     event.preventDefault();
+    const form = this.#field()?.form;
     this.controller().then(
       (controller) => controller.enterCurrent(),
-      () => undefined,
+      () => {
+        // The results code did not load: the search page is the way on (review WP-33 pass 7,
+        // minor 2).
+        this.#uiFailed = true;
+        form?.requestSubmit();
+      },
     );
   };
 
@@ -321,6 +332,7 @@ export class StSearch extends HTMLElement {
     this.controller().then(
       (controller) => controller.opened(),
       () => {
+        this.#uiFailed = true;
         // The results code could not load (offline, a stale page after a deploy): show the
         // failed state the page rendered, with its link to the contents.
         this.#controller = undefined;

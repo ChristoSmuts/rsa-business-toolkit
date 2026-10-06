@@ -16,12 +16,19 @@ import { getLocale } from '../i18n/locales';
 import { localeFromPath } from '../lib/paths';
 import {
   createSearchClient,
+  type CountedResults,
   groupResults,
   type SearchClient,
   type SearchResult,
 } from '../lib/search-client';
 import { rememberArrival, searchSettings } from './search';
-import { readContext, resultBody, sectionName, type SearchContext } from './search-render';
+import {
+  countStatus,
+  readContext,
+  resultBody,
+  sectionName,
+  type SearchContext,
+} from './search-render';
 
 /** Results the 404 page suggests at most. */
 export const SUGGESTIONS = 5;
@@ -81,6 +88,14 @@ export function queryFrom(url: string): string {
   return (new URL(url, 'https://example.invalid/').searchParams.get('q') ?? '').trim();
 }
 
+/**
+ * `true` when the URL says its query was still being typed (`&typed=1`, set by the dialog's "See
+ * all" link), so the page runs the search the dialog ran. Otherwise a query here is finished.
+ */
+export function typedFrom(url: string): boolean {
+  return new URL(url, 'https://example.invalid/').searchParams.get('typed') === '1';
+}
+
 export class StSearchPage extends HTMLElement {
   #context: SearchContext | undefined;
   #client: SearchClient | undefined;
@@ -94,6 +109,8 @@ export class StSearchPage extends HTMLElement {
     const url = new URL(window.location.href);
     if (query === '') url.searchParams.delete('q');
     else url.searchParams.set('q', query);
+    // A search submitted here is finished.
+    url.searchParams.delete('typed');
     if (url.href !== window.location.href) window.history.pushState(null, '', url);
     void this.run(query);
   };
@@ -101,7 +118,7 @@ export class StSearchPage extends HTMLElement {
   readonly #onPopState = (): void => {
     const query = queryFrom(window.location.href);
     if (this.#input) this.#input.value = query;
-    void this.run(query);
+    void this.run(query, typedFrom(window.location.href));
   };
 
   connectedCallback(): void {
@@ -114,7 +131,7 @@ export class StSearchPage extends HTMLElement {
     window.addEventListener('popstate', this.#onPopState);
     const query = queryFrom(window.location.href);
     if (this.#input && query !== '') this.#input.value = query;
-    void this.run(query);
+    void this.run(query, typedFrom(window.location.href));
   }
 
   disconnectedCallback(): void {
@@ -127,7 +144,7 @@ export class StSearchPage extends HTMLElement {
    * Run `query` and show it in place. An empty query hides the heading and empties the list. The
    * region itself is never hidden, so its live status line is always in the accessibility tree.
    */
-  async run(query: string): Promise<void> {
+  async run(query: string, typing = false): Promise<void> {
     const context = this.#context;
     const client = this.#client;
     const region = this.#region;
@@ -148,12 +165,16 @@ export class StSearchPage extends HTMLElement {
     if (title) title.textContent = context.tr('search.resultsFor', { query });
     if (failed) failed.hidden = true;
     if (status && !client.ready) status.textContent = context.tr('search.loading');
-    let results: SearchResult[];
+    let counted: CountedResults;
     try {
       // The search page is the full list: every result, so its count is the true total and
-      // "See all" in the dialog keeps its promise (review WP-33 pass 4, minor 2).
-      // A submitted query is finished: `R1` is R1, not R146 (review WP-33 pass 5).
-      results = await client.search(query, { limit: Number.POSITIVE_INFINITY, typing: false });
+      // "See all" in the dialog keeps its promise (review WP-33 pass 4, minor 2). A submitted
+      // query is finished (`R1` is R1, not R146; review WP-33 pass 5), unless the dialog's link
+      // says it was still being typed (pass 7, minor 3).
+      counted = await client.searchCounted(query, {
+        limit: Number.POSITIVE_INFINITY,
+        typing,
+      });
     } catch {
       if (sequence !== this.#sequence) return;
       list?.replaceChildren();
@@ -162,12 +183,18 @@ export class StSearchPage extends HTMLElement {
       return;
     }
     if (sequence !== this.#sequence) return;
+    const { results, matchedAll } = counted;
     if (list) renderResultList(list, results, context);
     if (status) {
       status.textContent =
         results.length === 0
           ? `${context.tr('search.noResults', { query })} ${context.tr('search.suggestions')}`
-          : context.tr('search.results', { count: results.length });
+          : countStatus(
+              context.tr,
+              context.tr('search.results', { count: results.length }),
+              matchedAll,
+              results.length,
+            );
     }
   }
 }

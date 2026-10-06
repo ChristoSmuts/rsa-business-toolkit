@@ -19,7 +19,7 @@ import type {
   TasksFile,
 } from '../../src/lib/content/schema';
 import type { Locale } from '../../src/i18n/locales';
-import { foldTerm, KIND_WEIGHT } from '../../src/lib/search/options';
+import { entryWeight, foldTerm } from '../../src/lib/search/options';
 import type { SearchEntry, SearchEntryKind } from '../../src/lib/search/types';
 
 /** Excerpts stop at the last word boundary before this many characters. */
@@ -129,7 +129,7 @@ function entry(
     ...fields,
     route,
     kind,
-    weight: KIND_WEIGHT[kind],
+    weight: entryWeight(kind, fields.doc),
     lang: fields.lang === indexLang ? undefined : fields.lang,
   };
   // Leave optional keys out rather than storing `undefined`.

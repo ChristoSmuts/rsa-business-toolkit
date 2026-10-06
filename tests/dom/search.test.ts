@@ -352,6 +352,45 @@ describe('<st-search>', () => {
     Reflect.deleteProperty(failing, 'controller');
   });
 
+  // Review WP-33 pass 7, minor 2: once the results code has failed to load, Enter goes to the
+  // search page, a fresh page that works, as it did before the early-Enter fix.
+  it('submits to the search page once the results code has failed to load', async () => {
+    const failing = Object.assign(host, {
+      controller: () => Promise.reject(new Error('offline')),
+    });
+    failing.open();
+    await vi.waitFor(() =>
+      expect(document.querySelector<HTMLElement>('[data-search-failed]')!.hidden).toBe(false),
+    );
+    const field = document.getElementById('q') as HTMLInputElement;
+    field.value = 'VAT';
+    const prevented = afterOwnHandlers(field.form!, 'submit');
+    field.form!.dispatchEvent(new Event('submit', { cancelable: true }));
+    expect(prevented()).toBe(false);
+    Reflect.deleteProperty(failing, 'controller');
+  });
+
+  it('submits to the search page when the load an early Enter waited for fails', async () => {
+    let reject: (error: Error) => void = () => undefined;
+    const failing = Object.assign(host, {
+      controller: () =>
+        new Promise<never>((_, no) => {
+          reject = no;
+        }),
+    });
+    failing.open();
+    const field = document.getElementById('q') as HTMLInputElement;
+    field.value = 'VAT';
+    const requestSubmit = vi.fn();
+    field.form!.requestSubmit = requestSubmit;
+    const submit = new Event('submit', { cancelable: true });
+    field.form!.dispatchEvent(submit);
+    expect(submit.defaultPrevented).toBe(true);
+    reject(new Error('offline'));
+    await vi.waitFor(() => expect(requestSubmit).toHaveBeenCalledTimes(1));
+    Reflect.deleteProperty(failing, 'controller');
+  });
+
   // Review WP-33 pass 3, minor 1: a later open whose results code loads clears the failed state.
   it('clears the failed state when a later open loads the results code', async () => {
     const failing = Object.assign(host, {
@@ -693,6 +732,33 @@ describe('the results listbox', () => {
     expect(opened).toHaveLength(1);
   });
 
+  // Review WP-33 pass 7, nit 2: an option highlighted with an arrow key wins, even in the list
+  // from before the last key press (the debounce has not run yet).
+  it('opens the highlighted option on Enter, even while a newer search waits', async () => {
+    input().value = 'PIS';
+    await controller.search('PIS');
+    input().value = 'statements';
+    input().dispatchEvent(new Event('input'));
+    key(input(), { key: 'ArrowDown' });
+    const highlighted = options()[0]!.href;
+    expect(key(input(), { key: 'Enter' }).defaultPrevented).toBe(true);
+    expect(opened).toEqual([highlighted]);
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    expect(opened).toHaveLength(1);
+  });
+
+  // Review WP-33 pass 7, nit 1: say how many results match every word.
+  it('says how many results match every word when the others match only some', async () => {
+    input().value = 'PIS statements';
+    await controller.search('PIS statements');
+    expect(options()[0]!.getAttribute('href')).toBe(
+      '/core/running-a-pty-ltd/#financial-statements',
+    );
+    expect(document.querySelector('[role="status"]')?.textContent).toBe(
+      '3 results (1 matches every word)',
+    );
+  });
+
   it('opens the first result on Enter when none is active, and an option on a click', async () => {
     (document.getElementById('q') as HTMLInputElement).value = 'PIS';
     await controller.search('PIS');
@@ -748,7 +814,8 @@ describe('the results listbox', () => {
     expect(options()).toHaveLength(3);
     const all = document.querySelector<HTMLElement>('[data-search-all]')!;
     expect(all.hidden).toBe(false);
-    expect(all.querySelector('a')?.getAttribute('href')).toBe('/search/?q=levy');
+    // Found while typed, so the search page runs the same search (review WP-33 pass 7, minor 3).
+    expect(all.querySelector('a')?.getAttribute('href')).toBe('/search/?q=levy&typed=1');
     expect(all.textContent).toBe('See all 40 results on the search page');
     // Review WP-33 pass 1, minor 2: announce what the arrow keys can reach.
     expect(document.querySelector('[role="status"]')?.textContent).toBe('3 of 40 results shown'); // the true total, not the client's cap of 30 (review WP-33 pass 4, minor 2)
@@ -988,6 +1055,24 @@ describe('<st-search-page>', () => {
     );
     expect(document.querySelector('[data-search-result]')?.getAttribute('href')).toBe(
       '/core/start-here/#numbers',
+    );
+  });
+
+  // Review WP-33 pass 7, minor 3: the dialog's "See all" link for a list found while typing
+  // carries `typed=1`, and the page runs that same search: `R1` then reaches R146 too.
+  it('runs a query the dialog found while typing as typed, and a new search as finished', async () => {
+    stubFetch();
+    mount('/search/?q=R1&typed=1');
+    await vi.waitFor(() =>
+      expect(document.querySelectorAll('[data-search-result]')).toHaveLength(2),
+    );
+    expect(document.querySelector('[data-search-result]')?.getAttribute('href')).toBe(
+      '/glossary/#r146',
+    );
+    document.querySelector('form')!.dispatchEvent(new Event('submit', { cancelable: true }));
+    expect(window.location.search).toBe('?q=R1');
+    await vi.waitFor(() =>
+      expect(document.querySelectorAll('[data-search-result]')).toHaveLength(1),
     );
   });
 

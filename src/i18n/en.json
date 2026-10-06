@@ -699,6 +699,10 @@
       "other": "{count} results"
     },
     "resultsShown": "{shown} of {count} results shown",
+    "matchedAll": {
+      "one": "{count} matches every word",
+      "other": "{count} match every word"
+    },
     "seeAll": {
       "one": "See the {count} result on the search page",
       "other": "See all {count} results on the search page"

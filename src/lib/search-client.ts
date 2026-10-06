@@ -11,6 +11,7 @@ import MiniSearch, { type SearchResult as MiniSearchResult } from 'minisearch';
 import type { Locale } from './paths';
 import { href } from './paths';
 import {
+  DOC_WEIGHT,
   FIELD_BOOST,
   foldTerm,
   fuzzy,
@@ -345,15 +346,20 @@ export function runSearchCounted(
     return [...best.values()].sort((a, b) => b.score - a.score);
   };
   // All words first, then any word, best first (review WP-33 pass 6, major 2).
-  const all = allWords();
-  const found = new Set(all.map((hit) => hit.id));
+  const every = allWords();
+  const found = new Set(every.map((hit) => hit.id));
   const any = anyTree(parts, typing);
-  const hits = [...all];
-  if (any.queries.length > 0) {
-    for (const hit of index.search.search(any, searchOptions)) {
-      if (!found.has(hit.id)) hits.push(hit);
-    }
-  }
+  const some =
+    any.queries.length > 0
+      ? index.search.search(any, searchOptions).filter((hit) => !found.has(hit.id))
+      : [];
+  // A page about the guide (`DOC_WEIGHT` below 1: the corrections log naming "EMP201" next to
+  // "deadlines") never leads as an all-words result: it ranks with the any-word results, by its
+  // weighted score, so a topic's own entry comes first (review WP-33 pass 7, minor 1).
+  const aboutGuide = (hit: MiniSearchResult): boolean => (DOC_WEIGHT[String(hit['d'])] ?? 1) < 1;
+  const all = every.filter((hit) => !aboutGuide(hit));
+  const passing = every.filter(aboutGuide);
+  const hits = [...all, ...[...passing, ...some].sort((a, b) => b.score - a.score)];
   // Two entries can open the same place (a term and the section that explains it): keep the
   // better one, so the list never offers the same destination twice.
   const limit = options.limit ?? DEFAULT_LIMIT;

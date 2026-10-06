@@ -699,6 +699,10 @@
       "other": "{count} resultate"
     },
     "resultsShown": "{shown} van {count} resultate gewys",
+    "matchedAll": {
+      "one": "{count} bevat al die woorde",
+      "other": "{count} bevat al die woorde"
+    },
     "seeAll": {
       "one": "Sien die {count} resultaat op die soekbladsy",
       "other": "Sien al {count} resultate op die soekbladsy"

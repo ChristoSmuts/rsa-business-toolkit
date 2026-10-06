@@ -154,6 +154,25 @@ test.describe('the search dialog', () => {
     });
   }
 
+  // Review WP-33 pass 7, minor 3: "See all" leads to the results it promises, also for a code
+  // that is only partly typed.
+  test('VAT26, then "See all", lists the same results on the search page', async ({ page }) => {
+    await open(page, DOC);
+    await page.keyboard.press('/');
+    await field(page).fill('VAT26');
+    await expect(page.getByRole('option').first()).toHaveAttribute('href', /\/glossary\/#vat264$/);
+    const all = page.locator('[data-search-all] a');
+    await expect(all).toBeVisible();
+    const promised = Number(/\d+/.exec((await all.textContent()) ?? '')?.[0]);
+    expect(promised).toBeGreaterThan(0);
+    await all.click();
+    await expect(page.locator('[data-search-result]').first()).toHaveAttribute(
+      'href',
+      /\/glossary\/#vat264$/,
+    );
+    await expect(page.locator('[data-search-result]')).toHaveCount(promised);
+  });
+
   // Review WP-33 pass 6, major 2: all words first, then any word.
   test('EMP201 deadline lists the EMP201 glossary entry in the dialog', async ({ page }) => {
     await open(page, DOC);

@@ -114,3 +114,18 @@ export function resultBody(
 export function sectionName(context: SearchContext, section: string): string {
   return context.strings.sections[section] ?? section;
 }
+
+/**
+ * A result count, with how many results match every word when that is not all of them: "12 of 375
+ * results shown (24 match every word)" (review WP-33 pass 7, nit 1).
+ */
+export function countStatus(
+  tr: SearchContext['tr'],
+  count: string,
+  matchedAll: number,
+  total: number,
+): string {
+  return matchedAll > 0 && matchedAll < total
+    ? `${count} (${tr('search.matchedAll', { count: matchedAll })})`
+    : count;
+}
