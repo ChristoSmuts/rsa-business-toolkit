@@ -37,6 +37,7 @@ This branch exists only in the cloud session that built it. If that session is g
 
 - **P4a, the accuracy review against official sources**: the cloud environment cannot reach SARS, CIPC, gov.za, SAFLII or the Information Regulator.
 - **WebKit**: run the WebKit project locally (merge checklist).
+- **Content gap, closing as a sole proprietor**: the guide covers closing a business only in "Closing a company properly" (Pty Ltd). A sole proprietor who stops trading (SARS income tax and VAT deregistration, UIF, licences, records) has no section. Write it in the English markdown with official sources, then translate it; search's closing best bets (`content-meta/search-best-bets.json`) should then point sole-proprietor phrasings at it. Found by WP-33 review pass 15.
 
 ### Decided on 2 October 2026
 
