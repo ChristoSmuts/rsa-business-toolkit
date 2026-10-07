@@ -21,6 +21,7 @@ export interface IndexedDocument extends StoredFields {
   readonly title: string;
   readonly path: string;
   readonly text: string;
+  readonly lead?: string;
 }
 
 export function toIndexedDocument(entry: SearchEntry, id: number): IndexedDocument {
@@ -29,6 +30,7 @@ export function toIndexedDocument(entry: SearchEntry, id: number): IndexedDocume
     title: entry.indexTitle ?? entry.title,
     path: entry.path,
     text: entry.text,
+    lead: entry.lead,
     k: entry.kind,
     d: entry.doc,
     r: entry.route,
@@ -70,14 +72,17 @@ export function serialiseIndex(
   lang: string,
   sections: readonly string[],
   entries: readonly SearchEntry[],
-  bets: readonly SearchBestBet[] = [],
+  best: { readonly bets: readonly SearchBestBet[]; readonly filler: readonly string[] } = {
+    bets: [],
+    filler: [],
+  },
 ): BuiltIndex {
   const payload: SerialisedIndex = {
     v: INDEX_VERSION,
     lang,
     sections,
     index: createIndex(entries).toJSON(),
-    ...(bets.length > 0 ? { bets } : {}),
+    ...(best.bets.length > 0 ? { bets: best.bets, filler: best.filler } : {}),
   };
   const json = JSON.stringify(payload);
   return { file: `${lang}.${contentHash(json)}.json`, json, entries: entries.length };

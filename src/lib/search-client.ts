@@ -94,6 +94,8 @@ export interface LoadedIndex {
   readonly search: MiniSearch<StoredFields>;
   /** Best bets: phrases that open one entry first (`content-meta/search-best-bets.json`). */
   readonly bets?: readonly SearchBestBet[];
+  /** Words a best bet ignores in a query, besides the stop words. */
+  readonly filler?: readonly string[];
 }
 
 export class SearchIndexError extends Error {
@@ -128,7 +130,13 @@ export function loadIndex(value: unknown, locale: Locale): LoadedIndex {
       value.index as Parameters<typeof MiniSearch.loadJS>[0],
       indexOptions<StoredFields>(),
     );
-    return { lang: value.lang, sections: value.sections, search, bets: value.bets ?? [] };
+    return {
+      lang: value.lang,
+      sections: value.sections,
+      search,
+      bets: value.bets ?? [],
+      filler: value.filler ?? [],
+    };
   } catch (error) {
     throw new SearchIndexError(`The search index could not be read: ${String(error)}`);
   }
@@ -366,34 +374,57 @@ export function holdsAsWritten(
 /** Shortest beginning of a best-bet word that, while it is typed, may stand for the word. */
 const BET_PREFIX_MIN = 4;
 
+/** How a typed query may meet a best bet; see `bestBet`. */
+export interface BestBetTyping {
+  /** The last word is still being typed. */
+  readonly typing: boolean;
+  /** The last word, as typed, is a whole word of the guide. */
+  readonly lastIsWord?: boolean;
+  /** Every word of the guide the typed last word begins. */
+  readonly completions?: readonly string[];
+}
+
 /**
- * The best bet a query asks for, or `undefined` (review WP-33 pass 13). The query's words
- * (`betWords`) must be the phrase's words. While the last word is typed, it may also be the
- * beginning of the phrase's last word, from four letters (`register my busi`, `checkl`); the words
- * before it are whole. Never a typo match, never fewer words (`business` is not the best bet
- * `business licence`), never more (`tax threshold` is not the best bet `tax`). When several phrases
- * fit, the first in the file wins.
+ * The best bet a query asks for, or `undefined` (review WP-33 passes 13 and 14). Every word of the
+ * phrase must be a word of the query (`betWords`, in any order), and every other word of the query
+ * must be a filler word (`my own`, `a new`, `my small`, `eie`, `nuwe`): `register my own business`
+ * is the best bet `register business`, but `tax threshold` is not the best bet `tax`. While the last
+ * word is typed, it may also be the beginning of a phrase word, from four letters (`register my
+ * busi`), but only when it is not already a whole word of the guide (`besig`) and every word of the
+ * guide it begins is that phrase word or one of its forms or compounds: `maatskap` begins
+ * "maatskappy" too, so it is not yet `maatskappybelasting`. Never a typo match. When several
+ * phrases fit, the first in the file wins.
  */
 export function bestBet(
   bets: readonly SearchBestBet[],
   query: string,
-  typing: boolean,
-  lastIsWord = false,
+  typed: BestBetTyping | boolean,
+  filler: readonly string[] = [],
 ): SearchBestBet | undefined {
+  const {
+    typing,
+    lastIsWord = false,
+    completions = [],
+  } = typeof typed === 'boolean' ? { typing: typed } : typed;
   const words = betWords(query);
   if (words.length === 0) return undefined;
   const last = words.length - 1;
+  const typedWord = words[last]!;
+  const beginsOnly = (word: string): boolean =>
+    typing &&
+    !lastIsWord &&
+    typedWord.length >= BET_PREFIX_MIN &&
+    word.startsWith(typedWord) &&
+    completions.every((term) => term.startsWith(word));
   return bets.find((bet) => {
-    if (bet.w.length === words.length && bet.w.every((word, at) => word === words[at])) return true;
-    // A whole word of the guide is finished, not the beginning of a compound: `jy is die
-    // besigheid` is not the best bet `besigheidslisensie`.
-    if (!typing || lastIsWord || words.length !== bet.w.length) return false;
-    const typed = words[last]!;
-    return (
-      words.slice(0, last).every((word, at) => word === bet.w[at]) &&
-      typed.length >= BET_PREFIX_MIN &&
-      (bet.w[last] ?? '').startsWith(typed)
-    );
+    const used = new Set<number>();
+    for (const word of bet.w) {
+      let at = words.findIndex((candidate, index) => !used.has(index) && candidate === word);
+      if (at < 0 && !used.has(last) && beginsOnly(word)) at = last;
+      if (at < 0) return false;
+      used.add(at);
+    }
+    return words.every((word, index) => used.has(index) || filler.includes(word));
   });
 }
 
@@ -605,7 +636,18 @@ export function runSearchCounted(
   // corrections log naming "EMP201" next to "deadlines"), such an entry ranks with the any-word
   // results, so `PAYE deadline` opens the PAYE entry (review WP-33 pass 7 to 9).
   const aboutGuide = (hit: MiniSearchResult): boolean => DOC_WEIGHT[String(hit['d'])] !== undefined;
-  const demoted = (hit: MiniSearchResult): boolean => aboutGuide(hit) && !headed.has(hit.id);
+  // A quick answer that holds a word only in its page's lead (`lead`) matches only some words: the
+  // lead finds the answer, it does not make it an answer to every query its page's summary
+  // touches (`do i need a company` is not "What does a Pty Ltd cost me every year?"; review
+  // WP-33 pass 14, minor 4).
+  const answers = every.filter((hit) => hit['k'] === 'answer');
+  const ownWords = new Set(
+    answers.length > 0 ? allWords({ fields: ['title', 'path', 'text'] }).map((hit) => hit.id) : [],
+  );
+  const leadOnly = (hit: MiniSearchResult): boolean =>
+    hit['k'] === 'answer' && !ownWords.has(hit.id);
+  const demoted = (hit: MiniSearchResult): boolean =>
+    (aboutGuide(hit) && !headed.has(hit.id)) || leadOnly(hit);
   const listed = every.filter((hit) => !demoted(hit) && hit !== titled);
   // A heading on a page about the guide that names a common word ("Change 2: …") is not promoted:
   // those pages keep only their weight.
@@ -633,9 +675,24 @@ export function runSearchCounted(
   // A phrase still being typed yields to a page the query names by its title (`jy is die besighe`
   // is "Jy is die besigheid", not yet `besigheidslisensie`).
   const bets = index.bets ?? [];
+  const filler = index.filler ?? [];
+  /** The words of the guide the typed last word begins (for a typed best bet). */
+  const completions = (): string[] => {
+    const typedWord = betWords(query).at(-1);
+    if (!typing || typedWord === undefined) return [];
+    const hits = index.search.search(
+      { combineWith: 'OR', queries: [typedWord], prefix: true, fuzzy: false },
+      searchOptions,
+    );
+    return [...new Set(hits.flatMap((hit) => hit.terms))].filter((term) =>
+      term.startsWith(typedWord),
+    );
+  };
   const bet =
-    bestBet(bets, query, false) ??
-    (titled === undefined ? bestBet(bets, query, typing, lastIsWord) : undefined);
+    bestBet(bets, query, false, filler) ??
+    (titled === undefined
+      ? bestBet(bets, query, { typing, lastIsWord, completions: completions() }, filler)
+      : undefined);
   const stored = bet === undefined ? undefined : index.search.getStoredFields(bet.id);
   // The entry as the search found it (with its matched terms, for highlighting), or as stored.
   const foundBet = [...every, ...some].find((hit) => hit.id === bet?.id);

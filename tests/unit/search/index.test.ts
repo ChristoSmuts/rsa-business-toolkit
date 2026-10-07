@@ -1056,6 +1056,93 @@ describe('A7 ranking cases', () => {
     }
   });
 
+  // Review WP-33 pass 14, major: the owner's own words around "register business" are filler, so
+  // every phrasing opens the Register page, typed and finished.
+  it.each([
+    ['en', 'register my own business'],
+    ['en', 'register a new business'],
+    ['en', 'register new business'],
+    ['en', 'register my small business'],
+    ['en', 'register small business'],
+    ['en', 'how do i register my small business'],
+    ['af', 'registreer my eie besigheid'],
+    ['af', "registreer 'n nuwe besigheid"],
+  ] as const)('%s "%s" opens the Register page', (lang, query) => {
+    const built = lang === 'en' ? en : af;
+    for (const typing of [false, true]) {
+      const first = runSearch(built.index, query, lang, { limit: 1, typing }, BASE)[0];
+      expect(first?.doc, `typing: ${String(typing)}`).toBe('core/register');
+      expect(first?.anchor).toBeUndefined();
+    }
+  });
+
+  // Review WP-33 pass 14: an extra word that is not filler blocks a best bet; the related
+  // sections keep their own queries.
+  it.each([
+    ['en', 'tax threshold', 'glossary/#tax-threshold'],
+    [
+      'en',
+      'small business corporation',
+      'core/tax-and-sars/#route-4-small-business-corporation-rates-companies-only',
+    ],
+    ['en', 'new lines of business', 'core/adding-new-lines/'],
+  ] as const)('%s "%s" is not a best bet: it opens %s', (lang, query, first) => {
+    const built = lang === 'en' ? en : af;
+    expect(runSearch(built.index, query, lang, { limit: 1, typing: false }, BASE)[0]?.href).toBe(
+      `${BASE}${first}`,
+    );
+  });
+
+  // Review WP-33 pass 14, minors 1 to 3.
+  it.each([
+    ['en', 'annual return', 'glossary/#annual-return'],
+    ['af', 'jaarlikse opgawe', 'glossary/#annual-return'],
+    ['af', 'BTW-registrasie', 'core/tax-and-sars/#vat-probably-not-yet'],
+    ['af', 'BTW-drempel', 'core/tax-and-sars/#vat-probably-not-yet'],
+    ['en', 'do i need to register for vat', 'core/tax-and-sars/#vat-probably-not-yet'],
+    ['en', 'tax return', 'core/tax-and-sars/'],
+    ['af', 'belastingopgawe', 'core/tax-and-sars/'],
+  ] as const)('%s "%s" opens %s, typed and finished', (lang, query, first) => {
+    const built = lang === 'en' ? en : af;
+    const prefix = lang === 'en' ? BASE : `${BASE}af/`;
+    for (const typing of [false, true]) {
+      expect(
+        runSearch(built.index, query, lang, { limit: 1, typing }, BASE)[0]?.href,
+        `typing: ${String(typing)}`,
+      ).toBe(`${prefix}${first}`);
+    }
+  });
+
+  // Review WP-33 pass 14, minor 4: a quick answer that matches only through its page's lead
+  // ranks with the any-word results.
+  it.each([
+    ['en', 'do i need a company'],
+    ['af', "het ek 'n maatskappy nodig"],
+  ] as const)(
+    '%s "%s" lists no lead-only quick answer before the Register sections',
+    (lang, query) => {
+      const built = lang === 'en' ? en : af;
+      const prefix = lang === 'en' ? BASE : `${BASE}af/`;
+      const top3 = runSearch(built.index, query, lang, { limit: 3, typing: false }, BASE).map(
+        (r) => r.href,
+      );
+      expect(top3).not.toContain(`${prefix}core/running-a-pty-ltd/`);
+      expect(top3.every((href) => href.startsWith(`${prefix}core/register/`))).toBe(true);
+    },
+  );
+
+  // Review WP-33 pass 14, nit 1: a typed beginning that also begins another word of the guide is
+  // not yet a best bet.
+  it.each([
+    ['af', 'maatskap', 'core/running-a-pty-ltd/#4-sars-company-tax'],
+    ['af', 'maatskapp', 'core/running-a-pty-ltd/#4-sars-company-tax'],
+    ['af', 'handels', 'core/what-you-need-to-sell-things/'],
+  ] as const)('%s "%s", typed, does not open the best bet %s', (lang, query, bet) => {
+    expect(runSearch(af.index, query, lang, { limit: 1, typing: true }, BASE)[0]?.href).not.toBe(
+      `${BASE}af/${bet}`,
+    );
+  });
+
   // Review WP-33 pass 13, major, the ranking half: without the best bets, a quick answer carries
   // its page's lead, so "Do I need to register a company?" ("…for a one-person business…")
   // answers `register my business` in English. (The Afrikaans lead says "eenpersoonbesigheid", a

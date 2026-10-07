@@ -36,6 +36,8 @@ export interface SearchEntry {
   readonly path: string;
   /** Searchable body text. */
   readonly text: string;
+  /** A quick answer's page lead: searched, with a low boost (`FIELD_BOOST.lead`). */
+  readonly lead?: string | undefined;
   /** Short text shown under the result. */
   readonly excerpt?: string | undefined;
   readonly section: string;
@@ -81,6 +83,8 @@ export interface SerialisedIndex {
   readonly index: unknown;
   /** Best bets (`content-meta/search-best-bets.json`), resolved to entry ids. */
   readonly bets?: readonly SearchBestBet[];
+  /** Words a best bet ignores in a query, besides the stop words (`my`, `own`, `eie`, `nuwe`). */
+  readonly filler?: readonly string[];
 }
 
 /** One best-bet phrase: its words as a query reads them (`betWords`), and the entry it opens. */

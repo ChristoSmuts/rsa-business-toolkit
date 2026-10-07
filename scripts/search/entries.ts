@@ -47,6 +47,11 @@ export interface IndexInput {
   readonly glossary?: LangData<GlossaryFile> | undefined;
   readonly tasks?: LangData<TasksFile> | undefined;
   readonly quickAnswers?: LangData<QuickAnswersFile> | undefined;
+  /**
+   * Search keywords by document id (`content-meta/search-keywords.json`): indexed with the page's
+   * first entry, in its heading field.
+   */
+  readonly keywords?: ReadonlyMap<string, readonly string[]> | undefined;
 }
 
 /** Collapse whitespace; drop URLs. */
@@ -181,6 +186,8 @@ export function sectionEntries(input: IndexInput, doc: Doc): SearchEntry[] {
       // through the title rule (`titleCoverage`).
       const first = out.length === 0;
       const h1 = first && doc.h1 !== doc.title ? [doc.h1] : [];
+      // The page's keywords: owner words its own titles lack (review WP-33 pass 14).
+      const keywords = first ? (input.keywords?.get(doc.id) ?? []) : [];
       out.push(
         entry(
           'section',
@@ -189,6 +196,7 @@ export function sectionEntries(input: IndexInput, doc: Doc): SearchEntry[] {
             doc: doc.id,
             anchor: current.anchor,
             title: current.title,
+            indexTitle: keywords.length > 0 ? [current.title, ...keywords].join(' · ') : undefined,
             pageTitle: first ? doc.h1 : undefined,
             docTitle: [doc.title, ...current.parents].join(' › '),
             path: [sectionTitle, doc.title, ...h1, ...current.parents].join(' › '),
@@ -371,7 +379,8 @@ export function answerEntries(input: IndexInput): SearchEntry[] {
     const question = runsText(manifest, answers.lang, item.question);
     // The answer page's lead (its summary), so a question asked in other words still finds the
     // quick answer: "Do I need to register a company?" also holds "one-person business" from the
-    // Register page's lead (review WP-33 pass 13, major).
+    // Register page's lead (review WP-33 pass 13, major). In a field of its own with a low boost,
+    // so it never lifts an unrelated answer above a better result (pass 14, minor 4).
     const lead = input.docs.find((doc) => doc.id === target.doc)?.summary ?? '';
     out.push(
       entry(
@@ -382,7 +391,8 @@ export function answerEntries(input: IndexInput): SearchEntry[] {
           title: cleanText(question),
           docTitle: targets,
           path: targets,
-          text: cleanText(`${targets} ${lead} ${note}`),
+          text: cleanText(`${targets} ${note}`),
+          lead: cleanText(lead),
           excerpt: excerptOf(note),
           section: targetDoc?.section ?? 'start',
           lang: answers.lang,

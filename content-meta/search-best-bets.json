@@ -1,5 +1,22 @@
 {
   "$comment": "Search best bets: common owner phrasings that must open one page first, whatever the ranking does. See content-meta/README.md. Keep it short: under about 40 phrases per language, and only a phrase the guide has one obvious page for.",
+  "filler": {
+    "en": [
+      "my",
+      "own",
+      "new",
+      "small",
+      "need",
+      "can",
+      "want",
+      "should",
+      "get",
+      "our",
+      "we",
+      "please"
+    ],
+    "af": ["my", "eie", "nuwe", "klein", "nodig", "moet", "kan", "wil", "ons", "graag"]
+  },
   "bets": [
     {
       "doc": "core/register",
@@ -62,8 +79,14 @@
     {
       "doc": "core/running-a-pty-ltd",
       "anchor": "1-cipc-annual-return",
-      "en": ["cipc annual return", "annual return"],
-      "af": ["cipc jaarlikse opgawe", "jaarlikse opgawe"]
+      "en": ["cipc annual return"],
+      "af": ["cipc jaarlikse opgawe"]
+    },
+    {
+      "doc": "lookup/glossary",
+      "anchor": "annual-return",
+      "en": ["annual return"],
+      "af": ["jaarlikse opgawe"]
     },
     {
       "doc": "core/running-a-pty-ltd",

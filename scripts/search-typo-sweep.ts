@@ -1,9 +1,10 @@
 /**
- * `pnpm search:typos`: how often a one-letter typo still finds what the correct spelling finds
- * (review WP-33 pass 12; pass 13 added the first letter, doubled and wrong letters). For every
- * glossary term and page title in both languages, each word of five letters or more is misspelt in
- * every way one keystroke can: a letter dropped, a letter doubled, a letter replaced by a
- * neighbouring key, and two neighbouring letters swapped, at every position. Counted, as finished and as typed: typos whose first result is the correct spelling's
+ * `pnpm search:typos`: how often a one-keystroke typo still finds what the correct spelling finds
+ * (review WP-33 pass 12; pass 13 added the first letter, doubled and wrong letters; pass 14 an
+ * extra key). For every glossary term and page title in both languages, each word of five letters
+ * or more is misspelt once, at every position: a letter dropped, a letter doubled, a neighbouring
+ * key pressed as well (before or after the letter), a letter replaced by a neighbouring key, or two
+ * neighbouring letters swapped. Counted, as finished and as typed: typos whose first result is the correct spelling's
  * first result, and typos whose first result is among its first three. Prints both counts; a
  * regression check for ranking changes, not a test.
  */
@@ -43,14 +44,18 @@ const NEIGHBOURS: Readonly<Record<string, string>> = {
   m: 'nj',
 };
 
-/** Every one-keystroke typo of `word`: dropped, doubled, neighbouring-key and swapped letters. */
+/** Every one-keystroke typo of `word`: dropped, doubled, extra, wrong and swapped letters. */
 export function typos(word: string): string[] {
   const out = new Set<string>();
   for (let i = 0; i < word.length; i++) {
     const letter = word[i]!;
     out.add(word.slice(0, i) + word.slice(i + 1));
     out.add(word.slice(0, i) + letter + word.slice(i));
-    for (const key of NEIGHBOURS[letter] ?? '') out.add(word.slice(0, i) + key + word.slice(i + 1));
+    for (const key of NEIGHBOURS[letter] ?? '') {
+      out.add(word.slice(0, i) + key + word.slice(i + 1));
+      out.add(word.slice(0, i) + key + word.slice(i));
+      out.add(word.slice(0, i + 1) + key + word.slice(i + 1));
+    }
     if (i + 1 < word.length) out.add(word.slice(0, i) + word[i + 1] + letter + word.slice(i + 2));
   }
   out.delete(word);
@@ -89,5 +94,5 @@ for (const lang of ['en', 'af'] as const) {
   }
 }
 console.log(
-  `search:typos: of ${String(total)} one-letter typos, ${String(same)} open the correct spelling's first result and ${String(held)} one of its first three.`,
+  `search:typos: of ${String(total)} one-keystroke typos, ${String(same)} open the correct spelling's first result and ${String(held)} one of its first three.`,
 );

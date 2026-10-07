@@ -17,10 +17,10 @@ import type { SearchEntryKind } from './types';
  * The client refuses an index with another version and shows the failed state, rather than
  * returning wrong results.
  */
-export const INDEX_VERSION = 3;
+export const INDEX_VERSION = 5;
 
 /** Fields that are searched. `text` is the body; `title` and `path` are boosted. */
-export const SEARCH_FIELDS = ['title', 'path', 'text'] as const;
+export const SEARCH_FIELDS = ['title', 'path', 'text', 'lead'] as const;
 
 /** Fields stored with each entry and returned with a result (short keys keep the index small). */
 export const STORE_FIELDS = [
@@ -44,6 +44,9 @@ export const FIELD_BOOST: Readonly<Record<(typeof SEARCH_FIELDS)[number], number
   title: 3,
   path: 1.5,
   text: 1,
+  // A quick answer's page lead: enough to find the answer, never enough to lift it above a better
+  // result (review WP-33 pass 14, minor 4).
+  lead: 0.25,
 };
 
 /**
@@ -426,9 +429,14 @@ export function indexOptions<T>(): Options<T> {
 
 /**
  * The words of a query or a best-bet phrase as the best bets compare them: each part of the query
- * (`queryParts`, stop words dropped), a spaced code or hyphenated word as its joined form. `How do
- * I register my business?` and `register a business` both read `register business`.
+ * (`queryParts`, stop words dropped), a spaced code as its joined form, a hyphenated word as its
+ * words. `How do I register my business?` and `register a business` both read `register
+ * business`; `BTW-registrasie` reads `btw registrasie` (review WP-33 pass 14, minor 2).
  */
 export function betWords(text: string): string[] {
-  return queryParts(text).map((part) => (typeof part === 'string' ? part : part.joined));
+  return queryParts(text).flatMap((part) => {
+    if (typeof part === 'string') return [part];
+    if ('hyphen' in part && part.hyphen.length > 0) return [...part.hyphen];
+    return [part.joined];
+  });
 }

@@ -18,6 +18,7 @@ import {
   type Manifest,
 } from '../../src/lib/content/schema';
 import type { IndexInput, LangData } from './entries';
+import { keywordsFor } from './keywords';
 
 export const DATA_DIR = path.resolve(import.meta.dirname, '../../src/data');
 
@@ -62,5 +63,6 @@ export function loadIndexInput(lang: Locale, dataDir: string = DATA_DIR): IndexI
     glossary: inLangOrEnglish(dataDir, lang, 'glossary.json', GlossaryFileSchema),
     tasks: inLangOrEnglish(dataDir, lang, 'tasks.json', TasksFileSchema),
     quickAnswers: inLangOrEnglish(dataDir, lang, 'quick-answers.json', QuickAnswersFileSchema),
+    keywords: keywordsFor(lang, manifest),
   };
 }

@@ -21,6 +21,8 @@ const Phrases = z.array(z.string().min(1)).min(1);
 
 export const BestBetsFileSchema = z.object({
   $comment: z.string().optional(),
+  /** Words a best bet ignores in a query, per language, besides the stop words. */
+  filler: z.object({ en: z.array(z.string().min(1)), af: z.array(z.string().min(1)) }).strict(),
   bets: z
     .array(
       z
@@ -50,11 +52,17 @@ export const MAX_BEST_BETS = 40;
  * a target has no entry, when a phrase says nothing after stop words, when two phrases of a
  * language read the same, or when a language has more than `MAX_BEST_BETS` phrases.
  */
+export interface ResolvedBestBets {
+  readonly bets: readonly SearchBestBet[];
+  /** The filler words of the language, read as a query reads them (stop words dropped). */
+  readonly filler: readonly string[];
+}
+
 export function resolveBestBets(
   lang: Locale,
   entries: readonly SearchEntry[],
   file: BestBetsFile = loadBestBets(),
-): SearchBestBet[] {
+): ResolvedBestBets {
   const out: SearchBestBet[] = [];
   const seen = new Map<string, string>();
   for (const bet of file.bets) {
@@ -85,5 +93,6 @@ export function resolveBestBets(
       `search: ${String(out.length)} ${lang} best bets, more than ${String(MAX_BEST_BETS)}`,
     );
   }
-  return out;
+  const filler = [...new Set(file.filler[lang as 'en' | 'af'].flatMap((word) => betWords(word)))];
+  return { bets: out, filler };
 }

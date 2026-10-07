@@ -16,16 +16,20 @@ import { bestBet } from '../../../src/lib/search-client';
 
 const entries = { en: buildEntries(loadIndexInput('en')), af: buildEntries(loadIndexInput('af')) };
 
-const one = (bet: BestBetsFile['bets'][number]): BestBetsFile => ({ bets: [bet] });
+const one = (bet: BestBetsFile['bets'][number]): BestBetsFile => ({
+  filler: { en: [], af: [] },
+  bets: [bet],
+});
 
 describe('search best bets', () => {
   it('resolves every target in both languages, within the size limit', () => {
     const file = loadBestBets();
     expect(BestBetsFileSchema.parse(file)).toEqual(file);
     for (const lang of ['en', 'af'] as const) {
-      const bets = resolveBestBets(lang, entries[lang], file);
+      const { bets, filler } = resolveBestBets(lang, entries[lang], file);
       expect(bets.length).toBeLessThanOrEqual(MAX_BEST_BETS);
       expect(bets.length).toBe(file.bets.reduce((sum, bet) => sum + bet[lang].length, 0));
+      expect(filler.length).toBeGreaterThan(3);
     }
   });
 
@@ -76,7 +80,32 @@ describe('search best bets', () => {
     expect(bestBet(bets, 'register my business today', false)).toBeUndefined();
     expect(bestBet(bets, 'chec', true)?.id).toBe(2);
     // A whole word of the guide is finished, not the beginning of a longer phrase word.
-    expect(bestBet(bets, 'check', true, true)).toBeUndefined();
+    expect(bestBet(bets, 'check', { typing: true, lastIsWord: true })).toBeUndefined();
     expect(bestBet(bets, 'checklsit', false)).toBeUndefined();
+  });
+
+  // Review WP-33 pass 14: filler words, and a typed beginning of another word of the guide.
+  it('ignores filler words, and nothing else', () => {
+    const bets = [
+      { w: ['register', 'business'], id: 1 },
+      { w: ['tax'], id: 2 },
+    ];
+    const filler = ['own', 'new', 'small', 'need'];
+    expect(bestBet(bets, 'register my own business', false, filler)?.id).toBe(1);
+    expect(bestBet(bets, 'how do i register my small business', false, filler)?.id).toBe(1);
+    expect(bestBet(bets, 'register a new business', false, filler)?.id).toBe(1);
+    // Without the filler list, the extra word blocks the bet.
+    expect(bestBet(bets, 'register my own business', false)).toBeUndefined();
+    // A word that is not filler blocks it too.
+    expect(bestBet(bets, 'tax threshold', false, filler)).toBeUndefined();
+    expect(bestBet(bets, 'register my business name', false, filler)).toBeUndefined();
+  });
+
+  it('reads a typed beginning as a phrase word only when no other word of the guide begins so', () => {
+    const bets = [{ w: ['maatskappybelasting'], id: 1 }];
+    const typed = (completions: string[]) =>
+      bestBet(bets, 'maatskap', { typing: true, completions })?.id;
+    expect(typed(['maatskappybelasting'])).toBe(1);
+    expect(typed(['maatskappy', 'maatskappybelasting'])).toBeUndefined();
   });
 });
