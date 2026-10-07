@@ -249,10 +249,13 @@ are phrased the way owners type them: bare words (`tax`, `sluit`), `how do I…`
 need to…`, `hoe…`, `ek wil…`. A term the glossary defines (`vat`, `turnover tax`, `small claims
 court`) expects the glossary entry first or the section in the top three, because a term query
 opens its definition first (`docs/design-system.md`). An Act row names the register entry it must
-open (`#legislation-this-toolkit-relies-on`). At the end of pass 18: 304 English and 262 Afrikaans
-rows (38 of them `top3`, 3 with `onlyLang`), 1132 tests (finished and typed) and five checks on
-the file, all passing. `tests/unit/search/index.test.ts` adds `what is` / `wat is` plus every glossary term
-and alias, in both languages, finished and typed.
+open (`#legislation-this-toolkit-relies-on`). At the end of pass 19: 334 English and 305 Afrikaans
+rows (3 with `onlyLang`), 1278 tests (finished and typed) and five checks on the file, all passing.
+A phrase removed from the best bets becomes a row in both languages, so its result stays guarded.
+`tests/unit/search/index.test.ts` adds `what is` / `wat is` plus every glossary term and alias, in
+both languages, finished and typed, and every Act of the register by its short name, full name and
+each alias in `content-meta/search-act-names.json` (Afrikaans aliases in the Afrikaans index),
+finished and typed, which must open the Legislation entry.
 
 **How reviews use it.** From review pass 16 on, a major is a failing row, a regression of a row
 that passed, a whole class of query that fails (for example every "I want to…" question), or a
@@ -261,7 +264,11 @@ minor: it becomes a new row, and the fix makes that row pass. A row's expectatio
 a reason in the commit (the guide's text changed, or the row asked for the wrong place). Rows
 are never loosened to make them pass: moving a row from `first` to `top3`, widening `firstIn` or
 changing a row's target is listed in the report with its reason and needs the coordinator's OK. A
-search change is reported with its `pnpm search:diff` against the previous tip.
+search change is reported with its `pnpm search:diff` against the previous tip. The diff's corpus
+holds the rows, every title, every glossary term, the queries quoted in reviews, generated law,
+source and naming phrasings, and every phrase that has ever been a best bet or a page keyword (read
+from the git history of the two `content-meta` files). Every `?` change gets a verdict and a reason
+in `docs/reviews/WP-33-diff-<ref>.md` (from pass 19).
 
 ### Accessibility: `a11y.spec.ts`
 
@@ -275,14 +282,14 @@ Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, r
 
 ## JavaScript budget: `pnpm dist:budget`
 
-Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-07, at the end of WP-33 review pass 18, with the Afrikaans translation merged:
+Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-07, at the end of WP-33 review pass 19, with the Afrikaans translation merged:
 
 | What | Gzip |
 | --- | --- |
 | Largest document page (`branding/already-have-your-name/`) | 7.9 KB |
-| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 20.8 KB |
+| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 20.9 KB |
 | Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 14.7 KB |
-| Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 167.2 / 184.4 KB |
+| Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 167.4 / 184.8 KB |
 
 WP-30 adds the store, the checklists, copy buttons, the table of contents and the settings to every document page; its numbers replace these when it merges.
 

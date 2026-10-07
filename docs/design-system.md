@@ -459,8 +459,15 @@ languages, how many one-letter typos open the correct spelling's first result.
 (`want`, `need`, `can`, `get`, `must`, `looking`, `find`, `show`, `send`, `give`; `wil`, `moet`,
 `nodig`, `kry`, `hê`, `soek`) as it drops stop words, from the all-words query, the title rule and
 the heading lift alike: `I want to close my business` ranks as `close business`, and `ek wil 'n
-faktuur hê` as `faktuur`. A filler word stays when it is the whole query (`need`), and while it is
-the last word being typed if it has three letters or more (`can` may become "cancel"; `hê` may not).
+faktuur hê` as `faktuur`. Law words are filler too, unless the query is an Act's name (`law`,
+`laws`, `regulation`, `regulations`, `by-laws`, `rules`, `says`, `about`; `wet`, `wette`,
+`regulasies`, `reëls`, `verordeninge`): `tax law` opens what `tax` opens, `regulations for food`
+what `food` opens (review WP-33 pass 19, major 4). A bare law word is the whole query, so it stays,
+and the bare nouns that matter have best bets (`by-laws`, `verordeninge` → "The general rule").
+`se` is not filler: `maatskappy se naam` and `my besigheid se naam` are best bets instead (pass 19,
+major 5). A filler word stays when it is the whole query (`need`), and while it is the last word
+being typed if it has three letters or more and is not itself a word of the guide (`can` may become
+"cancel"; `hê` may not; `sars law` drops `law` while typed, because "law" is a whole word already).
 A heading that holds every word of the query as written, filler words included, comes before every
 other lifted heading: `how do i get a brnc` opens "How to get the BRNC", `do i need a tagline` "Do
 you need a tagline?", while a heading that only happens to say "I need" is lifted only when the
@@ -473,24 +480,29 @@ American spellings read as the guide's South African ones, in the index and in a
 as a typo of another word: `deregister` is not "register", `deregistreer` not "registreer"; its
 singular still counts, at a fifth of its weight (`expenses` finds "Route 2: claim every real
 expense"). The sources register weighs half (`REFERENCE_WEIGHT`) in a query that does not ask for
-sources: it repeats every topic's words in its headings ("Vehicle dealing and vehicles
-generally"), so it no longer leads a typo of `vehicle dealer`. A query with a word that only means
-"source" (`SOURCE_WORDS`: `source`, `sources`, `bron`, `bronne`) keeps it at full weight; `where does
+sources (one whose last word is not a source word): it repeats every topic's words in its headings ("Vehicle dealing and vehicles
+generally"), so it no longer leads a typo of `vehicle dealer`. A query that ends with a word that
+only means "source" (`SOURCE_WORDS`: `source`, `sources`, `bron`, `bronne`) keeps it at full
+weight (`tax source`); one where the word is a verb or part of another phrase does not (`where do i
+source stock`, `source of income`; pass 19, minor 3); `where does
 this come from` and `waar kom dit vandaan` are best bets, matched as whole phrases, so `come up
-with a name` and `official name` are not source queries. A query that is exactly an Act's name, in
-whole words, optionally with its number and year (`companies act`, `companies act 71 of 2008`,
-`maatskappywet`), opens "Legislation this toolkit relies on", the register entry that lists every
+with a name` and `official name` are not source queries. A query that is exactly an Act's name, its
+words in order and nothing between them, optionally followed by `act` or `wet`, a number and a
+year (`companies act`, `companies act 71 of 2008`, `maatskappywet`, `wet op maatskappye`), opens "Legislation this toolkit relies on", the register entry that lists every
 Act. The names come from the register's own data (`src/data/<lang>/sources.json`) plus the short
-names and Afrikaans compounds in `content-meta/search-act-names.json`. A law word alone (`law`,
-`act`, `regulations`, `regulasies`, `employment law`, `what the law requires`) is not an Act name and
-is ranked like any word, so the guide's own section leads (review WP-33 pass 18, major 2).
+names, Afrikaans titles and short forms in `content-meta/search-act-names.json` (`ohsa`, `nca`, `bee
+act`, `wet op beskerming van persoonlike inligting`); a generated test asks every one, finished and
+typed, in both indexes. A law word alone (`law`, `act`, `regulations`, `regulasies`, `employment
+law`, `what the law requires`) is not an Act name, and neither are the same words in another order
+or with other words between (`act for a company`, `can i act as a company`, `act on credit`), so
+the guide's own section leads (review WP-33 pass 18, major 2; pass 19, major 3).
 
 A section whose whole heading, of two words or more, is in the query, and names more than half of
 the query's words, is lifted next, after a heading that holds every word with filler: the task
 phrasing of a term opens the section on it (`how do i pay provisional tax` → "Provisional tax",
 not the "Provisional taxpayer" definition), but `sole proprietor bank account` is not "Sole
-proprietor". Among several, the one that names more words comes first, then one not on a
-business-type page (`home office deduction` → Working from home's), then rank order. A "Words used"
+proprietor". Among several, the one that names more words comes first, then rank order (pass 19
+removed a tie-break against business-type pages; where it mattered, a best bet now decides). A "Words used"
 definition opens the section of its page where the word is used, which may be about something
 else, so lifted sections come before it. A heading that is the query word for word, stop words
 included, comes before the other headings of its own page (`Wat ingesluit is`, not "Wat NIE

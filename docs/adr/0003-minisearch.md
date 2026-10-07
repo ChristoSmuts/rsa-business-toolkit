@@ -65,5 +65,12 @@ Use MiniSearch 7. Build one serialised index per language at build time from `sr
   - **Acceptance set.** Every row has a counterpart in the other language or an `onlyLang` reason.
   - **Regression diff.** The `search:diff` corpus adds generated law, source and naming phrasings over the guide's main nouns. Against `8597126`: 8670 searches, 332 changed, 112 better and 2 same-target by rule, 218 judged by hand (36 better, 182 neutral), none worse.
   - **Typo sweep.** 53433 of 58672 typos open the correct spelling's first result and 57486 one of its first three. The 12 new misses are typos of `sources` in "Sources and verification register": the misspelt word is no longer a source word, so the register keeps its half weight and Register leads.
-- **Size.** 167.2 KB gzip in English (945 entries) and 184.4 KB in Afrikaans (951 entries, all translated), well under the budget; no sharding.
+- **Queries (review WP-33 pass 19): no new heuristics.** Pass 18 had removed best bets that rows relied on and added a ranking tie-break that regressed other queries.
+  - **Best bets.** Every bet removed in pass 18 is back, and each removed phrase is an acceptance row in both languages. The cap is 120 phrases per language (99 English, 103 Afrikaans now).
+  - **Acts.** Afrikaans titles and English short forms (`ohsa`, `nca`, `bee act`, `wet op beskerming van persoonlike inligting`) are aliases, and a generated test asks each one in both indexes. A name matches only in order and contiguous, with only `act`/`wet`, a number and a year around it.
+  - **Law words** (`law`, `regulations`, `by-laws`, `wet`, `regulasies`, `verordeninge`, …) are filler unless the query is an Act's name. The business-type tie-break is gone, and `se` is a content word again.
+  - **Source.** The register keeps full weight only when a source word ends the query.
+  - **Regression diff.** Against `733195e`: 9334 searches, 494 changed, 110 better, 1 worse and 5 same-target by rule, 378 judged by hand in `docs/reviews/WP-33-diff-733195e.md` (61 better, 297 neutral, 20 worse). The rule-classified worse is `kleinhandel en aanlyn`, which the review asked to open the retail page. The 20 judged worse are all `wat die wet oor <noun> sê`: `sê` folds to `se`, which stays a content word as the review asked; making it filler again is the coordinator's call.
+  - **Typo sweep.** 53433 of 58672 typos open the correct spelling's first result and 57486 one of its first three, unchanged from pass 18.
+- **Size.** 167.4 KB gzip in English (945 entries) and 184.8 KB in Afrikaans (951 entries, all translated), well under the budget; no sharding.
 

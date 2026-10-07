@@ -7,12 +7,16 @@ documents the two search files: `search-keywords.json` and `search-best-bets.jso
 
 The Acts of the sources register come from its own data (`src/data/<lang>/sources.json`, `acts`):
 each is found by its name without number and year (`Companies Act`). This file adds the short
-names and Afrikaans compounds owners type (`popia act`, `food act`; `maatskappywet`,
-`wet op verbruikersbeskerming`), per Act id. English names hold in Afrikaans too, because the
-Afrikaans register keeps the English Act names. A query that is exactly one of these names,
-optionally with the Act's number and year, opens the register's "Legislation this toolkit relies
+names, short forms and Afrikaans titles owners type (`popia act`, `food act`, `ohsa`, `nca`, `bee
+act`; `maatskappywet`, `wet op verbruikersbeskerming`, `wet op beskerming van persoonlike
+inligting`), per Act id. A generated test (`tests/unit/search/index.test.ts`) asks every name and
+alias, finished and typed, and expects the Legislation entry first. English names hold in Afrikaans too, because the
+Afrikaans register keeps the English Act names. A query that is exactly one of these names, its
+words in order, optionally followed by `act`/`wet`, the Act's number and year, opens the register's "Legislation this toolkit relies
 on" (`scripts/search/acts.ts`). `pnpm search:build` fails on a name for an Act the register does not
-list, or on two Acts that share a name. A law word alone (`law`, `act`, `wet`) is never an Act name.
+list, or on two Acts that share a name. A law word alone (`law`, `act`, `wet`) is never an Act name. An alias
+must not be a word owners type for something else: bare `popia` stays an ordinary query, which
+opens the glossary's POPIA entry (an acceptance row).
 
 ## `search-keywords.json`: page keywords
 
@@ -88,13 +92,17 @@ misspelt phrase falls back to the ranking.
   the CIPC duty, because the guide also calls the ITR12 and ITR14 "annual returns".
 - Keep the filler list to words that never say which page is meant. Since review WP-33 pass 15 the
   ranking drops them too (`docs/design-system.md`, "Filler words, whole words and questions"), so a
-  filler word changes every search, not only the best bets.
+  filler word changes every search, not only the best bets. Since pass 19 the law words (`law`,
+  `regulations`, `by-laws`, `wet`, `regulasies`, `verordeninge`, …) are filler, so `tax law` ranks as
+  `tax`; an Act name is still read whole. `se` is not filler: it changed too many Afrikaans results.
 - Every bet and every keyword page has phrases in both languages; the schema refuses one with
   either list missing or empty, so `pnpm build` fails. Give each phrasing its counterpart in the
   other language unless the guide lacks the page (pass 17: the Afrikaans naming phrasings).
-- Under about 80 phrases per language. The build fails over 80 (`MAX_BEST_BETS`; it was 40 until
-  pass 15 and 60 until pass 16, as the acceptance set brought closing, bank account, VAT, naming,
-  vehicle and records phrasings). Phrase words are matched in any order, so `name business` and
+- Under about 120 phrases per language. The build fails over 120 (`MAX_BEST_BETS`; it was 40 until
+  pass 15, 60 until pass 16 and 80 until pass 19, as the acceptance set brought closing, bank
+  account, VAT, naming, vehicle, records, law-word and Act phrasings). A phrase taken out of the
+  bets becomes an acceptance row in both languages, and `pnpm search:diff` keeps every phrase that
+  was ever a bet in its corpus. Phrase words are matched in any order, so `name business` and
   `business name` are one phrase: list it once.
 - Prefer fixing the ranking. A best bet is for the few phrasings that matter most and that ranking
   gets wrong.
