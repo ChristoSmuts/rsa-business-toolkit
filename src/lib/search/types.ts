@@ -85,6 +85,8 @@ export interface SerialisedIndex {
   readonly bets?: readonly SearchBestBet[];
   /** Words a best bet ignores in a query, besides the stop words (`my`, `own`, `eie`, `nuwe`). */
   readonly filler?: readonly string[];
+  /** The register's Acts by name, each with the entry that lists them (`scripts/search/acts.ts`). */
+  readonly acts?: readonly SearchBestBet[];
 }
 
 /** One best-bet phrase: its words as a query reads them (`betWords`), and the entry it opens. */

@@ -1,0 +1,65 @@
+{
+  "$comment": "Other names owners type for the Acts in the sources register (src/data/<lang>/sources.json, \"acts\"). Each Act is found by its own name without number and year (\"Companies Act\"); these add short names and Afrikaans compounds. A query that is exactly one of these names, optionally with the Act's number and year, opens the register's \"Legislation this toolkit relies on\". See content-meta/README.md.",
+  "acts": [
+    {
+      "id": "income-tax-act-58-of-1962",
+      "en": [],
+      "af": ["inkomstebelastingwet"]
+    },
+    {
+      "id": "value-added-tax-act-89-of-1991",
+      "en": ["vat act"],
+      "af": ["btw-wet"]
+    },
+    {
+      "id": "companies-act-71-of-2008",
+      "en": ["company act"],
+      "af": ["maatskappywet", "maatskappy wet"]
+    },
+    {
+      "id": "consumer-protection-act-68-of-2008",
+      "en": [],
+      "af": ["verbruikersbeskermingswet", "wet op verbruikersbeskerming"]
+    },
+    {
+      "id": "protection-of-personal-information-act-4-of-2013",
+      "en": ["popi act", "popia act"],
+      "af": ["privaatheidswet"]
+    },
+    {
+      "id": "businesses-act-71-of-1991",
+      "en": [],
+      "af": ["besigheidswet"]
+    },
+    {
+      "id": "foodstuffs-cosmetics-and-disinfectants-act-54-of-1972",
+      "en": ["foodstuffs act", "food act"],
+      "af": []
+    },
+    {
+      "id": "national-road-traffic-act-93-of-1996",
+      "en": ["road traffic act"],
+      "af": ["padverkeerswet"]
+    },
+    {
+      "id": "national-credit-act-34-of-2005",
+      "en": ["credit act"],
+      "af": ["kredietwet"]
+    },
+    {
+      "id": "financial-advisory-and-intermediary-services-act-37-of-2002",
+      "en": ["fais act"],
+      "af": []
+    },
+    {
+      "id": "broad-based-black-economic-empowerment-act-53-of-2003",
+      "en": ["b-bbee act"],
+      "af": []
+    },
+    {
+      "id": "occupational-health-and-safety-act-85-of-1993",
+      "en": ["ohs act"],
+      "af": []
+    }
+  ]
+}

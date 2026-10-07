@@ -17,7 +17,7 @@ import type { SearchEntryKind } from './types';
  * The client refuses an index with another version and shows the failed state, rather than
  * returning wrong results.
  */
-export const INDEX_VERSION = 6;
+export const INDEX_VERSION = 7;
 
 /** Fields that are searched. `text` is the body; `title` and `path` are boosted. */
 export const SEARCH_FIELDS = ['title', 'path', 'text', 'lead'] as const;
@@ -65,58 +65,11 @@ export const KIND_WEIGHT: Readonly<Record<SearchEntryKind, number>> = {
 };
 
 /**
- * Words that ask where a fact comes from (review WP-33 pass 17, major 1). A query that holds one
- * keeps the sources register at full weight (`REFERENCE_WEIGHT` does not apply).
+ * Words that mean "source" and nothing else (review WP-33 pass 17, major 1; cut to these four in
+ * pass 18, major 1). A query that holds one keeps the sources register at full weight
+ * (`REFERENCE_WEIGHT` does not apply). "Where does this come from" is a best bet, not a word.
  */
-export const SOURCE_WORDS: ReadonlySet<string> = new Set([
-  // English
-  'source',
-  'sources',
-  'reference',
-  'references',
-  'referenced',
-  'act',
-  'acts',
-  'legislation',
-  'law',
-  'laws',
-  'regulation',
-  'regulations',
-  'verified',
-  'verification',
-  'official',
-  'come',
-  // Afrikaans
-  'bron',
-  'bronne',
-  'verwysing',
-  'verwysings',
-  'wet',
-  'wette',
-  'wetgewing',
-  'regulasie',
-  'regulasies',
-  'amptelik',
-  'amptelike',
-  'nagegaan',
-  'vandaan',
-]);
-
-/** The `SOURCE_WORDS` that name a law: such a query leads with the register's entry (pass 17). */
-export const LAW_WORDS: ReadonlySet<string> = new Set([
-  'act',
-  'acts',
-  'legislation',
-  'law',
-  'laws',
-  'regulation',
-  'regulations',
-  'wet',
-  'wette',
-  'wetgewing',
-  'regulasie',
-  'regulasies',
-]);
+export const SOURCE_WORDS: ReadonlySet<string> = new Set(['source', 'sources', 'bron', 'bronne']);
 
 /**
  * Reference pages that repeat every topic's words in their headings, weighed down in every search

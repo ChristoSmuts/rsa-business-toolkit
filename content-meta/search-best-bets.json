@@ -36,7 +36,8 @@
       "graag",
       "hê",
       "soek",
-      "asseblief"
+      "asseblief",
+      "se"
     ]
   },
   "bets": [
@@ -89,7 +90,8 @@
         "when to register for vat",
         "when to pay vat",
         "vat registration",
-        "vat threshold"
+        "vat threshold",
+        "vat sole proprietor"
       ],
       "af": [
         "registreer vir btw",
@@ -98,7 +100,8 @@
         "wanneer registreer vir btw",
         "wanneer betaal btw",
         "btw registrasie",
-        "btw drempel"
+        "btw drempel",
+        "btw eenmansaak"
       ]
     },
     {
@@ -160,7 +163,7 @@
       "doc": "core/running-a-pty-ltd",
       "anchor": "4-sars-company-tax",
       "en": ["company tax rate", "company tax"],
-      "af": ["maatskappybelasting", "maatskappybelastingkoers"]
+      "af": ["maatskappybelasting"]
     },
     {
       "doc": "core/running-a-pty-ltd",
@@ -209,8 +212,8 @@
       "af": [
         "bankrekening",
         "maak bankrekening oop",
-        "maak besigheidsbankrekening oop",
-        "bankrekening oopmaak"
+        "bankrekening oopmaak",
+        "eenmansaak bankrekening"
       ]
     },
     {
@@ -221,8 +224,8 @@
     {
       "doc": "core/paying-yourself",
       "anchor": "option-2-dividend",
-      "en": ["dividend", "dividends"],
-      "af": ["dividend", "dividende"]
+      "en": ["dividend"],
+      "af": ["dividend"]
     },
     {
       "doc": "core/working-from-home-and-safety",
@@ -231,8 +234,8 @@
     },
     {
       "doc": "core/vehicles",
-      "en": ["vehicle", "vehicles"],
-      "af": ["voertuig", "voertuie"]
+      "en": ["vehicle"],
+      "af": ["voertuig"]
     },
     {
       "doc": "core/vehicles",
@@ -261,8 +264,8 @@
         "naam besigheid",
         "noem besigheid",
         "kies besigheidsnaam",
-        "kies naam besigheid",
-        "naam as besigheidsnaam"
+        "naam as besigheidsnaam",
+        "kom aan besigheidsnaam"
       ]
     },
     {
@@ -310,6 +313,34 @@
       "anchor": "if-you-sell-second-hand-goods",
       "en": ["second hand goods", "second hand"],
       "af": ["tweedehandse goedere", "tweedehands"]
+    },
+    {
+      "doc": "lookup/sources",
+      "en": ["where does this come from", "where does this information come from"],
+      "af": ["waar kom dit vandaan", "verwysings"]
+    },
+    {
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "en": ["legislation"],
+      "af": ["wetgewing"]
+    },
+    {
+      "doc": "lookup/glossary",
+      "anchor": "registered-name",
+      "en": ["official name", "official business name"],
+      "af": ["amptelike naam", "amptelike besigheidsnaam"]
+    },
+    {
+      "doc": "paperwork/which-template-to-use-when",
+      "en": ["official invoice"],
+      "af": ["amptelike faktuur"]
+    },
+    {
+      "doc": "business-types/pick-your-business-type",
+      "anchor": "what-everyone-needs-regardless-of-type",
+      "en": ["laws apply"],
+      "af": ["watter wette geld"]
     }
   ]
 }

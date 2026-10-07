@@ -15,7 +15,6 @@ import {
   DOC_WEIGHT,
   REFERENCE_WEIGHT,
   SOURCE_WORDS,
-  LAW_WORDS,
   FIELD_BOOST,
   foldTerm,
   fuzzy,
@@ -100,6 +99,8 @@ export interface LoadedIndex {
   readonly bets?: readonly SearchBestBet[];
   /** Words a best bet ignores in a query, besides the stop words. */
   readonly filler?: readonly string[];
+  /** The sources register's Acts by name (`scripts/search/acts.ts`). */
+  readonly acts?: readonly SearchBestBet[];
 }
 
 export class SearchIndexError extends Error {
@@ -140,6 +141,7 @@ export function loadIndex(value: unknown, locale: Locale): LoadedIndex {
       search,
       bets: value.bets ?? [],
       filler: value.filler ?? [],
+      acts: value.acts ?? [],
     };
   } catch (error) {
     throw new SearchIndexError(`The search index could not be read: ${String(error)}`);
@@ -800,15 +802,50 @@ export function runSearchCounted(
         // A word of one letter (the "b" of "B-BBEE") does not count towards the two.
         return (
           words.filter((word) => word.length > 1).length >= 2 &&
-          words.every((word) => queryWords.has(word))
+          words.every((word) => queryWords.has(word)) &&
+          // The heading names more than half of what the query asks: `sole proprietor bank account`
+          // is not "Sole proprietor" (review WP-33 pass 18, minor 1).
+          words.length * 2 > parts.length
         );
       })
       .map((hit) => hit.id),
   );
   const lifted = listed.filter(promoted);
-  const ordered = [
+  // A heading that is the query word for word, stop words included, comes before the other
+  // headings of its own page: `Wat ingesluit is` opens "Wat ingesluit is", not "Wat NIE ingesluit
+  // is nie" (pass 18, minor 4). Only a section's own heading counts, not a "Words used" entry's.
+  const asTyped = (text: string): string =>
+    text
+      .split(/[^\p{L}\p{N}]+/u)
+      .map((word) => foldTerm(word))
+      .filter((word) => word !== '')
+      .join(' ');
+  const typedQuery = asTyped(query);
+  // Several headings wholly in the query: the one that names more of it first (`sole proprietor
+  // bank account` → "Business bank account", not "Sole proprietor"; review WP-33 pass 18, minor 1);
+  // between two that name as much, one not on a business-type page, which applies to one kind of
+  // business only (`home office deduction` → Working from home's, not Professional and creative
+  // work's), then in rank order. A heading wholly in the query that names as many of its words is
+  // as long as the other, so "longer" adds nothing here.
+  const typePage = (hit: MiniSearchResult): number =>
+    String(hit['d']).startsWith('business-types/') ? 1 : 0;
+  const containedFirst = listed
+    .filter((hit) => contained.has(hit.id) && !fully.has(hit.id))
+    .map((hit, at) => ({
+      hit,
+      at,
+      words: titleWords(String(hit['t'])).length,
+    }))
+    .sort((a, b) => b.words - a.words || typePage(a.hit) - typePage(b.hit) || a.at - b.at)
+    .map(({ hit }) => hit);
+  const exact = new Set(
+    lifted
+      .filter((hit) => hit['k'] === 'section' && asTyped(String(hit['t'])) === typedQuery)
+      .map((hit) => hit.id),
+  );
+  const ranked0 = [
     ...lifted.filter((hit) => fully.has(hit.id)),
-    ...listed.filter((hit) => contained.has(hit.id) && !fully.has(hit.id)),
+    ...containedFirst,
     // A "Words used" definition (`term`) opens the section of its page where the word is used,
     // which may be about something else ("Home office deduction" opens "The turnover tax trap"),
     // so a lifted section comes before it (review WP-33 pass 17, major 4).
@@ -816,6 +853,12 @@ export function runSearchCounted(
     ...lifted.filter((hit) => !fully.has(hit.id) && !contained.has(hit.id) && hit['k'] === 'term'),
     ...merged.filter((hit) => !contained.has(hit.id)),
   ];
+  const ordered = [...ranked0];
+  for (const id of exact) {
+    const from = ordered.findIndex((hit) => hit.id === id);
+    const to = ordered.findIndex((hit) => hit['d'] === ordered[from]?.['d']);
+    if (from > to && to >= 0) ordered.splice(to, 0, ...ordered.splice(from, 1));
+  }
   // A query asked as a question (`do i need an audit`, `how do i name my business`) leads with the
   // quick answer whose question holds every word of the query as written, filler words included
   // (review WP-33 pass 15, the acceptance set). A question has two or more words the ranking
@@ -842,7 +885,9 @@ export function runSearchCounted(
   // `what is a pty ltd`, `wat is 'n eenmansaak`: the glossary entry the remaining words name leads,
   // before a page, a section or a best bet on the subject (review WP-33 pass 17, major 5).
   const whatIs = /^\s*(?:what|wat)\s+is\b/iu.test(query) ? named : undefined;
-  const question = raw.length >= 2 && tokens - parts.length >= 2 && !namesTerm;
+  // Two or more stop words make a question (`do i need`, `how do i`, `what must my`); filler words
+  // do not count, so `my besigheid se naam` is not one (review WP-33 pass 18, minor 2).
+  const question = raw.length >= 2 && tokens - raw.length >= 2 && !namesTerm;
   const asked = (question ? ordered : [])
     .filter((hit) => hit['k'] === 'answer')
     .map((hit) => ({
@@ -869,25 +914,32 @@ export function runSearchCounted(
       : titledFully
         ? [titled, ...ranked]
         : [...asked, titled, ...ranked.slice(asked.length)];
-  // A query that names an Act or legislation (`companies act`, `wetgewing`) leads with the
-  // sources register's entry that holds every word: the register lists every Act the guide relies
-  // on (review WP-33 pass 17, major 1).
-  // Only when the query does not name a heading of the guide: `before you act on a number` and
-  // `consumer law on services` are headings, not Acts.
-  const namesLaw =
-    named === undefined &&
-    raw.some((part) => typeof part === 'string' && LAW_WORDS.has(part)) &&
-    !lifted.some(
-      (hit) =>
-        hit['d'] !== 'lookup/sources' &&
-        hit['k'] !== 'glossary' &&
-        hit['k'] !== 'term' &&
-        titleWords(String(hit['t'])).every((word) => queryWords.has(word)),
-    );
-  const lawEntry = namesLaw
-    ? all.find((hit) => hit['d'] === 'lookup/sources' && holdsAsWritten(hit.terms, parts, typing))
-    : undefined;
-  const lead = whatIs ?? lawEntry;
+  // A query that is an Act's name (`companies act`, `companies act 71 of 2008`, `maatskappywet`),
+  // in whole words, opens the sources register's entry that lists it (`index.acts`, built from
+  // the register's own data; review WP-33 pass 18, major 2). A law word alone (`law`, `act`,
+  // `regulasies`) is not an Act name and is ranked like any word.
+  const actWords = parts
+    .flatMap((part) =>
+      typeof part === 'string' ? [part] : 'code' in part ? part.code : part.hyphen,
+    )
+    .filter((word) => !/^\d+$/u.test(word));
+  const act = (index.acts ?? []).find(
+    (entry) =>
+      entry.w.length === new Set(actWords).size && entry.w.every((word) => actWords.includes(word)),
+  );
+  const actEntry =
+    act === undefined
+      ? undefined
+      : (all.find((hit) => hit.id === act.id) ??
+        ({
+          ...index.search.getStoredFields(act.id),
+          id: act.id,
+          score: Number.POSITIVE_INFINITY,
+          terms: [],
+          queryTerms: [],
+          match: {},
+        } as MiniSearchResult));
+  const lead = whatIs ?? actEntry;
   const allRanked = lead === undefined ? all : [lead, ...all.filter((hit) => hit.id !== lead.id)];
   const rest = [...every.filter((hit) => demoted(hit) && hit !== titled && hit !== lead), ...some];
   // A best bet leads, whatever the ranking (review WP-33 pass 13).
@@ -910,7 +962,7 @@ export function runSearchCounted(
   // A question that a quick answer asks in the owner's own words (`what must my invoice show`) is
   // answered by it, not by the best bet for one of its words (`invoice`; review WP-33 pass 16).
   const bet =
-    asked.length > 0 || whatIs !== undefined || lawEntry !== undefined
+    asked.length > 0 || whatIs !== undefined || actEntry !== undefined
       ? undefined
       : (bestBet(bets, query, false, filler) ??
         (titled === undefined

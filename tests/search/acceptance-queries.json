@@ -1187,9 +1187,10 @@
       "lang": "en",
       "query": "business name",
       "doc": "branding/branding-prompts",
+      "anchor": "prompt-3-the-name",
       "need": "first",
       "notFirst": ["core/vehicles"],
-      "from": "pass 15 minor"
+      "from": "pass 15 minor; anchor pass 18"
     },
     {
       "lang": "en",
@@ -1728,37 +1729,42 @@
       "lang": "en",
       "query": "companies act",
       "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
       "need": "first",
       "notFirst": ["lookup/glossary#trading-stock"],
-      "from": "pass 17 major 1"
+      "from": "pass 17 major 1; anchor pass 18"
     },
     {
       "lang": "en",
       "query": "income tax act",
       "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
       "need": "first",
-      "from": "pass 17 major 1"
+      "from": "pass 17 major 1; anchor pass 18"
     },
     {
       "lang": "en",
       "query": "consumer protection act",
       "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
       "need": "first",
-      "from": "pass 17 major 1"
+      "from": "pass 17 major 1; anchor pass 18"
     },
     {
       "lang": "en",
       "query": "foodstuffs act",
       "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
       "need": "first",
-      "from": "pass 17 major 1"
+      "from": "pass 17 major 1; anchor pass 18"
     },
     {
       "lang": "en",
       "query": "second-hand goods act",
       "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
       "need": "first",
-      "from": "pass 17 major 1"
+      "from": "pass 17 major 1; anchor pass 18"
     },
     {
       "lang": "en",
@@ -1895,6 +1901,297 @@
       "need": "first",
       "notFirst": ["lookup/sources"],
       "from": "pass 17 regression diff"
+    },
+    {
+      "lang": "en",
+      "query": "legislation",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 major 3"
+    },
+    {
+      "lang": "en",
+      "query": "companies act 71 of 2008",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "popia act",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "vat act",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "company act",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 regression diff"
+    },
+    {
+      "lang": "en",
+      "query": "credit act",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 regression diff"
+    },
+    {
+      "lang": "en",
+      "query": "food act",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 regression diff"
+    },
+    {
+      "lang": "en",
+      "query": "employment law",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "employment act",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "tax act",
+      "doc": "core/tax-and-sars",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "what the law requires",
+      "doc": "core/adding-new-lines",
+      "anchor": "what-the-law-requires-either-way",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "regulations for food",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-food",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "health regulations",
+      "doc": "business-types/services-trades",
+      "anchor": "occupational-health-and-safety",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "consumer law",
+      "doc": "business-types/services-trades",
+      "anchor": "consumer-law-on-services",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "municipal by-laws",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "the-general-rule",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2",
+      "onlyLang": "The Afrikaans word, \"munisipale verordeninge\", first finds the vehicle signage section, which names them for signs; not yet covered in Afrikaans (pass 18)."
+    },
+    {
+      "lang": "en",
+      "query": "what laws apply to me",
+      "doc": "business-types/pick-your-business-type",
+      "anchor": "what-everyone-needs-regardless-of-type",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "small claims court act",
+      "doc": "core/you-are-the-business",
+      "need": "first",
+      "notFirst": ["lookup/sources#used-vehicle-sales-and-the-consumer-protection-act"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "companies act section 32",
+      "doc": "core/adding-new-lines",
+      "anchor": "what-the-law-requires-either-way",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "law",
+      "doc": "business-types/food",
+      "anchor": "the-wider-law",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "regulations",
+      "doc": "business-types/services-trades",
+      "anchor": "occupational-health-and-safety",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "act",
+      "doc": "lookup/glossary",
+      "anchor": "businesses-act-licence",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "how do i come up with a business name",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "come up with a name",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "how to come up with a name for my business",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "official name",
+      "doc": "lookup/glossary",
+      "anchor": "registered-name",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "official business name",
+      "doc": "lookup/glossary",
+      "anchor": "registered-name",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "official invoice",
+      "doc": "paperwork/which-template-to-use-when",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "uif sources",
+      "doc": "core/paying-yourself",
+      "anchor": "uif-sources-disagree",
+      "need": "first",
+      "from": "pass 18 major 3: a source word in another sense"
+    },
+    {
+      "lang": "en",
+      "query": "sole proprietor bank account",
+      "doc": "core/register",
+      "anchor": "business-bank-account",
+      "need": "first",
+      "notFirst": ["core/you-are-the-business"],
+      "from": "pass 18 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "vat for a sole proprietor",
+      "doc": "core/tax-and-sars",
+      "anchor": "vat-probably-not-yet",
+      "need": "first",
+      "notFirst": ["business-types/vehicle-dealer"],
+      "from": "pass 18 minor 4"
+    },
+    {
+      "lang": "en",
+      "query": "what is included",
+      "doc": "paperwork/templates/quotation",
+      "anchor": "what-is-included",
+      "need": "first",
+      "from": "pass 18 minor 4"
+    },
+    {
+      "lang": "en",
+      "query": "private company",
+      "doc": "core/register",
+      "anchor": "private-company-pty-ltd",
+      "need": "first",
+      "from": "pass 18 major 3: counterpart"
+    },
+    {
+      "lang": "en",
+      "query": "choosing the name",
+      "doc": "core/register",
+      "anchor": "choosing-the-name",
+      "need": "first",
+      "from": "pass 18 major 3: counterpart"
+    },
+    {
+      "lang": "en",
+      "query": "payment reference",
+      "doc": "paperwork/templates/invoice",
+      "anchor": "payment-details",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 3: counterpart",
+      "onlyLang": "Its Afrikaans counterpart, \"verwysing\", opens the tax invoice's identical \"Payment details\" section (row pass 18 major 1)."
     },
     {
       "lang": "af",
@@ -3326,22 +3623,25 @@
       "lang": "af",
       "query": "wetgewing",
       "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
       "need": "first",
-      "from": "pass 17 major 1"
+      "from": "pass 17 major 1; anchor pass 18"
     },
     {
       "lang": "af",
       "query": "companies act",
       "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
       "need": "first",
-      "from": "pass 17 major 1"
+      "from": "pass 17 major 1; anchor pass 18"
     },
     {
       "lang": "af",
       "query": "consumer protection act",
       "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
       "need": "first",
-      "from": "pass 17 major 1"
+      "from": "pass 17 major 1; anchor pass 18"
     },
     {
       "lang": "af",
@@ -3447,6 +3747,327 @@
       "anchor": "if-you-sell-second-hand-goods",
       "need": "first",
       "from": "pass 17 regression diff"
+    },
+    {
+      "lang": "af",
+      "query": "pty ltd",
+      "doc": "core/running-a-pty-ltd",
+      "need": "first",
+      "from": "pass 18 major 3"
+    },
+    {
+      "lang": "af",
+      "query": "income tax act",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 major 3"
+    },
+    {
+      "lang": "af",
+      "query": "foodstuffs act",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 major 3"
+    },
+    {
+      "lang": "af",
+      "query": "second-hand goods act",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 major 3"
+    },
+    {
+      "lang": "af",
+      "query": "maatskappywet",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "notFirst": ["lookup/glossary#owner-managed-company"],
+      "from": "pass 18 minor 3"
+    },
+    {
+      "lang": "af",
+      "query": "verbruikersbeskermingswet",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 minor 3"
+    },
+    {
+      "lang": "af",
+      "query": "privaatheidswet",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 minor 3"
+    },
+    {
+      "lang": "af",
+      "query": "inkomstebelastingwet",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 minor 3"
+    },
+    {
+      "lang": "af",
+      "query": "Wet op Verbruikersbeskerming",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 regression diff"
+    },
+    {
+      "lang": "af",
+      "query": "maatskappy wet",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 18 regression diff"
+    },
+    {
+      "lang": "af",
+      "query": "Voordat jy op ’n getal optree",
+      "doc": "start/how-to-use",
+      "anchor": "before-you-act-on-a-number",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 3"
+    },
+    {
+      "lang": "af",
+      "query": "Verbruikersreg oor dienste",
+      "doc": "business-types/services-trades",
+      "anchor": "consumer-law-on-services",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 3"
+    },
+    {
+      "lang": "af",
+      "query": "Businesses Act-lisensie",
+      "doc": "lookup/glossary",
+      "anchor": "businesses-act-licence",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 3"
+    },
+    {
+      "lang": "af",
+      "query": "wat die wet vereis",
+      "doc": "core/adding-new-lines",
+      "anchor": "what-the-law-requires-either-way",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "wet",
+      "doc": "core/adding-new-lines",
+      "anchor": "what-the-law-requires-either-way",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "regulasies vir kos",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-food",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "watter wette geld vir my",
+      "doc": "business-types/pick-your-business-type",
+      "anchor": "what-everyone-needs-regardless-of-type",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "verwysing",
+      "doc": "paperwork/templates/tax-invoice",
+      "anchor": "payment-details",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 1",
+      "onlyLang": "Its English counterpart, \"payment reference\", opens the plain invoice's identical \"Payment details\" section."
+    },
+    {
+      "lang": "af",
+      "query": "amptelike naam",
+      "doc": "lookup/glossary",
+      "anchor": "registered-name",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "amptelike besigheidsnaam",
+      "doc": "lookup/glossary",
+      "anchor": "registered-name",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "amptelike faktuur",
+      "doc": "paperwork/which-template-to-use-when",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "uif bronne",
+      "doc": "core/paying-yourself",
+      "anchor": "uif-sources-disagree",
+      "need": "first",
+      "from": "pass 18 major 3: a source word in another sense"
+    },
+    {
+      "lang": "af",
+      "query": "hoe kom ek aan 'n besigheidsnaam",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 minor 2"
+    },
+    {
+      "lang": "af",
+      "query": "my besigheid se naam",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["core/vehicles"],
+      "from": "pass 18 minor 2"
+    },
+    {
+      "lang": "af",
+      "query": "eenmansaak bankrekening",
+      "doc": "core/register",
+      "anchor": "business-bank-account",
+      "need": "first",
+      "notFirst": ["core/you-are-the-business"],
+      "from": "pass 18 minor 1"
+    },
+    {
+      "lang": "af",
+      "query": "btw vir 'n eenmansaak",
+      "doc": "core/tax-and-sars",
+      "anchor": "vat-probably-not-yet",
+      "need": "first",
+      "notFirst": ["business-types/vehicle-dealer"],
+      "from": "pass 18 minor 4"
+    },
+    {
+      "lang": "af",
+      "query": "Wat ingesluit is",
+      "doc": "paperwork/templates/quotation",
+      "anchor": "what-is-included",
+      "need": "first",
+      "from": "pass 18 minor 4"
+    },
+    {
+      "lang": "af",
+      "query": "wat is 'n betalingsbewys",
+      "doc": "lookup/glossary",
+      "anchor": "proof-of-payment",
+      "need": "first",
+      "from": "pass 18 major 3: counterpart"
+    },
+    {
+      "lang": "af",
+      "query": "wat is 'n leningsrekening",
+      "doc": "lookup/glossary",
+      "anchor": "loan-account",
+      "need": "first",
+      "from": "pass 18 major 3: counterpart"
+    },
+    {
+      "lang": "af",
+      "query": "beroepsgesondheid en veiligheid",
+      "doc": "business-types/services-trades",
+      "anchor": "occupational-health-and-safety",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 3: counterpart"
+    },
+    {
+      "lang": "af",
+      "query": "nosionele insetbelasting",
+      "doc": "business-types/vehicle-dealer",
+      "anchor": "how-notional-input-tax-works",
+      "need": "top3",
+      "firstIn": ["lookup/glossary#notional-input-tax"],
+      "from": "pass 18 major 3: counterpart"
+    },
+    {
+      "lang": "af",
+      "query": "motorhandelnommer",
+      "doc": "business-types/vehicle-dealer",
+      "anchor": "layer-3-motor-trade-numbers",
+      "need": "top3",
+      "firstIn": ["lookup/glossary#motor-trade-number"],
+      "from": "pass 18 major 3: counterpart"
+    },
+    {
+      "lang": "af",
+      "query": "die wyer wetgewing",
+      "doc": "business-types/food",
+      "anchor": "the-wider-law",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 18 major 3: counterpart"
+    },
+    {
+      "lang": "af",
+      "query": "itr12",
+      "doc": "lookup/glossary",
+      "anchor": "itr12",
+      "need": "first",
+      "from": "pass 18 major 3: counterpart"
+    },
+    {
+      "lang": "af",
+      "query": "hoe om wettig geen belasting te betaal",
+      "doc": "core/tax-and-sars",
+      "anchor": "how-to-pay-little-or-no-tax-legally",
+      "need": "first",
+      "from": "pass 18 major 3: counterpart"
+    },
+    {
+      "lang": "af",
+      "query": "hoe dit gemaak is",
+      "doc": "start/how-this-was-made",
+      "need": "first",
+      "from": "pass 18 major 3: counterpart"
+    },
+    {
+      "lang": "af",
+      "query": "hoe lank moet ek rekords hou",
+      "doc": "core/tax-and-sars",
+      "anchor": "records",
+      "need": "first",
+      "notFirst": ["paperwork/templates/privacy-notice"],
+      "from": "pass 18 major 3: counterpart"
+    },
+    {
+      "lang": "af",
+      "query": "skoonheidsalon lisensie",
+      "doc": "business-types/beauty",
+      "anchor": "you-need-a-municipal-licence",
+      "need": "first",
+      "from": "pass 18 major 3: counterpart"
     }
   ]
 }

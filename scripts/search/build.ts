@@ -72,7 +72,11 @@ export function serialiseIndex(
   lang: string,
   sections: readonly string[],
   entries: readonly SearchEntry[],
-  best: { readonly bets: readonly SearchBestBet[]; readonly filler: readonly string[] } = {
+  best: {
+    readonly bets: readonly SearchBestBet[];
+    readonly filler: readonly string[];
+    readonly acts?: readonly SearchBestBet[];
+  } = {
     bets: [],
     filler: [],
   },
@@ -83,6 +87,7 @@ export function serialiseIndex(
     sections,
     index: createIndex(entries).toJSON(),
     ...(best.bets.length > 0 ? { bets: best.bets, filler: best.filler } : {}),
+    ...(best.acts !== undefined && best.acts.length > 0 ? { acts: best.acts } : {}),
   };
   const json = JSON.stringify(payload);
   return { file: `${lang}.${contentHash(json)}.json`, json, entries: entries.length };

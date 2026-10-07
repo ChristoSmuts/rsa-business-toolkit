@@ -45,6 +45,8 @@ interface AcceptanceRow {
   readonly notFirst?: readonly string[];
   /** The review that raised the query, when one did. */
   readonly from?: string;
+  /** Why the row has no counterpart in the other language (review WP-33 pass 18, major 3). */
+  readonly onlyLang?: string;
 }
 
 interface AcceptanceFile {
@@ -89,11 +91,11 @@ function loaded(lang: Locale): { index: LoadedIndex; entries: SearchEntry[] } {
 }
 
 describe('search acceptance set: the file', () => {
-  it('holds about 150 to 300 rows per language, each query once per language', () => {
+  it('holds about 150 to 320 rows per language, each query once per language', () => {
     for (const lang of ['en', 'af'] as const) {
       const rows = ROWS.filter((row) => row.lang === lang);
       expect(rows.length).toBeGreaterThanOrEqual(150);
-      expect(rows.length).toBeLessThanOrEqual(300);
+      expect(rows.length).toBeLessThanOrEqual(320);
       const queries = rows.map((row) => row.query.toLowerCase());
       expect(new Set(queries).size).toBe(queries.length);
     }
@@ -133,6 +135,24 @@ describe('search acceptance set: the file', () => {
             matches.every((entry) => entry.kind === 'glossary' || entry.kind === 'term'));
         expect(allowed, `${row.lang} "${row.query}": firstIn ${spec}`).toBe(true);
       }
+    }
+  });
+
+  // Review WP-33 pass 18, major 3: every row has a counterpart in the other language, a row with
+  // the same target, unless it says why not.
+  it('has a counterpart in the other language for every row, or a reason', () => {
+    const key = (row: AcceptanceRow): string => `${row.doc}#${row.anchor ?? ''}`;
+    const targets = {
+      en: new Set(ROWS.filter((row) => row.lang === 'en').map(key)),
+      af: new Set(ROWS.filter((row) => row.lang === 'af').map(key)),
+    };
+    const alone = ROWS.filter(
+      (row) =>
+        row.onlyLang === undefined && !targets[row.lang === 'en' ? 'af' : 'en'].has(key(row)),
+    ).map((row) => `${row.lang} "${row.query}" -> ${key(row)}`);
+    expect(alone).toEqual([]);
+    for (const row of ROWS.filter((r) => r.onlyLang !== undefined)) {
+      expect(row.onlyLang?.trim().length ?? 0, `${row.lang} "${row.query}"`).toBeGreaterThan(20);
     }
   });
 

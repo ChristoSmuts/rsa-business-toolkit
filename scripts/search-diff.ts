@@ -6,7 +6,10 @@
  *
  * The corpus: every acceptance row (`tests/search/acceptance-queries.json`), every page title, H1
  * and section heading, every glossary term, and every query quoted (in backticks) in
- * `docs/reviews/WP-33-pass*.md`, each in both languages.
+ * `docs/reviews/WP-33-pass*.md`, each in both languages, and generated phrasings that use a law,
+ * source or naming word in other senses ("<noun> law", "regulations for <noun>", "official
+ * <noun>", "come up with a <noun>"; `PHRASINGS`) over the guide's main nouns (review WP-33 pass
+ * 18: a word-list rule slipped past a corpus without them).
  *
  * Each change is classified when it can be: `better` or `worse` when the query is an acceptance
  * row (its target first or not) or a title (that entry first or not), `same-target` when both
@@ -34,6 +37,96 @@ interface First {
 type Runner = (lang: Lang, query: string, typing: boolean) => First | undefined;
 
 const ROOT = path.resolve(import.meta.dirname, '..');
+
+/** The guide's main nouns, per language, for the generated phrasings. */
+const NOUNS: Readonly<Record<Lang, readonly string[]>> = {
+  en: [
+    'tax',
+    'vat',
+    'business',
+    'company',
+    'food',
+    'vehicle',
+    'employment',
+    'consumer',
+    'health',
+    'licence',
+    'name',
+    'invoice',
+    'privacy',
+    'bank',
+    'home',
+    'labour',
+    'credit',
+    'safety',
+    'trading',
+    'alcohol',
+    'beauty',
+    'online',
+    'import',
+    'uif',
+    'sars',
+    'cipc',
+    'records',
+    'signage',
+    'logo',
+    'brand',
+  ],
+  af: [
+    'belasting',
+    'btw',
+    'besigheid',
+    'maatskappy',
+    'kos',
+    'voertuig',
+    'werk',
+    'verbruiker',
+    'gesondheid',
+    'lisensie',
+    'naam',
+    'faktuur',
+    'privaatheid',
+    'bank',
+    'huis',
+    'krediet',
+    'veiligheid',
+    'handel',
+    'alkohol',
+    'skoonheid',
+    'aanlyn',
+    'invoer',
+    'uif',
+    'sars',
+    'cipc',
+    'rekords',
+    'uithangbord',
+    'logo',
+    'handelsmerk',
+  ],
+};
+
+/** Phrasings that put a law, source or naming word next to a noun, per language. */
+const PHRASINGS: Readonly<Record<Lang, readonly ((noun: string) => string)[]>> = {
+  en: [
+    (n) => `${n} law`,
+    (n) => `${n} act`,
+    (n) => `${n} regulations`,
+    (n) => `regulations for ${n}`,
+    (n) => `official ${n}`,
+    (n) => `come up with a ${n}`,
+    (n) => `${n} source`,
+    (n) => `what the law says about ${n}`,
+  ],
+  af: [
+    (n) => `${n} wet`,
+    (n) => `${n}wet`,
+    (n) => `regulasies vir ${n}`,
+    (n) => `amptelike ${n}`,
+    (n) => `kom aan 'n ${n}`,
+    (n) => `${n} bron`,
+    (n) => `wat die wet oor ${n} sê`,
+  ],
+};
 const LANGS: readonly Lang[] = ['en', 'af'];
 
 async function runnerFor(root: string): Promise<Runner> {
@@ -107,6 +200,11 @@ async function corpus(): Promise<{
       const set = titles.get(key) ?? new Set<string>();
       set.add(`${entry.doc}#${entry.anchor ?? ''}`);
       titles.set(key, set);
+    }
+  }
+  for (const lang of LANGS) {
+    for (const noun of NOUNS[lang]) {
+      for (const phrase of PHRASINGS[lang]) queries.get(lang)?.add(phrase(noun));
     }
   }
   const reviews = path.join(ROOT, 'docs/reviews');

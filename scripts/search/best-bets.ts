@@ -8,6 +8,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { z } from 'zod';
+import { resolveActs } from './acts';
 import type { Locale } from '../../src/i18n/locales';
 import { betWords } from '../../src/lib/search/options';
 import type { SearchBestBet, SearchEntry } from '../../src/lib/search/types';
@@ -56,6 +57,8 @@ export interface ResolvedBestBets {
   readonly bets: readonly SearchBestBet[];
   /** The filler words of the language, read as a query reads them (stop words dropped). */
   readonly filler: readonly string[];
+  /** The Acts of the sources register, by name (`resolveActs`). */
+  readonly acts: readonly SearchBestBet[];
 }
 
 export function resolveBestBets(
@@ -94,5 +97,5 @@ export function resolveBestBets(
     );
   }
   const filler = [...new Set(file.filler[lang as 'en' | 'af'].flatMap((word) => betWords(word)))];
-  return { bets: out, filler };
+  return { bets: out, filler, acts: resolveActs(lang, entries) };
 }
