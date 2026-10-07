@@ -224,9 +224,14 @@ coverage, so the floors bind only when coverage is run. (That run also reports t
 functions floor at 89%, short of its 100%, because `collections.ts` and `context.ts` are not loaded
 by any unit test; this predates WP-30 and is the same at `2744d07`.)
 
-**JavaScript budget.** Plan B3 allows 25 KB gzipped on a document page. To measure, take every
-`<script src>` of a built page and the chunks they import, gzip each and add them up. On the WP-30
-build the heaviest document pages are 15.9 KB (14 files, 39.9 KB raw); see
+**JavaScript budget.** Plan B3 allows 25 KB gzipped on a document page and 45 KB on a tool page.
+`pnpm dist:budget` (`scripts/dist/check-budget.ts`, the last step of `pnpm build`) measures every
+built page: every `<script src>` and the chunks it imports, each gzipped (level 9) and summed, once
+without a profile and once with the chunks a reader with saved answers can load lazily
+(`PROFILE_CHUNKS`). The build fails when a page is over with a profile, and prints the heaviest page
+of each kind and the room left. On the WP-30 build the heaviest document page was 15.9 KB; on the
+WP-31 build after review pass 5 it is 22.2 KB without and with a profile (it was 24.0 KB and 26.3 KB
+before); see
 [design-system.md](design-system.md#scripts-csp-and-javascript-budget) for the split.
 
 ### Fillable templates (WP-32)
@@ -294,6 +299,63 @@ count is not counted as filled in.
 
 **JavaScript budget on tool pages** (45 KB gzipped): 20.3 KB on every template page, both languages
 (13 files, 53.1 KB raw).
+
+### Find my path and My path (WP-31)
+
+`tests/e2e/wizard.spec.ts` (projects `chromium`, `webkit` and `mobile`) drives the built site:
+
+- **The wizard with the keyboard.** Space chooses, Enter goes on, focus lands on each step's
+  heading, the stepper marks the step; "See my path" saves `st.profile.v1` (types in the order
+  ticked) and My path says the answers are saved and shows Path 4 with food beside the dealer.
+  "Pty Ltd, growing" is disabled with its reason until step 1 is Pty Ltd. "Edit answers" starts
+  from the saved answers. In Afrikaans the same answers are saved and My path is Afrikaans. With a
+  `localStorage` that throws, the answers go along in the address and both pages say they are not
+  saved.
+- **My path.** The empty state without answers; "Mark as done" and back, with the rings on My path,
+  in the top bar and on the home page ("Continue: step 2 of 4" to the next page); the checklist hides
+  Part A2 and the other kinds of business (still in the page) and shares ticks with `/checklist/`;
+  "Remove my answers" (Escape cancels and returns focus; confirming keeps the ticks and focuses the
+  heading).
+- **Personalisation.** The pager follows the path (with the SBC anchor); "Only what applies to me"
+  collapses a company section into its marker, Show brings it back with focus, and the choice holds
+  on the next page; without answers the switch points at Find my path; `/checklist/` offers its
+  "Only what applies to me" only with answers and counts what it hid; "Fill from my profile" fills
+  `[BUSINESS TYPE]`, says what is left, and Undo puts it back.
+- **Every result page** (98, read from `dist/` in chromium) lists exactly the steps `buildPath` gives
+  for its answers and is `noindex`; `NOINDEX_REQUIRED` in `helpers/routes.ts` fails the route check
+  if one loses it.
+
+`nojs.spec.ts`: all three questions show as one form with radios; no result button shows until the
+answers are complete, then exactly one, and it lands on the pre-rendered result page; "Pty Ltd,
+growing" without a Pty Ltd says why there is no path (in Afrikaans); My path is the empty state;
+documents offer no switch, hide nothing and show no "Fill from my profile".
+
+`a11y.spec.ts`, `axe on Find my path and My path`: each wizard step, My path with steps and
+checklist, the "Remove your answers?" dialog open, and a document and `/checklist/` with sections
+collapsed into their markers, in both themes. The route loop covers `/find-my-path/`, `/my-path/`
+and all 98 result pages.
+
+**Dom tests.** `tests/dom/wizard.test.ts` drives `<st-wizard>` on the markup `Wizard.astro` really
+renders: `tests/dom/fixtures/wizard.{en,af}.html`. Astro's container API renders components only in
+the node project (happy-dom transforms `.astro` for the client), so
+`tests/unit/components/wizard-markup.test.ts` renders the component and fails when the fixture
+differs. After an intended change to the component:
+
+```bash
+pnpm exec cross-env FIXTURE_UPDATE=1 vitest run --project unit tests/unit/components/wizard-markup.test.ts
+```
+
+`applies.test.ts` (sections, markers, Show and focus, the three modes, the switch),
+`my-path.test.ts` (steps, marks, the address, reset, the top-bar ring, the home card and the pager;
+the last three wait for `element.rendered`, because the path data loads lazily),
+`prompt-fill.test.ts` and `profile-store.test.ts` cover the rest. **Unit tests**:
+`tests/unit/path-engine.test.ts` (the two A5 fixtures against the real Path 1 and Path 4 lists, every
+rule, the matching rule, progress and marks), `profile.test.ts`, `path-pages.test.ts` and
+`tests/unit/content/paths.test.ts` (every way `paths.json` can disagree with the markdown).
+
+**Coverage floors** (`vitest.config.ts`, unit and dom projects together): `path-engine.ts` 95 / 95 /
+100 / 95, `profile.ts` and `profile-store.ts` 95 / 90 / 100 / 95, `path-pages.ts` 95 / 85 / 95 / 95.
+Measured on the WP-31 build: path-engine.ts 100 / 98.9 / 100 / 100, profile.ts and profile-store.ts 100 throughout, path-pages.ts 98.0 / 89.7 / 95.8 / 100, scripts/content/paths.ts 98.2 / 95 / 100 / 100.
 
 ### 404: `not-found.spec.ts`
 
@@ -550,8 +612,9 @@ An overdue `expiresOn` prints `dist:audit: overdue known-future route: …` and,
 
 Do not add an entry to silence a link that is simply wrong. A link to a route no package will ever build is a bug in the page.
 
-Current list: **empty**. WP-20 built every route in build plan B1 except the wizard and My path
-(WP-31), and no page links to those two until `WIZARD_AVAILABLE` in `src/lib/routes.ts` is `true`.
+Current list: **empty**. Every route in build plan B1 is built: WP-20 built all but the wizard and
+My path, and WP-31 built those two and turned `WIZARD_AVAILABLE` in `src/lib/routes.ts` on, so the
+Tools menu, the drawer and the home page link them again.
 A link a reader can follow to a missing page is a 404 on the deployed site, whatever the audit
 allows, so the flag hides the links rather than this list excusing them. The generated list
 milestone 1 needed deleted itself the way it was designed to: the audit failed on each entry whose

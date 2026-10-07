@@ -864,7 +864,10 @@
       "doc": "core/you-are-the-business",
       "heading": "continuity",
       "id": "core/you-are-the-business:8e6615a6",
-      "order": 50
+      "order": 50,
+      "when": {
+        "entity": "pty"
+      }
     },
     {
       "block": "continuity.1",
@@ -877,7 +880,10 @@
       "doc": "core/you-are-the-business",
       "heading": "continuity",
       "id": "core/you-are-the-business:b554cb87",
-      "order": 51
+      "order": 51,
+      "when": {
+        "entity": "pty"
+      }
     },
     {
       "block": "continuity.1",
@@ -890,7 +896,10 @@
       "doc": "core/you-are-the-business",
       "heading": "continuity",
       "id": "core/you-are-the-business:b5a8d0d2",
-      "order": 52
+      "order": 52,
+      "when": {
+        "entity": "pty"
+      }
     },
     {
       "block": "continuity.1",

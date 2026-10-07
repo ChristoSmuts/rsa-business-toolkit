@@ -20,11 +20,13 @@
  * their own, so those get a visually hidden legend instead of an empty one.
  */
 import Inline from './Inline.astro';
+import Button from '../ui/Button.astro';
 import Callout from '../ui/Callout.astro';
 import { useTranslations } from '../../i18n';
 import { isFallbackContent, type ContentContext } from '../../lib/content/context';
 import { getLocale } from '../../i18n/locales';
 import type { Block } from '../../lib/content/schema';
+import { appliesAttributes } from '../../lib/applicability';
 import { CHECKLIST_SAVES } from '../../lib/routes';
 
 interface Props {
@@ -50,6 +52,9 @@ const siteLang = isFallbackContent(context)
 /** The keys the ticks are saved under (see above). */
 const ids = block.items.map((task) => task.sameAs ?? task.id);
 const progressTemplate = siteT('checklist.progress', { done: '{done}', total: '{total}' });
+/** Each task's condition (WP-31), for "Only what applies to me" (`src/scripts/applies.ts`). */
+const conditions = block.items.map((task) => appliesAttributes(task.when));
+const filterable = conditions.some((attrs) => Object.keys(attrs).length > 0);
 ---
 
 {first && !CHECKLIST_SAVES && (
@@ -79,8 +84,12 @@ const progressTemplate = siteT('checklist.progress', { done: '{done}', total: '{
     ) : (
       <legend class="st-visually-hidden">{t('doc.yourChecklist')}</legend>
     )}
-    {block.items.map((task) => (
-      <label class="st-check">
+    {block.items.map((task, index) => (
+      <label
+        class="st-check"
+        data-applies={Object.keys(conditions[index] ?? {}).length > 0 ? '' : undefined}
+        {...conditions[index]}
+      >
         <input type="checkbox" id={task.id} value={task.id} data-task={task.sameAs ?? task.id} />
         <span>
           <Inline runs={task.c} context={context} />
@@ -88,6 +97,14 @@ const progressTemplate = siteT('checklist.progress', { done: '{done}', total: '{
       </label>
     ))}
   </fieldset>
+  {filterable && (
+    <div class="st-hint st-tasklist__hidden st-no-print" lang={siteLang} hidden>
+      <span data-hidden-text />
+      <Button variant="secondary" data-show-list hidden>
+        {siteT('doc.hiddenShow')}
+      </Button>
+    </div>
+  )}
   {CHECKLIST_SAVES && (
     <st-checklist-progress
       class="st-tasklist__progress js-only st-no-print"
@@ -106,6 +123,13 @@ const progressTemplate = siteT('checklist.progress', { done: '{done}', total: '{
 </script>
 
 <style>
+  .st-tasklist__hidden:not([hidden]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-2) var(--st-space-3);
+  }
+
   st-checklist,
   st-storage-notice {
     display: block;

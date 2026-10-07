@@ -1,0 +1,71 @@
+---
+/**
+ * "Only what applies to me" (build plan B2, WP-31): one switch, a native checkbox with
+ * `role="switch"`, bound to the `onlyMine` store by `<st-applies-switch>` (`src/scripts/applies.ts`).
+ *
+ * Shown only when the reader has a profile; without one, a line points at "Find my path" instead.
+ * It needs JavaScript (the profile is on the device), so it is `.js-only`. A page can hold two
+ * copies (the sidebar from 1024px, the article below that); the store keeps them in step.
+ */
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { href } from '../../lib/paths';
+import { APP_ROUTES } from '../../lib/routes';
+import { uid } from '../../scripts/uid';
+
+interface Props {
+  locale: Locale;
+  /**
+   * `sidebar` shows from 1024px (inside the section sidebar); `inline` below 1024px (above the
+   * document's text). A page renders both; the media queries live here, because a class passed in
+   * would carry this component's scope, not the page's.
+   */
+  placement: 'sidebar' | 'inline';
+}
+
+const { locale, placement } = Astro.props;
+const t = useTranslations(locale);
+const helpId = uid('st-applies-help');
+---
+
+<st-applies-switch class="st-applies-switch js-only st-no-print" data-placement={placement}>
+  <div class="st-applies-switch__control" data-switch hidden>
+    <label class="st-check">
+      <input type="checkbox" role="switch" aria-describedby={helpId} />
+      <span>{t('doc.onlyWhatApplies')}</span>
+    </label>
+    <p class="st-hint" id={helpId}>
+      {t('doc.onlyWhatAppliesHelp')}
+    </p>
+  </div>
+  <p class="st-hint" data-no-profile hidden>
+    {t('doc.onlyWhatAppliesNoProfile')}{' '}
+    <a href={href(locale, APP_ROUTES.wizard)}>{t('nav.findMyPath')}</a>
+  </p>
+</st-applies-switch>
+
+<script>
+  import '../../scripts/applies';
+</script>
+
+<style>
+  st-applies-switch {
+    display: block;
+  }
+
+  @media (width >= 1024px) {
+    st-applies-switch[data-placement='inline'] {
+      display: none;
+    }
+  }
+
+  .st-applies-switch__control {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-1);
+  }
+
+  .st-applies-switch__control[hidden] {
+    display: none;
+  }
+</style>

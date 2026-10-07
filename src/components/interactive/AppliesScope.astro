@@ -1,0 +1,44 @@
+---
+/**
+ * The part of a page "Only what applies to me" filters (WP-31): `<st-applies-scope>` around
+ * server-rendered blocks, with the strings it needs. `src/scripts/applies.ts` says what each mode
+ * does. Only pages with something to filter render it, so only they load the script.
+ */
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+
+interface Props {
+  locale: Locale;
+  mode: 'switch' | 'checklist' | 'always';
+}
+
+const { locale, mode } = Astro.props;
+const t = useTranslations(locale);
+/** "{count} items are hidden …" for one and for more, with the number as a placeholder. */
+const hiddenOne = t('checklist.hiddenItems', { count: 1 }).replace('1', '{count}');
+const hiddenOther = t('checklist.hiddenItems', { count: 2 }).replace('2', '{count}');
+/** The line's button, "Show 3 hidden items" (review WP-31 pass 3, minor 3). */
+const showOne = t('checklist.showHiddenItems', { count: 1 }).replace('1', '{count}');
+const showOther = t('checklist.showHiddenItems', { count: 2 }).replace('2', '{count}');
+---
+
+<st-applies-scope
+  class="st-stack"
+  data-mode={mode}
+  data-hidden-one={hiddenOne}
+  data-hidden-other={hiddenOther}
+  data-show-one={showOne}
+  data-show-other={showOther}
+>
+  <slot />
+</st-applies-scope>
+
+<script>
+  import '../../scripts/applies';
+</script>
+
+<style>
+  st-applies-scope {
+    display: block;
+  }
+</style>

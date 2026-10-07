@@ -22,8 +22,15 @@ import { checks, countDone, setChecked, type Checks } from '../lib/store';
 import { announce, askToConfirm } from './confirm-dialog';
 import './storage-notice';
 
-export type ChecklistFilter = 'all' | 'not-done';
-export const FILTER_EVENT = 'st-checklist-filter';
+/** `mine` (WP-31, `applies.ts`) hides by profile; for the ticks it is the same as `all`. */
+export type ChecklistFilter = 'all' | 'mine' | 'not-done';
+
+function isFilter(value: unknown): value is ChecklistFilter {
+  return value === 'all' || value === 'mine' || value === 'not-done';
+}
+import { FILTER_EVENT } from './checklist-filter';
+
+export { FILTER_EVENT };
 
 let currentFilter: ChecklistFilter = 'all';
 
@@ -45,7 +52,7 @@ export class StChecklist extends HTMLElement {
 
   readonly #onFilter = (event: Event): void => {
     const filter = (event as CustomEvent<unknown>).detail;
-    if (filter === 'all' || filter === 'not-done') this.applyFilter(filter);
+    if (isFilter(filter)) this.applyFilter(filter);
   };
 
   connectedCallback(): void {
@@ -139,7 +146,7 @@ export class StChecklistTools extends HTMLElement {
     const radio = event.target;
     if (!(radio instanceof HTMLInputElement) || radio.type !== 'radio' || !radio.checked) return;
     const filter = radio.value;
-    if (filter !== 'all' && filter !== 'not-done') return;
+    if (!isFilter(filter)) return;
     currentFilter = filter;
     this.ownerDocument.dispatchEvent(new CustomEvent(FILTER_EVENT, { detail: filter }));
   };
@@ -162,7 +169,7 @@ export class StChecklistTools extends HTMLElement {
     // The browser may restore the radios (Back without the back/forward cache, a Firefox
     // reload); the lists connected first and applied "all", so apply what the radios now say.
     const chosen = this.querySelector<HTMLInputElement>('input[type="radio"]:checked');
-    if (chosen && (chosen.value === 'all' || chosen.value === 'not-done')) {
+    if (chosen && isFilter(chosen.value)) {
       currentFilter = chosen.value;
       this.ownerDocument.dispatchEvent(new CustomEvent(FILTER_EVENT, { detail: chosen.value }));
     }

@@ -49,8 +49,13 @@ export const DOCUMENTED_EXCLUSIONS: readonly RegExp[] = [/^404\.html$/];
  * Routes that must stay out of search engines: they are excluded from the sitemap only because they
  * are `noindex`, and the route check fails if they lose it.
  * - `design-system/` (both locales): live style reference, filtered in `astro.config.ts`.
+ * - `find-my-path/result/…` (both locales): the wizard's no-JavaScript result pages (WP-31), which
+ *   repeat the guide for one set of answers; filtered in `astro.config.ts`.
  */
-export const NOINDEX_REQUIRED: readonly RegExp[] = [/^(af\/)?design-system\//];
+export const NOINDEX_REQUIRED: readonly RegExp[] = [
+  /^(af\/)?design-system\//,
+  /^(af\/)?find-my-path\/result\//,
+];
 
 export class MissingBuildError extends Error {
   constructor(distDir: string) {

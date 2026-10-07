@@ -97,7 +97,7 @@ interface ParamNames {
   'doc.hideNamed': 'name';
   'doc.hiddenSections': 'count';
   'doc.showHiddenSections': 'count';
-  'doc.hiddenFor.businessTypes': 'types';
+  'doc.hiddenPart': 'title';
   'doc.showHiddenNamed': 'title';
   'doc.copyLinkTo': 'heading';
   'doc.tableRegion': 'caption';
@@ -129,6 +129,7 @@ interface ParamNames {
   'checklist.progress': 'done' | 'total';
   'checklist.partProgress': 'done' | 'part' | 'total';
   'checklist.hiddenItems': 'count';
+  'checklist.showHiddenItems': 'count';
   'checklist.tickedOn': 'date';
   'templates.items.quotation.startNextDone': 'number';
   'templates.items.invoice.startNextDone': 'number';
@@ -192,7 +193,8 @@ type KeysWithParams<K extends TranslationKey> = Extract<K, keyof ParamNames>;
 /**
  * The parameters a key needs, from its placeholders in `en.json`.
  * For a key union, every placeholder name of every key in the union is required, so
- * `` `doc.hiddenFor.${reason}` `` needs `{ types }` as soon as one key in the union uses it.
+ * `` `myPath.${form}` `` with `form: 'markDone' | 'markDoneNamed'` needs `{ title }`, because one
+ * key in the union uses it.
  * The check is not distributive on purpose: a distributive check would accept the shortest form.
  */
 export type ParamsFor<K extends TranslationKey> = [KeysWithParams<K>] extends [never]

@@ -296,9 +296,10 @@ step. The language switcher is plain links either way; `<st-lang-switch>` only a
 
 Three flags in `src/lib/routes.ts` keep the site from offering what is not built:
 
-- `WIZARD_AVAILABLE` (WP-31): no page links to the wizard or My path. The Tools menu, the drawer, the
-  "Find my path" button, the trust line about "your answers" and the hero's "only the steps that
-  apply to you" are left out.
+- `WIZARD_AVAILABLE` (WP-31, **on**): while it was off, no page linked to the wizard or My path (the
+  Tools menu, the drawer, the "Find my path" button, the trust line about "your answers" and the
+  hero's "only the steps that apply to you" were left out). On, see
+  [Find my path and My path](#find-my-path-and-my-path-wp-31).
 - `SEARCH_AVAILABLE` (WP-33): `/search/` and the 404 page show no search form, the header shows no
   `/` hint, and the home page's actions are "Read Core: start here" and the contents.
 - `TEMPLATES_FILLABLE` (WP-32, **on**): each template page is a form with a live preview
@@ -347,7 +348,7 @@ status lines. Each piece works, or is absent, without JavaScript: `tests/e2e/noj
 | --- | --- | --- | --- | --- |
 | `<st-checklist>` | `checklist.ts` | `TaskListBlock` | Wraps one `<fieldset>` of checkboxes. A box the reader changed before the module connected (it is clickable from first paint) is saved as the reader's choice, not overwritten. A tick writes the `checks` store under the box's `data-task`: the task id, or, for a document task that repeats one on `/checklist/`, the master task's id (`sameAs`, from `content-meta/task-links.json`). So a linked task is ticked in both places, and the Afrikaans twin and other tabs follow; a task that is not linked keeps a tick of its own. Honours the `/checklist/` filter. | The boxes tick; one line says ticks are not saved (`.st-tasklist__no-js`, `.no-js-only`). |
 | `<st-checklist-progress>` | `checklist.ts` | `TaskListBlock`, `ChecklistSummary`, `ChecklistElsewhere` | "3 of 7 done" for the ids in `data-tasks`, from `data-template`; fills a `<progress>` (`aria-hidden`; the text says it), a `[data-progress-text]` and a `ProgressRing` (its `aria-label` too). `data-complete` when all are done. | `.js-only`: a count that cannot change would be wrong. |
-| `<st-checklist-tools>` | `checklist.ts` | `ChecklistSummary` | `/checklist/` only: the "Show" radios (Everything / Not done yet) and "Remove ticks", which asks in a `ConfirmDialog` and then says "All ticks were removed." in a polite status line. "Not done yet" hides what is ticked **when it is chosen**; a box ticked afterwards stays put, so focus never vanishes. A choice the browser restores (Back, a reload that keeps form state) is applied when the element connects. "Only what applies to me" is WP-31. | Hidden with the summary. |
+| `<st-checklist-tools>` | `checklist.ts` | `ChecklistSummary` | `/checklist/` only: the "Show" radios (Everything / Not done yet) and "Remove ticks", which asks in a `ConfirmDialog` and then says "All ticks were removed." in a polite status line. "Not done yet" hides what is ticked **when it is chosen**; a box ticked afterwards stays put, so focus never vanishes. A choice the browser restores (Back, a reload that keeps form state) is applied when the element connects. "Only what applies to me" (WP-31) is a third choice, shown only with a profile. | Hidden with the summary. |
 | `<st-storage-notice>` | `storage-notice.ts` | `TaskListBlock` (first checklist), `Settings` | Rendered `hidden`; shown while `storageAvailable` is `false`. A warning `Callout` with the right `storage.*` / `checklist.storageUnavailable` text. With `data-show="available"` it is the opposite: the "Ticks are saved on this device only" line wraps itself in one, so it goes when the warning comes and the page never says both. | Stays hidden. |
 | `<st-copy>` | `copy.ts` | `CodeBlock` (prompts only) | Shows its `hidden` button. Copies the prompt's `<pre>` text exactly, says "Copied" with a tick in place of the copy icon for two seconds and "Prompt 2 copied" in its `role="status"` line; if the clipboard refuses, selects the text and says how to copy it. Records the prompt in `promptsCopied` (`<doc id>#<block id>`). The button's visible text is `prompts.copy`, its name `prompts.copyNamed` ("Copy prompt 2: Logo brief"). | No button. The text is all there and copyable by hand. |
 | `<st-toc>` | `toc.ts` | `TableOfContents` (both variants) | `display: contents`. Scroll-spy: the link to the last heading that has passed the scroll-padding line gets `aria-current="location"` (a stripe and weight, never colour alone). Below 1280px a sticky one-line "Now reading" pill names it once the list has scrolled away; it links back to the list and opens it, and its name says so (`nav.currentSectionLabel`: "Now reading: Tax basics. Open the list of sections."). No smooth scrolling of its own; the pill's fade is a duration token that reduced motion sets to 0. | Plain anchors; no pill. |
@@ -474,7 +475,67 @@ migration, or uses a new key (`.v2`). `src/lib/storage/adapter.ts` is the `local
 never throws.
 
 `theme-init.js` is the one documented exception to "only the store reads storage": it must run
-before any module, so it reads `st.theme`, `st.lowData` and `st.lang` itself, in the formats the store writes. The store is built on `nanostores` alone; it does not use `@nanostores/persistent` (removed), because its adapter has to survive a throwing `localStorage`.
+before any module, so it reads `st.theme`, `st.lowData`, `st.lang` and `st.profile.v1` itself, in the formats the store writes; keep it in step with the `theme`, `lowData`, `lang` and `profile` stores. It sets `data-low-data`, `data-theme`, `data-st-lang-offer` (the saved language, when it is not the page's, so the language banner shows from first paint) `data-st-script-failed` (the names of scripts that failed to load, from the start of the file name: `YourPathCard`, `my-path`) and `data-st-profile` (saved answers that `parseProfile` would accept, with the same rules, which `tests/dom/theme-init.test.ts` keeps equal, so My path and the home card keep their space only for real answers). It ships unminified, so its comments stay short. The store is built on `nanostores` alone; it does not use `@nanostores/persistent` (removed), because its adapter has to survive a throwing `localStorage`.
+
+### Find my path and My path (WP-31)
+
+The reader's answers (`st.profile.v1`: how they trade, their kinds of business in the order they
+chose them, and where they are now; build plan A5) personalise the guide. The answers and the path
+are computed by pure modules shared by the pages and the browser: `src/lib/profile.ts` (the profile,
+its hand-written check, the query string, the 49 single-type answers) and `src/lib/path-engine.ts`
+(`applies`, the A5 matching rule, and `buildPath(profile, manifest, paths)`), on the rules in
+`content-meta/paths.json` (see `content-meta/README.md`).
+
+| Element | Script | Rendered by | What it does | Without JavaScript |
+| --- | --- | --- | --- | --- |
+| `<st-wizard>` | `wizard.ts` | `Wizard.astro` (`/find-my-path/`) | Makes the one form three steps: a stepper (`aria-current="step"`), Back and Next, focus on each step's heading; the kinds of business become checkboxes (the server renders radios) ticked in order, the first being the primary type; "Pty Ltd, growing" is `disabled` with its reason shown unless step 1 is Pty Ltd; Next and "See my path" stay `aria-disabled` with a hint until the step is answered; Enter in an answer goes on. "See my path" saves the profile and opens `/my-path/?saved=1`, or `/my-path/?entity=…&type=…&stage=…` when the device will not save. Answers saved earlier are filled in. | All three questions show; one kind of business (radios, and the page says more need JavaScript). Each of the 49 result pages has its own submit button with that page as `formaction`; CSS `:has()` shows only the one matching the checked answers (`wizardNoJsCss()` in the page `<head>`), otherwise "Choose an answer first." or why "Pty Ltd, growing" needs a Pty Ltd. All of that is inside `@supports selector(:has(*))`; a browser without `:has()` sees instead an open list, "Choose your path from this list", with a line saying the browser cannot show the button, and a link to every result page. A disabled first submit button is the form's default button, so Enter never submits through the wrong result. |
+| `<st-my-path>` | `my-path.ts` | `my-path.astro` | Shows the answers as chips, the steps numbered and ordered (every step of every rule is rendered `hidden`, with every page it can hold), each step's "why" from "How to use this toolkit" when it fits, "Mark as done" (`st.path.v1`, every page of the step), the ring, the personalised checklist and "Remove my answers" (a `ConfirmDialog`; ticks stay; focus goes to the `<h1>`). | The empty state with "Find my path". |
+| `<st-path-progress>` | `path-progress.ts` | `SiteHeader` | The top bar's "My path: 3 of 10 steps done" link and ring, when there is a profile. | Hidden. |
+| `<st-your-path>` | `path-progress.ts` | `YourPathCard` (home) | "Your path" card: ring, "Continue: step 4 of 10" to that step's first page, "Open my path", "Edit answers". | Hidden. |
+| `<st-path-pager>` | `path-progress.ts` | `Doc.astro` | On a document on the reader's path, Previous and Next follow the path (with a step's `#anchor`); a side with no path neighbour keeps the section order. | Section order. |
+| `<st-applies-scope>` | `applies.ts` | `AppliesScope` (documents with conditions, `/checklist/`, My path) | Hides what does not apply (`.st-filtered`): a heading's section collapses into its `HiddenMarker` ("Hidden by “Only what applies to me”: What SARS wants from a company" and Show, which brings back that section and focuses its heading; the marker never says who a part is for, because the guide's own heading says that), a link to a hidden part (`#hash`, on load and on `hashchange`) brings it back, single items and table rows go, a checklist says "2 items are hidden because they do not apply to you" with a "Show 2 hidden items" button, and a checklist with every item hidden collapses to that line (never an empty "Your checklist"; on My path such a list goes). A collapsed section ends at the first sub-heading that applies to the reader or to everyone (`hiddenPart`): "Provisional tax" stays visible for a Pty Ltd reader under the collapsed "What SARS wants from a sole proprietor". `tests/dom/applies-all-profiles.test.ts` checks every document in both languages against all 49 answers. **Nothing is removed from the page.** Modes: `switch` (follows `st.onlyMine`), `checklist` (the "Show: Only what applies to me" choice), `always` (My path, no markers). | Nothing is hidden. |
+| `<st-applies-switch>` | `applies.ts` | `AppliesSwitch` (sidebar from 1024px, above the text below) | "Only what applies to me", a `role="switch"` checkbox bound to `st.onlyMine`; only with a profile, otherwise a line pointing at Find my path. | Hidden. |
+| `<st-prompt-fill>` | `prompt-fill.ts` | `CodeBlock` (prompts with `[BUSINESS TYPE]`) | "Fill from my profile" writes the primary kind of business into the blanks the profile knows (`prompts.profileValues`), says how many blanks are left, and "Undo" puts the brackets back; focus moves to whichever button replaces the one pressed. "Copy prompt" copies the filled text. | Hidden. |
+
+Components: `Wizard`, `PathSteps` and `YourPathCard` (`src/components/wizard/`), `HiddenMarker`
+(`src/components/content/`), `AppliesScope` and `AppliesSwitch` (`src/components/interactive/`).
+Headings, checklist items and table rows with a condition carry it as `data-entity`/`data-types`
+(`appliesAttributes`), every heading its `data-depth`, so a section can be found without wrappers.
+
+Pages: `/find-my-path/`, `/my-path/` and the no-JavaScript results
+`/find-my-path/result/<entity>/<type>/<stage>/` (49 per language, `noindex`, left out of the
+sitemap, built by the same `buildPath`). With JavaScript a reader never lands on a result page.
+
+Rules the pieces follow:
+
+- **The profile reader is the only way in.** Other packages read the answers with `readProfile()`,
+  `profileBusinessTypes()` (General expanded; for WP-33's "My business types" filter) or
+  `profileEntity()` from `src/lib/profile-store.ts`, and subscribe to `profile`; never parse
+  `st.profile.v1` themselves.
+- **Document pages never load the path rules.** `path-progress.ts` (the top bar's ring and the
+  pager) is on every page, so it reads the path stored on the device (`st.pathView.v1`,
+  `src/lib/path-view.ts`) and nothing more. The wizard and My path write it; the home card
+  (`your-path.ts`) rebuilds it with `import('./path-data')` when the answers or the rules (the hash
+  of `paths.json`, `data-version`) changed. Until then a document page shows no ring and keeps its
+  pager in section order. On the path's last page, Next leads to My path.
+- **The top bar from 1024 to 1279px** shows the ring without its "My path" label and the theme control without icons, so the sticky bar keeps one row with answers saved.
+- **The home card keeps its space.** With `html[data-st-profile]` the card's box is kept, invisible, from first paint, so the page does not move when it appears; the card drops it (`data-no-path`) when there are no answers after all. Only what stops the card from drawing gives the space back: its own module failing to load (`data-st-script-failed~="YourPathCard"`) or the lazy path rules failing to load (`data-path-failed`, and the next trigger tries again). A slow load moves nothing, a dropped request leaves no gap, and another script failing leaves the card alone.
+- **Rebuilding the stored path** happens only on an element's own triggers (connecting, new answers), never on a change to `st.pathView.v1` from another tab, so two tabs on different builds cannot keep overwriting each other.
+- `theme-init.js` sets `<html data-st-profile>` before paint when answers are saved, so My path never
+  shows its empty state ("You have not answered the questions yet") to a reader with answers, however
+  slow the load: it keeps a screen's height for the path until it is drawn, so the footer does not
+  move either. Only when My path's own module fails to load (`data-st-script-failed~="my-path"`)
+  does the empty state with "Find my path" show.
+
+| Store | Key | Value |
+| --- | --- | --- |
+| `profile` | `st.profile.v1` | `{ entity, businessTypes[], stage }`; invalid (including "Pty Ltd, growing" without a Pty Ltd) is removed |
+| `pathDone` | `st.path.v1` | `{ [docId]: ISO date-time marked as read }`; a step is done when all its pages are |
+| `onlyMine` | `st.onlyMine` | `true` / `false`, "Only what applies to me" |
+| `pathView` | `st.pathView.v1` | `{ version, profile, steps, docs }`: the reader's path for the top bar, the pager and the home card, rebuilt when `version` (the `paths.json` hash) or `profile` (the answers' query string) no longer match |
+
+"Remove my answers" clears all four and keeps the ticks; "Clear all my data" on `/about/` clears
+everything.
 
 ### Illustrations
 
@@ -530,13 +591,13 @@ Verification status, officialness and "not confirmed" are the three places a pag
 ## Scripts, CSP and JavaScript budget
 
 - CSP (meta, production builds only, because the dev server injects inline scripts): `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'`. It comes before the first script in `<head>`.
-- **Blocking theme init.** `src/scripts/theme-init.js` is plain JavaScript (checked with `// @ts-check`). `Base.astro` imports it with `?url`; Vite copies the file unchanged with a hashed name (it does not compile `?url` imports, which is why the file is `.js` and not `.ts`) and Base loads it with `<script is:inline src={url}>`, a classic render-blocking script right after the theme-color metas. About 1.2 KB unminified.
+- **Blocking theme init.** `src/scripts/theme-init.js` is plain JavaScript (checked with `// @ts-check`). `Base.astro` imports it with `?url`; Vite copies the file unchanged with a hashed name (it does not compile `?url` imports, which is why the file is `.js` and not `.ts`) and Base loads it with `<script is:inline src={url}>`, a classic render-blocking script right after the theme-color metas. About 1.5 KB gzipped; it ships unminified.
 - **Everything else** is a normal Astro `<script>`: bundled as an ES module, deduplicated per page, able to share chunks and use `import()`. Component scripts (for example `TableScroll`) and page scripts (the design-system page imports `theme-control` and `design-system-contrast`) work the same way.
 - `astro.config.ts` sets `vite.build.assetsInlineLimit` to a **function**, not to `0`. Astro inlines a processed script bundle, and Vite a `?url` asset (as a `data:` URI), when it is under that limit, and `script-src 'self'` would block both; but a flat `0` also switched off Astro's `inlineStylesheets: 'auto'`, so a page with a few hundred bytes of scoped CSS paid for an extra render-blocking request. The function returns `false` for everything except `.css`, where it returns `undefined` and the default size limit applies. Result: zero inline `<script>` on any page, and small stylesheets inline again (`style-src` already allows `'unsafe-inline'`). E2e tests check both on `/` and `/design-system/`.
 - Only the CSS chunk that carries the design tokens is named `stoep.[hash].css`; page CSS keeps Rollup's own name (`assetFileNames` matches on `originalFileNames`). Three files all called `stoep.*` could not be told apart in DevTools or a budget report.
 - Module scripts run after parsing but, in WebKit, **before stylesheets that come later in `<head>`** have applied (Astro emits page CSS links after its scripts). A script that reads computed styles must therefore check that the tokens resolve — and it must check on **the element it is about to measure**, not on `documentElement`. See [The live contrast panel](#the-live-contrast-panel) for why the difference is not academic.
 - `localStorage` is allowed only in `src/lib/store.ts` and `src/lib/storage/**` (ESLint allow-list; `src/scripts/**` left it with WP-30). `theme-init.js` reads `st.theme`, `st.lowData` and `st.lang` itself, because it must run before any module loads; it is plain JavaScript, outside the TypeScript rule, and the one documented exception.
-- **JavaScript budget** (plan B3 flow 9: 25 KB gzipped on document pages). Measured on the WP-30 build: the heaviest document pages load 14 script files, 39.9 KB raw and **15.9 KB gzipped** (each file gzipped on its own and summed, `theme-init` included); the store chunk (nanostores and `zod/mini`) is 7.2 KB of that. `/about/` is 13.2 KB and the home page 12.8 KB. How to measure: `docs/testing.md`. **Tool pages** (45 KB budget): each template page loads 13 files, 53.1 KB raw and **20.3 KB gzipped** on the WP-32 build after review pass 1; `<st-template-form>` (with the totals and draft helpers) is 5.7 KB of that and the store chunk 8.4 KB. Document pages stay at about 15.3 KB. The page passes month names and `date.format` in data attributes, so no dictionary is bundled.
+- **JavaScript budget** (plan B3 flow 9: 25 KB gzipped on document pages, 45 KB on tool pages), checked on every page by `pnpm dist:budget` at the end of `pnpm build`. Measured on the WP-31 build after review pass 5, each file gzipped (level 9) on its own and summed, `theme-init` included, without / with a saved profile: the heaviest document page (`/af/business-types/food/`) **22.2 KB / 22.2 KB**, 2.8 KB under the budget. Tool pages: My path 24.7 KB, `/checklist/` 21.7 KB, Find my path 20.3 KB; the home page 17.7 KB, and 20.5 KB when it rebuilds the stored path (the rules and the engine, `path-data`, lazily). The profile is checked by hand-written code, not zod, so the store chunk carries no schema library; "Fill from my profile" loads its script only on pages with a fillable prompt. On the WP-30 build the heaviest document page was 15.9 KB; before review pass 1 of WP-31 it was 24.0 KB, and 26.3 KB with a profile. How to measure: `docs/testing.md`.
 - In `astro dev` the same imports work: `?url` returns the source path of `theme-init.js`, which Vite serves as JavaScript, and processed scripts load as dev modules.
 
 ### The live contrast panel

@@ -243,15 +243,11 @@
       "one": "Wys {count} versteekte afdeling",
       "other": "Wys {count} versteekte afdelings"
     },
-    "hiddenFor": {
-      "sole-prop": "Versteek: hierdie deel is net vir ’n eenmansaak.",
-      "pty": "Versteek: hierdie deel is net vir ’n Pty Ltd.",
-      "businessTypes": "Versteek: hierdie deel is net vir hierdie soorte besigheid: {types}."
-    },
+    "hiddenPart": "Versteek deur “Net wat vir my geld”: {title}",
     "hiddenShow": "Wys",
     "showHiddenNamed": "Wys versteekte deel: {title}",
     "onlyWhatApplies": "Net wat vir my geld",
-    "onlyWhatAppliesHelp": "Versteek die dele vir ander soorte besighede. Niks word verwyder nie. Jy kan dit enige tyd weer wys.",
+    "onlyWhatAppliesHelp": "Versteek die dele wat nie vir jou manier van handeldryf of vir jou soort besigheid is nie. Niks word verwyder nie. Jy kan dit enige tyd weer wys.",
     "onlyWhatAppliesNoProfile": "Beantwoord die vrae in Vind my roete om dit te gebruik.",
     "plainWords": "In gewone taal",
     "note": "Let wel",
@@ -379,7 +375,14 @@
     "seeMyPath": "Sien my roete",
     "savedTip": "Net op hierdie toestel gestoor. Niks word êrens heen gestuur nie.",
     "noJs": "JavaScript is af. Jy kan steeds die vrae beantwoord en ’n roete sien, maar jou antwoorde word nie gestoor nie.",
-    "noJsOneType": "Sonder JavaScript kan jy een soort besigheid kies. Skakel JavaScript aan om meer as een te kies."
+    "noJsOneType": "Sonder JavaScript kan jy een soort besigheid kies. Skakel JavaScript aan om meer as een te kies.",
+    "result": {
+      "title": "Jou roete",
+      "intro": "Dit is die stappe vir jou antwoorde, in volgorde. Maak elke bladsy oop wanneer jy daar kom.",
+      "save": "Stoor hierdie antwoorde"
+    },
+    "noJsList": "Kies jou roete uit hierdie lys",
+    "noJsListHint": "Jou blaaier kan nie die knoppie vir die antwoorde hierbo wys nie. Kies hoe jy handel dryf, dan jou soort besigheid en waar jy nou is."
   },
   "myPath": {
     "title": "My roete",
@@ -395,10 +398,10 @@
     "read": "Lees",
     "readStep": "Lees stap {n}: {title}",
     "markDone": "Merk as klaar",
-    "markDoneNamed": "Merk {title} as klaar",
+    "markDoneNamed": "Merk as klaar: {title}",
     "done": "Klaar",
     "markNotDone": "Haal die merkie af",
-    "markNotDoneNamed": "Haal die merkie van {title} af",
+    "markNotDoneNamed": "Haal die merkie af: {title}",
     "why": "Waarom hierdie stap",
     "checklistHeading": "Jou kontrolelys",
     "editAnswers": "Wysig antwoorde",
@@ -408,7 +411,8 @@
       "body": "Dit verwyder jou antwoorde van hierdie toestel. Jou merkies op die kontrolelys bly.",
       "confirm": "Verwyder antwoorde"
     },
-    "resetDone": "Jou antwoorde is verwyder."
+    "resetDone": "Jou antwoorde is verwyder.",
+    "typeChecklists": "Van die bladsye vir jou soort besigheid"
   },
   "checklist": {
     "title": "Hoofkontrolelys",
@@ -431,6 +435,10 @@
     "hiddenItems": {
       "one": "{count} item is versteek omdat dit nie vir jou geld nie",
       "other": "{count} items is versteek omdat hulle nie vir jou geld nie"
+    },
+    "showHiddenItems": {
+      "one": "Wys {count} versteekte item",
+      "other": "Wys {count} versteekte items"
     },
     "print": "Druk",
     "printWithTicks": "Druk met my merkies",
@@ -577,7 +585,7 @@
     "copiedNamed": "Opdrag {n} gekopieer",
     "copyFailed": "Kon nie kopieer nie. Die teks is gekies. Kopieer dit met jou sleutelbord, of druk lank daarop op ’n foon.",
     "fillFromProfile": "Vul in uit my profiel",
-    "fillFromProfileNamed": "Vul opdrag {n} in uit my profiel: {title}",
+    "fillFromProfileNamed": "Vul in uit my profiel: opdrag {n}, {title}",
     "undoFill": "Ontdoen",
     "undoFillNamed": "Ontdoen die invulling in opdrag {n}: {title}",
     "placeholdersRemaining": {
@@ -591,7 +599,15 @@
     "showLessNamed": "Wys minder van opdrag {n}: {title}",
     "placeholderHint": "Woorde in [vierkantige hakies] is oop plekke. Vervang dit met jou eie besonderhede.",
     "stepperLabel": "Opdragte in hierdie lêer",
-    "promptLabel": "Opdrag {n}: {title}"
+    "promptLabel": "Opdrag {n}: {title}",
+    "profileValues": {
+      "vehicle-dealer": "voertuighandelaar",
+      "food": "kosbesigheid",
+      "beauty": "skoonheids- en persoonlike versorgingsbesigheid",
+      "retail-online": "kleinhandel- en aanlynwinkel",
+      "services-trades": "dienste- en ambagsbesigheid",
+      "professional-creative": "professionele en kreatiewe besigheid"
+    }
   },
   "search": {
     "label": "Soek in die gids",

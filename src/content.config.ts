@@ -11,6 +11,7 @@ import {
   DocSchema,
   GlossaryFileSchema,
   ManifestSchema,
+  PathsFileSchema,
   QuickAnswersFileSchema,
   SourcesFileSchema,
   TasksFileSchema,
@@ -49,6 +50,11 @@ export const collections = {
   manifest: defineCollection({
     loader: glob({ pattern: 'manifest.json', base: DATA, generateId: () => 'manifest' }),
     schema: ManifestSchema,
+  }),
+  /** The reading-path rules (A5, WP-31); `scripts/content/paths.ts` checks their references. */
+  paths: defineCollection({
+    loader: glob({ pattern: 'paths.json', base: DATA, generateId: () => 'paths' }),
+    schema: PathsFileSchema,
   }),
   businessTypes: defineCollection({
     loader: file('content-meta/business-types.json', {

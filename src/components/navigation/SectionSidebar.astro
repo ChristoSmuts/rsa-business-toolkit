@@ -6,7 +6,8 @@
  * It appears from 1024px (the `.st-doc-grid` breakpoint). Below that it is `display: none` for
  * everyone, assistive technology included, because the same links are in the header menus and in
  * the drawer and a second, invisible copy would only be read out twice. The tick for a completed
- * checklist and the "Only what applies to me" switch are WP-30 and WP-31 and are not faked here.
+ * checklist is not faked here. The `after` slot holds WP-31's "Only what applies to me" switch
+ * (`AppliesSwitch.astro`), on pages with parts it can hide; below 1024px the page shows its own copy.
  */
 import Badge from '../ui/Badge.astro';
 import { useTranslations } from '../../i18n';
@@ -75,6 +76,7 @@ const docs = sectionDocIds(manifest, sectionId)
         </li>
       ))}
     </ol>
+    <slot name="after" />
   </nav>
 )}
 

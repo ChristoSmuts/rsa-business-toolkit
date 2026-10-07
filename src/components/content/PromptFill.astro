@@ -1,0 +1,80 @@
+---
+/**
+ * "Fill from my profile" on an AI prompt (build plan B3 flow 6; WP-31): rendered `hidden` by
+ * `CodeBlock` for a prompt with a blank the reader's answers can fill, and shown by
+ * `<st-prompt-fill>` (`src/scripts/prompt-fill.ts`) once there are answers. Its own component, so
+ * only pages with such a prompt load the script (review WP-31 pass 1, major 1).
+ *
+ * Each button's name starts with its visible label ("Fill from my profile: prompt 2, Logo brief"),
+ * so a reader who says what they see reaches it (WCAG 2.5.3; review WP-31 pass 1, major 5).
+ */
+import Button from '../ui/Button.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { BUSINESS_TYPE_IDS } from '../../lib/content/schema';
+
+interface Props {
+  locale: Locale;
+  /** `lang` of the controls when the prompt around them is in another language. */
+  lang: string | undefined;
+  promptNumber: number | undefined;
+  /** The heading above the prompt. */
+  caption: string;
+}
+
+const { locale, lang, promptNumber, caption } = Astro.props;
+const t = useTranslations(locale);
+const values = JSON.stringify(
+  Object.fromEntries(BUSINESS_TYPE_IDS.map((id) => [id, t(`prompts.profileValues.${id}`)])),
+);
+const n = promptNumber ?? 1;
+const remainingOne = t('prompts.placeholdersRemaining', { count: 1 }).replace('1', '{count}');
+const remainingOther = t('prompts.placeholdersRemaining', { count: 2 }).replace('2', '{count}');
+---
+
+<st-prompt-fill
+  class="st-prompt-fill js-only st-no-print"
+  lang={lang}
+  data-values={values}
+  data-remaining-one={remainingOne}
+  data-remaining-other={remainingOther}
+  data-all-filled={t('prompts.allFilled')}
+  hidden
+>
+  <Button
+    variant="secondary"
+    data-fill
+    aria-label={t('prompts.fillFromProfileNamed', { n, title: caption })}
+    iconStart="lucide:user-round-pen"
+  >
+    {t('prompts.fillFromProfile')}
+  </Button>
+  <Button
+    variant="ghost"
+    data-undo
+    aria-label={t('prompts.undoFillNamed', { n, title: caption })}
+    iconStart="lucide:undo-2"
+    hidden
+  >
+    {t('prompts.undoFill')}
+  </Button>
+  <p class="st-hint st-prompt-fill__status" role="status"></p>
+</st-prompt-fill>
+
+<script>
+  import '../../scripts/prompt-fill';
+</script>
+
+<style>
+  .st-prompt-fill {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-2) var(--st-space-3);
+  }
+
+  .st-prompt-fill__status {
+    min-inline-size: 0;
+    flex: 1 1 12rem;
+  }
+</style>

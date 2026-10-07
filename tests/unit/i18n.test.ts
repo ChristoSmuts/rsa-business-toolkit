@@ -610,22 +610,20 @@ describe('t', () => {
 
   it('requires every placeholder of every key in a key union at compile time', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
-    for (const reason of ['sole-prop', 'businessTypes'] as const) {
-      // @ts-expect-error: the union includes "doc.hiddenFor.businessTypes", which needs { types }.
-      t('en', `doc.hiddenFor.${reason}`);
-      expect(t('en', `doc.hiddenFor.${reason}`, { types: 'Food business' })).not.toContain('{');
+    for (const form of ['markDone', 'markDoneNamed'] as const) {
+      // @ts-expect-error: the union includes "myPath.markDoneNamed", which needs { title }.
+      t('en', `myPath.${form}`);
+      expect(t('en', `myPath.${form}`, { title: 'Register' })).not.toContain('{');
     }
     expect(warn).toHaveBeenCalledOnce();
-    const noPlaceholders = 'pty' as 'sole-prop' | 'pty';
-    expect(t('af', `doc.hiddenFor.${noPlaceholders}`)).toBe(
-      'Versteek: hierdie deel is net vir ’n Pty Ltd.',
-    );
+    const noPlaceholders = 'markNotDone' as 'markDone' | 'markNotDone';
+    expect(t('af', `myPath.${noPlaceholders}`)).toBe('Haal die merkie af');
     const mixed = 'nav.next' as 'nav.next' | 'site.checkedOn';
     // @ts-expect-error: the union needs both { title } and { date }.
     t('en', mixed, { title: 'Tax' });
     expect(t('en', mixed, { title: 'Tax', date: '1 March 2026' })).toBe('Next: Tax');
     // @ts-expect-error: useTranslations keeps the same check.
-    useTranslations('af')(`doc.hiddenFor.${noPlaceholders as 'pty' | 'businessTypes'}`);
+    useTranslations('af')(`myPath.${noPlaceholders as 'markDone' | 'markDoneNamed'}`);
   });
 
   it('renders the trust strings for the AI notice and sources', () => {
@@ -814,4 +812,43 @@ describe('interpolate, selectPlural and isPluralForms', () => {
     expect(isPluralForms(null)).toBe(false);
     expect(PLURAL_CATEGORIES).toContain('other');
   });
+});
+
+describe('accessible names that contain the visible label (WCAG 2.5.3)', () => {
+  // A button whose name is set from the `…Named` key shows the plain key. The name must start
+  // with what is shown, so a speech-input user can say it (review WP-31 pass 1, major 5).
+  const PAIRS = [
+    ['myPath.markDone', 'myPath.markDoneNamed'],
+    ['myPath.markNotDone', 'myPath.markNotDoneNamed'],
+    ['prompts.fillFromProfile', 'prompts.fillFromProfileNamed'],
+    ['prompts.undoFill', 'prompts.undoFillNamed'],
+  ] as const;
+
+  for (const code of ['en', 'af']) {
+    const dictionary = flatten(loadDictionary(code));
+    for (const [label, name] of PAIRS) {
+      it(`${code}: ${name} starts with ${label}`, () => {
+        const visible = dictionary.get(label);
+        const accessible = dictionary.get(name);
+        expect(typeof visible).toBe('string');
+        expect(typeof accessible).toBe('string');
+        expect(
+          (accessible as string).toLowerCase().startsWith((visible as string).toLowerCase()),
+        ).toBe(true);
+      });
+    }
+  }
+});
+
+describe('the hidden-part wording', () => {
+  // The guide's headings say whom a part is for; the dictionary must not offer a summary that
+  // claims more (review WP-31 pass 1, major 3; pass 2, nit 1).
+  for (const code of ['en', 'af']) {
+    it(`${code}: no string says a hidden part is "only for" someone`, () => {
+      const dictionary = flatten(loadDictionary(code));
+      expect([...dictionary.keys()].filter((key) => key.startsWith('doc.hiddenFor'))).toEqual([]);
+      const texts = [...dictionary.values()].flatMap(forms);
+      expect(texts.filter((text) => /^(Hidden|Versteek): /.test(text))).toEqual([]);
+    });
+  }
 });

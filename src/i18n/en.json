@@ -243,15 +243,11 @@
       "one": "Show {count} hidden section",
       "other": "Show {count} hidden sections"
     },
-    "hiddenFor": {
-      "sole-prop": "Hidden: this part is only for a sole proprietor.",
-      "pty": "Hidden: this part is only for a Pty Ltd.",
-      "businessTypes": "Hidden: this part is only for these kinds of business: {types}."
-    },
+    "hiddenPart": "Hidden by “Only what applies to me”: {title}",
     "hiddenShow": "Show",
     "showHiddenNamed": "Show hidden part: {title}",
     "onlyWhatApplies": "Only what applies to me",
-    "onlyWhatAppliesHelp": "Hides the parts for other kinds of business. Nothing is removed. You can show them again at any time.",
+    "onlyWhatAppliesHelp": "Hides the parts that are not for how you trade or for your kind of business. Nothing is removed. You can show them again at any time.",
     "onlyWhatAppliesNoProfile": "Answer the questions in Find my path to use this.",
     "plainWords": "In plain words",
     "note": "Note",
@@ -379,7 +375,14 @@
     "seeMyPath": "See my path",
     "savedTip": "Saved on this device only. Nothing is sent anywhere.",
     "noJs": "JavaScript is off. You can still answer the questions and see a path, but your answers are not saved.",
-    "noJsOneType": "Without JavaScript you can choose one kind of business. To choose more than one, turn on JavaScript."
+    "noJsOneType": "Without JavaScript you can choose one kind of business. To choose more than one, turn on JavaScript.",
+    "result": {
+      "title": "Your path",
+      "intro": "These are the steps for your answers, in order. Open each page when you get to it.",
+      "save": "Save these answers"
+    },
+    "noJsList": "Choose your path from this list",
+    "noJsListHint": "Your browser cannot show the button for the answers above. Choose how you trade, then your kind of business and where you are now."
   },
   "myPath": {
     "title": "My path",
@@ -395,10 +398,10 @@
     "read": "Read",
     "readStep": "Read step {n}: {title}",
     "markDone": "Mark as done",
-    "markDoneNamed": "Mark {title} as done",
+    "markDoneNamed": "Mark as done: {title}",
     "done": "Done",
     "markNotDone": "Remove the tick",
-    "markNotDoneNamed": "Remove the tick from {title}",
+    "markNotDoneNamed": "Remove the tick: {title}",
     "why": "Why this step",
     "checklistHeading": "Your checklist",
     "editAnswers": "Edit answers",
@@ -408,7 +411,8 @@
       "body": "This removes your answers from this device. Your checklist ticks stay.",
       "confirm": "Remove answers"
     },
-    "resetDone": "Your answers were removed."
+    "resetDone": "Your answers were removed.",
+    "typeChecklists": "From the pages for your kind of business"
   },
   "checklist": {
     "title": "Master checklist",
@@ -431,6 +435,10 @@
     "hiddenItems": {
       "one": "{count} item is hidden because it does not apply to you",
       "other": "{count} items are hidden because they do not apply to you"
+    },
+    "showHiddenItems": {
+      "one": "Show {count} hidden item",
+      "other": "Show {count} hidden items"
     },
     "print": "Print",
     "printWithTicks": "Print with my ticks",
@@ -577,7 +585,7 @@
     "copiedNamed": "Prompt {n} copied",
     "copyFailed": "Could not copy. The text is selected. Copy it with your keyboard, or press and hold it on a phone.",
     "fillFromProfile": "Fill from my profile",
-    "fillFromProfileNamed": "Fill prompt {n} from my profile: {title}",
+    "fillFromProfileNamed": "Fill from my profile: prompt {n}, {title}",
     "undoFill": "Undo",
     "undoFillNamed": "Undo filling in prompt {n}: {title}",
     "placeholdersRemaining": {
@@ -591,7 +599,15 @@
     "showLessNamed": "Show less of prompt {n}: {title}",
     "placeholderHint": "Words in [square brackets] are blanks. Replace them with your own details.",
     "stepperLabel": "Prompts in this file",
-    "promptLabel": "Prompt {n}: {title}"
+    "promptLabel": "Prompt {n}: {title}",
+    "profileValues": {
+      "vehicle-dealer": "vehicle dealer",
+      "food": "food business",
+      "beauty": "beauty and personal care business",
+      "retail-online": "retail and online shop",
+      "services-trades": "services and trades business",
+      "professional-creative": "professional and creative business"
+    }
   },
   "search": {
     "label": "Search the guide",

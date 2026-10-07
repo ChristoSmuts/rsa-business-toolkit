@@ -27,6 +27,7 @@ import { getLocale } from '../../i18n/locales';
 import { isFallbackContent, type ContentContext } from '../../lib/content/context';
 import { splitPlaceholders } from '../../lib/content/render';
 import type { Block } from '../../lib/content/schema';
+import PromptFill from './PromptFill.astro';
 
 interface Props {
   block: Extract<Block, { kind: 'code' }>;
@@ -56,6 +57,19 @@ const copyName =
   promptNumber === undefined
     ? undefined
     : siteT('prompts.copyNamed', { n: promptNumber, title: caption });
+/*
+ * "Fill from my profile" (WP-31): the placeholders the profile knows. Today that is the kind of
+ * business; the values are in the reader's language, one per business type.
+ */
+const FILLABLE_KEYS = ['businessType'];
+const fillable =
+  isPrompt &&
+  segments.some(
+    (segment) =>
+      segment.kind === 'placeholder' &&
+      segment.run.key !== undefined &&
+      FILLABLE_KEYS.includes(segment.run.key),
+  );
 const copiedMessage =
   promptNumber === undefined
     ? siteT('prompts.copied')
@@ -69,9 +83,17 @@ const copiedMessage =
       tabindex={scrolls ? 0 : undefined}
       aria-label={scrolls ? label : undefined}
       data-label={scrolls ? label : undefined}
-    ><code>{segments.map((segment) => (segment.kind === 'text' ? segment.value : <mark class="st-placeholder" data-placeholder={segment.run.style}>{segment.value}</mark>))}</code></pre>
+    ><code>{segments.map((segment) => (segment.kind === 'text' ? segment.value : <mark class="st-placeholder" data-placeholder={segment.run.style} data-key={segment.run.key}>{segment.value}</mark>))}</code></pre>
   </st-code-scroll>
   {hasPlaceholders && <figcaption>{t('prompts.placeholderHint')}</figcaption>}
+  {fillable && (
+    <PromptFill
+      locale={context.locale}
+      lang={siteLang}
+      promptNumber={promptNumber}
+      caption={caption}
+    />
+  )}
   {isPrompt && (
     <st-copy
       class="st-copy st-no-print"

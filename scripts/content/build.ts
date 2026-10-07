@@ -6,6 +6,7 @@ import {
   GlossaryFileSchema,
   LANGS,
   ManifestSchema,
+  PathsFileSchema,
   QuickAnswersFileSchema,
   SourcesFileSchema,
   TaskKeysFileSchema,
@@ -45,6 +46,7 @@ import { docFileName, shortHash } from './ids';
 import type { LegacyUse, LinkUse } from './inline';
 import { buildDoc } from './meta';
 import { parseDocument, type FenceRecord, type ParsedDoc } from './parse';
+import { buildPathsFile, checkPaths } from './paths';
 import {
   checkProvenanceConfig,
   checkVerificationDates,
@@ -544,6 +546,7 @@ export function buildContent(options: BuildOptions): BuildResult {
   );
   checkVerificationDates(enDocs, issues);
   if (options.strictTaxonomy !== false) checkTaxonomy(config, enDocs, issues);
+  if (config.paths) checkPaths(config.paths, config, enDocs, issues);
   const enBuild: LangBuild = {
     lang: 'en',
     root: enRoot,
@@ -658,6 +661,7 @@ export function buildContent(options: BuildOptions): BuildResult {
     add(`${build.lang}/tasks.json`, build.tasks, TasksFileSchema);
   }
   add('task-keys.json', taskKeys, TaskKeysFileSchema);
+  if (config.paths) add('paths.json', buildPathsFile(config.paths, config, langs), PathsFileSchema);
   add('manifest.json', buildManifest(config, langs, computeContentHash(files)), ManifestSchema);
   issues.throwIfAny();
 
@@ -665,7 +669,12 @@ export function buildContent(options: BuildOptions): BuildResult {
     config,
     outDir,
     files,
-    managedPrefixes: [...langs.map((build) => `${build.lang}/`), 'manifest.json', 'task-keys.json'],
+    managedPrefixes: [
+      ...langs.map((build) => `${build.lang}/`),
+      'manifest.json',
+      'task-keys.json',
+      'paths.json',
+    ],
     langs,
     findings,
     applicability,

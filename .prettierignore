@@ -16,3 +16,7 @@ tests/e2e/__screenshots__/
 # paragraph with the text in `src/data`, so a reformat fails the suite rather than shipping.
 src/components/content/Inline.astro
 src/components/templates/SheetRuns.astro
+
+# Rendered component markup the dom tests mount; tests/unit/components/wizard-markup.test.ts
+# compares it byte for byte with what the component renders.
+tests/dom/fixtures/

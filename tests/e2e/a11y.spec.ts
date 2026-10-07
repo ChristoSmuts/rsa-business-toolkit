@@ -136,6 +136,67 @@ test.describe('axe with the interactive states open', () => {
   }
 });
 
+/**
+ * WP-31: what only answers or JavaScript show — each wizard step, My path with its steps and
+ * checklist, the "Remove your answers?" dialog, and a document with "Only what applies to me" on
+ * and a section collapsed into its marker — in both themes.
+ */
+test.describe('axe on Find my path and My path', () => {
+  const PROFILE = { entity: 'sole-prop', businessTypes: ['food', 'general'], stage: 'trading' };
+
+  for (const theme of THEMES) {
+    test(`every wizard step (${theme})`, async ({ page, setTheme }, testInfo) => {
+      await setTheme(theme);
+      await page.goto('find-my-path/');
+      await expectNoBlocking(page, `wizard step 1 ${theme}`, testInfo);
+      await page.getByRole('radio', { name: /sole proprietor/ }).check();
+      await page.getByRole('button', { name: 'Next' }).click();
+      await expect(page.getByRole('heading', { name: /Question 2 of 3/ })).toBeFocused();
+      await expectNoBlocking(page, `wizard step 2 ${theme}`, testInfo);
+      await page.getByRole('checkbox', { name: /Food business/ }).check();
+      await page.getByRole('button', { name: 'Next' }).click();
+      await expect(page.getByRole('heading', { name: /Question 3 of 3/ })).toBeFocused();
+      await expectNoBlocking(page, `wizard step 3 ${theme}`, testInfo);
+    });
+
+    test(`My path and the "Remove your answers?" dialog (${theme})`, async ({
+      page,
+      setTheme,
+      seedStorage,
+    }, testInfo) => {
+      await setTheme(theme);
+      await seedStorage({
+        'st.profile.v1': PROFILE,
+        'st.path.v1': { 'lookup/checklist': '2026-10-01T10:00:00.000Z' },
+      });
+      await page.goto('my-path/');
+      await expect(page.locator('[data-dashboard]')).toBeVisible();
+      await expectNoBlocking(page, `my path ${theme}`, testInfo);
+      await page.getByRole('button', { name: 'Remove my answers' }).click();
+      await expect(page.getByRole('dialog', { name: 'Remove your answers?' })).toBeVisible();
+      await expectNoBlocking(page, `my path reset dialog ${theme}`, testInfo);
+    });
+
+    test(`a document with "Only what applies to me" on (${theme})`, async ({
+      page,
+      setTheme,
+      seedStorage,
+    }, testInfo) => {
+      await setTheme(theme);
+      await seedStorage({ 'st.profile.v1': PROFILE, 'st.onlyMine': true });
+      await page.goto('core/tax-and-sars/');
+      await expect(
+        page.locator('[data-marker-for="what-sars-wants-from-a-company"]'),
+      ).toBeVisible();
+      await expectNoBlocking(page, `only what applies ${theme}`, testInfo);
+      await page.goto('checklist/');
+      await page.getByRole('radio', { name: 'Only what applies to me' }).check();
+      await expect(page.locator('.st-tasklist__hidden:visible').first()).toBeVisible();
+      await expectNoBlocking(page, `checklist only mine ${theme}`, testInfo);
+    });
+  }
+});
+
 const { routes, skipReason } = discoverPageRoutes();
 
 // The per-test timeout comes from the a11y project in playwright.config.ts (PW_A11Y_TIMEOUT).

@@ -1,8 +1,8 @@
-# content-meta: checklist task keys
+# content-meta: checklist task keys and reading paths
 
 Most files here are described in `docs/build-plan.md` (Part A). This page covers the three files
-that decide where a reader's checklist ticks are saved. Read it before you reword a task,
-link one, or remove one.
+that decide where a reader's checklist ticks are saved (read it before you reword a task, link one,
+or remove one), and `paths.json`, the "Find my path" rules ([Reading paths](#pathsjson-reading-paths)).
 
 ## How a tick is saved
 
@@ -75,3 +75,48 @@ later removed is caught.
 
 Removing a task outright is the one case with no new key to carry a tick to. Remove the key from
 `released-task-keys.json` by hand in the same change, and say why in the commit.
+
+## `paths.json`: reading paths
+
+The rules "Find my path" follows (build plan A5, WP-31). There is one rule per stage, and each one
+follows a numbered list in "How to use this toolkit" (`start/how-to-use`):
+
+| Stage         | List in "Choose your path"                                        |
+| ------------- | ----------------------------------------------------------------- |
+| `not-started` | Path 1: I have not started yet                                    |
+| `trading`     | Path 2: I am already trading and want to get compliant            |
+| `pty-growing` | Path 4, generalised from a vehicle dealer to any kind of business |
+
+Each step names the list `item` it comes from and the documents it adds:
+
+```json
+{
+  "item": 5,
+  "docs": ["core/tax-and-sars#route-4-small-business-corporation-rates-companies-only"],
+  "whyWhen": { "businessTypes": ["vehicle-dealer"] }
+}
+```
+
+- `docs`: document ids, optionally with `#heading` to open the document at one section, or
+  `$businessTypes` for the reader's own business-type documents (primary type first, General
+  expanded to `presets.general.expandsTo` in `business-types.json`).
+- `when` (optional): the step is left out unless the profile matches (`entity` is a list of
+  `sole-prop`, `pty`, `undecided`; `businessTypes` needs one in common).
+- `whyWhen` (optional): the step's "why" (the words after the em dash in its list item) shows only
+  when the profile matches. Path 4 is written for a dealer, so its reasons say so.
+
+A document that does not apply to the reader (the A5 matching rule on its `appliesTo`) is left out
+of every step, so a sole proprietor never gets "Running a Pty Ltd"; a document appears only at its
+first step; empty steps are dropped and the rest renumbered. `checklist` lists the parts of the
+master checklist that My path shows, filtered by the same rule.
+
+The build fails (`scripts/content/paths.ts`, code `paths`) when the source document, a list or an
+item does not exist, a step names a document or `#anchor` that does not exist, a step's documents
+are not the ones its list item links to (a `#anchor` may narrow a link to one section;
+`$businessTypes` needs an item that points at the business types), a list item is left out or used
+twice, or a checklist part is not a heading of the checklist. **So when you change a path in the
+markdown, the build tells you which rule to change with it.**
+
+The pipeline writes `src/data/paths.json`: the rules, the business types in order, the General
+preset, and the route, titles and `appliesTo` of every document a rule can name. The `paths` content
+collection validates it; the browser bundles it for My path and loads it lazily elsewhere.

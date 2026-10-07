@@ -13,7 +13,9 @@
  *   `/` shortcut and its `<Kbd>` hint arrive together with WP-33's search client: a hint for a key
  *   that does nothing would tell the reader something untrue (review WP-20 pass 2).
  */
+import pathsData from '../../data/paths.json';
 import Icon from '../ui/Icon.astro';
+import ProgressRing from '../ui/ProgressRing.astro';
 import Logo from '../illustrations/Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import NavDrawer from './NavDrawer.astro';
@@ -41,6 +43,8 @@ const homeHref = href(locale, APP_ROUTES.home);
 // Until WP-33 there is nothing to search with; the page's common questions are in the footer.
 const searchHref = SEARCH_AVAILABLE ? href(locale, APP_ROUTES.search) : undefined;
 const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefined;
+/** WP-31: "My path: 3 of 10 steps done", shown by `<st-path-progress>` once there is a profile. */
+const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' });
 ---
 
 <header class="st-topbar">
@@ -61,6 +65,30 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
         <Icon name="lucide:search" size="1em" />
         <span>{t('nav.search')}</span>
       </a>
+    )}
+    {WIZARD_AVAILABLE && (
+      <st-path-progress
+        class="st-topbar__path js-only"
+        data-template={pathTemplate}
+        data-version={pathsData.hash}
+        hidden
+      >
+        <a
+          class="st-topbar__path-link"
+          href={href(locale, APP_ROUTES.myPath)}
+          aria-current={route === APP_ROUTES.myPath ? 'page' : undefined}
+        >
+          <span aria-hidden="true" class="st-topbar__path-ring">
+            <ProgressRing value={0} max={1} label={t('nav.myPath')} size={28} showValue={false} />
+          </span>
+          <span aria-hidden="true" class="st-topbar__path-label">
+            {t('nav.myPath')}
+          </span>
+          <span class="st-visually-hidden" data-progress-text>
+            {t('nav.myPath')}
+          </span>
+        </a>
+      </st-path-progress>
     )}
     <LanguageSwitcher class="st-topbar__lang" locale={locale} route={route} />
     <div class="st-topbar__theme">
@@ -87,7 +115,57 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
   />
 </header>
 
+<script>
+  import '../../scripts/path-progress';
+</script>
+
 <style>
+  .st-topbar__path[hidden] {
+    display: none;
+  }
+
+  .st-topbar__path-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--st-space-2);
+    min-block-size: var(--st-target);
+    padding-inline: var(--st-space-2);
+    border-radius: var(--st-radius-md);
+    color: var(--st-text);
+    font-weight: var(--st-weight-semibold);
+    overflow-wrap: anywhere;
+  }
+
+  .st-topbar__path-link:visited {
+    color: var(--st-text);
+  }
+
+  .st-topbar__path-ring {
+    display: inline-flex;
+  }
+
+  /*
+   * From 1024 to 1279px the bar is sticky and tight: with the ring and its "My path" label it
+   * wrapped to two rows, 71 to 123px (review WP-31 pass 2, minor 3). There the ring stands alone
+   * and the theme control drops its icons (its words stay). The link's name stays "My path: 3 of
+   * 10 steps done" (the visually hidden progress text). `wizard.spec.ts` checks one row.
+   */
+  @media (width < 1280px) {
+    .st-topbar__path-label {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .st-topbar__path-link {
+      min-inline-size: var(--st-target);
+      justify-content: center;
+    }
+  }
+
   .st-topbar {
     position: sticky;
     inset-block-start: 0;
@@ -199,6 +277,13 @@ const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefine
 </style>
 
 <style is:global>
+  /* The theme control's icons, between 1024 and 1279px (see the top bar's own styles above). */
+  @media (1024px <= width < 1280px) {
+    .st-topbar__theme .st-segmented__icon {
+      display: none;
+    }
+  }
+
   /*
    * Anchor targets and focused elements scroll to just below the bar, whatever its real height.
    * `--st-topbar-offset` is the bar's measured height while it is sticky and 0 while it scrolls away

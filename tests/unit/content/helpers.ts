@@ -47,6 +47,7 @@ export function fixtureConfigPaths(): ConfigPaths {
     // The fixtures hold a few documents; links and renames name real ones and would not resolve.
     taskLinks: undefined,
     taskRenames: undefined,
+    paths: undefined,
   };
 }
 

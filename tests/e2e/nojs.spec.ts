@@ -1,4 +1,5 @@
 import { expect, test } from './fixtures';
+import { routeSameOrigin } from './helpers/network';
 import { enforceCheck, mainTextProblems } from './helpers/page-checks';
 import { discoverPageRoutes, routeLabel, routeUrl } from './helpers/routes';
 
@@ -268,5 +269,117 @@ test.describe('a template without JavaScript', () => {
       .locator('form.st-tform input:not([type="checkbox"])')
       .evaluateAll((inputs) => inputs.map((input) => (input as HTMLInputElement).value));
     expect(values.filter((value) => /INV-0001|R 0\.00/.test(value))).toEqual([]);
+  });
+});
+
+/**
+ * WP-31: Find my path without JavaScript is one GET form that lands on a pre-rendered result page.
+ * One kind of business only (radios); 49 result pages per language.
+ */
+test.describe('Find my path without JavaScript', () => {
+  test('the three questions are one form, and it lands on the result page for the answers', async ({
+    page,
+  }) => {
+    await page.goto('find-my-path/');
+    for (const n of [1, 2, 3]) {
+      await expect(
+        page.getByRole('heading', { name: new RegExp(`Question ${n} of 3`) }),
+      ).toBeVisible();
+    }
+    await expect(page.locator('input[name="type"][type="radio"]')).toHaveCount(7);
+    await expect(
+      page.getByText('Without JavaScript you can choose one kind of business.'),
+    ).toBeVisible();
+    const submit = page.getByRole('button', { name: 'See my path' });
+    await expect(submit).toHaveCount(0);
+    await expect(page.locator('.st-wizard__incomplete')).toBeVisible();
+    await expect(page.locator('.st-wizard__fallback')).toBeHidden();
+    await expect(page.getByText('Choose your path from this list')).toBeHidden();
+
+    await page.getByRole('radio', { name: /registered company/ }).check();
+    await page.getByRole('radio', { name: /Vehicle dealer/ }).check();
+    await expect(submit).toHaveCount(0);
+    await page.getByRole('radio', { name: /want to grow/ }).check();
+    await expect(submit).toHaveCount(1);
+    await expect(page.locator('.st-wizard__incomplete')).toBeHidden();
+    await submit.click();
+
+    await page.waitForURL(/\/find-my-path\/result\/pty\/vehicle-dealer\/pty-growing\/\?/);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Your path');
+    await expect(page.locator('.st-step')).toHaveCount(10);
+    await expect(page.locator('.st-step').first().getByRole('link')).toHaveAttribute(
+      'href',
+      /\/core\/start-here\/$/,
+    );
+    await expect(page.getByText(/your answers are not saved/)).toBeVisible();
+  });
+
+  test('a browser without :has() gets a list of every result page instead', async ({
+    page,
+    baseURL,
+  }) => {
+    // Such a browser drops every rule of the no-JS wizard CSS, as if it were not there (review
+    // WP-31 pass 1, major 2).
+    await routeSameOrigin(
+      page,
+      baseURL,
+      (url) => url.pathname.endsWith('/find-my-path/'),
+      async (route) => {
+        const response = await route.fetch();
+        const html = (await response.text()).replace(
+          /<style>@supports selector\(:has[^<]*<\/style>/,
+          '',
+        );
+        await route.fulfill({ response, body: html });
+      },
+    );
+    await page.goto('find-my-path/');
+    await expect(page.locator('.st-wizard__result:visible')).toHaveCount(0);
+    await expect(page.locator('.st-wizard__incomplete')).toBeHidden();
+    const list = page.locator('.st-wizard__fallback');
+    await expect(list).toBeVisible();
+    // Open from the start, and saying it is the way on (review WP-31 pass 2, minor 5).
+    await expect(list).toHaveAttribute('open', '');
+    await expect(list.locator('summary')).toHaveText('Choose your path from this list');
+    await expect(list.getByText(/Your browser cannot show the button/)).toBeVisible();
+    await list
+      .getByRole('region', { name: /registered company/ })
+      .getByRole('link', { name: 'Beauty and personal care: Already trading' })
+      .click();
+    await page.waitForURL(/\/find-my-path\/result\/pty\/beauty\/trading\/$/);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Your path');
+    await expect(page.getByText(/your answers are not saved/)).toBeVisible();
+  });
+
+  test('“Pty Ltd, growing” without a Pty Ltd says why there is no path', async ({ page }) => {
+    await page.goto('af/find-my-path/');
+    await page.locator('input[name="entity"][value="sole-prop"]').check();
+    await page.locator('input[name="type"][value="food"]').check();
+    await page.locator('input[name="stage"][value="pty-growing"]').check();
+    await expect(page.locator('.st-wizard__result:visible')).toHaveCount(0);
+    await expect(page.locator('.st-wizard__pty-only')).toBeVisible();
+    await page.locator('input[name="stage"][value="not-started"]').check();
+    await page.locator('.st-wizard__result:visible').click();
+    await page.waitForURL(/\/af\/find-my-path\/result\/sole-prop\/food\/not-started\/\?/);
+    await expect(page.locator('html')).toHaveAttribute('lang', 'af-ZA');
+    await expect(page.locator('.st-step')).toHaveCount(9);
+  });
+
+  test('My path shows the way to Find my path, and nothing that needs the device', async ({
+    page,
+  }) => {
+    await page.goto('my-path/');
+    await expect(page.locator('[data-empty]')).toBeVisible();
+    await expect(page.locator('[data-dashboard]')).toBeHidden();
+    await expect(page.getByRole('link', { name: 'Find my path' }).last()).toBeVisible();
+  });
+
+  test('documents offer no switch and hide nothing', async ({ page }) => {
+    await page.goto('core/tax-and-sars/');
+    await expect(page.getByRole('switch')).toHaveCount(0);
+    await expect(page.locator('#what-sars-wants-from-a-company')).toBeVisible();
+    await expect(page.locator('.st-hidden-marker:visible')).toHaveCount(0);
+    await page.goto('branding/marketing-prompts/');
+    await expect(page.locator('st-prompt-fill button:visible')).toHaveCount(0);
   });
 });

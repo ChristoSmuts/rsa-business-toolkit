@@ -315,8 +315,10 @@ test.describe('content rendering', () => {
     const figure = page.locator('.dsc-item[data-features~="code:prompt"] figure.st-code');
     await expect(figure).toBeVisible();
     // The only control is the copy button (WP-30), which the script shows; without JavaScript it
-    // stays hidden (`tests/e2e/interactive.spec.ts`, nojs project).
-    await expect(figure.locator('button')).toHaveCount(1);
+    // stays hidden (`tests/e2e/interactive.spec.ts`, nojs project). "Fill from my profile" and its
+    // "Undo" (WP-31) are in the page too, but hidden until the reader has answers.
+    await expect(figure.locator('button:visible')).toHaveCount(1);
+    await expect(figure.locator('st-prompt-fill button:visible')).toHaveCount(0);
     await expect(figure.locator('st-copy button')).toBeVisible();
     await expect(figure.locator('mark.st-placeholder').first()).toBeVisible();
     // A prompt wraps (it is prose), so it never scrolls and is not a tab stop of its own. Only

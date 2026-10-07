@@ -5,8 +5,9 @@
  *
  * Every number here is counted from the `checks` store by `<st-checklist-progress>`, and the
  * controls need the store too, so the whole section is `.js-only`: without JavaScript it would
- * show "0 of 213 done" over boxes the reader has ticked. "Only what applies to me" needs the
- * profile and arrives with WP-31.
+ * show "0 of 213 done" over boxes the reader has ticked. "Only what applies to me" (WP-31) is
+ * shown only when the reader has a profile (`data-needs-profile`, `src/scripts/applies.ts`); it
+ * collapses the parts and items for another entity or kind of business, and counts what it hid.
  */
 import Button from '../ui/Button.astro';
 import ConfirmDialog from '../ui/ConfirmDialog.astro';
@@ -29,8 +30,9 @@ const allIds = parts.flatMap((part) => part.taskIds);
 const template = t('checklist.progress', { done: '{done}', total: '{total}' });
 const zero = (total: number): string => t('checklist.progress', { done: 0, total });
 const filters = [
-  { value: 'all', label: t('checklist.filters.all') },
-  { value: 'not-done', label: t('checklist.filters.notDone') },
+  { value: 'all', label: t('checklist.filters.all'), needsProfile: false },
+  { value: 'mine', label: t('checklist.filters.mine'), needsProfile: true },
+  { value: 'not-done', label: t('checklist.filters.notDone'), needsProfile: false },
 ] as const;
 ---
 
@@ -79,7 +81,11 @@ const filters = [
       <legend>{t('checklist.filters.label')}</legend>
       <div class="st-cluster">
         {filters.map((filter, index) => (
-          <label class="st-check">
+          <label
+            class="st-check"
+            data-needs-profile={filter.needsProfile ? '' : undefined}
+            hidden={filter.needsProfile ? true : undefined}
+          >
             <input
               type="radio"
               name="st-checklist-filter"

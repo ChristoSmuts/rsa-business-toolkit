@@ -83,6 +83,11 @@ export default getViteConfig({
         // Floors just under the measurement with the unit and dom projects together.
         'src/lib/templates/**': { statements: 98, branches: 91, functions: 100, lines: 99 },
         'src/scripts/template-form.ts': { statements: 93, branches: 75, functions: 98, lines: 98 },
+        // WP-31: the path engine and the profile. The brief's floor is 90% on the engine.
+        'src/lib/path-engine.ts': { statements: 95, branches: 95, functions: 100, lines: 95 },
+        'src/lib/profile.ts': { statements: 95, branches: 90, functions: 100, lines: 95 },
+        'src/lib/profile-store.ts': { statements: 95, branches: 90, functions: 100, lines: 95 },
+        'src/lib/path-pages.ts': { statements: 95, branches: 85, functions: 95, lines: 95 },
         'scripts/build-content.ts': { statements: 0, branches: 0, functions: 0, lines: 0 },
         'scripts/translate/status.ts': { statements: 0, branches: 0, functions: 0, lines: 0 },
       },

@@ -19,13 +19,19 @@ interface Props {
   /** Names a table that has no heading above it. */
   fallbackCaption: string;
   class?: string | undefined;
+  /**
+   * Render every heading one level lower (`##` as `<h3>`), for blocks shown under a heading of
+   * the page's own, such as the master checklist's parts on My path (WP-31).
+   */
+  nested?: boolean | undefined;
 }
 
-const { blocks, context, fallbackCaption, class: className } = Astro.props;
+const { blocks, context, fallbackCaption, class: className, nested = false } = Astro.props;
 const lang = isFallbackContent(context)
   ? (getLocale(context.contentLang)?.hreflang ?? context.contentLang)
   : undefined;
-const tags = headingTags(blocks);
+const LOWER = { h2: 'h3', h3: 'h4', h4: 'h5' } as const;
+const tags = headingTags(blocks).map((tag) => (nested && tag ? LOWER[tag] : tag));
 const firstTasklist = blocks.findIndex((block) => block.kind === 'tasklist');
 /** Prompts are numbered in page order, for their copy buttons' names ("Copy prompt 2: …"). */
 let prompts = 0;

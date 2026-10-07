@@ -72,16 +72,23 @@ describe('heading inference', () => {
     ]);
   });
 
-  it('maps "If you sell …" headings to business types only in what-you-need-to-sell-things', () => {
+  it('tags "If you sell …" headings in what-you-need-to-sell-things, and never hides them by type', () => {
+    // The guide says "If you sell online", "If you import anything": an activity any type may do,
+    // so these are tags (shown to everyone), not business types (review WP-31 pass 1, major 3).
     const markdown =
-      '# T\n\n## If you sell food\n\nA.\n\n## If you sell second-hand goods\n\nB.\n\n## If you provide professional or regulated services\n\nC.\n';
-    expect(applied(markdown, 'core/what-you-need-to-sell-things').headings).toEqual({
-      'if-you-sell-food': { businessTypes: ['food'] },
-      'if-you-sell-second-hand-goods': { businessTypes: ['vehicle-dealer', 'retail-online'] },
-      'if-you-provide-professional-or-regulated-services': {
-        businessTypes: ['services-trades', 'professional-creative'],
-      },
+      '# T\n\n## If you sell food\n\nA.\n\n## If you sell online\n\nB.\n\n## If you import anything\n\nC.\n\n## If you sell second-hand goods\n\nD.\n\n## If you provide professional or regulated services\n\nE.\n';
+    const { headings } = applied(markdown, 'core/what-you-need-to-sell-things');
+    expect(headings).toEqual({
+      'if-you-sell-food': { tags: ['sells-food'] },
+      'if-you-sell-online': { tags: ['online'] },
+      'if-you-import-anything': { tags: ['import'] },
+      'if-you-sell-second-hand-goods': { tags: ['second-hand'] },
+      'if-you-provide-professional-or-regulated-services': { tags: ['regulated-services'] },
     });
+    for (const appliesTo of Object.values(headings)) {
+      expect(appliesTo).not.toHaveProperty('businessTypes');
+      expect(appliesTo).not.toHaveProperty('entity');
+    }
     expect(applied(markdown, 'core/register').headings['if-you-sell-food']).toBeUndefined();
   });
 
