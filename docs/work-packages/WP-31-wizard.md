@@ -41,8 +41,8 @@ As WP-30: `gate:fast`, `build`, chromium, mobile and nojs e2e, `test:a11y`, JS b
   pages, grouped by how you trade.
 - **JavaScript budgets** (`pnpm dist:budget`, run by `pnpm build`: gzipped level 9, per file,
   summed, without and with a saved profile): heaviest document page `/af/business-types/food/`
-  21.9 KB / 21.9 KB (25 KB budget, 3.1 KB left for WP-33); My path 24.5 KB, `/checklist/` 21.5 KB,
-  Find my path 20.1 KB (45 KB budget); home 17.5 KB, 20.3 KB when it rebuilds the stored path. Before
+  22.0 KB / 22.0 KB (25 KB budget, 3.0 KB left for WP-33); My path 24.6 KB, `/checklist/` 21.6 KB,
+  Find my path 20.2 KB (45 KB budget); home 17.6 KB, 20.4 KB when it rebuilds the stored path. Before
   review pass 1 the heaviest document page was 24.0 KB without a profile and 26.3 KB with one.
 - **No Zod in the browser for the profile.** Build 1 asked for Zod in the store helper. The
   profile is checked by `parseProfile` (`src/lib/profile.ts`), hand-written, with the same rules
