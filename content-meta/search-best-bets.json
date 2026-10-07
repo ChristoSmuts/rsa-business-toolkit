@@ -53,7 +53,8 @@
         "registreer my besigheid",
         "het ek 'n maatskappy nodig",
         "registrasie",
-        "registreer pty ltd"
+        "registreer pty ltd",
+        "maak maatskappy oop"
       ]
     },
     {
@@ -94,6 +95,8 @@
         "registreer vir btw",
         "registreer besigheid vir btw",
         "registreer maatskappy vir btw",
+        "wanneer registreer vir btw",
+        "wanneer betaal btw",
         "btw registrasie",
         "btw drempel"
       ]
@@ -112,8 +115,8 @@
     },
     {
       "doc": "paperwork/templates/invoice",
-      "en": ["invoice"],
-      "af": ["faktuur"]
+      "en": ["invoice", "invoice template"],
+      "af": ["faktuur", "faktuursjabloon"]
     },
     {
       "doc": "paperwork/templates/tax-invoice",
@@ -157,12 +160,18 @@
       "doc": "core/running-a-pty-ltd",
       "anchor": "4-sars-company-tax",
       "en": ["company tax rate", "company tax"],
-      "af": ["maatskappybelasting"]
+      "af": ["maatskappybelasting", "maatskappybelastingkoers"]
     },
     {
       "doc": "core/running-a-pty-ltd",
       "anchor": "closing-a-company-properly",
-      "en": ["close", "close my company", "close business", "deregister business"],
+      "en": [
+        "close",
+        "close my company",
+        "close business",
+        "deregister business",
+        "shut down business"
+      ],
       "af": [
         "sluit my maatskappy",
         "sluit besigheid",
@@ -173,8 +182,8 @@
     },
     {
       "doc": "core/what-you-need-to-sell-things",
-      "en": ["trading licence", "business licence", "do i need a licence"],
-      "af": ["handelslisensie", "besigheidslisensie", "het ek 'n lisensie nodig"]
+      "en": ["licence", "trading licence", "business licence", "do i need a licence"],
+      "af": ["lisensie", "handelslisensie", "besigheidslisensie", "het ek 'n lisensie nodig"]
     },
     {
       "doc": "core/what-you-need-to-sell-things",
@@ -232,10 +241,29 @@
       "af": ["brnc nodig"]
     },
     {
+      "doc": "branding/already-have-your-name",
+      "anchor": "do-you-need-a-tagline",
+      "en": ["tagline"],
+      "af": ["slagspreuk"]
+    },
+    {
       "doc": "branding/branding-prompts",
       "anchor": "prompt-3-the-name",
-      "en": ["business name", "choose business name", "choosing business name"],
-      "af": ["noem besigheid"]
+      "en": [
+        "business name",
+        "choose business name",
+        "choosing business name",
+        "call business",
+        "naming business"
+      ],
+      "af": [
+        "besigheidsnaam",
+        "naam besigheid",
+        "noem besigheid",
+        "kies besigheidsnaam",
+        "kies naam besigheid",
+        "naam as besigheidsnaam"
+      ]
     },
     {
       "doc": "core/tax-and-sars",
@@ -253,6 +281,35 @@
       "doc": "lookup/checklist",
       "en": ["checklist"],
       "af": ["kontrolelys"]
+    },
+    {
+      "doc": "business-types/vehicle-dealer",
+      "anchor": "vat-register-earlier-than-other-businesses",
+      "en": ["vat vehicle dealer"],
+      "af": ["btw voertuighandelaar"]
+    },
+    {
+      "doc": "paperwork/which-template-to-use-when",
+      "anchor": "invoice-numbering",
+      "en": ["invoice numbering"],
+      "af": ["faktuurnommering"]
+    },
+    {
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-import-anything",
+      "en": ["import"],
+      "af": ["invoer"]
+    },
+    {
+      "doc": "branding/branding-prompts",
+      "en": ["branding"],
+      "af": ["handelsmerk"]
+    },
+    {
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-second-hand-goods",
+      "en": ["second hand goods", "second hand"],
+      "af": ["tweedehandse goedere", "tweedehands"]
     }
   ]
 }

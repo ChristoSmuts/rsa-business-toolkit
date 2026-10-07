@@ -89,11 +89,11 @@ function loaded(lang: Locale): { index: LoadedIndex; entries: SearchEntry[] } {
 }
 
 describe('search acceptance set: the file', () => {
-  it('holds about 150 to 250 rows per language, each query once per language', () => {
+  it('holds about 150 to 300 rows per language, each query once per language', () => {
     for (const lang of ['en', 'af'] as const) {
       const rows = ROWS.filter((row) => row.lang === lang);
       expect(rows.length).toBeGreaterThanOrEqual(150);
-      expect(rows.length).toBeLessThanOrEqual(260);
+      expect(rows.length).toBeLessThanOrEqual(300);
       const queries = rows.map((row) => row.query.toLowerCase());
       expect(new Set(queries).size).toBe(queries.length);
     }
@@ -113,6 +113,25 @@ describe('search acceptance set: the file', () => {
           (entry) => entry.doc === doc && (anchor === undefined || entry.anchor === anchor),
         );
         expect(exists, `${row.lang} "${row.query}": ${spec}`).toBe(true);
+      }
+    }
+  });
+
+  // Review WP-33 pass 17, major 4: `firstIn` admits only a definition of the term (a glossary or
+  // "Words used" entry) or another entry on the target's own page, never another subject.
+  it('lets firstIn name only a definition or the target page', () => {
+    for (const row of ROWS) {
+      const { entries } = loaded(row.lang);
+      for (const spec of row.firstIn ?? []) {
+        const [doc, anchor] = place(spec);
+        const matches = entries.filter(
+          (entry) => entry.doc === doc && (anchor === undefined || entry.anchor === anchor),
+        );
+        const allowed =
+          doc === row.doc ||
+          (matches.length > 0 &&
+            matches.every((entry) => entry.kind === 'glossary' || entry.kind === 'term'));
+        expect(allowed, `${row.lang} "${row.query}": firstIn ${spec}`).toBe(true);
       }
     }
   });

@@ -33,6 +33,7 @@
     "content:build": "tsx scripts/build-content.ts",
     "search:build": "tsx scripts/build-search-index.ts",
     "search:typos": "tsx scripts/search-typo-sweep.ts",
+    "search:diff": "tsx scripts/search-diff.ts",
     "content:check": "tsx scripts/build-content.ts --check",
     "content:drift": "tsx scripts/build-content.ts --drift",
     "content:fidelity": "tsx scripts/build-content.ts --fidelity-only",

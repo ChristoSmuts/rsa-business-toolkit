@@ -11,6 +11,7 @@ import {
   type BestBetsFile,
 } from '../../../scripts/search/best-bets';
 import { buildEntries } from '../../../scripts/search/entries';
+import { KeywordsFileSchema } from '../../../scripts/search/keywords';
 import { loadIndexInput } from '../../../scripts/search/load';
 import { bestBet } from '../../../src/lib/search-client';
 
@@ -22,6 +23,21 @@ const one = (bet: BestBetsFile['bets'][number]): BestBetsFile => ({
 });
 
 describe('search best bets', () => {
+  // Review WP-33 pass 17, major 2: a best bet or a page's keywords in one language only fails the
+  // build (both lists are required and non-empty).
+  it('refuses a best bet or page keywords in one language only', () => {
+    const bet = { doc: 'core/register', en: ['register my business'], af: [] as string[] };
+    expect(() => BestBetsFileSchema.parse(one(bet))).toThrow();
+    const { af: _af, ...enOnly } = bet;
+    expect(() => BestBetsFileSchema.parse(one(enOnly as never))).toThrow();
+    expect(() =>
+      KeywordsFileSchema.parse({ pages: [{ doc: 'core/register', en: ['register'], af: [] }] }),
+    ).toThrow();
+    expect(() =>
+      KeywordsFileSchema.parse({ pages: [{ doc: 'core/register', en: ['register'] }] }),
+    ).toThrow();
+  });
+
   it('resolves every target in both languages, within the size limit', () => {
     const file = loadBestBets();
     expect(BestBetsFileSchema.parse(file)).toEqual(file);

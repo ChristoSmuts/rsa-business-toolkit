@@ -40,6 +40,11 @@
       "doc": "business-types/beauty",
       "en": ["hairdresser", "salon"],
       "af": ["haarkapper", "salon"]
+    },
+    {
+      "doc": "lookup/sources",
+      "en": ["source", "sources", "references", "act", "legislation", "where does this come from"],
+      "af": ["bron", "bronne", "verwysings", "wet", "wetgewing", "waar kom dit vandaan"]
     }
   ]
 }

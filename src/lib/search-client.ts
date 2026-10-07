@@ -14,6 +14,8 @@ import {
   betWords,
   DOC_WEIGHT,
   REFERENCE_WEIGHT,
+  SOURCE_WORDS,
+  LAW_WORDS,
   FIELD_BOOST,
   foldTerm,
   fuzzy,
@@ -586,6 +588,14 @@ export function runSearchCounted(
 ): CountedResults {
   const raw = queryParts(query);
   if (raw.length === 0) return { results: [], total: 0, matchedAll: 0 };
+  // A query about sources (`sources`, `companies act`, `waar kom dit vandaan`) keeps the sources
+  // register at full weight; any other query weighs it as `REFERENCE_WEIGHT` says (review WP-33
+  // pass 17, major 1).
+  const asksSource = raw.some((part) =>
+    (typeof part === 'string' ? [part] : 'hyphen' in part ? part.hyphen : []).some((word) =>
+      SOURCE_WORDS.has(word),
+    ),
+  );
   const searchOptions = {
     bm25: BM25,
     prefix,
@@ -596,7 +606,7 @@ export function runSearchCounted(
     boostDocument: (_id: unknown, _term: string, stored?: Record<string, unknown>): number =>
       (typeof stored?.['w'] === 'number' ? stored['w'] : 1) *
       (DOC_WEIGHT[String(stored?.['d'])] ?? 1) *
-      (REFERENCE_WEIGHT[String(stored?.['d'])] ?? 1),
+      (asksSource ? 1 : (REFERENCE_WEIGHT[String(stored?.['d'])] ?? 1)),
     filter: (hit: MiniSearchResult): boolean =>
       matchesFilters(hit as unknown as StoredFields, options),
   };
@@ -769,11 +779,42 @@ export function runSearchCounted(
     merged.push(hit);
   }
   merged.push(...typo.map(({ hit }) => hit));
+  // A section whose whole heading, of two words or more, is in the query comes next: the task
+  // phrasing of a term opens the section on it (`how do i pay provisional tax` → "Provisional
+  // tax", not the "Provisional taxpayer" definition; `home office deduction` → "Home office
+  // deduction", not a "Words used" entry that points into another section; review WP-33 pass 17).
+  const queryWords = new Set(
+    parts.flatMap((part) =>
+      typeof part === 'string'
+        ? [part]
+        : [part.joined, ...('code' in part ? part.code : part.hyphen)],
+    ),
+  );
+  const contained = new Set(
+    listed
+      .filter((hit) => {
+        if (hit['k'] !== 'section' || aboutGuide(hit)) return false;
+        // Not the sources register's headings, unless the query asks for sources.
+        if (!asksSource && REFERENCE_WEIGHT[String(hit['d'])] !== undefined) return false;
+        const words = titleWords(String(hit['t']));
+        // A word of one letter (the "b" of "B-BBEE") does not count towards the two.
+        return (
+          words.filter((word) => word.length > 1).length >= 2 &&
+          words.every((word) => queryWords.has(word))
+        );
+      })
+      .map((hit) => hit.id),
+  );
   const lifted = listed.filter(promoted);
   const ordered = [
     ...lifted.filter((hit) => fully.has(hit.id)),
-    ...lifted.filter((hit) => !fully.has(hit.id)),
-    ...merged,
+    ...listed.filter((hit) => contained.has(hit.id) && !fully.has(hit.id)),
+    // A "Words used" definition (`term`) opens the section of its page where the word is used,
+    // which may be about something else ("Home office deduction" opens "The turnover tax trap"),
+    // so a lifted section comes before it (review WP-33 pass 17, major 4).
+    ...lifted.filter((hit) => !fully.has(hit.id) && !contained.has(hit.id) && hit['k'] !== 'term'),
+    ...lifted.filter((hit) => !fully.has(hit.id) && !contained.has(hit.id) && hit['k'] === 'term'),
+    ...merged.filter((hit) => !contained.has(hit.id)),
   ];
   // A query asked as a question (`do i need an audit`, `how do i name my business`) leads with the
   // quick answer whose question holds every word of the query as written, filler words included
@@ -785,17 +826,22 @@ export function runSearchCounted(
   // `what is a loan account` names the glossary term "Loan account" with nothing else (stop words
   // aside, filler words counted: `small claims court`): a definition, not a question, so the
   // glossary entry keeps the lead (review WP-33 pass 16, minor 2).
-  const namesTerm = every.some(
+  // The term or its alias in brackets ("Handelsnaam (trading name)") counts.
+  const termNames = (title: string): string[] => [
+    title.replace(/\s*\([^)]*\)/g, ''),
+    ...[...title.matchAll(/\(([^)]*)\)/g)].map((match) => match[1] ?? ''),
+  ];
+  const named = every.find(
     (hit) =>
       hit['k'] === 'glossary' &&
-      titleCoverage(
-        String(hit['t']).replace(/\s*\([^)]*\)/g, ''),
-        raw,
-        typing,
-        tokens,
-        lastIsWord,
-      ) === 1,
+      termNames(String(hit['t'])).some(
+        (name) => titleCoverage(name, raw, typing, tokens, lastIsWord) === 1,
+      ),
   );
+  const namesTerm = named !== undefined;
+  // `what is a pty ltd`, `wat is 'n eenmansaak`: the glossary entry the remaining words name leads,
+  // before a page, a section or a best bet on the subject (review WP-33 pass 17, major 5).
+  const whatIs = /^\s*(?:what|wat)\s+is\b/iu.test(query) ? named : undefined;
   const question = raw.length >= 2 && tokens - parts.length >= 2 && !namesTerm;
   const asked = (question ? ordered : [])
     .filter((hit) => hit['k'] === 'answer')
@@ -823,7 +869,27 @@ export function runSearchCounted(
       : titledFully
         ? [titled, ...ranked]
         : [...asked, titled, ...ranked.slice(asked.length)];
-  const rest = [...every.filter((hit) => demoted(hit) && hit !== titled), ...some];
+  // A query that names an Act or legislation (`companies act`, `wetgewing`) leads with the
+  // sources register's entry that holds every word: the register lists every Act the guide relies
+  // on (review WP-33 pass 17, major 1).
+  // Only when the query does not name a heading of the guide: `before you act on a number` and
+  // `consumer law on services` are headings, not Acts.
+  const namesLaw =
+    named === undefined &&
+    raw.some((part) => typeof part === 'string' && LAW_WORDS.has(part)) &&
+    !lifted.some(
+      (hit) =>
+        hit['d'] !== 'lookup/sources' &&
+        hit['k'] !== 'glossary' &&
+        hit['k'] !== 'term' &&
+        titleWords(String(hit['t'])).every((word) => queryWords.has(word)),
+    );
+  const lawEntry = namesLaw
+    ? all.find((hit) => hit['d'] === 'lookup/sources' && holdsAsWritten(hit.terms, parts, typing))
+    : undefined;
+  const lead = whatIs ?? lawEntry;
+  const allRanked = lead === undefined ? all : [lead, ...all.filter((hit) => hit.id !== lead.id)];
+  const rest = [...every.filter((hit) => demoted(hit) && hit !== titled && hit !== lead), ...some];
   // A best bet leads, whatever the ranking (review WP-33 pass 13).
   // A phrase still being typed yields to a page the query names by its title (`jy is die besighe`
   // is "Jy is die besigheid", not yet `besigheidslisensie`).
@@ -844,7 +910,7 @@ export function runSearchCounted(
   // A question that a quick answer asks in the owner's own words (`what must my invoice show`) is
   // answered by it, not by the best bet for one of its words (`invoice`; review WP-33 pass 16).
   const bet =
-    asked.length > 0
+    asked.length > 0 || whatIs !== undefined || lawEntry !== undefined
       ? undefined
       : (bestBet(bets, query, false, filler) ??
         (titled === undefined
@@ -870,10 +936,10 @@ export function runSearchCounted(
   const pinnedIds = new Set(pinned.map((hit) => hit.id));
   const hits = [
     ...pinned,
-    ...all.filter((hit) => !pinnedIds.has(hit.id)),
+    ...allRanked.filter((hit) => !pinnedIds.has(hit.id)),
     ...rest.filter((hit) => !pinnedIds.has(hit.id)).sort((a, b) => b.score - a.score),
   ];
-  const leading = new Set([...pinned, ...all].map((hit) => hit.id));
+  const leading = new Set([...pinned, ...allRanked].map((hit) => hit.id));
   // Two entries can open the same place (a term and the section that explains it): keep the
   // better one, so the list never offers the same destination twice.
   const limit = options.limit ?? DEFAULT_LIMIT;

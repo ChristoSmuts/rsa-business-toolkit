@@ -95,10 +95,9 @@
     {
       "lang": "en",
       "query": "pty ltd",
-      "doc": "lookup/glossary",
-      "anchor": "pty-ltd",
-      "need": "top3",
-      "firstIn": ["core/running-a-pty-ltd"]
+      "doc": "core/running-a-pty-ltd",
+      "need": "first",
+      "from": "pass 17 firstIn audit"
     },
     {
       "lang": "en",
@@ -497,8 +496,7 @@
       "query": "vat vehicle dealer",
       "doc": "business-types/vehicle-dealer",
       "anchor": "vat-register-earlier-than-other-businesses",
-      "need": "top3",
-      "firstIn": ["lookup/checklist#vehicle-dealer"]
+      "need": "first"
     },
     {
       "lang": "en",
@@ -541,8 +539,7 @@
       "lang": "en",
       "query": "invoice template",
       "doc": "paperwork/templates/invoice",
-      "need": "top3",
-      "firstIn": ["paperwork/templates/tax-invoice"]
+      "need": "first"
     },
     {
       "lang": "en",
@@ -561,8 +558,7 @@
       "query": "invoice numbering",
       "doc": "paperwork/which-template-to-use-when",
       "anchor": "invoice-numbering",
-      "need": "top3",
-      "firstIn": ["paperwork/templates/invoice#invoice-numbering"]
+      "need": "first"
     },
     {
       "lang": "en",
@@ -745,8 +741,7 @@
       "lang": "en",
       "query": "licence",
       "doc": "core/what-you-need-to-sell-things",
-      "need": "top3",
-      "firstIn": ["lookup/glossary#businesses-act-licence"],
+      "need": "first",
       "from": "pass 14"
     },
     {
@@ -1269,8 +1264,7 @@
       "query": "tagline",
       "doc": "branding/already-have-your-name",
       "anchor": "do-you-need-a-tagline",
-      "need": "top3",
-      "firstIn": ["branding/branding-prompts#the-test-that-matters-most"]
+      "need": "first"
     },
     {
       "lang": "en",
@@ -1339,8 +1333,9 @@
       "query": "home office deduction",
       "doc": "core/working-from-home-and-safety",
       "anchor": "home-office-deduction",
-      "need": "top3",
-      "firstIn": ["business-types/professional-creative#the-turnover-tax-trap"]
+      "need": "first",
+      "notFirst": ["business-types/professional-creative#the-turnover-tax-trap"],
+      "from": "pass 17 major 4"
     },
     {
       "lang": "en",
@@ -1518,8 +1513,7 @@
       "lang": "en",
       "query": "looking for an invoice template",
       "doc": "paperwork/templates/invoice",
-      "need": "top3",
-      "firstIn": ["paperwork/templates/tax-invoice"],
+      "need": "first",
       "from": "pass 16 major 4"
     },
     {
@@ -1683,6 +1677,224 @@
       "anchor": "loan-account",
       "need": "first",
       "from": "pass 16 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "source",
+      "doc": "lookup/sources",
+      "need": "first",
+      "notFirst": ["core/paying-yourself#uif-sources-disagree"],
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "sources",
+      "doc": "lookup/sources",
+      "need": "first",
+      "notFirst": ["core/paying-yourself#uif-sources-disagree"],
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "what is the source",
+      "doc": "lookup/sources",
+      "need": "first",
+      "notFirst": ["core/paying-yourself#uif-sources-disagree"],
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "where does this come from",
+      "doc": "lookup/sources",
+      "need": "first",
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "where does this information come from",
+      "doc": "lookup/sources",
+      "need": "first",
+      "notFirst": ["lookup/glossary#information-officer"],
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "references",
+      "doc": "lookup/sources",
+      "need": "first",
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "companies act",
+      "doc": "lookup/sources",
+      "need": "first",
+      "notFirst": ["lookup/glossary#trading-stock"],
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "income tax act",
+      "doc": "lookup/sources",
+      "need": "first",
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "consumer protection act",
+      "doc": "lookup/sources",
+      "need": "first",
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "foodstuffs act",
+      "doc": "lookup/sources",
+      "need": "first",
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "second-hand goods act",
+      "doc": "lookup/sources",
+      "need": "first",
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "what should i call my business",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["core/working-from-home-and-safety"],
+      "from": "pass 17 minor"
+    },
+    {
+      "lang": "en",
+      "query": "naming my business",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["business-types/food", "core/vehicles"],
+      "from": "pass 17 minor"
+    },
+    {
+      "lang": "en",
+      "query": "how do i pay provisional tax",
+      "doc": "core/tax-and-sars",
+      "anchor": "provisional-tax",
+      "need": "first",
+      "notFirst": ["lookup/glossary#provisional-taxpayer"],
+      "from": "pass 17 major 3"
+    },
+    {
+      "lang": "en",
+      "query": "i need to pay provisional tax",
+      "doc": "core/tax-and-sars",
+      "anchor": "provisional-tax",
+      "need": "first",
+      "notFirst": ["lookup/glossary#provisional-taxpayer"],
+      "from": "pass 17 major 3"
+    },
+    {
+      "lang": "en",
+      "query": "i must pay provisional tax",
+      "doc": "core/tax-and-sars",
+      "anchor": "provisional-tax",
+      "need": "first",
+      "notFirst": ["lookup/glossary#provisional-taxpayer"],
+      "from": "pass 17 major 3"
+    },
+    {
+      "lang": "en",
+      "query": "i want a licence",
+      "doc": "core/what-you-need-to-sell-things",
+      "need": "first",
+      "notFirst": ["lookup/glossary"],
+      "from": "pass 17 major 4"
+    },
+    {
+      "lang": "en",
+      "query": "looking for a licence",
+      "doc": "core/what-you-need-to-sell-things",
+      "need": "first",
+      "notFirst": ["lookup/glossary"],
+      "from": "pass 17 major 4"
+    },
+    {
+      "lang": "en",
+      "query": "home office",
+      "doc": "core/working-from-home-and-safety",
+      "anchor": "home-office-deduction",
+      "need": "first",
+      "notFirst": ["business-types/professional-creative#the-turnover-tax-trap"],
+      "from": "pass 17 major 4"
+    },
+    {
+      "lang": "en",
+      "query": "what is a pty ltd",
+      "doc": "lookup/glossary",
+      "anchor": "pty-ltd",
+      "need": "first",
+      "from": "pass 17 major 5"
+    },
+    {
+      "lang": "en",
+      "query": "what is a sole proprietor",
+      "doc": "lookup/glossary",
+      "anchor": "sole-proprietor",
+      "need": "first",
+      "from": "pass 17 major 5"
+    },
+    {
+      "lang": "en",
+      "query": "what is a tax invoice",
+      "doc": "lookup/glossary",
+      "anchor": "tax-invoice",
+      "need": "first",
+      "from": "pass 17 major 5"
+    },
+    {
+      "lang": "en",
+      "query": "second hand goods",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-second-hand-goods",
+      "need": "first",
+      "from": "pass 17 regression diff"
+    },
+    {
+      "lang": "en",
+      "query": "second-hand",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-second-hand-goods",
+      "need": "first",
+      "notFirst": ["business-types/vehicle-dealer"],
+      "from": "pass 17 regression diff"
+    },
+    {
+      "lang": "en",
+      "query": "before you act on a number",
+      "doc": "start/how-to-use",
+      "anchor": "before-you-act-on-a-number",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 17 regression diff"
+    },
+    {
+      "lang": "en",
+      "query": "consumer law on services",
+      "doc": "business-types/services-trades",
+      "anchor": "consumer-law-on-services",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 17 regression diff"
+    },
+    {
+      "lang": "en",
+      "query": "businesses act licence",
+      "doc": "lookup/glossary",
+      "anchor": "businesses-act-licence",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 17 regression diff"
     },
     {
       "lang": "af",
@@ -2253,8 +2465,7 @@
       "lang": "af",
       "query": "lisensie",
       "doc": "core/what-you-need-to-sell-things",
-      "need": "top3",
-      "firstIn": ["lookup/glossary#businesses-act-licence"],
+      "need": "first",
       "from": "pass 14"
     },
     {
@@ -2336,8 +2547,7 @@
       "query": "invoer",
       "doc": "core/what-you-need-to-sell-things",
       "anchor": "if-you-import-anything",
-      "need": "top3",
-      "firstIn": ["business-types/retail-online#importing-stock"]
+      "need": "first"
     },
     {
       "lang": "af",
@@ -2670,20 +2880,15 @@
       "need": "first"
     },
     { "lang": "af", "query": "paia", "doc": "lookup/glossary", "anchor": "paia", "need": "first" },
-    {
-      "lang": "af",
-      "query": "handelsmerk",
-      "doc": "branding/branding-prompts",
-      "need": "top3",
-      "firstIn": ["branding/brand-applications-and-polish"]
-    },
+    { "lang": "af", "query": "handelsmerk", "doc": "branding/branding-prompts", "need": "first" },
     {
       "lang": "af",
       "query": "besigheidsnaam",
-      "doc": "branding/already-have-your-name",
+      "doc": "branding/branding-prompts",
+      "anchor": "prompt-3-the-name",
       "need": "first",
-      "notFirst": ["paperwork/templates/privacy-notice#who-we-are"],
-      "from": "pass 15 minor"
+      "notFirst": ["paperwork/templates/privacy-notice#who-we-are", "core/vehicles"],
+      "from": "pass 15 minor; pass 17 major 2"
     },
     {
       "lang": "af",
@@ -2702,8 +2907,7 @@
       "query": "slagspreuk",
       "doc": "branding/already-have-your-name",
       "anchor": "do-you-need-a-tagline",
-      "need": "top3",
-      "firstIn": ["branding/branding-prompts#the-test-that-matters-most"]
+      "need": "first"
     },
     {
       "lang": "af",
@@ -2968,16 +3172,16 @@
       "lang": "af",
       "query": "ek wil 'n lisensie hê",
       "doc": "core/what-you-need-to-sell-things",
-      "need": "top3",
-      "firstIn": ["lookup/glossary#businesses-act-licence"],
+      "need": "first",
+      "notFirst": ["lookup/glossary"],
       "from": "pass 16 major 4"
     },
     {
       "lang": "af",
       "query": "ek soek 'n lisensie",
       "doc": "core/what-you-need-to-sell-things",
-      "need": "top3",
-      "firstIn": ["lookup/glossary#businesses-act-licence"],
+      "need": "first",
+      "notFirst": ["lookup/glossary"],
       "from": "pass 16 major 4"
     },
     {
@@ -3075,9 +3279,174 @@
       "query": "ek moet voorlopige belasting betaal",
       "doc": "core/tax-and-sars",
       "anchor": "provisional-tax",
-      "need": "top3",
-      "firstIn": ["lookup/glossary#provisional-taxpayer"],
+      "need": "first",
+      "notFirst": ["lookup/glossary#provisional-taxpayer"],
       "from": "pass 16 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "bron",
+      "doc": "lookup/sources",
+      "need": "first",
+      "notFirst": ["core/paying-yourself#uif-sources-disagree"],
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "bronne",
+      "doc": "lookup/sources",
+      "need": "first",
+      "notFirst": ["core/paying-yourself#uif-sources-disagree"],
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "wat is die bron",
+      "doc": "lookup/sources",
+      "need": "first",
+      "notFirst": ["core/paying-yourself#uif-sources-disagree"],
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "waar kom dit vandaan",
+      "doc": "lookup/sources",
+      "need": "first",
+      "notFirst": ["branding/branding-prompts"],
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "verwysings",
+      "doc": "lookup/sources",
+      "need": "first",
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "wetgewing",
+      "doc": "lookup/sources",
+      "need": "first",
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "companies act",
+      "doc": "lookup/sources",
+      "need": "first",
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "consumer protection act",
+      "doc": "lookup/sources",
+      "need": "first",
+      "from": "pass 17 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "ek het 'n naam vir my besigheid nodig",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["core/vehicles", "start/how-to-use"],
+      "from": "pass 17 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "ek wil 'n naam vir my besigheid hê",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["core/vehicles"],
+      "from": "pass 17 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "ek soek 'n besigheidsnaam",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["branding/already-have-your-name"],
+      "from": "pass 17 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "ek wil 'n besigheidsnaam hê",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["branding/already-have-your-name"],
+      "from": "pass 17 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "nuwe besigheidsnaam",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["branding/already-have-your-name"],
+      "from": "pass 17 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "my eie naam as besigheidsnaam",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["core/vehicles"],
+      "from": "pass 17 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "kies 'n besigheidsnaam",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["core/vehicles"],
+      "from": "pass 17 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "wat moet ek my besigheid noem",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["core/vehicles"],
+      "from": "pass 17 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "hoe betaal ek voorlopige belasting",
+      "doc": "core/tax-and-sars",
+      "anchor": "provisional-tax",
+      "need": "first",
+      "notFirst": ["lookup/glossary#provisional-taxpayer"],
+      "from": "pass 17 major 3"
+    },
+    {
+      "lang": "af",
+      "query": "wat is 'n pty ltd",
+      "doc": "lookup/glossary",
+      "anchor": "pty-ltd",
+      "need": "first",
+      "from": "pass 17 major 5"
+    },
+    {
+      "lang": "af",
+      "query": "wat is 'n eenmansaak",
+      "doc": "lookup/glossary",
+      "anchor": "sole-proprietor",
+      "need": "first",
+      "from": "pass 17 major 5"
+    },
+    {
+      "lang": "af",
+      "query": "wat is 'n belastingfaktuur",
+      "doc": "lookup/glossary",
+      "anchor": "tax-invoice",
+      "need": "first",
+      "from": "pass 17 major 5"
+    },
+    {
+      "lang": "af",
+      "query": "tweedehandse goedere",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-second-hand-goods",
+      "need": "first",
+      "from": "pass 17 regression diff"
     }
   ]
 }

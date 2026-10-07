@@ -1159,6 +1159,41 @@ describe('A7 ranking cases', () => {
     );
   });
 
+  // Review WP-33 pass 17, major 5: "what is" / "wat is" plus a glossary term, or the alias in its
+  // brackets, opens that glossary entry first, finished and typed, for every term in both languages.
+  it.each(['en', 'af'] as const)(
+    '%s: "what is" plus every glossary term opens its entry',
+    (lang) => {
+      const built = lang === 'en' ? en : af;
+      const ask = lang === 'en' ? 'what is' : 'wat is';
+      const misses: string[] = [];
+      let asked = 0;
+      for (const entry of built.entries.filter((e) => e.kind === 'glossary')) {
+        const names = [
+          entry.title.replace(/\s*\([^)]*\)/g, ''),
+          ...[...entry.title.matchAll(/\(([^)]*)\)/g)].map((match) => match[1] ?? ''),
+        ].filter((name) => name.trim() !== '');
+        for (const name of names) {
+          for (const typing of [false, true]) {
+            asked++;
+            const first = runSearch(
+              built.index,
+              `${ask} ${name}`,
+              lang,
+              { limit: 1, typing },
+              BASE,
+            )[0];
+            if (first?.doc !== entry.doc || first.anchor !== entry.anchor) {
+              misses.push(`${ask} ${name} (typing: ${String(typing)}) -> ${first?.href ?? 'none'}`);
+            }
+          }
+        }
+      }
+      expect(asked).toBeGreaterThan(200);
+      expect(misses).toEqual([]);
+    },
+  );
+
   // Review WP-33 pass 15, major 2, the ranking half: without the best bets, `deregister` and
   // `deregistreer` are words of the guide, never read as typos of "register" and "registreer", so
   // the ranking alone does not open the Register page (finished and typed).

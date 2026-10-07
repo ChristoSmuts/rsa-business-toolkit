@@ -65,8 +65,62 @@ export const KIND_WEIGHT: Readonly<Record<SearchEntryKind, number>> = {
 };
 
 /**
+ * Words that ask where a fact comes from (review WP-33 pass 17, major 1). A query that holds one
+ * keeps the sources register at full weight (`REFERENCE_WEIGHT` does not apply).
+ */
+export const SOURCE_WORDS: ReadonlySet<string> = new Set([
+  // English
+  'source',
+  'sources',
+  'reference',
+  'references',
+  'referenced',
+  'act',
+  'acts',
+  'legislation',
+  'law',
+  'laws',
+  'regulation',
+  'regulations',
+  'verified',
+  'verification',
+  'official',
+  'come',
+  // Afrikaans
+  'bron',
+  'bronne',
+  'verwysing',
+  'verwysings',
+  'wet',
+  'wette',
+  'wetgewing',
+  'regulasie',
+  'regulasies',
+  'amptelik',
+  'amptelike',
+  'nagegaan',
+  'vandaan',
+]);
+
+/** The `SOURCE_WORDS` that name a law: such a query leads with the register's entry (pass 17). */
+export const LAW_WORDS: ReadonlySet<string> = new Set([
+  'act',
+  'acts',
+  'legislation',
+  'law',
+  'laws',
+  'regulation',
+  'regulations',
+  'wet',
+  'wette',
+  'wetgewing',
+  'regulasie',
+  'regulasies',
+]);
+
+/**
  * Reference pages that repeat every topic's words in their headings, weighed down in every search
- * but otherwise ranked like any page (unlike `DOC_WEIGHT`, their headings are still lifted): the
+ * that does not ask for sources (`SOURCE_WORDS`), but otherwise ranked like any page (unlike `DOC_WEIGHT`, their headings are still lifted): the
  * sources register's "Vehicle dealing and vehicles generally" no longer leads `vehicle` or a typo
  * of `vehicle dealer`, while `Companies Act 71 of 2008` still finds its "Legislation" entry
  * (review WP-33 pass 16, major 5).
