@@ -15,6 +15,7 @@ import { ENABLED_LOCALES } from '../src/i18n/locales';
 import { INDEX_VERSION } from '../src/lib/search/options';
 import type { SearchIndexRecord } from '../src/lib/search/types';
 import { RECORD_FILE } from '../src/lib/search/files';
+import { loadBestBets, resolveBestBets } from './search/best-bets';
 import { INDEX_BUDGET_GZIP, serialiseIndex } from './search/build';
 import { buildEntries } from './search/entries';
 import { loadIndexInput } from './search/load';
@@ -32,13 +33,16 @@ function main(): void {
     if (file.endsWith('.json')) rmSync(path.join(OUT_DIR, file));
   }
   const files: Record<string, string> = {};
+  const bets = loadBestBets();
   let failed = false;
   for (const lang of ENABLED_LOCALES) {
     const input = loadIndexInput(lang);
     const sections = [...input.manifest.sections]
       .sort((a, b) => a.order - b.order)
       .map((section) => section.id);
-    const built = serialiseIndex(lang, sections, buildEntries(input));
+    const entries = buildEntries(input);
+    // Fails the build when a best bet's page or heading is missing in this language.
+    const built = serialiseIndex(lang, sections, entries, resolveBestBets(lang, entries, bets));
     writeFileSync(path.join(OUT_DIR, built.file), built.json);
     files[lang] = built.file;
     const gzip = gzipSync(built.json, { level: 9 }).length;

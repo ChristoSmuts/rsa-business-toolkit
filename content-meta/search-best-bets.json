@@ -1,0 +1,124 @@
+{
+  "$comment": "Search best bets: common owner phrasings that must open one page first, whatever the ranking does. See content-meta/README.md. Keep it short: under about 40 phrases per language, and only a phrase the guide has one obvious page for.",
+  "bets": [
+    {
+      "doc": "core/register",
+      "en": ["register my business"],
+      "af": ["registreer my besigheid"]
+    },
+    {
+      "doc": "start/start-here",
+      "en": ["start a business", "where do i start"],
+      "af": ["begin 'n besigheid", "waar begin ek"]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "en": ["tax"],
+      "af": ["belasting"]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "anchor": "vat-probably-not-yet",
+      "en": ["register for vat", "vat registration", "vat threshold"],
+      "af": ["registreer vir btw", "btw registrasie", "btw drempel"]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "anchor": "provisional-tax",
+      "en": ["provisional tax"],
+      "af": ["voorlopige belasting"]
+    },
+    {
+      "doc": "paperwork/templates/invoice",
+      "en": ["invoice"],
+      "af": ["faktuur"]
+    },
+    {
+      "doc": "paperwork/templates/tax-invoice",
+      "en": ["tax invoice"],
+      "af": ["belastingfaktuur"]
+    },
+    {
+      "doc": "paperwork/templates/quotation",
+      "en": ["quote", "quotation"],
+      "af": ["kwotasie"]
+    },
+    {
+      "doc": "paperwork/templates/receipt",
+      "en": ["receipt"],
+      "af": ["kwitansie"]
+    },
+    {
+      "doc": "paperwork/templates/privacy-notice",
+      "en": ["privacy notice"],
+      "af": ["privaatheidskennisgewing"]
+    },
+    {
+      "doc": "lookup/glossary",
+      "anchor": "uif",
+      "en": ["uif"],
+      "af": ["uif"]
+    },
+    {
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "1-cipc-annual-return",
+      "en": ["cipc annual return", "annual return"],
+      "af": ["cipc jaarlikse opgawe", "jaarlikse opgawe"]
+    },
+    {
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "4-sars-company-tax",
+      "en": ["company tax rate", "company tax"],
+      "af": ["maatskappybelasting"]
+    },
+    {
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "en": ["close my company"],
+      "af": ["sluit my maatskappy"]
+    },
+    {
+      "doc": "core/what-you-need-to-sell-things",
+      "en": ["trading licence", "business licence", "do i need a licence"],
+      "af": ["handelslisensie", "besigheidslisensie", "het ek 'n lisensie nodig"]
+    },
+    {
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-alcohol",
+      "en": ["liquor licence"],
+      "af": ["dranklisensie"]
+    },
+    {
+      "doc": "business-types/pick-your-business-type",
+      "en": ["business type"],
+      "af": ["watter soort besigheid", "besigheidstipe"]
+    },
+    {
+      "doc": "core/register",
+      "anchor": "sole-proprietor-trading-as-yourself",
+      "en": ["sole proprietor"],
+      "af": ["eenmansaak"]
+    },
+    {
+      "doc": "core/register",
+      "anchor": "business-bank-account",
+      "en": ["bank account"],
+      "af": ["bankrekening"]
+    },
+    {
+      "doc": "core/paying-yourself",
+      "en": ["pay myself", "salary or dividend"],
+      "af": ["betaal myself", "salaris of dividend"]
+    },
+    {
+      "doc": "core/working-from-home-and-safety",
+      "en": ["work from home"],
+      "af": ["werk van die huis af"]
+    },
+    {
+      "doc": "lookup/checklist",
+      "en": ["checklist"],
+      "af": ["kontrolelys"]
+    }
+  ]
+}

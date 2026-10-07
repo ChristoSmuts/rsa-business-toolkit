@@ -6,6 +6,7 @@
 import { gzipSync } from 'node:zlib';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { INDEX_BUDGET_GZIP, serialiseIndex } from '../../../scripts/search/build';
+import { loadBestBets, resolveBestBets } from '../../../scripts/search/best-bets';
 import { buildEntries } from '../../../scripts/search/entries';
 import { loadIndexInput } from '../../../scripts/search/load';
 import type { Locale } from '../../../src/i18n/locales';
@@ -31,7 +32,7 @@ function build(lang: Locale): Built {
   const input = loadIndexInput(lang);
   const entries = buildEntries(input);
   const sections = input.manifest.sections.map((section) => section.id);
-  const { json } = serialiseIndex(lang, sections, entries);
+  const { json } = serialiseIndex(lang, sections, entries, resolveBestBets(lang, entries));
   return { entries, json, index: loadIndex(JSON.parse(json), lang) };
 }
 
@@ -409,7 +410,10 @@ describe('A7 ranking cases', () => {
       query: 'e-fil',
       first: 'glossary/#efiling',
     },
-    { kind: 'Afrikaans compound', lang: 'af', query: 'kontrolelys', firstTerm: 'kontrolelys' },
+    // Pass 13: `kontrolelys` is a best bet for the Master checklist ("Hoofkontrolelys"), which the end
+    // of a compound cannot reach by prefix.
+    { kind: 'Afrikaans compound', lang: 'af', query: 'kontrolelys', first: 'checklist/' },
+    { kind: 'Afrikaans compound', lang: 'af', query: 'belastingjaar', firstTerm: 'belastingjaar' },
     { kind: 'stop words', lang: 'en', query: 'the PIS of a company', first: 'glossary/#pis' },
     {
       kind: 'stop words',
@@ -428,7 +432,11 @@ describe('A7 ranking cases', () => {
       kind: 'mixed',
       lang: 'en',
       query: 'tax year 2026/27',
-      first: 'core/tax-and-sars/#your-tax-year-calendar',
+      // Pass 13: the quick answers carry their page's lead, and Tax and SARS's lead is "Numbers
+      // here are for the tax year 1 March 2026 to 28 February 2027": the page leads, its calendar
+      // follows.
+      firstDoc: 'core/tax-and-sars',
+      top3: ['core/tax-and-sars/#your-tax-year-calendar'],
     },
     {
       kind: 'mixed',
@@ -1005,6 +1013,81 @@ describe('A7 ranking cases', () => {
       expect(marketing === -1 || licence < marketing, `typing: ${String(typing)}`).toBe(true);
       expect(hrefs[0]).not.toMatch(/\/branding\//);
     }
+  });
+
+  // Review WP-33 pass 13: every best-bet phrase (`content-meta/search-best-bets.json`), finished
+  // and typed, opens its target first, in both languages. Generated from the file.
+  it.each(['en', 'af'] as const)('%s: every best bet opens its target first', (lang) => {
+    const built = lang === 'en' ? en : af;
+    const prefix = lang === 'en' ? BASE : `${BASE}af/`;
+    const file = loadBestBets();
+    let phrases = 0;
+    for (const bet of file.bets) {
+      const route = built.entries.find((e) => e.doc === bet.doc)?.route;
+      const target = `${prefix}${route ?? ''}${bet.anchor === undefined ? '' : `#${bet.anchor}`}`;
+      for (const phrase of bet[lang]) {
+        phrases++;
+        for (const typing of [false, true]) {
+          const first = runSearch(built.index, phrase, lang, { limit: 3, typing }, BASE)[0];
+          expect(first?.href, `${phrase} (typing: ${String(typing)})`).toBe(target);
+        }
+      }
+    }
+    expect(phrases).toBeGreaterThan(20);
+    expect(phrases).toBeLessThanOrEqual(40);
+  });
+
+  // Review WP-33 pass 13, major: registering the business opens the Register page, typed and
+  // finished, in both languages; never a vehicle dealer section.
+  it.each([
+    ['en', 'register my business'],
+    ['en', 'register a business'],
+    ['en', 'register business'],
+    ['en', 'how do i register my business'],
+    ['af', 'registreer my besigheid'],
+    ['af', 'registreer besigheid'],
+    ['af', 'hoe registreer ek my besigheid'],
+  ] as const)('%s "%s" opens the Register page', (lang, query) => {
+    const built = lang === 'en' ? en : af;
+    for (const typing of [false, true]) {
+      const first = runSearch(built.index, query, lang, { limit: 1, typing }, BASE)[0];
+      expect(first?.doc, `typing: ${String(typing)}`).toBe('core/register');
+      expect(first?.anchor).toBeUndefined();
+    }
+  });
+
+  // Review WP-33 pass 13, major, the ranking half: without the best bets, a quick answer carries
+  // its page's lead, so "Do I need to register a company?" ("…for a one-person business…")
+  // answers `register my business` in English. (The Afrikaans lead says "eenpersoonbesigheid", a
+  // compound the word `besigheid` cannot reach: there the best bet does the work.)
+  it('finds the Register page for "register my business" by ranking alone', () => {
+    const input = loadIndexInput('en');
+    const entries = buildEntries(input);
+    const plain = loadIndex(JSON.parse(serialiseIndex('en', [], entries).json), 'en');
+    const first = runSearch(plain, 'register my business', 'en', { typing: false }, BASE)[0];
+    expect(first?.href).toBe(`${BASE}core/register/`);
+  });
+
+  // Review WP-33 pass 13, minor: `tax` and `my tax` open Tax and SARS, not "Dividends tax".
+  it.each(['tax', 'my tax'])('"%s" opens Tax and SARS', (query) => {
+    for (const typing of [false, true]) {
+      expect(runSearch(en.index, query, 'en', { limit: 1, typing }, BASE)[0]?.doc).toBe(
+        'core/tax-and-sars',
+      );
+    }
+  });
+
+  // Review WP-33 pass 13: a best bet is the whole query, or its typed beginning; never a typo or a
+  // longer query.
+  it('pins a best bet only for its own words', () => {
+    const first = (query: string, typing = false) =>
+      runSearch(en.index, query, 'en', { limit: 1, typing }, BASE)[0]?.href;
+    expect(first('How do I register my business?')).toBe(`${BASE}core/register/`);
+    expect(first('register my busi', true)).toBe(`${BASE}core/register/`);
+    // Not a best bet: a longer query, a typo, a typed beginning shorter than four letters.
+    expect(first('tax threshold')).not.toBe(`${BASE}core/tax-and-sars/`);
+    expect(first('quotte')).not.toBe(first('quote'));
+    expect(first('che', true)).not.toBe(`${BASE}checklist/`);
   });
 
   // Review WP-33 pass 9, nit: the count is the block listed first, whatever the pages.

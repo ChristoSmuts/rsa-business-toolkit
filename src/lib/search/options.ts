@@ -17,7 +17,7 @@ import type { SearchEntryKind } from './types';
  * The client refuses an index with another version and shows the failed state, rather than
  * returning wrong results.
  */
-export const INDEX_VERSION = 2;
+export const INDEX_VERSION = 3;
 
 /** Fields that are searched. `text` is the body; `title` and `path` are boosted. */
 export const SEARCH_FIELDS = ['title', 'path', 'text'] as const;
@@ -422,4 +422,13 @@ export function indexOptions<T>(): Options<T> {
     tokenize,
     processTerm,
   };
+}
+
+/**
+ * The words of a query or a best-bet phrase as the best bets compare them: each part of the query
+ * (`queryParts`, stop words dropped), a spaced code or hyphenated word as its joined form. `How do
+ * I register my business?` and `register a business` both read `register business`.
+ */
+export function betWords(text: string): string[] {
+  return queryParts(text).map((part) => (typeof part === 'string' ? part : part.joined));
 }

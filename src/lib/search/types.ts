@@ -79,6 +79,14 @@ export interface SerialisedIndex {
   readonly sections: readonly string[];
   /** `MiniSearch#toJSON()`. */
   readonly index: unknown;
+  /** Best bets (`content-meta/search-best-bets.json`), resolved to entry ids. */
+  readonly bets?: readonly SearchBestBet[];
+}
+
+/** One best-bet phrase: its words as a query reads them (`betWords`), and the entry it opens. */
+export interface SearchBestBet {
+  readonly w: readonly string[];
+  readonly id: number;
 }
 
 /** The record the build writes so pages can find each language's index file. */

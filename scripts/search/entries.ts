@@ -369,6 +369,10 @@ export function answerEntries(input: IndexInput): SearchEntry[] {
     const targets = item.targets.map((run) => docrefText(manifest, run, answers.lang)).join(', ');
     const note = item.note === undefined ? '' : runsText(manifest, answers.lang, item.note);
     const question = runsText(manifest, answers.lang, item.question);
+    // The answer page's lead (its summary), so a question asked in other words still finds the
+    // quick answer: "Do I need to register a company?" also holds "one-person business" from the
+    // Register page's lead (review WP-33 pass 13, major).
+    const lead = input.docs.find((doc) => doc.id === target.doc)?.summary ?? '';
     out.push(
       entry(
         'answer',
@@ -378,7 +382,7 @@ export function answerEntries(input: IndexInput): SearchEntry[] {
           title: cleanText(question),
           docTitle: targets,
           path: targets,
-          text: cleanText(`${targets} ${note}`),
+          text: cleanText(`${targets} ${lead} ${note}`),
           excerpt: excerptOf(note),
           section: targetDoc?.section ?? 'start',
           lang: answers.lang,

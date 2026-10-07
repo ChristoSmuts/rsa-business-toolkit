@@ -1,22 +1,57 @@
 /**
  * `pnpm search:typos`: how often a one-letter typo still finds what the correct spelling finds
- * (review WP-33 pass 12). For every glossary term and page title in both languages, each word of
- * five letters or more is misspelt once per position: one letter dropped, or two neighbours
- * swapped. Counted, as finished and as typed: typos whose first result is the correct spelling's
+ * (review WP-33 pass 12; pass 13 added the first letter, doubled and wrong letters). For every
+ * glossary term and page title in both languages, each word of five letters or more is misspelt in
+ * every way one keystroke can: a letter dropped, a letter doubled, a letter replaced by a
+ * neighbouring key, and two neighbouring letters swapped, at every position. Counted, as finished and as typed: typos whose first result is the correct spelling's
  * first result, and typos whose first result is among its first three. Prints both counts; a
  * regression check for ranking changes, not a test.
  */
+import { resolveBestBets } from './search/best-bets';
 import { buildEntries } from './search/entries';
 import { serialiseIndex } from './search/build';
 import { loadIndexInput } from './search/load';
 import { loadIndex, runSearch } from '../src/lib/search-client';
 
-/** Every one-letter typo of `word`, after its first letter: a dropped letter, or a swap. */
+/** Neighbouring keys on a QWERTY keyboard, for a wrong letter. */
+const NEIGHBOURS: Readonly<Record<string, string>> = {
+  q: 'wa',
+  w: 'qes',
+  e: 'wrd',
+  r: 'etf',
+  t: 'ryg',
+  y: 'tuh',
+  u: 'yij',
+  i: 'uok',
+  o: 'ipl',
+  p: 'o',
+  a: 'qsz',
+  s: 'adwx',
+  d: 'sfec',
+  f: 'dgrv',
+  g: 'fhtb',
+  h: 'gjyn',
+  j: 'hkum',
+  k: 'jli',
+  l: 'ko',
+  z: 'ax',
+  x: 'zcs',
+  c: 'xvd',
+  v: 'cbf',
+  b: 'vng',
+  n: 'bmh',
+  m: 'nj',
+};
+
+/** Every one-keystroke typo of `word`: dropped, doubled, neighbouring-key and swapped letters. */
 export function typos(word: string): string[] {
   const out = new Set<string>();
-  for (let i = 1; i < word.length; i++) {
+  for (let i = 0; i < word.length; i++) {
+    const letter = word[i]!;
     out.add(word.slice(0, i) + word.slice(i + 1));
-    if (i + 1 < word.length) out.add(word.slice(0, i) + word[i + 1] + word[i] + word.slice(i + 2));
+    out.add(word.slice(0, i) + letter + word.slice(i));
+    for (const key of NEIGHBOURS[letter] ?? '') out.add(word.slice(0, i) + key + word.slice(i + 1));
+    if (i + 1 < word.length) out.add(word.slice(0, i) + word[i + 1] + letter + word.slice(i + 2));
   }
   out.delete(word);
   return [...out];
@@ -27,7 +62,9 @@ let held = 0;
 let total = 0;
 for (const lang of ['en', 'af'] as const) {
   const input = loadIndexInput(lang);
-  const index = loadIndex(JSON.parse(serialiseIndex(lang, [], buildEntries(input)).json), lang);
+  const entries = buildEntries(input);
+  const serialised = serialiseIndex(lang, [], entries, resolveBestBets(lang, entries));
+  const index = loadIndex(JSON.parse(serialised.json), lang);
   const queries = new Set<string>();
   for (const doc of input.docs) queries.add(doc.title.toLowerCase());
   for (const entry of input.glossary?.data.entries ?? []) {

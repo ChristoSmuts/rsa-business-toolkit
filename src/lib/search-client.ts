@@ -11,6 +11,7 @@ import MiniSearch, { type SearchResult as MiniSearchResult } from 'minisearch';
 import type { Locale } from './paths';
 import { href } from './paths';
 import {
+  betWords,
   DOC_WEIGHT,
   FIELD_BOOST,
   foldTerm,
@@ -24,7 +25,7 @@ import {
   type QueryPart,
   tokenize,
 } from './search/options';
-import type { SearchEntryKind, SerialisedIndex, StoredFields } from './search/types';
+import type { SearchBestBet, SearchEntryKind, SerialisedIndex, StoredFields } from './search/types';
 
 export type { SearchEntryKind };
 
@@ -91,6 +92,8 @@ export interface LoadedIndex {
   readonly lang: string;
   readonly sections: readonly string[];
   readonly search: MiniSearch<StoredFields>;
+  /** Best bets: phrases that open one entry first (`content-meta/search-best-bets.json`). */
+  readonly bets?: readonly SearchBestBet[];
 }
 
 export class SearchIndexError extends Error {
@@ -125,7 +128,7 @@ export function loadIndex(value: unknown, locale: Locale): LoadedIndex {
       value.index as Parameters<typeof MiniSearch.loadJS>[0],
       indexOptions<StoredFields>(),
     );
-    return { lang: value.lang, sections: value.sections, search };
+    return { lang: value.lang, sections: value.sections, search, bets: value.bets ?? [] };
   } catch (error) {
     throw new SearchIndexError(`The search index could not be read: ${String(error)}`);
   }
@@ -356,6 +359,40 @@ export function holdsAsWritten(
     return (
       has(part.joined, last) ||
       (words.length > 0 && words.every((word, at) => has(word, last && at === words.length - 1)))
+    );
+  });
+}
+
+/** Shortest beginning of a best-bet word that, while it is typed, may stand for the word. */
+const BET_PREFIX_MIN = 4;
+
+/**
+ * The best bet a query asks for, or `undefined` (review WP-33 pass 13). The query's words
+ * (`betWords`) must be the phrase's words. While the last word is typed, it may also be the
+ * beginning of the phrase's last word, from four letters (`register my busi`, `checkl`); the words
+ * before it are whole. Never a typo match, never fewer words (`business` is not the best bet
+ * `business licence`), never more (`tax threshold` is not the best bet `tax`). When several phrases
+ * fit, the first in the file wins.
+ */
+export function bestBet(
+  bets: readonly SearchBestBet[],
+  query: string,
+  typing: boolean,
+  lastIsWord = false,
+): SearchBestBet | undefined {
+  const words = betWords(query);
+  if (words.length === 0) return undefined;
+  const last = words.length - 1;
+  return bets.find((bet) => {
+    if (bet.w.length === words.length && bet.w.every((word, at) => word === words[at])) return true;
+    // A whole word of the guide is finished, not the beginning of a compound: `jy is die
+    // besigheid` is not the best bet `besigheidslisensie`.
+    if (!typing || lastIsWord || words.length !== bet.w.length) return false;
+    const typed = words[last]!;
+    return (
+      words.slice(0, last).every((word, at) => word === bet.w[at]) &&
+      typed.length >= BET_PREFIX_MIN &&
+      (bet.w[last] ?? '').startsWith(typed)
     );
   });
 }
@@ -592,8 +629,37 @@ export function runSearchCounted(
   const ordered = [...listed.filter(promoted), ...merged];
   const all = titled === undefined ? ordered : [titled, ...ordered];
   const rest = [...every.filter((hit) => demoted(hit) && hit !== titled), ...some];
-  const hits = [...all, ...rest.sort((a, b) => b.score - a.score)];
-  const leading = new Set(all.map((hit) => hit.id));
+  // A best bet leads, whatever the ranking (review WP-33 pass 13).
+  // A phrase still being typed yields to a page the query names by its title (`jy is die besighe`
+  // is "Jy is die besigheid", not yet `besigheidslisensie`).
+  const bets = index.bets ?? [];
+  const bet =
+    bestBet(bets, query, false) ??
+    (titled === undefined ? bestBet(bets, query, typing, lastIsWord) : undefined);
+  const stored = bet === undefined ? undefined : index.search.getStoredFields(bet.id);
+  // The entry as the search found it (with its matched terms, for highlighting), or as stored.
+  const foundBet = [...every, ...some].find((hit) => hit.id === bet?.id);
+  const pinned: MiniSearchResult[] =
+    bet === undefined || stored === undefined || !searchOptions.filter({ ...stored } as never)
+      ? []
+      : [
+          foundBet ??
+            ({
+              ...stored,
+              id: bet.id,
+              score: Number.POSITIVE_INFINITY,
+              terms: [],
+              queryTerms: [],
+              match: {},
+            } as MiniSearchResult),
+        ];
+  const pinnedIds = new Set(pinned.map((hit) => hit.id));
+  const hits = [
+    ...pinned,
+    ...all.filter((hit) => !pinnedIds.has(hit.id)),
+    ...rest.filter((hit) => !pinnedIds.has(hit.id)).sort((a, b) => b.score - a.score),
+  ];
+  const leading = new Set([...pinned, ...all].map((hit) => hit.id));
   // Two entries can open the same place (a term and the section that explains it): keep the
   // better one, so the list never offers the same destination twice.
   const limit = options.limit ?? DEFAULT_LIMIT;
