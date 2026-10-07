@@ -455,6 +455,17 @@ chosen over "only the last word while typed" because a finished `market stall` m
 "stalls" as written. `pnpm search:typos` counts, over every glossary term and page title in both
 languages, how many one-letter typos open the correct spelling's first result.
 
+**Best bets.** A short table, `content-meta/search-best-bets.json` (documented in
+`content-meta/README.md`), maps common owner phrasings to the page that must come first, whatever
+the ranking: `register my business` and `registreer my besigheid` open Register, `tax` and
+`belasting` Tax and SARS, `checklist` and `kontrolelys` the Master checklist. A phrase matches the
+whole query (stop words dropped) or its typed last word from four letters; never a typo and never a
+longer query. Ranking still answers the rest: a quick answer carries its page's lead, so "Do I need
+to register a company?" also answers `register my business`. A glossary entry still leads a
+one-word query that is only part of its term (`tax` → "Dividends tax") when no best bet covers it:
+giving the glossary weight only to whole-term queries would also stop `notion` from opening
+"Notional input tax", so it is not done.
+
 **Pages about the guide.** "How this was made" (with its corrections log) and "What has changed"
 weigh a quarter in every search (`DOC_WEIGHT`), and their headings are not moved before the text
 of other pages: the changelog's headings name other pages ("02 Register - what you actually need"),
@@ -488,7 +499,7 @@ not fade and the class is removed after the same two seconds. On the same page: 
 changes and the heading takes focus. Focus does not go back to the opener then.
 
 **Weight.** Nothing about search loads with a page except `<st-search>` and the dialog markup. The
-results code and MiniSearch (13.1 KB gzip) and the index (166 KB gzip in English, 182 KB in
+results code and MiniSearch (13.3 KB gzip) and the index (166 KB gzip in English, 182 KB in
 Afrikaans) are fetched when the
 dialog first opens; with low data, the index waits for the first key press. The dialog scrolls as a
 whole, with the title and field sticky at its top: a scrolling box that held only the results,

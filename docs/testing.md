@@ -14,7 +14,7 @@ pnpm build          # astro build + pnpm dist:audit
 | ------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `pnpm test`         | `tests/unit`, `tests/dom`                    | Pure functions (Vitest), including the link audit and the harness rules below                                 |
 | `pnpm dist:audit`   | `scripts/dist/audit-links.ts`                | Every HTML file in `dist/`: base path, broken targets and `#fragments`, `<base>`, third-party resources and hints, external forms and meta refresh, inline `on*` handlers, `noopener`, `http:`, `javascript:` |
-| `pnpm search:typos` | `scripts/search-typo-sweep.ts`               | Not a test: counts how many one-letter typos of every glossary term and page title open the correct spelling's first result (and one of its first three), as finished and typed |
+| `pnpm search:typos` | `scripts/search-typo-sweep.ts`               | Not a test: counts how many one-keystroke typos (dropped, doubled, neighbouring-key and swapped letters, at every position) of every glossary term and page title open the correct spelling's first result (and one of its first three), as finished and typed |
 | `pnpm dist:budget`  | `scripts/dist/js-budget.ts`                  | The JavaScript each built page loads up front, gzipped, against 25 KB (document pages) and 45 KB (tool pages); also prints what opening search costs |
 | `pnpm test:e2e`     | `tests/e2e` (chromium, webkit, mobile, nojs) | Page contract, CSP, no third-party requests, 404 page, no-JS reading, content rendering, navigation and search |
 | `pnpm test:a11y`    | `tests/e2e/a11y.spec.ts`                     | axe (WCAG 2.0/2.1 A and AA) on every page in light and dark themes                                            |
@@ -197,7 +197,7 @@ which links the contents and every page of the guide) and axe with the dialog op
 `a11y.spec.ts`.
 
 The unit side is `tests/unit/search/` (the index built in memory from the real `src/data`: the A7
-ranking cases including `belastng` on the real Afrikaans data, the query-kind table of `docs/design-system.md` row by row on both real indexes (codes spaced, joined and being typed, amounts in every South African spelling including `R1m`, tax years including `2026-27`, all words then any word (`EMP201 deadline`), numbers, single letters, hyphens, stop words, punctuation, mixed queries, typing against finished), every letters-then-digits term in both indexes searched spaced against its two words, every page's navigation title and H1 in both languages, typed and finished, opening that page, spaced and joined form codes,
+ranking cases including `belastng` on the real Afrikaans data, the query-kind table of `docs/design-system.md` row by row on both real indexes (codes spaced, joined and being typed, amounts in every South African spelling including `R1m`, tax years including `2026-27`, all words then any word (`EMP201 deadline`), numbers, single letters, hyphens, stop words, punctuation, mixed queries, typing against finished), every letters-then-digits term in both indexes searched spaced against its two words, every page's navigation title and H1 in both languages, typed and finished, opening that page, every search best bet (`content-meta/search-best-bets.json`) opening its target first, finished and typed, in both languages, spaced and joined form codes,
 `e-filing`, anchors, no English marks in the translated Afrikaans index and the English fallback on a
 copy of the data without Afrikaans, the 400 KB gzip budget per language; fixtures for
 the tokenizer, the client, filters, URLs and highlighting) and `tests/dom/search.test.ts` (the
@@ -216,14 +216,14 @@ Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, r
 
 ## JavaScript budget: `pnpm dist:budget`
 
-Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-06, at the end of WP-33 review pass 12, with the Afrikaans translation merged:
+Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-06, at the end of WP-33 review pass 13, with the Afrikaans translation merged:
 
 | What | Gzip |
 | --- | --- |
 | Largest document page (`branding/already-have-your-name/`) | 7.9 KB |
-| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 19.2 KB |
-| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 13.1 KB |
-| Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 165.6 / 182.3 KB |
+| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 19.5 KB |
+| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 13.3 KB |
+| Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 166.1 / 183.1 KB |
 
 WP-30 adds the store, the checklists, copy buttons, the table of contents and the settings to every document page; its numbers replace these when it merges.
 
