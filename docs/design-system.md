@@ -474,22 +474,31 @@ as a typo of another word: `deregister` is not "register", `deregistreer` not "r
 singular still counts, at a fifth of its weight (`expenses` finds "Route 2: claim every real
 expense"). The sources register weighs half (`REFERENCE_WEIGHT`) in a query that does not ask for
 sources: it repeats every topic's words in its headings ("Vehicle dealing and vehicles
-generally"), so it no longer leads a typo of `vehicle dealer`. A query with a source word
-(`SOURCE_WORDS`: `source`, `references`, `act`, `bron`, `wetgewing`, `vandaan`, …) keeps it at full
-weight, and its page keywords (`source`, `where does this come from`; `bronne`, `waar kom dit
-vandaan`) open it. A query that names an Act (`LAW_WORDS`: `companies act`, `wetgewing`) leads with
-the register entry that holds every word, unless the query names a heading of the guide (`before
-you act on a number`) or a glossary term (`Businesses Act licence`).
+generally"), so it no longer leads a typo of `vehicle dealer`. A query with a word that only means
+"source" (`SOURCE_WORDS`: `source`, `sources`, `bron`, `bronne`) keeps it at full weight; `where does
+this come from` and `waar kom dit vandaan` are best bets, matched as whole phrases, so `come up
+with a name` and `official name` are not source queries. A query that is exactly an Act's name, in
+whole words, optionally with its number and year (`companies act`, `companies act 71 of 2008`,
+`maatskappywet`), opens "Legislation this toolkit relies on", the register entry that lists every
+Act. The names come from the register's own data (`src/data/<lang>/sources.json`) plus the short
+names and Afrikaans compounds in `content-meta/search-act-names.json`. A law word alone (`law`,
+`act`, `regulations`, `regulasies`, `employment law`, `what the law requires`) is not an Act name and
+is ranked like any word, so the guide's own section leads (review WP-33 pass 18, major 2).
 
-A section whose whole heading, of two words or more, is in the query is lifted next, after a
-heading that holds every word with filler: the task phrasing of a term opens the section on it
-(`how do i pay provisional tax` → "Provisional tax", not the "Provisional taxpayer" definition).
-A "Words used" definition opens the section of its page where the word is used, which may be about
-something else, so lifted sections come before it (`home office deduction` → "Home office
-deduction", not "The turnover tax trap").
+A section whose whole heading, of two words or more, is in the query, and names more than half of
+the query's words, is lifted next, after a heading that holds every word with filler: the task
+phrasing of a term opens the section on it (`how do i pay provisional tax` → "Provisional tax",
+not the "Provisional taxpayer" definition), but `sole proprietor bank account` is not "Sole
+proprietor". Among several, the one that names more words comes first, then one not on a
+business-type page (`home office deduction` → Working from home's), then rank order. A "Words used"
+definition opens the section of its page where the word is used, which may be about something
+else, so lifted sections come before it. A heading that is the query word for word, stop words
+included, comes before the other headings of its own page (`Wat ingesluit is`, not "Wat NIE
+ingesluit is nie").
 
-A query asked as a question (two or more words the ranking drops: `do i need an audit`, `how do i
-name my business`, `what must my invoice show`) leads with the quick answer whose question holds
+A query asked as a question (two or more stop words: `do i need an audit`, `how do i name my
+business`, `what must my invoice show`; filler words do not count, so `my besigheid se naam` is not
+one) leads with the quick answer whose question holds
 all its words, filler included, the most covered first. That answer comes before a best bet for
 one of the words (`invoice`) and before a page named only by the words left once filler is
 dropped ("Invoice"); a page named by every word (`hoe dit gemaak is`) still leads. "What is" plus a
@@ -549,7 +558,7 @@ not fade and the class is removed after the same two seconds. On the same page: 
 changes and the heading takes focus. Focus does not go back to the opener then.
 
 **Weight.** Nothing about search loads with a page except `<st-search>` and the dialog markup. The
-results code and MiniSearch (14.6 KB gzip) and the index (167 KB gzip in English, 184 KB in
+results code and MiniSearch (14.7 KB gzip) and the index (167 KB gzip in English, 184 KB in
 Afrikaans) are fetched when the
 dialog first opens; with low data, the index waits for the first key press. The dialog scrolls as a
 whole, with the title and field sticky at its top: a scrolling box that held only the results,

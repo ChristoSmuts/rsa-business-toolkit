@@ -58,5 +58,12 @@ Use MiniSearch 7. Build one serialised index per language at build time from `sr
   - **firstIn audit.** Nine `top3` rows had a `firstIn` that named another subject. Eight became `first` rows through a best bet that puts the target first, and `pty ltd` now expects "Running a Pty Ltd" first (a target change, listed in the report); and a test now limits `firstIn` to definitions and the target's own page.
   - **Regression diff.** `pnpm search:diff <ref>` lists every changed first result over a fixed corpus. Against `3656fef`: 7274 searches, 228 changed, 139 better and 4 same-target by rule, 85 judged by hand (49 better, 32 neutral, 4 justified), none worse.
   - **Typo sweep.** 53443 of 58672 typos open the correct spelling's first result and 57496 one of its first three. The `services and trades` drop noted at pass 16 was judged harmless by the pass 17 review and stays.
-- **Size.** 166.9 KB gzip in English (945 entries) and 184.0 KB in Afrikaans (951 entries, all translated), well under the budget; no sharding.
+- **Queries (review WP-33 pass 18): data, not word lists.** The pass 17 word lists were too broad: `come`, `official` and `verwysing` counted as source words, and any law word led with a register entry.
+  - **Source words.** Now only `source`, `sources`, `bron` and `bronne`; "where does this come from" is a best bet.
+  - **Acts.** An Act opens the register only when the query is that Act's name. The names come from the register's own data (`sources.json`) plus `content-meta/search-act-names.json` for short names and Afrikaans compounds; they are resolved at build time and shipped in the index (`acts`), so `INDEX_VERSION` is 7. A bare law word is ranked like any word.
+  - **Headings.** A heading lifted whole must name more than half the query; ties go to a heading not on a business-type page. A heading that is the query word for word leads its own page's headings. A question needs two stop words, not filler.
+  - **Acceptance set.** Every row has a counterpart in the other language or an `onlyLang` reason.
+  - **Regression diff.** The `search:diff` corpus adds generated law, source and naming phrasings over the guide's main nouns. Against `8597126`: 8670 searches, 332 changed, 112 better and 2 same-target by rule, 218 judged by hand (36 better, 182 neutral), none worse.
+  - **Typo sweep.** 53433 of 58672 typos open the correct spelling's first result and 57486 one of its first three. The 12 new misses are typos of `sources` in "Sources and verification register": the misspelt word is no longer a source word, so the register keeps its half weight and Register leads.
+- **Size.** 167.2 KB gzip in English (945 entries) and 184.4 KB in Afrikaans (951 entries, all translated), well under the budget; no sharding.
 

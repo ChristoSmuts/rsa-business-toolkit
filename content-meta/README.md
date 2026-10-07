@@ -3,6 +3,17 @@
 Hand-kept data that sits next to the markdown in `docs/` and is read by the build. This file
 documents the two search files: `search-keywords.json` and `search-best-bets.json`.
 
+## `search-act-names.json`: Act names
+
+The Acts of the sources register come from its own data (`src/data/<lang>/sources.json`, `acts`):
+each is found by its name without number and year (`Companies Act`). This file adds the short
+names and Afrikaans compounds owners type (`popia act`, `food act`; `maatskappywet`,
+`wet op verbruikersbeskerming`), per Act id. English names hold in Afrikaans too, because the
+Afrikaans register keeps the English Act names. A query that is exactly one of these names,
+optionally with the Act's number and year, opens the register's "Legislation this toolkit relies
+on" (`scripts/search/acts.ts`). `pnpm search:build` fails on a name for an Act the register does not
+list, or on two Acts that share a name. A law word alone (`law`, `act`, `wet`) is never an Act name.
+
 ## `search-keywords.json`: page keywords
 
 Owner words that a page's own titles lack, per language (review WP-33 pass 14). They are indexed
