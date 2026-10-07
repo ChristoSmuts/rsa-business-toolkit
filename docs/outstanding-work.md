@@ -1,10 +1,10 @@
 # Outstanding work
 
-**Status on 5 October 2026 (work paused by the owner). `main` carries WP-20 (the site), WP-40 (the Afrikaans translation of all 36 documents, with the code changes integrating it needed) and WP-30 (the store: saved ticks, copy buttons, the contents tracking, settings, shortcuts and the language banner). WP-31, WP-32 and WP-33 are built but not through review; their work lives only on branches in the cloud session that built them.**
+**Status on 7 October 2026. `main` carries WP-20 (the site), WP-40 (the Afrikaans translation of all 36 documents, with the code changes integrating it needed), WP-30 (the store), WP-32 (fillable templates) and WP-31 (Find my path, My path and the applies-to filter). WP-33 (search) is built and in review; its work lives only on a branch in the cloud session that built it.**
 
 Read `docs/build-plan.md` first for the design, then this file for where the work stopped. `docs/reviews/merge-checklist.md` holds the tasks that must happen at merge time.
 
-## Where to pick up (5 October 2026)
+## Where to pick up (7 October 2026)
 
 ### Merged
 
@@ -14,20 +14,24 @@ Read `docs/build-plan.md` first for the design, then this file for where the wor
 | WP-40, the Afrikaans translation | seven batches, each with two consecutive clean af-reviews (`WP-40-batch<N>-pass<n>.md`) |
 | WP-40 integration (code, tests, metadata) | `WP-40-integration-pass1.md` to `pass4.md`; passes 3 and 4 clean |
 | WP-30, the store | `WP-30-pass1.md` to `pass3.md`; passes 2 and 3 clean, pass 3's minors fixed |
+| WP-32, fillable templates | `WP-32-pass1.md` to `pass3.md`; passes 2 and 3 clean |
+| WP-31, Find my path and My path | `WP-31-pass1.md` to `pass5.md`; passes 4 and 5 clean, pass 5's minors fixed |
 
-Gate on the merged tree (`61bb68c`): `pnpm gate:fast` green (1124 unit and dom tests, 37 content tests, no drift); `pnpm build` green (`dist:audit`, `dist:trust` on 72 document pages and 47 Afrikaans pages); Playwright chromium, mobile and nojs 559 passed, 0 failed; `pnpm test:a11y` 198 passed. WebKit was not run (not installed in the cloud container).
+Gate on the merged tree (`cabdc1a`): `pnpm gate:fast` green (1435 unit and dom tests, 37 content tests, no drift); `pnpm build` green (`dist:audit` on 198 HTML files, `dist:trust` on 72 document pages and 98 Afrikaans pages, `dist:budget` on 198 pages); Playwright chromium, mobile and nojs 986 passed, 0 failed; `pnpm test:a11y` 412 passed. WebKit was not run (not installed in the cloud container).
 
 What WP-40 changed besides the Afrikaans markdown: the sources register has its own language on a page (`sourcesLang`), and text the Afrikaans register keeps in English is marked `lang="en-ZA"` (`keptInEnglish`); docrefs and the contents block mark English titles in Afrikaans text; every document has an Afrikaans navigation title; `dist:trust` excuses only names, case by case, with tests on both sides. Items for the owner: `docs/reviews/WP-40-owner-items.md`.
 
+What WP-31 added: the three-question wizard at `/find-my-path/` (one GET form without JavaScript, landing on 98 pre-rendered `noindex` result pages), My path with marks and rings, the home page's path card, the "Only what applies to me" switch driven by `content-meta/applicability.json`, and "Fill from my profile" on prompts. Its JavaScript budget is checked on every page by `pnpm dist:budget`.
+
+What WP-32 added: fillable, printable versions of the five templates, with drafts kept on the device.
+
 What WP-30 added: the device store (`src/lib/store.ts`, `src/lib/storage/`), saved checklist ticks shared between a document and `/checklist/` for 45 linked tasks (`content-meta/task-links.json`), ticks carried across reworded tasks (`task-renames.json`, `released-task-keys.json`; see `content-meta/README.md`), copy buttons on prompts, the "Now reading" contents tracking, settings and keyboard shortcuts on `/about/`, clear-my-data, and the language banner.
 
-### Built, not through review (not on the remote)
+### Built, in review (not on the remote)
 
-These branches exist only in the cloud session that built them. If that session is gone, they have to be rebuilt from their briefs.
+This branch exists only in the cloud session that built it. If that session is gone, it has to be rebuilt from its brief.
 
-- **WP-33, search** (`worktree-agent-a0761a64fd64c33f9`, tip `46a291a`). Five review passes, each with majors, mostly in how queries are read; the author now follows one documented table of query kinds. Pass 6 was stopped when the owner paused the work. Next: review pass 6, then merge (rewire its settings to WP-30's store at merge; backlog rows say how).
-- **WP-31, Find my path and My path** (`worktree-agent-a0193f6dbc3887574`, tip `c8bd782`). Built with all gates green, 98 pre-rendered result pages. Review pass 1 was stopped. Its heaviest document page uses 24.1 KB of the 25 KB script budget.
-- **WP-32, fillable templates** (`worktree-agent-a253e59a4d4c5ad19`). Review pass 1 found 1 blocker (a huge amount breaks the page for good) and 5 majors about what prints; the author was part-way through the fixes when the work paused, with uncommitted changes in that worktree.
+- **WP-33, search** (`worktree-agent-a0761a64fd64c33f9`). Thirteen review passes so far. Pass 11 was clean; passes 12 and 13 each found a common query that opened the wrong page (`my belasting`, `register my business`). The author is adding `content-meta/search-best-bets.json`, a short tested list of common phrasings and the page each must open, next to the ranking fix. At merge: fold its `scripts/dist/js-budget.ts` into WP-31's `check-budget.ts` (one `dist:budget`), and rewire its settings to WP-30's store (backlog rows say how).
 
 ### Not started
 
