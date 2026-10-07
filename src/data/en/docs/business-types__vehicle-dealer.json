@@ -837,10 +837,10 @@
       "c": [
         {
           "t": "text",
-          "v": "For a dealer, a TRN or BRNC is worth having. It separates stock vehicles from your personal vehicle on the system, which matters when fines arrive."
+          "v": "For a dealer, a Traffic Register Number (TRN) or Business Register Number Certificate (BRNC) is worth having. It separates stock vehicles from your personal vehicle on the system, which matters when fines arrive."
         }
       ],
-      "hash": "16041ebc84eaff44",
+      "hash": "ab9500365ae8b65d",
       "id": "layer-2-getting-vehicles-registered-to-the-business.2",
       "kind": "paragraph"
     },
@@ -3209,7 +3209,7 @@
       "kind": "tasklist"
     }
   ],
-  "contentHash": "8c7debb231467edc",
+  "contentHash": "ee1d02171a3235c6",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

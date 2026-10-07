@@ -885,13 +885,13 @@
       "c": [
         {
           "t": "text",
-          "v": "Vir ’n handelaar is ’n TRN of BRNC die moeite werd. Dit skei voorraadvoertuie van jou persoonlike voertuig op die stelsel, wat saak maak wanneer boetes opdaag."
+          "v": "Vir ’n handelaar is ’n Traffic Register Number (TRN) of Business Register Number Certificate (BRNC) die moeite werd. Dit skei voorraadvoertuie van jou persoonlike voertuig op die stelsel, wat saak maak wanneer boetes opdaag."
         }
       ],
-      "hash": "cf7ad321befa8cff",
+      "hash": "0677cdcd57bd6e9e",
       "id": "layer-2-getting-vehicles-registered-to-the-business.2",
       "kind": "paragraph",
-      "sourceHash": "16041ebc84eaff44"
+      "sourceHash": "ab9500365ae8b65d"
     },
     {
       "appliesTo": {
@@ -3410,7 +3410,7 @@
       "sourceHash": "3cbbad0d8e4dd749"
     }
   ],
-  "contentHash": "66856bc36bc126fe",
+  "contentHash": "2f8be8b72ad1d009",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

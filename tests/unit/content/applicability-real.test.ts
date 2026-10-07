@@ -35,8 +35,8 @@ const dealer = (entity: Profile['entity']): Profile => ({
 
 describe('content conditions from review WP-31 pass 4', () => {
   for (const [lang, words] of [
-    ['en', 'TRN or BRNC is worth having'],
-    ['af', 'TRN of BRNC die moeite werd'],
+    ['en', 'is worth having. It separates stock vehicles'],
+    ['af', 'die moeite werd. Dit skei voorraadvoertuie'],
   ] as const) {
     it(`${lang}: a dealer of either entity sees "a TRN or BRNC is worth having" (nit 1)`, () => {
       const blocks = doc(lang, 'business-types/vehicle-dealer').blocks;
@@ -45,6 +45,9 @@ describe('content conditions from review WP-31 pass 4', () => {
       const condition = governing(blocks, index);
       expect(applies(condition, dealer('pty'))).toBe(true);
       expect(applies(condition, dealer('sole-prop'))).toBe(true);
+      // Both abbreviations spelled out where the dealer first meets them (review WP-31 pass 5, nit 2).
+      expect(text(blocks[index]!)).toContain('Traffic Register Number (TRN)');
+      expect(text(blocks[index]!)).toContain('Business Register Number Certificate (BRNC)');
     });
 
     it(`${lang}: the company-only continuity tasks are for a Pty Ltd only (nit 3)`, () => {

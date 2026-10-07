@@ -121,7 +121,7 @@ Keep the certificate on the wall at the premises, not in a drawer at home.
 
 A vehicle you hold as stock has to sit somewhere on the national system.
 
-For a dealer, a TRN or BRNC is worth having. It separates stock vehicles from your personal vehicle on the system, which matters when fines arrive.
+For a dealer, a Traffic Register Number (TRN) or Business Register Number Certificate (BRNC) is worth having. It separates stock vehicles from your personal vehicle on the system, which matters when fines arrive.
 
 ### If you trade as a company
 

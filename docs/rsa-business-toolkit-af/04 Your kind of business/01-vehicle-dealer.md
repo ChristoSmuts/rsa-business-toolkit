@@ -121,7 +121,7 @@ Hou die sertifikaat teen die muur by die perseel, nie in ’n laai by die huis n
 
 ’n Voertuig wat jy as voorraad hou, moet êrens op die nasionale stelsel aangeteken wees.
 
-Vir ’n handelaar is ’n TRN of BRNC die moeite werd. Dit skei voorraadvoertuie van jou persoonlike voertuig op die stelsel, wat saak maak wanneer boetes opdaag.
+Vir ’n handelaar is ’n Traffic Register Number (TRN) of Business Register Number Certificate (BRNC) die moeite werd. Dit skei voorraadvoertuie van jou persoonlike voertuig op die stelsel, wat saak maak wanneer boetes opdaag.
 
 ### As jy as ’n maatskappy handel dryf
 
