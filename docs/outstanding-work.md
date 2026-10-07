@@ -1,6 +1,6 @@
 # Outstanding work
 
-**Status on 7 October 2026. `main` carries WP-20 (the site), WP-40 (the Afrikaans translation of all 36 documents, with the code changes integrating it needed), WP-30 (the store), WP-32 (fillable templates) and WP-31 (Find my path, My path and the applies-to filter). WP-33 (search) is built and in review; its work lives only on a branch in the cloud session that built it.**
+**Status on 7 October 2026 (work paused by the owner). `main` carries WP-20 (the site), WP-40 (the Afrikaans translation of all 36 documents, with the code changes integrating it needed), WP-30 (the store), WP-32 (fillable templates) and WP-31 (Find my path, My path and the applies-to filter). WP-33 (search) is built and in review; its work lives only on a branch in the cloud session that built it.**
 
 Read `docs/build-plan.md` first for the design, then this file for where the work stopped. `docs/reviews/merge-checklist.md` holds the tasks that must happen at merge time.
 
@@ -31,7 +31,10 @@ What WP-30 added: the device store (`src/lib/store.ts`, `src/lib/storage/`), sav
 
 This branch exists only in the cloud session that built it. If that session is gone, it has to be rebuilt from its brief.
 
-- **WP-33, search** (`worktree-agent-a0761a64fd64c33f9`). Thirteen review passes so far. Pass 11 was clean; passes 12 and 13 each found a common query that opened the wrong page (`my belasting`, `register my business`). The author is adding `content-meta/search-best-bets.json`, a short tested list of common phrasings and the page each must open, next to the ranking fix. At merge: fold its `scripts/dist/js-budget.ts` into WP-31's `check-budget.ts` (one `dist:budget`), and rewire its settings to WP-30's store (backlog rows say how).
+- **WP-33, search** (`worktree-agent-a0761a64fd64c33f9`, tip `13989b2`). Nineteen review passes; pass 11 was the only clean one. Since pass 15 it is judged against a fixed acceptance set (`tests/search/acceptance-queries.json`, about 300 English and 260 Afrikaans owner queries, every row tested finished and typed), with `pnpm search:diff <ref>` comparing first results against the previous tip and `pnpm search:typos` sweeping one-keystroke typos. The pass 19 fixes are committed; on `13989b2` `gate:fast` (2630 unit and dom tests), `build`, e2e chromium/mobile/nojs (555 passed, 0 failed) and `test:a11y` (196 passed) are green.
+  - **Owner's decision (7 October):** run two more review passes after the pass 19 fixes, then merge whether or not both are clean, and move what is still open to `docs/reviews/backlog.md`.
+  - **Next:** make Afrikaans "sê" a filler word before diacritics are folded. Twenty "wat die wet oor <noun> sê" queries got worse because "sê" folds to "se" (`docs/reviews/WP-33-diff-733195e.md`). Then review passes 20 and 21, then merge.
+  - **At merge:** fold its `scripts/dist/js-budget.ts` into WP-31's `check-budget.ts` (one `dist:budget`), rewire its settings to WP-30's store, take its filter chips from WP-31's `profileBusinessTypes()`, and recheck the heaviest document page (`/af/templates/invoice/`, 23.7 KB of 25 KB), since search adds a button to every page.
 
 ### Not started
 
