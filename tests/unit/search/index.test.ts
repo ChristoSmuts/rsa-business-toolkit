@@ -201,6 +201,10 @@ describe('A7 ranking cases', () => {
     readonly top10?: readonly string[];
     /** None of this many first results is on a page about the guide (`DOC_WEIGHT`). */
     readonly noGuideIn?: number;
+    /** The first result is this query's first result (as finished, unless `typing` says). */
+    readonly firstAs?: string;
+    /** A route the first result must not be on. */
+    readonly notFirst?: string;
   }
   const ROWS: readonly Row[] = [
     { kind: 'word', lang: 'en', query: 'PIS', first: 'glossary/#pis' },
@@ -686,6 +690,87 @@ describe('A7 ranking cases', () => {
       typing: true,
       firstDoc: 'start/how-this-was-made',
     },
+    // Review WP-33 pass 12, major: a stop word and a whole word is a finished query, not a typed
+    // one, so `my belasting` does not name "Belastingfaktuur" (the VAT tax invoice template).
+    ...[
+      'my belasting',
+      'die belasting',
+      'jou belasting',
+      'van belasting',
+      'wat is belasting',
+      'wat is die belasting',
+    ].map((query): Row => ({
+      kind: 'stop word and a word, being typed',
+      lang: 'af',
+      query,
+      typing: true,
+      firstDoc: 'core/tax-and-sars',
+      notFirst: 'templates/',
+    })),
+    ...['my tax', 'the tax', 'your tax', 'what is tax'].map((query): Row => ({
+      kind: 'stop word and a word, being typed',
+      lang: 'en',
+      query,
+      typing: true,
+      firstAs: 'tax',
+      notFirst: 'templates/',
+    })),
+    // Review WP-33 pass 12, minor 1: a misspelt word keeps the heading lift.
+    {
+      kind: 'typo, heading',
+      lang: 'en',
+      query: 'cipc anual return',
+      first: 'core/running-a-pty-ltd/#1-cipc-annual-return',
+    },
+    {
+      kind: 'typo, heading',
+      lang: 'en',
+      query: 'cipc anual return',
+      typing: false,
+      first: 'core/running-a-pty-ltd/#1-cipc-annual-return',
+    },
+    {
+      kind: 'typo, heading',
+      lang: 'af',
+      query: 'cipc jarlikse opgawe',
+      first: 'core/running-a-pty-ltd/#1-cipc-annual-return',
+    },
+    {
+      kind: 'typo, heading',
+      lang: 'af',
+      query: 'voorlopige belastnig',
+      first: 'core/tax-and-sars/#provisional-tax',
+    },
+    {
+      kind: 'typo, heading',
+      lang: 'af',
+      query: 'voorlopige belastnig',
+      typing: false,
+      first: 'core/tax-and-sars/#provisional-tax',
+    },
+    // Review WP-33 pass 12, minor 2: a dropped letter that leaves the beginning of another word
+    // ("registration", "companies") is a typo, not that word.
+    {
+      kind: 'typo, beginning of another word',
+      lang: 'en',
+      query: 'registr for vat',
+      first: 'core/tax-and-sars/',
+      notFirst: 'templates/',
+    },
+    {
+      kind: 'typo, beginning of another word',
+      lang: 'en',
+      query: 'registr for vat',
+      typing: false,
+      first: 'core/tax-and-sars/',
+    },
+    {
+      kind: 'typo, beginning of another word',
+      lang: 'en',
+      query: 'register a compani',
+      typing: false,
+      first: 'core/register/',
+    },
     // Review WP-33 pass 11, minor 2: a page's title is not in its first entry's heading field, so
     // the overview page does not beat the template asked for.
     { kind: 'template', lang: 'en', query: 'quote template', first: 'templates/quotation/' },
@@ -748,6 +833,8 @@ describe('A7 ranking cases', () => {
       for (const href of row.top3 ?? []) expect(hrefs.slice(0, 3)).toContain(`${prefix}${href}`);
       if (row.firstTerm !== undefined) expect(results[0]?.terms).toContain(row.firstTerm);
       if (row.firstDoc !== undefined) expect(results[0]?.doc).toBe(row.firstDoc);
+      if (row.firstAs !== undefined) expect(hrefs[0]).toBe(search(row.firstAs)[0]?.href);
+      if (row.notFirst !== undefined) expect(hrefs[0]).not.toContain(`/${row.notFirst}`);
       for (const href of row.top10 ?? []) expect(hrefs.slice(0, 10)).toContain(`${prefix}${href}`);
       for (const result of results.slice(0, row.noGuideIn ?? 0)) {
         expect(DOC_WEIGHT[result.doc], result.href).toBeUndefined();

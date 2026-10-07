@@ -243,6 +243,7 @@ export function titleCoverage(
   parts: readonly QueryPart[],
   typing: boolean,
   tokens = parts.length,
+  lastIsWord = false,
 ): number {
   const terms = titleWords(title);
   if (terms.length === 0) return 0;
@@ -260,11 +261,12 @@ export function titleCoverage(
     })
     .filter((word) => word.forms.length > 0);
   if (words.length === 0) return 0;
-  // A word still being typed may stand for a title word only after another word, stop words
-  // included (`tokens`, the words as typed): `marketing prom` names "Marketing prompts", `wat het
-  // verand` names "Wat het verander" (review WP-33 pass 11, nit 1); `change` or `verande` alone
-  // names nothing.
-  const typed = tokens > 1;
+  // A word still being typed may stand for a title word only after another word: `marketing prom`
+  // names "Marketing prompts". After a stop word, only when the word is not itself a whole word of
+  // the guide (`lastIsWord`): `wat het verand` names "Wat het verander" (review WP-33 pass 11, nit
+  // 1), but `my belasting` is finished, and does not name "Belastingfaktuur" (pass 12, major).
+  // `change` or `verande` alone names nothing.
+  const typed = words.length > 1 || (tokens > 1 && !lastIsWord);
   const matches = (term: string, form: string, prefix: boolean): boolean =>
     term === form || (typed && prefix && form.length >= TITLE_PREFIX_MIN && term.startsWith(form));
   const named = words.every(({ forms, prefix }) =>
@@ -314,16 +316,47 @@ export function headingTree(parts: readonly QueryPart[], typing: boolean): Exclu
 export const TYPO_SHARE = 0.5;
 
 /**
- * `true` when the matched index terms hold every part of the query as written: the word itself or
- * a longer word it begins (`stall` in "stalls"), never only a typo match (`stall` as "small").
+ * `true` when `rest` is an ending that leaves `word` the same word: `stall` → "stalls",
+ * `register` → "registered", `tax` → "taxes". `es` only after a hissing sound, so a misspelt
+ * `compani` is not "companies".
  */
-export function holdsAsWritten(terms: readonly string[], parts: readonly QueryPart[]): boolean {
-  const has = (word: string): boolean =>
-    terms.some((term) => term === word || term.startsWith(word));
-  return parts.every((part) => {
-    if (typeof part === 'string') return has(part);
-    const words = 'code' in part ? part.code : part.hyphen;
-    return has(part.joined) || (words.length > 0 && words.every(has));
+function shortEnding(word: string, rest: string): boolean {
+  if (rest === 's' || rest === 'd' || rest === 'ed') return true;
+  return rest === 'es' && /(?:s|x|z|ch|sh)$/.test(word);
+}
+
+/**
+ * `true` when the matched index terms hold every part of the query as written: the word itself,
+ * the word with a short ending (`stall` in "stalls"), or, for the last word while it is still
+ * typed, any word it begins (`compani` → "companies"); never only a typo match (`stall` as
+ * "small"). A finished word that a dropped letter has turned into the beginning of another word
+ * (`registr` → "registration") is a typo, not that word (review WP-33 pass 12, minor 2).
+ */
+export function holdsAsWritten(
+  terms: readonly string[],
+  parts: readonly QueryPart[],
+  typing = false,
+): boolean {
+  const has = (word: string, last: boolean): boolean =>
+    terms.some(
+      (term) =>
+        term === word ||
+        (term.startsWith(word) && ((last && typing) || shortEnding(word, term.slice(word.length)))),
+    );
+  return parts.every((part, index) => {
+    const last = index === parts.length - 1;
+    if (typeof part === 'string') return has(part, last);
+    // A code is never matched by a typo (`matchRule`): its words count as written whenever they
+    // begin a term, as the search reads them (`EMP 20` → "employee", "20").
+    if ('code' in part) {
+      const begins = (word: string) => terms.some((term) => term.startsWith(word));
+      return has(part.joined, last) || (part.code.length > 0 && part.code.every(begins));
+    }
+    const words = part.hyphen;
+    return (
+      has(part.joined, last) ||
+      (words.length > 0 && words.every((word, at) => has(word, last && at === words.length - 1)))
+    );
   });
 }
 
@@ -494,13 +527,23 @@ export function runSearchCounted(
   // here`: the guide's own "Start here" before the Core section's).
   // The words as typed, stop words and the halves of a hyphenated word included.
   const tokens = query.split(/[^\p{L}\p{N}]+/u).filter((word) => word !== '').length;
+  // The last word, as typed, is a whole word of the guide (`belasting`), not only the beginning of
+  // one (`verand`).
+  const lastPart = parts.at(-1);
+  const lastForm = typeof lastPart === 'string' ? lastPart : lastPart?.joined;
+  const lastIsWord =
+    lastForm !== undefined &&
+    index.search.search(
+      { combineWith: 'OR', queries: [lastForm], prefix: false, fuzzy: false },
+      searchOptions,
+    ).length > 0;
   const titled = every
     .filter((hit) => typeof hit['h'] === 'string')
     .map((hit) => ({
       hit,
       cover: Math.max(
-        titleCoverage(String(hit['h']), parts, typing, tokens),
-        titleCoverage(String(hit['p']).split(' › ')[0] ?? '', parts, typing, tokens),
+        titleCoverage(String(hit['h']), parts, typing, tokens, lastIsWord),
+        titleCoverage(String(hit['p']).split(' › ')[0] ?? '', parts, typing, tokens, lastIsWord),
       ),
     }))
     .filter(({ cover }) => cover > 0.5)
@@ -510,10 +553,15 @@ export function runSearchCounted(
   // nog nie" before the tax invoice template (review WP-33 pass 10, minor 3). Only whole words
   // count, or the beginning of the last word while it is typed (four letters or more), never a
   // fuzzy match: `stall` is not "small" (pass 11, minor 1).
+  // When no result holds the words as written (the reader misspelt one: `cipc anual return`),
+  // the heading lift reads the words as the search does, typos included, so the section asked for
+  // still leads (review WP-33 pass 12, minor 1). A typo never lifts a heading above an exact match.
+  const misspelt = every.every((hit) => !holdsAsWritten(hit.terms, parts, typing));
   const headed = new Set(
-    index.search
-      .search(headingTree(parts, typing), { ...searchOptions, fields: ['title'] })
-      .map((hit) => hit.id),
+    (misspelt
+      ? allWords({ fields: ['title'] })
+      : index.search.search(headingTree(parts, typing), { ...searchOptions, fields: ['title'] })
+    ).map((hit) => hit.id),
   );
   // Pages about the guide ("How this was made", "What has changed"; `DOC_WEIGHT`) weigh a quarter
   // in every search (`boostDocument`). Named only in an entry's text, not its heading (the
@@ -530,9 +578,9 @@ export function runSearchCounted(
   // need a licence" ("market stalls") before Marketing prompts' "small businesses" (review WP-33
   // pass 11, minor 1). The others keep their order.
   const others = listed.filter((hit) => !promoted(hit));
-  const written = others.filter((hit) => holdsAsWritten(hit.terms, parts));
+  const written = others.filter((hit) => holdsAsWritten(hit.terms, parts, typing));
   const typo = others
-    .filter((hit) => !holdsAsWritten(hit.terms, parts))
+    .filter((hit) => !holdsAsWritten(hit.terms, parts, typing))
     .map((hit) => ({ hit, score: hit.score * TYPO_SHARE }))
     .sort((a, b) => b.score - a.score);
   const merged: MiniSearchResult[] = [];

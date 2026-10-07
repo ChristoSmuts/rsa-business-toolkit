@@ -32,6 +32,7 @@
     "test:visual:update": "playwright test --project visual --update-snapshots",
     "content:build": "tsx scripts/build-content.ts",
     "search:build": "tsx scripts/build-search-index.ts",
+    "search:typos": "tsx scripts/search-typo-sweep.ts",
     "content:check": "tsx scripts/build-content.ts --check",
     "content:drift": "tsx scripts/build-content.ts --drift",
     "content:fidelity": "tsx scripts/build-content.ts --fidelity-only",
