@@ -16,6 +16,7 @@ import {
   runSearch,
   runSearchCounted,
   SearchIndexError,
+  singulars,
   titleCoverage,
   type FetchLike,
   type SearchResult,
@@ -505,6 +506,47 @@ describe('options', () => {
     expect(processTerm('the')).toBeNull();
     expect(processTerm('die')).toBeNull();
     expect(processTerm('')).toBeNull();
+  });
+
+  // Review WP-33 pass 15, major 2: a word of the guide is never read as a typo of another word
+  // (`deregister` is not "register"); a plural still finds its singular, at a fifth of its weight.
+  it('never reads a whole word of the guide as a typo, but finds its singular', () => {
+    const tree = queryTree(
+      ['deregister', 'expenses', 'regster'],
+      false,
+      'joined',
+      new Set(['deregister', 'expenses']),
+    ) as { queries: unknown[] };
+    expect(tree.queries[0]).toEqual({
+      combineWith: 'OR',
+      queries: [{ combineWith: 'OR', queries: ['deregister'], prefix: true, fuzzy: false }],
+    });
+    const plural = tree.queries[1] as {
+      queries: { queries: string[]; fuzzy: unknown; boostTerm?: () => number }[];
+    };
+    expect(plural.queries.map((q) => [q.queries[0], q.fuzzy])).toEqual([
+      ['expenses', false],
+      ['expense', false],
+    ]);
+    expect(plural.queries[1]?.boostTerm?.()).toBe(0.2);
+    // A word the guide does not hold is a typo, read as before.
+    expect(tree.queries[2]).toEqual({
+      combineWith: 'OR',
+      queries: ['regster'],
+      prefix: true,
+      fuzzy: 0.2,
+    });
+    expect(anyTree(['deregister'], false, new Set(['deregister'])).queries[0]).toEqual(
+      tree.queries[0],
+    );
+  });
+
+  it('gives the singular of a plural of five letters or more', () => {
+    expect(singulars('expenses')).toEqual(['expense']);
+    expect(singulars('taxes')).toEqual(['taxe', 'tax']);
+    expect(singulars('business')).toEqual([]);
+    expect(singulars('fees')).toEqual([]);
+    expect(singulars('businesses')).toEqual(['businesse', 'business']);
   });
 
   it('is fuzzy only above four characters and prefix-matches from two', () => {

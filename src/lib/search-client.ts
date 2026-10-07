@@ -22,6 +22,7 @@ import {
   processTerm,
   matchRule,
   queryParts,
+  SEARCH_FIELDS,
   type QueryPart,
   tokenize,
 } from './search/options';
@@ -203,6 +204,7 @@ function weak(word: string): boolean {
 export function anyTree(
   parts: readonly QueryPart[],
   typing: boolean,
+  whole: ReadonlySet<string> = NO_WORDS,
 ): { combineWith: 'OR'; queries: Query[] } {
   const queries: Query[] = [];
   parts.forEach((part, index) => {
@@ -217,8 +219,11 @@ export function anyTree(
       const joinedHyphen = typeof part !== 'string' && 'hyphen' in part && position === 0;
       // The joined form and the last word are the ones still being typed.
       const typed = last && (position === 0 || position === words.length - 1);
-      const rule = joinedHyphen ? { prefix: typed, fuzzy: false } : matchRule(word, typed);
-      queries.push({ combineWith: 'OR', queries: [word], ...rule });
+      queries.push(
+        joinedHyphen
+          ? { combineWith: 'OR', queries: [word], prefix: typed, fuzzy: false }
+          : leaf(word, typed, whole),
+      );
     });
   });
   return { combineWith: 'OR', queries };
@@ -331,6 +336,19 @@ export const TYPO_SHARE = 0.5;
  * `register` → "registered", `tax` → "taxes". `es` only after a hissing sound, so a misspelt
  * `compani` is not "companies".
  */
+/**
+ * The singular forms of a plural query word of five letters or more, which count as the word as
+ * written: `expenses` is "expense", `dealers` "dealer", `taxes` "tax" (review WP-33 pass 15, the
+ * acceptance set). The other way round, "stalls" holds `stall` (`shortEnding`).
+ */
+export function singulars(word: string): string[] {
+  if (word.length < 5 || !word.endsWith('s') || word.endsWith('ss')) return [];
+  const stem = word.slice(0, -2);
+  return word.endsWith('es') && /(?:ss|x|z|ch|sh)$/.test(stem)
+    ? [word.slice(0, -1), stem]
+    : [word.slice(0, -1)];
+}
+
 function shortEnding(word: string, rest: string): boolean {
   if (rest === 's' || rest === 'd' || rest === 'ed') return true;
   return rest === 'es' && /(?:s|x|z|ch|sh)$/.test(word);
@@ -352,6 +370,7 @@ export function holdsAsWritten(
     terms.some(
       (term) =>
         term === word ||
+        singulars(word).includes(term) ||
         (term.startsWith(word) && ((last && typing) || shortEnding(word, term.slice(word.length)))),
     );
   return parts.every((part, index) => {
@@ -428,16 +447,46 @@ export function bestBet(
   });
 }
 
-/** One term, with its matching rule (`matchRule`). */
-function leaf(term: string, last: boolean): Query {
-  return { combineWith: 'OR', queries: [term], ...matchRule(term, last) };
+/** No whole words: every word may be read as a typo (`wordRule`). */
+const NO_WORDS: ReadonlySet<string> = new Set();
+
+/**
+ * How much a plural query word's singular counts (`expenses` finding "expense"). Enough to find
+ * the section that holds only the singular ("Route 2: claim every real expense"), little enough
+ * that holding both forms does not outrank holding the word as written: `vehicles` opens
+ * "Vehicles for your business", not "Vehicle dealing and vehicles generally" (the acceptance set).
+ */
+const SINGULAR_WEIGHT = 0.2;
+
+/**
+ * One query word, by its matching rule (`matchRule`), except that a word the guide itself uses
+ * (`whole`) is never read as a typo of another word: `deregister` is not "register", `deregistreer`
+ * is not "registreer" (review WP-33 pass 15, major 2). It still reaches the words it begins, and
+ * its singular (`expenses` → "expense", `singulars`), which is not a typo.
+ */
+function leaf(term: string, last: boolean, whole: ReadonlySet<string> = NO_WORDS): Query {
+  const rule = matchRule(term, last);
+  if (!whole.has(term)) return { combineWith: 'OR', queries: [term], ...rule };
+  return {
+    combineWith: 'OR',
+    queries: [
+      { combineWith: 'OR', queries: [term], ...rule, fuzzy: false },
+      ...singulars(term).map((form): Query => ({
+        combineWith: 'OR',
+        queries: [form],
+        prefix: false,
+        fuzzy: false,
+        boostTerm: () => SINGULAR_WEIGHT,
+      })),
+    ],
+  };
 }
 
 /** Words, each by its own rule, all required; the last may be still being typed. */
-function allOf(words: readonly string[], last: boolean): Query {
+function allOf(words: readonly string[], last: boolean, whole: ReadonlySet<string>): Query {
   return {
     combineWith: 'AND',
-    queries: words.map((word, index) => leaf(word, last && index === words.length - 1)),
+    queries: words.map((word, index) => leaf(word, last && index === words.length - 1, whole)),
   };
 }
 
@@ -457,22 +506,24 @@ export type CodeReading = 'joined' | 'words';
  * - a hyphenated word: its words (stop words left out), or the whole chain joined, which is
  *   prefix-matched while it is being typed (`e-fil` → `efiling`) and never fuzzy-matched.
  *
- * `typing` is `true` when the last term of the query is still being typed.
+ * `typing` is `true` when the last term of the query is still being typed. `whole` holds the query
+ * words that are words of the guide as written, never read as typos (`wordRule`).
  */
 export function queryTree(
   parts: readonly QueryPart[],
   typing = true,
   codes: CodeReading = 'joined',
+  whole: ReadonlySet<string> = NO_WORDS,
 ): Exclude<Query, string> {
   return {
     combineWith: 'AND',
     queries: parts.map((part, index): Query => {
       const last = typing && index === parts.length - 1;
-      if (typeof part === 'string') return leaf(part, last);
+      if (typeof part === 'string') return leaf(part, last, whole);
       if ('code' in part) {
         return codes === 'joined' || part.code.length === 0
           ? leaf(part.joined, last)
-          : allOf(part.code, last);
+          : allOf(part.code, last, whole);
       }
       const joined: Query = {
         combineWith: 'OR',
@@ -481,7 +532,7 @@ export function queryTree(
         fuzzy: false,
       };
       if (part.hyphen.length === 0) return joined;
-      return { combineWith: 'OR', queries: [allOf(part.hyphen, last), joined] };
+      return { combineWith: 'OR', queries: [allOf(part.hyphen, last, whole), joined] };
     }),
   };
 }
@@ -536,11 +587,33 @@ export function runSearchCounted(
     filter: (hit: MiniSearchResult): boolean =>
       matchesFilters(hit as unknown as StoredFields, options),
   };
-  const parts = raw;
   // The caller says whether the reader is still typing: the live dialog does; the search page and
   // the 404 suggestions do not (a submitted query is finished). Without a say, a query that ends
   // inside a word is being typed.
   const typing = options.typing ?? /[\p{L}\p{N}]$/u.test(query);
+  // Filler words (`want`, `need`, `get`, `wil`, `moet`; `index.filler`) never say which page is
+  // meant, so the ranking drops them as it drops stop words: `I want to close my business` ranks
+  // as `close business` (review WP-33 pass 15, major 1). A filler word still being typed may
+  // begin another word (`can` of "cancel", `my` of "myself") and stays; a query of filler words
+  // only searches for them.
+  const fillerWords = new Set(index.filler ?? []);
+  const content = raw.filter(
+    (part, at) =>
+      typeof part !== 'string' || !fillerWords.has(part) || (typing && at === raw.length - 1),
+  );
+  const parts = content.length > 0 ? content : raw;
+  /** `true` when the guide holds this word exactly, as written. */
+  const inGuide = (word: string): boolean =>
+    index.search.search(
+      { combineWith: 'OR', queries: [word], prefix: false, fuzzy: false },
+      { fields: [...SEARCH_FIELDS] },
+    ).length > 0;
+  // The query's words that are words of the guide: never read as a typo of another word.
+  const whole = new Set(
+    parts
+      .flatMap((part) => (typeof part === 'string' ? [part] : 'hyphen' in part ? part.hyphen : []))
+      .filter((word) => matchRule(word, false).fuzzy !== false && inGuide(word)),
+  );
   const codes = parts.filter(
     (part): part is Extract<QueryPart, { code: unknown }> =>
       typeof part !== 'string' && 'code' in part,
@@ -565,9 +638,9 @@ export function runSearchCounted(
    */
   const allWords = (only: SearchOptionsOf = {}): MiniSearchResult[] => {
     const settings = { ...searchOptions, ...only };
-    const hits = index.search.search(queryTree(parts, typing, 'joined'), settings);
+    const hits = index.search.search(queryTree(parts, typing, 'joined', whole), settings);
     if (codes.length === 0) return hits;
-    const words = index.search.search(queryTree(parts, typing, 'words'), settings);
+    const words = index.search.search(queryTree(parts, typing, 'words', whole), settings);
     if (knownCode) {
       const ids = new Set(hits.map((hit) => hit.id));
       return [...hits, ...words.filter((hit) => !ids.has(hit.id))];
@@ -582,7 +655,7 @@ export function runSearchCounted(
   // All words first, then any word, best first (review WP-33 pass 6, major 2).
   const every = allWords();
   const found = new Set(every.map((hit) => hit.id));
-  const any = anyTree(parts, typing);
+  const any = anyTree(parts, typing, whole);
   const some =
     any.queries.length > 0
       ? index.search.search(any, searchOptions).filter((hit) => !found.has(hit.id))
@@ -669,7 +742,26 @@ export function runSearchCounted(
   }
   merged.push(...typo.map(({ hit }) => hit));
   const ordered = [...listed.filter(promoted), ...merged];
-  const all = titled === undefined ? ordered : [titled, ...ordered];
+  // A query asked as a question (`do i need an audit`, `how do i name my business`) leads with the
+  // quick answer whose question holds every word of the query as written, filler words included
+  // (review WP-33 pass 15, the acceptance set). A question has two or more words the ranking
+  // drops (stop words and filler words) and two or more it keeps; a term (`small claims court`,
+  // `proof of payment`) is not a question and keeps its glossary entry first. When several
+  // questions hold the words, the one the query covers most comes first ("How do I name my
+  // business?" before "Can I put the car in the business name?").
+  const question = raw.length >= 2 && tokens - parts.length >= 2;
+  const asked = (question ? ordered : [])
+    .filter((hit) => hit['k'] === 'answer')
+    .map((hit) => ({
+      hit,
+      cover: titleCoverage(String(hit['t']), raw, typing, tokens, lastIsWord),
+    }))
+    .filter(({ cover }) => cover > 0)
+    .sort((a, b) => b.cover - a.cover)
+    .map(({ hit }) => hit);
+  const askedIds = new Set(asked.map((hit) => hit.id));
+  const ranked = [...asked, ...ordered.filter((hit) => !askedIds.has(hit.id))];
+  const all = titled === undefined ? ranked : [titled, ...ranked];
   const rest = [...every.filter((hit) => demoted(hit) && hit !== titled), ...some];
   // A best bet leads, whatever the ranking (review WP-33 pass 13).
   // A phrase still being typed yields to a page the query names by its title (`jy is die besighe`

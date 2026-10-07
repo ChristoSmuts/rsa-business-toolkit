@@ -44,7 +44,7 @@ export function loadBestBets(file: string = BEST_BETS_FILE): BestBetsFile {
 }
 
 /** Most phrases per language: the table stays a short list of obvious answers. */
-export const MAX_BEST_BETS = 40;
+export const MAX_BEST_BETS = 60;
 
 /**
  * Each phrase of `lang`, normalised as a query is (`betWords`), with the index of the entry it

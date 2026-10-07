@@ -17,6 +17,16 @@
       "af": ["lisensie", "permit", "handelslisensie"]
     },
     {
+      "doc": "branding/already-have-your-name",
+      "en": ["business name"],
+      "af": ["besigheidsnaam"]
+    },
+    {
+      "doc": "business-types/vehicle-dealer",
+      "en": ["car dealer", "sell cars"],
+      "af": ["motorhandelaar", "motors verkoop"]
+    },
+    {
       "doc": "business-types/pick-your-business-type",
       "en": ["what kind of business"],
       "af": ["watter soort besigheid"]

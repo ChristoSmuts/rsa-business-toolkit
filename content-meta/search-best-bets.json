@@ -13,15 +13,28 @@
       "get",
       "our",
       "we",
-      "please"
+      "please",
+      "must"
     ],
-    "af": ["my", "eie", "nuwe", "klein", "nodig", "moet", "kan", "wil", "ons", "graag"]
+    "af": ["my", "eie", "nuwe", "klein", "nodig", "moet", "kan", "wil", "kry", "ons", "graag"]
   },
   "bets": [
     {
       "doc": "core/register",
-      "en": ["register my business"],
-      "af": ["registreer my besigheid"]
+      "en": ["register my business", "do i need a company", "registration"],
+      "af": ["registreer my besigheid", "het ek 'n maatskappy nodig", "registrasie"]
+    },
+    {
+      "doc": "core/register",
+      "anchor": "which-one-should-you-choose",
+      "en": ["sole proprietor or company"],
+      "af": ["eenmansaak of maatskappy"]
+    },
+    {
+      "doc": "core/register",
+      "anchor": "b-bbee-affidavit-free-do-not-pay-for-it",
+      "en": ["bee certificate", "bee affidavit"],
+      "af": ["bee sertifikaat", "bee beëdigde verklaring"]
     },
     {
       "doc": "start/start-here",
@@ -36,8 +49,28 @@
     {
       "doc": "core/tax-and-sars",
       "anchor": "vat-probably-not-yet",
-      "en": ["register for vat", "vat registration", "vat threshold"],
-      "af": ["registreer vir btw", "btw registrasie", "btw drempel"]
+      "en": [
+        "register for vat",
+        "register business for vat",
+        "register company for vat",
+        "when to register for vat",
+        "when to pay vat",
+        "vat registration",
+        "vat threshold"
+      ],
+      "af": [
+        "registreer vir btw",
+        "registreer besigheid vir btw",
+        "registreer maatskappy vir btw",
+        "btw registrasie",
+        "btw drempel"
+      ]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "anchor": "what-sars-wants-from-a-sole-proprietor",
+      "en": ["tax number"],
+      "af": ["belastingnommer"]
     },
     {
       "doc": "core/tax-and-sars",
@@ -67,8 +100,8 @@
     },
     {
       "doc": "paperwork/templates/privacy-notice",
-      "en": ["privacy notice"],
-      "af": ["privaatheidskennisgewing"]
+      "en": ["privacy notice", "privacy policy"],
+      "af": ["privaatheidskennisgewing", "privaatheidsbeleid"]
     },
     {
       "doc": "lookup/glossary",
@@ -97,8 +130,8 @@
     {
       "doc": "core/running-a-pty-ltd",
       "anchor": "closing-a-company-properly",
-      "en": ["close my company"],
-      "af": ["sluit my maatskappy"]
+      "en": ["close", "close my company", "close business", "deregister business"],
+      "af": ["sluit my maatskappy", "sluit besigheid", "deregistreer besigheid"]
     },
     {
       "doc": "core/what-you-need-to-sell-things",
@@ -113,7 +146,7 @@
     },
     {
       "doc": "business-types/pick-your-business-type",
-      "en": ["business type"],
+      "en": ["business type", "which business type"],
       "af": ["watter soort besigheid", "besigheidstipe"]
     },
     {
@@ -125,8 +158,8 @@
     {
       "doc": "core/register",
       "anchor": "business-bank-account",
-      "en": ["bank account"],
-      "af": ["bankrekening"]
+      "en": ["bank account", "open bank account", "open business bank account"],
+      "af": ["bankrekening", "maak bankrekening oop", "maak besigheidsbankrekening oop"]
     },
     {
       "doc": "core/paying-yourself",
@@ -137,6 +170,12 @@
       "doc": "core/working-from-home-and-safety",
       "en": ["work from home"],
       "af": ["werk van die huis af"]
+    },
+    {
+      "doc": "core/working-from-home-and-safety",
+      "anchor": "zoning",
+      "en": ["zoning"],
+      "af": ["sonering"]
     },
     {
       "doc": "lookup/checklist",

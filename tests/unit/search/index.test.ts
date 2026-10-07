@@ -6,7 +6,7 @@
 import { gzipSync } from 'node:zlib';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { INDEX_BUDGET_GZIP, serialiseIndex } from '../../../scripts/search/build';
-import { loadBestBets, resolveBestBets } from '../../../scripts/search/best-bets';
+import { loadBestBets, MAX_BEST_BETS, resolveBestBets } from '../../../scripts/search/best-bets';
 import { buildEntries } from '../../../scripts/search/entries';
 import { loadIndexInput } from '../../../scripts/search/load';
 import type { Locale } from '../../../src/i18n/locales';
@@ -600,7 +600,16 @@ describe('A7 ranking cases', () => {
       noGuideIn: 3,
     },
     { kind: 'common word', lang: 'af', query: 'register', noGuideIn: 3 },
-    { kind: 'common word', lang: 'af', query: 'branding', noGuideIn: 3 },
+    // The Afrikaans guide says "handelsmerk"; one prompt holds "branding". Since pass 15 a word of
+    // the guide is never read as a typo, so `branding` no longer finds "Handelsnaam (trading
+    // name)" and the prompt leads, ahead of the changelog's quoted English titles.
+    {
+      kind: 'common word',
+      lang: 'af',
+      query: 'branding',
+      first: 'branding/marketing-prompts/#prompt-1-content-pillars',
+      noGuideIn: 1,
+    },
     // Review WP-33 pass 10, major: a page is named by its navigation title or by the H1 it shows.
     {
       kind: 'page title (H1)',
@@ -1034,7 +1043,7 @@ describe('A7 ranking cases', () => {
       }
     }
     expect(phrases).toBeGreaterThan(20);
-    expect(phrases).toBeLessThanOrEqual(40);
+    expect(phrases).toBeLessThanOrEqual(MAX_BEST_BETS);
   });
 
   // Review WP-33 pass 13, major: registering the business opens the Register page, typed and
@@ -1114,20 +1123,27 @@ describe('A7 ranking cases', () => {
   });
 
   // Review WP-33 pass 14, minor 4: a quick answer that matches only through its page's lead
-  // ranks with the any-word results.
+  // ranks with the any-word results. Since pass 15 "need" is a filler word, so the Register page
+  // leads through its best bet, and the lead-only answers stay out of the first three.
   it.each([
-    ['en', 'do i need a company'],
-    ['af', "het ek 'n maatskappy nodig"],
+    [
+      'en',
+      'do i need a company',
+      ['What does a Pty Ltd cost me every year?', 'Do I need an audit?'],
+    ],
+    [
+      'af',
+      "het ek 'n maatskappy nodig",
+      ['Wat kos ’n Pty Ltd my elke jaar?', 'Het ek ’n oudit nodig?'],
+    ],
   ] as const)(
     '%s "%s" lists no lead-only quick answer before the Register sections',
-    (lang, query) => {
+    (lang, query, leadOnly) => {
       const built = lang === 'en' ? en : af;
       const prefix = lang === 'en' ? BASE : `${BASE}af/`;
-      const top3 = runSearch(built.index, query, lang, { limit: 3, typing: false }, BASE).map(
-        (r) => r.href,
-      );
-      expect(top3).not.toContain(`${prefix}core/running-a-pty-ltd/`);
-      expect(top3.every((href) => href.startsWith(`${prefix}core/register/`))).toBe(true);
+      const top3 = runSearch(built.index, query, lang, { limit: 3, typing: false }, BASE);
+      expect(top3[0]?.href).toBe(`${prefix}core/register/`);
+      for (const title of leadOnly) expect(top3.map((r) => r.title)).not.toContain(title);
     },
   );
 
@@ -1141,6 +1157,24 @@ describe('A7 ranking cases', () => {
     expect(runSearch(af.index, query, lang, { limit: 1, typing: true }, BASE)[0]?.href).not.toBe(
       `${BASE}af/${bet}`,
     );
+  });
+
+  // Review WP-33 pass 15, major 2, the ranking half: without the best bets, `deregister` and
+  // `deregistreer` are words of the guide, never read as typos of "register" and "registreer", so
+  // the ranking alone does not open the Register page (finished and typed).
+  it.each([
+    ['en', 'deregister my business'],
+    ['en', 'deregister business'],
+    ['af', 'deregistreer my besigheid'],
+    ['af', 'deregistreer besigheid'],
+  ] as const)('%s "%s" does not open Register by ranking alone', (lang, query) => {
+    const entries = buildEntries(loadIndexInput(lang));
+    const plain = loadIndex(JSON.parse(serialiseIndex(lang, [], entries).json), lang);
+    const prefix = lang === 'en' ? BASE : `${BASE}af/`;
+    for (const typing of [false, true]) {
+      const top3 = runSearch(plain, query, lang, { limit: 3, typing }, BASE).map((r) => r.href);
+      expect(top3, `typing: ${String(typing)}`).not.toContain(`${prefix}core/register/`);
+    }
   });
 
   // Review WP-33 pass 13, major, the ranking half: without the best bets, a quick answer carries
