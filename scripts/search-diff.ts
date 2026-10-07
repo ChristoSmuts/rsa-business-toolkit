@@ -9,7 +9,8 @@
  * `docs/reviews/WP-33-pass*.md`, each in both languages, and generated phrasings that use a law,
  * source or naming word in other senses ("<noun> law", "regulations for <noun>", "official
  * <noun>", "come up with a <noun>"; `PHRASINGS`) over the guide's main nouns (review WP-33 pass
- * 18: a word-list rule slipped past a corpus without them).
+ * 18: a word-list rule slipped past a corpus without them), and every phrase that has ever been a
+ * best bet or a page keyword, read from the git history of their files (pass 19).
  *
  * Each change is classified when it can be: `better` or `worse` when the query is an acceptance
  * row (its target first or not) or a title (that entry first or not), `same-target` when both
@@ -22,6 +23,10 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 
 type Lang = 'en' | 'af';
+interface HistoryFile {
+  readonly bets?: readonly { readonly en?: readonly string[]; readonly af?: readonly string[] }[];
+  readonly pages?: readonly { readonly en?: readonly string[]; readonly af?: readonly string[] }[];
+}
 interface Row {
   readonly lang: Lang;
   readonly query: string;
@@ -205,6 +210,24 @@ async function corpus(): Promise<{
   for (const lang of LANGS) {
     for (const noun of NOUNS[lang]) {
       for (const phrase of PHRASINGS[lang]) queries.get(lang)?.add(phrase(noun));
+    }
+  }
+  // Every phrase that has ever been a best bet or a page keyword, from the files' git history, so
+  // a removed bet shows up as a change (review WP-33 pass 19, major 1).
+  for (const [file, lists] of [
+    ['content-meta/search-best-bets.json', (json: HistoryFile) => json.bets ?? []],
+    ['content-meta/search-keywords.json', (json: HistoryFile) => json.pages ?? []],
+  ] as const) {
+    const commits = execFileSync('git', ['log', '--format=%H', '--', file], { cwd: ROOT })
+      .toString()
+      .split('\n')
+      .filter((line) => line !== '');
+    for (const commit of commits) {
+      const text = execFileSync('git', ['show', `${commit}:${file}`], { cwd: ROOT }).toString();
+      for (const item of lists(JSON.parse(text) as HistoryFile)) {
+        for (const lang of LANGS)
+          for (const phrase of item[lang] ?? []) queries.get(lang)?.add(phrase);
+      }
     }
   }
   const reviews = path.join(ROOT, 'docs/reviews');

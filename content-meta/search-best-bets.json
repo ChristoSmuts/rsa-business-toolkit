@@ -1,5 +1,5 @@
 {
-  "$comment": "Search best bets: common owner phrasings that must open one page first, whatever the ranking does. See content-meta/README.md. Keep it short: under about 40 phrases per language, and only a phrase the guide has one obvious page for.",
+  "$comment": "Search best bets: common owner phrasings that must open one page first, whatever the ranking does. See content-meta/README.md. Keep it short: under about 120 phrases per language, and only a phrase the guide has one obvious page for.",
   "filler": {
     "en": [
       "my",
@@ -20,7 +20,16 @@
       "show",
       "send",
       "give",
-      "am"
+      "am",
+      "law",
+      "laws",
+      "regulation",
+      "regulations",
+      "by-laws",
+      "rules",
+      "says",
+      "say",
+      "about"
     ],
     "af": [
       "my",
@@ -37,7 +46,12 @@
       "hê",
       "soek",
       "asseblief",
-      "se"
+      "wet",
+      "wette",
+      "regulasies",
+      "regulasie",
+      "reëls",
+      "verordeninge"
     ]
   },
   "bets": [
@@ -163,7 +177,7 @@
       "doc": "core/running-a-pty-ltd",
       "anchor": "4-sars-company-tax",
       "en": ["company tax rate", "company tax"],
-      "af": ["maatskappybelasting"]
+      "af": ["maatskappybelasting", "maatskappybelastingkoers"]
     },
     {
       "doc": "core/running-a-pty-ltd",
@@ -213,7 +227,8 @@
         "bankrekening",
         "maak bankrekening oop",
         "bankrekening oopmaak",
-        "eenmansaak bankrekening"
+        "eenmansaak bankrekening",
+        "maak besigheidsbankrekening oop"
       ]
     },
     {
@@ -224,8 +239,8 @@
     {
       "doc": "core/paying-yourself",
       "anchor": "option-2-dividend",
-      "en": ["dividend"],
-      "af": ["dividend"]
+      "en": ["dividend", "dividends"],
+      "af": ["dividend", "dividende"]
     },
     {
       "doc": "core/working-from-home-and-safety",
@@ -234,8 +249,8 @@
     },
     {
       "doc": "core/vehicles",
-      "en": ["vehicle"],
-      "af": ["voertuig"]
+      "en": ["vehicle", "vehicles"],
+      "af": ["voertuig", "voertuie"]
     },
     {
       "doc": "core/vehicles",
@@ -257,7 +272,9 @@
         "choose business name",
         "choosing business name",
         "call business",
-        "naming business"
+        "naming business",
+        "choose name for business",
+        "come up with business name"
       ],
       "af": [
         "besigheidsnaam",
@@ -265,7 +282,9 @@
         "noem besigheid",
         "kies besigheidsnaam",
         "naam as besigheidsnaam",
-        "kom aan besigheidsnaam"
+        "kom aan besigheidsnaam",
+        "kies naam besigheid",
+        "besigheid se naam"
       ]
     },
     {
@@ -317,7 +336,7 @@
     {
       "doc": "lookup/sources",
       "en": ["where does this come from", "where does this information come from"],
-      "af": ["waar kom dit vandaan", "verwysings"]
+      "af": ["waar kom dit vandaan", "verwysings", "waar kom die inligting vandaan"]
     },
     {
       "doc": "lookup/sources",
@@ -328,8 +347,8 @@
     {
       "doc": "lookup/glossary",
       "anchor": "registered-name",
-      "en": ["official name", "official business name"],
-      "af": ["amptelike naam", "amptelike besigheidsnaam"]
+      "en": ["official name", "official business name", "company name"],
+      "af": ["amptelike naam", "amptelike besigheidsnaam", "maatskappy se naam", "maatskappy naam"]
     },
     {
       "doc": "paperwork/which-template-to-use-when",
@@ -339,8 +358,54 @@
     {
       "doc": "business-types/pick-your-business-type",
       "anchor": "what-everyone-needs-regardless-of-type",
-      "en": ["laws apply"],
-      "af": ["watter wette geld"]
+      "en": ["laws apply", "which laws apply", "laws apply business", "which laws apply business"],
+      "af": [
+        "watter wette geld",
+        "watter wette geld besigheid",
+        "wette geld besigheid",
+        "wette geld"
+      ]
+    },
+    {
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "the-general-rule",
+      "en": ["municipal by-laws", "local by-laws", "by-laws"],
+      "af": ["munisipale verordeninge", "plaaslike verordeninge", "verordeninge"]
+    },
+    {
+      "doc": "business-types/retail-online",
+      "en": ["retail and online"],
+      "af": ["kleinhandel en aanlyn"]
+    },
+    {
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "en": ["employment"],
+      "af": ["indiensneming"]
+    },
+    {
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-food",
+      "en": ["food regulations"],
+      "af": ["regulasies kos"]
+    },
+    {
+      "doc": "business-types/retail-online",
+      "anchor": "importing-stock",
+      "en": ["source stock", "where do i source stock"],
+      "af": ["voorraad kry", "waar kry ek voorraad"]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "anchor": "what-sars-wants-from-a-sole-proprietor",
+      "en": ["source of income"],
+      "af": ["bron van inkomste"]
+    },
+    {
+      "doc": "core/you-are-the-business",
+      "anchor": "getting-paid",
+      "en": ["getting paid", "getting paid business"],
+      "af": ["betaal word", "betaal word besigheid"]
     }
   ]
 }

@@ -2027,8 +2027,7 @@
       "anchor": "the-general-rule",
       "need": "first",
       "notFirst": ["lookup/sources"],
-      "from": "pass 18 major 2",
-      "onlyLang": "The Afrikaans word, \"munisipale verordeninge\", first finds the vehicle signage section, which names them for signs; not yet covered in Afrikaans (pass 18)."
+      "from": "pass 18 major 2"
     },
     {
       "lang": "en",
@@ -2192,6 +2191,265 @@
       "notFirst": ["lookup/sources"],
       "from": "pass 18 major 3: counterpart",
       "onlyLang": "Its Afrikaans counterpart, \"verwysing\", opens the tax invoice's identical \"Payment details\" section (row pass 18 major 1)."
+    },
+    {
+      "lang": "en",
+      "query": "dividends",
+      "doc": "core/paying-yourself",
+      "anchor": "option-2-dividend",
+      "need": "first",
+      "notFirst": ["lookup/glossary#dividends-tax"],
+      "from": "pass 19 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "choose a name for my business",
+      "doc": "branding/branding-prompts",
+      "anchor": "prompt-3-the-name",
+      "need": "first",
+      "notFirst": ["core/register#which-one-should-you-choose"],
+      "from": "pass 19 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "what is the company tax rate",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "4-sars-company-tax",
+      "need": "first",
+      "from": "pass 19 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "can i act as a company",
+      "doc": "core/running-a-pty-ltd",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 19 major 3"
+    },
+    {
+      "lang": "en",
+      "query": "act for a company",
+      "doc": "core/running-a-pty-ltd",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 19 major 3"
+    },
+    {
+      "lang": "en",
+      "query": "act on credit",
+      "doc": "business-types/vehicle-dealer",
+      "anchor": "if-you-extend-credit-yourself",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 19 major 3"
+    },
+    {
+      "lang": "en",
+      "query": "act on food",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-food",
+      "need": "top3",
+      "firstIn": ["lookup/glossary#businesses-act-licence"],
+      "notFirst": ["lookup/sources"],
+      "from": "pass 19 major 3"
+    },
+    {
+      "lang": "en",
+      "query": "tax law",
+      "doc": "core/tax-and-sars",
+      "need": "first",
+      "notFirst": ["business-types/vehicle-dealer"],
+      "from": "pass 19 major 4"
+    },
+    {
+      "lang": "en",
+      "query": "sars law",
+      "doc": "lookup/glossary",
+      "anchor": "sars",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 19 major 4: as bare sars"
+    },
+    {
+      "lang": "en",
+      "query": "sars regulations",
+      "doc": "lookup/glossary",
+      "anchor": "sars",
+      "need": "first",
+      "notFirst": ["lookup/sources", "business-types/vehicle-dealer"],
+      "from": "pass 19 major 4: as bare sars"
+    },
+    {
+      "lang": "en",
+      "query": "by-laws",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "the-general-rule",
+      "need": "first",
+      "notFirst": ["branding/brand-applications-and-polish#5-vehicle-signage"],
+      "from": "pass 19 major 4"
+    },
+    {
+      "lang": "en",
+      "query": "local by-laws",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "the-general-rule",
+      "need": "first",
+      "notFirst": ["branding/brand-applications-and-polish#5-vehicle-signage"],
+      "from": "pass 19 major 4"
+    },
+    {
+      "lang": "en",
+      "query": "licensing law",
+      "doc": "lookup/sources",
+      "anchor": "business-licensing",
+      "need": "first",
+      "notFirst": ["lookup/glossary#fais"],
+      "from": "pass 19 major 4",
+      "onlyLang": "Afrikaans has no separate noun for \"licensing\" here: its row \"lisensie wet\" ranks as bare \"lisensie\" and opens What you need to sell things."
+    },
+    {
+      "lang": "en",
+      "query": "records law",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "records-the-company-must-keep",
+      "need": "first",
+      "notFirst": ["paperwork/templates/privacy-notice"],
+      "from": "pass 19 major 4"
+    },
+    {
+      "lang": "en",
+      "query": "vehicle dealer business",
+      "doc": "business-types/vehicle-dealer",
+      "need": "first",
+      "notFirst": ["lookup/checklist#vehicle-dealer"],
+      "from": "pass 19 major 5"
+    },
+    {
+      "lang": "en",
+      "query": "vehicle dealer for my business",
+      "doc": "business-types/vehicle-dealer",
+      "need": "first",
+      "notFirst": ["lookup/checklist#vehicle-dealer"],
+      "from": "pass 19 major 5"
+    },
+    {
+      "lang": "en",
+      "query": "services and trades for my business",
+      "doc": "business-types/services-trades",
+      "need": "first",
+      "notFirst": ["lookup/checklist#services-and-trades"],
+      "from": "pass 19 major 5"
+    },
+    {
+      "lang": "en",
+      "query": "company name",
+      "doc": "lookup/glossary",
+      "anchor": "registered-name",
+      "need": "first",
+      "notFirst": ["core/adding-new-lines"],
+      "from": "pass 19 major 5"
+    },
+    {
+      "lang": "en",
+      "query": "which laws apply to me",
+      "doc": "business-types/pick-your-business-type",
+      "anchor": "what-everyone-needs-regardless-of-type",
+      "need": "first",
+      "notFirst": ["core/vehicles"],
+      "from": "pass 19 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "what laws apply to my business",
+      "doc": "business-types/pick-your-business-type",
+      "anchor": "what-everyone-needs-regardless-of-type",
+      "need": "first",
+      "notFirst": ["business-types/food"],
+      "from": "pass 19 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "where do i source stock",
+      "doc": "business-types/retail-online",
+      "anchor": "importing-stock",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 19 minor 3"
+    },
+    {
+      "lang": "en",
+      "query": "source of income",
+      "doc": "core/tax-and-sars",
+      "anchor": "what-sars-wants-from-a-sole-proprietor",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 19 minor 3"
+    },
+    {
+      "lang": "en",
+      "query": "retail and online",
+      "doc": "business-types/retail-online",
+      "need": "first",
+      "notFirst": ["lookup/checklist#retail-and-online"],
+      "from": "pass 19 minor 4"
+    },
+    {
+      "lang": "en",
+      "query": "getting paid for my business",
+      "doc": "core/you-are-the-business",
+      "anchor": "getting-paid",
+      "need": "first",
+      "notFirst": ["business-types/professional-creative"],
+      "from": "pass 19 regression diff"
+    },
+    {
+      "lang": "en",
+      "query": "bee act",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "bbbee act",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "ohsa",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "nca",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "ect act",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "tax source",
+      "doc": "lookup/sources",
+      "anchor": "tax-and-sars",
+      "need": "first",
+      "notFirst": ["core/paying-yourself"],
+      "from": "pass 19 minor 3"
     },
     {
       "lang": "af",
@@ -4068,6 +4326,368 @@
       "anchor": "you-need-a-municipal-licence",
       "need": "first",
       "from": "pass 18 major 3: counterpart"
+    },
+    {
+      "lang": "af",
+      "query": "dividende",
+      "doc": "core/paying-yourself",
+      "anchor": "option-2-dividend",
+      "need": "first",
+      "from": "pass 19 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "kies naam besigheid",
+      "doc": "branding/branding-prompts",
+      "anchor": "prompt-3-the-name",
+      "need": "first",
+      "notFirst": ["core/register#which-one-should-you-choose"],
+      "from": "pass 19 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "kies 'n naam vir my besigheid",
+      "doc": "branding/branding-prompts",
+      "anchor": "prompt-3-the-name",
+      "need": "first",
+      "notFirst": ["core/register#which-one-should-you-choose"],
+      "from": "pass 19 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "maatskappybelastingkoers",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "4-sars-company-tax",
+      "need": "first",
+      "notFirst": ["core/adding-new-lines"],
+      "from": "pass 19 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "wat is die maatskappybelastingkoers",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "4-sars-company-tax",
+      "need": "first",
+      "notFirst": ["core/adding-new-lines"],
+      "from": "pass 19 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "maak besigheidsbankrekening oop",
+      "doc": "core/register",
+      "anchor": "business-bank-account",
+      "need": "first",
+      "from": "pass 19 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "waar kom die inligting vandaan",
+      "doc": "lookup/sources",
+      "need": "first",
+      "from": "pass 19 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "wette geld",
+      "doc": "business-types/pick-your-business-type",
+      "anchor": "what-everyone-needs-regardless-of-type",
+      "need": "first",
+      "from": "pass 19 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "wet op krediet",
+      "doc": "business-types/vehicle-dealer",
+      "anchor": "if-you-extend-credit-yourself",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 19 major 3"
+    },
+    {
+      "lang": "af",
+      "query": "belasting wet",
+      "doc": "core/tax-and-sars",
+      "need": "first",
+      "notFirst": ["business-types/vehicle-dealer"],
+      "from": "pass 19 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "sars wet",
+      "doc": "lookup/glossary",
+      "anchor": "sars",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 19 major 4: as bare sars"
+    },
+    {
+      "lang": "af",
+      "query": "regulasies vir sars",
+      "doc": "lookup/glossary",
+      "anchor": "sars",
+      "need": "first",
+      "notFirst": ["lookup/sources", "business-types/vehicle-dealer"],
+      "from": "pass 19 major 4: as bare sars"
+    },
+    {
+      "lang": "af",
+      "query": "verordeninge",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "the-general-rule",
+      "need": "first",
+      "notFirst": ["branding/brand-applications-and-polish#5-vehicle-signage"],
+      "from": "pass 19 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "plaaslike verordeninge",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "the-general-rule",
+      "need": "first",
+      "notFirst": ["branding/brand-applications-and-polish#5-vehicle-signage"],
+      "from": "pass 19 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "munisipale verordeninge",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "the-general-rule",
+      "need": "first",
+      "notFirst": ["branding/brand-applications-and-polish#5-vehicle-signage"],
+      "from": "pass 19 minor 1"
+    },
+    {
+      "lang": "af",
+      "query": "lisensie wet",
+      "doc": "core/what-you-need-to-sell-things",
+      "need": "first",
+      "notFirst": ["lookup/glossary#fais"],
+      "from": "pass 19 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "rekords wet",
+      "doc": "core/tax-and-sars",
+      "anchor": "records",
+      "need": "first",
+      "notFirst": ["paperwork/which-template-to-use-when#template-5-privacy-notice-popia"],
+      "from": "pass 19 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "wat die wet oor rekords sê",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "records-the-company-must-keep",
+      "need": "first",
+      "notFirst": ["paperwork/which-template-to-use-when#template-5-privacy-notice-popia"],
+      "from": "pass 19 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "voertuighandelaar besigheid",
+      "doc": "business-types/vehicle-dealer",
+      "need": "first",
+      "notFirst": ["lookup/checklist#vehicle-dealer"],
+      "from": "pass 19 major 5"
+    },
+    {
+      "lang": "af",
+      "query": "dienste en ambagte vir my besigheid",
+      "doc": "business-types/services-trades",
+      "need": "first",
+      "notFirst": ["lookup/checklist#services-and-trades"],
+      "from": "pass 19 major 5"
+    },
+    {
+      "lang": "af",
+      "query": "maatskappy se naam",
+      "doc": "lookup/glossary",
+      "anchor": "registered-name",
+      "need": "first",
+      "notFirst": ["core/adding-new-lines"],
+      "from": "pass 19 major 5"
+    },
+    {
+      "lang": "af",
+      "query": "my maatskappy se naam",
+      "doc": "lookup/glossary",
+      "anchor": "registered-name",
+      "need": "first",
+      "notFirst": ["core/adding-new-lines"],
+      "from": "pass 19 major 5"
+    },
+    {
+      "lang": "af",
+      "query": "wat is my maatskappy se naam",
+      "doc": "lookup/glossary",
+      "anchor": "registered-name",
+      "need": "first",
+      "notFirst": ["core/adding-new-lines"],
+      "from": "pass 19 major 5"
+    },
+    {
+      "lang": "af",
+      "query": "watter wette geld vir my besigheid",
+      "doc": "business-types/pick-your-business-type",
+      "anchor": "what-everyone-needs-regardless-of-type",
+      "need": "first",
+      "from": "pass 19 minor 2"
+    },
+    {
+      "lang": "af",
+      "query": "waar kry ek voorraad",
+      "doc": "business-types/retail-online",
+      "anchor": "importing-stock",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 19 minor 3"
+    },
+    {
+      "lang": "af",
+      "query": "bron van inkomste",
+      "doc": "core/tax-and-sars",
+      "anchor": "what-sars-wants-from-a-sole-proprietor",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 19 minor 3"
+    },
+    {
+      "lang": "af",
+      "query": "kleinhandel en aanlyn",
+      "doc": "business-types/retail-online",
+      "need": "first",
+      "notFirst": ["lookup/checklist#retail-and-online"],
+      "from": "pass 19 minor 4"
+    },
+    {
+      "lang": "af",
+      "query": "betaal word vir my besigheid",
+      "doc": "core/you-are-the-business",
+      "anchor": "getting-paid",
+      "need": "first",
+      "notFirst": ["business-types/professional-creative"],
+      "from": "pass 19 regression diff"
+    },
+    {
+      "lang": "af",
+      "query": "wet op besighede",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "nasionale padverkeerswet",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "nasionale kredietwet",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "ekt-wet",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "wet op voedingsmiddels",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "wet op tweedehandse goedere",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "wet op beskerming van persoonlike inligting",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "wet op beroepsgesondheid en veiligheid",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "wet op maatskappye",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "inkomstebelasting wet",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "b-bbee-wet",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "fais-wet",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "wet op belasting op toegevoegde waarde",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "wet op elektroniese kommunikasie en transaksies",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 19 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "belasting bron",
+      "doc": "lookup/sources",
+      "anchor": "tax-and-sars",
+      "need": "first",
+      "notFirst": ["core/paying-yourself"],
+      "from": "pass 19 minor 3"
     }
   ]
 }

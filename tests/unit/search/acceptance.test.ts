@@ -91,11 +91,11 @@ function loaded(lang: Locale): { index: LoadedIndex; entries: SearchEntry[] } {
 }
 
 describe('search acceptance set: the file', () => {
-  it('holds about 150 to 320 rows per language, each query once per language', () => {
+  it('holds about 150 to 400 rows per language, each query once per language', () => {
     for (const lang of ['en', 'af'] as const) {
       const rows = ROWS.filter((row) => row.lang === lang);
       expect(rows.length).toBeGreaterThanOrEqual(150);
-      expect(rows.length).toBeLessThanOrEqual(320);
+      expect(rows.length).toBeLessThanOrEqual(400);
       const queries = rows.map((row) => row.query.toLowerCase());
       expect(new Set(queries).size).toBe(queries.length);
     }

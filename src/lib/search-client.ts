@@ -593,11 +593,11 @@ export function runSearchCounted(
   // A query about sources (`sources`, `companies act`, `waar kom dit vandaan`) keeps the sources
   // register at full weight; any other query weighs it as `REFERENCE_WEIGHT` says (review WP-33
   // pass 17, major 1).
-  const asksSource = raw.some((part) =>
-    (typeof part === 'string' ? [part] : 'hyphen' in part ? part.hyphen : []).some((word) =>
-      SOURCE_WORDS.has(word),
-    ),
-  );
+  // Only when the source word ends the query, as a noun (`sources`, `what is the source`, `tax
+  // source`, `bron`): followed by what is sourced (`where do i source stock`, `source of income`)
+  // it means something else (review WP-33 pass 19, minor 3).
+  const lastRaw = raw.at(-1);
+  const asksSource = typeof lastRaw === 'string' && SOURCE_WORDS.has(lastRaw);
   const searchOptions = {
     bm25: BM25,
     prefix,
@@ -622,20 +622,23 @@ export function runSearchCounted(
   // still being typed may begin another word (`can` of "cancel") and stays; a two-letter one
   // (`hê`, read "he") is too short to say so (pass 16, major 4). A query of filler words only
   // searches for them.
-  const fillerWords = new Set(index.filler ?? []);
-  const content = raw.filter(
-    (part, at) =>
-      typeof part !== 'string' ||
-      !fillerWords.has(part) ||
-      (typing && at === raw.length - 1 && part.length >= 3),
-  );
-  const parts = content.length > 0 ? content : raw;
   /** `true` when the guide holds this word exactly, as written. */
   const inGuide = (word: string): boolean =>
     index.search.search(
       { combineWith: 'OR', queries: [word], prefix: false, fuzzy: false },
       { fields: [...SEARCH_FIELDS] },
     ).length > 0;
+  // A typed filler word that is already a whole word of the guide (`law`, `wet`) is read as that
+  // word, so it is dropped while typed too: `sars law` ranks as `sars` (review WP-33 pass 19,
+  // major 4).
+  const fillerWords = new Set(index.filler ?? []);
+  const content = raw.filter(
+    (part, at) =>
+      typeof part !== 'string' ||
+      !fillerWords.has(part) ||
+      (typing && at === raw.length - 1 && part.length >= 3 && !inGuide(part)),
+  );
+  const parts = content.length > 0 ? content : raw;
   // The query's words that are words of the guide: never read as a typo of another word.
   const whole = new Set(
     parts
@@ -822,13 +825,9 @@ export function runSearchCounted(
       .join(' ');
   const typedQuery = asTyped(query);
   // Several headings wholly in the query: the one that names more of it first (`sole proprietor
-  // bank account` → "Business bank account", not "Sole proprietor"; review WP-33 pass 18, minor 1);
-  // between two that name as much, one not on a business-type page, which applies to one kind of
-  // business only (`home office deduction` → Working from home's, not Professional and creative
-  // work's), then in rank order. A heading wholly in the query that names as many of its words is
-  // as long as the other, so "longer" adds nothing here.
-  const typePage = (hit: MiniSearchResult): number =>
-    String(hit['d']).startsWith('business-types/') ? 1 : 0;
+  // bank account` → "Business bank account", not "Sole proprietor"; review WP-33 pass 18, minor 1),
+  // then in rank order. (Pass 18's preference for a heading off a business-type page put the
+  // checklist before the type's own page and was taken out in pass 19.)
   const containedFirst = listed
     .filter((hit) => contained.has(hit.id) && !fully.has(hit.id))
     .map((hit, at) => ({
@@ -836,7 +835,7 @@ export function runSearchCounted(
       at,
       words: titleWords(String(hit['t'])).length,
     }))
-    .sort((a, b) => b.words - a.words || typePage(a.hit) - typePage(b.hit) || a.at - b.at)
+    .sort((a, b) => b.words - a.words || a.at - b.at)
     .map(({ hit }) => hit);
   const exact = new Set(
     lifted
@@ -918,14 +917,25 @@ export function runSearchCounted(
   // in whole words, opens the sources register's entry that lists it (`index.acts`, built from
   // the register's own data; review WP-33 pass 18, major 2). A law word alone (`law`, `act`,
   // `regulasies`) is not an Act name and is ranked like any word.
-  const actWords = parts
+  // The words in order, as typed: a filler word stays when an Act name holds it (`maatskappy wet`),
+  // and a trailing number and year (`71 of 2008`) are dropped. An Act name matches only word for
+  // word, in order: `can i act as a company` is not "Companies Act" (review WP-33 pass 19, major 3).
+  const actVocabulary = new Set((index.acts ?? []).flatMap((entry) => entry.w));
+  const typedWords = raw
     .flatMap((part) =>
       typeof part === 'string' ? [part] : 'code' in part ? part.code : part.hyphen,
     )
-    .filter((word) => !/^\d+$/u.test(word));
+    .filter((word) => !fillerWords.has(word) || actVocabulary.has(word));
+  while (typedWords.length > 0 && /^\d+$/u.test(typedWords.at(-1) ?? '')) typedWords.pop();
+  const sameWords = (a: readonly string[], b: readonly string[]): boolean =>
+    a.length === b.length && a.every((word, at) => word === b[at]);
   const act = (index.acts ?? []).find(
     (entry) =>
-      entry.w.length === new Set(actWords).size && entry.w.every((word) => actWords.includes(word)),
+      sameWords(entry.w, typedWords) ||
+      // A name given without "act" / "wet" (`ohsa`) may be typed with it (`ohsa act`).
+      (['act', 'wet'].includes(typedWords.at(-1) ?? '') &&
+        !['act', 'wet'].includes(entry.w.at(-1) ?? '') &&
+        sameWords(entry.w, typedWords.slice(0, -1))),
   );
   const actEntry =
     act === undefined

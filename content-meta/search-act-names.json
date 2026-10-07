@@ -4,62 +4,81 @@
     {
       "id": "income-tax-act-58-of-1962",
       "en": [],
-      "af": ["inkomstebelastingwet"]
+      "af": ["inkomstebelastingwet", "inkomstebelasting wet", "wet op inkomstebelasting"]
     },
     {
       "id": "value-added-tax-act-89-of-1991",
-      "en": ["vat act"],
-      "af": ["btw-wet"]
+      "en": ["vat act", "value added tax act"],
+      "af": ["btw-wet", "btw wet", "wet op belasting op toegevoegde waarde"]
     },
     {
       "id": "companies-act-71-of-2008",
       "en": ["company act"],
-      "af": ["maatskappywet", "maatskappy wet"]
+      "af": ["maatskappywet", "maatskappy wet", "wet op maatskappye", "maatskappyewet"]
     },
     {
       "id": "consumer-protection-act-68-of-2008",
-      "en": [],
+      "en": ["cpa act"],
       "af": ["verbruikersbeskermingswet", "wet op verbruikersbeskerming"]
     },
     {
       "id": "protection-of-personal-information-act-4-of-2013",
       "en": ["popi act", "popia act"],
-      "af": ["privaatheidswet"]
+      "af": [
+        "privaatheidswet",
+        "popi-wet",
+        "popia-wet",
+        "wet op beskerming van persoonlike inligting"
+      ]
     },
     {
       "id": "businesses-act-71-of-1991",
       "en": [],
-      "af": ["besigheidswet"]
+      "af": ["besigheidswet", "wet op besighede"]
     },
     {
       "id": "foodstuffs-cosmetics-and-disinfectants-act-54-of-1972",
       "en": ["foodstuffs act", "food act"],
-      "af": []
+      "af": [
+        "wet op voedingsmiddels",
+        "voedselwet",
+        "wet op voedingsmiddels skoonheidsmiddels en ontsmettingsmiddels"
+      ]
     },
     {
       "id": "national-road-traffic-act-93-of-1996",
       "en": ["road traffic act"],
-      "af": ["padverkeerswet"]
+      "af": ["padverkeerswet", "nasionale padverkeerswet"]
     },
     {
       "id": "national-credit-act-34-of-2005",
-      "en": ["credit act"],
-      "af": ["kredietwet"]
+      "en": ["credit act", "nca"],
+      "af": ["kredietwet", "nasionale kredietwet"]
     },
     {
       "id": "financial-advisory-and-intermediary-services-act-37-of-2002",
       "en": ["fais act"],
-      "af": []
+      "af": ["fais-wet"]
     },
     {
       "id": "broad-based-black-economic-empowerment-act-53-of-2003",
-      "en": ["b-bbee act"],
-      "af": []
+      "en": ["b-bbee act", "bee act", "bbbee act"],
+      "af": ["b-bbee-wet", "bee-wet", "wet op breë basis swart ekonomiese bemagtiging"]
     },
     {
       "id": "occupational-health-and-safety-act-85-of-1993",
-      "en": ["ohs act"],
-      "af": []
+      "en": ["ohs act", "ohsa"],
+      "af": ["wet op beroepsgesondheid en veiligheid"]
+    },
+    {
+      "id": "electronic-communications-and-transactions-act-25-of-2002",
+      "en": ["ect act", "ecta act"],
+      "af": ["ekt-wet", "wet op elektroniese kommunikasie en transaksies"]
+    },
+    {
+      "id": "second-hand-goods-act-6-of-2009",
+      "en": [],
+      "af": ["wet op tweedehandse goedere", "tweedehandse goedere wet"]
     }
   ]
 }

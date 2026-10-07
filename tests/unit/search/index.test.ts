@@ -6,6 +6,7 @@
 import { gzipSync } from 'node:zlib';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { INDEX_BUDGET_GZIP, serialiseIndex } from '../../../scripts/search/build';
+import { actShortName, loadActNames, registerActs } from '../../../scripts/search/acts';
 import { loadBestBets, MAX_BEST_BETS, resolveBestBets } from '../../../scripts/search/best-bets';
 import { buildEntries } from '../../../scripts/search/entries';
 import { loadIndexInput } from '../../../scripts/search/load';
@@ -1158,6 +1159,39 @@ describe('A7 ranking cases', () => {
       `${BASE}af/${bet}`,
     );
   });
+
+  // Review WP-33 pass 19, major 2: every Act in the register opens "Legislation this toolkit
+  // relies on" by its English name and every alias, in both indexes (Afrikaans aliases in the
+  // Afrikaans one), finished and typed, also with its number and year.
+  it.each(['en', 'af'] as const)(
+    '%s: every register Act opens the Legislation entry by name',
+    (lang) => {
+      const built = lang === 'en' ? en : af;
+      const names = loadActNames();
+      const target = `${BASE}${lang === 'en' ? '' : 'af/'}sources/#legislation-this-toolkit-relies-on`;
+      const misses: string[] = [];
+      let asked = 0;
+      for (const act of registerActs(lang)) {
+        const extra = names.acts.find((entry) => entry.id === act.id);
+        const queries = [
+          actShortName(act.name),
+          act.name,
+          ...(extra?.en ?? []),
+          ...(lang === 'af' ? (extra?.af ?? []) : []),
+        ];
+        for (const query of queries) {
+          for (const typing of [false, true]) {
+            asked++;
+            const first = runSearch(built.index, query, lang, { limit: 1, typing }, BASE)[0];
+            if (first?.href !== target)
+              misses.push(`${query} (typing: ${String(typing)}) -> ${first?.href ?? 'none'}`);
+          }
+        }
+      }
+      expect(asked).toBeGreaterThan(40);
+      expect(misses).toEqual([]);
+    },
+  );
 
   // Review WP-33 pass 17, major 5: "what is" / "wat is" plus a glossary term, or the alias in its
   // brackets, opens that glossary entry first, finished and typed, for every term in both languages.
