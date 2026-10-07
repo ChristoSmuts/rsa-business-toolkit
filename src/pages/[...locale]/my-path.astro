@@ -246,21 +246,26 @@ const progressTemplate = t('myPath.progress', { done: '{done}', total: '{total}'
 </script>
 
 <style is:global>
-  /* `theme-init.js` sets `data-st-profile` before paint when answers are saved: no empty state flash. */
-  html[data-st-profile] st-my-path:not([data-ready]) .st-my-path__empty {
-    visibility: hidden;
-    animation: st-my-path-reveal 0s 1s forwards;
+  /*
+   * `theme-init.js` sets `data-st-profile` before paint when valid answers are saved, so a reader
+   * with answers never sees "You have not answered the questions yet", however slowly the module
+   * loads (review WP-31 pass 5, minor 2). If the module fails to load (`data-st-script-failed`
+   * names "my-path"), the empty state with "Find my path" shows rather than a blank page (pass 1,
+   * minor 5).
+   */
+  html[data-st-profile]:not([data-st-script-failed~='my-path'])
+    st-my-path:not([data-ready])
+    .st-my-path__empty {
+    display: none;
   }
 
   /*
-   * If the module never runs (a dropped request on a poor connection), the empty state with "Find
-   * my path" comes back after a second rather than leaving a blank page (review WP-31 pass 1,
-   * minor 5). Visibility, not motion, so reduced motion does not apply.
+   * Until the path is drawn, keep a screen's height for it, so the footer is already below the
+   * fold and nothing visible moves when the steps appear (they are taller than that).
    */
-  @keyframes st-my-path-reveal {
-    to {
-      visibility: visible;
-    }
+  html[data-st-profile]:not([data-st-script-failed~='my-path']) st-my-path:not([data-ready]) {
+    display: block;
+    min-block-size: 100vh;
   }
 </style>
 

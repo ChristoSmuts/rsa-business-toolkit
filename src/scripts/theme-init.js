@@ -33,11 +33,17 @@
     }
   }
   root.classList.add('js');
-  // A script that fails to load: the home card gives back the space it kept (YourPathCard.astro).
+  // Scripts that fail to load, by name ("YourPathCard", "my-path"): the home card and My path stop
+  // keeping space for what they cannot draw (YourPathCard.astro, my-path.astro).
   window.addEventListener(
     'error',
     function (event) {
-      if (event.target instanceof HTMLScriptElement) root.setAttribute('data-st-script-failed', '');
+      var script = event.target;
+      if (!(script instanceof HTMLScriptElement)) return;
+      var name = (script.src.split('/').pop() || '').split('.')[0] || '';
+      var failed = (root.getAttribute('data-st-script-failed') || '').split(' ');
+      if (failed.indexOf(name) < 0) failed.push(name);
+      root.setAttribute('data-st-script-failed', failed.join(' ').trim());
     },
     true,
   );

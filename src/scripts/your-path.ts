@@ -31,10 +31,19 @@ export class StYourPath extends PathElement {
   }
 
   protected override rebuild(version: string): void {
-    this.rebuilt = loadPathData().then((data) => {
-      const who = profile.get();
-      if (who && !currentView(version)) pathView.set(data.viewOf(who, version));
-    });
+    this.rebuilt = loadPathData().then(
+      (data) => {
+        this.removeAttribute('data-path-failed');
+        const who = profile.get();
+        if (who && !currentView(version)) pathView.set(data.viewOf(who, version));
+      },
+      () => {
+        // The rules did not load (a dropped request): give back the space kept for the card, and
+        // let the next trigger try again (review WP-31 pass 5, minor 1).
+        pending = undefined;
+        this.setAttribute('data-path-failed', '');
+      },
+    );
   }
 
   protected draw(view: PathView): void {

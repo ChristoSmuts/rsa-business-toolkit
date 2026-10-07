@@ -71,3 +71,25 @@ describe('theme-init’s copy of the answer lists', () => {
       expect(SOURCE).toMatch(new RegExp(`['\\s]${value}['\\s]`));
   });
 });
+
+describe('theme-init and scripts that fail to load (review WP-31 pass 5, nit 1)', () => {
+  it('names each failed script, so only the parts that need it give up', () => {
+    document.documentElement.removeAttribute('data-st-script-failed');
+    run();
+    const fail = (src: string): void => {
+      const script = document.createElement('script');
+      script.src = src;
+      document.head.append(script);
+      script.dispatchEvent(new Event('error'));
+      script.remove();
+    };
+    fail('/business-toolkit/_astro/LanguageSwitcher.astro_astro_type_script_index_0_lang.Dm.js');
+    expect(document.documentElement.getAttribute('data-st-script-failed')).toBe('LanguageSwitcher');
+    fail('/business-toolkit/_astro/YourPathCard.astro_astro_type_script_index_0_lang.BR.js');
+    expect(document.documentElement.getAttribute('data-st-script-failed')?.split(' ')).toEqual([
+      'LanguageSwitcher',
+      'YourPathCard',
+    ]);
+    document.documentElement.removeAttribute('data-st-script-failed');
+  });
+});

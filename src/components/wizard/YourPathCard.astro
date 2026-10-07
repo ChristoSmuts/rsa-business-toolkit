@@ -66,11 +66,13 @@ const resume = t('home.yourPath.continue', { n: '{n}', total: '{total}' });
   /*
    * `!important` to win over the global `[hidden] { display: none !important }`: the card keeps
    * its box, invisible and out of the accessibility tree, until the script shows or drops it, however
-   * long the module takes, so a slow load moves nothing (review WP-31 pass 4, minor 2). Only a
-   * script that failed to load (`data-st-script-failed`, set by `theme-init.js`) gives the space back,
-   * so a dropped request leaves no gap above the hero (pass 3, minor 1).
+   * long the module takes, so a slow load moves nothing (review WP-31 pass 4, minor 2). The space
+   * goes back only when the card cannot be drawn: its own module failed to load
+   * (`data-st-script-failed` names it; `theme-init.js`), or the path rules did
+   * (`data-path-failed`; `your-path.ts`). Another script failing leaves it (pass 5, minor 1, nit 1).
    */
-  html.js[data-st-profile]:not([data-st-script-failed]) st-your-path[hidden]:not([data-no-path]) {
+  html.js[data-st-profile]:not([data-st-script-failed~='YourPathCard'])
+    st-your-path[hidden]:not([data-no-path], [data-path-failed]) {
     display: block !important;
     overflow: hidden;
     visibility: hidden;

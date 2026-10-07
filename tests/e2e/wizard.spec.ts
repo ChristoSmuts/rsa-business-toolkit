@@ -240,8 +240,8 @@ test.describe('My path', () => {
       ),
     },
     async ({ page, seedStorage, baseURL }) => {
-      // The empty state is hidden for saved answers only until the module draws, and at most a
-      // second (review WP-31 pass 1, minor 5).
+      // The empty state is hidden for saved answers until the module draws; when the module
+      // fails to load, it shows (review WP-31 pass 1, minor 5; pass 5, minor 2).
       await seedStorage({ 'st.profile.v1': PROFILE });
       await routeSameOrigin(
         page,
@@ -259,6 +259,46 @@ test.describe('My path', () => {
       await expect(page.getByRole('link', { name: 'Find my path' }).last()).toBeVisible();
     },
   );
+
+  test('on a slow load, a reader with answers is never told they have none (pass 5, minor 2)', async ({
+    page,
+    seedStorage,
+    baseURL,
+  }) => {
+    test.setTimeout(30_000);
+    await seedStorage({ 'st.profile.v1': PROFILE });
+    await routeSameOrigin(
+      page,
+      baseURL,
+      (url) => url.pathname.endsWith('.js') && !url.pathname.includes('theme-init'),
+      async (route) => {
+        await new Promise((resolve) => setTimeout(resolve, 2500));
+        await route.continue();
+      },
+    );
+    await page.addInitScript(() => {
+      const w = window as unknown as { __cls: number };
+      w.__cls = 0;
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries() as (PerformanceEntry & {
+          value: number;
+          hadRecentInput: boolean;
+        })[]) {
+          if (!entry.hadRecentInput) w.__cls += entry.value;
+        }
+      }).observe({ type: 'layout-shift', buffered: true });
+    });
+    await page.goto('my-path/', { waitUntil: 'commit' });
+    const empty = page.locator('.st-my-path__empty');
+    for (const at of [1600, 2400]) {
+      await page.waitForTimeout(at === 1600 ? 1600 : 800);
+      expect(await empty.isHidden(), `empty state at ${at} ms`).toBe(true);
+    }
+    await expect(visibleSteps(page).first()).toBeVisible({ timeout: 20_000 });
+    await page.waitForTimeout(500);
+    const cls = await page.evaluate(() => (window as unknown as { __cls: number }).__cls);
+    expect(cls).toBeLessThanOrEqual(0.1);
+  });
 
   test('a shared address with answers never replaces saved answers', async ({
     page,
@@ -376,6 +416,71 @@ test.describe('personalisation elsewhere', () => {
           timeout: 5000,
         })
         .toBe(0);
+    },
+  );
+
+  test(
+    'if the path rules fail to load, the home card gives its space back (pass 5, minor 1)',
+    {
+      annotation: allowConsoleError(
+        '/net::ERR_FAILED|Failed to fetch dynamically imported module/',
+        'The test blocks the path rules on purpose; the browser logs the failed request and import.',
+      ),
+    },
+    async ({ page, seedStorage, baseURL }) => {
+      // No stored path, so the home card must load the rules to draw.
+      await seedStorage({ 'st.profile.v1': FOOD });
+      await routeSameOrigin(
+        page,
+        baseURL,
+        (url) => url.pathname.includes('/path-data.'),
+        (route) => route.abort(),
+      );
+      await page.goto('./');
+      const card = page.locator('st-your-path');
+      await expect(card).toHaveAttribute('data-path-failed', '', { timeout: 5000 });
+      expect(await card.evaluate((element) => element.getBoundingClientRect().height)).toBe(0);
+    },
+  );
+
+  test(
+    'another script failing leaves the home card’s space alone (pass 5, nit 1)',
+    {
+      annotation: allowConsoleError(
+        '/net::ERR_FAILED/',
+        'The test blocks the language switcher on purpose, and the browser logs the failed request.',
+      ),
+    },
+    async ({ page, seedStorage, baseURL }) => {
+      await seedStorage({ 'st.profile.v1': FOOD });
+      await storePath(page);
+      await routeSameOrigin(
+        page,
+        baseURL,
+        (url) => url.pathname.includes('/LanguageSwitcher.'),
+        (route) => route.abort(),
+      );
+      await page.addInitScript(() => {
+        const w = window as unknown as { __cls: number };
+        w.__cls = 0;
+        new PerformanceObserver((list) => {
+          for (const entry of list.getEntries() as (PerformanceEntry & {
+            value: number;
+            hadRecentInput: boolean;
+          })[]) {
+            if (!entry.hadRecentInput) w.__cls += entry.value;
+          }
+        }).observe({ type: 'layout-shift', buffered: true });
+      });
+      await page.goto('./');
+      await expect(page.locator('html')).toHaveAttribute(
+        'data-st-script-failed',
+        /LanguageSwitcher/,
+      );
+      await expect(page.locator('st-your-path')).toBeVisible();
+      await page.waitForTimeout(500);
+      const cls = await page.evaluate(() => (window as unknown as { __cls: number }).__cls);
+      expect(cls).toBeLessThanOrEqual(0.1);
     },
   );
 
