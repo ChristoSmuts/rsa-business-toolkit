@@ -428,9 +428,11 @@ words, the page's first entry leads: `AI disclosure`, `KI-openbaarmaking`, `how 
 made`, `marketing prompts`, `tax and sars`, `you are the business`, `what changed`, `verander`.
 Stop words do not count, nor do `has`, `have` and `had` (as `het` does not), so both languages count
 alike. A word counts whole: `change` is not "changed". Only the last word, while it is still typed
-and from four letters, and only after another word as typed (stop words count), may be the
-beginning of one (`marketing prom`, `you are the busine`, `wat het verand`, `KI-openb`); `ve`, `ver`
-or `verande` alone names nothing. One word of a two-word title (`disclosure`, `AI`, `check`) does not name
+and from four letters, and only after another word as typed, may be the beginning of one
+(`marketing prom`, `you are the busine`, `wat het verand`, `KI-openb`); `ve`, `ver` or `verande`
+alone names nothing. After a stop word only, the last word counts as typed only when it is not
+itself a whole word of the guide: `my belasting` is the finished word "belasting" and opens Tax and
+SARS, not the template headed "Belastingfaktuur". One word of a two-word title (`disclosure`, `AI`, `check`) does not name
 the page. When two pages qualify, the one the query covers most leads, then the first in reading
 order (`Start here`: the guide's own, then the Core section's). A test asks every page's titles,
 in both languages, typed and finished, for its page.
@@ -438,10 +440,20 @@ in both languages, typed and finished, for its page.
 **Headings before text, and written words before typos.** Within the results that match every word,
 an entry whose own heading holds every word as written (whole words; the last word's beginning while
 it is typed, from four letters; never a typo match) comes before one that holds them only in its
-text (`BTW-registrasie` opens "VAT: probably not yet" before the tax invoice template). Among the
-rest, a result that needs a typo match for a word counts half its score against those that hold
-every word as written: `market stall` lists the retail page's "Do you need a licence" ("market
-stalls need a trading permit") before Marketing prompts' "small businesses".
+text (`BTW-registrasie` opens "VAT: probably not yet" before the tax invoice template). When no
+result holds the words as written, because the reader misspelt one, the heading lift reads them as
+the search does, typos included: `cipc anual return` opens "1. CIPC annual return", `voorlopige
+belastnig` the provisional tax section. Among the rest, a result that needs a typo match for a word
+counts half its score against those that hold every word as written: `market stall` lists the retail
+page's "Do you need a licence" ("market stalls need a trading permit") before Marketing prompts'
+"small businesses". "As written" is the word itself, the word with a short ending (`s`, `d`, `ed`,
+and `es` after s, x, z, ch or sh: "stalls", "registered", "taxes"), or any longer word the last word
+begins while it is typed. A finished word that a dropped letter has turned into the beginning of
+another word is a typo: `registr` is not "registration", `compani` is not "companies", so `registr
+for vat` opens Tax and SARS and `register a compani` the Register page. The short-ending rule was
+chosen over "only the last word while typed" because a finished `market stall` must still count
+"stalls" as written. `pnpm search:typos` counts, over every glossary term and page title in both
+languages, how many one-letter typos open the correct spelling's first result.
 
 **Pages about the guide.** "How this was made" (with its corrections log) and "What has changed"
 weigh a quarter in every search (`DOC_WEIGHT`), and their headings are not moved before the text
@@ -476,7 +488,7 @@ not fade and the class is removed after the same two seconds. On the same page: 
 changes and the heading takes focus. Focus does not go back to the opener then.
 
 **Weight.** Nothing about search loads with a page except `<st-search>` and the dialog markup. The
-results code and MiniSearch (12.9 KB gzip) and the index (166 KB gzip in English, 182 KB in
+results code and MiniSearch (13.1 KB gzip) and the index (166 KB gzip in English, 182 KB in
 Afrikaans) are fetched when the
 dialog first opens; with low data, the index waits for the first key press. The dialog scrolls as a
 whole, with the title and field sticky at its top: a scrolling box that held only the results,
