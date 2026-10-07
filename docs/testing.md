@@ -230,7 +230,7 @@ built page: every `<script src>` and the chunks it imports, each gzipped (level 
 without a profile and once with the chunks a reader with saved answers can load lazily
 (`PROFILE_CHUNKS`). The build fails when a page is over with a profile, and prints the heaviest page
 of each kind and the room left. On the WP-30 build the heaviest document page was 15.9 KB; on the
-WP-31 build after review pass 4 it is 22.0 KB without and with a profile (it was 24.0 KB and 26.3 KB
+WP-31 build after review pass 5 it is 22.2 KB without and with a profile (it was 24.0 KB and 26.3 KB
 before); see
 [design-system.md](design-system.md#scripts-csp-and-javascript-budget) for the split.
 
