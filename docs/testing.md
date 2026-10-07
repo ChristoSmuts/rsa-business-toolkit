@@ -204,6 +204,48 @@ the tokenizer, the client, filters, URLs and highlighting) and `tests/dom/search
 elements in happy-dom: openers, shortcuts, focus return, the listbox keyboard, every state, arrival
 focus, the search page and the 404 suggestion).
 
+### Search acceptance set: `tests/search/acceptance-queries.json`
+
+A fixed set of owner queries, per language, each with the place it must open (review WP-33 pass
+15). `tests/unit/search/acceptance.test.ts` turns every row into two tests, the query finished
+(the search page, Enter) and still being typed (the dialog), and runs them in `pnpm test` with the
+other unit tests. A row:
+
+```json
+{
+  "lang": "en",
+  "query": "I want to close my business",
+  "doc": "core/running-a-pty-ltd",
+  "anchor": "closing-a-company-properly",
+  "need": "first",
+  "notFirst": ["branding/mood-and-materials#prompt-b-materials-and-finishes"],
+  "from": "pass 15 major 1"
+}
+```
+
+- `doc` is a document id; `anchor` (optional) one section's English heading slug. Without
+  `anchor`, any entry on the page counts.
+- `need` is `first` (the first result) or `top3` (one of the first three).
+- `notFirst` (optional) lists places that must never be the first result: `doc` (any entry on it)
+  or `doc#anchor`. Rows from a review use it for the wrong answer the review found.
+- `from` names the review that raised the query; rows without it were added to balance the set.
+
+The set holds every owner query raised in reviews pass 10 to 15, and a balanced set over the tasks
+the guide covers: registering, tax and SARS, VAT, invoices, quotes and receipts, UIF and
+employees, CIPC duties, licences, the bank account, paying yourself, closing, business type,
+vehicles, privacy and POPIA, branding and the name, working from home, and the checklist. Queries
+are phrased the way owners type them: bare words (`tax`, `sluit`), `how do I…`, `I want to…`, `I
+need to…`, `hoe…`, `ek wil…`. A term the glossary defines (`vat`, `turnover tax`, `small claims
+court`) expects the glossary entry first or the section in the top three, because a term query
+opens its definition first (`docs/design-system.md`). At the end of pass 15: 207 English and 176
+Afrikaans rows, 766 tests (finished and typed), all passing.
+
+**How reviews use it.** From review pass 16 on, a major is a failing row, a regression of a row
+that passed, a whole class of query that fails (for example every "I want to…" question), or a
+broken rule (`CLAUDE.md`, the build plan). A new single phrasing that the set does not hold is a
+minor: it becomes a new row, and the fix makes that row pass. A row's expectation changes only with
+a reason in the commit (the guide's text changed, or the row asked for the wrong place).
+
 ### Accessibility: `a11y.spec.ts`
 
 Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, runs axe with the tags `wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa` and `best-practice`. The theme is checked again right before the analysis.
@@ -216,14 +258,14 @@ Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, r
 
 ## JavaScript budget: `pnpm dist:budget`
 
-Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-06, at the end of WP-33 review pass 14, with the Afrikaans translation merged:
+Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-07, at the end of WP-33 review pass 15, with the Afrikaans translation merged:
 
 | What | Gzip |
 | --- | --- |
 | Largest document page (`branding/already-have-your-name/`) | 7.9 KB |
-| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 19.7 KB |
-| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 13.5 KB |
-| Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 166.6 / 183.6 KB |
+| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 20.0 KB |
+| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 13.8 KB |
+| Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 166.7 / 183.7 KB |
 
 WP-30 adds the store, the checklists, copy buttons, the table of contents and the settings to every document page; its numbers replace these when it merges.
 

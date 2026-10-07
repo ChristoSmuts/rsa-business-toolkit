@@ -455,6 +455,21 @@ chosen over "only the last word while typed" because a finished `market stall` m
 "stalls" as written. `pnpm search:typos` counts, over every glossary term and page title in both
 languages, how many one-letter typos open the correct spelling's first result.
 
+**Filler words, whole words and questions.** The ranking drops the best bets' filler words
+(`want`, `need`, `can`, `get`, `must`; `wil`, `moet`, `nodig`, `kry`) as it drops stop words, from
+the all-words query, the title rule and the heading lift alike: `I want to close my business` ranks
+as `close business`, so a heading that happens to say "I need" or "want" is not lifted. A filler
+word stays when it is the whole query (`need`) and while it is the last word being typed (`can` may
+become "cancel"). A word the guide itself holds is never read as a typo of another word:
+`deregister` is not "register", `deregistreer` not "registreer"; its singular still counts, at a fifth
+of its weight (`expenses` finds "Route 2: claim every real expense", while `vehicles` still opens
+"Vehicles for your business"). A query asked as a question (two or more words the ranking drops,
+and two or more it keeps: `do i need an audit`, `how do i name my business`) leads with the quick
+answer whose question holds all its words, filler included, the most covered first; a term
+(`small claims court`, `proof of payment`) keeps its glossary entry first. The fixed acceptance set
+in `tests/search/acceptance-queries.json` holds the owner queries these rules are measured against
+(`docs/testing.md`).
+
 **Best bets.** A short table, `content-meta/search-best-bets.json` (documented in
 `content-meta/README.md`), maps common owner phrasings to the page that must come first, whatever
 the ranking: `register my business` and `registreer my besigheid` open Register, `tax` and
@@ -504,7 +519,7 @@ not fade and the class is removed after the same two seconds. On the same page: 
 changes and the heading takes focus. Focus does not go back to the opener then.
 
 **Weight.** Nothing about search loads with a page except `<st-search>` and the dialog markup. The
-results code and MiniSearch (13.5 KB gzip) and the index (167 KB gzip in English, 184 KB in
+results code and MiniSearch (13.8 KB gzip) and the index (167 KB gzip in English, 184 KB in
 Afrikaans) are fetched when the
 dialog first opens; with low data, the index waits for the first key press. The dialog scrolls as a
 whole, with the title and field sticky at its top: a scrolling box that held only the results,
