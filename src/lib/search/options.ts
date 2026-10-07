@@ -17,7 +17,7 @@ import type { SearchEntryKind } from './types';
  * The client refuses an index with another version and shows the failed state, rather than
  * returning wrong results.
  */
-export const INDEX_VERSION = 5;
+export const INDEX_VERSION = 6;
 
 /** Fields that are searched. `text` is the body; `title` and `path` are boosted. */
 export const SEARCH_FIELDS = ['title', 'path', 'text', 'lead'] as const;
@@ -62,6 +62,17 @@ export const KIND_WEIGHT: Readonly<Record<SearchEntryKind, number>> = {
   term: 2,
   task: 1,
   answer: 2,
+};
+
+/**
+ * Reference pages that repeat every topic's words in their headings, weighed down in every search
+ * but otherwise ranked like any page (unlike `DOC_WEIGHT`, their headings are still lifted): the
+ * sources register's "Vehicle dealing and vehicles generally" no longer leads `vehicle` or a typo
+ * of `vehicle dealer`, while `Companies Act 71 of 2008` still finds its "Legislation" entry
+ * (review WP-33 pass 16, major 5).
+ */
+export const REFERENCE_WEIGHT: Readonly<Record<string, number>> = {
+  'lookup/sources': 0.5,
 };
 
 /**
@@ -355,13 +366,36 @@ export function foldTerm(term: string): string {
 }
 
 /**
- * MiniSearch `processTerm`: fold the term and drop stop words. Returning `null` drops a term, both
- * from the index and from a query.
+ * American spellings read as the South African (British) spelling the guide uses, in the index and
+ * in a query alike, so `do i need a license` finds "licence" (review WP-33 pass 16, major 3). Only
+ * words whose en-ZA form is in the guide; `licensed` is en-ZA too and stays.
+ */
+export const SPELLINGS: Readonly<Record<string, string>> = {
+  license: 'licence',
+  licenses: 'licences',
+  organization: 'organisation',
+  organizations: 'organisations',
+  center: 'centre',
+  color: 'colour',
+  colors: 'colours',
+  program: 'programme',
+  catalog: 'catalogue',
+  defense: 'defence',
+  labor: 'labour',
+  authorized: 'authorised',
+  recognize: 'recognise',
+  judgment: 'judgement',
+  traveled: 'travelled',
+};
+
+/**
+ * MiniSearch `processTerm`: fold the term, read an American spelling as the guide's (`SPELLINGS`)
+ * and drop stop words. Returning `null` drops a term, both from the index and from a query.
  */
 export function processTerm(term: string): string | null {
   const folded = foldTerm(term);
   if (folded === '' || STOP_WORDS.has(folded)) return null;
-  return folded;
+  return SPELLINGS[folded] ?? folded;
 }
 
 /** How one query term is matched against the index terms. */

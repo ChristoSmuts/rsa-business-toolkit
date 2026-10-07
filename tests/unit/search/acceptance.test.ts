@@ -32,7 +32,16 @@ interface AcceptanceRow {
   readonly anchor?: string;
   /** `first`: the first result; `top3`: one of the first three. */
   readonly need: 'first' | 'top3';
-  /** Places that must never be the first result: `doc` (any entry on it) or `doc#anchor`. */
+  /**
+   * Required on a `top3` row, and only there: the other places that may come first (the glossary
+   * entry of the term, the same page's checklist item). Anything else first fails the row, so a
+   * `top3` row never lets an unrelated page lead (review WP-33 pass 16, major 1).
+   */
+  readonly firstIn?: readonly string[];
+  /**
+   * Places that must never be the first result: `doc` matches any entry on that page, its first
+   * entry included; `doc#anchor` one section.
+   */
   readonly notFirst?: readonly string[];
   /** The review that raised the query, when one did. */
   readonly from?: string;
@@ -80,11 +89,11 @@ function loaded(lang: Locale): { index: LoadedIndex; entries: SearchEntry[] } {
 }
 
 describe('search acceptance set: the file', () => {
-  it('holds about 150 to 200 rows per language, each query once per language', () => {
+  it('holds about 150 to 250 rows per language, each query once per language', () => {
     for (const lang of ['en', 'af'] as const) {
       const rows = ROWS.filter((row) => row.lang === lang);
       expect(rows.length).toBeGreaterThanOrEqual(150);
-      expect(rows.length).toBeLessThanOrEqual(220);
+      expect(rows.length).toBeLessThanOrEqual(260);
       const queries = rows.map((row) => row.query.toLowerCase());
       expect(new Set(queries).size).toBe(queries.length);
     }
@@ -93,7 +102,11 @@ describe('search acceptance set: the file', () => {
   it('names only pages and sections that exist', () => {
     for (const row of ROWS) {
       const { entries } = loaded(row.lang);
-      const specs = [row.anchor ? `${row.doc}#${row.anchor}` : row.doc, ...(row.notFirst ?? [])];
+      const specs = [
+        row.anchor ? `${row.doc}#${row.anchor}` : row.doc,
+        ...(row.notFirst ?? []),
+        ...(row.firstIn ?? []),
+      ];
       for (const spec of specs) {
         const [doc, anchor] = place(spec);
         const exists = entries.some(
@@ -101,6 +114,14 @@ describe('search acceptance set: the file', () => {
         );
         expect(exists, `${row.lang} "${row.query}": ${spec}`).toBe(true);
       }
+    }
+  });
+
+  it('gives every top3 row, and only those, the places that may come first', () => {
+    for (const row of ROWS) {
+      const label = `${row.lang} "${row.query}"`;
+      if (row.need === 'top3') expect(row.firstIn?.length ?? 0, label).toBeGreaterThan(0);
+      else expect(row.firstIn, label).toBeUndefined();
     }
   });
 });
@@ -118,9 +139,15 @@ describe.each(['en', 'af'] as const)('search acceptance set: %s', (lang) => {
       const hit = wanted.some((result) => isPlace(result, row.doc, row.anchor));
       const target = row.anchor ? `${row.doc}#${row.anchor}` : row.doc;
       expect(hit, `${row.need} should be ${target}; got ${shown}`).toBe(true);
+      const first = results[0];
+      if (row.need === 'top3' && first !== undefined) {
+        const allowed = [target, ...(row.firstIn ?? [])].some((spec) =>
+          isPlace(first, ...place(spec)),
+        );
+        expect(allowed, `first must be ${target} or one of firstIn; got ${shown}`).toBe(true);
+      }
       for (const spec of row.notFirst ?? []) {
         const [doc, anchor] = place(spec);
-        const first = results[0];
         expect(
           first !== undefined && isPlace(first, doc, anchor),
           `first must not be ${spec}; got ${shown}`,

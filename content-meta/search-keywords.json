@@ -30,6 +30,16 @@
       "doc": "business-types/pick-your-business-type",
       "en": ["what kind of business"],
       "af": ["watter soort besigheid"]
+    },
+    {
+      "doc": "business-types/professional-creative",
+      "en": ["photographer", "designer"],
+      "af": ["fotograaf", "ontwerper"]
+    },
+    {
+      "doc": "business-types/beauty",
+      "en": ["hairdresser", "salon"],
+      "af": ["haarkapper", "salon"]
     }
   ]
 }

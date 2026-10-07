@@ -541,6 +541,15 @@ describe('options', () => {
     );
   });
 
+  // Review WP-33 pass 16, major 3: an American spelling reads as the guide's.
+  it('reads American spellings as the South African ones the guide uses', () => {
+    expect(processTerm('License')).toBe('licence');
+    expect(processTerm('licenses')).toBe('licences');
+    expect(processTerm('licensed')).toBe('licensed');
+    expect(processTerm('color')).toBe('colour');
+    expect(queryParts('do i need a license')).toEqual(['need', 'licence']);
+  });
+
   it('gives the singular of a plural of five letters or more', () => {
     expect(singulars('expenses')).toEqual(['expense']);
     expect(singulars('taxes')).toEqual(['taxe', 'tax']);

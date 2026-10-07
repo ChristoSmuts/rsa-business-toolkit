@@ -13,6 +13,7 @@ import { href } from './paths';
 import {
   betWords,
   DOC_WEIGHT,
+  REFERENCE_WEIGHT,
   FIELD_BOOST,
   foldTerm,
   fuzzy,
@@ -300,9 +301,11 @@ export function titleCoverage(
  * it is typed and four letters or more, also as a beginning; never fuzzy.
  */
 export function headingTree(parts: readonly QueryPart[], typing: boolean): Exclude<Query, string> {
+  // The word, or its plural (`kleinsakekorporasie` holds "Roete 4: koerse vir
+  // kleinsakekorporasies"), as `holdsAsWritten` counts "stalls" for `stall` (review WP-33 pass 16).
   const exact = (word: string, last: boolean): Query => ({
     combineWith: 'OR',
-    queries: [word],
+    queries: [word, ...plurals(word)],
     prefix: last && word.length >= TITLE_PREFIX_MIN,
     fuzzy: false,
   });
@@ -347,6 +350,12 @@ export function singulars(word: string): string[] {
   return word.endsWith('es') && /(?:ss|x|z|ch|sh)$/.test(stem)
     ? [word.slice(0, -1), stem]
     : [word.slice(0, -1)];
+}
+
+/** The plural forms a heading may hold for a query word: `vehicle` → "vehicles", `tax` → "taxes". */
+export function plurals(word: string): string[] {
+  if (!/^\p{L}{3,}$/u.test(word)) return [];
+  return /(?:s|x|z|ch|sh)$/.test(word) ? [`${word}es`] : [`${word}s`];
 }
 
 function shortEnding(word: string, rest: string): boolean {
@@ -443,7 +452,10 @@ export function bestBet(
       if (at < 0) return false;
       used.add(at);
     }
-    return words.every((word, index) => used.has(index) || filler.includes(word));
+    // A phrase word said twice (`my own name as business name`) says nothing more.
+    return words.every(
+      (word, index) => used.has(index) || filler.includes(word) || bet.w.includes(word),
+    );
   });
 }
 
@@ -583,7 +595,8 @@ export function runSearchCounted(
     // (`DOC_WEIGHT`, review WP-33 pass 7 and 9).
     boostDocument: (_id: unknown, _term: string, stored?: Record<string, unknown>): number =>
       (typeof stored?.['w'] === 'number' ? stored['w'] : 1) *
-      (DOC_WEIGHT[String(stored?.['d'])] ?? 1),
+      (DOC_WEIGHT[String(stored?.['d'])] ?? 1) *
+      (REFERENCE_WEIGHT[String(stored?.['d'])] ?? 1),
     filter: (hit: MiniSearchResult): boolean =>
       matchesFilters(hit as unknown as StoredFields, options),
   };
@@ -593,13 +606,16 @@ export function runSearchCounted(
   const typing = options.typing ?? /[\p{L}\p{N}]$/u.test(query);
   // Filler words (`want`, `need`, `get`, `wil`, `moet`; `index.filler`) never say which page is
   // meant, so the ranking drops them as it drops stop words: `I want to close my business` ranks
-  // as `close business` (review WP-33 pass 15, major 1). A filler word still being typed may
-  // begin another word (`can` of "cancel", `my` of "myself") and stays; a query of filler words
-  // only searches for them.
+  // as `close business` (review WP-33 pass 15, major 1). A filler word of three letters or more
+  // still being typed may begin another word (`can` of "cancel") and stays; a two-letter one
+  // (`hê`, read "he") is too short to say so (pass 16, major 4). A query of filler words only
+  // searches for them.
   const fillerWords = new Set(index.filler ?? []);
   const content = raw.filter(
     (part, at) =>
-      typeof part !== 'string' || !fillerWords.has(part) || (typing && at === raw.length - 1),
+      typeof part !== 'string' ||
+      !fillerWords.has(part) ||
+      (typing && at === raw.length - 1 && part.length >= 3),
   );
   const parts = content.length > 0 ? content : raw;
   /** `true` when the guide holds this word exactly, as written. */
@@ -724,7 +740,19 @@ export function runSearchCounted(
   const listed = every.filter((hit) => !demoted(hit) && hit !== titled);
   // A heading on a page about the guide that names a common word ("Change 2: …") is not promoted:
   // those pages keep only their weight.
-  const promoted = (hit: MiniSearchResult): boolean => headed.has(hit.id) && !aboutGuide(hit);
+  // A heading that holds every word of the query as written, filler words included, comes first:
+  // the owner's own question ("How to get the BRNC" for `how do i get a brnc`, "Do you need a
+  // tagline?" for `do i need a tagline`; review WP-33 pass 16, major 2). A heading that only
+  // happens to say "I need" is lifted only when the owner said "I need" too.
+  const fully = new Set(
+    raw.length > parts.length && !misspelt
+      ? index.search
+          .search(headingTree(raw, typing), { ...searchOptions, fields: ['title'] })
+          .map((hit) => hit.id)
+      : [],
+  );
+  const promoted = (hit: MiniSearchResult): boolean =>
+    (headed.has(hit.id) || fully.has(hit.id)) && !aboutGuide(hit);
   // A result that needs a typo match for a word (`stall` as "small") counts half its score
   // against those that hold every word as written: `market stall` lists the retail page's "Do you
   // need a licence" ("market stalls") before Marketing prompts' "small businesses" (review WP-33
@@ -741,7 +769,12 @@ export function runSearchCounted(
     merged.push(hit);
   }
   merged.push(...typo.map(({ hit }) => hit));
-  const ordered = [...listed.filter(promoted), ...merged];
+  const lifted = listed.filter(promoted);
+  const ordered = [
+    ...lifted.filter((hit) => fully.has(hit.id)),
+    ...lifted.filter((hit) => !fully.has(hit.id)),
+    ...merged,
+  ];
   // A query asked as a question (`do i need an audit`, `how do i name my business`) leads with the
   // quick answer whose question holds every word of the query as written, filler words included
   // (review WP-33 pass 15, the acceptance set). A question has two or more words the ranking
@@ -749,7 +782,21 @@ export function runSearchCounted(
   // `proof of payment`) is not a question and keeps its glossary entry first. When several
   // questions hold the words, the one the query covers most comes first ("How do I name my
   // business?" before "Can I put the car in the business name?").
-  const question = raw.length >= 2 && tokens - parts.length >= 2;
+  // `what is a loan account` names the glossary term "Loan account" with nothing else (stop words
+  // aside, filler words counted: `small claims court`): a definition, not a question, so the
+  // glossary entry keeps the lead (review WP-33 pass 16, minor 2).
+  const namesTerm = every.some(
+    (hit) =>
+      hit['k'] === 'glossary' &&
+      titleCoverage(
+        String(hit['t']).replace(/\s*\([^)]*\)/g, ''),
+        raw,
+        typing,
+        tokens,
+        lastIsWord,
+      ) === 1,
+  );
+  const question = raw.length >= 2 && tokens - parts.length >= 2 && !namesTerm;
   const asked = (question ? ordered : [])
     .filter((hit) => hit['k'] === 'answer')
     .map((hit) => ({
@@ -761,7 +808,21 @@ export function runSearchCounted(
     .map(({ hit }) => hit);
   const askedIds = new Set(asked.map((hit) => hit.id));
   const ranked = [...asked, ...ordered.filter((hit) => !askedIds.has(hit.id))];
-  const all = titled === undefined ? ranked : [titled, ...ranked];
+  // The question asked word for word comes before a page named by the words left once filler is
+  // dropped (`what must my invoice show`: "What must my invoice show?", not "Invoice").
+  // A page named by every word, filler included (`hoe dit gemaak is`), still leads.
+  const titledFully =
+    titled !== undefined &&
+    Math.max(
+      titleCoverage(String(titled['h']), raw, typing, tokens, lastIsWord),
+      titleCoverage(String(titled['p']).split(' › ')[0] ?? '', raw, typing, tokens, lastIsWord),
+    ) > 0;
+  const all =
+    titled === undefined || askedIds.has(titled.id)
+      ? ranked
+      : titledFully
+        ? [titled, ...ranked]
+        : [...asked, titled, ...ranked.slice(asked.length)];
   const rest = [...every.filter((hit) => demoted(hit) && hit !== titled), ...some];
   // A best bet leads, whatever the ranking (review WP-33 pass 13).
   // A phrase still being typed yields to a page the query names by its title (`jy is die besighe`
@@ -780,11 +841,15 @@ export function runSearchCounted(
       term.startsWith(typedWord),
     );
   };
+  // A question that a quick answer asks in the owner's own words (`what must my invoice show`) is
+  // answered by it, not by the best bet for one of its words (`invoice`; review WP-33 pass 16).
   const bet =
-    bestBet(bets, query, false, filler) ??
-    (titled === undefined
-      ? bestBet(bets, query, { typing, lastIsWord, completions: completions() }, filler)
-      : undefined);
+    asked.length > 0
+      ? undefined
+      : (bestBet(bets, query, false, filler) ??
+        (titled === undefined
+          ? bestBet(bets, query, { typing, lastIsWord, completions: completions() }, filler)
+          : undefined));
   const stored = bet === undefined ? undefined : index.search.getStoredFields(bet.id);
   // The entry as the search found it (with its matched terms, for highlighting), or as stored.
   const foundBet = [...every, ...some].find((hit) => hit.id === bet?.id);

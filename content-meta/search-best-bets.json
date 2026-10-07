@@ -14,15 +14,47 @@
       "our",
       "we",
       "please",
-      "must"
+      "must",
+      "looking",
+      "find",
+      "show",
+      "send",
+      "give",
+      "am"
     ],
-    "af": ["my", "eie", "nuwe", "klein", "nodig", "moet", "kan", "wil", "kry", "ons", "graag"]
+    "af": [
+      "my",
+      "eie",
+      "nuwe",
+      "klein",
+      "nodig",
+      "moet",
+      "kan",
+      "wil",
+      "kry",
+      "ons",
+      "graag",
+      "hê",
+      "soek",
+      "asseblief"
+    ]
   },
   "bets": [
     {
       "doc": "core/register",
-      "en": ["register my business", "do i need a company", "registration"],
-      "af": ["registreer my besigheid", "het ek 'n maatskappy nodig", "registrasie"]
+      "en": [
+        "register my business",
+        "do i need a company",
+        "registration",
+        "register pty ltd",
+        "open company"
+      ],
+      "af": [
+        "registreer my besigheid",
+        "het ek 'n maatskappy nodig",
+        "registrasie",
+        "registreer pty ltd"
+      ]
     },
     {
       "doc": "core/register",
@@ -131,7 +163,13 @@
       "doc": "core/running-a-pty-ltd",
       "anchor": "closing-a-company-properly",
       "en": ["close", "close my company", "close business", "deregister business"],
-      "af": ["sluit my maatskappy", "sluit besigheid", "deregistreer besigheid"]
+      "af": [
+        "sluit my maatskappy",
+        "sluit besigheid",
+        "deregistreer besigheid",
+        "toemaak besigheid",
+        "afsluit besigheid"
+      ]
     },
     {
       "doc": "core/what-you-need-to-sell-things",
@@ -159,7 +197,12 @@
       "doc": "core/register",
       "anchor": "business-bank-account",
       "en": ["bank account", "open bank account", "open business bank account"],
-      "af": ["bankrekening", "maak bankrekening oop", "maak besigheidsbankrekening oop"]
+      "af": [
+        "bankrekening",
+        "maak bankrekening oop",
+        "maak besigheidsbankrekening oop",
+        "bankrekening oopmaak"
+      ]
     },
     {
       "doc": "core/paying-yourself",
@@ -167,9 +210,38 @@
       "af": ["betaal myself", "salaris of dividend"]
     },
     {
+      "doc": "core/paying-yourself",
+      "anchor": "option-2-dividend",
+      "en": ["dividend", "dividends"],
+      "af": ["dividend", "dividende"]
+    },
+    {
       "doc": "core/working-from-home-and-safety",
-      "en": ["work from home"],
-      "af": ["werk van die huis af"]
+      "en": ["work from home", "run business from home"],
+      "af": ["werk van die huis af", "besigheid van die huis af bedryf"]
+    },
+    {
+      "doc": "core/vehicles",
+      "en": ["vehicle", "vehicles"],
+      "af": ["voertuig", "voertuie"]
+    },
+    {
+      "doc": "core/vehicles",
+      "anchor": "how-to-get-the-brnc",
+      "en": ["need brnc"],
+      "af": ["brnc nodig"]
+    },
+    {
+      "doc": "branding/branding-prompts",
+      "anchor": "prompt-3-the-name",
+      "en": ["business name", "choose business name", "choosing business name"],
+      "af": ["noem besigheid"]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "anchor": "records",
+      "en": ["keep records", "how long to keep records"],
+      "af": ["rekords hou", "hoe lank rekords hou"]
     },
     {
       "doc": "core/working-from-home-and-safety",

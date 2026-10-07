@@ -97,14 +97,15 @@
       "query": "pty ltd",
       "doc": "lookup/glossary",
       "anchor": "pty-ltd",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["core/running-a-pty-ltd"]
     },
     {
       "lang": "en",
       "query": "sole proprietor or company",
       "doc": "core/register",
       "anchor": "which-one-should-you-choose",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -117,14 +118,17 @@
       "lang": "en",
       "query": "choosing a business name",
       "doc": "branding/branding-prompts",
-      "need": "top3"
+      "need": "first",
+      "notFirst": ["core/vehicles", "core/start-here"],
+      "from": "pass 16 major 1"
     },
     {
       "lang": "en",
       "query": "b-bbee affidavit",
       "doc": "core/register",
       "anchor": "b-bbee-affidavit-free-do-not-pay-for-it",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["core/register#your-registration-checklist"]
     },
     {
       "lang": "en",
@@ -138,14 +142,15 @@
       "query": "information officer",
       "doc": "core/register",
       "anchor": "popia-register-your-information-officer",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#information-officer"]
     },
     {
       "lang": "en",
       "query": "things i can skip",
       "doc": "core/register",
       "anchor": "things-you-can-skip-at-the-start",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -194,7 +199,13 @@
       "need": "first",
       "from": "pass 13"
     },
-    { "lang": "en", "query": "sars", "doc": "core/tax-and-sars", "need": "top3" },
+    {
+      "lang": "en",
+      "query": "sars",
+      "doc": "core/tax-and-sars",
+      "need": "top3",
+      "firstIn": ["lookup/glossary#sars"]
+    },
     {
       "lang": "en",
       "query": "income tax",
@@ -277,7 +288,7 @@
       "query": "how to pay no tax legally",
       "doc": "core/tax-and-sars",
       "anchor": "how-to-pay-little-or-no-tax-legally",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -287,14 +298,21 @@
       "need": "first",
       "from": "pass 13"
     },
-    { "lang": "en", "query": "irp6", "doc": "lookup/glossary", "anchor": "irp6", "need": "top3" },
-    { "lang": "en", "query": "itr12", "doc": "lookup/glossary", "anchor": "itr12", "need": "top3" },
+    { "lang": "en", "query": "irp6", "doc": "lookup/glossary", "anchor": "irp6", "need": "first" },
+    {
+      "lang": "en",
+      "query": "itr12",
+      "doc": "lookup/glossary",
+      "anchor": "itr12",
+      "need": "first"
+    },
     {
       "lang": "en",
       "query": "turnover tax",
       "doc": "core/tax-and-sars",
       "anchor": "route-3-turnover-tax",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#turnover-tax"]
     },
     {
       "lang": "en",
@@ -302,6 +320,7 @@
       "doc": "core/tax-and-sars",
       "anchor": "route-1-stay-under-the-tax-threshold",
       "need": "top3",
+      "firstIn": ["lookup/glossary#tax-threshold"],
       "from": "pass 14"
     },
     {
@@ -309,7 +328,7 @@
       "query": "claim expenses",
       "doc": "core/tax-and-sars",
       "anchor": "route-2-claim-every-real-expense",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -347,14 +366,14 @@
       "query": "efiling",
       "doc": "lookup/glossary",
       "anchor": "efiling",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
       "query": "retirement annuity",
       "doc": "core/tax-and-sars",
       "anchor": "retirement-contributions",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -478,7 +497,8 @@
       "query": "vat vehicle dealer",
       "doc": "business-types/vehicle-dealer",
       "anchor": "vat-register-earlier-than-other-businesses",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/checklist#vehicle-dealer"]
     },
     {
       "lang": "en",
@@ -491,7 +511,8 @@
       "query": "notional input tax",
       "doc": "business-types/vehicle-dealer",
       "anchor": "how-notional-input-tax-works",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#notional-input-tax"]
     },
     {
       "lang": "en",
@@ -499,6 +520,7 @@
       "doc": "business-types/vehicle-dealer",
       "anchor": "the-conditions-you-must-meet",
       "need": "top3",
+      "firstIn": ["lookup/glossary#vat264"],
       "from": "A7"
     },
     {
@@ -519,7 +541,8 @@
       "lang": "en",
       "query": "invoice template",
       "doc": "paperwork/templates/invoice",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["paperwork/templates/tax-invoice"]
     },
     {
       "lang": "en",
@@ -538,7 +561,8 @@
       "query": "invoice numbering",
       "doc": "paperwork/which-template-to-use-when",
       "anchor": "invoice-numbering",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["paperwork/templates/invoice#invoice-numbering"]
     },
     {
       "lang": "en",
@@ -579,21 +603,22 @@
       "query": "credit note",
       "doc": "lookup/glossary",
       "anchor": "credit-note",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
       "query": "cash book",
       "doc": "paperwork/which-template-to-use-when",
       "anchor": "template-6-cash-book",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#cash-book"]
     },
     {
       "lang": "en",
       "query": "terms and conditions",
       "doc": "paperwork/which-template-to-use-when",
       "anchor": "terms-and-conditions",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -617,28 +642,34 @@
       "need": "first",
       "from": "pass 13"
     },
-    { "lang": "en", "query": "paye", "doc": "lookup/glossary", "anchor": "paye", "need": "top3" },
+    { "lang": "en", "query": "paye", "doc": "lookup/glossary", "anchor": "paye", "need": "first" },
     {
       "lang": "en",
       "query": "emp201",
       "doc": "lookup/glossary",
       "anchor": "emp201",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
       "query": "employees",
       "doc": "core/running-a-pty-ltd",
       "anchor": "employees-including-yourself",
-      "need": "top3"
+      "need": "first"
     },
-    { "lang": "en", "query": "coida", "doc": "lookup/glossary", "anchor": "coida", "need": "top3" },
+    {
+      "lang": "en",
+      "query": "coida",
+      "doc": "lookup/glossary",
+      "anchor": "coida",
+      "need": "first"
+    },
     {
       "lang": "en",
       "query": "uif on my salary",
       "doc": "core/paying-yourself",
       "anchor": "uif-sources-disagree",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -661,14 +692,15 @@
       "query": "beneficial ownership",
       "doc": "core/running-a-pty-ltd",
       "anchor": "2-beneficial-ownership-filing",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#beneficial-ownership-filing"]
     },
     {
       "lang": "en",
       "query": "financial statements",
       "doc": "core/running-a-pty-ltd",
       "anchor": "3-financial-statements",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -694,7 +726,7 @@
       "query": "what happens if i stop filing",
       "doc": "core/running-a-pty-ltd",
       "anchor": "what-happens-if-you-stop-filing",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -707,13 +739,14 @@
       "query": "registered representative",
       "doc": "core/running-a-pty-ltd",
       "anchor": "5-registered-representative-and-company-details",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
       "query": "licence",
       "doc": "core/what-you-need-to-sell-things",
       "need": "top3",
+      "firstIn": ["lookup/glossary#businesses-act-licence"],
       "from": "pass 14"
     },
     {
@@ -779,28 +812,28 @@
       "query": "beauty salon licence",
       "doc": "business-types/beauty",
       "anchor": "you-need-a-municipal-licence",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
       "query": "sell second hand goods",
       "doc": "core/what-you-need-to-sell-things",
       "anchor": "if-you-sell-second-hand-goods",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
       "query": "sell online",
       "doc": "core/what-you-need-to-sell-things",
       "anchor": "if-you-sell-online",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
       "query": "import",
       "doc": "core/what-you-need-to-sell-things",
       "anchor": "if-you-import-anything",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -870,7 +903,7 @@
       "query": "separate bank account",
       "doc": "core/register",
       "anchor": "business-bank-account",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -898,8 +931,14 @@
       "need": "first",
       "from": "pass 13"
     },
-    { "lang": "en", "query": "dividend", "doc": "core/paying-yourself", "need": "top3" },
-    { "lang": "en", "query": "loan account", "doc": "core/paying-yourself", "need": "top3" },
+    { "lang": "en", "query": "dividend", "doc": "core/paying-yourself", "need": "first" },
+    {
+      "lang": "en",
+      "query": "loan account",
+      "doc": "core/paying-yourself",
+      "need": "top3",
+      "firstIn": ["lookup/glossary#loan-account"]
+    },
     {
       "lang": "en",
       "query": "take money out of my company",
@@ -911,7 +950,7 @@
       "query": "dividends tax",
       "doc": "lookup/glossary",
       "anchor": "dividends-tax",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -1041,37 +1080,38 @@
       "need": "first"
     },
     { "lang": "en", "query": "food business", "doc": "business-types/food", "need": "first" },
-    { "lang": "en", "query": "beauty salon", "doc": "business-types/beauty", "need": "top3" },
+    { "lang": "en", "query": "beauty salon", "doc": "business-types/beauty", "need": "first" },
     {
       "lang": "en",
       "query": "online shop",
       "doc": "business-types/retail-online",
       "need": "first"
     },
-    { "lang": "en", "query": "plumber", "doc": "business-types/services-trades", "need": "top3" },
+    { "lang": "en", "query": "plumber", "doc": "business-types/services-trades", "need": "first" },
     {
       "lang": "en",
       "query": "freelancer",
       "doc": "business-types/professional-creative",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
       "query": "photographer",
       "doc": "business-types/professional-creative",
-      "need": "top3",
+      "need": "first",
       "from": "pass 14"
     },
-    { "lang": "en", "query": "hairdresser", "doc": "business-types/beauty", "need": "top3" },
-    { "lang": "en", "query": "sell cars", "doc": "business-types/vehicle-dealer", "need": "top3" },
+    { "lang": "en", "query": "hairdresser", "doc": "business-types/beauty", "need": "first" },
+    { "lang": "en", "query": "sell cars", "doc": "business-types/vehicle-dealer", "need": "first" },
     { "lang": "en", "query": "vehicles", "doc": "core/vehicles", "need": "first" },
-    { "lang": "en", "query": "company vehicle", "doc": "core/vehicles", "need": "top3" },
+    { "lang": "en", "query": "company vehicle", "doc": "core/vehicles", "need": "first" },
     {
       "lang": "en",
       "query": "brnc",
       "doc": "core/vehicles",
       "anchor": "how-to-get-the-brnc",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#brnc"]
     },
     {
       "lang": "en",
@@ -1084,7 +1124,8 @@
       "query": "logbook",
       "doc": "core/vehicles",
       "anchor": "the-logbook",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#logbook"]
     },
     {
       "lang": "en",
@@ -1098,14 +1139,15 @@
       "query": "motor trade number",
       "doc": "business-types/vehicle-dealer",
       "anchor": "layer-3-motor-trade-numbers",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#motor-trade-number"]
     },
     {
       "lang": "en",
       "query": "SAPS 601",
       "doc": "business-types/vehicle-dealer",
       "anchor": "how-to-register",
-      "need": "top3",
+      "need": "first",
       "from": "A7"
     },
     {
@@ -1113,14 +1155,16 @@
       "query": "voetstoots",
       "doc": "business-types/vehicle-dealer",
       "anchor": "voetstoots-does-not-protect-you",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#voetstoots"]
     },
     {
       "lang": "en",
       "query": "popia",
       "doc": "core/register",
       "anchor": "popia-register-your-information-officer",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#popia"]
     },
     {
       "lang": "en",
@@ -1133,23 +1177,23 @@
       "lang": "en",
       "query": "privacy policy",
       "doc": "paperwork/templates/privacy-notice",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
       "query": "id copies",
       "doc": "paperwork/templates/privacy-notice",
       "anchor": "if-you-take-id-copies",
-      "need": "top3"
+      "need": "first"
     },
-    { "lang": "en", "query": "paia", "doc": "lookup/glossary", "anchor": "paia", "need": "top3" },
-    { "lang": "en", "query": "branding", "doc": "branding/branding-prompts", "need": "top3" },
+    { "lang": "en", "query": "paia", "doc": "lookup/glossary", "anchor": "paia", "need": "first" },
+    { "lang": "en", "query": "branding", "doc": "branding/branding-prompts", "need": "first" },
     {
       "lang": "en",
       "query": "business name",
       "doc": "branding/branding-prompts",
-      "need": "top3",
-      "notFirst": ["core/vehicles#which-is-better"],
+      "need": "first",
+      "notFirst": ["core/vehicles"],
       "from": "pass 15 minor"
     },
     {
@@ -1162,8 +1206,57 @@
       "lang": "en",
       "query": "my own name as business name",
       "doc": "branding/branding-prompts",
-      "need": "top3",
+      "need": "first",
+      "notFirst": ["core/vehicles"],
       "from": "pass 15"
+    },
+    {
+      "lang": "en",
+      "query": "i need a business name",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["core/vehicles"],
+      "from": "pass 16 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "i want to name my business",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["core/vehicles"],
+      "from": "pass 16 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "how do i get a business name",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["core/vehicles"],
+      "from": "pass 16 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "do i need a tagline",
+      "doc": "branding/already-have-your-name",
+      "anchor": "do-you-need-a-tagline",
+      "need": "first",
+      "from": "pass 16 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "do you need a tagline",
+      "doc": "branding/already-have-your-name",
+      "anchor": "do-you-need-a-tagline",
+      "need": "first",
+      "from": "pass 16 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "need a tagline",
+      "doc": "branding/already-have-your-name",
+      "anchor": "do-you-need-a-tagline",
+      "need": "first",
+      "from": "pass 16 major 2"
     },
     {
       "lang": "en",
@@ -1176,7 +1269,8 @@
       "query": "tagline",
       "doc": "branding/already-have-your-name",
       "anchor": "do-you-need-a-tagline",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["branding/branding-prompts#the-test-that-matters-most"]
     },
     {
       "lang": "en",
@@ -1196,20 +1290,21 @@
       "query": "google business profile",
       "doc": "branding/marketing-prompts",
       "anchor": "1-google-business-profile",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["branding/marketing-prompts#prompt-4-your-google-business-profile-description"]
     },
     {
       "lang": "en",
       "query": "find customers",
       "doc": "branding/brand-applications-and-polish",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
       "query": "trading name",
       "doc": "lookup/glossary",
       "anchor": "trading-name",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -1235,34 +1330,39 @@
       "lang": "en",
       "query": "can i run my business from home",
       "doc": "core/working-from-home-and-safety",
-      "need": "top3"
+      "need": "first",
+      "notFirst": ["business-types/vehicle-dealer"],
+      "from": "pass 16 major 1"
     },
     {
       "lang": "en",
       "query": "home office deduction",
       "doc": "core/working-from-home-and-safety",
       "anchor": "home-office-deduction",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["business-types/professional-creative#the-turnover-tax-trap"]
     },
     {
       "lang": "en",
       "query": "test drive",
       "doc": "core/working-from-home-and-safety",
       "anchor": "part-4-meeting-a-customer-to-inspect-or-test-drive",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["core/working-from-home-and-safety#during-a-test-drive"]
     },
     {
       "lang": "en",
       "query": "scams",
       "doc": "core/working-from-home-and-safety",
       "anchor": "the-scams-plainly",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
       "query": "fake proof of payment",
       "doc": "core/working-from-home-and-safety",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#pop"]
     },
     {
       "lang": "en",
@@ -1276,7 +1376,7 @@
       "query": "home address",
       "doc": "core/working-from-home-and-safety",
       "anchor": "using-your-home-address-officially",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -1291,7 +1391,7 @@
       "query": "before you trade",
       "doc": "lookup/checklist",
       "anchor": "before-you-trade",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "en",
@@ -1341,13 +1441,248 @@
       "need": "first",
       "from": "pass 15 major 1"
     },
-    { "lang": "en", "query": "second company", "doc": "core/adding-new-lines", "need": "top3" },
+    { "lang": "en", "query": "second company", "doc": "core/adding-new-lines", "need": "first" },
     {
       "lang": "en",
       "query": "cooling off",
       "doc": "business-types/retail-online",
       "anchor": "the-seven-day-cooling-off-right",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#cooling-off-period"]
+    },
+    {
+      "lang": "en",
+      "query": "how do i get a brnc",
+      "doc": "core/vehicles",
+      "anchor": "how-to-get-the-brnc",
+      "need": "first",
+      "from": "pass 16 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "how to get the brnc",
+      "doc": "core/vehicles",
+      "anchor": "how-to-get-the-brnc",
+      "need": "first",
+      "from": "pass 16 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "i need a brnc",
+      "doc": "core/vehicles",
+      "anchor": "how-to-get-the-brnc",
+      "need": "first",
+      "from": "pass 16 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "get brnc",
+      "doc": "core/vehicles",
+      "anchor": "how-to-get-the-brnc",
+      "need": "first",
+      "from": "pass 16 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "do i need a license",
+      "doc": "core/what-you-need-to-sell-things",
+      "need": "first",
+      "notFirst": ["lookup/glossary"],
+      "from": "pass 16 major 3"
+    },
+    {
+      "lang": "en",
+      "query": "business license",
+      "doc": "core/what-you-need-to-sell-things",
+      "need": "first",
+      "notFirst": ["lookup/glossary#fsp"],
+      "from": "pass 16 major 3"
+    },
+    {
+      "lang": "en",
+      "query": "liquor license",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-alcohol",
+      "need": "first",
+      "from": "pass 16 major 3"
+    },
+    {
+      "lang": "en",
+      "query": "trading license",
+      "doc": "core/what-you-need-to-sell-things",
+      "need": "first",
+      "notFirst": ["lookup/glossary"],
+      "from": "pass 16 major 3"
+    },
+    {
+      "lang": "en",
+      "query": "looking for an invoice template",
+      "doc": "paperwork/templates/invoice",
+      "need": "top3",
+      "firstIn": ["paperwork/templates/tax-invoice"],
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "en",
+      "query": "show me the checklist",
+      "doc": "lookup/checklist",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "en",
+      "query": "looking for a quote template",
+      "doc": "paperwork/templates/quotation",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "en",
+      "query": "find a privacy notice",
+      "doc": "paperwork/templates/privacy-notice",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "en",
+      "query": "looking for a business licence",
+      "doc": "core/what-you-need-to-sell-things",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "en",
+      "query": "i am looking for a bank account",
+      "doc": "core/register",
+      "anchor": "business-bank-account",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "en",
+      "query": "how do i find my tax number",
+      "doc": "core/tax-and-sars",
+      "anchor": "what-sars-wants-from-a-sole-proprietor",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "en",
+      "query": "vehicle",
+      "doc": "core/vehicles",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 16 major 5"
+    },
+    {
+      "lang": "en",
+      "query": "vehicle daeler",
+      "doc": "business-types/vehicle-dealer",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 16 major 5"
+    },
+    {
+      "lang": "en",
+      "query": "vehicle dealre",
+      "doc": "business-types/vehicle-dealer",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 16 major 5"
+    },
+    {
+      "lang": "en",
+      "query": "vehicle edaler",
+      "doc": "business-types/vehicle-dealer",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 16 major 5"
+    },
+    {
+      "lang": "en",
+      "query": "I want to send an invoice",
+      "doc": "paperwork/templates/invoice",
+      "need": "first",
+      "from": "pass 16 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "i want to give a quote",
+      "doc": "paperwork/templates/quotation",
+      "need": "first",
+      "from": "pass 16 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "i need to send a quote",
+      "doc": "paperwork/templates/quotation",
+      "need": "first",
+      "from": "pass 16 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "how do i register a pty ltd",
+      "doc": "core/register",
+      "need": "first",
+      "notFirst": ["core/running-a-pty-ltd"],
+      "from": "pass 16 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "register a pty ltd",
+      "doc": "core/register",
+      "need": "first",
+      "notFirst": ["core/running-a-pty-ltd"],
+      "from": "pass 16 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "register pty ltd",
+      "doc": "core/register",
+      "need": "first",
+      "notFirst": ["core/running-a-pty-ltd"],
+      "from": "pass 16 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "how do i open a company",
+      "doc": "core/register",
+      "need": "first",
+      "notFirst": ["core/running-a-pty-ltd"],
+      "from": "pass 16 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "how long must i keep records",
+      "doc": "core/tax-and-sars",
+      "anchor": "records",
+      "need": "first",
+      "notFirst": ["paperwork/templates/privacy-notice"],
+      "from": "pass 16 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "what is the small claims court",
+      "doc": "lookup/glossary",
+      "anchor": "small-claims-court",
+      "need": "first",
+      "from": "pass 16 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "what is a proof of payment",
+      "doc": "lookup/glossary",
+      "anchor": "proof-of-payment",
+      "need": "first",
+      "from": "pass 16 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "what is a loan account",
+      "doc": "lookup/glossary",
+      "anchor": "loan-account",
+      "need": "first",
+      "from": "pass 16 minor 2"
     },
     {
       "lang": "af",
@@ -1416,14 +1751,14 @@
       "query": "privaat maatskappy",
       "doc": "core/register",
       "anchor": "private-company-pty-ltd",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
       "query": "eenmansaak of maatskappy",
       "doc": "core/register",
       "anchor": "which-one-should-you-choose",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -1437,28 +1772,30 @@
       "query": "die naam kies",
       "doc": "core/register",
       "anchor": "choosing-the-name",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
       "query": "b-bbee beëdigde verklaring",
       "doc": "core/register",
       "anchor": "b-bbee-affidavit-free-do-not-pay-for-it",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["core/register#your-registration-checklist"]
     },
     {
       "lang": "af",
       "query": "inligtingsbeampte",
       "doc": "core/register",
       "anchor": "popia-register-your-information-officer",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#information-officer"]
     },
     {
       "lang": "af",
       "query": "wat kan ek oorslaan",
       "doc": "core/register",
       "anchor": "things-you-can-skip-at-the-start",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -1507,7 +1844,13 @@
       "need": "first",
       "from": "pass 13"
     },
-    { "lang": "af", "query": "sars", "doc": "core/tax-and-sars", "need": "top3" },
+    {
+      "lang": "af",
+      "query": "sars",
+      "doc": "core/tax-and-sars",
+      "need": "top3",
+      "firstIn": ["lookup/glossary#sars"]
+    },
     {
       "lang": "af",
       "query": "inkomstebelasting",
@@ -1566,27 +1909,29 @@
       "need": "first",
       "from": "pass 13"
     },
-    { "lang": "af", "query": "irp6", "doc": "lookup/glossary", "anchor": "irp6", "need": "top3" },
+    { "lang": "af", "query": "irp6", "doc": "lookup/glossary", "anchor": "irp6", "need": "first" },
     {
       "lang": "af",
       "query": "omsetbelasting",
       "doc": "core/tax-and-sars",
       "anchor": "route-3-turnover-tax",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#turnover-tax"]
     },
     {
       "lang": "af",
       "query": "belastingdrempel",
       "doc": "core/tax-and-sars",
       "anchor": "route-1-stay-under-the-tax-threshold",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#tax-threshold"]
     },
     {
       "lang": "af",
       "query": "uitgawes eis",
       "doc": "core/tax-and-sars",
       "anchor": "route-2-claim-every-real-expense",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -1600,7 +1945,7 @@
       "query": "kleinsakekorporasie",
       "doc": "core/tax-and-sars",
       "anchor": "route-4-small-business-corporation-rates-companies-only",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -1615,7 +1960,7 @@
       "query": "efiling",
       "doc": "lookup/glossary",
       "anchor": "efiling",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -1644,9 +1989,9 @@
       "lang": "af",
       "query": "moet ek vir btw registreer",
       "doc": "core/tax-and-sars",
-      "anchor": "vat-probably-not-yet",
       "need": "first",
-      "notFirst": ["business-types/vehicle-dealer#vat-register-earlier-than-other-businesses"]
+      "notFirst": ["business-types/vehicle-dealer"],
+      "from": "pass 16: the quick answer asks it word for word"
     },
     {
       "lang": "af",
@@ -1723,7 +2068,7 @@
       "query": "btw voertuighandelaar",
       "doc": "business-types/vehicle-dealer",
       "anchor": "vat-register-earlier-than-other-businesses",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -1737,6 +2082,7 @@
       "doc": "business-types/vehicle-dealer",
       "anchor": "the-conditions-you-must-meet",
       "need": "top3",
+      "firstIn": ["lookup/glossary#vat264"],
       "from": "A7"
     },
     {
@@ -1764,7 +2110,7 @@
       "query": "faktuurnommering",
       "doc": "paperwork/which-template-to-use-when",
       "anchor": "invoice-numbering",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -1785,21 +2131,22 @@
       "query": "kredietnota",
       "doc": "lookup/glossary",
       "anchor": "credit-note",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
       "query": "kasboek",
       "doc": "paperwork/which-template-to-use-when",
       "anchor": "template-6-cash-book",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#cash-book"]
     },
     {
       "lang": "af",
       "query": "terme en voorwaardes",
       "doc": "paperwork/which-template-to-use-when",
       "anchor": "terms-and-conditions",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -1813,7 +2160,7 @@
       "query": "diensooreenkoms",
       "doc": "paperwork/which-template-to-use-when",
       "anchor": "a-simple-service-agreement",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -1823,22 +2170,28 @@
       "need": "first",
       "from": "pass 13"
     },
-    { "lang": "af", "query": "paye", "doc": "lookup/glossary", "anchor": "paye", "need": "top3" },
+    { "lang": "af", "query": "paye", "doc": "lookup/glossary", "anchor": "paye", "need": "first" },
     {
       "lang": "af",
       "query": "emp201",
       "doc": "lookup/glossary",
       "anchor": "emp201",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
       "query": "werknemers",
       "doc": "core/running-a-pty-ltd",
       "anchor": "employees-including-yourself",
-      "need": "top3"
+      "need": "first"
     },
-    { "lang": "af", "query": "coida", "doc": "lookup/glossary", "anchor": "coida", "need": "top3" },
+    {
+      "lang": "af",
+      "query": "coida",
+      "doc": "lookup/glossary",
+      "anchor": "coida",
+      "need": "first"
+    },
     {
       "lang": "af",
       "query": "cipc jaarlikse opgawe",
@@ -1860,14 +2213,15 @@
       "query": "voordelige eienaarskap",
       "doc": "core/running-a-pty-ltd",
       "anchor": "2-beneficial-ownership-filing",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#beneficial-ownership-filing"]
     },
     {
       "lang": "af",
       "query": "finansiële state",
       "doc": "core/running-a-pty-ltd",
       "anchor": "3-financial-statements",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -1880,7 +2234,7 @@
       "query": "wat gebeur as ek ophou indien",
       "doc": "core/running-a-pty-ltd",
       "anchor": "what-happens-if-you-stop-filing",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -1893,13 +2247,14 @@
       "query": "geregistreerde verteenwoordiger",
       "doc": "core/running-a-pty-ltd",
       "anchor": "5-registered-representative-and-company-details",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
       "query": "lisensie",
       "doc": "core/what-you-need-to-sell-things",
       "need": "top3",
+      "firstIn": ["lookup/glossary#businesses-act-licence"],
       "from": "pass 14"
     },
     {
@@ -1967,21 +2322,22 @@
       "query": "tweedehandse goedere verkoop",
       "doc": "core/what-you-need-to-sell-things",
       "anchor": "if-you-sell-second-hand-goods",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
       "query": "aanlyn verkoop",
       "doc": "core/what-you-need-to-sell-things",
       "anchor": "if-you-sell-online",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
       "query": "invoer",
       "doc": "core/what-you-need-to-sell-things",
       "anchor": "if-you-import-anything",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["business-types/retail-online#importing-stock"]
     },
     {
       "lang": "af",
@@ -2079,8 +2435,14 @@
       "need": "first",
       "from": "pass 13"
     },
-    { "lang": "af", "query": "dividend", "doc": "core/paying-yourself", "need": "top3" },
-    { "lang": "af", "query": "leningsrekening", "doc": "core/paying-yourself", "need": "top3" },
+    { "lang": "af", "query": "dividend", "doc": "core/paying-yourself", "need": "first" },
+    {
+      "lang": "af",
+      "query": "leningsrekening",
+      "doc": "core/paying-yourself",
+      "need": "top3",
+      "firstIn": ["lookup/glossary#loan-account"]
+    },
     {
       "lang": "af",
       "query": "geld uit my maatskappy haal",
@@ -2092,7 +2454,7 @@
       "query": "dividendbelasting",
       "doc": "lookup/glossary",
       "anchor": "dividends-tax",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -2206,53 +2568,55 @@
       "need": "first"
     },
     { "lang": "af", "query": "kosbesigheid", "doc": "business-types/food", "need": "first" },
-    { "lang": "af", "query": "skoonheidsalon", "doc": "business-types/beauty", "need": "top3" },
+    { "lang": "af", "query": "skoonheidsalon", "doc": "business-types/beauty", "need": "first" },
     {
       "lang": "af",
       "query": "aanlyn winkel",
       "doc": "business-types/retail-online",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
       "query": "loodgieter",
       "doc": "business-types/services-trades",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
       "query": "vryskut",
       "doc": "business-types/professional-creative",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
       "query": "fotograaf",
       "doc": "business-types/professional-creative",
-      "need": "top3"
+      "need": "first"
     },
-    { "lang": "af", "query": "haarkapper", "doc": "business-types/beauty", "need": "top3" },
+    { "lang": "af", "query": "haarkapper", "doc": "business-types/beauty", "need": "first" },
     {
       "lang": "af",
       "query": "motors verkoop",
       "doc": "business-types/vehicle-dealer",
-      "need": "top3"
+      "need": "first"
     },
     { "lang": "af", "query": "voertuie", "doc": "core/vehicles", "need": "first" },
-    { "lang": "af", "query": "maatskappymotor", "doc": "core/vehicles", "need": "top3" },
+    { "lang": "af", "query": "maatskappymotor", "doc": "core/vehicles", "need": "first" },
     {
       "lang": "af",
       "query": "brnc",
       "doc": "core/vehicles",
       "anchor": "how-to-get-the-brnc",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#brnc"]
     },
     {
       "lang": "af",
       "query": "logboek",
       "doc": "core/vehicles",
       "anchor": "the-logbook",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#logbook"]
     },
     {
       "lang": "af",
@@ -2266,7 +2630,7 @@
       "query": "SAPS 601",
       "doc": "business-types/vehicle-dealer",
       "anchor": "how-to-register",
-      "need": "top3",
+      "need": "first",
       "from": "A7"
     },
     {
@@ -2274,14 +2638,16 @@
       "query": "voetstoots",
       "doc": "business-types/vehicle-dealer",
       "anchor": "voetstoots-does-not-protect-you",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#voetstoots"]
     },
     {
       "lang": "af",
       "query": "popia",
       "doc": "core/register",
       "anchor": "popia-register-your-information-officer",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#popia"]
     },
     {
       "lang": "af",
@@ -2294,17 +2660,23 @@
       "lang": "af",
       "query": "privaatheidsbeleid",
       "doc": "paperwork/templates/privacy-notice",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
       "query": "id-afskrifte",
       "doc": "paperwork/templates/privacy-notice",
       "anchor": "if-you-take-id-copies",
-      "need": "top3"
+      "need": "first"
     },
-    { "lang": "af", "query": "paia", "doc": "lookup/glossary", "anchor": "paia", "need": "top3" },
-    { "lang": "af", "query": "handelsmerk", "doc": "branding/branding-prompts", "need": "top3" },
+    { "lang": "af", "query": "paia", "doc": "lookup/glossary", "anchor": "paia", "need": "first" },
+    {
+      "lang": "af",
+      "query": "handelsmerk",
+      "doc": "branding/branding-prompts",
+      "need": "top3",
+      "firstIn": ["branding/brand-applications-and-polish"]
+    },
     {
       "lang": "af",
       "query": "besigheidsnaam",
@@ -2317,7 +2689,7 @@
       "lang": "af",
       "query": "naam vir my besigheid",
       "doc": "branding/branding-prompts",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -2330,13 +2702,14 @@
       "query": "slagspreuk",
       "doc": "branding/already-have-your-name",
       "anchor": "do-you-need-a-tagline",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["branding/branding-prompts#the-test-that-matters-most"]
     },
     {
       "lang": "af",
       "query": "logolêers",
       "doc": "branding/brand-applications-and-polish",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -2350,20 +2723,21 @@
       "query": "google business profile",
       "doc": "branding/marketing-prompts",
       "anchor": "1-google-business-profile",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["branding/marketing-prompts#prompt-4-your-google-business-profile-description"]
     },
     {
       "lang": "af",
       "query": "kliënte vind",
       "doc": "branding/brand-applications-and-polish",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
       "query": "handelsnaam",
       "doc": "lookup/glossary",
       "anchor": "trading-name",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -2389,41 +2763,45 @@
       "lang": "af",
       "query": "kan ek my besigheid van die huis af bedryf",
       "doc": "core/working-from-home-and-safety",
-      "need": "top3"
+      "need": "first",
+      "notFirst": ["business-types/vehicle-dealer"],
+      "from": "pass 16 major 1"
     },
     {
       "lang": "af",
       "query": "tuiskantoor",
       "doc": "core/working-from-home-and-safety",
       "anchor": "home-office-deduction",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
       "query": "toetsrit",
       "doc": "core/working-from-home-and-safety",
       "anchor": "part-4-meeting-a-customer-to-inspect-or-test-drive",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["core/working-from-home-and-safety"]
     },
     {
       "lang": "af",
       "query": "swendelary",
       "doc": "core/working-from-home-and-safety",
       "anchor": "the-scams-plainly",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
       "query": "betalingsbewys",
       "doc": "core/working-from-home-and-safety",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#proof-of-payment"]
     },
     {
       "lang": "af",
       "query": "huisadres",
       "doc": "core/working-from-home-and-safety",
       "anchor": "using-your-home-address-officially",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -2438,7 +2816,7 @@
       "query": "voordat jy handel dryf",
       "doc": "lookup/checklist",
       "anchor": "before-you-trade",
-      "need": "top3"
+      "need": "first"
     },
     {
       "lang": "af",
@@ -2480,13 +2858,226 @@
       "doc": "core/adding-new-lines",
       "need": "first"
     },
-    { "lang": "af", "query": "tweede maatskappy", "doc": "core/adding-new-lines", "need": "top3" },
+    { "lang": "af", "query": "tweede maatskappy", "doc": "core/adding-new-lines", "need": "first" },
     {
       "lang": "af",
       "query": "afkoelperiode",
       "doc": "business-types/retail-online",
       "anchor": "the-seven-day-cooling-off-right",
-      "need": "top3"
+      "need": "top3",
+      "firstIn": ["lookup/glossary#cooling-off-period"]
+    },
+    {
+      "lang": "af",
+      "query": "hoe kry ek 'n brnc",
+      "doc": "core/vehicles",
+      "anchor": "how-to-get-the-brnc",
+      "need": "first",
+      "from": "pass 16 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "brnc kry",
+      "doc": "core/vehicles",
+      "anchor": "how-to-get-the-brnc",
+      "need": "first",
+      "from": "pass 16 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "het ek 'n slagspreuk nodig",
+      "doc": "branding/already-have-your-name",
+      "anchor": "do-you-need-a-tagline",
+      "need": "first",
+      "from": "pass 16 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "slagspreuk nodig",
+      "doc": "branding/already-have-your-name",
+      "anchor": "do-you-need-a-tagline",
+      "need": "first",
+      "from": "pass 16 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "ek wil 'n belastingnommer hê",
+      "doc": "core/tax-and-sars",
+      "anchor": "what-sars-wants-from-a-sole-proprietor",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "ek soek 'n belastingnommer",
+      "doc": "core/tax-and-sars",
+      "anchor": "what-sars-wants-from-a-sole-proprietor",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "ek wil 'n kontrolelys hê",
+      "doc": "lookup/checklist",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "ek soek 'n kontrolelys",
+      "doc": "lookup/checklist",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "ek wil 'n faktuur hê",
+      "doc": "paperwork/templates/invoice",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "ek soek 'n faktuur",
+      "doc": "paperwork/templates/invoice",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "ek wil 'n kwotasie hê",
+      "doc": "paperwork/templates/quotation",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "ek soek 'n kwotasie",
+      "doc": "paperwork/templates/quotation",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "ek wil 'n kwitansie hê",
+      "doc": "paperwork/templates/receipt",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "ek wil 'n lisensie hê",
+      "doc": "core/what-you-need-to-sell-things",
+      "need": "top3",
+      "firstIn": ["lookup/glossary#businesses-act-licence"],
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "ek soek 'n lisensie",
+      "doc": "core/what-you-need-to-sell-things",
+      "need": "top3",
+      "firstIn": ["lookup/glossary#businesses-act-licence"],
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "ek wil 'n bankrekening hê",
+      "doc": "core/register",
+      "anchor": "business-bank-account",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "ek soek 'n bankrekening",
+      "doc": "core/register",
+      "anchor": "business-bank-account",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "ek wil 'n privaatheidskennisgewing hê",
+      "doc": "paperwork/templates/privacy-notice",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "ek soek 'n privaatheidskennisgewing",
+      "doc": "paperwork/templates/privacy-notice",
+      "need": "first",
+      "from": "pass 16 major 4"
+    },
+    {
+      "lang": "af",
+      "query": "voertuig",
+      "doc": "core/vehicles",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 16 major 5"
+    },
+    {
+      "lang": "af",
+      "query": "hoe registreer ek 'n pty ltd",
+      "doc": "core/register",
+      "need": "first",
+      "notFirst": ["core/running-a-pty-ltd"],
+      "from": "pass 16 minor 1"
+    },
+    {
+      "lang": "af",
+      "query": "ek wil 'n bankrekening oopmaak",
+      "doc": "core/register",
+      "anchor": "business-bank-account",
+      "need": "first",
+      "notFirst": ["lookup/glossary"],
+      "from": "pass 16 minor 1"
+    },
+    {
+      "lang": "af",
+      "query": "bankrekening oopmaak",
+      "doc": "core/register",
+      "anchor": "business-bank-account",
+      "need": "first",
+      "notFirst": ["lookup/glossary"],
+      "from": "pass 16 minor 1"
+    },
+    {
+      "lang": "af",
+      "query": "ek wil my besigheid toemaak",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "need": "first",
+      "notFirst": ["core/vehicles"],
+      "from": "pass 16 minor 1"
+    },
+    {
+      "lang": "af",
+      "query": "ek wil my besigheid afsluit",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "need": "first",
+      "notFirst": ["core/vehicles"],
+      "from": "pass 16 minor 1"
+    },
+    {
+      "lang": "af",
+      "query": "hoe noem ek my besigheid",
+      "doc": "branding/branding-prompts",
+      "need": "first",
+      "notFirst": ["core/register"],
+      "from": "pass 16 minor 1"
+    },
+    {
+      "lang": "af",
+      "query": "ek moet voorlopige belasting betaal",
+      "doc": "core/tax-and-sars",
+      "anchor": "provisional-tax",
+      "need": "top3",
+      "firstIn": ["lookup/glossary#provisional-taxpayer"],
+      "from": "pass 16 major 2"
     }
   ]
 }
