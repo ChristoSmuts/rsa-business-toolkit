@@ -14,6 +14,7 @@ pnpm build          # astro build + pnpm dist:audit
 | ------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `pnpm test`         | `tests/unit`, `tests/dom`                    | Pure functions (Vitest), including the link audit and the harness rules below                                 |
 | `pnpm dist:audit`   | `scripts/dist/audit-links.ts`                | Every HTML file in `dist/`: base path, broken targets and `#fragments`, `<base>`, third-party resources and hints, external forms and meta refresh, inline `on*` handlers, `noopener`, `http:`, `javascript:` |
+| `pnpm search:diff <ref>` | `scripts/search-diff.ts`               | Not a test: runs a fixed query corpus (every acceptance row, page title, H1 and section heading, glossary term, and every query quoted in `docs/reviews/WP-33-pass*.md`, in both languages, finished and typed) against the search code and data of `<ref>` and of the working tree, and lists every query whose first result changed, classified `better`, `worse`, `same-target` or `?` (for a person to judge). Run before reporting a search change; a `worse` item is fixed or justified |
 | `pnpm search:typos` | `scripts/search-typo-sweep.ts`               | Not a test: counts how many one-keystroke typos (dropped, doubled, extra neighbouring-key, wrong neighbouring-key and swapped letters, at every position) of every glossary term and page title open the correct spelling's first result (and one of its first three), as finished and typed |
 | `pnpm dist:budget`  | `scripts/dist/js-budget.ts`                  | The JavaScript each built page loads up front, gzipped, against 25 KB (document pages) and 45 KB (tool pages); also prints what opening search costs |
 | `pnpm test:e2e`     | `tests/e2e` (chromium, webkit, mobile, nojs) | Page contract, CSP, no third-party requests, 404 page, no-JS reading, content rendering, navigation and search |
@@ -227,11 +228,11 @@ other unit tests. A row:
   `anchor`, any entry on the page counts.
 - `need` is `first` (the first result) or `top3` (one of the first three).
 - `firstIn` is required on a `top3` row and only there: the other places that may come first,
-  besides the target. These are the glossary entry or "Words used" definition of the same term,
-  or another entry on the same subject (the tax invoice template for `invoice template`).
-  Anything else first fails the row, so a `top3` row never lets an unrelated page lead (review
-  WP-33 pass 16, major 1). Every `top3` row whose first result is already its target is a `first`
-  row.
+  besides the target. Each must be a glossary or "Words used" definition (only for a term query,
+  never a task phrasing such as `ek wil 'n lisensie hê`), or another entry on the target's own
+  page; a test checks this (review WP-33 pass 17, major 4). Anything else first fails the row, so
+  a `top3` row never lets an unrelated page lead (pass 16, major 1). Every `top3` row whose first
+  result is already its target is a `first` row.
 - `notFirst` (optional) lists places that must never be the first result: `doc` (any entry on it,
   its first entry included)
   or `doc#anchor`. Rows from a review use it for the wrong answer the review found.
@@ -244,15 +245,19 @@ vehicles, privacy and POPIA, branding and the name, working from home, and the c
 are phrased the way owners type them: bare words (`tax`, `sluit`), `how do I…`, `I want to…`, `I
 need to…`, `hoe…`, `ek wil…`. A term the glossary defines (`vat`, `turnover tax`, `small claims
 court`) expects the glossary entry first or the section in the top three, because a term query
-opens its definition first (`docs/design-system.md`). At the end of pass 16: 243 English and 203
-Afrikaans rows (51 of them `top3`), 892 tests (finished and typed) and three checks on the file,
-all passing.
+opens its definition first (`docs/design-system.md`). At the end of pass 17: 270 English and 224
+Afrikaans rows (36 of them `top3`), 988 tests (finished and typed) and four checks on the file,
+all passing. `tests/unit/search/index.test.ts` adds `what is` / `wat is` plus every glossary term
+and alias, in both languages, finished and typed.
 
 **How reviews use it.** From review pass 16 on, a major is a failing row, a regression of a row
 that passed, a whole class of query that fails (for example every "I want to…" question), or a
 broken rule (`CLAUDE.md`, the build plan). A new single phrasing that the set does not hold is a
 minor: it becomes a new row, and the fix makes that row pass. A row's expectation changes only with
-a reason in the commit (the guide's text changed, or the row asked for the wrong place).
+a reason in the commit (the guide's text changed, or the row asked for the wrong place). Rows
+are never loosened to make them pass: moving a row from `first` to `top3`, widening `firstIn` or
+changing a row's target is listed in the report with its reason and needs the coordinator's OK. A
+search change is reported with its `pnpm search:diff` against the previous tip.
 
 ### Accessibility: `a11y.spec.ts`
 
@@ -266,14 +271,14 @@ Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, r
 
 ## JavaScript budget: `pnpm dist:budget`
 
-Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-07, at the end of WP-33 review pass 16, with the Afrikaans translation merged:
+Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-07, at the end of WP-33 review pass 17, with the Afrikaans translation merged:
 
 | What | Gzip |
 | --- | --- |
 | Largest document page (`branding/already-have-your-name/`) | 7.9 KB |
-| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 20.3 KB |
-| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 14.2 KB |
-| Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 166.8 / 183.8 KB |
+| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 20.8 KB |
+| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 14.6 KB |
+| Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 166.9 / 184.0 KB |
 
 WP-30 adds the store, the checklists, copy buttons, the table of contents and the settings to every document page; its numbers replace these when it merges.
 

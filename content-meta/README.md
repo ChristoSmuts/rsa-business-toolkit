@@ -78,6 +78,9 @@ misspelt phrase falls back to the ranking.
 - Keep the filler list to words that never say which page is meant. Since review WP-33 pass 15 the
   ranking drops them too (`docs/design-system.md`, "Filler words, whole words and questions"), so a
   filler word changes every search, not only the best bets.
+- Every bet and every keyword page has phrases in both languages; the schema refuses one with
+  either list missing or empty, so `pnpm build` fails. Give each phrasing its counterpart in the
+  other language unless the guide lacks the page (pass 17: the Afrikaans naming phrasings).
 - Under about 80 phrases per language. The build fails over 80 (`MAX_BEST_BETS`; it was 40 until
   pass 15 and 60 until pass 16, as the acceptance set brought closing, bank account, VAT, naming,
   vehicle and records phrasings). Phrase words are matched in any order, so `name business` and

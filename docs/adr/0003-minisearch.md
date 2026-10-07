@@ -50,5 +50,13 @@ Use MiniSearch 7. Build one serialised index per language at build time from `sr
   - **Sources register.** It weighs half (`REFERENCE_WEIGHT`).
   - **Best bets.** Added for vehicle, dividend, BRNC, pty ltd, records and the Afrikaans closing and bank verbs. The cap went from 60 to 80 phrases per language, since the acceptance set now guards their use.
   - **Typo sweep.** 58672 typos, of which 53294 open the correct spelling's first result and 57498 one of its first three. About 200 of the misses since pass 14 are first-word typos of `services and trades` / `dienste en ambagte`, which open the "Services and trades" checklist entry before the page. The pass 16 review judged this harmless (same subject, the correct spelling still opens the page), so it is left as it is.
-- **Size.** 166.8 KB gzip in English (945 entries) and 183.8 KB in Afrikaans (951 entries, all translated), well under the budget; no sharding.
+- **Queries (review WP-33 pass 17): sources, Afrikaans parity, a regression diff.**
+  - **Sources.** The pass 16 half weight on the sources register cost every source query. It now applies only when the query has no source word, the register has page keywords for source queries in both languages, and a query naming an Act leads with the register entry that lists it.
+  - **Task phrasing of a term.** A section whose whole heading is in the query is lifted (`how do i pay provisional tax`). A "Words used" entry ranks after lifted sections, because it opens whatever section of its page uses the word.
+  - **"What is".** "What is" plus a glossary term or its alias opens the glossary entry in every case, tested over every term.
+  - **Afrikaans parity.** The Afrikaans naming phrasings match the English ones, and `besigheidsnaam` now means "I need one", like `business name`. A bet or keyword in one language only already fails the schema, and a test shows it.
+  - **firstIn audit.** Nine `top3` rows had a `firstIn` that named another subject. Eight became `first` rows through a best bet that puts the target first, and `pty ltd` now expects "Running a Pty Ltd" first (a target change, listed in the report); and a test now limits `firstIn` to definitions and the target's own page.
+  - **Regression diff.** `pnpm search:diff <ref>` lists every changed first result over a fixed corpus. Against `3656fef`: 7274 searches, 228 changed, 139 better and 4 same-target by rule, 85 judged by hand (49 better, 32 neutral, 4 justified), none worse.
+  - **Typo sweep.** 53443 of 58672 typos open the correct spelling's first result and 57496 one of its first three. The `services and trades` drop noted at pass 16 was judged harmless by the pass 17 review and stays.
+- **Size.** 166.9 KB gzip in English (945 entries) and 184.0 KB in Afrikaans (951 entries, all translated), well under the budget; no sharding.
 
