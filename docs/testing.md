@@ -226,7 +226,14 @@ other unit tests. A row:
 - `doc` is a document id; `anchor` (optional) one section's English heading slug. Without
   `anchor`, any entry on the page counts.
 - `need` is `first` (the first result) or `top3` (one of the first three).
-- `notFirst` (optional) lists places that must never be the first result: `doc` (any entry on it)
+- `firstIn` is required on a `top3` row and only there: the other places that may come first,
+  besides the target. These are the glossary entry or "Words used" definition of the same term,
+  or another entry on the same subject (the tax invoice template for `invoice template`).
+  Anything else first fails the row, so a `top3` row never lets an unrelated page lead (review
+  WP-33 pass 16, major 1). Every `top3` row whose first result is already its target is a `first`
+  row.
+- `notFirst` (optional) lists places that must never be the first result: `doc` (any entry on it,
+  its first entry included)
   or `doc#anchor`. Rows from a review use it for the wrong answer the review found.
 - `from` names the review that raised the query; rows without it were added to balance the set.
 
@@ -237,8 +244,9 @@ vehicles, privacy and POPIA, branding and the name, working from home, and the c
 are phrased the way owners type them: bare words (`tax`, `sluit`), `how do I…`, `I want to…`, `I
 need to…`, `hoe…`, `ek wil…`. A term the glossary defines (`vat`, `turnover tax`, `small claims
 court`) expects the glossary entry first or the section in the top three, because a term query
-opens its definition first (`docs/design-system.md`). At the end of pass 15: 207 English and 176
-Afrikaans rows, 766 tests (finished and typed), all passing.
+opens its definition first (`docs/design-system.md`). At the end of pass 16: 243 English and 203
+Afrikaans rows (51 of them `top3`), 892 tests (finished and typed) and three checks on the file,
+all passing.
 
 **How reviews use it.** From review pass 16 on, a major is a failing row, a regression of a row
 that passed, a whole class of query that fails (for example every "I want to…" question), or a
@@ -258,14 +266,14 @@ Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, r
 
 ## JavaScript budget: `pnpm dist:budget`
 
-Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-07, at the end of WP-33 review pass 15, with the Afrikaans translation merged:
+Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-07, at the end of WP-33 review pass 16, with the Afrikaans translation merged:
 
 | What | Gzip |
 | --- | --- |
 | Largest document page (`branding/already-have-your-name/`) | 7.9 KB |
-| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 20.0 KB |
-| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 13.8 KB |
-| Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 166.7 / 183.7 KB |
+| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 20.3 KB |
+| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 14.2 KB |
+| Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 166.8 / 183.8 KB |
 
 WP-30 adds the store, the checklists, copy buttons, the table of contents and the settings to every document page; its numbers replace these when it merges.
 

@@ -21,8 +21,9 @@ business`, Tax and SARS also holds `tax return` and `income tax`.
 - A separate file from the best bets, because the two do different jobs: a keyword is ranking input
   that helps every query that uses the word, a best bet pins one phrasing to one target.
 - `pnpm search:build` fails when a page is not in the manifest or is listed twice.
-- `besigheidsnaam` / `business name` on "Already have your name" (pass 15) and `car dealer` /
-  `motorhandelaar` on Vehicle dealer are examples: the owner's word, not the guide's.
+- `besigheidsnaam` / `business name` on "Already have your name" (pass 15), `car dealer` /
+  `motorhandelaar` on Vehicle dealer, `photographer` / `fotograaf` on Professional and creative work
+  and `hairdresser` / `haarkapper` on Beauty are examples: the owner's word, not the guide's.
 
 ## `search-best-bets.json`: search best bets
 
@@ -55,7 +56,10 @@ pins the page for that phrasing.
 
 **When it matches.** Every word of the phrase must be a word of the query, in any order, and
 every other word of the query must be a filler word (`filler`, per language: `my`, `own`, `new`,
-`small`, `need`, `want`, `must`; `eie`, `nuwe`, `klein`, `nodig`, `wil`, `kry`). So `register my own business`, `how do I
+`small`, `need`, `want`, `must`, `looking`, `find`, `show`, `send`, `give`; `eie`, `nuwe`, `klein`,
+`nodig`, `wil`, `kry`, `hê`, `soek`, `asseblief`). A phrase word said twice counts once (`my own
+name as business name` matches `business name`). A query that a quick answer asks word for word
+(`what must my invoice show`) is answered by the quick answer, not by a best bet. So `register my own business`, `how do I
 register my small business` and `registreer 'n nuwe besigheid` all match `register business` /
 `registreer besigheid`, but `tax threshold` does not match `tax`: "threshold" is not filler. A
 hyphenated word reads as its words, so `BTW-registrasie` is the phrase `btw registrasie`. While the
@@ -74,8 +78,10 @@ misspelt phrase falls back to the ranking.
 - Keep the filler list to words that never say which page is meant. Since review WP-33 pass 15 the
   ranking drops them too (`docs/design-system.md`, "Filler words, whole words and questions"), so a
   filler word changes every search, not only the best bets.
-- Under about 60 phrases per language. The build fails over 60 (`MAX_BEST_BETS`; it was 40 until
-  pass 15, when the acceptance set brought closing, bank account, VAT and tax number phrasings).
+- Under about 80 phrases per language. The build fails over 80 (`MAX_BEST_BETS`; it was 40 until
+  pass 15 and 60 until pass 16, as the acceptance set brought closing, bank account, VAT, naming,
+  vehicle and records phrasings). Phrase words are matched in any order, so `name business` and
+  `business name` are one phrase: list it once.
 - Prefer fixing the ranking. A best bet is for the few phrasings that matter most and that ranking
   gets wrong.
 

@@ -456,18 +456,34 @@ chosen over "only the last word while typed" because a finished `market stall` m
 languages, how many one-letter typos open the correct spelling's first result.
 
 **Filler words, whole words and questions.** The ranking drops the best bets' filler words
-(`want`, `need`, `can`, `get`, `must`; `wil`, `moet`, `nodig`, `kry`) as it drops stop words, from
-the all-words query, the title rule and the heading lift alike: `I want to close my business` ranks
-as `close business`, so a heading that happens to say "I need" or "want" is not lifted. A filler
-word stays when it is the whole query (`need`) and while it is the last word being typed (`can` may
-become "cancel"). A word the guide itself holds is never read as a typo of another word:
-`deregister` is not "register", `deregistreer` not "registreer"; its singular still counts, at a fifth
-of its weight (`expenses` finds "Route 2: claim every real expense", while `vehicles` still opens
-"Vehicles for your business"). A query asked as a question (two or more words the ranking drops,
-and two or more it keeps: `do i need an audit`, `how do i name my business`) leads with the quick
-answer whose question holds all its words, filler included, the most covered first; a term
-(`small claims court`, `proof of payment`) keeps its glossary entry first. The fixed acceptance set
-in `tests/search/acceptance-queries.json` holds the owner queries these rules are measured against
+(`want`, `need`, `can`, `get`, `must`, `looking`, `find`, `show`, `send`, `give`; `wil`, `moet`,
+`nodig`, `kry`, `hê`, `soek`) as it drops stop words, from the all-words query, the title rule and
+the heading lift alike: `I want to close my business` ranks as `close business`, and `ek wil 'n
+faktuur hê` as `faktuur`. A filler word stays when it is the whole query (`need`), and while it is
+the last word being typed if it has three letters or more (`can` may become "cancel"; `hê` may not).
+A heading that holds every word of the query as written, filler words included, comes before every
+other lifted heading: `how do i get a brnc` opens "How to get the BRNC", `do i need a tagline` "Do
+you need a tagline?", while a heading that only happens to say "I need" is lifted only when the
+owner said "I need" too. A heading also holds a query word's plural (`kleinsakekorporasie`,
+"…kleinsakekorporasies").
+
+American spellings read as the guide's South African ones, in the index and in a query
+(`SPELLINGS` in `src/lib/search/options.ts`: `license` → "licence", `color` → "colour", `center` →
+"centre"; only words whose en-ZA form the guide uses). A word the guide itself holds is never read
+as a typo of another word: `deregister` is not "register", `deregistreer` not "registreer"; its
+singular still counts, at a fifth of its weight (`expenses` finds "Route 2: claim every real
+expense"). The sources register weighs half (`REFERENCE_WEIGHT`): it repeats every topic's words
+in its headings ("Vehicle dealing and vehicles generally"), so it no longer leads a typo of
+`vehicle dealer`, but `Companies Act 71 of 2008` still finds its "Legislation" entry.
+
+A query asked as a question (two or more words the ranking drops: `do i need an audit`, `how do i
+name my business`, `what must my invoice show`) leads with the quick answer whose question holds
+all its words, filler included, the most covered first. That answer comes before a best bet for
+one of the words (`invoice`) and before a page named only by the words left once filler is
+dropped ("Invoice"); a page named by every word (`hoe dit gemaak is`) still leads. "What is" plus a
+glossary term, filler words counted (`what is the small claims court`), is a definition, not a
+question: the glossary entry leads. The fixed acceptance set in
+`tests/search/acceptance-queries.json` holds the owner queries these rules are measured against
 (`docs/testing.md`).
 
 **Best bets.** A short table, `content-meta/search-best-bets.json` (documented in
@@ -519,7 +535,7 @@ not fade and the class is removed after the same two seconds. On the same page: 
 changes and the heading takes focus. Focus does not go back to the opener then.
 
 **Weight.** Nothing about search loads with a page except `<st-search>` and the dialog markup. The
-results code and MiniSearch (13.8 KB gzip) and the index (167 KB gzip in English, 184 KB in
+results code and MiniSearch (14.2 KB gzip) and the index (167 KB gzip in English, 184 KB in
 Afrikaans) are fetched when the
 dialog first opens; with low data, the index waits for the first key press. The dialog scrolls as a
 whole, with the title and field sticky at its top: a scrolling box that held only the results,
