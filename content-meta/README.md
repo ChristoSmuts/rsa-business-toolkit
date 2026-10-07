@@ -1,7 +1,26 @@
 # content-meta
 
 Hand-kept data that sits next to the markdown in `docs/` and is read by the build. This file
-documents `search-best-bets.json`.
+documents the two search files: `search-keywords.json` and `search-best-bets.json`.
+
+## `search-keywords.json`: page keywords
+
+Owner words that a page's own titles lack, per language (review WP-33 pass 14). They are indexed
+with the page's first entry, in its heading field, so the ranking finds the page however the owner
+phrases the rest: "Register: what you actually need" also holds `register business` and `start
+business`, Tax and SARS also holds `tax return` and `income tax`.
+
+```json
+{
+  "pages": [{ "doc": "core/register", "en": ["register business"], "af": ["registreer besigheid"] }]
+}
+```
+
+- Few, and only where the guide's own titles lack the owner's word. At most six per page and
+  language.
+- A separate file from the best bets, because the two do different jobs: a keyword is ranking input
+  that helps every query that uses the word, a best bet pins one phrasing to one target.
+- `pnpm search:build` fails when a page is not in the manifest or is listed twice.
 
 ## `search-best-bets.json`: search best bets
 
@@ -32,16 +51,25 @@ pins the page for that phrasing.
   `register a business`, `register my business` and `how do I register my business` are one
   phrase. Two phrases of a language that read the same are an error.
 
-**When it matches.** The query's words must be the phrase's words, nothing more and nothing less:
-`tax` is a best bet, `tax threshold` is not. While the last word is still being typed, it may be the
-beginning of the phrase's last word, from four letters (`register my busi`), unless it is already a
-whole word of the guide (`besigheid` does not begin `besigheidslisensie`). A typed beginning yields
-to a query that names a page by its title. There is no typo matching here: a misspelt phrase falls
-back to the ranking.
+**When it matches.** Every word of the phrase must be a word of the query, in any order, and
+every other word of the query must be a filler word (`filler`, per language: `my`, `own`, `new`,
+`small`, `need`; `eie`, `nuwe`, `klein`, `nodig`). So `register my own business`, `how do I
+register my small business` and `registreer 'n nuwe besigheid` all match `register business` /
+`registreer besigheid`, but `tax threshold` does not match `tax`: "threshold" is not filler. A
+hyphenated word reads as its words, so `BTW-registrasie` is the phrase `btw registrasie`. While the
+last word is still being typed, it may be the beginning of a phrase word, from four letters
+(`register my busi`), unless it is already a whole word of the guide (`besig`), or it also begins
+another word of the guide (`maatskap` begins "maatskappy" as well as `maatskappybelasting`). A typed
+beginning yields to a query that names a page by its title. There is no typo matching here: a
+misspelt phrase falls back to the ranking.
 
 **Rules for adding a phrase.**
 
-- Only a phrasing owners actually use, and only when the guide has one obvious page for it.
+- Only a phrasing owners actually use, and only when the guide has one obvious page for it. A
+  phrase the guide uses for more than one thing points at the entry that tells them apart:
+  `annual return` opens the glossary entry ("A yearly filing with CIPC … Not a tax return"), not
+  the CIPC duty, because the guide also calls the ITR12 and ITR14 "annual returns".
+- Keep the filler list to words that never say which page is meant.
 - Under about 40 phrases per language. The build fails over 40 (`MAX_BEST_BETS`).
 - Prefer fixing the ranking. A best bet is for the few phrasings that matter most and that ranking
   gets wrong.
