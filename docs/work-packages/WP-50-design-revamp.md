@@ -1,6 +1,6 @@
 # WP-50: design revamp
 
-Status: plan. Nothing is built yet. Starts after WP-33 (search) merges, because search adds a dialog, a page and a button to every page header, and a revamp running alongside it would fight it for the same components.
+Status: plan. Nothing is built yet. WP-33 (search) has merged, so the header, search dialog and search page are in scope.
 
 Read first: `CLAUDE.md`, `.claude/skills/stoep-design/SKILL.md`, `docs/design-system.md`, `docs/build-plan.md` B3 (the nine key flows) and B4 (Stoep), and ADR 0007.
 

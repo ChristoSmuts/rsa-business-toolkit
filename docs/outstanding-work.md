@@ -1,6 +1,6 @@
 # Outstanding work
 
-**Status on 7 October 2026 (work paused by the owner). `main` carries WP-20 (the site), WP-40 (the Afrikaans translation of all 36 documents, with the code changes integrating it needed), WP-30 (the store), WP-32 (fillable templates) and WP-31 (Find my path, My path and the applies-to filter). WP-33 (search) is built and in review; its work lives only on a branch in the cloud session that built it.**
+**Status on 8 October 2026. `main` carries every built package: WP-20 (the site), WP-40 (the Afrikaans translation of all 36 documents, with the code changes integrating it needed), WP-30 (the store), WP-32 (fillable templates), WP-31 (Find my path, My path and the applies-to filter) and WP-33 (search). Next is WP-50, the design revamp (plan only).**
 
 Read `docs/build-plan.md` first for the design, then this file for where the work stopped. `docs/reviews/merge-checklist.md` holds the tasks that must happen at merge time.
 
@@ -16,10 +16,13 @@ Read `docs/build-plan.md` first for the design, then this file for where the wor
 | WP-30, the store | `WP-30-pass1.md` to `pass3.md`; passes 2 and 3 clean, pass 3's minors fixed |
 | WP-32, fillable templates | `WP-32-pass1.md` to `pass3.md`; passes 2 and 3 clean |
 | WP-31, Find my path and My path | `WP-31-pass1.md` to `pass5.md`; passes 4 and 5 clean, pass 5's minors fixed |
+| WP-33, search | `WP-33-pass1.md` to `pass21.md`. Only pass 11 was clean. The owner capped the reviews at pass 21 and asked for the merge after it; pass 21's one major (lost first keystrokes) was fixed before the merge, and its minors and nits are backlog rows |
 
-Gate on the merged tree (`cabdc1a`): `pnpm gate:fast` green (1435 unit and dom tests, 37 content tests, no drift); `pnpm build` green (`dist:audit` on 198 HTML files, `dist:trust` on 72 document pages and 98 Afrikaans pages, `dist:budget` on 198 pages); Playwright chromium, mobile and nojs 986 passed, 0 failed; `pnpm test:a11y` 412 passed. WebKit was not run (not installed in the cloud container).
+Gate on the merged tree (`dac03f5`): `pnpm gate:fast` green (3232 unit and dom tests, 37 content tests, no drift); `pnpm build` green (`dist:audit` on 198 HTML files, `dist:trust` on 72 document pages and 98 Afrikaans pages, `dist:budget` on 198 pages: heaviest document page `/af/templates/invoice/` 24.2 KB of 25 KB, `/af/search/` 34.4 KB of 45 KB); Playwright chromium, mobile and nojs 1043 passed, 0 failed; `pnpm test:a11y` 416 passed. WebKit was not run (not installed in the cloud container).
 
 What WP-40 changed besides the Afrikaans markdown: the sources register has its own language on a page (`sourcesLang`), and text the Afrikaans register keeps in English is marked `lang="en-ZA"` (`keptInEnglish`); docrefs and the contents block mark English titles in Afrikaans text; every document has an Afrikaans navigation title; `dist:trust` excuses only names, case by case, with tests on both sides. Items for the owner: `docs/reviews/WP-40-owner-items.md`.
+
+What WP-33 added: client-side search over a prebuilt index per language (MiniSearch, ADR 0003), a dialog opened by `/`, Ctrl+K or the header control, and a `/search/` page that works without JavaScript. Ranking is held by the acceptance set (`tests/search/acceptance-queries.json`, about 360 English and 330 Afrikaans owner queries, each tested finished and typed), with best bets, page keywords and Act aliases in `content-meta/` (see `content-meta/README.md`). `pnpm search:diff <ref>` compares first results with an earlier commit and `pnpm search:typos` sweeps one-keystroke typos; run both before changing ranking.
 
 What WP-31 added: the three-question wizard at `/find-my-path/` (one GET form without JavaScript, landing on 98 pre-rendered `noindex` result pages), My path with marks and rings, the home page's path card, the "Only what applies to me" switch driven by `content-meta/applicability.json`, and "Fill from my profile" on prompts. Its JavaScript budget is checked on every page by `pnpm dist:budget`.
 
@@ -27,18 +30,9 @@ What WP-32 added: fillable, printable versions of the five templates, with draft
 
 What WP-30 added: the device store (`src/lib/store.ts`, `src/lib/storage/`), saved checklist ticks shared between a document and `/checklist/` for 45 linked tasks (`content-meta/task-links.json`), ticks carried across reworded tasks (`task-renames.json`, `released-task-keys.json`; see `content-meta/README.md`), copy buttons on prompts, the "Now reading" contents tracking, settings and keyboard shortcuts on `/about/`, clear-my-data, and the language banner.
 
-### Built, in review (not on the remote)
-
-This branch exists only in the cloud session that built it. If that session is gone, it has to be rebuilt from its brief.
-
-- **WP-33, search** (`worktree-agent-a0761a64fd64c33f9`, tip `13989b2`). Nineteen review passes; pass 11 was the only clean one. Since pass 15 it is judged against a fixed acceptance set (`tests/search/acceptance-queries.json`, about 300 English and 260 Afrikaans owner queries, every row tested finished and typed), with `pnpm search:diff <ref>` comparing first results against the previous tip and `pnpm search:typos` sweeping one-keystroke typos. The pass 19 fixes are committed; on `13989b2` `gate:fast` (2630 unit and dom tests), `build`, e2e chromium/mobile/nojs (555 passed, 0 failed) and `test:a11y` (196 passed) are green.
-  - **Owner's decision (7 October):** run two more review passes after the pass 19 fixes, then merge whether or not both are clean, and move what is still open to `docs/reviews/backlog.md`.
-  - **Next:** make Afrikaans "sê" a filler word before diacritics are folded. Twenty "wat die wet oor <noun> sê" queries got worse because "sê" folds to "se" (`docs/reviews/WP-33-diff-733195e.md`). Then review passes 20 and 21, then merge.
-  - **At merge:** fold its `scripts/dist/js-budget.ts` into WP-31's `check-budget.ts` (one `dist:budget`), rewire its settings to WP-30's store, take its filter chips from WP-31's `profileBusinessTypes()`, and recheck the heaviest document page (`/af/templates/invoice/`, 23.7 KB of 25 KB), since search adds a button to every page.
-
 ### Not started
 
-- **WP-50, design revamp** (plan only, `docs/work-packages/WP-50-design-revamp.md`). Starts after WP-33 merges. Four third-party design skills and the project's `stoep-design` skill are vendored in `.claude/skills/` (ADR 0007). Phase 0 is an audit with no source changes; Phase 1 ends in five design decisions for the owner.
+- **WP-50, design revamp** (plan only, `docs/work-packages/WP-50-design-revamp.md`). Four third-party design skills and the project's `stoep-design` skill are vendored in `.claude/skills/` (ADR 0007). Phase 0 is an audit with no source changes; Phase 1 ends in five design decisions for the owner.
 
 - **P4a, the accuracy review against official sources**: the cloud environment cannot reach SARS, CIPC, gov.za, SAFLII or the Information Regulator.
 - **WebKit**: run the WebKit project locally (merge checklist).
