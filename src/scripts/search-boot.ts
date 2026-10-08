@@ -41,29 +41,53 @@ export function applySettings(on: boolean, doc: Document = document): void {
   }
 }
 
-/** The part of `<st-search>` this module calls, once `./search` has defined (upgraded) it. */
-interface Dialog extends HTMLElement {
+/**
+ * `<st-search>` as this module sees it: `open` once `./search` has defined (upgraded) it, and
+ * `opener`, where focus goes back to, for the element to pick up when it takes over a dialog this
+ * module opened.
+ */
+export interface Dialog extends HTMLElement {
   open?: (opener: HTMLElement | null) => void;
+  opener?: HTMLElement | null;
 }
 
-/** The dialog's script, imported once. */
+/**
+ * The dialog's script, imported once. A plain `import()`, without Vite's preload wrapper (the
+ * `@vite-ignore` comment): the wrapper and its helper chunk cost every document page 0.75 KB, and
+ * the chunk's own imports are on the page already or few (review WP-33 pass 21, major 1).
+ */
 const load = (): Promise<unknown> => import('./search');
 
 /**
- * Open the dialog, importing its script the first time. Returns `false` when the page has no
- * search dialog, so the caller leaves the key or click to the browser. When the script cannot load
- * (offline, or a stale page after a deploy) it goes to the search page (`data-page`), which works
- * without it.
+ * Open the dialog. Returns `false` when the page has no search dialog, so the caller leaves the key
+ * or click to the browser.
+ *
+ * The first time, before its script has arrived, this opens the server-rendered `<dialog>` itself
+ * and focuses its field, so every key the reader types lands there (review WP-33 pass 21, major 1:
+ * waiting for the script lost the first letters, and on a slow network the whole query). The
+ * script then takes the open dialog over and searches what was typed. When it cannot load (offline,
+ * or a stale page after a deploy) the search page (`data-page`) opens with the text typed so far.
  */
 export function openSearch(from: HTMLElement | null, doc: Document = document): boolean {
   const host = doc.querySelector<Dialog>('st-search');
   if (!host) return false;
-  if (host.open) host.open(from);
-  else
-    load().then(
-      () => host.open?.(from),
-      () => doc.defaultView?.location.assign(host.dataset['page'] ?? ''),
+  if (host.open) {
+    host.open(from);
+    return true;
+  }
+  const dialog = host.querySelector('dialog');
+  const field = host.querySelector('input');
+  if (dialog && !dialog.open) {
+    host.opener = from;
+    dialog.showModal();
+    field?.focus();
+  }
+  load().catch(() => {
+    const query = field?.value.trim() ?? '';
+    doc.defaultView?.location.assign(
+      `${host.dataset['page'] ?? ''}${query ? `?q=${encodeURIComponent(query)}` : ''}`,
     );
+  });
   return true;
 }
 

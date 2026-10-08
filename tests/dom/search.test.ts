@@ -380,6 +380,21 @@ describe('<st-search>', () => {
     expect(dialog().open).toBe(false);
   });
 
+  // Review WP-33 pass 21, major 1: `search-boot` opens the dialog before this script arrives.
+  it('takes over a dialog opened before it loaded and searches what was typed', async () => {
+    mountHtml(
+      dialogMarkup()
+        .replace('<dialog aria-labelledby="t">', '<dialog aria-labelledby="t" open>')
+        .replace('aria-controls="lb" />', 'aria-controls="lb" value="PIS" />'),
+    );
+    host = document.querySelector<StSearch>('st-search')!;
+    await host.controller();
+    await vi.waitFor(() =>
+      expect(document.querySelectorAll('[role="option"]').length).toBeGreaterThan(0),
+    );
+    expect((document.getElementById('q') as HTMLInputElement).value).toBe('PIS');
+  });
+
   it('fetches the index when it opens, not before', async () => {
     const fetch = stubFetch();
     expect(fetch).not.toHaveBeenCalled();

@@ -340,7 +340,7 @@ English voice. Everything around the content, and every URL, stays in the reader
 | File | What it is |
 | --- | --- |
 | `src/components/search/SearchDialog.astro` | The dialog, rendered by `SiteHeader` on every page with the header: a native `<dialog>` (Escape, backdrop and the focus trap come free), the form, an empty listbox, a polite status line, the failed state and, as the empty state, the first eight common questions. `js-only`: without JavaScript the header's search control is an ordinary link to `/search/`. |
-| `src/scripts/search-boot.ts` | The part every page loads, through `site.ts` in `Page.astro`'s one script: opens the dialog from any `[data-search-open]` (the header control, the drawer link, the home page's "I know what I need"); `/` and Ctrl+K (⌘K) reach its `openSearch()` through the site's one keyboard handler (`matchShortcut`'s `search` action), which skips fields and open dialogs; shows the shortcut setting on the openers and follows it; imports `search.ts` the first time the reader asks, or when a result has just opened the page. It shares no module with `search.ts`, so it adds no chunk of its own. |
+| `src/scripts/search-boot.ts` | The part every page loads, through `site.ts` in `Page.astro`'s one script: opens the dialog from any `[data-search-open]` (the header control, the drawer link, the home page's "I know what I need"); `/` and Ctrl+K (⌘K) reach its `openSearch()` through the site's one keyboard handler (`matchShortcut`'s `search` action), which skips fields and open dialogs; shows the shortcut setting on the openers and follows it; imports `search.ts` the first time the reader asks, or when a result has just opened the page. That first time it opens the server-rendered `<dialog>` itself and focuses the field at once, so no key is lost while the script loads; `<st-search>` then takes the open dialog over and searches what was typed, and if the script cannot load, the search page opens with the text as `?q=` (review pass 21, major 1). It shares no module with `search.ts`, so it adds no chunk of its own, and its `import()` has no Vite preload wrapper (`scripts/search/plain-import.ts`). |
 | `src/scripts/search.ts` | `<st-search>`, the dialog, imported on demand: opens and closes it, returns focus on close, and on arrival from a result focuses and highlights the target. |
 | `src/scripts/search-ui.ts` | The results, imported when the dialog first opens, together with MiniSearch. |
 | `src/scripts/search-page.ts` | `<st-search-page>` (the search page) and `<st-search-suggest>` (the 404 page). |
@@ -584,9 +584,12 @@ gives it `.st-search-target`, a two-second `--st-mark-bg` fade; with `prefers-re
 not fade and the class is removed after the same two seconds. On the same page: no load, the hash
 changes and the heading takes focus. Focus does not go back to the opener then.
 
-**Weight.** A page loads only `search-boot.ts` (about 0.5 KB gzip inside the page's shared
-script), Vite's preload helper for its one `import()` (0.7 KB) and the dialog markup. The dialog
-script, the results code and MiniSearch (27.6 KB gzip, shared chunks counted once) and the index
+**Weight.** A page loads only `search-boot.ts` (about 0.6 KB gzip inside the page's shared
+script) and the dialog markup. Its one `import()` is plain: a build plugin
+(`scripts/search/plain-import.ts`) removes Vite's preload wrapper, whose helper chunk (0.75 KB) was
+the largest piece of search on a document page; the dialog script's own imports are on the page
+already. The dialog script, the results code and MiniSearch (27.6 KB gzip, shared chunks counted
+once) and the index
 (167.5 KB gzip in English, 185.0 KB in Afrikaans) are fetched when the dialog first opens; with low
 data, the index waits for the first key press. The dialog scrolls as a
 whole, with the title and field sticky at its top: a scrolling box that held only the results,

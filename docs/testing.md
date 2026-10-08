@@ -240,21 +240,22 @@ what no page figure counts: everything a dynamic `import()` loads other than the
 (today the search dialog), shared chunks counted once, and the size of each search index (WP-33,
 which folded its own `js-budget.ts` into this script at the merge).
 
-Measured on 2026-10-08 after merging WP-33 with WP-30, WP-31 and WP-32 (review pass 20):
+Measured on 2026-10-08 after merging WP-33 with WP-30, WP-31 and WP-32 (review pass 21):
 
 | What | Gzip |
 | --- | --- |
-| Heaviest document page (`/af/templates/invoice/`), without and with a profile | 24.97 KB (printed 25.0 KB; 23.65 KB on main before the merge) |
+| Heaviest document page (`/af/templates/invoice/`), without and with a profile | 24.18 KB (printed 24.2 KB, 0.8 KB left; 23.65 KB on main before the merge) |
 | Heaviest tool page (`/af/search/`, which imports the dialog's results code and MiniSearch up front) | 34.4 KB |
 | Loaded on demand: the search dialog, its results code, the client and MiniSearch | 27.6 KB |
 | Search index, English (945 entries) / Afrikaans (951 entries); fetched when search opens; budget 400 KB each | 167.5 / 185.0 KB |
 
-The search button costs a document page about 1.3 KB: `search-boot.ts` inside the page's shared
-script and Vite's preload helper for its `import()`. To fit, the dialog's own script loads on demand,
-the keys go through the site's one shortcut handler, and the dialog translates with
-`searchTranslator()` rather than `createTranslator()` (which put 0.5 KB of the translation core into
-every page's `i18n` chunk). There is no room left: the next script on a document page must pay for
-itself (`docs/reviews/backlog.md`).
+The search button costs a document page about 0.55 KB: `search-boot.ts` inside the page's shared
+script. To fit, the dialog's own script loads on demand (opened at once from the page's markup, so no
+key is lost: `search.spec.ts`, "the first open of the search dialog keeps every key", types with
+`keyboard.type` with the script on time, held 2 s and failing), its `import()` has no Vite preload
+wrapper (`scripts/search/plain-import.ts`; the helper chunk was 0.75 KB), the keys go through the
+site's one shortcut handler, and the dialog translates with `searchTranslator()` rather than
+`createTranslator()` (which put 0.5 KB of the translation core into every page's `i18n` chunk).
 
 ### Fillable templates (WP-32)
 

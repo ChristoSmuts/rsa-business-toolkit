@@ -107,6 +107,11 @@ export class StSearch extends HTMLElement {
   #dialog: HTMLDialogElement | null = null;
   #returnFocus: HTMLElement | null = null;
   #controller: Promise<DialogController> | undefined;
+  /**
+   * Set by `./search-boot` when it opened the dialog before this script arrived: where focus goes
+   * back to. `declare`, so no class field overwrites it when the element upgrades.
+   */
+  declare opener?: HTMLElement | null;
 
   /**
    * Escape in the field closes the dialog straight away. A search field's own Escape would
@@ -197,6 +202,13 @@ export class StSearch extends HTMLElement {
     this.#dialog?.addEventListener('close', this.#onClose);
     this.#field()?.addEventListener('keydown', this.#onFieldKeydown);
     this.#field()?.form?.addEventListener('submit', this.#onSubmit);
+    // `./search-boot` opened the dialog while this script loaded, and the reader may have typed:
+    // take it over and search what is in the field (review WP-33 pass 21, major 1).
+    if (this.#dialog?.open) {
+      this.#returnFocus = this.opener ?? null;
+      this.opener = null;
+      this.#start();
+    }
   }
 
   disconnectedCallback(): void {
@@ -228,6 +240,11 @@ export class StSearch extends HTMLElement {
     this.#returnFocus = opener;
     dialog.showModal();
     dialog.querySelector<HTMLInputElement>('input[type="search"]')?.focus();
+    this.#start();
+  }
+
+  /** Load the results code into the open dialog: it shows the common questions or searches. */
+  #start(): void {
     this.controller().then(
       (controller) => controller.opened(),
       () => {

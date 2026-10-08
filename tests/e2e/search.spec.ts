@@ -346,3 +346,83 @@ test.describe('the 404 page', () => {
     },
   );
 });
+
+/**
+ * Review WP-33 pass 21, major 1: the dialog's own script loads on demand, so the first open must
+ * not wait for it. The keys are typed one by one (`keyboard.type`, not `fill`, which waits for the
+ * field), so a key that reaches the page before the field would be lost and fail the test.
+ */
+test.describe('the first open of the search dialog keeps every key', () => {
+  /** The dialog's own script (`_astro/search.<hash>.js`), not `search-ui` or `search-page`. */
+  const DIALOG_SCRIPT = (url: URL): boolean => /\/_astro\/search\.[\w-]+\.js$/.test(url.pathname);
+
+  async function holdDialogScript(
+    page: Page,
+    baseURL: string | undefined,
+    ms: number,
+    abort = false,
+  ): Promise<void> {
+    await routeSameOrigin(page, baseURL, DIALOG_SCRIPT, async (route) => {
+      await new Promise((resolve) => setTimeout(resolve, ms));
+      if (abort) await route.abort();
+      else await route.continue();
+    });
+  }
+
+  for (const delay of [0, 2000]) {
+    const when = delay === 0 ? 'at once' : 'while the dialog script is held 2 s';
+    test(`/ then typing ${when}`, async ({ page, baseURL }) => {
+      test.setTimeout(30_000);
+      if (delay > 0) await holdDialogScript(page, baseURL, delay);
+      await open(page, DOC);
+      await page.keyboard.press('/');
+      await page.keyboard.type('vat');
+      await expect(dialog(page)).toBeVisible();
+      await expect(field(page)).toHaveValue('vat');
+      // When the script arrives it searches what was typed.
+      await expect(page.getByRole('option').first()).toBeVisible({ timeout: 15_000 });
+      await expect(field(page)).toHaveValue('vat');
+    });
+
+    test(`Ctrl+K then typing ${when}`, async ({ page, baseURL }) => {
+      test.setTimeout(30_000);
+      if (delay > 0) await holdDialogScript(page, baseURL, delay);
+      await open(page, DOC);
+      await page.keyboard.press('Control+k');
+      await page.keyboard.type('vat');
+      await expect(field(page)).toHaveValue('vat');
+      await expect(page.getByRole('option').first()).toBeVisible({ timeout: 15_000 });
+    });
+
+    test(`a click on the search control then typing ${when}`, async ({ page, baseURL }) => {
+      test.setTimeout(30_000);
+      if (delay > 0) await holdDialogScript(page, baseURL, delay);
+      await open(page, DOC);
+      await page.locator('.st-topbar__search').click();
+      // Open and focused before the script could have arrived.
+      await expect(dialog(page)).toBeVisible({ timeout: 1000 });
+      await expect(field(page)).toBeFocused({ timeout: 1000 });
+      await page.keyboard.type('vat');
+      await expect(field(page)).toHaveValue('vat');
+      await expect(page.getByRole('option').first()).toBeVisible({ timeout: 15_000 });
+    });
+  }
+
+  test(
+    'when the dialog script cannot load, the search page opens with what was typed',
+    {
+      annotation: allowConsoleError(
+        '/ERR_FAILED|Failed to fetch dynamically imported module|error loading dynamically imported module/',
+        'The test makes the dialog script fail on purpose to show the way on.',
+      ),
+    },
+    async ({ page, baseURL, basePath }) => {
+      test.setTimeout(30_000);
+      await holdDialogScript(page, baseURL, 1000, true);
+      await open(page, DOC);
+      await page.keyboard.press('/');
+      await page.keyboard.type('vat');
+      await expect(page).toHaveURL(new RegExp(`${basePath}search/\\?q=vat$`), { timeout: 15_000 });
+    },
+  );
+});
