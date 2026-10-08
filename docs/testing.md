@@ -249,8 +249,8 @@ are phrased the way owners type them: bare words (`tax`, `sluit`), `how do I…`
 need to…`, `hoe…`, `ek wil…`. A term the glossary defines (`vat`, `turnover tax`, `small claims
 court`) expects the glossary entry first or the section in the top three, because a term query
 opens its definition first (`docs/design-system.md`). An Act row names the register entry it must
-open (`#legislation-this-toolkit-relies-on`). At the end of pass 19b: 338 English and 310 Afrikaans
-rows (3 with `onlyLang`), 1296 tests (finished and typed) and five checks on the file, all passing.
+open (`#legislation-this-toolkit-relies-on`). At the end of pass 20: 358 English and 332 Afrikaans
+rows (3 with `onlyLang`), 1380 tests (finished and typed) and five checks on the file, all passing.
 A phrase removed from the best bets becomes a row in both languages, so its result stays guarded.
 `tests/unit/search/index.test.ts` adds `what is` / `wat is` plus every glossary term and alias, in
 both languages, finished and typed, and every Act of the register by its short name, full name and
@@ -268,7 +268,9 @@ search change is reported with its `pnpm search:diff` against the previous tip. 
 holds the rows, every title, every glossary term, the queries quoted in reviews, generated law,
 source and naming phrasings, and every phrase that has ever been a best bet or a page keyword (read
 from the git history of the two `content-meta` files). Every `?` change gets a verdict and a reason
-in `docs/reviews/WP-33-diff-<ref>.md` (from pass 19).
+in `docs/reviews/WP-33-diff-<ref>.md` (from pass 19). A "neutral" verdict by rule (the result is
+what the bare noun opens) is checked by hand whenever the bare noun's result is about another
+subject (pass 20, major 2).
 
 ### Accessibility: `a11y.spec.ts`
 

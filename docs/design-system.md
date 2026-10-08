@@ -488,8 +488,10 @@ expense"). The sources register weighs half (`REFERENCE_WEIGHT`) in a query that
 sources (one whose last word is not a source word): it repeats every topic's words in its headings ("Vehicle dealing and vehicles
 generally"), so it no longer leads a typo of `vehicle dealer`. A query that ends with a word that
 only means "source" (`SOURCE_WORDS`: `source`, `sources`, `bron`, `bronne`) keeps it at full
-weight (`tax source`); one where the word is a verb or part of another phrase does not (`where do i
-source stock`, `source of income`; pass 19, minor 3); `where does
+weight (`tax source`), and so does one where a source word is followed by `for`, `on`, `about`,
+`vir` or `oor` (`sources for tax`, `bronne vir btw`; `SOURCE_FOLLOWERS`, pass 20, major 1); one
+where the word is a verb or part of another phrase does not (`where do i source stock`, `source of
+income`; pass 19, minor 3); `where does
 this come from` and `waar kom dit vandaan` are best bets, matched as whole phrases, so `come up
 with a name` and `official name` are not source queries. A query that is exactly an Act's name, its
 words in order and nothing between them, optionally followed by `act` or `wet`, a number and a

@@ -2444,6 +2444,189 @@
     },
     {
       "lang": "en",
+      "query": "sources for tax",
+      "doc": "lookup/sources",
+      "anchor": "tax-and-sars",
+      "need": "first",
+      "notFirst": ["core/paying-yourself#uif-sources-disagree"],
+      "from": "pass 20 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "sources for vat",
+      "doc": "lookup/sources",
+      "anchor": "tax-and-sars",
+      "need": "first",
+      "notFirst": ["business-types/vehicle-dealer#the-conditions-you-must-meet"],
+      "from": "pass 20 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "source for sars",
+      "doc": "lookup/sources",
+      "anchor": "tax-and-sars",
+      "need": "first",
+      "notFirst": ["core/paying-yourself"],
+      "from": "pass 20 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "sources for dividends",
+      "doc": "lookup/sources",
+      "anchor": "paying-yourself-from-a-company",
+      "need": "first",
+      "notFirst": ["core/paying-yourself#debit-loan-account-you-owe-the-company"],
+      "from": "pass 20 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "sources for cipc",
+      "doc": "lookup/sources",
+      "anchor": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "need": "first",
+      "notFirst": ["start/how-to-use"],
+      "from": "pass 20 major 1"
+    },
+    {
+      "lang": "en",
+      "query": "labour law",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["business-types/professional-creative#the-turnover-tax-trap"],
+      "from": "pass 20 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "what the law says about labour",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["business-types/professional-creative#the-turnover-tax-trap"],
+      "from": "pass 20 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "what the law says about credit",
+      "doc": "business-types/vehicle-dealer",
+      "anchor": "if-you-extend-credit-yourself",
+      "need": "first",
+      "notFirst": ["lookup/glossary#credit-note"],
+      "from": "pass 20 major 2: neutral items re-rated"
+    },
+    {
+      "lang": "en",
+      "query": "business law",
+      "doc": "business-types/pick-your-business-type",
+      "anchor": "what-everyone-needs-regardless-of-type",
+      "need": "first",
+      "notFirst": ["core/you-are-the-business"],
+      "from": "pass 20 major 2: neutral items re-rated"
+    },
+    {
+      "lang": "en",
+      "query": "credit regulations",
+      "doc": "business-types/vehicle-dealer",
+      "anchor": "if-you-extend-credit-yourself",
+      "need": "first",
+      "notFirst": ["lookup/glossary#credit-note"],
+      "from": "pass 20 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "food law",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-food",
+      "need": "first",
+      "notFirst": ["business-types/food"],
+      "from": "pass 20 major 2"
+    },
+    {
+      "lang": "en",
+      "query": "vat rate",
+      "doc": "lookup/glossary",
+      "anchor": "vat",
+      "need": "first",
+      "notFirst": [
+        "business-types/vehicle-dealer#turnover-tax-is-almost-certainly-wrong-for-a-dealer"
+      ],
+      "from": "pass 20 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "what is the vat rate",
+      "doc": "lookup/glossary",
+      "anchor": "vat",
+      "need": "first",
+      "notFirst": [
+        "business-types/vehicle-dealer#turnover-tax-is-almost-certainly-wrong-for-a-dealer"
+      ],
+      "from": "pass 20 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "tax rates",
+      "doc": "core/tax-and-sars",
+      "need": "first",
+      "notFirst": ["core/adding-new-lines"],
+      "from": "pass 20 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "staff",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["core/working-from-home-and-safety#zoning"],
+      "from": "pass 20 minor 3"
+    },
+    {
+      "lang": "en",
+      "query": "hire staff",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["core/working-from-home-and-safety#zoning"],
+      "from": "pass 20 minor 3"
+    },
+    {
+      "lang": "en",
+      "query": "employment contract",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["business-types/professional-creative#intellectual-property"],
+      "from": "pass 20 minor 3"
+    },
+    {
+      "lang": "en",
+      "query": "what is this site about",
+      "doc": "start/how-to-use",
+      "anchor": "what-this-toolkit-is",
+      "need": "first",
+      "notFirst": ["business-types/retail-online#what-must-appear-on-your-site"],
+      "from": "pass 20 minor 4"
+    },
+    {
+      "lang": "en",
+      "query": "bee level",
+      "doc": "core/register",
+      "anchor": "b-bbee-affidavit-free-do-not-pay-for-it",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 20 nit"
+    },
+    {
+      "lang": "en",
+      "query": "bee status",
+      "doc": "core/register",
+      "anchor": "b-bbee-affidavit-free-do-not-pay-for-it",
+      "need": "first",
+      "notFirst": ["core/adding-new-lines"],
+      "from": "pass 20 nit"
+    },
+    {
+      "lang": "en",
       "query": "what the law says about vat",
       "doc": "lookup/glossary",
       "anchor": "vat",
@@ -4727,6 +4910,202 @@
       "need": "first",
       "notFirst": ["core/paying-yourself"],
       "from": "pass 19 minor 3"
+    },
+    {
+      "lang": "af",
+      "query": "bronne vir belasting",
+      "doc": "lookup/sources",
+      "anchor": "tax-and-sars",
+      "need": "first",
+      "notFirst": ["core/paying-yourself#uif-sources-disagree"],
+      "from": "pass 20 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "bronne vir btw",
+      "doc": "lookup/sources",
+      "anchor": "tax-and-sars",
+      "need": "first",
+      "notFirst": ["business-types/vehicle-dealer#the-conditions-you-must-meet"],
+      "from": "pass 20 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "bron vir sars",
+      "doc": "lookup/sources",
+      "anchor": "tax-and-sars",
+      "need": "first",
+      "notFirst": ["core/paying-yourself#fixing-a-debit-loan-account"],
+      "from": "pass 20 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "bronne vir dividende",
+      "doc": "lookup/sources",
+      "anchor": "paying-yourself-from-a-company",
+      "need": "first",
+      "notFirst": ["core/paying-yourself#debit-loan-account-you-owe-the-company"],
+      "from": "pass 20 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "bronne vir cipc",
+      "doc": "lookup/sources",
+      "anchor": "running-a-pty-ltd-annual-returns-financial-statements-directors",
+      "need": "first",
+      "notFirst": ["start/how-to-use"],
+      "from": "pass 20 major 1"
+    },
+    {
+      "lang": "af",
+      "query": "arbeidswet",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["business-types/professional-creative#the-turnover-tax-trap"],
+      "from": "pass 20 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "werk wet",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["core/you-are-the-business"],
+      "from": "pass 20 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "regulasies vir werk",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["core/you-are-the-business"],
+      "from": "pass 20 major 2: neutral items re-rated"
+    },
+    {
+      "lang": "af",
+      "query": "bank wet",
+      "doc": "core/register",
+      "anchor": "business-bank-account",
+      "need": "first",
+      "notFirst": ["business-types/vehicle-dealer"],
+      "from": "pass 20 major 2: neutral items re-rated"
+    },
+    {
+      "lang": "af",
+      "query": "besigheid wet",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "notFirst": ["core/you-are-the-business"],
+      "from": "pass 20 major 2: neutral items re-rated"
+    },
+    {
+      "lang": "af",
+      "query": "kredietregulasies",
+      "doc": "business-types/vehicle-dealer",
+      "anchor": "if-you-extend-credit-yourself",
+      "need": "first",
+      "notFirst": ["lookup/glossary#credit-note"],
+      "from": "pass 20 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "kos wet",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-food",
+      "need": "first",
+      "notFirst": ["core/running-a-pty-ltd"],
+      "from": "pass 20 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "wat die wet oor kos sê",
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-food",
+      "need": "first",
+      "notFirst": ["core/running-a-pty-ltd"],
+      "from": "pass 20 major 2"
+    },
+    {
+      "lang": "af",
+      "query": "verbruikersbeskerming",
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "need": "first",
+      "from": "pass 20 minor 1"
+    },
+    {
+      "lang": "af",
+      "query": "btw koers",
+      "doc": "lookup/glossary",
+      "anchor": "vat",
+      "need": "first",
+      "notFirst": ["core/tax-and-sars#route-3-turnover-tax"],
+      "from": "pass 20 minor 2"
+    },
+    {
+      "lang": "af",
+      "query": "belastingkoerse",
+      "doc": "core/tax-and-sars",
+      "need": "first",
+      "notFirst": ["core/adding-new-lines"],
+      "from": "pass 20 minor 2"
+    },
+    {
+      "lang": "af",
+      "query": "personeel",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["core/working-from-home-and-safety#zoning"],
+      "from": "pass 20 minor 3"
+    },
+    {
+      "lang": "af",
+      "query": "personeel aanstel",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["core/working-from-home-and-safety#zoning"],
+      "from": "pass 20 minor 3"
+    },
+    {
+      "lang": "af",
+      "query": "dienskontrak",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["business-types/professional-creative#intellectual-property"],
+      "from": "pass 20 minor 3"
+    },
+    {
+      "lang": "af",
+      "query": "oor die toolkit",
+      "doc": "start/how-to-use",
+      "anchor": "what-this-toolkit-is",
+      "need": "first",
+      "notFirst": ["start/what-has-changed"],
+      "from": "pass 20 minor 4"
+    },
+    {
+      "lang": "af",
+      "query": "bee vlak",
+      "doc": "core/register",
+      "anchor": "b-bbee-affidavit-free-do-not-pay-for-it",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 20 nit"
+    },
+    {
+      "lang": "af",
+      "query": "bee status",
+      "doc": "core/register",
+      "anchor": "b-bbee-affidavit-free-do-not-pay-for-it",
+      "need": "first",
+      "notFirst": ["core/adding-new-lines"],
+      "from": "pass 20 nit"
     },
     {
       "lang": "af",

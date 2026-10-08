@@ -70,6 +70,8 @@ export const KIND_WEIGHT: Readonly<Record<SearchEntryKind, number>> = {
  * (`REFERENCE_WEIGHT` does not apply). "Where does this come from" is a best bet, not a word.
  */
 export const SOURCE_WORDS: ReadonlySet<string> = new Set(['source', 'sources', 'bron', 'bronne']);
+/** Words that, after a source word, say what the sources are for (`sources for tax`, `bronne vir btw`). */
+export const SOURCE_FOLLOWERS: ReadonlySet<string> = new Set(['for', 'on', 'about', 'vir', 'oor']);
 
 /**
  * Reference pages that repeat every topic's words in their headings, weighed down in every search

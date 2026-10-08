@@ -8,9 +8,10 @@
  * and section heading, every glossary term, and every query quoted (in backticks) in
  * `docs/reviews/WP-33-pass*.md`, each in both languages, and generated phrasings that use a law,
  * source or naming word in other senses ("<noun> law", "regulations for <noun>", "official
- * <noun>", "come up with a <noun>"; `PHRASINGS`) over the guide's main nouns (review WP-33 pass
- * 18: a word-list rule slipped past a corpus without them), and every phrase that has ever been a
- * best bet or a page keyword, read from the git history of their files (pass 19).
+ * <noun>", "come up with a <noun>", "sources for <noun>"; `PHRASINGS`) over the guide's main
+ * nouns (review WP-33 pass 18: a word-list rule slipped past a corpus without them; pass 20 added
+ * "sources for <noun>"), and every phrase that has ever been a best bet or a page keyword, read
+ * from the git history of their files (pass 19).
  *
  * Each change is classified when it can be: `better` or `worse` when the query is an acceptance
  * row (its target first or not) or a title (that entry first or not), `same-target` when both
@@ -120,6 +121,7 @@ const PHRASINGS: Readonly<Record<Lang, readonly ((noun: string) => string)[]>> =
     (n) => `official ${n}`,
     (n) => `come up with a ${n}`,
     (n) => `${n} source`,
+    (n) => `sources for ${n}`,
     (n) => `what the law says about ${n}`,
   ],
   af: [
@@ -129,6 +131,7 @@ const PHRASINGS: Readonly<Record<Lang, readonly ((noun: string) => string)[]>> =
     (n) => `amptelike ${n}`,
     (n) => `kom aan 'n ${n}`,
     (n) => `${n} bron`,
+    (n) => `bronne vir ${n}`,
     (n) => `wat die wet oor ${n} sê`,
   ],
 };

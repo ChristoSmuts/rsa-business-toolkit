@@ -83,8 +83,8 @@
     {
       "doc": "core/register",
       "anchor": "b-bbee-affidavit-free-do-not-pay-for-it",
-      "en": ["bee certificate", "bee affidavit"],
-      "af": ["bee sertifikaat", "bee beëdigde verklaring"]
+      "en": ["bee certificate", "bee affidavit", "bee level", "bee status"],
+      "af": ["bee sertifikaat", "bee beëdigde verklaring", "bee vlak", "bee status"]
     },
     {
       "doc": "start/start-here",
@@ -230,7 +230,8 @@
         "maak bankrekening oop",
         "bankrekening oopmaak",
         "eenmansaak bankrekening",
-        "maak besigheidsbankrekening oop"
+        "maak besigheidsbankrekening oop",
+        "bank wet"
       ]
     },
     {
@@ -360,7 +361,14 @@
     {
       "doc": "business-types/pick-your-business-type",
       "anchor": "what-everyone-needs-regardless-of-type",
-      "en": ["laws apply", "which laws apply", "laws apply business", "which laws apply business"],
+      "en": [
+        "laws apply",
+        "which laws apply",
+        "laws apply business",
+        "which laws apply business",
+        "business law",
+        "business regulations"
+      ],
       "af": [
         "watter wette geld",
         "watter wette geld besigheid",
@@ -382,14 +390,29 @@
     {
       "doc": "core/running-a-pty-ltd",
       "anchor": "employees-including-yourself",
-      "en": ["employment"],
-      "af": ["indiensneming"]
+      "en": [
+        "employment",
+        "labour law",
+        "labour regulations",
+        "staff",
+        "hire staff",
+        "employment contract"
+      ],
+      "af": [
+        "indiensneming",
+        "arbeidswet",
+        "werk wet",
+        "personeel",
+        "personeel aanstel",
+        "dienskontrak",
+        "werk regulasies"
+      ]
     },
     {
       "doc": "core/what-you-need-to-sell-things",
       "anchor": "if-you-sell-food",
-      "en": ["food regulations"],
-      "af": ["regulasies kos"]
+      "en": ["food regulations", "food law"],
+      "af": ["regulasies kos", "kos wet"]
     },
     {
       "doc": "business-types/retail-online",
@@ -408,6 +431,35 @@
       "anchor": "getting-paid",
       "en": ["getting paid", "getting paid business"],
       "af": ["betaal word", "betaal word besigheid"]
+    },
+    {
+      "doc": "business-types/vehicle-dealer",
+      "anchor": "if-you-extend-credit-yourself",
+      "en": ["credit regulations", "credit law"],
+      "af": ["kredietregulasies", "krediet regulasies"]
+    },
+    {
+      "doc": "lookup/glossary",
+      "anchor": "vat",
+      "en": ["vat rate"],
+      "af": ["btw koers"]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "en": ["tax rates", "tax rate"],
+      "af": ["belastingkoerse", "belastingkoers"]
+    },
+    {
+      "doc": "lookup/sources",
+      "anchor": "tax-and-sars",
+      "en": ["vat sources"],
+      "af": ["btw bronne"]
+    },
+    {
+      "doc": "start/how-to-use",
+      "anchor": "what-this-toolkit-is",
+      "en": ["what is this site about"],
+      "af": ["oor die toolkit"]
     }
   ]
 }

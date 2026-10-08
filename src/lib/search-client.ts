@@ -15,6 +15,7 @@ import {
   DOC_WEIGHT,
   dropWrittenFiller,
   REFERENCE_WEIGHT,
+  SOURCE_FOLLOWERS,
   SOURCE_WORDS,
   FIELD_BOOST,
   foldTerm,
@@ -612,9 +613,15 @@ export function runSearchCounted(
   // pass 17, major 1).
   // Only when the source word ends the query, as a noun (`sources`, `what is the source`, `tax
   // source`, `bron`): followed by what is sourced (`where do i source stock`, `source of income`)
-  // it means something else (review WP-33 pass 19, minor 3).
+  // it means something else (review WP-33 pass 19, minor 3). A source word followed by what the
+  // sources are for is a source query too (`sources for tax`, `bronne vir btw`; pass 20, major 1).
   const lastRaw = raw.at(-1);
-  const asksSource = typeof lastRaw === 'string' && SOURCE_WORDS.has(lastRaw);
+  const sourceWords = query.toLowerCase().split(/[^\p{L}\p{N}]+/u);
+  const asksSource =
+    (typeof lastRaw === 'string' && SOURCE_WORDS.has(lastRaw)) ||
+    sourceWords.some(
+      (word, at) => SOURCE_WORDS.has(word) && SOURCE_FOLLOWERS.has(sourceWords[at + 1] ?? ''),
+    );
   const searchOptions = {
     bm25: BM25,
     prefix,
