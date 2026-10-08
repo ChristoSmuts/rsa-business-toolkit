@@ -141,7 +141,7 @@ const SHRINK_WRAPPED: readonly ShrinkWrapped[] = [
   { box: '.st-lang__link', text: null, width: 320 },
   // The header's search link exists only once search is built (`SEARCH_AVAILABLE`, WP-33).
   ...(SEARCH_AVAILABLE
-    ? [{ box: '.st-topbar__search', text: '.st-topbar__search > span:not([class])', width: 320 }]
+    ? [{ box: '.st-topbar__search', text: '.st-topbar__search-label', width: 320 }]
     : []),
   { box: '.st-topbar__menu-button', text: '.st-topbar__menu-button > span', width: 320 },
 ];
