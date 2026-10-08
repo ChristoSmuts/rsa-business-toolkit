@@ -16,7 +16,7 @@ pnpm build          # astro build + pnpm dist:audit
 | `pnpm dist:audit`   | `scripts/dist/audit-links.ts`                | Every HTML file in `dist/`: base path, broken targets and `#fragments`, `<base>`, third-party resources and hints, external forms and meta refresh, inline `on*` handlers, `noopener`, `http:`, `javascript:` |
 | `pnpm search:diff <ref>` | `scripts/search-diff.ts`               | Not a test: runs a fixed query corpus (every acceptance row, page title, H1 and section heading, glossary term, every query quoted in `docs/reviews/WP-33-pass*.md`, and generated phrasings that put a law, source or naming word next to the guide's main nouns (`tax law`, `regulations for food`, `official name`, `come up with a name`; `regulasies vir kos`, `amptelike naam`), in both languages, finished and typed) against the search code and data of `<ref>` and of the working tree, and lists every query whose first result changed, classified `better`, `worse`, `same-target` or `?` (for a person to judge). Run before reporting a search change; a `worse` item is fixed or justified |
 | `pnpm search:typos` | `scripts/search-typo-sweep.ts`               | Not a test: counts how many one-keystroke typos (dropped, doubled, extra neighbouring-key, wrong neighbouring-key and swapped letters, at every position) of every glossary term and page title open the correct spelling's first result (and one of its first three), as finished and typed |
-| `pnpm dist:budget`  | `scripts/dist/js-budget.ts`                  | The JavaScript each built page loads up front, gzipped, against 25 KB (document pages) and 45 KB (tool pages); also prints what opening search costs |
+| `pnpm dist:budget`  | `scripts/dist/check-budget.ts`               | The JavaScript each built page loads up front, gzipped, against 25 KB (document pages) and 45 KB (tool pages); also prints what opening search costs |
 | `pnpm test:e2e`     | `tests/e2e` (chromium, webkit, mobile, nojs) | Page contract, CSP, no third-party requests, 404 page, no-JS reading, content rendering, navigation and search |
 | `pnpm test:a11y`    | `tests/e2e/a11y.spec.ts`                     | axe (WCAG 2.0/2.1 A and AA) on every page in light and dark themes                                            |
 | `pnpm test:visual`  | `tests/e2e/visual.spec.ts`                   | Screenshot comparison (added in a later package)                                                              |
@@ -235,7 +235,26 @@ without a profile and once with the chunks a reader with saved answers can load 
 of each kind and the room left. On the WP-30 build the heaviest document page was 15.9 KB; on the
 WP-31 build after review pass 5 it is 22.2 KB without and with a profile (it was 24.0 KB and 26.3 KB
 before); see
-[design-system.md](design-system.md#scripts-csp-and-javascript-budget) for the split.
+[design-system.md](design-system.md#scripts-csp-and-javascript-budget) for the split. It also prints
+what no page figure counts: everything a dynamic `import()` loads other than the profile chunks
+(today the search dialog), shared chunks counted once, and the size of each search index (WP-33,
+which folded its own `js-budget.ts` into this script at the merge).
+
+Measured on 2026-10-08 after merging WP-33 with WP-30, WP-31 and WP-32 (review pass 20):
+
+| What | Gzip |
+| --- | --- |
+| Heaviest document page (`/af/templates/invoice/`), without and with a profile | 24.97 KB (printed 25.0 KB; 23.65 KB on main before the merge) |
+| Heaviest tool page (`/af/search/`, which imports the dialog's results code and MiniSearch up front) | 34.4 KB |
+| Loaded on demand: the search dialog, its results code, the client and MiniSearch | 27.6 KB |
+| Search index, English (945 entries) / Afrikaans (951 entries); fetched when search opens; budget 400 KB each | 167.5 / 185.0 KB |
+
+The search button costs a document page about 1.3 KB: `search-boot.ts` inside the page's shared
+script and Vite's preload helper for its `import()`. To fit, the dialog's own script loads on demand,
+the keys go through the site's one shortcut handler, and the dialog translates with
+`searchTranslator()` rather than `createTranslator()` (which put 0.5 KB of the translation core into
+every page's `i18n` chunk). There is no room left: the next script on a document page must pay for
+itself (`docs/reviews/backlog.md`).
 
 ### Fillable templates (WP-32)
 

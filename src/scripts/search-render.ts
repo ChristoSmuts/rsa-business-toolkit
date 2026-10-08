@@ -3,10 +3,31 @@
  * (`search-page.ts`). Built with `createElement` and `textContent` only: result text comes from the
  * index and is never parsed as HTML, so `<mark>` is the only markup a result can contain.
  */
-import { createTranslator, type Dict, type Translator, type KeyIn } from '../i18n';
+import {
+  interpolate,
+  type Dict,
+  type KeyIn,
+  type Params,
+  type PluralForms,
+  type Translator,
+} from '../i18n';
 import { getLocale, isEnabledLocale, type Locale } from '../i18n/locales';
+import { lowData, shortcutsEnabled } from '../lib/store';
+import type { SearchSettings } from './search-boot';
 import { highlight, type SearchResult } from '../lib/search-client';
 import type { SearchStrings } from '../lib/search/ui-data';
+
+/**
+ * The reader's settings, from WP-30's store (`src/lib/store.ts`): single-key shortcuts
+ * (`st.shortcuts`, `shortcutsEnabled()`) and low data (`st.lowData`). The browser's
+ * `prefers-reduced-data` is a second reason for low data.
+ */
+export function searchSettings(win: Window = window): SearchSettings {
+  return {
+    shortcuts: shortcutsEnabled(),
+    lowData: lowData.get() || (win.matchMedia?.('(prefers-reduced-data: reduce)').matches ?? false),
+  };
+}
 
 export interface SearchContext {
   readonly locale: Locale;
@@ -28,6 +49,36 @@ function isStrings(value: unknown): value is SearchStrings {
   );
 }
 
+/**
+ * A translator over the `search` strings a page serialises (`pick()`): it looks a key up, picks the
+ * plural form for `count` with `Intl.PluralRules` and fills `{name}` with `interpolate()`, as `t()`
+ * and `createTranslator()` do (a test compares it with `t()` for every search string in every
+ * language). Not `createTranslator()` itself: the translation core would then share a chunk with
+ * the `interpolate()` every page loads and add half a kilobyte to each (the 25 KB budget, WP-33
+ * integration). The page has already filled gaps with English (`pick()`), so there is no fallback.
+ */
+export function searchTranslator(
+  locale: Locale,
+  dict: Pick<Dict, 'search'>,
+): Translator<KeyIn<'search'>> {
+  const rules = new Intl.PluralRules(getLocale(locale)?.hreflang ?? locale);
+  return (key, ...params) => {
+    const values = (params[0] ?? {}) as Params;
+    let node: unknown = dict;
+    for (const part of key.split('.')) {
+      node =
+        typeof node === 'object' && node !== null
+          ? (node as Record<string, unknown>)[part]
+          : undefined;
+    }
+    if (typeof node === 'string') return interpolate(node, values);
+    if (typeof node !== 'object' || node === null) return key;
+    const forms = node as PluralForms;
+    const form = typeof values.count === 'number' ? forms[rules.select(values.count)] : undefined;
+    return interpolate(form ?? forms.other, values);
+  };
+}
+
 /** Read the `data-*` attributes a page renders from `searchElementData()`. */
 export function readContext(element: HTMLElement): SearchContext {
   const { locale, index, page, contents, strings } = element.dataset;
@@ -42,7 +93,7 @@ export function readContext(element: HTMLElement): SearchContext {
     page,
     contents,
     strings: parsed,
-    tr: createTranslator(locale, parsed.dict as Pick<Dict, 'search'>),
+    tr: searchTranslator(locale, parsed.dict as Pick<Dict, 'search'>),
   };
 }
 

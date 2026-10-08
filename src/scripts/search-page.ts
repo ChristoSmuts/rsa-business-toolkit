@@ -21,13 +21,14 @@ import {
   type SearchClient,
   type SearchResult,
 } from '../lib/search-client';
-import { rememberArrival, searchSettings } from './search';
+import { rememberArrival } from './search';
 import {
   countStatus,
   readContext,
   resultBody,
   sectionName,
   type SearchContext,
+  searchSettings,
 } from './search-render';
 
 /** Results the 404 page suggests at most. */

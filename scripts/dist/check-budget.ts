@@ -13,8 +13,13 @@
  * A document page (`<article data-kind>`) may load `DOC_BUDGET`, any other page `TOOL_BUDGET`, both
  * with a profile. The build fails when one is over, and prints the heaviest of each kind and how
  * much room is left, so the next package can see what it has.
+ *
+ * It also prints what loads only when the reader asks for it, which no page budget counts: every
+ * other dynamic `import()` (today the search dialog's results code, the client and MiniSearch,
+ * imported when search first opens), shared chunks counted once, and each search index
+ * (`search/<lang>.<hash>.json`), fetched at the same moment (WP-33).
  */
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { gzipSync } from 'node:zlib';
@@ -111,6 +116,7 @@ export function runCli(
       withProfile: sum(scriptGraph(entries, read, (name) => PROFILE_CHUNKS.test(name))),
     });
   }
+  reportOnDemand(root, read, gz);
   const over = pages.filter(
     (page) => page.withProfile > (page.document ? DOC_BUDGET : TOOL_BUDGET),
   );
@@ -138,6 +144,49 @@ export function runCli(
   }
   console.log(`dist:budget: ${pages.length} page(s) within budget.`);
   return 0;
+}
+
+/** What loads only on demand (`onDemand`) and the search index files, printed by `runCli`. */
+function reportOnDemand(
+  root: string,
+  read: (file: string) => string,
+  gz: (file: string) => number,
+): void {
+  const astro = path.join(root, '_astro');
+  if (existsSync(astro)) {
+    const chunks = readdirSync(astro)
+      .filter((name) => name.endsWith('.js'))
+      .map((name) => `_astro/${name}`);
+    const files = onDemand(chunks, read);
+    const size = files.reduce((total, file) => total + gz(file), 0);
+    console.log(
+      `dist:budget: loaded on demand (dynamic import(), not in the page figures; today the search ` +
+        `dialog): ${kb(size)} gzip (shared chunks counted once).`,
+    );
+  }
+  const searchDir = path.join(root, 'search');
+  if (existsSync(searchDir)) {
+    for (const name of readdirSync(searchDir).filter((f) => f.endsWith('.json'))) {
+      const body = readFileSync(path.join(searchDir, name));
+      console.log(
+        `dist:budget: search index ${name}: ${kb(body.length)} raw, ` +
+          `${kb(gzipSync(body, { level: 9 }).length)} gzip.`,
+      );
+    }
+  }
+}
+
+/**
+ * Every file loaded by a dynamic `import()` in `chunks` other than the profile chunks (which the
+ * page figures count), with its static imports.
+ */
+export function onDemand(chunks: readonly string[], read: (file: string) => string): string[] {
+  const targets = chunks.flatMap((file) =>
+    moduleImports(read(file))
+      .dynamic.map((spec) => path.posix.join(path.posix.dirname(file), spec))
+      .filter((target) => !PROFILE_CHUNKS.test(path.posix.basename(target))),
+  );
+  return scriptGraph([...new Set(targets)], read);
 }
 
 const invokedPath = process.argv[1];

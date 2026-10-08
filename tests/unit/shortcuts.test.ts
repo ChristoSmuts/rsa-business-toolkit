@@ -45,9 +45,16 @@ describe('matchShortcut', () => {
     expect(matchShortcut(key({ key: '?', isComposing: true }), true)).toBeUndefined();
   });
 
-  it('leaves / and Ctrl+K to the search package', () => {
-    expect(matchShortcut(key({ key: '/' }), true)).toBeUndefined();
-    expect(matchShortcut(key({ key: 'k', ctrlKey: true }), true)).toBeUndefined();
+  // WP-33 integration: one handler for every shortcut; `search` opens the search dialog.
+  it('maps / (a single key) and Ctrl+K or ⌘K to search', () => {
+    expect(matchShortcut(key({ key: '/' }), true)).toBe('search');
+    expect(matchShortcut(key({ key: '/' }), false)).toBeUndefined();
+    expect(matchShortcut(key({ key: 'k', ctrlKey: true }), false)).toBe('search');
+    expect(matchShortcut(key({ key: 'K', metaKey: true }), true)).toBe('search');
+    expect(matchShortcut(key({ key: 'k', ctrlKey: true, shiftKey: true }), true)).toBeUndefined();
+    expect(matchShortcut(key({ key: 'k', ctrlKey: true, altKey: true }), true)).toBeUndefined();
+    expect(matchShortcut(key({ key: '/', altKey: true }), true)).toBeUndefined();
+    expect(matchShortcut(key({ key: '/', ctrlKey: true }), true)).toBeUndefined();
   });
 });
 

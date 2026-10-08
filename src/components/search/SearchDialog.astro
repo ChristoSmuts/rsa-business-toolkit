@@ -97,6 +97,21 @@ const ids = {
             {t('search.instructions')}
           </p>
         </form>
+        {/*
+          The one filter chip (B3 flow 3): "My business types", shown only to a reader with saved
+          answers from Find my path (WP-31), so it is hidden until the results code finds them.
+        */}
+        <div
+          class="st-search-dialog__filters"
+          role="group"
+          aria-label={t('search.filters.label')}
+          data-search-filters
+          hidden
+        >
+          <button type="button" class="st-search-chip" aria-pressed="false" data-search-mine>
+            {t('search.filters.myTypes')}
+          </button>
+        </div>
         <p
           class="st-search-dialog__status"
           id={ids.status}
@@ -148,10 +163,6 @@ const ids = {
     </div>
   </dialog>
 </st-search>
-
-<script>
-  import '../../scripts/search';
-</script>
 
 <style>
   .st-search-host {

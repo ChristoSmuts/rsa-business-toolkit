@@ -65,7 +65,7 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
     {searchHref && (
       <a class="st-topbar__search" href={searchHref} data-search-open>
         <Icon name="lucide:search" size="1em" />
-        <span>{t('nav.search')}</span>
+        <span class="st-topbar__search-label">{t('nav.search')}</span>
         {/* A visual hint only: the script announces the keys as `aria-keyshortcuts`. */}
         <span class="st-topbar__kbd js-only" aria-hidden="true" data-search-key-hint>
           <Kbd>/</Kbd>
@@ -220,6 +220,41 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
 
   /* A key hint is no use on a touch screen. */
   @media (hover: none) {
+    .st-topbar__kbd {
+      display: none;
+    }
+  }
+
+  /*
+   * From 1024 to 1365px the search control is the icon alone, still 44px, its name the visually
+   * hidden word, and `/` and Ctrl+K still announced (`aria-keyshortcuts`). With "Search"/"Soek",
+   * the `/` hint and "My path" the bar wrapped to two rows again up to 1365px (124px; WP-33 merged
+   * with WP-31). Below 1280px, where the ring also stands alone, the gaps narrow as well: the
+   * Afrikaans bar was a few pixels too wide at 1024px. `wizard.spec.ts` checks one row.
+   */
+  @media (1024px <= width < 1280px) {
+    .st-topbar__inner {
+      gap: var(--st-space-1);
+    }
+  }
+
+  @media (1024px <= width < 1366px) {
+    .st-topbar__search {
+      position: relative;
+      justify-content: center;
+      min-inline-size: var(--st-target);
+      padding-inline: var(--st-space-2);
+    }
+
+    .st-topbar__search-label {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
     .st-topbar__kbd {
       display: none;
     }

@@ -78,5 +78,5 @@ Use MiniSearch 7. Build one serialised index per language at build time from `sr
   - **Law words with two senses.** Bets pick the legal sense where the bare noun means something else: `labour law` and `arbeidswet`, `werk wet` (Employees), `credit regulations` and `kredietregulasies` (the credit section), `food law` and `kos wet` (If you sell food), `business law`, `bank wet`. `besigheid wet` is a Businesses Act alias. The pass 19 "neutral by rule" items were re-rated by hand in `docs/reviews/WP-33-diff-2947fbf.md`.
   - **Single phrasings.** Bets for `vat rate`, `btw koers`, `tax rates`, `staff`, `personeel`, `employment contract`, `what is this site about`, `oor die toolkit`, `bee level`; `verbruikersbeskerming` is a Consumer Protection Act alias. The Afrikaans bets are at the cap of 120.
   - **Regression diff.** Against `2947fbf`: 9842 searches, 132 changed, 71 better by rule, none worse; 61 judged by hand (48 better, 13 neutral, none worse).
-- **Size.** 167.4 KB gzip in English (945 entries) and 184.8 KB in Afrikaans (951 entries, all translated), well under the budget; no sharding.
+- **Size.** 167.5 KB gzip in English (945 entries) and 185.0 KB in Afrikaans (951 entries, all translated), well under the budget; no sharding.
 

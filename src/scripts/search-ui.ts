@@ -9,6 +9,10 @@
  *
  * States: empty (the common questions), loading, results, no results and failed. The failed and
  * no-results states keep a link to the contents page. A polite live region says what happened.
+ *
+ * A reader with saved answers from Find my path (WP-31) also gets the "My business types" chip: a
+ * toggle button that keeps only results for their business types (`profileBusinessTypes()`, General
+ * expanded) and those for every type. It starts off each time the dialog opens.
  */
 import {
   createSearchClient,
@@ -16,13 +20,15 @@ import {
   groupResults,
   type SearchClient,
 } from '../lib/search-client';
-import type { SearchSettings } from './search';
+import { profileBusinessTypes } from '../lib/profile-store';
+import type { SearchSettings } from './search-boot';
 import {
   countStatus,
   readContext,
   resultBody,
   sectionName,
   type SearchContext,
+  searchSettings,
 } from './search-render';
 
 export interface DialogController {
@@ -33,7 +39,8 @@ export interface DialogController {
 }
 
 export interface DialogDeps {
-  readonly settings: SearchSettings;
+  /** The reader's settings; the store's (`searchSettings()`) unless a test gives others. */
+  readonly settings?: SearchSettings;
   /** Close the dialog and open a result. */
   readonly openResult: (url: string) => void;
 }
@@ -64,6 +71,8 @@ export class SearchDialogController implements DialogController {
   readonly #failed: HTMLElement | null;
   readonly #all: HTMLElement | null;
   readonly #dialog: HTMLDialogElement | null;
+  readonly #filters: HTMLElement | null;
+  readonly #mine: HTMLButtonElement | null;
   #options: HTMLAnchorElement[] = [];
   #active = -1;
   #timer: ReturnType<typeof setTimeout> | undefined;
@@ -94,11 +103,32 @@ export class SearchDialogController implements DialogController {
     listbox.addEventListener('click', this.#onOptionClick);
     this.#dialog = host.querySelector('dialog');
     this.#dialog?.addEventListener('close', this.#onDialogClose);
+    this.#filters = host.querySelector('[data-search-filters]');
+    this.#mine = host.querySelector('[data-search-mine]');
+    this.#mine?.addEventListener('click', this.#onMineClick);
   }
 
+  /** The reader's business types while the chip is on, else `undefined` (no filter). */
+  #businessTypes(): string[] | undefined {
+    if (this.#mine?.getAttribute('aria-pressed') !== 'true') return undefined;
+    return profileBusinessTypes() ?? undefined;
+  }
+
+  readonly #onMineClick = (): void => {
+    const on = this.#mine?.getAttribute('aria-pressed') !== 'true';
+    this.#mine?.setAttribute('aria-pressed', String(on));
+    if (this.#input.value.trim() !== '') void this.search(this.#input.value);
+  };
+
   opened(): void {
+    // The chip only for a reader with saved answers; it starts off on every open.
+    const types = profileBusinessTypes();
+    if (this.#filters) this.#filters.hidden = types === null;
+    this.#mine?.setAttribute('aria-pressed', 'false');
     // Low data: the index is fetched when the reader types, not when the dialog opens.
-    if (!this.#deps.settings.lowData) void this.#client.load().catch(() => undefined);
+    if (!(this.#deps.settings ?? searchSettings()).lowData) {
+      void this.#client.load().catch(() => undefined);
+    }
     if (this.#input.value.trim() !== '') this.search(this.#input.value);
     // An empty field shows the common questions, and clears a failed state left by an earlier
     // open whose results code did not load (review WP-33 pass 3, minor 1).
@@ -254,7 +284,10 @@ export class SearchDialogController implements DialogController {
         }, LOADING_DELAY_MS);
     let counted: CountedResults;
     try {
-      counted = await this.#client.searchCounted(q, { typing });
+      counted = await this.#client.searchCounted(q, {
+        typing,
+        businessTypes: this.#businessTypes(),
+      });
     } catch {
       clearTimeout(loading);
       if (sequence === this.#sequence) this.#showFailed();

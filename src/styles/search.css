@@ -122,3 +122,45 @@
     outline: 2px solid Highlight;
   }
 }
+
+/* The "My business types" chip (B3 flow 3, WP-31's profile). A toggle button: `aria-pressed`
+   carries the state; on screen a check mark and bold text say it as well as the colour. */
+.st-search-dialog__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--st-space-2);
+  margin-block-start: var(--st-space-2);
+}
+
+.st-search-dialog__filters[hidden] {
+  display: none;
+}
+
+.st-search-chip {
+  min-block-size: var(--st-target);
+  padding-inline: var(--st-space-3);
+  border: var(--st-border-width) solid var(--st-border-strong);
+  border-radius: var(--st-radius-pill);
+  background: var(--st-surface);
+  color: var(--st-text);
+  font: inherit;
+  font-size: var(--st-text-sm);
+  cursor: pointer;
+}
+
+.st-search-chip[aria-pressed='true'] {
+  border-color: var(--st-accent);
+  background: var(--st-accent-soft);
+  color: var(--st-on-accent-soft);
+  font-weight: var(--st-weight-semibold);
+}
+
+.st-search-chip[aria-pressed='true']::before {
+  content: '✓ ';
+  content: '✓ ' / '';
+}
+
+.st-search-chip:focus-visible {
+  outline: var(--st-focus-width) solid var(--st-focus);
+  outline-offset: 2px;
+}

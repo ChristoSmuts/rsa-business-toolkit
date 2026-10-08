@@ -340,10 +340,11 @@ English voice. Everything around the content, and every URL, stays in the reader
 | File | What it is |
 | --- | --- |
 | `src/components/search/SearchDialog.astro` | The dialog, rendered by `SiteHeader` on every page with the header: a native `<dialog>` (Escape, backdrop and the focus trap come free), the form, an empty listbox, a polite status line, the failed state and, as the empty state, the first eight common questions. `js-only`: without JavaScript the header's search control is an ordinary link to `/search/`. |
-| `src/scripts/search.ts` | `<st-search>`, the small eager half: opens the dialog from any `[data-search-open]` (the header control, the drawer link, the home page's "I know what I need"), from `/` and from Ctrl+K (⌘K), never while focus is in a field or another dialog is open; returns focus on close; and on arrival from a result focuses and highlights the target. |
+| `src/scripts/search-boot.ts` | The part every page loads, through `site.ts` in `Page.astro`'s one script: opens the dialog from any `[data-search-open]` (the header control, the drawer link, the home page's "I know what I need"); `/` and Ctrl+K (⌘K) reach its `openSearch()` through the site's one keyboard handler (`matchShortcut`'s `search` action), which skips fields and open dialogs; shows the shortcut setting on the openers and follows it; imports `search.ts` the first time the reader asks, or when a result has just opened the page. It shares no module with `search.ts`, so it adds no chunk of its own. |
+| `src/scripts/search.ts` | `<st-search>`, the dialog, imported on demand: opens and closes it, returns focus on close, and on arrival from a result focuses and highlights the target. |
 | `src/scripts/search-ui.ts` | The results, imported when the dialog first opens, together with MiniSearch. |
 | `src/scripts/search-page.ts` | `<st-search-page>` (the search page) and `<st-search-suggest>` (the 404 page). |
-| `src/scripts/search-render.ts` | The DOM of one result, shared by all three. `createElement` and `textContent` only: result text is never parsed as HTML. |
+| `src/scripts/search-render.ts` | The DOM of one result, shared by all three. `createElement` and `textContent` only: result text is never parsed as HTML. Also `searchSettings()` (WP-30's `shortcuts` and `lowData` stores, with `prefers-reduced-data` as a second reason for low data) and `searchTranslator()`, a small translator for the serialised search strings that a test holds equal to `t()` for every string and count: `createTranslator()` would have put the translation core into the `i18n` chunk every page loads (0.5 KB on each). |
 | `src/styles/search.css` | Result and highlight styles, global because the script builds the results. |
 
 **Pattern.** The field is an ARIA 1.2 combobox that owns a listbox. Focus stays in the field; the up
@@ -568,24 +569,26 @@ the last word was still being typed carries `typed=1`, so the search page runs t
 lists what the link promised (`VAT26` reaches VAT264 there too); a search submitted on the page
 itself is finished.
 
-**Not built: filter chips.** B3 flow 3 puts filter chips in the empty state. The brief for this
-package (step 3) does not, and it leaves the only filter with a clear use, "my business types", to
-WP-31 because it needs the profile. The client already filters by section, kind, entity and business
-type (`SearchOptions`), so the chips are markup and wiring only; section chips alone add a control
-that the grouping by section and the search page already cover. They go to WP-31 with the
-business-type filter (`docs/reviews/backlog.md`).
+**Filter chip: "My business types"** (B3 flow 3, built at the WP-31 merge). A reader with saved
+answers from Find my path sees one chip under the field, a toggle button (`aria-pressed`, a check
+mark and bold text when on, not colour alone). On, the dialog keeps only results for their business
+types (`profileBusinessTypes()` from WP-31's profile store, General expanded) and results for every
+type (`SearchOptions.businessTypes`). It starts off on every open and is hidden without a profile.
+Section chips are not built: the grouping by section and the search page already cover them.
 
 **Choosing a result.** On another page: the script remembers the target in `sessionStorage`
-(`st.search.arrival`, behind the small `arrivalStore` wrapper in `src/scripts/search.ts`, removed on
-the next page load) and the destination focuses the heading and
+(`st.search.arrival`, through `src/lib/storage/session.ts`, removed on the next page load; the
+page-load check is `session-flag.ts`, which only asks whether a value waits) and the destination
+loads the dialog script, which focuses the heading and
 gives it `.st-search-target`, a two-second `--st-mark-bg` fade; with `prefers-reduced-motion` it does
 not fade and the class is removed after the same two seconds. On the same page: no load, the hash
 changes and the heading takes focus. Focus does not go back to the opener then.
 
-**Weight.** Nothing about search loads with a page except `<st-search>` and the dialog markup. The
-results code and MiniSearch (14.7 KB gzip) and the index (167 KB gzip in English, 184 KB in
-Afrikaans) are fetched when the
-dialog first opens; with low data, the index waits for the first key press. The dialog scrolls as a
+**Weight.** A page loads only `search-boot.ts` (about 0.5 KB gzip inside the page's shared
+script), Vite's preload helper for its one `import()` (0.7 KB) and the dialog markup. The dialog
+script, the results code and MiniSearch (27.6 KB gzip, shared chunks counted once) and the index
+(167.5 KB gzip in English, 185.0 KB in Afrikaans) are fetched when the dialog first opens; with low
+data, the index waits for the first key press. The dialog scrolls as a
 whole, with the title and field sticky at its top: a scrolling box that held only the results,
 whose options are not Tab stops, would be a region the keyboard cannot scroll.
 
@@ -622,9 +625,10 @@ page): `?` goes to the list on `/about/` (the page's `<link rel="help">`, focusi
 already there), Alt+← / Alt+→ follow the pager's `rel="prev"` / `rel="next"` and leave the key to
 the browser when there is no pager, Escape closes an open "On this page" list (dialogs and the top
 bar menus already close on Escape). Nothing fires while focus is in a text field, a select or
-editable content (`isTypingTarget`) or while a `<dialog>` is open, and `?` only while single-key shortcuts are on. `/` and Ctrl+K
-are WP-33's: its listener checks `isTypingTarget(event.target)` and, for `/`, `shortcutsEnabled()`,
-and its rows appear in the `/about/` table when `SEARCH_AVAILABLE` is on.
+editable content (`isTypingTarget`) or while a `<dialog>` is open, and `?` and `/` only while single-key shortcuts are on. `/` and
+Ctrl+K (⌘K) are the `search` action since the WP-33 merge: the same handler calls
+`openSearch()` from `src/scripts/search-boot.ts`, and leaves the key to the browser on a page with no
+search dialog. Their rows appear in the `/about/` table when `SEARCH_AVAILABLE` is on.
 
 Low data: the `lowData` store sets `<html data-low-data>`, which `tokens.css` already maps to the
 system fonts and no pattern. `theme-init.js` applies it before paint from `st.lowData`.
@@ -771,7 +775,7 @@ Rules the pieces follow:
   (`your-path.ts`) rebuilds it with `import('./path-data')` when the answers or the rules (the hash
   of `paths.json`, `data-version`) changed. Until then a document page shows no ring and keeps its
   pager in section order. On the path's last page, Next leads to My path.
-- **The top bar from 1024 to 1279px** shows the ring without its "My path" label and the theme control without icons, so the sticky bar keeps one row with answers saved.
+- **The top bar from 1024 to 1279px** shows the ring without its "My path" label and the theme control without icons, so the sticky bar keeps one row with answers saved. Since the WP-33 merge the search control is its icon alone from 1024 to 1365px (44px, its name the visually hidden "Search"/"Soek", no `/` hint), and below 1280px the bar's gaps narrow to `--st-space-1`: with the word, the hint and "My path" the bar wrapped to two rows (124px) up to 1365px, and the Afrikaans bar was a few pixels too wide at 1024px.
 - **The home card keeps its space.** With `html[data-st-profile]` the card's box is kept, invisible, from first paint, so the page does not move when it appears; the card drops it (`data-no-path`) when there are no answers after all. Only what stops the card from drawing gives the space back: its own module failing to load (`data-st-script-failed~="YourPathCard"`) or the lazy path rules failing to load (`data-path-failed`, and the next trigger tries again). A slow load moves nothing, a dropped request leaves no gap, and another script failing leaves the card alone.
 - **Rebuilding the stored path** happens only on an element's own triggers (connecting, new answers), never on a change to `st.pathView.v1` from another tab, so two tabs on different builds cannot keep overwriting each other.
 - `theme-init.js` sets `<html data-st-profile>` before paint when answers are saved, so My path never

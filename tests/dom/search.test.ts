@@ -12,6 +12,13 @@ import {
   type SearchClient,
 } from '../../src/lib/search-client';
 import { KIND_WEIGHT } from '../../src/lib/search/options';
+import { profile } from '../../src/lib/profile-store';
+import { isTypingTarget, matchShortcut } from '../../src/lib/shortcuts';
+// The site's one keyboard handler (`/`, Ctrl+K) and the search control's click handler, as every
+// page loads them.
+import '../../src/scripts/site';
+import { applySettings, ARRIVAL_KEY as BOOT_ARRIVAL_KEY } from '../../src/scripts/search-boot';
+import { lowData, shortcuts } from '../../src/lib/store';
 import type { SearchEntry } from '../../src/lib/search/types';
 import { searchStrings } from '../../src/lib/search/ui-data';
 import {
@@ -20,10 +27,7 @@ import {
   focusTarget,
   fragmentTarget,
   HIGHLIGHT_CLASS,
-  isOpenShortcut,
-  isTypingTarget,
   openResult,
-  searchSettings,
   StSearch,
 } from '../../src/scripts/search';
 import {
@@ -33,7 +37,8 @@ import {
   suggestionQueries,
   wordsFromPath,
 } from '../../src/scripts/search-page';
-import { readContext } from '../../src/scripts/search-render';
+import { pick, t, type TranslationKey } from '../../src/i18n';
+import { readContext, searchSettings, searchTranslator } from '../../src/scripts/search-render';
 import { SearchDialogController } from '../../src/scripts/search-ui';
 import { realManifest } from '../unit/site/data';
 
@@ -202,49 +207,111 @@ afterEach(() => {
   window.sessionStorage.clear();
 });
 
-describe('shortcuts', () => {
-  const settings = { shortcuts: true, lowData: false };
-  const event = (init: KeyboardEventInit, target: EventTarget = document.body) => {
-    const e = new KeyboardEvent('keydown', init);
-    Object.defineProperty(e, 'target', { value: target });
-    return e;
-  };
+// The dialog's own small translator must say exactly what `t()` says (WP-33 integration: it
+// replaced `createTranslator()` to keep the translation core off every page).
+describe('searchTranslator', () => {
+  it.each(['en', 'af'] as const)('%s: matches t() for every search string and count', (locale) => {
+    const dict = pick(locale, ['search']);
+    const tr = searchTranslator(locale, dict);
+    const leaves: [string, unknown][] = [];
+    const walk = (node: unknown, path: string): void => {
+      const record = node as Record<string, unknown>;
+      if (
+        typeof node === 'string' ||
+        (typeof node === 'object' && node !== null && 'other' in record)
+      ) {
+        leaves.push([path, node]);
+        return;
+      }
+      for (const [k, v] of Object.entries(record)) walk(v, `${path}.${k}`);
+    };
+    walk(dict.search, 'search');
+    expect(leaves.length).toBeGreaterThan(30);
+    for (const [key, leaf] of leaves) {
+      const text = typeof leaf === 'string' ? leaf : JSON.stringify(leaf);
+      const names = [...text.matchAll(/\{([A-Za-z]\w*)\}/g)].map((m) => m[1]!);
+      for (const count of [0, 1, 2, 7]) {
+        const params = Object.fromEntries(names.map((n) => [n, n === 'count' ? count : `<${n}>`]));
+        if (typeof leaf !== 'string') params['count'] = count;
+        const expected = (t as (l: string, k: TranslationKey, p: object) => string)(
+          locale,
+          key as TranslationKey,
+          params,
+        );
+        expect((tr as (k: string, p: object) => string)(key, params), `${key} ${count}`).toBe(
+          expected,
+        );
+      }
+    }
+  });
+});
 
+describe('shortcuts', () => {
+  const event = (init: KeyboardEventInit) => new KeyboardEvent('keydown', init);
+  const search = (init: KeyboardEventInit, singleKey = true) =>
+    matchShortcut(event(init), singleKey) === 'search';
+
+  // WP-30 integration: `/` and Ctrl+K are the site's `search` shortcut (src/lib/shortcuts.ts).
   it('opens on / and Ctrl+K or ⌘K, and on nothing else', () => {
-    expect(isOpenShortcut(event({ key: '/' }), settings)).toBe(true);
-    expect(isOpenShortcut(event({ key: 'k', ctrlKey: true }), settings)).toBe(true);
-    expect(isOpenShortcut(event({ key: 'K', metaKey: true }), settings)).toBe(true);
-    expect(isOpenShortcut(event({ key: 'k' }), settings)).toBe(false);
-    expect(isOpenShortcut(event({ key: 'k', ctrlKey: true, shiftKey: true }), settings)).toBe(
-      false,
-    );
-    expect(isOpenShortcut(event({ key: '/', altKey: true }), settings)).toBe(false);
+    expect(search({ key: '/' })).toBe(true);
+    expect(search({ key: 'k', ctrlKey: true })).toBe(true);
+    expect(search({ key: 'K', metaKey: true })).toBe(true);
+    expect(search({ key: 'k' })).toBe(false);
+    expect(search({ key: 'k', ctrlKey: true, shiftKey: true })).toBe(false);
+    expect(search({ key: '/', altKey: true })).toBe(false);
   });
 
   it('never fires while the reader types in a field', () => {
     document.body.innerHTML =
       '<input id="i"><textarea id="t"></textarea><div id="e" contenteditable="true"></div><select id="s"></select>';
     for (const id of ['i', 't', 'e', 's']) {
-      const field = document.getElementById(id)!;
-      expect(isTypingTarget(field), id).toBe(true);
-      expect(isOpenShortcut(event({ key: '/' }, field), settings)).toBe(false);
-      expect(isOpenShortcut(event({ key: 'k', ctrlKey: true }, field), settings)).toBe(false);
+      expect(isTypingTarget(document.getElementById(id)), id).toBe(true);
     }
     expect(isTypingTarget(null)).toBe(false);
   });
 
   it('turns / off with the single-key shortcuts setting, but not Ctrl+K', () => {
-    const off = { shortcuts: false, lowData: false };
-    expect(isOpenShortcut(event({ key: '/' }), off)).toBe(false);
-    expect(isOpenShortcut(event({ key: 'k', ctrlKey: true }), off)).toBe(true);
+    expect(search({ key: '/' }, false)).toBe(false);
+    expect(search({ key: 'k', ctrlKey: true }, false)).toBe(true);
   });
 
-  it('reads the settings, with low data from prefers-reduced-data', () => {
+  it('keeps one arrival key for the eager and the lazy half', () => {
+    expect(BOOT_ARRIVAL_KEY).toBe(ARRIVAL_KEY);
+  });
+
+  it('reads the settings from the store, with prefers-reduced-data as a second reason for low data', () => {
     const fake = {
       matchMedia: (q: string) => ({ matches: q.includes('reduced-data') }),
     } as unknown as Window;
     expect(searchSettings(fake)).toEqual({ shortcuts: true, lowData: true });
     expect(searchSettings({} as Window)).toEqual({ shortcuts: true, lowData: false });
+    try {
+      shortcuts.set(false);
+      lowData.set(true);
+      expect(searchSettings({} as Window)).toEqual({ shortcuts: false, lowData: true });
+    } finally {
+      shortcuts.set(true);
+      lowData.set(false);
+    }
+  });
+
+  it('updates the openers when the shortcuts setting changes', () => {
+    document.body.innerHTML =
+      '<a href="/search/" data-search-open>Search<span data-search-key-hint>/</span></a>' +
+      '<st-search><dialog><form><input type="search"></form></dialog></st-search>';
+    const opener = document.querySelector('[data-search-open]')!;
+    const hint = document.querySelector<HTMLElement>('[data-search-key-hint]')!;
+    applySettings(true);
+    expect(opener.getAttribute('aria-keyshortcuts')).toBe('/ Control+K');
+    try {
+      shortcuts.set(false);
+      expect(opener.getAttribute('aria-keyshortcuts')).toBe('Control+K');
+      expect(hint.hidden).toBe(true);
+    } finally {
+      shortcuts.set(true);
+    }
+    expect(hint.hidden).toBe(false);
+    document.body.innerHTML = '';
   });
 });
 
@@ -255,6 +322,8 @@ describe('<st-search>', () => {
     stubFetch();
     mountHtml(dialogMarkup());
     host = document.querySelector<StSearch>('st-search')!;
+    // On a real page the openers are there when `search-boot` runs; here they come later.
+    applySettings(shortcuts.get());
   });
 
   // Opening imports the results code and starts loading the index; let that finish while `fetch`
@@ -474,13 +543,134 @@ describe('<st-search>', () => {
   });
 
   it('shows the shortcut setting on its openers', () => {
-    host.applySettings({ shortcuts: false, lowData: false });
+    applySettings(false);
     expect(document.getElementById('opener')!.getAttribute('aria-keyshortcuts')).toBe('Control+K');
+  });
+
+  it('leaves / to the browser on a page without the search dialog', () => {
+    document.querySelector('st-search')!.remove();
+    expect(key(document.body, { key: '/' }).defaultPrevented).toBe(false);
+    const click = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 });
+    const prevented = afterOwnHandlers(document, 'click');
+    document.getElementById('opener')!.dispatchEvent(click);
+    expect(prevented()).toBe(false);
+  });
+
+  it('opens nothing while another dialog is open', () => {
+    const other = document.createElement('dialog');
+    document.body.append(other);
+    other.showModal();
+    expect(key(document.body, { key: '/' }).defaultPrevented).toBe(false);
+    expect(dialog().open).toBe(false);
+    other.close();
   });
 
   it('stops listening when it is removed', () => {
     document.querySelector('st-search')!.remove();
     expect(key(document.body, { key: '/' }).defaultPrevented).toBe(false);
+  });
+});
+
+// WP-31 integration: the "My business types" chip (B3 flow 3), from the saved profile.
+describe('the business-type chip', () => {
+  const typed: SearchEntry[] = [
+    {
+      key: 'v',
+      kind: 'section',
+      doc: 'business-types/vehicle-dealer',
+      route: 'business-types/vehicle-dealer/',
+      anchor: 'stock',
+      title: 'Stock you buy',
+      docTitle: 'Vehicle dealer',
+      path: 'Your kind of business › Vehicle dealer',
+      text: 'Stock for a dealer.',
+      section: 'business-types',
+      businessTypes: ['vehicle-dealer'],
+      weight: KIND_WEIGHT.section,
+    },
+    {
+      key: 'f',
+      kind: 'section',
+      doc: 'business-types/food',
+      route: 'business-types/food/',
+      anchor: 'stock',
+      title: 'Stock that spoils',
+      docTitle: 'Food',
+      path: 'Your kind of business › Food',
+      text: 'Stock for a kitchen.',
+      section: 'business-types',
+      businessTypes: ['food'],
+      weight: KIND_WEIGHT.section,
+    },
+    {
+      key: 'r',
+      kind: 'section',
+      doc: 'core/tax-and-sars',
+      route: 'core/tax-and-sars/',
+      anchor: 'records',
+      title: 'Records of stock',
+      docTitle: 'Tax and SARS',
+      path: 'Core › Tax and SARS',
+      text: 'Keep stock records.',
+      section: 'core',
+      weight: KIND_WEIGHT.section,
+    },
+  ];
+  const chipMarkup = (): string =>
+    dialogMarkup().replace(
+      '</form>',
+      '</form><div data-search-filters hidden><button type="button" aria-pressed="false" data-search-mine>My business types</button></div>',
+    );
+  let saved: unknown;
+
+  beforeEach(() => {
+    saved = indexBody;
+    indexBody = JSON.parse(serialiseIndex('en', ['core', 'business-types'], typed).json) as unknown;
+    stubFetch();
+    mountHtml(chipMarkup());
+  });
+
+  afterEach(() => {
+    indexBody = saved;
+    profile.reset();
+  });
+
+  const make = (): SearchDialogController =>
+    new SearchDialogController(
+      document.querySelector('st-search')!,
+      { settings: { shortcuts: true, lowData: true }, openResult: () => undefined },
+      createSearchClient({ url: '/search/en.test.json', locale: 'en', base: '/' }),
+    );
+  const hrefs = (): (string | null)[] =>
+    [...document.querySelectorAll('[role="option"]')].map((o) => o.getAttribute('href'));
+
+  it('stays hidden without saved answers', () => {
+    const controller = make();
+    document.querySelector('dialog')!.showModal();
+    controller.opened();
+    expect(document.querySelector<HTMLElement>('[data-search-filters]')!.hidden).toBe(true);
+  });
+
+  it("keeps only the reader's business types, and results for every type, while pressed", async () => {
+    profile.set({ entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' });
+    const controller = make();
+    document.querySelector('dialog')!.showModal();
+    controller.opened();
+    const chip = document.querySelector<HTMLButtonElement>('[data-search-mine]')!;
+    expect(document.querySelector<HTMLElement>('[data-search-filters]')!.hidden).toBe(false);
+    expect(chip.getAttribute('aria-pressed')).toBe('false');
+    (document.getElementById('q') as HTMLInputElement).value = 'stock';
+    await controller.search('stock');
+    expect(hrefs()).toContain('/business-types/vehicle-dealer/#stock');
+    chip.click();
+    expect(chip.getAttribute('aria-pressed')).toBe('true');
+    await controller.search('stock');
+    expect(hrefs()).not.toContain('/business-types/vehicle-dealer/#stock');
+    expect(hrefs()).toContain('/business-types/food/#stock');
+    expect(hrefs()).toContain('/core/tax-and-sars/#records');
+    // It starts off again on the next open.
+    controller.opened();
+    expect(chip.getAttribute('aria-pressed')).toBe('false');
   });
 });
 

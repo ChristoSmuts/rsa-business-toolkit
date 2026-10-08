@@ -6,19 +6,21 @@
  *   when the setting changes here, in another tab, or is cleared.
  * - **Keyboard shortcuts** (`src/lib/shortcuts.ts`): `?` goes to the shortcuts list on `/about/`
  *   (the page's `<link rel="help">`), Alt+← and Alt+→ follow the pager's `rel="prev"` and
- *   `rel="next"` links, and Escape closes an open "On this page" list. Native `<dialog>`s close on
- *   Escape by themselves, and the top bar menus in `navigation.ts`. Nothing fires while focus is in
- *   a field or while a dialog is open, and `?` only while single-key shortcuts are on. A shortcut
- *   with nothing to do (no pager on the page) leaves the key to the browser.
+ *   `rel="next"` links, `/` and Ctrl+K (⌘K) open the search dialog (`./search-boot`, WP-33), and
+ *   Escape closes an open "On this page" list. Native `<dialog>`s close on Escape by themselves,
+ *   and the top bar menus in `navigation.ts`. Nothing fires while focus is in a field or while a
+ *   dialog is open, and `?` and `/` only while single-key shortcuts are on. A shortcut with nothing
+ *   to do (no pager, no search dialog on the page) leaves the key to the browser.
  */
 import { isTypingTarget, matchShortcut, type ShortcutAction } from '../lib/shortcuts';
 import { lowData, shortcuts } from '../lib/store';
+import { openSearch } from './search-boot';
 
 lowData.subscribe((on) => document.documentElement.toggleAttribute('data-low-data', on));
 
 /** The link a shortcut follows on this page, if any. */
 function shortcutLink(
-  action: ShortcutAction,
+  action: Exclude<ShortcutAction, 'search'>,
   doc: Document,
 ): HTMLAnchorElement | HTMLLinkElement | null {
   if (action === 'help') return doc.querySelector<HTMLLinkElement>('link[rel="help"]');
@@ -36,6 +38,12 @@ export function handleShortcut(event: KeyboardEvent, doc: Document = document): 
   }
   const action = matchShortcut(event, shortcuts.get());
   if (!action) return;
+  if (action === 'search') {
+    // `/` and Ctrl+K: the search dialog, if the page has one (WP-33); else the key is the browser's.
+    // Focus goes back to whatever had it when the dialog closes.
+    if (openSearch(doc.activeElement as HTMLElement | null, doc)) event.preventDefault();
+    return;
+  }
   const link = shortcutLink(action, doc);
   if (!link) return;
   event.preventDefault();
