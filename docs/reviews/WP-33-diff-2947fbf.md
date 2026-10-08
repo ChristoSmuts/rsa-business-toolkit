@@ -1,12 +1,12 @@
 # WP-33 search regression diff against `2947fbf` (review pass 20)
 
-Run with `pnpm search:diff 2947fbf` on the pass 20 fix. The corpus now also holds "sources for
+Run with `pnpm search:diff 2947fbf` on the pass 20 tip, after the merge of main and the integration. The corpus now also holds "sources for
 <noun>" and "bronne vir <noun>" (pass 20 major 1). The tool's own summary line:
 
-> search:diff 2947fbf: 9842 searches, 132 changed first results: 71 better, 0 worse, 0 same-target, 61 ?.
+> search:diff 2947fbf: 9854 searches, 142 changed first results: 73 better, 0 worse, 0 same-target, 69 ?.
 
 No change is rule-classified `worse`. This file gives a verdict and a reason for every change the
-tool could not classify (`?`): better 48, neutral 13; none is worse.
+tool could not classify (`?`): better 56, neutral 13; none is worse.
 
 ## Pass 19 "neutral by rule" items, re-rated by hand (pass 20 major 2)
 
@@ -54,6 +54,7 @@ Re-rated one by one:
 
 | Lang | Mode | Query | Before | After | Verdict | Reason |
 | --- | --- | --- | --- | --- | --- | --- |
+| af | finished | `belastingkoers` | `core/start-here#what-is-in-this-toolkit` | `core/tax-and-sars` | better | a pass 20 bet (minor 2): opens Tax and SARS, whose opening table gives the rates |
 | af | finished | `bron vir lisensie` | `start/start-here#licence` | `lookup/sources#business-licensing` | better | a source word followed by for/vir asks for sources (pass 20 major 1): opens the register's entry for the topic |
 | af | finished | `bron vir maatskappybelasting` | `core/running-a-pty-ltd#4-sars-company-tax` | `lookup/sources` | neutral | a source query (pass 20 major 1) opens the sources register: its top, which lists every entry, or the Legislation entry, which lists every Act. Before, a guide section on the topic, which answers the topic but not where its facts come from |
 | af | finished | `bron vir tuiskantoor` | `core/working-from-home-and-safety#home-office-deduction` | `lookup/sources` | neutral | a source query (pass 20 major 1) opens the sources register: its top, which lists every entry, or the Legislation entry, which lists every Act. Before, a guide section on the topic, which answers the topic but not where its facts come from |
@@ -69,6 +70,8 @@ Re-rated one by one:
 | af | finished | `btw-koers` | `core/tax-and-sars#route-3-turnover-tax` | `lookup/glossary#vat` | better | the pass 20 bet `btw koers` (minor 2): opens the VAT glossary entry, which gives the 15% rate, not a turnover-tax section |
 | af | finished | `wat die wet oor bank sê` | `business-types/vehicle-dealer#if-a-bank-finances-your-stock-the-bank-holds-title` | `core/register#business-bank-account` | better | the `bank wet` bet (pass 20 major 2, re-rated items): opens the business bank account section, as `bank law` does, not a dealer's bank-finance section |
 | af | finished | `wat die wet oor werk sê` | `core/you-are-the-business` | `core/running-a-pty-ltd#employees-including-yourself` | better | the `werk wet` bet (pass 20 major 2): opens Employees (including yourself), not the page top of You are the business |
+| af | finished | `werk regulasies` | `core/you-are-the-business` | `core/running-a-pty-ltd#employees-including-yourself` | better | a pass 20 bet (re-rated items): opens Employees (including yourself) |
+| af | typed | `belastingkoers` | `lookup/glossary#sbc` | `core/tax-and-sars` | better | a pass 20 bet (minor 2): opens Tax and SARS, whose opening table gives the rates |
 | af | typed | `bron vir lisensie` | `start/start-here#licence` | `lookup/sources#business-licensing` | better | a source word followed by for/vir asks for sources (pass 20 major 1): opens the register's entry for the topic |
 | af | typed | `bron vir maatskappybelasting` | `core/running-a-pty-ltd#4-sars-company-tax` | `lookup/sources` | neutral | a source query (pass 20 major 1) opens the sources register: its top, which lists every entry, or the Legislation entry, which lists every Act. Before, a guide section on the topic, which answers the topic but not where its facts come from |
 | af | typed | `bron vir tuiskantoor` | `core/working-from-home-and-safety#home-office-deduction` | `lookup/sources` | neutral | a source query (pass 20 major 1) opens the sources register: its top, which lists every entry, or the Legislation entry, which lists every Act. Before, a guide section on the topic, which answers the topic but not where its facts come from |
@@ -83,6 +86,7 @@ Re-rated one by one:
 | af | typed | `btw-koers` | `business-types/vehicle-dealer#turnover-tax-is-almost-certainly-wrong-for-a-dealer` | `lookup/glossary#vat` | better | the pass 20 bet `btw koers` (minor 2): opens the VAT glossary entry, which gives the 15% rate, not a turnover-tax section |
 | af | typed | `wat die wet oor bank sê` | `business-types/vehicle-dealer#if-a-bank-finances-your-stock-the-bank-holds-title` | `core/register#business-bank-account` | better | the `bank wet` bet (pass 20 major 2, re-rated items): opens the business bank account section, as `bank law` does, not a dealer's bank-finance section |
 | af | typed | `wat die wet oor werk sê` | `core/you-are-the-business` | `core/running-a-pty-ltd#employees-including-yourself` | better | the `werk wet` bet (pass 20 major 2): opens Employees (including yourself), not the page top of You are the business |
+| af | typed | `werk regulasies` | `core/you-are-the-business` | `core/running-a-pty-ltd#employees-including-yourself` | better | a pass 20 bet (re-rated items): opens Employees (including yourself) |
 | en | finished | `business regulations` | `core/you-are-the-business` | `business-types/pick-your-business-type#what-everyone-needs-regardless-of-type` | better | a pass 20 major 2 bet picks the legal sense: Employees, the credit section, What everyone needs, or If you sell food |
 | en | finished | `credit law` | `lookup/glossary#credit-note` | `business-types/vehicle-dealer#if-you-extend-credit-yourself` | better | a pass 20 major 2 bet picks the legal sense: Employees, the credit section, What everyone needs, or If you sell food |
 | en | finished | `labour regulations` | `business-types/professional-creative#the-turnover-tax-trap` | `core/running-a-pty-ltd#employees-including-yourself` | better | a pass 20 major 2 bet picks the legal sense: Employees, the credit section, What everyone needs, or If you sell food |
@@ -97,6 +101,8 @@ Re-rated one by one:
 | en | finished | `sources for business` | `core/paying-yourself#uif-sources-disagree` | `lookup/sources#business-licensing` | better | a source word followed by for/vir asks for sources (pass 20 major 1): opens the register's entry for the topic |
 | en | finished | `sources for company tax` | `core/paying-yourself#uif-sources-disagree` | `lookup/sources#paying-yourself-from-a-company` | better | a source word followed by for/vir asks for sources (pass 20 major 1): opens the register's entry for the topic |
 | en | finished | `sources for logo` | `core/start-here#what-is-in-this-toolkit` | `lookup/sources#branding-tools-referenced` | better | a source word followed by for/vir asks for sources (pass 20 major 1): opens the register's entry for the topic |
+| en | finished | `tax rate` | `lookup/glossary#official-rate-of-interest` | `core/tax-and-sars` | better | a pass 20 bet (minor 2): opens Tax and SARS, not the official rate of interest |
+| en | finished | `vat sources` | `business-types/vehicle-dealer#the-conditions-you-must-meet` | `lookup/sources#tax-and-sars` | better | a pass 20 bet (major 1): opens the register's Tax and SARS entry |
 | en | finished | `what the law says about business` | `core/you-are-the-business` | `business-types/pick-your-business-type#what-everyone-needs-regardless-of-type` | better | a pass 20 major 2 bet picks the legal sense: Employees, the credit section, What everyone needs, or If you sell food |
 | en | finished | `what the law says about food` | `business-types/food` | `core/what-you-need-to-sell-things#if-you-sell-food` | better | a pass 20 major 2 bet picks the legal sense: Employees, the credit section, What everyone needs, or If you sell food |
 | en | typed | `business regulations` | `core/you-are-the-business` | `business-types/pick-your-business-type#what-everyone-needs-regardless-of-type` | better | a pass 20 major 2 bet picks the legal sense: Employees, the credit section, What everyone needs, or If you sell food |
@@ -113,5 +119,7 @@ Re-rated one by one:
 | en | typed | `sources for business` | `core/paying-yourself#uif-sources-disagree` | `lookup/sources#business-licensing` | better | a source word followed by for/vir asks for sources (pass 20 major 1): opens the register's entry for the topic |
 | en | typed | `sources for company tax` | `core/paying-yourself#uif-sources-disagree` | `lookup/sources#paying-yourself-from-a-company` | better | a source word followed by for/vir asks for sources (pass 20 major 1): opens the register's entry for the topic |
 | en | typed | `sources for logo` | `core/start-here#what-is-in-this-toolkit` | `lookup/sources#branding-tools-referenced` | better | a source word followed by for/vir asks for sources (pass 20 major 1): opens the register's entry for the topic |
+| en | typed | `tax rate` | `lookup/glossary#official-rate-of-interest` | `core/tax-and-sars` | better | a pass 20 bet (minor 2): opens Tax and SARS, not the official rate of interest |
+| en | typed | `vat sources` | `business-types/vehicle-dealer#the-conditions-you-must-meet` | `lookup/sources#tax-and-sars` | better | a pass 20 bet (major 1): opens the register's Tax and SARS entry |
 | en | typed | `what the law says about business` | `core/you-are-the-business` | `business-types/pick-your-business-type#what-everyone-needs-regardless-of-type` | better | a pass 20 major 2 bet picks the legal sense: Employees, the credit section, What everyone needs, or If you sell food |
 | en | typed | `what the law says about food` | `business-types/food` | `core/what-you-need-to-sell-things#if-you-sell-food` | better | a pass 20 major 2 bet picks the legal sense: Employees, the credit section, What everyone needs, or If you sell food |
