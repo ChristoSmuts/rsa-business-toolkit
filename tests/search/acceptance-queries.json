@@ -2436,6 +2436,36 @@
     },
     {
       "lang": "en",
+      "query": "what the law says about tax",
+      "doc": "core/tax-and-sars",
+      "need": "first",
+      "notFirst": ["lookup/sources"],
+      "from": "pass 19b: as bare tax"
+    },
+    {
+      "lang": "en",
+      "query": "what the law says about vat",
+      "doc": "lookup/glossary",
+      "anchor": "vat",
+      "need": "first",
+      "from": "pass 19b: as bare vat"
+    },
+    {
+      "lang": "en",
+      "query": "what the law says about invoices",
+      "doc": "paperwork/templates/invoice",
+      "need": "first",
+      "from": "pass 19b: as bare invoice"
+    },
+    {
+      "lang": "en",
+      "query": "what the law says about privacy",
+      "doc": "paperwork/templates/privacy-notice",
+      "need": "first",
+      "from": "pass 19b: as bare privacy"
+    },
+    {
+      "lang": "en",
       "query": "ect act",
       "doc": "lookup/sources",
       "anchor": "legislation-this-toolkit-relies-on",
@@ -4476,11 +4506,20 @@
     {
       "lang": "af",
       "query": "wat die wet oor rekords sê",
+      "doc": "core/tax-and-sars",
+      "anchor": "records",
+      "need": "first",
+      "notFirst": ["paperwork/which-template-to-use-when#template-5-privacy-notice-popia"],
+      "from": "pass 19 major 4; pass 19b: as bare rekords"
+    },
+    {
+      "lang": "af",
+      "query": "maatskappy rekords wet",
       "doc": "core/running-a-pty-ltd",
       "anchor": "records-the-company-must-keep",
       "need": "first",
       "notFirst": ["paperwork/which-template-to-use-when#template-5-privacy-notice-popia"],
-      "from": "pass 19 major 4"
+      "from": "pass 19b: counterpart of records law"
     },
     {
       "lang": "af",
@@ -4688,6 +4727,41 @@
       "need": "first",
       "notFirst": ["core/paying-yourself"],
       "from": "pass 19 minor 3"
+    },
+    {
+      "lang": "af",
+      "query": "wat die wet oor belasting sê",
+      "doc": "core/tax-and-sars",
+      "need": "first",
+      "notFirst": ["core/start-here#what-is-in-this-toolkit", "lookup/sources"],
+      "from": "pass 19b: as bare belasting"
+    },
+    {
+      "lang": "af",
+      "query": "wat die wet oor btw sê",
+      "doc": "lookup/glossary",
+      "anchor": "vat",
+      "need": "first",
+      "notFirst": [
+        "business-types/vehicle-dealer#turnover-tax-is-almost-certainly-wrong-for-a-dealer"
+      ],
+      "from": "pass 19b: as bare btw"
+    },
+    {
+      "lang": "af",
+      "query": "wat die wet oor faktuur sê",
+      "doc": "paperwork/templates/invoice",
+      "need": "first",
+      "notFirst": ["business-types/vehicle-dealer#when-you-sell-a-vehicle-out"],
+      "from": "pass 19b: as bare faktuur"
+    },
+    {
+      "lang": "af",
+      "query": "wat die wet oor privaatheid sê",
+      "doc": "paperwork/templates/privacy-notice",
+      "need": "first",
+      "notFirst": ["core/what-you-need-to-sell-things#if-you-sell-online"],
+      "from": "pass 19b: as bare privaatheid"
     }
   ]
 }

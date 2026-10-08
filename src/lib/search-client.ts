@@ -13,6 +13,7 @@ import { href } from './paths';
 import {
   betWords,
   DOC_WEIGHT,
+  dropWrittenFiller,
   REFERENCE_WEIGHT,
   SOURCE_WORDS,
   FIELD_BOOST,
@@ -583,11 +584,27 @@ export interface CountedResults {
 /** `runSearch`, with the true total: "12 of 59 results shown", "See all 59 results". */
 export function runSearchCounted(
   index: LoadedIndex,
-  query: string,
+  input: string,
   locale: Locale,
   options: SearchOptions = {},
   base?: string,
 ): CountedResults {
+  // A filler word with a diacritic counts as written (`sê`, "say"), because its folded form can be
+  // another word (`se`, the possessive): it goes before the query is read (review WP-33 pass 19b).
+  // An Act name keeps its words. When it was the last word, the word before it is finished.
+  const actWords = new Set((index.acts ?? []).flatMap((entry) => entry.w));
+  const writtenFiller = new Set(
+    (index.filler ?? []).filter((word) => foldTerm(word) !== word && !actWords.has(foldTerm(word))),
+  );
+  const dropped = dropWrittenFiller(input, writtenFiller);
+  // A query of filler and stop words only (`die reëls`) searches for them, as before.
+  const query = queryParts(dropped).length > 0 ? dropped : input;
+  // The caller says whether the reader is still typing: the live dialog does; the search page and
+  // the 404 suggestions do not (a submitted query is finished). Without a say, a query that ends
+  // inside a word is being typed.
+  const typing =
+    (options.typing ?? /[\p{L}\p{N}]$/u.test(input)) &&
+    (query === input || /[\p{L}\p{N}]$/u.test(query));
   const raw = queryParts(query);
   if (raw.length === 0) return { results: [], total: 0, matchedAll: 0 };
   // A query about sources (`sources`, `companies act`, `waar kom dit vandaan`) keeps the sources
@@ -612,10 +629,6 @@ export function runSearchCounted(
     filter: (hit: MiniSearchResult): boolean =>
       matchesFilters(hit as unknown as StoredFields, options),
   };
-  // The caller says whether the reader is still typing: the live dialog does; the search page and
-  // the 404 suggestions do not (a submitted query is finished). Without a say, a query that ends
-  // inside a word is being typed.
-  const typing = options.typing ?? /[\p{L}\p{N}]$/u.test(query);
   // Filler words (`want`, `need`, `get`, `wil`, `moet`; `index.filler`) never say which page is
   // meant, so the ranking drops them as it drops stop words: `I want to close my business` ranks
   // as `close business` (review WP-33 pass 15, major 1). A filler word of three letters or more
@@ -631,7 +644,7 @@ export function runSearchCounted(
   // A typed filler word that is already a whole word of the guide (`law`, `wet`) is read as that
   // word, so it is dropped while typed too: `sars law` ranks as `sars` (review WP-33 pass 19,
   // major 4).
-  const fillerWords = new Set(index.filler ?? []);
+  const fillerWords = new Set((index.filler ?? []).filter((word) => !writtenFiller.has(word)));
   const content = raw.filter(
     (part, at) =>
       typeof part !== 'string' ||
@@ -920,7 +933,7 @@ export function runSearchCounted(
   // The words in order, as typed: a filler word stays when an Act name holds it (`maatskappy wet`),
   // and a trailing number and year (`71 of 2008`) are dropped. An Act name matches only word for
   // word, in order: `can i act as a company` is not "Companies Act" (review WP-33 pass 19, major 3).
-  const actVocabulary = new Set((index.acts ?? []).flatMap((entry) => entry.w));
+  const actVocabulary = actWords;
   const typedWords = raw
     .flatMap((part) =>
       typeof part === 'string' ? [part] : 'code' in part ? part.code : part.hyphen,

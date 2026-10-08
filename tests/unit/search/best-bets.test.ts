@@ -8,12 +8,14 @@ import {
   loadBestBets,
   MAX_BEST_BETS,
   resolveBestBets,
+  resolveFiller,
   type BestBetsFile,
 } from '../../../scripts/search/best-bets';
 import { buildEntries } from '../../../scripts/search/entries';
 import { KeywordsFileSchema } from '../../../scripts/search/keywords';
 import { loadIndexInput } from '../../../scripts/search/load';
 import { bestBet } from '../../../src/lib/search-client';
+import { dropWrittenFiller, foldTerm, processTerm } from '../../../src/lib/search/options';
 
 const entries = { en: buildEntries(loadIndexInput('en')), af: buildEntries(loadIndexInput('af')) };
 
@@ -47,6 +49,35 @@ describe('search best bets', () => {
       expect(bets.length).toBe(file.bets.reduce((sum, bet) => sum + bet[lang].length, 0));
       expect(filler.length).toBeGreaterThan(3);
     }
+  });
+
+  // Review WP-33 pass 19b: folding diacritics turns some words into others. The verb `sê` ("say")
+  // folds to the possessive `se`, and `hoë` ("high") to the stop word `hoe`.
+  it('reads a filler word with a diacritic as written when its fold is a word of the guide', () => {
+    expect(resolveFiller(['sê'], entries.af)).toEqual(['sê']);
+    expect(resolveFiller(['hê', 'reëls'], entries.af)).toEqual(['hê', 'he', 'reëls', 'reels']);
+    expect(resolveFiller(['wil'], entries.af)).toEqual(['wil']);
+    // Every filler word of the file: a folded form the guide writes plainly is never filler.
+    const file = loadBestBets();
+    for (const lang of ['en', 'af'] as const) {
+      const { filler } = resolveBestBets(lang, entries[lang], file);
+      for (const word of filler.filter((w) => foldTerm(w) !== w)) {
+        expect(filler.includes(foldTerm(word)), `${lang} ${word}`).toBe(word !== 'sê');
+      }
+    }
+    expect(dropWrittenFiller('wat die wet oor btw sê', new Set(['sê']))).toBe(
+      'wat die wet oor btw ',
+    );
+    expect(dropWrittenFiller('maatskappy se naam', new Set(['sê']))).toBe('maatskappy se naam');
+    expect(dropWrittenFiller('SÊ', new Set(['sê']))).toBe('SÊ');
+  });
+
+  it('compares stop words as written, before diacritics are folded', () => {
+    expect(processTerm('hoe')).toBeNull();
+    expect(processTerm('hoë')).toBe('hoe');
+    expect(processTerm('dié')).toBeNull();
+    expect(processTerm('óf')).toBeNull();
+    expect(processTerm('Die')).toBeNull();
   });
 
   it('fails on a renamed page or heading, so `pnpm build` fails', () => {

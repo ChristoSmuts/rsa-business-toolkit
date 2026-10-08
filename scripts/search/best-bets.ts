@@ -10,7 +10,7 @@ import path from 'node:path';
 import { z } from 'zod';
 import { resolveActs } from './acts';
 import type { Locale } from '../../src/i18n/locales';
-import { betWords } from '../../src/lib/search/options';
+import { betWords, foldTerm, writtenWord } from '../../src/lib/search/options';
 import type { SearchBestBet, SearchEntry } from '../../src/lib/search/types';
 
 export const BEST_BETS_FILE = path.resolve(
@@ -96,6 +96,44 @@ export function resolveBestBets(
       `search: ${String(out.length)} ${lang} best bets, more than ${String(MAX_BEST_BETS)}`,
     );
   }
-  const filler = [...new Set(file.filler[lang as 'en' | 'af'].flatMap((word) => betWords(word)))];
-  return { bets: out, filler, acts: resolveActs(lang, entries) };
+  return {
+    bets: out,
+    filler: resolveFiller(file.filler[lang as 'en' | 'af'], entries),
+    acts: resolveActs(lang, entries),
+  };
+}
+
+/**
+ * The filler words as a query reads them (`betWords`: folded, stop words dropped). A word written
+ * with a diacritic (`sê`, `hê`, `reëls`) is also listed as written, and the client drops it before
+ * folding (`dropWrittenFiller`). Its folded form is filler too, so an owner who types `he` for `hê`
+ * is understood, unless the guide writes that folded form as a word of its own: `sê` ("say") folds
+ * to the possessive `se`, which the guide uses hundreds of times, so only `sê` is filler (review
+ * WP-33 pass 19b).
+ */
+export function resolveFiller(words: readonly string[], entries: readonly SearchEntry[]): string[] {
+  const out = new Set<string>();
+  let plain: Set<string> | undefined;
+  for (const word of words) {
+    const written = writtenWord(word);
+    if (/^\p{L}+$/u.test(written) && foldTerm(written) !== written) {
+      out.add(written);
+      plain ??= guideWords(entries);
+      if (plain.has(foldTerm(written))) continue;
+    }
+    for (const read of betWords(word)) out.add(read);
+  }
+  return [...out];
+}
+
+/** Every word of the entries' searchable text as written (`writtenWord`). */
+function guideWords(entries: readonly SearchEntry[]): Set<string> {
+  const out = new Set<string>();
+  for (const entry of entries) {
+    const text = [entry.indexTitle ?? entry.title, entry.path, entry.text, entry.lead ?? ''].join(
+      ' ',
+    );
+    for (const match of text.matchAll(/\p{L}+/gu)) out.add(writtenWord(match[0]));
+  }
+  return out;
 }

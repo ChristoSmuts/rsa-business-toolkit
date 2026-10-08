@@ -157,6 +157,11 @@ export const STOP_WORDS: ReadonlySet<string> = new Set([
   'van',
   'vir',
   'wat',
+  // Written with a diacritic, these are the same stop words (`dié` "this", `óf` "either"); other
+  // words that fold to a stop word are not (`hoë` "high" is not `hoe`), so stop words are compared
+  // as written (`writtenWord`).
+  'dié',
+  'óf',
 ]);
 
 /**
@@ -401,8 +406,29 @@ export const SPELLINGS: Readonly<Record<string, string>> = {
  */
 export function processTerm(term: string): string | null {
   const folded = foldTerm(term);
-  if (folded === '' || STOP_WORDS.has(folded)) return null;
+  if (folded === '' || STOP_WORDS.has(writtenWord(term))) return null;
   return SPELLINGS[folded] ?? folded;
+}
+
+/**
+ * A word as written, before diacritics are folded: lowercase, composed (`Sê` → `sê`). Stop words and
+ * written-only filler words are compared in this form, because folding can turn a word into another
+ * one: `hoë` ("high") would fold to the stop word `hoe`, and the verb `sê` ("say") to the possessive
+ * `se` (review WP-33 pass 19b).
+ */
+export function writtenWord(term: string): string {
+  return term.normalize('NFC').toLowerCase();
+}
+
+/**
+ * The query without the filler words that count only as written (`sê`, not `se`; the index's
+ * `filler` entries that hold a diacritic, see `scripts/search/best-bets.ts`). A query of such words
+ * only is kept whole.
+ */
+export function dropWrittenFiller(text: string, written: ReadonlySet<string>): string {
+  if (written.size === 0) return text;
+  const left = text.replace(TOKEN, (token) => (written.has(writtenWord(token)) ? '' : token));
+  return /[\p{L}\p{N}]/u.test(left) ? left : text;
 }
 
 /** How one query term is matched against the index terms. */
