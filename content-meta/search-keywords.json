@@ -1,0 +1,50 @@
+{
+  "$comment": "Search keywords: owner words a page's own titles lack, indexed with the page's first entry at heading weight. See content-meta/README.md. Few, and only where the guide's titles lack the owner's word.",
+  "pages": [
+    {
+      "doc": "core/register",
+      "en": ["register business", "start business", "registration"],
+      "af": ["registreer besigheid", "begin besigheid", "registrasie"]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "en": ["tax return", "income tax"],
+      "af": ["belastingopgawe", "inkomstebelasting"]
+    },
+    {
+      "doc": "core/what-you-need-to-sell-things",
+      "en": ["licence", "permit", "trading licence"],
+      "af": ["lisensie", "permit", "handelslisensie"]
+    },
+    {
+      "doc": "branding/already-have-your-name",
+      "en": ["business name"],
+      "af": ["besigheidsnaam"]
+    },
+    {
+      "doc": "business-types/vehicle-dealer",
+      "en": ["car dealer", "sell cars"],
+      "af": ["motorhandelaar", "motors verkoop"]
+    },
+    {
+      "doc": "business-types/pick-your-business-type",
+      "en": ["what kind of business"],
+      "af": ["watter soort besigheid"]
+    },
+    {
+      "doc": "business-types/professional-creative",
+      "en": ["photographer", "designer"],
+      "af": ["fotograaf", "ontwerper"]
+    },
+    {
+      "doc": "business-types/beauty",
+      "en": ["hairdresser", "salon"],
+      "af": ["haarkapper", "salon"]
+    },
+    {
+      "doc": "lookup/sources",
+      "en": ["source", "sources", "references", "legislation"],
+      "af": ["bron", "bronne", "wetgewing"]
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   DOC_BUDGET,
   moduleImports,
+  onDemand,
   pageScripts,
   PROFILE_CHUNKS,
   runCli,
@@ -55,6 +56,27 @@ describe('scriptGraph', () => {
   });
 });
 
+describe('onDemand', () => {
+  // WP-33: the search dialog's code loads on demand. It is reported, not counted in a page's figure.
+  it('follows every dynamic import but the profile chunks, once each', () => {
+    const files: Record<string, string> = {
+      '_astro/page.js': 'import"./shared.js";const p=()=>import("./path-data.abc.js");',
+      '_astro/search.js': 'const s=()=>import("./search-ui.def.js");',
+      '_astro/other.js': 'const s=()=>import("./search-ui.def.js");',
+      '_astro/search-ui.def.js': 'import"./minisearch.js";import"./shared.js";',
+      '_astro/minisearch.js': '',
+      '_astro/shared.js': '',
+      '_astro/path-data.abc.js': '',
+    };
+    const read = (file: string): string => files[file] ?? '';
+    expect(onDemand(Object.keys(files), read).sort()).toEqual([
+      '_astro/minisearch.js',
+      '_astro/search-ui.def.js',
+      '_astro/shared.js',
+    ]);
+  });
+});
+
 describe('runCli', () => {
   let root: string | undefined;
   afterEach(() => {
@@ -97,5 +119,18 @@ describe('runCli', () => {
   it('passes a page within the budget with a profile', () => {
     vi.spyOn(console, 'log').mockImplementation(() => {});
     expect(runCli(site(2 * 1024), '/bt/')).toBe(0);
+  });
+
+  it('reports what loads on demand and each search index, outside the page figures', () => {
+    const log = vi.spyOn(console, 'log').mockImplementation(() => {});
+    const dir = site(2 * 1024);
+    writeFileSync(path.join(dir, '_astro', 'search.js'), 'const s=()=>import("./search-ui.js");');
+    writeFileSync(path.join(dir, '_astro', 'search-ui.js'), weight(30 * 1024));
+    mkdirSync(path.join(dir, 'search'));
+    writeFileSync(path.join(dir, 'search', 'en.abc.json'), '{"v":7}');
+    expect(runCli(dir, '/bt/')).toBe(0);
+    const out = log.mock.calls.join('\n');
+    expect(out).toMatch(/loaded on demand .*: 3\d\.\d KB gzip/);
+    expect(out).toContain('search index en.abc.json:');
   });
 });

@@ -14,7 +14,10 @@ pnpm build          # astro build + pnpm dist:audit
 | ------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `pnpm test`         | `tests/unit`, `tests/dom`                    | Pure functions (Vitest), including the link audit and the harness rules below                                 |
 | `pnpm dist:audit`   | `scripts/dist/audit-links.ts`                | Every HTML file in `dist/`: base path, broken targets and `#fragments`, `<base>`, third-party resources and hints, external forms and meta refresh, inline `on*` handlers, `noopener`, `http:`, `javascript:` |
-| `pnpm test:e2e`     | `tests/e2e` (chromium, webkit, mobile, nojs) | Page contract, CSP, no third-party requests, 404 page, no-JS reading, content rendering and navigation        |
+| `pnpm search:diff <ref>` | `scripts/search-diff.ts`               | Not a test: runs a fixed query corpus (every acceptance row, page title, H1 and section heading, glossary term, every query quoted in `docs/reviews/WP-33-pass*.md`, and generated phrasings that put a law, source or naming word next to the guide's main nouns (`tax law`, `regulations for food`, `official name`, `come up with a name`; `regulasies vir kos`, `amptelike naam`), in both languages, finished and typed) against the search code and data of `<ref>` and of the working tree, and lists every query whose first result changed, classified `better`, `worse`, `same-target` or `?` (for a person to judge). Run before reporting a search change; a `worse` item is fixed or justified |
+| `pnpm search:typos` | `scripts/search-typo-sweep.ts`               | Not a test: counts how many one-keystroke typos (dropped, doubled, extra neighbouring-key, wrong neighbouring-key and swapped letters, at every position) of every glossary term and page title open the correct spelling's first result (and one of its first three), as finished and typed |
+| `pnpm dist:budget`  | `scripts/dist/check-budget.ts`               | The JavaScript each built page loads up front, gzipped, against 25 KB (document pages) and 45 KB (tool pages); also prints what opening search costs |
+| `pnpm test:e2e`     | `tests/e2e` (chromium, webkit, mobile, nojs) | Page contract, CSP, no third-party requests, 404 page, no-JS reading, content rendering, navigation and search |
 | `pnpm test:a11y`    | `tests/e2e/a11y.spec.ts`                     | axe (WCAG 2.0/2.1 A and AA) on every page in light and dark themes                                            |
 | `pnpm test:visual`  | `tests/e2e/visual.spec.ts`                   | Screenshot comparison (added in a later package)                                                              |
 | `pnpm lhci`         | `tests/lighthouse/lighthouserc.cjs`          | Lighthouse scores and size budgets, desktop and mobile                                                        |
@@ -232,7 +235,27 @@ without a profile and once with the chunks a reader with saved answers can load 
 of each kind and the room left. On the WP-30 build the heaviest document page was 15.9 KB; on the
 WP-31 build after review pass 5 it is 22.2 KB without and with a profile (it was 24.0 KB and 26.3 KB
 before); see
-[design-system.md](design-system.md#scripts-csp-and-javascript-budget) for the split.
+[design-system.md](design-system.md#scripts-csp-and-javascript-budget) for the split. It also prints
+what no page figure counts: everything a dynamic `import()` loads other than the profile chunks
+(today the search dialog), shared chunks counted once, and the size of each search index (WP-33,
+which folded its own `js-budget.ts` into this script at the merge).
+
+Measured on 2026-10-08 after merging WP-33 with WP-30, WP-31 and WP-32 (review pass 21):
+
+| What | Gzip |
+| --- | --- |
+| Heaviest document page (`/af/templates/invoice/`), without and with a profile | 24.18 KB (printed 24.2 KB, 0.8 KB left; 23.65 KB on main before the merge) |
+| Heaviest tool page (`/af/search/`, which imports the dialog's results code and MiniSearch up front) | 34.4 KB |
+| Loaded on demand: the search dialog, its results code, the client and MiniSearch | 27.6 KB |
+| Search index, English (945 entries) / Afrikaans (951 entries); fetched when search opens; budget 400 KB each | 167.5 / 185.0 KB |
+
+The search button costs a document page about 0.55 KB: `search-boot.ts` inside the page's shared
+script. To fit, the dialog's own script loads on demand (opened at once from the page's markup, so no
+key is lost: `search.spec.ts`, "the first open of the search dialog keeps every key", types with
+`keyboard.type` with the script on time, held 2 s and failing), its `import()` has no Vite preload
+wrapper (`scripts/search/plain-import.ts`; the helper chunk was 0.75 KB), the keys go through the
+site's one shortcut handler, and the dialog translates with `searchTranslator()` rather than
+`createTranslator()` (which put 0.5 KB of the translation core into every page's `i18n` chunk).
 
 ### Fillable templates (WP-32)
 
@@ -361,15 +384,130 @@ Measured on the WP-31 build: path-engine.ts 100 / 98.9 / 100 / 100, profile.ts a
 
 Requests `nonexistent-<random>/` and `af/nonexistent-<random>/` under the base path and expects status 404, a visible `<h1>` and no URL problems (`documentUrlProblems`). The tests skip, with the reason shown, until `dist/404.html` exists. The browser's own "status of 404" console message is allowed in these tests. `/404.html` itself also goes through the page contract, the no-JS check and axe.
 
+### Search: `search.spec.ts`
+
+Projects `chromium`, `webkit` and `mobile` (WP-33, build plan A7 and B3 flow 3):
+
+- `/` opens the dialog on a document page; no index request is made before that (the test watches
+  every request for `search/<lang>.<hash>.json`); typing `SAPS 601` gives options with `<mark>`ed
+  matches; ArrowDown and Enter open the first one, and the page that opens has the URL's `#hash` on a
+  heading (`h2`–`h4`) that has focus and the `.st-search-target` highlight;
+- Ctrl+K opens it with the common questions showing; one Escape closes it, even with text in the
+  field, and focus goes back;
+- `VAT 264` typed with a space after an earlier query, then Enter at once, opens exactly
+  `glossary/#vat264` (review WP-33 pass 1, majors 1 and 2; pass 2, minor 3);
+- `SAPS 60` and `VAT26` typed, then Enter with no option active, open the first option on screen
+  (SAPS 601, `glossary/#vat264`), and `EMP201 deadline` lists `glossary/#emp201` in the dialog and
+  in the first five results of `/search/?q=` (review WP-33 pass 6, majors 1 and 2);
+- `how this was made` typed, then Enter, opens the first section of "How this was made" (review
+  WP-33 pass 8, major, and pass 9);
+- `VAT26`, then "See all": the search page lists the promised number of results with
+  `glossary/#vat264` first (review WP-33 pass 7, minor 3);
+- with the index request held back: Enter, then the index arrives, opens `glossary/#pis`; Enter, then
+  Escape, then the index arrives, opens nothing and highlights nothing (review WP-33 pass 2, major 1);
+- the status line is in the accessibility tree before any search;
+- an index that answers 500 gives the failed state, with the sentence once and the contents link;
+- `/` typed into a field stays in the field;
+- the header control opens it, and a result on the same page moves there without a load and focuses
+  the heading;
+- Afrikaans results (`omsetbelasting`) link under `/af/` and carry no English mark, now that every
+  document is translated (the mark itself is tested on fixtures);
+- no results says so and keeps the contents link;
+- `/search/?q=VAT264` runs the query in place, echoes it and lists the vehicle dealer's "conditions"
+  section; a new search updates `?q=` without reloading the page;
+- the 404 page for `business-types/vehicle-dealr/` suggests the vehicle dealer page.
+
+The automatic network guard fails any of these tests on a request to another origin, so the suite
+also proves that search never leaves the site. The no-JS half is in `nojs.spec.ts` ("search without
+JavaScript": the header control is a plain link, and `/search/?q=` in both languages reloads the page,
+which links the contents and every page of the guide) and axe with the dialog open is in
+`a11y.spec.ts`.
+
+The unit side is `tests/unit/search/` (the index built in memory from the real `src/data`: the A7
+ranking cases including `belastng` on the real Afrikaans data, the query-kind table of `docs/design-system.md` row by row on both real indexes (codes spaced, joined and being typed, amounts in every South African spelling including `R1m`, tax years including `2026-27`, all words then any word (`EMP201 deadline`), numbers, single letters, hyphens, stop words, punctuation, mixed queries, typing against finished), every letters-then-digits term in both indexes searched spaced against its two words, every page's navigation title and H1 in both languages, typed and finished, opening that page, every search best bet (`content-meta/search-best-bets.json`) opening its target first, finished and typed, in both languages, spaced and joined form codes,
+`e-filing`, anchors, no English marks in the translated Afrikaans index and the English fallback on a
+copy of the data without Afrikaans, the 400 KB gzip budget per language; fixtures for
+the tokenizer, the client, filters, URLs and highlighting) and `tests/dom/search.test.ts` (the
+elements in happy-dom: openers, shortcuts, focus return, the listbox keyboard, every state, arrival
+focus, the search page and the 404 suggestion).
+
+### Search acceptance set: `tests/search/acceptance-queries.json`
+
+A fixed set of owner queries, per language, each with the place it must open (review WP-33 pass
+15). `tests/unit/search/acceptance.test.ts` turns every row into two tests, the query finished
+(the search page, Enter) and still being typed (the dialog), and runs them in `pnpm test` with the
+other unit tests. A row:
+
+```json
+{
+  "lang": "en",
+  "query": "I want to close my business",
+  "doc": "core/running-a-pty-ltd",
+  "anchor": "closing-a-company-properly",
+  "need": "first",
+  "notFirst": ["branding/mood-and-materials#prompt-b-materials-and-finishes"],
+  "from": "pass 15 major 1"
+}
+```
+
+- `doc` is a document id; `anchor` (optional) one section's English heading slug. Without
+  `anchor`, any entry on the page counts.
+- `need` is `first` (the first result) or `top3` (one of the first three).
+- `firstIn` is required on a `top3` row and only there: the other places that may come first,
+  besides the target. Each must be a glossary or "Words used" definition (only for a term query,
+  never a task phrasing such as `ek wil 'n lisensie hê`), or another entry on the target's own
+  page; a test checks this (review WP-33 pass 17, major 4). Anything else first fails the row, so
+  a `top3` row never lets an unrelated page lead (pass 16, major 1). Every `top3` row whose first
+  result is already its target is a `first` row.
+- `notFirst` (optional) lists places that must never be the first result: `doc` (any entry on it,
+  its first entry included)
+  or `doc#anchor`. Rows from a review use it for the wrong answer the review found.
+- `onlyLang` (optional) says why a row has no counterpart in the other language. Every other row
+  needs a row in the other language with the same target; a test checks this (review WP-33 pass
+  18, major 3).
+- `from` names the review that raised the query; rows without it were added to balance the set.
+
+The set holds every owner query raised in reviews pass 10 to 15, and a balanced set over the tasks
+the guide covers: registering, tax and SARS, VAT, invoices, quotes and receipts, UIF and
+employees, CIPC duties, licences, the bank account, paying yourself, closing, business type,
+vehicles, privacy and POPIA, branding and the name, working from home, and the checklist. Queries
+are phrased the way owners type them: bare words (`tax`, `sluit`), `how do I…`, `I want to…`, `I
+need to…`, `hoe…`, `ek wil…`. A term the glossary defines (`vat`, `turnover tax`, `small claims
+court`) expects the glossary entry first or the section in the top three, because a term query
+opens its definition first (`docs/design-system.md`). An Act row names the register entry it must
+open (`#legislation-this-toolkit-relies-on`). At the end of pass 20: 358 English and 332 Afrikaans
+rows (3 with `onlyLang`), 1380 tests (finished and typed) and five checks on the file, all passing.
+A phrase removed from the best bets becomes a row in both languages, so its result stays guarded.
+`tests/unit/search/index.test.ts` adds `what is` / `wat is` plus every glossary term and alias, in
+both languages, finished and typed, and every Act of the register by its short name, full name and
+each alias in `content-meta/search-act-names.json` (Afrikaans aliases in the Afrikaans index),
+finished and typed, which must open the Legislation entry.
+
+**How reviews use it.** From review pass 16 on, a major is a failing row, a regression of a row
+that passed, a whole class of query that fails (for example every "I want to…" question), or a
+broken rule (`CLAUDE.md`, the build plan). A new single phrasing that the set does not hold is a
+minor: it becomes a new row, and the fix makes that row pass. A row's expectation changes only with
+a reason in the commit (the guide's text changed, or the row asked for the wrong place). Rows
+are never loosened to make them pass: moving a row from `first` to `top3`, widening `firstIn` or
+changing a row's target is listed in the report with its reason and needs the coordinator's OK. A
+search change is reported with its `pnpm search:diff` against the previous tip. The diff's corpus
+holds the rows, every title, every glossary term, the queries quoted in reviews, generated law,
+source and naming phrasings, and every phrase that has ever been a best bet or a page keyword (read
+from the git history of the two `content-meta` files). Every `?` change gets a verdict and a reason
+in `docs/reviews/WP-33-diff-<ref>.md` (from pass 19). A "neutral" verdict by rule (the result is
+what the bare noun opens) is checked by hand whenever the bare noun's result is about another
+subject (pass 20, major 2).
+
 ### Accessibility: `a11y.spec.ts`
 
-Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, runs axe with the tags `wcag2a`, `wcag2aa`, `wcag21a` and `wcag21aa`. The theme is checked again right before the analysis.
+Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, runs axe with the tags `wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa` and `best-practice`. The theme is checked again right before the analysis.
 
 - `serious` and `critical` violations fail the test.
 - `moderate` and `minor` violations are recorded as annotations (`a11y-moderate`, `a11y-minor`); they do not fail the test.
 - The per-test timeout is `PW_A11Y_TIMEOUT` (milliseconds): 60 s in CI, 90 s locally. `--timeout` on the command line overrides it.
 - `axe with the interactive states open` (WP-30) runs the same tags with each confirm dialog open, the language banner showing and the storage warning showing, in both themes.
-- Build plan C6 also lists the `best-practice` tag. The package brief left it out on purpose. Add it in the package that adds the search dialog, where rules such as `aria-dialog-name` start to matter.
+- The `best-practice` tag (build plan C6) came in with the search dialog (WP-33), where rules such as `aria-dialog-name` start to matter.
+- **With the search dialog open** (WP-33): on `core/register/` and `af/business-types/vehicle-dealer/`, in both themes, axe runs twice, once on the empty state (the common questions) and once with `VAT264` typed and the first option active.
 
 ## Fixtures
 

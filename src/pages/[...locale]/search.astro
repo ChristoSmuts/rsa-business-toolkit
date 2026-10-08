@@ -1,14 +1,13 @@
 ---
 /**
- * `/search/`: the full-page search shell (build plan B1, B3). The search client is WP-33, which
- * enhances this form in place and owns the loading, failure and "needs JavaScript" messages.
- * Until then the page says plainly that full search is not ready, the same with or without
- * JavaScript, and is still useful on its own: the common questions from "How to use this toolkit", each linked to the page
- * that answers it, and a link to the contents.
+ * `/search/?q=`: the full-page search (build plan B1, B3) and the search dialog's no-JavaScript
+ * fallback.
  *
- * The GET form (to this same page, so a `?q=` URL is shareable) renders once `SEARCH_AVAILABLE` is
- * true: until WP-33 a form whose submission only reloads the page would be a control that does
- * nothing.
+ * - With JavaScript, `<st-search-page>` (src/scripts/search-page.ts) runs `?q=` in place, echoes
+ *   the query and lists the results grouped by section; a new search updates `?q=`.
+ * - Without JavaScript the GET form reloads this page, which says that search needs JavaScript and
+ *   answers with every page of the guide instead (the contents index), after the common questions
+ *   from "How to use this toolkit".
  */
 import { getEntry } from 'astro:content';
 import Page from '../../layouts/Page.astro';
@@ -20,10 +19,13 @@ import { useTranslations } from '../../i18n';
 import { getLocale, type Locale } from '../../i18n/locales';
 import { loadManifest } from '../../lib/content/collections';
 import { createContentContext } from '../../lib/content/context';
+import { docHref, docTitle, docTitleLang, orderedSections } from '../../lib/content/manifest';
 import { localeStaticPaths } from '../../lib/i18n-routes';
 import { docContentLang, pageTitle } from '../../lib/pages';
 import { href } from '../../lib/paths';
-import { APP_ROUTES, SEARCH_AVAILABLE } from '../../lib/routes';
+import { APP_ROUTES } from '../../lib/routes';
+import { searchElementData } from '../../lib/search/ui-data';
+import '../../styles/search.css';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -42,6 +44,23 @@ const context = createContentContext({ locale, contentLang: answersLang, manifes
 const answersLangTag =
   answersLang === locale ? undefined : (getLocale(answersLang)?.hreflang ?? answersLang);
 const contentsHref = href(locale, APP_ROUTES.contents);
+const search = searchElementData(locale, manifest);
+const sections = orderedSections(manifest).map((section) => ({
+  id: section.id,
+  title: section.titles[locale] ?? section.titles.en ?? section.id,
+  docs: section.docs.flatMap((id) => {
+    const url = docHref(manifest, id, locale);
+    if (url === undefined) return [];
+    return [
+      {
+        id,
+        href: url,
+        title: docTitle(manifest, id, locale),
+        lang: docTitleLang(manifest, id, locale),
+      },
+    ];
+  }),
+}));
 ---
 
 <Page
@@ -61,13 +80,15 @@ const contentsHref = href(locale, APP_ROUTES.contents);
     />
     <h1>{t('search.pageTitle')}</h1>
 
-    {SEARCH_AVAILABLE && (
-      <form
-        class="st-search__form"
-        action={href(locale, APP_ROUTES.search)}
-        method="get"
-        role="search"
-      >
+    <st-search-page
+      class="st-stack"
+      data-locale={search.locale}
+      data-index={search.index}
+      data-page={search.page}
+      data-contents={search.contents}
+      data-strings={search.strings}
+    >
+      <form class="st-search__form" action={search.page} method="get" role="search">
         <label for="st-search-q">{t('search.label')}</label>
         <div class="st-search__row">
           <input
@@ -76,6 +97,7 @@ const contentsHref = href(locale, APP_ROUTES.contents);
             name="q"
             placeholder={t('search.placeholder')}
             autocomplete="off"
+            maxlength="200"
             enterkeyhint="search"
           />
           <Button type="submit" variant="primary">
@@ -83,16 +105,36 @@ const contentsHref = href(locale, APP_ROUTES.contents);
           </Button>
         </div>
       </form>
-    )}
+      <section
+        class="st-stack st-search__results js-only"
+        aria-labelledby="search-results-title"
+        data-search-region
+      >
+        <h2 id="search-results-title" data-search-title hidden>
+          {t('search.resultsLabel')}
+        </h2>
+        <p class="st-search__status" role="status" aria-live="polite"></p>
+        <div class="st-stack" data-search-list></div>
+        <div class="st-stack" data-search-failed hidden>
+          <p>
+            <a class="st-link-block" href={contentsHref}>
+              {t('search.failedFallback')}
+            </a>
+          </p>
+        </div>
+      </section>
+    </st-search-page>
 
-    <Callout variant="info" label={t('search.dialogTitle')}>
-      <p>{t('search.notReady')}</p>
-      <p>
-        <a class="st-link-block" href={contentsHref}>
-          {t('search.browseContents')}
-        </a>
-      </p>
-    </Callout>
+    <div class="no-js-only">
+      <Callout variant="info" label={t('search.dialogTitle')}>
+        <p>{t('search.noJs')}</p>
+        <p>
+          <a class="st-link-block" href={contentsHref}>
+            {t('search.browseContents')}
+          </a>
+        </p>
+      </Callout>
+    </div>
 
     {answers && answers.items.length > 0 && (
       <section class="st-stack" aria-labelledby="search-common">
@@ -117,8 +159,35 @@ const contentsHref = href(locale, APP_ROUTES.contents);
         </ul>
       </section>
     )}
+
+    <section class="st-stack" aria-labelledby="search-all-pages">
+      <h2 id="search-all-pages">{t('search.browseContents')}</h2>
+      {sections.map((section) => (
+        <section class="st-stack" aria-labelledby={`search-section-${section.id}`}>
+          <h3 id={`search-section-${section.id}`}>{section.title}</h3>
+          <ul class="st-search__pages" role="list">
+            {section.docs.map((doc) => (
+              <li>
+                <a class="st-link-block" href={doc.href} lang={doc.lang}>
+                  {doc.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+      <p>
+        <a class="st-link-block" href={contentsHref}>
+          {t('contents.title')}
+        </a>
+      </p>
+    </section>
   </div>
 </Page>
+
+<script>
+  import '../../scripts/search-page';
+</script>
 
 <style>
   .st-search {
@@ -142,13 +211,38 @@ const contentsHref = href(locale, APP_ROUTES.contents);
     min-inline-size: 0;
   }
 
-  .st-search__answers {
+  .st-search__results {
+    max-inline-size: var(--st-measure);
+  }
+
+  [data-search-failed][hidden] {
+    display: none;
+  }
+
+  .st-search__status:empty {
+    /*
+     * Empty, it stays in the accessibility tree (only out of sight), so the first count is
+     * announced as a change to a live region that already existed (B5).
+     */
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .st-search__answers,
+  .st-search__pages {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--st-space-3);
     padding: 0;
     list-style: none;
     max-inline-size: var(--st-measure);
+  }
+
+  .st-search__answers {
+    gap: var(--st-space-3);
   }
 
   .st-search__answer {

@@ -1,0 +1,465 @@
+{
+  "$comment": "Search best bets: common owner phrasings that must open one page first, whatever the ranking does. See content-meta/README.md. Keep it short: under about 120 phrases per language, and only a phrase the guide has one obvious page for.",
+  "filler": {
+    "en": [
+      "my",
+      "own",
+      "new",
+      "small",
+      "need",
+      "can",
+      "want",
+      "should",
+      "get",
+      "our",
+      "we",
+      "please",
+      "must",
+      "looking",
+      "find",
+      "show",
+      "send",
+      "give",
+      "am",
+      "law",
+      "laws",
+      "regulation",
+      "regulations",
+      "by-laws",
+      "rules",
+      "says",
+      "say",
+      "about"
+    ],
+    "af": [
+      "my",
+      "eie",
+      "nuwe",
+      "klein",
+      "nodig",
+      "moet",
+      "kan",
+      "wil",
+      "kry",
+      "ons",
+      "graag",
+      "hê",
+      "sê",
+      "oor",
+      "soek",
+      "asseblief",
+      "wet",
+      "wette",
+      "regulasies",
+      "regulasie",
+      "reëls",
+      "verordeninge"
+    ]
+  },
+  "bets": [
+    {
+      "doc": "core/register",
+      "en": [
+        "register my business",
+        "do i need a company",
+        "registration",
+        "register pty ltd",
+        "open company"
+      ],
+      "af": [
+        "registreer my besigheid",
+        "het ek 'n maatskappy nodig",
+        "registrasie",
+        "registreer pty ltd",
+        "maak maatskappy oop"
+      ]
+    },
+    {
+      "doc": "core/register",
+      "anchor": "which-one-should-you-choose",
+      "en": ["sole proprietor or company"],
+      "af": ["eenmansaak of maatskappy"]
+    },
+    {
+      "doc": "core/register",
+      "anchor": "b-bbee-affidavit-free-do-not-pay-for-it",
+      "en": ["bee certificate", "bee affidavit", "bee level", "bee status"],
+      "af": ["bee sertifikaat", "bee beëdigde verklaring", "bee vlak", "bee status"]
+    },
+    {
+      "doc": "start/start-here",
+      "en": ["start a business", "where do i start"],
+      "af": ["begin 'n besigheid", "waar begin ek"]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "en": ["tax"],
+      "af": ["belasting"]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "anchor": "vat-probably-not-yet",
+      "en": [
+        "register for vat",
+        "register business for vat",
+        "register company for vat",
+        "when to register for vat",
+        "when to pay vat",
+        "vat registration",
+        "vat threshold",
+        "vat sole proprietor"
+      ],
+      "af": [
+        "registreer vir btw",
+        "registreer besigheid vir btw",
+        "registreer maatskappy vir btw",
+        "wanneer registreer vir btw",
+        "wanneer betaal btw",
+        "btw registrasie",
+        "btw drempel",
+        "btw eenmansaak"
+      ]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "anchor": "what-sars-wants-from-a-sole-proprietor",
+      "en": ["tax number"],
+      "af": ["belastingnommer"]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "anchor": "provisional-tax",
+      "en": ["provisional tax"],
+      "af": ["voorlopige belasting"]
+    },
+    {
+      "doc": "paperwork/templates/invoice",
+      "en": ["invoice", "invoice template"],
+      "af": ["faktuur", "faktuursjabloon"]
+    },
+    {
+      "doc": "paperwork/templates/tax-invoice",
+      "en": ["tax invoice"],
+      "af": ["belastingfaktuur"]
+    },
+    {
+      "doc": "paperwork/templates/quotation",
+      "en": ["quote", "quotation"],
+      "af": ["kwotasie"]
+    },
+    {
+      "doc": "paperwork/templates/receipt",
+      "en": ["receipt"],
+      "af": ["kwitansie"]
+    },
+    {
+      "doc": "paperwork/templates/privacy-notice",
+      "en": ["privacy notice", "privacy policy"],
+      "af": ["privaatheidskennisgewing", "privaatheidsbeleid"]
+    },
+    {
+      "doc": "lookup/glossary",
+      "anchor": "uif",
+      "en": ["uif"],
+      "af": ["uif"]
+    },
+    {
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "1-cipc-annual-return",
+      "en": ["cipc annual return"],
+      "af": ["cipc jaarlikse opgawe"]
+    },
+    {
+      "doc": "lookup/glossary",
+      "anchor": "annual-return",
+      "en": ["annual return"],
+      "af": ["jaarlikse opgawe"]
+    },
+    {
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "4-sars-company-tax",
+      "en": ["company tax rate", "company tax"],
+      "af": ["maatskappybelasting", "maatskappybelastingkoers"]
+    },
+    {
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "en": [
+        "close",
+        "close my company",
+        "close business",
+        "deregister business",
+        "shut down business"
+      ],
+      "af": [
+        "sluit my maatskappy",
+        "sluit besigheid",
+        "deregistreer besigheid",
+        "toemaak besigheid",
+        "afsluit besigheid"
+      ]
+    },
+    {
+      "doc": "core/what-you-need-to-sell-things",
+      "en": ["licence", "trading licence", "business licence", "do i need a licence"],
+      "af": ["lisensie", "handelslisensie", "besigheidslisensie", "het ek 'n lisensie nodig"]
+    },
+    {
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-alcohol",
+      "en": ["liquor licence"],
+      "af": ["dranklisensie"]
+    },
+    {
+      "doc": "business-types/pick-your-business-type",
+      "en": ["business type", "which business type"],
+      "af": ["watter soort besigheid", "besigheidstipe"]
+    },
+    {
+      "doc": "core/register",
+      "anchor": "sole-proprietor-trading-as-yourself",
+      "en": ["sole proprietor"],
+      "af": ["eenmansaak"]
+    },
+    {
+      "doc": "core/register",
+      "anchor": "business-bank-account",
+      "en": ["bank account", "open bank account", "open business bank account"],
+      "af": [
+        "bankrekening",
+        "maak bankrekening oop",
+        "bankrekening oopmaak",
+        "eenmansaak bankrekening",
+        "maak besigheidsbankrekening oop",
+        "bank wet"
+      ]
+    },
+    {
+      "doc": "core/paying-yourself",
+      "en": ["pay myself", "salary or dividend"],
+      "af": ["betaal myself", "salaris of dividend"]
+    },
+    {
+      "doc": "core/paying-yourself",
+      "anchor": "option-2-dividend",
+      "en": ["dividend", "dividends"],
+      "af": ["dividend", "dividende"]
+    },
+    {
+      "doc": "core/working-from-home-and-safety",
+      "en": ["work from home", "run business from home"],
+      "af": ["werk van die huis af", "besigheid van die huis af bedryf"]
+    },
+    {
+      "doc": "core/vehicles",
+      "en": ["vehicle", "vehicles"],
+      "af": ["voertuig", "voertuie"]
+    },
+    {
+      "doc": "core/vehicles",
+      "anchor": "how-to-get-the-brnc",
+      "en": ["need brnc"],
+      "af": ["brnc nodig"]
+    },
+    {
+      "doc": "branding/already-have-your-name",
+      "anchor": "do-you-need-a-tagline",
+      "en": ["tagline"],
+      "af": ["slagspreuk"]
+    },
+    {
+      "doc": "branding/branding-prompts",
+      "anchor": "prompt-3-the-name",
+      "en": [
+        "business name",
+        "choose business name",
+        "choosing business name",
+        "call business",
+        "naming business",
+        "choose name for business",
+        "come up with business name"
+      ],
+      "af": [
+        "besigheidsnaam",
+        "naam besigheid",
+        "noem besigheid",
+        "kies besigheidsnaam",
+        "naam as besigheidsnaam",
+        "kom aan besigheidsnaam",
+        "kies naam besigheid",
+        "besigheid se naam"
+      ]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "anchor": "records",
+      "en": ["keep records", "how long to keep records"],
+      "af": ["rekords hou", "hoe lank rekords hou"]
+    },
+    {
+      "doc": "core/working-from-home-and-safety",
+      "anchor": "zoning",
+      "en": ["zoning"],
+      "af": ["sonering"]
+    },
+    {
+      "doc": "lookup/checklist",
+      "en": ["checklist"],
+      "af": ["kontrolelys"]
+    },
+    {
+      "doc": "business-types/vehicle-dealer",
+      "anchor": "vat-register-earlier-than-other-businesses",
+      "en": ["vat vehicle dealer"],
+      "af": ["btw voertuighandelaar"]
+    },
+    {
+      "doc": "paperwork/which-template-to-use-when",
+      "anchor": "invoice-numbering",
+      "en": ["invoice numbering"],
+      "af": ["faktuurnommering"]
+    },
+    {
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-import-anything",
+      "en": ["import"],
+      "af": ["invoer"]
+    },
+    {
+      "doc": "branding/branding-prompts",
+      "en": ["branding"],
+      "af": ["handelsmerk"]
+    },
+    {
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-second-hand-goods",
+      "en": ["second hand goods", "second hand"],
+      "af": ["tweedehandse goedere", "tweedehands"]
+    },
+    {
+      "doc": "lookup/sources",
+      "en": ["where does this come from", "where does this information come from"],
+      "af": ["waar kom dit vandaan", "verwysings", "waar kom die inligting vandaan"]
+    },
+    {
+      "doc": "lookup/sources",
+      "anchor": "legislation-this-toolkit-relies-on",
+      "en": ["legislation"],
+      "af": ["wetgewing"]
+    },
+    {
+      "doc": "lookup/glossary",
+      "anchor": "registered-name",
+      "en": ["official name", "official business name", "company name"],
+      "af": ["amptelike naam", "amptelike besigheidsnaam", "maatskappy se naam", "maatskappy naam"]
+    },
+    {
+      "doc": "paperwork/which-template-to-use-when",
+      "en": ["official invoice"],
+      "af": ["amptelike faktuur"]
+    },
+    {
+      "doc": "business-types/pick-your-business-type",
+      "anchor": "what-everyone-needs-regardless-of-type",
+      "en": [
+        "laws apply",
+        "which laws apply",
+        "laws apply business",
+        "which laws apply business",
+        "business law",
+        "business regulations"
+      ],
+      "af": [
+        "watter wette geld",
+        "watter wette geld besigheid",
+        "wette geld besigheid",
+        "wette geld"
+      ]
+    },
+    {
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "the-general-rule",
+      "en": ["municipal by-laws", "local by-laws", "by-laws"],
+      "af": ["munisipale verordeninge", "plaaslike verordeninge", "verordeninge"]
+    },
+    {
+      "doc": "business-types/retail-online",
+      "en": ["retail and online"],
+      "af": ["kleinhandel en aanlyn"]
+    },
+    {
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "en": [
+        "employment",
+        "labour law",
+        "labour regulations",
+        "staff",
+        "hire staff",
+        "employment contract"
+      ],
+      "af": [
+        "indiensneming",
+        "arbeidswet",
+        "werk wet",
+        "personeel",
+        "personeel aanstel",
+        "dienskontrak",
+        "werk regulasies"
+      ]
+    },
+    {
+      "doc": "core/what-you-need-to-sell-things",
+      "anchor": "if-you-sell-food",
+      "en": ["food regulations", "food law"],
+      "af": ["regulasies kos", "kos wet"]
+    },
+    {
+      "doc": "business-types/retail-online",
+      "anchor": "importing-stock",
+      "en": ["source stock", "where do i source stock"],
+      "af": ["voorraad kry", "waar kry ek voorraad"]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "anchor": "what-sars-wants-from-a-sole-proprietor",
+      "en": ["source of income"],
+      "af": ["bron van inkomste"]
+    },
+    {
+      "doc": "core/you-are-the-business",
+      "anchor": "getting-paid",
+      "en": ["getting paid", "getting paid business"],
+      "af": ["betaal word", "betaal word besigheid"]
+    },
+    {
+      "doc": "business-types/vehicle-dealer",
+      "anchor": "if-you-extend-credit-yourself",
+      "en": ["credit regulations", "credit law"],
+      "af": ["kredietregulasies", "krediet regulasies"]
+    },
+    {
+      "doc": "lookup/glossary",
+      "anchor": "vat",
+      "en": ["vat rate"],
+      "af": ["btw koers"]
+    },
+    {
+      "doc": "core/tax-and-sars",
+      "en": ["tax rates", "tax rate"],
+      "af": ["belastingkoerse", "belastingkoers"]
+    },
+    {
+      "doc": "lookup/sources",
+      "anchor": "tax-and-sars",
+      "en": ["vat sources"],
+      "af": ["btw bronne"]
+    },
+    {
+      "doc": "start/how-to-use",
+      "anchor": "what-this-toolkit-is",
+      "en": ["what is this site about"],
+      "af": ["oor die toolkit"]
+    }
+  ]
+}

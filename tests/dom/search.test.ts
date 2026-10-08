@@ -1,0 +1,1409 @@
+/**
+ * The search elements in happy-dom: the dialog opens from its link, `/` and Ctrl+K, closes and
+ * returns focus; the results listbox handles the keyboard; the search page and the 404 suggestion
+ * render results with DOM APIs. The index is a small one built in memory and served by a stubbed
+ * `fetch`, so nothing leaves the test.
+ */
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { serialiseIndex } from '../../scripts/search/build';
+import {
+  createSearchClient,
+  SearchIndexError,
+  type SearchClient,
+} from '../../src/lib/search-client';
+import { KIND_WEIGHT } from '../../src/lib/search/options';
+import { profile } from '../../src/lib/profile-store';
+import { isTypingTarget, matchShortcut } from '../../src/lib/shortcuts';
+// The site's one keyboard handler (`/`, Ctrl+K) and the search control's click handler, as every
+// page loads them.
+import '../../src/scripts/site';
+import { applySettings, ARRIVAL_KEY as BOOT_ARRIVAL_KEY } from '../../src/scripts/search-boot';
+import { lowData, shortcuts } from '../../src/lib/store';
+import type { SearchEntry } from '../../src/lib/search/types';
+import { searchStrings } from '../../src/lib/search/ui-data';
+import {
+  ARRIVAL_KEY,
+  consumeArrival,
+  focusTarget,
+  fragmentTarget,
+  HIGHLIGHT_CLASS,
+  openResult,
+  StSearch,
+} from '../../src/scripts/search';
+import {
+  queryFrom,
+  StSearchPage,
+  StSearchSuggest,
+  suggestionQueries,
+  wordsFromPath,
+} from '../../src/scripts/search-page';
+import { pick, t, type TranslationKey } from '../../src/i18n';
+import { readContext, searchSettings, searchTranslator } from '../../src/scripts/search-render';
+import { SearchDialogController } from '../../src/scripts/search-ui';
+import { realManifest } from '../unit/site/data';
+
+const entries: SearchEntry[] = [
+  {
+    key: 'a',
+    kind: 'glossary',
+    doc: 'lookup/glossary',
+    route: 'glossary/',
+    anchor: 'pis',
+    title: 'PIS',
+    docTitle: 'Glossary',
+    path: 'Look it up › Glossary',
+    text: 'Public interest score, a <b>number</b>.',
+    excerpt: 'Public interest score, a <b>number</b>.',
+    section: 'lookup',
+    weight: KIND_WEIGHT.glossary,
+  },
+  {
+    key: 'b',
+    kind: 'section',
+    doc: 'core/running-a-pty-ltd',
+    route: 'core/running-a-pty-ltd/',
+    anchor: 'financial-statements',
+    title: 'Financial statements',
+    docTitle: 'Running a Pty Ltd',
+    path: 'Core › Running a Pty Ltd',
+    text: 'Your PIS decides whether the statements need an audit.',
+    excerpt: 'Your PIS decides whether the statements need an audit.',
+    section: 'core',
+    lang: 'en',
+    weight: KIND_WEIGHT.section,
+  },
+  {
+    key: 'c',
+    kind: 'task',
+    doc: 'lookup/checklist',
+    route: 'checklist/',
+    anchor: 'compliance',
+    title: 'Work out your PIS every year',
+    indexTitle: '',
+    docTitle: 'Checklist',
+    path: 'Look it up › Checklist',
+    text: 'Work out your PIS every year',
+    section: 'lookup',
+    weight: KIND_WEIGHT.task,
+  },
+  // `R1` while typed reaches `R146` too; finished (Enter, the search page) it is R1 alone.
+  {
+    key: 'd',
+    kind: 'glossary',
+    doc: 'lookup/glossary',
+    route: 'glossary/',
+    anchor: 'r146',
+    title: 'R146',
+    docTitle: 'Glossary',
+    path: 'Look it up › Glossary',
+    text: 'A form for a refund.',
+    section: 'lookup',
+    weight: KIND_WEIGHT.glossary,
+  },
+  {
+    key: 'e',
+    kind: 'section',
+    doc: 'core/start-here',
+    route: 'core/start-here/',
+    anchor: 'numbers',
+    title: 'About the numbers',
+    docTitle: 'Start here',
+    path: 'Core › Start here',
+    text: 'Amounts such as R1 million are rounded.',
+    section: 'core',
+    weight: KIND_WEIGHT.section,
+  },
+];
+
+const manifest = realManifest();
+let indexBody: unknown;
+
+function stubFetch(ok = true): ReturnType<typeof vi.fn> {
+  const fetch = vi.fn(() =>
+    Promise.resolve({ ok, status: ok ? 200 : 500, json: () => Promise.resolve(indexBody) }),
+  );
+  vi.stubGlobal('fetch', fetch);
+  return fetch;
+}
+
+function dataAttributes(locale: 'en' | 'af' = 'en'): string {
+  const strings = JSON.stringify(searchStrings(locale, manifest)).replaceAll('"', '&quot;');
+  const prefix = locale === 'en' ? '' : `${locale}/`;
+  return `data-locale="${locale}" data-index="/search/${locale}.test.json" data-page="/${prefix}search/" data-contents="/${prefix}contents/" data-strings="${strings}"`;
+}
+
+function dialogMarkup(): string {
+  return `
+    <header>
+      <a id="opener" href="/search/" data-search-open>Search</a>
+      <input id="field" type="text" />
+    </header>
+    <st-search ${dataAttributes()}>
+      <dialog aria-labelledby="t">
+        <h2 id="t">Search</h2>
+        <button type="button" id="close" data-search-close>Close</button>
+        <form action="/search/" method="get" role="search">
+          <input id="q" type="search" name="q" role="combobox" aria-expanded="false" aria-controls="lb" />
+        </form>
+        <p role="status" data-failed-text="Search could not load."></p>
+        <div id="lb" role="listbox" aria-label="Search results" hidden></div>
+        <p data-search-all hidden><a href="/search/">Search</a></p>
+        <div data-search-failed hidden><a href="/contents/">Contents</a></div>
+        <section data-search-empty><a href="/core/register/">Do I need to register a company?</a></section>
+      </dialog>
+    </st-search>
+    <main><h2 id="financial-statements" tabindex="-1">Financial statements</h2>
+      <details id="words"><summary>Words used</summary><p>x</p></details>
+      <p id="plain">Plain</p></main>`;
+}
+
+/**
+ * Put markup in the document the way a browser upgrades a parsed page: each custom element
+ * connects with its children already there.
+ */
+function mountHtml(html: string): void {
+  const template = document.createElement('template');
+  template.innerHTML = html;
+  document.body.replaceChildren(document.importNode(template.content, true));
+}
+
+/**
+ * Whether the element's own handlers cancelled an event, read by a listener that runs after them
+ * and then cancels it, so happy-dom never really follows a link or submits a form (it would fetch
+ * from its own fake origin).
+ */
+function afterOwnHandlers(target: EventTarget, type: string): () => boolean {
+  let prevented = false;
+  target.addEventListener(
+    type,
+    (event) => {
+      prevented = event.defaultPrevented;
+      event.preventDefault();
+    },
+    { once: true },
+  );
+  return () => prevented;
+}
+
+function key(target: EventTarget, init: KeyboardEventInit): KeyboardEvent {
+  const event = new KeyboardEvent('keydown', { bubbles: true, cancelable: true, ...init });
+  target.dispatchEvent(event);
+  return event;
+}
+
+beforeAll(() => {
+  indexBody = JSON.parse(serialiseIndex('en', ['core', 'lookup'], entries).json) as unknown;
+  if (!customElements.get('st-search')) customElements.define('st-search', StSearch);
+  if (!customElements.get('st-search-page')) customElements.define('st-search-page', StSearchPage);
+  if (!customElements.get('st-search-suggest')) {
+    customElements.define('st-search-suggest', StSearchSuggest);
+  }
+});
+
+afterEach(() => {
+  document.body.replaceChildren();
+  vi.unstubAllGlobals();
+  vi.useRealTimers();
+  window.sessionStorage.clear();
+});
+
+// The dialog's own small translator must say exactly what `t()` says (WP-33 integration: it
+// replaced `createTranslator()` to keep the translation core off every page).
+describe('searchTranslator', () => {
+  it.each(['en', 'af'] as const)('%s: matches t() for every search string and count', (locale) => {
+    const dict = pick(locale, ['search']);
+    const tr = searchTranslator(locale, dict);
+    const leaves: [string, unknown][] = [];
+    const walk = (node: unknown, path: string): void => {
+      const record = node as Record<string, unknown>;
+      if (
+        typeof node === 'string' ||
+        (typeof node === 'object' && node !== null && 'other' in record)
+      ) {
+        leaves.push([path, node]);
+        return;
+      }
+      for (const [k, v] of Object.entries(record)) walk(v, `${path}.${k}`);
+    };
+    walk(dict.search, 'search');
+    expect(leaves.length).toBeGreaterThan(30);
+    for (const [key, leaf] of leaves) {
+      const text = typeof leaf === 'string' ? leaf : JSON.stringify(leaf);
+      const names = [...text.matchAll(/\{([A-Za-z]\w*)\}/g)].map((m) => m[1]!);
+      for (const count of [0, 1, 2, 7]) {
+        const params = Object.fromEntries(names.map((n) => [n, n === 'count' ? count : `<${n}>`]));
+        if (typeof leaf !== 'string') params['count'] = count;
+        const expected = (t as (l: string, k: TranslationKey, p: object) => string)(
+          locale,
+          key as TranslationKey,
+          params,
+        );
+        expect((tr as (k: string, p: object) => string)(key, params), `${key} ${count}`).toBe(
+          expected,
+        );
+      }
+    }
+  });
+});
+
+describe('shortcuts', () => {
+  const event = (init: KeyboardEventInit) => new KeyboardEvent('keydown', init);
+  const search = (init: KeyboardEventInit, singleKey = true) =>
+    matchShortcut(event(init), singleKey) === 'search';
+
+  // WP-30 integration: `/` and Ctrl+K are the site's `search` shortcut (src/lib/shortcuts.ts).
+  it('opens on / and Ctrl+K or ⌘K, and on nothing else', () => {
+    expect(search({ key: '/' })).toBe(true);
+    expect(search({ key: 'k', ctrlKey: true })).toBe(true);
+    expect(search({ key: 'K', metaKey: true })).toBe(true);
+    expect(search({ key: 'k' })).toBe(false);
+    expect(search({ key: 'k', ctrlKey: true, shiftKey: true })).toBe(false);
+    expect(search({ key: '/', altKey: true })).toBe(false);
+  });
+
+  it('never fires while the reader types in a field', () => {
+    document.body.innerHTML =
+      '<input id="i"><textarea id="t"></textarea><div id="e" contenteditable="true"></div><select id="s"></select>';
+    for (const id of ['i', 't', 'e', 's']) {
+      expect(isTypingTarget(document.getElementById(id)), id).toBe(true);
+    }
+    expect(isTypingTarget(null)).toBe(false);
+  });
+
+  it('turns / off with the single-key shortcuts setting, but not Ctrl+K', () => {
+    expect(search({ key: '/' }, false)).toBe(false);
+    expect(search({ key: 'k', ctrlKey: true }, false)).toBe(true);
+  });
+
+  it('keeps one arrival key for the eager and the lazy half', () => {
+    expect(BOOT_ARRIVAL_KEY).toBe(ARRIVAL_KEY);
+  });
+
+  it('reads the settings from the store, with prefers-reduced-data as a second reason for low data', () => {
+    const fake = {
+      matchMedia: (q: string) => ({ matches: q.includes('reduced-data') }),
+    } as unknown as Window;
+    expect(searchSettings(fake)).toEqual({ shortcuts: true, lowData: true });
+    expect(searchSettings({} as Window)).toEqual({ shortcuts: true, lowData: false });
+    try {
+      shortcuts.set(false);
+      lowData.set(true);
+      expect(searchSettings({} as Window)).toEqual({ shortcuts: false, lowData: true });
+    } finally {
+      shortcuts.set(true);
+      lowData.set(false);
+    }
+  });
+
+  it('updates the openers when the shortcuts setting changes', () => {
+    document.body.innerHTML =
+      '<a href="/search/" data-search-open>Search<span data-search-key-hint>/</span></a>' +
+      '<st-search><dialog><form><input type="search"></form></dialog></st-search>';
+    const opener = document.querySelector('[data-search-open]')!;
+    const hint = document.querySelector<HTMLElement>('[data-search-key-hint]')!;
+    applySettings(true);
+    expect(opener.getAttribute('aria-keyshortcuts')).toBe('/ Control+K');
+    try {
+      shortcuts.set(false);
+      expect(opener.getAttribute('aria-keyshortcuts')).toBe('Control+K');
+      expect(hint.hidden).toBe(true);
+    } finally {
+      shortcuts.set(true);
+    }
+    expect(hint.hidden).toBe(false);
+    document.body.innerHTML = '';
+  });
+});
+
+describe('<st-search>', () => {
+  let host: StSearch;
+
+  beforeEach(() => {
+    stubFetch();
+    mountHtml(dialogMarkup());
+    host = document.querySelector<StSearch>('st-search')!;
+    // On a real page the openers are there when `search-boot` runs; here they come later.
+    applySettings(shortcuts.get());
+  });
+
+  // Opening imports the results code and starts loading the index; let that finish while `fetch`
+  // is still stubbed.
+  afterEach(async () => {
+    await host.controller();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  });
+
+  const dialog = () => document.querySelector('dialog')!;
+
+  it('marks its openers as dialog openers with their keys', () => {
+    const opener = document.getElementById('opener')!;
+    expect(opener.getAttribute('aria-haspopup')).toBe('dialog');
+    expect(opener.getAttribute('aria-keyshortcuts')).toBe('/ Control+K');
+  });
+
+  it('opens from its link, focuses the field, and closes back to the link', async () => {
+    const opener = document.getElementById('opener')!;
+    opener.focus();
+    const click = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 });
+    opener.dispatchEvent(click);
+    expect(click.defaultPrevented).toBe(true);
+    expect(dialog().open).toBe(true);
+    expect(document.activeElement?.id).toBe('q');
+    document.getElementById('close')!.click();
+    expect(dialog().open).toBe(false);
+    await vi.waitFor(() => expect(document.activeElement?.id).toBe('opener'));
+  });
+
+  it('leaves a modified click to the browser', () => {
+    const click = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      button: 0,
+      ctrlKey: true,
+    });
+    const prevented = afterOwnHandlers(document, 'click');
+    document.getElementById('opener')!.dispatchEvent(click);
+    expect(prevented()).toBe(false);
+    expect(dialog().open).toBe(false);
+  });
+
+  it('opens on / and Ctrl+K from the page, but not from a field', () => {
+    expect(key(document.body, { key: '/' }).defaultPrevented).toBe(true);
+    expect(dialog().open).toBe(true);
+    dialog().close();
+    key(document.body, { key: 'k', ctrlKey: true });
+    expect(dialog().open).toBe(true);
+    dialog().close();
+    const field = document.getElementById('field')!;
+    field.focus();
+    expect(key(field, { key: '/' }).defaultPrevented).toBe(false);
+    expect(dialog().open).toBe(false);
+  });
+
+  // Review WP-33 pass 21, major 1: `search-boot` opens the dialog before this script arrives.
+  it('takes over a dialog opened before it loaded and searches what was typed', async () => {
+    mountHtml(
+      dialogMarkup()
+        .replace('<dialog aria-labelledby="t">', '<dialog aria-labelledby="t" open>')
+        .replace('aria-controls="lb" />', 'aria-controls="lb" value="PIS" />'),
+    );
+    host = document.querySelector<StSearch>('st-search')!;
+    await host.controller();
+    await vi.waitFor(() =>
+      expect(document.querySelectorAll('[role="option"]').length).toBeGreaterThan(0),
+    );
+    expect((document.getElementById('q') as HTMLInputElement).value).toBe('PIS');
+  });
+
+  it('fetches the index when it opens, not before', async () => {
+    const fetch = stubFetch();
+    expect(fetch).not.toHaveBeenCalled();
+    (document.querySelector('st-search') as StSearch).open();
+    await vi.waitFor(() =>
+      expect(fetch).toHaveBeenCalledWith('/search/en.test.json', { credentials: 'same-origin' }),
+    );
+  });
+
+  it('closes on a chosen result and leaves focus on the result, not on the opener', async () => {
+    const opener = document.getElementById('opener')!;
+    opener.focus();
+    host.open(opener);
+    const controller = (await host.controller()) as SearchDialogController;
+    (document.getElementById('q') as HTMLInputElement).value = 'statements';
+    await controller.search('statements');
+    const option = document.querySelector<HTMLAnchorElement>('[role="option"]')!;
+    // Stay on the result's page, so choosing it moves to the heading instead of loading a page.
+    window.history.replaceState(null, '', new URL(option.href).pathname);
+    key(document.getElementById('q')!, { key: 'Enter' });
+    expect(document.querySelector('dialog')!.open).toBe(false);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(document.activeElement?.id).toBe('financial-statements');
+    expect(window.location.hash).toBe('#financial-statements');
+  });
+
+  it('shows the failed state when the results code cannot load', async () => {
+    const failing = Object.assign(host, {
+      controller: () => Promise.reject(new Error('offline')),
+    });
+    failing.open();
+    await vi.waitFor(() =>
+      expect(document.querySelector<HTMLElement>('[data-search-failed]')!.hidden).toBe(false),
+    );
+    expect(document.querySelector<HTMLElement>('[data-search-empty]')!.hidden).toBe(true);
+    // Review WP-33 pass 2, minor 2: and say why, in the live region.
+    expect(document.querySelector('[role="status"]')?.textContent).toBe('Search could not load.');
+    // Back to the class's own method for the shared teardown.
+    Reflect.deleteProperty(failing, 'controller');
+  });
+
+  // Review WP-33 pass 7, minor 2: once the results code has failed to load, Enter goes to the
+  // search page, a fresh page that works, as it did before the early-Enter fix.
+  it('submits to the search page once the results code has failed to load', async () => {
+    const failing = Object.assign(host, {
+      controller: () => Promise.reject(new Error('offline')),
+    });
+    failing.open();
+    await vi.waitFor(() =>
+      expect(document.querySelector<HTMLElement>('[data-search-failed]')!.hidden).toBe(false),
+    );
+    const field = document.getElementById('q') as HTMLInputElement;
+    field.value = 'VAT';
+    const prevented = afterOwnHandlers(field.form!, 'submit');
+    field.form!.dispatchEvent(new Event('submit', { cancelable: true }));
+    expect(prevented()).toBe(false);
+    Reflect.deleteProperty(failing, 'controller');
+  });
+
+  it('submits to the search page when the load an early Enter waited for fails', async () => {
+    let reject: (error: Error) => void = () => undefined;
+    const failing = Object.assign(host, {
+      controller: () =>
+        new Promise<never>((_, no) => {
+          reject = no;
+        }),
+    });
+    failing.open();
+    const field = document.getElementById('q') as HTMLInputElement;
+    field.value = 'VAT';
+    const requestSubmit = vi.fn();
+    field.form!.requestSubmit = requestSubmit;
+    const submit = new Event('submit', { cancelable: true });
+    field.form!.dispatchEvent(submit);
+    expect(submit.defaultPrevented).toBe(true);
+    reject(new Error('offline'));
+    await vi.waitFor(() => expect(requestSubmit).toHaveBeenCalledTimes(1));
+    Reflect.deleteProperty(failing, 'controller');
+  });
+
+  // Review WP-33 pass 3, minor 1: a later open whose results code loads clears the failed state.
+  it('clears the failed state when a later open loads the results code', async () => {
+    const failing = Object.assign(host, {
+      controller: () => Promise.reject(new Error('offline')),
+    });
+    failing.open();
+    await vi.waitFor(() =>
+      expect(document.querySelector('[role="status"]')?.textContent).toBe('Search could not load.'),
+    );
+    host.close();
+    Reflect.deleteProperty(failing, 'controller');
+    host.open();
+    await host.controller();
+    await vi.waitFor(() =>
+      expect(document.querySelector<HTMLElement>('[data-search-failed]')!.hidden).toBe(true),
+    );
+    expect(document.querySelector<HTMLElement>('[data-search-empty]')!.hidden).toBe(false);
+    expect(document.querySelector('[role="status"]')?.textContent).toBe('');
+  });
+
+  // Review WP-33 pass 2, major 1: a result chosen for a dialog that has closed must do nothing,
+  // and must not leave the next close without its focus return.
+  it('ignores a result chosen after the dialog closed, and still returns focus next time', async () => {
+    const opener = document.getElementById('opener')!;
+    host.open(opener);
+    const controller = (await host.controller()) as SearchDialogController;
+    (document.getElementById('q') as HTMLInputElement).value = 'statements';
+    await controller.search('statements');
+    const option = document.querySelector<HTMLAnchorElement>('[role="option"]')!;
+    const before = window.location.href;
+    host.close();
+    controller.activate(option);
+    expect(window.location.href).toBe(before);
+    expect(window.sessionStorage.getItem(ARRIVAL_KEY)).toBeNull();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    host.open(opener);
+    host.close();
+    await vi.waitFor(() => expect(document.activeElement).toBe(opener));
+  });
+
+  // Review WP-33 pass 4, nit 1: before the results code loads, Enter in the empty field must not
+  // leave the page for /search/?q=.
+  it('keeps an empty query on the page even before the results code has loaded', () => {
+    const form = (document.getElementById('q') as HTMLInputElement).form!;
+    const empty = new Event('submit', { cancelable: true });
+    form.dispatchEvent(empty);
+    expect(empty.defaultPrevented).toBe(true);
+    (document.getElementById('q') as HTMLInputElement).value = 'VAT';
+    const prevented = afterOwnHandlers(form, 'submit');
+    form.dispatchEvent(new Event('submit', { cancelable: true }));
+    expect(prevented()).toBe(false);
+  });
+
+  // Review WP-33 pass 6 (an e2e run on a loaded machine): Enter before the results code has
+  // loaded waits for it and opens the first result, instead of leaving for the search page.
+  it('opens the first result for an Enter that came before the results code loaded', async () => {
+    window.history.replaceState(null, '', '/core/running-a-pty-ltd/');
+    host.open();
+    const field = document.getElementById('q') as HTMLInputElement;
+    field.value = 'statements';
+    const submit = new Event('submit', { cancelable: true });
+    field.form!.dispatchEvent(submit);
+    expect(submit.defaultPrevented).toBe(true);
+    await vi.waitFor(() => expect(dialog().open).toBe(false));
+    expect(window.location.hash).toBe('#financial-statements');
+    // Once the results code runs, a submit is its own business again (only "nothing found").
+    host.open();
+    await host.controller();
+    const later = afterOwnHandlers(field.form!, 'submit');
+    field.form!.dispatchEvent(new Event('submit', { cancelable: true }));
+    expect(later()).toBe(false);
+  });
+
+  // Review WP-33 pass 1, minor 3: Escape in a search field first cleared it.
+  it('closes on Escape in the field even with text in it', () => {
+    host.open();
+    const field = document.getElementById('q') as HTMLInputElement;
+    field.value = 'VAT';
+    expect(key(field, { key: 'Escape' }).defaultPrevented).toBe(true);
+    expect(document.querySelector('dialog')!.open).toBe(false);
+  });
+
+  it('shows the shortcut setting on its openers', () => {
+    applySettings(false);
+    expect(document.getElementById('opener')!.getAttribute('aria-keyshortcuts')).toBe('Control+K');
+  });
+
+  it('leaves / to the browser on a page without the search dialog', () => {
+    document.querySelector('st-search')!.remove();
+    expect(key(document.body, { key: '/' }).defaultPrevented).toBe(false);
+    const click = new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 });
+    const prevented = afterOwnHandlers(document, 'click');
+    document.getElementById('opener')!.dispatchEvent(click);
+    expect(prevented()).toBe(false);
+  });
+
+  it('opens nothing while another dialog is open', () => {
+    const other = document.createElement('dialog');
+    document.body.append(other);
+    other.showModal();
+    expect(key(document.body, { key: '/' }).defaultPrevented).toBe(false);
+    expect(dialog().open).toBe(false);
+    other.close();
+  });
+
+  it('stops listening when it is removed', () => {
+    document.querySelector('st-search')!.remove();
+    expect(key(document.body, { key: '/' }).defaultPrevented).toBe(false);
+  });
+});
+
+// WP-31 integration: the "My business types" chip (B3 flow 3), from the saved profile.
+describe('the business-type chip', () => {
+  const typed: SearchEntry[] = [
+    {
+      key: 'v',
+      kind: 'section',
+      doc: 'business-types/vehicle-dealer',
+      route: 'business-types/vehicle-dealer/',
+      anchor: 'stock',
+      title: 'Stock you buy',
+      docTitle: 'Vehicle dealer',
+      path: 'Your kind of business › Vehicle dealer',
+      text: 'Stock for a dealer.',
+      section: 'business-types',
+      businessTypes: ['vehicle-dealer'],
+      weight: KIND_WEIGHT.section,
+    },
+    {
+      key: 'f',
+      kind: 'section',
+      doc: 'business-types/food',
+      route: 'business-types/food/',
+      anchor: 'stock',
+      title: 'Stock that spoils',
+      docTitle: 'Food',
+      path: 'Your kind of business › Food',
+      text: 'Stock for a kitchen.',
+      section: 'business-types',
+      businessTypes: ['food'],
+      weight: KIND_WEIGHT.section,
+    },
+    {
+      key: 'r',
+      kind: 'section',
+      doc: 'core/tax-and-sars',
+      route: 'core/tax-and-sars/',
+      anchor: 'records',
+      title: 'Records of stock',
+      docTitle: 'Tax and SARS',
+      path: 'Core › Tax and SARS',
+      text: 'Keep stock records.',
+      section: 'core',
+      weight: KIND_WEIGHT.section,
+    },
+  ];
+  const chipMarkup = (): string =>
+    dialogMarkup().replace(
+      '</form>',
+      '</form><div data-search-filters hidden><button type="button" aria-pressed="false" data-search-mine>My business types</button></div>',
+    );
+  let saved: unknown;
+
+  beforeEach(() => {
+    saved = indexBody;
+    indexBody = JSON.parse(serialiseIndex('en', ['core', 'business-types'], typed).json) as unknown;
+    stubFetch();
+    mountHtml(chipMarkup());
+  });
+
+  afterEach(() => {
+    indexBody = saved;
+    profile.reset();
+  });
+
+  const make = (): SearchDialogController =>
+    new SearchDialogController(
+      document.querySelector('st-search')!,
+      { settings: { shortcuts: true, lowData: true }, openResult: () => undefined },
+      createSearchClient({ url: '/search/en.test.json', locale: 'en', base: '/' }),
+    );
+  const hrefs = (): (string | null)[] =>
+    [...document.querySelectorAll('[role="option"]')].map((o) => o.getAttribute('href'));
+
+  it('stays hidden without saved answers', () => {
+    const controller = make();
+    document.querySelector('dialog')!.showModal();
+    controller.opened();
+    expect(document.querySelector<HTMLElement>('[data-search-filters]')!.hidden).toBe(true);
+  });
+
+  it("keeps only the reader's business types, and results for every type, while pressed", async () => {
+    profile.set({ entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' });
+    const controller = make();
+    document.querySelector('dialog')!.showModal();
+    controller.opened();
+    const chip = document.querySelector<HTMLButtonElement>('[data-search-mine]')!;
+    expect(document.querySelector<HTMLElement>('[data-search-filters]')!.hidden).toBe(false);
+    expect(chip.getAttribute('aria-pressed')).toBe('false');
+    (document.getElementById('q') as HTMLInputElement).value = 'stock';
+    await controller.search('stock');
+    expect(hrefs()).toContain('/business-types/vehicle-dealer/#stock');
+    chip.click();
+    expect(chip.getAttribute('aria-pressed')).toBe('true');
+    await controller.search('stock');
+    expect(hrefs()).not.toContain('/business-types/vehicle-dealer/#stock');
+    expect(hrefs()).toContain('/business-types/food/#stock');
+    expect(hrefs()).toContain('/core/tax-and-sars/#records');
+    // It starts off again on the next open.
+    controller.opened();
+    expect(chip.getAttribute('aria-pressed')).toBe('false');
+  });
+});
+
+describe('the results listbox', () => {
+  let opened: string[];
+  let controller: SearchDialogController;
+  let client: SearchClient;
+
+  beforeEach(() => {
+    stubFetch();
+    mountHtml(dialogMarkup());
+    opened = [];
+    client = createSearchClient({ url: '/search/en.test.json', locale: 'en', base: '/' });
+    controller = new SearchDialogController(
+      document.querySelector('st-search')!,
+      { settings: { shortcuts: true, lowData: true }, openResult: (url) => opened.push(url) },
+      client,
+    );
+    document.querySelector('dialog')!.showModal();
+  });
+
+  const input = () => document.getElementById('q') as HTMLInputElement;
+  const options = () => [...document.querySelectorAll<HTMLAnchorElement>('[role="option"]')];
+
+  it('groups results by section as options with marked matches, built without HTML parsing', async () => {
+    (document.getElementById('q') as HTMLInputElement).value = 'PIS';
+    await controller.search('PIS');
+    const groups = [...document.querySelectorAll('[role="group"]')];
+    expect(groups.map((g) => g.getAttribute('aria-label'))).toEqual([
+      'Results in Look it up',
+      'Results in Core: applies to everyone',
+    ]);
+    expect(options().map((o) => o.getAttribute('href'))).toEqual([
+      '/glossary/#pis',
+      '/checklist/#compliance',
+      '/core/running-a-pty-ltd/#financial-statements',
+    ]);
+    expect(options()[0]!.querySelector('mark')?.textContent).toBe('PIS');
+    // Result text that looks like markup stays text.
+    expect(options()[0]!.querySelector('b')).toBeNull();
+    expect(options()[0]!.textContent).toContain('<b>number</b>');
+    expect(input().getAttribute('aria-expanded')).toBe('true');
+    expect(document.querySelector('[role="status"]')?.textContent).toBe('3 results');
+    expect(document.querySelector<HTMLElement>('[data-search-empty]')!.hidden).toBe(true);
+  });
+
+  it('marks an English result on an Afrikaans page in its language', async () => {
+    (document.getElementById('q') as HTMLInputElement).value = 'statements';
+    await controller.search('statements');
+    const english = options()[0]!;
+    expect(english.querySelector('.st-search-result__title')?.getAttribute('lang')).toBe('en-ZA');
+    expect(english.querySelector('.st-search-result__lang')?.textContent).toBe('English');
+  });
+
+  it('moves through the options with the arrow keys, wrapping, and opens one with Enter', async () => {
+    (document.getElementById('q') as HTMLInputElement).value = 'PIS';
+    await controller.search('PIS');
+    key(input(), { key: 'ArrowDown' });
+    expect(input().getAttribute('aria-activedescendant')).toBe(options()[0]!.id);
+    expect(options()[0]!.getAttribute('aria-selected')).toBe('true');
+    key(input(), { key: 'ArrowDown' });
+    key(input(), { key: 'ArrowDown' });
+    key(input(), { key: 'ArrowDown' });
+    expect(controller.activeIndex).toBe(0);
+    key(input(), { key: 'ArrowUp' });
+    expect(controller.activeIndex).toBe(2);
+    expect(options()[0]!.getAttribute('aria-selected')).toBe('false');
+    const enter = key(input(), { key: 'Enter' });
+    expect(enter.defaultPrevented).toBe(true);
+    expect(opened).toEqual([options()[2]!.href]);
+  });
+
+  // Review WP-33 pass 1, major 2: Enter inside the debounce opened the previous query's result.
+  it('opens a result of the current text when Enter comes before the search has run', async () => {
+    input().value = 'PIS';
+    await controller.search('PIS');
+    expect(options()[0]!.getAttribute('href')).toBe('/glossary/#pis');
+    input().value = 'statements';
+    input().dispatchEvent(new Event('input'));
+    expect(key(input(), { key: 'Enter' }).defaultPrevented).toBe(true);
+    await vi.waitFor(() => expect(opened).toHaveLength(1));
+    expect(opened[0]).toMatch(/\/core\/running-a-pty-ltd\/#financial-statements$/);
+  });
+
+  describe('Enter before the index has loaded (review WP-33 pass 2, major 1)', () => {
+    let release: () => void;
+    let pending: SearchDialogController;
+    /** Set to make the held load fail when it is released. */
+    let failLoad = false;
+
+    beforeEach(() => {
+      // Fresh markup, so only this controller listens to the field.
+      mountHtml(dialogMarkup());
+      document.querySelector('dialog')!.showModal();
+      const real = createSearchClient({ url: '/search/en.test.json', locale: 'en', base: '/' });
+      let loaded = false;
+      const gate = new Promise<void>((resolve) => {
+        release = resolve;
+      });
+      failLoad = false;
+      const held = async (): Promise<void> => {
+        await gate;
+        if (failLoad) throw new SearchIndexError('The search index answered 500.');
+        loaded = true;
+      };
+      const slow: SearchClient = {
+        load: () => real.load(),
+        get ready() {
+          return loaded;
+        },
+        async search(query, options) {
+          await held();
+          return real.search(query, options);
+        },
+        async searchCounted(query, options) {
+          await held();
+          return real.searchCounted(query, options);
+        },
+      };
+      pending = new SearchDialogController(
+        document.querySelector('st-search')!,
+        { settings: { shortcuts: true, lowData: true }, openResult: (url) => opened.push(url) },
+        slow,
+      );
+    });
+
+    it('opens the result for the text once the index arrives, if the dialog is still open', async () => {
+      input().value = 'statements';
+      expect(key(input(), { key: 'Enter' }).defaultPrevented).toBe(true);
+      expect(opened).toEqual([]);
+      release();
+      await vi.waitFor(() => expect(opened).toHaveLength(1));
+      expect(opened[0]).toMatch(/\/core\/running-a-pty-ltd\/#financial-statements$/);
+      void pending;
+    });
+
+    it('does nothing when the dialog closed while the index was loading', async () => {
+      input().value = 'statements';
+      key(input(), { key: 'Enter' });
+      document.querySelector('dialog')!.close();
+      release();
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      expect(opened).toEqual([]);
+    });
+
+    // Review WP-33 pass 3, minor 2: the case the close counter exists for. Re-opening runs the
+    // same text again, so the open check and the text check alone would let the old Enter act.
+    it('does nothing when the dialog closed and re-opened while the index was loading', async () => {
+      input().value = 'statements';
+      key(input(), { key: 'Enter' });
+      const dialog = document.querySelector('dialog')!;
+      dialog.close();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      dialog.showModal();
+      pending.opened();
+      release();
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      expect(opened).toEqual([]);
+      // The re-opened dialog shows the results for its text, ready for a new Enter.
+      await vi.waitFor(() => expect(options().length).toBeGreaterThan(0));
+    });
+
+    // Review WP-33 pass 4, minor 3: a failed load leaves the reader on the failed state.
+    it('stays on the failed state, without submitting, when the load fails after Enter', async () => {
+      const submit = vi.fn();
+      input().form!.requestSubmit = submit;
+      input().value = 'statements';
+      key(input(), { key: 'Enter' });
+      failLoad = true;
+      release();
+      await vi.waitFor(() =>
+        expect(document.querySelector<HTMLElement>('[data-search-failed]')!.hidden).toBe(false),
+      );
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      expect(submit).not.toHaveBeenCalled();
+      expect(opened).toEqual([]);
+    });
+
+    // Review WP-33 pass 4, minor 1: a search still waiting for the index when the dialog closes
+    // must not fill the dialog when it opens again with an empty field. Pass 5, nit: the answer
+    // arrives while the dialog is closed, so only the close itself can drop it.
+    it('drops a pending search when the dialog closes, even if it re-opens empty', async () => {
+      input().value = 'statements';
+      void pending.search('statements');
+      input().value = '';
+      const dialog = document.querySelector('dialog')!;
+      dialog.close();
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      release();
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      expect(options()).toHaveLength(0);
+      expect(document.querySelector('[role="status"]')?.textContent).toBe('');
+      dialog.showModal();
+      pending.opened();
+      release();
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      expect(options()).toHaveLength(0);
+      expect(document.querySelector<HTMLElement>('[data-search-empty]')!.hidden).toBe(false);
+      expect(document.querySelector('[role="status"]')?.textContent).toBe('');
+    });
+
+    it('does nothing when the text changed while the index was loading', async () => {
+      input().value = 'statements';
+      key(input(), { key: 'Enter' });
+      input().value = 'PIS';
+      release();
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      expect(opened).toEqual([]);
+    });
+  });
+
+  // Review WP-33 pass 2, nit 2: one fast Enter with no results goes to the search page.
+  it('submits to the search page when a fast Enter finds nothing', async () => {
+    const form = input().form!;
+    const submit = vi.fn();
+    form.requestSubmit = submit;
+    input().value = 'zzzzzz';
+    key(input(), { key: 'Enter' });
+    await vi.waitFor(() => expect(submit).toHaveBeenCalledTimes(1));
+    expect(opened).toEqual([]);
+  });
+
+  it('names each option by its title and describes it with the rest', async () => {
+    input().value = 'statements';
+    await controller.search('statements');
+    const option = options()[0]!;
+    const title = document.getElementById(option.getAttribute('aria-labelledby')!);
+    expect(title?.textContent).toBe('Financial statements');
+    const described = option.getAttribute('aria-describedby')!.split(' ');
+    expect(described.length).toBeGreaterThanOrEqual(2);
+    expect(described.map((id) => document.getElementById(id)?.textContent).join(' ')).toContain(
+      'Running a Pty Ltd',
+    );
+  });
+
+  // Review WP-33 pass 5, minor: Enter finishes the query. `R1` while typed shows R146 first;
+  // Enter opens what `R1` itself finds.
+  // Review WP-33 pass 6, major 1: Enter acts on what the reader sees. `R1` while typed shows
+  // R146 first, and Enter opens it, at once, without searching again.
+  it('opens the first option on screen with Enter, never a result of another search', async () => {
+    input().value = 'R1';
+    await controller.search('R1');
+    expect(options()[0]!.getAttribute('href')).toBe('/glossary/#r146');
+    const searchCounted = vi.spyOn(client, 'searchCounted');
+    expect(key(input(), { key: 'Enter' }).defaultPrevented).toBe(true);
+    expect(opened).toEqual([options()[0]!.href]);
+    expect(searchCounted).not.toHaveBeenCalled();
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    expect(opened).toHaveLength(1);
+  });
+
+  // Review WP-33 pass 7, nit 2: an option highlighted with an arrow key wins, even in the list
+  // from before the last key press (the debounce has not run yet).
+  it('opens the highlighted option on Enter, even while a newer search waits', async () => {
+    input().value = 'PIS';
+    await controller.search('PIS');
+    input().value = 'statements';
+    input().dispatchEvent(new Event('input'));
+    key(input(), { key: 'ArrowDown' });
+    const highlighted = options()[0]!.href;
+    expect(key(input(), { key: 'Enter' }).defaultPrevented).toBe(true);
+    expect(opened).toEqual([highlighted]);
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    expect(opened).toHaveLength(1);
+  });
+
+  // Review WP-33 pass 7, nit 1: say how many results match every word.
+  it('says how many results match every word when the others match only some', async () => {
+    input().value = 'PIS statements';
+    await controller.search('PIS statements');
+    expect(options()[0]!.getAttribute('href')).toBe(
+      '/core/running-a-pty-ltd/#financial-statements',
+    );
+    expect(document.querySelector('[role="status"]')?.textContent).toBe(
+      '3 results (1 matches every word)',
+    );
+  });
+
+  it('opens the first result on Enter when none is active, and an option on a click', async () => {
+    (document.getElementById('q') as HTMLInputElement).value = 'PIS';
+    await controller.search('PIS');
+    key(input(), { key: 'Enter' });
+    expect(opened).toEqual([options()[0]!.href]);
+    options()[1]!
+      .querySelector('span')!
+      .dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 }));
+    expect(opened).toHaveLength(2);
+    const middle = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      button: 0,
+      metaKey: true,
+    });
+    const prevented = afterOwnHandlers(document, 'click');
+    options()[1]!.dispatchEvent(middle);
+    expect(prevented()).toBe(false);
+    expect(opened).toHaveLength(2);
+  });
+
+  it('ignores arrow keys with no results, and lets Enter submit to the search page', async () => {
+    // The page's own element has loaded its results code too, so the submit is the dialog's.
+    await document.querySelector<StSearch>('st-search')!.controller();
+    key(input(), { key: 'ArrowDown' });
+    expect(controller.activeIndex).toBe(-1);
+    expect(key(input(), { key: 'Enter' }).defaultPrevented).toBe(false);
+    const submit = new Event('submit', { cancelable: true });
+    input().form!.dispatchEvent(submit);
+    expect(submit.defaultPrevented).toBe(true);
+    input().value = 'x';
+    const prevented = afterOwnHandlers(input().form!, 'submit');
+    input().form!.dispatchEvent(new Event('submit', { cancelable: true }));
+    expect(prevented()).toBe(false);
+  });
+
+  it('shows a few results per section, and links the search page for the rest', async () => {
+    const many: SearchEntry[] = Array.from({ length: 40 }, (_, i) => ({
+      ...entries[0]!,
+      key: `levy-${String(i)}`,
+      anchor: `levy-${String(i)}`,
+      title: `Levy ${String(i)}`,
+      text: 'levy',
+    }));
+    const saved = indexBody;
+    indexBody = JSON.parse(serialiseIndex('en', ['lookup'], many).json) as unknown;
+    try {
+      (document.getElementById('q') as HTMLInputElement).value = 'levy';
+      await controller.search('levy');
+    } finally {
+      indexBody = saved;
+    }
+    expect(options()).toHaveLength(3);
+    const all = document.querySelector<HTMLElement>('[data-search-all]')!;
+    expect(all.hidden).toBe(false);
+    // Found while typed, so the search page runs the same search (review WP-33 pass 7, minor 3).
+    expect(all.querySelector('a')?.getAttribute('href')).toBe('/search/?q=levy&typed=1');
+    expect(all.textContent).toBe('See all 40 results on the search page');
+    // Review WP-33 pass 1, minor 2: announce what the arrow keys can reach.
+    expect(document.querySelector('[role="status"]')?.textContent).toBe('3 of 40 results shown'); // the true total, not the client's cap of 30 (review WP-33 pass 4, minor 2)
+    (document.getElementById('q') as HTMLInputElement).value = 'PIS';
+    await controller.search('PIS');
+    expect(all.hidden).toBe(true);
+  });
+
+  it('says when nothing matched and keeps the common questions', async () => {
+    (document.getElementById('q') as HTMLInputElement).value = 'zzzzzz';
+    await controller.search('zzzzzz');
+    expect(options()).toHaveLength(0);
+    expect(document.querySelector('[role="status"]')?.textContent).toContain(
+      'Nothing found for “zzzzzz”.',
+    );
+    expect(document.querySelector<HTMLElement>('[data-search-empty]')!.hidden).toBe(false);
+    expect(input().getAttribute('aria-expanded')).toBe('false');
+  });
+
+  it('goes back to the common questions when the field is cleared', async () => {
+    (document.getElementById('q') as HTMLInputElement).value = 'PIS';
+    await controller.search('PIS');
+    (document.getElementById('q') as HTMLInputElement).value = '  ';
+    await controller.search('  ');
+    expect(options()).toHaveLength(0);
+    expect(document.querySelector('[role="status"]')?.textContent).toBe('');
+    expect(document.querySelector<HTMLElement>('[data-search-empty]')!.hidden).toBe(false);
+  });
+
+  it('shows the failed state, with the contents link, when the index cannot load', async () => {
+    stubFetch(false);
+    (document.getElementById('q') as HTMLInputElement).value = 'PIS';
+    await controller.search('PIS');
+    expect(document.querySelector<HTMLElement>('[data-search-failed]')!.hidden).toBe(false);
+    expect(document.querySelector('[role="status"]')?.textContent).toBe('Search could not load.');
+  });
+
+  it('shows "Loading" while a slow index loads, and drops an answer to an old query', async () => {
+    let release: () => void = () => undefined;
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(
+        () =>
+          new Promise((resolve) => {
+            release = () =>
+              resolve({ ok: true, status: 200, json: () => Promise.resolve(indexBody) });
+          }),
+      ),
+    );
+    vi.useFakeTimers();
+    const first = controller.search('PIS');
+    const second = controller.search('statements');
+    await vi.advanceTimersByTimeAsync(200);
+    expect(document.querySelector('[role="status"]')?.textContent).toBe('Loading search…');
+    release();
+    await Promise.all([first, second]);
+    expect(options().map((o) => o.getAttribute('href'))).toEqual([
+      '/core/running-a-pty-ltd/#financial-statements',
+    ]);
+  });
+
+  it('searches as the reader types, after a short pause', async () => {
+    vi.useFakeTimers();
+    input().value = 'PIS';
+    input().dispatchEvent(new Event('input'));
+    await vi.advanceTimersByTimeAsync(130);
+    vi.useRealTimers();
+    await vi.waitFor(() => expect(options()).toHaveLength(3));
+  });
+
+  it('runs the query already typed when it is opened, and loads the index unless low data', async () => {
+    const fetch = stubFetch();
+    const eager = new SearchDialogController(document.querySelector('st-search')!, {
+      settings: { shortcuts: true, lowData: false },
+      openResult: () => undefined,
+    });
+    eager.opened();
+    await vi.waitFor(() => expect(fetch).toHaveBeenCalledTimes(1));
+    input().value = 'PIS';
+    controller.opened();
+    await vi.waitFor(() => expect(options()).toHaveLength(3));
+  });
+
+  it('refuses markup without its parts', () => {
+    mountHtml(`<st-search ${dataAttributes()}></st-search>`);
+    expect(
+      () =>
+        new SearchDialogController(document.querySelector('st-search')!, {
+          settings: { shortcuts: true, lowData: false },
+          openResult: () => undefined,
+        }),
+    ).toThrow(/markup is incomplete/);
+  });
+});
+
+describe('arriving at a result', () => {
+  beforeEach(() => {
+    mountHtml(dialogMarkup());
+  });
+
+  it('finds the element a fragment names', () => {
+    expect(fragmentTarget(document, '#financial-statements')?.id).toBe('financial-statements');
+    expect(fragmentTarget(document, '#')).toBeNull();
+    expect(fragmentTarget(document, '#%E0%A4%A')).toBeNull();
+  });
+
+  it('focuses and briefly highlights a heading, then removes the highlight', () => {
+    vi.useFakeTimers();
+    const heading = document.getElementById('financial-statements')!;
+    focusTarget(heading);
+    expect(document.activeElement).toBe(heading);
+    expect(heading.classList.contains(HIGHLIGHT_CLASS)).toBe(true);
+    vi.advanceTimersByTime(2000);
+    expect(heading.classList.contains(HIGHLIGHT_CLASS)).toBe(false);
+  });
+
+  it('opens a <details> and focuses its summary; makes a plain element focusable', () => {
+    focusTarget(document.getElementById('words')!);
+    expect((document.getElementById('words') as HTMLDetailsElement).open).toBe(true);
+    expect(document.activeElement?.tagName).toBe('SUMMARY');
+    focusTarget(document.getElementById('plain')!);
+    expect(document.getElementById('plain')!.getAttribute('tabindex')).toBe('-1');
+  });
+
+  it('remembers a result on another page and focuses its heading there, once', () => {
+    const assign = vi.fn();
+    const fake = {
+      location: { href: 'http://localhost/core/', assign },
+      sessionStorage: window.sessionStorage,
+      history: window.history,
+      document,
+      setTimeout: window.setTimeout.bind(window),
+    } as unknown as Window;
+    openResult('/core/running-a-pty-ltd/#financial-statements', fake);
+    expect(assign).toHaveBeenCalledWith(
+      'http://localhost/core/running-a-pty-ltd/#financial-statements',
+    );
+    expect(window.sessionStorage.getItem(ARRIVAL_KEY)).toBe(
+      'http://localhost/core/running-a-pty-ltd/#financial-statements',
+    );
+
+    const arrived = {
+      ...fake,
+      location: { href: 'http://localhost/core/running-a-pty-ltd/#financial-statements' },
+    } as unknown as Window;
+    expect(consumeArrival(arrived)?.id).toBe('financial-statements');
+    expect(document.activeElement?.id).toBe('financial-statements');
+    expect(window.sessionStorage.getItem(ARRIVAL_KEY)).toBeNull();
+    expect(consumeArrival(arrived)).toBeNull();
+  });
+
+  it('ignores a remembered result for another page', () => {
+    window.sessionStorage.setItem(ARRIVAL_KEY, 'http://localhost/other/#financial-statements');
+    const here = {
+      location: { href: 'http://localhost/core/#financial-statements' },
+      sessionStorage: window.sessionStorage,
+      document,
+    } as unknown as Window;
+    expect(consumeArrival(here)).toBeNull();
+  });
+
+  it('survives blocked storage', () => {
+    const blocked = {
+      get sessionStorage(): Storage {
+        throw new Error('SecurityError');
+      },
+      location: { href: 'http://localhost/', assign: vi.fn() },
+      document,
+    } as unknown as Window;
+    expect(consumeArrival(blocked)).toBeNull();
+    expect(() => openResult('/x/#y', blocked)).not.toThrow();
+  });
+
+  it('moves to a heading on the same page without loading it again', () => {
+    const assign = vi.fn();
+    const pushState = vi.fn();
+    const fake = {
+      location: { href: 'http://localhost/core/running-a-pty-ltd/', assign },
+      history: { pushState },
+      sessionStorage: window.sessionStorage,
+      document,
+      setTimeout: window.setTimeout.bind(window),
+    } as unknown as Window;
+    openResult('/core/running-a-pty-ltd/#financial-statements', fake);
+    expect(assign).not.toHaveBeenCalled();
+    expect(pushState).toHaveBeenCalledWith(null, '', '#financial-statements');
+    expect(document.activeElement?.id).toBe('financial-statements');
+  });
+});
+
+describe('<st-search-page>', () => {
+  function mount(url: string): void {
+    window.history.replaceState(null, '', url);
+    mountHtml(`
+      <st-search-page ${dataAttributes()}>
+        <form action="/search/" method="get"><input name="q" type="search" /><button>Search</button></form>
+        <section data-search-region>
+          <h2 data-search-title hidden>Search results</h2>
+          <p role="status"></p>
+          <div data-search-list></div>
+          <div data-search-failed hidden></div>
+        </section>
+      </st-search-page>`);
+  }
+
+  const title = () => document.querySelector<HTMLElement>('[data-search-title]')!;
+
+  // Review WP-33 pass 4, minor 2: the search page is the full list, past the client's cap of 30.
+  it('lists every result and counts them all', async () => {
+    const many: SearchEntry[] = Array.from({ length: 40 }, (_, i) => ({
+      ...entries[0]!,
+      key: `levy-${String(i)}`,
+      anchor: `levy-${String(i)}`,
+      title: `Levy ${String(i)}`,
+      text: 'levy',
+    }));
+    const saved = indexBody;
+    indexBody = JSON.parse(serialiseIndex('en', ['lookup'], many).json) as unknown;
+    try {
+      stubFetch();
+      mount('/search/?q=levy');
+      await vi.waitFor(() =>
+        expect(document.querySelectorAll('[data-search-result]')).toHaveLength(40),
+      );
+      expect(document.querySelector('[role="status"]')?.textContent).toBe('40 results');
+    } finally {
+      indexBody = saved;
+    }
+  });
+
+  // Review WP-33 pass 5, minor: a submitted query is finished, so `R1` does not find R146.
+  it('reads ?q= as a finished query', async () => {
+    stubFetch();
+    mount('/search/?q=R1');
+    await vi.waitFor(() =>
+      expect(document.querySelectorAll('[data-search-result]')).toHaveLength(1),
+    );
+    expect(document.querySelector('[data-search-result]')?.getAttribute('href')).toBe(
+      '/core/start-here/#numbers',
+    );
+  });
+
+  // Review WP-33 pass 7, minor 3: the dialog's "See all" link for a list found while typing
+  // carries `typed=1`, and the page runs that same search: `R1` then reaches R146 too.
+  it('runs a query the dialog found while typing as typed, and a new search as finished', async () => {
+    stubFetch();
+    mount('/search/?q=R1&typed=1');
+    await vi.waitFor(() =>
+      expect(document.querySelectorAll('[data-search-result]')).toHaveLength(2),
+    );
+    expect(document.querySelector('[data-search-result]')?.getAttribute('href')).toBe(
+      '/glossary/#r146',
+    );
+    document.querySelector('form')!.dispatchEvent(new Event('submit', { cancelable: true }));
+    expect(window.location.search).toBe('?q=R1');
+    await vi.waitFor(() =>
+      expect(document.querySelectorAll('[data-search-result]')).toHaveLength(1),
+    );
+  });
+
+  it('runs ?q= in place and echoes the query', async () => {
+    stubFetch();
+    mount('/search/?q=PIS');
+    expect((document.querySelector('input') as HTMLInputElement).value).toBe('PIS');
+    await vi.waitFor(() =>
+      expect(document.querySelectorAll('[data-search-result]')).toHaveLength(3),
+    );
+    expect(title().hidden).toBe(false);
+    expect(document.querySelector('[data-search-title]')?.textContent).toBe('Results for “PIS”');
+    expect([...document.querySelectorAll('h3')].map((h) => h.textContent)).toEqual([
+      'Look it up',
+      'Core: applies to everyone',
+    ]);
+  });
+
+  it('loads nothing without a query, and updates ?q= on a new search', async () => {
+    const fetch = stubFetch();
+    mount('/search/');
+    expect(title().hidden).toBe(true);
+    expect(fetch).not.toHaveBeenCalled();
+    (document.querySelector('input') as HTMLInputElement).value = 'statements';
+    document.querySelector('form')!.dispatchEvent(new Event('submit', { cancelable: true }));
+    expect(window.location.search).toBe('?q=statements');
+    await vi.waitFor(() =>
+      expect(document.querySelectorAll('[data-search-result]')).toHaveLength(1),
+    );
+    window.sessionStorage.clear();
+    afterOwnHandlers(document, 'click');
+    document
+      .querySelector<HTMLElement>('[data-search-result] span')!
+      .dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 }));
+    expect(window.sessionStorage.getItem(ARRIVAL_KEY)).toContain('#financial-statements');
+    (document.querySelector('input') as HTMLInputElement).value = '';
+    document.querySelector('form')!.dispatchEvent(new Event('submit', { cancelable: true }));
+    expect(title().hidden).toBe(true);
+  });
+
+  it('follows the history back to an earlier query', async () => {
+    stubFetch();
+    mount('/search/?q=statements');
+    window.history.pushState(null, '', '/search/?q=PIS');
+    window.dispatchEvent(new PopStateEvent('popstate'));
+    await vi.waitFor(() =>
+      expect(document.querySelectorAll('[data-search-result]')).toHaveLength(3),
+    );
+    expect((document.querySelector('input') as HTMLInputElement).value).toBe('PIS');
+  });
+
+  it('says when nothing matched, and when search failed', async () => {
+    stubFetch();
+    mount('/search/?q=zzzzzz');
+    await vi.waitFor(() =>
+      expect(document.querySelector('[role="status"]')?.textContent).toContain('Nothing found'),
+    );
+    document.body.replaceChildren();
+    stubFetch(false);
+    mount('/search/?q=PIS');
+    await vi.waitFor(() =>
+      expect(document.querySelector<HTMLElement>('[data-search-failed]')!.hidden).toBe(false),
+    );
+    expect(document.querySelector('[role="status"]')?.textContent).toBe('Search could not load.');
+  });
+});
+
+describe('<st-search-suggest>', () => {
+  it('turns a missing address into words', () => {
+    expect(wordsFromPath('/core/financial-statemnts/')).toBe('core financial statemnts');
+    expect(wordsFromPath('/a/index.html')).toBe('');
+    expect(wordsFromPath('/%E0%A4%A/x-y')).toBe('%E0%A4%A');
+    expect(queryFrom('/search/?q=%20VAT264%20')).toBe('VAT264');
+    expect(suggestionQueries('business-types/vehicle-dealr/')).toEqual([
+      'vehicle dealr',
+      'business types vehicle dealr',
+    ]);
+    expect(suggestionQueries('vat-guide/')).toEqual(['vat guide']);
+    expect(suggestionQueries('/')).toEqual([]);
+    expect(queryFrom('/search/')).toBe('');
+  });
+
+  it("suggests pages for the words in the address, only in the address's language", async () => {
+    stubFetch();
+    window.history.replaceState(null, '', '/financial-statemnts/');
+    mountHtml(`
+      <st-search-suggest id="en" ${dataAttributes('en')} hidden></st-search-suggest>
+      <st-search-suggest id="af" ${dataAttributes('af')} hidden></st-search-suggest>`);
+    const en = document.getElementById('en')!;
+    await vi.waitFor(() => expect(en.hidden).toBe(false));
+    expect(en.querySelector('p')?.textContent).toBe(
+      'Maybe you were looking for: Financial statements',
+    );
+    expect(en.querySelector('p a')?.getAttribute('href')).toBe(
+      '/core/running-a-pty-ltd/#financial-statements',
+    );
+    expect(en.querySelector('p a')?.getAttribute('lang')).toBe('en-ZA');
+    expect(document.getElementById('af')!.hidden).toBe(true);
+  });
+
+  // Review WP-33 pass 6, nit 2: the words of a missing address are a finished query, so `r1`
+  // there is R1 and not R146.
+  it('searches the words of the address as a finished query', async () => {
+    stubFetch();
+    mountHtml(`<st-search-suggest ${dataAttributes()} hidden></st-search-suggest>`);
+    const element = document.querySelector<StSearchSuggest>('st-search-suggest')!;
+    await element.suggest(['R1'], readContext(element));
+    expect(element.hidden).toBe(false);
+    expect([...element.querySelectorAll('a')].map((a) => a.getAttribute('href'))).toEqual([
+      '/core/start-here/#numbers',
+    ]);
+  });
+
+  it('lists further suggestions, and stays hidden when nothing matches or the index fails', async () => {
+    stubFetch();
+    mountHtml(`<st-search-suggest ${dataAttributes()} hidden></st-search-suggest>`);
+    const element = document.querySelector<StSearchSuggest>('st-search-suggest')!;
+    const context = readContext(element);
+    await element.suggest(['zzzzzz', 'PIS'], context);
+    expect(element.querySelectorAll('li')).toHaveLength(2);
+    element.replaceChildren();
+    element.hidden = true;
+    await element.suggest(['zzzzzz'], context);
+    expect(element.hidden).toBe(true);
+    stubFetch(false);
+    await element.suggest(['PIS'], context, createSearchClient({ url: '/x.json', locale: 'en' }));
+    expect(element.hidden).toBe(true);
+  });
+});

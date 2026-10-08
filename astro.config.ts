@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
 import { normaliseBase } from './scripts/base-path';
+import { plainSearchImport } from './scripts/search/plain-import';
 import { DEFAULT_LOCALE, ENABLED_LOCALES, sitemapLocales } from './src/i18n/locales';
 
 const site = process.env.SITE_URL ?? 'https://example.github.io';
@@ -16,6 +17,8 @@ export default defineConfig({
   build: { format: 'directory', assets: '_astro', inlineStylesheets: 'auto' },
   prefetch: { prefetchAll: false, defaultStrategy: 'hover' },
   vite: {
+    // The search dialog's script is imported without Vite's preload wrapper (WP-33 pass 21).
+    plugins: [plainSearchImport()],
     build: {
       // Never inline processed <script> bundles or `?url` assets (data: URIs): the meta CSP is
       // `script-src 'self'`, so every script must be an external same-origin file. Stylesheets

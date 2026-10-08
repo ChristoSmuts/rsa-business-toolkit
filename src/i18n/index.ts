@@ -161,6 +161,9 @@ interface ParamNames {
   'search.resultsFor': 'query';
   'search.noResults': 'query';
   'search.results': 'count';
+  'search.resultsShown': 'count' | 'shown';
+  'search.matchedAll': 'count';
+  'search.seeAll': 'count';
   'search.groupLabel': 'section';
   'search.resultPath': 'doc' | 'heading';
   'search.resultKind': 'kind' | 'title';

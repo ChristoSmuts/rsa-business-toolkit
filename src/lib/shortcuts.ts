@@ -8,12 +8,14 @@
  * | Escape        | close the open dialog or menu  | WP-30 | no                      |
  * | `/`, Ctrl+K   | open search                    | WP-33 | `/` yes, Ctrl+K no      |
  *
- * No shortcut ever fires while focus is in a field (`isTypingTarget`). WP-33 should handle `/`
- * and Ctrl+K in its own listener, checking `isTypingTarget(event.target)` first and, for `/`,
- * `shortcutsEnabled()` from `src/lib/store.ts`.
+ * No shortcut ever fires while focus is in a field (`isTypingTarget`) or a dialog is open. One
+ * listener handles them all (`src/scripts/site.ts`); `search` calls WP-33's `openSearch()`, so the
+ * search package needs no keyboard listener of its own on every page (the 25 KB budget). Ctrl+K
+ * means ⌘K on a Mac too, and neither fires with Alt or Shift, so Ctrl+Shift+K and Alt+/ keep their
+ * browser meaning.
  */
 
-export type ShortcutAction = 'help' | 'previous' | 'next';
+export type ShortcutAction = 'help' | 'previous' | 'next' | 'search';
 
 /** The parts of a `KeyboardEvent` the matcher reads, so it can be tested without a DOM. */
 export interface KeyLike {
@@ -62,8 +64,11 @@ export function matchShortcut(event: KeyLike, singleKey: boolean): ShortcutActio
     if (event.key === 'ArrowRight') return 'next';
     return undefined;
   }
-  if (event.key === '?' && singleKey && !event.altKey && !event.ctrlKey && !event.metaKey) {
-    return 'help';
+  if (event.altKey) return undefined;
+  if (event.key === '?' && singleKey && !event.ctrlKey && !event.metaKey) return 'help';
+  if (event.key === '/' && singleKey && !event.ctrlKey && !event.metaKey) return 'search';
+  if (event.key.toLowerCase() === 'k' && (event.ctrlKey || event.metaKey) && !event.shiftKey) {
+    return 'search';
   }
   return undefined;
 }

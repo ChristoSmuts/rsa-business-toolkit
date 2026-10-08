@@ -4,6 +4,9 @@
  * The server cannot tell which language the reader wanted, so the page says everything in both,
  * English first, each block with its own `lang`. Every link is absolute under the base path,
  * because the page is served at whatever URL was mistyped.
+ *
+ * With JavaScript, the block for the address's language suggests pages for the words in the
+ * missing address (`<st-search-suggest>`, src/scripts/search-page.ts; build plan C4).
  */
 import Base from '../layouts/Base.astro';
 import Logo from '../components/illustrations/Logo.astro';
@@ -11,7 +14,12 @@ import Button from '../components/ui/Button.astro';
 import { useTranslations } from '../i18n';
 import { DEFAULT_LOCALE, ENABLED_LOCALES, getLocale } from '../i18n/locales';
 import { href } from '../lib/paths';
+import { loadManifest } from '../lib/content/collections';
 import { APP_ROUTES, SEARCH_AVAILABLE } from '../lib/routes';
+import { searchElementData } from '../lib/search/ui-data';
+import '../styles/search.css';
+
+const manifest = await loadManifest();
 
 const blocks = ENABLED_LOCALES.map((locale) => {
   const t = useTranslations(locale);
@@ -22,6 +30,7 @@ const blocks = ENABLED_LOCALES.map((locale) => {
     home: href(locale, APP_ROUTES.home),
     search: href(locale, APP_ROUTES.search),
     contents: href(locale, APP_ROUTES.contents),
+    suggest: SEARCH_AVAILABLE ? searchElementData(locale, manifest) : undefined,
   };
 });
 const t = useTranslations(DEFAULT_LOCALE);
@@ -48,6 +57,17 @@ const t = useTranslations(DEFAULT_LOCALE);
           <h2 id={`notfound-${block.locale}`}>{block.t('notFound.title')}</h2>
         )}
         <p>{block.t('notFound.body')}</p>
+        {block.suggest && (
+          <st-search-suggest
+            class="st-notfound__suggest st-stack"
+            data-locale={block.suggest.locale}
+            data-index={block.suggest.index}
+            data-page={block.suggest.page}
+            data-contents={block.suggest.contents}
+            data-strings={block.suggest.strings}
+            hidden
+          />
+        )}
         {SEARCH_AVAILABLE && (
           <form class="st-notfound__search" action={block.search} method="get" role="search">
             <label for={`notfound-q-${block.locale}`}>{block.t('search.label')}</label>
@@ -58,6 +78,7 @@ const t = useTranslations(DEFAULT_LOCALE);
                 name="q"
                 placeholder={block.t('search.placeholder')}
                 autocomplete="off"
+                maxlength="200"
               />
               <Button type="submit" variant="secondary">
                 {block.t('search.button')}
@@ -78,6 +99,10 @@ const t = useTranslations(DEFAULT_LOCALE);
   </div>
 </Base>
 
+<script>
+  import '../scripts/search-page';
+</script>
+
 <style>
   .st-notfound__header {
     padding-block: var(--st-space-3);
@@ -93,6 +118,10 @@ const t = useTranslations(DEFAULT_LOCALE);
   .st-notfound {
     padding-block: var(--st-space-6) var(--st-space-8);
     max-inline-size: var(--st-measure);
+  }
+
+  .st-notfound__suggest[hidden] {
+    display: none;
   }
 
   .st-notfound__search {

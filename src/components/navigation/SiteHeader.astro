@@ -9,12 +9,14 @@
  *   the page has no `js` class, where the same menus are shown stacked instead. So a phone with
  *   JavaScript off reaches every section and tool through the header itself, and there is no
  *   second copy of the links to keep in step;
- * - the search control is a link to `/search/`, which is a real page, not a dialog opener. The
- *   `/` shortcut and its `<Kbd>` hint arrive together with WP-33's search client: a hint for a key
- *   that does nothing would tell the reader something untrue (review WP-20 pass 2).
+ * - the search control is a link to `/search/`, which is a real page. With JavaScript,
+ *   `<st-search>` (SearchDialog.astro) turns a plain click on it into the search dialog, and the
+ *   `/` hint shows (`js-only`: without the script the key does nothing, so no hint).
  */
 import pathsData from '../../data/paths.json';
 import Icon from '../ui/Icon.astro';
+import Kbd from '../ui/Kbd.astro';
+import SearchDialog from '../search/SearchDialog.astro';
 import ProgressRing from '../ui/ProgressRing.astro';
 import Logo from '../illustrations/Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
@@ -40,7 +42,7 @@ const t = useTranslations(locale);
 const sections = sectionLinks(manifest, locale, t);
 const tools = toolLinks(manifest, locale, t);
 const homeHref = href(locale, APP_ROUTES.home);
-// Until WP-33 there is nothing to search with; the page's common questions are in the footer.
+// While search is switched off, the page's common questions are in the footer instead.
 const searchHref = SEARCH_AVAILABLE ? href(locale, APP_ROUTES.search) : undefined;
 const wizardHref = WIZARD_AVAILABLE ? href(locale, APP_ROUTES.wizard) : undefined;
 /** WP-31: "My path: 3 of 10 steps done", shown by `<st-path-progress>` once there is a profile. */
@@ -61,9 +63,13 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
       <NavMenu label={t('nav.tools')} links={tools} route={route} group="st-topbar-menu" />
     </nav>
     {searchHref && (
-      <a class="st-topbar__search" href={searchHref}>
+      <a class="st-topbar__search" href={searchHref} data-search-open>
         <Icon name="lucide:search" size="1em" />
-        <span>{t('nav.search')}</span>
+        <span class="st-topbar__search-label">{t('nav.search')}</span>
+        {/* A visual hint only: the script announces the keys as `aria-keyshortcuts`. */}
+        <span class="st-topbar__kbd js-only" aria-hidden="true" data-search-key-hint>
+          <Kbd>/</Kbd>
+        </span>
       </a>
     )}
     {WIZARD_AVAILABLE && (
@@ -113,6 +119,7 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
     searchHref={searchHref}
     wizardHref={wizardHref}
   />
+  {searchHref && <SearchDialog locale={locale} manifest={manifest} />}
 </header>
 
 <script>
@@ -209,6 +216,48 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
     border-radius: var(--st-radius-pill);
     color: var(--st-text);
     overflow-wrap: anywhere;
+  }
+
+  /* A key hint is no use on a touch screen. */
+  @media (hover: none) {
+    .st-topbar__kbd {
+      display: none;
+    }
+  }
+
+  /*
+   * From 1024 to 1365px the search control is the icon alone, still 44px, its name the visually
+   * hidden word, and `/` and Ctrl+K still announced (`aria-keyshortcuts`). With "Search"/"Soek",
+   * the `/` hint and "My path" the bar wrapped to two rows again up to 1365px (124px; WP-33 merged
+   * with WP-31). Below 1280px, where the ring also stands alone, the gaps narrow as well: the
+   * Afrikaans bar was a few pixels too wide at 1024px. `wizard.spec.ts` checks one row.
+   */
+  @media (1024px <= width < 1280px) {
+    .st-topbar__inner {
+      gap: var(--st-space-1);
+    }
+  }
+
+  @media (1024px <= width < 1366px) {
+    .st-topbar__search {
+      position: relative;
+      justify-content: center;
+      min-inline-size: var(--st-target);
+      padding-inline: var(--st-space-2);
+    }
+
+    .st-topbar__search-label {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .st-topbar__kbd {
+      display: none;
+    }
   }
 
   .st-topbar__search:visited {

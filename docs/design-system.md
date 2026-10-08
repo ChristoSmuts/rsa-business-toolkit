@@ -290,8 +290,8 @@ step. The language switcher is plain links either way; `<st-lang-switch>` only a
 | `src/components/pages/BusinessTypeTiles.astro` | home, `business-types/` | The six types as tiles with effort meters. The hub document shows them above its text (B6); it leaves out the General tile, which would link to itself. |
 | `src/components/pages/SectionLanding.astro` | `start/`, `core/`, `branding/`, `paperwork/`, `look-it-up/` | Cards built from each document's own summary and reading time. |
 | `src/pages/[...locale]/index.astro` | home | The three 2026 figures come from `src/lib/home.ts`, each tied to an official register entry; `tests/unit/site/home.test.ts` fails if a figure is not in its source's own "supports" text. |
-| `contents.astro`, `templates/index.astro`, `about.astro`, `search.astro` | the app pages | The search page is a GET form, one sentence saying full search is not ready (the same with or without JavaScript; the loading and failure messages belong to WP-33's client), and the common questions from "How to use this toolkit". About lists the shortcuts that work and has the settings (WP-30; the search keys join the table with `SEARCH_AVAILABLE`); the header leaves out the `/` hint until WP-33 adds the shortcut. |
-| `src/pages/404.astro` | `/404.html` | Both languages on one page, because the server cannot know which one the reader wanted. |
+| `contents.astro`, `templates/index.astro`, `about.astro`, `search.astro` | the app pages | The search page is a GET form to itself; with JavaScript it runs `?q=` in place (see [Search](#search-wp-33)), without it it says search needs JavaScript and lists every page, after the common questions from "How to use this toolkit". About lists the shortcuts that work, the search keys among them, and has the settings (WP-30). |
+| `src/pages/404.astro` | `/404.html` | Both languages on one page, because the server cannot know which one the reader wanted. With JavaScript, the block in the address's language suggests pages for the words in the missing address. |
 | `src/layouts/Page.astro` | all of the above | Canonical, `hreflang` with `x-default`, Open Graph and a description. Every page is listed in every enabled locale, matching the sitemap; an Afrikaans fallback page is the Afrikaans page for its URL. |
 
 Three flags in `src/lib/routes.ts` keep the site from offering what is not built:
@@ -300,8 +300,10 @@ Three flags in `src/lib/routes.ts` keep the site from offering what is not built
   Tools menu, the drawer, the "Find my path" button, the trust line about "your answers" and the
   hero's "only the steps that apply to you" were left out). On, see
   [Find my path and My path](#find-my-path-and-my-path-wp-31).
-- `SEARCH_AVAILABLE` (WP-33): `/search/` and the 404 page show no search form, the header shows no
-  `/` hint, and the home page's actions are "Read Core: start here" and the contents.
+- `SEARCH_AVAILABLE` (WP-33, **on**): off, `/search/` and the 404 page show no search form, the
+  header and drawer show no search control or dialog, the home page's second action is the contents
+  instead of "I know what I need", and the footer links the search page as "Common questions". On,
+  see [Search](#search-wp-33).
 - `TEMPLATES_FILLABLE` (WP-32, **on**): each template page is a form with a live preview
   (`TemplateTool`, see [Fillable templates](#fillable-templates-wp-32)), and the templates index and
   the Tools menu say "fill in and print". Off, they describe a sample layout and the template pages
@@ -309,9 +311,6 @@ Three flags in `src/lib/routes.ts` keep the site from offering what is not built
 - `CHECKLIST_SAVES` (WP-30, **on**): while it was off, the checklist was described as a list to
   print and tick and every checklist page said its ticks were not saved yet. On, see
   [Interactive pieces](#interactive-pieces-wp-30).
-
-With `SEARCH_AVAILABLE` off, the header and drawer carry no Search link; the search page's common
-questions are linked from the footer instead.
 
 Each package sets its flag to `true` in the change that builds the feature.
 
@@ -335,6 +334,266 @@ contents, the breadcrumb and sidebar titles, and the register's own text in "Sou
 Inside the blocks the labels and document titles are English too (`ContentContext.contentLang`), so a
 fallback block is one English island rather than English text with Afrikaans labels read in an
 English voice. Everything around the content, and every URL, stays in the reader's language.
+
+### Search (WP-33)
+
+| File | What it is |
+| --- | --- |
+| `src/components/search/SearchDialog.astro` | The dialog, rendered by `SiteHeader` on every page with the header: a native `<dialog>` (Escape, backdrop and the focus trap come free), the form, an empty listbox, a polite status line, the failed state and, as the empty state, the first eight common questions. `js-only`: without JavaScript the header's search control is an ordinary link to `/search/`. |
+| `src/scripts/search-boot.ts` | The part every page loads, through `site.ts` in `Page.astro`'s one script: opens the dialog from any `[data-search-open]` (the header control, the drawer link, the home page's "I know what I need"); `/` and Ctrl+K (⌘K) reach its `openSearch()` through the site's one keyboard handler (`matchShortcut`'s `search` action), which skips fields and open dialogs; shows the shortcut setting on the openers and follows it; imports `search.ts` the first time the reader asks, or when a result has just opened the page. That first time it opens the server-rendered `<dialog>` itself and focuses the field at once, so no key is lost while the script loads; `<st-search>` then takes the open dialog over and searches what was typed, and if the script cannot load, the search page opens with the text as `?q=` (review pass 21, major 1). It shares no module with `search.ts`, so it adds no chunk of its own, and its `import()` has no Vite preload wrapper (`scripts/search/plain-import.ts`). |
+| `src/scripts/search.ts` | `<st-search>`, the dialog, imported on demand: opens and closes it, returns focus on close, and on arrival from a result focuses and highlights the target. |
+| `src/scripts/search-ui.ts` | The results, imported when the dialog first opens, together with MiniSearch. |
+| `src/scripts/search-page.ts` | `<st-search-page>` (the search page) and `<st-search-suggest>` (the 404 page). |
+| `src/scripts/search-render.ts` | The DOM of one result, shared by all three. `createElement` and `textContent` only: result text is never parsed as HTML. Also `searchSettings()` (WP-30's `shortcuts` and `lowData` stores, with `prefers-reduced-data` as a second reason for low data) and `searchTranslator()`, a small translator for the serialised search strings that a test holds equal to `t()` for every string and count: `createTranslator()` would have put the translation core into the `i18n` chunk every page loads (0.5 KB on each). |
+| `src/styles/search.css` | Result and highlight styles, global because the script builds the results. |
+
+**Pattern.** The field is an ARIA 1.2 combobox that owns a listbox. Focus stays in the field; the up
+and down arrows move `aria-activedescendant` (wrapping), Enter opens the active option or the first
+one, and Escape closes the dialog in one press, even with text in the field (the field's own
+clear-on-Escape is overridden, because the instructions promise "Press Escape to close search").
+Enter acts on what the reader sees and never starts a different search: with the list for the text
+in the field on screen, it opens the active option or the first one (`SAPS 60` opens SAPS 601, the
+first option, even though the code is not typed in full). An option the reader highlighted with an
+arrow key always wins, even in a list from before the last key press. Only with no option
+highlighted and a list that belongs to older text (Enter before the debounced search has run, while
+the index loads, or before the results code itself has loaded) does it wait for
+the search of the current text, the same search the live list runs, and open its first result. If
+the dialog closes, or the text changes, before that search answers (the first search can wait for
+the whole index), the Enter is cancelled and nothing opens. If it finds nothing, the one Enter goes to
+`/search/?q=`, as it does when the results are already on screen. If the results code itself cannot
+load, the failed state shows and the status line says "Search could not load." (the page renders the
+sentence on the status line as `data-failed-text`, because the eager script has no translator), and
+Enter then submits to `/search/?q=`, a fresh page that works. Results are grouped by section, each group a `role="group"` named
+"Results in {section}" (`search.groupLabel`) with a visible, `aria-hidden` section name. Groups follow
+their best result, and the dialog shows at most three results per section, so one busy section (the
+glossary, the checklist and the register are all "Look it up") cannot push the second-best result far
+down; "See all {count} results on the search page" (`search.seeAll`) links `/search/?q=` for the
+rest. Each option is
+an `<a role="option">` with a real `href`, so a middle click or "open in new tab" still works. Inside
+an option: the title, then "page › heading" and the kind ("Glossary", "Checklist item"), then a short
+excerpt. The option's name is the title alone (`aria-labelledby`) and the rest is its description
+(`aria-describedby`), so arrowing through the list reads one short name per option; matched words are `<mark>` (`--st-mark-bg`, verified with `--st-text` at 14.28:1 and 7.36:1).
+An English result on an Afrikaans page carries `lang="en-ZA"` on its English text and a visible
+"Engels" tag. The active option has the focus ring (`--st-focus`), not only a tint.
+
+**States.** Empty (the common questions), loading ("Loading search…", only after 150 ms), results
+with a count ("3 of 30 results shown", `search.resultsShown`, when the per-section cap hides some),
+no results (the common questions stay, with the contents link) and failed (the sentence once, in the
+status line, and the contents link). The status line is the live region for all of them. It is
+never `display: none`: empty, it is only visually hidden, so it is in the accessibility tree before
+the first count arrives. On `/search/` the same holds: the results region is never hidden, only its
+heading until there is a query.
+
+**Queries.** One table says how every kind of query term is matched, and the code follows it: the
+rule for a single term is `matchRule()` in `src/lib/search/options.ts`; the same file writes amounts
+and tax years one way (`tokenize()`, `foldTerm()`, used both when the index is built and when a
+query is read) and splits a query into parts (`queryParts()`); `queryTree()` and
+`runSearchCounted()` in `src/lib/search-client.ts` turn the parts into the search.
+`tests/unit/search/index.test.ts` ("the query-kind table") runs one or more queries per row on both
+real indexes, English and Afrikaans. "Last" below means the last term of the query while the reader
+is still typing it. The live dialog is typing when the field ends inside a word, and Enter in the
+dialog opens what that list shows. The search page (`/search/?q=`) and the 404 suggestions search a
+finished query, so `R1` there is R1 and never R146.
+
+| Kind | Example | Rule | Why |
+| --- | --- | --- | --- |
+| Word | `PIS`, `omsetbelasting` | prefix from 2 letters; fuzzy 0.2 when longer than 4 letters | A7: prefix and fuzzy matching stand in for stemming in every language, and catch typos (`belastng`). |
+| Partial word | `notion` | the same rule: prefix | The reader is typing; `notion` must reach `notional`. |
+| Single letter | `e` (in `e-filing`) | exact | A one-letter prefix matches nearly every term. |
+| Code, joined | `VAT264`, `SAPS604`, `ITR14` | never fuzzy; prefix only while last | One edit is another form (`EMP501`/`EMP201`, `ITR14`/`ITR12`, `SAPS604`/`SAPS601`). Prefix while typing lets `VAT26` reach `VAT264`. |
+| Code, spaced | `VAT 264`, `vat 264`, `VAT 15%`, `brand 5`, `under 100` | two readings: the joined form by the joined-code rule, and both words, each by its own rule. When the joined form names a glossary or "Words used" entry (a known code: `VAT264`, `SAPS601`, `EMP201`), its reading comes first; otherwise the two readings are merged by score | Never finds less than the two words as ordinary terms, and ranks exactly as the joined spelling when that is a known code (`VAT 264` = `VAT264`). An incidental pair is not a code: `VAT 15%` puts the VAT glossary entry first, as `15% VAT` does, not the template rows that print "VAT 15%". |
+| Code, spaced, being typed | `SAPS 60`, `VAT 26`, `EMP 20` | as above; the joined form is prefix-matched because the number is last, and a code it reaches is a known code | Both spellings reach the same form while it is typed (`SAPS 60` and `SAPS60` both list `SAPS601` first), and Enter opens it. |
+| Code with a typo | `VAT246`, `EMP502` | the joined-code rule: nothing is found | A near miss is a different form, so "nothing found" is the honest answer; the reader can try the spaced form. |
+| Rand amount | `R500,000`, `R500 000`, `R 500 000`, `R500000` | one spelling at index and query time (`r500000`): thousands separators and the spaces between groups of three go; never fuzzy; prefix only while last with at most three digits | South Africans write amounts all four ways. Two edits turn `R500,000` into `R200,000`, a different amount; `R500000` must not reach R50 million. `R50` while typing reaches `R50 000`. |
+| Rand amount, decimal comma | `R2,3 miljoen`, `R2,3` | a comma with one or two digits after it, at the end, is a decimal point: `R2.3` | The Afrikaans way of writing `R2.3`; a comma before exactly three digits stays a thousands separator. |
+| Rand amount, in millions | `R1,000,000`, `R2 300 000` | `R1 million`, `R2.3 miljoen` in the guide also index `R1000000`, `R2300000`; a match through that alias marks the amount and its word | The guide writes millions in words; a reader may type the digits. |
+| Rand amount, in millions, short | `R1m`, `R10m`, `R2.3m`, `R2,3m` | read as `R1000000`, `R10000000`, `R2300000`, at index and query time | The usual shorthand; it finds what `R1 million` finds. |
+| Number, year | `2026`, `14.3`, `2` | exact | A value, not a stem: `2` is not `20`, `2026` is not `20261`. Lone numbers are left out of the any-word results. |
+| Tax year | `2026/27`, `2026-27`, `2026/2027` | a four-digit year, then `/` or a hyphen or dash, then the next year's two digits, becomes both full years, at index and query time | The guide writes `2026/2027`; readers and SARS write `2026/27` and `2026-27`. `2026/03` (a year and a month, or a path) is not a tax year and stays as written. |
+| Hyphenated word | `BTW-registrasie`, `VAT-registered`, `e-filing` | its words (each by its rule) or the whole chain joined; the joined form is prefix-matched only while last and never fuzzy | Must find at least what the spaced words find, also while typing (`e-fil` reaches `efiling`). The index holds the joined alias (`efiling`). |
+| Hyphenated word with stop words | `pay-as-you-earn`, `in-house` | its words without the stop words (`pay`, `earn`; `house`), or the whole chain joined (`payasyouearn`) | A stop word inside the chain must not lose the chain: `pay-as-you-earn` finds PAYE, `in-house` finds what `house` finds. |
+| Afrikaans compound | `kontrolelys`, `belastingjaar` | the word rule | No stemmer exists for Afrikaans (ADR 0003): prefix and fuzzy matching do that work. |
+| Stop words | `the`, `die`, `op` | dropped; one before a number is not a code (`on 1 March` keeps the `1`) unless written in capitals in a query that is not all capitals (`IT 12 form`) | They carry no meaning for search; a date is not a code. |
+| Punctuation | `"PIS"?!`, `R120,000`, `14.3` | separates terms, except `.` and `,` between digits (amounts and numbers stay whole) and a hyphen (above) | Amounts and section numbers are single values. |
+| Mixed | `Companies Act 71 of 2008`, `tax year 2026/27`, `EMP201 deadline`, `VAT rate 15%` | each part by its own row, then all words first, any word after (below) | One query may hold words, codes, numbers and years; each keeps its rule. `EMP201 deadline` lists the one page that names both, then the EMP201 glossary entry and the sections that give the date in other words. |
+
+**All words first, then any word.** Every query lists the results that match every part first,
+best first, and then, always, the results that match some of the words, best first. The any-word
+results take every word of every part (a spaced code gives its joined form and its words, a
+hyphenated word its words and the whole chain) and leave out lone numbers and single letters, so a
+junk query (`zzzzqq 1`) and a code with a typo (`VAT246`) still say "nothing found" instead of
+listing every "Prompt 1".
+
+**A query that names a page leads with that page.** A page has two titles: the one in the
+navigation and the contents (the manifest title, "How this was made and how to check it") and the
+H1 it shows ("AI disclosure"). Every entry's breadcrumb holds the navigation title, and the first
+entry's also holds the H1; the boosted heading field holds only the entry's own heading, so a page
+title never lifts an overview page above the template asked for (`quote template` opens the
+Quotation template). A page title lifts a page only through this rule: when every word of the
+query is a word of one of the two titles, and the query covers more than half of that title's
+words, the page's first entry leads: `AI disclosure`, `KI-openbaarmaking`, `how this was
+made`, `marketing prompts`, `tax and sars`, `you are the business`, `what changed`, `verander`.
+Stop words do not count, nor do `has`, `have` and `had` (as `het` does not), so both languages count
+alike. A word counts whole: `change` is not "changed". Only the last word, while it is still typed
+and from four letters, and only after another word as typed, may be the beginning of one
+(`marketing prom`, `you are the busine`, `wat het verand`, `KI-openb`); `ve`, `ver` or `verande`
+alone names nothing. After a stop word only, the last word counts as typed only when it is not
+itself a whole word of the guide: `my belasting` is the finished word "belasting" and opens Tax and
+SARS, not the template headed "Belastingfaktuur". One word of a two-word title (`disclosure`, `AI`, `check`) does not name
+the page. When two pages qualify, the one the query covers most leads, then the first in reading
+order (`Start here`: the guide's own, then the Core section's). A test asks every page's titles,
+in both languages, typed and finished, for its page.
+
+**Headings before text, and written words before typos.** Within the results that match every word,
+an entry whose own heading holds every word as written (whole words; the last word's beginning while
+it is typed, from four letters; never a typo match) comes before one that holds them only in its
+text (`BTW-registrasie` opens "VAT: probably not yet" before the tax invoice template). When no
+result holds the words as written, because the reader misspelt one, the heading lift reads them as
+the search does, typos included: `cipc anual return` opens "1. CIPC annual return", `voorlopige
+belastnig` the provisional tax section. Among the rest, a result that needs a typo match for a word
+counts half its score against those that hold every word as written: `market stall` lists the retail
+page's "Do you need a licence" ("market stalls need a trading permit") before Marketing prompts'
+"small businesses". "As written" is the word itself, the word with a short ending (`s`, `d`, `ed`,
+and `es` after s, x, z, ch or sh: "stalls", "registered", "taxes"), or any longer word the last word
+begins while it is typed. A finished word that a dropped letter has turned into the beginning of
+another word is a typo: `registr` is not "registration", `compani` is not "companies", so `registr
+for vat` opens Tax and SARS and `register a compani` the Register page. The short-ending rule was
+chosen over "only the last word while typed" because a finished `market stall` must still count
+"stalls" as written. `pnpm search:typos` counts, over every glossary term and page title in both
+languages, how many one-letter typos open the correct spelling's first result.
+
+**Filler words, whole words and questions.** The ranking drops the best bets' filler words
+(`want`, `need`, `can`, `get`, `must`, `looking`, `find`, `show`, `send`, `give`; `wil`, `moet`,
+`nodig`, `kry`, `hê`, `soek`) as it drops stop words, from the all-words query, the title rule and
+the heading lift alike: `I want to close my business` ranks as `close business`, and `ek wil 'n
+faktuur hê` as `faktuur`. Law words are filler too, unless the query is an Act's name (`law`,
+`laws`, `regulation`, `regulations`, `by-laws`, `rules`, `says`, `about`; `wet`, `wette`,
+`regulasies`, `reëls`, `verordeninge`): `tax law` opens what `tax` opens, `regulations for food`
+what `food` opens (review WP-33 pass 19, major 4). A bare law word is the whole query, so it stays,
+and the bare nouns that matter have best bets (`by-laws`, `verordeninge` → "The general rule").
+`se` is not filler: `maatskappy se naam` and `my besigheid se naam` are best bets instead (pass 19,
+major 5). `oor` ("about") is filler, like `about`. A filler word with a diacritic counts as written
+when folding would make it a word the guide uses: the verb `sê` ("say") is dropped before the query
+is folded, while the possessive `se` stays a content word, so `wat die wet oor btw sê` opens what
+`btw` opens (pass 19b). `hê` and `reëls` fold to nothing the guide writes, so `he` and `reels` count
+as filler too. For the same reason stop words are compared as written: `hoë` ("high") is a word, not
+the stop word `hoe`; `dié` and `óf` are listed as stop words of their own. A filler word stays when it is the whole query (`need`), and while it is the last word
+being typed if it has three letters or more and is not itself a word of the guide (`can` may become
+"cancel"; `hê` may not; `sars law` drops `law` while typed, because "law" is a whole word already).
+A heading that holds every word of the query as written, filler words included, comes before every
+other lifted heading: `how do i get a brnc` opens "How to get the BRNC", `do i need a tagline` "Do
+you need a tagline?", while a heading that only happens to say "I need" is lifted only when the
+owner said "I need" too. A heading also holds a query word's plural (`kleinsakekorporasie`,
+"…kleinsakekorporasies").
+
+American spellings read as the guide's South African ones, in the index and in a query
+(`SPELLINGS` in `src/lib/search/options.ts`: `license` → "licence", `color` → "colour", `center` →
+"centre"; only words whose en-ZA form the guide uses). A word the guide itself holds is never read
+as a typo of another word: `deregister` is not "register", `deregistreer` not "registreer"; its
+singular still counts, at a fifth of its weight (`expenses` finds "Route 2: claim every real
+expense"). The sources register weighs half (`REFERENCE_WEIGHT`) in a query that does not ask for
+sources (one whose last word is not a source word): it repeats every topic's words in its headings ("Vehicle dealing and vehicles
+generally"), so it no longer leads a typo of `vehicle dealer`. A query that ends with a word that
+only means "source" (`SOURCE_WORDS`: `source`, `sources`, `bron`, `bronne`) keeps it at full
+weight (`tax source`), and so does one where a source word is followed by `for`, `on`, `about`,
+`vir` or `oor` (`sources for tax`, `bronne vir btw`; `SOURCE_FOLLOWERS`, pass 20, major 1); one
+where the word is a verb or part of another phrase does not (`where do i source stock`, `source of
+income`; pass 19, minor 3); `where does
+this come from` and `waar kom dit vandaan` are best bets, matched as whole phrases, so `come up
+with a name` and `official name` are not source queries. A query that is exactly an Act's name, its
+words in order and nothing between them, optionally followed by `act` or `wet`, a number and a
+year (`companies act`, `companies act 71 of 2008`, `maatskappywet`, `wet op maatskappye`), opens "Legislation this toolkit relies on", the register entry that lists every
+Act. The names come from the register's own data (`src/data/<lang>/sources.json`) plus the short
+names, Afrikaans titles and short forms in `content-meta/search-act-names.json` (`ohsa`, `nca`, `bee
+act`, `wet op beskerming van persoonlike inligting`); a generated test asks every one, finished and
+typed, in both indexes. A law word alone (`law`, `act`, `regulations`, `regulasies`, `employment
+law`, `what the law requires`) is not an Act name, and neither are the same words in another order
+or with other words between (`act for a company`, `can i act as a company`, `act on credit`), so
+the guide's own section leads (review WP-33 pass 18, major 2; pass 19, major 3).
+
+A section whose whole heading, of two words or more, is in the query, and names more than half of
+the query's words, is lifted next, after a heading that holds every word with filler: the task
+phrasing of a term opens the section on it (`how do i pay provisional tax` → "Provisional tax",
+not the "Provisional taxpayer" definition), but `sole proprietor bank account` is not "Sole
+proprietor". Among several, the one that names more words comes first, then rank order (pass 19
+removed a tie-break against business-type pages; where it mattered, a best bet now decides). A "Words used"
+definition opens the section of its page where the word is used, which may be about something
+else, so lifted sections come before it. A heading that is the query word for word, stop words
+included, comes before the other headings of its own page (`Wat ingesluit is`, not "Wat NIE
+ingesluit is nie").
+
+A query asked as a question (two or more stop words: `do i need an audit`, `how do i name my
+business`, `what must my invoice show`; filler words do not count, so `my besigheid se naam` is not
+one) leads with the quick answer whose question holds
+all its words, filler included, the most covered first. That answer comes before a best bet for
+one of the words (`invoice`) and before a page named only by the words left once filler is
+dropped ("Invoice"); a page named by every word (`hoe dit gemaak is`) still leads. "What is" plus a
+glossary term or the alias in its brackets, filler words counted (`what is the small claims
+court`, `what is a pty ltd`, `wat is 'n eenmansaak`), is a definition, not a question: the
+glossary entry leads, before a page, a section or a best bet on the subject. A test asks it for
+every glossary term in both languages. The fixed acceptance set in
+`tests/search/acceptance-queries.json` holds the owner queries these rules are measured against
+(`docs/testing.md`).
+
+**Best bets.** A short table, `content-meta/search-best-bets.json` (documented in
+`content-meta/README.md`), maps common owner phrasings to the page that must come first, whatever
+the ranking: `register my business` and `registreer my besigheid` open Register, `tax` and
+`belasting` Tax and SARS, `checklist` and `kontrolelys` the Master checklist. A phrase matches the
+whole query (stop words dropped) or its typed last word from four letters; never a typo and never a
+longer query, except filler words (`register my own business`, `registreer 'n nuwe besigheid`).
+Ranking still answers the rest. Page keywords (`content-meta/search-keywords.json`) add owner words
+a page's titles lack to its first entry's heading field (`register business` on Register, `tax
+return` on Tax and SARS). A quick answer carries its page's lead in a field with a quarter boost,
+and counts as matching every word only when its question or targets hold them; a quick answer that
+matches only through the lead ranks with the any-word results (`do i need a company` lists the
+Register sections, not "What does a Pty Ltd cost me every year?"). A glossary entry still leads a
+one-word query that is only part of its term (`tax` → "Dividends tax") when no best bet covers it:
+giving the glossary weight only to whole-term queries would also stop `notion` from opening
+"Notional input tax", so it is not done.
+
+**Pages about the guide.** "How this was made" (with its corrections log) and "What has changed"
+weigh a quarter in every search (`DOC_WEIGHT`), and their headings are not moved before the text
+of other pages: the changelog's headings name other pages ("02 Register - what you actually need"),
+so `register`, `name` and `branding` open their topic. An entry of theirs that holds the words only
+in its text ranks with the any-word results: the corrections log names many topics next to
+"deadline", and `PAYE deadline` opens the PAYE entry. Asked for by a title, they lead like any page.
+`AI generated` is not a title, and also a branding question: the branding section on AI-made work
+leads, with the disclosure further down the first ten.
+
+The count of results that match every word is the block listed first. At most 12
+terms are searched (the fields take at most 200 characters). Counts are true totals, with how many
+match every word when the others match only some: the dialog says "12 of 375 results shown (24
+match every word)" (`search.matchedAll`) and "See all 375 results on the search page", and the
+search page lists all of them; only the dialog's list stops at 30. "See all" for a list found while
+the last word was still being typed carries `typed=1`, so the search page runs the same search and
+lists what the link promised (`VAT26` reaches VAT264 there too); a search submitted on the page
+itself is finished.
+
+**Filter chip: "My business types"** (B3 flow 3, built at the WP-31 merge). A reader with saved
+answers from Find my path sees one chip under the field, a toggle button (`aria-pressed`, a check
+mark and bold text when on, not colour alone). On, the dialog keeps only results for their business
+types (`profileBusinessTypes()` from WP-31's profile store, General expanded) and results for every
+type (`SearchOptions.businessTypes`). It starts off on every open and is hidden without a profile.
+Section chips are not built: the grouping by section and the search page already cover them.
+
+**Choosing a result.** On another page: the script remembers the target in `sessionStorage`
+(`st.search.arrival`, through `src/lib/storage/session.ts`, removed on the next page load; the
+page-load check is `session-flag.ts`, which only asks whether a value waits) and the destination
+loads the dialog script, which focuses the heading and
+gives it `.st-search-target`, a two-second `--st-mark-bg` fade; with `prefers-reduced-motion` it does
+not fade and the class is removed after the same two seconds. On the same page: no load, the hash
+changes and the heading takes focus. Focus does not go back to the opener then.
+
+**Weight.** A page loads only `search-boot.ts` (about 0.6 KB gzip inside the page's shared
+script) and the dialog markup. Its one `import()` is plain: a build plugin
+(`scripts/search/plain-import.ts`) removes Vite's preload wrapper, whose helper chunk (0.75 KB) was
+the largest piece of search on a document page; the dialog script's own imports are on the page
+already. The dialog script, the results code and MiniSearch (27.6 KB gzip, shared chunks counted
+once) and the index
+(167.5 KB gzip in English, 185.0 KB in Afrikaans) are fetched when the dialog first opens; with low
+data, the index waits for the first key press. The dialog scrolls as a
+whole, with the title and field sticky at its top: a scrolling box that held only the results,
+whose options are not Tab stops, would be a region the keyboard cannot scroll.
 
 ### Interactive pieces (WP-30)
 
@@ -369,9 +628,10 @@ page): `?` goes to the list on `/about/` (the page's `<link rel="help">`, focusi
 already there), Alt+← / Alt+→ follow the pager's `rel="prev"` / `rel="next"` and leave the key to
 the browser when there is no pager, Escape closes an open "On this page" list (dialogs and the top
 bar menus already close on Escape). Nothing fires while focus is in a text field, a select or
-editable content (`isTypingTarget`) or while a `<dialog>` is open, and `?` only while single-key shortcuts are on. `/` and Ctrl+K
-are WP-33's: its listener checks `isTypingTarget(event.target)` and, for `/`, `shortcutsEnabled()`,
-and its rows appear in the `/about/` table when `SEARCH_AVAILABLE` is on.
+editable content (`isTypingTarget`) or while a `<dialog>` is open, and `?` and `/` only while single-key shortcuts are on. `/` and
+Ctrl+K (⌘K) are the `search` action since the WP-33 merge: the same handler calls
+`openSearch()` from `src/scripts/search-boot.ts`, and leaves the key to the browser on a page with no
+search dialog. Their rows appear in the `/about/` table when `SEARCH_AVAILABLE` is on.
 
 Low data: the `lowData` store sets `<html data-low-data>`, which `tokens.css` already maps to the
 system fonts and no pattern. `theme-init.js` applies it before paint from `st.lowData`.
@@ -518,7 +778,7 @@ Rules the pieces follow:
   (`your-path.ts`) rebuilds it with `import('./path-data')` when the answers or the rules (the hash
   of `paths.json`, `data-version`) changed. Until then a document page shows no ring and keeps its
   pager in section order. On the path's last page, Next leads to My path.
-- **The top bar from 1024 to 1279px** shows the ring without its "My path" label and the theme control without icons, so the sticky bar keeps one row with answers saved.
+- **The top bar from 1024 to 1279px** shows the ring without its "My path" label and the theme control without icons, so the sticky bar keeps one row with answers saved. Since the WP-33 merge the search control is its icon alone from 1024 to 1365px (44px, its name the visually hidden "Search"/"Soek", no `/` hint), and below 1280px the bar's gaps narrow to `--st-space-1`: with the word, the hint and "My path" the bar wrapped to two rows (124px) up to 1365px, and the Afrikaans bar was a few pixels too wide at 1024px.
 - **The home card keeps its space.** With `html[data-st-profile]` the card's box is kept, invisible, from first paint, so the page does not move when it appears; the card drops it (`data-no-path`) when there are no answers after all. Only what stops the card from drawing gives the space back: its own module failing to load (`data-st-script-failed~="YourPathCard"`) or the lazy path rules failing to load (`data-path-failed`, and the next trigger tries again). A slow load moves nothing, a dropped request leaves no gap, and another script failing leaves the card alone.
 - **Rebuilding the stored path** happens only on an element's own triggers (connecting, new answers), never on a change to `st.pathView.v1` from another tab, so two tabs on different builds cannot keep overwriting each other.
 - `theme-init.js` sets `<html data-st-profile>` before paint when answers are saved, so My path never
@@ -597,7 +857,7 @@ Verification status, officialness and "not confirmed" are the three places a pag
 - Only the CSS chunk that carries the design tokens is named `stoep.[hash].css`; page CSS keeps Rollup's own name (`assetFileNames` matches on `originalFileNames`). Three files all called `stoep.*` could not be told apart in DevTools or a budget report.
 - Module scripts run after parsing but, in WebKit, **before stylesheets that come later in `<head>`** have applied (Astro emits page CSS links after its scripts). A script that reads computed styles must therefore check that the tokens resolve — and it must check on **the element it is about to measure**, not on `documentElement`. See [The live contrast panel](#the-live-contrast-panel) for why the difference is not academic.
 - `localStorage` is allowed only in `src/lib/store.ts` and `src/lib/storage/**` (ESLint allow-list; `src/scripts/**` left it with WP-30). `theme-init.js` reads `st.theme`, `st.lowData` and `st.lang` itself, because it must run before any module loads; it is plain JavaScript, outside the TypeScript rule, and the one documented exception.
-- **JavaScript budget** (plan B3 flow 9: 25 KB gzipped on document pages, 45 KB on tool pages), checked on every page by `pnpm dist:budget` at the end of `pnpm build`. Measured on the WP-31 build after review pass 5, each file gzipped (level 9) on its own and summed, `theme-init` included, without / with a saved profile: the heaviest document page (`/af/business-types/food/`) **22.2 KB / 22.2 KB**, 2.8 KB under the budget. Tool pages: My path 24.7 KB, `/checklist/` 21.7 KB, Find my path 20.3 KB; the home page 17.7 KB, and 20.5 KB when it rebuilds the stored path (the rules and the engine, `path-data`, lazily). The profile is checked by hand-written code, not zod, so the store chunk carries no schema library; "Fill from my profile" loads its script only on pages with a fillable prompt. On the WP-30 build the heaviest document page was 15.9 KB; before review pass 1 of WP-31 it was 24.0 KB, and 26.3 KB with a profile. How to measure: `docs/testing.md`.
+- **JavaScript budget** (plan B3 flow 9: 25 KB gzipped on document pages, 45 KB on tool pages), checked on every page by `pnpm dist:budget` at the end of `pnpm build`. Measured on the WP-31 build after review pass 5, each file gzipped (level 9) on its own and summed, `theme-init` included, without / with a saved profile: the heaviest document page (`/af/business-types/food/`) **22.2 KB / 22.2 KB**, 2.8 KB under the budget. Tool pages: My path 24.7 KB, `/checklist/` 21.7 KB, Find my path 20.3 KB; the home page 17.7 KB, and 20.5 KB when it rebuilds the stored path (the rules and the engine, `path-data`, lazily). The profile is checked by hand-written code, not zod, so the store chunk carries no schema library; "Fill from my profile" loads its script only on pages with a fillable prompt. On the WP-30 build the heaviest document page was 15.9 KB; before review pass 1 of WP-31 it was 24.0 KB, and 26.3 KB with a profile. How to measure: `docs/testing.md`. WP-33 adds the search button's script (`<st-search>`) to every page with the header; the results code, MiniSearch and the index load only when search opens. The merged numbers are in `docs/testing.md`.
 - In `astro dev` the same imports work: `?url` returns the source path of `theme-init.js`, which Vite serves as JavaScript, and processed scripts load as dev modules.
 
 ### The live contrast panel
