@@ -465,7 +465,12 @@ faktuur hê` as `faktuur`. Law words are filler too, unless the query is an Act'
 what `food` opens (review WP-33 pass 19, major 4). A bare law word is the whole query, so it stays,
 and the bare nouns that matter have best bets (`by-laws`, `verordeninge` → "The general rule").
 `se` is not filler: `maatskappy se naam` and `my besigheid se naam` are best bets instead (pass 19,
-major 5). A filler word stays when it is the whole query (`need`), and while it is the last word
+major 5). `oor` ("about") is filler, like `about`. A filler word with a diacritic counts as written
+when folding would make it a word the guide uses: the verb `sê` ("say") is dropped before the query
+is folded, while the possessive `se` stays a content word, so `wat die wet oor btw sê` opens what
+`btw` opens (pass 19b). `hê` and `reëls` fold to nothing the guide writes, so `he` and `reels` count
+as filler too. For the same reason stop words are compared as written: `hoë` ("high") is a word, not
+the stop word `hoe`; `dié` and `óf` are listed as stop words of their own. A filler word stays when it is the whole query (`need`), and while it is the last word
 being typed if it has three letters or more and is not itself a word of the guide (`can` may become
 "cancel"; `hê` may not; `sars law` drops `law` while typed, because "law" is a whole word already).
 A heading that holds every word of the query as written, filler words included, comes before every

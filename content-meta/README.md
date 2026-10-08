@@ -95,6 +95,9 @@ misspelt phrase falls back to the ranking.
   filler word changes every search, not only the best bets. Since pass 19 the law words (`law`,
   `regulations`, `by-laws`, `wet`, `regulasies`, `verordeninge`, …) are filler, so `tax law` ranks as
   `tax`; an Act name is still read whole. `se` is not filler: it changed too many Afrikaans results.
+  A word with a diacritic is filler as written (`sê`); the build also lists its folded form (`hê` →
+  `he`) unless the guide writes that form as a word of its own (`se`), so `sê` never makes `se`
+  filler (pass 19b).
 - Every bet and every keyword page has phrases in both languages; the schema refuses one with
   either list missing or empty, so `pnpm build` fails. Give each phrasing its counterpart in the
   other language unless the guide lacks the page (pass 17: the Afrikaans naming phrasings).
