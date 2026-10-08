@@ -19,13 +19,15 @@ export const APP_ROUTES = {
 export type AppRoute = (typeof APP_ROUTES)[keyof typeof APP_ROUTES];
 
 /**
- * Whether the wizard (`find-my-path/`) and My path (`my-path/`) are built. They are WP-31. Until
- * then no page links to them: not the Tools menu, not the drawer, not the home page's primary
- * button, and not the trust line about "your answers", because a link to a page that does not
- * exist is a 404 on the deployed site, whatever the link audit allows (review WP-20 pass 2).
- * WP-31 sets this to `true` in the change that builds the two routes.
+ * Whether the wizard (`find-my-path/`, with its pre-rendered result pages) and My path
+ * (`my-path/`) are built. WP-31 built them. While this was `false` no page linked to them (the
+ * Tools menu, the drawer, the home page's primary button, the trust line about "your answers"),
+ * because a link to a page that does not exist is a 404 on the deployed site (review WP-20 pass 2).
+ * On, those links are back, and the personalisation WP-31 adds is rendered: the top bar's path
+ * ring, the home page's "Your path" card, "Only what applies to me", the path-following pager and
+ * "Fill from my profile".
  */
-export const WIZARD_AVAILABLE: boolean = false;
+export const WIZARD_AVAILABLE: boolean = true;
 
 /**
  * Whether search (WP-33) is built: the header's search control and dialog, the forms on `/search/`
@@ -37,17 +39,22 @@ export const WIZARD_AVAILABLE: boolean = false;
 export const SEARCH_AVAILABLE: boolean = true;
 
 /**
- * Whether the templates can be filled in and printed (WP-32). Until then every description says
- * what the template pages are now: what each document must show, with a sample layout.
+ * Whether the templates can be filled in and printed (WP-32, built). On, each template page is a
+ * form with a live preview (`TemplateTool`), and the templates index and the Tools menu say "fill in
+ * and print". Off, every description says what the pages would then be: what each document must
+ * show, with a sample layout, and the template pages render as plain documents.
  */
-export const TEMPLATES_FILLABLE: boolean = false;
+export const TEMPLATES_FILLABLE: boolean = true;
 
 /**
- * Whether checklist ticks are saved on the device (WP-30). Until then the checkboxes work but a
- * reload clears them, so the wording says "print and tick", and the master checklist says plainly
- * that ticks are not saved yet (review WP-20 pass 4).
+ * Whether checklist ticks are saved on the device. WP-30 built it (`<st-checklist>`, the `checks`
+ * store). Off, the checkboxes work but a reload clears them: the wording says "print and tick" and
+ * every checklist page says ticks are not saved yet (review WP-20 pass 4). On, the Tools menu says
+ * "Tick each item when you finish it", `/checklist/` gets its progress, filter and reset, and the
+ * first checklist on a page says ticks are saved on this device (or, without JavaScript, that they
+ * are not saved). `tests/e2e/pages.spec.ts` checks the line for whichever value is set.
  */
-export const CHECKLIST_SAVES: boolean = false;
+export const CHECKLIST_SAVES: boolean = true;
 
 /** Document ids that the navigation links to by name. */
 export const NAV_DOC_IDS = {

@@ -292,8 +292,8 @@
     },
     {
       "appliesTo": {
-        "businessTypes": [
-          "food"
+        "tags": [
+          "sells-food"
         ]
       },
       "c": [
@@ -517,8 +517,8 @@
     },
     {
       "appliesTo": {
-        "businessTypes": [
-          "beauty"
+        "tags": [
+          "beauty-treatments"
         ]
       },
       "c": [
@@ -638,9 +638,8 @@
     },
     {
       "appliesTo": {
-        "businessTypes": [
-          "vehicle-dealer",
-          "retail-online"
+        "tags": [
+          "second-hand"
         ]
       },
       "c": [
@@ -679,8 +678,8 @@
     },
     {
       "appliesTo": {
-        "businessTypes": [
-          "retail-online"
+        "tags": [
+          "online"
         ]
       },
       "c": [
@@ -901,8 +900,8 @@
     },
     {
       "appliesTo": {
-        "businessTypes": [
-          "retail-online"
+        "tags": [
+          "import"
         ]
       },
       "c": [
@@ -1016,9 +1015,8 @@
     },
     {
       "appliesTo": {
-        "businessTypes": [
-          "services-trades",
-          "professional-creative"
+        "tags": [
+          "regulated-services"
         ]
       },
       "c": [
@@ -1281,8 +1279,8 @@
     },
     {
       "appliesTo": {
-        "businessTypes": [
-          "food"
+        "tags": [
+          "sells-food"
         ]
       },
       "depth": 2,
@@ -1291,8 +1289,8 @@
     },
     {
       "appliesTo": {
-        "businessTypes": [
-          "beauty"
+        "tags": [
+          "beauty-treatments"
         ]
       },
       "depth": 2,
@@ -1311,9 +1309,8 @@
     },
     {
       "appliesTo": {
-        "businessTypes": [
-          "vehicle-dealer",
-          "retail-online"
+        "tags": [
+          "second-hand"
         ]
       },
       "depth": 2,
@@ -1322,8 +1319,8 @@
     },
     {
       "appliesTo": {
-        "businessTypes": [
-          "retail-online"
+        "tags": [
+          "online"
         ]
       },
       "depth": 2,
@@ -1332,8 +1329,8 @@
     },
     {
       "appliesTo": {
-        "businessTypes": [
-          "retail-online"
+        "tags": [
+          "import"
         ]
       },
       "depth": 2,
@@ -1347,9 +1344,8 @@
     },
     {
       "appliesTo": {
-        "businessTypes": [
-          "services-trades",
-          "professional-creative"
+        "tags": [
+          "regulated-services"
         ]
       },
       "depth": 2,

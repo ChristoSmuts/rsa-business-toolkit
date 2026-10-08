@@ -89,7 +89,7 @@ Dit is ’n uitgewerkte roete vir een spesifieke leser. Lees in hierdie volgorde
 6. [Belasting en SARS](../01%20Core%20-%20applies%20to%20everyone/03-tax-and-sars.md) — lees die SBC-afdeling; slaan die afdeling oor omsetbelasting oor, dit is verkeerd vir ’n handelaar
 7. [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) — bou die faktuur vir ’n BTW-geregistreerde besigheid en die verkoopooreenkoms met ’n bylae van gebreke
 8. [Handelsmerkopdragte](../02%20Branding%20and%20marketing/01-branding-prompts.md) — gee die handelsmerk ’n naam, nie die maatskappy nie
-9. [Tuiswerk en veilige ontmoetings](../01%20Core%20-%20applies%20to%20everyone/09-working-from-home-and-safety.md) — as jy geen werf het nie: sonering vir voorraad by die huis, en elke besigtiging en toetsrit
+9. [Van die huis af werk en veilig ontmoet](../01%20Core%20-%20applies%20to%20everyone/09-working-from-home-and-safety.md) — as jy geen werf het nie: sonering vir voorraad by die huis, en elke besigtiging en toetsrit
 10. [Nuwe besigheidslyne byvoeg](../01%20Core%20-%20applies%20to%20everyone/08-adding-new-lines.md) — voordat jy bande, diensbeurte of enigiets anders byvoeg
 
 Die volgorde vir die eerste 90 dae, rofweg:

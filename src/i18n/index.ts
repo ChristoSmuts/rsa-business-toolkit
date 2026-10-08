@@ -68,6 +68,7 @@ interface ParamNames {
   'nav.pathProgress': 'done' | 'total';
   'nav.sectionToggle': 'section';
   'nav.onThisPageCount': 'count';
+  'nav.currentSectionLabel': 'title';
   'nav.previous': 'title';
   'nav.next': 'title';
   'lang.switchTo': 'language';
@@ -96,7 +97,7 @@ interface ParamNames {
   'doc.hideNamed': 'name';
   'doc.hiddenSections': 'count';
   'doc.showHiddenSections': 'count';
-  'doc.hiddenFor.businessTypes': 'types';
+  'doc.hiddenPart': 'title';
   'doc.showHiddenNamed': 'title';
   'doc.copyLinkTo': 'heading';
   'doc.tableRegion': 'caption';
@@ -128,25 +129,22 @@ interface ParamNames {
   'checklist.progress': 'done' | 'total';
   'checklist.partProgress': 'done' | 'part' | 'total';
   'checklist.hiddenItems': 'count';
+  'checklist.showHiddenItems': 'count';
   'checklist.tickedOn': 'date';
+  'templates.items.quotation.startNextDone': 'number';
+  'templates.items.invoice.startNextDone': 'number';
+  'templates.items.tax-invoice.startNextDone': 'number';
+  'templates.items.receipt.startNextDone': 'number';
   'templates.openNamed': 'name';
-  'templates.fields.tradingAsLine': 'company' | 'number';
-  'templates.fields.customerVatNumberHint': 'amount';
-  'templates.fields.numberHint': 'example';
-  'templates.privacy.removeListItem': 'text';
-  'templates.privacy.removeListItemEmpty': 'n';
   'templates.removeLine': 'description';
-  'templates.removeLineEmpty': 'n';
-  'templates.vat': 'rate';
   'templates.requiredItems': 'present' | 'total';
-  'templates.missing': 'list';
-  'templates.required.taxInvoice.heading': 'total';
-  'templates.required.taxInvoice.lead': 'amount';
-  'templates.required.thresholds.none': 'amount';
-  'templates.required.thresholds.abridged': 'from' | 'to';
-  'templates.required.thresholds.full': 'amount';
-  'templates.required.issueWithin': 'days';
-  'templates.startNextDone': 'number';
+  'templates.notANumber': 'example';
+  'templates.lineLegend': 'n';
+  'templates.ambiguous': 'example';
+  'templates.tooManyDecimals': 'example';
+  'templates.tooLarge': 'max';
+  'templates.ambiguousQuantity': 'decimal' | 'thousands';
+  'templates.tooLong': 'max';
   'validation.summaryCount': 'count';
   'validation.goToField': 'field';
   'validation.required': 'field';
@@ -198,7 +196,8 @@ type KeysWithParams<K extends TranslationKey> = Extract<K, keyof ParamNames>;
 /**
  * The parameters a key needs, from its placeholders in `en.json`.
  * For a key union, every placeholder name of every key in the union is required, so
- * `` `doc.hiddenFor.${reason}` `` needs `{ types }` as soon as one key in the union uses it.
+ * `` `myPath.${form}` `` with `form: 'markDone' | 'markDoneNamed'` needs `{ title }`, because one
+ * key in the union uses it.
  * The check is not distributive on purpose: a distributive check would accept the shortest form.
  */
 export type ParamsFor<K extends TranslationKey> = [KeysWithParams<K>] extends [never]

@@ -54,8 +54,8 @@ export function realDoc(id: string): Doc {
   return doc;
 }
 
-export function realSources(): SourcesFile {
-  return SourcesFileSchema.parse(readJson('en', 'sources.json'));
+export function realSources(lang: 'en' | 'af' = 'en'): SourcesFile {
+  return SourcesFileSchema.parse(readJson(lang, 'sources.json'));
 }
 
 export function realGlossary(): GlossaryFile {

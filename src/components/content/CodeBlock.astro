@@ -20,25 +20,60 @@
  * while nothing overflows, as `TableScroll` does for tables. With JavaScript off every block keeps
  * its stop, which costs a Tab press but never strands a keyboard user.
  */
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
 import { useTranslations } from '../../i18n';
-import type { ContentContext } from '../../lib/content/context';
+import { getLocale } from '../../i18n/locales';
+import { isFallbackContent, type ContentContext } from '../../lib/content/context';
 import { splitPlaceholders } from '../../lib/content/render';
 import type { Block } from '../../lib/content/schema';
+import PromptFill from './PromptFill.astro';
 
 interface Props {
   block: Extract<Block, { kind: 'code' }>;
   context: ContentContext;
   /** Names the region: the heading above the block, or the page title. */
   caption: string;
+  /** A prompt's number on the page ("Copy prompt 2: …"). */
+  promptNumber?: number | undefined;
 }
 
-const { block, context, caption } = Astro.props;
+const { block, context, caption, promptNumber } = Astro.props;
 const t = useTranslations(context.contentLang);
 const label = t('doc.codeRegion', { caption });
 const segments = splitPlaceholders(block.text, block.placeholders);
 const hasPlaceholders = segments.some((segment) => segment.kind === 'placeholder');
 /** Layouts keep `white-space: pre` and can scroll; prose variants wrap and never do. */
 const scrolls = block.variant === 'template-preview' || block.variant === 'listing';
+
+const isPrompt = block.variant === 'prompt';
+const siteT = useTranslations(context.locale);
+const siteLang = isFallbackContent(context)
+  ? (getLocale(context.locale)?.hreflang ?? context.locale)
+  : undefined;
+/** Stable across builds and languages: the block id is the same in every translation. */
+const promptId = context.docId ? `${context.docId}#${block.id}` : block.id;
+const copyName =
+  promptNumber === undefined
+    ? undefined
+    : siteT('prompts.copyNamed', { n: promptNumber, title: caption });
+/*
+ * "Fill from my profile" (WP-31): the placeholders the profile knows. Today that is the kind of
+ * business; the values are in the reader's language, one per business type.
+ */
+const FILLABLE_KEYS = ['businessType'];
+const fillable =
+  isPrompt &&
+  segments.some(
+    (segment) =>
+      segment.kind === 'placeholder' &&
+      segment.run.key !== undefined &&
+      FILLABLE_KEYS.includes(segment.run.key),
+  );
+const copiedMessage =
+  promptNumber === undefined
+    ? siteT('prompts.copied')
+    : siteT('prompts.copiedNamed', { n: promptNumber });
 ---
 
 <figure class="st-code" data-variant={block.variant}>
@@ -48,11 +83,65 @@ const scrolls = block.variant === 'template-preview' || block.variant === 'listi
       tabindex={scrolls ? 0 : undefined}
       aria-label={scrolls ? label : undefined}
       data-label={scrolls ? label : undefined}
-    ><code>{segments.map((segment) => (segment.kind === 'text' ? segment.value : <mark class="st-placeholder" data-placeholder={segment.run.style}>{segment.value}</mark>))}</code></pre>
+    ><code>{segments.map((segment) => (segment.kind === 'text' ? segment.value : <mark class="st-placeholder" data-placeholder={segment.run.style} data-key={segment.run.key}>{segment.value}</mark>))}</code></pre>
   </st-code-scroll>
   {hasPlaceholders && <figcaption>{t('prompts.placeholderHint')}</figcaption>}
+  {fillable && (
+    <PromptFill
+      locale={context.locale}
+      lang={siteLang}
+      promptNumber={promptNumber}
+      caption={caption}
+    />
+  )}
+  {isPrompt && (
+    <st-copy
+      class="st-copy st-no-print"
+      lang={siteLang}
+      data-prompt-id={promptId}
+      data-copied={siteT('prompts.copied')}
+      data-copied-message={copiedMessage}
+      data-failed-message={siteT('prompts.copyFailed')}
+    >
+      <Button variant="secondary" class="st-copy__button" aria-label={copyName} hidden>
+        <Fragment slot="icon-start">
+          <Icon name="lucide:copy" class="st-copy__icon-idle" />
+          <Icon name="lucide:check" class="st-copy__icon-done" />
+        </Fragment>
+        {siteT('prompts.copy')}
+      </Button>
+      <p class="st-hint st-copy__status" role="status"></p>
+    </st-copy>
+  )}
 </figure>
 
 <script>
   import '../../scripts/code-scroll';
+  import '../../scripts/copy';
 </script>
+
+<style is:global>
+  /* "Copied ✓": the tick replaces the copy icon while the label says "Copied" (B3 flow 6). */
+  .st-copy .st-copy__icon-done,
+  .st-copy [data-copied] .st-copy__icon-idle {
+    display: none;
+  }
+
+  .st-copy [data-copied] .st-copy__icon-done {
+    display: inline-block;
+  }
+</style>
+
+<style>
+  .st-copy {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-2) var(--st-space-3);
+  }
+
+  .st-copy__status {
+    min-inline-size: 0;
+    flex: 1 1 12rem;
+  }
+</style>

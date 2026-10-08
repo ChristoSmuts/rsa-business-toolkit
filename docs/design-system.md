@@ -290,23 +290,27 @@ step. The language switcher is plain links either way; `<st-lang-switch>` only a
 | `src/components/pages/BusinessTypeTiles.astro` | home, `business-types/` | The six types as tiles with effort meters. The hub document shows them above its text (B6); it leaves out the General tile, which would link to itself. |
 | `src/components/pages/SectionLanding.astro` | `start/`, `core/`, `branding/`, `paperwork/`, `look-it-up/` | Cards built from each document's own summary and reading time. |
 | `src/pages/[...locale]/index.astro` | home | The three 2026 figures come from `src/lib/home.ts`, each tied to an official register entry; `tests/unit/site/home.test.ts` fails if a figure is not in its source's own "supports" text. |
-| `contents.astro`, `templates/index.astro`, `about.astro`, `search.astro` | the app pages | The search page is a GET form to itself; with JavaScript it runs `?q=` in place (see [Search](#search-wp-33)), without it it says search needs JavaScript and lists every page, after the common questions from "How to use this toolkit". About leaves out shortcuts and settings until the packages that build them land. |
+| `contents.astro`, `templates/index.astro`, `about.astro`, `search.astro` | the app pages | The search page is a GET form to itself; with JavaScript it runs `?q=` in place (see [Search](#search-wp-33)), without it it says search needs JavaScript and lists every page, after the common questions from "How to use this toolkit". About lists the shortcuts that work, the search keys among them, and has the settings (WP-30). |
 | `src/pages/404.astro` | `/404.html` | Both languages on one page, because the server cannot know which one the reader wanted. With JavaScript, the block in the address's language suggests pages for the words in the missing address. |
 | `src/layouts/Page.astro` | all of the above | Canonical, `hreflang` with `x-default`, Open Graph and a description. Every page is listed in every enabled locale, matching the sitemap; an Afrikaans fallback page is the Afrikaans page for its URL. |
 
 Three flags in `src/lib/routes.ts` keep the site from offering what is not built:
 
-- `WIZARD_AVAILABLE` (WP-31): no page links to the wizard or My path. The Tools menu, the drawer, the
-  "Find my path" button, the trust line about "your answers" and the hero's "only the steps that
-  apply to you" are left out.
-- `SEARCH_AVAILABLE` (WP-33, now `true`): when off, `/search/` and the 404 page show no search form,
-  the header and drawer show no search control or dialog, the home page's second action is the
-  contents instead of "I know what I need", and the footer links the search page as "Common
-  questions".
-- `TEMPLATES_FILLABLE` (WP-32): the templates index and the drawer describe what the template pages
-  are now, what each document must show with a sample layout, not a form to fill in.
-- `CHECKLIST_SAVES` (WP-30): the checklist is described as a list to print and tick, and the master
-  checklist says its ticks are not saved yet.
+- `WIZARD_AVAILABLE` (WP-31, **on**): while it was off, no page linked to the wizard or My path (the
+  Tools menu, the drawer, the "Find my path" button, the trust line about "your answers" and the
+  hero's "only the steps that apply to you" were left out). On, see
+  [Find my path and My path](#find-my-path-and-my-path-wp-31).
+- `SEARCH_AVAILABLE` (WP-33, **on**): off, `/search/` and the 404 page show no search form, the
+  header and drawer show no search control or dialog, the home page's second action is the contents
+  instead of "I know what I need", and the footer links the search page as "Common questions". On,
+  see [Search](#search-wp-33).
+- `TEMPLATES_FILLABLE` (WP-32, **on**): each template page is a form with a live preview
+  (`TemplateTool`, see [Fillable templates](#fillable-templates-wp-32)), and the templates index and
+  the Tools menu say "fill in and print". Off, they describe a sample layout and the template pages
+  render as plain documents.
+- `CHECKLIST_SAVES` (WP-30, **on**): while it was off, the checklist was described as a list to
+  print and tick and every checklist page said its ticks were not saved yet. On, see
+  [Interactive pieces](#interactive-pieces-wp-30).
 
 Each package sets its flag to `true` in the change that builds the feature.
 
@@ -317,7 +321,9 @@ two at 1024px), so the scroll padding is not a constant: `trackTopbar()` in
 `src/scripts/navigation.ts` publishes the bar's measured height as `--st-topbar-offset` (0 while the
 bar is not sticky), and `SiteHeader.astro` sets `scroll-padding-block-start` from it. That rule owns the
 scroll padding on every page with the header: it outranks the `html` rule in `base.css`, so a change
-there has no effect on those pages.
+there has no effect on those pages. Below 1280px, on a page with the table of contents and with
+JavaScript, it also adds `--st-toc-pill-space` (one 44px line plus a gap), the room the "Now
+reading" pill takes, so a heading reached by a link lands below the pill rather than under it.
 
 Fenced blocks: prompts, snippets and examples are prose and wrap; template previews and listings
 are layouts, keep `white-space: pre`, and are the only ones that can scroll, as a named region.
@@ -583,6 +589,207 @@ dialog first opens; with low data, the index waits for the first key press. The 
 whole, with the title and field sticky at its top: a scrolling box that held only the results,
 whose options are not Tab stops, would be a region the keyboard cannot scroll.
 
+### Interactive pieces (WP-30)
+
+Every piece follows plan C2: a vanilla custom element wraps markup Astro already rendered, its
+constructor does nothing, `connectedCallback` reads the store and wires listeners,
+`disconnectedCallback` removes them, and keyboard use is the native control's (buttons, checkboxes,
+radios, links, `<dialog>`). The only markup a script adds is text: the copy button's label and the
+status lines. Each piece works, or is absent, without JavaScript: `tests/e2e/nojs.spec.ts`.
+
+| Element | Script | Rendered by | What it does | Without JavaScript |
+| --- | --- | --- | --- | --- |
+| `<st-checklist>` | `checklist.ts` | `TaskListBlock` | Wraps one `<fieldset>` of checkboxes. A box the reader changed before the module connected (it is clickable from first paint) is saved as the reader's choice, not overwritten. A tick writes the `checks` store under the box's `data-task`: the task id, or, for a document task that repeats one on `/checklist/`, the master task's id (`sameAs`, from `content-meta/task-links.json`). So a linked task is ticked in both places, and the Afrikaans twin and other tabs follow; a task that is not linked keeps a tick of its own. Honours the `/checklist/` filter. | The boxes tick; one line says ticks are not saved (`.st-tasklist__no-js`, `.no-js-only`). |
+| `<st-checklist-progress>` | `checklist.ts` | `TaskListBlock`, `ChecklistSummary`, `ChecklistElsewhere` | "3 of 7 done" for the ids in `data-tasks`, from `data-template`; fills a `<progress>` (`aria-hidden`; the text says it), a `[data-progress-text]` and a `ProgressRing` (its `aria-label` too). `data-complete` when all are done. | `.js-only`: a count that cannot change would be wrong. |
+| `<st-checklist-tools>` | `checklist.ts` | `ChecklistSummary` | `/checklist/` only: the "Show" radios (Everything / Not done yet) and "Remove ticks", which asks in a `ConfirmDialog` and then says "All ticks were removed." in a polite status line. "Not done yet" hides what is ticked **when it is chosen**; a box ticked afterwards stays put, so focus never vanishes. A choice the browser restores (Back, a reload that keeps form state) is applied when the element connects. "Only what applies to me" (WP-31) is a third choice, shown only with a profile. | Hidden with the summary. |
+| `<st-storage-notice>` | `storage-notice.ts` | `TaskListBlock` (first checklist), `Settings` | Rendered `hidden`; shown while `storageAvailable` is `false`. A warning `Callout` with the right `storage.*` / `checklist.storageUnavailable` text. With `data-show="available"` it is the opposite: the "Ticks are saved on this device only" line wraps itself in one, so it goes when the warning comes and the page never says both. | Stays hidden. |
+| `<st-copy>` | `copy.ts` | `CodeBlock` (prompts only) | Shows its `hidden` button. Copies the prompt's `<pre>` text exactly, says "Copied" with a tick in place of the copy icon for two seconds and "Prompt 2 copied" in its `role="status"` line; if the clipboard refuses, selects the text and says how to copy it. Records the prompt in `promptsCopied` (`<doc id>#<block id>`). The button's visible text is `prompts.copy`, its name `prompts.copyNamed` ("Copy prompt 2: Logo brief"). | No button. The text is all there and copyable by hand. |
+| `<st-toc>` | `toc.ts` | `TableOfContents` (both variants) | `display: contents`. Scroll-spy: the link to the last heading that has passed the scroll-padding line gets `aria-current="location"` (a stripe and weight, never colour alone). Below 1280px a sticky one-line "Now reading" pill names it once the list has scrolled away; it links back to the list and opens it, and its name says so (`nav.currentSectionLabel`: "Now reading: Tax basics. Open the list of sections."). No smooth scrolling of its own; the pill's fade is a duration token that reduced motion sets to 0. | Plain anchors; no pill. |
+| `<st-setting>` | `settings.ts` | `Settings` (`/about/`) | One `role="switch"` checkbox bound to `shortcuts` or `lowData`. A switch changed before the module connected is kept and saved. While `SEARCH_AVAILABLE` is off the help lines use the `…Static` strings, which do not mention `/` or loading search. | Hidden; one line says some tools need JavaScript. |
+| `<st-clear-data>` | `settings.ts` | `Settings` | "Clear all my data": `ConfirmDialog`, then `clearAll()` and "All your data was removed from this device." | Hidden. |
+| `<st-lang-banner>` | `lang-banner.ts` | `LangBanner` (English home only) | Shown from the first paint, so it never shifts the page: `theme-init.js` sets `<html data-st-lang-offer>` when `st.lang` is not the page's language, a CSS rule per language shows the banner whose `data-locale` matches it, and the element keeps it in step with the store. Shown while `st.lang` is a language other than the page's: the message and actions in **that** language, with its `lang`. "Gaan voort in Afrikaans" is a plain link (never a redirect); "Stay on this page" saves the page's language; close hides it for this page view. Focus moves to `<main>` when it goes. A saved value that is not an enabled language shows nothing: the first-paint rule is per language. | Not shown: `theme-init.js` sets the attribute that shows it, and it needs JavaScript too. |
+| `<st-template-form>` | `template-form.ts` | `TemplateTool` | Binds a template's form to its draft (`st.template.<slug>.v1`), fills the A4 preview (dates in words, amounts with `formatRand`), works out line amounts, subtotal, VAT and total in an `aria-live` region, and counts the required items ("12 of 20 required items present", with a link to each one missing). Print calls `window.print()`; Start next keeps business and bank details and increments the number; Clear asks in a `ConfirmDialog`. A value typed before it connected is kept. The only markup it writes is the preview's list items, one per line the reader typed. | The form is the printable sheet; no preview, tabs, totals or buttons. |
+| `<st-theme-toggle>` | `theme-control.ts` | `ThemeControl` | Now on the `theme` store; the module applies the store to `<html>` and the theme-color metas whatever changes it (a toggle, another tab, clear my data). | As before. |
+| `<st-lang-switch>` | `navigation.ts` | `LanguageSwitcher` | Also saves the language followed in `st.lang`. | Plain links. |
+
+`ConfirmDialog` (`src/components/ui/ConfirmDialog.astro`, script `confirm-dialog.ts`) is the one
+dialog pattern: a native modal `<dialog>` named by its heading and described by its body, buttons in
+a `<form method="dialog">` (the browser closes it and sets `returnValue`), the safe choice first and
+focused, Escape counts as cancel, and focus returns to the control that opened it.
+
+Shortcuts (`src/lib/shortcuts.ts`, handled in `src/scripts/site.ts`, loaded by `Page.astro` on every
+page): `?` goes to the list on `/about/` (the page's `<link rel="help">`, focusing its heading when
+already there), Alt+← / Alt+→ follow the pager's `rel="prev"` / `rel="next"` and leave the key to
+the browser when there is no pager, Escape closes an open "On this page" list (dialogs and the top
+bar menus already close on Escape). Nothing fires while focus is in a text field, a select or
+editable content (`isTypingTarget`) or while a `<dialog>` is open, and `?` only while single-key shortcuts are on. `/` and Ctrl+K
+are WP-33's: its listener checks `isTypingTarget(event.target)` and, for `/`, `shortcutsEnabled()`,
+and its rows appear in the `/about/` table when `SEARCH_AVAILABLE` is on.
+
+Low data: the `lowData` store sets `<html data-low-data>`, which `tokens.css` already maps to the
+system fonts and no pattern. `theme-init.js` applies it before paint from `st.lowData`.
+
+### Fillable templates (WP-32)
+
+A template document (`kind: 'template'`) renders through `Doc.astro` as usual: breadcrumb, AI notice,
+translation notice, "An AI checked the legal rules for what this document must show on {date}",
+sources and pager. What changes is the middle. `parseTemplate()` (`src/lib/templates/placeholders.ts`)
+splits the blocks at the template's two `---` rules: the text **before** (how to use it, the rules
+to follow) and **after** ("The seven things a full tax invoice must show") render as on any document,
+so **every rule a reader is shown comes from the markdown**; the template itself becomes
+`TemplateTool`. The page has no contents list: its headings are the form's groups, which carry the
+heading ids, so `#to` or `#payment-details` still lands on the right part.
+
+| Piece | File | Notes |
+| --- | --- | --- |
+| Parser | `src/lib/templates/placeholders.ts` | Pure. Every `[PLACEHOLDER]` and every sample written as text (`QUO-0001`, `R 0.00`, `4XXXXXXXXX`) is a field. Names come from block ids and positions, so the Afrikaans template gives the same names and a draft opens in either language. Labels are the template's: a table row's label, a placeholder that stands alone, or the sentence around a slot with `…` in its place. Business details carry a `profileKey` and are named by the dictionary (`templates.fields.*`) unless the template names them itself (`Information Officer: [Your full name]`). Optional: the nested `[If a company: …]` line and an instruction placeholder in running text. A paragraph with no slot is text in its group, so the form is the whole document. |
+| Totals | `src/lib/templates/totals.ts` | Whole cents. Line = quantity × unit price, rounded once; VAT at the template's own rate (`VAT @ 15%`) on the subtotal, rounded once; an empty quantity counts as 1, as the templates write. `readNumber` takes `1500`, `1 500`, `1,500.50`, `1 500,50`, `1.500,50` and `1,500,000`, and **refuses** what could be read two ways (`1.500`, `1,500`), more than two decimals in an amount and text, each with its own message. Limits: an amount, unit price or line amount at most R 1 000 000 000.00, a quantity at most 1 000 000, so `formatRand` can never throw on what was typed. While a used line cannot be read the totals stay blank and the form says why. |
+| Draft | `src/lib/templates/draft.ts` | `st.template.<slug>.v1` through `persistentValue`. Holds only what differs from the defaults; an empty draft removes the key. The schema is lenient by entry: a bad value or line is dropped and the rest kept, and `dropOutOfRange` drops an amount over the limits when the form opens. |
+| Form | `TemplateTool.astro`, `TemplateField.astro`, `TemplateLines.astro` | Groups are fieldsets in the template's order ("Your business", "Document details", then one per heading). No `required` attribute and no submit: validation is soft. `autocomplete` on business fields only. `MAX_LINES` (10) line rows are rendered; rows past the template's own are opened by "Add line". |
+| Preview | `TemplateSheet.astro`, `SheetRuns.astro` | The template's own layout with a `<span data-field>` per slot. An empty slot has **no text**: the template's words are only `data-sample`, shown on screen by a `::before` highlighted with `--st-mark-bg` and printed as a blank line to write on, so a sample such as `R 0.00` or `INV-0001` never reaches paper. An optional slot shows nothing. A slot that is all instruction prints under a label from the template's words ("Customer VAT number: …"). Every paragraph of template text except signature lines has a "Leave this out of the document" box. `SheetRuns.astro` is in `.prettierignore`, and writes text runs itself (through `Inline` they printed "50 %"). |
+| Element | `src/scripts/template-form.ts` | `<st-template-form>`; see the table above. |
+
+Layout: `st-template-form` is a size container. At 52rem and wider the form and the preview sit side
+by side; narrower, "Fill in" and "Preview" are ARIA tabs (arrow keys, Home, End), and the element
+adds the `tabpanel` roles only while the tabs are on screen. Required items, the actions and the
+clear dialog follow. Template pages drop the contents column at 1280px so the tool has the room.
+
+**Conditional items.** A slot the template words as conditional shows the template's condition
+instead of "(optional)". When the condition has an amount ("required on invoices over R5,000") the
+item joins the required items once the total is above it. The count says it checks only that items
+are filled in, not that the document is correct ("Every item this form checks is filled in."). An
+amount or number the form refuses does not count as filled in. An instruction slot with no
+condition ("State your late payment terms here.") is required, so no slot says "(optional)" unless
+the template's words make it so. Every text control has `maxlength` equal to the draft's per-field
+limit (5 000 characters), and a longer value in an old draft is cut to the limit, never dropped.
+
+**Printing.** Exactly one sheet prints. The form carries `data-print-sheet` in the HTML; the
+element moves it to the preview when it connects (and back when it disconnects). So the preview
+prints with JavaScript, at the page's full
+width (`print.css` turns the sheet's ancestors into plain blocks, or the document grid's sidebar
+track squeezed it into 272px). With the tabs on "Fill in" the preview still prints. Without
+JavaScript the preview is not shown and the **form** is the sheet: it also carries
+`data-print-sheet`, prints the title, labels, values on ruled lines, the template's text and blank
+totals to write in, and a line under the notice says to use the browser's Print command.
+
+On paper the sheet is in **sections**, one per heading of the template (and one for what comes
+before the first heading). Each section is a plain block with `break-inside: avoid`, so a heading
+stays with its text, a details table or the signature lines never split across two sheets, and a
+section whose text is all left out ("Leave this out of the document") goes with its heading.
+Chromium does not keep a grid item or a table inside one together, which is why the sheet is not a
+grid in print. A section taller than a page can still break. The print leading is 1.3, so a
+three-line quotation fits one A4 sheet (`templates.spec.ts` counts the PDF's pages). The site's
+"Official" badge is not shown on the sheet or in the form's template text. Without JavaScript each
+group of the form keeps together the same way, and a group taller than a page still breaks. A
+section counts as empty when its paragraphs are left out and its lists are empty (without
+JavaScript, a list field is empty while its placeholder shows). Start next keeps what belongs to
+the business, not to the document: business and bank details, the late-payment terms and every
+"Leave this out" choice. A field that reaches its 5 000-character limit says that the rest was not
+kept.
+
+#### The store (`src/lib/store.ts`, `src/lib/storage/`)
+
+Everything the site remembers is on the device, under keys that start with `st.`. The store's own
+doc comment is the reference; in short:
+
+```ts
+import * as z from 'zod/mini'; // client code: `zod/mini`, much smaller than `zod`
+import { persistentValue, storageAvailable, clearAll } from '../lib/store';
+
+export const profile = persistentValue('st.profile.v1', profileSchema, null); // WP-31
+export const draft = persistentValue(`st.template.${id}.v1`, draftSchema, emptyDraft); // WP-32
+
+profile.get();                    // the value, or the default when unset or invalid
+profile.subscribe((p) => …);      // now and on every change, including from another tab
+profile.set(next);                // JSON, stamps st.meta.v1 on the first write; null removes it
+profile.reset();                  // removes the key
+storageAvailable.get();           // false: show the matching storage.* notice
+```
+
+| Export | Signature | Notes |
+| --- | --- | --- |
+| `persistentValue` | `<T>(key: string, schema: Schema<T>, fallback: T, options?: { codec?: Codec }) => PersistentStore<T>` | `Schema<T>` is anything with Zod's `safeParse`. One store per key: the same key with the same schema returns the same store, with another schema it throws. A key outside `st.` throws. |
+| `PersistentStore<T>` | nanostores `WritableAtom<T>` plus `key`, `set(value)`, `reset()` | Works with `computed()` and every nanostores helper. |
+| `storageAvailable` | `ReadableAtom<boolean>` | `false` when `localStorage` is blocked or a write failed; the stores then live in memory for the page view. |
+| `clearAll` | `() => string[]` | Removes every `st.` key (and nothing else) and puts every store back to its default. Returns the keys removed. |
+| `checks`, `setChecked(key, done, now?)`, `countDone(map, keys)`, `renameChecks(renames)` | | `st.checks.v1`, `{ [key]: ISO date-time }`. The key is a checkbox's `data-task`: `sameAs ?? id`. An entry that is not a date-time is dropped on read and the rest kept (`entriesOf`), so one bad entry never costs every tick. `renameChecks` moves ticks from keys that changed (`src/data/task-keys.json`; rewording a task changes its id, see `content-meta/README.md`). The store runs it itself when it loads, once per page and writing only when a tick moved, so **every reader of `checks` sees current keys** with no call of its own. |
+| `theme` | `PersistentStore<'system' \| 'light' \| 'dark'>` | `st.theme`, a bare string (read by `theme-init.js`). |
+| `lang` | `PersistentStore<Locale \| null>` | `st.lang`, a bare string. |
+| `promptsCopied`, `markPromptCopied(id, now?)` | | `st.prompts.v1`, `{ [promptId]: ISO date-time }`, read like `checks`. |
+| `entriesOf` | `<V>(value: Schema<V>) => Schema<Record<string, V>>` | For a map of independent entries: drops the entries that fail `value` instead of resetting the whole key. |
+| `shortcuts`, `shortcutsEnabled()` | `PersistentStore<boolean>`, `() => boolean` | `st.shortcuts`, default `true`. |
+| `lowData` | `PersistentStore<boolean>` | `st.lowData`, default `false`. |
+| `seenVersion` | `PersistentStore<string \| null>` | `st.seenVersion`, for the "what has changed" notice. |
+
+`src/lib/storage/migrate.ts` holds `SCHEMA_VERSION`, `MIGRATIONS` (forward only; `MIGRATIONS[n]`
+moves data from `n - 1` to `n`), `st.meta.v1 = { schema, createdAt }`, the per-key reset
+(`readValue`) and `clearAll(adapter)`. A change to a stored shape raises `SCHEMA_VERSION` and adds a
+migration, or uses a new key (`.v2`). `src/lib/storage/adapter.ts` is the `localStorage` wrapper that
+never throws.
+
+`theme-init.js` is the one documented exception to "only the store reads storage": it must run
+before any module, so it reads `st.theme`, `st.lowData`, `st.lang` and `st.profile.v1` itself, in the formats the store writes; keep it in step with the `theme`, `lowData`, `lang` and `profile` stores. It sets `data-low-data`, `data-theme`, `data-st-lang-offer` (the saved language, when it is not the page's, so the language banner shows from first paint) `data-st-script-failed` (the names of scripts that failed to load, from the start of the file name: `YourPathCard`, `my-path`) and `data-st-profile` (saved answers that `parseProfile` would accept, with the same rules, which `tests/dom/theme-init.test.ts` keeps equal, so My path and the home card keep their space only for real answers). It ships unminified, so its comments stay short. The store is built on `nanostores` alone; it does not use `@nanostores/persistent` (removed), because its adapter has to survive a throwing `localStorage`.
+
+### Find my path and My path (WP-31)
+
+The reader's answers (`st.profile.v1`: how they trade, their kinds of business in the order they
+chose them, and where they are now; build plan A5) personalise the guide. The answers and the path
+are computed by pure modules shared by the pages and the browser: `src/lib/profile.ts` (the profile,
+its hand-written check, the query string, the 49 single-type answers) and `src/lib/path-engine.ts`
+(`applies`, the A5 matching rule, and `buildPath(profile, manifest, paths)`), on the rules in
+`content-meta/paths.json` (see `content-meta/README.md`).
+
+| Element | Script | Rendered by | What it does | Without JavaScript |
+| --- | --- | --- | --- | --- |
+| `<st-wizard>` | `wizard.ts` | `Wizard.astro` (`/find-my-path/`) | Makes the one form three steps: a stepper (`aria-current="step"`), Back and Next, focus on each step's heading; the kinds of business become checkboxes (the server renders radios) ticked in order, the first being the primary type; "Pty Ltd, growing" is `disabled` with its reason shown unless step 1 is Pty Ltd; Next and "See my path" stay `aria-disabled` with a hint until the step is answered; Enter in an answer goes on. "See my path" saves the profile and opens `/my-path/?saved=1`, or `/my-path/?entity=…&type=…&stage=…` when the device will not save. Answers saved earlier are filled in. | All three questions show; one kind of business (radios, and the page says more need JavaScript). Each of the 49 result pages has its own submit button with that page as `formaction`; CSS `:has()` shows only the one matching the checked answers (`wizardNoJsCss()` in the page `<head>`), otherwise "Choose an answer first." or why "Pty Ltd, growing" needs a Pty Ltd. All of that is inside `@supports selector(:has(*))`; a browser without `:has()` sees instead an open list, "Choose your path from this list", with a line saying the browser cannot show the button, and a link to every result page. A disabled first submit button is the form's default button, so Enter never submits through the wrong result. |
+| `<st-my-path>` | `my-path.ts` | `my-path.astro` | Shows the answers as chips, the steps numbered and ordered (every step of every rule is rendered `hidden`, with every page it can hold), each step's "why" from "How to use this toolkit" when it fits, "Mark as done" (`st.path.v1`, every page of the step), the ring, the personalised checklist and "Remove my answers" (a `ConfirmDialog`; ticks stay; focus goes to the `<h1>`). | The empty state with "Find my path". |
+| `<st-path-progress>` | `path-progress.ts` | `SiteHeader` | The top bar's "My path: 3 of 10 steps done" link and ring, when there is a profile. | Hidden. |
+| `<st-your-path>` | `path-progress.ts` | `YourPathCard` (home) | "Your path" card: ring, "Continue: step 4 of 10" to that step's first page, "Open my path", "Edit answers". | Hidden. |
+| `<st-path-pager>` | `path-progress.ts` | `Doc.astro` | On a document on the reader's path, Previous and Next follow the path (with a step's `#anchor`); a side with no path neighbour keeps the section order. | Section order. |
+| `<st-applies-scope>` | `applies.ts` | `AppliesScope` (documents with conditions, `/checklist/`, My path) | Hides what does not apply (`.st-filtered`): a heading's section collapses into its `HiddenMarker` ("Hidden by “Only what applies to me”: What SARS wants from a company" and Show, which brings back that section and focuses its heading; the marker never says who a part is for, because the guide's own heading says that), a link to a hidden part (`#hash`, on load and on `hashchange`) brings it back, single items and table rows go, a checklist says "2 items are hidden because they do not apply to you" with a "Show 2 hidden items" button, and a checklist with every item hidden collapses to that line (never an empty "Your checklist"; on My path such a list goes). A collapsed section ends at the first sub-heading that applies to the reader or to everyone (`hiddenPart`): "Provisional tax" stays visible for a Pty Ltd reader under the collapsed "What SARS wants from a sole proprietor". `tests/dom/applies-all-profiles.test.ts` checks every document in both languages against all 49 answers. **Nothing is removed from the page.** Modes: `switch` (follows `st.onlyMine`), `checklist` (the "Show: Only what applies to me" choice), `always` (My path, no markers). | Nothing is hidden. |
+| `<st-applies-switch>` | `applies.ts` | `AppliesSwitch` (sidebar from 1024px, above the text below) | "Only what applies to me", a `role="switch"` checkbox bound to `st.onlyMine`; only with a profile, otherwise a line pointing at Find my path. | Hidden. |
+| `<st-prompt-fill>` | `prompt-fill.ts` | `CodeBlock` (prompts with `[BUSINESS TYPE]`) | "Fill from my profile" writes the primary kind of business into the blanks the profile knows (`prompts.profileValues`), says how many blanks are left, and "Undo" puts the brackets back; focus moves to whichever button replaces the one pressed. "Copy prompt" copies the filled text. | Hidden. |
+
+Components: `Wizard`, `PathSteps` and `YourPathCard` (`src/components/wizard/`), `HiddenMarker`
+(`src/components/content/`), `AppliesScope` and `AppliesSwitch` (`src/components/interactive/`).
+Headings, checklist items and table rows with a condition carry it as `data-entity`/`data-types`
+(`appliesAttributes`), every heading its `data-depth`, so a section can be found without wrappers.
+
+Pages: `/find-my-path/`, `/my-path/` and the no-JavaScript results
+`/find-my-path/result/<entity>/<type>/<stage>/` (49 per language, `noindex`, left out of the
+sitemap, built by the same `buildPath`). With JavaScript a reader never lands on a result page.
+
+Rules the pieces follow:
+
+- **The profile reader is the only way in.** Other packages read the answers with `readProfile()`,
+  `profileBusinessTypes()` (General expanded; for WP-33's "My business types" filter) or
+  `profileEntity()` from `src/lib/profile-store.ts`, and subscribe to `profile`; never parse
+  `st.profile.v1` themselves.
+- **Document pages never load the path rules.** `path-progress.ts` (the top bar's ring and the
+  pager) is on every page, so it reads the path stored on the device (`st.pathView.v1`,
+  `src/lib/path-view.ts`) and nothing more. The wizard and My path write it; the home card
+  (`your-path.ts`) rebuilds it with `import('./path-data')` when the answers or the rules (the hash
+  of `paths.json`, `data-version`) changed. Until then a document page shows no ring and keeps its
+  pager in section order. On the path's last page, Next leads to My path.
+- **The top bar from 1024 to 1279px** shows the ring without its "My path" label and the theme control without icons, so the sticky bar keeps one row with answers saved.
+- **The home card keeps its space.** With `html[data-st-profile]` the card's box is kept, invisible, from first paint, so the page does not move when it appears; the card drops it (`data-no-path`) when there are no answers after all. Only what stops the card from drawing gives the space back: its own module failing to load (`data-st-script-failed~="YourPathCard"`) or the lazy path rules failing to load (`data-path-failed`, and the next trigger tries again). A slow load moves nothing, a dropped request leaves no gap, and another script failing leaves the card alone.
+- **Rebuilding the stored path** happens only on an element's own triggers (connecting, new answers), never on a change to `st.pathView.v1` from another tab, so two tabs on different builds cannot keep overwriting each other.
+- `theme-init.js` sets `<html data-st-profile>` before paint when answers are saved, so My path never
+  shows its empty state ("You have not answered the questions yet") to a reader with answers, however
+  slow the load: it keeps a screen's height for the path until it is drawn, so the footer does not
+  move either. Only when My path's own module fails to load (`data-st-script-failed~="my-path"`)
+  does the empty state with "Find my path" show.
+
+| Store | Key | Value |
+| --- | --- | --- |
+| `profile` | `st.profile.v1` | `{ entity, businessTypes[], stage }`; invalid (including "Pty Ltd, growing" without a Pty Ltd) is removed |
+| `pathDone` | `st.path.v1` | `{ [docId]: ISO date-time marked as read }`; a step is done when all its pages are |
+| `onlyMine` | `st.onlyMine` | `true` / `false`, "Only what applies to me" |
+| `pathView` | `st.pathView.v1` | `{ version, profile, steps, docs }`: the reader's path for the top bar, the pager and the home card, rebuilt when `version` (the `paths.json` hash) or `profile` (the answers' query string) no longer match |
+
+"Remove my answers" clears all four and keeps the ticks; "Clear all my data" on `/about/` clears
+everything.
+
 ### Illustrations
 
 Seven inline SVGs: `VehicleDealer` (bakkie), `FoodBusiness` (pot with steam), `BeautyCare` (comb and scissors), `RetailOnline` (shop awning with parcel), `ServicesTrades` (spanner and ladder), `ProfessionalCreative` (pencil and laptop), `General` (row of small shapes).
@@ -637,13 +844,13 @@ Verification status, officialness and "not confirmed" are the three places a pag
 ## Scripts, CSP and JavaScript budget
 
 - CSP (meta, production builds only, because the dev server injects inline scripts): `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'`. It comes before the first script in `<head>`.
-- **Blocking theme init.** `src/scripts/theme-init.js` is plain JavaScript (checked with `// @ts-check`). `Base.astro` imports it with `?url`; Vite copies the file unchanged with a hashed name (it does not compile `?url` imports, which is why the file is `.js` and not `.ts`) and Base loads it with `<script is:inline src={url}>`, a classic render-blocking script right after the theme-color metas. About 1.2 KB unminified.
+- **Blocking theme init.** `src/scripts/theme-init.js` is plain JavaScript (checked with `// @ts-check`). `Base.astro` imports it with `?url`; Vite copies the file unchanged with a hashed name (it does not compile `?url` imports, which is why the file is `.js` and not `.ts`) and Base loads it with `<script is:inline src={url}>`, a classic render-blocking script right after the theme-color metas. About 1.5 KB gzipped; it ships unminified.
 - **Everything else** is a normal Astro `<script>`: bundled as an ES module, deduplicated per page, able to share chunks and use `import()`. Component scripts (for example `TableScroll`) and page scripts (the design-system page imports `theme-control` and `design-system-contrast`) work the same way.
 - `astro.config.ts` sets `vite.build.assetsInlineLimit` to a **function**, not to `0`. Astro inlines a processed script bundle, and Vite a `?url` asset (as a `data:` URI), when it is under that limit, and `script-src 'self'` would block both; but a flat `0` also switched off Astro's `inlineStylesheets: 'auto'`, so a page with a few hundred bytes of scoped CSS paid for an extra render-blocking request. The function returns `false` for everything except `.css`, where it returns `undefined` and the default size limit applies. Result: zero inline `<script>` on any page, and small stylesheets inline again (`style-src` already allows `'unsafe-inline'`). E2e tests check both on `/` and `/design-system/`.
 - Only the CSS chunk that carries the design tokens is named `stoep.[hash].css`; page CSS keeps Rollup's own name (`assetFileNames` matches on `originalFileNames`). Three files all called `stoep.*` could not be told apart in DevTools or a budget report.
 - Module scripts run after parsing but, in WebKit, **before stylesheets that come later in `<head>`** have applied (Astro emits page CSS links after its scripts). A script that reads computed styles must therefore check that the tokens resolve — and it must check on **the element it is about to measure**, not on `documentElement`. See [The live contrast panel](#the-live-contrast-panel) for why the difference is not academic.
-- `localStorage` is allowed in `src/scripts/**` (ESLint allow-list), because `theme-init` must run before any module loads. Other code uses `src/lib/store.ts`.
-- **Budget** (build plan B3 flow 9, C2): 25 KB gzip of JavaScript on a document page, 45 KB on a tool page, counting every script a page loads before the reader does anything (`pnpm dist:budget`, run by `pnpm build`; `docs/testing.md` has the current numbers).
+- `localStorage` is allowed only in `src/lib/store.ts` and `src/lib/storage/**` (ESLint allow-list; `src/scripts/**` left it with WP-30). `theme-init.js` reads `st.theme`, `st.lowData` and `st.lang` itself, because it must run before any module loads; it is plain JavaScript, outside the TypeScript rule, and the one documented exception.
+- **JavaScript budget** (plan B3 flow 9: 25 KB gzipped on document pages, 45 KB on tool pages), checked on every page by `pnpm dist:budget` at the end of `pnpm build`. Measured on the WP-31 build after review pass 5, each file gzipped (level 9) on its own and summed, `theme-init` included, without / with a saved profile: the heaviest document page (`/af/business-types/food/`) **22.2 KB / 22.2 KB**, 2.8 KB under the budget. Tool pages: My path 24.7 KB, `/checklist/` 21.7 KB, Find my path 20.3 KB; the home page 17.7 KB, and 20.5 KB when it rebuilds the stored path (the rules and the engine, `path-data`, lazily). The profile is checked by hand-written code, not zod, so the store chunk carries no schema library; "Fill from my profile" loads its script only on pages with a fillable prompt. On the WP-30 build the heaviest document page was 15.9 KB; before review pass 1 of WP-31 it was 24.0 KB, and 26.3 KB with a profile. How to measure: `docs/testing.md`. WP-33 adds the search button's script (`<st-search>`) to every page with the header; the results code, MiniSearch and the index load only when search opens. The merged numbers are in `docs/testing.md`.
 - In `astro dev` the same imports work: `?url` returns the source path of `theme-init.js`, which Vite serves as JavaScript, and processed scripts load as dev modules.
 
 ### The live contrast panel
@@ -697,7 +904,7 @@ One last piece of wording. An unparseable token fails its pair, which is the rig
 
 ## Known limits
 
-- **Low data and preloads.** The two `<link rel="preload">` font files (about 97 KB) are still fetched in low-data mode; a meta-level preload cannot react to a runtime toggle, and `prefers-reduced-data` ships in no stable browser. Revisit when the footer toggle lands.
+- **Low data and preloads.** The two `<link rel="preload">` font files (about 97 KB) are still fetched in low-data mode; a meta-level preload cannot react to a runtime toggle, and `prefers-reduced-data` ships in no stable browser. The toggle landed on `/about/` (WP-30) and this is still true: the preloads come after `theme-init.js` in `<head>`, so it cannot remove them, and moving them would cost every other reader the early font request. The fonts themselves are not used in low-data mode.
 - **Safari table semantics.** Stacked cells are `display: grid`. Playwright's accessibility snapshot keeps table, rowheader and cell roles in Chromium and WebKit, but that is computed from the DOM. Real VoiceOver on Safari has not been checked; the Table component can add explicit ARIA table roles if needed.
 - **`:has()`** drives the card ring and the segmented control's checked style. Browsers without `:has()` get the ring on the card link; the checked segment then shows only the native radio state to assistive technology, not the fill.
 - **The stacked table mode has no data to run on.** `TableScroll wide` stacks a table into labelled
@@ -705,7 +912,7 @@ One last piece of wording. An unparseable token fails its pair, which is the rig
   corpus's five-column-plus tables (a cash book and a vehicle logbook) are column headings with no
   rows, so the labelling path renders nothing today and `tests/e2e/content.spec.ts` can only check
   that the region asks for the mode. The first wide table with rows will exercise it.
-- **Print** rules (sheet-only printing, hidden chrome) have no automated check yet. The templates package must verify sheet-only printing with `emulateMedia('print')` once a template page exists.
+- **Print** rules: sheet-only printing is checked on the template pages under `emulateMedia('print')` (with and without JavaScript, `tests/e2e/templates.spec.ts` and `nojs.spec.ts`), and Chromium renders the tax invoice to an A4 PDF. A real print dialog, paper margins and other browsers' print engines are checked by hand only.
 - **Manual assistive-technology checks** (NVDA with Firefox, TalkBack with Chrome, plan B5) were not run for this package; there are no real pages yet. They are deferred to the pages packages, which own the six B5 journeys.
 - **WebKit heading weight (port artifact, to confirm on real Safari).** Playwright's Windows WebKit draws Fraunces heavy at every weight: an explicit `"wght" 300` still renders black. It is the rasteriser, not the CSS — measured advance widths are identical to Chromium (600: 369.5px, 900: 395.5px, 300: 343.7px), so the variation axis *is* being applied, and Chromium at the same weights looks right. **The type tokens were deliberately not changed for it.** Check once on real Safari (macOS and iOS) before assuming anything is wrong with the font setup; if it reproduces there, it belongs in a bug against the font or the engine, not in `tokens.css`.
 
@@ -783,7 +990,7 @@ Where the system states it:
 - Checkboxes print as empty boxes, unless `<html data-print-ticks>` is set.
 - When an element has `data-print-sheet`, only that element prints (templates). Everything that is not the sheet, inside it or one of its ancestors gets `display: none`, so no blank pages are left behind and the sheet stays in normal flow.
 - Headings avoid breaks after; table rows, figures, callouts and code avoid breaks inside; table headers repeat.
-- Not yet verified automatically (see Known limits).
+- Verified automatically on the template pages (see Known limits for what is not).
 
 ## Forced colours and preferences
 

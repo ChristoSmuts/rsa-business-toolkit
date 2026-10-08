@@ -883,6 +883,7 @@
           ],
           "doc": "business-types/retail-online",
           "id": "business-types/retail-online:51431599",
+          "sameAs": "lookup/checklist:92ad1d52",
           "when": {
             "businessTypes": [
               "retail-online"
@@ -902,6 +903,7 @@
           ],
           "doc": "business-types/retail-online",
           "id": "business-types/retail-online:7606eb50",
+          "sameAs": "lookup/checklist:1a0745a3",
           "when": {
             "businessTypes": [
               "retail-online"
@@ -921,6 +923,7 @@
           ],
           "doc": "business-types/retail-online",
           "id": "business-types/retail-online:3f057ea5",
+          "sameAs": "lookup/checklist:eea37d29",
           "when": {
             "businessTypes": [
               "retail-online"
@@ -937,6 +940,7 @@
           ],
           "doc": "business-types/retail-online",
           "id": "business-types/retail-online:857a560f",
+          "sameAs": "lookup/checklist:3b8c77ff",
           "when": {
             "businessTypes": [
               "retail-online"
@@ -953,6 +957,7 @@
           ],
           "doc": "business-types/retail-online",
           "id": "business-types/retail-online:3997af12",
+          "sameAs": "lookup/checklist:5a7f3f39",
           "when": {
             "businessTypes": [
               "retail-online"
@@ -985,6 +990,7 @@
           ],
           "doc": "business-types/retail-online",
           "id": "business-types/retail-online:46751df3",
+          "sameAs": "lookup/checklist:63f5e0ad",
           "when": {
             "businessTypes": [
               "retail-online"

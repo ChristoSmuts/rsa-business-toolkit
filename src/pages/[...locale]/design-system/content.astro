@@ -220,7 +220,7 @@ const coveredFeatures = [...new Set(coverage.flatMap((item) => item.features))].
               <Blocks
                 blocks={[item.block]}
                 context={context}
-                fallbackCaption={docTitle(manifest, item.docId, locale)}
+                fallbackCaption={docTitle(manifest, item.docId, contentLang)}
               />
             </li>
           ))}

@@ -7,7 +7,7 @@
  */
 import { getEntry } from 'astro:content';
 import type { Locale } from '../../i18n/locales';
-import type { Doc, GlossaryFile, Manifest, SourcesFile, TasksFile } from './schema';
+import type { Doc, GlossaryFile, Manifest, PathsFile, SourcesFile, TasksFile } from './schema';
 
 export async function loadManifest(): Promise<Manifest> {
   const entry = await getEntry('manifest', 'manifest');
@@ -31,4 +31,10 @@ export async function loadSources(lang: Locale): Promise<SourcesFile | undefined
 
 export async function loadTasks(lang: Locale): Promise<TasksFile | undefined> {
   return (await getEntry('tasks', lang))?.data;
+}
+
+export async function loadPaths(): Promise<PathsFile> {
+  const entry = await getEntry('paths', 'paths');
+  if (!entry) throw new Error('src/data/paths.json is missing. Run `pnpm content:build`.');
+  return entry.data;
 }

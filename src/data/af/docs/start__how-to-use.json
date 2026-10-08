@@ -1030,7 +1030,7 @@
       "sourceHash": "598b219cf6ad2f99"
     },
     {
-      "hash": "db7f0f53b84a8cca",
+      "hash": "3328dc2c14add633",
       "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.2",
       "items": [
         [
@@ -1162,7 +1162,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Tuiswerk en veilige ontmoetings"
+                "v": "Van die huis af werk en veilig ontmoet"
               }
             ],
             "doc": "core/working-from-home-and-safety",
@@ -2281,7 +2281,7 @@
       "sourceHash": "7579b59cd0febf80"
     }
   ],
-  "contentHash": "5471511d70cf91c1",
+  "contentHash": "8c63a2c9d5599ffa",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

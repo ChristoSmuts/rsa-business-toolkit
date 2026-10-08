@@ -1,0 +1,150 @@
+---
+/**
+ * One control of a template form: a label, the template's hint, the input, and (for numbers and
+ * amounts) an error line the script shows when the text is not a number.
+ *
+ * The label is the template's own wording (`TemplateField.label`), except for business details,
+ * which the dictionary names (`templates.fields.<profileKey>`), because the same field appears in
+ * five templates and in the profile. Optional fields say so in the label. Nothing here blocks
+ * printing: there is no `required` attribute, and the form never submits.
+ */
+import Icon from '../ui/Icon.astro';
+import { formatNumber, useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { ProfileKey, TemplateField } from '../../lib/templates/placeholders';
+import { fieldId } from '../../lib/templates/ids';
+import { numberMessages } from '../../lib/templates/messages';
+import { MAX_VALUE_LENGTH } from '../../lib/templates/draft';
+
+interface Props {
+  field: TemplateField;
+  locale: Locale;
+  /** `lang` for the template's own words when they are not in the page's language. */
+  textLang?: string | undefined;
+  /**
+   * The label repeats the group's legend (a list under its own heading): it stays the control's
+   * name but is not shown or printed twice.
+   */
+  hideLabel?: boolean | undefined;
+}
+
+const { field, locale, textLang, hideLabel = false } = Astro.props;
+const t = useTranslations(locale);
+const id = fieldId(field.name);
+const hintId = `${id}-hint`;
+const errorId = `${id}-error`;
+const listId = `${id}-options`;
+
+const AUTOCOMPLETE: Record<ProfileKey, string> = {
+  businessName: 'organization',
+  ownerName: 'name',
+  phone: 'tel',
+  email: 'email',
+  address: 'street-address',
+  registeredName: 'off',
+  registrationNumber: 'off',
+  vatNumber: 'off',
+};
+const fromDictionary = field.profileKey !== undefined && !field.ownLabel;
+const label =
+  field.profileKey && !field.ownLabel ? t(`templates.fields.${field.profileKey}`) : field.label;
+const numeric = field.kind === 'money' || field.kind === 'number';
+/*
+ * A date is a text field until the script makes it a date picker (`data-type="date"`): without
+ * JavaScript an empty date input prints the browser's own pattern ("mm/dd/yyyy", a US order) on
+ * the sheet (review pass 1, minor 8), while a text field prints blank and takes "5 October 2026".
+ */
+const type = field.kind === 'email' ? 'email' : field.kind === 'tel' ? 'tel' : 'text';
+const datePattern = field.kind === 'date' ? field.sample.replace(/^\[|\]$/g, '') : undefined;
+const messages = numeric
+  ? numberMessages(t, locale, field.kind === 'money' ? 'money' : 'number')
+  : {};
+/*
+ * A conditional slot says its condition, in the template's words (the hint), instead of
+ * "(optional)", so the form never says less than the template (review pass 1, major 4).
+ */
+const optional = !field.required && field.condition === undefined;
+const hints = [field.hint, field.kind === 'list' ? t('templates.onePerLine') : undefined].filter(
+  (hint): hint is string => Boolean(hint),
+);
+const describedBy = [hints.length > 0 ? hintId : undefined].filter(Boolean).join(' ') || undefined;
+const common = {
+  id,
+  name: field.name,
+  'data-kind': field.kind,
+  'data-required': field.required ? '' : undefined,
+  'data-carry': field.carry ? '' : undefined,
+  'data-follows': field.follows,
+  'data-number': field.documentNumber ? '' : undefined,
+  'data-profile-key': field.profileKey,
+  'data-error-id': numeric ? errorId : undefined,
+  'data-sample': field.kind === 'list' && field.sample !== '' ? field.sample : undefined,
+  'data-type': field.kind === 'date' ? 'date' : undefined,
+  'data-required-above': field.requiredAbove,
+  'aria-describedby': describedBy,
+  // The draft keeps at most this much of a field; the control says so while typing, so nothing is
+  // dropped on the next load (review pass 2, minor 2).
+  maxlength: field.kind === 'date' ? undefined : MAX_VALUE_LENGTH,
+  autocomplete: field.profileKey ? AUTOCOMPLETE[field.profileKey] : 'off',
+};
+---
+
+<div
+  class:list={['st-field st-tfield', { 'st-tfield--list': field.kind === 'list' }]}
+  data-field-wrap={field.name}
+>
+  <label for={id} class:list={[{ 'st-visually-hidden': hideLabel }]}>
+    <span lang={fromDictionary ? undefined : textLang}>{label}</span>
+    {optional && <span class="st-tfield__optional"> {t('templates.optional')}</span>}
+  </label>
+  {hints.length > 0 && (
+    <p class="st-hint" id={hintId}>
+      {hints.map((hint, index) => (
+        <span lang={index === 0 && field.hint ? textLang : undefined}>{hint} </span>
+      ))}
+    </p>
+  )}
+  {field.kind === 'list' ? (
+    <textarea
+      {...common}
+      rows="5"
+      placeholder={t('templates.onePerLine')}
+      set:text={field.defaultValue}
+    ></textarea>
+  ) : (
+    <input
+      {...common}
+      type={type}
+      value={field.defaultValue}
+      placeholder={datePattern}
+      inputmode={numeric ? 'decimal' : undefined}
+      spellcheck={type === 'text' && !numeric ? undefined : 'false'}
+      list={field.options ? listId : undefined}
+    />
+  )}
+  {field.options && (
+    <datalist id={listId}>
+      {field.options.map((option) => (
+        <option value={option} />
+      ))}
+    </datalist>
+  )}
+  {field.kind !== 'date' && (
+    <p class="st-hint" data-too-long hidden>
+      {t('templates.tooLong', { max: formatNumber(locale, MAX_VALUE_LENGTH) })}
+    </p>
+  )}
+  {numeric && (
+    <p class="st-error-text" id={errorId} hidden {...messages}>
+      <Icon name="lucide:circle-alert" />
+      <span data-error-message>{messages['data-message-format']}</span>
+    </p>
+  )}
+</div>
+
+<style>
+  .st-tfield__optional {
+    color: var(--st-text-muted);
+    font-weight: var(--st-weight-regular);
+  }
+</style>

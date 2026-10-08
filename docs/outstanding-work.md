@@ -1,37 +1,53 @@
 # Outstanding work
 
-**Status on 2 October 2026. WP-20 (the site) is built and has passed review: passes 8 and 9 were clean, which meets the two-consecutive-clean-pass rule. It is ready to merge, on branch `claude/lucid-bell-t5acdn`; it is not merged yet.** `main` is unchanged at `b010d5b` with `pnpm gate` green.
+**Status on 7 October 2026 (work paused by the owner). `main` carries WP-20 (the site), WP-40 (the Afrikaans translation of all 36 documents, with the code changes integrating it needed), WP-30 (the store), WP-32 (fillable templates) and WP-31 (Find my path, My path and the applies-to filter). WP-33 (search) is built and in review; its work lives only on a branch in the cloud session that built it.**
 
-Read `docs/build-plan.md` first for the design, then this file for where the work stopped. `docs/reviews/merge-checklist.md` holds the tasks that must happen at merge time, including WP-20's.
+Read `docs/build-plan.md` first for the design, then this file for where the work stopped. `docs/reviews/merge-checklist.md` holds the tasks that must happen at merge time.
 
-## Where to pick up (2 October 2026)
+## Where to pick up (7 October 2026)
 
-### WP-20, the site: ready to merge
+### Merged
 
-Branch `claude/lucid-bell-t5acdn` (pushed). It carries `wp/site` (milestone 1, built on the Windows machine, tip `9de5fa2`), a merge of `main`, milestone 2, nine review passes and their fixes.
+| Package | Reviews |
+| --- | --- |
+| WP-20, the site | `WP-20-m1-pass1.md`, `WP-20-pass2.md` to `pass9.md`; passes 8 and 9 clean |
+| WP-40, the Afrikaans translation | seven batches, each with two consecutive clean af-reviews (`WP-40-batch<N>-pass<n>.md`) |
+| WP-40 integration (code, tests, metadata) | `WP-40-integration-pass1.md` to `pass4.md`; passes 3 and 4 clean |
+| WP-30, the store | `WP-30-pass1.md` to `pass3.md`; passes 2 and 3 clean, pass 3's minors fixed |
+| WP-32, fillable templates | `WP-32-pass1.md` to `pass3.md`; passes 2 and 3 clean |
+| WP-31, Find my path and My path | `WP-31-pass1.md` to `pass5.md`; passes 4 and 5 clean, pass 5's minors fixed |
 
-What it gives you: 96 pages, every route in build plan B1 in English and Afrikaans except the wizard and My path (WP-31): home, five section landings, all 36 documents, the business-types hub with tiles, contents, templates, about, a search page, and a bilingual 404. The Afrikaans routes show the English documents with the "not translated yet" notice until translations land.
+Gate on the merged tree (`cabdc1a`): `pnpm gate:fast` green (1435 unit and dom tests, 37 content tests, no drift); `pnpm build` green (`dist:audit` on 198 HTML files, `dist:trust` on 72 document pages and 98 Afrikaans pages, `dist:budget` on 198 pages); Playwright chromium, mobile and nojs 986 passed, 0 failed; `pnpm test:a11y` 412 passed. WebKit was not run (not installed in the cloud container).
 
-Guards that now fail `pnpm build` (`scripts/dist/check-trust.ts`, run after the link audit):
-- every document page, in both languages, must show the AI notice with its status, its "How this was made" link and the sentence that matches what the page shows, and a "Sources for this page" section that lists sources or gives a note with a link to the register;
-- every Afrikaans page is checked for language of parts both ways: English text marked as Afrikaans, and Afrikaans text marked as English.
+What WP-40 changed besides the Afrikaans markdown: the sources register has its own language on a page (`sourcesLang`), and text the Afrikaans register keeps in English is marked `lang="en-ZA"` (`keptInEnglish`); docrefs and the contents block mark English titles in Afrikaans text; every document has an Afrikaans navigation title; `dist:trust` excuses only names, case by case, with tests on both sides. Items for the owner: `docs/reviews/WP-40-owner-items.md`.
 
-Four flags in `src/lib/routes.ts` keep the site from offering what is not built: `WIZARD_AVAILABLE` (WP-31), `SEARCH_AVAILABLE` (WP-33), `TEMPLATES_FILLABLE` (WP-32) and `CHECKLIST_SAVES` (WP-30). Each later package sets its flag to `true` in the change that builds the feature.
+What WP-31 added: the three-question wizard at `/find-my-path/` (one GET form without JavaScript, landing on 98 pre-rendered `noindex` result pages), My path with marks and rings, the home page's path card, the "Only what applies to me" switch driven by `content-meta/applicability.json`, and "Fill from my profile" on prompts. Its JavaScript budget is checked on every page by `pnpm dist:budget`.
 
-Gate on the last commit: `pnpm gate:fast` green (unit and dom tests, 32 content tests, no drift); `pnpm build` green; Playwright chromium, mobile and nojs green (512 passed, 85 skipped, the skips being chromium-only loops); `pnpm test:a11y` 192 passed; Lighthouse passed both presets on nine page types. WebKit could not be run in the cloud environment (only Chromium was installed), so run it locally before or at merge; it is on the merge checklist.
+What WP-32 added: fillable, printable versions of the five templates, with drafts kept on the device.
 
-The review record is `docs/reviews/WP-20-m1-pass1.md` and `WP-20-pass2.md` to `WP-20-pass9.md`. Passes 3, 4, 6 and 7 found blockers or majors and reset the count; two of those were introduced by fixes for the pass before, which the next whole-diff pass caught. The minors from pass 9 were fixed afterwards under the 17 September amendment; the integrated review of `main` after merge verifies them. Deferred minors, with reasons, are in `docs/reviews/backlog.md`.
+What WP-30 added: the device store (`src/lib/store.ts`, `src/lib/storage/`), saved checklist ticks shared between a document and `/checklist/` for 45 linked tasks (`content-meta/task-links.json`), ticks carried across reworded tasks (`task-renames.json`, `released-task-keys.json`; see `content-meta/README.md`), copy buttons on prompts, the "Now reading" contents tracking, settings and keyboard shortcuts on `/about/`, clear-my-data, and the language banner.
 
-How the cloud session ran the browser tests, in case it is needed again: Playwright 1.63 expects Chromium build 1243 and the container had 1194, so a symlink shim in the session scratchpad mapped one onto the other. On the Windows machine, the installed browsers are used as before.
+### Built, in review (not on the remote)
+
+This branch exists only in the cloud session that built it. If that session is gone, it has to be rebuilt from its brief.
+
+- **WP-33, search** (`worktree-agent-a0761a64fd64c33f9`, tip `13989b2`). Nineteen review passes; pass 11 was the only clean one. Since pass 15 it is judged against a fixed acceptance set (`tests/search/acceptance-queries.json`, about 300 English and 260 Afrikaans owner queries, every row tested finished and typed), with `pnpm search:diff <ref>` comparing first results against the previous tip and `pnpm search:typos` sweeping one-keystroke typos. The pass 19 fixes are committed; on `13989b2` `gate:fast` (2630 unit and dom tests), `build`, e2e chromium/mobile/nojs (555 passed, 0 failed) and `test:a11y` (196 passed) are green.
+  - **Owner's decision (7 October):** run two more review passes after the pass 19 fixes, then merge whether or not both are clean, and move what is still open to `docs/reviews/backlog.md`.
+  - **Next:** make Afrikaans "sê" a filler word before diacritics are folded. Twenty "wat die wet oor <noun> sê" queries got worse because "sê" folds to "se" (`docs/reviews/WP-33-diff-733195e.md`). Then review passes 20 and 21, then merge.
+  - **At merge:** fold its `scripts/dist/js-budget.ts` into WP-31's `check-budget.ts` (one `dist:budget`), rewire its settings to WP-30's store, take its filter chips from WP-31's `profileBusinessTypes()`, and recheck the heaviest document page (`/af/templates/invoice/`, 23.7 KB of 25 KB), since search adds a button to every page.
+
+### Not started
+
+- **WP-50, design revamp** (plan only, `docs/work-packages/WP-50-design-revamp.md`). Starts after WP-33 merges. Four third-party design skills and the project's `stoep-design` skill are vendored in `.claude/skills/` (ADR 0007). Phase 0 is an audit with no source changes; Phase 1 ends in five design decisions for the owner.
+
+- **P4a, the accuracy review against official sources**: the cloud environment cannot reach SARS, CIPC, gov.za, SAFLII or the Information Regulator.
+- **WebKit**: run the WebKit project locally (merge checklist).
+- **Content gap, closing as a sole proprietor**: the guide covers closing a business only in "Closing a company properly" (Pty Ltd). A sole proprietor who stops trading (SARS income tax and VAT deregistration, UIF, licences, records) has no section. Write it in the English markdown with official sources, then translate it; search's closing best bets (`content-meta/search-best-bets.json`) should then point sole-proprietor phrasings at it. Found by WP-33 review pass 15.
 
 ### Decided on 2 October 2026
 
-- **Licence:** MIT for the code (`LICENSE`), and the guide's text dedicated to the public domain under CC0 1.0 (`docs/rsa-business-toolkit/LICENSE.md`). The guide's Licence section, its combined edition, the about page and the README say so. This change is commit `1d68b74` on the WP-20 branch and touches shared files; keep it as its own commit at merge (merge checklist).
-- **Hosting:** GitHub Pages, set up by the owner once WP-20 is on `main`. `.github/workflows/deploy.yml` is ready; set the Pages source to GitHub Actions. `BASE_PATH` and `SITE_URL` default to the Pages values when the repository variables are unset.
-
-### Still paused pending the owner's go-ahead
-
-The interactive packages (WP-30 to WP-33), the Afrikaans document translations (the glossary branch `content/af-glossary` and the other 35 documents), and the accuracy review (P4a). The suggested order is the one in the build plan Part D. Before public launch the build plan also wants the accuracy review done and the whole-app review (P6).
+- **Licence:** MIT for the code (`LICENSE`), and the guide's text dedicated to the public domain under CC0 1.0 (`docs/rsa-business-toolkit/LICENSE.md`).
+- **Hosting:** GitHub Pages, set up by the owner. `.github/workflows/deploy.yml` is ready; set the Pages source to GitHub Actions. `BASE_PATH` and `SITE_URL` default to the Pages values when the repository variables are unset.
 
 ## What is merged (the three foundation packages, 17–20 September)
 

@@ -1,0 +1,203 @@
+---
+/**
+ * The steps of a reading path as cards (build plan B6 "StepCards"; WP-31): "Step 3", the pages to
+ * read (each a link, at its section when the rule names one), and why, in the words of "How to use
+ * this toolkit" (`stepWhy`).
+ *
+ * - On a result page the cards are exactly the reader's path (`interactive` off).
+ * - On My path every step of every rule is rendered, `hidden`, with every page it can hold, and
+ *   `<st-my-path>` shows, numbers and orders the ones on the reader's path. Each card then gets a
+ *   "Mark as done" button. Nothing is rendered in the browser.
+ */
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { docHref, docTitle, docTitleLang } from '../../lib/content/manifest';
+import type { Doc, Manifest } from '../../lib/content/schema';
+import { stepWhy } from '../../lib/path-pages';
+
+export interface StepCardProps {
+  readonly stage: string;
+  readonly item: number;
+  readonly n: number;
+  /** Whether the "why" fits this reader; My path decides in the browser. */
+  readonly why: boolean;
+  readonly docs: readonly { readonly doc: string; readonly anchor?: string | undefined }[];
+}
+
+interface Props {
+  locale: Locale;
+  manifest: Manifest;
+  /** "How to use this toolkit" in the page's language: the lists the rules follow. */
+  source: Doc;
+  /** The list block of each stage's rule. */
+  lists: Readonly<Record<string, string>>;
+  steps: readonly StepCardProps[];
+  interactive?: boolean | undefined;
+}
+
+const { locale, manifest, source, lists, steps, interactive = false } = Astro.props;
+const t = useTranslations(locale);
+const sourceLang = source.lang === locale ? undefined : 'en-ZA';
+const labelTemplate = t('myPath.stepLabel', { n: '{n}' });
+/*
+ * The "Mark as done" button's name ("Mark as done: Core: start here") starts with its visible label
+ * (WCAG 2.5.3) and names only the pages the step shows for this reader, so `<st-my-path>` builds it
+ * from these templates once it knows them (review WP-31 pass 1, majors 4 and 5). Until then the
+ * card is hidden.
+ */
+const cards = steps.map((step) => {
+  return {
+    ...step,
+    whyText: stepWhy(source, lists[step.stage] ?? '', step.item),
+    links: step.docs.map((entry) => ({
+      doc: entry.doc,
+      href: docHref(manifest, entry.doc, locale, entry.anchor),
+      title: docTitle(manifest, entry.doc, locale),
+      lang: docTitleLang(manifest, entry.doc, locale),
+    })),
+  };
+});
+---
+
+<ol class="st-steps" role="list" data-steps data-label-template={labelTemplate}>
+  {cards.map((card) => (
+    <li
+      class="st-step"
+      data-stage={card.stage}
+      data-item={card.item}
+      hidden={interactive ? true : undefined}
+    >
+      <p class="st-step__head">
+        <span class="st-step__label" data-step-label>
+          {t('myPath.stepLabel', { n: card.n })}
+        </span>
+        {interactive && (
+          <span class="st-step__done" data-done-badge hidden>
+            <Icon name="lucide:circle-check" />
+            {t('myPath.done')}
+          </span>
+        )}
+      </p>
+      <ul class="st-step__docs" role="list">
+        {card.links.map((link) => (
+          <li data-doc={link.doc}>
+            <h3 class="st-step__title">
+              <a href={link.href} lang={link.lang}>
+                {link.title}
+              </a>
+            </h3>
+          </li>
+        ))}
+      </ul>
+      {card.whyText && (card.why || interactive) && (
+        <p class="st-step__why" data-why>
+          <span class="st-step__why-label">{t('myPath.why')}:</span>{' '}
+          <span lang={sourceLang}>{card.whyText}</span>
+        </p>
+      )}
+      {interactive && (
+        <div class="st-step__actions">
+          <Button
+            variant="secondary"
+            data-mark
+            data-label-done={t('myPath.markDone')}
+            data-label-undo={t('myPath.markNotDone')}
+            data-name-done={t('myPath.markDoneNamed', { title: '{title}' })}
+            data-name-undo={t('myPath.markNotDoneNamed', { title: '{title}' })}
+          >
+            {t('myPath.markDone')}
+          </Button>
+        </div>
+      )}
+    </li>
+  ))}
+</ol>
+
+<style>
+  .st-steps {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-3);
+    padding: 0;
+    list-style: none;
+  }
+
+  .st-step {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-2);
+    padding: var(--st-space-4);
+    border: var(--st-border-width) solid var(--st-border);
+    border-inline-start: 4px solid var(--st-primary);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface);
+  }
+
+  .st-step[hidden] {
+    display: none;
+  }
+
+  .st-step[data-done] {
+    border-inline-start-color: var(--st-border-strong);
+  }
+
+  .st-step__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-2) var(--st-space-3);
+    margin: 0;
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-step__done {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--st-space-1);
+    color: var(--st-success-text);
+  }
+
+  .st-step__done[hidden] {
+    display: none;
+  }
+
+  .st-step__docs {
+    display: grid;
+    gap: var(--st-space-1);
+    padding: 0;
+    list-style: none;
+  }
+
+  .st-step__docs li[hidden] {
+    display: none;
+  }
+
+  .st-step__title {
+    margin: 0;
+    font-size: var(--st-text-lg);
+    overflow-wrap: anywhere;
+  }
+
+  .st-step__why {
+    margin: 0;
+    max-inline-size: var(--st-measure);
+  }
+
+  .st-step__why[hidden] {
+    display: none;
+  }
+
+  .st-step__why-label {
+    font-weight: var(--st-weight-semibold);
+  }
+
+  @media (forced-colors: active) {
+    .st-step {
+      border-inline-start-color: CanvasText;
+    }
+  }
+</style>

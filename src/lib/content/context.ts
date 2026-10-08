@@ -4,8 +4,8 @@
  *
  * Pure: the caller loads the collections (see `collections.ts`) and passes them in.
  */
-import type { Locale } from '../../i18n/locales';
-import { officialUrls } from './render';
+import { DEFAULT_LOCALE, type Locale } from '../../i18n/locales';
+import { keptInEnglish, officialUrls } from './render';
 import type { GlossaryFile, Manifest, SourcesFile } from './schema';
 
 export interface ContentContext {
@@ -30,6 +30,16 @@ export interface ContentContext {
    * exists. Register text is then marked with this language, not with `contentLang`.
    */
   readonly sourcesLang: Locale;
+  /**
+   * Register text a translated register keeps in English (WP-40: named publications, secondary
+   * titles, reasons from `content-meta/`), so the renderer can mark it English inside a page in
+   * another language. Empty when `sources` is English or no English register was given.
+   */
+  readonly keptInEnglish: {
+    readonly titles: ReadonlySet<string>;
+    readonly acts: ReadonlySet<string>;
+    readonly reasons: ReadonlySet<string>;
+  };
   /** Every URL the register marks as official, for the `Official` badge on external links. */
   readonly officialUrls: ReadonlySet<string>;
   /** The document being rendered, when there is one. Used for task ids and same-page anchors. */
@@ -44,18 +54,25 @@ export interface ContentContextInput {
   readonly sources?: SourcesFile | undefined;
   /** Defaults to `contentLang`. */
   readonly sourcesLang?: Locale | undefined;
+  /** The English register, to tell which of a translated register's texts stayed English. */
+  readonly englishSources?: SourcesFile | undefined;
   readonly docId?: string | undefined;
 }
 
 export function createContentContext(input: ContentContextInput): ContentContext {
   const contentLang = input.contentLang ?? input.locale;
+  const sourcesLang = input.sourcesLang ?? contentLang;
   return {
     locale: input.locale,
     contentLang,
     manifest: input.manifest,
     glossary: input.glossary,
     sources: input.sources,
-    sourcesLang: input.sourcesLang ?? contentLang,
+    sourcesLang,
+    keptInEnglish:
+      sourcesLang === DEFAULT_LOCALE
+        ? { titles: new Set(), acts: new Set(), reasons: new Set() }
+        : keptInEnglish(input.englishSources, input.sources),
     officialUrls: officialUrls(input.sources),
     docId: input.docId,
   };

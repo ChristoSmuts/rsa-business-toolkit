@@ -154,6 +154,212 @@ in every project.
 `<details>` menus are shown at every width and the drawer button is not, so a phone without
 JavaScript still reaches every section and tool.
 
+### The store and the interactive pieces (WP-30)
+
+`tests/e2e/interactive.spec.ts` (projects `chromium`, `webkit` and `mobile`) drives the built site:
+
+- **Checklists.** A tick on `core/what-you-need-to-sell-things/` survives a reload, is counted under
+  "Checklists on other pages" on `/checklist/`, and is ticked on the Afrikaans twin. A task linked
+  to a master task (`sameAs`, `content-meta/task-links.json`; "Get public liability insurance" on
+  `business-types/services-trades/`) ticked on its document is ticked on `/checklist/` and counted in
+  the ring; unticked or ticked there, it follows on the document, in English and Afrikaans. On `/checklist/`
+  the ring, the part bars and the group lines count ticks; "Not done yet" hides ticked items and
+  "Everything" brings them back; "Remove ticks" opens its dialog with "Keep my ticks" focused,
+  Escape cancels and returns focus to the button, and confirming empties `st.checks.v1` and says so.
+- **Storage that throws.** An init script makes `window.localStorage` throw before any page script
+  runs: the storage warning shows, the "saved on this device" line goes, and ticks and progress
+  still work for the page view. With working storage the warning stays hidden.
+- **A changed key.** A tick seeded under a linked task's own id (as saved before the link) is
+  moved to the master key when `/checklist/` loads (`renameChecks`, `src/data/task-keys.json`).
+- **The banner before paint.** With every bundled module held back by `routeSameOrigin`, the
+  banner is already visible (only `theme-init.js` has run); a saved `st.lang` that is not an
+  enabled language shows no banner at any point.
+- **A restored filter.** "Not done yet" chosen, then the tools element reconnected with the radio
+  still checked (what a form-restoring reload does): the ticked item stays hidden.
+- **Copy** (Chromium only, which is where Playwright can grant clipboard permissions): the clipboard
+  holds the first prompt on `branding/branding-prompts/` **byte for byte** equal to that block's
+  `text` in `src/data`, so `compressHTML` or a template change that alters whitespace inside the
+  `<pre>` fails here. The button says "Copied", the status line "Prompt 1 copied", and
+  `st.prompts.v1` records it. A refusing clipboard (stubbed) leaves the whole prompt selected.
+- **Scroll-spy.** At 1280px, following a contents link gives exactly that link
+  `aria-current="location"`. At 375px the "Now reading" pill names the section, sits above the
+  heading (never over it), and opens the list.
+- **Settings.** "Clear all my data" with seeded `st.theme`, `st.lang`, `st.checks.v1`,
+  `st.shortcuts` and a WP-31 style `st.profile.v1` leaves **no `st.` key** and keeps a key another app
+  owns; the theme and the switches are back to their defaults. Low data sets `data-low-data`, keeps it
+  on the next page before paint, and the body no longer uses the web font.
+- **Shortcuts.** `?` goes to `/about/#keyboard-shortcuts`, and does nothing once single-key
+  shortcuts are off; Alt+→ and Alt+← follow the pager.
+- **Language.** Following "Afrikaans" in the switcher saves `st.lang`; the English home page then
+  shows the banner in Afrikaans (`lang="af-ZA"`) with a link to `/af/` and no redirect; "Bly op
+  hierdie bladsy" saves English and the banner does not come back; closing it hides it for that page
+  view only.
+
+`nojs.spec.ts` checks the other side: the checklist ticks and says, once, that ticks are not saved,
+with no progress, summary, tools or dialog; prompts have no copy button; the contents have no pill
+and no `aria-current`; `/about/` offers no switch and no "Clear all my data", only the line that
+some tools need JavaScript; the home page shows no banner. `pages.spec.ts` reads every built page
+with a checklist and checks its saving line for whichever value `CHECKLIST_SAVES` has.
+
+**Task keys** (`tests/content/validate.test.ts`, `content:check`): every key in
+`content-meta/released-task-keys.json` must still be a key or be carried to one by
+`content-meta/task-renames.json`, and every current key must be recorded there. See
+`content-meta/README.md` for the rule and the update command.
+
+`a11y.spec.ts` also runs axe, in both themes, with the "Remove all ticks?" dialog open, with the
+"Clear all your data?" dialog open, with the language banner showing and with the storage warning
+showing.
+
+**Dom tests** (`tests/dom/`, happy-dom): every element connects, round-trips through the store,
+disconnects cleanly (a control used after `disconnectedCallback` changes nothing) and is driven by
+its native keyboard control; `tests/dom/store.test.ts` loads a fresh store over seeded, corrupt and
+throwing `localStorage`. Mount markup with `mount()` from `tests/dom/helpers.ts`: happy-dom connects
+elements set through `innerHTML` before their children are parsed, which no real page does.
+**Unit tests** (`tests/unit/storage/`, `tests/unit/shortcuts.test.ts`,
+`tests/unit/site/checklist.test.ts`) cover the adapter with every way storage fails, migrations,
+the per-key reset, `clearAll`, the shortcut matcher and the checklist helpers.
+
+**Coverage floor.** `vitest.config.ts` sets `src/lib/store.ts` and `src/lib/storage/**` to 95%
+statements and lines, 90% branches and 100% functions, measured with the unit and dom projects
+together: `pnpm exec vitest run --project unit --project dom --coverage`. On the WP-30 build:
+`store.ts` 100 / 96.97 / 100 / 100, `storage/` 98.4 / 93.9 / 100 / 100. `pnpm test` does not collect
+coverage, so the floors bind only when coverage is run. (That run also reports the `src/lib/content/**`
+functions floor at 89%, short of its 100%, because `collections.ts` and `context.ts` are not loaded
+by any unit test; this predates WP-30 and is the same at `2744d07`.)
+
+**JavaScript budget.** Plan B3 allows 25 KB gzipped on a document page and 45 KB on a tool page.
+`pnpm dist:budget` (`scripts/dist/check-budget.ts`, the last step of `pnpm build`) measures every
+built page: every `<script src>` and the chunks it imports, each gzipped (level 9) and summed, once
+without a profile and once with the chunks a reader with saved answers can load lazily
+(`PROFILE_CHUNKS`). The build fails when a page is over with a profile, and prints the heaviest page
+of each kind and the room left. On the WP-30 build the heaviest document page was 15.9 KB; on the
+WP-31 build after review pass 5 it is 22.2 KB without and with a profile (it was 24.0 KB and 26.3 KB
+before); see
+[design-system.md](design-system.md#scripts-csp-and-javascript-budget) for the split.
+
+### Fillable templates (WP-32)
+
+`tests/e2e/templates.spec.ts` (projects `chromium`, `webkit` and `mobile`): on the tax invoice,
+filling binds the preview (the business name, the VAT number, the date in words), three washers at
+R 0.35 plus a R 450 call-out give a subtotal of R 451.05, VAT of R 67.66 (on the line total) and
+R 518.71, and a reload keeps the draft and its two lines; the required-items count goes up as fields
+are filled and a missing item's link focuses its field; Clear opens its dialog with "Keep what I
+typed" focused, Escape cancels and returns focus, confirming empties the form and removes
+`st.template.tax-invoice.v1`; Start next keeps business and bank details and moves INV-0041 to
+INV-0042 (the payment reference follows); Print calls a stubbed `window.print`, and under
+`emulateMedia('print')` only the sheet is laid out, at more than 80% of the page width, with the
+header, footer, AI notice, form, actions and sources hidden (Chromium also renders an A4 PDF). On a
+phone the preview prints although the "Fill in" tab is chosen. Also: a quotation has no VAT row and
+its lists print one item per line, a receipt formats an amount and starts REC-0004, the privacy
+notice starts with the template's lines and has no Start next, and the Afrikaans tax invoice opens
+the same draft, labels its fields in Afrikaans and prints the Afrikaans template's own heading.
+
+`nojs.spec.ts`: the quotation is a form with all ten line rows, the no-JS print line and the totals
+line, and no preview, tabs, required items or buttons; the privacy notice prints the form as the
+sheet, with what was typed and the template's text, at page width. `a11y.spec.ts`: axe on a filled
+tax invoice with an invalid price and an extra line, with "Clear this form?" open, and on the
+Afrikaans quotation's preview tab at 390px, in both themes (every template page is also in the
+sitemap run).
+
+Unit (`tests/unit/templates/`): the parser on all five templates, English and Afrikaans give the same
+fields, groups, kinds and sample values, every heading is a group, and the labels, hints, options,
+follows and optional fields of each template; totals in cents (no float drift, VAT rounded once on the
+line total, half away from zero, empty quantity as 1), number parsing, `nextNumber`, the date
+helper, the draft helpers and the profile hook. Dom (`tests/dom/template-form.test.ts`): first visit
+writes nothing, binding and saving, follows, conditional lines, lists, totals, invalid numbers, add
+and remove line with focus, restore, typed-before-connect, Start next, Clear through the dialog,
+print, no submit, profile pre-fill, another tab and Clear all my data, tabs by keyboard, and
+disconnect.
+
+Review pass 1 added, each seen failing without its fix (by mutation): a huge line is refused,
+never throws, keeps saving and Clear still works, and a draft saved with one opens with the bad
+value dropped and the rest kept (blocker 1); with and without JavaScript exactly one
+`[data-print-sheet]` prints, and the unfilled preview is hidden without JavaScript (major 1); an empty
+slot has no text and its print `::before` is `""`, and the receipt's printed text has no `INV-0001`,
+`R 0.00` or bracket (major 2); `1.500` is refused with its message and `1.500,50` is R 1 500.50
+(major 3, with a table of formats in `totals.test.ts`); the customer VAT number counts only above
+R5,000 and the count never says complete without it (major 4); on a phone a missing item's link
+leaves the Preview tab and focuses its field (major 5); no stray space after a slot, blank totals
+while a line cannot be read, VAT rounded once on the subtotal (two lines of R 0.03), a paragraph left
+out, 44px links, no date pattern or focus ring on the no-JS printout, and no `<output>` live regions
+on lines. Coverage floors: `src/lib/templates/**` and `src/scripts/template-form.ts`
+(`vitest.config.ts`).
+
+Review pass 2 added, each seen failing without its fix: a three-line quotation prints on one A4
+sheet (Chromium desktop, page count read from `page.pdf`) and every printed section is a block with
+`break-inside: avoid`; `maxlength` 5 000 on the fields and a long list kept across a reload, with an
+over-long draft value cut, not dropped; a refused amount (`R1,500`) is not counted as filled in; no
+"Official" or "Amptelik" on the printed privacy notice, with or without JavaScript; leaving out the
+only paragraph of "Marketing" leaves out its heading (preview and no-JS print); `-R250` reads as a
+discount; a quantity's own message for "1.500"; and the totals' reason inside their live region.
+
+Review pass 3 added, each seen failing first (the e2e ones against the previous build, the unit
+and dom ones by mutation): a section left out with its list emptied does not print, with and without
+JavaScript; the printed privacy notice's sentence runs straight on from the regulator link
+("…inforegulator.org.za." and "…inforegulator.org.za kla."); Start next on an invoice keeps the
+late-payment terms and a "Leave this out" choice; a field at its limit says so; and a refused day
+count is not counted as filled in.
+
+**JavaScript budget on tool pages** (45 KB gzipped): 20.3 KB on every template page, both languages
+(13 files, 53.1 KB raw).
+
+### Find my path and My path (WP-31)
+
+`tests/e2e/wizard.spec.ts` (projects `chromium`, `webkit` and `mobile`) drives the built site:
+
+- **The wizard with the keyboard.** Space chooses, Enter goes on, focus lands on each step's
+  heading, the stepper marks the step; "See my path" saves `st.profile.v1` (types in the order
+  ticked) and My path says the answers are saved and shows Path 4 with food beside the dealer.
+  "Pty Ltd, growing" is disabled with its reason until step 1 is Pty Ltd. "Edit answers" starts
+  from the saved answers. In Afrikaans the same answers are saved and My path is Afrikaans. With a
+  `localStorage` that throws, the answers go along in the address and both pages say they are not
+  saved.
+- **My path.** The empty state without answers; "Mark as done" and back, with the rings on My path,
+  in the top bar and on the home page ("Continue: step 2 of 4" to the next page); the checklist hides
+  Part A2 and the other kinds of business (still in the page) and shares ticks with `/checklist/`;
+  "Remove my answers" (Escape cancels and returns focus; confirming keeps the ticks and focuses the
+  heading).
+- **Personalisation.** The pager follows the path (with the SBC anchor); "Only what applies to me"
+  collapses a company section into its marker, Show brings it back with focus, and the choice holds
+  on the next page; without answers the switch points at Find my path; `/checklist/` offers its
+  "Only what applies to me" only with answers and counts what it hid; "Fill from my profile" fills
+  `[BUSINESS TYPE]`, says what is left, and Undo puts it back.
+- **Every result page** (98, read from `dist/` in chromium) lists exactly the steps `buildPath` gives
+  for its answers and is `noindex`; `NOINDEX_REQUIRED` in `helpers/routes.ts` fails the route check
+  if one loses it.
+
+`nojs.spec.ts`: all three questions show as one form with radios; no result button shows until the
+answers are complete, then exactly one, and it lands on the pre-rendered result page; "Pty Ltd,
+growing" without a Pty Ltd says why there is no path (in Afrikaans); My path is the empty state;
+documents offer no switch, hide nothing and show no "Fill from my profile".
+
+`a11y.spec.ts`, `axe on Find my path and My path`: each wizard step, My path with steps and
+checklist, the "Remove your answers?" dialog open, and a document and `/checklist/` with sections
+collapsed into their markers, in both themes. The route loop covers `/find-my-path/`, `/my-path/`
+and all 98 result pages.
+
+**Dom tests.** `tests/dom/wizard.test.ts` drives `<st-wizard>` on the markup `Wizard.astro` really
+renders: `tests/dom/fixtures/wizard.{en,af}.html`. Astro's container API renders components only in
+the node project (happy-dom transforms `.astro` for the client), so
+`tests/unit/components/wizard-markup.test.ts` renders the component and fails when the fixture
+differs. After an intended change to the component:
+
+```bash
+pnpm exec cross-env FIXTURE_UPDATE=1 vitest run --project unit tests/unit/components/wizard-markup.test.ts
+```
+
+`applies.test.ts` (sections, markers, Show and focus, the three modes, the switch),
+`my-path.test.ts` (steps, marks, the address, reset, the top-bar ring, the home card and the pager;
+the last three wait for `element.rendered`, because the path data loads lazily),
+`prompt-fill.test.ts` and `profile-store.test.ts` cover the rest. **Unit tests**:
+`tests/unit/path-engine.test.ts` (the two A5 fixtures against the real Path 1 and Path 4 lists, every
+rule, the matching rule, progress and marks), `profile.test.ts`, `path-pages.test.ts` and
+`tests/unit/content/paths.test.ts` (every way `paths.json` can disagree with the markdown).
+
+**Coverage floors** (`vitest.config.ts`, unit and dom projects together): `path-engine.ts` 95 / 95 /
+100 / 95, `profile.ts` and `profile-store.ts` 95 / 90 / 100 / 95, `path-pages.ts` 95 / 85 / 95 / 95.
+Measured on the WP-31 build: path-engine.ts 100 / 98.9 / 100 / 100, profile.ts and profile-store.ts 100 throughout, path-pages.ts 98.0 / 89.7 / 95.8 / 100, scripts/content/paths.ts 98.2 / 95 / 100 / 100.
+
 ### 404: `not-found.spec.ts`
 
 Requests `nonexistent-<random>/` and `af/nonexistent-<random>/` under the base path and expects status 404, a visible `<h1>` and no URL problems (`documentUrlProblems`). The tests skip, with the reason shown, until `dist/404.html` exists. The browser's own "status of 404" console message is allowed in these tests. `/404.html` itself also goes through the page contract, the no-JS check and axe.
@@ -279,21 +485,9 @@ Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, r
 - `serious` and `critical` violations fail the test.
 - `moderate` and `minor` violations are recorded as annotations (`a11y-moderate`, `a11y-minor`); they do not fail the test.
 - The per-test timeout is `PW_A11Y_TIMEOUT` (milliseconds): 60 s in CI, 90 s locally. `--timeout` on the command line overrides it.
+- `axe with the interactive states open` (WP-30) runs the same tags with each confirm dialog open, the language banner showing and the storage warning showing, in both themes.
 - The `best-practice` tag (build plan C6) came in with the search dialog (WP-33), where rules such as `aria-dialog-name` start to matter.
 - **With the search dialog open** (WP-33): on `core/register/` and `af/business-types/vehicle-dealer/`, in both themes, axe runs twice, once on the empty state (the common questions) and once with `VAT264` typed and the first option active.
-
-## JavaScript budget: `pnpm dist:budget`
-
-Runs after `dist:trust` in `pnpm build`. For every built page it adds up, gzipped, every `<script src>` and every module those import statically, and fails a document page (`<article data-kind>`) over 25 KB or any other page over 45 KB (build plan B3 flow 9, C2). Dynamic `import()` is left out on purpose and reported separately: that is the code that loads only when the reader opens search. Measured on 2026-10-08, at the end of WP-33 review pass 19b, with the Afrikaans translation merged:
-
-| What | Gzip |
-| --- | --- |
-| Largest document page (`branding/already-have-your-name/`) | 7.9 KB |
-| Largest tool page (`search/`, which imports the client and MiniSearch up front) | 21.0 KB |
-| Loaded on demand: imported when search first opens (results code, client, MiniSearch) | 14.8 KB |
-| Search index, English (945 entries) / Afrikaans (951 entries, all translated); fetched when search opens; budget 400 KB each | 167.4 / 184.8 KB |
-
-WP-30 adds the store, the checklists, copy buttons, the table of contents and the settings to every document page; its numbers replace these when it merges.
 
 ## Fixtures
 
@@ -536,8 +730,9 @@ An overdue `expiresOn` prints `dist:audit: overdue known-future route: …` and,
 
 Do not add an entry to silence a link that is simply wrong. A link to a route no package will ever build is a bug in the page.
 
-Current list: **empty**. WP-20 built every route in build plan B1 except the wizard and My path
-(WP-31), and no page links to those two until `WIZARD_AVAILABLE` in `src/lib/routes.ts` is `true`.
+Current list: **empty**. Every route in build plan B1 is built: WP-20 built all but the wizard and
+My path, and WP-31 built those two and turned `WIZARD_AVAILABLE` in `src/lib/routes.ts` on, so the
+Tools menu, the drawer and the home page link them again.
 A link a reader can follow to a missing page is a 404 on the deployed site, whatever the audit
 allows, so the flag hides the links rather than this list excusing them. The generated list
 milestone 1 needed deleted itself the way it was designed to: the audit failed on each entry whose

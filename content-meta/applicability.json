@@ -26,35 +26,42 @@
         "docs": ["core/what-you-need-to-sell-things"],
         "pattern": "^If you sell food\\b",
         "appliesTo": {
-          "businessTypes": ["food"]
+          "tags": ["sells-food"]
         }
       },
       {
         "docs": ["core/what-you-need-to-sell-things"],
         "pattern": "^If you sell beauty\\b",
         "appliesTo": {
-          "businessTypes": ["beauty"]
+          "tags": ["beauty-treatments"]
         }
       },
       {
         "docs": ["core/what-you-need-to-sell-things"],
-        "pattern": "^If you sell online\\b|^If you import\\b",
+        "pattern": "^If you sell online\\b",
         "appliesTo": {
-          "businessTypes": ["retail-online"]
+          "tags": ["online"]
+        }
+      },
+      {
+        "docs": ["core/what-you-need-to-sell-things"],
+        "pattern": "^If you import\\b",
+        "appliesTo": {
+          "tags": ["import"]
         }
       },
       {
         "docs": ["core/what-you-need-to-sell-things"],
         "pattern": "^If you sell second-hand goods\\b",
         "appliesTo": {
-          "businessTypes": ["retail-online", "vehicle-dealer"]
+          "tags": ["second-hand"]
         }
       },
       {
         "docs": ["core/what-you-need-to-sell-things"],
         "pattern": "^If you provide professional or regulated services\\b",
         "appliesTo": {
-          "businessTypes": ["professional-creative", "services-trades"]
+          "tags": ["regulated-services"]
         }
       }
     ]
@@ -121,7 +128,17 @@
       }
     }
   ],
-  "tasks": {},
+  "tasks": {
+    "core/you-are-the-business:8e6615a6": {
+      "entity": "pty"
+    },
+    "core/you-are-the-business:b554cb87": {
+      "entity": "pty"
+    },
+    "core/you-are-the-business:b5a8d0d2": {
+      "entity": "pty"
+    }
+  },
   "tableRows": [
     {
       "docs": ["lookup/checklist"],

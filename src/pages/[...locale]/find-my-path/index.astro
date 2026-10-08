@@ -1,0 +1,62 @@
+---
+/**
+ * `/find-my-path/` (build plan B1, B3 flow 1; WP-31): the three questions. `Wizard.astro` says how
+ * it works with and without JavaScript.
+ */
+import { getCollection } from 'astro:content';
+import Page from '../../../layouts/Page.astro';
+import Breadcrumb from '../../../components/navigation/Breadcrumb.astro';
+import Wizard from '../../../components/wizard/Wizard.astro';
+import { useTranslations } from '../../../i18n';
+import type { Locale } from '../../../i18n/locales';
+import { loadManifest } from '../../../lib/content/collections';
+import { localeStaticPaths } from '../../../lib/i18n-routes';
+import { pageTitle } from '../../../lib/pages';
+import { wizardNoJsCss } from '../../../lib/path-pages';
+import { href } from '../../../lib/paths';
+import { APP_ROUTES } from '../../../lib/routes';
+
+export function getStaticPaths() {
+  return localeStaticPaths();
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const manifest = await loadManifest();
+const businessTypes = (await getCollection('businessTypes')).map((entry) => entry.data);
+---
+
+<Page
+  locale={locale}
+  manifest={manifest}
+  route={APP_ROUTES.wizard}
+  title={pageTitle(t, t('wizard.title'))}
+  description={t('wizard.intro', { total: 3 })}
+>
+  <Fragment slot="head" set:html={`<style>${wizardNoJsCss()}</style>`} />
+  <div class="st-container st-stack st-stack-lg st-wizard-page">
+    <Breadcrumb
+      crumbs={[
+        { href: href(locale, APP_ROUTES.home), label: t('nav.home') },
+        { href: undefined, label: t('wizard.title') },
+      ]}
+      locale={locale}
+    />
+    <header class="st-stack st-stack-sm">
+      <h1>{t('wizard.title')}</h1>
+      <p class="st-lead">{t('wizard.intro', { total: 3 })}</p>
+      <p class="st-hint no-js-only">{t('wizard.noJs')}</p>
+    </header>
+    <Wizard locale={locale} manifest={manifest} businessTypes={businessTypes} />
+  </div>
+</Page>
+
+<style>
+  .st-wizard-page {
+    padding-block: var(--st-space-5) var(--st-space-8);
+  }
+</style>

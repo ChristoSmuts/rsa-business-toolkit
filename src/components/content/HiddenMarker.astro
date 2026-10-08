@@ -1,0 +1,91 @@
+---
+/**
+ * The collapsed "Hidden by “Only what applies to me”: <heading>" line and its Show button, which
+ * stand in for a section the reader's profile says does not apply to them (build plan A5, B6).
+ *
+ * It is rendered `hidden`, directly before the section's heading, and only
+ * `src/scripts/applies.ts` shows it: when "Only what applies to me" is on and the section does not
+ * apply. Nothing is removed from the page. The section's elements get `.st-filtered`, and "Show"
+ * brings that one section back and moves focus to its heading. Without JavaScript nothing is
+ * filtered, so the marker never shows.
+ *
+ * The sentence names the section by its own heading and says only that the switch hid it. It does
+ * not say whom the section is "only for": the guide's headings say that in their own words ("If
+ * you have a registered company"), and a summary of the condition claimed more than the guide does
+ * (review WP-31 pass 1, major 3). It is in the reader's language even inside an English fallback
+ * block; the heading's words keep the content's language.
+ */
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import { useTranslations } from '../../i18n';
+import { getLocale } from '../../i18n/locales';
+import { isFallbackContent, type ContentContext } from '../../lib/content/context';
+import { splitAroundParam } from '../../lib/pages';
+
+interface Props {
+  /** The heading this marker stands in for. */
+  forId: string;
+  /** The heading's text, for the button's name ("Show hidden part: …"). */
+  title: string;
+  context: ContentContext;
+}
+
+const { forId, title, context } = Astro.props;
+const t = useTranslations(context.locale);
+const siteLang = isFallbackContent(context)
+  ? (getLocale(context.locale)?.hreflang ?? context.locale)
+  : undefined;
+const contentLang =
+  context.contentLang === context.locale
+    ? undefined
+    : (getLocale(context.contentLang)?.hreflang ?? context.contentLang);
+const [before, after] = splitAroundParam((marker) => t('doc.hiddenPart', { title: marker }));
+---
+
+<div class="st-hidden-marker st-no-print" data-marker-for={forId} lang={siteLang} hidden>
+  <p class="st-hidden-marker__text">
+    <Icon name="lucide:eye-off" />
+    <span>
+      {before}
+      <span lang={contentLang}>{title}</span>
+      {after}
+    </span>
+  </p>
+  <Button
+    variant="secondary"
+    class="st-hidden-marker__show"
+    data-show-hidden={forId}
+    aria-label={t('doc.showHiddenNamed', { title })}
+  >
+    {t('doc.hiddenShow')}
+  </Button>
+</div>
+
+<style>
+  .st-hidden-marker {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-2) var(--st-space-3);
+    max-inline-size: var(--st-measure);
+    padding: var(--st-space-2) var(--st-space-3);
+    border: var(--st-border-width) dashed var(--st-border-strong);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface-2);
+    color: var(--st-text);
+  }
+
+  .st-hidden-marker[hidden] {
+    display: none;
+  }
+
+  .st-hidden-marker__text {
+    display: flex;
+    flex: 1 1 14rem;
+    align-items: baseline;
+    gap: var(--st-space-2);
+    min-inline-size: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+</style>

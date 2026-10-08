@@ -34,6 +34,10 @@ The full approved build plan is `docs/build-plan.md`. Read the part that covers 
 - Only free and open-source libraries. No third-party network requests at runtime.
 - Run `pnpm gate:fast` before claiming a change is done. Paste real output, never a summary.
 
+## Design skills
+
+Any visual, UX or frontend change starts with `.claude/skills/stoep-design/SKILL.md`. The vendored skills next to it (`frontend-design`, `web-interface-guidelines`, `accessibility`, `review-animations`) are third-party and pinned. Where they disagree with this file or with `stoep-design`, this project's rules win. ADR 0007 covers how they are chosen and updated; the design revamp plan is `docs/work-packages/WP-50-design-revamp.md`.
+
 ## Windows notes
 
 - Paths with spaces in `docs/`: use `node:fs` and `node:path`, never shell globbing.

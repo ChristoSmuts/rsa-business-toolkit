@@ -17,6 +17,7 @@ import { useTranslations } from '../../i18n';
 import type { ContentContext } from '../../lib/content/context';
 import { alignClass, plainText, tableIsWide } from '../../lib/content/render';
 import type { Block } from '../../lib/content/schema';
+import { appliesAttributes } from '../../lib/applicability';
 import { uid } from '../../scripts/uid';
 
 interface Props {
@@ -31,6 +32,10 @@ const t = useTranslations(context.contentLang);
 const captionId = uid('st-table');
 const wide = tableIsWide(block);
 const headerText = block.header.map((cell) => plainText(cell));
+/** A row's own condition (`rowWhen`, WP-31), for "Only what applies to me". */
+const rowConditions = block.rows.map((_, index) =>
+  appliesAttributes(block.rowWhen?.[index] ?? undefined),
+);
 ---
 
 <TableScroll labelledby={captionId} wide={wide}>
@@ -49,8 +54,11 @@ const headerText = block.header.map((cell) => plainText(cell));
     </thead>
     {block.rows.length > 0 && (
       <tbody>
-        {block.rows.map((row) => (
-          <tr>
+        {block.rows.map((row, index) => (
+          <tr
+            data-applies={Object.keys(rowConditions[index] ?? {}).length > 0 ? '' : undefined}
+            {...rowConditions[index]}
+          >
             {row.map((cell, column) => (
               <td
                 class:list={[alignClass(block.align[column])]}

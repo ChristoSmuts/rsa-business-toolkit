@@ -37,7 +37,7 @@ export default defineConfig(
     },
   },
   {
-    files: ['src/lib/store.ts', 'src/lib/storage/**', 'src/scripts/**', 'tests/**'],
+    files: ['src/lib/store.ts', 'src/lib/storage/**', 'tests/**'],
     rules: { 'no-restricted-globals': 'off' },
   },
   // e2e specs and helpers must use the guarded `test` from tests/e2e/fixtures.ts. The runtime check

@@ -127,7 +127,15 @@
     display: none !important;
   }
 
+  /*
+   * Ancestors become plain blocks: a grid whose other tracks were removed (the document sidebar,
+   * a template's form pane) would otherwise keep their widths and squeeze the sheet into one
+   * narrow column (WP-32, measured: the tax invoice printed 272px wide).
+   */
   body:has([data-print-sheet]) :has([data-print-sheet]) {
+    display: block !important;
+    inline-size: auto !important;
+    max-inline-size: none !important;
     margin: 0 !important;
     padding: 0 !important;
     border: 0 !important;

@@ -1,0 +1,89 @@
+---
+/**
+ * A native modal `<dialog>` that asks before something that cannot be undone ("Remove all
+ * ticks?", "Clear all your data?").
+ *
+ * The buttons sit in a `<form method="dialog">`, so the browser closes the dialog and sets
+ * `returnValue` to `confirm` or `cancel` with no script, and Escape cancels. The safe choice,
+ * cancel, comes first and has focus when the dialog opens. A script opens it with `showModal()`
+ * and acts on the `close` event (`src/scripts/confirm-dialog.ts`); it never opens without
+ * JavaScript, so the controls that open it are hidden then too.
+ */
+import Button from './Button.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  body: string;
+  confirmLabel: string;
+  cancelLabel: string;
+  /** Language of the strings, when it is not the page's. */
+  lang?: string | undefined;
+}
+
+const { id, title, body, confirmLabel, cancelLabel, lang } = Astro.props;
+---
+
+<dialog
+  class="st-dialog"
+  id={id}
+  aria-labelledby={`${id}-title`}
+  aria-describedby={`${id}-body`}
+  lang={lang}
+>
+  <form method="dialog" class="st-dialog__form">
+    <h2 class="st-dialog__title" id={`${id}-title`}>
+      {title}
+    </h2>
+    <p id={`${id}-body`}>{body}</p>
+    <div class="st-dialog__actions">
+      <Button variant="secondary" type="submit" value="cancel" autofocus>
+        {cancelLabel}
+      </Button>
+      <Button variant="danger" type="submit" value="confirm">
+        {confirmLabel}
+      </Button>
+    </div>
+  </form>
+</dialog>
+
+<style>
+  .st-dialog {
+    inline-size: min(32rem, calc(100% - 2 * var(--st-space-4)));
+    max-inline-size: none;
+    padding: 0;
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-lg);
+    background-color: var(--st-surface);
+    box-shadow: var(--st-shadow-2);
+    color: var(--st-text);
+  }
+
+  .st-dialog::backdrop {
+    background-color: color-mix(in oklab, var(--st-shadow-ink) 55%, transparent);
+  }
+
+  .st-dialog__form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-4);
+    padding: var(--st-space-5);
+  }
+
+  .st-dialog__title {
+    font-size: var(--st-text-xl);
+  }
+
+  .st-dialog__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--st-space-3);
+    justify-content: flex-end;
+  }
+
+  @media (forced-colors: active) {
+    .st-dialog {
+      border-color: CanvasText;
+    }
+  }
+</style>

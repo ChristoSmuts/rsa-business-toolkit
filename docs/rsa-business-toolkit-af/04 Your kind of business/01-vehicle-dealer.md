@@ -121,6 +121,8 @@ Hou die sertifikaat teen die muur by die perseel, nie in ’n laai by die huis n
 
 ’n Voertuig wat jy as voorraad hou, moet êrens op die nasionale stelsel aangeteken wees.
 
+Vir ’n handelaar is ’n Traffic Register Number (TRN) of Business Register Number Certificate (BRNC) die moeite werd. Dit skei voorraadvoertuie van jou persoonlike voertuig op die stelsel, wat saak maak wanneer boetes opdaag.
+
 ### As jy as ’n maatskappy handel dryf
 
 Jy het ’n Business Register Number Certificate (BRNC) nodig. Die volledige proses, dokumente, koste en die reëls oor die gevolmagtigde is in [Voertuie vir jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
@@ -138,8 +140,6 @@ Of doen aansoek om ’n Traffic Register Number (verkeersregisternommer). As jy 
 > **In gewone taal:** As jy onder ’n besigheidsnaam handel dryf, maar nie ’n geregistreerde maatskappy is nie, kan jy ’n verkeersregisternommer kry sodat voertuie onder daardie naam geregistreer kan word.
 
 ’n Verkeersregisternommer laat ’n handelsnaam op die voertuigrekord verskyn eerder as net jou persoonlike ID. Doen aansoek by jou registrasie-owerheid. Bring bewys van adres, ID-foto’s en die voorgeskrewe fooi.
-
-Vir ’n handelaar is ’n TRN of BRNC die moeite werd. Dit skei voorraadvoertuie van jou persoonlike voertuig op die stelsel, wat saak maak wanneer boetes opdaag.
 
 ---
 
@@ -406,7 +406,7 @@ Baie klein handelaars begin so: voorraad word aanlyn geadverteer, die gesprek ge
 
 **Jou huis word die geregistreerde perseel.** Jou SAPS-registrasie vir tweedehandse goedere, jou BRNC en jou maatskappy se adres is almal by jou huis. ’n Polisiebeampte kan die perseel en jou register daar inspekteer. Dit is normaal. Hou die register en sertifikaat byderhand.
 
-**Elke besigtiging is ’n ontmoeting met ’n vreemdeling.** Lees [Tuiswerk en veilige ontmoetings](../01%20Core%20-%20applies%20to%20everyone/09-working-from-home-and-safety.md) heeltemal. Dit dek waar om te ontmoet, wat om van die koper te kry voor die ontmoeting, hoe om ’n toetsrit te hanteer sonder om die voertuig te verloor, waarom ’n skermskoot van ’n betalingsbewys nooit genoeg is nie, hoe om kontant na te gaan, en die algemene swendelarye wat op verkopers gemik is. Vir ’n handelaar maak die bedrae wat ter sprake is daardie gewoontes verpligtend, nie opsioneel nie.
+**Elke besigtiging is ’n ontmoeting met ’n vreemdeling.** Lees [Van die huis af werk en veilig ontmoet](../01%20Core%20-%20applies%20to%20everyone/09-working-from-home-and-safety.md) heeltemal. Dit dek waar om te ontmoet, wat om van die koper te kry voor die ontmoeting, hoe om ’n toetsrit te hanteer sonder om die voertuig te verloor, waarom ’n skermskoot van ’n betalingsbewys nooit genoeg is nie, hoe om kontant na te gaan, en die algemene swendelarye wat op verkopers gemik is. Vir ’n handelaar maak die bedrae wat ter sprake is daardie gewoontes verpligtend, nie opsioneel nie.
 
 Die kort weergawe vir ’n handelaar:
 

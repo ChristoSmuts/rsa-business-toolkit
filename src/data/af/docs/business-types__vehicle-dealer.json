@@ -882,6 +882,18 @@
       "sourceHash": "bd59398b7c3f7764"
     },
     {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vir ’n handelaar is ’n Traffic Register Number (TRN) of Business Register Number Certificate (BRNC) die moeite werd. Dit skei voorraadvoertuie van jou persoonlike voertuig op die stelsel, wat saak maak wanneer boetes opdaag."
+        }
+      ],
+      "hash": "0677cdcd57bd6e9e",
+      "id": "layer-2-getting-vehicles-registered-to-the-business.2",
+      "kind": "paragraph",
+      "sourceHash": "ab9500365ae8b65d"
+    },
+    {
       "appliesTo": {
         "entity": "pty"
       },
@@ -1016,20 +1028,8 @@
       "sourceHash": "8fa0ae4fc192acbc"
     },
     {
-      "c": [
-        {
-          "t": "text",
-          "v": "Vir ’n handelaar is ’n TRN of BRNC die moeite werd. Dit skei voorraadvoertuie van jou persoonlike voertuig op die stelsel, wat saak maak wanneer boetes opdaag."
-        }
-      ],
-      "hash": "cf7ad321befa8cff",
-      "id": "if-you-trade-as-a-sole-proprietor.6",
-      "kind": "paragraph",
-      "sourceHash": "16041ebc84eaff44"
-    },
-    {
       "hash": "58b63e273b964039",
-      "id": "if-you-trade-as-a-sole-proprietor.7",
+      "id": "if-you-trade-as-a-sole-proprietor.6",
       "kind": "hr",
       "sourceHash": "58b63e273b964039"
     },
@@ -2741,7 +2741,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Tuiswerk en veilige ontmoetings"
+              "v": "Van die huis af werk en veilig ontmoet"
             }
           ],
           "doc": "core/working-from-home-and-safety",
@@ -2752,7 +2752,7 @@
           "v": " heeltemal. Dit dek waar om te ontmoet, wat om van die koper te kry voor die ontmoeting, hoe om ’n toetsrit te hanteer sonder om die voertuig te verloor, waarom ’n skermskoot van ’n betalingsbewys nooit genoeg is nie, hoe om kontant na te gaan, en die algemene swendelarye wat op verkopers gemik is. Vir ’n handelaar maak die bedrae wat ter sprake is daardie gewoontes verpligtend, nie opsioneel nie."
         }
       ],
-      "hash": "ee2fb481de6e234a",
+      "hash": "5279088cdc76817f",
       "id": "dealing-from-home-with-no-yard.4",
       "kind": "paragraph",
       "sourceHash": "37c367da45e84cba"
@@ -3035,6 +3035,7 @@
           ],
           "doc": "business-types/vehicle-dealer",
           "id": "business-types/vehicle-dealer:ddf401f6",
+          "sameAs": "lookup/checklist:57a8c2a4",
           "when": {
             "businessTypes": [
               "vehicle-dealer"
@@ -3051,6 +3052,7 @@
           ],
           "doc": "business-types/vehicle-dealer",
           "id": "business-types/vehicle-dealer:9df05312",
+          "sameAs": "lookup/checklist:9aefc6b4",
           "when": {
             "businessTypes": [
               "vehicle-dealer"
@@ -3131,6 +3133,7 @@
           ],
           "doc": "business-types/vehicle-dealer",
           "id": "business-types/vehicle-dealer:621643ad",
+          "sameAs": "lookup/checklist:cdc31934",
           "when": {
             "businessTypes": [
               "vehicle-dealer"
@@ -3147,6 +3150,7 @@
           ],
           "doc": "business-types/vehicle-dealer",
           "id": "business-types/vehicle-dealer:70c5bd63",
+          "sameAs": "lookup/checklist:b196800c",
           "when": {
             "businessTypes": [
               "vehicle-dealer"
@@ -3406,7 +3410,7 @@
       "sourceHash": "3cbbad0d8e4dd749"
     }
   ],
-  "contentHash": "be89bd8e0dc7b30c",
+  "contentHash": "2f8be8b72ad1d009",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -149,9 +149,9 @@ export interface FutureRoute {
 }
 
 /**
- * Empty, and that is the goal state. WP-20 built every route in build plan B1 except the wizard and
- * My path (WP-31), and no page links to those two until `WIZARD_AVAILABLE` in `src/lib/routes.ts`
- * says they exist. The generated list milestone 1 needed deleted itself the way it was designed to:
+ * Empty, and that is the goal state. Every route in build plan B1 is built: WP-20 built all but the
+ * wizard and My path, and WP-31 built those two (and turned `WIZARD_AVAILABLE` on, so pages link to
+ * them again). The generated list milestone 1 needed deleted itself the way it was designed to:
  * the audit failed on each entry whose route had been built.
  */
 export const KNOWN_FUTURE_ROUTES: readonly FutureRoute[] = [];

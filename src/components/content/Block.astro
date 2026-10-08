@@ -19,9 +19,11 @@ import Inline from './Inline.astro';
 import TableBlock from './TableBlock.astro';
 import TaskListBlock from './TaskListBlock.astro';
 import TermsBlock from './TermsBlock.astro';
+import HiddenMarker from './HiddenMarker.astro';
 import { useTranslations } from '../../i18n';
 import type { ContentContext } from '../../lib/content/context';
-import { headingTag } from '../../lib/content/render';
+import { headingTag, plainText } from '../../lib/content/render';
+import { appliesAttributes } from '../../lib/applicability';
 import type { Block } from '../../lib/content/schema';
 
 interface Props {
@@ -30,22 +32,49 @@ interface Props {
   /** Name for a table's scroll region: the heading above it, or the page title. */
   caption: string;
   /** The heading's tag in its outline, from `headingTags`; `headingTag(depth)` when absent. */
-  headingTag?: 'h2' | 'h3' | 'h4' | undefined;
+  headingTag?: 'h2' | 'h3' | 'h4' | 'h5' | undefined;
   /** True for the first tasklist in its block list. */
   firstTasklist?: boolean | undefined;
+  /** A prompt's number on the page, for its copy button (WP-30). */
+  promptNumber?: number | undefined;
 }
 
-const { block, context, caption, headingTag: tag, firstTasklist = false } = Astro.props;
+const {
+  block,
+  context,
+  caption,
+  headingTag: tag,
+  firstTasklist = false,
+  promptNumber,
+} = Astro.props;
 const t = useTranslations(context.contentLang);
 const Heading = tag ?? (block.kind === 'heading' ? headingTag(block.depth) : 'h2');
+/*
+ * A heading that applies to one entity or some kinds of business (WP-31) carries its condition, so
+ * `src/scripts/applies.ts` can collapse its section into the marker rendered before it.
+ */
+const applies = block.kind === 'heading' ? appliesAttributes(block.appliesTo) : {};
+const filterable = block.kind === 'heading' && block.appliesTo && Object.keys(applies).length > 0;
 ---
 
 {block.hidden ? (
   <span id={block.id} hidden />
 ) : block.kind === 'heading' ? (
-  <Heading id={block.id} tabindex="-1" class:list={[block.pseudo && 'st-pseudo-heading']}>
-    <Inline runs={block.c} context={context} />
-  </Heading>
+  <Fragment>
+    {filterable && block.appliesTo && (
+      <HiddenMarker forId={block.id} title={plainText(block.c)} context={context} />
+    )}
+    <Heading
+      id={block.id}
+      tabindex="-1"
+      class:list={[block.pseudo && 'st-pseudo-heading']}
+      data-applies={filterable ? '' : undefined}
+      data-depth={block.depth}
+      {...applies}
+    >
+      <Inline runs={block.c} context={context} />
+    </Heading>
+  </Fragment>
 ) : block.kind === 'paragraph' ? (
   <p>
     <Inline runs={block.c} context={context} />
@@ -87,7 +116,7 @@ const Heading = tag ?? (block.kind === 'heading' ? headingTag(block.depth) : 'h2
 ) : block.kind === 'table' ? (
   <TableBlock block={block} context={context} caption={caption} />
 ) : block.kind === 'code' ? (
-  <CodeBlock block={block} context={context} caption={caption} />
+  <CodeBlock block={block} context={context} caption={caption} promptNumber={promptNumber} />
 ) : block.kind === 'terms' ? (
   <TermsBlock block={block} context={context} />
 ) : block.kind === 'glossary' ? (

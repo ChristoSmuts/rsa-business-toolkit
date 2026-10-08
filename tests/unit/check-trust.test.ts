@@ -220,32 +220,79 @@ describe('language of parts on an Afrikaans page', () => {
     }
   });
 
-  it('reads proper names from the English register: titles, their parts and linked names', () => {
-    const names = registerNames({
+  it('takes as names only the register titles the translation kept unchanged', () => {
+    const english = {
       entries: [
-        {
-          title: 'SARS — Guide to Provisional Tax',
-          supports: [
-            { t: 'text', v: 'as ' },
-            { t: 'link', href: 'https://example.org', c: [{ t: 'text', v: 'Michalsons' }] },
-          ],
-        },
-        { title: 'Govchain, BRNC certificate guide' },
+        { id: 'a', title: 'Govchain, BRNC certificate guide' },
+        { id: 'b', title: 'SARS — Tax calendar' },
+        { id: 'c', title: 'Flip the Market — Dealer licensing' },
       ],
-      acts: [{ name: 'Second-Hand Goods Act 6 of 2009' }],
-    });
+      acts: [{ id: 'act', name: 'Second-Hand Goods Act 6 of 2009' }],
+    };
+    const afrikaans = {
+      entries: [
+        { id: 'a', title: 'Govchain, BRNC certificate guide' },
+        { id: 'b', title: 'SARS — Belastingkalender' },
+        { id: 'c', title: 'Flip the Market — Dealer licensing' },
+      ],
+      acts: [{ id: 'act', name: 'Second-Hand Goods Act 6 of 2009' }],
+    };
+    const names = registerNames(english, afrikaans);
     for (const name of [
-      'SARS — Guide to Provisional Tax',
-      'Guide to Provisional Tax',
+      'Govchain, BRNC certificate guide',
       'Govchain',
-      'BRNC certificate guide',
-      'Michalsons',
+      'Flip the Market',
       'Second-Hand Goods Act 6 of 2009',
     ]) {
       expect(names, name).toContain(name);
     }
+    // A title the translation changed is not a name, nor are a kept title's other parts.
+    for (const name of ['SARS — Tax calendar', 'Tax calendar', 'BRNC certificate guide']) {
+      expect(names, name).not.toContain(name);
+    }
     expect(isProtectedText('Govchain —', names)).toBe(true);
     expect(isProtectedText('Govchain se gids', names)).toBe(false);
+  });
+
+  it('still reports translatable English, matched case by case (review WP-40 integration p1)', () => {
+    const names = [
+      ...registerNames(
+        {
+          entries: [{ id: 'faq', title: 'SARS — Frequently Asked Questions' }],
+          acts: [],
+        },
+        { entries: [{ id: 'faq', title: 'SARS — Gereelde vrae' }], acts: [] },
+      ),
+    ];
+    for (const text of [
+      'Frequently Asked Questions',
+      'SARS — Tax calendar',
+      'Company registration',
+      'Company annual returns, including UIF and the self-employed.',
+      'THE END is near',
+    ]) {
+      expect(isProtectedText(text, names), text).toBe(false);
+    }
+    const enText = '<html lang="en-ZA"><body><h2>Frequently Asked Questions</h2></body></html>';
+    const afText = '<html lang="af-ZA"><body><h2>Frequently Asked Questions</h2></body></html>';
+    expect(langProblems(afText, enText, new Set(), names)).toEqual([
+      'English text marked as Afrikaans: "Frequently Asked Questions"',
+    ]);
+  });
+
+  it('matches names case by case, with a capital allowed on a lower-case term-list name', () => {
+    expect(isProtectedText('Govchain', ['Govchain'])).toBe(true);
+    expect(isProtectedText('govchain', ['Govchain'])).toBe(false);
+    expect(isProtectedText('Voetstoots', ['voetstoots'])).toBe(true);
+    expect(isProtectedText('voetstoots', ['voetstoots'])).toBe(true);
+    expect(isProtectedText('VOETSTOOTS clause', ['voetstoots'])).toBe(false);
+  });
+
+  it('takes no "publisher" from an Act name (review WP-40 integration pass 2, nit 2)', () => {
+    const act = { id: 'fcd', name: 'Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972' };
+    const names = registerNames({ entries: [], acts: [act] }, { entries: [], acts: [act] });
+    expect(names).toContain(act.name);
+    expect(names).not.toContain('Foodstuffs');
   });
 
   it('treats dates in months spelt alike, sizes and same-in-both labels as neutral', () => {

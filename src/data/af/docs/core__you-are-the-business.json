@@ -931,7 +931,7 @@
       "sourceHash": "f0553588d9a29fa5"
     },
     {
-      "hash": "0a9c30ed635c6eb6",
+      "hash": "698b27ed5e5015d6",
       "id": "prevention-beats-collection.2",
       "items": [
         [
@@ -981,7 +981,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Tuiswerk en veilige ontmoetings"
+                "v": "Van die huis af werk en veilig ontmoet"
               }
             ],
             "doc": "core/working-from-home-and-safety",
@@ -1672,7 +1672,10 @@
             }
           ],
           "doc": "core/you-are-the-business",
-          "id": "core/you-are-the-business:8e6615a6"
+          "id": "core/you-are-the-business:8e6615a6",
+          "when": {
+            "entity": "pty"
+          }
         },
         {
           "block": "continuity.1",
@@ -1683,7 +1686,10 @@
             }
           ],
           "doc": "core/you-are-the-business",
-          "id": "core/you-are-the-business:b554cb87"
+          "id": "core/you-are-the-business:b554cb87",
+          "when": {
+            "entity": "pty"
+          }
         },
         {
           "block": "continuity.1",
@@ -1694,7 +1700,10 @@
             }
           ],
           "doc": "core/you-are-the-business",
-          "id": "core/you-are-the-business:b5a8d0d2"
+          "id": "core/you-are-the-business:b5a8d0d2",
+          "when": {
+            "entity": "pty"
+          }
         },
         {
           "block": "continuity.1",
@@ -1723,7 +1732,7 @@
       "sourceHash": "79ab900f53dc5dc7"
     }
   ],
-  "contentHash": "6b583385a8e88f84",
+  "contentHash": "548e4b731e81c690",
   "generated": {
     "date": "2026-09-14",
     "tool": "Claude, Anthropic"

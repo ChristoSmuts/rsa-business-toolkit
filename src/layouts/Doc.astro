@@ -15,8 +15,13 @@
  * `assertDocTrust` runs first, so a document that would render without sources and without a
  * source note fails the build instead of shipping (D5).
  */
+import pathsData from '../data/paths.json';
 import Page from './Page.astro';
 import BusinessTypeTiles from '../components/pages/BusinessTypeTiles.astro';
+import ChecklistElsewhere from '../components/interactive/ChecklistElsewhere.astro';
+import AppliesScope from '../components/interactive/AppliesScope.astro';
+import AppliesSwitch from '../components/interactive/AppliesSwitch.astro';
+import ChecklistSummary from '../components/interactive/ChecklistSummary.astro';
 import Badge from '../components/ui/Badge.astro';
 import Callout from '../components/ui/Callout.astro';
 import EffortMeter from '../components/ui/EffortMeter.astro';
@@ -28,6 +33,7 @@ import TableOfContents from '../components/navigation/TableOfContents.astro';
 import AiNotice from '../components/trust/AiNotice.astro';
 import SourcesForPage from '../components/trust/SourcesForPage.astro';
 import TranslationNotice from '../components/trust/TranslationNotice.astro';
+import TemplateTool from '../components/templates/TemplateTool.astro';
 import { formatDate, useTranslations } from '../i18n';
 import { DEFAULT_LOCALE, getLocale, type Locale } from '../i18n/locales';
 import { createContentContext } from '../lib/content/context';
@@ -44,7 +50,11 @@ import {
   sectionHue,
   splitAroundParam,
 } from '../lib/pages';
+import { docHasConditions } from '../lib/path-pages';
 import { href } from '../lib/paths';
+import { APP_ROUTES, CHECKLIST_SAVES, TEMPLATES_FILLABLE, WIZARD_AVAILABLE } from '../lib/routes';
+import { isTemplateSlug } from '../lib/templates/draft';
+import { parseTemplate } from '../lib/templates/placeholders';
 
 interface Props {
   locale: Locale;
@@ -55,11 +65,14 @@ interface Props {
   sources: SourcesFile | undefined;
   /** The language `sources` is in; English until `lookup/sources` is translated. */
   sourcesLang: Locale;
+  /** The English register when `sources` is not English (`ContentContext.keptInEnglish`). */
+  englishSources?: SourcesFile | undefined;
   /** Every business type, for the effort meter and the related-type hints. */
   businessTypes: readonly BusinessType[];
 }
 
-const { locale, manifest, doc, glossary, sources, sourcesLang, businessTypes } = Astro.props;
+const { locale, manifest, doc, glossary, sources, sourcesLang, englishSources, businessTypes } =
+  Astro.props;
 /** The document that is the business-types hub; B6 gives it the type tiles above its text. */
 const BUSINESS_TYPES_HUB = 'business-types/pick-your-business-type';
 assertDocTrust(doc);
@@ -76,6 +89,7 @@ const context = createContentContext({
   glossary,
   sources,
   sourcesLang,
+  englishSources,
   docId: doc.id,
 });
 
@@ -87,6 +101,13 @@ const previousParts = splitAroundParam((title) => t('nav.previous', { title }));
 const nextParts = splitAroundParam((title) => t('nav.next', { title }));
 const hue = sectionHue(doc.section);
 const { terms, rest } = splitTermsBlocks(doc.blocks);
+/**
+ * A template becomes a form with a live preview (WP-32): its text before and after the template
+ * renders as on any document, and the template itself is `TemplateTool`. Its headings are the
+ * form's groups, so it has no contents list of its own.
+ */
+const templateSlug = doc.kind === 'template' && isTemplateSlug(doc.slug) ? doc.slug : undefined;
+const template = TEMPLATES_FILLABLE && templateSlug ? parseTemplate(doc) : undefined;
 const translationStatus = isFallback ? 'fallback' : doc.translation.status;
 const englishHref = locale === DEFAULT_LOCALE ? undefined : href(DEFAULT_LOCALE, route);
 
@@ -99,6 +120,13 @@ const effortLabels = [
   t('businessTypes.effort.high'),
 ] as const;
 const coreHref = sectionHref(manifest, 'core', locale);
+/*
+ * "Only what applies to me" (WP-31): on a page with parts for one entity or some kinds of business.
+ * The master checklist has its own "Show: Only what applies to me" choice instead of the switch.
+ */
+const filterable = WIZARD_AVAILABLE && docHasConditions(doc);
+const scopeMode = doc.kind === 'checklist' ? 'checklist' : 'switch';
+const showSwitch = filterable && scopeMode === 'switch';
 const relatedTypes = businessType
   ? doc.related
       .map((id) => businessTypes.find((type) => type.doc === id))
@@ -114,13 +142,18 @@ const relatedTypes = businessType
   description={doc.summary}
   ogType="article"
 >
-  <div class="st-container st-doc-grid st-doc" data-section={hue}>
+  <div
+    class:list={['st-container st-doc-grid st-doc', { 'st-doc--tool': template }]}
+    data-section={hue}
+  >
     <SectionSidebar
       manifest={manifest}
       sectionId={doc.section}
       currentDocId={doc.id}
       locale={locale}
-    />
+    >
+      {showSwitch && <AppliesSwitch slot="after" locale={locale} placement="sidebar" />}
+    </SectionSidebar>
 
     <div class="st-stack st-stack-lg st-doc__main">
       <Breadcrumb crumbs={crumbs} locale={locale} />
@@ -181,6 +214,10 @@ const relatedTypes = businessType
           </Callout>
         )}
 
+        {doc.kind === 'checklist' && CHECKLIST_SAVES && (
+          <ChecklistSummary locale={locale} doc={doc} />
+        )}
+
         {doc.kind === 'template' && (
           <Callout variant="note" label={t('doc.note')}>
             <p>
@@ -213,14 +250,42 @@ const relatedTypes = businessType
           </details>
         )}
 
-        <TableOfContents
-          headings={doc.headings}
-          locale={locale}
-          variant="details"
-          contentLang={contentLangTag}
-        />
+        {template && templateSlug ? (
+          <Fragment>
+            <Blocks blocks={template.before} context={context} fallbackCaption={doc.title} />
+            <TemplateTool
+              locale={locale}
+              slug={templateSlug}
+              model={template}
+              context={context}
+              textLang={contentLangTag}
+            />
+            <Blocks blocks={template.after} context={context} fallbackCaption={doc.title} />
+          </Fragment>
+        ) : (
+          <Fragment>
+            <TableOfContents
+              headings={doc.headings}
+              locale={locale}
+              variant="details"
+              contentLang={contentLangTag}
+            />
 
-        <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
+            {showSwitch && <AppliesSwitch locale={locale} placement="inline" />}
+
+            {filterable ? (
+              <AppliesScope locale={locale} mode={scopeMode}>
+                <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
+              </AppliesScope>
+            ) : (
+              <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
+            )}
+          </Fragment>
+        )}
+
+        {doc.kind === 'checklist' && CHECKLIST_SAVES && (
+          <ChecklistElsewhere locale={locale} manifest={manifest} docId={doc.id} />
+        )}
 
         {relatedTypes.length > 0 && (
           <section class="st-stack" aria-labelledby="st-related-types">
@@ -248,45 +313,74 @@ const relatedTypes = businessType
       </article>
 
       {(pager.previous || pager.next) && (
-        <nav class="st-pager" aria-label={t('nav.pagerLabel')}>
-          {pager.previous && (
-            <a class="st-pager__link" href={pager.previous.href} rel="prev">
-              <span>
-                {previousParts[0]}
-                <span lang={pager.previous.lang}>{pager.previous.title}</span>
-                {previousParts[1]}
-              </span>
-            </a>
-          )}
-          {pager.next && (
-            <a class="st-pager__link st-pager__next" href={pager.next.href} rel="next">
-              <span>
-                {nextParts[0]}
-                <span lang={pager.next.lang}>{pager.next.title}</span>
-                {nextParts[1]}
-              </span>
-            </a>
-          )}
-        </nav>
+        <st-path-pager
+          data-doc={doc.id}
+          data-locale={locale}
+          data-version={pathsData.hash}
+          data-my-path={href(locale, APP_ROUTES.myPath)}
+          data-my-path-title={t('nav.myPath')}
+        >
+          <nav class="st-pager" aria-label={t('nav.pagerLabel')}>
+            {pager.previous && (
+              <a class="st-pager__link" href={pager.previous.href} rel="prev">
+                <span>
+                  {previousParts[0]}
+                  <span lang={pager.previous.lang} data-pager-title>
+                    {pager.previous.title}
+                  </span>
+                  {previousParts[1]}
+                </span>
+              </a>
+            )}
+            {pager.next && (
+              <a class="st-pager__link st-pager__next" href={pager.next.href} rel="next">
+                <span>
+                  {nextParts[0]}
+                  <span lang={pager.next.lang} data-pager-title>
+                    {pager.next.title}
+                  </span>
+                  {nextParts[1]}
+                </span>
+              </a>
+            )}
+          </nav>
+        </st-path-pager>
       )}
     </div>
 
-    <TableOfContents
-      headings={doc.headings}
-      locale={locale}
-      variant="column"
-      contentLang={contentLangTag}
-    />
+    {!template && (
+      <TableOfContents
+        headings={doc.headings}
+        locale={locale}
+        variant="column"
+        contentLang={contentLangTag}
+      />
+    )}
   </div>
 </Page>
 
+<script>
+  import '../scripts/path-progress';
+</script>
+
 <style>
+  st-path-pager {
+    display: block;
+  }
+
   .st-doc {
     padding-block: var(--st-space-5) var(--st-space-8);
   }
 
   .st-doc__main {
     min-inline-size: 0;
+  }
+
+  /* A fillable template has no contents column: the form and its preview take the room. */
+  @media (width >= 1280px) {
+    .st-doc--tool {
+      grid-template-columns: var(--st-sidebar) minmax(0, 1fr);
+    }
   }
 
   .st-doc__section {

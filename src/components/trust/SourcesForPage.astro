@@ -59,18 +59,34 @@ if (count !== listed) {
 /**
  * Text in another language than the page is marked, while the labels around it are not. The
  * entries are in the register's language, which can lag the page's: an Afrikaans page carries the
- * English register until `lookup/sources` is translated. The source note and an entry's reason for
- * having no link come from `content-meta/` (`provenance.json`, `docs.meta.json`), which is written
- * in English only (backlog: translate them), so they are English on every page whatever language
- * the document is in.
+ * English register until `lookup/sources` is translated, and a translated register keeps some
+ * titles and no-link reasons in English (`ContentContext.keptInEnglish`). The source note comes
+ * from `content-meta/provenance.json`, which is written in English only (backlog: translate it),
+ * so it is English on every page; `dist:trust` reports it the day an Afrikaans note lands.
  */
 const noteLang = locale === DEFAULT_LOCALE ? undefined : getLocale(DEFAULT_LOCALE)?.hreflang;
 const dataLang =
   context.sourcesLang === locale
     ? undefined
     : (getLocale(context.sourcesLang)?.hreflang ?? context.sourcesLang);
-/** Register text renders as one island in the register's language, labels and docrefs included. */
-const registerContext: ContentContext = { ...context, contentLang: context.sourcesLang };
+/**
+ * Register text renders as one island in the register's language, labels and docrefs included.
+ * The page's glossary is dropped when the languages differ, so a term run inside English register
+ * text could never show an Afrikaans definition (no register text has one today).
+ */
+const registerContext: ContentContext = {
+  ...context,
+  contentLang: context.sourcesLang,
+  glossary: context.sourcesLang === context.contentLang ? context.glossary : undefined,
+};
+const englishTag = getLocale(DEFAULT_LOCALE)?.hreflang;
+/** A translated register keeps some titles and reasons in English (WP-40); those are marked. */
+const titleLang = (id: string): string | undefined =>
+  context.keptInEnglish.titles.has(id) ? englishTag : dataLang;
+const actLang = (id: string): string | undefined =>
+  context.keptInEnglish.acts.has(id) ? englishTag : dataLang;
+const reasonLang = (id: string): string | undefined =>
+  context.keptInEnglish.reasons.has(id) ? englishTag : dataLang;
 /** Build plan D5: every content page links the full register, not only pages without sources. */
 const registerHref =
   context.docId === 'lookup/sources'
@@ -105,7 +121,7 @@ const noteLinks = (sourceNote?.see ?? [])
             <p class="st-source__title">
               {entry.url ? (
                 <a class="st-link-block" href={entry.url} rel="noopener noreferrer">
-                  <span lang={dataLang}>{entry.title}</span>{' '}
+                  <span lang={titleLang(entry.id)}>{entry.title}</span>{' '}
                   <Icon name="lucide:external-link" size="0.9em" />
                   <span class="st-visually-hidden">
                     {entry.official
@@ -114,7 +130,7 @@ const noteLinks = (sourceNote?.see ?? [])
                   </span>
                 </a>
               ) : (
-                <span class="st-source__name" lang={dataLang}>
+                <span class="st-source__name" lang={titleLang(entry.id)}>
                   {entry.title}
                 </span>
               )}
@@ -133,7 +149,7 @@ const noteLinks = (sourceNote?.see ?? [])
               </p>
             )}
             {entry.noUrlReason && (
-              <p class="st-hint" lang={noteLang}>
+              <p class="st-hint" lang={reasonLang(entry.id)}>
                 {entry.noUrlReason}
               </p>
             )}
@@ -145,7 +161,7 @@ const noteLinks = (sourceNote?.see ?? [])
             <ul class="st-stack st-stack-sm" role="list">
               {acts.map((act) => (
                 <li>
-                  <span class="st-source__name" lang={dataLang}>
+                  <span class="st-source__name" lang={actLang(act.id)}>
                     {act.name}
                   </span>
                   <span class="st-hint" lang={dataLang}>

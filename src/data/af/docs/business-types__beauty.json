@@ -638,6 +638,7 @@
           ],
           "doc": "business-types/beauty",
           "id": "business-types/beauty:4154a207",
+          "sameAs": "lookup/checklist:08c14d32",
           "when": {
             "businessTypes": [
               "beauty"
@@ -654,6 +655,7 @@
           ],
           "doc": "business-types/beauty",
           "id": "business-types/beauty:3e9fa384",
+          "sameAs": "lookup/checklist:5ddbfd24",
           "when": {
             "businessTypes": [
               "beauty"
@@ -670,6 +672,7 @@
           ],
           "doc": "business-types/beauty",
           "id": "business-types/beauty:acd577dc",
+          "sameAs": "lookup/checklist:4f9e60d7",
           "when": {
             "businessTypes": [
               "beauty"
@@ -686,6 +689,7 @@
           ],
           "doc": "business-types/beauty",
           "id": "business-types/beauty:78e1ef6f",
+          "sameAs": "lookup/checklist:23f8909e",
           "when": {
             "businessTypes": [
               "beauty"
@@ -702,6 +706,7 @@
           ],
           "doc": "business-types/beauty",
           "id": "business-types/beauty:1ee82848",
+          "sameAs": "lookup/checklist:796521bf",
           "when": {
             "businessTypes": [
               "beauty"
@@ -718,6 +723,7 @@
           ],
           "doc": "business-types/beauty",
           "id": "business-types/beauty:3f035f6f",
+          "sameAs": "lookup/checklist:f7fc2eff",
           "when": {
             "businessTypes": [
               "beauty"
@@ -734,6 +740,7 @@
           ],
           "doc": "business-types/beauty",
           "id": "business-types/beauty:22a2e898",
+          "sameAs": "lookup/checklist:a036463c",
           "when": {
             "businessTypes": [
               "beauty"

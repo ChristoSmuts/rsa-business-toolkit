@@ -10,7 +10,7 @@ import Doc from '../../layouts/Doc.astro';
 import Page from '../../layouts/Page.astro';
 import SectionLanding from '../../components/pages/SectionLanding.astro';
 import { useTranslations, type TranslationKey } from '../../i18n';
-import type { Locale } from '../../i18n/locales';
+import { DEFAULT_LOCALE, type Locale } from '../../i18n/locales';
 import { loadDoc, loadGlossary, loadManifest, loadSources } from '../../lib/content/collections';
 import { sectionDocIds } from '../../lib/content/manifest';
 import { NAV_DOC_IDS } from '../../lib/routes';
@@ -48,6 +48,9 @@ const glossary = doc ? await loadGlossary(contentLang) : undefined;
 /** The register in the page's content language once it is translated, English until then. */
 const sourcesLang = docContentLang(manifest, NAV_DOC_IDS.sources, contentLang);
 const sources = doc ? await loadSources(sourcesLang) : undefined;
+/** Tells which of a translated register's titles stayed English (`ContentContext.keptInEnglish`). */
+const englishSources =
+  doc && sourcesLang !== DEFAULT_LOCALE ? await loadSources(DEFAULT_LOCALE) : undefined;
 const businessTypes = (await getCollection('businessTypes')).map((entry) => entry.data);
 const sectionDescription =
   page.kind === 'section' ? t(`nav.sections.${page.sectionId}.description` as TranslationKey) : '';
@@ -65,6 +68,7 @@ const sectionDocs =
     glossary={glossary}
     sources={sources}
     sourcesLang={sourcesLang}
+    englishSources={englishSources}
     businessTypes={businessTypes}
   />
 ) : (

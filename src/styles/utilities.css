@@ -23,6 +23,14 @@ html.js .no-js-only {
   display: none !important;
 }
 
+/*
+ * A part that does not apply to the reader, while "Only what applies to me" is on
+ * (`src/scripts/applies.ts`). It stays in the page; only its display goes.
+ */
+.st-filtered {
+  display: none !important;
+}
+
 /* Custom elements that wrap server-rendered blocks are inline by default. */
 st-theme-toggle,
 st-table-scroll {

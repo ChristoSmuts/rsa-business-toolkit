@@ -834,6 +834,17 @@
       "kind": "paragraph"
     },
     {
+      "c": [
+        {
+          "t": "text",
+          "v": "For a dealer, a Traffic Register Number (TRN) or Business Register Number Certificate (BRNC) is worth having. It separates stock vehicles from your personal vehicle on the system, which matters when fines arrive."
+        }
+      ],
+      "hash": "ab9500365ae8b65d",
+      "id": "layer-2-getting-vehicles-registered-to-the-business.2",
+      "kind": "paragraph"
+    },
+    {
       "appliesTo": {
         "entity": "pty"
       },
@@ -959,19 +970,8 @@
       "kind": "paragraph"
     },
     {
-      "c": [
-        {
-          "t": "text",
-          "v": "For a dealer, a TRN or BRNC is worth having. It separates stock vehicles from your personal vehicle on the system, which matters when fines arrive."
-        }
-      ],
-      "hash": "16041ebc84eaff44",
-      "id": "if-you-trade-as-a-sole-proprietor.6",
-      "kind": "paragraph"
-    },
-    {
       "hash": "58b63e273b964039",
-      "id": "if-you-trade-as-a-sole-proprietor.7",
+      "id": "if-you-trade-as-a-sole-proprietor.6",
       "kind": "hr"
     },
     {
@@ -2837,6 +2837,7 @@
           ],
           "doc": "business-types/vehicle-dealer",
           "id": "business-types/vehicle-dealer:ddf401f6",
+          "sameAs": "lookup/checklist:57a8c2a4",
           "when": {
             "businessTypes": [
               "vehicle-dealer"
@@ -2853,6 +2854,7 @@
           ],
           "doc": "business-types/vehicle-dealer",
           "id": "business-types/vehicle-dealer:9df05312",
+          "sameAs": "lookup/checklist:9aefc6b4",
           "when": {
             "businessTypes": [
               "vehicle-dealer"
@@ -2933,6 +2935,7 @@
           ],
           "doc": "business-types/vehicle-dealer",
           "id": "business-types/vehicle-dealer:621643ad",
+          "sameAs": "lookup/checklist:cdc31934",
           "when": {
             "businessTypes": [
               "vehicle-dealer"
@@ -2949,6 +2952,7 @@
           ],
           "doc": "business-types/vehicle-dealer",
           "id": "business-types/vehicle-dealer:70c5bd63",
+          "sameAs": "lookup/checklist:b196800c",
           "when": {
             "businessTypes": [
               "vehicle-dealer"
@@ -3205,7 +3209,7 @@
       "kind": "tasklist"
     }
   ],
-  "contentHash": "6160bf4f2e09836c",
+  "contentHash": "ee1d02171a3235c6",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -845,6 +845,7 @@
           ],
           "doc": "business-types/professional-creative",
           "id": "business-types/professional-creative:fc5121e3",
+          "sameAs": "lookup/checklist:956d9895",
           "when": {
             "businessTypes": [
               "professional-creative"
@@ -861,6 +862,7 @@
           ],
           "doc": "business-types/professional-creative",
           "id": "business-types/professional-creative:4c50b1ae",
+          "sameAs": "lookup/checklist:e97fe964",
           "when": {
             "businessTypes": [
               "professional-creative"
@@ -893,6 +895,7 @@
           ],
           "doc": "business-types/professional-creative",
           "id": "business-types/professional-creative:1c124945",
+          "sameAs": "lookup/checklist:0b186a56",
           "when": {
             "businessTypes": [
               "professional-creative"
@@ -909,6 +912,7 @@
           ],
           "doc": "business-types/professional-creative",
           "id": "business-types/professional-creative:66134f08",
+          "sameAs": "lookup/checklist:afe2d3be",
           "when": {
             "businessTypes": [
               "professional-creative"
@@ -925,6 +929,7 @@
           ],
           "doc": "business-types/professional-creative",
           "id": "business-types/professional-creative:09f007d9",
+          "sameAs": "lookup/checklist:53da774d",
           "when": {
             "businessTypes": [
               "professional-creative"

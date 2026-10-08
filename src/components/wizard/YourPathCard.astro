@@ -1,0 +1,113 @@
+---
+/**
+ * The home page's "Your path" card (build plan B3 flow 2, B6; WP-31): the ring, "Continue: step 4
+ * of 10" (a link to that step's first page), "Open my path" and "Edit answers".
+ *
+ * Rendered `hidden`; `<st-your-path>` (`src/scripts/your-path.ts`) shows it when the reader
+ * has answers on the device and keeps it in step with them. Without JavaScript it never shows.
+ *
+ * With answers saved (`html[data-st-profile]`, set by `theme-init.js` before first paint) its space
+ * is kept from the start, invisible, so the page below does not move when it appears (review
+ * WP-31 pass 2, minor 4). The element drops that space (`data-no-path`) once it knows there are no
+ * answers after all.
+ */
+import Button from '../ui/Button.astro';
+import ProgressRing from '../ui/ProgressRing.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { href } from '../../lib/paths';
+import { APP_ROUTES } from '../../lib/routes';
+
+interface Props {
+  locale: Locale;
+  /** `paths.json`'s hash: the stored path is rebuilt when it was built from other rules. */
+  version: string;
+}
+
+const { locale, version } = Astro.props;
+const t = useTranslations(locale);
+const progress = t('myPath.progress', { done: '{done}', total: '{total}' });
+const resume = t('home.yourPath.continue', { n: '{n}', total: '{total}' });
+---
+
+<st-your-path
+  class="st-your-path js-only"
+  data-locale={locale}
+  data-progress={progress}
+  data-continue={resume}
+  data-version={version}
+  hidden
+>
+  <section class="st-your-path__card" aria-labelledby="home-your-path">
+    <ProgressRing value={0} max={1} label={t('home.yourPath.heading')} size={64} />
+    <div class="st-stack st-stack-sm st-your-path__body">
+      <h2 id="home-your-path">{t('home.yourPath.heading')}</h2>
+      <p class="st-hint" data-progress-text aria-hidden="true"></p>
+      <p class="st-cluster">
+        <Button href={href(locale, APP_ROUTES.myPath)} data-continue iconEnd="lucide:arrow-right">
+          {t('home.yourPath.open')}
+        </Button>
+        <a class="st-link-block" href={href(locale, APP_ROUTES.myPath)}>
+          {t('home.yourPath.open')}
+        </a>
+        <a class="st-link-block" href={href(locale, APP_ROUTES.wizard)}>
+          {t('home.yourPath.editAnswers')}
+        </a>
+      </p>
+    </div>
+  </section>
+</st-your-path>
+
+<script>
+  import '../../scripts/your-path';
+</script>
+
+<style is:global>
+  /*
+   * `!important` to win over the global `[hidden] { display: none !important }`: the card keeps
+   * its box, invisible and out of the accessibility tree, until the script shows or drops it, however
+   * long the module takes, so a slow load moves nothing (review WP-31 pass 4, minor 2). The space
+   * goes back only when the card cannot be drawn: its own module failed to load
+   * (`data-st-script-failed` names it; `theme-init.js`), or the path rules did
+   * (`data-path-failed`; `your-path.ts`). Another script failing leaves it (pass 5, minor 1, nit 1).
+   */
+  html.js[data-st-profile]:not([data-st-script-failed~='YourPathCard'])
+    st-your-path[hidden]:not([data-no-path], [data-path-failed]) {
+    display: block !important;
+    overflow: hidden;
+    visibility: hidden;
+  }
+</style>
+
+<style>
+  st-your-path {
+    display: block;
+  }
+
+  .st-your-path__body [data-progress-text] {
+    min-block-size: 1lh;
+  }
+
+  .st-your-path__card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-4);
+    padding: var(--st-space-4) var(--st-space-5);
+    border: var(--st-border-width) solid var(--st-border);
+    border-inline-start: 4px solid var(--st-primary);
+    border-radius: var(--st-radius-lg);
+    background-color: var(--st-surface);
+  }
+
+  .st-your-path__body {
+    flex: 1 1 16rem;
+    min-inline-size: 0;
+  }
+
+  @media (forced-colors: active) {
+    .st-your-path__card {
+      border-inline-start-color: CanvasText;
+    }
+  }
+</style>

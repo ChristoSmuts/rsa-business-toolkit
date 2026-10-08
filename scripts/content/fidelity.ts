@@ -370,6 +370,8 @@ function copyFromSource(tr: Block, en: Block): Block {
       task.id = source.id;
       task.doc = source.doc;
       if (source.when) task.when = structuredClone(source.when);
+      if (source.sameAs) task.sameAs = source.sameAs;
+      else delete task.sameAs;
     });
   } else if (en.kind === 'table' && tr.kind === 'table') {
     if (en.rowWhen && en.rowWhen.length === tr.rows.length)

@@ -18,6 +18,9 @@ import { ENABLED_LOCALES, getLocale, type Locale } from '../i18n/locales';
 import type { Manifest } from '../lib/content/schema';
 import { alternateUrls } from '../lib/i18n-routes';
 import { canonicalUrl } from '../lib/pages';
+import { href } from '../lib/paths';
+import { APP_ROUTES } from '../lib/routes';
+import { SHORTCUTS_ANCHOR } from '../lib/shortcuts';
 
 interface Props {
   locale: Locale;
@@ -47,6 +50,8 @@ const site = Astro.site ?? new URL('https://example.github.io');
 const canonical = canonicalUrl(locale, route, site);
 const alternates = alternateUrls(route, locales, site);
 const ogLocale = (getLocale(locale)?.hreflang ?? locale).replace('-', '_');
+/** Where `?` goes (`src/scripts/site.ts`): the keyboard shortcuts on `/about/`. */
+const helpHref = `${href(locale, APP_ROUTES.about)}#${SHORTCUTS_ANCHOR}`;
 ---
 
 <Base
@@ -65,9 +70,14 @@ const ogLocale = (getLocale(locale)?.hreflang ?? locale).replace('-', '_');
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={ogLocale} />
+    <link rel="help" href={helpHref} />
     <slot name="head" />
   </Fragment>
   <SiteHeader slot="header" locale={locale} manifest={manifest} route={route} />
   <slot />
   <SiteFooter slot="footer" locale={locale} manifest={manifest} route={route} />
 </Base>
+
+<script>
+  import '../scripts/site';
+</script>

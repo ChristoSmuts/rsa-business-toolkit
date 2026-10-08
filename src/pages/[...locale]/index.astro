@@ -4,15 +4,18 @@
  * your kind of business · four things that matter early · three numbers that changed in 2026,
  * each with its date and official source (D5) · trust strip.
  *
- * The personalised "Your path" card needs a saved profile, which is WP-31; this is the version
- * every visitor sees, and the one that works without JavaScript.
+ * With answers saved on the device, the "Your path" card (WP-31, `YourPathCard.astro`) shows above
+ * the hero; everything else is what every visitor sees, and works without JavaScript.
  */
+import pathsData from '../../data/paths.json';
 import { getCollection } from 'astro:content';
 import Page from '../../layouts/Page.astro';
 import Button from '../../components/ui/Button.astro';
 import Card from '../../components/ui/Card.astro';
 import BusinessTypeTiles from '../../components/pages/BusinessTypeTiles.astro';
 import Icon from '../../components/ui/Icon.astro';
+import LangBanner from '../../components/interactive/LangBanner.astro';
+import YourPathCard from '../../components/wizard/YourPathCard.astro';
 import { formatDate, useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
 import { loadManifest, loadSources } from '../../lib/content/collections';
@@ -96,6 +99,8 @@ const whereToStart = [
   description={t('site.description')}
 >
   <div class="st-container st-stack st-home">
+    <LangBanner locale={locale} />
+    {WIZARD_AVAILABLE && <YourPathCard locale={locale} version={pathsData.hash} />}
     <section class="st-home__hero st-stack" aria-labelledby="home-title">
       <h1 id="home-title">{t('home.heroTitle')}</h1>
       <p class="st-lead">{t(WIZARD_AVAILABLE ? 'home.heroLead' : 'home.heroLeadStatic')}</p>

@@ -1601,7 +1601,10 @@
             }
           ],
           "doc": "core/you-are-the-business",
-          "id": "core/you-are-the-business:8e6615a6"
+          "id": "core/you-are-the-business:8e6615a6",
+          "when": {
+            "entity": "pty"
+          }
         },
         {
           "block": "continuity.1",
@@ -1612,7 +1615,10 @@
             }
           ],
           "doc": "core/you-are-the-business",
-          "id": "core/you-are-the-business:b554cb87"
+          "id": "core/you-are-the-business:b554cb87",
+          "when": {
+            "entity": "pty"
+          }
         },
         {
           "block": "continuity.1",
@@ -1623,7 +1629,10 @@
             }
           ],
           "doc": "core/you-are-the-business",
-          "id": "core/you-are-the-business:b5a8d0d2"
+          "id": "core/you-are-the-business:b5a8d0d2",
+          "when": {
+            "entity": "pty"
+          }
         },
         {
           "block": "continuity.1",

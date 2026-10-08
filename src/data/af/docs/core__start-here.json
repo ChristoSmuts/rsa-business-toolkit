@@ -136,7 +136,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Tuiswerk en veilige ontmoetings"
+              "v": "Van die huis af werk en veilig ontmoet"
             }
           ],
           "doc": "core/working-from-home-and-safety",
@@ -147,7 +147,7 @@
           "v": " voor jou eerste verkoping. Dit is kort, en dit dek die gewoontes wat keer dat jy geswendel word."
         }
       ],
-      "hash": "7bdc8942bdaa8f65",
+      "hash": "fcf6dfc830334250",
       "id": "order-to-do-things.3",
       "kind": "paragraph",
       "sourceHash": "2f2e074c75144c3d"
@@ -409,7 +409,7 @@
       "sourceHash": "8653df33c985e515"
     },
     {
-      "hash": "58f59b7a962aa933",
+      "hash": "34210489f259845b",
       "id": "what-is-in-this-toolkit.4",
       "items": [
         [
@@ -481,7 +481,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Tuiswerk en veilige ontmoetings"
+                "v": "Van die huis af werk en veilig ontmoet"
               }
             ],
             "doc": "core/working-from-home-and-safety",
@@ -1039,7 +1039,7 @@
       "sourceHash": "ebfa64872b5baedd"
     }
   ],
-  "contentHash": "73862f823f3820ac",
+  "contentHash": "bb480c74adf1da94",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

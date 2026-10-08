@@ -182,6 +182,12 @@ export const TaskSchema = z.strictObject({
   when: ApplicabilitySchema.optional(),
   doc: DocIdSchema,
   block: BlockIdSchema,
+  /**
+   * The master-checklist task this one repeats (`content-meta/task-links.json`). A tick is saved
+   * under `sameAs ?? id`, so ticking either copy ticks both. Taken from the English task, so it is
+   * the same in every language.
+   */
+  sameAs: TaskIdSchema.optional(),
 });
 export type Task = z.infer<typeof TaskSchema>;
 
@@ -575,6 +581,8 @@ export const TaskRecordSchema = z.strictObject({
   heading: HeadingIdSchema.optional(),
   group: InlineRunsSchema.optional(),
   order: z.number().int().nonnegative(),
+  /** See `TaskSchema.sameAs`. */
+  sameAs: TaskIdSchema.optional(),
 });
 export type TaskRecord = z.infer<typeof TaskRecordSchema>;
 
@@ -583,6 +591,18 @@ export const TasksFileSchema = z.strictObject({
   tasks: z.array(TaskRecordSchema),
 });
 export type TasksFile = z.infer<typeof TasksFileSchema>;
+
+/**
+ * `src/data/task-keys.json`: every key a tick may have been saved under that is no longer a key,
+ * mapped to the key now (a linked task's own id -> its master task; a reworded task's old id -> the
+ * new one, from `content-meta/task-renames.json`). `src/scripts/checklist.ts` moves saved ticks by
+ * it. Language-independent.
+ */
+export const TaskKeysFileSchema = z.strictObject({
+  version: z.literal(1),
+  renames: z.record(TaskIdSchema, TaskIdSchema),
+});
+export type TaskKeysFile = z.infer<typeof TaskKeysFileSchema>;
 
 export const QuickAnswerSchema = z.strictObject({
   id: HeadingIdSchema,
@@ -678,3 +698,114 @@ export const BusinessTypesFileSchema = z
     }
   });
 export type BusinessTypesFile = z.infer<typeof BusinessTypesFileSchema>;
+
+/*
+ * Reading paths (build plan A5, WP-31). `content-meta/paths.json` holds the rules; the pipeline
+ * checks every reference against the corpus and writes `src/data/paths.json`, which adds what the
+ * path engine and the pages need about each referenced document. The profile values are repeated,
+ * as `zod/mini` schemas, in `src/lib/profile.ts` for client code; a unit test keeps them equal.
+ */
+export const PROFILE_ENTITIES = ['sole-prop', 'pty', 'undecided'] as const;
+export const ProfileEntitySchema = z.enum(PROFILE_ENTITIES);
+export type ProfileEntity = z.infer<typeof ProfileEntitySchema>;
+
+export const STAGES = ['not-started', 'trading', 'pty-growing'] as const;
+export const StageSchema = z.enum(STAGES);
+export type Stage = z.infer<typeof StageSchema>;
+
+/** A rule step that stands for the reader's own business-type documents. */
+export const BUSINESS_TYPES_REF = '$businessTypes';
+export const PathRefSchema = z
+  .string()
+  .regex(
+    new RegExp(
+      `^(?:\\$businessTypes|(?:${SECTION_IDS.join('|')})(?:/${SLUG}){1,2}(?:#[\\p{Ll}\\p{N}_][\\p{Ll}\\p{N}_-]*)?)$`,
+      'u',
+    ),
+    'invalid path reference',
+  );
+
+/** A step's condition: every key given must match the profile (the A5 matching rule). */
+export const PathConditionSchema = z
+  .strictObject({
+    entity: z.array(ProfileEntitySchema).min(1).optional(),
+    businessTypes: z.array(BusinessTypeIdSchema).min(1).optional(),
+  })
+  .refine((value) => value.entity !== undefined || value.businessTypes !== undefined, {
+    message: 'a condition needs entity or businessTypes',
+  });
+export type PathCondition = z.infer<typeof PathConditionSchema>;
+
+export const PathStepSchema = z.strictObject({
+  /** The item of the rule's list in the source document: the step's wording and its "why". */
+  item: z.number().int().nonnegative(),
+  docs: z.array(PathRefSchema).min(1),
+  /** The step is left out unless the profile matches. */
+  when: PathConditionSchema.optional(),
+  /** The "why" from the source list shows only when the profile matches (Path 4 is a dealer's). */
+  whyWhen: PathConditionSchema.optional(),
+});
+export type PathStep = z.infer<typeof PathStepSchema>;
+
+export const PathRuleSchema = z.strictObject({
+  stage: StageSchema,
+  /** The ordered list block in the source document that this rule follows. */
+  list: BlockIdSchema,
+  steps: z.array(PathStepSchema).min(1),
+});
+export type PathRule = z.infer<typeof PathRuleSchema>;
+
+const PathChecklistSchema = z.strictObject({
+  doc: DocIdSchema,
+  parts: z.array(z.strictObject({ heading: HeadingIdSchema })).min(1),
+});
+
+function oneRulePerStage(file: { rules: readonly PathRule[] }, ctx: z.RefinementCtx): void {
+  const stages = new Set(file.rules.map((rule) => rule.stage));
+  if (stages.size !== STAGES.length)
+    ctx.addIssue({ code: 'custom', message: 'paths need exactly one rule per stage' });
+}
+
+/** `content-meta/paths.json`. */
+export const PathsConfigSchema = z
+  .strictObject({
+    version: z.literal(1),
+    /** The document whose lists the rules follow ("How to use this toolkit"). */
+    source: DocIdSchema,
+    rules: z.array(PathRuleSchema).length(STAGES.length),
+    /** The personalised checklist: these parts of the master checklist, filtered by the profile. */
+    checklist: PathChecklistSchema,
+  })
+  .superRefine(oneRulePerStage);
+export type PathsConfig = z.infer<typeof PathsConfigSchema>;
+
+/** What the engine and the pages need about a document a rule refers to. */
+export const PathDocSchema = z.strictObject({
+  route: z.string().min(1),
+  titles: z.partialRecord(LangSchema, z.string().min(1)),
+  appliesTo: DocAppliesToSchema,
+});
+export type PathDoc = z.infer<typeof PathDocSchema>;
+
+/** `src/data/paths.json`: the rules plus the business types and documents they refer to. */
+export const PathsFileSchema = z
+  .strictObject({
+    version: z.literal(1),
+    /**
+     * A hash of everything else in the file. A path stored on a reader's device
+     * (`st.pathView.v1`) is rebuilt only when this changes, not on every content change.
+     */
+    hash: HashSchema,
+    source: DocIdSchema,
+    rules: z.array(PathRuleSchema).length(STAGES.length),
+    checklist: PathChecklistSchema,
+    /** The six types in their order, with the document each one adds to a path. */
+    businessTypes: z
+      .array(z.strictObject({ id: BusinessTypeIdSchema, doc: DocIdSchema }))
+      .length(BUSINESS_TYPE_IDS.length),
+    /** What the General preset expands to. */
+    general: z.array(BusinessTypeIdSchema).min(1),
+    docs: z.record(DocIdSchema, PathDocSchema),
+  })
+  .superRefine(oneRulePerStage);
+export type PathsFile = z.infer<typeof PathsFileSchema>;
