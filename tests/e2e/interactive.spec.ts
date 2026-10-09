@@ -666,3 +666,86 @@ test.describe('language', () => {
     });
   }
 });
+
+/**
+ * WP-50a, item 7 (`review-animations` verdict Block in the WP-50 audit): nothing moves when a page
+ * opens, and nothing scrolls smoothly on Tab. A ring moves only when its value changes on the page.
+ */
+test.describe('motion', () => {
+  const PROFILE = { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' };
+
+  /** The CSS animations and transitions running on rings (`.st-ring__value`). */
+  async function ringMotion(page: Page): Promise<string[]> {
+    return page.evaluate(() =>
+      document
+        .getAnimations()
+        .filter((animation) => {
+          const target = (animation.effect as KeyframeEffect | null)?.target;
+          return target instanceof Element && target.matches('.st-ring__value');
+        })
+        .map((animation) =>
+          animation instanceof CSSTransition
+            ? `transition:${animation.transitionProperty}`
+            : `animation:${(animation as CSSAnimation).animationName}`,
+        ),
+    );
+  }
+
+  test('the top bar ring does not move when a page opens', async ({ page, seedStorage }) => {
+    await seedStorage({ 'st.profile.v1': PROFILE });
+    // My path stores the path, so the next page's top bar draws its ring.
+    await page.goto('my-path/');
+    await page.waitForLoadState('networkidle');
+    await page.goto('core/tax-and-sars/');
+    const ring = page.locator('st-path-progress .st-ring');
+    await page.waitForFunction(() => {
+      const host = document.querySelector('st-path-progress');
+      return host instanceof HTMLElement && !host.hidden;
+    });
+    await expect(ring).toHaveAttribute('data-animate', '');
+    expect(await ringMotion(page)).toEqual([]);
+  });
+
+  test('a ring moves when its value changes on the page, and not under reduced motion', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({ 'st.profile.v1': PROFILE });
+    await page.goto('my-path/');
+    const mark = page.locator('[data-steps] > li:visible').first().locator('[data-mark]');
+    await expect(mark).toBeVisible();
+    expect(await ringMotion(page)).toEqual([]);
+    await mark.click();
+    await expect.poll(() => ringMotion(page)).toContain('transition:stroke-dashoffset');
+
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.reload();
+    const again = page.locator('[data-steps] > li:visible').nth(1).locator('[data-mark]');
+    await expect(again).toBeVisible();
+    await again.click();
+    const duration = await page
+      .locator('[data-progress] .st-ring__value')
+      .evaluate((arc) => parseFloat(getComputedStyle(arc).transitionDuration));
+    expect(duration).toBeLessThanOrEqual(0.001);
+  });
+
+  test('a tick moves the checklist ring, and opening the page does not', async ({ page }) => {
+    await page.goto(CHECKLIST);
+    await page.waitForLoadState('networkidle');
+    expect(await ringMotion(page)).toEqual([]);
+    await page.locator('st-checklist input[type="checkbox"]').first().check();
+    await expect.poll(() => ringMotion(page)).toContain('transition:stroke-dashoffset');
+  });
+
+  test('Tab does not scroll smoothly', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'Keyboard focus.');
+    await page.goto(DOC);
+    await page.keyboard.press('Tab');
+    const behaviour = await page.evaluate(() => ({
+      focusWithin: document.documentElement.matches(':focus-within'),
+      scroll: getComputedStyle(document.documentElement).scrollBehavior,
+    }));
+    expect(behaviour.focusWithin).toBe(true);
+    expect(behaviour.scroll).toBe('auto');
+  });
+});

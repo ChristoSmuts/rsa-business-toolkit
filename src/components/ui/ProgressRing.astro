@@ -1,7 +1,14 @@
 ---
 /**
  * Progress ring. The SVG is `role="img"` with a full text label ("12 of 34 done"), so the
- * number is never conveyed by the arc alone. The arc draws in once; reduced motion skips it.
+ * number is never conveyed by the arc alone.
+ *
+ * Nothing moves when a page opens: the arc shows the value it opens with. Only a change on the
+ * page (a step marked done, a tick) moves the arc, in `--st-duration-base`. `drawRing()`
+ * (`src/scripts/ring.ts`) sets `data-animate` after its first drawing, so a ring that the script
+ * fills in after load does not animate either. The top bar's ring drew in for 960ms on every page
+ * view before (WP-50 audit, `review-animations` verdict Block). Reduced motion sets the duration
+ * to 0.
  */
 interface Props {
   value: number;
@@ -74,17 +81,14 @@ const complete = percent >= 100;
   .st-ring__value {
     stroke: var(--st-primary);
     stroke-linecap: round;
-    animation: st-ring-draw calc(var(--st-duration-slow) * 3) var(--st-ease) both;
+  }
+
+  .st-ring[data-animate] .st-ring__value {
+    transition: stroke-dashoffset var(--st-duration-base) var(--st-ease);
   }
 
   .st-ring[data-complete='true'] .st-ring__value {
     stroke-linecap: butt;
-  }
-
-  @keyframes st-ring-draw {
-    from {
-      stroke-dashoffset: 100;
-    }
   }
 
   .st-ring__text {
