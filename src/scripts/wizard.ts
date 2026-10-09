@@ -55,7 +55,7 @@ export class StWizard extends HTMLElement {
   readonly #onClick = (event: Event): void => {
     const button = event.target instanceof Element ? event.target.closest('button') : null;
     if (!button || button.getAttribute('aria-disabled') === 'true') return;
-    if (button.hasAttribute('data-next')) this.go(this.#current + 1);
+    if (button.hasAttribute('data-next')) this.#advance();
     else if (button.hasAttribute('data-back')) this.go(this.#current - 1);
   };
 
@@ -71,8 +71,19 @@ export class StWizard extends HTMLElement {
     this.#advance();
   };
 
-  /** Next, or "See my path" on the last step; an unanswered step keeps focus on its answers. */
+  /**
+   * Next, or "See my path" on the last step; an unanswered step keeps focus on its answers. If a
+   * question before this one has no answer (the reader started further down before the script ran,
+   * WP-50a review pass 1, M1), the button takes them to it and its heading gets focus, so a tap is
+   * never lost: `finish()` could not save without it.
+   */
   #advance(): void {
+    const missing = this.#firstInvalid(this.#current);
+    if (missing >= 0 && missing < this.#current) {
+      this.#show(missing);
+      this.#steps[missing]?.querySelector<HTMLElement>('[data-step-heading]')?.focus();
+      return;
+    }
     if (!this.#stepValid(this.#current)) {
       this.#firstInput(this.#current)?.focus();
       return;
@@ -96,19 +107,22 @@ export class StWizard extends HTMLElement {
     this.#form.addEventListener('keydown', this.#onKeydown);
     // Until now the page was the no-JavaScript form, all three questions (WP-50a). A reader who has
     // scrolled to a later question stays on it, where it is: the steps above it fold away, and the
-    // page scrolls by what they took, so nothing on screen moves.
+    // page scrolls by what they took, so nothing on screen moves. If a question above it has no
+    // answer, the wizard starts on that one instead, in the same place on screen (review pass 1, M1).
     const view = this.ownerDocument.defaultView;
-    let start = 0;
+    let inView = 0;
     if (view && view.scrollY > 0) {
       this.#steps.forEach((step, index) => {
-        if (step.getBoundingClientRect().top < view.innerHeight / 2) start = index;
+        if (step.getBoundingClientRect().top < view.innerHeight / 2) inView = index;
       });
     }
-    const before = this.#steps[start]?.getBoundingClientRect().top ?? 0;
+    const missing = this.#firstInvalid(inView - 1);
+    const start = missing >= 0 ? missing : inView;
+    const before = this.#steps[inView]?.getBoundingClientRect().top ?? 0;
     this.dataset['ready'] = '';
     this.#show(start);
     const after = this.#steps[start]?.getBoundingClientRect().top ?? 0;
-    if (after !== before) view?.scrollBy(0, after - before);
+    if (inView > 0 && after !== before) view?.scrollBy(0, after - before);
   }
 
   disconnectedCallback(): void {
@@ -183,6 +197,12 @@ export class StWizard extends HTMLElement {
     }
   }
 
+  /** The first step up to `last` (inclusive) that has no valid answer, or -1. */
+  #firstInvalid(last: number): number {
+    for (let index = 0; index <= last; index++) if (!this.#stepValid(index)) return index;
+    return -1;
+  }
+
   #stepValid(index: number): boolean {
     const name = this.#steps[index]?.dataset['step'];
     if (name === QUERY.entity) return this.#checked(QUERY.entity).length === 1;
@@ -225,6 +245,9 @@ export class StWizard extends HTMLElement {
       }
       for (const hint of step.querySelectorAll<HTMLElement>('[data-next-hint]'))
         hint.hidden = valid;
+      const earlier = valid && this.#firstInvalid(index - 1) >= 0;
+      for (const hint of step.querySelectorAll<HTMLElement>('[data-earlier-hint]'))
+        hint.hidden = !earlier;
     });
   }
 }

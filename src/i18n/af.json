@@ -372,6 +372,7 @@
     "back": "Terug",
     "next": "Volgende",
     "nextDisabled": "Kies eers ’n antwoord.",
+    "earlierMissing": "’n Vraag voor hierdie een het nog geen antwoord nie. Hierdie knoppie neem jou daarheen.",
     "seeMyPath": "Sien my roete",
     "savedTip": "Net op hierdie toestel gestoor. Niks word êrens heen gestuur nie.",
     "noJs": "JavaScript is af. Jy kan steeds die vrae beantwoord en ’n roete sien, maar jou antwoorde word nie gestoor nie.",

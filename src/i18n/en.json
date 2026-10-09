@@ -372,6 +372,7 @@
     "back": "Back",
     "next": "Next",
     "nextDisabled": "Choose an answer first.",
+    "earlierMissing": "A question before this one has no answer yet. This button takes you to it.",
     "seeMyPath": "See my path",
     "savedTip": "Saved on this device only. Nothing is sent anywhere.",
     "noJs": "JavaScript is off. You can still answer the questions and see a path, but your answers are not saved.",

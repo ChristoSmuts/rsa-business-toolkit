@@ -938,4 +938,39 @@ test.describe('Find my path before its script runs', () => {
     expect(await layoutShifts(page)).toBeLessThanOrEqual(0.1);
     await expect(page.locator('[data-stepper="1"]')).toHaveAttribute('aria-current', 'step');
   });
+
+  // Review pass 1, M1: starting on question 3 with question 1 unanswered left "See my path" doing
+  // nothing. The wizard starts on the first unanswered question, where question 3 was on screen.
+  test('a reader at question 3 with question 1 unanswered is taken to question 1 when the script arrives', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdModules(page, baseURL);
+    await page.goto('find-my-path/', { waitUntil: 'commit' });
+    const third = page.locator('[data-step="stage"]');
+    await third.evaluate((step) =>
+      window.scrollTo(0, step.getBoundingClientRect().top + window.scrollY - 80),
+    );
+    await page.getByRole('radio', { name: /not started/ }).check();
+    const before = await third.boundingBox();
+    await page.waitForTimeout(3000);
+    release();
+    await expect(page.locator('st-wizard')).toHaveAttribute('data-ready', '');
+    const first = page.locator('[data-step="entity"]');
+    await expect(page.getByRole('heading', { name: /Question 1 of 3/ })).toBeInViewport();
+    await expect(page.getByRole('heading', { name: /Question 3 of 3/ })).toBeHidden();
+    await expect(page.locator('[data-stepper="0"]')).toHaveAttribute('aria-current', 'step');
+    expect(Math.abs(((await first.boundingBox())?.y ?? 0) - (before?.y ?? 0))).toBeLessThanOrEqual(
+      1,
+    );
+    expect(await layoutShifts(page)).toBeLessThanOrEqual(0.1);
+    // From there the steps work as usual and "See my path" opens My path.
+    await page.getByRole('radio', { name: /registered company/ }).check();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.getByRole('checkbox', { name: /Vehicle dealer/ }).check();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.getByRole('radio', { name: /want to grow/ }).check();
+    await page.getByRole('button', { name: 'See my path' }).click();
+    await page.waitForURL(/\/my-path\//);
+  });
 });

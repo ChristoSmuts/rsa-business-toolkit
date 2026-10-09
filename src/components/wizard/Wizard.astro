@@ -222,6 +222,9 @@ const results = singleChoices().map((choice) => ({
         <p class="st-hint" id="wz-next-hint-type" data-next-hint>
           {t('wizard.types.required')}
         </p>
+        <p class="st-hint" data-earlier-hint hidden>
+          {t('wizard.earlierMissing')}
+        </p>
       </div>
     </section>
 
@@ -275,6 +278,9 @@ const results = singleChoices().map((choice) => ({
         </Button>
         <p class="st-hint" id="wz-next-hint-stage" data-next-hint>
           {t('wizard.nextDisabled')}
+        </p>
+        <p class="st-hint" data-earlier-hint hidden>
+          {t('wizard.earlierMissing')}
         </p>
       </div>
     </section>
