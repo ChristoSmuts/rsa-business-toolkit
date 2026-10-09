@@ -328,8 +328,21 @@ test.describe('the search dialog while it loads', () => {
     await page.locator('a.st-topbar__search').click();
     await expect(dialog(page)).toBeVisible();
     await expect(status(page)).toHaveText('Loading search…');
-    await field(page).fill('vat');
+    // The live region is written once, not again on every key (review pass 1, m2).
+    await status(page).evaluate((element) => {
+      const writes: number[] = [];
+      Object.assign(window, { stStatusWrites: writes });
+      new MutationObserver((records) => writes.push(records.length)).observe(element, {
+        childList: true,
+        characterData: true,
+        subtree: true,
+      });
+    });
+    await field(page).pressSequentially('vat');
     await expect(common(page)).toBeHidden();
+    expect(
+      await page.evaluate(() => (window as unknown as { stStatusWrites: number[] }).stStatusWrites),
+    ).toEqual([]);
     await expect(status(page)).toHaveText('Loading search…');
     await page.waitForTimeout(3000);
     await expect(page.getByRole('option')).toHaveCount(0);

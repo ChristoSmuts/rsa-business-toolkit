@@ -315,8 +315,9 @@ export class SearchDialogController implements DialogController {
     this.#render(counted, q, typing);
   }
 
+  /** Only a change is written: the same words again would be announced again. */
   #setStatus(text: string): void {
-    this.#status.textContent = text;
+    if (this.#status.textContent !== text) this.#status.textContent = text;
   }
 
   #clearOptions(): void {

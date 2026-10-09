@@ -109,8 +109,9 @@ function waiting(host: Dialog, field: HTMLInputElement): void {
       return;
     }
     if (common) common.hidden = field.value.trim() !== '';
-    if (status) status.textContent = status.dataset['loadingText'] ?? '';
   };
+  // Once: rewriting a polite live region on every key has it announced again (review pass 1, m2).
+  if (status) status.textContent = status.dataset['loadingText'] ?? '';
   field.addEventListener('input', show);
   show();
 }
