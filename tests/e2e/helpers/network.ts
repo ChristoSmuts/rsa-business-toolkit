@@ -19,3 +19,35 @@ export async function routeSameOrigin(
   const predicate = (url: URL): boolean => url.origin === origin && matches(url);
   await target.route(predicate, handler);
 }
+
+/** Holds every same-origin request `matches` accepts until `release()`. Returns `release`. */
+export async function holdRequests(
+  target: Page | BrowserContext,
+  baseURL: string | undefined,
+  matches: (url: URL) => boolean,
+): Promise<() => void> {
+  let release: () => void = () => {};
+  const held = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  await routeSameOrigin(target, baseURL, matches, async (route) => {
+    await held;
+    await route.continue();
+  });
+  return release;
+}
+
+/**
+ * Holds every bundled module back until `release()`; only the blocking `theme-init.js` runs. This
+ * is the window a slow phone has between first paint and the modules connecting.
+ */
+export async function holdModules(
+  target: Page | BrowserContext,
+  baseURL: string | undefined,
+): Promise<() => void> {
+  return holdRequests(
+    target,
+    baseURL,
+    (url) => /\/_astro\/.+\.js$/.test(url.pathname) && !url.pathname.includes('theme-init'),
+  );
+}

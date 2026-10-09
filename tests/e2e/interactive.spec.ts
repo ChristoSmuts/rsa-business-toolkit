@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
-import { routeSameOrigin } from './helpers/network';
+import { holdModules, holdRequests } from './helpers/network';
 import { REPO_ROOT } from './helpers/routes';
 
 /**
@@ -66,27 +66,6 @@ const FIRST_PROMPT =
     'docs',
     'branding__branding-prompts.json',
   ).blocks.find((block) => block.kind === 'code' && block.variant === 'prompt')?.text ?? '';
-
-/**
- * Holds every bundled module back until `release()`; only the blocking `theme-init.js` runs. This
- * is the window a slow phone has between first paint and the modules connecting.
- */
-async function holdModules(page: Page, baseURL: string | undefined): Promise<() => void> {
-  let release: () => void = () => {};
-  const held = new Promise<void>((resolve) => {
-    release = resolve;
-  });
-  await routeSameOrigin(
-    page,
-    baseURL,
-    (url) => /\/_astro\/.+\.js$/.test(url.pathname) && !url.pathname.includes('theme-init'),
-    async (route) => {
-      await held;
-      await route.continue();
-    },
-  );
-  return release;
-}
 
 /** Every `st.` key in the page's storage, sorted. */
 async function stKeys(page: Page): Promise<string[]> {
@@ -336,6 +315,27 @@ test.describe('copy buttons', () => {
       () => JSON.parse(window.localStorage.getItem('st.prompts.v1') ?? '{}') as object,
     );
     expect(Object.keys(copied)).toHaveLength(1);
+    await expect(button).toHaveText('Copy prompt', { timeout: 5000 });
+  });
+
+  test('when the clipboard refuses, the prompt is selected and the page says how to copy it', async ({
+    page,
+  }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, 'clipboard', {
+        configurable: true,
+        value: { writeText: () => Promise.reject(new DOMException('denied', 'NotAllowedError')) },
+      });
+    });
+    await page.goto(PROMPTS);
+    const figure = page.locator('figure.st-code[data-variant="prompt"]').first();
+    await figure.locator('st-copy button').click();
+    await expect(figure.locator('[role="status"]')).toContainText('Could not copy');
+    const selected = await page.evaluate(() => document.getSelection()?.toString() ?? '');
+    expect(selected).toBe(FIRST_PROMPT);
+  });
+});
+
 /**
  * WP-50a, item 9: the copy button and its "Copied" message name a prompt by the heading above it,
  * which carries the guide's own numbering. A count in page order called "Prompt 0" "Prompt 4".
@@ -401,27 +401,6 @@ test.describe('prompt names', () => {
         expect(entry.name).toMatch(new RegExp(` ${group.length}\\)$`));
       });
     }
-  });
-});
-
-    await expect(button).toHaveText('Copy prompt', { timeout: 5000 });
-  });
-
-  test('when the clipboard refuses, the prompt is selected and the page says how to copy it', async ({
-    page,
-  }) => {
-    await page.addInitScript(() => {
-      Object.defineProperty(navigator, 'clipboard', {
-        configurable: true,
-        value: { writeText: () => Promise.reject(new DOMException('denied', 'NotAllowedError')) },
-      });
-    });
-    await page.goto(PROMPTS);
-    const figure = page.locator('figure.st-code[data-variant="prompt"]').first();
-    await figure.locator('st-copy button').click();
-    await expect(figure.locator('[role="status"]')).toContainText('Could not copy');
-    const selected = await page.evaluate(() => document.getSelection()?.toString() ?? '');
-    expect(selected).toBe(FIRST_PROMPT);
   });
 });
 
@@ -622,4 +601,68 @@ test.describe('language', () => {
     await page.reload();
     await expect(page.locator('st-lang-banner')).toBeVisible();
   });
+
+  /*
+   * WP-50a, item 6: the banner is set in the device font, so the web font arriving cannot change
+   * its size. In the web font its buttons moved to another line when the font swapped in, and the
+   * page jumped (layout shift 0.144 at 360px, WP-50 audit, flow 7). The fonts are held here until
+   * the page has drawn with the device fonts.
+   *
+   * At 320px the top bar itself also changes rows when the web font arrives (about 0.13, with or
+   * without the banner). That shift is the header's, left to the Phase 1 header work, so it is
+   * counted apart (`header`), and the total is bounded only where it does not occur.
+   */
+  for (const width of [320, 360, 1024]) {
+    test(`the banner is as tall before the web fonts as after, and moves nothing, at ${width}px`, async ({
+      page,
+      seedStorage,
+      baseURL,
+    }, testInfo) => {
+      test.skip(testInfo.project.name === 'webkit', 'Layout-shift entries are Chromium-only.');
+      await seedStorage({ 'st.lang': 'af' });
+      await page.addInitScript(() => {
+        const shifts: { value: number; header: boolean }[] = [];
+        Object.assign(window, { stShifts: shifts });
+        new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            const shift = entry as PerformanceEntry & {
+              value: number;
+              sources: { node: Node | null }[];
+            };
+            const header = shift.sources.some(
+              (source) =>
+                source.node instanceof Element && source.node.closest('.st-topbar') !== null,
+            );
+            shifts.push({ value: shift.value, header });
+          }
+        }).observe({ type: 'layout-shift', buffered: true });
+      });
+      await page.setViewportSize({ width, height: 740 });
+      const release = await holdRequests(page, baseURL, (url) => url.pathname.endsWith('.woff2'));
+      await page.goto('./', { waitUntil: 'commit' });
+      const banner = page.locator('st-lang-banner[data-locale="af"]');
+      await expect(banner).toBeVisible();
+      const before = (await banner.boundingBox())?.height ?? 0;
+      release();
+      await page.waitForLoadState('load');
+      await page.evaluate(() => document.fonts.ready);
+      await page.waitForTimeout(300);
+      const after = (await banner.boundingBox())?.height ?? 0;
+      expect(Math.abs(after - before), `banner ${before}px, then ${after}px`).toBeLessThanOrEqual(
+        1,
+      );
+      const shifts = await page.evaluate(
+        () => (window as unknown as { stShifts: { value: number; header: boolean }[] }).stShifts,
+      );
+      const sum = (list: { value: number }[]): number =>
+        list.reduce((total, entry) => total + entry.value, 0);
+      // The page's other text also reflows when the web font arrives (0.05 at 1024px; 0.13 at
+      // 1024px without the banner), so the total is bounded, not zero.
+      if (width === 320) {
+        expect(sum(shifts.filter((entry) => !entry.header))).toBeLessThanOrEqual(0.1);
+      } else {
+        expect(sum(shifts)).toBeLessThanOrEqual(0.1);
+      }
+    });
+  }
 });
