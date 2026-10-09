@@ -145,7 +145,12 @@ const illustrations = [
   { title: 'General', Component: General },
 ] as const;
 
-const diacritics = 'Kôsê, sê, môre, ëïü, ḓ ṱ ṋ ṅ';
+const diacritics = 'Kôsê, sê, môre, ëïü';
+/*
+ * Venda letters (Tshivenḓa) are not in the latin-ext files of Fraunces or Instrument Sans: a browser
+ * draws them from a system font. Shown apart and labelled, so the page does not claim coverage.
+ */
+const vendaLetters = 'ḓ ṱ ṋ ṅ Ḓ Ṱ Ṋ Ṅ';
 // No-break spaces keep the rand amount on one line.
 const displayFigure = 'R 1 234.56';
 const toc = [
@@ -443,6 +448,10 @@ const trust = {
         <dt>Monospace</dt>
         <dd class="ds-diacritics__mono" lang="af">
           {diacritics}
+        </dd>
+        <dt>Venda letters: not in the web fonts, drawn from a system font</dt>
+        <dd class="ds-diacritics__body" lang="ve">
+          {vendaLetters}
         </dd>
       </dl>
       <TableScroll labelledby="type-caption">
