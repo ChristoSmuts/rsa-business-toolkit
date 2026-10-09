@@ -1,0 +1,209 @@
+---
+/**
+ * WP-50 Phase 1 mock: the vehicle-dealer document in one direction (TEMPORARY). Real content from
+ * `src/data`, rendered with the real content and trust components; only the frame is new.
+ *
+ * The top of the page is reordered so the AI notice and the first content heading both fit
+ * early on a phone (WP-50 audit, "What would most help", item 1):
+ * - one breadcrumb line with the section's colour, and no "Section: …" label that repeats it;
+ * - the read time and the effort meter on one line (A) or as boxes on the page facts slip (B);
+ * - the AI notice unchanged in words and order, with less padding (A) or as the slip's lower half (B);
+ * - "On this page" and "Words used on this page" as two closed disclosures with a marker;
+ * - no "Read Core first" callout: the document's own first line already says it.
+ *
+ * The article deliberately has no `data-kind`: `dist:trust` counts documents by that attribute and
+ * expects exactly one per manifest document and locale. The notice and sources are still the real
+ * components, so they render exactly what the real page does.
+ */
+import Badge from '../ui/Badge.astro';
+import EffortMeter from '../ui/EffortMeter.astro';
+import Blocks from '../content/Blocks.astro';
+import TermsBlock from '../content/TermsBlock.astro';
+import TableOfContents from '../navigation/TableOfContents.astro';
+import AiNotice from '../trust/AiNotice.astro';
+import SourcesForPage from '../trust/SourcesForPage.astro';
+import TranslationNotice from '../trust/TranslationNotice.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../../i18n';
+import { DEFAULT_LOCALE, getLocale, type Locale } from '../../i18n/locales';
+import { loadDoc, loadGlossary, loadSources } from '../../lib/content/collections';
+import { createContentContext } from '../../lib/content/context';
+import { sectionHref, sectionTitle } from '../../lib/content/manifest';
+import { splitTermsBlocks } from '../../lib/content/render';
+import type { Manifest } from '../../lib/content/schema';
+import { hasOwnSources } from '../../lib/content/trust';
+import { docContentLang, effortLevel, sectionHue } from '../../lib/pages';
+import { href } from '../../lib/paths';
+import { APP_ROUTES, NAV_DOC_IDS } from '../../lib/routes';
+import { MOCK_COPY, MOCK_DOC_ID, type Direction } from './mock';
+
+interface Props {
+  direction: Direction;
+  locale: Locale;
+  manifest: Manifest;
+}
+
+const { direction, locale, manifest } = Astro.props;
+const t = useTranslations(locale);
+const copy = MOCK_COPY[locale];
+const contentLang = docContentLang(manifest, MOCK_DOC_ID, locale);
+const doc = await loadDoc(contentLang, MOCK_DOC_ID);
+if (!doc) throw new Error(`${MOCK_DOC_ID} is missing from src/data. Run \`pnpm content:build\`.`);
+const glossary = await loadGlossary(contentLang);
+const sourcesLang = docContentLang(manifest, NAV_DOC_IDS.sources, contentLang);
+const sources = await loadSources(sourcesLang);
+const englishSources =
+  sourcesLang !== DEFAULT_LOCALE ? await loadSources(DEFAULT_LOCALE) : undefined;
+const context = createContentContext({
+  locale,
+  contentLang,
+  manifest,
+  glossary,
+  sources,
+  sourcesLang,
+  englishSources,
+  docId: doc.id,
+});
+const isFallback = contentLang !== locale;
+const contentLangTag = isFallback ? (getLocale(contentLang)?.hreflang ?? contentLang) : undefined;
+const translationStatus = isFallback ? 'fallback' : doc.translation.status;
+const englishHref = locale === DEFAULT_LOCALE ? undefined : href(DEFAULT_LOCALE, doc.route);
+const hue = sectionHue(doc.section);
+const section = sectionTitle(manifest, doc.section, locale);
+const { terms, rest } = splitTermsBlocks(doc.blocks);
+const businessType = (await getCollection('businessTypes'))
+  .map((entry) => entry.data)
+  .find((type) => type.doc === doc.id);
+const level = businessType ? effortLevel(businessType.effort) : undefined;
+const effortLabels = [
+  t('businessTypes.effort.lowest'),
+  t('businessTypes.effort.low-medium'),
+  t('businessTypes.effort.medium'),
+  t('businessTypes.effort.medium-high'),
+  t('businessTypes.effort.high'),
+] as const;
+---
+
+<div class="st-container st-dir-doc" data-section={hue}>
+  <div class="st-dir-doc__main">
+    <nav class="st-dir-crumb" aria-label={t('nav.breadcrumbLabel')}>
+      <ol role="list">
+        <li>
+          <a href={href(locale, APP_ROUTES.home)}>{t('nav.home')}</a>
+        </li>
+        <li>
+          <a href={sectionHref(manifest, doc.section, locale)}>
+            <span class="st-dir-crumb__dot" aria-hidden="true"></span>
+            {section}
+          </a>
+        </li>
+      </ol>
+    </nav>
+
+    <article class="st-dir-doc__article" data-doc={doc.id}>
+      <header class="st-dir-doc__header">
+        <h1 lang={contentLangTag}>{doc.h1}</h1>
+        <p class="st-lead" lang={contentLangTag}>
+          {doc.summary}
+        </p>
+        {direction === 'a' ? (
+          <Fragment>
+            <p class="st-dir-doc__meta">
+              <Badge variant="status" icon="lucide:clock">
+                {t('doc.readTime', { minutes: doc.readingTime })}
+              </Badge>
+              {level && (
+                <EffortMeter
+                  level={level}
+                  label={t('businessTypes.effortLabel')}
+                  levelLabels={effortLabels}
+                  scaleText={t('businessTypes.effortScale', { level, total: 5 })}
+                />
+              )}
+            </p>
+            <AiNotice
+              verification={doc.verification}
+              hasPageSources={hasOwnSources(doc.sources)}
+              locale={locale}
+              manifest={manifest}
+            />
+            <TranslationNotice
+              status={translationStatus}
+              locale={locale}
+              englishHref={englishHref}
+            />
+          </Fragment>
+        ) : (
+          <div class="st-dir-slip">
+            <dl class="st-dir-slip__fields">
+              {level && (
+                <div class="st-dir-slip__field">
+                  <dt>{t('businessTypes.effortLabel')}</dt>
+                  <dd>
+                    <EffortMeter
+                      level={level}
+                      label={t('businessTypes.effortLabel')}
+                      levelLabels={effortLabels}
+                      scaleText={t('businessTypes.effortScale', { level, total: 5 })}
+                    />
+                  </dd>
+                </div>
+              )}
+              <div class="st-dir-slip__field">
+                <dt>{copy.slipRead}</dt>
+                <dd>{copy.minutes.replace('{n}', String(doc.readingTime))}</dd>
+              </div>
+            </dl>
+            <AiNotice
+              verification={doc.verification}
+              hasPageSources={hasOwnSources(doc.sources)}
+              locale={locale}
+              manifest={manifest}
+            />
+            <TranslationNotice
+              status={translationStatus}
+              locale={locale}
+              englishHref={englishHref}
+            />
+          </div>
+        )}
+      </header>
+
+      <div class="st-dir-pagetools">
+        <TableOfContents
+          headings={doc.headings}
+          locale={locale}
+          variant="details"
+          contentLang={contentLangTag}
+        />
+        {terms && (
+          <details id="words-used-in-this-file">
+            <summary>{copy.wordsUsed}</summary>
+            <div lang={contentLangTag}>
+              <TermsBlock block={terms} context={context} />
+            </div>
+          </details>
+        )}
+      </div>
+
+      <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
+
+      <SourcesForPage
+        sources={doc.sources}
+        sourceNote={doc.sourceNote}
+        context={context}
+        locale={locale}
+        id="sources-for-this-page"
+      />
+    </article>
+  </div>
+
+  <div class="st-dir-doc__aside">
+    <TableOfContents
+      headings={doc.headings}
+      locale={locale}
+      variant="column"
+      contentLang={contentLangTag}
+    />
+  </div>
+</div>

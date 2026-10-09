@@ -1,0 +1,61 @@
+---
+/**
+ * WP-50 Phase 1 (TEMPORARY): the index of the two direction mocks, so the owner can open them side
+ * by side. `noindex`, excluded from the sitemap by the `/design-system/` filter in
+ * `astro.config.ts`. Mock-only copy comes from `src/components/directions/mock.ts`.
+ */
+import Base from '../../../../layouts/Base.astro';
+import { MOCK_COPY, DIRECTIONS, mockRoute } from '../../../../components/directions/mock';
+import { useTranslations } from '../../../../i18n';
+import type { Locale } from '../../../../i18n/locales';
+import { localeStaticPaths } from '../../../../lib/i18n-routes';
+import { href } from '../../../../lib/paths';
+
+export function getStaticPaths() {
+  return localeStaticPaths();
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const copy = MOCK_COPY[locale];
+---
+
+<Base lang={locale} title={copy.indexTitle} noindex skipLinkLabel={t('nav.skipLink')}>
+  <div class="st-container st-measure st-stack st-stack-lg st-dir-index">
+    <h1>{copy.indexTitle}</h1>
+    <p class="st-lead">{copy.indexLead}</p>
+    {DIRECTIONS.map((direction) => (
+      <section class="st-stack" aria-labelledby={`st-dir-${direction}`}>
+        <h2 id={`st-dir-${direction}`}>{copy.directionName[direction]}</h2>
+        <p>{copy.directionSummary[direction]}</p>
+        <ul class="st-stack st-stack-sm" role="list">
+          <li>
+            <a class="st-link-block" href={href(locale, mockRoute(direction, 'home'))}>
+              {copy.pages.home}
+            </a>
+          </li>
+          <li>
+            <a class="st-link-block" href={href(locale, mockRoute(direction, 'doc'))}>
+              {copy.pages.doc}
+            </a>
+          </li>
+        </ul>
+      </section>
+    ))}
+    <p>
+      <a class="st-link-block" href={href('en', 'design-system/')}>
+        {t('designSystem.title')}
+      </a>
+    </p>
+  </div>
+</Base>
+
+<style>
+  .st-dir-index {
+    padding-block: var(--st-space-7);
+  }
+</style>

@@ -1,0 +1,41 @@
+---
+/**
+ * WP-50 Phase 1 mock (TEMPORARY): the vehicle-dealer document in direction A or B, in every
+ * enabled language. `noindex`, and excluded from the sitemap by the `/design-system/` filter in
+ * `astro.config.ts`. See docs/work-packages/WP-50-directions.md.
+ */
+import MockDoc from '../../../../../components/directions/MockDoc.astro';
+import MockShell from '../../../../../components/directions/MockShell.astro';
+import { DIRECTIONS, MOCK_DOC_ID, type Direction } from '../../../../../components/directions/mock';
+import type { Locale } from '../../../../../i18n/locales';
+import { loadManifest } from '../../../../../lib/content/collections';
+import { docTitle } from '../../../../../lib/content/manifest';
+import { localeStaticPaths } from '../../../../../lib/i18n-routes';
+
+export function getStaticPaths() {
+  return localeStaticPaths().flatMap((entry) =>
+    DIRECTIONS.map((direction) => ({
+      params: { ...entry.params, direction },
+      props: { ...entry.props, direction },
+    })),
+  );
+}
+
+interface Props {
+  locale: Locale;
+  direction: Direction;
+}
+
+const { locale, direction } = Astro.props;
+const manifest = await loadManifest();
+---
+
+<MockShell
+  direction={direction}
+  locale={locale}
+  manifest={manifest}
+  page="doc"
+  title={docTitle(manifest, MOCK_DOC_ID, locale)}
+>
+  <MockDoc direction={direction} locale={locale} manifest={manifest} />
+</MockShell>
