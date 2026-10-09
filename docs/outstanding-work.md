@@ -32,7 +32,7 @@ What WP-30 added: the device store (`src/lib/store.ts`, `src/lib/storage/`), sav
 
 ### Not started
 
-- **WP-50, design revamp** (plan only, `docs/work-packages/WP-50-design-revamp.md`). Four third-party design skills and the project's `stoep-design` skill are vendored in `.claude/skills/` (ADR 0007). Phase 0 is an audit with no source changes; Phase 1 ends in five design decisions for the owner.
+- **WP-50, design revamp** (`docs/work-packages/WP-50-design-revamp.md`). Phase 0, the audit, is done: `docs/reviews/WP-50-audit.md` summarises it, with the code audit, the reader-journey audit and `tests/e2e/visual.spec.ts` beside it. Next: fix the nine rule breaks and bugs it lists, then Phase 1 (up to two directions and the owner's decisions D1 to D5). Four third-party design skills and the project's `stoep-design` skill are vendored in `.claude/skills/` (ADR 0007).
 
 - **P4a, the accuracy review against official sources**: the cloud environment cannot reach SARS, CIPC, gov.za, SAFLII or the Information Regulator.
 - **WebKit**: run the WebKit project locally (merge checklist).
