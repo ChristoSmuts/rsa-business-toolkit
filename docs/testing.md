@@ -259,8 +259,9 @@ site's one shortcut handler, and the dialog translates with `searchTranslator()`
 
 ### Fix package WP-50a
 
-The nine fixes before the design revamp (`docs/reviews/WP-50-audit.md`, "Fix before the revamp"), each
-with its tests. Every one of these failed on `204a2a2`, the commit before the package.
+The nine fixes before the design revamp (`docs/reviews/WP-50-audit.md`, "Fix before the revamp"), and
+two found while Phase 1 was designed (10, and 11: the Venda letters, a doc and design-system page
+correction with no test), each with its tests. Every one of these failed on `204a2a2`, the commit before the package.
 
 | Item | Tests |
 | --- | --- |
@@ -273,6 +274,7 @@ with its tests. Every one of these failed on `204a2a2`, the commit before the pa
 | 7. Motion | `interactive.spec.ts`, "motion": the top bar's ring and the checklist ring run no animation when a page opens; "Mark as done" on My path and a tick on `/checklist/` start a `stroke-dashoffset` transition; under reduced motion its duration is 0; after Tab, `scroll-behavior` is `auto`. |
 | 8. Layout | `first-screen.spec.ts`: the two-column "Key to the short words" table fits at 320px in both languages, a three-column table is still at least 576px wide (it scrolls), and every checkbox on `/checklist/` beside a long label is as large as one beside a short label. |
 | 9. Prompt names | `interactive.spec.ts`, "prompt names": every copy button and "Copied" message on the branding prompts is named by the heading above it, and "Prompt 0" says "Copied: Prompt 0: the business brief"; two prompts under one heading say "(prompt 1 of 2)", "(opdrag 1 van 2)". |
+| 10. No folder name in a summary | `tests/content/validate.test.ts`, "has no raw folder or file name in any summary, in any language" (`pnpm test:content`), and `tests/unit/content/write-meta.test.ts`: `deriveSummary()` skips a paragraph with a document reference or a raw `NN-name/` path. |
 
 Budget after the package: the heaviest document page (`/af/templates/invoice/`) is 24.54 KB (printed
 24.5 KB, 0.5 KB left), up 0.36 KB from 24.18 KB: `theme-init.js` opens the word list (0.20 KB; it ships
