@@ -81,7 +81,7 @@ Work in reader-traffic order. Each item is a separate commit series and review:
 2. the home page and the section hubs;
 3. business-type pages;
 4. the tools: Find my path, My path, the templates, the checklist and the search dialog;
-5. the header, footer and navigation;
+5. the header, footer and navigation. Known from WP-50a: at 320px the top bar changes rows when the web fonts arrive (217px before, 165px after: a layout shift of about 0.13, with or without the language banner). The new header must stay at or under the 0.1 limit at 320px with the fonts held, and keep the AI notice on the first screen at 320×568 (`tests/e2e/first-screen.spec.ts`);
 6. the 404, about and contents pages.
 
 Every change keeps the markup contracts the test suites rely on (ids, roles, `data-*` hooks), or changes the tests in the same commit and says why.
