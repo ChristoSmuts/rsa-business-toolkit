@@ -81,12 +81,34 @@ const { labelledby, wide = false, class: className } = Astro.props;
     overscroll-behavior-x: contain;
   }
 
-  .st-table-scroll > table {
+  /*
+   * A table of three columns or more keeps a readable width and scrolls sideways. A two-column
+   * table (a word and its meaning, a field and its detail) fits the screen instead: at 36rem on
+   * every table, the "Key to the short words" table cut its second column off at 320px (WP-50 audit,
+   * flow 8). Where `:has()` is missing, every table fits the column and wraps. `:where()` keeps the
+   * rule weaker than the stacked mode's `min-inline-size: 0` below.
+   */
+  .st-table-scroll > table:where(:has(> :is(thead, tbody) > tr > :nth-child(3))) {
     min-inline-size: 36rem;
   }
 
-  .st-table-scroll thead th {
+  .st-table-scroll > table:where(:has(> :is(thead, tbody) > tr > :nth-child(3))) thead th {
     white-space: nowrap;
+  }
+
+  /*
+   * Long Afrikaans compounds ("betaalstaatrekonsiliasie", "inkomstebelastingopgawes") still fit a
+   * two-column table at 320px: they hyphenate where the browser knows the language, and break
+   * where they must otherwise, as headings do (design-system.md, "Wrapping and min-content"). The
+   * first column, the short word or label a row is about ("POPIA"), never breaks: with it, the
+   * table squeezed that column and broke "POPI-A".
+   */
+  .st-table-scroll :is(td, th) {
+    hyphens: auto;
+  }
+
+  .st-table-scroll :is(td, th):not(:first-child) {
+    overflow-wrap: anywhere;
   }
 
   @media (width < 640px) {
