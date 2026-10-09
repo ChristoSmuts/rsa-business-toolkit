@@ -244,7 +244,7 @@
       "flip-the-market"
     ]
   },
-  "summary": "Send this when money arrives. It stops the \"did you get my payment?\" message. Make a copy, replace the [SQUARE BRACKETS], export to PDF.",
+  "summary": "Send this when money arrives. It stops the \"did you get my payment?\" message.",
   "tags": [
     "template"
   ],

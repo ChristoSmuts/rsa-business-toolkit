@@ -394,6 +394,22 @@ describe('committed content data', () => {
     expect(found).toEqual([]);
   });
 
+  // WP-50a review pass 1, M4: a template's summary is the lead and meta description of its form
+  // page, so it never tells the reader to copy a file or replace [PLACEHOLDERS].
+  it('has no copy-the-file instruction and no [placeholder] in any template summary', () => {
+    const file =
+      /\[|make a copy|maak ’n afskrif|export to PDF|na PDF uit|SQUARE BRACKETS|VIERKANTIGE HAKIES/i;
+    const found = langs.flatMap((lang) =>
+      (docsByLang.get(lang) ?? [])
+        .filter((doc) => doc.kind === 'template' && file.test(doc.summary))
+        .map((doc) => `${lang} ${doc.id}: ${doc.summary}`),
+    );
+    expect(found).toEqual([]);
+    expect(
+      langs.flatMap((lang) => docsByLang.get(lang) ?? []).filter((d) => d.kind === 'template'),
+    ).toHaveLength(10);
+  });
+
   it('has a sane heading tree in every document', () => {
     for (const doc of enDocs) {
       let previous = 1;

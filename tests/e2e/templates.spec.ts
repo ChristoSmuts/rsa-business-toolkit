@@ -565,6 +565,13 @@ test.describe('the line above the form', () => {
           return texts.join('\n');
         });
         expect(above).not.toMatch(FILE_WORDS);
+        // The lead and the meta description too (review pass 1, M4).
+        const lead = (await article.locator('.st-lead').first().textContent()) ?? '';
+        const meta = (await page.locator('meta[name="description"]').getAttribute('content')) ?? '';
+        for (const text of [lead, meta]) {
+          expect(text).not.toMatch(FILE_WORDS);
+          expect(text).not.toContain('[');
+        }
         const line = howTo(lang).templates.items[slug]?.formHowTo;
         if (line) await expect(article.locator('.st-note-line', { hasText: line })).toBeVisible();
         else await expect(article.locator('.st-note-line')).toHaveCount(0);
