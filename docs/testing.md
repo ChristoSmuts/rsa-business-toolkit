@@ -19,7 +19,7 @@ pnpm build          # astro build + pnpm dist:audit
 | `pnpm dist:budget`  | `scripts/dist/check-budget.ts`               | The JavaScript each built page loads up front, gzipped, against 25 KB (document pages) and 45 KB (tool pages); also prints what opening search costs |
 | `pnpm test:e2e`     | `tests/e2e` (chromium, webkit, mobile, nojs) | Page contract, CSP, no third-party requests, 404 page, no-JS reading, content rendering, navigation and search |
 | `pnpm test:a11y`    | `tests/e2e/a11y.spec.ts`                     | axe (WCAG 2.0/2.1 A and AA) on every page in light and dark themes                                            |
-| `pnpm test:visual`  | `tests/e2e/visual.spec.ts`                   | Screenshot comparison (added in a later package)                                                              |
+| `pnpm test:visual`  | `tests/e2e/visual.spec.ts`                   | Screenshot comparison of every page type (WP-50), see Visual baselines                                        |
 | `pnpm lhci`         | `tests/lighthouse/lighthouserc.cjs`          | Lighthouse scores and size budgets, desktop and mobile                                                        |
 
 ## How pages are discovered
@@ -761,6 +761,8 @@ route had been built.
 Absolute URLs on `SITE_URL` (canonical, hreflang and `og:url`) count as internal. The scanner is a small tokenizer in the script itself (no parser dependency). It ignores comments (including the empty `<!-->` form) and the contents of `<script>`, `<style>`, `<textarea>` and `<title>`.
 
 ## Visual baselines
+
+`tests/e2e/visual.spec.ts` (project `visual`, Desktop Chrome with reduced motion) captures one page of each type: home, the core hub, the vehicle-dealer document, the food business type, Find my path, My path with a stored profile, the tax invoice template, the checklist, `/search/`, the search dialog open with a query, the 404 page and `/design-system/` (English only). Each is shot above the fold at 320, 768 and 1280px wide, in light and dark, in English and Afrikaans; home and the vehicle-dealer document also get a full-page shot at 320px. That is 146 images, named `<page>--<lang>--<theme>--<width>[--full].png`. Before each shot the spec waits for fonts and for what JavaScript renders, replaces every "checked on {date}" date with a fixed one (those dates move each time content is re-checked), blurs the focused element (the search dialog keeps focus in its field) and scrolls to the top; the config hides the caret and disables animations. Linux baselines come only from the "Update visual baselines" workflow, never from a local or agent machine, because font rendering differs. The owner's Windows baselines are separate files under `win32/` and are made and committed from Windows.
 
 Screenshots live in `tests/e2e/__screenshots__/<platform>/<project>/…`, so Windows (`win32`) and CI (`linux`) keep separate baselines.
 
