@@ -382,6 +382,18 @@ describe('committed content data', () => {
     }
   });
 
+  // WP-50a, item 10: a summary is a page's lead and meta description, so it is plain words, never a
+  // raw folder or file name from the markdown tree ("Lees eers 01-core/. …").
+  it('has no raw folder or file name in any summary, in any language', () => {
+    const raw = /(?:^|[\s(`"'])\d{2}-[\w-]+(?:\/|\.md\b)|\.md\b/;
+    const found = langs.flatMap((lang) =>
+      (docsByLang.get(lang) ?? [])
+        .filter((doc) => raw.test(doc.summary))
+        .map((doc) => `${lang} ${doc.id}: ${doc.summary}`),
+    );
+    expect(found).toEqual([]);
+  });
+
   it('has a sane heading tree in every document', () => {
     for (const doc of enDocs) {
       let previous = 1;
