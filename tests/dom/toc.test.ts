@@ -82,9 +82,20 @@ describe('<st-toc>', () => {
     expect(current()).toEqual(['Two']);
   });
 
-  it('shows the pill once the list has scrolled away, and the pill opens the list', () => {
+  // WP-50a review pass 1, M3: a pill of three lines or more covered the heading a link went to.
+  it('keeps the pill hidden while the section heading is still on screen', () => {
     mount(HEADINGS);
     place({ one: -400, two: -100, 'two-a': 5 });
+    mount(DETAILS);
+    place({ 'st-on-this-page': -300 });
+    (document.querySelector('st-toc') as StToc).update();
+    expect(current()).toEqual(['Two A']);
+    expect(document.querySelector<HTMLElement>('[data-toc-pill]')?.hidden).toBe(true);
+  });
+
+  it('shows the pill once the list and the heading have scrolled away, and the pill opens the list', () => {
+    mount(HEADINGS);
+    place({ one: -400, two: -100, 'two-a': -40 });
     mount(DETAILS);
     place({ 'st-on-this-page': -300 });
     (document.querySelector('st-toc') as StToc).update();

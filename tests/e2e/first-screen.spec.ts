@@ -80,6 +80,19 @@ test.describe('"Words used in this file"', () => {
     await expect(words).toHaveAttribute('open', '');
   });
 
+  // Review pass 1, m1: the contents link to the closed list landed on its summary line.
+  test('opens when the contents link or the address goes to it', async ({ page }) => {
+    await page.setViewportSize(PHONE);
+    await page.goto('business-types/vehicle-dealer/');
+    const words = page.locator('details#words-used-in-this-file');
+    const contents = page.locator('details.st-toc--details');
+    await contents.locator('summary').click();
+    await contents.locator('a[href="#words-used-in-this-file"]').click();
+    await expect(words).toHaveAttribute('open', '');
+    await page.goto('af/business-types/vehicle-dealer/#words-used-in-this-file');
+    await expect(page.locator('details#words-used-in-this-file')).toHaveAttribute('open', '');
+  });
+
   test('is open from 1024px, set before the first paint, so nothing moves', async ({
     page,
   }, testInfo) => {
@@ -104,31 +117,82 @@ test.describe('"Words used in this file"', () => {
   });
 });
 
-/** The longest heading in the Afrikaans documents, and its page. */
-function longestAfrikaansHeading(): { route: string; id: string; text: string } {
-  const dir = path.join(REPO_ROOT, 'src', 'data', 'af', 'docs');
-  let best = { route: '', id: '', text: '' };
+interface ListedHeading {
+  route: string;
+  id: string;
+  text: string;
+}
+
+/**
+ * The headings a document's contents list holds (and so the pill can show), longest first, from
+ * every document with a contents list in `lang`. Templates have none.
+ */
+function longestHeadings(lang: 'en' | 'af', count: number): ListedHeading[] {
+  const dir = path.join(REPO_ROOT, 'src', 'data', lang, 'docs');
+  const all: ListedHeading[] = [];
   // `node:fs` only, no globbing (CLAUDE.md, Windows notes).
   for (const name of readdirSync(dir).filter((file) => file.endsWith('.json'))) {
     const doc = JSON.parse(readFileSync(path.join(dir, name), 'utf8')) as {
       route: string;
+      kind: string;
       headings: { id: string; text: string; depth: number; pseudo?: boolean; hidden?: boolean }[];
     };
+    if (doc.kind === 'template') continue;
     for (const heading of doc.headings) {
       if (heading.depth > 3 || heading.pseudo || heading.hidden) continue;
-      if (heading.text.length > best.text.length) {
-        best = { route: `af/${doc.route}`, id: heading.id, text: heading.text };
-      }
+      const route = lang === 'en' ? doc.route : `af/${doc.route}`;
+      all.push({ route, id: heading.id, text: heading.text });
     }
   }
-  return best;
+  return all.sort((a, b) => b.text.length - a.text.length).slice(0, count);
+}
+
+/** Where the pill and a heading are, after the page has had two frames to update. */
+async function pillAndHeading(page: Page, id: string) {
+  return page.evaluate(async (target) => {
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    const pill = document.querySelector<HTMLElement>('[data-toc-pill]');
+    const heading = document.getElementById(target)?.getBoundingClientRect();
+    const box = pill && !pill.hidden ? pill.getBoundingClientRect() : null;
+    return {
+      headingTop: heading?.top ?? Number.NaN,
+      headingBottom: heading?.bottom ?? Number.NaN,
+      pillBottom: box ? box.bottom : null,
+      pillText: pill?.querySelector('[data-toc-pill-text]')?.textContent ?? '',
+    };
+  }, id);
 }
 
 test.describe('the "Now reading" pill', () => {
+  // WP-50a review pass 1, M3: a pill of three or more lines covered the heading a link went to.
+  for (const lang of ['en', 'af'] as const) {
+    test(`never covers the heading a link goes to: the 40 longest ${lang} headings at 320px`, async ({
+      page,
+    }) => {
+      test.setTimeout(120_000);
+      await page.setViewportSize(PHONE);
+      const headings = longestHeadings(lang, 40);
+      expect(headings).toHaveLength(40);
+      const covered: string[] = [];
+      for (const heading of headings) {
+        await page.goto(`${heading.route}#${heading.id}`);
+        const at = await pillAndHeading(page, heading.id);
+        expect(at.headingTop, heading.id).toBeGreaterThanOrEqual(0);
+        if (at.pillBottom !== null && at.pillBottom > at.headingTop) {
+          covered.push(
+            `${heading.route}#${heading.id}: pill to ${at.pillBottom}, heading at ${at.headingTop}`,
+          );
+        }
+      }
+      expect(covered).toEqual([]);
+    });
+  }
+
   test('wraps the longest Afrikaans heading at 320px instead of cutting it off, and follows the reader', async ({
     page,
   }) => {
-    const longest = longestAfrikaansHeading();
+    const [longest] = longestHeadings('af', 1);
+    if (!longest) throw new Error('No Afrikaans heading.');
     expect(longest.text.length).toBeGreaterThan(60);
     await page.setViewportSize(PHONE);
     await page.goto(longest.route);
@@ -136,6 +200,13 @@ test.describe('the "Now reading" pill', () => {
     await details.locator('summary').click();
     await details.locator(`.st-toc__list a[href="#${longest.id}"]`).click();
     const pill = page.locator('[data-toc-pill]');
+    // The heading is on screen and says where the reader is: no pill over it.
+    await expect(pill).toBeHidden();
+    // Once the heading has scrolled away, the pill names its section, in full.
+    await page.evaluate((id) => {
+      const target = document.getElementById(id);
+      if (target) window.scrollBy(0, target.getBoundingClientRect().bottom + 4);
+    }, longest.id);
     await expect(pill).toBeVisible();
     const text = pill.locator('[data-toc-pill-text]');
     await expect(text).toHaveText(longest.text);
@@ -160,7 +231,7 @@ test.describe('the "Now reading" pill', () => {
     expect(fit.left).toBeGreaterThanOrEqual(0);
     expect(fit.right).toBeLessThanOrEqual(fit.viewport);
     expect(fit.height).toBeGreaterThan(44);
-    // Still current: the next section's title replaces it once the reader gets there.
+    // Still current: the next section's title replaces it once that heading has scrolled away too.
     const after = await page.evaluate((id) => {
       const links = [...document.querySelectorAll<HTMLAnchorElement>('.st-toc--details a')];
       const index = links.findIndex((link) => link.hash === `#${id}`);
@@ -170,15 +241,41 @@ test.describe('the "Now reading" pill', () => {
     if (!after) throw new Error(`No section after ${longest.id}.`);
     await page.evaluate((id) => {
       const target = document.getElementById(id);
-      if (target) window.scrollTo(0, window.scrollY + target.getBoundingClientRect().top - 40);
+      if (target) window.scrollBy(0, target.getBoundingClientRect().bottom + 4);
     }, after.id);
     await expect(text).toHaveText(after.text);
   });
 });
 
+/**
+ * Words in a two-column table that the browser split across lines inside the word. A word is a run
+ * between spaces, hyphens and slashes, where a line may break anyway.
+ */
+async function splitWords(page: Page, region: string): Promise<string[]> {
+  return page.locator(region).evaluateAll((regions) => {
+    const split: string[] = [];
+    for (const element of regions) {
+      for (const cell of element.querySelectorAll('td, th')) {
+        const walker = document.createTreeWalker(cell, NodeFilter.SHOW_TEXT);
+        for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+          const text = node.textContent ?? '';
+          for (const match of text.matchAll(/[^\s\-‐/]+/gu)) {
+            const range = document.createRange();
+            range.setStart(node, match.index);
+            range.setEnd(node, match.index + match[0].length);
+            const tops = new Set([...range.getClientRects()].map((rect) => Math.round(rect.top)));
+            if (tops.size > 1) split.push(match[0]);
+          }
+        }
+      }
+    }
+    return split;
+  });
+}
+
 test.describe('layout at 320px', () => {
   for (const route of ['checklist/', 'af/checklist/']) {
-    test(`${route}: the two-column "Key to the short words" table fits the screen`, async ({
+    test(`${route}: the two-column "Key to the short words" table fits the screen, with no word split`, async ({
       page,
     }) => {
       await page.setViewportSize(PHONE);
@@ -187,21 +284,8 @@ test.describe('layout at 320px', () => {
       await expect(region).toBeVisible();
       const fit = await region.evaluate((element) => {
         const table = element.querySelector('table');
-        const columns = table?.querySelector('tr')?.children.length ?? 0;
-        // A short word in the first column ("POPIA") stays whole: one line box.
-        const broken = [...element.querySelectorAll('tbody tr > :first-child')]
-          .filter((cell) => !/\s/.test((cell.textContent ?? '').trim()))
-          .filter((cell) => {
-            const range = document.createRange();
-            range.selectNodeContents(cell);
-            return (
-              new Set([...range.getClientRects()].map((rect) => Math.round(rect.top))).size > 1
-            );
-          })
-          .map((cell) => cell.textContent?.trim());
         return {
-          columns,
-          broken,
+          columns: table?.querySelector('tr')?.children.length ?? 0,
           overflow: element.scrollWidth - element.clientWidth,
           right: table?.getBoundingClientRect().right ?? Number.POSITIVE_INFINITY,
           viewport: document.documentElement.clientWidth,
@@ -210,7 +294,25 @@ test.describe('layout at 320px', () => {
       expect(fit.columns).toBe(2);
       expect(fit.overflow).toBeLessThanOrEqual(0);
       expect(fit.right).toBeLessThanOrEqual(fit.viewport);
-      expect(fit.broken).toEqual([]);
+      expect(await splitWords(page, '#key-to-the-short-words ~ .st-table-scroll >> nth=0')).toEqual(
+        [],
+      );
+    });
+  }
+
+  // Review pass 1, M2: `overflow-wrap: anywhere` read "Vo/ert/uig/ha/nd/ela/ar" in the hub table.
+  for (const route of ['business-types/', 'af/business-types/']) {
+    test(`${route}: no word in the two-column tables is split`, async ({ page }) => {
+      await page.setViewportSize(PHONE);
+      await page.goto(route);
+      const twoColumn = await page
+        .locator('.st-blocks .st-table-scroll')
+        .evaluateAll(
+          (regions) =>
+            regions.filter((region) => region.querySelector('tr')?.children.length === 2).length,
+        );
+      expect(twoColumn).toBeGreaterThan(0);
+      expect(await splitWords(page, '.st-blocks .st-table-scroll')).toEqual([]);
     });
   }
 

@@ -432,14 +432,17 @@ test.describe('table of contents', () => {
     const link = details.locator('.st-toc__list a').nth(1);
     const title = (await link.textContent())?.trim() ?? '';
     await link.click();
+    // While the heading it went to is on screen there is no pill over it (WP-50a review pass 1,
+    // M3); once the heading has scrolled away, the pill names its section.
+    const id = (await link.getAttribute('href'))?.slice(1) ?? '';
+    await expect(pill).toBeHidden();
+    await page.evaluate((target) => {
+      const heading = document.getElementById(target);
+      if (heading) window.scrollBy(0, heading.getBoundingClientRect().bottom + 4);
+    }, id);
     await expect(pill).toBeVisible();
     await expect(pill).toContainText(title);
-    // The pill sits below the top of the screen, never over the heading it names.
-    const heading = await page
-      .locator(`[id="${(await link.getAttribute('href'))?.slice(1)}"]`)
-      .boundingBox();
     const box = await pill.boundingBox();
-    expect(box && heading && box.y + box.height <= heading.y + 1).toBe(true);
     // Pressed where it is: Playwright's own scroll-into-view would move the page under it.
     if (!box) throw new Error('The pill has no box.');
     await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);

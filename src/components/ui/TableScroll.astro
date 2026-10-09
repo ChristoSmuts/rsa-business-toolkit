@@ -97,18 +97,18 @@ const { labelledby, wide = false, class: className } = Astro.props;
   }
 
   /*
-   * Long Afrikaans compounds ("betaalstaatrekonsiliasie", "inkomstebelastingopgawes") still fit a
-   * two-column table at 320px: they hyphenate where the browser knows the language, and break
-   * where they must otherwise, as headings do (design-system.md, "Wrapping and min-content"). The
-   * first column, the short word or label a row is about ("POPIA"), never breaks: with it, the
-   * table squeezed that column and broke "POPI-A".
+   * A two-column table at 320px: words wrap only between words. `overflow-wrap: anywhere` let the
+   * automatic table layout squeeze a column until words broke every two or three letters
+   * ("Vo/ert/uig/ha/nd/ela/ar"; WP-50a review pass 1, M2), and `hyphens: auto` cannot be relied on
+   * instead: the Chromium the tests use hyphenates no language, Afrikaans included. The cells keep the inherited `break-word`, which does not lower a column's
+   * min-content, so a table whose longest words cannot sit side by side scrolls sideways instead.
+   * Below 480px the cells' side padding is a little tighter, which is what lets the Afrikaans "Key to
+   * the short words" table fit without scrolling.
    */
-  .st-table-scroll :is(td, th) {
-    hyphens: auto;
-  }
-
-  .st-table-scroll :is(td, th):not(:first-child) {
-    overflow-wrap: anywhere;
+  @media (width < 480px) {
+    .st-table-scroll :is(td, th) {
+      padding-inline: var(--st-space-2);
+    }
   }
 
   @media (width < 640px) {

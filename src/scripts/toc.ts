@@ -8,7 +8,8 @@
  * section can never reach the line.
  *
  * Its link gets `aria-current="location"`; below 1280px the "Now reading" pill shows its title once
- * the list itself has scrolled away, and links back to the list (opening it). Nothing animates
+ * the list itself and the section's own heading have scrolled away, and links back to the list
+ * (opening it). Nothing animates
  * that `prefers-reduced-motion` would object to: the pill's fade uses `--st-duration-base`, which
  * the tokens set to 0 under reduced motion, and nothing scrolls by itself.
  */
@@ -52,6 +53,18 @@ export class StToc extends HTMLElement {
     });
   };
 
+  /**
+   * A contents link to a `<details>` ("Words used in this file", closed below 1024px) opens it, on
+   * a click and when the page opens at its fragment: the browser does not open a `<details>` that is
+   * itself the target (WP-50a review pass 1, m1).
+   */
+  readonly #openTarget = (event?: Event): void => {
+    const link = event?.target instanceof Element ? event.target.closest('a') : null;
+    // Heading ids are ASCII slugs, so the fragment needs no decoding.
+    const target = this.ownerDocument.getElementById((link ?? window.location).hash.slice(1));
+    if (target instanceof HTMLDetailsElement) target.open = true;
+  };
+
   readonly #onPill = (): void => {
     if (this.#details) this.#details.open = true;
   };
@@ -73,6 +86,9 @@ export class StToc extends HTMLElement {
     window.addEventListener('scroll', this.#schedule, { passive: true });
     window.addEventListener('resize', this.#schedule);
     window.addEventListener('hashchange', this.#schedule);
+    this.addEventListener('click', this.#openTarget);
+    window.addEventListener('hashchange', this.#openTarget);
+    this.#openTarget();
     this.#current = -2;
     this.update();
   }
@@ -82,6 +98,8 @@ export class StToc extends HTMLElement {
     window.removeEventListener('scroll', this.#schedule);
     window.removeEventListener('resize', this.#schedule);
     window.removeEventListener('hashchange', this.#schedule);
+    this.removeEventListener('click', this.#openTarget);
+    window.removeEventListener('hashchange', this.#openTarget);
     if (this.#frame) cancelAnimationFrame(this.#frame);
     this.#frame = 0;
   }
@@ -122,7 +140,14 @@ export class StToc extends HTMLElement {
     }
     if (this.#pill) {
       const listGone = this.#details ? this.#details.getBoundingClientRect().bottom < line : true;
-      this.#pill.hidden = !(index >= 0 && listGone);
+      // While the section's own heading is on screen it already says where the reader is, and a
+      // pill of three or more lines would cover it: the pill waits until it has scrolled away
+      // (WP-50a review pass 1, M3). Right after a contents link, that is always the case.
+      const bar = parseFloat(
+        getComputedStyle(doc.documentElement).getPropertyValue('--st-topbar-offset'),
+      );
+      const headingShown = (this.#targets[index]?.getBoundingClientRect().bottom ?? 0) > (bar || 0);
+      this.#pill.hidden = !(index >= 0 && listGone && !headingShown);
     }
   }
 }
