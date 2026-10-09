@@ -1,11 +1,87 @@
+import { readdirSync, readFileSync } from 'node:fs';
+import path from 'node:path';
 import { expect, test } from './fixtures';
+import { REPO_ROOT } from './helpers/routes';
 
 /**
  * WP-50a: what a 320px phone shows, measured on the built pages.
  *
+ * - Item 5: the "Now reading" pill wraps the longest Afrikaans heading instead of cutting it off.
  * - Item 8: a two-column table fits the screen, and a checkbox keeps its size beside long text.
  */
 const PHONE = { width: 320, height: 568 } as const;
+
+/** The longest heading in the Afrikaans documents, and its page. */
+function longestAfrikaansHeading(): { route: string; id: string; text: string } {
+  const dir = path.join(REPO_ROOT, 'src', 'data', 'af', 'docs');
+  let best = { route: '', id: '', text: '' };
+  // `node:fs` only, no globbing (CLAUDE.md, Windows notes).
+  for (const name of readdirSync(dir).filter((file) => file.endsWith('.json'))) {
+    const doc = JSON.parse(readFileSync(path.join(dir, name), 'utf8')) as {
+      route: string;
+      headings: { id: string; text: string; depth: number; pseudo?: boolean; hidden?: boolean }[];
+    };
+    for (const heading of doc.headings) {
+      if (heading.depth > 3 || heading.pseudo || heading.hidden) continue;
+      if (heading.text.length > best.text.length) {
+        best = { route: `af/${doc.route}`, id: heading.id, text: heading.text };
+      }
+    }
+  }
+  return best;
+}
+
+test.describe('the "Now reading" pill', () => {
+  test('wraps the longest Afrikaans heading at 320px instead of cutting it off, and follows the reader', async ({
+    page,
+  }) => {
+    const longest = longestAfrikaansHeading();
+    expect(longest.text.length).toBeGreaterThan(60);
+    await page.setViewportSize(PHONE);
+    await page.goto(longest.route);
+    const details = page.locator('details.st-toc--details');
+    await details.locator('summary').click();
+    await details.locator(`.st-toc__list a[href="#${longest.id}"]`).click();
+    const pill = page.locator('[data-toc-pill]');
+    await expect(pill).toBeVisible();
+    const text = pill.locator('[data-toc-pill-text]');
+    await expect(text).toHaveText(longest.text);
+    const fit = await pill.evaluate((element) => {
+      const title = element.querySelector<HTMLElement>('[data-toc-pill-text]');
+      const style = title ? getComputedStyle(title) : null;
+      const box = element.getBoundingClientRect();
+      return {
+        whiteSpace: style?.whiteSpace,
+        textOverflow: style?.textOverflow,
+        clipped:
+          element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight,
+        left: box.left,
+        right: box.right,
+        height: box.height,
+        viewport: document.documentElement.clientWidth,
+      };
+    });
+    expect(fit.whiteSpace).not.toBe('nowrap');
+    expect(fit.textOverflow).not.toBe('ellipsis');
+    expect(fit.clipped).toBe(false);
+    expect(fit.left).toBeGreaterThanOrEqual(0);
+    expect(fit.right).toBeLessThanOrEqual(fit.viewport);
+    expect(fit.height).toBeGreaterThan(44);
+    // Still current: the next section's title replaces it once the reader gets there.
+    const after = await page.evaluate((id) => {
+      const links = [...document.querySelectorAll<HTMLAnchorElement>('.st-toc--details a')];
+      const index = links.findIndex((link) => link.hash === `#${id}`);
+      const next = links[index + 1];
+      return next ? { id: next.hash.slice(1), text: (next.textContent ?? '').trim() } : null;
+    }, longest.id);
+    if (!after) throw new Error(`No section after ${longest.id}.`);
+    await page.evaluate((id) => {
+      const target = document.getElementById(id);
+      if (target) window.scrollTo(0, window.scrollY + target.getBoundingClientRect().top - 40);
+    }, after.id);
+    await expect(text).toHaveText(after.text);
+  });
+});
 
 test.describe('layout at 320px', () => {
   for (const route of ['checklist/', 'af/checklist/']) {
