@@ -476,13 +476,15 @@
         "name": "Kwotasie",
         "description": "Sê vir ’n kliënt wat die prys is voordat jy die werk doen.",
         "startNext": "Begin volgende kwotasie",
-        "startNextDone": "Kwotasie {number} is begin."
+        "startNextDone": "Kwotasie {number} is begin.",
+        "formHowTo": "Vul die vorm in en kyk na die voorskou. Stoor dit dan as ’n PDF en stuur die PDF vir die kliënt."
       },
       "invoice": {
         "name": "Faktuur",
         "description": "Vra vir betaling as jy nie vir BTW geregistreer is nie.",
         "startNext": "Begin volgende faktuur",
-        "startNextDone": "Faktuur {number} is begin."
+        "startNextDone": "Faktuur {number} is begin.",
+        "formHowTo": "Vul die vorm in en kyk na die voorskou. Druk dit dan, of stoor dit as ’n PDF om te stuur."
       },
       "tax-invoice": {
         "name": "Belastingfaktuur",
@@ -494,11 +496,13 @@
         "name": "Kwitansie",
         "description": "Wys dat ’n kliënt jou betaal het.",
         "startNext": "Begin volgende kwitansie",
-        "startNextDone": "Kwitansie {number} is begin."
+        "startNextDone": "Kwitansie {number} is begin.",
+        "formHowTo": "Stuur dit wanneer geld inkom. Vul die vorm in, kyk na die voorskou, en stoor dit dan as ’n PDF om te stuur."
       },
       "privacy-notice": {
         "name": "Privaatheidskennisgewing",
-        "description": "Sê vir kliënte watter persoonlike inligting jy bewaar, en waarom."
+        "description": "Sê vir kliënte watter persoonlike inligting jy bewaar, en waarom.",
+        "formHowTo": "Sit dit op jou webwerf, of stuur dit as ’n PDF wanneer ’n kliënt daarvoor vra. Vul die vorm in, en kies “Laat dit uit die dokument uit” vir enige reël wat nie vir jou besigheid waar is nie."
       }
     },
     "open": "Maak sjabloon oop",

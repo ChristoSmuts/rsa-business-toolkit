@@ -533,3 +533,41 @@ test.describe('the templates index', () => {
     await expect(page.locator('st-template-form')).toBeVisible();
   });
 });
+
+/**
+ * WP-50a, item 4: above the form the page says how to use the form. The markdown's "make a copy,
+ * rename it… replace everything in [SQUARE BRACKETS], then export to PDF" is for the file, and a
+ * first-time reader looked for a file to copy (WP-50 audit, flow 5).
+ */
+test.describe('the line above the form', () => {
+  const FILE_WORDS =
+    /SQUARE BRACKETS|VIERKANTIGE HAKIES|make a copy|maak ’n afskrif|export to PDF|na PDF uit/i;
+  const howTo = (lang: 'en' | 'af') =>
+    JSON.parse(readFileSync(path.join(REPO_ROOT, 'src', 'i18n', `${lang}.json`), 'utf8')) as {
+      templates: { items: Record<string, { formHowTo?: string }> };
+    };
+  for (const lang of ['en', 'af'] as const) {
+    for (const slug of ['quotation', 'invoice', 'tax-invoice', 'receipt', 'privacy-notice']) {
+      test(`${lang} ${slug}: no instruction about a file, and the form's own line`, async ({
+        page,
+      }) => {
+        await page.goto(`${lang === 'en' ? '' : 'af/'}templates/${slug}/`);
+        const article = page.locator('article[data-kind="template"]');
+        const above = await article.evaluate((element) => {
+          const tool = element.querySelector('st-template-form');
+          const texts: string[] = [];
+          for (const block of element.querySelectorAll('.st-blocks > *')) {
+            if (tool && tool.compareDocumentPosition(block) & Node.DOCUMENT_POSITION_PRECEDING) {
+              texts.push(block.textContent ?? '');
+            }
+          }
+          return texts.join('\n');
+        });
+        expect(above).not.toMatch(FILE_WORDS);
+        const line = howTo(lang).templates.items[slug]?.formHowTo;
+        if (line) await expect(article.locator('.st-note-line', { hasText: line })).toBeVisible();
+        else await expect(article.locator('.st-note-line')).toHaveCount(0);
+      });
+    }
+  }
+});

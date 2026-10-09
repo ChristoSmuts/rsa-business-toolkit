@@ -61,6 +61,7 @@ interface Props {
   manifest: Manifest;
   /** The document in the language it is rendered in (English when not translated yet). */
   doc: Doc;
+import { formHowToKey, formIntro } from '../lib/templates/intro';
   glossary: GlossaryFile | undefined;
   sources: SourcesFile | undefined;
   /** The language `sources` is in; English until `lookup/sources` is translated. */
@@ -115,6 +116,14 @@ const businessType = businessTypes.find((type) => type.doc === doc.id);
 const effortLabels = [
   t('businessTypes.effort.lowest'),
   t('businessTypes.effort.low-medium'),
+/*
+ * Above the form, the markdown's "make a copy … export to PDF" note (for the file) gives way to a
+ * line about the form, in the language of the template's text (`src/lib/templates/intro.ts`).
+ */
+const howToKey = templateSlug ? formHowToKey(templateSlug) : undefined;
+const templateIntro = template
+  ? formIntro(template.before, howToKey ? useTranslations(contentLang)(howToKey) : undefined)
+  : [];
   t('businessTypes.effort.medium'),
   t('businessTypes.effort.medium-high'),
   t('businessTypes.effort.high'),
@@ -252,7 +261,7 @@ const relatedTypes = businessType
 
         {template && templateSlug ? (
           <Fragment>
-            <Blocks blocks={template.before} context={context} fallbackCaption={doc.title} />
+            <Blocks blocks={templateIntro} context={context} fallbackCaption={doc.title} />
             <TemplateTool
               locale={locale}
               slug={templateSlug}
