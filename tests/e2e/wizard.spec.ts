@@ -790,12 +790,12 @@ test.describe('personalisation elsewhere', () => {
     const figure = page.locator('figure:has(st-prompt-fill)').first();
     const mark = figure.locator('mark[data-key="businessType"]').first();
     await expect(mark).toHaveText('[BUSINESS TYPE]');
-    await figure.getByRole('button', { name: /^Fill from my profile: prompt \d+, / }).click();
+    await figure.getByRole('button', { name: /^Fill from my profile: Prompt \d+: / }).click();
     await expect(mark).toHaveText(en.prompts.profileValues['food'] ?? '');
     await expect(figure.locator('st-prompt-fill [role="status"]')).toHaveText(
       /blanks? left to fill in|All blanks are filled in/,
     );
-    const undo = figure.getByRole('button', { name: /Undo filling in prompt/ });
+    const undo = figure.getByRole('button', { name: /^Undo filling in: Prompt \d+: / });
     await expect(undo).toBeFocused();
     await undo.click();
     await expect(mark).toHaveText('[BUSINESS TYPE]');

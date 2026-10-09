@@ -757,7 +757,7 @@ describe('pick, getDictionary and createTranslator', () => {
     expect(tr('search.results', { count: 1 })).toBe('1 resultaat');
     expect(tr('prompts.placeholdersRemaining', { count: 3 })).toBe('3 oop plekke om in te vul');
     expect(tr('search.noResults', { query: 'btw' })).toBe('Niks gevind vir “btw” nie.');
-    expect(tr('prompts.copyNamed', { n: 2, title: 'Logo' })).toBe('Kopieer opdrag 2: Logo');
+    expect(tr('prompts.copyNamed', { title: 'Logo' })).toBe('Kopieer opdrag: Logo');
   });
 
   it('createTranslator only accepts keys from the picked groups, with typed parameters', () => {

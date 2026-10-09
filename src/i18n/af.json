@@ -580,14 +580,15 @@
   },
   "prompts": {
     "copy": "Kopieer opdrag",
-    "copyNamed": "Kopieer opdrag {n}: {title}",
+    "copyNamed": "Kopieer opdrag: {title}",
     "copied": "Gekopieer",
-    "copiedNamed": "Opdrag {n} gekopieer",
+    "copiedNamed": "Gekopieer: {title}",
     "copyFailed": "Kon nie kopieer nie. Die teks is gekies. Kopieer dit met jou sleutelbord, of druk lank daarop op ’n foon.",
     "fillFromProfile": "Vul in uit my profiel",
-    "fillFromProfileNamed": "Vul in uit my profiel: opdrag {n}, {title}",
+    "fillFromProfileNamed": "Vul in uit my profiel: {title}",
     "undoFill": "Ontdoen",
-    "undoFillNamed": "Ontdoen die invulling in opdrag {n}: {title}",
+    "undoFillNamed": "Ontdoen die invulling: {title}",
+    "titlePart": "{title} (opdrag {n} van {total})",
     "placeholdersRemaining": {
       "one": "{count} oop plek om in te vul",
       "other": "{count} oop plekke om in te vul"

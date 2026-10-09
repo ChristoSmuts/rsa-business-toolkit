@@ -580,14 +580,15 @@
   },
   "prompts": {
     "copy": "Copy prompt",
-    "copyNamed": "Copy prompt {n}: {title}",
+    "copyNamed": "Copy prompt: {title}",
     "copied": "Copied",
-    "copiedNamed": "Prompt {n} copied",
+    "copiedNamed": "Copied: {title}",
     "copyFailed": "Could not copy. The text is selected. Copy it with your keyboard, or press and hold it on a phone.",
     "fillFromProfile": "Fill from my profile",
-    "fillFromProfileNamed": "Fill from my profile: prompt {n}, {title}",
+    "fillFromProfileNamed": "Fill from my profile: {title}",
     "undoFill": "Undo",
-    "undoFillNamed": "Undo filling in prompt {n}: {title}",
+    "undoFillNamed": "Undo filling in: {title}",
+    "titlePart": "{title} (prompt {n} of {total})",
     "placeholdersRemaining": {
       "one": "{count} blank left to fill in",
       "other": "{count} blanks left to fill in"

@@ -326,16 +326,84 @@ test.describe('copy buttons', () => {
     const figure = page.locator('figure.st-code[data-variant="prompt"]').first();
     const button = figure.locator('st-copy button');
     await expect(button).toBeVisible();
-    await expect(button).toHaveAccessibleName(/^Copy prompt 1: /);
+    await expect(button).toHaveAccessibleName(/^Copy prompt: The refine prompt/);
     await button.click();
     await expect(button).toHaveText('Copied');
-    await expect(figure.locator('[role="status"]')).toHaveText('Prompt 1 copied');
+    await expect(figure.locator('[role="status"]')).toHaveText(/^Copied: The refine prompt/);
     const clipboard = await page.evaluate(() => navigator.clipboard.readText());
     expect(clipboard).toBe(FIRST_PROMPT);
     const copied = await page.evaluate(
       () => JSON.parse(window.localStorage.getItem('st.prompts.v1') ?? '{}') as object,
     );
     expect(Object.keys(copied)).toHaveLength(1);
+/**
+ * WP-50a, item 9: the copy button and its "Copied" message name a prompt by the heading above it,
+ * which carries the guide's own numbering. A count in page order called "Prompt 0" "Prompt 4".
+ */
+test.describe('prompt names', () => {
+  /** Every prompt's copy name and message, with the text of the nearest heading above it. */
+  async function promptNames(page: Page) {
+    return page.locator('figure.st-code[data-variant="prompt"]').evaluateAll((figures) =>
+      figures.map((figure) => {
+        const headings = [...document.querySelectorAll('.st-blocks :is(h2, h3, h4, h5)')];
+        const above = headings.filter(
+          (heading) => heading.compareDocumentPosition(figure) & Node.DOCUMENT_POSITION_FOLLOWING,
+        );
+        return {
+          heading: (above.at(-1)?.textContent ?? '').trim(),
+          name: figure.querySelector('st-copy button')?.getAttribute('aria-label') ?? '',
+          message: figure.querySelector<HTMLElement>('st-copy')?.dataset['copiedMessage'] ?? '',
+        };
+      }),
+    );
+  }
+
+  test('"Prompt 0" is copied as "Prompt 0", and every prompt is named by its heading', async ({
+    page,
+    context,
+  }, testInfo) => {
+    await page.goto(PROMPTS);
+    const names = await promptNames(page);
+    expect(names.length).toBeGreaterThan(10);
+    for (const { heading, name, message } of names) {
+      expect(name).toBe(`Copy prompt: ${heading}`);
+      expect(message).toBe(`Copied: ${heading}`);
+    }
+    const zero = page.locator('figure.st-code[data-variant="prompt"]', {
+      has: page.getByRole('button', { name: /^Copy prompt: Prompt 0: / }),
+    });
+    await expect(zero).toHaveCount(1);
+    test.skip(testInfo.project.name !== 'chromium', 'Clipboard permissions are Chromium-only.');
+    await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+    await zero.locator('st-copy button').click();
+    await expect(zero.locator('[role="status"]')).toHaveText(
+      'Copied: Prompt 0: the business brief',
+    );
+  });
+
+  test('two prompts under one heading say which of them each one is, in both languages', async ({
+    page,
+  }) => {
+    for (const [route, of] of [
+      ['branding/mood-and-materials/', 'prompt'],
+      ['af/branding/mood-and-materials/', 'opdrag'],
+    ] as const) {
+      await page.goto(route);
+      const names = await promptNames(page);
+      const shared = names.filter(
+        (entry, index) => names.findIndex((other) => other.heading === entry.heading) !== index,
+      );
+      expect(shared.length, route).toBeGreaterThan(0);
+      const heading = shared[0]?.heading ?? '';
+      const group = names.filter((entry) => entry.heading === heading);
+      group.forEach((entry, index) => {
+        expect(entry.name).toContain(`${heading} (${of} ${index + 1} `);
+        expect(entry.name).toMatch(new RegExp(` ${group.length}\\)$`));
+      });
+    }
+  });
+});
+
     await expect(button).toHaveText('Copy prompt', { timeout: 5000 });
   });
 
