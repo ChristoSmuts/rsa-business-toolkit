@@ -495,6 +495,15 @@ input[type='radio'] {
   margin-block-start: calc((1lh - 1.25rem) / 2);
 }
 
+/*
+ * The label shrinks instead, and a word longer than the line ("Omgewingsgesondheidsafdeling" at
+ * 320px) breaks rather than pushing the page sideways (WCAG 1.4.10; WP-50a review pass 2, M2).
+ */
+.st-check > :not(input) {
+  min-inline-size: 0;
+  overflow-wrap: break-word;
+}
+
 .st-field {
   display: grid;
   gap: var(--st-space-1);

@@ -450,3 +450,21 @@ test.describe('the AI notice on a 320×568 screen without JavaScript', () => {
     await expect(words).toHaveAttribute('open', '');
   });
 });
+
+/** WCAG 1.4.10 at 320px without JavaScript (WP-50a review pass 2, M2; with it: `reflow.spec.ts`). */
+test.describe('no sideways scrolling at 320px without JavaScript', () => {
+  if (skipReason) {
+    test('route discovery', () => test.skip(true, skipReason));
+    return;
+  }
+  for (const route of routes) {
+    test(routeLabel(route), async ({ page }) => {
+      await page.setViewportSize({ width: 320, height: 568 });
+      await page.goto(routeUrl(route));
+      const by = await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      );
+      expect(by).toBeLessThanOrEqual(0);
+    });
+  }
+});
