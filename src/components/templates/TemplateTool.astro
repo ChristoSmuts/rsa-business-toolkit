@@ -10,6 +10,12 @@
  * is the printable sheet (`data-print-sheet` on the form, styled for paper below), the preview,
  * tabs, required items and buttons are not shown, and one line says how to print.
  *
+ * Until `<st-template-form>` has run (`data-enhance`, `data-ready`; `src/styles/utilities.css`), a
+ * reader with JavaScript gets that same no-JavaScript form: the tabs, preview and buttons do nothing
+ * before the script, and on a slow phone they showed about 8 s before it (WP-50 audit, flow 5).
+ * The tab strip keeps its room meanwhile (`visibility: hidden`), so the form does not move down
+ * when the tabs appear.
+ *
  * Group ids are the template's heading ids, so a link to `#to` or `#payment-details` (the contents,
  * search, another page) lands on the matching part of the form.
  */
@@ -72,6 +78,7 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
 
 <st-template-form
   class="st-tool"
+  data-enhance
   data-template={slug}
   data-months={JSON.stringify(months)}
   data-date-format={t('date.format', { day: '{day}', month: '{month}', year: '{year}' })}
@@ -100,7 +107,7 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
     <p class="st-hint no-js-only">{t('templates.noJsPrint')}</p>
   </div>
 
-  <div class="st-tool__tabs js-only" role="tablist" aria-label={t('templates.tabsLabel')}>
+  <div class="st-tool__tabs" role="tablist" aria-label={t('templates.tabsLabel')}>
     <button
       type="button"
       role="tab"
@@ -321,10 +328,22 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
     color: var(--st-primary);
   }
 
+  /*
+   * The tabs need the script: none without it, and no visible tabs until it has run, in the room
+   * they will take (an invisible element takes no taps or focus).
+   */
+  html:not(.js) .st-tool__tabs {
+    display: none;
+  }
+
+  st-template-form:not([data-ready]) .st-tool__tabs {
+    visibility: hidden;
+  }
+
   /* Narrow: one pane at a time, chosen with the tabs. */
   @container (inline-size < 52rem) {
-    html.js st-template-form:not([data-view='preview']) [data-pane='preview'],
-    html.js st-template-form[data-view='preview'] [data-pane='form'] {
+    st-template-form[data-ready]:not([data-view='preview']) [data-pane='preview'],
+    st-template-form[data-ready][data-view='preview'] [data-pane='form'] {
       display: none;
     }
   }
@@ -340,8 +359,8 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
     }
   }
 
-  /* The preview needs the script; without it the form is the printable sheet. */
-  html:not(.js) .st-tool__preview {
+  /* The preview needs the script; without it, and until it runs, the form is the printable sheet. */
+  st-template-form:not([data-ready]) .st-tool__preview {
     display: none;
   }
 
@@ -392,12 +411,12 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
   }
 
   @media print {
-    /* With the script, the preview is the sheet; without it, the form is. */
-    html.js .st-tform {
+    /* With the script, the preview is the sheet; without it, or before it runs, the form is. */
+    st-template-form[data-ready] .st-tform {
       display: none !important;
     }
 
-    html.js .st-tool__preview {
+    st-template-form[data-ready] .st-tool__preview {
       display: block !important;
     }
 

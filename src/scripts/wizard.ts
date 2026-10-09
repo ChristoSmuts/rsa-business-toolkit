@@ -94,11 +94,27 @@ export class StWizard extends HTMLElement {
     this.#form.addEventListener('click', this.#onClick);
     this.#form.addEventListener('submit', this.#onSubmit);
     this.#form.addEventListener('keydown', this.#onKeydown);
+    // Until now the page was the no-JavaScript form, all three questions (WP-50a). A reader who has
+    // scrolled to a later question stays on it, where it is: the steps above it fold away, and the
+    // page scrolls by what they took, so nothing on screen moves.
+    const view = this.ownerDocument.defaultView;
+    let start = 0;
+    if (view && view.scrollY > 0) {
+      this.#steps.forEach((step, index) => {
+        if (step.getBoundingClientRect().top < view.innerHeight / 2) start = index;
+      });
+    }
+    const before = this.#steps[start]?.getBoundingClientRect().top ?? 0;
     this.dataset['ready'] = '';
-    this.#show(0);
+    this.#show(start);
+    const after = this.#steps[start]?.getBoundingClientRect().top ?? 0;
+    if (after !== before) view?.scrollBy(0, after - before);
   }
 
   disconnectedCallback(): void {
+    // Its controls stop working, so the page goes back to the no-JavaScript form (utilities.css).
+    delete this.dataset['ready'];
+    for (const step of this.#steps) step.hidden = false;
     this.#form?.removeEventListener('change', this.#onChange);
     this.#form?.removeEventListener('click', this.#onClick);
     this.#form?.removeEventListener('submit', this.#onSubmit);

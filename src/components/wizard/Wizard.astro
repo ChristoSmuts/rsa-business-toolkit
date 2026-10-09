@@ -11,8 +11,14 @@
  * instead; "Pty Ltd, growing" without a Pty Ltd says why it cannot be chosen.
  *
  * **With JavaScript** `<st-wizard>` (`src/scripts/wizard.ts`) makes it three steps and saves the
- * answers. Those controls (stepper, Back, Next, "See my path") are `.js-only`; the result buttons
- * are `.no-js-only`.
+ * answers. Those controls (Back, Next, "See my path") are `.js-only`; the result buttons are
+ * `.no-js-only`.
+ *
+ * **Until the script has run** (`data-enhance`, `data-ready`; `src/styles/utilities.css`) the page
+ * is the no-JavaScript form: all three questions, the result button for the checked answers, and
+ * no Back or Next. On a slow phone Next used to show about 8 s before it worked, and a tap on it
+ * did nothing (WP-50 audit, flow 1). The stepper shows from the first paint, as an outline of the
+ * three questions, so it does not push the form down when the script arrives.
  */
 import Button from '../ui/Button.astro';
 import Callout from '../ui/Callout.astro';
@@ -83,8 +89,8 @@ const results = singleChoices().map((choice) => ({
 }));
 ---
 
-<st-wizard class="st-wizard" data-my-path={myPathHref} data-version={pathsData.hash}>
-  <ol class="st-wizard__stepper js-only" aria-label={t('wizard.stepsLabel')} role="list">
+<st-wizard class="st-wizard" data-enhance data-my-path={myPathHref} data-version={pathsData.hash}>
+  <ol class="st-wizard__stepper" aria-label={t('wizard.stepsLabel')} role="list">
     {stepTitles.map((title, index) => (
       <li data-stepper={index}>
         <span class="st-wizard__stepper-n">{t('wizard.stepOf', { n: index + 1, total })}</span>
@@ -324,8 +330,8 @@ const results = singleChoices().map((choice) => ({
 </script>
 
 <style is:global>
-  /* Before the element connects, a reader with JavaScript sees only the first question. */
-  html.js st-wizard:not([data-ready]) .st-wizard__step:not([data-step='entity']) {
+  /* Without JavaScript the three questions are one form, with no steps. */
+  html:not(.js) .st-wizard__stepper {
     display: none;
   }
 

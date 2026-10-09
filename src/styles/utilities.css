@@ -13,13 +13,24 @@
   white-space: nowrap !important;
 }
 
-/* Shown only once theme-init has set the `js` class on <html>. */
-html:not(.js) .js-only {
+/*
+ * Shown only once theme-init has set the `js` class on <html>. Inside an element marked
+ * `data-enhance` (the wizard, a template form), shown only once that element's script has set
+ * `data-ready`: a control that needs the script must not show before the script runs, or a tap on
+ * it is lost (on a slow phone the wizard's Next showed about 8 s before it worked; WP-50 audit,
+ * flows 1 and 5).
+ */
+html:not(.js) .js-only,
+[data-enhance]:not([data-ready]) .js-only {
   display: none !important;
 }
 
-/* Shown only when JavaScript is unavailable. */
-html.js .no-js-only {
+/*
+ * Shown only when JavaScript is unavailable, and, inside a `data-enhance` element, until its
+ * script is ready: until then the page works as it does without JavaScript (the wizard's GET
+ * form, the template's printable form).
+ */
+html.js .no-js-only:not([data-enhance]:not([data-ready]) *) {
   display: none !important;
 }
 

@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
+import { holdModules } from './helpers/network';
 import { REPO_ROOT } from './helpers/routes';
 
 /**
@@ -570,4 +571,59 @@ test.describe('the line above the form', () => {
       });
     }
   }
+});
+
+/**
+ * WP-50a, item 2: the Fill in / Preview tabs showed about 8 s before the form's script on a slow
+ * phone, and a tap on Preview was lost (WP-50 audit, flow 5). Until `<st-template-form>` is ready
+ * the page is the no-JavaScript form, and the tabs keep their room without showing.
+ */
+test.describe('a template before its script runs', () => {
+  test('shows no tabs while the module is held, then the tabs take their room with nothing moving', async ({
+    page,
+    baseURL,
+  }) => {
+    await page.addInitScript(() => {
+      const shifts: number[] = [];
+      Object.assign(window, { stShifts: shifts });
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          shifts.push((entry as PerformanceEntry & { value: number }).value);
+        }
+      }).observe({ type: 'layout-shift', buffered: true });
+    });
+    await page.setViewportSize({ width: 412, height: 900 });
+    const release = await holdModules(page, baseURL);
+    await page.goto('templates/invoice/', { waitUntil: 'commit' });
+    const form = page.locator('form.st-tform');
+    await expect(form).toBeVisible();
+    await page.waitForTimeout(3000);
+    expect(await page.evaluate(() => customElements.get('st-template-form') === undefined)).toBe(
+      true,
+    );
+    await expect(page.getByRole('tab')).toHaveCount(0);
+    await expect(page.locator('.st-tool__tabs')).toBeHidden();
+    await expect(page.locator('.st-tool__preview')).toBeHidden();
+    await expect(page.locator('.st-tool__actions')).toBeHidden();
+    await expect(page.getByText('To print, use your browser’s Print command.')).toBeVisible();
+    const name = page.getByLabel('Customer name');
+    await name.fill('Thandi');
+    // Scrolled to the form, where a jump would be seen.
+    await form.evaluate((element) => element.scrollIntoView({ block: 'start' }));
+    const before = await form.boundingBox();
+
+    release();
+    await expect(page.locator('st-template-form')).toHaveAttribute('data-ready', '');
+    await expect(page.getByRole('tab', { name: en.templates.preview })).toBeVisible();
+    await expect(name).toHaveValue('Thandi');
+    const after = await form.boundingBox();
+    expect(Math.abs((after?.y ?? 0) - (before?.y ?? 0))).toBeLessThanOrEqual(1);
+    const shift = await page.evaluate(() =>
+      (window as unknown as { stShifts: number[] }).stShifts.reduce((sum, value) => sum + value, 0),
+    );
+    expect(shift).toBeLessThanOrEqual(0.1);
+    await page.getByRole('tab', { name: en.templates.preview }).click();
+    await expect(page.locator('.st-tool__preview')).toBeVisible();
+    await expect(sheet(page)).toContainText('Thandi');
+  });
 });

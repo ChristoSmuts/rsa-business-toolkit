@@ -5,7 +5,7 @@ import { PathsFileSchema } from '../../src/lib/content/schema';
 import { buildPath, pathDocs } from '../../src/lib/path-engine';
 import { profileOf, resultRoute, singleChoices } from '../../src/lib/profile';
 import { allowConsoleError, expect, test } from './fixtures';
-import { routeSameOrigin } from './helpers/network';
+import { holdModules, routeSameOrigin } from './helpers/network';
 import { DEFAULT_DIST_DIR, REPO_ROOT } from './helpers/routes';
 
 /**
@@ -838,5 +838,104 @@ test.describe('the pre-rendered result pages', () => {
       }
     }
     expect(choices).toHaveLength(49);
+  });
+});
+
+/**
+ * WP-50a, item 2: on a slow phone the wizard's Next showed about 8 s before its script ran, and a
+ * tap on it was lost (WP-50 audit, flow 1). Until `<st-wizard>` is ready the page is the
+ * no-JavaScript form: no Next, all three questions, and the result button for the answers.
+ */
+test.describe('Find my path before its script runs', () => {
+  const layoutShifts = async (page: Page): Promise<number> =>
+    page.evaluate(() =>
+      (window as unknown as { stShifts: number[] }).stShifts.reduce((sum, value) => sum + value, 0),
+    );
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      const shifts: number[] = [];
+      Object.assign(window, { stShifts: shifts });
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          shifts.push((entry as PerformanceEntry & { value: number }).value);
+        }
+      }).observe({ type: 'layout-shift', buffered: true });
+    });
+  });
+
+  test('shows no Next while the module is held, and the no-JavaScript form still gets there', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdModules(page, baseURL);
+    await page.goto('find-my-path/', { waitUntil: 'commit' });
+    await expect(page.getByRole('heading', { name: /Question 1 of 3/ })).toBeVisible();
+    await page.waitForTimeout(3000);
+    expect(await page.evaluate(() => customElements.get('st-wizard') === undefined)).toBe(true);
+    await expect(page.locator('[data-next]:visible, [data-back]:visible')).toHaveCount(0);
+    for (const n of [2, 3]) {
+      await expect(
+        page.getByRole('heading', { name: new RegExp(`Question ${n} of 3`) }),
+      ).toBeVisible();
+    }
+    await page.getByRole('radio', { name: /registered company/ }).check();
+    await page.getByRole('radio', { name: /Vehicle dealer/ }).check();
+    await page.getByRole('radio', { name: /want to grow/ }).check();
+    const submit = page.locator('.st-wizard__result:visible');
+    await expect(submit).toHaveCount(1);
+    await submit.click();
+    await page.waitForURL(/\/find-my-path\/result\/pty\/vehicle-dealer\/pty-growing\/\?/, {
+      waitUntil: 'commit',
+    });
+    release();
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Your path');
+  });
+
+  test('when the script arrives, the steps take over in place, keeping the answer', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdModules(page, baseURL);
+    await page.goto('find-my-path/', { waitUntil: 'commit' });
+    const company = page.getByRole('radio', { name: /registered company/ });
+    await company.check();
+    const heading = page.getByRole('heading', { name: /Question 1 of 3/ });
+    const before = await heading.boundingBox();
+    await page.waitForTimeout(3000);
+    release();
+    await expect(page.locator('st-wizard')).toHaveAttribute('data-ready', '');
+    const next = page.getByRole('button', { name: 'Next' });
+    await expect(next).toBeVisible();
+    await expect(next).not.toHaveAttribute('aria-disabled', /.*/);
+    await expect(company).toBeChecked();
+    await expect(page.getByRole('heading', { name: /Question 2 of 3/ })).toBeHidden();
+    expect((await heading.boundingBox())?.y).toBeCloseTo(before?.y ?? -1, 0);
+    expect(await layoutShifts(page)).toBeLessThanOrEqual(0.1);
+    await next.click();
+    await expect(page.getByRole('heading', { name: /Question 2 of 3/ })).toBeFocused();
+  });
+
+  test('a reader already at question 2 stays on it, where it is, when the script arrives', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdModules(page, baseURL);
+    await page.goto('find-my-path/', { waitUntil: 'commit' });
+    await page.getByRole('radio', { name: /registered company/ }).check();
+    const second = page.getByRole('heading', { name: /Question 2 of 3/ });
+    await second.evaluate((heading) =>
+      window.scrollTo(0, heading.getBoundingClientRect().top + window.scrollY - 80),
+    );
+    const before = await second.boundingBox();
+    await page.waitForTimeout(3000);
+    release();
+    await expect(page.locator('st-wizard')).toHaveAttribute('data-ready', '');
+    await expect(second).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Question 1 of 3/ })).toBeHidden();
+    expect(Math.abs(((await second.boundingBox())?.y ?? 0) - (before?.y ?? 0))).toBeLessThanOrEqual(
+      1,
+    );
+    expect(await layoutShifts(page)).toBeLessThanOrEqual(0.1);
+    await expect(page.locator('[data-stepper="1"]')).toHaveAttribute('aria-current', 'step');
   });
 });

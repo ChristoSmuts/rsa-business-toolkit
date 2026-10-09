@@ -125,8 +125,10 @@ export function resultKey(choice: SingleChoice): string {
 /**
  * The wizard's no-JavaScript CSS (`Wizard.astro`): of the 49 result buttons, show the one whose
  * answers are checked; hide "Choose an answer first." once one shows; and say why "Pty Ltd,
- * growing" leads nowhere without a Pty Ltd. Only under `html:not(.js)`, and only where the browser
- * has `:has()`: elsewhere the list of every result page (`.st-wizard__fallback`) is the way on.
+ * growing" leads nowhere without a Pty Ltd. Only while `<st-wizard>` is not ready (`data-ready`),
+ * which is always without JavaScript and, with it, until the wizard's script has run (WP-50a), and
+ * only where the browser has `:has()`: elsewhere the list of every result page
+ * (`.st-wizard__fallback`) is the way on.
  */
 export function wizardNoJsCss(): string {
   const checked = (name: string, value: string): string =>
@@ -134,17 +136,17 @@ export function wizardNoJsCss(): string {
   const rules = singleChoices().map((choice) => ({
     key: resultKey(choice),
     form:
-      `html:not(.js) .st-wizard__form${checked(QUERY.entity, choice.entity)}` +
+      `st-wizard:not([data-ready]) .st-wizard__form${checked(QUERY.entity, choice.entity)}` +
       `${checked(QUERY.type, choice.type)}${checked(QUERY.stage, choice.stage)}`,
   }));
   const ptyMismatch =
-    `html:not(.js) .st-wizard__form${checked(QUERY.stage, 'pty-growing')}` +
+    `st-wizard:not([data-ready]) .st-wizard__form${checked(QUERY.stage, 'pty-growing')}` +
     `:not(${checked(QUERY.entity, 'pty')})`;
   return [
     // Where `:has()` works, ask for an answer and hide the list of every result (review WP-31
     // pass 1, major 2). Where it does not, none of these rules apply, so the list stays.
-    '@supports selector(:has(*)){html:not(.js) .st-wizard__incomplete{display:block}' +
-      'html:not(.js) .st-wizard__fallback{display:none}}',
+    '@supports selector(:has(*)){st-wizard:not([data-ready]) .st-wizard__incomplete{display:block}' +
+      'st-wizard:not([data-ready]) .st-wizard__fallback{display:none}}',
     ...rules.map(
       (rule) => `${rule.form} .st-wizard__result[data-result="${rule.key}"]{display:inline-flex}`,
     ),

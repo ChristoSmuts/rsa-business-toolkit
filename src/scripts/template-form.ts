@@ -239,9 +239,12 @@ export class StTemplateForm extends HTMLElement {
       this.#observer.observe(this);
     }
     this.#updateTabs();
+    // Now the tabs, the preview and the buttons work: show them (`data-enhance`, utilities.css).
+    this.dataset['ready'] = '';
   }
 
   disconnectedCallback(): void {
+    delete this.dataset['ready'];
     this.querySelector('[data-sheet]')?.removeAttribute('data-print-sheet');
     this.#form?.setAttribute('data-print-sheet', '');
     this.#form?.removeEventListener('input', this.#onInput);
