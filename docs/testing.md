@@ -257,6 +257,28 @@ wrapper (`scripts/search/plain-import.ts`; the helper chunk was 0.75 KB), the ke
 site's one shortcut handler, and the dialog translates with `searchTranslator()` rather than
 `createTranslator()` (which put 0.5 KB of the translation core into every page's `i18n` chunk).
 
+### Fix package WP-50a
+
+The nine fixes before the design revamp (`docs/reviews/WP-50-audit.md`, "Fix before the revamp"), each
+with its tests. Every one of these failed on `204a2a2`, the commit before the package.
+
+| Item | Tests |
+| --- | --- |
+| 1. The AI notice on the first screen at 320×568 | `first-screen.spec.ts`: the notice's top is at most 524px down (its 44px label row in view) on the vehicle-dealer, tax and invoice pages in both languages, after the modules have run, and with saved answers once the top bar shows its ring; "Words used in this file" is closed at 320px and open at 1280px with no layout shift (≤ 0.01). `nojs.spec.ts`: the same six pages without JavaScript, and the list closed. `tests/dom/theme-init.test.ts`: theme-init opens the list from 1024px only, by the id `Doc.astro` renders. |
+| 2. No dead controls | `wizard.spec.ts`, "Find my path before its script runs": with the modules held for 3 s there is no Next or Back, all three questions show, and the no-JavaScript result button leads to the result page; released, the steps take over with the first question where it was and the answer kept, and a reader already at question 2 stays on it, where it was (layout shift ≤ 0.1 in both). `templates.spec.ts`, "a template before its script runs": held, no tab and no preview, the no-JavaScript print line, the form takes typing; released, the form has not moved, the typed value is kept and Preview works. `tests/unit/path-pages.test.ts` holds the wizard's no-JavaScript CSS on `st-wizard:not([data-ready])`. |
+| 3. Search says it is loading | `search.spec.ts`, "the search dialog while it loads": with the index held, "Loading search…" from the moment the dialog opens, the index requested before any key, the common questions shown with nothing typed, and the status line cleared once it arrives; with the dialog's script and the index held, a typed query hides the common questions and shows no option for 3 s, then the results come. `tests/dom/search.test.ts` does the same against the results code. |
+| 4. The line above a template's form | `templates.spec.ts`, "the line above the form": none of the five templates, in either language, shows the markdown's file instruction above the form, and the four that had one show `templates.items.<slug>.formHowTo` instead. `tests/unit/templates/intro.test.ts` runs `formIntro()` on all ten documents and checks that the document itself still has its note. |
+| 5. The "Now reading" pill wraps | `first-screen.spec.ts`: at 320px the pill shows the longest Afrikaans heading in full (not `nowrap`, no ellipsis, nothing clipped, inside the screen, taller than one line), then the next section's title once the reader reaches it. |
+| 6. The language banner does not shift the page | `interactive.spec.ts`: with the web fonts held until the page has drawn, the banner is as tall before them as after (±1px) at 320, 360 and 1024px, and the layout shift is ≤ 0.1. At 320px the top bar itself changes rows when the web font arrives (about 0.13, with or without the banner); that shift is the header's, so there the bound applies to the shifts outside the header. |
+| 7. Motion | `interactive.spec.ts`, "motion": the top bar's ring and the checklist ring run no animation when a page opens; "Mark as done" on My path and a tick on `/checklist/` start a `stroke-dashoffset` transition; under reduced motion its duration is 0; after Tab, `scroll-behavior` is `auto`. |
+| 8. Layout | `first-screen.spec.ts`: the two-column "Key to the short words" table fits at 320px in both languages, a three-column table is still at least 576px wide (it scrolls), and every checkbox on `/checklist/` beside a long label is as large as one beside a short label. |
+| 9. Prompt names | `interactive.spec.ts`, "prompt names": every copy button and "Copied" message on the branding prompts is named by the heading above it, and "Prompt 0" says "Copied: Prompt 0: the business brief"; two prompts under one heading say "(prompt 1 of 2)", "(opdrag 1 van 2)". |
+
+Budget after the package: the heaviest document page (`/af/templates/invoice/`) is 24.54 KB (printed
+24.5 KB, 0.5 KB left), up 0.36 KB from 24.18 KB: `theme-init.js` opens the word list (0.20 KB; it ships
+unminified), `search-boot.ts` says "Loading search…" (0.10 KB), and the path ring's first-draw guard
+(0.05 KB). The heaviest tool page (`/af/search/`) is 34.7 KB.
+
 ### Fillable templates (WP-32)
 
 `tests/e2e/templates.spec.ts` (projects `chromium`, `webkit` and `mobile`): on the tax invoice,
@@ -613,6 +635,8 @@ The reporter repeats the check for the whole run.
 ### Intercepting requests
 
 Use `routeSameOrigin(target, baseURL, matches, handler)` from `tests/e2e/helpers/network.ts`. Its handler only sees same-origin requests. ESLint bans `page.route` and `context.route` in specs. The network guard observes every request either way.
+
+Two helpers in the same file build on it and return a `release()` function: `holdRequests(target, baseURL, matches)` holds every matching request until it is called (the search index, the web fonts), and `holdModules(target, baseURL)` holds every bundled module except the blocking `theme-init.js`, which is the window a slow phone has between the first paint and the modules connecting. Navigate with `waitUntil: 'commit'` while something is held, because `load` waits for the held modules.
 
 `seedStorage` seeds once per browser context. It stores a marker key named `__playwright.seeded.<uuid>` (not an `st.` key), so values that the page changes survive a reload.
 
