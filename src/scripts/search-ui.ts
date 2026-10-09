@@ -9,6 +9,9 @@
  *
  * States: empty (the common questions), loading, results, no results and failed. The failed and
  * no-results states keep a link to the contents page. A polite live region says what happened.
+ * Loading is said from the moment the dialog opens until the index has arrived (`search-boot.ts`
+ * says it before this code arrives), and the common questions are hidden while a typed query
+ * waits for it, so they never look like its results (WP-50 audit, flow 3).
  *
  * A reader with saved answers from Find my path (WP-31) also gets the "My business types" chip: a
  * toggle button that keeps only results for their business types (`profileBusinessTypes()`, General
@@ -80,6 +83,8 @@ export class SearchDialogController implements DialogController {
   #sequence = 0;
   /** The query the options on screen belong to; Enter never opens an option of another one. */
   #shownQuery = '';
+  /** True while the index is being fetched for an open dialog, until it arrives or fails. */
+  #fetching = false;
 
   constructor(host: HTMLElement, deps: DialogDeps, client?: SearchClient) {
     this.#host = host;
@@ -126,8 +131,17 @@ export class SearchDialogController implements DialogController {
     if (this.#filters) this.#filters.hidden = types === null;
     this.#mine?.setAttribute('aria-pressed', 'false');
     // Low data: the index is fetched when the reader types, not when the dialog opens.
-    if (!(this.#deps.settings ?? searchSettings()).lowData) {
-      void this.#client.load().catch(() => undefined);
+    if (!this.#client.ready && !(this.#deps.settings ?? searchSettings()).lowData) {
+      this.#fetching = true;
+      const closes = this.#closes;
+      void this.#client
+        .load()
+        .catch(() => undefined)
+        .then(() => {
+          this.#fetching = false;
+          // Loaded with nothing typed: the common questions stay, and the status line is cleared.
+          if (closes === this.#closes && this.#input.value.trim() === '') this.#setStatus('');
+        });
     }
     if (this.#input.value.trim() !== '') this.search(this.#input.value);
     // An empty field shows the common questions, and clears a failed state left by an earlier
@@ -277,6 +291,8 @@ export class SearchDialogController implements DialogController {
       return;
     }
     const { tr } = this.#context;
+    // While the index loads, the common questions are not results for this query.
+    if (!this.#client.ready && this.#empty) this.#empty.hidden = true;
     const loading = this.#client.ready
       ? undefined
       : setTimeout(() => {
@@ -318,7 +334,8 @@ export class SearchDialogController implements DialogController {
     this.#sequence++;
     this.#shownQuery = '';
     this.#clearOptions();
-    this.#setStatus('');
+    // The index the dialog started loading when it opened is still on its way: say so.
+    this.#setStatus(this.#fetching ? this.#context.tr('search.loading') : '');
     if (this.#failed) this.#failed.hidden = true;
     if (this.#empty) this.#empty.hidden = false;
   }

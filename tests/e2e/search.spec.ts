@@ -1,6 +1,6 @@
 import type { Page, Request } from '@playwright/test';
 import { allowConsoleError, expect, test } from './fixtures';
-import { routeSameOrigin } from './helpers/network';
+import { holdRequests, routeSameOrigin } from './helpers/network';
 import { documentUrlProblems } from './helpers/page-checks';
 
 /**
@@ -279,6 +279,66 @@ test.describe('the search dialog', () => {
     await field(page).fill('qqqqzzzz');
     await expect(dialog(page).getByRole('status')).toContainText('Nothing found for “qqqqzzzz”.');
     await expect(dialog(page).getByRole('link', { name: 'Browse all pages' })).toBeVisible();
+  });
+});
+
+/**
+ * WP-50a, item 3: on a slow phone the index took 8 to 11 s, and the dialog said nothing meanwhile,
+ * with the common questions standing under the typed words as if they were the results (WP-50
+ * audit, flow 3). The index and the dialog's script are held here, then released.
+ */
+test.describe('the search dialog while it loads', () => {
+  const INDEX = /\/search\/[a-z]{2,3}\.[0-9a-f]{10}\.json$/;
+  const status = (page: Page) => dialog(page).getByRole('status');
+  const common = (page: Page) => dialog(page).locator('[data-search-empty]');
+
+  test('fetches the index when it opens, and says "Loading search…" until it is there', async ({
+    page,
+    baseURL,
+  }) => {
+    const requests = indexRequests(page);
+    const release = await holdRequests(page, baseURL, (url) => INDEX.test(url.pathname));
+    await open(page, DOC);
+    await page.waitForLoadState('networkidle');
+    await page.locator('a.st-topbar__search').click();
+    await expect(dialog(page)).toBeVisible();
+    await expect(status(page)).toHaveText('Loading search…');
+    // Fetched on opening, before a single key: the field is still empty.
+    await expect.poll(() => requests.length).toBe(1);
+    await expect(field(page)).toHaveValue('');
+    // With nothing typed, the common questions are the way on while it loads.
+    await expect(common(page)).toBeVisible();
+    release();
+    await expect(status(page)).toHaveText('');
+    await expect(common(page)).toBeVisible();
+  });
+
+  test('a query typed before the script and the index arrive shows no common questions under it', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdRequests(
+      page,
+      baseURL,
+      (url) => INDEX.test(url.pathname) || /\/_astro\/search(-ui)?\.[^/]+\.js$/.test(url.pathname),
+    );
+    await open(page, DOC);
+    await page.waitForLoadState('domcontentloaded');
+    await page.waitForFunction(() => document.documentElement.classList.contains('js'));
+    await page.locator('a.st-topbar__search').click();
+    await expect(dialog(page)).toBeVisible();
+    await expect(status(page)).toHaveText('Loading search…');
+    await field(page).fill('vat');
+    await expect(common(page)).toBeHidden();
+    await expect(status(page)).toHaveText('Loading search…');
+    await page.waitForTimeout(3000);
+    await expect(page.getByRole('option')).toHaveCount(0);
+    await expect(common(page)).toBeHidden();
+    await expect(status(page)).toHaveText('Loading search…');
+    release();
+    await expect(page.getByRole('option').first()).toBeVisible();
+    await expect(status(page)).toContainText(/result/);
+    await expect(common(page)).toBeHidden();
   });
 });
 
