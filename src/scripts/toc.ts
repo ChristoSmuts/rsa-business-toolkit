@@ -8,16 +8,17 @@
  * section can never reach the line.
  *
  * Its link gets `aria-current="location"`; below 1280px the "Now reading" pill shows its title once
- * the list itself and the section's own heading have scrolled away, and links back to the list
- * (opening it). Nothing animates
- * that `prefers-reduced-motion` would object to: the pill's fade uses `--st-duration-base`, which
+ * the list itself has scrolled away, steps aside for a heading coming up under it, and links back to
+ * the list (opening it). Nothing animates that `prefers-reduced-motion` would object to: the pill's fade uses `--st-duration-base`, which
  * the tokens set to 0 under reduced motion, and nothing scrolls by itself.
  */
 import { interpolate } from '../i18n';
 
 /**
- * Index of the current heading: the last one whose top is at or above `line`, or -1 before the
- * first. When the page cannot scroll further (`atBottom`), the last heading above `viewportBottom`.
+ * Index of the current heading: of those whose top is at or above `line`, the one lowest on the
+ * page, or -1 before the first. By position, not list order: on "Free tools" the list does not
+ * follow the page (WP-50a review pass 2, m2). When the page cannot scroll further (`atBottom`),
+ * the lowest heading above `viewportBottom`. A `NaN` top is not a section.
  */
 export function currentIndex(
   tops: readonly number[],
@@ -26,15 +27,25 @@ export function currentIndex(
   viewportBottom = Number.POSITIVE_INFINITY,
 ): number {
   let current = -1;
-  for (let index = 0; index < tops.length; index++) {
-    const top = tops[index] ?? Number.POSITIVE_INFINITY;
-    if (top <= line || (atBottom && top < viewportBottom)) current = index;
-  }
+  let lowest = Number.NEGATIVE_INFINITY;
+  tops.forEach((top, index) => {
+    if (!(top <= line || (atBottom && top < viewportBottom)) || top < lowest) return;
+    lowest = top;
+    current = index;
+  });
   return current;
 }
 
 /** A little below the scroll padding, so a heading a link scrolled to counts as passed. */
 const LINE_SLACK = 8;
+/** How far a heading must move before a pill hidden over it comes back. */
+const HYSTERESIS = 16;
+/**
+ * A heading's box starts a few pixels above its letters. A three-line pill ends about 1.5px below
+ * the line at 320px, so without this a pill already up hid for one step as each heading came up to
+ * it. A pill not yet up does not get it, or it showed for one step before hiding over its heading.
+ */
+const INK = 4;
 
 export class StToc extends HTMLElement {
   #links: HTMLAnchorElement[] = [];
@@ -123,7 +134,13 @@ export class StToc extends HTMLElement {
       view !== null &&
       view.scrollY > 0 &&
       view.scrollY + view.innerHeight >= scroller.scrollHeight - 2;
-    const tops = this.#targets.map((target) => target.getBoundingClientRect().top);
+    const rects = this.#targets.map((target) => target.getBoundingClientRect());
+    // A closed "Words used in this file" is not a section the reader is in (review pass 2, m2).
+    const tops = this.#targets.map((target, position) =>
+      target instanceof HTMLDetailsElement && !target.open
+        ? Number.NaN
+        : (rects[position]?.top ?? 0),
+    );
     const index = currentIndex(tops, line, atBottom, viewportBottom);
     if (index !== this.#current) {
       this.#current = index;
@@ -140,14 +157,26 @@ export class StToc extends HTMLElement {
     }
     if (this.#pill) {
       const listGone = this.#details ? this.#details.getBoundingClientRect().bottom < line : true;
-      // While the section's own heading is on screen it already says where the reader is, and a
-      // pill of three or more lines would cover it: the pill waits until it has scrolled away
-      // (WP-50a review pass 1, M3). Right after a contents link, that is always the case.
-      const bar = parseFloat(
-        getComputedStyle(doc.documentElement).getPropertyValue('--st-topbar-offset'),
-      );
-      const headingShown = (this.#targets[index]?.getBoundingClientRect().bottom ?? 0) > (bar || 0);
-      this.#pill.hidden = !(index >= 0 && listGone && !headingShown);
+      // The pill floats over the text and may cover what scrolls under it, but never a heading
+      // the reader has just reached: one a contents link put at the scroll padding, or one still
+      // coming up to it under a tall pill (review pass 1, M3; pass 2, M3 and m1). Only a pill of
+      // three or more lines can reach that far, so one- and two-line pills stay up. The pill is
+      // measured as it is now, and a hidden pill comes back once the heading has moved 16px on.
+      // A pill already up that only reaches the top few pixels of a heading's box covers no letter.
+      const pill = this.#pill;
+      const wasShown = !pill.hidden;
+      pill.hidden = !(index >= 0 && listGone);
+      if (!pill.hidden) {
+        const box = pill.getBoundingClientRect();
+        const limit = line - LINE_SLACK - 2 - (wasShown ? 0 : HYSTERESIS);
+        pill.hidden = rects.some(
+          (rect, position) =>
+            !(this.#targets[position] instanceof HTMLDetailsElement) &&
+            rect.top >= limit &&
+            rect.top < box.bottom - (wasShown ? INK : 0) &&
+            rect.bottom > box.top,
+        );
+      }
     }
   }
 }

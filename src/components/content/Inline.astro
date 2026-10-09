@@ -41,6 +41,16 @@ const t = useTranslations(context.contentLang);
 const externalLabel = t('a11y.externalLink');
 const officialLabel = t('sources.official');
 
+/**
+ * A link whose text is an address ("webaim.org/resources/contrastchecker"): one long word with a
+ * dot or slash. It gets `st-url`, so a table cell may break it anywhere (`TableScroll`); a link of
+ * words never does (WP-50a review pass 2, m3).
+ */
+function urlText(runs: readonly InlineRun[]): boolean {
+  const text = runs.map((run) => (run.t === 'text' || run.t === 'code' ? run.v : ' ')).join('');
+  return /^\S+$/.test(text.trim()) && /[./]/.test(text) && text.trim().length > 12;
+}
+
 /** The URL of an internal link or docref, or `undefined` when the manifest does not know the id. */
 function targetHref(run: InlineRun): string | undefined {
   if (run.t === 'link' && 'doc' in run)
@@ -84,7 +94,7 @@ function isOfficial(url: string): boolean {
   : run.t === 'em' ? <em><Self runs={run.c} context={context} /></em>
   : run.t === 'placeholder' ? <mark class="st-placeholder" data-placeholder={run.style}>{placeholderLabel(run)}</mark>
   : run.t === 'sigline' ? <Fragment><span class="st-sigline" aria-hidden="true" /><span class="st-visually-hidden">{t('templates.fields.blankLine')}</span></Fragment>
-  : run.t === 'link' && 'external' in run ? <Fragment><a href={run.href} rel="noopener noreferrer"><Self runs={run.c} context={context} /><Icon name="lucide:external-link" size="0.9em" /><span class="st-visually-hidden">{externalLabel}</span></a>{isOfficial(run.href) && <Fragment> <Badge variant="official">{officialLabel}</Badge></Fragment>}</Fragment>
+  : run.t === 'link' && 'external' in run ? <Fragment><a href={run.href} rel="noopener noreferrer" class={urlText(run.c) ? 'st-url' : undefined}><Self runs={run.c} context={context} /><Icon name="lucide:external-link" size="0.9em" /><span class="st-visually-hidden">{externalLabel}</span></a>{isOfficial(run.href) && <Fragment> <Badge variant="official">{officialLabel}</Badge></Fragment>}</Fragment>
   : run.t === 'link' ? (targetHref(run) === undefined ? <Self runs={run.c} context={context} /> : <a href={targetHref(run)}><Self runs={run.c} context={context} /></a>)
   : targetHref(run) === undefined ? <span lang={docrefLang(run)}>{docrefText(run)}</span>
   : <a href={targetHref(run)} lang={docrefLang(run)}>{docrefText(run)}</a>

@@ -82,15 +82,51 @@ describe('<st-toc>', () => {
     expect(current()).toEqual(['Two']);
   });
 
-  // WP-50a review pass 1, M3: a pill of three lines or more covered the heading a link went to.
-  it('keeps the pill hidden while the section heading is still on screen', () => {
+  // WP-50a review pass 1, M3 and pass 2, M3: a tall pill never covers a heading the reader has just
+  // reached, but a pill that clears the heading stays up, so it does not blink at every heading.
+  it('hides a tall pill over a just-reached heading, and keeps a short one up', () => {
+    const pillAt = (bottom: number): void => {
+      const pill = document.querySelector<HTMLElement>('[data-toc-pill]');
+      if (!pill) throw new Error('no pill');
+      vi.spyOn(pill, 'getBoundingClientRect').mockReturnValue({
+        top: 8,
+        bottom,
+        left: 0,
+        right: 200,
+        width: 200,
+        height: bottom - 8,
+        x: 0,
+        y: 8,
+        toJSON: () => ({}),
+      });
+    };
     mount(HEADINGS);
-    place({ one: -400, two: -100, 'two-a': 5 });
+    place({ one: -400, two: -100, 'two-a': 0 });
     mount(DETAILS);
     place({ 'st-on-this-page': -300 });
-    (document.querySelector('st-toc') as StToc).update();
+    const toc = document.querySelector('st-toc') as StToc;
+    const pill = document.querySelector<HTMLElement>('[data-toc-pill]');
+    pillAt(150);
+    toc.update();
     expect(current()).toEqual(['Two A']);
-    expect(document.querySelector<HTMLElement>('[data-toc-pill]')?.hidden).toBe(true);
+    expect(pill?.hidden).toBe(true);
+    // Scrolled on past the hysteresis: the heading is going under the pill like any text.
+    place({ one: -400, two: -100, 'two-a': -20 });
+    toc.update();
+    expect(pill?.hidden).toBe(false);
+    // A short pill that ends above the heading never hides.
+    place({ one: -400, two: -100, 'two-a': 0 });
+    pillAt(-1);
+    toc.update();
+    expect(pill?.hidden).toBe(false);
+  });
+
+  it('takes the section by its place on the page, not its place in the list', () => {
+    mount('<h2 id="two">Two</h2>');
+    mount(HEADINGS.replace('<h2 id="two">Two</h2>', ''));
+    place({ one: -400, two: -10, 'two-a': -200 });
+    mount(DETAILS);
+    expect(current()).toEqual(['Two']);
   });
 
   it('shows the pill once the list and the heading have scrolled away, and the pill opens the list', () => {

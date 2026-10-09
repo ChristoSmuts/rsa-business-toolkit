@@ -432,10 +432,22 @@ test.describe('table of contents', () => {
     const link = details.locator('.st-toc__list a').nth(1);
     const title = (await link.textContent())?.trim() ?? '';
     await link.click();
-    // While the heading it went to is on screen there is no pill over it (WP-50a review pass 1,
-    // M3); once the heading has scrolled away, the pill names its section.
+    // The pill never covers the heading the link went to (WP-50a review pass 1, M3): a short pill
+    // stays up above it, a tall one hides (review pass 2, M3). Once the heading has scrolled away,
+    // the pill names its section.
     const id = (await link.getAttribute('href'))?.slice(1) ?? '';
-    await expect(pill).toBeHidden();
+    await expect
+      .poll(() =>
+        page.evaluate((target) => {
+          const shown = document.querySelector<HTMLElement>('[data-toc-pill]');
+          const heading = document.getElementById(target);
+          if (!shown || !heading) return 'missing';
+          if (shown.hidden) return 'clear';
+          const box = shown.getBoundingClientRect();
+          return box.bottom <= heading.getBoundingClientRect().top + 1 ? 'clear' : 'covered';
+        }, id),
+      )
+      .toBe('clear');
     await page.evaluate((target) => {
       const heading = document.getElementById(target);
       if (heading) window.scrollBy(0, heading.getBoundingClientRect().bottom + 4);

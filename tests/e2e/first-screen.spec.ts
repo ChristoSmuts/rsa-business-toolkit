@@ -188,6 +188,72 @@ test.describe('the "Now reading" pill', () => {
     });
   }
 
+  // Review pass 2, M3: hidden whenever a heading was on screen, the pill blinked on and off between
+  // short sections (22 showings on this page, 10 of them for under 120px of scroll).
+  for (const route of [
+    'branding/brand-applications-and-polish/',
+    'af/branding/brand-applications-and-polish/',
+  ]) {
+    test(`${route}: does not blink on and off while the reader scrolls at 320px`, async ({
+      page,
+    }) => {
+      await page.setViewportSize(PHONE);
+      await page.goto(route);
+      await page.evaluate(() => document.fonts.ready);
+      const shows = await page.evaluate(() => {
+        const pill = document.querySelector<HTMLElement>('[data-toc-pill]');
+        const toc = pill?.closest('st-toc') as (HTMLElement & { update(): void }) | null;
+        if (!pill || !toc) return null;
+        // Each finished run of the pill being shown or hidden, with how far the page scrolled.
+        const runs: { shown: boolean; length: number; title: string }[] = [];
+        let shown = !pill.hidden;
+        let since = 0;
+        let title = '';
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        // Every 4px, with the update run at once rather than on the next frame.
+        for (let y = 0; y <= max; y += 4) {
+          window.scrollTo({ top: y, behavior: 'instant' });
+          toc.update();
+          if (!pill.hidden === shown) continue;
+          runs.push({ shown, length: y - since, title });
+          shown = !pill.hidden;
+          since = y;
+          title = pill.textContent?.replace(/\s+/g, ' ').trim() ?? '';
+        }
+        return { runs, endsShown: shown };
+      });
+      if (!shows) throw new Error('No pill.');
+      expect(shows.runs.some((run) => run.shown) || shows.endsShown).toBe(true);
+      // No showing shorter than 120px of scroll, and no blink: a hiding shorter than 16px.
+      const blinks = shows.runs
+        .slice(1)
+        .filter((run) => (run.shown ? run.length < 120 : run.length < 16))
+        .map((run) => `${run.shown ? 'shown' : 'hidden'} for ${run.length}px ${run.title}`);
+      expect(blinks).toEqual([]);
+    });
+  }
+
+  test('at 1100px, under the sticky top bar, never covers the heading a link goes to', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1100, height: 800 });
+    const covered: string[] = [];
+    for (const heading of [...longestHeadings('en', 10), ...longestHeadings('af', 10)]) {
+      await page.goto(`${heading.route}#${heading.id}`);
+      const at = await pillAndHeading(page, heading.id);
+      const bar = await page.locator('header').first().boundingBox();
+      expect(at.headingTop, heading.id).toBeGreaterThanOrEqual(
+        (bar?.y ?? 0) + (bar?.height ?? 0) - 1,
+      );
+      if (at.pillBottom !== null && at.pillBottom > at.headingTop + 1) {
+        covered.push(
+          `${heading.route}#${heading.id}: pill to ${at.pillBottom}, heading at ${at.headingTop}`,
+        );
+      }
+    }
+    expect(covered).toEqual([]);
+  });
+
   test('wraps the longest Afrikaans heading at 320px instead of cutting it off, and follows the reader', async ({
     page,
   }) => {
@@ -313,6 +379,48 @@ test.describe('layout at 320px', () => {
         );
       expect(twoColumn).toBeGreaterThan(0);
       expect(await splitWords(page, '.st-blocks .st-table-scroll')).toEqual([]);
+    });
+  }
+
+  // Review pass 2, m3: one long address in a cell set the width of the branding prompts' table
+  // ("webaim.org/resources/contrastchecker"), so it scrolled by 110px in English and 227px in
+  // Afrikaans. Now the address breaks inside its cell: the English table fits, and the Afrikaans
+  // one scrolls only by what its two longest compound words need side by side, like the other
+  // Afrikaans tables (words are not split).
+  for (const [route, fits] of [
+    ['branding/branding-prompts/', true],
+    ['af/branding/branding-prompts/', false],
+  ] as const) {
+    test(`${route}: an address in a table breaks inside its cell${fits ? ', and the table fits' : ''}`, async ({
+      page,
+    }) => {
+      await page.setViewportSize(PHONE);
+      await page.goto(route);
+      await page.evaluate(() => document.fonts.ready);
+      const tables = await page.locator('.st-blocks .st-table-scroll').evaluateAll((regions) =>
+        regions
+          .filter((region) => region.querySelector('tr')?.children.length === 2)
+          .map((region) => ({
+            wider: region.scrollWidth - region.clientWidth,
+            urls: [...region.querySelectorAll('.st-url')].map((url) => {
+              const cell = url.closest('td, th');
+              const style = cell ? getComputedStyle(cell) : null;
+              const room =
+                (cell?.clientWidth ?? 0) -
+                parseFloat(style?.paddingLeft ?? '0') -
+                parseFloat(style?.paddingRight ?? '0');
+              return {
+                text: url.textContent ?? '',
+                width: url.getBoundingClientRect().width,
+                room,
+              };
+            }),
+          })),
+      );
+      const urls = tables.flatMap((table) => table.urls);
+      expect(urls.length).toBeGreaterThan(0);
+      for (const url of urls) expect(url.width, url.text).toBeLessThanOrEqual(url.room + 0.5);
+      if (fits) for (const table of tables) expect(table.wider).toBeLessThanOrEqual(0);
     });
   }
 
