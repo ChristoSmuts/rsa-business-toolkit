@@ -5,7 +5,8 @@
  */
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { TERMS_HEADING_ID } from '../../src/lib/content/render';
 import { ENTITY_CHOICES, parseProfile, STAGE_CHOICES, TYPE_CHOICES } from '../../src/lib/profile';
 import { REPO_ROOT } from '../unit/site/data';
 
@@ -91,5 +92,52 @@ describe('theme-init and scripts that fail to load (review WP-31 pass 5, nit 1)'
       'YourPathCard',
     ]);
     document.documentElement.removeAttribute('data-st-script-failed');
+  });
+});
+
+/**
+ * WP-50a, item 1: "Words used in this file" is closed in the HTML (the phone's first screen needs the
+ * AI notice, not the word list) and opened from 1024px by theme-init, as the parser adds it, so it
+ * never moves the page after the first paint.
+ */
+describe('theme-init and "Words used in this file"', () => {
+  const wide = (matches: boolean): void => {
+    vi.stubGlobal('matchMedia', (query: string) => ({
+      matches: query === '(min-width: 1024px)' ? matches : false,
+      media: query,
+      addEventListener: () => undefined,
+      removeEventListener: () => undefined,
+    }));
+  };
+  const addList = (): HTMLDetailsElement => {
+    const list = document.createElement('details');
+    list.id = TERMS_HEADING_ID;
+    document.body.append(list);
+    return list;
+  };
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    document.getElementById(TERMS_HEADING_ID)?.remove();
+  });
+
+  it('looks for the id the document layout renders', () => {
+    expect(SOURCE).toContain(`document.getElementById('${TERMS_HEADING_ID}')`);
+  });
+
+  it('opens the list from 1024px as soon as it is added', async () => {
+    wide(true);
+    run();
+    const list = addList();
+    await Promise.resolve();
+    expect(list.open).toBe(true);
+  });
+
+  it('leaves it closed below 1024px', async () => {
+    wide(false);
+    run();
+    const list = addList();
+    await Promise.resolve();
+    expect(list.open).toBe(false);
   });
 });

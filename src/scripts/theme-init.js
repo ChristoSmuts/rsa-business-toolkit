@@ -1,5 +1,5 @@
 // @ts-check
-/* global document, window, Element, HTMLScriptElement */
+/* global document, window, Element, HTMLScriptElement, MutationObserver */
 // Blocking theme init, copied verbatim (unminified) via `?url`: keep it tiny, ES2019, no imports.
 // The documented exception to "only the store reads storage"; docs/design-system.md, "Scripts, CSP
 // and JavaScript budget", says what it reads and sets and why.
@@ -33,6 +33,15 @@
     }
   }
   root.classList.add('js');
+  // Opens "Words used in this file" from 1024px before it is painted (Doc.astro).
+  if (window.matchMedia('(min-width: 1024px)').matches) {
+    var words = new MutationObserver(function () {
+      var list = document.getElementById('words-used-in-this-file');
+      if (list) list.setAttribute('open', '');
+      if (list || document.readyState !== 'loading') words.disconnect();
+    });
+    words.observe(root, { childList: true, subtree: true });
+  }
   // Scripts that fail to load, by name ("YourPathCard", "my-path"): the home card and My path stop
   // keeping space for what they cannot draw (YourPathCard.astro, my-path.astro).
   window.addEventListener(

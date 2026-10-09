@@ -1,15 +1,108 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
+import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
 import { REPO_ROOT } from './helpers/routes';
 
 /**
  * WP-50a: what a 320px phone shows, measured on the built pages.
  *
+ * - Item 1: the AI notice starts on the first screen at 320×568 (Stoep rule 9, ADR 0006), with the
+ *   header in its final state (after the modules and, with saved answers, the path ring), and
+ *   "Words used in this file" is closed below 1024px and open from 1024px, with no layout shift.
  * - Item 5: the "Now reading" pill wraps the longest Afrikaans heading instead of cutting it off.
  * - Item 8: a two-column table fits the screen, and a checkbox keeps its size beside long text.
+ *
+ * The no-JavaScript side of item 1 is in `nojs.spec.ts`.
  */
 const PHONE = { width: 320, height: 568 } as const;
+
+/** Before WP-50a the notice started 625 to 812px down on these pages at 320px. */
+const NOTICE_PAGES = [
+  'business-types/vehicle-dealer/',
+  'core/tax-and-sars/',
+  'templates/invoice/',
+  'af/business-types/vehicle-dealer/',
+  'af/core/tax-and-sars/',
+  'af/templates/invoice/',
+] as const;
+
+/**
+ * The notice's top, in viewport pixels, with the page at the top. Its label row (44px) must be on
+ * screen too, so the reader sees what the box is, not just its border.
+ */
+async function noticeTop(page: Page): Promise<number> {
+  await page.evaluate(() => window.scrollTo(0, 0));
+  const box = await page.locator('.st-ai-notice').boundingBox();
+  if (!box) throw new Error('The page has no AI notice.');
+  return box.y;
+}
+
+test.describe('the AI notice on a 320×568 screen', () => {
+  for (const route of NOTICE_PAGES) {
+    test(`${route}: starts on the first screen`, async ({ page }) => {
+      await page.setViewportSize(PHONE);
+      await page.goto(route);
+      // The header in its final state: the modules have run.
+      await page.waitForLoadState('networkidle');
+      expect(await noticeTop(page)).toBeLessThanOrEqual(PHONE.height - 44);
+    });
+  }
+
+  test('stays on the first screen with saved answers, once the top bar shows the path ring', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({
+      'st.profile.v1': { entity: 'sole-prop', businessTypes: ['vehicle-dealer'], stage: 'trading' },
+    });
+    await page.setViewportSize(PHONE);
+    // My path stores the path, so the next page's top bar draws its ring.
+    await page.goto('my-path/');
+    await page.waitForLoadState('networkidle');
+    for (const route of ['business-types/vehicle-dealer/', 'af/business-types/vehicle-dealer/']) {
+      await page.goto(route);
+      await expect(page.locator('st-path-progress.st-topbar__path')).toBeVisible();
+      await page.waitForLoadState('networkidle');
+      expect(await noticeTop(page), route).toBeLessThanOrEqual(PHONE.height - 44);
+    }
+  });
+});
+
+test.describe('"Words used in this file"', () => {
+  test('is closed below 1024px, so the page starts with the text', async ({ page }) => {
+    await page.setViewportSize(PHONE);
+    await page.goto('business-types/vehicle-dealer/');
+    const words = page.locator('details#words-used-in-this-file');
+    await expect(words).toHaveCount(1);
+    await expect(words).not.toHaveAttribute('open');
+    await words.locator('summary').click();
+    await expect(words).toHaveAttribute('open', '');
+  });
+
+  test('is open from 1024px, set before the first paint, so nothing moves', async ({
+    page,
+  }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'A desktop width.');
+    await page.addInitScript(() => {
+      const shifts: number[] = [];
+      Object.assign(window, { stShifts: shifts });
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          shifts.push((entry as PerformanceEntry & { value: number }).value);
+        }
+      }).observe({ type: 'layout-shift', buffered: true });
+    });
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('business-types/vehicle-dealer/');
+    await page.waitForLoadState('networkidle');
+    await expect(page.locator('details#words-used-in-this-file')).toHaveAttribute('open', '');
+    const shift = await page.evaluate(() =>
+      (window as unknown as { stShifts: number[] }).stShifts.reduce((sum, value) => sum + value, 0),
+    );
+    expect(shift).toBeLessThanOrEqual(0.01);
+  });
+});
 
 /** The longest heading in the Afrikaans documents, and its page. */
 function longestAfrikaansHeading(): { route: string; id: string; text: string } {
