@@ -498,12 +498,12 @@
         "description": "Show that a customer paid you.",
         "startNext": "Start next receipt",
         "startNextDone": "Receipt {number} started.",
-        "formHowTo": "Send this when money arrives. Fill in the form, check the preview, then save it as a PDF to send."
+        "formHowTo": "Fill in the form, check the preview, then save it as a PDF to send."
       },
       "privacy-notice": {
         "name": "Privacy notice",
         "description": "Tell customers what personal information you keep, and why.",
-        "formHowTo": "Put this on your website, or send it as a PDF when a customer asks. Fill in the form, and choose “Leave this out of the document” for any line that is not true for your business."
+        "formHowTo": "Fill in the form, and choose “Leave this out of the document” for any line that is not true for your business."
       }
     },
     "open": "Open template",

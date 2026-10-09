@@ -498,12 +498,12 @@
         "description": "Wys dat ’n kliënt jou betaal het.",
         "startNext": "Begin volgende kwitansie",
         "startNextDone": "Kwitansie {number} is begin.",
-        "formHowTo": "Stuur dit wanneer geld inkom. Vul die vorm in, kyk na die voorskou, en stoor dit dan as ’n PDF om te stuur."
+        "formHowTo": "Vul die vorm in, kyk na die voorskou, en stoor dit dan as ’n PDF om te stuur."
       },
       "privacy-notice": {
         "name": "Privaatheidskennisgewing",
         "description": "Sê vir kliënte watter persoonlike inligting jy bewaar, en waarom.",
-        "formHowTo": "Sit dit op jou webwerf, of stuur dit as ’n PDF wanneer ’n kliënt daarvoor vra. Vul die vorm in, en kies “Laat dit uit die dokument uit” vir enige reël wat nie vir jou besigheid waar is nie."
+        "formHowTo": "Vul die vorm in, en kies “Laat dit uit die dokument uit” vir enige reël wat nie vir jou besigheid waar is nie."
       }
     },
     "open": "Maak sjabloon oop",
