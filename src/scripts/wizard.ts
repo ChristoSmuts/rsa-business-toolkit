@@ -108,21 +108,21 @@ export class StWizard extends HTMLElement {
     // Until now the page was the no-JavaScript form, all three questions (WP-50a). A reader who has
     // scrolled to a later question stays on it, where it is: the steps above it fold away, and the
     // page scrolls by what they took, so nothing on screen moves. If a question above it has no
-    // answer, the wizard starts on that one instead, in the same place on screen (review pass 1, M1).
+    // answer, the line under its buttons says so, and Next or "See my path" goes there (#advance).
+    // Starting on the unanswered question instead swapped the question under the reader's finger, a
+    // layout shift of up to 0.78 (WP-50a review pass 2, M1).
     const view = this.ownerDocument.defaultView;
-    let inView = 0;
+    let start = 0;
     if (view && view.scrollY > 0) {
       this.#steps.forEach((step, index) => {
-        if (step.getBoundingClientRect().top < view.innerHeight / 2) inView = index;
+        if (step.getBoundingClientRect().top < view.innerHeight / 2) start = index;
       });
     }
-    const missing = this.#firstInvalid(inView - 1);
-    const start = missing >= 0 ? missing : inView;
-    const before = this.#steps[inView]?.getBoundingClientRect().top ?? 0;
+    const before = this.#steps[start]?.getBoundingClientRect().top ?? 0;
     this.dataset['ready'] = '';
     this.#show(start);
     const after = this.#steps[start]?.getBoundingClientRect().top ?? 0;
-    if (inView > 0 && after !== before) view?.scrollBy(0, after - before);
+    if (after !== before) view?.scrollBy(0, after - before);
   }
 
   disconnectedCallback(): void {
@@ -239,13 +239,14 @@ export class StWizard extends HTMLElement {
       reason.hidden = stageAllowed('pty-growing', entity);
     this.#steps.forEach((step, index) => {
       const valid = this.#stepValid(index);
+      // With an earlier question unanswered the button works: it goes to that question.
+      const earlier = this.#firstInvalid(index - 1) >= 0;
       for (const button of step.querySelectorAll<HTMLElement>('[data-next], [data-finish]')) {
-        if (valid) button.removeAttribute('aria-disabled');
+        if (valid || earlier) button.removeAttribute('aria-disabled');
         else button.setAttribute('aria-disabled', 'true');
       }
       for (const hint of step.querySelectorAll<HTMLElement>('[data-next-hint]'))
-        hint.hidden = valid;
-      const earlier = valid && this.#firstInvalid(index - 1) >= 0;
+        hint.hidden = valid || earlier;
       for (const hint of step.querySelectorAll<HTMLElement>('[data-earlier-hint]'))
         hint.hidden = !earlier;
     });
