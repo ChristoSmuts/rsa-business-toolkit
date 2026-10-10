@@ -573,11 +573,14 @@ test.describe('the line above the form', () => {
           expect(text).not.toContain('[');
         }
         const line = howTo(lang).templates.items[slug]?.formHowTo;
-        if (line) await expect(article.locator('.st-note-line', { hasText: line })).toBeVisible();
-        // The summary just above does not say its first sentence again (review pass 2, m4).
-        const first = lead.trim().split(/(?<=[.!?])\s/)[0] ?? '';
-        if (line && first) expect(line, 'repeats the summary').not.toContain(first);
-        else await expect(article.locator('.st-note-line')).toHaveCount(0);
+        if (line) {
+          await expect(article.locator('.st-note-line', { hasText: line })).toBeVisible();
+          // The summary just above does not say its first sentence again (review pass 2, m4).
+          const first = lead.trim().split(/(?<=[.!?])\s/)[0] ?? '';
+          if (first) expect(line, 'repeats the summary').not.toContain(first);
+        } else {
+          await expect(article.locator('.st-note-line')).toHaveCount(0);
+        }
       });
     }
   }

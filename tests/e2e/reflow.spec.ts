@@ -6,7 +6,7 @@ import { discoverPageRoutes, routeLabel, routeUrl } from './helpers/routes';
  * scrolls sideways. A wide table scrolls inside its own labelled region, which is allowed and does
  * not widen the document. The same check without JavaScript is in `nojs.spec.ts`.
  *
- * Chromium only: the layout is the same in the mobile project, and WebKit is not run here.
+ * Chromium only: `playwright.config.ts` keeps this file out of the `webkit` and `mobile` projects.
  */
 const { routes, skipReason } = discoverPageRoutes();
 
@@ -17,8 +17,7 @@ test.describe('no sideways scrolling at 320px', () => {
   }
 
   for (const route of routes) {
-    test(routeLabel(route), async ({ page }, testInfo) => {
-      test.skip(testInfo.project.name !== 'chromium', 'One engine is enough for this sweep.');
+    test(routeLabel(route), async ({ page }) => {
       await page.setViewportSize({ width: 320, height: 568 });
       await page.goto(routeUrl(route));
       await page.evaluate(() => document.fonts.ready);

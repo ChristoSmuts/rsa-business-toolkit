@@ -17,6 +17,12 @@ const isCI = Boolean(process.env.CI);
  */
 export const SPEC_FILES = /\.spec\.ts$/;
 const special = /(^|[\\/])(a11y|visual|nojs)\.spec\.ts$/;
+/**
+ * The 320px reflow sweep runs once, in `chromium`: the layout is the same in the other engines'
+ * projects, and creating its 198 tests there only to skip them hid a real skip in the count
+ * (WP-50a review pass 3, m5).
+ */
+const chromiumOnly = /(^|[\\/])reflow\.spec\.ts$/;
 
 /**
  * Fails the run when any executed test did not run the automatic guards (tests/e2e/fixtures.ts).
@@ -90,9 +96,14 @@ export default defineConfig({
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
       testMatch: SPEC_FILES,
-      testIgnore: special,
+      testIgnore: [special, chromiumOnly],
     },
-    { name: 'mobile', use: { ...devices['Pixel 7'] }, testMatch: SPEC_FILES, testIgnore: special },
+    {
+      name: 'mobile',
+      use: { ...devices['Pixel 7'] },
+      testMatch: SPEC_FILES,
+      testIgnore: [special, chromiumOnly],
+    },
     {
       name: 'nojs',
       use: { ...devices['Desktop Chrome'], javaScriptEnabled: false },
