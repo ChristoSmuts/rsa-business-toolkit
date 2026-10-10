@@ -5,7 +5,8 @@
  *
  * Scripts (CSP is `script-src 'self'`, so nothing may be inline):
  * - theme-init must block rendering, so it is a plain JavaScript file imported with Vite
- *   `?url` (copied as-is with a hashed name) and loaded as a classic external <script src>.
+ *   `?url` (copied with a hashed name, then minified by scripts/minify-theme-init.ts) and loaded as
+ *   a classic external <script src>.
  * - Everything else is a normal Astro-processed <script> (bundled ES module, shared chunks).
  *   `vite.build.assetsInlineLimit` in astro.config.ts is a function: it refuses inlining for
  *   everything except CSS, so no bundle is ever inlined as a <script> or a `data:` URI, while

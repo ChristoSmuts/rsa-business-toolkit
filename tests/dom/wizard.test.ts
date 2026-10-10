@@ -81,6 +81,67 @@ describe('<st-wizard>', () => {
     choose(input('entity', 'sole-prop'));
     expect(next.hasAttribute('aria-disabled')).toBe(false);
     expect(hint.hidden).toBe(true);
+    // A hidden line it points at is still read out, so an answered step's Next has no description
+    // (WP-50a review pass 3, m2).
+    expect(next.hasAttribute('aria-describedby')).toBe(false);
+  });
+
+  it('takes the ticks the browser puts back after Back, with no change event (review pass 7, M1)', () => {
+    const wizard = setUp();
+    const next = button('entity', '[data-next]');
+    expect(next.getAttribute('aria-disabled')).toBe('true');
+    // What the browser does after Back without the back/forward cache: ticks, and no event.
+    input('entity', 'pty').checked = true;
+    input('type', 'food').checked = true;
+    input('type', 'beauty').checked = true;
+    input('stage', 'trading').checked = true;
+    window.dispatchEvent(new Event('pageshow'));
+    expect(next.hasAttribute('aria-disabled')).toBe(false);
+    expect([...(wizard.answers()?.businessTypes ?? [])].sort()).toEqual(['beauty', 'food']);
+    // A kind unticked without an event is never saved either.
+    input('type', 'beauty').checked = false;
+    expect(wizard.answers()?.businessTypes).toEqual(['food']);
+  });
+
+  it('sends Next and "See my path" to the first unanswered question (review pass 6, m6)', () => {
+    // No reader can reach a later step with an earlier one empty today; this sets that state
+    // directly, by clearing question 1 without a change event, to test the safety net.
+    const wizard = setUp();
+    const heading = (name: string): Element | null =>
+      step(name).querySelector('[data-step-heading]');
+    choose(input('entity', 'sole-prop'));
+    wizard.go(1);
+    choose(input('type', 'general'));
+    input('entity', 'sole-prop').checked = false;
+    button('type', '[data-next]').click();
+    expect(wizard.current).toBe(0);
+    expect(document.activeElement).toBe(heading('entity'));
+
+    choose(input('entity', 'sole-prop'));
+    wizard.go(1);
+    wizard.go(2);
+    choose(input('stage', 'not-started'));
+    input('type', 'general').click();
+    expect(wizard.current).toBe(2);
+    button('stage', '[data-finish]').click();
+    expect(wizard.current).toBe(1);
+    expect(document.activeElement).toBe(heading('type'));
+    expect(wizard.navigate).not.toHaveBeenCalled();
+  });
+
+  it('describes "See my path" by the line that shows: the earlier question, then nothing', () => {
+    setUp();
+    choose(input('type', 'general'));
+    choose(input('stage', 'not-started'));
+    const finish = button('stage', '[data-finish]');
+    const earlier = step('stage').querySelector<HTMLElement>('[data-earlier-hint]')!;
+    // Question 1 has no answer: the button is described by the line that says so, which shows.
+    expect(earlier.hidden).toBe(false);
+    expect(earlier.id).not.toBe('');
+    expect(finish.getAttribute('aria-describedby')).toBe(earlier.id);
+    choose(input('entity', 'sole-prop'));
+    expect(earlier.hidden).toBe(true);
+    expect(finish.hasAttribute('aria-describedby')).toBe(false);
   });
 
   it('moves focus to the next step’s heading on Next and back on Back', () => {
@@ -195,6 +256,9 @@ describe('<st-wizard>', () => {
     expect(described(template.content)).toContain('wz-nojs-type');
     expect(described(template.content)).not.toContain('wz-help-type');
     expect(template.content.querySelector('#wz-nojs-type')?.classList.contains('no-js-only')).toBe(
+      true,
+    );
+    expect(template.content.querySelector('#wz-help-type')?.classList.contains('js-only')).toBe(
       true,
     );
     setUp();

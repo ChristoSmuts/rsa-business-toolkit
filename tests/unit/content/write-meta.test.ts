@@ -195,6 +195,22 @@ describe('doc metadata', () => {
     expect(readingTime('Title', blocks)).toBe(1);
   });
 
+  // WP-50a, item 10: "Lees eers 01-core/. …" was the lead of six Afrikaans business-type pages.
+  it('skips a paragraph that points to another document or names a raw folder or file', () => {
+    const paragraph = (id: string, c: unknown): Block =>
+      ({ id, hash: '0000000000000000', kind: 'paragraph', c }) as Block;
+    const blocks: Block[] = [
+      paragraph('a.1', [
+        { t: 'text', v: 'Lees eers ' },
+        { t: 'docref', label: '01-core/', section: 'core' },
+        { t: 'text', v: '. Hierdie lêer voeg die reëls by.' },
+      ]),
+      paragraph('a.2', [{ t: 'text', v: 'See `02-invoice.md` for the layout.' }]),
+      paragraph('a.3', [{ t: 'text', v: 'Vehicle dealing is regulated.' }]),
+    ];
+    expect(deriveSummary(blocks)).toBe('Vehicle dealing is regulated.');
+  });
+
   it('ranks related documents by link count and excludes lookup tools and itself', () => {
     const { parsed } = parseMd(
       '# T\n\nSee [Tax](03-tax-and-sars.md), [Tax again](03-tax-and-sars.md), [Vehicles](05-vehicles.md), [Glossary](../05%20Look%20it%20up/01-glossary.md), [Self](02-register.md), `01-core/` and `01-core/05`.\n',

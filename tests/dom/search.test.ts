@@ -404,6 +404,35 @@ describe('<st-search>', () => {
     );
   });
 
+  // WP-50a, item 3: the dialog says it is loading until the index is there, and a typed query
+  // never stands over the common questions as if they were its results.
+  it('says "Loading search…" until the index arrives, and hides the common questions under a query', async () => {
+    let release: () => void = () => undefined;
+    const held = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(() =>
+        held.then(() => ({ ok: true, status: 200, json: () => Promise.resolve(indexBody) })),
+      ),
+    );
+    const status = () => document.querySelector('[role="status"]')?.textContent;
+    const common = () => document.querySelector<HTMLElement>('[data-search-empty]')!;
+    host.open();
+    await host.controller();
+    await vi.waitFor(() => expect(status()).toBe('Loading search…'));
+    expect(common().hidden).toBe(false);
+    const field = document.getElementById('q') as HTMLInputElement;
+    field.value = 'statements';
+    field.dispatchEvent(new Event('input'));
+    await vi.waitFor(() => expect(common().hidden).toBe(true));
+    expect(status()).toBe('Loading search…');
+    release();
+    await vi.waitFor(() => expect(status()).toMatch(/result/));
+    expect(common().hidden).toBe(true);
+  });
+
   it('closes on a chosen result and leaves focus on the result, not on the opener', async () => {
     const opener = document.getElementById('opener')!;
     opener.focus();
@@ -492,7 +521,8 @@ describe('<st-search>', () => {
       expect(document.querySelector<HTMLElement>('[data-search-failed]')!.hidden).toBe(true),
     );
     expect(document.querySelector<HTMLElement>('[data-search-empty]')!.hidden).toBe(false);
-    expect(document.querySelector('[role="status"]')?.textContent).toBe('');
+    // "Loading search…" while the index loads (WP-50a), then nothing once it is there.
+    await vi.waitFor(() => expect(document.querySelector('[role="status"]')?.textContent).toBe(''));
   });
 
   // Review WP-33 pass 2, major 1: a result chosen for a dialog that has closed must do nothing,

@@ -8,7 +8,9 @@
  *   handler (`site.ts`, `matchShortcut`), which already skips fields and open dialogs;
  * - shows the shortcut setting on the openers (`aria-keyshortcuts` and the `/` hint), and follows
  *   it when it changes on `/about/` or in another tab;
- * - after a result opened this page, loads the dialog's script so it can focus the heading.
+ * - after a result opened this page, loads the dialog's script so it can focus the heading;
+ * - while the dialog's script loads, says so and keeps the common questions from standing under a
+ *   typed query (`waiting()`).
  *
  * The dialog (`./search`, `<st-search>`) is imported the first time the reader asks for it; it then
  * imports the results code, MiniSearch and the index (`./search-ui`).
@@ -81,6 +83,7 @@ export function openSearch(from: HTMLElement | null, doc: Document = document): 
     host.opener = from;
     dialog.showModal();
     field?.focus();
+    if (field) waiting(host, field);
   }
   load().catch(() => {
     const query = field?.value.trim() ?? '';
@@ -89,6 +92,28 @@ export function openSearch(from: HTMLElement | null, doc: Document = document): 
     );
   });
   return true;
+}
+
+/**
+ * Until the dialog's script has taken over (`host.open` exists), say "Loading search…" on the
+ * status line, and hide the common questions while the field has text: they are not results for it
+ * (WP-50 audit, flow 3). The results code (`search-ui.ts`) keeps the same state until the index has
+ * arrived.
+ */
+function waiting(host: Dialog, field: HTMLInputElement): void {
+  const status = host.querySelector<HTMLElement>('[role="status"]');
+  const common = host.querySelector<HTMLElement>('[data-search-empty]');
+  const show = (): void => {
+    if (host.open) {
+      field.removeEventListener('input', show);
+      return;
+    }
+    if (common) common.hidden = field.value.trim() !== '';
+  };
+  // Once: rewriting a polite live region on every key has it announced again (review pass 1, m2).
+  if (status) status.textContent = status.dataset['loadingText'] ?? '';
+  field.addEventListener('input', show);
+  show();
 }
 
 document.addEventListener('click', (event) => {

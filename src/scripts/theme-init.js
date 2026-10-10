@@ -1,6 +1,7 @@
 // @ts-check
-/* global document, window, Element, HTMLScriptElement */
-// Blocking theme init, copied verbatim (unminified) via `?url`: keep it tiny, ES2019, no imports.
+/* global document, window, Element, HTMLScriptElement, MutationObserver */
+// Blocking theme init, copied via `?url` and minified in the build (scripts/minify-theme-init.ts):
+// keep it tiny, ES2019, no imports.
 // The documented exception to "only the store reads storage"; docs/design-system.md, "Scripts, CSP
 // and JavaScript budget", says what it reads and sets and why.
 (function () {
@@ -33,14 +34,26 @@
     }
   }
   root.classList.add('js');
-  // Scripts that fail to load, by name ("YourPathCard", "my-path"): the home card and My path stop
-  // keeping space for what they cannot draw (YourPathCard.astro, my-path.astro).
+  // Opens "Words used in this file" from 1024px before it is painted (Doc.astro).
+  if (window.matchMedia('(min-width: 1024px)').matches) {
+    var words = new MutationObserver(function () {
+      var list = document.getElementById('words-used-in-this-file');
+      if (list) list.setAttribute('open', '');
+      if (list || document.readyState !== 'loading') words.disconnect();
+    });
+    words.observe(root, { childList: true, subtree: true });
+  }
+  // Scripts that fail to load, or throw as they run, by name ("YourPathCard", "my-path", "Wizard"):
+  // the home card and My path stop keeping space for what they cannot draw, and the wizard shows its
+  // no-JavaScript form. Every rule that reads this waits for its element's data-ready, so a later
+  // error in an element that is already drawn changes nothing.
   window.addEventListener(
     'error',
     function (event) {
       var script = event.target;
-      if (!(script instanceof HTMLScriptElement)) return;
-      var name = (script.src.split('/').pop() || '').split('.')[0] || '';
+      var src = script instanceof HTMLScriptElement ? script.src : event.filename || '';
+      var name = (src.split('/').pop() || '').split('.')[0] || '';
+      if (!name) return;
       var failed = (root.getAttribute('data-st-script-failed') || '').split(' ');
       if (failed.indexOf(name) < 0) failed.push(name);
       root.setAttribute('data-st-script-failed', failed.join(' ').trim());

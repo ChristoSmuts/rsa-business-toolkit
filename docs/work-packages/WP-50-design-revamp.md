@@ -71,6 +71,7 @@ The owner decides:
 - Change `src/styles/tokens.css`, `base.css`, `utilities.css` and `print.css` to the chosen direction. Keep every existing token name unless a rename is unavoidable, and give any rename a migration commit of its own.
 - Update `CONTRAST_PAIRS`, the contrast unit test and the live panel on `/design-system/`.
 - Self-host any new font through `@fontsource-variable`, with metric-matched fallbacks measured the way `docs/design-system.md` describes.
+- The fallback fonts' metrics must cut the site-wide shift when the web fonts swap in. Known from WP-50a review pass 4 (m2): with the fonts arriving after the reader has scrolled, wrapped text moves everywhere on the page, 0.28 to 0.40 at 320px on the wizard (the reader's question included) and similar on document pages (0.40 on `business-types/food/`, 0.29 in Afrikaans, scrolled 1500px). Closer `size-adjust`, `ascent-override` and `descent-override` on the fallbacks, or `font-display: optional` for body text, are the candidates; measure at 320px with the fonts held.
 - Do not change component markup in this phase. The screenshots show what the tokens alone did.
 
 ### Phase 3: page types and components
@@ -81,7 +82,7 @@ Work in reader-traffic order. Each item is a separate commit series and review:
 2. the home page and the section hubs;
 3. business-type pages;
 4. the tools: Find my path, My path, the templates, the checklist and the search dialog;
-5. the header, footer and navigation;
+5. the header, footer and navigation. Known from WP-50a: at 320px the top bar changes rows when the web fonts arrive (217px before, 165px after: a layout shift of about 0.13, with or without the language banner). The new header must stay at or under the 0.1 limit at 320px with the fonts held, and keep the AI notice on the first screen at 320×568 (`tests/e2e/first-screen.spec.ts`);
 6. the 404, about and contents pages.
 
 Every change keeps the markup contracts the test suites rely on (ids, roles, `data-*` hooks), or changes the tests in the same commit and says why.

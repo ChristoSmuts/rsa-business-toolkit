@@ -419,3 +419,52 @@ test.describe('Find my path without JavaScript', () => {
     await expect(page.locator('st-prompt-fill button:visible')).toHaveCount(0);
   });
 });
+
+/**
+ * WP-50a, item 1: without JavaScript the header carries every menu and is taller, and the AI notice
+ * must still start on the first screen of a 320×568 phone, with its label row in view (Stoep rule
+ * 9, ADR 0006). "Words used in this file" is closed: only theme-init opens it, from 1024px.
+ */
+test.describe('the AI notice on a 320×568 screen without JavaScript', () => {
+  for (const route of [
+    'business-types/vehicle-dealer/',
+    'core/tax-and-sars/',
+    'templates/invoice/',
+    'af/business-types/vehicle-dealer/',
+    'af/core/tax-and-sars/',
+    'af/templates/invoice/',
+  ]) {
+    test(`${route}: starts on the first screen`, async ({ page }) => {
+      await page.setViewportSize({ width: 320, height: 568 });
+      await page.goto(route);
+      const box = await page.locator('.st-ai-notice').boundingBox();
+      expect(box?.y ?? Number.POSITIVE_INFINITY).toBeLessThanOrEqual(568 - 44);
+    });
+  }
+
+  test('"Words used in this file" is closed, and opens with no script', async ({ page }) => {
+    await page.goto('business-types/vehicle-dealer/');
+    const words = page.locator('details#words-used-in-this-file');
+    await expect(words).not.toHaveAttribute('open');
+    await words.locator('summary').click();
+    await expect(words).toHaveAttribute('open', '');
+  });
+});
+
+/** WCAG 1.4.10 at 320px without JavaScript (WP-50a review pass 2, M2; with it: `reflow.spec.ts`). */
+test.describe('no sideways scrolling at 320px without JavaScript', () => {
+  if (skipReason) {
+    test('route discovery', () => test.skip(true, skipReason));
+    return;
+  }
+  for (const route of routes) {
+    test(routeLabel(route), async ({ page }) => {
+      await page.setViewportSize({ width: 320, height: 568 });
+      await page.goto(routeUrl(route));
+      const by = await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      );
+      expect(by).toBeLessThanOrEqual(0);
+    });
+  }
+});

@@ -11,6 +11,7 @@ import type { ContentContext } from '../../lib/content/context';
 import { isFallbackContent } from '../../lib/content/context';
 import { headingTags, isRedundantRule, nearestHeadingText } from '../../lib/content/render';
 import type { Block as ContentBlock } from '../../lib/content/schema';
+import { useTranslations } from '../../i18n';
 import { getLocale } from '../../i18n/locales';
 
 interface Props {
@@ -33,18 +34,32 @@ const lang = isFallbackContent(context)
 const LOWER = { h2: 'h3', h3: 'h4', h4: 'h5' } as const;
 const tags = headingTags(blocks).map((tag) => (nested && tag ? LOWER[tag] : tag));
 const firstTasklist = blocks.findIndex((block) => block.kind === 'tasklist');
-/** Prompts are numbered in page order, for their copy buttons' names ("Copy prompt 2: …"). */
-let prompts = 0;
-const promptNumbers = blocks.map((block) =>
-  block.kind === 'code' && block.variant === 'prompt' ? ++prompts : undefined,
-);
+/*
+ * A prompt is named by the heading above it, which carries the guide's own numbering ("Prompt 0:
+ * the business brief"). A count of prompts in page order named that prompt "Prompt 4" (WP-50 audit,
+ * flow 6). Where one heading has more than one prompt, each also says which of them it is.
+ */
+const siteT = useTranslations(context.locale);
+const captions = blocks.map((_, index) => nearestHeadingText(blocks, index) ?? fallbackCaption);
+const isPrompt = (block: ContentBlock): boolean =>
+  block.kind === 'code' && block.variant === 'prompt';
+const promptTitles = blocks.map((block, index) => {
+  if (!isPrompt(block)) return undefined;
+  const title = captions[index] ?? fallbackCaption;
+  const same = blocks
+    .map((other, position) => (isPrompt(other) && captions[position] === title ? position : -1))
+    .filter((position) => position >= 0);
+  return same.length < 2
+    ? title
+    : siteT('prompts.titlePart', { title, n: same.indexOf(index) + 1, total: same.length });
+});
 const visible = blocks
   .map((block, index) => ({
     block,
-    promptNumber: promptNumbers[index],
+    promptTitle: promptTitles[index],
     headingTag: tags[index],
     firstTasklist: index === firstTasklist,
-    caption: nearestHeadingText(blocks, index) ?? fallbackCaption,
+    caption: captions[index] ?? fallbackCaption,
     redundant: isRedundantRule(blocks, index),
   }))
   .filter((entry) => !entry.redundant);
@@ -58,7 +73,7 @@ const visible = blocks
       caption={entry.caption}
       headingTag={entry.headingTag}
       firstTasklist={entry.firstTasklist}
-      promptNumber={entry.promptNumber}
+      promptTitle={entry.promptTitle}
     />
   ))}
 </div>

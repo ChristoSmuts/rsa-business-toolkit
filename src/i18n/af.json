@@ -372,6 +372,8 @@
     "back": "Terug",
     "next": "Volgende",
     "nextDisabled": "Kies eers ’n antwoord.",
+    "loadingNext": "Die volgende stap laai…",
+    "earlierMissing": "’n Vraag voor hierdie een het nog geen antwoord nie. Hierdie knoppie neem jou daarheen.",
     "seeMyPath": "Sien my roete",
     "savedTip": "Net op hierdie toestel gestoor. Niks word êrens heen gestuur nie.",
     "noJs": "JavaScript is af. Jy kan steeds die vrae beantwoord en ’n roete sien, maar jou antwoorde word nie gestoor nie.",
@@ -476,13 +478,15 @@
         "name": "Kwotasie",
         "description": "Sê vir ’n kliënt wat die prys is voordat jy die werk doen.",
         "startNext": "Begin volgende kwotasie",
-        "startNextDone": "Kwotasie {number} is begin."
+        "startNextDone": "Kwotasie {number} is begin.",
+        "formHowTo": "Vul die vorm in en kyk na die voorskou. Stoor dit dan as ’n PDF en stuur die PDF vir die kliënt."
       },
       "invoice": {
         "name": "Faktuur",
         "description": "Vra vir betaling as jy nie vir BTW geregistreer is nie.",
         "startNext": "Begin volgende faktuur",
-        "startNextDone": "Faktuur {number} is begin."
+        "startNextDone": "Faktuur {number} is begin.",
+        "formHowTo": "Vul die vorm in en kyk na die voorskou. Druk dit dan, of stoor dit as ’n PDF om te stuur."
       },
       "tax-invoice": {
         "name": "Belastingfaktuur",
@@ -494,11 +498,13 @@
         "name": "Kwitansie",
         "description": "Wys dat ’n kliënt jou betaal het.",
         "startNext": "Begin volgende kwitansie",
-        "startNextDone": "Kwitansie {number} is begin."
+        "startNextDone": "Kwitansie {number} is begin.",
+        "formHowTo": "Vul die vorm in, kyk na die voorskou, en stoor dit dan as ’n PDF om te stuur."
       },
       "privacy-notice": {
         "name": "Privaatheidskennisgewing",
-        "description": "Sê vir kliënte watter persoonlike inligting jy bewaar, en waarom."
+        "description": "Sê vir kliënte watter persoonlike inligting jy bewaar, en waarom.",
+        "formHowTo": "Vul die vorm in, en kies “Laat dit uit die dokument uit” vir enige reël wat nie vir jou besigheid waar is nie."
       }
     },
     "open": "Maak sjabloon oop",
@@ -528,6 +534,7 @@
     "allPresent": "Elke item wat hierdie vorm nagaan, is ingevul.",
     "print": "Druk of stoor as PDF",
     "printHint": "Kies Stoor as PDF in die drukvenster om ’n kopie te hou.",
+    "loadingTools": "Die vorm se gereedskap laai…",
     "clear": "Maak vorm skoon",
     "clearConfirm": {
       "title": "Maak hierdie vorm skoon?",
@@ -580,14 +587,15 @@
   },
   "prompts": {
     "copy": "Kopieer opdrag",
-    "copyNamed": "Kopieer opdrag {n}: {title}",
+    "copyNamed": "Kopieer opdrag: {title}",
     "copied": "Gekopieer",
-    "copiedNamed": "Opdrag {n} gekopieer",
+    "copiedNamed": "Gekopieer: {title}",
     "copyFailed": "Kon nie kopieer nie. Die teks is gekies. Kopieer dit met jou sleutelbord, of druk lank daarop op ’n foon.",
     "fillFromProfile": "Vul in uit my profiel",
-    "fillFromProfileNamed": "Vul in uit my profiel: opdrag {n}, {title}",
+    "fillFromProfileNamed": "Vul in uit my profiel: {title}",
     "undoFill": "Ontdoen",
-    "undoFillNamed": "Ontdoen die invulling in opdrag {n}: {title}",
+    "undoFillNamed": "Ontdoen die invulling: {title}",
+    "titlePart": "{title} (opdrag {n} van {total})",
     "placeholdersRemaining": {
       "one": "{count} oop plek om in te vul",
       "other": "{count} oop plekke om in te vul"

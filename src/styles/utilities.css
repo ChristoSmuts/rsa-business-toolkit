@@ -13,13 +13,36 @@
   white-space: nowrap !important;
 }
 
-/* Shown only once theme-init has set the `js` class on <html>. */
+/*
+ * Shown only once theme-init has set the `js` class on <html>. Inside an element marked
+ * `data-enhance` (the wizard, a template form), shown only once that element's script has set
+ * `data-ready`: a control that needs the script must not show before the script runs, or a tap on
+ * it is lost (on a slow phone the wizard's Next showed about 8 s before it worked; WP-50 audit,
+ * flows 1 and 5).
+ */
 html:not(.js) .js-only {
   display: none !important;
 }
 
-/* Shown only when JavaScript is unavailable. */
-html.js .no-js-only {
+/*
+ * Inside a `data-enhance` element whose script has not run, a script control keeps its room,
+ * unseen (an invisible element takes no taps or focus), so nothing moves when the script shows it
+ * (WP-50a review pass 9, M1: with `display: none` the template's "Remove line" and "Add line"
+ * pushed the field the reader was filling in down by up to 133px). Each component drops the room
+ * when its script failed to load (`data-st-script-failed`, set by `theme-init.js`). A no-JavaScript
+ * line that the script replaces shares one slot with what replaces it (`TemplateTool.astro`).
+ */
+[data-enhance]:not([data-ready]) .js-only {
+  visibility: hidden !important;
+}
+
+/*
+ * Shown only when JavaScript is unavailable, and, inside a `data-enhance` element, until its
+ * script is ready: until then the template's printable form works as it does without JavaScript.
+ * The wizard overrides both rules: with JavaScript it is in steps from the first paint, and its
+ * no-JavaScript form shows only when its script failed to load (`Wizard.astro`).
+ */
+html.js .no-js-only:not([data-enhance]:not([data-ready]) *) {
   display: none !important;
 }
 

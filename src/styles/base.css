@@ -125,11 +125,12 @@ html {
   hanging-punctuation: first last;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html:focus-within {
-    scroll-behavior: smooth;
-  }
-}
+/*
+ * No smooth scrolling. `html:focus-within { scroll-behavior: smooth }` animated the scroll on every
+ * Tab, so a keyboard user waited to see where focus had gone (WP-50 audit, `review-animations`
+ * verdict Block). A contents link jumps at once too: the "Now reading" pill and the marked link
+ * say where the reader landed.
+ */
 
 body {
   min-block-size: 100vh;
@@ -485,8 +486,22 @@ input[type='radio'] {
   cursor: pointer;
 }
 
+/*
+ * The box keeps its size beside text that wraps: as a flex item it would otherwise shrink to make
+ * room for the label (20px on a one-line item, about 14px on a long one; WP-50 audit, flow 1).
+ */
 .st-check > input {
+  flex-shrink: 0;
   margin-block-start: calc((1lh - 1.25rem) / 2);
+}
+
+/*
+ * The label shrinks instead, and a word longer than the line ("Omgewingsgesondheidsafdeling" at
+ * 320px) breaks rather than pushing the page sideways (WCAG 1.4.10; WP-50a review pass 2, M2).
+ */
+.st-check > :not(input) {
+  min-inline-size: 0;
+  overflow-wrap: break-word;
 }
 
 .st-field {

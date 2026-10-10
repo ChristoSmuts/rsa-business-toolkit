@@ -12,6 +12,13 @@
  * - the master checklist says it is a reminder list, not proof of compliance (D5);
  * - a template says when its required-content rules were checked (D5).
  *
+ * On a phone (below 768px) the AI notice must be on the first screen, at 320×568 too (Stoep rule 9,
+ * ADR 0006; WP-50a). So there the section label, which repeats the one-crumb breadcrumb above it,
+ * is not shown, and the notices come straight after the H1: the lead, the read time and the effort
+ * meter (`st-doc__after-notice`) follow them. Only their order on screen changes; none of them has
+ * a link or control, so the order of focus is the same either way. "Words used in this file" is
+ * closed below 1024px and open from 1024px (B6), set before the first paint (`theme-init.js`).
+ *
  * `assertDocTrust` runs first, so a document that would render without sources and without a
  * source note fails the build instead of shipping (D5).
  */
@@ -39,7 +46,7 @@ import { DEFAULT_LOCALE, getLocale, type Locale } from '../i18n/locales';
 import { createContentContext } from '../lib/content/context';
 import { docHref, docTitle, sectionHref, sectionTitle } from '../lib/content/manifest';
 import type { BusinessType, Doc, GlossaryFile, Manifest, SourcesFile } from '../lib/content/schema';
-import { splitTermsBlocks } from '../lib/content/render';
+import { splitTermsBlocks, TERMS_HEADING_ID } from '../lib/content/render';
 import { hasOwnSources } from '../lib/content/trust';
 import { documentCrumbs } from '../lib/nav';
 import {
@@ -54,6 +61,7 @@ import { docHasConditions } from '../lib/path-pages';
 import { href } from '../lib/paths';
 import { APP_ROUTES, CHECKLIST_SAVES, TEMPLATES_FILLABLE, WIZARD_AVAILABLE } from '../lib/routes';
 import { isTemplateSlug } from '../lib/templates/draft';
+import { formHowToKey, formIntro } from '../lib/templates/intro';
 import { parseTemplate } from '../lib/templates/placeholders';
 
 interface Props {
@@ -108,6 +116,14 @@ const { terms, rest } = splitTermsBlocks(doc.blocks);
  */
 const templateSlug = doc.kind === 'template' && isTemplateSlug(doc.slug) ? doc.slug : undefined;
 const template = TEMPLATES_FILLABLE && templateSlug ? parseTemplate(doc) : undefined;
+/*
+ * Above the form, the markdown's "make a copy … export to PDF" note (for the file) gives way to a
+ * line about the form, in the language of the template's text (`src/lib/templates/intro.ts`).
+ */
+const howToKey = templateSlug ? formHowToKey(templateSlug) : undefined;
+const templateIntro = template
+  ? formIntro(template.before, howToKey ? useTranslations(contentLang)(howToKey) : undefined)
+  : [];
 const translationStatus = isFallback ? 'fallback' : doc.translation.status;
 const englishHref = locale === DEFAULT_LOCALE ? undefined : href(DEFAULT_LOCALE, route);
 
@@ -164,10 +180,10 @@ const relatedTypes = businessType
             {t('doc.sectionLabel')}: {section}
           </p>
           <h1 lang={contentLangTag}>{doc.h1}</h1>
-          <p class="st-lead" lang={contentLangTag}>
+          <p class="st-lead st-doc__after-notice" lang={contentLangTag}>
             {doc.summary}
           </p>
-          <p class="st-cluster">
+          <p class="st-cluster st-doc__after-notice">
             <Badge variant="status" icon="lucide:clock">
               {t('doc.readTime', { minutes: doc.readingTime })}
             </Badge>
@@ -179,6 +195,7 @@ const relatedTypes = businessType
           </p>
           {businessType && (
             <EffortMeter
+              class="st-doc__after-notice"
               level={effortLevel(businessType.effort)}
               label={t('businessTypes.effortLabel')}
               levelLabels={effortLabels}
@@ -242,7 +259,7 @@ const relatedTypes = businessType
         )}
 
         {terms && (
-          <details class="st-doc__terms" id="words-used-in-this-file" open>
+          <details class="st-doc__terms" id={TERMS_HEADING_ID}>
             <summary>{t('doc.wordsUsed')}</summary>
             <div lang={contentLangTag}>
               <TermsBlock block={terms} context={context} />
@@ -252,7 +269,7 @@ const relatedTypes = businessType
 
         {template && templateSlug ? (
           <Fragment>
-            <Blocks blocks={template.before} context={context} fallbackCaption={doc.title} />
+            <Blocks blocks={templateIntro} context={context} fallbackCaption={doc.title} />
             <TemplateTool
               locale={locale}
               slug={templateSlug}
@@ -363,6 +380,18 @@ const relatedTypes = businessType
   import '../scripts/path-progress';
 </script>
 
+<style is:global>
+  /*
+   * A phone's first screen (see the comment at the top): the AI notice and the translation notice
+   * straight after the H1. Global, because the effort meter is another component's element.
+   */
+  @media (width < 768px) {
+    .st-doc__header > .st-doc__after-notice {
+      order: 1;
+    }
+  }
+</style>
+
 <style>
   st-path-pager {
     display: block;
@@ -386,6 +415,17 @@ const relatedTypes = businessType
   .st-doc__section {
     color: var(--st-section, var(--st-text-muted));
     font-weight: var(--st-weight-semibold);
+  }
+
+  /*
+   * A phone's first screen (see the comment at the top): the notices straight after the H1, and no
+   * section label, which only repeats the breadcrumb's one crumb here. At 320×568 the notice
+   * started 625 to 812px down before.
+   */
+  @media (width < 768px) {
+    .st-doc__section {
+      display: none;
+    }
   }
 
   .st-doc__terms {

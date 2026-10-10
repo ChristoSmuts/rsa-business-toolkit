@@ -7,6 +7,11 @@
  * Server-rendered here: the form, the instructions, an empty listbox, the status line, the failed
  * state and the common questions (the empty state). The script only adds result options.
  *
+ * While the results code and the index download, the status line (a polite live region) says
+ * "Loading search…", from the moment the dialog opens, and a typed query hides the common
+ * questions, so they never stand under it as if they were its results (WP-50 audit, flow 3). The
+ * page renders the sentence (`data-loading-text`), because `search-boot.ts` has no translator.
+ *
  * Without JavaScript the whole element is hidden (`js-only`): the header control is then an
  * ordinary link to `/search/`, which works without a script.
  */
@@ -118,6 +123,7 @@ const ids = {
           role="status"
           aria-live="polite"
           data-failed-text={t('search.failed')}
+          data-loading-text={t('search.loading')}
         ></p>
       </div>
       <div class="st-search-dialog__body">

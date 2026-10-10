@@ -5,7 +5,7 @@
  * `<st-prompt-fill>` (`src/scripts/prompt-fill.ts`) once there are answers. Its own component, so
  * only pages with such a prompt load the script (review WP-31 pass 1, major 1).
  *
- * Each button's name starts with its visible label ("Fill from my profile: prompt 2, Logo brief"),
+ * Each button's name starts with its visible label ("Fill from my profile: Prompt 2: logo brief"),
  * so a reader who says what they see reaches it (WCAG 2.5.3; review WP-31 pass 1, major 5).
  */
 import Button from '../ui/Button.astro';
@@ -17,17 +17,15 @@ interface Props {
   locale: Locale;
   /** `lang` of the controls when the prompt around them is in another language. */
   lang: string | undefined;
-  promptNumber: number | undefined;
-  /** The heading above the prompt. */
-  caption: string;
+  /** What the prompt is called: the heading above it (`Blocks` adds which one, when needed). */
+  title: string;
 }
 
-const { locale, lang, promptNumber, caption } = Astro.props;
+const { locale, lang, title } = Astro.props;
 const t = useTranslations(locale);
 const values = JSON.stringify(
   Object.fromEntries(BUSINESS_TYPE_IDS.map((id) => [id, t(`prompts.profileValues.${id}`)])),
 );
-const n = promptNumber ?? 1;
 const remainingOne = t('prompts.placeholdersRemaining', { count: 1 }).replace('1', '{count}');
 const remainingOther = t('prompts.placeholdersRemaining', { count: 2 }).replace('2', '{count}');
 ---
@@ -44,7 +42,7 @@ const remainingOther = t('prompts.placeholdersRemaining', { count: 2 }).replace(
   <Button
     variant="secondary"
     data-fill
-    aria-label={t('prompts.fillFromProfileNamed', { n, title: caption })}
+    aria-label={t('prompts.fillFromProfileNamed', { title })}
     iconStart="lucide:user-round-pen"
   >
     {t('prompts.fillFromProfile')}
@@ -52,7 +50,7 @@ const remainingOther = t('prompts.placeholdersRemaining', { count: 2 }).replace(
   <Button
     variant="ghost"
     data-undo
-    aria-label={t('prompts.undoFillNamed', { n, title: caption })}
+    aria-label={t('prompts.undoFillNamed', { title })}
     iconStart="lucide:undo-2"
     hidden
   >

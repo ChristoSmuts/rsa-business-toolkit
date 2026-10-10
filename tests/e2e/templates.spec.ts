@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { Page } from '@playwright/test';
-import { expect, test } from './fixtures';
+import { allowConsoleError, expect, test } from './fixtures';
+import { holdModules, routeSameOrigin } from './helpers/network';
 import { REPO_ROOT } from './helpers/routes';
 
 /**
@@ -532,4 +533,284 @@ test.describe('the templates index', () => {
     await page.getByRole('link', { name: 'Tax invoice' }).click();
     await expect(page.locator('st-template-form')).toBeVisible();
   });
+});
+
+/**
+ * WP-50a, item 4: above the form the page says how to use the form. The markdown's "make a copy,
+ * rename it… replace everything in [SQUARE BRACKETS], then export to PDF" is for the file, and a
+ * first-time reader looked for a file to copy (WP-50 audit, flow 5).
+ */
+test.describe('the line above the form', () => {
+  const FILE_WORDS =
+    /SQUARE BRACKETS|VIERKANTIGE HAKIES|make a copy|maak ’n afskrif|export to PDF|na PDF uit/i;
+  const howTo = (lang: 'en' | 'af') =>
+    JSON.parse(readFileSync(path.join(REPO_ROOT, 'src', 'i18n', `${lang}.json`), 'utf8')) as {
+      templates: { items: Record<string, { formHowTo?: string }> };
+    };
+  for (const lang of ['en', 'af'] as const) {
+    for (const slug of ['quotation', 'invoice', 'tax-invoice', 'receipt', 'privacy-notice']) {
+      test(`${lang} ${slug}: no instruction about a file, and the form's own line`, async ({
+        page,
+      }) => {
+        await page.goto(`${lang === 'en' ? '' : 'af/'}templates/${slug}/`);
+        const article = page.locator('article[data-kind="template"]');
+        const above = await article.evaluate((element) => {
+          const tool = element.querySelector('st-template-form');
+          const texts: string[] = [];
+          for (const block of element.querySelectorAll('.st-blocks > *')) {
+            if (tool && tool.compareDocumentPosition(block) & Node.DOCUMENT_POSITION_PRECEDING) {
+              texts.push(block.textContent ?? '');
+            }
+          }
+          return texts.join('\n');
+        });
+        expect(above).not.toMatch(FILE_WORDS);
+        // The lead and the meta description too (review pass 1, M4).
+        const lead = (await article.locator('.st-lead').first().textContent()) ?? '';
+        const meta = (await page.locator('meta[name="description"]').getAttribute('content')) ?? '';
+        for (const text of [lead, meta]) {
+          expect(text).not.toMatch(FILE_WORDS);
+          expect(text).not.toContain('[');
+        }
+        const line = howTo(lang).templates.items[slug]?.formHowTo;
+        if (line) {
+          await expect(article.locator('.st-note-line', { hasText: line })).toBeVisible();
+          // The summary just above does not say its first sentence again (review pass 2, m4).
+          const first = lead.trim().split(/(?<=[.!?])\s/)[0] ?? '';
+          if (first) expect(line, 'repeats the summary').not.toContain(first);
+        } else {
+          await expect(article.locator('.st-note-line')).toHaveCount(0);
+        }
+      });
+    }
+  }
+});
+
+/**
+ * WP-50a, item 2: the Fill in / Preview tabs showed about 8 s before the form's script on a slow
+ * phone, and a tap on Preview was lost (WP-50 audit, flow 5). Until `<st-template-form>` is ready
+ * the page is the no-JavaScript form, and the tabs keep their room without showing.
+ */
+test.describe('a template before its script runs', () => {
+  test('shows no tabs while the module is held, then the tabs take their room with nothing moving', async ({
+    page,
+    baseURL,
+  }) => {
+    await page.addInitScript(() => {
+      const shifts: number[] = [];
+      Object.assign(window, { stShifts: shifts });
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          shifts.push((entry as PerformanceEntry & { value: number }).value);
+        }
+      }).observe({ type: 'layout-shift', buffered: true });
+    });
+    await page.setViewportSize({ width: 412, height: 900 });
+    const release = await holdModules(page, baseURL);
+    await page.goto('templates/invoice/', { waitUntil: 'commit' });
+    const form = page.locator('form.st-tform');
+    await expect(form).toBeVisible();
+    await page.waitForTimeout(3000);
+    expect(await page.evaluate(() => customElements.get('st-template-form') === undefined)).toBe(
+      true,
+    );
+    await expect(page.getByRole('tab')).toHaveCount(0);
+    await expect(page.locator('.st-tool__tabs')).toBeHidden();
+    await expect(page.locator('.st-tool__preview')).toBeHidden();
+    // The buttons are not there to tap; their room says they are coming (review pass 10, M1).
+    await expect(page.locator('.st-tool__actions [data-print]')).toBeHidden();
+    await expect(page.getByText('Loading the form tools…')).toBeVisible();
+    await expect(page.locator('.st-tool__required')).toBeVisible();
+    await expect(page.getByText('To print, use your browser’s Print command.')).toBeVisible();
+    const name = page.getByLabel('Customer name');
+    await name.fill('Thandi');
+    // Scrolled to the form, where a jump would be seen.
+    await form.evaluate((element) => element.scrollIntoView({ block: 'start' }));
+    const before = await form.boundingBox();
+
+    release();
+    await expect(page.locator('st-template-form')).toHaveAttribute('data-ready', '');
+    await expect(page.getByRole('tab', { name: en.templates.preview })).toBeVisible();
+    await expect(page.getByText('Loading the form tools…')).toBeHidden();
+    await expect(name).toHaveValue('Thandi');
+    const after = await form.boundingBox();
+    expect(Math.abs((after?.y ?? 0) - (before?.y ?? 0))).toBeLessThanOrEqual(1);
+    const shift = await page.evaluate(() =>
+      (window as unknown as { stShifts: number[] }).stShifts.reduce((sum, value) => sum + value, 0),
+    );
+    expect(shift).toBeLessThanOrEqual(0.1);
+    await page.getByRole('tab', { name: en.templates.preview }).click();
+    await expect(page.locator('.st-tool__preview')).toBeVisible();
+    await expect(sheet(page)).toContainText('Thandi');
+  });
+
+  // Review pass 10, M1: the rooms kept for the required items and the actions left 727 to 1,542px
+  // of blank page under the form before the script. Before the script, no vertical run inside the
+  // template tool is without something to see for more than 120px.
+  for (const lang of ['en', 'af'] as const) {
+    for (const slug of ['quotation', 'invoice', 'tax-invoice', 'receipt', 'privacy-notice']) {
+      test(`${lang} ${slug}: before the script, no blank run over 120px in the tool`, async ({
+        page,
+        baseURL,
+      }) => {
+        await holdModules(page, baseURL);
+        const runs: string[] = [];
+        for (const size of [
+          { width: 360, height: 740 },
+          { width: 320, height: 568 },
+          { width: 1280, height: 900 },
+        ]) {
+          await page.setViewportSize(size);
+          await page.goto(`${lang === 'en' ? '' : 'af/'}templates/${slug}/`, {
+            waitUntil: 'commit',
+          });
+          await expect(page.locator('footer.st-footer')).toBeAttached();
+          await page.evaluate(() => document.fonts.ready);
+          const gap = await page.locator('st-template-form').evaluate((tool) => {
+            // What can be seen: text, form controls, icons, and the edges of a bordered box.
+            const spans: [number, number][] = [];
+            for (const element of tool.querySelectorAll<HTMLElement>('*')) {
+              const style = getComputedStyle(element);
+              if (style.visibility !== 'visible') continue;
+              const box = element.getBoundingClientRect();
+              if (box.height === 0 || box.width === 0) continue;
+              const text = [...element.childNodes].some(
+                (node) =>
+                  node.nodeType === Node.TEXT_NODE && (node.textContent ?? '').trim() !== '',
+              );
+              const control = /^(INPUT|TEXTAREA|SELECT|BUTTON|SVG|IMG)$/i.test(element.tagName);
+              if (text || control) spans.push([box.top, box.bottom]);
+              if (parseFloat(style.borderTopWidth) > 0 && style.borderTopStyle !== 'none')
+                spans.push([box.top, box.top + 1]);
+              if (parseFloat(style.borderBottomWidth) > 0 && style.borderBottomStyle !== 'none')
+                spans.push([box.bottom - 1, box.bottom]);
+            }
+            const area = tool.getBoundingClientRect();
+            spans.sort((a, b) => a[0] - b[0]);
+            let reach = area.top;
+            let widest = 0;
+            for (const [top, bottom] of spans) {
+              widest = Math.max(widest, top - reach);
+              reach = Math.max(reach, bottom);
+            }
+            return Math.round(Math.max(widest, area.bottom - reach));
+          });
+          runs.push(`${size.width}px: ${gap}px`);
+          expect(gap, `widest blank run at ${size.width}px`).toBeLessThanOrEqual(120);
+        }
+        console.log(`template blank runs ${lang} ${slug}: ${runs.join(', ')}`);
+      });
+    }
+  }
+
+  // Review pass 11, m1 and m2: the page renders the required list and its count for an empty form
+  // with the same rules the script uses (`required-rules.ts`). When the script runs on an empty
+  // form it leaves both as they are, and never writes the count line, a live region.
+  for (const lang of ['en', 'af'] as const) {
+    for (const slug of ['quotation', 'invoice', 'tax-invoice', 'receipt', 'privacy-notice']) {
+      test(`${lang} ${slug}: the script leaves the rendered required list and count as they are`, async ({
+        page,
+        baseURL,
+      }) => {
+        await page.setViewportSize({ width: 360, height: 740 });
+        const release = await holdModules(page, baseURL);
+        await page.goto(`${lang === 'en' ? '' : 'af/'}templates/${slug}/`, { waitUntil: 'commit' });
+        await expect(page.locator('footer.st-footer')).toBeAttached();
+        const read = () =>
+          page.evaluate(() => ({
+            count: document.querySelector('[data-required-count]')?.textContent ?? null,
+            items: [...document.querySelectorAll<HTMLElement>('[data-required-item]')].map(
+              (item) => `${item.dataset['requiredItem']}:${item.hidden ? 'hidden' : 'shown'}`,
+            ),
+          }));
+        const before = await read();
+        await page.evaluate(() => {
+          const writes: string[] = [];
+          Object.assign(window, { stCountWrites: writes });
+          const count = document.querySelector('[data-required-count]');
+          if (count)
+            new MutationObserver((records) => {
+              for (const record of records) writes.push(record.type);
+            }).observe(count, { childList: true, characterData: true, subtree: true });
+        });
+        release();
+        await expect(page.locator('st-template-form')).toHaveAttribute('data-ready', '');
+        await page.evaluate(
+          () =>
+            new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+        );
+        const after = await read();
+        expect(after.items).toEqual(before.items);
+        expect(after.count).toBe(before.count);
+        expect(
+          await page.evaluate(
+            () => (window as unknown as { stCountWrites: string[] }).stCountWrites,
+          ),
+        ).toEqual([]);
+      });
+    }
+  }
+
+  // Review pass 10, m2: a slot kept the unseen no-JavaScript line's room when its partner was
+  // hidden too: above the storage warning, and between the last of ten lines and the totals.
+  test('a slot keeps no room once both its lines are hidden', async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 740 });
+    await page.addInitScript(() => {
+      Object.defineProperty(window, 'localStorage', {
+        configurable: true,
+        get() {
+          throw new DOMException('The operation is insecure.', 'SecurityError');
+        },
+      });
+    });
+    await page.goto('templates/invoice/');
+    await expect(page.locator('st-template-form')).toHaveAttribute('data-ready', '');
+    const slots = page.locator('st-template-form .st-tslot');
+    // Storage blocked: "saved on this device only" is hidden, and its slot takes no room.
+    await expect(page.locator('st-storage-notice[data-show="available"]')).toBeHidden();
+    expect((await slots.nth(0).boundingBox())?.height ?? -1).toBe(0);
+    // "Add line" until all ten lines show; then it is hidden and its slot takes no room.
+    const add = page.locator('[data-add-line]');
+    for (let pressed = 0; pressed < 10 && (await add.isVisible()); pressed++) await add.click();
+    await expect(add).toBeHidden();
+    expect((await slots.nth(1).boundingBox())?.height ?? -1).toBe(0);
+  });
+
+  // Review pass 9, m2: when the template's module failed to load, the unseen tab strip left a blank
+  // 46px band, and with pass 9's rooms every script control would have too.
+  test(
+    'if the template script fails to load, no room is left for what it would have shown',
+    {
+      annotation: allowConsoleError(
+        '/net::ERR_FAILED/',
+        "The test blocks the template's module on purpose, and the browser logs the failed request.",
+      ),
+    },
+    async ({ page, baseURL }) => {
+      await routeSameOrigin(
+        page,
+        baseURL,
+        (url) => /\/_astro\/TemplateTool\.astro_astro_type_script[^/]*\.js$/.test(url.pathname),
+        (route) => route.abort(),
+      );
+      // A phone: from 52rem the tabs are not shown anyway.
+      await page.setViewportSize({ width: 360, height: 740 });
+      await page.goto('templates/invoice/');
+      await expect(page.locator('html')).toHaveAttribute(
+        'data-st-script-failed',
+        /\bTemplateTool\b/,
+      );
+      const rooms = await page
+        .locator('st-template-form .st-tool__tabs, st-template-form .js-only')
+        .evaluateAll((elements) =>
+          elements.map((element) => element.getBoundingClientRect().height),
+        );
+      expect(rooms.length).toBeGreaterThan(2);
+      expect(rooms.filter((height) => height > 0)).toEqual([]);
+      await expect(page.getByText('To print, use your browser’s Print command.')).toBeVisible();
+      await expect(
+        page.getByText('Without JavaScript the totals are not worked out.'),
+      ).toBeVisible();
+    },
+  );
 });

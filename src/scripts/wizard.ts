@@ -52,10 +52,23 @@ export class StWizard extends HTMLElement {
     this.#update();
   };
 
+  /**
+   * After Back, when the page is not served from the back/forward cache, the browser puts the
+   * reader's earlier ticks back after `load`, just before `pageshow`, and fires no `change`: long
+   * after `#restore`. The wizard then held other kinds of business than the screen showed, and
+   * Next could be dead beside a visible answer (WP-50a review pass 7, M1). So it reads the form
+   * again then. A page from the cache comes back whole, with its state, and needs nothing.
+   */
+  readonly #onPageShow = (event: PageTransitionEvent): void => {
+    if (event.persisted) return;
+    this.#sync();
+    requestAnimationFrame(() => this.#sync());
+  };
+
   readonly #onClick = (event: Event): void => {
     const button = event.target instanceof Element ? event.target.closest('button') : null;
     if (!button || button.getAttribute('aria-disabled') === 'true') return;
-    if (button.hasAttribute('data-next')) this.go(this.#current + 1);
+    if (button.hasAttribute('data-next')) this.#advance();
     else if (button.hasAttribute('data-back')) this.go(this.#current - 1);
   };
 
@@ -71,8 +84,21 @@ export class StWizard extends HTMLElement {
     this.#advance();
   };
 
-  /** Next, or "See my path" on the last step; an unanswered step keeps focus on its answers. */
+  /**
+   * Next, or "See my path" on the last step; an unanswered step keeps focus on its answers. If a
+   * question before this one has no answer (WP-50a review pass 1, M1), the button takes the reader
+   * to it and its heading gets focus, so a tap is never lost: `finish()` could not save without it.
+   * Since the wizard starts on question 1 (review pass 5) and Next refuses an unanswered step, no
+   * way to reach a later step with an earlier one empty is known; this stays as a safety net, for
+   * example for a stepper whose steps become links.
+   */
   #advance(): void {
+    const missing = this.#firstInvalid(this.#current);
+    if (missing >= 0 && missing < this.#current) {
+      this.#show(missing);
+      this.#steps[missing]?.querySelector<HTMLElement>('[data-step-heading]')?.focus();
+      return;
+    }
     if (!this.#stepValid(this.#current)) {
       this.#firstInput(this.#current)?.focus();
       return;
@@ -85,6 +111,9 @@ export class StWizard extends HTMLElement {
     this.#form = this.querySelector('form');
     this.#steps = [...this.querySelectorAll<HTMLElement>('[data-step]')];
     if (!this.#form || this.#steps.length === 0) return;
+    // With JavaScript the page is already in steps, on question 1 (`Wizard.astro`; WP-50a review
+    // pass 5): the script makes the kinds of business checkboxes, which question 1's reader cannot
+    // see yet, and shows the buttons, which kept their room. Nothing folds, so nothing moves.
     for (const input of this.#inputs(QUERY.type)) input.type = 'checkbox';
     // With checkboxes the question is "choose all that fit", not the no-JavaScript "choose one".
     for (const group of this.querySelectorAll<HTMLElement>('[data-describedby-js]'))
@@ -94,15 +123,37 @@ export class StWizard extends HTMLElement {
     this.#form.addEventListener('click', this.#onClick);
     this.#form.addEventListener('submit', this.#onSubmit);
     this.#form.addEventListener('keydown', this.#onKeydown);
+    window.addEventListener('pageshow', this.#onPageShow);
     this.dataset['ready'] = '';
     this.#show(0);
   }
 
+  /** Takes the answers from the form as it is now, and the buttons and hints with them. */
+  #sync(): void {
+    this.#order = this.#currentOrder();
+    this.#show(this.#current);
+  }
+
+  /**
+   * The kinds of business ticked now, in the order they were ticked: the ones the wizard saw ticked
+   * that still are, then any others in page order. A tick the wizard was not told about (above) can
+   * then never save a kind that does not show ticked.
+   */
+  #currentOrder(): TypeChoice[] {
+    const ticked = this.#checked(QUERY.type) as TypeChoice[];
+    const kept = this.#order.filter((type) => ticked.includes(type));
+    return [...kept, ...ticked.filter((type) => !kept.includes(type))];
+  }
+
   disconnectedCallback(): void {
+    // Its controls stop working, so the page goes back to the no-JavaScript form (utilities.css).
+    delete this.dataset['ready'];
+    for (const step of this.#steps) step.hidden = false;
     this.#form?.removeEventListener('change', this.#onChange);
     this.#form?.removeEventListener('click', this.#onClick);
     this.#form?.removeEventListener('submit', this.#onSubmit);
     this.#form?.removeEventListener('keydown', this.#onKeydown);
+    window.removeEventListener('pageshow', this.#onPageShow);
   }
 
   /** The step shown now (0-based). */
@@ -122,7 +173,7 @@ export class StWizard extends HTMLElement {
   answers(): Profile | null {
     return parseProfile({
       entity: this.#checked(QUERY.entity)[0],
-      businessTypes: this.#order,
+      businessTypes: this.#currentOrder(),
       stage: this.#checked(QUERY.stage)[0],
     });
   }
@@ -154,23 +205,44 @@ export class StWizard extends HTMLElement {
     return this.#steps[index]?.querySelector('input:not([disabled])') ?? null;
   }
 
+  /**
+   * Fills in the saved answers ("Edit answers"). The server renders no answer checked, so on an
+   * ordinary load a question that already has one was answered by the reader while the script was
+   * on its way, and keeps that answer: putting the saved one back undid their tap without a word
+   * (WP-50a review pass 6, M1). After Back, the browser puts the reader's earlier ticks back once
+   * the page has loaded, over whatever this did, and those win: `#onPageShow` reads them.
+   */
   #restore(saved: Profile | null): void {
+    const navigation = globalThis.performance?.getEntriesByType?.('navigation')[0] as
+      PerformanceNavigationTiming | undefined;
+    const keepGiven = navigation?.type !== 'back_forward';
+    const given = (name: string): boolean =>
+      keepGiven && this.#inputs(name).some((input) => input.checked);
+    const keepTypes = given(QUERY.type);
     if (saved) {
-      for (const input of this.#inputs(QUERY.entity)) input.checked = input.value === saved.entity;
-      for (const input of this.#inputs(QUERY.type))
-        input.checked = saved.businessTypes.includes(input.value as TypeChoice);
-      for (const input of this.#inputs(QUERY.stage)) input.checked = input.value === saved.stage;
-      this.#order = [...saved.businessTypes];
-    } else {
-      // A form the browser restored (Back) keeps its ticks; take them in page order.
-      this.#order = this.#checked(QUERY.type) as TypeChoice[];
+      const fill = (name: string, wanted: (value: string) => boolean): void => {
+        if (given(name)) return;
+        for (const input of this.#inputs(name)) input.checked = wanted(input.value);
+      };
+      fill(QUERY.entity, (value) => value === saved.entity);
+      fill(QUERY.type, (value) => saved.businessTypes.includes(value as TypeChoice));
+      fill(QUERY.stage, (value) => value === saved.stage);
     }
+    // Ticks the reader or the browser gave are taken in page order.
+    this.#order =
+      !saved || keepTypes ? (this.#checked(QUERY.type) as TypeChoice[]) : [...saved.businessTypes];
+  }
+
+  /** The first step up to `last` (inclusive) that has no valid answer, or -1. */
+  #firstInvalid(last: number): number {
+    for (let index = 0; index <= last; index++) if (!this.#stepValid(index)) return index;
+    return -1;
   }
 
   #stepValid(index: number): boolean {
     const name = this.#steps[index]?.dataset['step'];
     if (name === QUERY.entity) return this.#checked(QUERY.entity).length === 1;
-    if (name === QUERY.type) return this.#order.length > 0;
+    if (name === QUERY.type) return this.#currentOrder().length > 0;
     if (name === QUERY.stage) {
       const stage = this.#checked(QUERY.stage)[0] as StageChoice | undefined;
       const entity = this.#checked(QUERY.entity)[0] as EntityChoice | undefined;
@@ -203,12 +275,27 @@ export class StWizard extends HTMLElement {
       reason.hidden = stageAllowed('pty-growing', entity);
     this.#steps.forEach((step, index) => {
       const valid = this.#stepValid(index);
+      // With an earlier question unanswered the button works: it goes to that question.
+      const earlier = this.#firstInvalid(index - 1) >= 0;
       for (const button of step.querySelectorAll<HTMLElement>('[data-next], [data-finish]')) {
-        if (valid) button.removeAttribute('aria-disabled');
+        if (valid || earlier) button.removeAttribute('aria-disabled');
         else button.setAttribute('aria-disabled', 'true');
       }
       for (const hint of step.querySelectorAll<HTMLElement>('[data-next-hint]'))
-        hint.hidden = valid;
+        hint.hidden = valid || earlier;
+      for (const hint of step.querySelectorAll<HTMLElement>('[data-earlier-hint]'))
+        hint.hidden = !earlier;
+      // The button is described by the line under it that shows, and by nothing when none does: a
+      // hidden line it pointed at was still read out ("Choose an answer first." on an answered
+      // question; WP-50a review pass 3, m2).
+      const shown = [...step.querySelectorAll<HTMLElement>('[data-next-hint], [data-earlier-hint]')]
+        .filter((hint) => !hint.hidden && hint.id)
+        .map((hint) => hint.id)
+        .join(' ');
+      for (const button of step.querySelectorAll<HTMLElement>('[data-next], [data-finish]')) {
+        if (shown) button.setAttribute('aria-describedby', shown);
+        else button.removeAttribute('aria-describedby');
+      }
     });
   }
 }

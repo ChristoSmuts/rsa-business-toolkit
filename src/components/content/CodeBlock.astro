@@ -34,11 +34,11 @@ interface Props {
   context: ContentContext;
   /** Names the region: the heading above the block, or the page title. */
   caption: string;
-  /** A prompt's number on the page ("Copy prompt 2: …"). */
-  promptNumber?: number | undefined;
+  /** What a prompt's buttons call it ("Copy prompt: Prompt 3: the name"); see `Blocks`. */
+  promptTitle?: string | undefined;
 }
 
-const { block, context, caption, promptNumber } = Astro.props;
+const { block, context, caption, promptTitle } = Astro.props;
 const t = useTranslations(context.contentLang);
 const label = t('doc.codeRegion', { caption });
 const segments = splitPlaceholders(block.text, block.placeholders);
@@ -54,9 +54,7 @@ const siteLang = isFallbackContent(context)
 /** Stable across builds and languages: the block id is the same in every translation. */
 const promptId = context.docId ? `${context.docId}#${block.id}` : block.id;
 const copyName =
-  promptNumber === undefined
-    ? undefined
-    : siteT('prompts.copyNamed', { n: promptNumber, title: caption });
+  promptTitle === undefined ? undefined : siteT('prompts.copyNamed', { title: promptTitle });
 /*
  * "Fill from my profile" (WP-31): the placeholders the profile knows. Today that is the kind of
  * business; the values are in the reader's language, one per business type.
@@ -71,9 +69,9 @@ const fillable =
       FILLABLE_KEYS.includes(segment.run.key),
   );
 const copiedMessage =
-  promptNumber === undefined
+  promptTitle === undefined
     ? siteT('prompts.copied')
-    : siteT('prompts.copiedNamed', { n: promptNumber });
+    : siteT('prompts.copiedNamed', { title: promptTitle });
 ---
 
 <figure class="st-code" data-variant={block.variant}>
@@ -87,12 +85,7 @@ const copiedMessage =
   </st-code-scroll>
   {hasPlaceholders && <figcaption>{t('prompts.placeholderHint')}</figcaption>}
   {fillable && (
-    <PromptFill
-      locale={context.locale}
-      lang={siteLang}
-      promptNumber={promptNumber}
-      caption={caption}
-    />
+    <PromptFill locale={context.locale} lang={siteLang} title={promptTitle ?? caption} />
   )}
   {isPrompt && (
     <st-copy

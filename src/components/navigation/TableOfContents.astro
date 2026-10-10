@@ -95,7 +95,7 @@ const detailsId = 'st-on-this-page';
    */
   @media (width < 1280px) {
     html.js:has(.st-toc__pill-track) {
-      --st-toc-pill-space: calc(var(--st-target) + var(--st-space-2));
+      --st-toc-pill-space: calc(var(--st-target) + 1lh + var(--st-space-2));
     }
   }
 </style>
@@ -156,10 +156,12 @@ const detailsId = 'st-on-this-page';
 
   /*
    * The "Now reading" pill. Its track is sticky inside the article and has no height, so the pill
-   * hangs below the top bar without moving the text when it appears or goes. The pill is always
-   * one line (a long title ends in an ellipsis; the link's name is still the whole title), so its
-   * height is known, and the global rule below adds it to the scroll padding: a heading reached by
-   * a contents link, or focus moved by the keyboard, lands below the pill, not under it.
+   * hangs below the top bar without moving the text when it appears or goes. The title wraps and
+   * is never cut off (house rule 8: an ellipsis hid the end of translated headings, WP-50 audit).
+   * The label and the title run as one line of text, so the title has the pill's whole width: most
+   * headings fit on one line at 320px and nearly all on two. The global rule above keeps two lines
+   * of room in the scroll padding, so a heading reached by a contents link, or focus moved by the
+   * keyboard, lands below a one- or two-line pill, not under it.
    */
   .st-toc__pill-track {
     position: sticky;
@@ -169,16 +171,17 @@ const detailsId = 'st-on-this-page';
   }
 
   .st-toc__pill {
-    display: flex;
-    align-items: center;
-    gap: var(--st-space-2);
+    display: block;
     inline-size: fit-content;
     max-inline-size: 100%;
     min-block-size: var(--st-target);
     margin-block-start: var(--st-space-2);
+    padding-block: max(0px, calc((var(--st-target) - 1lh) / 2 - var(--st-border-width)));
     padding-inline: var(--st-space-4);
     border: var(--st-border-width) solid var(--st-border-strong);
-    border-radius: var(--st-radius-pill);
+
+    /* An exact pill on one line, and a rounded box, not an oval, when the title wraps. */
+    border-radius: calc(var(--st-target) / 2);
     background-color: var(--st-surface);
     box-shadow: var(--st-shadow-1);
     color: var(--st-text);
@@ -190,22 +193,15 @@ const detailsId = 'st-on-this-page';
   }
 
   .st-toc__pill-label {
-    flex: none;
+    margin-inline-end: var(--st-space-2);
     color: var(--st-text-muted);
     font-size: var(--st-text-sm);
     font-weight: var(--st-weight-semibold);
   }
 
-  /*
-   * One line by design, inside a box capped at the column's width, so `nowrap` cannot widen the
-   * page here (see design-system.md, Wrapping and min-content).
-   */
   .st-toc__pill-text {
-    min-inline-size: 0;
-    overflow: hidden;
     font-weight: var(--st-weight-semibold);
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    overflow-wrap: anywhere;
   }
 
   @keyframes st-toc-pill-in {

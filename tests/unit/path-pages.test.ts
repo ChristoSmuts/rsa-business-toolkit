@@ -132,21 +132,23 @@ describe('the no-JavaScript wizard CSS', () => {
         ),
       );
     expect(rule).toBe(
-      `html:not(.js) .st-wizard__form:has(#${wizardInputId('entity', 'pty')}:checked)` +
+      `st-wizard:not([data-ready]) .st-wizard__form:has(#${wizardInputId('entity', 'pty')}:checked)` +
         ':has(#wz-type-food:checked):has(#wz-stage-trading:checked)' +
         ' .st-wizard__result[data-result="pty/food/trading"]{display:inline-flex}',
     );
     expect(css.match(/\{display:inline-flex\}/g)).toHaveLength(49);
   });
 
-  it('explains “Pty Ltd, growing” without a Pty Ltd, and only without JavaScript', () => {
+  it('explains “Pty Ltd, growing” without a Pty Ltd, and only until the wizard script is ready', () => {
     expect(css).toContain(
-      'html:not(.js) .st-wizard__form:has(#wz-stage-pty-growing:checked):not(:has(#wz-entity-pty:checked)) .st-wizard__pty-only{display:block}',
+      'st-wizard:not([data-ready]) .st-wizard__form:has(#wz-stage-pty-growing:checked):not(:has(#wz-entity-pty:checked)) .st-wizard__pty-only{display:block}',
     );
     expect(
       css
         .split('\n')
-        .every((line) => /^(@supports selector\(:has\(\*\)\)\{)?html:not\(\.js\) /.test(line)),
+        .every((line) =>
+          /^(@supports selector\(:has\(\*\)\)\{)?st-wizard:not\(\[data-ready\]\) /.test(line),
+        ),
     ).toBe(true);
   });
 
@@ -155,8 +157,8 @@ describe('the no-JavaScript wizard CSS', () => {
     // shows, so the list of result links must stay (review WP-31 pass 1, major 2).
     const supports = css.split('\n').filter((line) => line.startsWith('@supports'));
     expect(supports).toEqual([
-      '@supports selector(:has(*)){html:not(.js) .st-wizard__incomplete{display:block}' +
-        'html:not(.js) .st-wizard__fallback{display:none}}',
+      '@supports selector(:has(*)){st-wizard:not([data-ready]) .st-wizard__incomplete{display:block}' +
+        'st-wizard:not([data-ready]) .st-wizard__fallback{display:none}}',
     ]);
     const plain = css.split('\n').filter((line) => !line.startsWith('@supports'));
     expect(plain.some((line) => line.includes('.st-wizard__fallback'))).toBe(false);

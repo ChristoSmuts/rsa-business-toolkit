@@ -150,10 +150,11 @@ interface ParamNames {
   'validation.required': 'field';
   'validation.email': 'example';
   'validation.number': 'example';
-  'prompts.copyNamed': 'n' | 'title';
-  'prompts.copiedNamed': 'n';
-  'prompts.fillFromProfileNamed': 'n' | 'title';
-  'prompts.undoFillNamed': 'n' | 'title';
+  'prompts.copyNamed': 'title';
+  'prompts.copiedNamed': 'title';
+  'prompts.fillFromProfileNamed': 'title';
+  'prompts.undoFillNamed': 'title';
+  'prompts.titlePart': 'n' | 'title' | 'total';
   'prompts.placeholdersRemaining': 'count';
   'prompts.showFullNamed': 'n' | 'title';
   'prompts.showLessNamed': 'n' | 'title';

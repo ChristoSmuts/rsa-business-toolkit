@@ -114,7 +114,6 @@ export class StChecklistProgress extends HTMLElement {
 
   #render(done: number, total: number): void {
     const text = interpolate(this.dataset['template'] ?? '{done}/{total}', { done, total });
-    const percent = total > 0 ? Math.round((done / total) * 100) : 0;
     this.toggleAttribute('data-complete', total > 0 && done === total);
     const progress = this.querySelector('progress');
     if (progress) {
@@ -123,14 +122,20 @@ export class StChecklistProgress extends HTMLElement {
     }
     const label = this.querySelector('[data-progress-text]');
     if (label) label.textContent = text;
+    // `drawRing()` in ring.ts, inlined: importing it split a shared chunk, 0.2 KB on every document.
     const ring = this.querySelector<HTMLElement>('.st-ring');
     if (ring) {
+      const percent = total > 0 ? Math.round((done / total) * 100) : 0;
       if (percent >= 100) ring.dataset['complete'] = 'true';
       else delete ring.dataset['complete'];
       ring.querySelector('svg')?.setAttribute('aria-label', text);
-      ring
-        .querySelector('.st-ring__value')
-        ?.setAttribute('stroke-dashoffset', String(100 - percent));
+      const arc = ring.querySelector('.st-ring__value');
+      arc?.setAttribute('stroke-dashoffset', String(100 - percent));
+      // Only a later tick moves the arc, not the value the page opens with (ProgressRing.astro).
+      if (arc && !ring.hasAttribute('data-animate')) {
+        void getComputedStyle(arc).strokeDashoffset;
+        ring.setAttribute('data-animate', '');
+      }
       const value = ring.querySelector('.st-ring__text');
       if (value) value.textContent = `${percent}%`;
     }

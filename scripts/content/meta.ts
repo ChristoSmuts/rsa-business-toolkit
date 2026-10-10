@@ -17,10 +17,24 @@ export function truncateSummary(text: string, max = SUMMARY_MAX): string {
   return `${window.slice(0, space > 0 ? space : max - 1).replace(/[,;:]$/, '')}…`;
 }
 
+/**
+ * A raw folder or file name from the markdown tree (`01-core/`, `02-invoice.md`). The page shows a
+ * reference like that as the document's title, but a summary is plain text.
+ */
+export const RAW_PATH = /(?:^|[\s(`"'])\d{2}-[\w-]+(?:\/|\.md\b)/;
+
+/**
+ * The first visible paragraph or note, as the summary. A paragraph that points to another document
+ * ("Read `01-core/` first. This file adds…") is a cross-reference, not a summary: its plain text
+ * holds the raw folder name, which became the lead of six Afrikaans business-type pages (their
+ * English summaries come from `content-meta/docs.meta.json`). Such a paragraph is skipped.
+ */
 export function deriveSummary(blocks: readonly Block[]): string | undefined {
   for (const block of blocks) {
     if (block.hidden) continue;
     if (block.kind === 'paragraph' || block.kind === 'note') {
+      if (block.c.some((run) => run.t === 'docref')) continue;
+      if (RAW_PATH.test(runsToText(block.c))) continue;
       const text = runsToText(block.c).replace(/\s+/g, ' ').trim();
       if (text !== '') return truncateSummary(text);
     }

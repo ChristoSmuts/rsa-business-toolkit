@@ -95,6 +95,19 @@ const offers =
 </style>
 
 <style>
+  /*
+   * The banner is set in the device font, the web font's metric-matched fallback, so the web font
+   * arriving cannot change its size. It is at the top of the page, and its buttons used to move to
+   * another line when the web font swapped in, which pushed the whole page by up to 52px (layout
+   * shift 0.144 on a phone; WP-50 audit, flow 7). `Button` reads `--st-font-body`, so the token is
+   * pointed at the fallback for the banner's buttons too.
+   */
+  .st-lang-banner {
+    --st-font-body: var(--st-font-body-fallback);
+
+    font-family: var(--st-font-body);
+  }
+
   .st-lang-banner__inner {
     display: flex;
     flex-wrap: wrap;

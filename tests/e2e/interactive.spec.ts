@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
-import { routeSameOrigin } from './helpers/network';
+import { holdModules, holdRequests } from './helpers/network';
 import { REPO_ROOT } from './helpers/routes';
 
 /**
@@ -66,27 +66,6 @@ const FIRST_PROMPT =
     'docs',
     'branding__branding-prompts.json',
   ).blocks.find((block) => block.kind === 'code' && block.variant === 'prompt')?.text ?? '';
-
-/**
- * Holds every bundled module back until `release()`; only the blocking `theme-init.js` runs. This
- * is the window a slow phone has between first paint and the modules connecting.
- */
-async function holdModules(page: Page, baseURL: string | undefined): Promise<() => void> {
-  let release: () => void = () => {};
-  const held = new Promise<void>((resolve) => {
-    release = resolve;
-  });
-  await routeSameOrigin(
-    page,
-    baseURL,
-    (url) => /\/_astro\/.+\.js$/.test(url.pathname) && !url.pathname.includes('theme-init'),
-    async (route) => {
-      await held;
-      await route.continue();
-    },
-  );
-  return release;
-}
 
 /** Every `st.` key in the page's storage, sorted. */
 async function stKeys(page: Page): Promise<string[]> {
@@ -326,10 +305,10 @@ test.describe('copy buttons', () => {
     const figure = page.locator('figure.st-code[data-variant="prompt"]').first();
     const button = figure.locator('st-copy button');
     await expect(button).toBeVisible();
-    await expect(button).toHaveAccessibleName(/^Copy prompt 1: /);
+    await expect(button).toHaveAccessibleName(/^Copy prompt: The refine prompt/);
     await button.click();
     await expect(button).toHaveText('Copied');
-    await expect(figure.locator('[role="status"]')).toHaveText('Prompt 1 copied');
+    await expect(figure.locator('[role="status"]')).toHaveText(/^Copied: The refine prompt/);
     const clipboard = await page.evaluate(() => navigator.clipboard.readText());
     expect(clipboard).toBe(FIRST_PROMPT);
     const copied = await page.evaluate(
@@ -354,6 +333,74 @@ test.describe('copy buttons', () => {
     await expect(figure.locator('[role="status"]')).toContainText('Could not copy');
     const selected = await page.evaluate(() => document.getSelection()?.toString() ?? '');
     expect(selected).toBe(FIRST_PROMPT);
+  });
+});
+
+/**
+ * WP-50a, item 9: the copy button and its "Copied" message name a prompt by the heading above it,
+ * which carries the guide's own numbering. A count in page order called "Prompt 0" "Prompt 4".
+ */
+test.describe('prompt names', () => {
+  /** Every prompt's copy name and message, with the text of the nearest heading above it. */
+  async function promptNames(page: Page) {
+    return page.locator('figure.st-code[data-variant="prompt"]').evaluateAll((figures) =>
+      figures.map((figure) => {
+        const headings = [...document.querySelectorAll('.st-blocks :is(h2, h3, h4, h5)')];
+        const above = headings.filter(
+          (heading) => heading.compareDocumentPosition(figure) & Node.DOCUMENT_POSITION_FOLLOWING,
+        );
+        return {
+          heading: (above.at(-1)?.textContent ?? '').trim(),
+          name: figure.querySelector('st-copy button')?.getAttribute('aria-label') ?? '',
+          message: figure.querySelector<HTMLElement>('st-copy')?.dataset['copiedMessage'] ?? '',
+        };
+      }),
+    );
+  }
+
+  test('"Prompt 0" is copied as "Prompt 0", and every prompt is named by its heading', async ({
+    page,
+    context,
+  }, testInfo) => {
+    await page.goto(PROMPTS);
+    const names = await promptNames(page);
+    expect(names.length).toBeGreaterThan(10);
+    for (const { heading, name, message } of names) {
+      expect(name).toBe(`Copy prompt: ${heading}`);
+      expect(message).toBe(`Copied: ${heading}`);
+    }
+    const zero = page.locator('figure.st-code[data-variant="prompt"]', {
+      has: page.getByRole('button', { name: /^Copy prompt: Prompt 0: / }),
+    });
+    await expect(zero).toHaveCount(1);
+    test.skip(testInfo.project.name !== 'chromium', 'Clipboard permissions are Chromium-only.');
+    await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+    await zero.locator('st-copy button').click();
+    await expect(zero.locator('[role="status"]')).toHaveText(
+      'Copied: Prompt 0: the business brief',
+    );
+  });
+
+  test('two prompts under one heading say which of them each one is, in both languages', async ({
+    page,
+  }) => {
+    for (const [route, of] of [
+      ['branding/mood-and-materials/', 'prompt'],
+      ['af/branding/mood-and-materials/', 'opdrag'],
+    ] as const) {
+      await page.goto(route);
+      const names = await promptNames(page);
+      const shared = names.filter(
+        (entry, index) => names.findIndex((other) => other.heading === entry.heading) !== index,
+      );
+      expect(shared.length, route).toBeGreaterThan(0);
+      const heading = shared[0]?.heading ?? '';
+      const group = names.filter((entry) => entry.heading === heading);
+      group.forEach((entry, index) => {
+        expect(entry.name).toContain(`${heading} (${of} ${index + 1} `);
+        expect(entry.name).toMatch(new RegExp(` ${group.length}\\)$`));
+      });
+    }
   });
 });
 
@@ -385,14 +432,29 @@ test.describe('table of contents', () => {
     const link = details.locator('.st-toc__list a').nth(1);
     const title = (await link.textContent())?.trim() ?? '';
     await link.click();
+    // The pill never covers the heading the link went to (WP-50a review pass 1, M3): a short pill
+    // stays up above it, a tall one hides (review pass 2, M3). Once the heading has scrolled away,
+    // the pill names its section.
+    const id = (await link.getAttribute('href'))?.slice(1) ?? '';
+    await expect
+      .poll(() =>
+        page.evaluate((target) => {
+          const shown = document.querySelector<HTMLElement>('[data-toc-pill]');
+          const heading = document.getElementById(target);
+          if (!shown || !heading) return 'missing';
+          if (shown.hidden) return 'clear';
+          const box = shown.getBoundingClientRect();
+          return box.bottom <= heading.getBoundingClientRect().top + 1 ? 'clear' : 'covered';
+        }, id),
+      )
+      .toBe('clear');
+    await page.evaluate((target) => {
+      const heading = document.getElementById(target);
+      if (heading) window.scrollBy(0, heading.getBoundingClientRect().bottom + 4);
+    }, id);
     await expect(pill).toBeVisible();
     await expect(pill).toContainText(title);
-    // The pill sits below the top of the screen, never over the heading it names.
-    const heading = await page
-      .locator(`[id="${(await link.getAttribute('href'))?.slice(1)}"]`)
-      .boundingBox();
     const box = await pill.boundingBox();
-    expect(box && heading && box.y + box.height <= heading.y + 1).toBe(true);
     // Pressed where it is: Playwright's own scroll-into-view would move the page under it.
     if (!box) throw new Error('The pill has no box.');
     await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
@@ -553,5 +615,152 @@ test.describe('language', () => {
     await expect(banner).toBeHidden();
     await page.reload();
     await expect(page.locator('st-lang-banner')).toBeVisible();
+  });
+
+  /*
+   * WP-50a, item 6: the banner is set in the device font, so the web font arriving cannot change
+   * its size. In the web font its buttons moved to another line when the font swapped in, and the
+   * page jumped (layout shift 0.144 at 360px, WP-50 audit, flow 7). The fonts are held here until
+   * the page has drawn with the device fonts.
+   *
+   * At 320px the top bar itself also changes rows when the web font arrives (about 0.13, with or
+   * without the banner). That shift is the header's, left to the Phase 1 header work, so it is
+   * counted apart (`header`), and the total is bounded only where it does not occur.
+   */
+  for (const width of [320, 360, 1024]) {
+    test(`the banner is as tall before the web fonts as after, and moves nothing, at ${width}px`, async ({
+      page,
+      seedStorage,
+      baseURL,
+    }, testInfo) => {
+      test.skip(testInfo.project.name === 'webkit', 'Layout-shift entries are Chromium-only.');
+      await seedStorage({ 'st.lang': 'af' });
+      await page.addInitScript(() => {
+        const shifts: { value: number; header: boolean }[] = [];
+        Object.assign(window, { stShifts: shifts });
+        new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            const shift = entry as PerformanceEntry & {
+              value: number;
+              sources: { node: Node | null }[];
+            };
+            const header = shift.sources.some(
+              (source) =>
+                source.node instanceof Element && source.node.closest('.st-topbar') !== null,
+            );
+            shifts.push({ value: shift.value, header });
+          }
+        }).observe({ type: 'layout-shift', buffered: true });
+      });
+      await page.setViewportSize({ width, height: 740 });
+      const release = await holdRequests(page, baseURL, (url) => url.pathname.endsWith('.woff2'));
+      await page.goto('./', { waitUntil: 'commit' });
+      const banner = page.locator('st-lang-banner[data-locale="af"]');
+      await expect(banner).toBeVisible();
+      const before = (await banner.boundingBox())?.height ?? 0;
+      release();
+      await page.waitForLoadState('load');
+      await page.evaluate(() => document.fonts.ready);
+      await page.waitForTimeout(300);
+      const after = (await banner.boundingBox())?.height ?? 0;
+      expect(Math.abs(after - before), `banner ${before}px, then ${after}px`).toBeLessThanOrEqual(
+        1,
+      );
+      const shifts = await page.evaluate(
+        () => (window as unknown as { stShifts: { value: number; header: boolean }[] }).stShifts,
+      );
+      const sum = (list: { value: number }[]): number =>
+        list.reduce((total, entry) => total + entry.value, 0);
+      // The page's other text also reflows when the web font arrives (0.05 at 1024px; 0.13 at
+      // 1024px without the banner), so the total is bounded, not zero.
+      if (width === 320) {
+        expect(sum(shifts.filter((entry) => !entry.header))).toBeLessThanOrEqual(0.1);
+      } else {
+        expect(sum(shifts)).toBeLessThanOrEqual(0.1);
+      }
+    });
+  }
+});
+
+/**
+ * WP-50a, item 7 (`review-animations` verdict Block in the WP-50 audit): nothing moves when a page
+ * opens, and nothing scrolls smoothly on Tab. A ring moves only when its value changes on the page.
+ */
+test.describe('motion', () => {
+  const PROFILE = { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' };
+
+  /** The CSS animations and transitions running on rings (`.st-ring__value`). */
+  async function ringMotion(page: Page): Promise<string[]> {
+    return page.evaluate(() =>
+      document
+        .getAnimations()
+        .filter((animation) => {
+          const target = (animation.effect as KeyframeEffect | null)?.target;
+          return target instanceof Element && target.matches('.st-ring__value');
+        })
+        .map((animation) =>
+          animation instanceof CSSTransition
+            ? `transition:${animation.transitionProperty}`
+            : `animation:${(animation as CSSAnimation).animationName}`,
+        ),
+    );
+  }
+
+  test('the top bar ring does not move when a page opens', async ({ page, seedStorage }) => {
+    await seedStorage({ 'st.profile.v1': PROFILE });
+    // My path stores the path, so the next page's top bar draws its ring.
+    await page.goto('my-path/');
+    await page.waitForLoadState('networkidle');
+    await page.goto('core/tax-and-sars/');
+    const ring = page.locator('st-path-progress .st-ring');
+    await page.waitForFunction(() => {
+      const host = document.querySelector('st-path-progress');
+      return host instanceof HTMLElement && !host.hidden;
+    });
+    await expect(ring).toHaveAttribute('data-animate', '');
+    expect(await ringMotion(page)).toEqual([]);
+  });
+
+  test('a ring moves when its value changes on the page, and not under reduced motion', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({ 'st.profile.v1': PROFILE });
+    await page.goto('my-path/');
+    const mark = page.locator('[data-steps] > li:visible').first().locator('[data-mark]');
+    await expect(mark).toBeVisible();
+    expect(await ringMotion(page)).toEqual([]);
+    await mark.click();
+    await expect.poll(() => ringMotion(page)).toContain('transition:stroke-dashoffset');
+
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.reload();
+    const again = page.locator('[data-steps] > li:visible').nth(1).locator('[data-mark]');
+    await expect(again).toBeVisible();
+    await again.click();
+    const duration = await page
+      .locator('[data-progress] .st-ring__value')
+      .evaluate((arc) => parseFloat(getComputedStyle(arc).transitionDuration));
+    expect(duration).toBeLessThanOrEqual(0.001);
+  });
+
+  test('a tick moves the checklist ring, and opening the page does not', async ({ page }) => {
+    await page.goto(CHECKLIST);
+    await page.waitForLoadState('networkidle');
+    expect(await ringMotion(page)).toEqual([]);
+    await page.locator('st-checklist input[type="checkbox"]').first().check();
+    await expect.poll(() => ringMotion(page)).toContain('transition:stroke-dashoffset');
+  });
+
+  test('Tab does not scroll smoothly', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'Keyboard focus.');
+    await page.goto(DOC);
+    await page.keyboard.press('Tab');
+    const behaviour = await page.evaluate(() => ({
+      focusWithin: document.documentElement.matches(':focus-within'),
+      scroll: getComputedStyle(document.documentElement).scrollBehavior,
+    }));
+    expect(behaviour.focusWithin).toBe(true);
+    expect(behaviour.scroll).toBe('auto');
   });
 });

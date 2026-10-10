@@ -166,7 +166,7 @@ If you change a hue or a strength, re-run `pnpm test`: the test asserts each tin
 | Body and UI | Instrument Sans Variable (`@fontsource-variable/instrument-sans`, `wght`) | 400 to 700, normal and italic |
 | Code | System monospace stack | `--st-font-mono` |
 
-- Subsets: latin and latin-ext only, with the fontsource `unicode-range` values. Latin-ext covers Afrikaans (ê, ô, ë, ï) and future languages (ḓ, ṱ, ṋ, ṅ). The design-system page shows the test string `Kôsê, sê, môre, ëïü, ḓ ṱ ṋ ṅ` in every family.
+- Subsets: latin and latin-ext only, with the fontsource `unicode-range` values. Latin-ext covers Afrikaans (ê, ô, ë, ï, ü). It does **not** cover the Venda letters ḓ ṱ ṋ ṅ and their capitals Ḓ Ṱ Ṋ Ṅ: neither the Fraunces nor the Instrument Sans latin-ext file has a glyph for them (fontTools finds no glyph in either file, and Chromium draws each of them differently against two different fallbacks, WP-50a), so a browser draws them from a system font, in the middle of a word set in the web font. No built page uses them today except `/design-system/` (the name "Tshivenḓa" is in `src/i18n/locales.ts` for a planned language, but nothing renders it); a Venda translation would need a typeface that covers them. The design-system page shows the test string `Kôsê, sê, môre, ëïü` in every family, and the Venda letters on a line of their own, labelled as drawn from a system font.
 - `font-display: swap`. `Base.astro` preloads only the two latin woff2 files, imported with Vite `?url` so the hashed URLs match the ones in `base.css`.
 - Metric-matched fallbacks keep layout shift low while fonts swap. Values were measured from the font files with `@capsizecss/unpack`:
   - `Fraunces fallback` = `local('Georgia')`, `size-adjust 116.2%`, `ascent-override 84.17%`, `descent-override 21.95%`, `line-gap-override 0%`.
@@ -217,7 +217,7 @@ Custom properties cannot be used inside media queries, so breakpoints are litera
 
 The last two are component-level widths, not system breakpoints: they belong to one component each and no layout depends on them.
 
-Layout utilities (`src/styles/utilities.css`): `.st-container`, `.st-measure`, `.st-stack` (+ `-sm`, `-lg`, `-xl`), `.st-flow`, `.st-cluster`, `.st-grid` (`--st-grid-min`), `.st-doc-grid` (`272px | minmax(0,1fr) | 240px`), `.st-visually-hidden`, `.st-link-block` (a stand-alone link with a 44px target; see [Wrapping and min-content](#wrapping-and-min-content)), `.js-only`, `.no-js-only`, `.st-num`, and the `[data-section]` hue scopes.
+Layout utilities (`src/styles/utilities.css`): `.st-container`, `.st-measure`, `.st-stack` (+ `-sm`, `-lg`, `-xl`), `.st-flow`, `.st-cluster`, `.st-grid` (`--st-grid-min`), `.st-doc-grid` (`272px | minmax(0,1fr) | 240px`), `.st-visually-hidden`, `.st-link-block` (a stand-alone link with a 44px target; see [Wrapping and min-content](#wrapping-and-min-content)), `.js-only`, `.no-js-only` (inside an element marked `data-enhance`, both follow that element's `data-ready` instead of the page's `js` class; see [Controls that need a script](#controls-that-need-a-script-wp-50a)), `.st-num`, and the `[data-section]` hue scopes.
 
 ## Components
 
@@ -230,14 +230,14 @@ All components live in `src/components/ui/` (primitives) and `src/components/ill
 | `Callout` | `variant` plain-words/note/warning/official/info, `label`, `icon`, `labelId` | – | `role="note"` named by its own visible label through `aria-labelledby`, so it is announced as "About this page, note" rather than a bare "note". The id is generated (`src/scripts/uid.ts`) unless you pass `labelId`. Icon plus visible text label; the icon stays beside the first line when a long label wraps. Plain-words is never collapsed. |
 | `Badge` | `variant` entity/type/official/status/effort/mt/flag, `icon` (or `null`) | – | Icon plus text; tinted colours are decoration only. `status` (who checked a page, and when) is deliberately neutral — see [Notices and sources](#notices-and-sources-plan-d5). **Badges wrap.** A label longer than the row it sits in breaks onto a second or third line instead of pushing the page sideways, the icon stays beside the first line, and the corner radius is `--st-radius-lg`, which a browser clamps to an exact pill on a one-line badge and leaves as a calm rounded rectangle on a wrapped one. `flag` reuses the verified warning pair for "Not confirmed" and other verification flags. |
 | `EffortMeter` | `level` 1–5, `label`, `levelLabels`, `scaleText` | five levels | Bars are `aria-hidden`; the level is written out ("Medium to high") plus hidden "(4 of 5)". Defaults follow the toolkit's own scale: Lowest, Low to medium, Medium, Medium to high, High. |
-| `ProgressRing` | `value`, `max`, `label`, `size`, `showValue` | empty, partial, complete | SVG `role="img"` with `aria-label` ("Part A: 12 of 34 done"). The percentage text is `aria-hidden` and sized to clear the stroke at 100%. The arc draws in once; reduced motion skips it. |
+| `ProgressRing` | `value`, `max`, `label`, `size`, `showValue` | empty, partial, complete | SVG `role="img"` with `aria-label` ("Part A: 12 of 34 done"). The percentage text is `aria-hidden` and sized to clear the stroke at 100%. Nothing moves when a page opens: the arc shows the value it opens with, and only a change on the page (a step marked done, a tick) moves it, a `stroke-dashoffset` transition of `--st-duration-base`. `drawRing()` sets `data-animate` after its first drawing, reading the style in between so the first value and the transition never land in one style change. Until WP-50a the top bar's ring drew in for 960ms on every page view. |
 | `Icon` | `name` (`lucide:*`), `label`, `size` | – | `aria-hidden` unless `label` is given, then `role="img"` + `aria-label`. Use a label only when the icon is the only content. `.st-icon` is `inline-block` with `vertical-align: -0.125em`, so an icon inside a sentence (an error message, an external-link ↗, an "Official" marker) stays on the line even though the reset makes every other `svg` a block. Flex and grid children are blockified anyway, so icon rows in buttons and badges are unaffected. Icons come from Lucide; `src/icons/` exists (with a README and no SVGs) because astro-icon reads its `iconDir` on every build and otherwise logged `Failed to load icons from "src/icons": ENOENT` into every build and CI log. |
 | `Kbd` | – | – | Native `<kbd>`. Keeps `white-space: nowrap`: a key name is short by definition, and breaking `Shift` across two lines would read as two keys. Do not put a sentence in a `Kbd`. |
 | `VisuallyHidden` | `as`, `id` | – | Uses `.st-visually-hidden`. |
 | `SectionHeader` | `section`, `title`, `eyebrow`, `level` 1–4 (default 1), `id` | six section hues | Hue stripe, tint, CSS-only shweshwe-inspired dot pattern (`aria-hidden`, removed under reduced data, low data and forced colours). Use `level` 3 or 4 when the header sits inside another page's outline. The eyebrow uses `--st-text` with a hue dot, never hue-coloured text on the tint. Code in the lead gets a light surface veil instead of beige `surface-2`. Under 768px the header is only as wide as the reading column, so the pattern moves from the inline end to a 3rem band along the bottom, out from behind the lead text. The header itself does **not** clip (`overflow: hidden` sits on the pattern's own box): clipping hid a lead paragraph that held a long URL instead of wrapping it, which is loss of content under WCAG 1.4.10 and which no `scrollWidth` test can see. The inner grid states `minmax(0, 1fr)` for the same reason. |
 | `EmptyState` | `title`, `icon`, `headingLevel`, slot `actions` | – | Real heading; icon decorative. Its grid states `minmax(0, 1fr)` and the title lowers its own min-content width (`overflow-wrap: anywhere`), because `justify-items: center` shrink-wraps every item. `hyphens: auto` on the title is a progressive enhancement only — Chromium hyphenates here, WebKit on Windows has no dictionary and breaks mid-word — so it may never be the mechanism that stops an overflow. |
 | `ToastRegion` | `id`, `label`, `static` | neutral (inverse), success, info, warning, danger | One `role="status"` region per page (implies polite; `aria-atomic="false"` so each toast is read on its own). Toasts need an icon plus text. Remove them after about 4 seconds. |
-| `TableScroll` | `labelledby`, `wide` | overflow shadows, stacked cards < 640px | Renders `<st-table-scroll role="region" tabindex="0" aria-labelledby>`. The element (`src/scripts/table-scroll.ts`) removes the tab stop, role and label while nothing overflows and restores them on resize; without JS the region always stays focusable. The region is `position: relative`, so it is the containing block for anything positioned inside it: an `overflow` ancestor only clips descendants it is the containing block for, and without it every absolutely positioned element in a table escaped the scroll region and widened the page — a `.st-visually-hidden` span in a cell and the `thead` the stacked mode hides both did, measured as a 581px document at 320px. Nothing about that is visible, and no bounding box shows it; only `documentElement.scrollWidth` does. For `wide`, set `data-label` on every body cell. Each stacked cell is a two-column grid (label, value), so a wrapped label makes the row taller and never overlaps the next row. **Wrap cell content that mixes text and elements in one element** (for example `<span>`), otherwise each text run becomes its own grid row. The generated label uses `content: attr(data-label) / ''`, so screen readers hear the column header once. The element never removes the tab stop from itself while it holds focus (rotating the phone or closing a sidebar would otherwise drop focus to `<body>`); it re-checks on `blur`. |
+| `TableScroll` | `labelledby`, `wide` | overflow shadows, stacked cards < 640px | A table of three columns or more keeps `min-inline-size: 36rem` (and one-line column headings) and scrolls sideways; a two-column table fits the column where its words allow: words wrap only between words (the inherited `break-word`, which does not lower a column's min-content), and below 480px the cells' side padding is `--st-space-2`. A two-column table whose longest words cannot sit side by side scrolls sideways instead. Five Afrikaans tables do (the business-types hub, the checklist calendar, the sources contacts, how-to-use and branding prompts): all five at 320px and at 360px, and three at 412px (branding prompts, the checklist calendar and sources; the hub and how-to-use fit there). On the hub at 360px the link column is cut at the screen edge ("Voertuighande…"); the links still work and the region is labelled to scroll (WP-50a review pass 9, m1). Stacking a two-column table that still overflows below 480px is a Phase 3 design change (backlog). The English branding-prompts table fits since `st-url`, below. `overflow-wrap: anywhere` broke words every two or three letters ("Vo/ert/uig/ha/nd/ela/ar", WP-50a review pass 1), and `hyphens: auto` is no help where the browser has no dictionary for the language, which is the case for every language in the Chromium the tests use. The "Key to the short words" table fits at 320px in both languages (WP-50a; at 36rem on every table it cut its second column off). A link whose text is an address (`st-url`, set by `Inline`) may break anywhere in a cell, so one URL does not widen a table; words still do not break. Renders `<st-table-scroll role="region" tabindex="0" aria-labelledby>`. The element (`src/scripts/table-scroll.ts`) removes the tab stop, role and label while nothing overflows and restores them on resize; without JS the region always stays focusable. The region is `position: relative`, so it is the containing block for anything positioned inside it: an `overflow` ancestor only clips descendants it is the containing block for, and without it every absolutely positioned element in a table escaped the scroll region and widened the page — a `.st-visually-hidden` span in a cell and the `thead` the stacked mode hides both did, measured as a 581px document at 320px. Nothing about that is visible, and no bounding box shows it; only `documentElement.scrollWidth` does. For `wide`, set `data-label` on every body cell. Each stacked cell is a two-column grid (label, value), so a wrapped label makes the row taller and never overlaps the next row. **Wrap cell content that mixes text and elements in one element** (for example `<span>`), otherwise each text run becomes its own grid row. The generated label uses `content: attr(data-label) / ''`, so screen readers hear the column header once. The element never removes the tab stop from itself while it holds focus (rotating the phone or closing a sidebar would otherwise drop focus to `<body>`); it re-checks on `blur`. |
 | `Logo` (illustrations) | `name`, `markOnly`, `label` | – | Original stoep mark (roof over three steps) plus the name as real text. No flags or insignia. |
 
 Form controls, links, tables, `mark`, `code` and prose are styled globally in `src/styles/base.css`. Use `.st-field` (label, control, `.st-hint`, `.st-error-text`) and `.st-check` (a checkbox or radio inside its label, as a 44px row). Invalid fields use `aria-invalid="true"` plus an error message linked with `aria-describedby` that starts with an icon; `.st-error-text` needs no layout of its own, because `.st-icon` is inline. The error border rule is scoped to `input` (not checkbox or radio), `select` and `textarea` and carries no `!important`, so a `fieldset` or a radio-group wrapper with `aria-invalid` does not grow a red box it cannot show. Disabled fields get a dashed border, `--st-surface-2` and muted text.
@@ -322,8 +322,8 @@ two at 1024px), so the scroll padding is not a constant: `trackTopbar()` in
 bar is not sticky), and `SiteHeader.astro` sets `scroll-padding-block-start` from it. That rule owns the
 scroll padding on every page with the header: it outranks the `html` rule in `base.css`, so a change
 there has no effect on those pages. Below 1280px, on a page with the table of contents and with
-JavaScript, it also adds `--st-toc-pill-space` (one 44px line plus a gap), the room the "Now
-reading" pill takes, so a heading reached by a link lands below the pill rather than under it.
+JavaScript, it also adds `--st-toc-pill-space` (44px plus one more line and a gap), the room a one- or two-line
+"Now reading" pill takes, so a heading reached by a link lands below the pill rather than under it.
 
 Fenced blocks: prompts, snippets and examples are prose and wrap; template previews and listings
 are layouts, keep `white-space: pre`, and are the only ones that can scroll, as a named region.
@@ -376,12 +376,23 @@ excerpt. The option's name is the title alone (`aria-labelledby`) and the rest i
 An English result on an Afrikaans page carries `lang="en-ZA"` on its English text and a visible
 "Engels" tag. The active option has the focus ring (`--st-focus`), not only a tint.
 
-**States.** Empty (the common questions), loading ("Loading search…", only after 150 ms), results
+**States.** Empty (the common questions), loading, results
 with a count ("3 of 30 results shown", `search.resultsShown`, when the per-section cap hides some),
 no results (the common questions stay, with the contents link) and failed (the sentence once, in the
 status line, and the contents link). The status line is the live region for all of them. It is
 never `display: none`: empty, it is only visually hidden, so it is in the accessibility tree before
-the first count arrives. On `/search/` the same holds: the results region is never hidden, only its
+the first count arrives.
+
+**Loading** (WP-50a). The status line says "Loading search…" from the moment the dialog opens
+until the index has arrived: `search-boot.ts` says it while the dialog's own script loads (from the
+status line's `data-loading-text`, because it has no translator), and the results code keeps saying it
+while the index it starts fetching on opening downloads (unless low data is on: then on the first key).
+With nothing typed the common questions stay under it, as the way on; once a query is typed they are
+hidden until its results come, so they never stand under the query as if they were its results. A
+query typed after the index has arrived says "Loading search…" only if it takes more than 150 ms. On a
+slow phone the index took 8 to 11 s, and the dialog had said nothing (WP-50 audit, flow 3).
+
+On `/search/` the same holds: the results region is never hidden, only its
 heading until there is a query.
 
 **Queries.** One table says how every kind of query term is matched, and the code follows it: the
@@ -609,12 +620,12 @@ status lines. Each piece works, or is absent, without JavaScript: `tests/e2e/noj
 | `<st-checklist-progress>` | `checklist.ts` | `TaskListBlock`, `ChecklistSummary`, `ChecklistElsewhere` | "3 of 7 done" for the ids in `data-tasks`, from `data-template`; fills a `<progress>` (`aria-hidden`; the text says it), a `[data-progress-text]` and a `ProgressRing` (its `aria-label` too). `data-complete` when all are done. | `.js-only`: a count that cannot change would be wrong. |
 | `<st-checklist-tools>` | `checklist.ts` | `ChecklistSummary` | `/checklist/` only: the "Show" radios (Everything / Not done yet) and "Remove ticks", which asks in a `ConfirmDialog` and then says "All ticks were removed." in a polite status line. "Not done yet" hides what is ticked **when it is chosen**; a box ticked afterwards stays put, so focus never vanishes. A choice the browser restores (Back, a reload that keeps form state) is applied when the element connects. "Only what applies to me" (WP-31) is a third choice, shown only with a profile. | Hidden with the summary. |
 | `<st-storage-notice>` | `storage-notice.ts` | `TaskListBlock` (first checklist), `Settings` | Rendered `hidden`; shown while `storageAvailable` is `false`. A warning `Callout` with the right `storage.*` / `checklist.storageUnavailable` text. With `data-show="available"` it is the opposite: the "Ticks are saved on this device only" line wraps itself in one, so it goes when the warning comes and the page never says both. | Stays hidden. |
-| `<st-copy>` | `copy.ts` | `CodeBlock` (prompts only) | Shows its `hidden` button. Copies the prompt's `<pre>` text exactly, says "Copied" with a tick in place of the copy icon for two seconds and "Prompt 2 copied" in its `role="status"` line; if the clipboard refuses, selects the text and says how to copy it. Records the prompt in `promptsCopied` (`<doc id>#<block id>`). The button's visible text is `prompts.copy`, its name `prompts.copyNamed` ("Copy prompt 2: Logo brief"). | No button. The text is all there and copyable by hand. |
-| `<st-toc>` | `toc.ts` | `TableOfContents` (both variants) | `display: contents`. Scroll-spy: the link to the last heading that has passed the scroll-padding line gets `aria-current="location"` (a stripe and weight, never colour alone). Below 1280px a sticky one-line "Now reading" pill names it once the list has scrolled away; it links back to the list and opens it, and its name says so (`nav.currentSectionLabel`: "Now reading: Tax basics. Open the list of sections."). No smooth scrolling of its own; the pill's fade is a duration token that reduced motion sets to 0. | Plain anchors; no pill. |
+| `<st-copy>` | `copy.ts` | `CodeBlock` (prompts only) | Shows its `hidden` button. Copies the prompt's `<pre>` text exactly, says "Copied" with a tick in place of the copy icon for two seconds and "Copied: Prompt 2: logo brief" in its `role="status"` line; if the clipboard refuses, selects the text and says how to copy it. Records the prompt in `promptsCopied` (`<doc id>#<block id>`). The button's visible text is `prompts.copy`, its name `prompts.copyNamed` ("Copy prompt: Prompt 2: logo brief"). A prompt is named by the heading above it, which carries the guide's own numbering; when one heading has several prompts, `prompts.titlePart` adds which one ("… (prompt 1 of 2)"). A count in page order named the prompt under "Prompt 0" "Prompt 4" (WP-50a). | No button. The text is all there and copyable by hand. |
+| `<st-toc>` | `toc.ts` | `TableOfContents` (both variants) | `display: contents`. Scroll-spy: the link to the last heading that has passed the scroll-padding line gets `aria-current="location"` (a stripe and weight, never colour alone). The current section is the heading lowest on the page that has passed that line, so a list in another order than the page still names the right one, and a closed "Words used in this file" is never a section (WP-50a review pass 2, m2). Below 1280px a sticky "Now reading" pill names it once the list has scrolled away. The pill hides only while a heading's box overlaps the pill's own measured box, from the scroll-padding line down: a heading a contents link has just put there, or one coming up under a tall pill. It comes back once that heading has moved 16px on, and a one- or two-line pill ends above the line, so it does not hide at all (review pass 1, M3; pass 2, M3: hiding whenever a heading was on screen made it blink on and off between short sections); the label and the title run as one line of text that wraps, never cut off with an ellipsis (house rule 8), so most titles take one line at 320px and nearly all two, and the longest Afrikaans heading (135 characters) takes five; it links back to the list and opens it, and its name says so (`nav.currentSectionLabel`: "Now reading: Tax basics. Open the list of sections."). No smooth scrolling of its own; the pill's fade is a duration token that reduced motion sets to 0. | Plain anchors; no pill. |
 | `<st-setting>` | `settings.ts` | `Settings` (`/about/`) | One `role="switch"` checkbox bound to `shortcuts` or `lowData`. A switch changed before the module connected is kept and saved. While `SEARCH_AVAILABLE` is off the help lines use the `…Static` strings, which do not mention `/` or loading search. | Hidden; one line says some tools need JavaScript. |
 | `<st-clear-data>` | `settings.ts` | `Settings` | "Clear all my data": `ConfirmDialog`, then `clearAll()` and "All your data was removed from this device." | Hidden. |
-| `<st-lang-banner>` | `lang-banner.ts` | `LangBanner` (English home only) | Shown from the first paint, so it never shifts the page: `theme-init.js` sets `<html data-st-lang-offer>` when `st.lang` is not the page's language, a CSS rule per language shows the banner whose `data-locale` matches it, and the element keeps it in step with the store. Shown while `st.lang` is a language other than the page's: the message and actions in **that** language, with its `lang`. "Gaan voort in Afrikaans" is a plain link (never a redirect); "Stay on this page" saves the page's language; close hides it for this page view. Focus moves to `<main>` when it goes. A saved value that is not an enabled language shows nothing: the first-paint rule is per language. | Not shown: `theme-init.js` sets the attribute that shows it, and it needs JavaScript too. |
-| `<st-template-form>` | `template-form.ts` | `TemplateTool` | Binds a template's form to its draft (`st.template.<slug>.v1`), fills the A4 preview (dates in words, amounts with `formatRand`), works out line amounts, subtotal, VAT and total in an `aria-live` region, and counts the required items ("12 of 20 required items present", with a link to each one missing). Print calls `window.print()`; Start next keeps business and bank details and increments the number; Clear asks in a `ConfirmDialog`. A value typed before it connected is kept. The only markup it writes is the preview's list items, one per line the reader typed. | The form is the printable sheet; no preview, tabs, totals or buttons. |
+| `<st-lang-banner>` | `lang-banner.ts` | `LangBanner` (English home only) | Shown from the first paint, so it never shifts the page: `theme-init.js` sets `<html data-st-lang-offer>` when `st.lang` is not the page's language, a CSS rule per language shows the banner whose `data-locale` matches it, and the element keeps it in step with the store. It is set in the device font (`--st-font-body` points at `--st-font-body-fallback` inside it), so the web font arriving cannot change its height: in the web font its buttons moved to another line when the font swapped in, a layout shift of 0.144 at 360px (WP-50a). Shown while `st.lang` is a language other than the page's: the message and actions in **that** language, with its `lang`. "Gaan voort in Afrikaans" is a plain link (never a redirect); "Stay on this page" saves the page's language; close hides it for this page view. Focus moves to `<main>` when it goes. A saved value that is not an enabled language shows nothing: the first-paint rule is per language. | Not shown: `theme-init.js` sets the attribute that shows it, and it needs JavaScript too. |
+| `<st-template-form>` | `template-form.ts` | `TemplateTool` | Binds a template's form to its draft (`st.template.<slug>.v1`), fills the A4 preview (dates in words, amounts with `formatRand`), works out line amounts, subtotal, VAT and total in an `aria-live` region, and counts the required items ("12 of 20 required items present", with a link to each one missing). Print calls `window.print()`; Start next keeps business and bank details and increments the number; Clear asks in a `ConfirmDialog`. A value typed before it connected is kept. The only markup it writes is the preview's list items, one per line the reader typed. | The form is the printable sheet; no preview, tabs, totals or buttons. The same until the element is ready (`data-enhance`). |
 | `<st-theme-toggle>` | `theme-control.ts` | `ThemeControl` | Now on the `theme` store; the module applies the store to `<html>` and the theme-color metas whatever changes it (a toggle, another tab, clear my data). | As before. |
 | `<st-lang-switch>` | `navigation.ts` | `LanguageSwitcher` | Also saves the language followed in `st.lang`. | Plain links. |
 
@@ -644,7 +655,16 @@ sources and pager. What changes is the middle. `parseTemplate()` (`src/lib/templ
 splits the blocks at the template's two `---` rules: the text **before** (how to use it, the rules
 to follow) and **after** ("The seven things a full tax invoice must show") render as on any document,
 so **every rule a reader is shown comes from the markdown**; the template itself becomes
-`TemplateTool`. The page has no contents list: its headings are the form's groups, which carry the
+`TemplateTool`. One block is the exception: the markdown's italic note for the file ("Make a copy, rename
+it to the invoice number, replace everything in [SQUARE BRACKETS], then export to PDF") is not
+shown above the form, where it sent readers looking for a file to copy (WP-50 audit, flow 5). `formIntro()`
+(`src/lib/templates/intro.ts`) puts a line about the form in its place, from
+`templates.items.<slug>.formHowTo`, in the language of the template's text; the tax invoice has no
+such note and no line. The note stays in the document view (`TEMPLATES_FILLABLE` off). The lead and
+meta description come from `doc.summary`, which for the quotation, receipt and privacy notice was that
+same note; those three now have summaries in `content-meta/docs.meta.json`, in both languages, that
+describe the document, not the file (review pass 1, M4). `tests/content/validate.test.ts` fails on a
+template summary with the copy instruction or a `[`. The page has no contents list: its headings are the form's groups, which carry the
 heading ids, so `#to` or `#payment-details` still lands on the right part.
 
 | Piece | File | Notes |
@@ -658,7 +678,9 @@ heading ids, so `#to` or `#payment-details` still lands on the right part.
 
 Layout: `st-template-form` is a size container. At 52rem and wider the form and the preview sit side
 by side; narrower, "Fill in" and "Preview" are ARIA tabs (arrow keys, Home, End), and the element
-adds the `tabpanel` roles only while the tabs are on screen. Required items, the actions and the
+adds the `tabpanel` roles only while the tabs are on screen. Until the element is ready the tab strip
+keeps its room but is `visibility: hidden` (no taps, no focus), so the form does not move when the tabs
+appear. Required items, the actions and the
 clear dialog follow. Template pages drop the contents column at 1280px so the tool has the room.
 
 **Conditional items.** A slot the template words as conditional shows the template's condition
@@ -735,7 +757,7 @@ migration, or uses a new key (`.v2`). `src/lib/storage/adapter.ts` is the `local
 never throws.
 
 `theme-init.js` is the one documented exception to "only the store reads storage": it must run
-before any module, so it reads `st.theme`, `st.lowData`, `st.lang` and `st.profile.v1` itself, in the formats the store writes; keep it in step with the `theme`, `lowData`, `lang` and `profile` stores. It sets `data-low-data`, `data-theme`, `data-st-lang-offer` (the saved language, when it is not the page's, so the language banner shows from first paint) `data-st-script-failed` (the names of scripts that failed to load, from the start of the file name: `YourPathCard`, `my-path`) and `data-st-profile` (saved answers that `parseProfile` would accept, with the same rules, which `tests/dom/theme-init.test.ts` keeps equal, so My path and the home card keep their space only for real answers). It ships unminified, so its comments stay short. The store is built on `nanostores` alone; it does not use `@nanostores/persistent` (removed), because its adapter has to survive a throwing `localStorage`.
+before any module, so it reads `st.theme`, `st.lowData`, `st.lang` and `st.profile.v1` itself, in the formats the store writes; keep it in step with the `theme`, `lowData`, `lang` and `profile` stores. It sets `data-low-data`, `data-theme`, `data-st-lang-offer` (the saved language, when it is not the page's, so the language banner shows from first paint) `data-st-script-failed` (the names of scripts that failed to load, from the start of the file name: `YourPathCard`, `my-path`) and `data-st-profile` (saved answers that `parseProfile` would accept, with the same rules, which `tests/dom/theme-init.test.ts` keeps equal, so My path and the home card keep their space only for real answers). From 1024px it also opens "Words used in this file" (`#words-used-in-this-file`) as the parser adds it, through a `MutationObserver` that stops once the list is found or the page has been parsed (WP-50a). The build minifies the copy the pages load (`scripts/minify-theme-init.ts`), so its comments cost no page weight; the source stays readable, and is what `tests/dom/theme-init.test.ts` runs. The store is built on `nanostores` alone; it does not use `@nanostores/persistent` (removed), because its adapter has to survive a throwing `localStorage`.
 
 ### Find my path and My path (WP-31)
 
@@ -748,7 +770,7 @@ its hand-written check, the query string, the 49 single-type answers) and `src/l
 
 | Element | Script | Rendered by | What it does | Without JavaScript |
 | --- | --- | --- | --- | --- |
-| `<st-wizard>` | `wizard.ts` | `Wizard.astro` (`/find-my-path/`) | Makes the one form three steps: a stepper (`aria-current="step"`), Back and Next, focus on each step's heading; the kinds of business become checkboxes (the server renders radios) ticked in order, the first being the primary type; "Pty Ltd, growing" is `disabled` with its reason shown unless step 1 is Pty Ltd; Next and "See my path" stay `aria-disabled` with a hint until the step is answered; Enter in an answer goes on. "See my path" saves the profile and opens `/my-path/?saved=1`, or `/my-path/?entity=…&type=…&stage=…` when the device will not save. Answers saved earlier are filled in. | All three questions show; one kind of business (radios, and the page says more need JavaScript). Each of the 49 result pages has its own submit button with that page as `formaction`; CSS `:has()` shows only the one matching the checked answers (`wizardNoJsCss()` in the page `<head>`), otherwise "Choose an answer first." or why "Pty Ltd, growing" needs a Pty Ltd. All of that is inside `@supports selector(:has(*))`; a browser without `:has()` sees instead an open list, "Choose your path from this list", with a line saying the browser cannot show the button, and a link to every result page. A disabled first submit button is the form's default button, so Enter never submits through the wrong result. |
+| `<st-wizard>` | `wizard.ts` | `Wizard.astro` (`/find-my-path/`) | Makes the one form three steps: a stepper (`aria-current="step"`), Back and Next, focus on each step's heading; the kinds of business become checkboxes (the server renders radios) ticked in order, the first being the primary type; "Pty Ltd, growing" is `disabled` with its reason shown unless step 1 is Pty Ltd; Next and "See my path" stay `aria-disabled` with a hint until the step is answered; Enter in an answer goes on. "See my path" saves the profile and opens `/my-path/?saved=1`, or `/my-path/?entity=…&type=…&stage=…` when the device will not save. Answers saved earlier are filled in. | All three questions show, also with JavaScript until the element is ready (`data-enhance`; the stepper shows from the first paint as an outline of the three questions); one kind of business (radios, and the page says more need JavaScript). Each of the 49 result pages has its own submit button with that page as `formaction`; CSS `:has()` shows only the one matching the checked answers (`wizardNoJsCss()` in the page `<head>`), otherwise "Choose an answer first." or why "Pty Ltd, growing" needs a Pty Ltd. All of that is inside `@supports selector(:has(*))`; a browser without `:has()` sees instead an open list, "Choose your path from this list", with a line saying the browser cannot show the button, and a link to every result page. A disabled first submit button is the form's default button, so Enter never submits through the wrong result. |
 | `<st-my-path>` | `my-path.ts` | `my-path.astro` | Shows the answers as chips, the steps numbered and ordered (every step of every rule is rendered `hidden`, with every page it can hold), each step's "why" from "How to use this toolkit" when it fits, "Mark as done" (`st.path.v1`, every page of the step), the ring, the personalised checklist and "Remove my answers" (a `ConfirmDialog`; ticks stay; focus goes to the `<h1>`). | The empty state with "Find my path". |
 | `<st-path-progress>` | `path-progress.ts` | `SiteHeader` | The top bar's "My path: 3 of 10 steps done" link and ring, when there is a profile. | Hidden. |
 | `<st-your-path>` | `path-progress.ts` | `YourPathCard` (home) | "Your path" card: ring, "Continue: step 4 of 10" to that step's first page, "Open my path", "Edit answers". | Hidden. |
@@ -797,6 +819,84 @@ Rules the pieces follow:
 "Remove my answers" clears all four and keeps the ticks; "Clear all my data" on `/about/` clears
 everything.
 
+### Controls that need a script (WP-50a)
+
+On a slow phone the modules run 8 to 13 s after the first paint. A control that shows before its
+script works loses the tap: the wizard's Next and the template's Fill in / Preview tabs did (WP-50
+audit, flows 1 and 5). An element whose controls need its script carries `data-enhance` and sets
+`data-ready` at the end of `connectedCallback` (and removes it on disconnect). Until then
+`utilities.css` keeps every `.js-only` control in its subtree unseen but in its room
+(`visibility: hidden`: no taps, no focus, not read out) and shows `.no-js-only`, so the page works
+as it does without JavaScript and nothing moves when the script shows its controls. Where a
+no-JavaScript line is replaced by something else, the two share one grid cell (`.st-tslot` in the
+templates), and after the script the line keeps its room unseen, so the slot is never shorter. Each
+component drops the rooms if its script fails to load (`data-st-script-failed`, set by
+`theme-init.js`), so no blank band is left. Today that is `<st-wizard>` and `<st-template-form>`.
+In the template the tabs, "Remove line" and "Add line" keep their room, the print line shares a slot
+with "saved on this device only" and the totals line with "Add line" (WP-50a review pass 9, M1: with
+`display: none` the field the reader was filling in jumped 52 to 133px, 0.16 to 0.25). A slot whose
+partner is hidden too (storage blocked; "Add line" after ten lines) keeps no room (pass 10, m2).
+
+**Before the script runs, the server renders what the script would show for an empty form; where a
+control truly needs the script, its room carries a visible waiting line, never blank space** (pass
+10, M1: rooms kept unseen for the required items and the actions left 727 to 1,542px of blank page
+under the form). So the required items list is rendered as the script leaves it for an empty form
+(`emptyFormRequired()`, `src/lib/templates/required.ts`, with the rules the script itself imports
+from `required-rules.ts`: items present by default or below their amount are `hidden`, and the
+count line is written, with no whitespace around it, so the script's first run does not write it;
+pass 11, m1 and m2), its links work without the script, and the
+script's first run changes nothing in it (it shrank by up to 170px). The buttons' room holds
+"Loading the form tools…" (`templates.loadingTools`, read by screen readers too), and the hints
+under them show. The wizard follows the same rule: question 1 and the stepper as the script shows
+them, and "Loading the next step…" in Next's room. The wizard goes further, below: with JavaScript
+it does not show the no-JavaScript form first.
+
+**The wizard is in steps from the first paint** (WP-50a review pass 5). With JavaScript (the `js`
+class `theme-init.js` sets before the first paint), `Wizard.astro`'s CSS shows what the script will
+show: the stepper and question 1 only, with the no-JavaScript parts (questions 2 and 3, the result
+button and its list) hidden. Step 1 is marked current in the HTML. Next keeps its room,
+`visibility: hidden`, so it cannot be tapped before it works, and "Loading the next step…"
+(`wizard.loadingNext`; plain text, read by screen readers too, pass 7 m2) sits over that room and takes none of its own. "Saved on this
+device only" keeps its room the same way, and so does "Choose an answer first." once the step is
+answered, so a tap moves nothing and the page is as long after the script as before it (pass 6, m1,
+m3, m4). The answers are native inputs that
+work meanwhile. When the script arrives it makes the kinds of business checkboxes, and shows Next
+and the saved line where their room was; nothing folds, nothing moves and nothing scrolls. Each step
+title in the stepper keeps the room of its semibold form (pass 3, m1).
+
+With saved answers ("Edit answers") the script fills in the questions from them, except one the
+reader has already answered: the server renders no answer checked, so on an ordinary load a checked
+answer is the reader's and stays (pass 6, M1). After Back, when the page is not served from the
+back/forward cache, the browser puts the reader's earlier ticks back once the page has loaded, just
+before `pageshow`, with no `change` event; those win. The wizard reads the form again on `pageshow`
+(and the next frame), so what it saves and which buttons work match what shows, and `answers()`
+only ever saves kinds of business that show ticked (pass 7, M1). A page served from the cache comes
+back with its state and needs nothing.
+
+- **Without JavaScript** the page is the GET form: all three questions and the result button for
+  the answers (`wizardNoJsCss()` keys on `st-wizard:not([data-ready])`).
+- **If the wizard's own script fails to load, or throws as it runs**, `theme-init.js` names it in
+  `data-st-script-failed` ("Wizard"; a load error on its `<script>`, or a window `error` whose
+  `filename` is the module), the stepped rules stop applying, and the page becomes the no-JavaScript
+  form, with no unseen bars left behind. A layout change is acceptable on that path. Every rule that
+  reads the attribute also waits for `data-ready`, so a later error changes nothing. A module that
+  never arrives is a backlog row (pass 6, m2).
+
+Four passes tried to show the whole no-JavaScript form first and fold it when the script arrived:
+the help lines swapped places at question 2 (0.47 at 320px), the footer jumped into view near the
+end of a question (0.11 to 0.26), the browser clamped or anchored the scroll, and holding the form's
+height left two to four screens of empty page. Folding a long form into one step always moves
+something, so the wizard no longer does it. `wizard-shift.spec.ts` checks the result at four sizes
+in both languages: when the script arrives at any scroll position, the gap below question 1's Next
+against `204a2a2`, and the reader's first tap, Next and Back.
+
+If a question before the current one has no answer, the line under its button says so
+(`wizard.earlierMissing`), and Next and "See my path" go to the first unanswered question and focus
+its heading. Since the wizard starts on question 1 and Next refuses an unanswered step, no way to
+get there is known today; it stays as a safety net (review pass 2, M1). Next and "See my path" are
+described only by the line under them that shows (pass 3, m2). The template's tabs already have
+their room; the form does not move when its script arrives (`templates.spec.ts`).
+
 ### Illustrations
 
 Seven inline SVGs: `VehicleDealer` (bakkie), `FoodBusiness` (pot with steam), `BeautyCare` (comb and scissors), `RetailOnline` (shop awning with parcel), `ServicesTrades` (spanner and ladder), `ProfessionalCreative` (pencil and laptop), `General` (row of small shapes).
@@ -818,6 +918,8 @@ Every content page carries an AI notice near the top and a "Sources for this pag
 2. **The verification status**, as a `Badge` **and** as words: `trust.status.aiChecked` ("AI-checked") or `trust.status.humanChecked` ("Checked by {reviewer}"). Use `variant="status"` with an `icon` override (`lucide:bot`, `lucide:user-check`). `status` is the neutral surface-2 chip, **not** the info tint that marks an official source: a status says who looked at the page, officialness says who wrote the rule, and the two carry very different weight. Rendering "AI-checked" in the same teal chip as "Official source" teaches at a glance that an AI check is as good as the regulator, which is the conflation ADR 0006 exists to prevent — and in forced colours and in greyscale print the chip is gone, so only the words are left to carry it. No new colour: `status` reuses the `--st-text` on `--st-surface-2` pair that is already verified.
 3. **Its one-sentence explanation** (`trust.status.aiCheckedMeans` / `humanCheckedMeans`), immediately beside the status.
 4. **The link** to `start/how-this-was-made`, as `.st-link-block` so it is a 44px target.
+
+**On a phone the notice is on the first screen** (WP-50a), at 320×568 too, with JavaScript or without, in both languages: before, it started 625 to 812px down. Below 768px `Doc.astro` does not show the section label, which repeats the breadcrumb's one crumb there, and shows the notices straight after the H1, with the lead, the read time and the effort meter (`st-doc__after-notice`, CSS `order`) after them. None of those has a link or control, so the order of focus is the same; a screen reader still reads the lead first. "Words used in this file" is closed below 1024px and open from 1024px (`theme-init.js` opens it as the parser adds it, before it is painted, so nothing moves; without JavaScript it stays closed). Measured at 320×568 on all 72 document pages: the notice starts at most 453px down with JavaScript and 501px without (the no-JS header carries every menu). `tests/e2e/first-screen.spec.ts` and `nojs.spec.ts` check it.
 
 On an **Afrikaans page** the Afrikaans AI notice comes first in the article header and says the *English* text was checked, and the machine-translation notice (`Callout variant="warning"`, `icon="lucide:languages"`) sits directly under it, in the same header. Neither notice is dismissible. Put the link to the English version inside the MT notice with `lang="en"` on the link text.
 
@@ -851,7 +953,7 @@ Verification status, officialness and "not confirmed" are the three places a pag
 ## Scripts, CSP and JavaScript budget
 
 - CSP (meta, production builds only, because the dev server injects inline scripts): `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'`. It comes before the first script in `<head>`.
-- **Blocking theme init.** `src/scripts/theme-init.js` is plain JavaScript (checked with `// @ts-check`). `Base.astro` imports it with `?url`; Vite copies the file unchanged with a hashed name (it does not compile `?url` imports, which is why the file is `.js` and not `.ts`) and Base loads it with `<script is:inline src={url}>`, a classic render-blocking script right after the theme-color metas. About 1.5 KB gzipped; it ships unminified.
+- **Blocking theme init.** `src/scripts/theme-init.js` is plain JavaScript (checked with `// @ts-check`). `Base.astro` imports it with `?url`; Vite copies the file with a hashed name (it does not compile `?url` imports, which is why the file is `.js` and not `.ts`), and Base loads it with `<script is:inline src={url}>`, a classic render-blocking script right after the theme-color metas. Because Vite does not minify a `?url` copy, the `minifyThemeInit` plugin (`scripts/minify-theme-init.ts`, in `astro.config.ts`) minifies it in `generateBundle` with Vite's own minifier (Oxc), as an ES2019 classic script: the file keeps its name and hash, `script-src 'self'` still covers it, and no dependency was added. About 1.0 KB gzipped (1.7 KB before; WP-50a review pass 3, m6). `tests/unit/minify-theme-init.test.ts` checks that the copy compiles as a classic script with no imports.
 - **Everything else** is a normal Astro `<script>`: bundled as an ES module, deduplicated per page, able to share chunks and use `import()`. Component scripts (for example `TableScroll`) and page scripts (the design-system page imports `theme-control` and `design-system-contrast`) work the same way.
 - `astro.config.ts` sets `vite.build.assetsInlineLimit` to a **function**, not to `0`. Astro inlines a processed script bundle, and Vite a `?url` asset (as a `data:` URI), when it is under that limit, and `script-src 'self'` would block both; but a flat `0` also switched off Astro's `inlineStylesheets: 'auto'`, so a page with a few hundred bytes of scoped CSS paid for an extra render-blocking request. The function returns `false` for everything except `.css`, where it returns `undefined` and the default size limit applies. Result: zero inline `<script>` on any page, and small stylesheets inline again (`style-src` already allows `'unsafe-inline'`). E2e tests check both on `/` and `/design-system/`.
 - Only the CSS chunk that carries the design tokens is named `stoep.[hash].css`; page CSS keeps Rollup's own name (`assetFileNames` matches on `originalFileNames`). Three files all called `stoep.*` could not be told apart in DevTools or a budget report.
@@ -938,6 +1040,7 @@ One last piece of wording. An unparseable token fails its pair, which is the rig
 | Test at 320px, 200% zoom, dark, forced colours and print | Assume the desktop light theme is representative |
 | Test at 320px with the longest real Afrikaans label, not the English one | Ship a component whose demo strings are all short |
 | Let a badge, a callout label or a button label wrap | Add `white-space: nowrap` to anything translated |
+| Keep a control that needs a script hidden until its element is ready (`data-enhance`) | Show a button that does nothing until a module arrives |
 | Cap text-bearing grid tracks with `minmax(0, 1fr)` | Leave an implicit `auto` track around a heading |
 | Lower min-content (`overflow-wrap: anywhere`) on text in a box that is sized by its own content | Assume `min-inline-size: 0` or `hyphens: auto` fixed it |
 | Let the header wrap a long URL | Hide it with `overflow: hidden` |
@@ -1004,7 +1107,8 @@ Where the system states it:
 - `forced-colors: active`: focus rings become 3px `CanvasText`, cards, callouts, badges and toasts get visible borders, native checkboxes keep system rendering, the loading spinner keeps its gap, and illustration fills and the shweshwe pattern are removed.
 - The selected theme segment is filled with `Highlight`/`HighlightText` behind `forced-color-adjust: none`. A selected state must never come down to border colour alone, which is what happens if you let forced colours paint a transparent border as `CanvasText` and the fill as `Canvas`.
 - The live contrast panel **pauses** in forced colours and says so. The system palette replaces every author colour, so `getComputedStyle` returns the same forced value for every token and each pair would read "1.00:1 ✗ FAIL". Reporting 76 failures would tell a high-contrast user the design system is broken when nothing has drifted. The panel resumes when the override is turned off; the build-time Light and Dark columns stay visible throughout.
-- `prefers-reduced-motion: reduce`: durations 0ms, no lift, no spinner rotation, no ring draw.
+- `prefers-reduced-motion: reduce`: durations 0ms, no lift, no spinner rotation, no ring transition.
+- No smooth scrolling anywhere. `html:focus-within { scroll-behavior: smooth }` animated the scroll on every Tab, so it was removed (WP-50a, `review-animations` verdict Block in the WP-50 audit); contents links jump too.
 - `prefers-reduced-data: reduce` or `html[data-low-data]`: system fonts, no decorative pattern.
 
 ## Contribution checklist

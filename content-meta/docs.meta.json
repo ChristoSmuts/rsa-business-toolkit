@@ -454,6 +454,10 @@
         "en": "Quotation (template)",
         "af": "Kwotasie (sjabloon)"
       },
+      "summary": {
+        "en": "Tell a customer the price before you do the work, and send it as a PDF.",
+        "af": "Sê vir ’n kliënt wat die prys is voordat jy die werk doen, en stuur dit as ’n PDF."
+      },
       "tags": ["template"]
     },
     {
@@ -493,6 +497,10 @@
         "en": "Receipt (template)",
         "af": "Kwitansie (sjabloon)"
       },
+      "summary": {
+        "en": "Send this when money arrives. It stops the \"did you get my payment?\" message.",
+        "af": "Stuur dit wanneer geld inkom. Dit keer die \"het jy my betaling gekry?\"-boodskap."
+      },
       "tags": ["template"]
     },
     {
@@ -505,6 +513,10 @@
       "title": {
         "en": "Privacy notice, POPIA (template)",
         "af": "Privaatheidskennisgewing, POPIA (sjabloon)"
+      },
+      "summary": {
+        "en": "Put this on your website, or send it as a PDF when a customer asks. It is short on purpose.",
+        "af": "Sit dit op jou webwerf, of stuur dit as ’n PDF wanneer ’n kliënt daarvoor vra. Dit is doelbewus kort."
       },
       "tags": ["template", "popia"]
     },
@@ -520,7 +532,8 @@
         "af": "Kies jou besigheidstipe"
       },
       "summary": {
-        "en": "Find your kind of business in one table, see how much setup work each type carries, and what everyone needs regardless of type."
+        "en": "Find your kind of business in one table, see how much setup work each type carries, and what everyone needs regardless of type.",
+        "af": "Vind jou soort besigheid in een tabel, sien hoeveel opstelwerk elke soort vra, en wat almal nodig het, watter soort besigheid ook al."
       },
       "tags": ["business-types"]
     },

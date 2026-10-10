@@ -372,6 +372,8 @@
     "back": "Back",
     "next": "Next",
     "nextDisabled": "Choose an answer first.",
+    "loadingNext": "Loading the next step…",
+    "earlierMissing": "A question before this one has no answer yet. This button takes you to it.",
     "seeMyPath": "See my path",
     "savedTip": "Saved on this device only. Nothing is sent anywhere.",
     "noJs": "JavaScript is off. You can still answer the questions and see a path, but your answers are not saved.",
@@ -476,13 +478,15 @@
         "name": "Quotation",
         "description": "Tell a customer the price before you do the work.",
         "startNext": "Start next quotation",
-        "startNextDone": "Quotation {number} started."
+        "startNextDone": "Quotation {number} started.",
+        "formHowTo": "Fill in the form and check the preview. Then save it as a PDF and send the customer the PDF."
       },
       "invoice": {
         "name": "Invoice",
         "description": "Ask for payment when you are not registered for VAT.",
         "startNext": "Start next invoice",
-        "startNextDone": "Invoice {number} started."
+        "startNextDone": "Invoice {number} started.",
+        "formHowTo": "Fill in the form and check the preview. Then print it, or save it as a PDF to send."
       },
       "tax-invoice": {
         "name": "Tax invoice",
@@ -494,11 +498,13 @@
         "name": "Receipt",
         "description": "Show that a customer paid you.",
         "startNext": "Start next receipt",
-        "startNextDone": "Receipt {number} started."
+        "startNextDone": "Receipt {number} started.",
+        "formHowTo": "Fill in the form, check the preview, then save it as a PDF to send."
       },
       "privacy-notice": {
         "name": "Privacy notice",
-        "description": "Tell customers what personal information you keep, and why."
+        "description": "Tell customers what personal information you keep, and why.",
+        "formHowTo": "Fill in the form, and choose “Leave this out of the document” for any line that is not true for your business."
       }
     },
     "open": "Open template",
@@ -528,6 +534,7 @@
     "allPresent": "Every item this form checks is filled in.",
     "print": "Print or save as PDF",
     "printHint": "In the print window, choose Save as PDF to keep a copy.",
+    "loadingTools": "Loading the form tools…",
     "clear": "Clear form",
     "clearConfirm": {
       "title": "Clear this form?",
@@ -580,14 +587,15 @@
   },
   "prompts": {
     "copy": "Copy prompt",
-    "copyNamed": "Copy prompt {n}: {title}",
+    "copyNamed": "Copy prompt: {title}",
     "copied": "Copied",
-    "copiedNamed": "Prompt {n} copied",
+    "copiedNamed": "Copied: {title}",
     "copyFailed": "Could not copy. The text is selected. Copy it with your keyboard, or press and hold it on a phone.",
     "fillFromProfile": "Fill from my profile",
-    "fillFromProfileNamed": "Fill from my profile: prompt {n}, {title}",
+    "fillFromProfileNamed": "Fill from my profile: {title}",
     "undoFill": "Undo",
-    "undoFillNamed": "Undo filling in prompt {n}: {title}",
+    "undoFillNamed": "Undo filling in: {title}",
+    "titlePart": "{title} (prompt {n} of {total})",
     "placeholdersRemaining": {
       "one": "{count} blank left to fill in",
       "other": "{count} blanks left to fill in"
