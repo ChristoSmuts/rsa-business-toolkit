@@ -832,11 +832,22 @@ no-JavaScript line is replaced by something else, the two share one grid cell (`
 templates), and after the script the line keeps its room unseen, so the slot is never shorter. Each
 component drops the rooms if its script fails to load (`data-st-script-failed`, set by
 `theme-init.js`), so no blank band is left. Today that is `<st-wizard>` and `<st-template-form>`.
-In the template the tabs, "Remove line", "Add line", the required items and the actions keep their
-room, the print line shares a slot with "saved on this device only" and the totals line with "Add
-line" (WP-50a review pass 9, M1: with `display: none` the field the reader was filling in jumped 52
-to 133px, 0.16 to 0.25). The wizard goes further, below: with JavaScript it does not show the
-no-JavaScript form first.
+In the template the tabs, "Remove line" and "Add line" keep their room, the print line shares a slot
+with "saved on this device only" and the totals line with "Add line" (WP-50a review pass 9, M1: with
+`display: none` the field the reader was filling in jumped 52 to 133px, 0.16 to 0.25). A slot whose
+partner is hidden too (storage blocked; "Add line" after ten lines) keeps no room (pass 10, m2).
+
+**Before the script runs, the server renders what the script would show for an empty form; where a
+control truly needs the script, its room carries a visible waiting line, never blank space** (pass
+10, M1: rooms kept unseen for the required items and the actions left 727 to 1,542px of blank page
+under the form). So the required items list is rendered as the script leaves it for an empty form
+(`emptyFormRequired()`, `src/lib/templates/required.ts`: items present by default or below their
+amount are `hidden`, and the count line is written), its links work without the script, and the
+script's first run changes nothing in it (it shrank by up to 170px). The buttons' room holds
+"Loading the form tools…" (`templates.loadingTools`, read by screen readers too), and the hints
+under them show. The wizard follows the same rule: question 1 and the stepper as the script shows
+them, and "Loading the next step…" in Next's room. The wizard goes further, below: with JavaScript
+it does not show the no-JavaScript form first.
 
 **The wizard is in steps from the first paint** (WP-50a review pass 5). With JavaScript (the `js`
 class `theme-init.js` sets before the first paint), `Wizard.astro`'s CSS shows what the script will
