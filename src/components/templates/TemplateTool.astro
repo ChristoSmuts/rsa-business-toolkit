@@ -13,11 +13,13 @@
  * Until `<st-template-form>` has run (`data-enhance`, `data-ready`; `src/styles/utilities.css`), a
  * reader with JavaScript gets that same no-JavaScript form: the tabs, preview and buttons do nothing
  * before the script, and on a slow phone they showed about 8 s before it (WP-50 audit, flow 5).
- * Everything the script will show keeps its room meanwhile (`visibility: hidden`): the tab strip,
- * "Remove line" and "Add line", the required items and the actions. Each no-JavaScript line shares
- * one slot (`.st-tslot`) with what replaces it, so nothing on the page moves when the script
- * arrives (WP-50a review pass 9, M1). If the script fails to load (`data-st-script-failed` names
- * "TemplateTool"), the rooms go and the page is the no-JavaScript form (pass 9, m2).
+ * Every control the script will show keeps its room meanwhile (`visibility: hidden`): the tab
+ * strip, "Remove line" and "Add line". The required items list is rendered as the script leaves it
+ * for an empty form, and the buttons' room holds "Loading the form tools…", so nothing below the
+ * form is blank (pass 10, M1). Each no-JavaScript line shares one slot (`.st-tslot`) with what
+ * replaces it, so nothing on the page moves when the script arrives (WP-50a review pass 9, M1). If
+ * the script fails to load (`data-st-script-failed` names "TemplateTool"), the rooms go and the
+ * page is the no-JavaScript form (pass 9, m2).
  *
  * Group ids are the template's heading ids, so a link to `#to` or `#payment-details` (the contents,
  * search, another page) lands on the matching part of the form.
@@ -35,6 +37,7 @@ import type { Locale } from '../../i18n/locales';
 import type { ContentContext } from '../../lib/content/context';
 import type { TemplateSlug } from '../../lib/templates/draft';
 import { fieldId, lineNames } from '../../lib/templates/ids';
+import { emptyFormRequired } from '../../lib/templates/required';
 import {
   requiredItems,
   type TemplateField as Field,
@@ -59,6 +62,13 @@ const months = Array.from({ length: 12 }, (_, index) =>
 );
 const startNextKey = `templates.items.${slug}.startNext` as TranslationKey;
 const startNextDoneKey = `templates.items.${slug}.startNextDone` as TranslationKey;
+// The list as the script leaves it for an empty form, so nothing in it changes on a first visit
+// (WP-50a review pass 10, M1 and m1).
+const startState = emptyFormRequired(model);
+const startCount =
+  startState.present === startState.total
+    ? t('templates.allPresent')
+    : t('templates.requiredItems', { present: startState.present, total: startState.total });
 const required = requiredItems(model).map((item) => ({
   ...item,
   // A conditional item is listed with the template's own condition (review pass 1, major 4).
@@ -222,17 +232,23 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
   </div>
 
   <section
-    class="st-tool__required js-only st-stack st-stack-sm"
+    class="st-tool__required st-stack st-stack-sm"
     aria-labelledby="st-tool-required-heading"
   >
     <h2 class="st-tool__heading" id="st-tool-required-heading">
       {t('templates.requiredHeading')}
     </h2>
     <p class="st-hint">{t('templates.requiredNote')}</p>
-    <p role="status" data-required-count></p>
+    <p role="status" data-required-count>
+      {startCount}
+    </p>
     <ul class="st-tool__missing" role="list" data-missing>
       {required.map((item) => (
-        <li data-required-item={item.name} data-required-above={item.requiredAbove}>
+        <li
+          data-required-item={item.name}
+          data-required-above={item.requiredAbove}
+          hidden={startState.hidden.has(item.name)}
+        >
           <a class="st-link-block" href={item.href} lang={item.fromTemplate ? textLang : undefined}>
             {item.label}
           </a>
@@ -241,24 +257,31 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
     </ul>
   </section>
 
-  <div class="st-tool__actions js-only st-stack st-stack-sm">
-    <div class="st-cluster">
-      <Button iconStart="lucide:printer" data-print>
-        {t('templates.print')}
-      </Button>
-      {model.numberField && (
-        <Button
-          variant="secondary"
-          iconStart="lucide:file-plus"
-          data-start-next
-          aria-describedby="st-tool-next-hint"
-        >
-          {t(startNextKey)}
+  <div class="st-tool__actions st-stack st-stack-sm">
+    {/*
+      The buttons need the script. Until it runs they keep their room, unseen, with one line in it
+      that says they are coming, read by screen readers too (WP-50a review pass 10, M1).
+    */}
+    <div class="st-tool__buttons">
+      <p class="st-hint st-tool__waiting">{t('templates.loadingTools')}</p>
+      <div class="st-cluster js-only">
+        <Button iconStart="lucide:printer" data-print>
+          {t('templates.print')}
         </Button>
-      )}
-      <Button variant="ghost" iconStart="lucide:eraser" data-clear>
-        {t('templates.clear')}
-      </Button>
+        {model.numberField && (
+          <Button
+            variant="secondary"
+            iconStart="lucide:file-plus"
+            data-start-next
+            aria-describedby="st-tool-next-hint"
+          >
+            {t(startNextKey)}
+          </Button>
+        )}
+        <Button variant="ghost" iconStart="lucide:eraser" data-clear>
+          {t('templates.clear')}
+        </Button>
+      </div>
     </div>
     <p class="st-hint">{t('templates.printHint')}</p>
     {model.numberField && (
@@ -335,13 +358,40 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
   }
 
   /*
-   * The tabs need the script: none without it, and no visible tabs until it has run, in the room
-   * they will take (an invisible element takes no taps or focus).
+   * Without JavaScript, and if the script failed to load, the form is the printable sheet: no tabs,
+   * no required items list and no actions, and no room kept for them.
    */
   html:not(.js) .st-tool__tabs,
+  html:not(.js) .st-tool__required,
+  html:not(.js) .st-tool__actions,
   html[data-st-script-failed~='TemplateTool'] st-template-form:not([data-ready]) .st-tool__tabs,
+  html[data-st-script-failed~='TemplateTool'] st-template-form:not([data-ready]) .st-tool__required,
+  html[data-st-script-failed~='TemplateTool'] st-template-form:not([data-ready]) .st-tool__actions,
   html[data-st-script-failed~='TemplateTool'] st-template-form:not([data-ready]) .js-only {
     display: none !important;
+  }
+
+  /*
+   * Before the script, the required items list shows as the script leaves it for an empty form
+   * (its links work without it), and the buttons' room says they are coming: no blank band below
+   * the form (WP-50a review pass 10, M1).
+   */
+  .st-tool__buttons {
+    position: relative;
+  }
+
+  .st-tool__waiting {
+    display: none;
+  }
+
+  html.js:not([data-st-script-failed~='TemplateTool'])
+    st-template-form:not([data-ready])
+    .st-tool__waiting {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    margin: 0;
   }
 
   /*
@@ -362,6 +412,21 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
     visibility: hidden;
   }
 
+  /*
+   * Once the partner is hidden too (storage blocked; "Add line" after ten lines), the slot keeps no
+   * room (review pass 10, m2).
+   */
+  html.js
+    st-template-form[data-ready]
+    .st-tslot:has(> [hidden], > * > [hidden])
+    > .no-js-only.st-hint {
+    display: none !important;
+  }
+
+  /*
+   * No visible tabs until the script has run, in the room they will take (an invisible element
+   * takes no taps or focus).
+   */
   st-template-form:not([data-ready]) .st-tool__tabs {
     visibility: hidden;
   }

@@ -5,10 +5,11 @@ import { routeSameOrigin } from './helpers/network';
  * A fillable template, wherever the reader is in the form when its script arrives (WP-50a review
  * pass 9, M1). With the reader in or below the line items, "Remove line" and "Add line" appeared,
  * the no-JavaScript totals line went, and the field they were filling in jumped 52 to 133px
- * (0.156 to 0.248). The sweep: the invoice and the quotation, in both languages, at 360×740 and
- * 320×568, the reader at every 120px from the form's top to its end. Each position is a fresh load
- * with the modules held, scrolled there, then released: layout shift ≤ 0.1, `scrollY` within 1px,
- * and the field nearest the top of the screen within 2px of where it was.
+ * (0.156 to 0.248). The sweep: the invoice, the quotation, the tax invoice and the privacy notice
+ * (pass 10, m1), in both languages, at 360×740 and 320×568, the reader at every 120px from the
+ * form's top to past the end of the tool, below the required items and the actions. Each position
+ * is a fresh load with the modules held, scrolled there, then released: layout shift ≤ 0.1,
+ * `scrollY` within 1px, and the field or text nearest the top of the screen within 2px.
  *
  * Shift is counted after the web fonts have landed (the fallback fonts' metrics are WP-50 Phase 2's).
  * Chromium only (`playwright.config.ts`): the sizes are set here.
@@ -42,7 +43,7 @@ test.describe('a template: nothing moves when its script arrives, wherever the r
     });
   });
 
-  for (const slug of ['invoice', 'quotation'] as const) {
+  for (const slug of ['invoice', 'quotation', 'tax-invoice', 'privacy-notice'] as const) {
     for (const lang of ['en', 'af'] as const) {
       for (const size of SIZES) {
         test(`${lang} ${slug}, ${size.width}×${size.height}`, async ({ page, baseURL }) => {
@@ -70,13 +71,15 @@ test.describe('a template: nothing moves when its script arrives, wherever the r
             await page.evaluate(() => document.fonts.ready);
           };
 
-          // The positions come from the form as it is before the script.
+          // The positions come from the page as it is before the script: from the form's top to
+          // past the end of the template tool, below the required items and the actions (pass 10).
           await load();
           const ys = await page.evaluate((step) => {
             const form = document.querySelector('.st-tform')?.getBoundingClientRect();
+            const tool = document.querySelector('st-template-form')?.getBoundingClientRect();
             const max = document.documentElement.scrollHeight - window.innerHeight;
             const top = (form?.top ?? 0) + window.scrollY;
-            const bottom = (form?.bottom ?? 0) + window.scrollY;
+            const bottom = (tool?.bottom ?? 0) + window.scrollY + step;
             const out: number[] = [];
             for (let y = top; y <= bottom; y += step) out.push(Math.min(Math.round(y), max));
             return [...new Set(out)];
@@ -90,18 +93,33 @@ test.describe('a template: nothing moves when its script arrives, wherever the r
               window.scrollTo(0, target);
               await new Promise((resolve) => requestAnimationFrame(() => setTimeout(resolve, 50)));
               (window as unknown as { stShifts: number[] }).stShifts.length = 0;
-              // The field the reader is looking at: the first one whose top is on screen.
+              // What the reader is looking at: the first field, heading, list item or paragraph,
+              // in the tool or after it, whose top is on screen.
               const fields = [
-                ...document.querySelectorAll<HTMLElement>('.st-tform input, .st-tform textarea'),
+                ...document.querySelectorAll<HTMLElement>(
+                  '.st-tform input, .st-tform textarea, main h2, main h3, main li, main p',
+                ),
               ];
               const field = fields.find((element) => {
                 const box = element.getBoundingClientRect();
-                return box.height > 0 && box.top >= 0 && box.top < window.innerHeight;
+                // Not the waiting line, which the buttons replace by design.
+                if (element.classList.contains('st-tool__waiting')) return false;
+                return (
+                  box.height > 0 &&
+                  box.top >= 0 &&
+                  box.top < window.innerHeight &&
+                  getComputedStyle(element).visibility === 'visible'
+                );
               });
               if (field) field.dataset['sweep'] = '';
               return {
                 y: window.scrollY,
-                field: field ? field.id || field.getAttribute('name') || '?' : '',
+                field: field
+                  ? field.id ||
+                    field.getAttribute('name') ||
+                    (field.textContent ?? '').trim().slice(0, 30) ||
+                    field.tagName
+                  : '',
                 top: field?.getBoundingClientRect().top ?? Number.NaN,
               };
             }, y);

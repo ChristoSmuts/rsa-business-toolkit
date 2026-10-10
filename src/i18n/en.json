@@ -534,6 +534,7 @@
     "allPresent": "Every item this form checks is filled in.",
     "print": "Print or save as PDF",
     "printHint": "In the print window, choose Save as PDF to keep a copy.",
+    "loadingTools": "Loading the form tools…",
     "clear": "Clear form",
     "clearConfirm": {
       "title": "Clear this form?",

@@ -617,7 +617,10 @@ test.describe('a template before its script runs', () => {
     await expect(page.getByRole('tab')).toHaveCount(0);
     await expect(page.locator('.st-tool__tabs')).toBeHidden();
     await expect(page.locator('.st-tool__preview')).toBeHidden();
-    await expect(page.locator('.st-tool__actions')).toBeHidden();
+    // The buttons are not there to tap; their room says they are coming (review pass 10, M1).
+    await expect(page.locator('.st-tool__actions [data-print]')).toBeHidden();
+    await expect(page.getByText('Loading the form tools…')).toBeVisible();
+    await expect(page.locator('.st-tool__required')).toBeVisible();
     await expect(page.getByText('To print, use your browser’s Print command.')).toBeVisible();
     const name = page.getByLabel('Customer name');
     await name.fill('Thandi');
@@ -628,6 +631,7 @@ test.describe('a template before its script runs', () => {
     release();
     await expect(page.locator('st-template-form')).toHaveAttribute('data-ready', '');
     await expect(page.getByRole('tab', { name: en.templates.preview })).toBeVisible();
+    await expect(page.getByText('Loading the form tools…')).toBeHidden();
     await expect(name).toHaveValue('Thandi');
     const after = await form.boundingBox();
     expect(Math.abs((after?.y ?? 0) - (before?.y ?? 0))).toBeLessThanOrEqual(1);
@@ -638,6 +642,90 @@ test.describe('a template before its script runs', () => {
     await page.getByRole('tab', { name: en.templates.preview }).click();
     await expect(page.locator('.st-tool__preview')).toBeVisible();
     await expect(sheet(page)).toContainText('Thandi');
+  });
+
+  // Review pass 10, M1: the rooms kept for the required items and the actions left 727 to 1,542px
+  // of blank page under the form before the script. Before the script, no vertical run inside the
+  // template tool is without something to see for more than 120px.
+  for (const lang of ['en', 'af'] as const) {
+    for (const slug of ['quotation', 'invoice', 'tax-invoice', 'receipt', 'privacy-notice']) {
+      test(`${lang} ${slug}: before the script, no blank run over 120px in the tool`, async ({
+        page,
+        baseURL,
+      }) => {
+        await holdModules(page, baseURL);
+        const runs: string[] = [];
+        for (const size of [
+          { width: 360, height: 740 },
+          { width: 320, height: 568 },
+          { width: 1280, height: 900 },
+        ]) {
+          await page.setViewportSize(size);
+          await page.goto(`${lang === 'en' ? '' : 'af/'}templates/${slug}/`, {
+            waitUntil: 'commit',
+          });
+          await expect(page.locator('footer.st-footer')).toBeAttached();
+          await page.evaluate(() => document.fonts.ready);
+          const gap = await page.locator('st-template-form').evaluate((tool) => {
+            // What can be seen: text, form controls, icons, and the edges of a bordered box.
+            const spans: [number, number][] = [];
+            for (const element of tool.querySelectorAll<HTMLElement>('*')) {
+              const style = getComputedStyle(element);
+              if (style.visibility !== 'visible') continue;
+              const box = element.getBoundingClientRect();
+              if (box.height === 0 || box.width === 0) continue;
+              const text = [...element.childNodes].some(
+                (node) =>
+                  node.nodeType === Node.TEXT_NODE && (node.textContent ?? '').trim() !== '',
+              );
+              const control = /^(INPUT|TEXTAREA|SELECT|BUTTON|SVG|IMG)$/i.test(element.tagName);
+              if (text || control) spans.push([box.top, box.bottom]);
+              if (parseFloat(style.borderTopWidth) > 0 && style.borderTopStyle !== 'none')
+                spans.push([box.top, box.top + 1]);
+              if (parseFloat(style.borderBottomWidth) > 0 && style.borderBottomStyle !== 'none')
+                spans.push([box.bottom - 1, box.bottom]);
+            }
+            const area = tool.getBoundingClientRect();
+            spans.sort((a, b) => a[0] - b[0]);
+            let reach = area.top;
+            let widest = 0;
+            for (const [top, bottom] of spans) {
+              widest = Math.max(widest, top - reach);
+              reach = Math.max(reach, bottom);
+            }
+            return Math.round(Math.max(widest, area.bottom - reach));
+          });
+          runs.push(`${size.width}px: ${gap}px`);
+          expect(gap, `widest blank run at ${size.width}px`).toBeLessThanOrEqual(120);
+        }
+        console.log(`template blank runs ${lang} ${slug}: ${runs.join(', ')}`);
+      });
+    }
+  }
+
+  // Review pass 10, m2: a slot kept the unseen no-JavaScript line's room when its partner was
+  // hidden too: above the storage warning, and between the last of ten lines and the totals.
+  test('a slot keeps no room once both its lines are hidden', async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 740 });
+    await page.addInitScript(() => {
+      Object.defineProperty(window, 'localStorage', {
+        configurable: true,
+        get() {
+          throw new DOMException('The operation is insecure.', 'SecurityError');
+        },
+      });
+    });
+    await page.goto('templates/invoice/');
+    await expect(page.locator('st-template-form')).toHaveAttribute('data-ready', '');
+    const slots = page.locator('st-template-form .st-tslot');
+    // Storage blocked: "saved on this device only" is hidden, and its slot takes no room.
+    await expect(page.locator('st-storage-notice[data-show="available"]')).toBeHidden();
+    expect((await slots.nth(0).boundingBox())?.height ?? -1).toBe(0);
+    // "Add line" until all ten lines show; then it is hidden and its slot takes no room.
+    const add = page.locator('[data-add-line]');
+    for (let pressed = 0; pressed < 10 && (await add.isVisible()); pressed++) await add.click();
+    await expect(add).toBeHidden();
+    expect((await slots.nth(1).boundingBox())?.height ?? -1).toBe(0);
   });
 
   // Review pass 9, m2: when the template's module failed to load, the unseen tab strip left a blank

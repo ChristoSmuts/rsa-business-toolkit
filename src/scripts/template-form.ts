@@ -513,7 +513,8 @@ export class StTemplateForm extends HTMLElement {
       present === items.length
         ? (this.dataset['allPresent'] ?? '')
         : interpolate(this.dataset['requiredText'] ?? '', { present, total: items.length });
-    if (status && text !== this.#lastStatus) {
+    // The page renders the empty form's count, so the first run writes nothing (pass 10, m1).
+    if (status && text !== this.#lastStatus && text !== status.textContent) {
       status.textContent = text;
       this.#lastStatus = text;
     }

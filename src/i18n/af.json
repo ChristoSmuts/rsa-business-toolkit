@@ -534,6 +534,7 @@
     "allPresent": "Elke item wat hierdie vorm nagaan, is ingevul.",
     "print": "Druk of stoor as PDF",
     "printHint": "Kies Stoor as PDF in die drukvenster om ’n kopie te hou.",
+    "loadingTools": "Die vorm se gereedskap laai…",
     "clear": "Maak vorm skoon",
     "clearConfirm": {
       "title": "Maak hierdie vorm skoon?",
