@@ -3,22 +3,25 @@ import { expect, test } from './fixtures';
 import { routeSameOrigin } from './helpers/network';
 
 /**
- * Find my path, wherever the reader is and whatever they do first (WP-50a review passes 4 and 5).
+ * Find my path, wherever the reader is and whatever they do first (WP-50a review passes 4 to 6).
  *
  * 1. The script arrives: the wizard's top at every 60px from the top of the screen to past the end
  *    of the form as it is before the script, each step's end near the bottom of the screen, and the
- *    end of the page. Each position is a fresh load with the modules held, scrolled there, then
- *    released: from the release, layout shift ≤ 0.1 and `scrollY` moves by at most 1px.
+ *    end of the page, with question 1 unanswered and answered first. Each position is a fresh load
+ *    with the modules held, scrolled there, then released: from the release, layout shift ≤ 0.1
+ *    and `scrollY` moves by at most 1px.
  * 2. An ordinary load: the empty page between question 1's Next and the footer stays within 150px
  *    of `204a2a2`'s (119 to 141px). Pass 4's height hold left 1,514 to 2,315px there.
  * 3. The reader's first tap and their Next and Back, from the top and with question 1's last answer
  *    near the bottom of the screen: the tapped answer stays within 1px, the page does not scroll, the
- *    footer does not come up into view, and nothing shifts that the reader did not cause.
+ *    footer does not come up into view, Next and Back never scroll the page down, and the layout
+ *    shift of each action, the reader's own counted too, is ≤ 0.1. The browser's own measure leaves
+ *    out shifts within 500ms of an input, which is every action here, so that figure could never
+ *    fail (review pass 6, m6).
  *
  * Shift is counted after the web fonts have landed. A late font swap moves wrapped text everywhere
  * on the page, the reader's question included (0.28 to 0.40 at 320px), which is the fallback fonts'
- * metrics and the revamp's to fix (WP-50, Phase 2), not the wizard's. Shifts within 500ms of the
- * reader's own input do not count, as in the browser's own measure.
+ * metrics and the revamp's to fix (WP-50, Phase 2), not the wizard's.
  *
  * Chromium only (`playwright.config.ts`): the sizes are set here.
  */
@@ -31,6 +34,7 @@ const SIZES = [
 const STEP = 60;
 
 interface Run {
+  readonly answered: boolean;
   readonly y: number;
   readonly shift: number;
   readonly moved: number;
@@ -103,14 +107,18 @@ test.describe('Find my path: nothing moves when the script arrives, at any scrol
           await page.evaluate(() => document.fonts.ready);
         };
 
-        // The positions come from the page as it is before the script: the no-JavaScript form.
+        // The positions come from the page as it is before the script.
         await load();
         const ys = await positions(page);
 
         const runs: Run[] = [];
-        for (const y of ys) {
+        // With question 1 unanswered, and answered with a tap first (review pass 6, m6).
+        for (const [answered, y] of [false, true].flatMap((first) =>
+          ys.map((position) => [first, position] as const),
+        )) {
           open();
           await load();
+          if (answered) await page.locator('[data-step="entity"] input').first().check();
           const before = await page.evaluate(async (target) => {
             window.scrollTo(0, target);
             await new Promise((resolve) => requestAnimationFrame(() => setTimeout(resolve, 50)));
@@ -126,7 +134,7 @@ test.describe('Find my path: nothing moves when the script arrives, at any scrol
             const shifts = (window as unknown as { stShifts: number[] }).stShifts;
             return { y: window.scrollY, shift: shifts.reduce((sum, value) => sum + value, 0) };
           });
-          runs.push({ y: before, shift: after.shift, moved: after.y - before });
+          runs.push({ answered, y: before, shift: after.shift, moved: after.y - before });
         }
         open();
 
@@ -143,7 +151,10 @@ test.describe('Find my path: nothing moves when the script arrives, at any scrol
         );
         const bad = runs
           .filter((run) => run.shift > 0.1 || Math.abs(run.moved) > 1)
-          .map((run) => `at ${run.y}px: shift ${run.shift.toFixed(3)}, scrolled ${run.moved}px`);
+          .map(
+            (run) =>
+              `${run.answered ? 'answered' : 'unanswered'}, at ${run.y}px: shift ${run.shift.toFixed(3)}, scrolled ${run.moved}px`,
+          );
         expect(bad).toEqual([]);
       });
     }
@@ -169,14 +180,15 @@ test.describe('Find my path: no gap below the question, and nothing moves under 
       Object.assign(window, { stShifts: shifts });
       new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          const shift = entry as PerformanceEntry & { value: number; hadRecentInput: boolean };
-          if (!shift.hadRecentInput) shifts.push(shift.value);
+          // Every shift, the reader's own included (review pass 6, m6): each action is read
+          // within 500ms, where the browser's measure would leave them all out.
+          shifts.push((entry as PerformanceEntry & { value: number }).value);
         }
       }).observe({ type: 'layout-shift', buffered: true });
     });
   });
 
-  /** Shift since the last call, with nothing the reader caused counted. */
+  /** Shift since the last call, the reader's own included. */
   const takeShift = (page: Page): Promise<number> =>
     page.evaluate(() => {
       const shifts = (window as unknown as { stShifts: number[] }).stShifts;

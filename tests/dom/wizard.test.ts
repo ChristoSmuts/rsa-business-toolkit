@@ -86,6 +86,32 @@ describe('<st-wizard>', () => {
     expect(next.hasAttribute('aria-describedby')).toBe(false);
   });
 
+  it('sends Next and "See my path" to the first unanswered question (review pass 6, m6)', () => {
+    // No reader can reach a later step with an earlier one empty today; this sets that state
+    // directly, by clearing question 1 without a change event, to test the safety net.
+    const wizard = setUp();
+    const heading = (name: string): Element | null =>
+      step(name).querySelector('[data-step-heading]');
+    choose(input('entity', 'sole-prop'));
+    wizard.go(1);
+    choose(input('type', 'general'));
+    input('entity', 'sole-prop').checked = false;
+    button('type', '[data-next]').click();
+    expect(wizard.current).toBe(0);
+    expect(document.activeElement).toBe(heading('entity'));
+
+    choose(input('entity', 'sole-prop'));
+    wizard.go(1);
+    wizard.go(2);
+    choose(input('stage', 'not-started'));
+    input('type', 'general').click();
+    expect(wizard.current).toBe(2);
+    button('stage', '[data-finish]').click();
+    expect(wizard.current).toBe(1);
+    expect(document.activeElement).toBe(heading('type'));
+    expect(wizard.navigate).not.toHaveBeenCalled();
+  });
+
   it('describes "See my path" by the line that shows: the earlier question, then nothing', () => {
     setUp();
     choose(input('type', 'general'));

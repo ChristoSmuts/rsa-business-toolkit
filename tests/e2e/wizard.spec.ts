@@ -874,29 +874,101 @@ test.describe('Find my path before its script runs', () => {
     await expect(
       page.locator('.st-wizard__result:visible, .st-wizard__results:visible'),
     ).toHaveCount(0);
-    // Next is not there to tap, but its room is.
+    // The answers are native inputs and work meanwhile. (A checked answer's border is 2px, so the
+    // page below it is measured after the tap.)
+    const company = page.getByRole('radio', { name: /registered company/ });
+    await company.check();
+    // Next is not there to tap, but its room is, with a quiet line in it that is not read out
+    // (review pass 6, m1). Step 1 is marked current from the start (m4).
     const next = page.locator('[data-step="entity"] [data-next]');
     await expect(next).toBeHidden();
     const room = await next.boundingBox();
     expect(room?.height ?? 0).toBeGreaterThan(0);
-    // The answers are native inputs and work meanwhile.
-    const company = page.getByRole('radio', { name: /registered company/ });
-    await company.check();
+    const waiting = page.locator('.st-wizard__waiting');
+    await expect(waiting).toBeVisible();
+    await expect(waiting).toHaveText('Loading the next step…');
+    await expect(waiting).toHaveAttribute('aria-hidden', 'true');
+    await expect(page.locator('[data-stepper="0"]')).toHaveAttribute('aria-current', 'step');
+    // "Saved on this device only" keeps its room, so the footer does not move down (m3).
+    const saved = page.locator('.st-wizard__saved');
+    await expect(saved).toBeHidden();
+    const savedRoom = await saved.boundingBox();
+    expect(savedRoom?.height ?? 0).toBeGreaterThan(0);
     const heading = await first.boundingBox();
     release();
     await expect(page.locator('st-wizard')).toHaveAttribute('data-ready', '');
     await expect(next).toBeVisible();
+    await expect(waiting).toBeHidden();
+    await expect(saved).toBeVisible();
+    expect((await saved.boundingBox())?.y).toBeCloseTo(savedRoom?.y ?? -1, 0);
+    expect((await saved.boundingBox())?.height).toBeCloseTo(savedRoom?.height ?? -1, 0);
     await expect(next).not.toHaveAttribute('aria-disabled', /.*/);
     await expect(company).toBeChecked();
     expect((await first.boundingBox())?.y).toBeCloseTo(heading?.y ?? -1, 0);
-    // Within a few pixels: with an answer given, "Choose an answer first." beside Next goes, and the
-    // row it shared with Next centres Next again.
-    expect(Math.abs(((await next.boundingBox())?.y ?? 0) - (room?.y ?? -99))).toBeLessThanOrEqual(
-      3,
-    );
+    expect((await next.boundingBox())?.y).toBeCloseTo(room?.y ?? -1, 0);
     await next.click();
     await expect(page.getByRole('heading', { name: /Question 2 of 3/ })).toBeFocused();
   });
+
+  // Review pass 6, M1: with saved answers ("Edit answers"), a question 1 answer changed before the
+  // script arrived was silently put back to the saved one.
+  test('with saved answers, an answer changed before the script arrives is kept', async ({
+    page,
+    baseURL,
+    seedStorage,
+  }) => {
+    await seedStorage({
+      'st.profile.v1': {
+        entity: 'sole-prop',
+        businessTypes: ['services-trades', 'food'],
+        stage: 'trading',
+      },
+    });
+    const release = await holdModules(page, baseURL);
+    await page.goto('find-my-path/', { waitUntil: 'commit' });
+    const company = page.getByRole('radio', { name: /registered company/ });
+    await company.check();
+    release();
+    await expect(page.locator('st-wizard')).toHaveAttribute('data-ready', '');
+    await expect(company).toBeChecked();
+    await expect(page.locator('input[name="entity"][value="sole-prop"]')).not.toBeChecked();
+    // The questions the reader did not touch come back from the saved answers.
+    await page.getByRole('button', { name: 'Next' }).click();
+    for (const type of ['services-trades', 'food'])
+      await expect(page.locator(`input[name="type"][value="${type}"]`)).toBeChecked();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await expect(page.locator('input[name="stage"][value="trading"]')).toBeChecked();
+  });
+
+  // Review pass 6, m2: a wizard module that loads but throws as it runs left question 1 with no
+  // way on. theme-init names it as failed, so the page is the no-JavaScript form.
+  test(
+    'if the wizard script throws as it runs, the page is the no-JavaScript form',
+    {
+      annotation: allowConsoleError(
+        '/boom/',
+        "The test replaces the wizard's module with one that throws, on purpose.",
+      ),
+    },
+    async ({ page, baseURL }) => {
+      await routeSameOrigin(
+        page,
+        baseURL,
+        (url) => /\/_astro\/Wizard\.astro_astro_type_script[^/]*\.js$/.test(url.pathname),
+        (route) =>
+          route.fulfill({ contentType: 'text/javascript', body: 'throw new Error("boom");' }),
+      );
+      await page.goto('find-my-path/');
+      await expect(page.locator('html')).toHaveAttribute('data-st-script-failed', /\bWizard\b/);
+      await expect(page.locator('.st-wizard__stepper')).toBeHidden();
+      for (const n of [1, 2, 3]) {
+        await expect(
+          page.getByRole('heading', { name: new RegExp(`Question ${n} of 3`) }),
+        ).toBeVisible();
+      }
+      await expect(page.locator('.st-wizard__waiting')).toBeHidden();
+    },
+  );
 
   test(
     'if the wizard script fails to load, the page is the no-JavaScript form, and it gets there',

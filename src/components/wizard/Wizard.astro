@@ -14,11 +14,12 @@
  * answers. Those controls (Back, Next, "See my path") are `.js-only`; the result buttons are
  * `.no-js-only`.
  *
- * **Until the script has run** (`data-enhance`, `data-ready`; `src/styles/utilities.css`) the page
- * is the no-JavaScript form: all three questions, the result button for the checked answers, and
- * no Back or Next. On a slow phone Next used to show about 8 s before it worked, and a tap on it
- * did nothing (WP-50 audit, flow 1). The stepper shows from the first paint, as an outline of the
- * three questions, so it does not push the form down when the script arrives.
+ * **Until the script has run** (`data-enhance`, `data-ready`) the page is already in steps, as the
+ * script will show it: the stepper, question 1, and Next's room with "Loading the next step…" in
+ * it. On a slow phone Next used to show about 8 s before it worked, and a tap on it did nothing
+ * (WP-50 audit, flow 1). If the script fails to load (`data-st-script-failed`, set by
+ * `theme-init.js`), the page is the no-JavaScript form. See the styles below and
+ * `docs/design-system.md`, "The wizard is in steps from the first paint".
  */
 import Button from '../ui/Button.astro';
 import Callout from '../ui/Callout.astro';
@@ -92,7 +93,7 @@ const results = singleChoices().map((choice) => ({
 <st-wizard class="st-wizard" data-enhance data-my-path={myPathHref} data-version={pathsData.hash}>
   <ol class="st-wizard__stepper" aria-label={t('wizard.stepsLabel')} role="list">
     {stepTitles.map((title, index) => (
-      <li data-stepper={index}>
+      <li data-stepper={index} aria-current={index === 0 ? 'step' : undefined}>
         <span class="st-wizard__stepper-n">{t('wizard.stepOf', { n: index + 1, total })}</span>
         <span class="st-wizard__stepper-title" data-text={title}>
           <span>{title}</span>
@@ -162,6 +163,10 @@ const results = singleChoices().map((choice) => ({
         </Button>
         <p class="st-hint" id="wz-next-hint-entity" data-next-hint>
           {t('wizard.nextDisabled')}
+        </p>
+        {/* In Next's room until the script is ready; not read out, the answers work meanwhile. */}
+        <p class="st-hint st-wizard__waiting" aria-hidden="true">
+          {t('wizard.loadingNext')}
         </p>
       </div>
     </section>
@@ -322,7 +327,7 @@ const results = singleChoices().map((choice) => ({
       ))}
     </details>
 
-    <div class="st-stack st-stack-sm js-only">
+    <div class="st-stack st-stack-sm js-only st-wizard__saved">
       <p class="st-hint">{t('wizard.savedTip')}</p>
       <st-storage-notice hidden>
         <Callout variant="warning" label={t('doc.warning')}>
@@ -343,7 +348,7 @@ const results = singleChoices().map((choice) => ({
    * set by `theme-init.js`), the three questions are one form, with no steps.
    */
   html:not(.js) .st-wizard__stepper,
-  html[data-st-script-failed~='Wizard'] .st-wizard__stepper {
+  html[data-st-script-failed~='Wizard'] st-wizard:not([data-ready]) .st-wizard__stepper {
     display: none;
   }
 
@@ -376,6 +381,34 @@ const results = singleChoices().map((choice) => ({
     .st-wizard__nav.js-only {
     display: flex !important;
     visibility: hidden;
+  }
+
+  /*
+   * "Saved on this device only" keeps its room too: it pushed the footer down 35 to 77px when it
+   * appeared (review pass 6, m3).
+   */
+  html.js:not([data-st-script-failed~='Wizard'])
+    st-wizard:not([data-ready])
+    .st-wizard__saved.js-only {
+    display: flex !important;
+    visibility: hidden;
+  }
+
+  /*
+   * One quiet line in Next's room while it is on its way (review pass 6, m1). It sits over the room
+   * and takes none of its own, so nothing moves when Next replaces it.
+   */
+  .st-wizard__waiting {
+    display: none;
+  }
+
+  html.js:not([data-st-script-failed~='Wizard']) st-wizard:not([data-ready]) .st-wizard__waiting {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    visibility: visible;
   }
 </style>
 
@@ -541,6 +574,7 @@ const results = singleChoices().map((choice) => ({
   }
 
   .st-wizard__nav {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -549,6 +583,17 @@ const results = singleChoices().map((choice) => ({
 
   .st-wizard__nav p[hidden] {
     display: none;
+  }
+
+  /*
+   * "Choose an answer first." keeps its room once the step is answered, so Next and what follows do
+   * not move on the tap, and the page is as long when the script arrives as before it, whatever
+   * was answered meanwhile (it was 32px shorter, and the browser clamped the scroll at the end of
+   * the page; WP-50a review pass 6). `!important` because `base.css` hides `[hidden]` with it.
+   */
+  .st-wizard__nav p[data-next-hint][hidden] {
+    display: block !important;
+    visibility: hidden;
   }
 
   .st-wizard__nav p {

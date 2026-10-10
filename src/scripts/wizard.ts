@@ -173,17 +173,32 @@ export class StWizard extends HTMLElement {
     return this.#steps[index]?.querySelector('input:not([disabled])') ?? null;
   }
 
+  /**
+   * Fills in the saved answers ("Edit answers"). The server renders no answer checked, so on an
+   * ordinary load a question that already has one was answered by the reader while the script was
+   * on its way, and keeps that answer: putting the saved one back undid their tap without a word
+   * (WP-50a review pass 6, M1). After Back or Forward the browser restores the old ticks, and the
+   * saved answers win, as before.
+   */
   #restore(saved: Profile | null): void {
+    const navigation = globalThis.performance?.getEntriesByType?.('navigation')[0] as
+      PerformanceNavigationTiming | undefined;
+    const keepGiven = navigation?.type !== 'back_forward';
+    const given = (name: string): boolean =>
+      keepGiven && this.#inputs(name).some((input) => input.checked);
+    const keepTypes = given(QUERY.type);
     if (saved) {
-      for (const input of this.#inputs(QUERY.entity)) input.checked = input.value === saved.entity;
-      for (const input of this.#inputs(QUERY.type))
-        input.checked = saved.businessTypes.includes(input.value as TypeChoice);
-      for (const input of this.#inputs(QUERY.stage)) input.checked = input.value === saved.stage;
-      this.#order = [...saved.businessTypes];
-    } else {
-      // A form the browser restored (Back) keeps its ticks; take them in page order.
-      this.#order = this.#checked(QUERY.type) as TypeChoice[];
+      const fill = (name: string, wanted: (value: string) => boolean): void => {
+        if (given(name)) return;
+        for (const input of this.#inputs(name)) input.checked = wanted(input.value);
+      };
+      fill(QUERY.entity, (value) => value === saved.entity);
+      fill(QUERY.type, (value) => saved.businessTypes.includes(value as TypeChoice));
+      fill(QUERY.stage, (value) => value === saved.stage);
     }
+    // Ticks the reader or the browser gave are taken in page order.
+    this.#order =
+      !saved || keepTypes ? (this.#checked(QUERY.type) as TypeChoice[]) : [...saved.businessTypes];
   }
 
   /** The first step up to `last` (inclusive) that has no valid answer, or -1. */

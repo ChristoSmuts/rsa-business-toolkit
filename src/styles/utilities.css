@@ -27,8 +27,9 @@ html:not(.js) .js-only,
 
 /*
  * Shown only when JavaScript is unavailable, and, inside a `data-enhance` element, until its
- * script is ready: until then the page works as it does without JavaScript (the wizard's GET
- * form, the template's printable form).
+ * script is ready: until then the template's printable form works as it does without JavaScript.
+ * The wizard overrides both rules: with JavaScript it is in steps from the first paint, and its
+ * no-JavaScript form shows only when its script failed to load (`Wizard.astro`).
  */
 html.js .no-js-only:not([data-enhance]:not([data-ready]) *) {
   display: none !important;
