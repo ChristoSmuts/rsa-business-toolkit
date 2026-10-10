@@ -831,23 +831,32 @@ audit, flows 1 and 5). An element whose controls need its script carries `data-e
 `st-wizard:not([data-ready])`) and `<st-template-form>` (the printable form, no preview or buttons;
 the tabs keep their room with `visibility: hidden`).
 
-The switch costs no layout shift where the reader is looking. The wizard's stepper shows from the first
-paint and the first question stays where it is, so only what is below it changes; a reader who has
-already scrolled to question 2 or 3 stays on that step, and the page scrolls by what the steps above
-took, so it does not move either (without that, the footer jumped into view: 0.32). If a question above
-the one in view has no answer, the wizard still starts on the question in view, and the line under its
-button says an earlier question has no answer (`wizard.earlierMissing`); Next and "See my path" then
-go to the first unanswered question and focus its heading (review pass 2, M1: starting on question 1
-instead lost the reader's place). The step in view is measured before anything changes: a kind of
-business that still has focus scrolls itself into view when it becomes a checkbox, and a reader at
-question 3 was found at question 2. Question 2's two help lines ("Choose all that fit" and the
-no-JavaScript "you can choose one") share one grid cell and swap by `visibility`, so the slot keeps
-the taller one's height (swapping places moved the choices, a shift of 0.47 at 320px); each step
-title in the stepper keeps the room of its semibold form, so marking the current step never adds a
-line; and a reader at the top of the page is never scrolled (review pass 3, M1 and m1). Next and "See
-my path" are described only by the line under them that shows (pass 3, m2). The template's tabs
-already have their room. Measured with the modules held for 3 s and then released: the first
-question and the form do not move (`wizard.spec.ts`, `templates.spec.ts`).
+The switch costs no layout shift wherever the reader is, and the page does not scroll by itself.
+When `<st-wizard>` takes over it measures the no-JavaScript form first, then shows only the question
+in view and holds the form's room until the reader acts (`#hold`): the steps above it fold into
+padding of the same height, and the wizard keeps its whole height as `min-block-size`. So the
+question stays put, nothing below it moves (the footer jumped into view near the end of a question,
+0.11 to 0.26; review pass 4, M1), the document does not get shorter, and the browser has no reason
+to scroll (it clamped the scroll at question 1, and its scroll anchoring scrolled the page when the
+steps above folded). The wizard takes its own height when the reader changes an answer, presses Next
+or Back, or scrolls it fully out of view; what the reader touched keeps its place on screen. Before
+the script is ready each step's Next and Back keep their room, unseen, so a step does not grow when
+they appear. Three passes in a row found a shift at a scroll position no test had tried, so
+`wizard-shift.spec.ts` sweeps them all.
+
+If a question above the one in view has no answer, the wizard still starts on the question in view,
+and the line under its button says an earlier question has no answer (`wizard.earlierMissing`); Next
+and "See my path" then go to the first unanswered question and focus its heading (review pass 2, M1:
+starting on question 1 instead lost the reader's place). A kind of business that still has focus
+scrolls itself into view when it becomes a checkbox, so the wizard measures before that and puts the
+scroll back. Question 2's two help lines ("Choose all that fit" and the no-JavaScript "you can choose
+one") share one grid cell and swap by `visibility`, so the slot keeps the taller one's height
+(swapping places moved the choices, a shift of 0.47 at 320px); once the reader changes an answer
+there, the hidden line leaves the slot, so no blank line stays under the shorter one (pass 4, m1).
+Each step title in the stepper keeps the room of its semibold form, so marking the current step never
+adds a line (pass 3, m1). Next and "See my path" are described only by the line under them that shows
+(pass 3, m2). The template's tabs already have their room; the form does not move when its script
+arrives (`templates.spec.ts`).
 
 ### Illustrations
 

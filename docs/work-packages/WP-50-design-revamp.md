@@ -71,6 +71,7 @@ The owner decides:
 - Change `src/styles/tokens.css`, `base.css`, `utilities.css` and `print.css` to the chosen direction. Keep every existing token name unless a rename is unavoidable, and give any rename a migration commit of its own.
 - Update `CONTRAST_PAIRS`, the contrast unit test and the live panel on `/design-system/`.
 - Self-host any new font through `@fontsource-variable`, with metric-matched fallbacks measured the way `docs/design-system.md` describes.
+- The fallback fonts' metrics must cut the site-wide shift when the web fonts swap in. Known from WP-50a review pass 4 (m2): with the fonts arriving after the reader has scrolled, wrapped text moves everywhere on the page, 0.28 to 0.40 at 320px on the wizard (the reader's question included) and similar on document pages (0.40 on `business-types/food/`, 0.29 in Afrikaans, scrolled 1500px). Closer `size-adjust`, `ascent-override` and `descent-override` on the fallbacks, or `font-display: optional` for body text, are the candidates; measure at 320px with the fonts held.
 - Do not change component markup in this phase. The screenshots show what the tokens alone did.
 
 ### Phase 3: page types and components
