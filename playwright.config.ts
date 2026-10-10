@@ -18,11 +18,11 @@ const isCI = Boolean(process.env.CI);
 export const SPEC_FILES = /\.spec\.ts$/;
 const special = /(^|[\\/])(a11y|visual|nojs)\.spec\.ts$/;
 /**
- * The 320px reflow sweep runs once, in `chromium`: the layout is the same in the other engines'
- * projects, and creating its 198 tests there only to skip them hid a real skip in the count
- * (WP-50a review pass 3, m5).
+ * The 320px reflow sweep and the wizard's scroll-position sweep run once, in `chromium`: they set
+ * their own sizes, and creating their tests in the other projects only to skip them hid a real
+ * skip in the count (WP-50a review pass 3, m5; pass 4, M1).
  */
-const chromiumOnly = /(^|[\\/])reflow\.spec\.ts$/;
+const chromiumOnly = /(^|[\\/])(reflow|wizard-shift)\.spec\.ts$/;
 
 /**
  * Fails the run when any executed test did not run the automatic guards (tests/e2e/fixtures.ts).

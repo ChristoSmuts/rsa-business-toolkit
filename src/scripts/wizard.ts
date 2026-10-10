@@ -35,6 +35,11 @@ export class StWizard extends HTMLElement {
   #current = 0;
   /** The kinds of business in the order they were ticked. */
   #order: TypeChoice[] = [];
+  /** True while the wizard keeps the room of the no-JavaScript form (`#hold`). */
+  #held = false;
+  /** The wizard has been on screen since it took over (`#hold`). */
+  #seen = false;
+  #observer: IntersectionObserver | null = null;
 
   /** Leaves the page. Replaced in tests. */
   navigate: (url: string) => void = (url) => {
@@ -49,6 +54,14 @@ export class StWizard extends HTMLElement {
       this.#order = this.#order.filter((type) => type !== value);
       if (input.checked) this.#order.push(value);
     }
+    // The reader acted: the wizard takes its own height. On question 2 the no-JavaScript line also
+    // leaves the slot it shares with "Choose all that fit", whose room it kept (review pass 4, m1).
+    // The answer just changed stays under the reader's finger.
+    const noJsLine =
+      input.name === QUERY.type ? this.querySelector<HTMLElement>('[data-swap="no-js"]') : null;
+    this.#release(input, () => {
+      if (noJsLine) noJsLine.hidden = true;
+    });
     this.#update();
   };
 
@@ -80,6 +93,7 @@ export class StWizard extends HTMLElement {
   #advance(): void {
     const missing = this.#firstInvalid(this.#current);
     if (missing >= 0 && missing < this.#current) {
+      this.#release();
       this.#show(missing);
       this.#steps[missing]?.querySelector<HTMLElement>('[data-step-heading]')?.focus();
       return;
@@ -97,14 +111,10 @@ export class StWizard extends HTMLElement {
     this.#steps = [...this.querySelectorAll<HTMLElement>('[data-step]')];
     if (!this.#form || this.#steps.length === 0) return;
     // Until now the page was the no-JavaScript form, all three questions (WP-50a). A reader who has
-    // scrolled to a later question stays on it, where it is: the steps above it fold away, and the
-    // page scrolls by what they took, so nothing on screen moves. If a question above it has no
+    // scrolled to a later question stays on it, where it is (`#hold`). If a question above it has no
     // answer, the line under its buttons says so, and Next or "See my path" goes there (#advance).
     // Starting on the unanswered question instead swapped the question under the reader's finger, a
-    // layout shift of up to 0.78 (WP-50a review pass 2, M1). Measured before anything changes:
-    // when a kind of business has focus (the reader ticked it, then scrolled on), making it a
-    // checkbox scrolls it into view, so a reader at question 3 was found at question 2 (review
-    // pass 3, M1). The scroll below puts the step back where it was.
+    // layout shift of up to 0.78 (WP-50a review pass 2, M1).
     const view = this.ownerDocument.defaultView;
     let start = 0;
     if (view && view.scrollY > 0) {
@@ -112,8 +122,15 @@ export class StWizard extends HTMLElement {
         if (step.getBoundingClientRect().top < view.innerHeight / 2) start = index;
       });
     }
-    const before = this.#steps[start]?.getBoundingClientRect().top ?? 0;
+    const height = this.getBoundingClientRect().height;
+    const top = (index: number): number => this.#steps[index]?.getBoundingClientRect().top ?? 0;
+    const above = top(start) - top(0);
+    // A kind of business that still has focus (ticked, then the reader scrolled on) scrolls itself
+    // into view when it becomes a checkbox, and a reader at question 3 was found at question 2
+    // (review pass 3, M1): the page goes back to where the reader had it.
+    const scrolled = view?.scrollY ?? 0;
     for (const input of this.#inputs(QUERY.type)) input.type = 'checkbox';
+    if (view && view.scrollY !== scrolled) view.scrollTo(view.scrollX, scrolled);
     // With checkboxes the question is "choose all that fit", not the no-JavaScript "choose one".
     for (const group of this.querySelectorAll<HTMLElement>('[data-describedby-js]'))
       group.setAttribute('aria-describedby', group.dataset['describedbyJs'] ?? '');
@@ -123,16 +140,76 @@ export class StWizard extends HTMLElement {
     this.#form.addEventListener('submit', this.#onSubmit);
     this.#form.addEventListener('keydown', this.#onKeydown);
     this.dataset['ready'] = '';
+    this.#hold(height, above);
     this.#show(start);
-    const after = this.#steps[start]?.getBoundingClientRect().top ?? 0;
-    // A reader at the top of the page is never scrolled (review pass 3, m1).
-    if (start > 0 && after !== before) view?.scrollBy(0, after - before);
+  }
+
+  /**
+   * Keeps the room of the no-JavaScript form until the reader acts (WP-50a review pass 4, M1).
+   * The steps above the one in view fold away, so the form keeps their height as padding, and the
+   * wizard keeps its whole height as `min-block-size`. Nothing on screen moves, below the question
+   * either, the document does not get shorter, so the browser has no reason to scroll, and the
+   * wizard scrolls nothing itself. Folding only the steps above and scrolling by what they took
+   * left the steps below to fold, and the footer jumped into view (0.11 to 0.26).
+   */
+  #hold(height: number, above: number): void {
+    // Set before the steps fold, with no layout in between: a layout that saw them fold would let
+    // the browser's scroll anchoring scroll the page instead (review pass 4, M1).
+    if (this.#form && above > 0) this.#form.style.paddingBlockStart = `${above}px`;
+    this.style.minBlockSize = `${height}px`;
+    this.#held = true;
+    this.#seen = false;
+    if (typeof IntersectionObserver !== 'function') return;
+    // Once the reader has scrolled the wizard out of view, it can take its height off screen.
+    this.#observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) this.#seen = true;
+        else if (this.#seen) this.#release();
+      }
+    });
+    this.#observer.observe(this);
+  }
+
+  /**
+   * Gives up the room `#hold` kept, runs `also`, and scrolls by what that moved: `anchor` (what the
+   * reader touched) or the step shown keeps its place on screen; with the wizard above the screen,
+   * what follows it does; with it below, nothing on screen moves anyway.
+   */
+  #release(anchor?: Element | null, also?: () => void): void {
+    if (!this.#held && !also) return;
+    const view = this.ownerDocument.defaultView;
+    const box = this.getBoundingClientRect();
+    const offBelow = view !== null && box.top >= view.innerHeight;
+    const edge = (): number | null => {
+      if (offBelow) return null;
+      if (box.bottom <= 0) return this.getBoundingClientRect().bottom;
+      return (anchor ?? this.#steps[this.#current])?.getBoundingClientRect().top ?? null;
+    };
+    const before = edge();
+    if (this.#held) {
+      this.#held = false;
+      this.style.minBlockSize = '';
+      if (this.#form) this.#form.style.paddingBlockStart = '';
+      this.#observer?.disconnect();
+      this.#observer = null;
+    }
+    also?.();
+    const after = edge();
+    if (view && before !== null && after !== null && Math.abs(after - before) > 0.5) {
+      view.scrollBy(0, after - before);
+    }
   }
 
   disconnectedCallback(): void {
     // Its controls stop working, so the page goes back to the no-JavaScript form (utilities.css).
     delete this.dataset['ready'];
+    this.#held = false;
+    this.#observer?.disconnect();
+    this.#observer = null;
+    this.style.minBlockSize = '';
+    if (this.#form) this.#form.style.paddingBlockStart = '';
     for (const step of this.#steps) step.hidden = false;
+    for (const line of this.querySelectorAll<HTMLElement>('[data-swap]')) line.hidden = false;
     this.#form?.removeEventListener('change', this.#onChange);
     this.#form?.removeEventListener('click', this.#onClick);
     this.#form?.removeEventListener('submit', this.#onSubmit);
@@ -148,6 +225,7 @@ export class StWizard extends HTMLElement {
   go(index: number): void {
     if (index < 0 || index >= this.#steps.length || index === this.#current) return;
     if (index > this.#current && !this.#stepValid(this.#current)) return;
+    this.#release();
     this.#show(index);
     this.#steps[index]?.querySelector<HTMLElement>('[data-step-heading]')?.focus();
   }

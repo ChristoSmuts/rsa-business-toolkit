@@ -358,6 +358,16 @@ const results = singleChoices().map((choice) => ({
   .st-wizard__results .st-btn.st-wizard__result {
     display: none;
   }
+
+  /*
+   * Until the script is ready, each step's navigation keeps its room, unseen, so a step does not
+   * grow when its Next and Back appear (WP-50a review pass 4, M1). Without JavaScript it takes no
+   * room. `!important` because the `.js-only` rule it overrides has it.
+   */
+  html.js st-wizard:not([data-ready]) .st-wizard__nav.js-only {
+    display: flex !important;
+    visibility: hidden;
+  }
 </style>
 
 <style>
@@ -369,6 +379,9 @@ const results = singleChoices().map((choice) => ({
   .st-wizard {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
+
+    /* While it holds its height (wizard.ts, #hold), the room is left below, not shared out. */
+    align-content: start;
     gap: var(--st-space-5);
     max-inline-size: var(--st-measure);
   }
@@ -434,6 +447,11 @@ const results = singleChoices().map((choice) => ({
 
   .st-wizard__swap > * {
     grid-area: 1 / 1;
+  }
+
+  /* Gone once the reader has changed an answer on question 2 (wizard.ts; review pass 4, m1). */
+  .st-wizard__swap > [hidden] {
+    display: none;
   }
 
   .st-wizard[data-ready] .st-wizard__swap > [data-swap='no-js'],
