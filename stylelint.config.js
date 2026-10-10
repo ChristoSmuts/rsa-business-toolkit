@@ -8,6 +8,12 @@ export default {
       files: ['src/styles/tokens.css'],
       rules: { 'color-no-hex': null, 'function-disallowed-list': null, 'color-named': null },
     },
+    {
+      // TEMPORARY, WP-50 Phase 1 only: the two direction mocks' palettes. This file and this
+      // exemption are deleted when the owner picks a direction (docs/work-packages/WP-50-directions.md).
+      files: ['src/styles/directions.css'],
+      rules: { 'color-no-hex': null },
+    },
   ],
   rules: {
     'color-no-hex': true,

@@ -1,0 +1,204 @@
+---
+/**
+ * WP-50 Phase 1 mock: the page shell for one design direction (TEMPORARY, see
+ * `src/styles/directions.css`). `noindex`, excluded from the sitemap by the `/design-system/`
+ * filter in `astro.config.ts`.
+ *
+ * It is `Base.astro` with a mock header and footer, so the real header, footer and layouts are not
+ * touched. The header is one row at every width and works without JavaScript: the menu is a native
+ * `<details>`, search is the real search page.
+ *
+ * Links: the logo and the language links stay inside the mock; section and tool links open the
+ * current site, which works. The note at the end of the page says so.
+ */
+import Base from '../../layouts/Base.astro';
+import Icon from '../ui/Icon.astro';
+import Logo from '../illustrations/Logo.astro';
+import '../../styles/directions.css';
+import { useTranslations, type TranslationKey } from '../../i18n';
+import { ENABLED_LOCALES, type Locale } from '../../i18n/locales';
+import type { Manifest } from '../../lib/content/schema';
+import { footerLinks, sectionLinks, toolLinks } from '../../lib/nav';
+import { href } from '../../lib/paths';
+import { APP_ROUTES } from '../../lib/routes';
+import { MOCK_COPY, mockRoute, type Direction, type MockPage } from './mock';
+
+interface Props {
+  direction: Direction;
+  locale: Locale;
+  manifest: Manifest;
+  page: MockPage;
+  title: string;
+}
+
+const { direction, locale, manifest, page, title } = Astro.props;
+const t = useTranslations(locale);
+const copy = MOCK_COPY[locale];
+const sections = sectionLinks(manifest, locale, t);
+const tools = toolLinks(manifest, locale, t);
+const footer = footerLinks(manifest, locale, t);
+const other: Direction = direction === 'a' ? 'b' : 'a';
+const languages = ENABLED_LOCALES.map((code) => ({
+  code,
+  name: t(`lang.names.${code}` as TranslationKey),
+  href: href(code, mockRoute(direction, page)),
+}));
+---
+
+<Base
+  lang={locale}
+  title={`${title} (${copy.directionName[direction]})`}
+  description={copy.description}
+  noindex
+  skipLinkLabel={t('nav.skipLink')}
+>
+  <div slot="header" data-direction={direction}>
+    <header class="st-dir-top">
+      <div class="st-container st-dir-top__inner">
+        <a
+          class="st-dir-top__home"
+          href={href(locale, mockRoute(direction, 'home'))}
+          aria-current={page === 'home' ? 'page' : undefined}
+        >
+          <Logo name={t('site.name')} />
+        </a>
+        <nav class="st-dir-top__nav" aria-label={t('nav.mainLabel')}>
+          <details class="st-dir-drop">
+            <summary>{t('nav.read')}</summary>
+            <ul class="st-dir-drop__panel" role="list">
+              {sections.map((link) => (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </details>
+          <details class="st-dir-drop">
+            <summary>{t('nav.tools')}</summary>
+            <ul class="st-dir-drop__panel" role="list">
+              {tools.map((link) => (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        </nav>
+        <a class="st-dir-top__action st-dir-top__search" href={href(locale, APP_ROUTES.search)}>
+          <Icon name="lucide:search" size="1.15em" />
+          <span>{t('nav.search')}</span>
+        </a>
+        <ul class="st-dir-top__lang st-dir-quiet" role="list" aria-label={t('lang.switcherLabel')}>
+          {languages.map((language) => (
+            <li>
+              <a
+                href={language.href}
+                hreflang={language.code}
+                lang={language.code}
+                aria-current={language.code === locale ? 'page' : undefined}
+              >
+                {language.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <details class="st-dir-menu">
+          <summary>
+            <Icon name="lucide:menu" size="1.25em" />
+            <span>{t('nav.menu')}</span>
+          </summary>
+          <div class="st-dir-menu__panel">
+            <nav class="st-dir-menu__group" aria-labelledby="st-dir-menu-read">
+              <h2 id="st-dir-menu-read">{t('nav.read')}</h2>
+              <ul role="list">
+                {sections.map((link) => (
+                  <li>
+                    <a href={link.href}>{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <nav class="st-dir-menu__group" aria-labelledby="st-dir-menu-tools">
+              <h2 id="st-dir-menu-tools">{t('nav.tools')}</h2>
+              <ul role="list">
+                {tools.map((link) => (
+                  <li>
+                    <a href={link.href}>{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <div class="st-dir-menu__group">
+              <h2 id="st-dir-menu-lang">{t('lang.switcherLabel')}</h2>
+              <ul role="list" aria-labelledby="st-dir-menu-lang">
+                {languages.map((language) => (
+                  <li>
+                    <a
+                      href={language.href}
+                      hreflang={language.code}
+                      lang={language.code}
+                      aria-current={language.code === locale ? 'page' : undefined}
+                    >
+                      {language.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </details>
+      </div>
+    </header>
+  </div>
+
+  <div data-direction={direction}>
+    <div class="st-dir-page">
+      <slot />
+    </div>
+  </div>
+
+  <div slot="footer" data-direction={direction}>
+    <footer class="st-dir-foot">
+      <div class="st-container">
+        <ul class="st-dir-foot__links" role="list">
+          {footer.map((link) => (
+            <li>
+              <a class="st-link-block" href={link.href}>
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        {/* MOCK ONLY: says what this page is and where its links go. */}
+        <div class="st-dir-mock-note st-flow">
+          <p>
+            <strong>{copy.noteTitle[direction]}</strong>
+          </p>
+          <p>{copy.noteBody}</p>
+          <ul class="st-dir-foot__links" role="list">
+            <li>
+              <a class="st-link-block" href={href(locale, mockRoute(direction, 'home'))}>
+                {copy.pages.home}
+              </a>
+            </li>
+            <li>
+              <a class="st-link-block" href={href(locale, mockRoute(direction, 'doc'))}>
+                {copy.pages.doc}
+              </a>
+            </li>
+            <li>
+              <a class="st-link-block" href={href(locale, mockRoute(other, page))}>
+                {copy.seeOther[other]}
+              </a>
+            </li>
+            <li>
+              <a class="st-link-block" href={href(locale, 'design-system/directions/')}>
+                {copy.allDirections}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+</Base>

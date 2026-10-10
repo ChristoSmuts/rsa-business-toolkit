@@ -1,0 +1,1408 @@
+/*
+ * WP-50 Phase 1: the two design directions, as mock palettes and mock-only styles.
+ *
+ * TEMPORARY. Loaded only by the mock pages under /design-system/directions/ (both locales).
+ * Delete this file, `src/components/directions/`, the mock routes and the Stylelint exemption
+ * when the owner picks a direction (docs/work-packages/WP-50-directions.md). The chosen palette
+ * then moves into `src/styles/tokens.css` in Phase 2, with its pairs in `CONTRAST_PAIRS`.
+ *
+ * Why the palettes are not in tokens.css: `tests/unit/tokens-contrast.test.ts` fails on any other
+ * rule that overrides a colour token, and the real pages must not change.
+ *
+ * How the scope works: each mock page puts `data-direction="a"` or `"b"` on the wrappers it owns.
+ * The token blocks key off that attribute from the root (`:root:has(...)`) so the page background,
+ * the scrollbar and every tint resolve against the direction's palette. The extra `html` raises
+ * each block one step above the matching block in tokens.css, so source order does not matter:
+ *   light  html:root:has(...)                          (0,2,1) > :root (0,1,0), [data-theme] (0,2,0)
+ *   dark   html:root[data-theme='dark']:has(...)       (0,3,1)
+ *   system html:root:not([data-theme='light']):has(...) (0,3,1)
+ * The dark blocks redefine every colour the light block sets, so the light block never leaks into
+ * dark. Low data gets its own block per direction, or the font overrides would undo it.
+ *
+ * `tests/unit/directions-contrast.test.ts` parses this file and measures every pair with
+ * `src/scripts/color.ts`, exactly as the token test does for tokens.css.
+ */
+
+/* ---------- Fonts (fetched only when a mock page uses them) ---------- */
+
+/*
+ * Direction A: Fraunces from the wght-only file. Its optical size is fixed at the text end of the
+ * axis, so the headings are sturdy and low-contrast instead of a high-contrast display cut, and the
+ * file is 36.6 KB instead of 67.3 KB for the opsz file every page preloads today.
+ */
+@font-face {
+  font-family: 'Fraunces Text';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('@fontsource-variable/fraunces/files/fraunces-latin-ext-wght-normal.woff2')
+    format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Fraunces Text';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/*
+ * Direction B: Commissioner (OFL), one family for everything. A humanist sans with open
+ * apertures, a plain oval zero and a narrow set width (Afrikaans runs long). Round 1 used
+ * Atkinson Hyperlegible Next, whose only zero is slashed: "R100" read as "R1ØØ" on every amount,
+ * so it was replaced after the screenshot critique (docs/work-packages/WP-50-directions.md).
+ * The wght-only files: 36.7 KB latin, 31.0 KB latin-ext. Italic is synthesised.
+ */
+@font-face {
+  font-family: 'Commissioner Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('@fontsource-variable/commissioner/files/commissioner-latin-ext-wght-normal.woff2')
+    format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Commissioner Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('@fontsource-variable/commissioner/files/commissioner-latin-wght-normal.woff2')
+    format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/*
+ * Metric-matched fallback for Commissioner, measured from the latin woff2 with fontTools the same
+ * way as the existing fallbacks (frequency-weighted lowercase width 0.4392 em against Arial's
+ * 0.4411, ascent 2034 and descent 412 per 2000 em). Re-measure with @capsizecss/unpack in Phase 2
+ * if B is chosen.
+ */
+@font-face {
+  font-family: 'Commissioner fallback';
+  src: local('Arial'), local('ArialMT'), local('Roboto'), local('Helvetica');
+  size-adjust: 99.8%;
+  ascent-override: 101.9%;
+  descent-override: 20.6%;
+  line-gap-override: 0%;
+}
+
+/* ---------- Direction A: "Stoep, re-set" (careful evolution) ---------- */
+
+/*
+ * Colours: unchanged from tokens.css except focus. The rooibos accent leaves the chrome and keeps
+ * one job, the "In plain words" voice; the focus ring becomes ink, which is 16:1 on the page and
+ * at least 10:1 on every tint, so tint separation is no longer capped by the ring.
+ */
+html:root:has([data-direction='a']) {
+  --st-focus: var(--st-text);
+  --st-focus-width: 3px;
+  --st-font-display: 'Fraunces Text', 'Fraunces fallback', georgia, serif;
+  --st-dir-rule: var(--st-border);
+  --st-dir-tool-bg: var(--st-surface);
+  --st-dir-tool-edge: var(--st-primary);
+  --st-dir-tool-icon-bg: var(--st-primary-soft);
+  --st-dir-tool-icon: var(--st-on-primary-soft);
+  --st-dir-step-rail: var(--st-border-strong);
+  --st-dir-voice: var(--st-accent);
+}
+
+@media screen {
+  html:root[data-theme='dark']:has([data-direction='a']) {
+    --st-focus: var(--st-text);
+  }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  html:root:not([data-theme='light']):has([data-direction='a']) {
+    --st-focus: var(--st-text);
+  }
+}
+
+/* ---------- Direction B: "Shweshwe and ink" (clearer departure) ---------- */
+
+/*
+ * Shweshwe is an indigo-dyed cotton printed with small white discharge dots. B takes its base
+ * from the cloth: a white page, indigo ink for text and actions, a pale indigo wash for raised
+ * areas, and ochre as the one warm colour, used only for "In plain words" and the cost marker.
+ * The six section hues stay; their tints are re-mixed against the white page.
+ */
+html:root:has([data-direction='b']) {
+  --st-bg: #fff;
+  --st-surface: #fff;
+  --st-surface-2: #eff2f8;
+  --st-text: #1b2a4a;
+  --st-text-muted: #4a5672;
+  --st-border: #d6dce8;
+  --st-border-strong: #69748e;
+  --st-primary: #233f86;
+  --st-primary-hover: #1a2f66;
+  --st-on-primary: #fff;
+  --st-primary-soft: #e6ebf7;
+  --st-on-primary-soft: #1a2f66;
+  --st-accent: #d99a1e;
+  --st-accent-text: #7f5200;
+  --st-on-accent: #1b2a4a;
+  --st-accent-soft: #fcf1d6;
+  --st-on-accent-soft: #6a4400;
+  --st-link-visited: #5b3a8e;
+  --st-success-bg: #e3f0e8;
+  --st-success-text: #174730;
+  --st-warning-bg: #fde8dc;
+  --st-warning-text: #8a3209;
+  --st-danger-bg: #fce6e4;
+  --st-danger-text: #8f2323;
+  --st-info-bg: #e2f1f0;
+  --st-info-text: #155a5a;
+  --st-danger-solid: #8f2323;
+  --st-on-danger-solid: #fff;
+  --st-mark-bg: #ffe39a;
+  --st-hue-start: #8a5a00;
+  --st-hue-core: #1e5a3c;
+  --st-hue-branding: #9c2e63;
+  --st-hue-paperwork: #1f6b6b;
+  --st-hue-types: #a3401a;
+  --st-hue-lookup: #5b3a8e;
+  --st-shadow-ink: #1b2a4a;
+  --st-focus: var(--st-text);
+  --st-focus-width: 3px;
+  --st-font-display:
+    'Commissioner Variable', 'Commissioner fallback', system-ui, 'Segoe UI', roboto, arial,
+    sans-serif;
+  --st-font-body: var(--st-font-display);
+  --st-dir-rule: var(--st-border);
+  --st-dir-cloth: #233f86;
+  --st-dir-cloth-dot: #c9d4f2;
+  --st-dir-on-cloth: #fff;
+  --st-dir-tool-bg: var(--st-surface-2);
+  --st-dir-tool-edge: var(--st-primary);
+  --st-dir-tool-icon-bg: var(--st-primary);
+  --st-dir-tool-icon: var(--st-on-primary);
+  --st-dir-step-rail: var(--st-border-strong);
+  --st-dir-voice: var(--st-accent);
+}
+
+@media screen {
+  html:root[data-theme='dark']:has([data-direction='b']) {
+    --st-bg: #10141f;
+    --st-surface: #171d2c;
+    --st-surface-2: #1f2638;
+    --st-text: #e8ecf5;
+    --st-text-muted: #a9b3c8;
+    --st-border: #2f3850;
+    --st-border-strong: #7d89a6;
+    --st-primary: #9fb3ef;
+    --st-primary-hover: #c4d0f7;
+    --st-on-primary: #0e1630;
+    --st-primary-soft: #1e2a4c;
+    --st-on-primary-soft: #c4d0f7;
+    --st-accent: #e9b547;
+    --st-accent-text: #e9b547;
+    --st-on-accent: #1b1505;
+    --st-accent-soft: #352a0f;
+    --st-on-accent-soft: #f5d88e;
+    --st-link-visited: #c6b2f0;
+    --st-success-bg: #1b3a29;
+    --st-success-text: #a9e0be;
+    --st-warning-bg: #3d2210;
+    --st-warning-text: #f7b48a;
+    --st-danger-bg: #3e1a18;
+    --st-danger-text: #f4a5a0;
+    --st-info-bg: #0f3333;
+    --st-info-text: #8fd3d0;
+    --st-danger-solid: #e0736b;
+    --st-on-danger-solid: #1f0806;
+    --st-mark-bg: #5a4a12;
+    --st-hue-start: #e6b85a;
+    --st-hue-core: #7cc79a;
+    --st-hue-branding: #e48bb4;
+    --st-hue-paperwork: #79c9c4;
+    --st-hue-types: #ee9a72;
+    --st-hue-lookup: #c6b2f0;
+    --st-shadow-ink: #000;
+    --st-focus: var(--st-text);
+    --st-dir-cloth: #1e2a4c;
+    --st-dir-cloth-dot: #3c4f86;
+    --st-dir-on-cloth: #e8ecf5;
+  }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  html:root:not([data-theme='light']):has([data-direction='b']) {
+    --st-bg: #10141f;
+    --st-surface: #171d2c;
+    --st-surface-2: #1f2638;
+    --st-text: #e8ecf5;
+    --st-text-muted: #a9b3c8;
+    --st-border: #2f3850;
+    --st-border-strong: #7d89a6;
+    --st-primary: #9fb3ef;
+    --st-primary-hover: #c4d0f7;
+    --st-on-primary: #0e1630;
+    --st-primary-soft: #1e2a4c;
+    --st-on-primary-soft: #c4d0f7;
+    --st-accent: #e9b547;
+    --st-accent-text: #e9b547;
+    --st-on-accent: #1b1505;
+    --st-accent-soft: #352a0f;
+    --st-on-accent-soft: #f5d88e;
+    --st-link-visited: #c6b2f0;
+    --st-success-bg: #1b3a29;
+    --st-success-text: #a9e0be;
+    --st-warning-bg: #3d2210;
+    --st-warning-text: #f7b48a;
+    --st-danger-bg: #3e1a18;
+    --st-danger-text: #f4a5a0;
+    --st-info-bg: #0f3333;
+    --st-info-text: #8fd3d0;
+    --st-danger-solid: #e0736b;
+    --st-on-danger-solid: #1f0806;
+    --st-mark-bg: #5a4a12;
+    --st-hue-start: #e6b85a;
+    --st-hue-core: #7cc79a;
+    --st-hue-branding: #e48bb4;
+    --st-hue-paperwork: #79c9c4;
+    --st-hue-types: #ee9a72;
+    --st-hue-lookup: #c6b2f0;
+    --st-shadow-ink: #000;
+    --st-focus: var(--st-text);
+    --st-dir-cloth: #1e2a4c;
+    --st-dir-cloth-dot: #3c4f86;
+    --st-dir-on-cloth: #e8ecf5;
+  }
+}
+
+/* Low data keeps winning over the directions' fonts. */
+@media (prefers-reduced-data: reduce) {
+  html:root:has([data-direction]) {
+    --st-font-display: var(--st-font-display-fallback);
+    --st-font-body: var(--st-font-body-fallback);
+    --st-pattern-display: none;
+  }
+}
+
+html:root[data-low-data]:has([data-direction]) {
+  --st-font-display: var(--st-font-display-fallback);
+  --st-font-body: var(--st-font-body-fallback);
+  --st-pattern-display: none;
+}
+
+/*
+ * D3, "gentler, not zero": under reduced motion both directions keep short opacity changes and
+ * drop every movement. The mocks have one transition (a disclosure's content fading in), and it
+ * is opacity only, so it is the same in both modes.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html:root:has([data-direction]) {
+    --st-duration-fast: 120ms;
+    --st-lift: 0px;
+  }
+
+  /*
+   * base.css zeroes every transition with `!important` under reduced motion. Phase 2 narrows that
+   * block to movement; here the two opacity fades opt back in, which is what D3 "gentler" means.
+   */
+  .st-dir-menu[open] .st-dir-menu__panel,
+  .st-dir-pagetools details[open] > :not(summary) {
+    transition-duration: var(--st-duration-fast) !important;
+  }
+}
+
+/* ---------- Shared mock layout ---------- */
+
+[data-direction] {
+  display: contents;
+}
+
+.st-dir-page {
+  padding-block: var(--st-space-4) var(--st-space-8);
+}
+
+/* Type roles. A: Fraunces only for h1 and h2; everything a reader acts on is sans. */
+[data-direction='a'] :is(h1, h2) {
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+[data-direction='a'] :is(h3, h4),
+[data-direction='a'] .st-dir-sans {
+  font-family: var(--st-font-body);
+  font-weight: var(--st-weight-semibold);
+  letter-spacing: 0;
+}
+
+/* B: one family. Weight and size carry the hierarchy. */
+[data-direction='b'] :is(h1, h2, h3, h4) {
+  font-family: var(--st-font-display);
+  letter-spacing: 0;
+}
+
+/* Commissioner is already tight at heavy weights; negative tracking made it cramped. */
+[data-direction='b'] h1 {
+  font-weight: 800;
+  letter-spacing: -0.005em;
+}
+
+[data-direction='b'] :is(h2, h3) {
+  font-weight: 700;
+}
+
+[data-direction='b'] h2 {
+  font-size: clamp(1.625rem, 1.4583rem + 0.8333vw, 2.125rem);
+}
+
+/* Links in navigation chrome stay underlined, but quietly (rule 7: links stay underlined). */
+.st-dir-quiet a,
+a.st-dir-quiet {
+  color: var(--st-text);
+  text-decoration-color: var(--st-border-strong);
+  text-decoration-thickness: 1px;
+}
+
+.st-dir-quiet a:hover,
+a.st-dir-quiet:hover {
+  text-decoration-color: currentcolor;
+}
+
+/* ---------- Header: one row at every width ---------- */
+
+.st-dir-top {
+  position: relative;
+  z-index: var(--st-z-sticky);
+  border-block-end: var(--st-border-width) solid var(--st-dir-rule);
+  background-color: var(--st-surface);
+}
+
+[data-direction='b'] .st-dir-top {
+  border-block-end: 0;
+}
+
+/* B: the header's lower edge is a selvedge, a 6px strip of the shweshwe dots. */
+[data-direction='b'] .st-dir-top::after {
+  content: '';
+  display: var(--st-pattern-display);
+  block-size: 6px;
+  background-color: var(--st-dir-cloth);
+  background-image: radial-gradient(
+    circle at 3px 3px,
+    var(--st-dir-cloth-dot) 1.2px,
+    transparent 1.6px
+  );
+  background-size: 9px 6px;
+}
+
+.st-dir-top__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--st-space-2);
+  min-block-size: var(--st-topbar);
+}
+
+.st-dir-top__home {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--st-target);
+  margin-inline-end: auto;
+  color: var(--st-text);
+  text-decoration: none;
+}
+
+[data-direction] .st-dir-top__home .st-logo__text {
+  max-inline-size: 11ch;
+  font-family: var(--st-font-body);
+  font-size: var(--st-text-sm);
+  font-weight: var(--st-weight-bold);
+  line-height: 1.15;
+}
+
+[data-direction='a'] .st-dir-top__home .st-logo__text {
+  font-family: var(--st-font-display);
+  font-size: var(--st-text-sm);
+  font-weight: 600;
+}
+
+@media (width >= 480px) {
+  [data-direction] .st-dir-top__home .st-logo__text {
+    max-inline-size: none;
+  }
+}
+
+.st-dir-top__nav {
+  display: none;
+}
+
+.st-dir-top__action,
+.st-dir-menu > summary,
+.st-dir-drop > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--st-space-2);
+  min-block-size: var(--st-target);
+  min-inline-size: var(--st-target);
+  padding-inline: var(--st-space-3);
+  border-radius: var(--st-radius-md);
+  color: var(--st-text);
+  font-weight: var(--st-weight-semibold);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.st-dir-top__action:hover,
+.st-dir-menu > summary:hover,
+.st-dir-drop > summary:hover {
+  background-color: var(--st-surface-2);
+}
+
+.st-dir-menu > summary,
+.st-dir-drop > summary {
+  list-style: none;
+}
+
+.st-dir-menu > summary::-webkit-details-marker,
+.st-dir-drop > summary::-webkit-details-marker {
+  display: none;
+}
+
+.st-dir-menu[open] > summary,
+.st-dir-drop[open] > summary {
+  background-color: var(--st-surface-2);
+}
+
+/* Desktop: "Read" and "Tools" drop-downs, the same two words the live header uses. */
+.st-dir-drop {
+  position: relative;
+}
+
+.st-dir-drop > summary::after {
+  content: '';
+  inline-size: 0.45em;
+  block-size: 0.45em;
+  margin-block-start: -0.2em;
+  border-block-end: 2px solid currentcolor;
+  border-inline-end: 2px solid currentcolor;
+  transform: rotate(45deg);
+}
+
+.st-dir-drop__panel {
+  position: absolute;
+  inset-block-start: calc(100% + var(--st-space-1));
+  inset-inline-start: 0;
+  display: grid;
+  min-inline-size: 18rem;
+  padding: var(--st-space-3) var(--st-space-4);
+  border: var(--st-border-width) solid var(--st-border);
+  border-radius: var(--st-radius-md);
+  background-color: var(--st-surface);
+  box-shadow: var(--st-shadow-2);
+  list-style: none;
+}
+
+.st-dir-drop__panel a {
+  display: block;
+  min-block-size: var(--st-target);
+  padding-block: max(0px, calc((var(--st-target) - 1lh) / 2));
+}
+
+.st-dir-menu__panel {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 100%;
+  display: grid;
+  gap: var(--st-space-5);
+  max-block-size: calc(100dvh - var(--st-topbar));
+  padding: var(--st-space-5) var(--st-gutter) var(--st-space-6);
+  overflow-y: auto;
+  border-block: var(--st-border-width) solid var(--st-dir-rule);
+  background-color: var(--st-surface);
+  box-shadow: var(--st-shadow-2);
+}
+
+.st-dir-menu[open] .st-dir-menu__panel {
+  transition: opacity var(--st-duration-fast) ease-out;
+}
+
+@starting-style {
+  .st-dir-menu[open] .st-dir-menu__panel {
+    opacity: 0;
+  }
+}
+
+.st-dir-menu__group h2 {
+  margin-block-end: var(--st-space-2);
+  color: var(--st-text-muted);
+  font-family: var(--st-font-body);
+  font-size: var(--st-text-sm);
+  font-weight: var(--st-weight-semibold);
+  letter-spacing: 0;
+}
+
+.st-dir-menu__group ul {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding: 0;
+  list-style: none;
+}
+
+.st-dir-menu__group a {
+  display: block;
+  min-block-size: var(--st-target);
+  padding-block: max(0px, calc((var(--st-target) - 1lh) / 2));
+  overflow-wrap: anywhere;
+}
+
+@media (width >= 1024px) {
+  .st-dir-top__nav {
+    display: flex;
+    gap: var(--st-space-1);
+    margin-inline-end: auto;
+  }
+
+  .st-dir-top__home {
+    margin-inline-end: var(--st-space-6);
+  }
+
+  .st-dir-top__search {
+    min-inline-size: 16rem;
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-pill);
+    color: var(--st-text-muted);
+    font-weight: var(--st-weight-regular);
+  }
+
+  .st-dir-top__lang {
+    display: flex;
+    gap: var(--st-space-3);
+    padding: 0;
+    list-style: none;
+    font-size: var(--st-text-sm);
+  }
+
+  .st-dir-top__lang a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--st-target);
+  }
+
+  .st-dir-top__lang [aria-current] {
+    font-weight: var(--st-weight-bold);
+  }
+
+  .st-dir-menu {
+    display: none;
+  }
+}
+
+@media (width < 1024px) {
+  .st-dir-top__lang {
+    display: none;
+  }
+}
+
+/* ---------- Footer and mock note ---------- */
+
+.st-dir-foot {
+  margin-block-start: auto;
+  padding-block: var(--st-space-6);
+  border-block-start: var(--st-border-width) solid var(--st-dir-rule);
+  background-color: var(--st-surface-2);
+  font-size: var(--st-text-sm);
+}
+
+.st-dir-foot__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--st-space-5);
+  padding: 0;
+  list-style: none;
+}
+
+.st-dir-mock-note {
+  margin-block-start: var(--st-space-5);
+  padding: var(--st-space-4);
+  border: 2px dashed var(--st-border-strong);
+  border-radius: var(--st-radius-md);
+  background-color: var(--st-surface);
+}
+
+/* ---------- The card set (shared shapes, direction-specific finish) ---------- */
+
+/* 1. Page row: something to read. No box, no shadow; a hue rule and a title link. */
+.st-dir-rows {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding: 0;
+  list-style: none;
+  border-block-start: var(--st-border-width) solid var(--st-dir-rule);
+}
+
+.st-dir-row {
+  display: grid;
+  gap: var(--st-space-1);
+  padding-block: var(--st-space-4);
+  padding-inline-start: var(--st-space-4);
+  border-block-end: var(--st-border-width) solid var(--st-dir-rule);
+  border-inline-start: var(--st-stripe-width) solid var(--st-section, var(--st-primary));
+}
+
+.st-dir-row__title {
+  font-size: var(--st-text-lg);
+  line-height: var(--st-leading-snug);
+}
+
+[data-direction='a'] .st-dir-row__title {
+  font-family: var(--st-font-display);
+  font-weight: 600;
+}
+
+[data-direction='b'] .st-dir-row {
+  border-inline-start: 0;
+  padding-inline-start: 0;
+  grid-template-columns: 0.75rem minmax(0, 1fr);
+  column-gap: var(--st-space-3);
+}
+
+[data-direction='b'] .st-dir-row::before {
+  content: '';
+  grid-row: 1 / span 3;
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  margin-block-start: 0.45em;
+  background-color: var(--st-section, var(--st-primary));
+}
+
+[data-direction='b'] .st-dir-row > * {
+  grid-column: 2;
+}
+
+.st-dir-row__body {
+  color: var(--st-text-muted);
+}
+
+/* 2. Tool: something to use. A framed object with an icon tile and a button-shaped action. */
+.st-dir-tool {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--st-space-2) var(--st-space-4);
+  align-items: start;
+  padding: var(--st-space-5);
+  border: 2px solid var(--st-dir-tool-edge);
+  border-radius: var(--st-radius-lg);
+  background-color: var(--st-dir-tool-bg);
+}
+
+[data-direction='b'] .st-dir-tool {
+  border-width: var(--st-border-width);
+  border-color: var(--st-border-strong);
+  border-radius: var(--st-radius-md);
+  box-shadow: inset 0 4px 0 var(--st-dir-tool-edge);
+}
+
+.st-dir-tool__icon {
+  display: grid;
+  place-items: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border-radius: var(--st-radius-md);
+  background-color: var(--st-dir-tool-icon-bg);
+  color: var(--st-dir-tool-icon);
+}
+
+.st-dir-tool__main {
+  display: grid;
+  gap: var(--st-space-2);
+  min-inline-size: 0;
+}
+
+.st-dir-tool__title {
+  font-family: var(--st-font-body);
+  font-size: var(--st-text-lg);
+  font-weight: var(--st-weight-bold);
+  line-height: var(--st-leading-snug);
+}
+
+.st-dir-tool__action {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--st-target);
+  padding: var(--st-space-2) var(--st-space-4);
+  border: 2px solid var(--st-primary);
+  border-radius: var(--st-radius-md);
+  color: var(--st-primary);
+  font-weight: var(--st-weight-semibold);
+  overflow-wrap: anywhere;
+}
+
+.st-dir-tool__action:hover {
+  background-color: var(--st-primary-soft);
+}
+
+/* 3. Steps: a real sequence on a rail. The rail and numbers echo the logo's three steps. */
+.st-dir-steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--st-space-2);
+  padding: 0;
+  list-style: none;
+  counter-reset: st-dir-step;
+}
+
+.st-dir-steps > li {
+  counter-increment: st-dir-step;
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: var(--st-space-3);
+  align-items: baseline;
+}
+
+.st-dir-steps > li::before {
+  content: counter(st-dir-step);
+  display: grid;
+  place-items: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  border: 2px solid var(--st-primary);
+  border-radius: var(--st-radius-pill);
+  color: var(--st-primary);
+  font-weight: var(--st-weight-bold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+/* 4. Fact: a figure with its date and its official source. */
+.st-dir-facts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--st-space-4);
+  padding: 0;
+  list-style: none;
+}
+
+.st-dir-fact {
+  display: grid;
+  gap: var(--st-space-1);
+  align-content: start;
+  padding-block: var(--st-space-4);
+  border-block-start: 3px solid var(--st-primary);
+}
+
+.st-dir-fact__label {
+  font-family: var(--st-font-body);
+  font-size: var(--st-text-md);
+  font-weight: var(--st-weight-semibold);
+}
+
+.st-dir-fact__value {
+  font-family: var(--st-font-display);
+  font-size: var(--st-text-2xl);
+  font-weight: 600;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+/* B: the cost marker. An ochre bar under the amount, never behind it, so contrast is untouched. */
+[data-direction='b'] .st-dir-fact__value {
+  justify-self: start;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: var(--st-dir-voice);
+  text-decoration-thickness: 0.18em;
+  text-underline-offset: 0.12em;
+  text-decoration-skip-ink: none;
+}
+
+[data-direction='b'] .st-dir-fact {
+  padding: var(--st-space-4);
+  border: var(--st-border-width) solid var(--st-border);
+  border-radius: var(--st-radius-sm);
+}
+
+@media (width >= 768px) {
+  .st-dir-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* 5. Kind of business: illustration on the section tint, name, effort. */
+.st-dir-types {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--st-space-3);
+  padding: 0;
+  list-style: none;
+}
+
+.st-dir-type {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: var(--st-space-1) var(--st-space-4);
+  align-items: center;
+  padding: var(--st-space-3);
+  border: var(--st-border-width) solid var(--st-dir-rule);
+  border-radius: var(--st-radius-md);
+  background-color: var(--st-surface);
+}
+
+.st-dir-type__art {
+  grid-row: 1 / span 2;
+  inline-size: 4.5rem;
+}
+
+.st-dir-type__name {
+  font-family: var(--st-font-body);
+  font-size: var(--st-text-md);
+  font-weight: var(--st-weight-bold);
+  line-height: var(--st-leading-snug);
+}
+
+.st-dir-type__name a {
+  color: var(--st-text);
+}
+
+[data-direction='b'] .st-dir-type {
+  border: 0;
+  border-inline-start: 6px solid var(--st-section);
+  border-radius: 0 var(--st-radius-md) var(--st-radius-md) 0;
+  background-color: var(--st-section-tint);
+}
+
+@media (width >= 768px) {
+  .st-dir-types {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 1024px) {
+  .st-dir-types {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Home ---------- */
+
+.st-dir-home {
+  display: grid;
+  gap: var(--st-space-7);
+}
+
+.st-dir-home section {
+  display: grid;
+  gap: var(--st-space-4);
+}
+
+.st-dir-hero {
+  display: grid;
+  gap: var(--st-space-5);
+  padding-block: var(--st-space-4) 0;
+}
+
+.st-dir-hero__text {
+  display: grid;
+  gap: var(--st-space-4);
+  max-inline-size: var(--st-measure);
+}
+
+.st-dir-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--st-space-3);
+}
+
+.st-dir-ai-line {
+  display: flex;
+  gap: var(--st-space-2);
+  align-items: flex-start;
+  color: var(--st-text-muted);
+  font-size: var(--st-text-sm);
+}
+
+.st-dir-ai-line .st-icon {
+  flex: none;
+  margin-block-start: 0.2em;
+}
+
+/* A, home option 1: the stoep. Find my path's three questions as three steps under a roof. */
+.st-dir-stoep {
+  display: grid;
+  gap: var(--st-space-3);
+  max-inline-size: 34rem;
+}
+
+.st-dir-stoep__steps {
+  display: grid;
+  gap: 4px;
+  padding: 0;
+  list-style: none;
+  counter-reset: st-dir-step;
+}
+
+.st-dir-stoep__steps li {
+  counter-increment: st-dir-step;
+  display: flex;
+  gap: var(--st-space-3);
+  align-items: center;
+  min-block-size: 2.75rem;
+  padding: var(--st-space-2) var(--st-space-4);
+  border-radius: var(--st-radius-sm);
+  background-color: var(--st-primary-soft);
+  color: var(--st-on-primary-soft);
+  font-weight: var(--st-weight-semibold);
+}
+
+.st-dir-stoep__steps li::before {
+  content: counter(st-dir-step);
+  font-family: var(--st-font-display);
+  font-size: var(--st-text-xl);
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Each step is wider than the one above it, like the logo. */
+.st-dir-stoep__steps li:nth-child(1) {
+  margin-inline: 14%;
+}
+
+.st-dir-stoep__steps li:nth-child(2) {
+  margin-inline: 7%;
+}
+
+.st-dir-stoep__roof {
+  display: block;
+  inline-size: 100%;
+  block-size: 1.75rem;
+  margin-block-end: calc(var(--st-space-3) * -1 + 6px);
+  color: var(--st-primary);
+}
+
+/* B, home option 1: the hero is a piece of shweshwe cloth. */
+[data-direction='b'] .st-dir-hero {
+  position: relative;
+  padding: var(--st-space-6) var(--st-gutter);
+  margin-inline: calc(var(--st-gutter) * -1);
+  overflow: hidden;
+  background-color: var(--st-dir-cloth);
+  color: var(--st-dir-on-cloth);
+}
+
+[data-direction='b'] .st-dir-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  display: var(--st-pattern-display);
+  block-size: 3.5rem;
+  background-image:
+    radial-gradient(circle at 50% 50%, var(--st-dir-cloth-dot) 1.6px, transparent 2px),
+    radial-gradient(circle at 50% 50%, var(--st-dir-cloth-dot) 1.6px, transparent 2px);
+  background-position:
+    0 0,
+    7px 7px;
+  background-size: 14px 14px;
+  mask-image: linear-gradient(to bottom, #000, transparent);
+  pointer-events: none;
+}
+
+[data-direction='b'] .st-dir-hero > * {
+  position: relative;
+}
+
+[data-direction='b'] .st-dir-hero h1 {
+  padding-block-start: var(--st-space-5);
+  color: var(--st-dir-on-cloth);
+  font-size: clamp(2.25rem, 1.75rem + 2.5vw, 4rem);
+  line-height: 1.02;
+}
+
+[data-direction='b'] .st-dir-hero .st-lead,
+[data-direction='b'] .st-dir-hero .st-dir-ai-line {
+  color: var(--st-dir-on-cloth);
+}
+
+[data-direction='b'] .st-dir-hero a:not(.st-btn) {
+  color: var(--st-dir-on-cloth);
+}
+
+[data-direction='b'] .st-dir-hero :focus-visible {
+  outline-color: var(--st-dir-on-cloth);
+}
+
+/* On the cloth, the primary action is a white button with indigo text. */
+[data-direction='b'] .st-dir-hero .st-btn[data-variant='primary'] {
+  --st-btn-bg: var(--st-dir-on-cloth);
+  --st-btn-fg: var(--st-dir-cloth);
+  --st-btn-border: var(--st-dir-on-cloth);
+  --st-btn-bg-hover: var(--st-primary-soft);
+  --st-btn-fg-hover: var(--st-on-primary-soft);
+  --st-btn-border-hover: var(--st-dir-on-cloth);
+}
+
+[data-direction='b'] .st-dir-hero .st-btn[data-variant='secondary'] {
+  --st-btn-bg: var(--st-dir-cloth);
+  --st-btn-fg: var(--st-dir-on-cloth);
+  --st-btn-border: var(--st-dir-on-cloth);
+  --st-btn-bg-hover: var(--st-dir-cloth);
+  --st-btn-fg-hover: var(--st-dir-on-cloth);
+  --st-btn-border-hover: var(--st-dir-on-cloth);
+}
+
+/* Where the cloth hero follows the header, the selvedge would repeat it: the hero is the cloth. */
+:root:has(.st-dir-hero) [data-direction='b'] .st-dir-top::after {
+  display: none;
+}
+
+/* On a phone the cloth starts right under the header. */
+[data-direction='b'] .st-dir-home {
+  margin-block-start: calc(var(--st-space-4) * -1);
+}
+
+@media (width >= 768px) {
+  [data-direction='b'] .st-dir-hero {
+    padding: var(--st-space-8) var(--st-gutter) var(--st-space-7);
+  }
+}
+
+@media (width >= 1024px) {
+  [data-direction='a'] .st-dir-hero {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    align-items: end;
+    column-gap: var(--st-space-8);
+  }
+}
+
+.st-dir-trust {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--st-space-3);
+  padding: 0;
+  list-style: none;
+}
+
+.st-dir-trust li {
+  display: flex;
+  gap: var(--st-space-2);
+  align-items: flex-start;
+}
+
+@media (width >= 768px) {
+  .st-dir-trust {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .st-dir-where {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: var(--st-space-6);
+    align-items: start;
+  }
+}
+
+/* ---------- Document ---------- */
+
+.st-dir-doc {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--st-space-6);
+}
+
+.st-dir-doc__main {
+  display: grid;
+  gap: var(--st-space-3);
+  min-inline-size: 0;
+}
+
+.st-dir-doc__article {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-5);
+  min-inline-size: 0;
+}
+
+.st-dir-crumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--st-space-2);
+  padding: 0;
+  list-style: none;
+  font-size: var(--st-text-sm);
+}
+
+.st-dir-crumb li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--st-space-2);
+}
+
+.st-dir-crumb li + li::before {
+  content: '/';
+  color: var(--st-text-muted);
+}
+
+.st-dir-crumb a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--st-target);
+}
+
+.st-dir-crumb__dot {
+  display: inline-block;
+  inline-size: 0.6em;
+  block-size: 0.6em;
+  margin-inline-end: var(--st-space-1);
+  border-radius: var(--st-radius-pill);
+  background-color: var(--st-section);
+}
+
+.st-dir-doc__header {
+  display: grid;
+  gap: var(--st-space-3);
+  max-inline-size: var(--st-measure);
+}
+
+.st-dir-doc__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--st-space-2) var(--st-space-5);
+  align-items: center;
+}
+
+/* The AI notice, compact: same words, same order, same link; less padding and smaller type. */
+[data-direction] .st-dir-doc .st-ai-notice,
+[data-direction] .st-dir-doc .st-dir-doc__header > .st-callout {
+  gap: var(--st-space-1);
+  padding: var(--st-space-3) var(--st-space-4);
+  font-size: var(--st-text-sm);
+  line-height: 1.5;
+}
+
+[data-direction] .st-dir-doc .st-dir-doc__header .st-callout__body {
+  --st-flow-gap: var(--st-space-1);
+
+  font-size: var(--st-text-sm);
+}
+
+[data-direction] .st-dir-doc .st-ai-notice__status {
+  display: block;
+}
+
+[data-direction] .st-dir-doc .st-ai-notice__status .st-badge {
+  display: inline-flex;
+  margin-inline-end: var(--st-space-2);
+  vertical-align: baseline;
+}
+
+[data-direction] .st-dir-doc .st-ai-notice .st-link-block {
+  min-block-size: var(--st-target);
+}
+
+/*
+ * B: the page facts slip. The top of a document is laid out like a well-made form: labelled
+ * boxes for effort and reading time, and the AI notice as the slip's own lower half.
+ */
+.st-dir-slip {
+  display: grid;
+  border: var(--st-border-width) solid var(--st-border-strong);
+  border-radius: var(--st-radius-sm);
+  background-color: var(--st-surface);
+}
+
+.st-dir-slip__fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  margin: 0;
+}
+
+.st-dir-slip__field {
+  display: grid;
+  gap: var(--st-space-1);
+  padding: var(--st-space-2) var(--st-space-4);
+  border-block-end: var(--st-border-width) solid var(--st-border);
+  border-inline-end: var(--st-border-width) solid var(--st-border);
+}
+
+.st-dir-slip__field dt {
+  color: var(--st-text-muted);
+  font-size: var(--st-text-xs);
+  font-weight: var(--st-weight-semibold);
+}
+
+.st-dir-slip__field dd {
+  margin: 0;
+  font-weight: var(--st-weight-bold);
+}
+
+[data-direction] .st-dir-slip .st-effort__label {
+  display: none;
+}
+
+[data-direction] .st-dir-slip .st-ai-notice,
+[data-direction] .st-dir-slip .st-callout {
+  max-inline-size: none;
+  border: 0;
+  border-radius: 0;
+}
+
+[data-direction] .st-dir-slip .st-callout + .st-callout {
+  border-block-start: var(--st-border-width) solid var(--st-border);
+}
+
+/* Page tools: "On this page" and "Words used" as two closed disclosures with a visible marker. */
+.st-dir-pagetools {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-inline-size: var(--st-measure);
+  border-block: var(--st-border-width) solid var(--st-dir-rule);
+}
+
+.st-dir-pagetools > * + * {
+  border-block-start: var(--st-border-width) solid var(--st-dir-rule);
+}
+
+[data-direction] .st-dir-pagetools details > summary,
+[data-direction] .st-dir-pagetools .st-toc__summary {
+  display: flex;
+  gap: var(--st-space-2);
+  align-items: center;
+  min-block-size: var(--st-target);
+  list-style: none;
+  font-weight: var(--st-weight-semibold);
+  cursor: pointer;
+}
+
+.st-dir-pagetools summary::-webkit-details-marker {
+  display: none;
+}
+
+.st-dir-pagetools summary::before {
+  content: '';
+  flex: none;
+  inline-size: 0.55em;
+  block-size: 0.55em;
+  margin-inline: 0.2em 0.35em;
+  border-block-end: 2px solid currentcolor;
+  border-inline-end: 2px solid currentcolor;
+  transform: rotate(-45deg);
+}
+
+[data-direction] .st-dir-pagetools details[open] > summary::before {
+  transform: rotate(45deg);
+}
+
+[data-direction] .st-dir-pagetools details[open] > :not(summary) {
+  padding-block-end: var(--st-space-4);
+  transition: opacity var(--st-duration-fast) ease-out;
+}
+
+@starting-style {
+  [data-direction] .st-dir-pagetools details[open] > :not(summary) {
+    opacity: 0;
+  }
+}
+
+/* The contents column at 1280px: quiet, smaller, h2 only, no wall of underlines. */
+.st-dir-doc__aside {
+  display: none;
+}
+
+[data-direction] .st-dir-doc__aside .st-toc__list li[data-depth='3'] {
+  display: none;
+}
+
+[data-direction] .st-dir-doc__aside .st-toc__list a {
+  color: var(--st-text-muted);
+  font-size: var(--st-text-sm);
+  text-decoration-color: transparent;
+}
+
+[data-direction] .st-dir-doc__aside .st-toc__list a:hover {
+  color: var(--st-text);
+  text-decoration-color: currentcolor;
+}
+
+[data-direction] .st-dir-doc__aside .st-toc__list a:focus-visible {
+  text-decoration-color: currentcolor;
+}
+
+@media (width >= 1280px) {
+  .st-dir-doc {
+    grid-template-columns: minmax(0, var(--st-measure)) 15rem;
+    justify-content: center;
+    column-gap: var(--st-space-8);
+  }
+
+  [data-direction='b'] .st-dir-doc {
+    grid-template-columns: 15rem minmax(0, var(--st-measure));
+  }
+
+  .st-dir-doc__aside {
+    position: sticky;
+    inset-block-start: var(--st-space-4);
+    align-self: start;
+    display: block;
+    max-block-size: calc(100dvh - var(--st-space-6));
+    overflow-y: auto;
+    padding-inline-start: var(--st-space-4);
+    border-inline-start: var(--st-border-width) solid var(--st-dir-rule);
+  }
+
+  [data-direction='b'] .st-dir-doc__aside {
+    order: -1;
+    padding-inline: 0 var(--st-space-4);
+    border-inline: 0 var(--st-border-width) solid var(--st-dir-rule);
+  }
+
+  .st-dir-pagetools .st-toc-host {
+    display: none;
+  }
+}
+
+/* "In plain words" stays the warm voice of the page; in B it is the ochre aside. */
+[data-direction='b'] .st-callout[data-variant='plain-words'] {
+  --st-callout-edge: var(--st-dir-voice);
+}
+
+/* Sources: denser on a phone, so the list is not 8,000px of padding. */
+[data-direction] .st-dir-doc .st-sources .st-stack {
+  --st-stack-gap: var(--st-space-3);
+}
+
+[data-direction] .st-dir-doc .st-source {
+  padding-block-end: var(--st-space-3);
+  border-block-end: var(--st-border-width) solid var(--st-dir-rule);
+  font-size: var(--st-text-sm);
+}
+
+@media (forced-colors: active) {
+  .st-dir-tool,
+  .st-dir-slip,
+  .st-dir-fact,
+  .st-dir-type {
+    border: 1px solid CanvasText;
+  }
+
+  .st-dir-stoep__steps li,
+  .st-dir-steps > li::before {
+    border: 1px solid CanvasText;
+  }
+}
+
+@media print {
+  .st-dir-top,
+  .st-dir-foot,
+  .st-dir-doc__aside {
+    display: none;
+  }
+}

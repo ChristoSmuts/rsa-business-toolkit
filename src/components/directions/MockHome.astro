@@ -1,0 +1,263 @@
+---
+/**
+ * WP-50 Phase 1 mock: the home page in one direction (TEMPORARY). Same content and the same
+ * strings as `src/pages/[...locale]/index.astro`; what changes is the card set:
+ * - Find my path and the checklist are tools (a framed object with an action);
+ * - "If you have 5 minutes" and "If you have an hour" are pages to read (rows);
+ * - the four early things are a list, the 2026 numbers are facts, the kinds of business are tiles.
+ * Direction A's memorable element is the stoep (Find my path's three questions as three steps
+ * under the logo's roof); B's is the hero printed on shweshwe cloth.
+ */
+import { getCollection } from 'astro:content';
+import Button from '../ui/Button.astro';
+import EffortMeter from '../ui/EffortMeter.astro';
+import Icon from '../ui/Icon.astro';
+import BeautyCare from '../illustrations/BeautyCare.astro';
+import FoodBusiness from '../illustrations/FoodBusiness.astro';
+import General from '../illustrations/General.astro';
+import ProfessionalCreative from '../illustrations/ProfessionalCreative.astro';
+import RetailOnline from '../illustrations/RetailOnline.astro';
+import ServicesTrades from '../illustrations/ServicesTrades.astro';
+import VehicleDealer from '../illustrations/VehicleDealer.astro';
+import { formatDate, useTranslations, type TranslationKey } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import { loadManifest, loadSources } from '../../lib/content/collections';
+import { docHref, sectionHref } from '../../lib/content/manifest';
+import { HOME_FOUR_THINGS, HOME_NUMBERS_YEAR, resolveHomeNumbers } from '../../lib/home';
+import { docContentLang, effortLevel, latestCheck } from '../../lib/pages';
+import { href } from '../../lib/paths';
+import { APP_ROUTES, NAV_DOC_IDS } from '../../lib/routes';
+import { MOCK_COPY, type Direction } from './mock';
+
+interface Props {
+  direction: Direction;
+  locale: Locale;
+}
+
+const { direction, locale } = Astro.props;
+const t = useTranslations(locale);
+const copy = MOCK_COPY[locale];
+const manifest = await loadManifest();
+const sources = await loadSources(docContentLang(manifest, NAV_DOC_IDS.sources, locale));
+if (!sources) throw new Error('The sources register is missing. Run `pnpm content:build`.');
+const registerCheckedOn = formatDate(locale, sources.checkedOn);
+const allDocs = (await getCollection('docs', (entry) => entry.data.lang === 'en')).map(
+  (entry) => entry.data,
+);
+const checkedOn = formatDate(locale, latestCheck(allDocs) ?? sources.checkedOn);
+const numbers = resolveHomeNumbers(sources);
+const howMadeHref = docHref(manifest, NAV_DOC_IDS.howThisWasMade, locale);
+const coreStartHref = docHref(manifest, 'core/start-here', locale);
+const coreHref = sectionHref(manifest, 'core', locale);
+const checklistHref = docHref(manifest, NAV_DOC_IDS.checklist, locale);
+const typesHref = sectionHref(manifest, 'business-types', locale);
+const wizardHref = href(locale, APP_ROUTES.wizard);
+
+const ILLUSTRATIONS = {
+  'vehicle-dealer': VehicleDealer,
+  food: FoodBusiness,
+  beauty: BeautyCare,
+  'retail-online': RetailOnline,
+  'services-trades': ServicesTrades,
+  'professional-creative': ProfessionalCreative,
+} as const;
+const effortLabels = [
+  t('businessTypes.effort.lowest'),
+  t('businessTypes.effort.low-medium'),
+  t('businessTypes.effort.medium'),
+  t('businessTypes.effort.medium-high'),
+  t('businessTypes.effort.high'),
+] as const;
+const types = (await getCollection('businessTypes'))
+  .map((entry) => entry.data)
+  .sort((a, b) => a.order - b.order)
+  .map((type) => ({
+    id: type.id,
+    level: effortLevel(type.effort),
+    name: t(`businessTypes.${type.id}.name` as TranslationKey),
+    href: docHref(manifest, type.doc, locale),
+    Illustration: ILLUSTRATIONS[type.id],
+  }));
+const wizardSteps = [t('wizard.steps.entity'), t('wizard.steps.types'), t('wizard.steps.stage')];
+---
+
+<div class="st-container st-dir-home">
+  <section class="st-dir-hero" aria-labelledby="home-title">
+    <div class="st-dir-hero__text">
+      <h1 id="home-title">{t('home.heroTitle')}</h1>
+      <p class="st-lead">{t('home.heroLead')}</p>
+      <p class="st-dir-hero__actions">
+        <Button href={wizardHref} variant="primary" size="lg">
+          {t('home.findMyPath')}
+        </Button>
+        <Button href={href(locale, APP_ROUTES.search)} variant="secondary" size="lg">
+          {t('home.knowWhatINeed')}
+        </Button>
+      </p>
+      <p class="st-dir-ai-line">
+        <Icon name="lucide:bot" size="1.15em" />
+        <span>
+          {t('home.heroVerify', { date: checkedOn })}{' '}
+          {howMadeHref && <a href={howMadeHref}>{t('home.trust.howThisWasMade')}</a>}
+        </span>
+      </p>
+    </div>
+    {direction === 'a' && (
+      <figure class="st-dir-stoep" aria-labelledby="st-dir-stoep-caption">
+        <svg
+          class="st-dir-stoep__roof"
+          viewBox="0 0 200 24"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path
+            d="M4 22 100 3l96 19"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            vector-effect="non-scaling-stroke"
+          />
+        </svg>
+        <ol class="st-dir-stoep__steps" role="list">
+          {wizardSteps.map((step) => (
+            <li>{step}</li>
+          ))}
+        </ol>
+        <figcaption id="st-dir-stoep-caption" class="st-hint">
+          {copy.stoepCaption}
+        </figcaption>
+      </figure>
+    )}
+  </section>
+
+  <section aria-labelledby="home-where">
+    <h2 id="home-where">{t('home.whereToStart.heading')}</h2>
+    <div class="st-dir-where">
+      <ul class="st-dir-rows" role="list">
+        <li class="st-dir-row" data-section="core">
+          <h3 class="st-dir-row__title">
+            <a href={coreStartHref}>{t('home.whereToStart.fiveMinutes.title', { minutes: 5 })}</a>
+          </h3>
+          <p class="st-dir-row__body">{t('home.whereToStart.fiveMinutes.body')}</p>
+        </li>
+        <li class="st-dir-row" data-section="core">
+          <h3 class="st-dir-row__title">
+            <a href={coreHref}>{t('home.whereToStart.anHour.title')}</a>
+          </h3>
+          <p class="st-dir-row__body">{t('home.whereToStart.anHour.body')}</p>
+        </li>
+      </ul>
+      <div class="st-dir-tool">
+        <span class="st-dir-tool__icon">
+          <Icon name="lucide:list-checks" size="1.5em" />
+        </span>
+        <div class="st-dir-tool__main">
+          <h3 class="st-dir-tool__title">{t('home.whereToStart.checklist.title')}</h3>
+          <p>{t('home.whereToStart.checklist.body')}</p>
+          <a class="st-dir-tool__action" href={checklistHref}>
+            {t('home.whereToStart.checklist.action')}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="home-types">
+    <h2 id="home-types">{t('home.businessTypes.heading')}</h2>
+    <p>{t('home.businessTypes.lead')}</p>
+    <ul class="st-dir-types" role="list" data-section="types">
+      {types.map(({ Illustration, ...type }) => (
+        <li class="st-dir-type">
+          <Illustration class="st-dir-type__art" />
+          <h3 class="st-dir-type__name">
+            <a href={type.href}>{type.name}</a>
+          </h3>
+          <EffortMeter
+            level={type.level}
+            label={t('businessTypes.effortLabel')}
+            levelLabels={effortLabels}
+            scaleText={t('businessTypes.effortScale', { level: type.level, total: 5 })}
+          />
+        </li>
+      ))}
+      {typesHref && (
+        <li class="st-dir-type">
+          <General class="st-dir-type__art" />
+          <h3 class="st-dir-type__name">
+            <a href={typesHref}>{t('businessTypes.general.name')}</a>
+          </h3>
+          <p class="st-hint">{t('home.businessTypes.allTypes')}</p>
+        </li>
+      )}
+    </ul>
+  </section>
+
+  <section aria-labelledby="home-four">
+    <h2 id="home-four">{t('home.fourThings.heading')}</h2>
+    <ul class="st-dir-rows" role="list">
+      {HOME_FOUR_THINGS.map((item) => (
+        <li class="st-dir-row" data-section="core">
+          <a class="st-link-block" href={docHref(manifest, item.doc, locale, item.anchor)}>
+            {t(item.labelKey)}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section aria-labelledby="home-numbers">
+    <h2 id="home-numbers">{t('home.threeNumbers.heading', { year: HOME_NUMBERS_YEAR })}</h2>
+    <p>{t('home.threeNumbers.lead')}</p>
+    <ul class="st-dir-facts" role="list">
+      {numbers.map((item) => (
+        <li class="st-dir-fact" data-number={item.id}>
+          <h3 class="st-dir-fact__label">{t(item.labelKey)}</h3>
+          <p class="st-dir-fact__value st-num">{item.amount}</p>
+          {item.oldAmount && (
+            <p class="st-hint">{t('home.threeNumbers.notOld', { amount: item.oldAmount })}</p>
+          )}
+          {item.from && (
+            <p class="st-hint">
+              {t('home.threeNumbers.from', { date: formatDate(locale, item.from) })}
+            </p>
+          )}
+          <p class="st-hint">{t('trust.fact.checked', { date: registerCheckedOn })}</p>
+          <p>
+            <a class="st-link-block" href={item.sourceUrl} rel="noopener noreferrer">
+              {t('home.threeNumbers.officialSource')}
+              <Icon name="lucide:external-link" size="0.9em" />
+              <span class="st-visually-hidden">
+                {t('home.threeNumbers.officialSourceFor', { name: t(item.labelKey) })}
+              </span>
+            </a>
+          </p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section aria-labelledby="home-trust">
+    <h2 id="home-trust">{t('home.trust.label')}</h2>
+    <ul class="st-dir-trust" role="list">
+      <li>
+        <Icon name="lucide:bot" size="1.25em" />
+        {t('home.trust.checked', { date: checkedOn })}
+      </li>
+      <li>
+        <Icon name="lucide:book-open-check" size="1.25em" />
+        {t('home.trust.sources')}
+      </li>
+      <li>
+        <Icon name="lucide:hand-coins" size="1.25em" />
+        {t('home.trust.free')}
+      </li>
+      <li>
+        <Icon name="lucide:smartphone" size="1.25em" />
+        {t('home.trust.private')}
+      </li>
+    </ul>
+  </section>
+</div>

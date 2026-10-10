@@ -46,6 +46,8 @@ Deliverable: the audit file, the baseline screenshots, and a one-page summary of
 
 ### Phase 1: direction (owner decision gate)
 
+Done: two directions, their mocks and the owner's questions are in `WP-50-directions.md`.
+
 Follow `frontend-design`'s two passes inside the `stoep-design` brief. Produce at most two directions. Each one has:
 
 - a palette as named token values, with every pair's contrast measured;
