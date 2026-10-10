@@ -120,6 +120,24 @@ for (const [label, script] of [
         ]);
         document.documentElement.removeAttribute('data-st-script-failed');
       });
+
+      it('also names a module that throws as it runs, and nothing for an error with no file', () => {
+        document.documentElement.removeAttribute('data-st-script-failed');
+        run();
+        // A module that loads but throws while it runs reaches the window as an ErrorEvent with
+        // its address, not as an error on its <script> (WP-50a review pass 6, m2).
+        window.dispatchEvent(new ErrorEvent('error', { message: 'x' }));
+        expect(document.documentElement.hasAttribute('data-st-script-failed')).toBe(false);
+        window.dispatchEvent(
+          new ErrorEvent('error', {
+            message: 'boom',
+            filename:
+              'http://localhost/business-toolkit/_astro/Wizard.astro_astro_type_script_index_0_lang.D1.js',
+          }),
+        );
+        expect(document.documentElement.getAttribute('data-st-script-failed')).toBe('Wizard');
+        document.documentElement.removeAttribute('data-st-script-failed');
+      });
     });
 
     /**

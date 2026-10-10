@@ -43,14 +43,17 @@
     });
     words.observe(root, { childList: true, subtree: true });
   }
-  // Scripts that fail to load, by name ("YourPathCard", "my-path"): the home card and My path stop
-  // keeping space for what they cannot draw (YourPathCard.astro, my-path.astro).
+  // Scripts that fail to load, or throw as they run, by name ("YourPathCard", "my-path", "Wizard"):
+  // the home card and My path stop keeping space for what they cannot draw, and the wizard shows its
+  // no-JavaScript form. Every rule that reads this waits for its element's data-ready, so a later
+  // error in an element that is already drawn changes nothing.
   window.addEventListener(
     'error',
     function (event) {
       var script = event.target;
-      if (!(script instanceof HTMLScriptElement)) return;
-      var name = (script.src.split('/').pop() || '').split('.')[0] || '';
+      var src = script instanceof HTMLScriptElement ? script.src : event.filename || '';
+      var name = (src.split('/').pop() || '').split('.')[0] || '';
+      if (!name) return;
       var failed = (root.getAttribute('data-st-script-failed') || '').split(' ');
       if (failed.indexOf(name) < 0) failed.push(name);
       root.setAttribute('data-st-script-failed', failed.join(' ').trim());
