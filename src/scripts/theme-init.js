@@ -1,6 +1,7 @@
 // @ts-check
 /* global document, window, Element, HTMLScriptElement, MutationObserver */
-// Blocking theme init, copied verbatim (unminified) via `?url`: keep it tiny, ES2019, no imports.
+// Blocking theme init, copied via `?url` and minified in the build (scripts/minify-theme-init.ts):
+// keep it tiny, ES2019, no imports.
 // The documented exception to "only the store reads storage"; docs/design-system.md, "Scripts, CSP
 // and JavaScript budget", says what it reads and sets and why.
 (function () {
