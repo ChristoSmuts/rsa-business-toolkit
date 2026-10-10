@@ -81,6 +81,24 @@ describe('<st-wizard>', () => {
     choose(input('entity', 'sole-prop'));
     expect(next.hasAttribute('aria-disabled')).toBe(false);
     expect(hint.hidden).toBe(true);
+    // A hidden line it points at is still read out, so an answered step's Next has no description
+    // (WP-50a review pass 3, m2).
+    expect(next.hasAttribute('aria-describedby')).toBe(false);
+  });
+
+  it('describes "See my path" by the line that shows: the earlier question, then nothing', () => {
+    setUp();
+    choose(input('type', 'general'));
+    choose(input('stage', 'not-started'));
+    const finish = button('stage', '[data-finish]');
+    const earlier = step('stage').querySelector<HTMLElement>('[data-earlier-hint]')!;
+    // Question 1 has no answer: the button is described by the line that says so, which shows.
+    expect(earlier.hidden).toBe(false);
+    expect(earlier.id).not.toBe('');
+    expect(finish.getAttribute('aria-describedby')).toBe(earlier.id);
+    choose(input('entity', 'sole-prop'));
+    expect(earlier.hidden).toBe(true);
+    expect(finish.hasAttribute('aria-describedby')).toBe(false);
   });
 
   it('moves focus to the next step’s heading on Next and back on Back', () => {
@@ -194,9 +212,11 @@ describe('<st-wizard>', () => {
     // Without JavaScript: the one-type hint, never the hidden "Choose all that fit" (minor 3).
     expect(described(template.content)).toContain('wz-nojs-type');
     expect(described(template.content)).not.toContain('wz-help-type');
-    expect(template.content.querySelector('#wz-nojs-type')?.classList.contains('no-js-only')).toBe(
-      true,
-    );
+    // The two lines share one slot, swapped by visibility, so nothing moves when the script arrives
+    // (review pass 3, M1).
+    const slot = template.content.querySelector('#wz-nojs-type')?.parentElement;
+    expect(slot?.classList.contains('st-wizard__swap')).toBe(true);
+    expect(slot?.querySelector('#wz-help-type')).not.toBeNull();
     setUp();
     expect(described(document)).toContain('wz-help-type');
     expect(described(document)).not.toContain('wz-nojs-type');

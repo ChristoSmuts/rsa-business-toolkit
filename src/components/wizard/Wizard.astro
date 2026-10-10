@@ -94,7 +94,9 @@ const results = singleChoices().map((choice) => ({
     {stepTitles.map((title, index) => (
       <li data-stepper={index}>
         <span class="st-wizard__stepper-n">{t('wizard.stepOf', { n: index + 1, total })}</span>
-        <span>{title}</span>
+        <span class="st-wizard__stepper-title" data-text={title}>
+          <span>{title}</span>
+        </span>
       </li>
     ))}
   </ol>
@@ -174,14 +176,22 @@ const results = singleChoices().map((choice) => ({
         data-describedby-js="wz-help-type wz-general-type"
       >
         <legend>{t('wizard.types.question')}</legend>
-        <p class="st-hint js-only" id="wz-help-type">
-          {t('wizard.types.help')}
-        </p>
+        {/*
+          One slot for the line that changes when the script arrives: "Choose all that fit" with
+          it, "without JavaScript you can choose one" before it. Both sit in the same grid cell and
+          swap by visibility, so the slot keeps the taller one's height and nothing under it moves
+          (they swapped places, a layout shift of 0.47 at 320px; WP-50a review pass 3, M1).
+        */}
+        <div class="st-wizard__swap">
+          <p class="st-hint" id="wz-help-type" data-swap="js">
+            {t('wizard.types.help')}
+          </p>
+          <p class="st-hint" id="wz-nojs-type" data-swap="no-js">
+            {t('wizard.noJsOneType')}
+          </p>
+        </div>
         <p class="st-hint" id="wz-general-type">
           {t('wizard.types.generalHelp')}
-        </p>
-        <p class="st-hint no-js-only" id="wz-nojs-type">
-          {t('wizard.noJsOneType')}
         </p>
         <div class="st-wizard__choices">
           {types.map((type) => (
@@ -222,7 +232,7 @@ const results = singleChoices().map((choice) => ({
         <p class="st-hint" id="wz-next-hint-type" data-next-hint>
           {t('wizard.types.required')}
         </p>
-        <p class="st-hint" data-earlier-hint hidden>
+        <p class="st-hint" id="wz-earlier-hint-type" data-earlier-hint hidden>
           {t('wizard.earlierMissing')}
         </p>
       </div>
@@ -279,7 +289,7 @@ const results = singleChoices().map((choice) => ({
         <p class="st-hint" id="wz-next-hint-stage" data-next-hint>
           {t('wizard.nextDisabled')}
         </p>
-        <p class="st-hint" data-earlier-hint hidden>
+        <p class="st-hint" id="wz-earlier-hint-stage" data-earlier-hint hidden>
           {t('wizard.earlierMissing')}
         </p>
       </div>
@@ -390,6 +400,45 @@ const results = singleChoices().map((choice) => ({
 
   .st-wizard__stepper-n {
     font-weight: var(--st-weight-semibold);
+  }
+
+  /*
+   * The title keeps the room its semibold form takes, so marking the current step does not make a
+   * row wrap onto another line: at 320px in Afrikaans the stepper grew 22px when the script set
+   * the step, and the page scrolled (WP-50a review pass 3, m1). The hidden copy has empty
+   * alternative text, so it is not read.
+   */
+  .st-wizard__stepper-title {
+    display: grid;
+  }
+
+  .st-wizard__stepper-title > span,
+  .st-wizard__stepper-title::after {
+    grid-area: 1 / 1;
+  }
+
+  .st-wizard__stepper-title::after {
+    content: attr(data-text);
+    content: attr(data-text) / '';
+    font-weight: var(--st-weight-semibold);
+    visibility: hidden;
+  }
+
+  /*
+   * The two help lines of question 2 share one cell. Before the script is ready (and without it)
+   * the no-JavaScript line shows; after, the other one.
+   */
+  .st-wizard__swap {
+    display: grid;
+  }
+
+  .st-wizard__swap > * {
+    grid-area: 1 / 1;
+  }
+
+  .st-wizard[data-ready] .st-wizard__swap > [data-swap='no-js'],
+  .st-wizard:not([data-ready]) .st-wizard__swap > [data-swap='js'] {
+    visibility: hidden;
   }
 
   .st-wizard__step[hidden] {

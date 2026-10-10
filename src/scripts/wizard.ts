@@ -96,6 +96,23 @@ export class StWizard extends HTMLElement {
     this.#form = this.querySelector('form');
     this.#steps = [...this.querySelectorAll<HTMLElement>('[data-step]')];
     if (!this.#form || this.#steps.length === 0) return;
+    // Until now the page was the no-JavaScript form, all three questions (WP-50a). A reader who has
+    // scrolled to a later question stays on it, where it is: the steps above it fold away, and the
+    // page scrolls by what they took, so nothing on screen moves. If a question above it has no
+    // answer, the line under its buttons says so, and Next or "See my path" goes there (#advance).
+    // Starting on the unanswered question instead swapped the question under the reader's finger, a
+    // layout shift of up to 0.78 (WP-50a review pass 2, M1). Measured before anything changes:
+    // when a kind of business has focus (the reader ticked it, then scrolled on), making it a
+    // checkbox scrolls it into view, so a reader at question 3 was found at question 2 (review
+    // pass 3, M1). The scroll below puts the step back where it was.
+    const view = this.ownerDocument.defaultView;
+    let start = 0;
+    if (view && view.scrollY > 0) {
+      this.#steps.forEach((step, index) => {
+        if (step.getBoundingClientRect().top < view.innerHeight / 2) start = index;
+      });
+    }
+    const before = this.#steps[start]?.getBoundingClientRect().top ?? 0;
     for (const input of this.#inputs(QUERY.type)) input.type = 'checkbox';
     // With checkboxes the question is "choose all that fit", not the no-JavaScript "choose one".
     for (const group of this.querySelectorAll<HTMLElement>('[data-describedby-js]'))
@@ -105,24 +122,11 @@ export class StWizard extends HTMLElement {
     this.#form.addEventListener('click', this.#onClick);
     this.#form.addEventListener('submit', this.#onSubmit);
     this.#form.addEventListener('keydown', this.#onKeydown);
-    // Until now the page was the no-JavaScript form, all three questions (WP-50a). A reader who has
-    // scrolled to a later question stays on it, where it is: the steps above it fold away, and the
-    // page scrolls by what they took, so nothing on screen moves. If a question above it has no
-    // answer, the line under its buttons says so, and Next or "See my path" goes there (#advance).
-    // Starting on the unanswered question instead swapped the question under the reader's finger, a
-    // layout shift of up to 0.78 (WP-50a review pass 2, M1).
-    const view = this.ownerDocument.defaultView;
-    let start = 0;
-    if (view && view.scrollY > 0) {
-      this.#steps.forEach((step, index) => {
-        if (step.getBoundingClientRect().top < view.innerHeight / 2) start = index;
-      });
-    }
-    const before = this.#steps[start]?.getBoundingClientRect().top ?? 0;
     this.dataset['ready'] = '';
     this.#show(start);
     const after = this.#steps[start]?.getBoundingClientRect().top ?? 0;
-    if (after !== before) view?.scrollBy(0, after - before);
+    // A reader at the top of the page is never scrolled (review pass 3, m1).
+    if (start > 0 && after !== before) view?.scrollBy(0, after - before);
   }
 
   disconnectedCallback(): void {
@@ -249,6 +253,17 @@ export class StWizard extends HTMLElement {
         hint.hidden = valid || earlier;
       for (const hint of step.querySelectorAll<HTMLElement>('[data-earlier-hint]'))
         hint.hidden = !earlier;
+      // The button is described by the line under it that shows, and by nothing when none does: a
+      // hidden line it pointed at was still read out ("Choose an answer first." on an answered
+      // question; WP-50a review pass 3, m2).
+      const shown = [...step.querySelectorAll<HTMLElement>('[data-next-hint], [data-earlier-hint]')]
+        .filter((hint) => !hint.hidden && hint.id)
+        .map((hint) => hint.id)
+        .join(' ');
+      for (const button of step.querySelectorAll<HTMLElement>('[data-next], [data-finish]')) {
+        if (shown) button.setAttribute('aria-describedby', shown);
+        else button.removeAttribute('aria-describedby');
+      }
     });
   }
 }

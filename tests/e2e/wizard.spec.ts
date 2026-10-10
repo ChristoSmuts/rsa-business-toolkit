@@ -939,6 +939,87 @@ test.describe('Find my path before its script runs', () => {
     await expect(page.locator('[data-stepper="1"]')).toHaveAttribute('aria-current', 'step');
   });
 
+  // Review pass 3, M1: on a phone, a reader at question 2 saw a layout shift of 0.47 to 0.51 when the
+  // script arrived, because its two help lines swapped places; the test above ran only at the
+  // projects' own sizes. Here every question, in both languages, at the projects' sizes and at
+  // 320×568 and 360×740. The questions before the reader's are answered. Only the shifts after the
+  // page and its fonts have settled count: the top bar's own change of rows when the web font
+  // arrives is item 6's.
+  const steps = ['entity', 'type', 'stage'] as const;
+  for (const size of [null, { width: 320, height: 568 }, { width: 360, height: 740 }] as const) {
+    for (const lang of ['en', 'af'] as const) {
+      for (const [index, name] of steps.entries()) {
+        const label = size ? `${size.width}×${size.height}` : 'the project size';
+        test(`${lang}, ${label}, a reader at question ${index + 1}: nothing moves when the script arrives`, async ({
+          page,
+          baseURL,
+        }) => {
+          if (size) await page.setViewportSize(size);
+          const release = await holdModules(page, baseURL);
+          await page.goto(`${lang === 'en' ? '' : 'af/'}find-my-path/`, { waitUntil: 'commit' });
+          if (index > 0) await page.locator('input[name="entity"]').first().check();
+          if (index > 1) await page.locator('input[name="type"][value="general"]').check();
+          const step = page.locator(`[data-step="${name}"]`);
+          const heading = step.locator('[data-step-heading]');
+          const choices = step.locator('.st-wizard__choices');
+          if (index > 0) {
+            await heading.evaluate((element) =>
+              window.scrollTo(0, element.getBoundingClientRect().top + window.scrollY - 80),
+            );
+          }
+          await page.evaluate(() => document.fonts.ready);
+          await page.waitForTimeout(800);
+          const before = {
+            heading: await heading.boundingBox(),
+            choices: await choices.boundingBox(),
+          };
+          await page.evaluate(() => {
+            (window as unknown as { stShifts: number[] }).stShifts.length = 0;
+          });
+          release();
+          await expect(page.locator('st-wizard')).toHaveAttribute('data-ready', '');
+          await expect(page.locator(`[data-stepper="${index}"]`)).toHaveAttribute(
+            'aria-current',
+            'step',
+          );
+          const after = {
+            heading: await heading.boundingBox(),
+            choices: await choices.boundingBox(),
+          };
+          expect(
+            Math.abs((after.heading?.y ?? 0) - (before.heading?.y ?? -99)),
+          ).toBeLessThanOrEqual(1);
+          expect(
+            Math.abs((after.choices?.y ?? 0) - (before.choices?.y ?? -99)),
+          ).toBeLessThanOrEqual(1);
+          expect(await layoutShifts(page)).toBeLessThanOrEqual(0.1);
+        });
+      }
+    }
+  }
+
+  // Review pass 3, m1: at 320px in Afrikaans the stepper grew 22px when the script marked the
+  // current step in semibold, and the page scrolled itself by as much, with nobody touching it.
+  for (const lang of ['en', 'af'] as const) {
+    test(`${lang}, 320×568: the page does not scroll by itself when the script arrives at the top`, async ({
+      page,
+      baseURL,
+    }) => {
+      await page.setViewportSize({ width: 320, height: 568 });
+      const release = await holdModules(page, baseURL);
+      await page.goto(`${lang === 'en' ? '' : 'af/'}find-my-path/`, { waitUntil: 'commit' });
+      const stepper = page.locator('.st-wizard__stepper');
+      await expect(stepper).toBeVisible();
+      await page.evaluate(() => document.fonts.ready);
+      const before = await stepper.boundingBox();
+      release();
+      await expect(page.locator('st-wizard')).toHaveAttribute('data-ready', '');
+      await expect(page.locator('[data-stepper="0"]')).toHaveAttribute('aria-current', 'step');
+      expect(await page.evaluate(() => window.scrollY)).toBe(0);
+      expect((await stepper.boundingBox())?.height).toBeCloseTo(before?.height ?? -1, 0);
+    });
+  }
+
   // Review pass 1, M1, and pass 2, M1: a reader at question 3 with an earlier question unanswered
   // stays on question 3 (starting on the unanswered one moved the page by up to 0.78). The line under
   // the buttons says an earlier question has no answer, and "See my path" goes to it.
