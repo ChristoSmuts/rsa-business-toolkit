@@ -134,11 +134,18 @@ const priceMessages = numberMessages(t, locale, 'money');
       );
     })}
   </ol>
-  <p class="js-only">
-    <Button variant="secondary" iconStart="lucide:plus" data-add-line>
-      {t('templates.addLine')}
-    </Button>
-  </p>
+  {/*
+    One slot (`.st-tslot`, TemplateTool.astro): "Add line" with the script, and before it the
+    no-JavaScript line about the totals, so nothing moves when the script arrives (WP-50a pass 9).
+  */}
+  <div class="st-tslot">
+    <p class="js-only">
+      <Button variant="secondary" iconStart="lucide:plus" data-add-line>
+        {t('templates.addLine')}
+      </Button>
+    </p>
+    <p class="st-hint no-js-only">{t('templates.totalsNoJs')}</p>
+  </div>
   <div class="st-ttotals" aria-live="polite" aria-atomic="true" data-totals>
     <p class="st-visually-hidden">{t('templates.totalsLabel')}</p>
     <dl class="st-ttotals__list">
@@ -158,7 +165,6 @@ const priceMessages = numberMessages(t, locale, 'money');
       {t('templates.totalsBlocked')}
     </p>
   </div>
-  <p class="st-hint no-js-only">{t('templates.totalsNoJs')}</p>
 </div>
 
 <style is:global>

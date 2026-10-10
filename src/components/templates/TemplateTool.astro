@@ -13,8 +13,11 @@
  * Until `<st-template-form>` has run (`data-enhance`, `data-ready`; `src/styles/utilities.css`), a
  * reader with JavaScript gets that same no-JavaScript form: the tabs, preview and buttons do nothing
  * before the script, and on a slow phone they showed about 8 s before it (WP-50 audit, flow 5).
- * The tab strip keeps its room meanwhile (`visibility: hidden`), so the form does not move down
- * when the tabs appear.
+ * Everything the script will show keeps its room meanwhile (`visibility: hidden`): the tab strip,
+ * "Remove line" and "Add line", the required items and the actions. Each no-JavaScript line shares
+ * one slot (`.st-tslot`) with what replaces it, so nothing on the page moves when the script
+ * arrives (WP-50a review pass 9, M1). If the script fails to load (`data-st-script-failed` names
+ * "TemplateTool"), the rooms go and the page is the no-JavaScript form (pass 9, m2).
  *
  * Group ids are the template's heading ids, so a link to `#to` or `#payment-details` (the contents,
  * search, another page) lands on the matching part of the form.
@@ -93,18 +96,21 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
   data-vat-rate={lines?.vatRate}
 >
   <div class="st-stack st-stack-sm">
-    <st-storage-notice class="js-only" data-show="available">
-      <p class="st-hint st-tool__saved">
-        <Icon name="lucide:hard-drive" />
-        {t('templates.savedNotice')}
-      </p>
-    </st-storage-notice>
+    {/* One slot: the no-JavaScript print line before the script, the saved line after. */}
+    <div class="st-tslot">
+      <st-storage-notice class="js-only" data-show="available">
+        <p class="st-hint st-tool__saved">
+          <Icon name="lucide:hard-drive" />
+          {t('templates.savedNotice')}
+        </p>
+      </st-storage-notice>
+      <p class="st-hint no-js-only">{t('templates.noJsPrint')}</p>
+    </div>
     <st-storage-notice hidden>
       <Callout variant="warning" label={t('doc.warning')}>
         <p>{t('storage.templatesUnavailable')}</p>
       </Callout>
     </st-storage-notice>
-    <p class="st-hint no-js-only">{t('templates.noJsPrint')}</p>
   </div>
 
   <div class="st-tool__tabs" role="tablist" aria-label={t('templates.tabsLabel')}>
@@ -332,8 +338,28 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
    * The tabs need the script: none without it, and no visible tabs until it has run, in the room
    * they will take (an invisible element takes no taps or focus).
    */
-  html:not(.js) .st-tool__tabs {
-    display: none;
+  html:not(.js) .st-tool__tabs,
+  html[data-st-script-failed~='TemplateTool'] st-template-form:not([data-ready]) .st-tool__tabs,
+  html[data-st-script-failed~='TemplateTool'] st-template-form:not([data-ready]) .js-only {
+    display: none !important;
+  }
+
+  /*
+   * A no-JavaScript line and what replaces it share one cell. After the script, the line keeps its
+   * room unseen, so the slot is as tall as before and nothing below it moves.
+   */
+  .st-tslot {
+    display: grid;
+  }
+
+  .st-tslot > * {
+    grid-area: 1 / 1;
+  }
+
+  /* Specific enough to win over the `.no-js-only` rule in `utilities.css`, which hides it. */
+  html.js st-template-form[data-ready] .st-tslot > .no-js-only.st-hint {
+    display: block !important;
+    visibility: hidden;
   }
 
   st-template-form:not([data-ready]) .st-tool__tabs {

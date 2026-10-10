@@ -353,6 +353,11 @@ const results = singleChoices().map((choice) => ({
     display: none;
   }
 
+  /* No room kept for the script's controls once it has failed (`utilities.css`; pass 9, M1). */
+  html[data-st-script-failed~='Wizard'] st-wizard:not([data-ready]) .js-only {
+    display: none !important;
+  }
+
   /*
    * The 49 no-JavaScript result buttons: hidden until the generated `:has()` rules above show the
    * one for the checked answers. `Button` scopes its own `display`, so this needs the extra class.

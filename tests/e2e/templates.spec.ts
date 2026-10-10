@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { Page } from '@playwright/test';
-import { expect, test } from './fixtures';
-import { holdModules } from './helpers/network';
+import { allowConsoleError, expect, test } from './fixtures';
+import { holdModules, routeSameOrigin } from './helpers/network';
 import { REPO_ROOT } from './helpers/routes';
 
 /**
@@ -639,4 +639,42 @@ test.describe('a template before its script runs', () => {
     await expect(page.locator('.st-tool__preview')).toBeVisible();
     await expect(sheet(page)).toContainText('Thandi');
   });
+
+  // Review pass 9, m2: when the template's module failed to load, the unseen tab strip left a blank
+  // 46px band, and with pass 9's rooms every script control would have too.
+  test(
+    'if the template script fails to load, no room is left for what it would have shown',
+    {
+      annotation: allowConsoleError(
+        '/net::ERR_FAILED/',
+        "The test blocks the template's module on purpose, and the browser logs the failed request.",
+      ),
+    },
+    async ({ page, baseURL }) => {
+      await routeSameOrigin(
+        page,
+        baseURL,
+        (url) => /\/_astro\/TemplateTool\.astro_astro_type_script[^/]*\.js$/.test(url.pathname),
+        (route) => route.abort(),
+      );
+      // A phone: from 52rem the tabs are not shown anyway.
+      await page.setViewportSize({ width: 360, height: 740 });
+      await page.goto('templates/invoice/');
+      await expect(page.locator('html')).toHaveAttribute(
+        'data-st-script-failed',
+        /\bTemplateTool\b/,
+      );
+      const rooms = await page
+        .locator('st-template-form .st-tool__tabs, st-template-form .js-only')
+        .evaluateAll((elements) =>
+          elements.map((element) => element.getBoundingClientRect().height),
+        );
+      expect(rooms.length).toBeGreaterThan(2);
+      expect(rooms.filter((height) => height > 0)).toEqual([]);
+      await expect(page.getByText('To print, use your browser’s Print command.')).toBeVisible();
+      await expect(
+        page.getByText('Without JavaScript the totals are not worked out.'),
+      ).toBeVisible();
+    },
+  );
 });
