@@ -836,7 +836,7 @@ class `theme-init.js` sets before the first paint), `Wizard.astro`'s CSS shows w
 show: the stepper and question 1 only, with the no-JavaScript parts (questions 2 and 3, the result
 button and its list) hidden. Step 1 is marked current in the HTML. Next keeps its room,
 `visibility: hidden`, so it cannot be tapped before it works, and "Loading the next step…"
-(`wizard.loadingNext`, `aria-hidden`) sits over that room and takes none of its own. "Saved on this
+(`wizard.loadingNext`; plain text, read by screen readers too, pass 7 m2) sits over that room and takes none of its own. "Saved on this
 device only" keeps its room the same way, and so does "Choose an answer first." once the step is
 answered, so a tap moves nothing and the page is as long after the script as before it (pass 6, m1,
 m3, m4). The answers are native inputs that
@@ -846,8 +846,12 @@ title in the stepper keeps the room of its semibold form (pass 3, m1).
 
 With saved answers ("Edit answers") the script fills in the questions from them, except one the
 reader has already answered: the server renders no answer checked, so on an ordinary load a checked
-answer is the reader's and stays. After Back or Forward the browser restores the old ticks, and the
-saved answers win (pass 6, M1).
+answer is the reader's and stays (pass 6, M1). After Back, when the page is not served from the
+back/forward cache, the browser puts the reader's earlier ticks back once the page has loaded, just
+before `pageshow`, with no `change` event; those win. The wizard reads the form again on `pageshow`
+(and the next frame), so what it saves and which buttons work match what shows, and `answers()`
+only ever saves kinds of business that show ticked (pass 7, M1). A page served from the cache comes
+back with its state and needs nothing.
 
 - **Without JavaScript** the page is the GET form: all three questions and the result button for
   the answers (`wizardNoJsCss()` keys on `st-wizard:not([data-ready])`).
