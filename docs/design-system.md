@@ -827,36 +827,39 @@ audit, flows 1 and 5). An element whose controls need its script carries `data-e
 `data-ready` at the end of `connectedCallback` (and removes it on disconnect). Until then
 `utilities.css` treats its subtree as if JavaScript were off: `.js-only` stays hidden and
 `.no-js-only` shows, so the page works as it does without JavaScript. Today that is `<st-wizard>`
-(the GET form, all three questions and the result button for the answers; `wizardNoJsCss()` keys on
-`st-wizard:not([data-ready])`) and `<st-template-form>` (the printable form, no preview or buttons;
-the tabs keep their room with `visibility: hidden`).
+and `<st-template-form>` (the printable form, no preview or buttons; the tabs keep their room with
+`visibility: hidden`). The wizard differs, below: with JavaScript it does not show the no-JavaScript
+form first.
 
-The switch costs no layout shift wherever the reader is, and the page does not scroll by itself.
-When `<st-wizard>` takes over it measures the no-JavaScript form first, then shows only the question
-in view and holds the form's room until the reader acts (`#hold`): the steps above it fold into
-padding of the same height, and the wizard keeps its whole height as `min-block-size`. So the
-question stays put, nothing below it moves (the footer jumped into view near the end of a question,
-0.11 to 0.26; review pass 4, M1), the document does not get shorter, and the browser has no reason
-to scroll (it clamped the scroll at question 1, and its scroll anchoring scrolled the page when the
-steps above folded). The wizard takes its own height when the reader changes an answer, presses Next
-or Back, or scrolls it fully out of view; what the reader touched keeps its place on screen. Before
-the script is ready each step's Next and Back keep their room, unseen, so a step does not grow when
-they appear. Three passes in a row found a shift at a scroll position no test had tried, so
-`wizard-shift.spec.ts` sweeps them all.
+**The wizard is in steps from the first paint** (WP-50a review pass 5). With JavaScript (the `js`
+class `theme-init.js` sets before the first paint), `Wizard.astro`'s CSS shows what the script will
+show: the stepper and question 1 only, with the no-JavaScript parts (questions 2 and 3, the result
+button and its list) hidden. Next keeps its room, `visibility: hidden`, so it cannot be tapped
+before it works, and the answers are native inputs that work meanwhile. When the script arrives it
+makes the kinds of business checkboxes, marks the step, and shows Next; nothing folds, nothing moves
+and nothing scrolls. Each step title in the stepper keeps the room of its semibold form, so marking
+the current step never adds a line (pass 3, m1).
 
-If a question above the one in view has no answer, the wizard still starts on the question in view,
-and the line under its button says an earlier question has no answer (`wizard.earlierMissing`); Next
-and "See my path" then go to the first unanswered question and focus its heading (review pass 2, M1:
-starting on question 1 instead lost the reader's place). A kind of business that still has focus
-scrolls itself into view when it becomes a checkbox, so the wizard measures before that and puts the
-scroll back. Question 2's two help lines ("Choose all that fit" and the no-JavaScript "you can choose
-one") share one grid cell and swap by `visibility`, so the slot keeps the taller one's height
-(swapping places moved the choices, a shift of 0.47 at 320px); once the reader changes an answer
-there, the hidden line leaves the slot, so no blank line stays under the shorter one (pass 4, m1).
-Each step title in the stepper keeps the room of its semibold form, so marking the current step never
-adds a line (pass 3, m1). Next and "See my path" are described only by the line under them that shows
-(pass 3, m2). The template's tabs already have their room; the form does not move when its script
-arrives (`templates.spec.ts`).
+- **Without JavaScript** the page is the GET form: all three questions and the result button for
+  the answers (`wizardNoJsCss()` keys on `st-wizard:not([data-ready])`).
+- **If the wizard's own script fails to load**, `theme-init.js` names it in
+  `data-st-script-failed` ("Wizard"), the stepped rules stop applying, and the page becomes the
+  no-JavaScript form, with no unseen bars left behind. A layout change is acceptable on that path.
+
+Four passes tried to show the whole no-JavaScript form first and fold it when the script arrived:
+the help lines swapped places at question 2 (0.47 at 320px), the footer jumped into view near the
+end of a question (0.11 to 0.26), the browser clamped or anchored the scroll, and holding the form's
+height left two to four screens of empty page. Folding a long form into one step always moves
+something, so the wizard no longer does it. `wizard-shift.spec.ts` checks the result at four sizes
+in both languages: when the script arrives at any scroll position, the gap below question 1's Next
+against `204a2a2`, and the reader's first tap, Next and Back.
+
+If a question before the current one has no answer, the line under its button says so
+(`wizard.earlierMissing`), and Next and "See my path" go to the first unanswered question and focus
+its heading. Since the wizard starts on question 1 and Next refuses an unanswered step, no way to
+get there is known today; it stays as a safety net (review pass 2, M1). Next and "See my path" are
+described only by the line under them that shows (pass 3, m2). The template's tabs already have
+their room; the form does not move when its script arrives (`templates.spec.ts`).
 
 ### Illustrations
 
