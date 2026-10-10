@@ -164,10 +164,11 @@ const results = singleChoices().map((choice) => ({
         <p class="st-hint" id="wz-next-hint-entity" data-next-hint>
           {t('wizard.nextDisabled')}
         </p>
-        {/* In Next's room until the script is ready; not read out, the answers work meanwhile. */}
-        <p class="st-hint st-wizard__waiting" aria-hidden="true">
-          {t('wizard.loadingNext')}
-        </p>
+        {/*
+          In Next's room until the script is ready, for screen readers too: it says why there is no
+          Next yet (WP-50a review pass 7, m2). Plain text, not a live region, so it is read once.
+        */}
+        <p class="st-hint st-wizard__waiting">{t('wizard.loadingNext')}</p>
       </div>
     </section>
 

@@ -52,6 +52,19 @@ export class StWizard extends HTMLElement {
     this.#update();
   };
 
+  /**
+   * After Back, when the page is not served from the back/forward cache, the browser puts the
+   * reader's earlier ticks back after `load`, just before `pageshow`, and fires no `change`: long
+   * after `#restore`. The wizard then held other kinds of business than the screen showed, and
+   * Next could be dead beside a visible answer (WP-50a review pass 7, M1). So it reads the form
+   * again then. A page from the cache comes back whole, with its state, and needs nothing.
+   */
+  readonly #onPageShow = (event: PageTransitionEvent): void => {
+    if (event.persisted) return;
+    this.#sync();
+    requestAnimationFrame(() => this.#sync());
+  };
+
   readonly #onClick = (event: Event): void => {
     const button = event.target instanceof Element ? event.target.closest('button') : null;
     if (!button || button.getAttribute('aria-disabled') === 'true') return;
@@ -110,8 +123,26 @@ export class StWizard extends HTMLElement {
     this.#form.addEventListener('click', this.#onClick);
     this.#form.addEventListener('submit', this.#onSubmit);
     this.#form.addEventListener('keydown', this.#onKeydown);
+    window.addEventListener('pageshow', this.#onPageShow);
     this.dataset['ready'] = '';
     this.#show(0);
+  }
+
+  /** Takes the answers from the form as it is now, and the buttons and hints with them. */
+  #sync(): void {
+    this.#order = this.#currentOrder();
+    this.#show(this.#current);
+  }
+
+  /**
+   * The kinds of business ticked now, in the order they were ticked: the ones the wizard saw ticked
+   * that still are, then any others in page order. A tick the wizard was not told about (above) can
+   * then never save a kind that does not show ticked.
+   */
+  #currentOrder(): TypeChoice[] {
+    const ticked = this.#checked(QUERY.type) as TypeChoice[];
+    const kept = this.#order.filter((type) => ticked.includes(type));
+    return [...kept, ...ticked.filter((type) => !kept.includes(type))];
   }
 
   disconnectedCallback(): void {
@@ -122,6 +153,7 @@ export class StWizard extends HTMLElement {
     this.#form?.removeEventListener('click', this.#onClick);
     this.#form?.removeEventListener('submit', this.#onSubmit);
     this.#form?.removeEventListener('keydown', this.#onKeydown);
+    window.removeEventListener('pageshow', this.#onPageShow);
   }
 
   /** The step shown now (0-based). */
@@ -141,7 +173,7 @@ export class StWizard extends HTMLElement {
   answers(): Profile | null {
     return parseProfile({
       entity: this.#checked(QUERY.entity)[0],
-      businessTypes: this.#order,
+      businessTypes: this.#currentOrder(),
       stage: this.#checked(QUERY.stage)[0],
     });
   }
@@ -177,8 +209,8 @@ export class StWizard extends HTMLElement {
    * Fills in the saved answers ("Edit answers"). The server renders no answer checked, so on an
    * ordinary load a question that already has one was answered by the reader while the script was
    * on its way, and keeps that answer: putting the saved one back undid their tap without a word
-   * (WP-50a review pass 6, M1). After Back or Forward the browser restores the old ticks, and the
-   * saved answers win, as before.
+   * (WP-50a review pass 6, M1). After Back, the browser puts the reader's earlier ticks back once
+   * the page has loaded, over whatever this did, and those win: `#onPageShow` reads them.
    */
   #restore(saved: Profile | null): void {
     const navigation = globalThis.performance?.getEntriesByType?.('navigation')[0] as
@@ -210,7 +242,7 @@ export class StWizard extends HTMLElement {
   #stepValid(index: number): boolean {
     const name = this.#steps[index]?.dataset['step'];
     if (name === QUERY.entity) return this.#checked(QUERY.entity).length === 1;
-    if (name === QUERY.type) return this.#order.length > 0;
+    if (name === QUERY.type) return this.#currentOrder().length > 0;
     if (name === QUERY.stage) {
       const stage = this.#checked(QUERY.stage)[0] as StageChoice | undefined;
       const entity = this.#checked(QUERY.entity)[0] as EntityChoice | undefined;

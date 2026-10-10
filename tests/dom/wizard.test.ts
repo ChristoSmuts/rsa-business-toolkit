@@ -86,6 +86,23 @@ describe('<st-wizard>', () => {
     expect(next.hasAttribute('aria-describedby')).toBe(false);
   });
 
+  it('takes the ticks the browser puts back after Back, with no change event (review pass 7, M1)', () => {
+    const wizard = setUp();
+    const next = button('entity', '[data-next]');
+    expect(next.getAttribute('aria-disabled')).toBe('true');
+    // What the browser does after Back without the back/forward cache: ticks, and no event.
+    input('entity', 'pty').checked = true;
+    input('type', 'food').checked = true;
+    input('type', 'beauty').checked = true;
+    input('stage', 'trading').checked = true;
+    window.dispatchEvent(new Event('pageshow'));
+    expect(next.hasAttribute('aria-disabled')).toBe(false);
+    expect([...(wizard.answers()?.businessTypes ?? [])].sort()).toEqual(['beauty', 'food']);
+    // A kind unticked without an event is never saved either.
+    input('type', 'beauty').checked = false;
+    expect(wizard.answers()?.businessTypes).toEqual(['food']);
+  });
+
   it('sends Next and "See my path" to the first unanswered question (review pass 6, m6)', () => {
     // No reader can reach a later step with an earlier one empty today; this sets that state
     // directly, by clearing question 1 without a change event, to test the safety net.

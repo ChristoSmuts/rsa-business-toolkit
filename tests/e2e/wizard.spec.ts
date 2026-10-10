@@ -887,7 +887,9 @@ test.describe('Find my path before its script runs', () => {
     const waiting = page.locator('.st-wizard__waiting');
     await expect(waiting).toBeVisible();
     await expect(waiting).toHaveText('Loading the next step…');
-    await expect(waiting).toHaveAttribute('aria-hidden', 'true');
+    // In the accessibility tree, so a screen reader hears why there is no Next yet (pass 7, m2).
+    await expect(page.getByText('Loading the next step…')).toBeVisible();
+    await expect(waiting).not.toHaveAttribute('aria-hidden');
     await expect(page.locator('[data-stepper="0"]')).toHaveAttribute('aria-current', 'step');
     // "Saved on this device only" keeps its room, so the footer does not move down (m3).
     const saved = page.locator('.st-wizard__saved');
@@ -939,6 +941,66 @@ test.describe('Find my path before its script runs', () => {
     await page.getByRole('button', { name: 'Next' }).click();
     await expect(page.locator('input[name="stage"][value="trading"]')).toBeChecked();
   });
+
+  // Review pass 7, M1: after Back without the back/forward cache the browser puts the reader's
+  // ticks back after `load`, with no change event. The wizard held other answers than the screen
+  // showed: "See my path" saved a kind of business shown unticked, or Next was dead beside an answer.
+  for (const saved of [true, false]) {
+    test(`after "What is the difference?" and Back, the wizard holds what shows (${saved ? 'with' : 'without'} saved answers)`, async ({
+      page,
+      seedStorage,
+    }) => {
+      // An unload listener keeps the page out of the back/forward cache, so Back loads it again.
+      await page.addInitScript(() => window.addEventListener('unload', () => undefined));
+      if (saved) {
+        await seedStorage({
+          'st.profile.v1': {
+            entity: 'sole-prop',
+            businessTypes: ['services-trades', 'food'],
+            stage: 'trading',
+          },
+        });
+      }
+      const wizard = page.locator('st-wizard');
+      const next = (name: string) => page.locator(`[data-step="${name}"] [data-next]`);
+      await page.goto('find-my-path/');
+      await expect(wizard).toHaveAttribute('data-ready', '');
+      if (!saved) await page.getByRole('radio', { name: /registered company/ }).check();
+      await next('entity').click();
+      if (saved) await page.locator('input[name="type"][value="services-trades"]').uncheck();
+      await page.locator('input[name="type"][value="beauty"]').check();
+      await page.locator('[data-step="type"] [data-back]').click();
+      await page.getByRole('link', { name: 'What is the difference?' }).click();
+      await page.waitForURL((url) => !url.pathname.includes('find-my-path'));
+      await page.goBack();
+      await expect(wizard).toHaveAttribute('data-ready', '');
+      await page.evaluate(
+        () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+      );
+      const entity = saved ? 'sole-prop' : 'pty';
+      await expect(page.locator(`input[name="entity"][value="${entity}"]`)).toBeChecked();
+      await expect(next('entity')).not.toHaveAttribute('aria-disabled', /.*/);
+      await next('entity').click();
+      await expect(page.locator('#wz-h-type')).toBeFocused();
+      const shown = await page
+        .locator('input[name="type"]:checked')
+        .evaluateAll((inputs) => inputs.map((input) => (input as HTMLInputElement).value).sort());
+      expect(shown).toEqual(saved ? ['beauty', 'food'] : ['beauty']);
+      await next('type').click();
+      if (!saved) await page.locator('input[name="stage"][value="not-started"]').check();
+      await page.getByRole('button', { name: 'See my path' }).click();
+      await page.waitForURL(/\/my-path\//);
+      const stored = await page.evaluate(
+        () =>
+          JSON.parse(window.localStorage.getItem('st.profile.v1') ?? 'null') as {
+            entity: string;
+            businessTypes: string[];
+          } | null,
+      );
+      expect(stored?.entity).toBe(entity);
+      expect([...(stored?.businessTypes ?? [])].sort()).toEqual(shown);
+    });
+  }
 
   // Review pass 6, m2: a wizard module that loads but throws as it runs left question 1 with no
   // way on. theme-init names it as failed, so the page is the no-JavaScript form.
