@@ -843,109 +843,103 @@ test.describe('the pre-rendered result pages', () => {
 
 /**
  * WP-50a, item 2: on a slow phone the wizard's Next showed about 8 s before its script ran, and a
- * tap on it was lost (WP-50 audit, flow 1). Until `<st-wizard>` is ready the page is the
- * no-JavaScript form: no Next, all three questions, and the result button for the answers.
+ * tap on it was lost (WP-50 audit, flow 1). With JavaScript the wizard is in steps from the first
+ * paint (review pass 5): question 1 only, and Next keeps its room, unseen and out of reach, until
+ * the script is ready. If the script fails to load, the page is the no-JavaScript form. Without
+ * JavaScript it always is (`nojs.spec.ts`). What moves, and where, is `wizard-shift.spec.ts`.
  */
 test.describe('Find my path before its script runs', () => {
-  const layoutShifts = async (page: Page): Promise<number> =>
-    page.evaluate(() =>
-      (window as unknown as { stShifts: number[] }).stShifts.reduce((sum, value) => sum + value, 0),
-    );
-  test.beforeEach(async ({ page }) => {
-    await page.addInitScript(() => {
-      const shifts: number[] = [];
-      Object.assign(window, { stShifts: shifts });
-      new PerformanceObserver((list) => {
-        for (const entry of list.getEntries()) {
-          shifts.push((entry as PerformanceEntry & { value: number }).value);
-        }
-      }).observe({ type: 'layout-shift', buffered: true });
-    });
-  });
+  const WIZARD_MODULE = /\/_astro\/Wizard\.astro_astro_type_script[^/]*\.js$/;
 
-  test('shows no Next while the module is held, and the no-JavaScript form still gets there', async ({
+  test('shows question 1 only, with no Next to tap, and the answer is kept when the script arrives', async ({
     page,
     baseURL,
   }) => {
     const release = await holdModules(page, baseURL);
     await page.goto('find-my-path/', { waitUntil: 'commit' });
-    await expect(page.getByRole('heading', { name: /Question 1 of 3/ })).toBeVisible();
+    const first = page.getByRole('heading', { name: /Question 1 of 3/ });
+    await expect(first).toBeVisible();
+    await expect(page.locator('.st-wizard__stepper')).toBeVisible();
     await page.waitForTimeout(3000);
     expect(await page.evaluate(() => customElements.get('st-wizard') === undefined)).toBe(true);
-    await expect(page.locator('[data-next]:visible, [data-back]:visible')).toHaveCount(0);
     for (const n of [2, 3]) {
       await expect(
         page.getByRole('heading', { name: new RegExp(`Question ${n} of 3`) }),
-      ).toBeVisible();
+      ).toBeHidden();
     }
-    await page.getByRole('radio', { name: /registered company/ }).check();
-    await page.getByRole('radio', { name: /Vehicle dealer/ }).check();
-    await page.getByRole('radio', { name: /want to grow/ }).check();
-    const submit = page.locator('.st-wizard__result:visible');
-    await expect(submit).toHaveCount(1);
-    await submit.click();
-    await page.waitForURL(/\/find-my-path\/result\/pty\/vehicle-dealer\/pty-growing\/\?/, {
-      waitUntil: 'commit',
-    });
-    release();
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Your path');
-  });
-
-  test('when the script arrives, the steps take over in place, keeping the answer', async ({
-    page,
-    baseURL,
-  }) => {
-    const release = await holdModules(page, baseURL);
-    await page.goto('find-my-path/', { waitUntil: 'commit' });
+    // Review pass 3, m3, and pass 4: a kind of business that had focus scrolled itself into view
+    // when the script made it a checkbox. Before the script no kind of business is on the page, so
+    // none can have focus.
+    await expect(page.locator('input[name="type"]:visible')).toHaveCount(0);
+    await expect(
+      page.locator('.st-wizard__result:visible, .st-wizard__results:visible'),
+    ).toHaveCount(0);
+    // Next is not there to tap, but its room is.
+    const next = page.locator('[data-step="entity"] [data-next]');
+    await expect(next).toBeHidden();
+    const room = await next.boundingBox();
+    expect(room?.height ?? 0).toBeGreaterThan(0);
+    // The answers are native inputs and work meanwhile.
     const company = page.getByRole('radio', { name: /registered company/ });
     await company.check();
-    const heading = page.getByRole('heading', { name: /Question 1 of 3/ });
-    const before = await heading.boundingBox();
-    await page.waitForTimeout(3000);
+    const heading = await first.boundingBox();
     release();
     await expect(page.locator('st-wizard')).toHaveAttribute('data-ready', '');
-    const next = page.getByRole('button', { name: 'Next' });
     await expect(next).toBeVisible();
     await expect(next).not.toHaveAttribute('aria-disabled', /.*/);
     await expect(company).toBeChecked();
-    await expect(page.getByRole('heading', { name: /Question 2 of 3/ })).toBeHidden();
-    expect((await heading.boundingBox())?.y).toBeCloseTo(before?.y ?? -1, 0);
-    expect(await layoutShifts(page)).toBeLessThanOrEqual(0.1);
+    expect((await first.boundingBox())?.y).toBeCloseTo(heading?.y ?? -1, 0);
+    // Within a few pixels: with an answer given, "Choose an answer first." beside Next goes, and the
+    // row it shared with Next centres Next again.
+    expect(Math.abs(((await next.boundingBox())?.y ?? 0) - (room?.y ?? -99))).toBeLessThanOrEqual(
+      3,
+    );
     await next.click();
     await expect(page.getByRole('heading', { name: /Question 2 of 3/ })).toBeFocused();
   });
 
-  test('a reader already at question 2 stays on it, where it is, when the script arrives', async ({
-    page,
-    baseURL,
-  }) => {
-    const release = await holdModules(page, baseURL);
-    await page.goto('find-my-path/', { waitUntil: 'commit' });
-    await page.getByRole('radio', { name: /registered company/ }).check();
-    const second = page.getByRole('heading', { name: /Question 2 of 3/ });
-    await second.evaluate((heading) =>
-      window.scrollTo(0, heading.getBoundingClientRect().top + window.scrollY - 80),
-    );
-    const before = await second.boundingBox();
-    await page.waitForTimeout(3000);
-    release();
-    await expect(page.locator('st-wizard')).toHaveAttribute('data-ready', '');
-    await expect(second).toBeVisible();
-    await expect(page.getByRole('heading', { name: /Question 1 of 3/ })).toBeHidden();
-    expect(Math.abs(((await second.boundingBox())?.y ?? 0) - (before?.y ?? 0))).toBeLessThanOrEqual(
-      1,
-    );
-    expect(await layoutShifts(page)).toBeLessThanOrEqual(0.1);
-    await expect(page.locator('[data-stepper="1"]')).toHaveAttribute('aria-current', 'step');
-  });
-
-  // Where the reader is when the script arrives, at every scroll position, is
-  // `wizard-shift.spec.ts` (review pass 4, M1).
+  test(
+    'if the wizard script fails to load, the page is the no-JavaScript form, and it gets there',
+    {
+      annotation: allowConsoleError(
+        '/net::ERR_FAILED/',
+        "The test blocks the wizard's module on purpose, and the browser logs the failed request.",
+      ),
+    },
+    async ({ page, baseURL }) => {
+      await routeSameOrigin(
+        page,
+        baseURL,
+        (url) => WIZARD_MODULE.test(url.pathname),
+        (route) => route.abort(),
+      );
+      await page.goto('find-my-path/');
+      await expect(page.locator('html')).toHaveAttribute('data-st-script-failed', /\bWizard\b/);
+      await expect(page.locator('.st-wizard__stepper')).toBeHidden();
+      for (const n of [1, 2, 3]) {
+        await expect(
+          page.getByRole('heading', { name: new RegExp(`Question ${n} of 3`) }),
+        ).toBeVisible();
+      }
+      // No unseen bars are left holding room (review pass 5, m2).
+      for (const nav of await page.locator('.st-wizard__nav').all()) {
+        expect((await nav.boundingBox())?.height ?? 0).toBe(0);
+      }
+      await page.getByRole('radio', { name: /registered company/ }).check();
+      await page.getByRole('radio', { name: /Vehicle dealer/ }).check();
+      await page.getByRole('radio', { name: /want to grow/ }).check();
+      const submit = page.locator('.st-wizard__result:visible');
+      await expect(submit).toHaveCount(1);
+      await submit.click();
+      await page.waitForURL(/\/find-my-path\/result\/pty\/vehicle-dealer\/pty-growing\/\?/);
+      await expect(page.getByRole('heading', { level: 1 })).toHaveText('Your path');
+    },
+  );
 
   // Review pass 3, m1: at 320px in Afrikaans the stepper grew 22px when the script marked the
   // current step in semibold, and the page scrolled itself by as much, with nobody touching it.
   for (const lang of ['en', 'af'] as const) {
-    test(`${lang}, 320×568: the page does not scroll by itself when the script arrives at the top`, async ({
+    test(`${lang}, 320×568: the stepper keeps its height and the page stays put when the script arrives`, async ({
       page,
       baseURL,
     }) => {
@@ -961,58 +955,6 @@ test.describe('Find my path before its script runs', () => {
       await expect(page.locator('[data-stepper="0"]')).toHaveAttribute('aria-current', 'step');
       expect(await page.evaluate(() => window.scrollY)).toBe(0);
       expect((await stepper.boundingBox())?.height).toBeCloseTo(before?.height ?? -1, 0);
-    });
-  }
-
-  // Review pass 1, M1, and pass 2, M1: a reader at question 3 with an earlier question unanswered
-  // stays on question 3 (starting on the unanswered one moved the page by up to 0.78). The line under
-  // the buttons says an earlier question has no answer, and "See my path" goes to it.
-  for (const [name, answered, missing] of [
-    ['question 1 empty', [], 1],
-    ['question 1 answered, question 2 empty', [/registered company/], 2],
-  ] as const) {
-    test(`${name}, the reader at question 3: no shift, the hint, and "See my path" goes to question ${missing}`, async ({
-      page,
-      baseURL,
-    }) => {
-      const release = await holdModules(page, baseURL);
-      await page.goto('find-my-path/', { waitUntil: 'commit' });
-      for (const answer of answered) await page.getByRole('radio', { name: answer }).check();
-      const third = page.locator('[data-step="stage"]');
-      await third.evaluate((step) =>
-        window.scrollTo(0, step.getBoundingClientRect().top + window.scrollY - 80),
-      );
-      await page.getByRole('radio', { name: /not started/ }).check();
-      const before = await third.boundingBox();
-      await page.waitForTimeout(3000);
-      release();
-      await expect(page.locator('st-wizard')).toHaveAttribute('data-ready', '');
-      await expect(page.getByRole('heading', { name: /Question 3 of 3/ })).toBeInViewport();
-      expect(
-        Math.abs(((await third.boundingBox())?.y ?? 0) - (before?.y ?? 0)),
-      ).toBeLessThanOrEqual(1);
-      expect(await layoutShifts(page)).toBeLessThanOrEqual(0.1);
-      await expect(third.locator('[data-earlier-hint]')).toBeVisible();
-      await expect(third.locator('[data-earlier-hint]')).toHaveText(
-        'A question before this one has no answer yet. This button takes you to it.',
-      );
-      await page.getByRole('button', { name: 'See my path' }).click();
-      const heading = page.getByRole('heading', { name: new RegExp(`Question ${missing} of 3`) });
-      await expect(heading).toBeFocused();
-      await expect(page.locator(`[data-stepper="${missing - 1}"]`)).toHaveAttribute(
-        'aria-current',
-        'step',
-      );
-      // From there the steps work as usual and "See my path" opens My path.
-      if (missing === 1) {
-        await page.getByRole('radio', { name: /registered company/ }).check();
-        await page.getByRole('button', { name: 'Next' }).click();
-      }
-      await page.getByRole('checkbox', { name: /Vehicle dealer/ }).check();
-      await page.getByRole('button', { name: 'Next' }).click();
-      await expect(third.locator('[data-earlier-hint]')).toBeHidden();
-      await page.getByRole('button', { name: 'See my path' }).click();
-      await page.waitForURL(/\/my-path\//);
     });
   }
 });

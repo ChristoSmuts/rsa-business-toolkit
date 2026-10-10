@@ -176,22 +176,14 @@ const results = singleChoices().map((choice) => ({
         data-describedby-js="wz-help-type wz-general-type"
       >
         <legend>{t('wizard.types.question')}</legend>
-        {/*
-          One slot for the line that changes when the script arrives: "Choose all that fit" with
-          it, "without JavaScript you can choose one" before it. Both sit in the same grid cell and
-          swap by visibility, so the slot keeps the taller one's height and nothing under it moves
-          (they swapped places, a layout shift of 0.47 at 320px; WP-50a review pass 3, M1).
-        */}
-        <div class="st-wizard__swap">
-          <p class="st-hint" id="wz-help-type" data-swap="js">
-            {t('wizard.types.help')}
-          </p>
-          <p class="st-hint" id="wz-nojs-type" data-swap="no-js">
-            {t('wizard.noJsOneType')}
-          </p>
-        </div>
+        <p class="st-hint js-only" id="wz-help-type">
+          {t('wizard.types.help')}
+        </p>
         <p class="st-hint" id="wz-general-type">
           {t('wizard.types.generalHelp')}
+        </p>
+        <p class="st-hint no-js-only" id="wz-nojs-type">
+          {t('wizard.noJsOneType')}
         </p>
         <div class="st-wizard__choices">
           {types.map((type) => (
@@ -346,8 +338,12 @@ const results = singleChoices().map((choice) => ({
 </script>
 
 <style is:global>
-  /* Without JavaScript the three questions are one form, with no steps. */
-  html:not(.js) .st-wizard__stepper {
+  /*
+   * Without JavaScript, or when the wizard's own script failed to load (`data-st-script-failed`,
+   * set by `theme-init.js`), the three questions are one form, with no steps.
+   */
+  html:not(.js) .st-wizard__stepper,
+  html[data-st-script-failed~='Wizard'] .st-wizard__stepper {
     display: none;
   }
 
@@ -360,11 +356,24 @@ const results = singleChoices().map((choice) => ({
   }
 
   /*
-   * Until the script is ready, each step's navigation keeps its room, unseen, so a step does not
-   * grow when its Next and Back appear (WP-50a review pass 4, M1). Without JavaScript it takes no
-   * room. `!important` because the `.js-only` rule it overrides has it.
+   * With JavaScript the wizard is in steps from the first paint (WP-50a review pass 5): question 1
+   * only, as the script shows it, so nothing folds or scrolls when the script arrives. Until then
+   * Next keeps its room, unseen and out of reach, so a tap is never lost on a button that does
+   * nothing yet; the answers are native inputs and work meanwhile. Showing the whole no-JavaScript
+   * form first and folding it away moved something whichever way it was done (passes 2 to 5).
+   * If the wizard's script fails to load, these rules stop applying and the page is the
+   * no-JavaScript form, with its result button. `!important` where a utility rule it overrides has it.
    */
-  html.js st-wizard:not([data-ready]) .st-wizard__nav.js-only {
+  html.js:not([data-st-script-failed~='Wizard'])
+    st-wizard:not([data-ready])
+    .st-wizard__step:not([data-step='entity']),
+  html.js:not([data-st-script-failed~='Wizard']) st-wizard:not([data-ready]) .no-js-only {
+    display: none !important;
+  }
+
+  html.js:not([data-st-script-failed~='Wizard'])
+    st-wizard:not([data-ready])
+    .st-wizard__nav.js-only {
     display: flex !important;
     visibility: hidden;
   }
@@ -379,9 +388,6 @@ const results = singleChoices().map((choice) => ({
   .st-wizard {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-
-    /* While it holds its height (wizard.ts, #hold), the room is left below, not shared out. */
-    align-content: start;
     gap: var(--st-space-5);
     max-inline-size: var(--st-measure);
   }
@@ -434,28 +440,6 @@ const results = singleChoices().map((choice) => ({
     content: attr(data-text);
     content: attr(data-text) / '';
     font-weight: var(--st-weight-semibold);
-    visibility: hidden;
-  }
-
-  /*
-   * The two help lines of question 2 share one cell. Before the script is ready (and without it)
-   * the no-JavaScript line shows; after, the other one.
-   */
-  .st-wizard__swap {
-    display: grid;
-  }
-
-  .st-wizard__swap > * {
-    grid-area: 1 / 1;
-  }
-
-  /* Gone once the reader has changed an answer on question 2 (wizard.ts; review pass 4, m1). */
-  .st-wizard__swap > [hidden] {
-    display: none;
-  }
-
-  .st-wizard[data-ready] .st-wizard__swap > [data-swap='no-js'],
-  .st-wizard:not([data-ready]) .st-wizard__swap > [data-swap='js'] {
     visibility: hidden;
   }
 

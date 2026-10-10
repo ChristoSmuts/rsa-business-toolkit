@@ -86,21 +86,6 @@ describe('<st-wizard>', () => {
     expect(next.hasAttribute('aria-describedby')).toBe(false);
   });
 
-  it('holds its height until the reader acts, then drops the hidden no-JS line on question 2', () => {
-    const wizard = setUp();
-    // happy-dom has no layout, so the held height is 0px; what matters is that one is set and then
-    // given up (WP-50a review pass 4, M1 and m1; the sizes are in wizard-shift.spec.ts).
-    expect(wizard.style.minBlockSize).not.toBe('');
-    choose(input('entity', 'sole-prop'));
-    expect(wizard.style.minBlockSize).toBe('');
-    const noJsLine = document.querySelector<HTMLElement>('[data-swap="no-js"]')!;
-    expect(noJsLine.hidden).toBe(false);
-    choose(input('type', 'general'));
-    expect(noJsLine.hidden).toBe(true);
-    wizard.remove();
-    expect(noJsLine.hidden).toBe(false);
-  });
-
   it('describes "See my path" by the line that shows: the earlier question, then nothing', () => {
     setUp();
     choose(input('type', 'general'));
@@ -227,11 +212,12 @@ describe('<st-wizard>', () => {
     // Without JavaScript: the one-type hint, never the hidden "Choose all that fit" (minor 3).
     expect(described(template.content)).toContain('wz-nojs-type');
     expect(described(template.content)).not.toContain('wz-help-type');
-    // The two lines share one slot, swapped by visibility, so nothing moves when the script arrives
-    // (review pass 3, M1).
-    const slot = template.content.querySelector('#wz-nojs-type')?.parentElement;
-    expect(slot?.classList.contains('st-wizard__swap')).toBe(true);
-    expect(slot?.querySelector('#wz-help-type')).not.toBeNull();
+    expect(template.content.querySelector('#wz-nojs-type')?.classList.contains('no-js-only')).toBe(
+      true,
+    );
+    expect(template.content.querySelector('#wz-help-type')?.classList.contains('js-only')).toBe(
+      true,
+    );
     setUp();
     expect(described(document)).toContain('wz-help-type');
     expect(described(document)).not.toContain('wz-nojs-type');
