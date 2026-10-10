@@ -1,6 +1,6 @@
 # Outstanding work
 
-**Status on 8 October 2026. `main` carries every built package: WP-20 (the site), WP-40 (the Afrikaans translation of all 36 documents, with the code changes integrating it needed), WP-30 (the store), WP-32 (fillable templates), WP-31 (Find my path, My path and the applies-to filter) and WP-33 (search). Next is WP-50, the design revamp (plan only).**
+**Status on 10 October 2026 (work paused by the owner). `main` carries every built package: WP-20 (the site), WP-40 (Afrikaans), WP-30 (the store), WP-32 (templates), WP-31 (Find my path, My path, applies-to), WP-33 (search) and WP-50a (the fixes the design audit found). WP-50 Phase 1 is done: two design directions wait for the owner's decisions D1 to D5.**
 
 Read `docs/build-plan.md` first for the design, then this file for where the work stopped. `docs/reviews/merge-checklist.md` holds the tasks that must happen at merge time.
 
@@ -32,7 +32,11 @@ What WP-30 added: the device store (`src/lib/store.ts`, `src/lib/storage/`), sav
 
 ### Not started
 
-- **WP-50, design revamp** (`docs/work-packages/WP-50-design-revamp.md`). Phase 0, the audit, is done: `docs/reviews/WP-50-audit.md` summarises it, with the code audit, the reader-journey audit and `tests/e2e/visual.spec.ts` beside it. Next: fix the nine rule breaks and bugs it lists, then Phase 1 (up to two directions and the owner's decisions D1 to D5). Four third-party design skills and the project's `stoep-design` skill are vendored in `.claude/skills/` (ADR 0007).
+- **WP-50, design revamp** (`docs/work-packages/WP-50-design-revamp.md`).
+  - Phase 0 (audit) is done: `docs/reviews/WP-50-audit.md`, with the code audit, the reader-journey audit and `tests/e2e/visual.spec.ts`.
+  - WP-50a (the audit's rule breaks and bugs, plus two found on the way) is merged after twelve review passes (11 and 12 clean). Its open minors are rows in `docs/reviews/backlog.md`.
+  - Phase 1 (direction) is done and waits on the owner: `docs/work-packages/WP-50-directions.md`, mock pages at `/design-system/directions/a/` and `/b/` (noindex), screenshots in `docs/reviews/WP-50-directions/`. Decisions D1 to D5 are in its last table; the recommendation is A, gentler reduced motion, home element A1, illustrations stay. Two extra questions: may the phone header move the language switch into the menu, and may the contents column drop its underline until hover.
+  - After the decision: delete the other direction's mock, `src/styles/directions.css` and its Stylelint exemption, then start Phase 2 (tokens and base).
 
 - **P4a, the accuracy review against official sources**: the cloud environment cannot reach SARS, CIPC, gov.za, SAFLII or the Information Regulator.
 - **WebKit**: run the WebKit project locally (merge checklist).
