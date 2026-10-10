@@ -834,17 +834,29 @@ form first.
 **The wizard is in steps from the first paint** (WP-50a review pass 5). With JavaScript (the `js`
 class `theme-init.js` sets before the first paint), `Wizard.astro`'s CSS shows what the script will
 show: the stepper and question 1 only, with the no-JavaScript parts (questions 2 and 3, the result
-button and its list) hidden. Next keeps its room, `visibility: hidden`, so it cannot be tapped
-before it works, and the answers are native inputs that work meanwhile. When the script arrives it
-makes the kinds of business checkboxes, marks the step, and shows Next; nothing folds, nothing moves
-and nothing scrolls. Each step title in the stepper keeps the room of its semibold form, so marking
-the current step never adds a line (pass 3, m1).
+button and its list) hidden. Step 1 is marked current in the HTML. Next keeps its room,
+`visibility: hidden`, so it cannot be tapped before it works, and "Loading the next step…"
+(`wizard.loadingNext`, `aria-hidden`) sits over that room and takes none of its own. "Saved on this
+device only" keeps its room the same way, and so does "Choose an answer first." once the step is
+answered, so a tap moves nothing and the page is as long after the script as before it (pass 6, m1,
+m3, m4). The answers are native inputs that
+work meanwhile. When the script arrives it makes the kinds of business checkboxes, and shows Next
+and the saved line where their room was; nothing folds, nothing moves and nothing scrolls. Each step
+title in the stepper keeps the room of its semibold form (pass 3, m1).
+
+With saved answers ("Edit answers") the script fills in the questions from them, except one the
+reader has already answered: the server renders no answer checked, so on an ordinary load a checked
+answer is the reader's and stays. After Back or Forward the browser restores the old ticks, and the
+saved answers win (pass 6, M1).
 
 - **Without JavaScript** the page is the GET form: all three questions and the result button for
   the answers (`wizardNoJsCss()` keys on `st-wizard:not([data-ready])`).
-- **If the wizard's own script fails to load**, `theme-init.js` names it in
-  `data-st-script-failed` ("Wizard"), the stepped rules stop applying, and the page becomes the
-  no-JavaScript form, with no unseen bars left behind. A layout change is acceptable on that path.
+- **If the wizard's own script fails to load, or throws as it runs**, `theme-init.js` names it in
+  `data-st-script-failed` ("Wizard"; a load error on its `<script>`, or a window `error` whose
+  `filename` is the module), the stepped rules stop applying, and the page becomes the no-JavaScript
+  form, with no unseen bars left behind. A layout change is acceptable on that path. Every rule that
+  reads the attribute also waits for `data-ready`, so a later error changes nothing. A module that
+  never arrives is a backlog row (pass 6, m2).
 
 Four passes tried to show the whole no-JavaScript form first and fold it when the script arrived:
 the help lines swapped places at question 2 (0.47 at 320px), the footer jumped into view near the
