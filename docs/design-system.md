@@ -841,8 +841,10 @@ partner is hidden too (storage blocked; "Add line" after ten lines) keeps no roo
 control truly needs the script, its room carries a visible waiting line, never blank space** (pass
 10, M1: rooms kept unseen for the required items and the actions left 727 to 1,542px of blank page
 under the form). So the required items list is rendered as the script leaves it for an empty form
-(`emptyFormRequired()`, `src/lib/templates/required.ts`: items present by default or below their
-amount are `hidden`, and the count line is written), its links work without the script, and the
+(`emptyFormRequired()`, `src/lib/templates/required.ts`, with the rules the script itself imports
+from `required-rules.ts`: items present by default or below their amount are `hidden`, and the
+count line is written, with no whitespace around it, so the script's first run does not write it;
+pass 11, m1 and m2), its links work without the script, and the
 script's first run changes nothing in it (it shrank by up to 170px). The buttons' room holds
 "Loading the form tools…" (`templates.loadingTools`, read by screen readers too), and the hints
 under them show. The wizard follows the same rule: question 1 and the stepper as the script shows
