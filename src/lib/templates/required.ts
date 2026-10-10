@@ -7,12 +7,12 @@
  * - an item whose field has a default (or follows one that has) is present, so it is hidden;
  * - the "lines" item is never present on an empty form.
  *
- * The rules are `#renderRequired` in `src/scripts/template-form.ts`, run on the form's defaults;
- * `tests/unit/templates/required.test.ts` and `template-shift.spec.ts` hold the two together. A
- * saved draft or business details can still change the list when the script runs.
+ * The rules are the ones `<st-template-form>` uses (`required-rules.ts`), run on the form's
+ * defaults; `templates.spec.ts` compares the two lists on every template. A saved draft or business
+ * details can still change the list when the script runs.
  */
 import { requiredItems, type TemplateModel } from './placeholders';
-import { QUANTITY, readCents, readNumber } from './totals';
+import { fieldPresent, requiredApplies } from './required-rules';
 
 export interface EmptyFormRequired {
   /** Names of the items the script would hide. */
@@ -22,12 +22,6 @@ export interface EmptyFormRequired {
   readonly total: number;
 }
 
-function readable(value: string, kind: string | undefined): boolean {
-  if (kind === 'money') return readCents(value).kind === 'ok';
-  if (kind === 'number') return readNumber(value, QUANTITY).kind === 'ok';
-  return true;
-}
-
 export function emptyFormRequired(model: TemplateModel): EmptyFormRequired {
   const fields = new Map(model.fields.map((field) => [field.name, field]));
   const valueOf = (name: string): string => fields.get(name)?.defaultValue ?? '';
@@ -35,18 +29,21 @@ export function emptyFormRequired(model: TemplateModel): EmptyFormRequired {
   let present = 0;
   let total = 0;
   for (const item of requiredItems(model)) {
-    if (item.requiredAbove !== undefined && !(0 > item.requiredAbove)) {
+    // An empty form's total is zero.
+    if (!requiredApplies(item.requiredAbove, 0)) {
       hidden.add(item.name);
       continue;
     }
     total++;
-    let ok = false;
-    if (item.name !== 'lines') {
-      const field = fields.get(item.name);
-      const value = valueOf(item.name);
-      ok = value.trim() !== '' && readable(value, field?.kind);
-      if (!ok && field?.follows !== undefined) ok = valueOf(field.follows).trim() !== '';
-    }
+    // An empty form has no lines.
+    const field = fields.get(item.name);
+    const ok =
+      item.name !== 'lines' &&
+      fieldPresent(
+        valueOf(item.name),
+        field?.kind,
+        field?.follows === undefined ? undefined : valueOf(field.follows),
+      );
     if (ok) {
       hidden.add(item.name);
       present++;

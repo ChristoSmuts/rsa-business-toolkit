@@ -39,6 +39,7 @@ import {
 import { formatIsoDate } from '../lib/templates/format';
 import { lineNames } from '../lib/templates/ids';
 import { readBusinessDetails } from '../lib/templates/profile';
+import { fieldPresent, requiredApplies } from '../lib/templates/required-rules';
 import {
   lineBlocked,
   lineResult,
@@ -479,11 +480,13 @@ export class StTemplateForm extends HTMLElement {
     lines: readonly LineInput[],
     totals: Totals,
   ): void {
-    // An item the template requires only above an amount ("required on invoices over R5,000")
-    // counts once the total is above it (review pass 1, major 4).
+    // The rules are shared with the list the page renders (`required-rules.ts`; pass 11, m2).
     const items = [...this.querySelectorAll<HTMLElement>('[data-required-item]')].filter((item) => {
       const above = item.dataset['requiredAbove'];
-      const applies = above === undefined || totals.total > Number(above);
+      const applies = requiredApplies(
+        above === undefined ? undefined : Number(above),
+        totals.total,
+      );
       if (!applies) item.hidden = true;
       return applies;
     });
@@ -498,12 +501,13 @@ export class StTemplateForm extends HTMLElement {
             (line) => line.description.trim() !== '' && lineResult(line).cents !== undefined,
           );
       } else {
-        const follows = this.#controls.get(name)?.dataset['follows'];
-        // A number the form refuses is not filled in: it prints blank (review pass 2, minor 3).
-        ok =
-          (values[name] ?? '').trim() !== '' &&
-          readable(values[name] ?? '', this.#controls.get(name)?.dataset['kind']);
-        if (!ok && follows !== undefined) ok = (values[follows] ?? '').trim() !== '';
+        const control = this.#controls.get(name);
+        const follows = control?.dataset['follows'];
+        ok = fieldPresent(
+          values[name] ?? '',
+          control?.dataset['kind'],
+          follows === undefined ? undefined : (values[follows] ?? ''),
+        );
       }
       item.hidden = ok;
       if (ok) present++;
@@ -513,8 +517,9 @@ export class StTemplateForm extends HTMLElement {
       present === items.length
         ? (this.dataset['allPresent'] ?? '')
         : interpolate(this.dataset['requiredText'] ?? '', { present, total: items.length });
-    // The page renders the empty form's count, so the first run writes nothing (pass 10, m1).
-    if (status && text !== this.#lastStatus && text !== status.textContent) {
+    // The page renders the empty form's count, so the first run writes nothing (pass 10, m1; the
+    // rendered text is compared trimmed, pass 11, m1).
+    if (status && text !== this.#lastStatus && text !== status.textContent?.trim()) {
       status.textContent = text;
       this.#lastStatus = text;
     }
@@ -643,13 +648,6 @@ export function display(
   }
   if (kind === 'number') return readNumber(raw, QUANTITY).kind === 'ok' ? raw : '';
   return raw;
-}
-
-/** Text the form can use for a field of `kind`: any text, or a number it can read. */
-function readable(value: string, kind: string | undefined): boolean {
-  if (kind === 'money') return readCents(value).kind === 'ok';
-  if (kind === 'number') return readNumber(value, QUANTITY).kind === 'ok';
-  return true;
 }
 
 function setCell(row: HTMLElement, cell: string, text: string): void {

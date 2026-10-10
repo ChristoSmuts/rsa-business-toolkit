@@ -703,6 +703,54 @@ test.describe('a template before its script runs', () => {
     }
   }
 
+  // Review pass 11, m1 and m2: the page renders the required list and its count for an empty form
+  // with the same rules the script uses (`required-rules.ts`). When the script runs on an empty
+  // form it leaves both as they are, and never writes the count line, a live region.
+  for (const lang of ['en', 'af'] as const) {
+    for (const slug of ['quotation', 'invoice', 'tax-invoice', 'receipt', 'privacy-notice']) {
+      test(`${lang} ${slug}: the script leaves the rendered required list and count as they are`, async ({
+        page,
+        baseURL,
+      }) => {
+        await page.setViewportSize({ width: 360, height: 740 });
+        const release = await holdModules(page, baseURL);
+        await page.goto(`${lang === 'en' ? '' : 'af/'}templates/${slug}/`, { waitUntil: 'commit' });
+        await expect(page.locator('footer.st-footer')).toBeAttached();
+        const read = () =>
+          page.evaluate(() => ({
+            count: document.querySelector('[data-required-count]')?.textContent ?? null,
+            items: [...document.querySelectorAll<HTMLElement>('[data-required-item]')].map(
+              (item) => `${item.dataset['requiredItem']}:${item.hidden ? 'hidden' : 'shown'}`,
+            ),
+          }));
+        const before = await read();
+        await page.evaluate(() => {
+          const writes: string[] = [];
+          Object.assign(window, { stCountWrites: writes });
+          const count = document.querySelector('[data-required-count]');
+          if (count)
+            new MutationObserver((records) => {
+              for (const record of records) writes.push(record.type);
+            }).observe(count, { childList: true, characterData: true, subtree: true });
+        });
+        release();
+        await expect(page.locator('st-template-form')).toHaveAttribute('data-ready', '');
+        await page.evaluate(
+          () =>
+            new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+        );
+        const after = await read();
+        expect(after.items).toEqual(before.items);
+        expect(after.count).toBe(before.count);
+        expect(
+          await page.evaluate(
+            () => (window as unknown as { stCountWrites: string[] }).stCountWrites,
+          ),
+        ).toEqual([]);
+      });
+    }
+  }
+
   // Review pass 10, m2: a slot kept the unseen no-JavaScript line's room when its partner was
   // hidden too: above the storage warning, and between the last of ten lines and the totals.
   test('a slot keeps no room once both its lines are hidden', async ({ page }) => {

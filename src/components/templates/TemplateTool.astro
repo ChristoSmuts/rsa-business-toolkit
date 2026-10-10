@@ -239,9 +239,8 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
       {t('templates.requiredHeading')}
     </h2>
     <p class="st-hint">{t('templates.requiredNote')}</p>
-    <p role="status" data-required-count>
-      {startCount}
-    </p>
+    {/* No whitespace around the count: the script compares the text before writing (pass 11). */}
+    <p role="status" data-required-count set:text={startCount} />
     <ul class="st-tool__missing" role="list" data-missing>
       {required.map((item) => (
         <li
