@@ -4622,6 +4622,199 @@
       "c": [
         {
           "t": "text",
+          "v": "Jou eenmansaak toemaak"
+        }
+      ],
+      "depth": 2,
+      "hash": "0dce7efa800a4b35",
+      "id": "closing-as-a-sole-proprietor",
+      "kind": "heading",
+      "sourceHash": "7011661f00a4814c",
+      "text": "Jou eenmansaak toemaak"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Op 13 Oktober 2026 bygevoeg vir die lêer \"Jou eenmansaak toemaak\". Daardie lêer steun ook op inskrywings wat hierbo gelys is: die SARS-belastingkalender, die SARS-gids oor voorlopige belasting, SARS-omsetbelasting, die Businesses Act, die Second-Hand Goods Act en die kennisgewing van veranderinge aan SAPS, R638, die Information Regulator (Inligtingsreguleerder), en die inskrywings oor UIF en COIDA."
+        }
+      ],
+      "hash": "97cfae2fc5360495",
+      "id": "closing-as-a-sole-proprietor.1",
+      "kind": "paragraph",
+      "sourceHash": "66168c6abcb74b56"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die inskrywings hieronder is nuut. Die omgewing wat hulle bygevoeg het, kon nie die webwerwe van die regering, SARS of die hofverslae bereik nie. Elke wet is dus aangehaal sonder om die teks oop te maak, en elke inskrywing sê so. Bevestig die artikel in die wet voordat jy daarop staatmaak."
+        }
+      ],
+      "hash": "700011d2506ddb7d",
+      "id": "closing-as-a-sole-proprietor.2",
+      "kind": "paragraph",
+      "sourceHash": "d02e48912109a28a"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "[Amptelik] Tax Administration Act 28 of 2011"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "t": "text",
+          "v": "Ondersteun: rekords moet vir vyf jaar gehou word vanaf die datum waarop die opgawe waarop hulle betrekking het, ingedien is (artikel 29)."
+        },
+        {
+          "t": "br"
+        },
+        {
+          "t": "text",
+          "v": "Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig die artikel in die wet voordat jy daarop staatmaak."
+        }
+      ],
+      "hash": "ec7cded77b2ba9c6",
+      "id": "closing-as-a-sole-proprietor.3",
+      "kind": "paragraph",
+      "sourceHash": "5ac56f965152bfaf"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "[Amptelik] Value-Added Tax Act 89 of 1991, artikels 8(2) en 24"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "t": "text",
+          "v": "Ondersteun: ’n ondernemer wat ophou om ’n onderneming te bedryf, moet SARS laat weet, en SARS kanselleer dan die BTW-registrasie (artikel 24); goedere en bates wat die ondernemer nog besit wanneer die registrasie eindig, word behandel asof hulle gelewer is, sodat BTW daarop betaalbaar kan wees (artikel 8(2))."
+        },
+        {
+          "t": "br"
+        },
+        {
+          "t": "text",
+          "v": "Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig albei artikels in die wet voordat jy daarop staatmaak."
+        }
+      ],
+      "hash": "9ca1d71427ae2357",
+      "id": "closing-as-a-sole-proprietor.4",
+      "kind": "paragraph",
+      "sourceHash": "28d83f526e60fec8"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "[Amptelik] Unemployment Insurance Act 63 of 2001"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "t": "text",
+          "v": "Ondersteun: werknemers wat werkloos word, kan werkloosheidsvoordele van die Unemployment Insurance Fund (Werkloosheidversekeringsfonds) eis, en werkgewers moet die Fonds inligting oor hulle werknemers gee, ook wanneer hulle vertrek."
+        },
+        {
+          "t": "br"
+        },
+        {
+          "t": "text",
+          "v": "Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig dit in die wet, of by die Department of Employment and Labour (Departement van Indiensneming en Arbeid), voordat jy daarop staatmaak."
+        }
+      ],
+      "hash": "1a810a5b5532aceb",
+      "id": "closing-as-a-sole-proprietor.5",
+      "kind": "paragraph",
+      "sourceHash": "63942d57c0a05dfa"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "[Amptelik] Protection of Personal Information Act 4 of 2013, artikel 14"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "t": "text",
+          "v": "Ondersteun: persoonlike inligting mag net so lank gehou word as wat dit nodig is, tensy ’n wet vereis dat dit langer gehou word, en moet daarna vernietig of uitgevee word."
+        },
+        {
+          "t": "br"
+        },
+        {
+          "t": "text",
+          "v": "Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig die artikel in die wet voordat jy daarop staatmaak."
+        }
+      ],
+      "hash": "d4b94801d3b7aa7e",
+      "id": "closing-as-a-sole-proprietor.6",
+      "kind": "paragraph",
+      "sourceHash": "12d9e5b01e552dca"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "[Amptelik] Prescription Act 68 of 1969, artikel 11(d)"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "t": "text",
+          "v": "Ondersteun: die meeste gewone skulde verjaar ná drie jaar."
+        },
+        {
+          "t": "br"
+        },
+        {
+          "t": "text",
+          "v": "Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig die artikel in die wet voordat jy daarop staatmaak."
+        }
+      ],
+      "hash": "ad45bfca17d1f929",
+      "id": "closing-as-a-sole-proprietor.7",
+      "kind": "paragraph",
+      "sourceHash": "644205a52c585cd3"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
           "v": "Navorsing oor kleur en materiale vir uithangborde"
         }
       ],
@@ -5113,7 +5306,7 @@
       "sourceHash": "7dd4f142addf9213"
     }
   ],
-  "contentHash": "bcc8eba53e3eb789",
+  "contentHash": "4a3d9c2be7a4ddaa",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -5207,6 +5400,11 @@
     },
     {
       "depth": 2,
+      "id": "closing-as-a-sole-proprietor",
+      "text": "Jou eenmansaak toemaak"
+    },
+    {
+      "depth": 2,
       "id": "colour-research-and-signage-materials",
       "text": "Navorsing oor kleur en materiale vir uithangborde"
     },
@@ -5225,7 +5423,7 @@
   "kind": "sources",
   "lang": "af",
   "order": 3,
-  "readingTime": 24,
+  "readingTime": 26,
   "related": [
     "business-types/vehicle-dealer",
     "core/register",

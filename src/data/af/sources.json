@@ -2413,6 +2413,131 @@
       ]
     },
     {
+      "block": "closing-as-a-sole-proprietor.3",
+      "group": "Jou eenmansaak toemaak",
+      "groupId": "closing-as-a-sole-proprietor",
+      "id": "tax-administration-act-28-of-2011",
+      "noUrlReason": "An Act cited for Closing as a sole proprietor without a link: the environment that added it on 13 October 2026 could not reach the government or law-report websites to open and link the text, and the entry says it was not opened.",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig die artikel in die wet voordat jy daarop staatmaak."
+          }
+        ]
+      ],
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "rekords moet vir vyf jaar gehou word vanaf die datum waarop die opgawe waarop hulle betrekking het, ingedien is (artikel 29)."
+        }
+      ],
+      "title": "Tax Administration Act 28 of 2011",
+      "type": "citation",
+      "urls": []
+    },
+    {
+      "block": "closing-as-a-sole-proprietor.4",
+      "group": "Jou eenmansaak toemaak",
+      "groupId": "closing-as-a-sole-proprietor",
+      "id": "value-added-tax-act-89-of-1991-sections-82-and-24",
+      "noUrlReason": "An Act cited for Closing as a sole proprietor without a link: the environment that added it on 13 October 2026 could not reach the government or law-report websites to open and link the text, and the entry says it was not opened.",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig albei artikels in die wet voordat jy daarop staatmaak."
+          }
+        ]
+      ],
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "’n ondernemer wat ophou om ’n onderneming te bedryf, moet SARS laat weet, en SARS kanselleer dan die BTW-registrasie (artikel 24); goedere en bates wat die ondernemer nog besit wanneer die registrasie eindig, word behandel asof hulle gelewer is, sodat BTW daarop betaalbaar kan wees (artikel 8(2))."
+        }
+      ],
+      "title": "Value-Added Tax Act 89 of 1991, artikels 8(2) en 24",
+      "type": "citation",
+      "urls": []
+    },
+    {
+      "block": "closing-as-a-sole-proprietor.5",
+      "group": "Jou eenmansaak toemaak",
+      "groupId": "closing-as-a-sole-proprietor",
+      "id": "unemployment-insurance-act-63-of-2001",
+      "noUrlReason": "An Act cited for Closing as a sole proprietor without a link: the environment that added it on 13 October 2026 could not reach the government or law-report websites to open and link the text, and the entry says it was not opened.",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig dit in die wet, of by die Department of Employment and Labour (Departement van Indiensneming en Arbeid), voordat jy daarop staatmaak."
+          }
+        ]
+      ],
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "werknemers wat werkloos word, kan werkloosheidsvoordele van die Unemployment Insurance Fund (Werkloosheidversekeringsfonds) eis, en werkgewers moet die Fonds inligting oor hulle werknemers gee, ook wanneer hulle vertrek."
+        }
+      ],
+      "title": "Unemployment Insurance Act 63 of 2001",
+      "type": "citation",
+      "urls": []
+    },
+    {
+      "block": "closing-as-a-sole-proprietor.6",
+      "group": "Jou eenmansaak toemaak",
+      "groupId": "closing-as-a-sole-proprietor",
+      "id": "protection-of-personal-information-act-4-of-2013-section-14",
+      "noUrlReason": "An Act cited for Closing as a sole proprietor without a link: the environment that added it on 13 October 2026 could not reach the government or law-report websites to open and link the text, and the entry says it was not opened.",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig die artikel in die wet voordat jy daarop staatmaak."
+          }
+        ]
+      ],
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "persoonlike inligting mag net so lank gehou word as wat dit nodig is, tensy ’n wet vereis dat dit langer gehou word, en moet daarna vernietig of uitgevee word."
+        }
+      ],
+      "title": "Protection of Personal Information Act 4 of 2013, artikel 14",
+      "type": "citation",
+      "urls": []
+    },
+    {
+      "block": "closing-as-a-sole-proprietor.7",
+      "group": "Jou eenmansaak toemaak",
+      "groupId": "closing-as-a-sole-proprietor",
+      "id": "prescription-act-68-of-1969-section-11d",
+      "noUrlReason": "An Act cited for Closing as a sole proprietor without a link: the environment that added it on 13 October 2026 could not reach the government or law-report websites to open and link the text, and the entry says it was not opened.",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig die artikel in die wet voordat jy daarop staatmaak."
+          }
+        ]
+      ],
+      "official": true,
+      "supports": [
+        {
+          "t": "text",
+          "v": "die meeste gewone skulde verjaar ná drie jaar."
+        }
+      ],
+      "title": "Prescription Act 68 of 1969, artikel 11(d)",
+      "type": "citation",
+      "urls": []
+    },
+    {
       "block": "colour-research-and-signage-materials.2",
       "group": "Navorsing oor kleur en materiale vir uithangborde",
       "groupId": "colour-research-and-signage-materials",
@@ -3091,6 +3216,26 @@
       "title": "Jy is die besigheid: UIF, COIDA, howe en kontinuïteit"
     },
     {
+      "id": "closing-as-a-sole-proprietor",
+      "notes": [
+        [
+          {
+            "t": "text",
+            "v": "Op 13 Oktober 2026 bygevoeg vir die lêer \"Jou eenmansaak toemaak\". Daardie lêer steun ook op inskrywings wat hierbo gelys is: die SARS-belastingkalender, die SARS-gids oor voorlopige belasting, SARS-omsetbelasting, die Businesses Act, die Second-Hand Goods Act en die kennisgewing van veranderinge aan SAPS, R638, die Information Regulator (Inligtingsreguleerder), en die inskrywings oor UIF en COIDA."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Die inskrywings hieronder is nuut. Die omgewing wat hulle bygevoeg het, kon nie die webwerwe van die regering, SARS of die hofverslae bereik nie. Elke wet is dus aangehaal sonder om die teks oop te maak, en elke inskrywing sê so. Bevestig die artikel in die wet voordat jy daarop staatmaak."
+          }
+        ]
+      ],
+      "order": 16,
+      "subgroups": [],
+      "title": "Jou eenmansaak toemaak"
+    },
+    {
       "id": "colour-research-and-signage-materials",
       "notes": [
         [
@@ -3136,7 +3281,7 @@
           }
         ]
       ],
-      "order": 16,
+      "order": 17,
       "subgroups": [
         {
           "block": "colour-research-and-signage-materials.1",
@@ -3176,7 +3321,7 @@
           }
         ]
       ],
-      "order": 17,
+      "order": 18,
       "subgroups": [],
       "title": "Handelsmerkgereedskap waarna verwys word"
     }

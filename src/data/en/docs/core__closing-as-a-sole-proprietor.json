@@ -1,0 +1,1485 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "sole-prop"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Running a Pty Ltd"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " covers closing a company. This file is for the other case: you trade as yourself, and you want to stop."
+        }
+      ],
+      "hash": "9b659ac1bd341095",
+      "id": "intro.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "A sole proprietor has no business to deregister. You never registered one. So closing is not one application. It is a short list of people to tell, and a list of things that stay yours after the last sale."
+        }
+      ],
+      "hash": "4a95a9dfb675b4d8",
+      "id": "intro.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Words used in this file"
+        }
+      ],
+      "depth": 2,
+      "hash": "f8f7e4fc9c5c8540",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "text": "Words used in this file"
+    },
+    {
+      "hash": "31f89e5383f06cf1",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Plain meanings for the terms used in this file. The full list is in "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Glossary"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "You trade as yourself. No company. The business and you are the same person in law."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Sole proprietor"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "The yearly tax return for people. Your business profit goes on it."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "ITR12"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Paying tax in advance, twice a year, because no employer deducts it for you."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Provisional tax"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A business registered for VAT."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "VAT vendor"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Monthly payroll return / twice-yearly payroll reconciliation."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "EMP201 / EMP501"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Unemployment Insurance Fund, run by the Department of Employment and Labour. Your employees can claim from it when their job ends."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "UIF"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "A debt you leave too long stops being claimable. Three years for most ordinary debts."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Prescription"
+            }
+          ]
+        }
+      ],
+      "kind": "terms"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "The short version: tell everyone you registered with that you have stopped, file the last returns, and keep your records for five years. Your debts do not close with the business. They were always yours."
+        }
+      ],
+      "hash": "bc0d65a8b52dd035",
+      "id": "words-used-in-this-file.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "What closing means for a sole proprietor"
+        }
+      ],
+      "depth": 2,
+      "hash": "4e7cc7211e93fbe1",
+      "id": "what-closing-means-for-a-sole-proprietor",
+      "kind": "heading",
+      "text": "What closing means for a sole proprietor"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "In law, you and the business are one person. Business income goes on your personal tax return. If the business owes money, you owe it. See "
+        },
+        {
+          "anchor": "sole-proprietor-trading-as-yourself",
+          "c": [
+            {
+              "t": "text",
+              "v": "Register: what you actually need"
+            }
+          ],
+          "doc": "core/register",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "6ddc111e4d22204f",
+      "id": "what-closing-means-for-a-sole-proprietor.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "That has three consequences when you stop."
+        }
+      ],
+      "hash": "4431239437c63310",
+      "id": "what-closing-means-for-a-sole-proprietor.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "There is nothing to deregister with CIPC. A sole proprietor never registered the business there. A trading name like \"Thabo's Plumbing\" was never registered anywhere either, so there is nothing to cancel. You simply stop using it."
+        }
+      ],
+      "hash": "a5decd5933a1b5a4",
+      "id": "what-closing-means-for-a-sole-proprietor.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your SARS tax number stays. You did not register the business with SARS. You registered yourself, and you are still a taxpayer after the business stops."
+        }
+      ],
+      "hash": "7fce9d9cc24d3543",
+      "id": "what-closing-means-for-a-sole-proprietor.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Everything the business owed, and everything owed to it, is still yours. Closing does not end a debt."
+        }
+      ],
+      "hash": "0dd4147ceca78ea2",
+      "id": "what-closing-means-for-a-sole-proprietor.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Pick a closing date and write it down. Every step below works from that date."
+        }
+      ],
+      "hash": "c7efcf12899a9bcf",
+      "id": "what-closing-means-for-a-sole-proprietor.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tell SARS"
+        }
+      ],
+      "depth": 2,
+      "hash": "6da5c6de1aadb62b",
+      "id": "tell-sars",
+      "kind": "heading",
+      "text": "Tell SARS"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Income tax: the last ITR12 with business income"
+        }
+      ],
+      "depth": 3,
+      "hash": "405714f4e1cf4c4e",
+      "id": "income-tax-the-last-itr12-with-business-income",
+      "kind": "heading",
+      "text": "Income tax: the last ITR12 with business income"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Business profit goes on your normal ITR12, in the \"local business income\" section. For the tax year in which you stop, declare the business income and expenses up to your closing date, in the same section. File it in the normal filing season. See "
+        },
+        {
+          "anchor": "what-sars-wants-from-a-sole-proprietor",
+          "c": [
+            {
+              "t": "text",
+              "v": "Tax and SARS"
+            }
+          ],
+          "doc": "core/tax-and-sars",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "7416c4b3dd2ad655",
+      "id": "income-tax-the-last-itr12-with-business-income.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "After that year, whether you still file depends on your income from then on, not on the business. Check each year."
+        }
+      ],
+      "hash": "434fb4a0bfbdd851",
+      "id": "income-tax-the-last-itr12-with-business-income.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Provisional tax"
+        }
+      ],
+      "depth": 3,
+      "hash": "9ba2716c26ce940b",
+      "id": "provisional-tax",
+      "kind": "heading",
+      "text": "Provisional tax"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you own a business, the Income Tax Act says you must register as a provisional taxpayer. Once you stop trading, that reason falls away."
+        }
+      ],
+      "hash": "25bf693018bf17c6",
+      "id": "provisional-tax.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ask SARS how to end your registration as a provisional taxpayer. Until SARS confirms it in writing, keep submitting your IRP6 returns on the usual dates in "
+        },
+        {
+          "anchor": "provisional-tax",
+          "c": [
+            {
+              "t": "text",
+              "v": "Tax and SARS"
+            }
+          ],
+          "doc": "core/tax-and-sars",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ". An IRP6 return can be requested and submitted even if the provisional tax payment is nil."
+        }
+      ],
+      "hash": "91b886d111eb2811",
+      "id": "provisional-tax.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "You paid tax in advance because you ran a business. When you stop, ask SARS to take you off provisional tax. Until SARS says yes in writing, keep filing the twice-yearly form, even if it shows zero."
+        }
+      ],
+      "hash": "25f50f9f2eab3b9a",
+      "id": "provisional-tax.3",
+      "kind": "callout",
+      "pairsWith": "provisional-tax.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Filing a zero return costs nothing. Not filing creates penalties that grow every month."
+        }
+      ],
+      "hash": "0171a35f8a7721f5",
+      "id": "provisional-tax.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Turnover tax, if you registered for it"
+        }
+      ],
+      "depth": 3,
+      "hash": "16b78dbb700baf0f",
+      "id": "turnover-tax-if-you-registered-for-it",
+      "kind": "heading",
+      "text": "Turnover tax, if you registered for it"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Once registered for turnover tax, you stay in the system unless you deregister voluntarily or exceed R2.3 million. Stopping trading does not take you out by itself. Ask SARS to deregister you from turnover tax as well."
+        }
+      ],
+      "hash": "1f006827b0b426e4",
+      "id": "turnover-tax-if-you-registered-for-it.1",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "tags": [
+          "vat-registered"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "VAT, if you are registered"
+        }
+      ],
+      "depth": 3,
+      "hash": "88b5ca96db5eb2f0",
+      "id": "vat-if-you-are-registered",
+      "kind": "heading",
+      "text": "VAT, if you are registered"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you are a VAT vendor, you must tell SARS that you have stopped trading, and SARS cancels the VAT registration. Section 24 of the Value-Added Tax Act covers this. Keep filing for every VAT period until SARS confirms the cancellation."
+        }
+      ],
+      "hash": "e11e60823dfc55bc",
+      "id": "vat-if-you-are-registered.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Watch for one cost. When the registration ends, section 8(2) of the Act treats the stock and business assets you still own as supplied, so VAT can be due on their value at the end."
+        }
+      ],
+      "hash": "817fd2cfe5f97abb",
+      "id": "vat-if-you-are-registered.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tell SARS you have stopped, and it cancels your VAT number. The stock and equipment you keep can still cost you VAT at the end. Ask a tax practitioner to work it out before you apply."
+        }
+      ],
+      "hash": "9a173acbc3a788c4",
+      "id": "vat-if-you-are-registered.3",
+      "kind": "callout",
+      "pairsWith": "vat-if-you-are-registered.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Once the registration is cancelled, you are no longer registered. Do not write \"Tax Invoice\" on anything you issue after that, and do not charge VAT. Charging VAT you are not registered for is fraud."
+        }
+      ],
+      "hash": "14759c5c3929c7dc",
+      "id": "vat-if-you-are-registered.4",
+      "kind": "paragraph"
+    },
+    {
+      "appliesTo": {
+        "tags": [
+          "employer"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "If you had staff"
+        }
+      ],
+      "depth": 2,
+      "hash": "6fb9e31cc01de2ea",
+      "id": "if-you-had-staff",
+      "kind": "heading",
+      "text": "If you had staff"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Skip this part if you worked alone. A sole proprietor cannot contribute to UIF for themselves and is not an employee under COIDA, so there is nothing to close for you personally. See "
+        },
+        {
+          "anchor": "sole-proprietor-you-have-nothing",
+          "c": [
+            {
+              "t": "text",
+              "v": "You are the business"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "e083f6d4a5548d97",
+      "id": "if-you-had-staff.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you registered with SARS as an employer for your staff:"
+        }
+      ],
+      "hash": "17dd7d6e3abf8ffe",
+      "id": "if-you-had-staff.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "fccd906248aa03ab",
+      "id": "if-you-had-staff.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Submit the EMP201 for the last month you paid anyone, by the 7th of the following month, as usual."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Make sure the EMP501 reconciliation covers every month you paid staff."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Then ask SARS to deregister you as an employer."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your employees may be able to claim from the Unemployment Insurance Fund when their job ends. The Unemployment Insurance Act requires employers to give the Fund information about their employees, including when they leave. Ask the Fund what it needs from you for each employee, and give your employees what they need to claim."
+        }
+      ],
+      "hash": "aa8313200b270352",
+      "id": "if-you-had-staff.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you registered with the Compensation Fund for your staff, tell the Fund that you no longer employ anyone. Ask what it needs from you for the last period, including the Return of Earnings."
+        }
+      ],
+      "hash": "aba33b964bbccbba",
+      "id": "if-you-had-staff.5",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Employment law is outside the scope of this toolkit. Before you give anyone notice, get proper advice. The rules on notice and dismissal are strict, and mistakes are expensive to unwind."
+        }
+      ],
+      "hash": "e390f652f59970cb",
+      "id": "if-you-had-staff.6",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Licences and registrations"
+        }
+      ],
+      "depth": 2,
+      "hash": "14c6e6dca34b4e7d",
+      "id": "licences-and-registrations",
+      "kind": "heading",
+      "text": "Licences and registrations"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Go through every licence and registration the business holds. For each one, tell the office that issued it that you have stopped, and ask what it needs from you. The usual ones in this toolkit:"
+        }
+      ],
+      "hash": "1ff7de5ff9a6a293",
+      "id": "licences-and-registrations.1",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "086e12af81b391a1",
+      "id": "licences-and-registrations.2",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Municipal trading licence."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Issued by your municipality under the Businesses Act 71 of 1991. The licence is tied to the premises, not to you. Tell the municipal Business Licensing office. See "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "What you need to sell things"
+              }
+            ],
+            "doc": "core/what-you-need-to-sell-things",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Certificate of Acceptability, for a food business."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " It is specific to the premises and cannot be transferred to a new location or a new owner. If someone buys your food business, they need their own."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "SAPS second-hand goods registration."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " The holder of a certificate of registration must notify the National Commissioner in writing within 30 days if there is any change to the information submitted in the application. Treat stopping trading as such a change. Tell the Designated Police Officer at your local SAPS station in writing, and keep your register of transactions for five years."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "POPIA information officer."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " You registered yourself with the Information Regulator at "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "inforegulator.org.za"
+              }
+            ],
+            "external": true,
+            "href": "https://inforegulator.org.za/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": ". Ask the Regulator how to update the registration when the business stops."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Compensation Fund, if you had staff."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " See the part above."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Tell every office that gave you a licence or a registration that you have stopped. Ask each one what it needs."
+        }
+      ],
+      "hash": "7171ecddd33b0b32",
+      "id": "licences-and-registrations.3",
+      "kind": "callout",
+      "pairsWith": "licences-and-registrations.2",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Customer information does not close with the business either. POPIA says you may keep personal information only as long as you need it, unless a law requires you to keep it longer. Your tax records are such a case. After that, delete or destroy it."
+        }
+      ],
+      "hash": "40d11d3aa14048aa",
+      "id": "licences-and-registrations.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your bank account"
+        }
+      ],
+      "depth": 2,
+      "hash": "86ded2523a123db3",
+      "id": "your-bank-account",
+      "kind": "heading",
+      "text": "Your bank account"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your business account is an account in your own name. Closing the business does not close it."
+        }
+      ],
+      "hash": "7b7d98c254d158e8",
+      "id": "your-bank-account.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Keep it open until the last customer has paid, the last supplier is paid, and SARS is settled. Then close it, or keep it as a personal account. Either way, download the statements first. They are part of your records."
+        }
+      ],
+      "hash": "0a31ff5bc116f76a",
+      "id": "your-bank-account.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Cancel what runs through it before you close it: a card machine contract, debit orders, and subscriptions you only needed for the business."
+        }
+      ],
+      "hash": "14b35cfc754f7ca5",
+      "id": "your-bank-account.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Debts: yours before, yours after"
+        }
+      ],
+      "depth": 2,
+      "hash": "5288993f2dd630f9",
+      "id": "debts-yours-before-yours-after",
+      "kind": "heading",
+      "text": "Debts: yours before, yours after"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If the business owes money, you owe it. That does not change when you stop trading. Your house and your car can still be taken to pay a business debt."
+        }
+      ],
+      "hash": "1d3e0d8f11a49b2a",
+      "id": "debts-yours-before-yours-after.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "So before you announce the closing:"
+        }
+      ],
+      "hash": "f69a65bf0c899420",
+      "id": "debts-yours-before-yours-after.2",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "6769fc77f55cbefe",
+      "id": "debts-yours-before-yours-after.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "List every supplier, lender and landlord you owe, and plan how you will pay each one."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "List every customer who paid a deposit for work you have not done. Decide whether you will finish the work or pay the money back. Either way, the money is owed by you."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Pay SARS what you owe. Tax debt is personal too."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Money owed to you is still yours to collect. Do not wait years. A monetary claim must generally be instituted within three years of the date the debt arose, or it prescribes and you lose it. "
+        },
+        {
+          "anchor": "part-2-when-a-customer-does-not-pay",
+          "c": [
+            {
+              "t": "text",
+              "v": "You are the business"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " sets out how to chase it."
+        }
+      ],
+      "hash": "415d86b62b88ecc0",
+      "id": "debts-yours-before-yours-after.4",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Records: keep them for five years"
+        }
+      ],
+      "depth": 2,
+      "hash": "0ade0e69554e7cf8",
+      "id": "records-keep-them-for-five-years",
+      "kind": "heading",
+      "text": "Records: keep them for five years"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Keep everything for five years from the date you submit the return. That includes the return for the year you stopped, so your last records must be kept for five years after your last ITR12 with business income."
+        }
+      ],
+      "hash": "04e97402fcad1d00",
+      "id": "records-keep-them-for-five-years.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Keep the same things you kept while trading: the bank statements, the photographed slips, the cash book spreadsheet, and a copy of every invoice you issued. See "
+        },
+        {
+          "anchor": "records",
+          "c": [
+            {
+              "t": "text",
+              "v": "Tax and SARS"
+            }
+          ],
+          "doc": "core/tax-and-sars",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "833fd41f8aa79313",
+      "id": "records-keep-them-for-five-years.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "If you were a second-hand goods dealer, keep the SAPS register of transactions for five years as well."
+        }
+      ],
+      "hash": "5fc86d0076d110a7",
+      "id": "records-keep-them-for-five-years.3",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Put it all in one folder called \"Business records, closed\", with the closing date in the name. Note somewhere a trusted person can find it where the folder is, and when it may be destroyed."
+        }
+      ],
+      "hash": "6b07ec6f5f1fa1f6",
+      "id": "records-keep-them-for-five-years.4",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "records-keep-them-for-five-years.5",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Your closing checklist"
+        }
+      ],
+      "depth": 2,
+      "hash": "2528178b0e5564bc",
+      "id": "your-closing-checklist",
+      "kind": "heading",
+      "text": "Your closing checklist"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Before you stop"
+        }
+      ],
+      "hash": "8860eaa64020234f",
+      "id": "your-closing-checklist.1",
+      "items": [
+        {
+          "block": "your-closing-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Picked a closing date and written it down"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:b90b052d",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Listed every debt I owe, and how I will pay each one"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:21ec1805",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Decided what happens to every customer deposit for work not yet done"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:83dc373f",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Listed every licence and registration the business holds"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:f3a0f205",
+          "when": {
+            "entity": "sole-prop"
+          }
+        }
+      ],
+      "kind": "tasklist"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "With SARS"
+        }
+      ],
+      "hash": "c787f3b47d20351e",
+      "id": "your-closing-checklist.2",
+      "items": [
+        {
+          "block": "your-closing-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "Declared the business income up to the closing date on my ITR12 for that year"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:db702382",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "Asked SARS to end my provisional taxpayer registration, and kept filing IRP6 returns until it confirmed in writing"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:5dd16347",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "If on turnover tax: asked SARS to deregister me from it"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:2a9ea3ed",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "If registered for VAT: told SARS I stopped, filed for every VAT period until the cancellation, and checked the VAT on stock and assets I keep"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:292afe76",
+          "when": {
+            "entity": "sole-prop",
+            "tags": [
+              "vat-registered"
+            ]
+          }
+        },
+        {
+          "block": "your-closing-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "If I employed staff: last EMP201 submitted, EMP501 covers every month, and asked SARS to deregister me as an employer"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:1684dddc",
+          "when": {
+            "entity": "sole-prop",
+            "tags": [
+              "employer"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Everyone else"
+        }
+      ],
+      "hash": "ff6b49e3cae9e6f6",
+      "id": "your-closing-checklist.3",
+      "items": [
+        {
+          "block": "your-closing-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "If I employed staff: got advice before giving notice, and gave each employee what they need to claim from the Unemployment Insurance Fund"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:424b0666",
+          "when": {
+            "entity": "sole-prop",
+            "tags": [
+              "employer"
+            ]
+          }
+        },
+        {
+          "block": "your-closing-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "If I employed staff: told the Compensation Fund I no longer employ anyone"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:71206b54",
+          "when": {
+            "entity": "sole-prop",
+            "tags": [
+              "employer"
+            ]
+          }
+        },
+        {
+          "block": "your-closing-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "Told the municipality, SAPS, the Information Regulator and any other office that issued a licence or registration"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:c91fe9b9",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "Cancelled the card machine, debit orders and subscriptions on the business account"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:8b02ddf2",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "Closed the business account, or kept it as a personal account, after downloading the statements"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:d5af694b",
+          "when": {
+            "entity": "sole-prop"
+          }
+        }
+      ],
+      "kind": "tasklist"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Afterwards"
+        }
+      ],
+      "hash": "0ed329f0e8702ef0",
+      "id": "your-closing-checklist.4",
+      "items": [
+        {
+          "block": "your-closing-checklist.4",
+          "c": [
+            {
+              "t": "text",
+              "v": "Every record in one folder, kept for five years after my last ITR12 with business income"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:5fb9bdb9",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.4",
+          "c": [
+            {
+              "t": "text",
+              "v": "Customer personal information deleted once I no longer need it"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:a7cf7e05",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.4",
+          "c": [
+            {
+              "t": "text",
+              "v": "Nothing owed to me is close to three years old"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:b6fe6cfd",
+          "when": {
+            "entity": "sole-prop"
+          }
+        }
+      ],
+      "kind": "tasklist"
+    }
+  ],
+  "contentHash": "738800005d06bf08",
+  "generated": {
+    "date": "2026-10-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Closing as a sole proprietor",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Words used in this file"
+    },
+    {
+      "depth": 2,
+      "id": "what-closing-means-for-a-sole-proprietor",
+      "text": "What closing means for a sole proprietor"
+    },
+    {
+      "depth": 2,
+      "id": "tell-sars",
+      "text": "Tell SARS"
+    },
+    {
+      "depth": 3,
+      "id": "income-tax-the-last-itr12-with-business-income",
+      "text": "Income tax: the last ITR12 with business income"
+    },
+    {
+      "depth": 3,
+      "id": "provisional-tax",
+      "text": "Provisional tax"
+    },
+    {
+      "depth": 3,
+      "id": "turnover-tax-if-you-registered-for-it",
+      "text": "Turnover tax, if you registered for it"
+    },
+    {
+      "appliesTo": {
+        "tags": [
+          "vat-registered"
+        ]
+      },
+      "depth": 3,
+      "id": "vat-if-you-are-registered",
+      "text": "VAT, if you are registered"
+    },
+    {
+      "appliesTo": {
+        "tags": [
+          "employer"
+        ]
+      },
+      "depth": 2,
+      "id": "if-you-had-staff",
+      "text": "If you had staff"
+    },
+    {
+      "depth": 2,
+      "id": "licences-and-registrations",
+      "text": "Licences and registrations"
+    },
+    {
+      "depth": 2,
+      "id": "your-bank-account",
+      "text": "Your bank account"
+    },
+    {
+      "depth": 2,
+      "id": "debts-yours-before-yours-after",
+      "text": "Debts: yours before, yours after"
+    },
+    {
+      "depth": 2,
+      "id": "records-keep-them-for-five-years",
+      "text": "Records: keep them for five years"
+    },
+    {
+      "depth": 2,
+      "id": "your-closing-checklist",
+      "text": "Your closing checklist"
+    }
+  ],
+  "id": "core/closing-as-a-sole-proprietor",
+  "kind": "guide",
+  "lang": "en",
+  "order": 11,
+  "readingTime": 9,
+  "related": [
+    "core/tax-and-sars",
+    "core/you-are-the-business",
+    "core/running-a-pty-ltd",
+    "core/register",
+    "core/what-you-need-to-sell-things"
+  ],
+  "route": "core/closing-as-a-sole-proprietor/",
+  "section": "core",
+  "slug": "closing-as-a-sole-proprietor",
+  "sourcePath": "01 Core - applies to everyone/11-closing-as-a-sole-proprietor.md",
+  "sources": {
+    "acts": [
+      "income-tax-act-58-of-1962",
+      "value-added-tax-act-89-of-1991",
+      "protection-of-personal-information-act-4-of-2013",
+      "businesses-act-71-of-1991",
+      "second-hand-goods-act-6-of-2009"
+    ],
+    "entries": [
+      "sars--turnover-tax",
+      "sars--tax-calendar",
+      "sars--guide-to-provisional-tax",
+      "information-regulator-of-south-africa",
+      "saps--second-hand-goods-act-6-of-2009-full-text",
+      "nada-saps-dealer-inspections",
+      "regulation-r638-of-2018",
+      "businesses-act-71-of-1991",
+      "uif-and-the-self-employed",
+      "coida-and-working-directors",
+      "tax-administration-act-28-of-2011",
+      "value-added-tax-act-89-of-1991-sections-82-and-24",
+      "unemployment-insurance-act-63-of-2001",
+      "protection-of-personal-information-act-4-of-2013-section-14",
+      "prescription-act-68-of-1969-section-11d"
+    ]
+  },
+  "summary": "What to do when you stop trading as yourself: SARS, staff, licences, the bank account, debts that stay yours, and records.",
+  "tags": [
+    "closing"
+  ],
+  "terms": [
+    {
+      "meaning": "You trade as yourself. No company. The business and you are the same person in law.",
+      "term": "Sole proprietor"
+    },
+    {
+      "meaning": "The yearly tax return for people. Your business profit goes on it.",
+      "term": "ITR12"
+    },
+    {
+      "meaning": "Paying tax in advance, twice a year, because no employer deducts it for you.",
+      "term": "Provisional tax"
+    },
+    {
+      "meaning": "A business registered for VAT.",
+      "term": "VAT vendor"
+    },
+    {
+      "meaning": "Monthly payroll return / twice-yearly payroll reconciliation.",
+      "term": "EMP201 / EMP501"
+    },
+    {
+      "meaning": "Unemployment Insurance Fund, run by the Department of Employment and Labour. Your employees can claim from it when their job ends.",
+      "term": "UIF"
+    },
+    {
+      "meaning": "A debt you leave too long stops being claimable. Three years for most ordinary debts.",
+      "term": "Prescription"
+    }
+  ],
+  "title": "Closing as a sole proprietor",
+  "translation": {
+    "sourceLang": "en",
+    "status": "source"
+  },
+  "verification": {
+    "checkedOn": "2026-10-13",
+    "status": "ai-checked"
+  }
+}

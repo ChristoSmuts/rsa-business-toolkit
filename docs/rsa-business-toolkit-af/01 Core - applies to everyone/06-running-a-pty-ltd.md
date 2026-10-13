@@ -217,6 +217,8 @@ Die goedkoopste oplossing is om ’n tweede direkteur aan te stel. Dit is gratis
 
 ## Om ’n maatskappy behoorlik te sluit
 
+Hierdie afdeling is vir ’n maatskappy. As jy as jouself handel dryf, sonder ’n maatskappy, lees eerder [Jou eenmansaak toemaak](11-closing-as-a-sole-proprietor.md).
+
 As jy die maatskappy nie meer nodig het nie, deregistreer dit doelbewus. Moenie net ophou indien nie.
 
 Tensy dit formeel gederegistreer is, bly die indieningsvereiste van krag. As jy die maatskappy nie meer nodig het nie, is die regte roete vrywillige deregistrasie, nie om eenvoudig op te hou om enigiets in te dien nie.

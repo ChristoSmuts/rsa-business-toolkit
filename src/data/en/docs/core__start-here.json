@@ -310,7 +310,7 @@
       "kind": "paragraph"
     },
     {
-      "hash": "a54fdacb47d2b7e6",
+      "hash": "ac544e9fde80e8b5",
       "id": "what-is-in-this-toolkit.2",
       "items": [
         [
@@ -375,6 +375,22 @@
           {
             "t": "text",
             "v": " — putting a vehicle in the business name, and when that is a bad idea."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Closing as a sole proprietor"
+              }
+            ],
+            "doc": "core/closing-as-a-sole-proprietor",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — what to do when you stop trading as yourself: SARS, staff, licences, the bank account, debts and records."
           }
         ]
       ],
@@ -999,7 +1015,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "fe00f5b7e670c3d0",
+  "contentHash": "5247a72218728d16",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -928,6 +928,392 @@
       "order": 54
     },
     {
+      "block": "your-closing-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Sluitingsdatum gekies en neergeskryf"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voordat jy ophou"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:b90b052d",
+      "order": 55,
+      "when": {
+        "entity": "sole-prop"
+      }
+    },
+    {
+      "block": "your-closing-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Elke skuld wat ek het gelys, en hoe ek elkeen gaan betaal"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voordat jy ophou"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:21ec1805",
+      "order": 56,
+      "when": {
+        "entity": "sole-prop"
+      }
+    },
+    {
+      "block": "your-closing-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Besluit wat gebeur met elke kliënt se deposito vir werk wat nog nie gedoen is nie"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voordat jy ophou"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:83dc373f",
+      "order": 57,
+      "when": {
+        "entity": "sole-prop"
+      }
+    },
+    {
+      "block": "your-closing-checklist.1",
+      "c": [
+        {
+          "t": "text",
+          "v": "Elke lisensie en registrasie wat die besigheid het, gelys"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "Voordat jy ophou"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:f3a0f205",
+      "order": 58,
+      "when": {
+        "entity": "sole-prop"
+      }
+    },
+    {
+      "block": "your-closing-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "Die besigheidsinkomste tot op die sluitingsdatum op my ITR12 vir daardie jaar verklaar"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "By SARS"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:db702382",
+      "order": 59,
+      "when": {
+        "entity": "sole-prop"
+      }
+    },
+    {
+      "block": "your-closing-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "SARS gevra om my registrasie as voorlopige belastingbetaler te beëindig, en aangehou om IRP6-opgawes in te dien totdat dit skriftelik bevestig het"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "By SARS"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:5dd16347",
+      "order": 60,
+      "when": {
+        "entity": "sole-prop"
+      }
+    },
+    {
+      "block": "your-closing-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "As ek op omsetbelasting is: SARS gevra om daardie registrasie te beëindig"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "By SARS"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:2a9ea3ed",
+      "order": 61,
+      "when": {
+        "entity": "sole-prop"
+      }
+    },
+    {
+      "block": "your-closing-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "As ek vir BTW geregistreer is: SARS laat weet ek het opgehou, vir elke BTW-tydperk tot die kansellasie ingedien, en die BTW op voorraad en bates wat ek hou, nagegaan"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "By SARS"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:292afe76",
+      "order": 62,
+      "when": {
+        "entity": "sole-prop",
+        "tags": [
+          "vat-registered"
+        ]
+      }
+    },
+    {
+      "block": "your-closing-checklist.2",
+      "c": [
+        {
+          "t": "text",
+          "v": "As ek personeel in diens gehad het: laaste EMP201 ingedien, EMP501 dek elke maand, en SARS gevra om my registrasie as werkgewer te beëindig"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "By SARS"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:1684dddc",
+      "order": 63,
+      "when": {
+        "entity": "sole-prop",
+        "tags": [
+          "employer"
+        ]
+      }
+    },
+    {
+      "block": "your-closing-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "As ek personeel in diens gehad het: advies gekry voordat ek kennis gegee het, en elke werknemer gegee wat hulle nodig het om uit die Unemployment Insurance Fund te eis"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "Almal anders"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:424b0666",
+      "order": 64,
+      "when": {
+        "entity": "sole-prop",
+        "tags": [
+          "employer"
+        ]
+      }
+    },
+    {
+      "block": "your-closing-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "As ek personeel in diens gehad het: die Compensation Fund laat weet dat ek niemand meer in diens het nie"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "Almal anders"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:71206b54",
+      "order": 65,
+      "when": {
+        "entity": "sole-prop",
+        "tags": [
+          "employer"
+        ]
+      }
+    },
+    {
+      "block": "your-closing-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "Die munisipaliteit, SAPS, die Information Regulator en enige ander kantoor wat ’n lisensie of registrasie uitgereik het, laat weet"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "Almal anders"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:c91fe9b9",
+      "order": 66,
+      "when": {
+        "entity": "sole-prop"
+      }
+    },
+    {
+      "block": "your-closing-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "Die kaartmasjien, debietorders en intekeninge op die besigheidsrekening gekanselleer"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "Almal anders"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:8b02ddf2",
+      "order": 67,
+      "when": {
+        "entity": "sole-prop"
+      }
+    },
+    {
+      "block": "your-closing-checklist.3",
+      "c": [
+        {
+          "t": "text",
+          "v": "Die besigheidsrekening gesluit, of as ’n persoonlike rekening gehou, nadat ek die state afgelaai het"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "Almal anders"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:d5af694b",
+      "order": 68,
+      "when": {
+        "entity": "sole-prop"
+      }
+    },
+    {
+      "block": "your-closing-checklist.4",
+      "c": [
+        {
+          "t": "text",
+          "v": "Elke rekord in een vouer, gehou vir vyf jaar ná my laaste ITR12 met besigheidsinkomste"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "Daarna"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:5fb9bdb9",
+      "order": 69,
+      "when": {
+        "entity": "sole-prop"
+      }
+    },
+    {
+      "block": "your-closing-checklist.4",
+      "c": [
+        {
+          "t": "text",
+          "v": "Kliënte se persoonlike inligting uitgevee sodra ek dit nie meer nodig het nie"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "Daarna"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:a7cf7e05",
+      "order": 70,
+      "when": {
+        "entity": "sole-prop"
+      }
+    },
+    {
+      "block": "your-closing-checklist.4",
+      "c": [
+        {
+          "t": "text",
+          "v": "Niks wat aan my geskuld word, is amper drie jaar oud nie"
+        }
+      ],
+      "doc": "core/closing-as-a-sole-proprietor",
+      "group": [
+        {
+          "t": "text",
+          "v": "Daarna"
+        }
+      ],
+      "heading": "your-closing-checklist",
+      "id": "core/closing-as-a-sole-proprietor:b6fe6cfd",
+      "order": 71,
+      "when": {
+        "entity": "sole-prop"
+      }
+    },
+    {
       "block": "checklist.1",
       "c": [
         {
@@ -938,7 +1324,7 @@
       "doc": "branding/mood-and-materials",
       "heading": "checklist",
       "id": "branding/mood-and-materials:a94accc0",
-      "order": 55
+      "order": 72
     },
     {
       "block": "checklist.1",
@@ -951,7 +1337,7 @@
       "doc": "branding/mood-and-materials",
       "heading": "checklist",
       "id": "branding/mood-and-materials:3028bd4e",
-      "order": 56
+      "order": 73
     },
     {
       "block": "checklist.1",
@@ -964,7 +1350,7 @@
       "doc": "branding/mood-and-materials",
       "heading": "checklist",
       "id": "branding/mood-and-materials:e3bf4881",
-      "order": 57
+      "order": 74
     },
     {
       "block": "checklist.1",
@@ -977,7 +1363,7 @@
       "doc": "branding/mood-and-materials",
       "heading": "checklist",
       "id": "branding/mood-and-materials:81c3b913",
-      "order": 58
+      "order": 75
     },
     {
       "block": "checklist.1",
@@ -990,7 +1376,7 @@
       "doc": "branding/mood-and-materials",
       "heading": "checklist",
       "id": "branding/mood-and-materials:cd1a4491",
-      "order": 59
+      "order": 76
     },
     {
       "block": "your-startup-checklist.1",
@@ -1018,7 +1404,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:81105d14",
-      "order": 60,
+      "order": 77,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1051,7 +1437,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:ddf401f6",
-      "order": 61,
+      "order": 78,
       "sameAs": "lookup/checklist:57a8c2a4",
       "when": {
         "businessTypes": [
@@ -1076,7 +1462,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:9df05312",
-      "order": 62,
+      "order": 79,
       "sameAs": "lookup/checklist:9aefc6b4",
       "when": {
         "businessTypes": [
@@ -1101,7 +1487,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:85d9f1a4",
-      "order": 63,
+      "order": 80,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1125,7 +1511,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:e5ee625b",
-      "order": 64,
+      "order": 81,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1149,7 +1535,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:9d53e703",
-      "order": 65,
+      "order": 82,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1173,7 +1559,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:96c81d0e",
-      "order": 66,
+      "order": 83,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1197,7 +1583,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:621643ad",
-      "order": 67,
+      "order": 84,
       "sameAs": "lookup/checklist:cdc31934",
       "when": {
         "businessTypes": [
@@ -1222,7 +1608,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:70c5bd63",
-      "order": 68,
+      "order": 85,
       "sameAs": "lookup/checklist:b196800c",
       "when": {
         "businessTypes": [
@@ -1247,7 +1633,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:4e32d6ab",
-      "order": 69,
+      "order": 86,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1271,7 +1657,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:45b57985",
-      "order": 70,
+      "order": 87,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1295,7 +1681,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:0f979ec9",
-      "order": 71,
+      "order": 88,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1319,7 +1705,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:5391018c",
-      "order": 72,
+      "order": 89,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1343,7 +1729,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:c0b079e3",
-      "order": 73,
+      "order": 90,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1367,7 +1753,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:0735f705",
-      "order": 74,
+      "order": 91,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1391,7 +1777,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:2af36b16",
-      "order": 75,
+      "order": 92,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1415,7 +1801,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:856d737a",
-      "order": 76,
+      "order": 93,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1439,7 +1825,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:9f301304",
-      "order": 77,
+      "order": 94,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1463,7 +1849,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:16c1d991",
-      "order": 78,
+      "order": 95,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1487,7 +1873,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:b2a0d33d",
-      "order": 79,
+      "order": 96,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1511,7 +1897,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:dbcc89dc",
-      "order": 80,
+      "order": 97,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1544,7 +1930,7 @@
       ],
       "heading": "your-startup-checklist",
       "id": "business-types/vehicle-dealer:5dfe11f3",
-      "order": 81,
+      "order": 98,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -1565,7 +1951,7 @@
       "doc": "business-types/food",
       "heading": "your-checklist",
       "id": "business-types/food:c251f427",
-      "order": 82,
+      "order": 99,
       "when": {
         "businessTypes": [
           "food"
@@ -1583,7 +1969,7 @@
       "doc": "business-types/food",
       "heading": "your-checklist",
       "id": "business-types/food:c239e886",
-      "order": 83,
+      "order": 100,
       "sameAs": "lookup/checklist:32e8d8b8",
       "when": {
         "businessTypes": [
@@ -1602,7 +1988,7 @@
       "doc": "business-types/food",
       "heading": "your-checklist",
       "id": "business-types/food:4d4cb4db",
-      "order": 84,
+      "order": 101,
       "sameAs": "lookup/checklist:527a8410",
       "when": {
         "businessTypes": [
@@ -1621,7 +2007,7 @@
       "doc": "business-types/food",
       "heading": "your-checklist",
       "id": "business-types/food:a7fe56ab",
-      "order": 85,
+      "order": 102,
       "sameAs": "lookup/checklist:b857c0d6",
       "when": {
         "businessTypes": [
@@ -1640,7 +2026,7 @@
       "doc": "business-types/food",
       "heading": "your-checklist",
       "id": "business-types/food:0f8340c3",
-      "order": 86,
+      "order": 103,
       "sameAs": "lookup/checklist:8b8c0d43",
       "when": {
         "businessTypes": [
@@ -1659,7 +2045,7 @@
       "doc": "business-types/food",
       "heading": "your-checklist",
       "id": "business-types/food:7ee08e59",
-      "order": 87,
+      "order": 104,
       "sameAs": "lookup/checklist:58836809",
       "when": {
         "businessTypes": [
@@ -1678,7 +2064,7 @@
       "doc": "business-types/food",
       "heading": "your-checklist",
       "id": "business-types/food:02658eb1",
-      "order": 88,
+      "order": 105,
       "sameAs": "lookup/checklist:09952c25",
       "when": {
         "businessTypes": [
@@ -1697,7 +2083,7 @@
       "doc": "business-types/food",
       "heading": "your-checklist",
       "id": "business-types/food:690c42ea",
-      "order": 89,
+      "order": 106,
       "sameAs": "lookup/checklist:1f166d50",
       "when": {
         "businessTypes": [
@@ -1716,7 +2102,7 @@
       "doc": "business-types/food",
       "heading": "your-checklist",
       "id": "business-types/food:eb4fb487",
-      "order": 90,
+      "order": 107,
       "when": {
         "businessTypes": [
           "food"
@@ -1734,7 +2120,7 @@
       "doc": "business-types/beauty",
       "heading": "your-checklist",
       "id": "business-types/beauty:92352a66",
-      "order": 91,
+      "order": 108,
       "when": {
         "businessTypes": [
           "beauty"
@@ -1752,7 +2138,7 @@
       "doc": "business-types/beauty",
       "heading": "your-checklist",
       "id": "business-types/beauty:4154a207",
-      "order": 92,
+      "order": 109,
       "sameAs": "lookup/checklist:08c14d32",
       "when": {
         "businessTypes": [
@@ -1771,7 +2157,7 @@
       "doc": "business-types/beauty",
       "heading": "your-checklist",
       "id": "business-types/beauty:3e9fa384",
-      "order": 93,
+      "order": 110,
       "sameAs": "lookup/checklist:5ddbfd24",
       "when": {
         "businessTypes": [
@@ -1790,7 +2176,7 @@
       "doc": "business-types/beauty",
       "heading": "your-checklist",
       "id": "business-types/beauty:acd577dc",
-      "order": 94,
+      "order": 111,
       "sameAs": "lookup/checklist:4f9e60d7",
       "when": {
         "businessTypes": [
@@ -1809,7 +2195,7 @@
       "doc": "business-types/beauty",
       "heading": "your-checklist",
       "id": "business-types/beauty:78e1ef6f",
-      "order": 95,
+      "order": 112,
       "sameAs": "lookup/checklist:23f8909e",
       "when": {
         "businessTypes": [
@@ -1828,7 +2214,7 @@
       "doc": "business-types/beauty",
       "heading": "your-checklist",
       "id": "business-types/beauty:1ee82848",
-      "order": 96,
+      "order": 113,
       "sameAs": "lookup/checklist:796521bf",
       "when": {
         "businessTypes": [
@@ -1847,7 +2233,7 @@
       "doc": "business-types/beauty",
       "heading": "your-checklist",
       "id": "business-types/beauty:3f035f6f",
-      "order": 97,
+      "order": 114,
       "sameAs": "lookup/checklist:f7fc2eff",
       "when": {
         "businessTypes": [
@@ -1866,7 +2252,7 @@
       "doc": "business-types/beauty",
       "heading": "your-checklist",
       "id": "business-types/beauty:22a2e898",
-      "order": 98,
+      "order": 115,
       "sameAs": "lookup/checklist:a036463c",
       "when": {
         "businessTypes": [
@@ -1885,7 +2271,7 @@
       "doc": "business-types/retail-online",
       "heading": "your-checklist",
       "id": "business-types/retail-online:05b6a4b6",
-      "order": 99,
+      "order": 116,
       "when": {
         "businessTypes": [
           "retail-online"
@@ -1903,7 +2289,7 @@
       "doc": "business-types/retail-online",
       "heading": "your-checklist",
       "id": "business-types/retail-online:51431599",
-      "order": 100,
+      "order": 117,
       "sameAs": "lookup/checklist:92ad1d52",
       "when": {
         "businessTypes": [
@@ -1925,7 +2311,7 @@
       "doc": "business-types/retail-online",
       "heading": "your-checklist",
       "id": "business-types/retail-online:7606eb50",
-      "order": 101,
+      "order": 118,
       "sameAs": "lookup/checklist:1a0745a3",
       "when": {
         "businessTypes": [
@@ -1947,7 +2333,7 @@
       "doc": "business-types/retail-online",
       "heading": "your-checklist",
       "id": "business-types/retail-online:3f057ea5",
-      "order": 102,
+      "order": 119,
       "sameAs": "lookup/checklist:eea37d29",
       "when": {
         "businessTypes": [
@@ -1966,7 +2352,7 @@
       "doc": "business-types/retail-online",
       "heading": "your-checklist",
       "id": "business-types/retail-online:857a560f",
-      "order": 103,
+      "order": 120,
       "sameAs": "lookup/checklist:3b8c77ff",
       "when": {
         "businessTypes": [
@@ -1985,7 +2371,7 @@
       "doc": "business-types/retail-online",
       "heading": "your-checklist",
       "id": "business-types/retail-online:3997af12",
-      "order": 104,
+      "order": 121,
       "sameAs": "lookup/checklist:5a7f3f39",
       "when": {
         "businessTypes": [
@@ -2004,7 +2390,7 @@
       "doc": "business-types/retail-online",
       "heading": "your-checklist",
       "id": "business-types/retail-online:eead27a2",
-      "order": 105,
+      "order": 122,
       "when": {
         "businessTypes": [
           "retail-online"
@@ -2022,7 +2408,7 @@
       "doc": "business-types/retail-online",
       "heading": "your-checklist",
       "id": "business-types/retail-online:46751df3",
-      "order": 106,
+      "order": 123,
       "sameAs": "lookup/checklist:63f5e0ad",
       "when": {
         "businessTypes": [
@@ -2041,7 +2427,7 @@
       "doc": "business-types/services-trades",
       "heading": "your-checklist",
       "id": "business-types/services-trades:7aeedd49",
-      "order": 107,
+      "order": 124,
       "when": {
         "businessTypes": [
           "services-trades"
@@ -2059,7 +2445,7 @@
       "doc": "business-types/services-trades",
       "heading": "your-checklist",
       "id": "business-types/services-trades:6b14de08",
-      "order": 108,
+      "order": 125,
       "sameAs": "lookup/checklist:aa9275cd",
       "when": {
         "businessTypes": [
@@ -2078,7 +2464,7 @@
       "doc": "business-types/services-trades",
       "heading": "your-checklist",
       "id": "business-types/services-trades:06447813",
-      "order": 109,
+      "order": 126,
       "sameAs": "lookup/checklist:bac9170c",
       "when": {
         "businessTypes": [
@@ -2097,7 +2483,7 @@
       "doc": "business-types/services-trades",
       "heading": "your-checklist",
       "id": "business-types/services-trades:3e62bd56",
-      "order": 110,
+      "order": 127,
       "sameAs": "lookup/checklist:2bb7976e",
       "when": {
         "businessTypes": [
@@ -2116,7 +2502,7 @@
       "doc": "business-types/services-trades",
       "heading": "your-checklist",
       "id": "business-types/services-trades:4931924a",
-      "order": 111,
+      "order": 128,
       "sameAs": "lookup/checklist:82477245",
       "when": {
         "businessTypes": [
@@ -2135,7 +2521,7 @@
       "doc": "business-types/services-trades",
       "heading": "your-checklist",
       "id": "business-types/services-trades:6fa9b54e",
-      "order": 112,
+      "order": 129,
       "sameAs": "lookup/checklist:a448e918",
       "when": {
         "businessTypes": [
@@ -2154,7 +2540,7 @@
       "doc": "business-types/services-trades",
       "heading": "your-checklist",
       "id": "business-types/services-trades:92e8509e",
-      "order": 113,
+      "order": 130,
       "sameAs": "lookup/checklist:22905c13",
       "when": {
         "businessTypes": [
@@ -2173,7 +2559,7 @@
       "doc": "business-types/services-trades",
       "heading": "your-checklist",
       "id": "business-types/services-trades:a9a8c6bf",
-      "order": 114,
+      "order": 131,
       "when": {
         "businessTypes": [
           "services-trades"
@@ -2191,7 +2577,7 @@
       "doc": "business-types/professional-creative",
       "heading": "your-checklist",
       "id": "business-types/professional-creative:4e99d003",
-      "order": 115,
+      "order": 132,
       "when": {
         "businessTypes": [
           "professional-creative"
@@ -2209,7 +2595,7 @@
       "doc": "business-types/professional-creative",
       "heading": "your-checklist",
       "id": "business-types/professional-creative:fc5121e3",
-      "order": 116,
+      "order": 133,
       "sameAs": "lookup/checklist:956d9895",
       "when": {
         "businessTypes": [
@@ -2228,7 +2614,7 @@
       "doc": "business-types/professional-creative",
       "heading": "your-checklist",
       "id": "business-types/professional-creative:4c50b1ae",
-      "order": 117,
+      "order": 134,
       "sameAs": "lookup/checklist:e97fe964",
       "when": {
         "businessTypes": [
@@ -2247,7 +2633,7 @@
       "doc": "business-types/professional-creative",
       "heading": "your-checklist",
       "id": "business-types/professional-creative:8afe75e0",
-      "order": 118,
+      "order": 135,
       "when": {
         "businessTypes": [
           "professional-creative"
@@ -2265,7 +2651,7 @@
       "doc": "business-types/professional-creative",
       "heading": "your-checklist",
       "id": "business-types/professional-creative:1c124945",
-      "order": 119,
+      "order": 136,
       "sameAs": "lookup/checklist:0b186a56",
       "when": {
         "businessTypes": [
@@ -2284,7 +2670,7 @@
       "doc": "business-types/professional-creative",
       "heading": "your-checklist",
       "id": "business-types/professional-creative:66134f08",
-      "order": 120,
+      "order": 137,
       "sameAs": "lookup/checklist:afe2d3be",
       "when": {
         "businessTypes": [
@@ -2303,7 +2689,7 @@
       "doc": "business-types/professional-creative",
       "heading": "your-checklist",
       "id": "business-types/professional-creative:09f007d9",
-      "order": 121,
+      "order": 138,
       "sameAs": "lookup/checklist:53da774d",
       "when": {
         "businessTypes": [
@@ -2322,7 +2708,7 @@
       "doc": "lookup/checklist",
       "heading": "before-you-trade",
       "id": "lookup/checklist:5cce7722",
-      "order": 122
+      "order": 139
     },
     {
       "block": "before-you-trade.1",
@@ -2335,7 +2721,7 @@
       "doc": "lookup/checklist",
       "heading": "before-you-trade",
       "id": "lookup/checklist:1c9a465a",
-      "order": 123
+      "order": 140
     },
     {
       "block": "before-you-trade.1",
@@ -2348,7 +2734,7 @@
       "doc": "lookup/checklist",
       "heading": "before-you-trade",
       "id": "lookup/checklist:53e717ac",
-      "order": 124,
+      "order": 141,
       "when": {
         "tags": [
           "home"
@@ -2366,7 +2752,7 @@
       "doc": "lookup/checklist",
       "heading": "before-you-trade",
       "id": "lookup/checklist:8a10fb7e",
-      "order": 125
+      "order": 142
     },
     {
       "block": "before-you-trade.1",
@@ -2397,7 +2783,7 @@
       "doc": "lookup/checklist",
       "heading": "before-you-trade",
       "id": "lookup/checklist:5dfc9c4d",
-      "order": 126
+      "order": 143
     },
     {
       "block": "before-you-trade.1",
@@ -2410,7 +2796,7 @@
       "doc": "lookup/checklist",
       "heading": "before-you-trade",
       "id": "lookup/checklist:eb465a87",
-      "order": 127
+      "order": 144
     },
     {
       "block": "before-you-trade.1",
@@ -2423,7 +2809,7 @@
       "doc": "lookup/checklist",
       "heading": "before-you-trade",
       "id": "lookup/checklist:88cba814",
-      "order": 128
+      "order": 145
     },
     {
       "block": "brand-and-documents.1",
@@ -2436,7 +2822,7 @@
       "doc": "lookup/checklist",
       "heading": "brand-and-documents",
       "id": "lookup/checklist:bcf0f339",
-      "order": 129
+      "order": 146
     },
     {
       "block": "brand-and-documents.1",
@@ -2449,7 +2835,7 @@
       "doc": "lookup/checklist",
       "heading": "brand-and-documents",
       "id": "lookup/checklist:02efde59",
-      "order": 130
+      "order": 147
     },
     {
       "block": "brand-and-documents.1",
@@ -2471,7 +2857,7 @@
       "doc": "lookup/checklist",
       "heading": "brand-and-documents",
       "id": "lookup/checklist:32e2d4af",
-      "order": 131
+      "order": 148
     },
     {
       "block": "brand-and-documents.1",
@@ -2484,7 +2870,7 @@
       "doc": "lookup/checklist",
       "heading": "brand-and-documents",
       "id": "lookup/checklist:8dae9274",
-      "order": 132
+      "order": 149
     },
     {
       "block": "brand-and-documents.1",
@@ -2497,7 +2883,7 @@
       "doc": "lookup/checklist",
       "heading": "brand-and-documents",
       "id": "lookup/checklist:f9ae9c72",
-      "order": 133
+      "order": 150
     },
     {
       "block": "brand-and-documents.1",
@@ -2510,7 +2896,7 @@
       "doc": "lookup/checklist",
       "heading": "brand-and-documents",
       "id": "lookup/checklist:25f043c4",
-      "order": 134
+      "order": 151
     },
     {
       "block": "brand-and-documents.1",
@@ -2523,7 +2909,7 @@
       "doc": "lookup/checklist",
       "heading": "brand-and-documents",
       "id": "lookup/checklist:1b7c3802",
-      "order": 135
+      "order": 152
     },
     {
       "block": "brand-and-documents.1",
@@ -2536,7 +2922,7 @@
       "doc": "lookup/checklist",
       "heading": "brand-and-documents",
       "id": "lookup/checklist:48e229b7",
-      "order": 136
+      "order": 153
     },
     {
       "block": "brand-and-documents.1",
@@ -2558,7 +2944,7 @@
       "doc": "lookup/checklist",
       "heading": "brand-and-documents",
       "id": "lookup/checklist:1687e0b9",
-      "order": 137
+      "order": 154
     },
     {
       "block": "compliance.1",
@@ -2586,7 +2972,7 @@
       "doc": "lookup/checklist",
       "heading": "compliance",
       "id": "lookup/checklist:a036463c",
-      "order": 138
+      "order": 155
     },
     {
       "block": "compliance.1",
@@ -2599,7 +2985,7 @@
       "doc": "lookup/checklist",
       "heading": "compliance",
       "id": "lookup/checklist:9488b9de",
-      "order": 139
+      "order": 156
     },
     {
       "block": "compliance.1",
@@ -2612,7 +2998,7 @@
       "doc": "lookup/checklist",
       "heading": "compliance",
       "id": "lookup/checklist:afe2d3be",
-      "order": 140
+      "order": 157
     },
     {
       "block": "compliance.1",
@@ -2625,7 +3011,7 @@
       "doc": "lookup/checklist",
       "heading": "compliance",
       "id": "lookup/checklist:5d35feb9",
-      "order": 141
+      "order": 158
     },
     {
       "block": "compliance.1",
@@ -2638,7 +3024,7 @@
       "doc": "lookup/checklist",
       "heading": "compliance",
       "id": "lookup/checklist:025df418",
-      "order": 142,
+      "order": 159,
       "when": {
         "entity": "pty"
       }
@@ -2654,7 +3040,7 @@
       "doc": "lookup/checklist",
       "heading": "compliance",
       "id": "lookup/checklist:e7aada86",
-      "order": 143,
+      "order": 160,
       "when": {
         "entity": "pty"
       }
@@ -2670,7 +3056,7 @@
       "doc": "lookup/checklist",
       "heading": "compliance",
       "id": "lookup/checklist:efcec13d",
-      "order": 144
+      "order": 161
     },
     {
       "block": "marketing.1",
@@ -2683,7 +3069,7 @@
       "doc": "lookup/checklist",
       "heading": "marketing",
       "id": "lookup/checklist:22905c13",
-      "order": 145
+      "order": 162
     },
     {
       "block": "marketing.1",
@@ -2696,7 +3082,7 @@
       "doc": "lookup/checklist",
       "heading": "marketing",
       "id": "lookup/checklist:f77f50f7",
-      "order": 146
+      "order": 163
     },
     {
       "block": "marketing.1",
@@ -2709,7 +3095,7 @@
       "doc": "lookup/checklist",
       "heading": "marketing",
       "id": "lookup/checklist:111fd9c5",
-      "order": 147
+      "order": 164
     },
     {
       "block": "every-sale-where-i-never-meet-the-customer-or-meet-them-once.1",
@@ -2722,7 +3108,7 @@
       "doc": "lookup/checklist",
       "heading": "every-sale-where-i-never-meet-the-customer-or-meet-them-once",
       "id": "lookup/checklist:057de8cb",
-      "order": 148
+      "order": 165
     },
     {
       "block": "every-sale-where-i-never-meet-the-customer-or-meet-them-once.1",
@@ -2735,7 +3121,7 @@
       "doc": "lookup/checklist",
       "heading": "every-sale-where-i-never-meet-the-customer-or-meet-them-once",
       "id": "lookup/checklist:9aecec2a",
-      "order": 149
+      "order": 166
     },
     {
       "block": "every-sale-where-i-never-meet-the-customer-or-meet-them-once.1",
@@ -2748,7 +3134,7 @@
       "doc": "lookup/checklist",
       "heading": "every-sale-where-i-never-meet-the-customer-or-meet-them-once",
       "id": "lookup/checklist:b620b7df",
-      "order": 150
+      "order": 167
     },
     {
       "block": "every-sale-where-i-never-meet-the-customer-or-meet-them-once.1",
@@ -2761,7 +3147,7 @@
       "doc": "lookup/checklist",
       "heading": "every-sale-where-i-never-meet-the-customer-or-meet-them-once",
       "id": "lookup/checklist:8a68f28a",
-      "order": 151,
+      "order": 168,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -2779,7 +3165,7 @@
       "doc": "lookup/checklist",
       "heading": "money-hygiene",
       "id": "lookup/checklist:99fc0864",
-      "order": 152
+      "order": 169
     },
     {
       "block": "money-hygiene.1",
@@ -2792,7 +3178,7 @@
       "doc": "lookup/checklist",
       "heading": "money-hygiene",
       "id": "lookup/checklist:34453e8d",
-      "order": 153
+      "order": 170
     },
     {
       "block": "money-hygiene.1",
@@ -2805,7 +3191,7 @@
       "doc": "lookup/checklist",
       "heading": "money-hygiene",
       "id": "lookup/checklist:f3ff7fdb",
-      "order": 154
+      "order": 171
     },
     {
       "block": "money-hygiene.1",
@@ -2818,7 +3204,7 @@
       "doc": "lookup/checklist",
       "heading": "money-hygiene",
       "id": "lookup/checklist:59e1a146",
-      "order": 155
+      "order": 172
     },
     {
       "block": "once-after-registration.1",
@@ -2831,7 +3217,7 @@
       "doc": "lookup/checklist",
       "heading": "once-after-registration",
       "id": "lookup/checklist:c2850f49",
-      "order": 156,
+      "order": 173,
       "when": {
         "entity": "pty"
       }
@@ -2847,7 +3233,7 @@
       "doc": "lookup/checklist",
       "heading": "once-after-registration",
       "id": "lookup/checklist:0694d50e",
-      "order": 157,
+      "order": 174,
       "when": {
         "entity": "pty"
       }
@@ -2863,7 +3249,7 @@
       "doc": "lookup/checklist",
       "heading": "once-after-registration",
       "id": "lookup/checklist:eb8bf210",
-      "order": 158,
+      "order": 175,
       "when": {
         "entity": "pty"
       }
@@ -2879,7 +3265,7 @@
       "doc": "lookup/checklist",
       "heading": "once-after-registration",
       "id": "lookup/checklist:3e92283b",
-      "order": 159,
+      "order": 176,
       "when": {
         "entity": "pty"
       }
@@ -2895,7 +3281,7 @@
       "doc": "lookup/checklist",
       "heading": "once-after-registration",
       "id": "lookup/checklist:d16ddfb9",
-      "order": 160,
+      "order": 177,
       "when": {
         "entity": "pty"
       }
@@ -2911,7 +3297,7 @@
       "doc": "lookup/checklist",
       "heading": "once-after-registration",
       "id": "lookup/checklist:d21f5efe",
-      "order": 161,
+      "order": 178,
       "when": {
         "entity": "pty"
       }
@@ -2927,7 +3313,7 @@
       "doc": "lookup/checklist",
       "heading": "once-after-registration",
       "id": "lookup/checklist:64fdeec3",
-      "order": 162,
+      "order": 179,
       "when": {
         "entity": "pty",
         "tags": [
@@ -2946,7 +3332,7 @@
       "doc": "lookup/checklist",
       "heading": "every-year",
       "id": "lookup/checklist:a39426e1",
-      "order": 163,
+      "order": 180,
       "when": {
         "entity": "pty"
       }
@@ -2962,7 +3348,7 @@
       "doc": "lookup/checklist",
       "heading": "every-year",
       "id": "lookup/checklist:b79af9c6",
-      "order": 164,
+      "order": 181,
       "when": {
         "entity": "pty"
       }
@@ -2978,7 +3364,7 @@
       "doc": "lookup/checklist",
       "heading": "every-year",
       "id": "lookup/checklist:00f5fc24",
-      "order": 165,
+      "order": 182,
       "when": {
         "entity": "pty"
       }
@@ -2994,7 +3380,7 @@
       "doc": "lookup/checklist",
       "heading": "every-year",
       "id": "lookup/checklist:b0853b54",
-      "order": 166,
+      "order": 183,
       "when": {
         "entity": "pty"
       }
@@ -3010,7 +3396,7 @@
       "doc": "lookup/checklist",
       "heading": "every-year",
       "id": "lookup/checklist:95b86e75",
-      "order": 167,
+      "order": 184,
       "when": {
         "entity": "pty"
       }
@@ -3026,7 +3412,7 @@
       "doc": "lookup/checklist",
       "heading": "every-year",
       "id": "lookup/checklist:63d6082e",
-      "order": 168,
+      "order": 185,
       "when": {
         "entity": "pty"
       }
@@ -3042,7 +3428,7 @@
       "doc": "lookup/checklist",
       "heading": "every-year",
       "id": "lookup/checklist:60d623d8",
-      "order": 169,
+      "order": 186,
       "when": {
         "entity": "pty"
       }
@@ -3058,7 +3444,7 @@
       "doc": "lookup/checklist",
       "heading": "every-year",
       "id": "lookup/checklist:12b6eab2",
-      "order": 170,
+      "order": 187,
       "when": {
         "entity": "pty"
       }
@@ -3074,7 +3460,7 @@
       "doc": "lookup/checklist",
       "heading": "every-month-if-the-company-pays-anyone-a-salary-including-me",
       "id": "lookup/checklist:fe35c42c",
-      "order": 171,
+      "order": 188,
       "when": {
         "entity": "pty"
       }
@@ -3090,7 +3476,7 @@
       "doc": "lookup/checklist",
       "heading": "never",
       "id": "lookup/checklist:c7242bd4",
-      "order": 172,
+      "order": 189,
       "when": {
         "entity": "pty"
       }
@@ -3106,7 +3492,7 @@
       "doc": "lookup/checklist",
       "heading": "never",
       "id": "lookup/checklist:27055304",
-      "order": 173,
+      "order": 190,
       "when": {
         "entity": "pty"
       }
@@ -3122,7 +3508,7 @@
       "doc": "lookup/checklist",
       "heading": "never",
       "id": "lookup/checklist:8a008594",
-      "order": 174,
+      "order": 191,
       "when": {
         "entity": "pty"
       }
@@ -3138,7 +3524,7 @@
       "doc": "lookup/checklist",
       "heading": "vehicle-dealer",
       "id": "lookup/checklist:57a8c2a4",
-      "order": 175,
+      "order": 192,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -3156,7 +3542,7 @@
       "doc": "lookup/checklist",
       "heading": "vehicle-dealer",
       "id": "lookup/checklist:9aefc6b4",
-      "order": 176,
+      "order": 193,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -3174,7 +3560,7 @@
       "doc": "lookup/checklist",
       "heading": "vehicle-dealer",
       "id": "lookup/checklist:b196800c",
-      "order": 177,
+      "order": 194,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -3192,7 +3578,7 @@
       "doc": "lookup/checklist",
       "heading": "vehicle-dealer",
       "id": "lookup/checklist:744d13d6",
-      "order": 178,
+      "order": 195,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -3210,7 +3596,7 @@
       "doc": "lookup/checklist",
       "heading": "vehicle-dealer",
       "id": "lookup/checklist:8dbe5551",
-      "order": 179,
+      "order": 196,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -3228,7 +3614,7 @@
       "doc": "lookup/checklist",
       "heading": "vehicle-dealer",
       "id": "lookup/checklist:cdc31934",
-      "order": 180,
+      "order": 197,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -3246,7 +3632,7 @@
       "doc": "lookup/checklist",
       "heading": "vehicle-dealer",
       "id": "lookup/checklist:8ef76a00",
-      "order": 181,
+      "order": 198,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -3264,7 +3650,7 @@
       "doc": "lookup/checklist",
       "heading": "vehicle-dealer",
       "id": "lookup/checklist:e441a4c4",
-      "order": 182,
+      "order": 199,
       "when": {
         "businessTypes": [
           "vehicle-dealer"
@@ -3282,7 +3668,7 @@
       "doc": "lookup/checklist",
       "heading": "food",
       "id": "lookup/checklist:32e8d8b8",
-      "order": 183,
+      "order": 200,
       "when": {
         "businessTypes": [
           "food"
@@ -3300,7 +3686,7 @@
       "doc": "lookup/checklist",
       "heading": "food",
       "id": "lookup/checklist:527a8410",
-      "order": 184,
+      "order": 201,
       "when": {
         "businessTypes": [
           "food"
@@ -3318,7 +3704,7 @@
       "doc": "lookup/checklist",
       "heading": "food",
       "id": "lookup/checklist:b857c0d6",
-      "order": 185,
+      "order": 202,
       "when": {
         "businessTypes": [
           "food"
@@ -3336,7 +3722,7 @@
       "doc": "lookup/checklist",
       "heading": "food",
       "id": "lookup/checklist:1f166d50",
-      "order": 186,
+      "order": 203,
       "when": {
         "businessTypes": [
           "food"
@@ -3354,7 +3740,7 @@
       "doc": "lookup/checklist",
       "heading": "food",
       "id": "lookup/checklist:8b8c0d43",
-      "order": 187,
+      "order": 204,
       "when": {
         "businessTypes": [
           "food"
@@ -3372,7 +3758,7 @@
       "doc": "lookup/checklist",
       "heading": "food",
       "id": "lookup/checklist:58836809",
-      "order": 188,
+      "order": 205,
       "when": {
         "businessTypes": [
           "food"
@@ -3390,7 +3776,7 @@
       "doc": "lookup/checklist",
       "heading": "food",
       "id": "lookup/checklist:09952c25",
-      "order": 189,
+      "order": 206,
       "when": {
         "businessTypes": [
           "food"
@@ -3408,7 +3794,7 @@
       "doc": "lookup/checklist",
       "heading": "beauty-and-personal-care",
       "id": "lookup/checklist:08c14d32",
-      "order": 190,
+      "order": 207,
       "when": {
         "businessTypes": [
           "beauty"
@@ -3426,7 +3812,7 @@
       "doc": "lookup/checklist",
       "heading": "beauty-and-personal-care",
       "id": "lookup/checklist:5ddbfd24",
-      "order": 191,
+      "order": 208,
       "when": {
         "businessTypes": [
           "beauty"
@@ -3444,7 +3830,7 @@
       "doc": "lookup/checklist",
       "heading": "beauty-and-personal-care",
       "id": "lookup/checklist:4f9e60d7",
-      "order": 192,
+      "order": 209,
       "when": {
         "businessTypes": [
           "beauty"
@@ -3462,7 +3848,7 @@
       "doc": "lookup/checklist",
       "heading": "beauty-and-personal-care",
       "id": "lookup/checklist:23f8909e",
-      "order": 193,
+      "order": 210,
       "when": {
         "businessTypes": [
           "beauty"
@@ -3480,7 +3866,7 @@
       "doc": "lookup/checklist",
       "heading": "beauty-and-personal-care",
       "id": "lookup/checklist:796521bf",
-      "order": 194,
+      "order": 211,
       "when": {
         "businessTypes": [
           "beauty"
@@ -3498,7 +3884,7 @@
       "doc": "lookup/checklist",
       "heading": "beauty-and-personal-care",
       "id": "lookup/checklist:f7fc2eff",
-      "order": 195,
+      "order": 212,
       "when": {
         "businessTypes": [
           "beauty"
@@ -3516,7 +3902,7 @@
       "doc": "lookup/checklist",
       "heading": "retail-and-online",
       "id": "lookup/checklist:92ad1d52",
-      "order": 196,
+      "order": 213,
       "when": {
         "businessTypes": [
           "retail-online"
@@ -3534,7 +3920,7 @@
       "doc": "lookup/checklist",
       "heading": "retail-and-online",
       "id": "lookup/checklist:1a0745a3",
-      "order": 197,
+      "order": 214,
       "when": {
         "businessTypes": [
           "retail-online"
@@ -3552,7 +3938,7 @@
       "doc": "lookup/checklist",
       "heading": "retail-and-online",
       "id": "lookup/checklist:eea37d29",
-      "order": 198,
+      "order": 215,
       "when": {
         "businessTypes": [
           "retail-online"
@@ -3570,7 +3956,7 @@
       "doc": "lookup/checklist",
       "heading": "retail-and-online",
       "id": "lookup/checklist:3b8c77ff",
-      "order": 199,
+      "order": 216,
       "when": {
         "businessTypes": [
           "retail-online"
@@ -3588,7 +3974,7 @@
       "doc": "lookup/checklist",
       "heading": "retail-and-online",
       "id": "lookup/checklist:5a7f3f39",
-      "order": 200,
+      "order": 217,
       "when": {
         "businessTypes": [
           "retail-online"
@@ -3606,7 +3992,7 @@
       "doc": "lookup/checklist",
       "heading": "retail-and-online",
       "id": "lookup/checklist:63f5e0ad",
-      "order": 201,
+      "order": 218,
       "when": {
         "businessTypes": [
           "retail-online"
@@ -3624,7 +4010,7 @@
       "doc": "lookup/checklist",
       "heading": "services-and-trades",
       "id": "lookup/checklist:c835f118",
-      "order": 202,
+      "order": 219,
       "when": {
         "businessTypes": [
           "services-trades"
@@ -3642,7 +4028,7 @@
       "doc": "lookup/checklist",
       "heading": "services-and-trades",
       "id": "lookup/checklist:aa9275cd",
-      "order": 203,
+      "order": 220,
       "when": {
         "businessTypes": [
           "services-trades"
@@ -3660,7 +4046,7 @@
       "doc": "lookup/checklist",
       "heading": "services-and-trades",
       "id": "lookup/checklist:bac9170c",
-      "order": 204,
+      "order": 221,
       "when": {
         "businessTypes": [
           "services-trades"
@@ -3678,7 +4064,7 @@
       "doc": "lookup/checklist",
       "heading": "services-and-trades",
       "id": "lookup/checklist:2bb7976e",
-      "order": 205,
+      "order": 222,
       "when": {
         "businessTypes": [
           "services-trades"
@@ -3696,7 +4082,7 @@
       "doc": "lookup/checklist",
       "heading": "services-and-trades",
       "id": "lookup/checklist:82477245",
-      "order": 206,
+      "order": 223,
       "when": {
         "businessTypes": [
           "services-trades"
@@ -3714,7 +4100,7 @@
       "doc": "lookup/checklist",
       "heading": "services-and-trades",
       "id": "lookup/checklist:a448e918",
-      "order": 207,
+      "order": 224,
       "when": {
         "businessTypes": [
           "services-trades"
@@ -3732,7 +4118,7 @@
       "doc": "lookup/checklist",
       "heading": "professional-and-creative",
       "id": "lookup/checklist:956d9895",
-      "order": 208,
+      "order": 225,
       "when": {
         "businessTypes": [
           "professional-creative"
@@ -3750,7 +4136,7 @@
       "doc": "lookup/checklist",
       "heading": "professional-and-creative",
       "id": "lookup/checklist:e97fe964",
-      "order": 209,
+      "order": 226,
       "when": {
         "businessTypes": [
           "professional-creative"
@@ -3768,7 +4154,7 @@
       "doc": "lookup/checklist",
       "heading": "professional-and-creative",
       "id": "lookup/checklist:4a72e7c9",
-      "order": 210,
+      "order": 227,
       "when": {
         "businessTypes": [
           "professional-creative"
@@ -3786,7 +4172,7 @@
       "doc": "lookup/checklist",
       "heading": "professional-and-creative",
       "id": "lookup/checklist:0b186a56",
-      "order": 211,
+      "order": 228,
       "when": {
         "businessTypes": [
           "professional-creative"
@@ -3804,7 +4190,7 @@
       "doc": "lookup/checklist",
       "heading": "professional-and-creative",
       "id": "lookup/checklist:53da774d",
-      "order": 212,
+      "order": 229,
       "when": {
         "businessTypes": [
           "professional-creative"

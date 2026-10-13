@@ -37,6 +37,7 @@ Geld vir almal, in hierdie vouer:
 - [Belasting en SARS](03-tax-and-sars.md) — SARS, omsetbelasting, BTW, en hoe om wettig geen belasting te betaal wanneer jy min verdien.
 - [Wat jy nodig het om dinge te verkoop](04-what-you-need-to-sell-things.md) — ’n oorsig van lisensies en permitte, en verbruikersreg.
 - [Voertuie vir jou besigheid](05-vehicles.md) — om ’n voertuig in die besigheid se naam te sit, en wanneer dit ’n slegte idee is.
+- [Jou eenmansaak toemaak](11-closing-as-a-sole-proprietor.md) — wat om te doen wanneer jy ophou om as jouself handel te dryf: SARS, personeel, lisensies, die bankrekening, skuld en rekords.
 
 Net as jy ’n maatskappy geregistreer het:
 
