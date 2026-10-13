@@ -657,6 +657,14 @@ test.describe('language', () => {
       await page.goto('./', { waitUntil: 'commit' });
       const banner = page.locator('st-lang-banner[data-locale="af"]');
       await expect(banner).toBeVisible();
+      // Measure once the stylesheets apply (the fonts are still held). At `commit` the unstyled
+      // element can already be visible, 50px tall where the styled banner is 70px, and the test
+      // then failed about once in twenty runs (WP-50 Phase 2 review pass 1, minor 4).
+      await page.waitForFunction(() =>
+        [...document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]')].every(
+          (link) => link.sheet !== null,
+        ),
+      );
       const before = (await banner.boundingBox())?.height ?? 0;
       release();
       await page.waitForLoadState('load');
