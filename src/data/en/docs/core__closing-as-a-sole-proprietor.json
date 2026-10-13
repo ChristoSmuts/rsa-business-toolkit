@@ -7,6 +7,7 @@
     {
       "c": [
         {
+          "anchor": "closing-a-company-properly",
           "c": [
             {
               "t": "text",
@@ -21,7 +22,7 @@
           "v": " covers closing a company. This file is for the other case: you trade as yourself, and you want to stop."
         }
       ],
-      "hash": "9b659ac1bd341095",
+      "hash": "19c2aec19300ff1a",
       "id": "intro.1",
       "kind": "paragraph"
     },
@@ -653,7 +654,7 @@
       "kind": "paragraph"
     },
     {
-      "hash": "086e12af81b391a1",
+      "hash": "2922c837ed922882",
       "id": "licences-and-registrations.2",
       "items": [
         [
@@ -727,7 +728,7 @@
           },
           {
             "t": "text",
-            "v": " You registered yourself with the Information Regulator at "
+            "v": " If you registered yourself as information officer with the Information Regulator at "
           },
           {
             "c": [
@@ -742,7 +743,7 @@
           },
           {
             "t": "text",
-            "v": ". Ask the Regulator how to update the registration when the business stops."
+            "v": ", ask the Regulator how to update the registration when the business stops."
           }
         ],
         [
@@ -1314,7 +1315,7 @@
       "kind": "tasklist"
     }
   ],
-  "contentHash": "738800005d06bf08",
+  "contentHash": "341ed5403e00fb9d",
   "generated": {
     "date": "2026-10-13",
     "tool": "Claude, Anthropic"
