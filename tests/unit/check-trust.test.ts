@@ -1,9 +1,13 @@
-import { describe, expect, it } from 'vitest';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   expectedDocumentPages,
   isProtectedText,
   langProblems,
   registerNames,
+  runCli,
   noticeSentences,
   textNodesWithLang,
   trustProblems,
@@ -303,6 +307,19 @@ describe('language of parts on an Afrikaans page', () => {
     expect(isProtectedText('Regulation R638 of 2018')).toBe(true);
   });
 
+  // Review WP-40 integration pass 4, nit 3: both orders are tried, and each has a case only it
+  // excuses. A pattern inside a name ("2 of 2016") needs the names removed first; a name inside a
+  // pattern ("R638" in "Regulation R638 of 2018") needs the patterns removed first.
+  it('excuses a name that contains a pattern and a pattern that contains a name', () => {
+    expect(
+      isProtectedText('National Instruction 2 of 2016.', ['National Instruction 2 of 2016']),
+    ).toBe(true);
+    expect(isProtectedText('Regulation R638 of 2018', ['R638'])).toBe(true);
+    expect(
+      isProtectedText('National Instruction 2 of 2016 says', ['National Instruction 2 of 2016']),
+    ).toBe(false);
+  });
+
   it('skips template amounts and single-letter placeholders', () => {
     const enText = '<html lang="en-ZA"><body><p>R 0.00</p><p>[X]</p></body></html>';
     const afText = '<html lang="af-ZA"><body><p>R 0.00</p><p>[X]</p></body></html>';
@@ -314,5 +331,48 @@ describe('language of parts on an Afrikaans page', () => {
     expect(langProblems(af, en)).toEqual([
       'English text marked as Afrikaans: "Register: what you actually need"',
     ]);
+  });
+});
+
+// Review WP-40 integration pass 4, nit 3: the Afrikaans content gallery is checked like any page,
+// while the rest of `af/design-system/` is an English reference and is not.
+describe('runCli and the design-system pages', () => {
+  let root: string | undefined;
+  afterEach(() => {
+    if (root) rmSync(root, { recursive: true, force: true });
+    root = undefined;
+    vi.restoreAllMocks();
+  });
+
+  function site(page: string): string {
+    root = mkdtempSync(path.join(os.tmpdir(), 'trust-'));
+    const write = (file: string, lang: string): void => {
+      mkdirSync(path.join(root!, path.dirname(file)), { recursive: true });
+      writeFileSync(
+        path.join(root!, file),
+        `<html lang="${lang}"><body><h1>Register: what you actually need</h1></body></html>`,
+      );
+    };
+    write('index.html', 'en-ZA');
+    write(`${page}/index.html`, 'en-ZA');
+    write(`af/${page}/index.html`, 'af-ZA');
+    return root;
+  }
+
+  it('checks the language of parts in the content gallery', () => {
+    vi.spyOn(console, 'log').mockImplementation(() => {});
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {});
+    expect(runCli(site('design-system/content'), '/', 0)).toBe(1);
+    expect(error.mock.calls.join('\n')).toContain(
+      '/af/design-system/content/: English text marked as Afrikaans',
+    );
+  });
+
+  it('leaves the other design-system pages alone, and checks every other page', () => {
+    const log = vi.spyOn(console, 'log').mockImplementation(() => {});
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    expect(runCli(site('design-system/tokens'), '/', 0)).toBe(0);
+    expect(log.mock.calls.join('\n')).toContain('0 Afrikaans page(s)');
+    expect(runCli(site('core/register'), '/', 0)).toBe(1);
   });
 });
