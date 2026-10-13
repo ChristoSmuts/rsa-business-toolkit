@@ -424,7 +424,8 @@ test.describe('navigation between real pages', () => {
   test('a section landing lists its documents in order', async ({ page, basePath }) => {
     await open(page, 'core/');
     const cards = page.locator('.st-section-page__list > li');
-    await expect(cards).toHaveCount(10);
+    // Eleven since "Closing as a sole proprietor" (01-core/11).
+    await expect(cards).toHaveCount(11);
     await expect(cards.first().locator('a').first()).toHaveAttribute(
       'href',
       `${basePath}core/start-here/`,
