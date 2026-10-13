@@ -1,6 +1,6 @@
 # Jou eenmansaak toemaak
 
-[Bestuur van ’n Pty Ltd](06-running-a-pty-ltd.md) dek hoe jy ’n maatskappy sluit. Hierdie lêer is vir die ander geval: jy dryf handel as jouself, en jy wil ophou.
+[Bestuur van ’n Pty Ltd](06-running-a-pty-ltd.md#closing-a-company-properly) dek hoe jy ’n maatskappy sluit. Hierdie lêer is vir die ander geval: jy dryf handel as jouself, en jy wil ophou.
 
 ’n Eenmansaak (sole proprietor) het geen besigheid om te deregistreer nie. Jy het nooit een geregistreer nie. Sluit is dus nie een aansoek nie. Dit is ’n kort lys mense om te laat weet, en ’n lys dinge wat ná die laaste verkoop joune bly.
 
@@ -93,7 +93,7 @@ Gaan deur elke lisensie en registrasie wat die besigheid het. Laat vir elkeen di
 - **Munisipale handelslisensie.** Uitgereik deur jou munisipaliteit kragtens die Businesses Act 71 of 1991. Die lisensie is aan die perseel gekoppel, nie aan jou nie. Laat die munisipale kantoor vir besigheidslisensiëring weet. Sien [Wat jy nodig het om dinge te verkoop](04-what-you-need-to-sell-things.md).
 - **Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid), vir ’n kosbesigheid.** Dit is spesifiek vir die perseel en kan nie na ’n nuwe plek of ’n nuwe eienaar oorgedra word nie. As iemand jou kosbesigheid koop, het hulle hul eie nodig.
 - **SAPS-registrasie vir tweedehandse goedere.** Die houer van ’n registrasiesertifikaat moet die Nasionale Kommissaris (National Commissioner) binne 30 dae skriftelik in kennis stel as enige van die inligting wat in die aansoek ingedien is, verander. Behandel ophou handel dryf as so ’n verandering. Laat die Designated Police Officer (aangewese polisiebeampte) by jou plaaslike SAPS-stasie skriftelik weet, en hou jou register van transaksies vir vyf jaar.
-- **POPIA-inligtingsbeampte.** Jy het jouself by die Information Regulator (Inligtingsreguleerder) by inforegulator.org.za geregistreer. Vra die Reguleerder hoe om die registrasie by te werk wanneer die besigheid ophou.
+- **POPIA-inligtingsbeampte.** As jy jouself as inligtingsbeampte by die Information Regulator (Inligtingsreguleerder) by inforegulator.org.za geregistreer het, vra die Reguleerder hoe om die registrasie by te werk wanneer die besigheid ophou.
 - **Compensation Fund, as jy personeel gehad het.** Sien die deel hierbo.
 
 > **In gewone taal:** Laat elke kantoor wat jou ’n lisensie of ’n registrasie gegee het, weet dat jy opgehou het. Vra elkeen wat hulle nodig het.
@@ -137,7 +137,7 @@ Sit alles in een vouer met die naam "Besigheidsrekords, gesluit", met die sluiti
 Voordat jy ophou:
 
 - [ ] ’n Sluitingsdatum gekies en neergeskryf
-- [ ] Elke skuld wat ek het gelys, en hoe ek elkeen gaan betaal
+- [ ] Elke skuld wat ek het, gelys, en hoe ek elkeen gaan betaal
 - [ ] Besluit wat gebeur met elke kliënt se deposito vir werk wat nog nie gedoen is nie
 - [ ] Elke lisensie en registrasie wat die besigheid het, gelys
 

@@ -298,6 +298,7 @@ export function verificationFor(
   return {
     status: 'ai-checked',
     checkedOn: override?.checkedOn ?? registerCheckedOn ?? config.provenance.generated.date,
+    ...(override?.sourcesNotOpened === true ? { sourcesNotOpened: true } : {}),
   };
 }
 

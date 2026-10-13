@@ -690,31 +690,6 @@
       "act": "value-added-tax-act-89-of-1991",
       "docs": ["paperwork/templates/tax-invoice"],
       "reason": "Lists the seven particulars a full tax invoice must show, plus the R50 and R5,000 thresholds and the 21-day issue rule, which are the tax-invoice requirements of section 20 of the VAT Act"
-    },
-    {
-      "act": "income-tax-act-58-of-1962",
-      "docs": ["core/closing-as-a-sole-proprietor"],
-      "reason": "States that the Income Tax Act requires a business owner to register as a provisional taxpayer, and that business profit up to the closing date goes on the ITR12"
-    },
-    {
-      "act": "value-added-tax-act-89-of-1991",
-      "docs": ["core/closing-as-a-sole-proprietor"],
-      "reason": "States that a VAT vendor who stops trading must tell SARS, which cancels the registration, and that stock and assets kept can attract VAT in the last return"
-    },
-    {
-      "act": "protection-of-personal-information-act-4-of-2013",
-      "docs": ["core/closing-as-a-sole-proprietor"],
-      "reason": "States that customer personal information may be kept only as long as it is needed, unless a law requires longer, and must then be deleted or destroyed"
-    },
-    {
-      "act": "second-hand-goods-act-6-of-2009",
-      "docs": ["core/closing-as-a-sole-proprietor"],
-      "reason": "States that a registered second-hand goods dealer must tell SAPS in writing about a change and keep the register of transactions for five years"
-    },
-    {
-      "act": "businesses-act-71-of-1991",
-      "docs": ["core/closing-as-a-sole-proprietor"],
-      "reason": "States that the municipal trading licence is issued under the Businesses Act 71 of 1991 by the municipality where the premises are"
     }
   ]
 }

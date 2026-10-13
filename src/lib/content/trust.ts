@@ -39,17 +39,27 @@ export function isHumanVerified(verification: Verification): boolean {
 
 export function trustNotice(verification: Verification, hasPageSources: boolean): TrustNotice {
   const human = isHumanVerified(verification);
+  // Some of the sources below were not opened (`sourcesNotOpened`): the AI checked the page against
+  // what the register says about them, and the notice must not say "against the sources below"
+  // (post-WP-50a review pass 1, minor 3). The page's own source list marks each one.
+  const notOpened = !human && hasPageSources && verification.sourcesNotOpened === true;
   const bodyKey = human
     ? hasPageSources
       ? 'trust.aiNotice.bodyHumanChecked'
       : 'trust.aiNotice.bodyHumanCheckedNoPageSources'
-    : hasPageSources
-      ? 'trust.aiNotice.body'
-      : 'trust.aiNotice.bodyNoPageSources';
+    : notOpened
+      ? 'trust.aiNotice.bodySourcesNotOpened'
+      : hasPageSources
+        ? 'trust.aiNotice.body'
+        : 'trust.aiNotice.bodyNoPageSources';
   return {
     bodyKey,
     statusKey: human ? 'trust.status.humanChecked' : 'trust.status.aiChecked',
-    meansKey: human ? 'trust.status.humanCheckedMeans' : 'trust.status.aiCheckedMeans',
+    meansKey: human
+      ? 'trust.status.humanCheckedMeans'
+      : notOpened
+        ? 'trust.status.aiCheckedNotOpenedMeans'
+        : 'trust.status.aiCheckedMeans',
     icon: human ? 'lucide:user-check' : 'lucide:bot',
     reviewer: human ? (verification.reviewedBy ?? '') : '',
     hasPageSources,

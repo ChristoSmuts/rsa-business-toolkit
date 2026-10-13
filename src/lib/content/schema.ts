@@ -343,6 +343,11 @@ export const VerificationSchema = z
     status: VerificationStatusSchema,
     checkedOn: IsoDateSchema,
     reviewedBy: z.string().optional(),
+    /**
+     * An AI check made against the register's text because some of the page's sources could not be
+     * opened (`content-meta/provenance.json`). Only on an `ai-checked` record.
+     */
+    sourcesNotOpened: z.literal(true).optional(),
   })
   .superRefine((verification, ctx) => {
     if (verification.status === 'human-verified') {
@@ -358,6 +363,13 @@ export const VerificationSchema = z
         code: 'custom',
         path: ['reviewedBy'],
         message: 'only a human-verified document has reviewedBy',
+      });
+    }
+    if (verification.status === 'human-verified' && verification.sourcesNotOpened !== undefined) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['sourcesNotOpened'],
+        message: 'only an ai-checked document has sourcesNotOpened',
       });
     }
   });

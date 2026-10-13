@@ -502,12 +502,21 @@ American spellings read as the guide's South African ones, in the index and in a
 "centre"; only words whose en-ZA form the guide uses). A word the guide itself holds is never read
 as a typo of another word: `deregister` is not "register", `deregistreer` not "registreer"; its
 singular still counts, at a fifth of its weight (`expenses` finds "Route 2: claim every real
-expense"). The sources register weighs half (`REFERENCE_WEIGHT`) in a query that does not ask for
+expense"). A page about one moment in a business's life weighs half (`MOMENT_WEIGHT`) in a
+query that does not name that moment: "Closing as a sole proprietor" lists every registration to
+cancel, so without the word `close`, `stop`, `sluit`, `toemaak` or the like, `licences` opens What
+you need to sell things, `sars act` Tax and SARS and `deregistreer my maatskappy` the company's
+closing section (post-WP-50a review pass 1, minor 2). The sources register weighs half (`REFERENCE_WEIGHT`) in a query that does not ask for
 sources (one whose last word is not a source word): it repeats every topic's words in its headings ("Vehicle dealing and vehicles
 generally"), so it no longer leads a typo of `vehicle dealer`. A query that ends with a word that
 only means "source" (`SOURCE_WORDS`: `source`, `sources`, `bron`, `bronne`) keeps it at full
 weight (`tax source`), and so does one where a source word is followed by `for`, `on`, `about`,
-`vir` or `oor` (`sources for tax`, `bronne vir btw`; `SOURCE_FOLLOWERS`, pass 20, major 1); one
+`vir` or `oor` (`sources for tax`, `bronne vir btw`; `SOURCE_FOLLOWERS`, pass 20, major 1). Such a
+query leads with the register's own entry on the subject (the words after `for` or `vir`): the
+entry whose heading holds them ("Tax and SARS" for `where are the sources for tax`; from seven
+letters a word may end differently, so `sources for licence` opens "Business licensing"), otherwise
+the first register entry that holds every word of the query (`bronne vir logo` opens "Branding
+tools referenced", not "What is in this toolkit"; post-WP-50a review pass 1, minor 2). One
 where the word is a verb or part of another phrase does not (`where do i source stock`, `source of
 income`; pass 19, minor 3); `where does
 this come from` and `waar kom dit vandaan` are best bets, matched as whole phrases, so `come up

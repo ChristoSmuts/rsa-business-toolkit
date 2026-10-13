@@ -30,20 +30,23 @@ Amptelike bronne word met **[Amptelik]** gemerk. Dit is publikasies van die rege
 
 | Wet of regulasie | Waaroor dit gaan | Waar dit verskyn |
 |---|---|---|
-| Income Tax Act 58 of 1962 | Inkomstebelasting, voorlopige belasting, omsetbelasting (Sesde Bylae), kleinsakekorporasies (s12E), omheining van vasgestelde verliese (s20A) | `01-core/03` |
-| Value-Added Tax Act 89 of 1991 | BTW-registrasie, belastingfakture (s20), nosionele insetbelasting op tweedehandse goedere (s20(8)) | `01-core/03`, `03-documents/01`, `04-business-types/01` |
+| Income Tax Act 58 of 1962 | Inkomstebelasting, voorlopige belasting, omsetbelasting (Sesde Bylae), kleinsakekorporasies (s12E), omheining van vasgestelde verliese (s20A) | `01-core/03`, `01-core/11` |
+| Value-Added Tax Act 89 of 1991 | BTW-registrasie, belastingfakture (s20), nosionele insetbelasting op tweedehandse goedere (s20(8)) | `01-core/03`, `01-core/11`, `03-documents/01`, `04-business-types/01` |
 | Companies Act 71 of 2008 | Maatskappyregistrasie, direkteure, jaarlikse opgawes, voordelige eienaarskap | `01-core/02` |
 | Consumer Protection Act 68 of 2008 | Verbruikersregte, geïmpliseerde waarborg van gehalte (s55, s56), eenvoudige taal, kansellasie (s16, s17) | `01-core/04`, alle besigheidstipes |
 | Electronic Communications and Transactions Act 25 of 2002 | Aanlynverkope: openbaarmaking (s43), afkoelperiode (s44), nakoming (s46), toepassingsgebied (s42) | `01-core/04`, `04-business-types/04` |
-| Protection of Personal Information Act 4 of 2013 | Databeskerming, registrasie van die inligtingsbeampte (s55) | `01-core/02`, `03-documents/01` |
-| Businesses Act 71 of 1991 | Munisipale handelslisensies vir kos-, gesondheids- en vermaaklikheidsbesighede | `01-core/04`, `04-business-types/02`, `03` |
+| Protection of Personal Information Act 4 of 2013 | Databeskerming, registrasie van die inligtingsbeampte (s55) | `01-core/02`, `01-core/11`, `03-documents/01` |
+| Businesses Act 71 of 1991 | Munisipale handelslisensies vir kos-, gesondheids- en vermaaklikheidsbesighede | `01-core/04`, `01-core/11`, `04-business-types/02`, `03` |
 | Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 | Koshigiëne (R638 of 2018), etikettering van kos (R146 of 2012), skoonheidsmiddels | `04-business-types/02`, `03` |
-| Second-Hand Goods Act 6 of 2009 | Registrasie van handelaars by SAPS, transaksieregisters, rekords van motorvoertuie | `04-business-types/01`, `04` |
+| Second-Hand Goods Act 6 of 2009 | Registrasie van handelaars by SAPS, transaksieregisters, rekords van motorvoertuie | `01-core/11`, `04-business-types/01`, `04` |
 | National Road Traffic Act 93 of 1996 | Voertuigregistrasie, besigheidsregisternommers, motorhandelnommers, padwaardigheid | `01-core/05`, `04-business-types/01` |
 | National Credit Act 34 of 2005 | Registrasie van kredietverskaffers by die NCR | `04-business-types/01` |
 | Financial Advisory and Intermediary Services Act 37 of 2002 | FSP-lisensiëring vir finansiële produkte en advies | `04-business-types/01`, `06` |
 | Broad-Based Black Economic Empowerment Act 53 of 2003 | EME- en QSE-drempels, beëdigde verklarings | `01-core/02` |
 | Occupational Health and Safety Act 85 of 1993 | Pligte vir veiligheid by die werkplek en in konstruksie | `04-business-types/05` |
+| Tax Administration Act 28 of 2011 | Rekords vir vyf jaar hou nadat die opgawe waarop hulle betrekking het, ingedien is (s29). Nie oopgemaak toe hierdie ry bygevoeg is nie: sien "Jou eenmansaak toemaak" hieronder | `01-core/11` |
+| Unemployment Insurance Act 63 of 2001 | Werkloosheidsvoordele van die Unemployment Insurance Fund (Werkloosheidversekeringsfonds), en die inligting wat werkgewers die Fonds oor werknemers moet gee, ook wanneer hulle vertrek. Nie oopgemaak toe hierdie ry bygevoeg is nie: sien "Jou eenmansaak toemaak" hieronder | `01-core/11` |
+| Prescription Act 68 of 1969 | Wanneer ’n gewone skuld nie meer geëis kan word nie: drie jaar vir die meeste skulde (s11(d)). Nie oopgemaak toe hierdie ry bygevoeg is nie: sien "Jou eenmansaak toemaak" hieronder | `01-core/11` |
 
 Die volledige teks van enige Suid-Afrikaanse wet is gratis beskikbaar by www.gov.za en by www.saflii.org.
 

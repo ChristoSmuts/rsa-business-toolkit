@@ -212,7 +212,7 @@
         null,
         null
       ],
-      "hash": "89a59cfbd1dd9794",
+      "hash": "de0694b2f7178c99",
       "header": [
         [
           {
@@ -254,6 +254,15 @@
               "doc": "core/tax-and-sars",
               "label": "01-core/03",
               "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
+              "t": "docref"
             }
           ]
         ],
@@ -274,6 +283,15 @@
             {
               "doc": "core/tax-and-sars",
               "label": "01-core/03",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
               "t": "docref"
             },
             {
@@ -396,6 +414,15 @@
               "v": ", "
             },
             {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
               "doc": "paperwork/which-template-to-use-when",
               "label": "03-documents/01",
               "t": "docref"
@@ -419,6 +446,15 @@
             {
               "doc": "core/what-you-need-to-sell-things",
               "label": "01-core/04",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
               "t": "docref"
             },
             {
@@ -485,6 +521,15 @@
             }
           ],
           [
+            {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
             {
               "doc": "business-types/vehicle-dealer",
               "label": "04-business-types/01",
@@ -620,6 +665,69 @@
             {
               "doc": "business-types/services-trades",
               "label": "04-business-types/05",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Tax Administration Act 28 of 2011"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Keeping records for five years after the return they relate to was submitted (s29). Not opened when this row was added: see \"Closing as a sole proprietor\" below"
+            }
+          ],
+          [
+            {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Unemployment Insurance Act 63 of 2001"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Unemployment benefits from the Unemployment Insurance Fund, and the information employers must give the Fund about employees, including when they leave. Not opened when this row was added: see \"Closing as a sole proprietor\" below"
+            }
+          ],
+          [
+            {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Prescription Act 68 of 1969"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "When an ordinary debt can no longer be claimed: three years for most debts (s11(d)). Not opened when this row was added: see \"Closing as a sole proprietor\" below"
+            }
+          ],
+          [
+            {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
               "t": "docref"
             }
           ]
@@ -5114,7 +5222,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "c809480c88ff3c12",
+  "contentHash": "36e050163c2e8b37",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -5231,13 +5339,13 @@
   "kind": "sources",
   "lang": "en",
   "order": 3,
-  "readingTime": 23,
+  "readingTime": 24,
   "related": [
+    "core/closing-as-a-sole-proprietor",
     "business-types/vehicle-dealer",
     "core/register",
     "core/what-you-need-to-sell-things",
-    "core/tax-and-sars",
-    "paperwork/which-template-to-use-when"
+    "core/tax-and-sars"
   ],
   "route": "sources/",
   "section": "lookup",

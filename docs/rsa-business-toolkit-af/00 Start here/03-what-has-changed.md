@@ -115,6 +115,30 @@ Die hoof-START HERE het twee markdown-lêers opgeneem: [Begin hier](00-start-her
 
 ---
 
+## Verandering 5: jou eenmansaak toemaak
+
+**Datum:** 13 Oktober 2026
+**Rede:** [Bestuur van ’n Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/06-running-a-pty-ltd.md) het verduidelik hoe om ’n maatskappy te sluit. Niks het verduidelik wat ’n eenmansaak-eienaar doen wanneer hy ophou handel dryf nie.
+
+### Bygevoeg
+
+[Jou eenmansaak toemaak](../01%20Core%20-%20applies%20to%20everyone/11-closing-as-a-sole-proprietor.md) — die mense om te laat weet (SARS, die munisipaliteit, SAPS, die Information Regulator (Inligtingsreguleerder), die Unemployment Insurance Fund (Werkloosheidversekeringsfonds) en die Compensation Fund (Vergoedingsfonds)), die bankrekening, die skuld en rekords wat joune bly, en ’n kontrolelys vir sluiting.
+
+### Verander
+
+| Lêer | Wat bygevoeg is |
+|---|---|
+| [Bestuur van ’n Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/06-running-a-pty-ltd.md) | ’n Reël onder "Om ’n maatskappy behoorlik te sluit" wat ’n eenmansaak-eienaar na die nuwe lêer stuur |
+| [Kern: begin hier](../01%20Core%20-%20applies%20to%20everyone/01-core-start-here.md) | Inskrywing in die indeks |
+| [Bronne- en verifikasieregister](../05%20Look%20it%20up/03-sources-and-verification-register.md) | Nuwe afdeling "Jou eenmansaak toemaak" met vyf nuwe inskrywings. Drie wette by die wetgewingstabel gevoeg, en die nuwe lêer gelys by die vyf wette waarop dit steun wat reeds daar was |
+| [Hoe dit gemaak is en hoe om dit na te gaan](02-how-this-was-made.md) | Inskrywing vir die dertiende rondte |
+
+**Nie oopgemaak nie.** Die omgewing wat hierdie lêer geskryf het, kon nie SARS, gov.za of die webwerwe met hofverslae bereik nie. Die vyf nuwe inskrywings in die register (die Tax Administration Act, artikels 8(2) en 24 van die Value-Added Tax Act, die Unemployment Insurance Act, artikel 14 van POPIA en die Prescription Act) haal elke wet aan sonder dat die teks oopgemaak is, en elke inskrywing sê so. Elke ander feit in die lêer herhaal wat die gids reeds met bronne ondersteun. Bevestig ’n artikel in die wet voordat jy daarop staatmaak.
+
+**Status in Drive:** NOG NIE. Die nuwe dokument en die veranderinge aan die register moet oorgedra word.
+
+---
+
 ## Wat jy in Drive moet plak
 
 Vyf wysigings. Elkeen is een reël of een kort blok. Maak die dokument oop, plak, klaar.

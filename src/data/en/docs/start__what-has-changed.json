@@ -1358,6 +1358,281 @@
       "c": [
         {
           "t": "text",
+          "v": "Change 5: closing as a sole proprietor"
+        }
+      ],
+      "depth": 2,
+      "hash": "6121acb07bb3bcd6",
+      "id": "change-5-closing-as-a-sole-proprietor",
+      "kind": "heading",
+      "text": "Change 5: closing as a sole proprietor"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Date:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " 13 October 2026"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Reason:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Running a Pty Ltd"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " explained how to close a company. Nothing explained what a sole proprietor does when they stop trading."
+        }
+      ],
+      "hash": "93252afda6d43ba4",
+      "id": "change-5-closing-as-a-sole-proprietor.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Added"
+        }
+      ],
+      "depth": 3,
+      "hash": "f1ad429536dd7fe4",
+      "id": "added-4",
+      "kind": "heading",
+      "text": "Added"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Closing as a sole proprietor"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " — the people to tell (SARS, the municipality, SAPS, the Information Regulator, the Unemployment Insurance Fund and the Compensation Fund), the bank account, the debts and records that stay yours, and a closing checklist."
+        }
+      ],
+      "hash": "81c916cec6cbfcd6",
+      "id": "added-4.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Changed"
+        }
+      ],
+      "depth": 3,
+      "hash": "57a9b5a54fdc9b63",
+      "id": "changed",
+      "kind": "heading",
+      "text": "Changed"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "15df18045db611d9",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "File"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "What was added"
+          }
+        ]
+      ],
+      "id": "changed.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Running a Pty Ltd"
+                }
+              ],
+              "doc": "core/running-a-pty-ltd",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "A line under \"Closing a company properly\" that sends a sole proprietor to the new file"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Core: start here"
+                }
+              ],
+              "doc": "core/start-here",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Index entry"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Sources and verification register"
+                }
+              ],
+              "doc": "lookup/sources",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "New section \"Closing as a sole proprietor\" with five new entries. Three Acts added to the legislation table, and the new file listed against the five Acts it relies on that were already there"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "How this was made and how to check it"
+                }
+              ],
+              "doc": "start/how-this-was-made",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Thirteenth pass entry"
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Not opened."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " The environment that wrote this file could not reach SARS, "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://gov.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " or the law-report websites. The five new register entries (the Tax Administration Act, the Value-Added Tax Act sections 8(2) and 24, the Unemployment Insurance Act, POPIA section 14 and the Prescription Act) cite each Act without its text being opened, and each entry says so. Every other fact in the file repeats what the guide already sources. Confirm a section in the Act before you rely on it."
+        }
+      ],
+      "hash": "5ab0946d3d4a602e",
+      "id": "changed.2",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Status in Drive:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " NOT YET. The new document and the register changes need to be carried across."
+        }
+      ],
+      "hash": "9126eb5b345c381c",
+      "id": "changed.3",
+      "kind": "paragraph"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "changed.4",
+      "kind": "hr"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
           "v": "What you need to paste into Drive"
         }
       ],
@@ -1753,7 +2028,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "9005f5816630598a",
+  "contentHash": "4228f509fd36c84f",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -1822,6 +2097,21 @@
     },
     {
       "depth": 2,
+      "id": "change-5-closing-as-a-sole-proprietor",
+      "text": "Change 5: closing as a sole proprietor"
+    },
+    {
+      "depth": 3,
+      "id": "added-4",
+      "text": "Added"
+    },
+    {
+      "depth": 3,
+      "id": "changed",
+      "text": "Changed"
+    },
+    {
+      "depth": 2,
       "id": "what-you-need-to-paste-into-drive",
       "text": "What you need to paste into Drive"
     },
@@ -1865,13 +2155,13 @@
   "kind": "guide",
   "lang": "en",
   "order": 4,
-  "readingTime": 9,
+  "readingTime": 10,
   "related": [
     "core/start-here",
     "start/start-here",
     "branding/already-have-your-name",
-    "branding/branding-prompts",
-    "core/register"
+    "start/how-this-was-made",
+    "core/running-a-pty-ltd"
   ],
   "route": "start/what-has-changed/",
   "section": "start",

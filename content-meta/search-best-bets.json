@@ -101,6 +101,7 @@
       "anchor": "vat-probably-not-yet",
       "en": [
         "register for vat",
+        "act on vat",
         "register business for vat",
         "register company for vat",
         "when to register for vat",
@@ -134,8 +135,8 @@
     },
     {
       "doc": "paperwork/templates/invoice",
-      "en": ["invoice", "invoice template"],
-      "af": ["faktuur", "faktuursjabloon"]
+      "en": ["invoice", "invoice template", "invoice act"],
+      "af": ["faktuur", "faktuursjabloon", "invoice act"]
     },
     {
       "doc": "paperwork/templates/tax-invoice",
@@ -213,7 +214,7 @@
     {
       "doc": "business-types/pick-your-business-type",
       "en": ["business type", "which business type"],
-      "af": ["watter soort besigheid", "besigheidstipe"]
+      "af": ["watter soort besigheid"]
     },
     {
       "doc": "core/register",
@@ -396,6 +397,7 @@
         "labour regulations",
         "staff",
         "hire staff",
+        "employing staff",
         "employment contract"
       ],
       "af": [
@@ -452,7 +454,7 @@
     {
       "doc": "lookup/sources",
       "anchor": "tax-and-sars",
-      "en": ["vat sources", "sources for tax"],
+      "en": ["vat sources"],
       "af": ["btw bronne"]
     },
     {

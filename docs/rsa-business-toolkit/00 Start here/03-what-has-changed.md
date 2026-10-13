@@ -115,6 +115,30 @@ The root START HERE absorbed two markdown files, [Start here](00-start-here.md) 
 
 ---
 
+## Change 5: closing as a sole proprietor
+
+**Date:** 13 October 2026
+**Reason:** [Running a Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/06-running-a-pty-ltd.md) explained how to close a company. Nothing explained what a sole proprietor does when they stop trading.
+
+### Added
+
+[Closing as a sole proprietor](../01%20Core%20-%20applies%20to%20everyone/11-closing-as-a-sole-proprietor.md) — the people to tell (SARS, the municipality, SAPS, the Information Regulator, the Unemployment Insurance Fund and the Compensation Fund), the bank account, the debts and records that stay yours, and a closing checklist.
+
+### Changed
+
+| File | What was added |
+|---|---|
+| [Running a Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/06-running-a-pty-ltd.md) | A line under "Closing a company properly" that sends a sole proprietor to the new file |
+| [Core: start here](../01%20Core%20-%20applies%20to%20everyone/01-core-start-here.md) | Index entry |
+| [Sources and verification register](../05%20Look%20it%20up/03-sources-and-verification-register.md) | New section "Closing as a sole proprietor" with five new entries. Three Acts added to the legislation table, and the new file listed against the five Acts it relies on that were already there |
+| [How this was made and how to check it](02-how-this-was-made.md) | Thirteenth pass entry |
+
+**Not opened.** The environment that wrote this file could not reach SARS, gov.za or the law-report websites. The five new register entries (the Tax Administration Act, the Value-Added Tax Act sections 8(2) and 24, the Unemployment Insurance Act, POPIA section 14 and the Prescription Act) cite each Act without its text being opened, and each entry says so. Every other fact in the file repeats what the guide already sources. Confirm a section in the Act before you rely on it.
+
+**Status in Drive:** NOT YET. The new document and the register changes need to be carried across.
+
+---
+
 ## What you need to paste into Drive
 
 Five edits. Each is one line or one short block. Open the document, paste, done.

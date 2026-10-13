@@ -332,6 +332,13 @@ export const ProvenanceSchema = z.strictObject({
         checkedOn: IsoDateSchema,
         /** Why this page's check date differs from the register's: the evidence for the date. */
         reason: z.string().min(10),
+        /**
+         * Some of the page's sources were not opened when it was checked: the AI compared the page
+         * with what the register says about them, and each such register entry says "Not opened".
+         * The AI notice then says so instead of "checked it against the sources below" (post-WP-50a
+         * review pass 1, minor 3).
+         */
+        sourcesNotOpened: z.literal(true).optional(),
       }),
       z.strictObject({
         status: z.literal('human-verified'),

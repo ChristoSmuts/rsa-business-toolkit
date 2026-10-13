@@ -70,14 +70,16 @@ export function noticeSentences(locale: Locale, shape?: NoticeShape): RegExp[] {
       .filter(([key]) => key.startsWith('body'))
       .map(([, sentence]) => sentencePattern(sentence));
   }
-  const key = shape.humanChecked
+  // An AI check of a page with sources of its own may say that some of them were not opened
+  // (`bodySourcesNotOpened`, post-WP-50a review pass 1, minor 3).
+  const keys = shape.humanChecked
     ? shape.pageSources
-      ? 'bodyHumanChecked'
-      : 'bodyHumanCheckedNoPageSources'
+      ? ['bodyHumanChecked']
+      : ['bodyHumanCheckedNoPageSources']
     : shape.pageSources
-      ? 'body'
-      : 'bodyNoPageSources';
-  return [sentencePattern(bodies[key] ?? '')];
+      ? ['body', 'bodySourcesNotOpened']
+      : ['bodyNoPageSources'];
+  return keys.map((key) => sentencePattern(bodies[key] ?? ''));
 }
 
 /** The status sentence of a human check, as a pattern (`trust.status.humanChecked`). */

@@ -222,7 +222,9 @@ misspelt phrase falls back to the ranking.
   either list missing or empty, so `pnpm build` fails. Give each phrasing its counterpart in the
   other language unless the guide lacks the page (pass 17: the Afrikaans naming phrasings).
 - Under about 120 phrases per language (pass 20 left 116 English and 120 Afrikaans: a new
-  Afrikaans phrase now means retiring a weaker one). The build fails over 120 (`MAX_BEST_BETS`; it was 40 until
+  Afrikaans phrase now means retiring a weaker one; post-WP-50a pass 1 left 119 and 120, retiring
+  `sources for tax`, which the source-subject rule now answers, and `besigheidstipe`, which the
+  ranking answers, both still acceptance rows). The build fails over 120 (`MAX_BEST_BETS`; it was 40 until
   pass 15, 60 until pass 16 and 80 until pass 19, as the acceptance set brought closing, bank
   account, VAT, naming, vehicle, records, law-word and Act phrasings). A phrase taken out of the
   bets becomes an acceptance row in both languages, and `pnpm search:diff` keeps every phrase that

@@ -7,6 +7,7 @@
     {
       "c": [
         {
+          "anchor": "closing-a-company-properly",
           "c": [
             {
               "t": "text",
@@ -21,10 +22,10 @@
           "v": " dek hoe jy ’n maatskappy sluit. Hierdie lêer is vir die ander geval: jy dryf handel as jouself, en jy wil ophou."
         }
       ],
-      "hash": "5f462d5d52f37e8a",
+      "hash": "25c3dcbf8f2d0ea0",
       "id": "intro.1",
       "kind": "paragraph",
-      "sourceHash": "9b659ac1bd341095"
+      "sourceHash": "19c2aec19300ff1a"
     },
     {
       "c": [
@@ -692,7 +693,7 @@
       "sourceHash": "1ff7de5ff9a6a293"
     },
     {
-      "hash": "b74222f43c9a059d",
+      "hash": "a80fb0cfd8ececd1",
       "id": "licences-and-registrations.2",
       "items": [
         [
@@ -766,7 +767,7 @@
           },
           {
             "t": "text",
-            "v": " Jy het jouself by die Information Regulator (Inligtingsreguleerder) by "
+            "v": " As jy jouself as inligtingsbeampte by die Information Regulator (Inligtingsreguleerder) by "
           },
           {
             "c": [
@@ -781,7 +782,7 @@
           },
           {
             "t": "text",
-            "v": " geregistreer. Vra die Reguleerder hoe om die registrasie by te werk wanneer die besigheid ophou."
+            "v": " geregistreer het, vra die Reguleerder hoe om die registrasie by te werk wanneer die besigheid ophou."
           }
         ],
         [
@@ -802,7 +803,7 @@
       ],
       "kind": "list",
       "ordered": false,
-      "sourceHash": "086e12af81b391a1"
+      "sourceHash": "2922c837ed922882"
     },
     {
       "c": [
@@ -1076,7 +1077,7 @@
           "v": "Voordat jy ophou"
         }
       ],
-      "hash": "0e987283a1e2c8cd",
+      "hash": "672a3bc82ba59af0",
       "id": "your-closing-checklist.1",
       "items": [
         {
@@ -1098,7 +1099,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Elke skuld wat ek het gelys, en hoe ek elkeen gaan betaal"
+              "v": "Elke skuld wat ek het, gelys, en hoe ek elkeen gaan betaal"
             }
           ],
           "doc": "core/closing-as-a-sole-proprietor",
@@ -1376,7 +1377,7 @@
       "sourceHash": "0ed329f0e8702ef0"
     }
   ],
-  "contentHash": "b1bc3f333f17e709",
+  "contentHash": "48ff9dc66e0a908d",
   "generated": {
     "date": "2026-10-13",
     "tool": "Claude, Anthropic"
@@ -1481,7 +1482,10 @@
       "value-added-tax-act-89-of-1991",
       "protection-of-personal-information-act-4-of-2013",
       "businesses-act-71-of-1991",
-      "second-hand-goods-act-6-of-2009"
+      "second-hand-goods-act-6-of-2009",
+      "tax-administration-act-28-of-2011",
+      "unemployment-insurance-act-63-of-2001",
+      "prescription-act-68-of-1969"
     ],
     "entries": [
       "sars--turnover-tax",
@@ -1542,6 +1546,7 @@
   },
   "verification": {
     "checkedOn": "2026-10-13",
+    "sourcesNotOpened": true,
     "status": "ai-checked"
   }
 }

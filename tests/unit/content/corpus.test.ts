@@ -93,7 +93,7 @@ describe('the real corpus', () => {
     }
     expect(counts.glossaryEntries).toBe(121);
     expect(counts.glossaryGroups).toBe(7);
-    expect(counts.sourceActs).toBe(14);
+    expect(counts.sourceActs).toBe(17);
     expect([
       counts.sourceEntries,
       counts.sourcesWithUrl,

@@ -1,6 +1,6 @@
 # Closing as a sole proprietor
 
-[Running a Pty Ltd](06-running-a-pty-ltd.md) covers closing a company. This file is for the other case: you trade as yourself, and you want to stop.
+[Running a Pty Ltd](06-running-a-pty-ltd.md#closing-a-company-properly) covers closing a company. This file is for the other case: you trade as yourself, and you want to stop.
 
 A sole proprietor has no business to deregister. You never registered one. So closing is not one application. It is a short list of people to tell, and a list of things that stay yours after the last sale.
 
@@ -93,7 +93,7 @@ Go through every licence and registration the business holds. For each one, tell
 - **Municipal trading licence.** Issued by your municipality under the Businesses Act 71 of 1991. The licence is tied to the premises, not to you. Tell the municipal Business Licensing office. See [What you need to sell things](04-what-you-need-to-sell-things.md).
 - **Certificate of Acceptability, for a food business.** It is specific to the premises and cannot be transferred to a new location or a new owner. If someone buys your food business, they need their own.
 - **SAPS second-hand goods registration.** The holder of a certificate of registration must notify the National Commissioner in writing within 30 days if there is any change to the information submitted in the application. Treat stopping trading as such a change. Tell the Designated Police Officer at your local SAPS station in writing, and keep your register of transactions for five years.
-- **POPIA information officer.** You registered yourself with the Information Regulator at inforegulator.org.za. Ask the Regulator how to update the registration when the business stops.
+- **POPIA information officer.** If you registered yourself as information officer with the Information Regulator at inforegulator.org.za, ask the Regulator how to update the registration when the business stops.
 - **Compensation Fund, if you had staff.** See the part above.
 
 > **In plain words:** Tell every office that gave you a licence or a registration that you have stopped. Ask each one what it needs.

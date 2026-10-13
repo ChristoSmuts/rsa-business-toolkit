@@ -274,6 +274,7 @@
     "aiNotice": {
       "label": "Oor hierdie bladsy",
       "body": "Deur KI geskryf (Claude, Anthropic). ’n KI het die Engelse teks op {date} teen die bronne hieronder nagegaan. Geen mens het dit nog nagegaan nie. Reëls verander: kontroleer die amptelike bron voordat jy iets doen. Dit is nie regs-, belasting- of finansiële advies nie.",
+      "bodySourcesNotOpened": "Deur KI geskryf (Claude, Anthropic). ’n KI het die Engelse teks op {date} nagegaan teen wat die bronneregister oor die bronne hieronder sê. Party van daardie bronne kon nie oopgemaak word nie, en elkeen van hulle sê so. Geen mens het dit nog nagegaan nie. Reëls verander: kontroleer die amptelike bron voordat jy iets doen. Dit is nie regs-, belasting- of finansiële advies nie.",
       "bodyNoPageSources": "Deur KI geskryf (Claude, Anthropic). ’n KI het die Engelse teks op {date} nagegaan teen die bronne in die bronneregister, waar amptelike bronne gemerk is. Geen mens het dit nog nagegaan nie. Reëls verander: kontroleer die amptelike bron voordat jy iets doen. Dit is nie regs-, belasting- of finansiële advies nie.",
       "bodyHumanChecked": "Deur KI geskryf (Claude, Anthropic). {reviewer} het die Engelse teks op {date} teen die bronne hieronder nagegaan. Reëls verander: kontroleer die amptelike bron voordat jy iets doen. Dit is nie regs-, belasting- of finansiële advies nie.",
       "bodyHumanCheckedNoPageSources": "Deur KI geskryf (Claude, Anthropic). {reviewer} het die Engelse teks op {date} nagegaan teen die bronne in die bronneregister, waar amptelike bronne gemerk is. Reëls verander: kontroleer die amptelike bron voordat jy iets doen. Dit is nie regs-, belasting- of finansiële advies nie.",
@@ -283,6 +284,7 @@
       "aiChecked": "KI-nagegaan",
       "humanChecked": "Deur {reviewer} nagegaan",
       "aiCheckedMeans": "’n KI het die feite in die Engelse teks met die bronne vergelyk. ’n KI kan foute oorsien.",
+      "aiCheckedNotOpenedMeans": "’n KI het die feite in die Engelse teks met die bronneregister vergelyk. Dit kon nie elke bron oopmaak nie. ’n KI kan foute oorsien.",
       "humanCheckedMeans": "{reviewer} het die feite in die Engelse teks teen die bronne nagegaan. Foute is steeds moontlik, en reëls kan ná daardie datum verander."
     },
     "sources": {

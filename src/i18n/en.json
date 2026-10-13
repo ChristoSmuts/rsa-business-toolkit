@@ -274,6 +274,7 @@
     "aiNotice": {
       "label": "About this page",
       "body": "Written by AI (Claude, Anthropic). An AI checked it against the sources below on {date}. No person has checked it yet. Rules change: check the official source before you act. Not legal, tax or financial advice.",
+      "bodySourcesNotOpened": "Written by AI (Claude, Anthropic). An AI checked it on {date} against what the sources register says about the sources below. Some of those sources could not be opened, and each of them says so. No person has checked it yet. Rules change: check the official source before you act. Not legal, tax or financial advice.",
       "bodyNoPageSources": "Written by AI (Claude, Anthropic). An AI checked it on {date} against the sources in the sources register, where official sources are marked. No person has checked it yet. Rules change: check the official source before you act. Not legal, tax or financial advice.",
       "bodyHumanChecked": "Written by AI (Claude, Anthropic). {reviewer} checked it against the sources below on {date}. Rules change: check the official source before you act. Not legal, tax or financial advice.",
       "bodyHumanCheckedNoPageSources": "Written by AI (Claude, Anthropic). {reviewer} checked it on {date} against the sources in the sources register, where official sources are marked. Rules change: check the official source before you act. Not legal, tax or financial advice.",
@@ -283,6 +284,7 @@
       "aiChecked": "AI-checked",
       "humanChecked": "Checked by {reviewer}",
       "aiCheckedMeans": "An AI compared the facts on this page with the sources. An AI can miss mistakes.",
+      "aiCheckedNotOpenedMeans": "An AI compared the facts on this page with the sources register. It could not open every source. An AI can miss mistakes.",
       "humanCheckedMeans": "{reviewer} checked the facts on this page against the sources. Mistakes are still possible, and rules can change after that date."
     },
     "sources": {

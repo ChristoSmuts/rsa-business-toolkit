@@ -2721,6 +2721,134 @@
       "from": "pass 19 minor 3"
     },
     {
+      "lang": "en",
+      "query": "deregistreer",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "deregistreer besigheid",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "deregistreer my besigheid",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "deregistreer my maatskappy",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "licences",
+      "doc": "core/what-you-need-to-sell-things",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "licenses",
+      "doc": "core/what-you-need-to-sell-things",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "act on vat",
+      "doc": "core/tax-and-sars",
+      "anchor": "vat-probably-not-yet",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "sars act",
+      "doc": "core/tax-and-sars",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "invoice act",
+      "doc": "paperwork/templates/invoice",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "sources for logo",
+      "doc": "lookup/sources",
+      "anchor": "branding-tools-referenced",
+      "need": "first",
+      "notFirst": ["core/start-here"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "employing staff",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "where are the sources for tax",
+      "doc": "lookup/sources",
+      "anchor": "tax-and-sars",
+      "need": "first",
+      "notFirst": ["core/paying-yourself#uif-sources-disagree"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "sources for uif",
+      "doc": "lookup/sources",
+      "anchor": "you-are-the-business-uif-coida-courts-and-continuity",
+      "need": "first",
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "sources about popia",
+      "doc": "lookup/sources",
+      "anchor": "popia",
+      "need": "first",
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "sources for consumer",
+      "doc": "lookup/sources",
+      "anchor": "consumer-law-and-online-selling",
+      "need": "first",
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
       "lang": "af",
       "query": "registreer my besigheid",
       "doc": "core/register",
@@ -5239,6 +5367,64 @@
       "need": "first",
       "notFirst": ["core/what-you-need-to-sell-things#if-you-sell-online"],
       "from": "pass 19b: as bare privaatheid"
+    },
+    {
+      "lang": "af",
+      "query": "lisensies",
+      "doc": "core/what-you-need-to-sell-things",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "af",
+      "query": "invoice act",
+      "doc": "paperwork/templates/invoice",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "af",
+      "query": "bronne vir logo",
+      "doc": "lookup/sources",
+      "anchor": "branding-tools-referenced",
+      "need": "first",
+      "notFirst": ["core/start-here"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "af",
+      "query": "waar is die bronne vir belasting",
+      "doc": "lookup/sources",
+      "anchor": "tax-and-sars",
+      "need": "first",
+      "notFirst": ["core/paying-yourself#uif-sources-disagree"],
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "af",
+      "query": "bronne vir uif",
+      "doc": "lookup/sources",
+      "anchor": "you-are-the-business-uif-coida-courts-and-continuity",
+      "need": "first",
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "af",
+      "query": "bronne oor popia",
+      "doc": "lookup/sources",
+      "anchor": "popia",
+      "need": "first",
+      "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "af",
+      "query": "bronne vir verbruikers",
+      "doc": "lookup/sources",
+      "anchor": "consumer-law-and-online-selling",
+      "need": "first",
+      "from": "post-WP-50a pass 1 minor 2"
     }
   ]
 }

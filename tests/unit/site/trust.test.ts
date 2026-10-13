@@ -7,7 +7,7 @@ import { describe, expect, it } from 'vitest';
 import { t } from '../../../src/i18n';
 import { hasOwnSources, isHumanVerified, trustNotice } from '../../../src/lib/content/trust';
 import type { Verification } from '../../../src/lib/content/schema';
-import { realDocs } from './data';
+import { realDocs, realSources } from './data';
 
 const aiChecked: Verification = { status: 'ai-checked', checkedOn: '2026-09-13' };
 const humanChecked: Verification = {
@@ -32,6 +32,21 @@ describe('trustNotice', () => {
     expect(trustNotice(humanChecked, false).bodyKey).toBe(
       'trust.aiNotice.bodyHumanCheckedNoPageSources',
     );
+  });
+
+  // Post-WP-50a review pass 1, minor 3: a page whose sources were partly not opened must not say
+  // "an AI checked it against the sources below".
+  it('says that some sources were not opened when the record says so', () => {
+    const notOpened: Verification = { ...aiChecked, sourcesNotOpened: true };
+    const notice = trustNotice(notOpened, true);
+    expect(notice.bodyKey).toBe('trust.aiNotice.bodySourcesNotOpened');
+    expect(notice.statusKey).toBe('trust.status.aiChecked');
+    expect(notice.meansKey).toBe('trust.status.aiCheckedNotOpenedMeans');
+    expect(t('en', notice.bodyKey, { date: '13 October 2026' })).not.toContain(
+      'checked it against the sources below',
+    );
+    expect(t('en', notice.bodyKey, { date: '13 October 2026' })).toContain('could not be opened');
+    expect(trustNotice(aiChecked, true).bodyKey).toBe('trust.aiNotice.body');
   });
 
   it('names the reviewer once a person has checked the page', () => {
@@ -95,6 +110,26 @@ describe('hasOwnSources', () => {
     for (const doc of realDocs()) {
       if (hasOwnSources(doc.sources)) continue;
       expect(doc.sourceNote, `${doc.id} has no sources and no note`).toBeDefined();
+    }
+  });
+
+  // Post-WP-50a review pass 1, minor 3: a page that lists a source the register marks "Not opened"
+  // may not say that an AI checked it against the sources below.
+  it('matches the corpus: a page with a source marked "Not opened" says so in its notice', () => {
+    const sources = realSources('en');
+    const notOpened = (value: unknown): boolean => JSON.stringify(value).includes('Not opened');
+    const entries = new Set(sources.entries.filter(notOpened).map((entry) => entry.id));
+    const acts = new Set(sources.acts.filter(notOpened).map((act) => act.id));
+    expect(entries.size).toBeGreaterThan(0);
+    for (const doc of realDocs()) {
+      const unopened =
+        doc.sources.entries.some((id) => entries.has(id)) ||
+        doc.sources.acts.some((id) => acts.has(id));
+      const notice = trustNotice(doc.verification, hasOwnSources(doc.sources));
+      expect(
+        notice.bodyKey === 'trust.aiNotice.bodySourcesNotOpened',
+        `${doc.lang} ${doc.id}: lists a source marked "Not opened"`,
+      ).toBe(unopened);
     }
   });
 

@@ -22,6 +22,7 @@ import {
   fuzzy,
   INDEX_VERSION,
   indexOptions,
+  MOMENT_WEIGHT,
   prefix,
   processTerm,
   matchRule,
@@ -617,11 +618,27 @@ export function runSearchCounted(
   // sources are for is a source query too (`sources for tax`, `bronne vir btw`; pass 20, major 1).
   const lastRaw = raw.at(-1);
   const sourceWords = query.toLowerCase().split(/[^\p{L}\p{N}]+/u);
-  const asksSource =
-    (typeof lastRaw === 'string' && SOURCE_WORDS.has(lastRaw)) ||
-    sourceWords.some(
-      (word, at) => SOURCE_WORDS.has(word) && SOURCE_FOLLOWERS.has(sourceWords[at + 1] ?? ''),
-    );
+  const sourceAt = sourceWords.findIndex(
+    (word, at) => SOURCE_WORDS.has(word) && SOURCE_FOLLOWERS.has(sourceWords[at + 1] ?? ''),
+  );
+  const sourcesFor = sourceAt >= 0;
+  const asksSource = (typeof lastRaw === 'string' && SOURCE_WORDS.has(lastRaw)) || sourcesFor;
+  // A page about one moment ("Closing as a sole proprietor"; `MOMENT_WEIGHT`) weighs less unless
+  // the query names that moment (post-WP-50a review pass 1, minor 2).
+  const momentWords = raw.flatMap((part) =>
+    typeof part === 'string' ? [part] : 'code' in part ? part.code : part.hyphen,
+  );
+  const typedLast = typing ? momentWords.at(-1) : undefined;
+  const asksMoment = (words: ReadonlySet<string>): boolean =>
+    momentWords.some((word) => words.has(word)) ||
+    (typedLast !== undefined &&
+      typedLast.length >= 4 &&
+      [...words].some((word) => word.startsWith(typedLast)));
+  const momentWeight = new Map(
+    Object.entries(MOMENT_WEIGHT)
+      .filter(([, moment]) => !asksMoment(moment.words))
+      .map(([doc, moment]) => [doc, moment.weight]),
+  );
   const searchOptions = {
     bm25: BM25,
     prefix,
@@ -632,7 +649,8 @@ export function runSearchCounted(
     boostDocument: (_id: unknown, _term: string, stored?: Record<string, unknown>): number =>
       (typeof stored?.['w'] === 'number' ? stored['w'] : 1) *
       (DOC_WEIGHT[String(stored?.['d'])] ?? 1) *
-      (asksSource ? 1 : (REFERENCE_WEIGHT[String(stored?.['d'])] ?? 1)),
+      (asksSource ? 1 : (REFERENCE_WEIGHT[String(stored?.['d'])] ?? 1)) *
+      (momentWeight.get(String(stored?.['d'])) ?? 1),
     filter: (hit: MiniSearchResult): boolean =>
       matchesFilters(hit as unknown as StoredFields, options),
   };
@@ -969,7 +987,47 @@ export function runSearchCounted(
           queryTerms: [],
           match: {},
         } as MiniSearchResult));
-  const lead = whatIs ?? actEntry;
+  // `sources for tax`, `bronne vir logo`: the register's own entry on the subject (the words after
+  // `for`, `vir`) leads, before a page that merely names its sources in passing ("What is in this
+  // toolkit"; post-WP-50a review pass 1, minor 2). The entry whose heading holds the subject first
+  // ("Tax and SARS"), otherwise the first register entry that holds every word of the query
+  // ("Branding tools referenced").
+  const subject = queryParts(sourceWords.slice(sourceAt + 2).join(' ')).filter(
+    (part) => typeof part !== 'string' || !fillerWords.has(part),
+  );
+  // In a heading, a subject word is whole (`handel` is "Handel in tweedehandse goedere", not
+  // "Handelsmerkgereedskap"), or, from seven letters, may have another ending: `licence` heads
+  // "Business licensing".
+  const headingWord = (word: string): Query =>
+    word.length >= 7
+      ? {
+          combineWith: 'OR',
+          queries: [
+            { combineWith: 'OR', queries: [word], prefix: false, fuzzy: false },
+            { combineWith: 'OR', queries: [word.slice(0, -2)], prefix: true, fuzzy: false },
+          ],
+        }
+      : { combineWith: 'OR', queries: [word], prefix: false, fuzzy: false };
+  const subjectWords = subject.flatMap((part) =>
+    typeof part === 'string' ? [part] : [part.joined],
+  );
+  const headedInRegister = (): MiniSearchResult | undefined =>
+    index.search.search(
+      { combineWith: 'AND', queries: subjectWords.map(headingWord) },
+      {
+        ...searchOptions,
+        fields: ['title'],
+        filter: (hit: MiniSearchResult) =>
+          REFERENCE_WEIGHT[String(hit['d'])] !== undefined &&
+          hit['k'] === 'section' &&
+          searchOptions.filter(hit),
+      },
+    )[0];
+  const sourceEntry =
+    sourcesFor && subjectWords.length > 0
+      ? (headedInRegister() ?? all.find((hit) => REFERENCE_WEIGHT[String(hit['d'])] !== undefined))
+      : undefined;
+  const lead = whatIs ?? actEntry ?? sourceEntry;
   const allRanked = lead === undefined ? all : [lead, ...all.filter((hit) => hit.id !== lead.id)];
   const rest = [...every.filter((hit) => demoted(hit) && hit !== titled && hit !== lead), ...some];
   // A best bet leads, whatever the ranking (review WP-33 pass 13).
