@@ -156,10 +156,11 @@ html[data-st-profile] .st-search-dialog__filters[hidden]:not([data-ready]) {
   cursor: pointer;
 }
 
+/* Veld green, not rooibos: rooibos is only the "In plain words" voice (WP-50, direction A). */
 .st-search-chip[aria-pressed='true'] {
-  border-color: var(--st-accent);
-  background: var(--st-accent-soft);
-  color: var(--st-on-accent-soft);
+  border-color: var(--st-primary);
+  background: var(--st-primary-soft);
+  color: var(--st-on-primary-soft);
   font-weight: var(--st-weight-semibold);
 }
 
