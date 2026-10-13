@@ -137,7 +137,7 @@ Sit alles in een vouer met die naam "Besigheidsrekords, gesluit", met die sluiti
 Voordat jy ophou:
 
 - [ ] ’n Sluitingsdatum gekies en neergeskryf
-- [ ] Elke skuld wat ek het gelys, en hoe ek elkeen gaan betaal
+- [ ] Elke skuld wat ek het, gelys, en hoe ek elkeen gaan betaal
 - [ ] Besluit wat gebeur met elke kliënt se deposito vir werk wat nog nie gedoen is nie
 - [ ] Elke lisensie en registrasie wat die besigheid het, gelys
 

@@ -1077,7 +1077,7 @@
           "v": "Voordat jy ophou"
         }
       ],
-      "hash": "0e987283a1e2c8cd",
+      "hash": "672a3bc82ba59af0",
       "id": "your-closing-checklist.1",
       "items": [
         {
@@ -1099,7 +1099,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Elke skuld wat ek het gelys, en hoe ek elkeen gaan betaal"
+              "v": "Elke skuld wat ek het, gelys, en hoe ek elkeen gaan betaal"
             }
           ],
           "doc": "core/closing-as-a-sole-proprietor",
@@ -1377,7 +1377,7 @@
       "sourceHash": "0ed329f0e8702ef0"
     }
   ],
-  "contentHash": "08d8389c773f21e8",
+  "contentHash": "48ff9dc66e0a908d",
   "generated": {
     "date": "2026-10-13",
     "tool": "Claude, Anthropic"
