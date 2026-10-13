@@ -42,7 +42,7 @@
   if (saved === 'light' || saved === 'dark') {
     root.setAttribute('data-theme', saved);
     var chosen = document.querySelector('meta[name="theme-color"][data-st-scheme="' + saved + '"]');
-    var colour = chosen && chosen.getAttribute('data-st-colour');
+    var colour = (chosen && chosen.getAttribute('data-st-colour')) || '';
     if (colour) {
       document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) {
         meta.setAttribute('content', colour);
