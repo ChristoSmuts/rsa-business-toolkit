@@ -84,8 +84,8 @@ describe('committed content data', () => {
     });
   }, 300_000);
 
-  it('has all 36 English documents, each in the manifest, and every file matches its schema', () => {
-    expect(enDocs).toHaveLength(36);
+  it('has all 37 English documents, each in the manifest, and every file matches its schema', () => {
+    expect(enDocs).toHaveLength(37);
     expect(Object.keys(manifest.docs).sort()).toEqual(enDocs.map((doc) => doc.id).sort());
     expect(meta.docs.map((doc) => doc.id).sort()).toEqual(enDocs.map((doc) => doc.id).sort());
     for (const lang of langs) {

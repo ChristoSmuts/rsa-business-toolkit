@@ -217,6 +217,8 @@ The cheapest fix is to appoint a second director. Filing a director change with 
 
 ## Closing a company properly
 
+This section is for a company. If you trade as yourself, with no company, read [Closing as a sole proprietor](11-closing-as-a-sole-proprietor.md) instead.
+
 If you no longer need the company, deregister it deliberately. Do not just stop filing.
 
 Unless it is formally deregistered, the filing requirement remains. If you no longer need the company, the correct route is voluntary deregistration, not simply stopping all filings.

@@ -82,6 +82,12 @@
     },
     "core/you-are-the-business#sole-proprietor": {
       "entity": "sole-prop"
+    },
+    "core/closing-as-a-sole-proprietor#vat-if-you-are-registered": {
+      "tags": ["vat-registered"]
+    },
+    "core/closing-as-a-sole-proprietor#if-you-had-staff": {
+      "tags": ["employer"]
     }
   },
   "taskPrefixes": [
@@ -125,6 +131,18 @@
       "pattern": "^If you import,",
       "appliesTo": {
         "tags": ["import"]
+      }
+    },
+    {
+      "pattern": "^If registered for VAT:",
+      "appliesTo": {
+        "tags": ["vat-registered"]
+      }
+    },
+    {
+      "pattern": "^If I employed staff:",
+      "appliesTo": {
+        "tags": ["employer"]
       }
     }
   ],

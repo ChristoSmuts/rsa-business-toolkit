@@ -324,6 +324,26 @@
       "tags": ["continuity", "getting-paid"]
     },
     {
+      "source": "01 Core - applies to everyone/11-closing-as-a-sole-proprietor.md",
+      "id": "core/closing-as-a-sole-proprietor",
+      "route": "core/closing-as-a-sole-proprietor/",
+      "section": "core",
+      "order": 11,
+      "kind": "guide",
+      "title": {
+        "en": "Closing as a sole proprietor",
+        "af": "Jou eenmansaak toemaak"
+      },
+      "summary": {
+        "en": "What to do when you stop trading as yourself: SARS, staff, licences, the bank account, debts that stay yours, and records.",
+        "af": "Wat om te doen wanneer jy ophou om as jouself handel te dryf: SARS, personeel, lisensies, die bankrekening, skuld wat joune bly, en rekords."
+      },
+      "appliesTo": {
+        "entity": "sole-prop"
+      },
+      "tags": ["closing"]
+    },
+    {
       "source": "02 Branding and marketing/00-already-have-your-name.md",
       "id": "branding/already-have-your-name",
       "route": "branding/already-have-your-name/",
@@ -701,7 +721,12 @@
           "sars--budget-2026-faq": "The register says (as above): it is the SARS Budget 2026 FAQ page already listed under Tax and SARS, so the link is not repeated.",
           "businesses-act-71-of-1991": "An Act that municipalities apply through their own by-laws; the register points readers to their municipality instead of a link.",
           "elliot-a-j-and-maier-m-a-color-psychology-effects-of-perceiving-color-on-psychological-functioning-in": "A journal article cited by authors, title, journal and year; the register links only to summaries, which are listed after it.",
-          "labrecque-l-i-and-milne-g-r-exciting-red-and-competent-blue-the-importance-of-color-in-marketing-journal-of": "A journal article cited by authors, title, journal and year; the register links only to summaries, which are listed after it."
+          "labrecque-l-i-and-milne-g-r-exciting-red-and-competent-blue-the-importance-of-color-in-marketing-journal-of": "A journal article cited by authors, title, journal and year; the register links only to summaries, which are listed after it.",
+          "tax-administration-act-28-of-2011": "An Act cited for Closing as a sole proprietor without a link: the environment that added it on 13 October 2026 could not reach the government or law-report websites to open and link the text, and the entry says it was not opened.",
+          "value-added-tax-act-89-of-1991-sections-82-and-24": "An Act cited for Closing as a sole proprietor without a link: the environment that added it on 13 October 2026 could not reach the government or law-report websites to open and link the text, and the entry says it was not opened.",
+          "unemployment-insurance-act-63-of-2001": "An Act cited for Closing as a sole proprietor without a link: the environment that added it on 13 October 2026 could not reach the government or law-report websites to open and link the text, and the entry says it was not opened.",
+          "protection-of-personal-information-act-4-of-2013-section-14": "An Act cited for Closing as a sole proprietor without a link: the environment that added it on 13 October 2026 could not reach the government or law-report websites to open and link the text, and the entry says it was not opened.",
+          "prescription-act-68-of-1969-section-11d": "An Act cited for Closing as a sole proprietor without a link: the environment that added it on 13 October 2026 could not reach the government or law-report websites to open and link the text, and the entry says it was not opened."
         }
       }
     }

@@ -96,7 +96,7 @@ describe('trustProblems (build plan D5 on the rendered page)', () => {
   });
 
   it('expects every manifest document in every enabled locale', () => {
-    expect(expectedDocumentPages()).toBe(72);
+    expect(expectedDocumentPages()).toBe(74);
   });
 });
 

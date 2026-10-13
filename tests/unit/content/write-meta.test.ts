@@ -223,7 +223,7 @@ describe('doc metadata', () => {
 describe('configuration', () => {
   it('loads the committed content-meta files', () => {
     const config = realConfig();
-    expect(config.docsMeta.docs).toHaveLength(36);
+    expect(config.docsMeta.docs).toHaveLength(37);
     expect(config.docsMeta.ignore).toContain('TRANSLATION-NOTES.md');
     expect(markersFor(config, 'af').plainWords).toBe('In gewone taal:');
     expect(() => markersFor(config, 'zu')).toThrow('markers.json has no entry for language "zu"');

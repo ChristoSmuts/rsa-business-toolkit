@@ -344,11 +344,16 @@ describe('sources register', () => {
     expect(
       file?.acts.find((act) => act.id === 'consumer-protection-act-68-of-2008')?.appearsIn,
     ).toHaveLength(7);
-    expect(file?.entries).toHaveLength(105);
+    expect(file?.entries).toHaveLength(110);
     const citations = file?.entries.filter((item) => item.type === 'citation') ?? [];
     expect(citations.map((item) => item.id.slice(0, 20))).toEqual([
       'sars--budget-2026-fa',
       'businesses-act-71-of',
+      'tax-administration-a',
+      'value-added-tax-act-',
+      'unemployment-insuran',
+      'protection-of-person',
+      'prescription-act-68-',
       'elliot-a-j-and-maier',
       'labrecque-l-i-and-mi',
     ]);
