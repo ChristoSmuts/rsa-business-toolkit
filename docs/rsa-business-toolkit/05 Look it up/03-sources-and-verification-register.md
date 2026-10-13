@@ -388,24 +388,19 @@ Added on 13 October 2026 for the file "Closing as a sole proprietor". That file 
 The entries below are new. The environment that added them could not reach the government, SARS or law-report websites, so each Act was cited without opening its text, and each entry says so. Confirm the section in the Act before you rely on it.
 
 **[Official] Tax Administration Act 28 of 2011**
-Supports: records must be kept for five years from the date the return they relate to was submitted (section 29).
-Not opened when this entry was added. Confirm the section in the Act before relying on it.
+Supports: records must be kept for five years from the date the return they relate to was submitted (section 29). Not opened when this entry was added. Confirm the section in the Act before relying on it.
 
 **[Official] Value-Added Tax Act 89 of 1991, sections 8(2) and 24**
-Supports: a vendor who stops carrying on an enterprise must tell SARS, which then cancels the VAT registration (section 24); goods and assets the vendor still holds when the registration ends are treated as supplied, so VAT can be due on them (section 8(2)).
-Not opened when this entry was added. Confirm both sections in the Act before relying on them.
+Supports: a vendor who stops carrying on an enterprise must tell SARS, which then cancels the VAT registration (section 24); goods and assets the vendor still holds when the registration ends are treated as supplied, so VAT can be due on them (section 8(2)). Not opened when this entry was added. Confirm both sections in the Act before relying on them.
 
 **[Official] Unemployment Insurance Act 63 of 2001**
-Supports: employees who become unemployed can claim unemployment benefits from the Unemployment Insurance Fund, and employers must give the Fund information about their employees, including when they leave.
-Not opened when this entry was added. Confirm in the Act, or with the Department of Employment and Labour, before relying on it.
+Supports: employees who become unemployed can claim unemployment benefits from the Unemployment Insurance Fund, and employers must give the Fund information about their employees, including when they leave. Not opened when this entry was added. Confirm in the Act, or with the Department of Employment and Labour, before relying on it.
 
 **[Official] Protection of Personal Information Act 4 of 2013, section 14**
-Supports: personal information may be kept only as long as it is needed, unless a law requires it to be kept longer, and must then be destroyed or deleted.
-Not opened when this entry was added. Confirm the section in the Act before relying on it.
+Supports: personal information may be kept only as long as it is needed, unless a law requires it to be kept longer, and must then be destroyed or deleted. Not opened when this entry was added. Confirm the section in the Act before relying on it.
 
 **[Official] Prescription Act 68 of 1969, section 11(d)**
-Supports: most ordinary debts prescribe after three years.
-Not opened when this entry was added. Confirm the section in the Act before relying on it.
+Supports: most ordinary debts prescribe after three years. Not opened when this entry was added. Confirm the section in the Act before relying on it.
 
 ## Colour research and signage materials
 

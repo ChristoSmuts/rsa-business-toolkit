@@ -388,24 +388,19 @@ Op 13 Oktober 2026 bygevoeg vir die lêer "Jou eenmansaak toemaak". Daardie lêe
 Die inskrywings hieronder is nuut. Die omgewing wat hulle bygevoeg het, kon nie die webwerwe van die regering, SARS of die hofverslae bereik nie. Elke wet is dus aangehaal sonder om die teks oop te maak, en elke inskrywing sê so. Bevestig die artikel in die wet voordat jy daarop staatmaak.
 
 **[Amptelik] Tax Administration Act 28 of 2011**
-Ondersteun: rekords moet vir vyf jaar gehou word vanaf die datum waarop die opgawe waarop hulle betrekking het, ingedien is (artikel 29).
-Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig die artikel in die wet voordat jy daarop staatmaak.
+Ondersteun: rekords moet vir vyf jaar gehou word vanaf die datum waarop die opgawe waarop hulle betrekking het, ingedien is (artikel 29). Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig die artikel in die wet voordat jy daarop staatmaak.
 
 **[Amptelik] Value-Added Tax Act 89 of 1991, artikels 8(2) en 24**
-Ondersteun: ’n ondernemer wat ophou om ’n onderneming te bedryf, moet SARS laat weet, en SARS kanselleer dan die BTW-registrasie (artikel 24); goedere en bates wat die ondernemer nog besit wanneer die registrasie eindig, word behandel asof hulle gelewer is, sodat BTW daarop betaalbaar kan wees (artikel 8(2)).
-Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig albei artikels in die wet voordat jy daarop staatmaak.
+Ondersteun: ’n ondernemer wat ophou om ’n onderneming te bedryf, moet SARS laat weet, en SARS kanselleer dan die BTW-registrasie (artikel 24); goedere en bates wat die ondernemer nog besit wanneer die registrasie eindig, word behandel asof hulle gelewer is, sodat BTW daarop betaalbaar kan wees (artikel 8(2)). Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig albei artikels in die wet voordat jy daarop staatmaak.
 
 **[Amptelik] Unemployment Insurance Act 63 of 2001**
-Ondersteun: werknemers wat werkloos word, kan werkloosheidsvoordele van die Unemployment Insurance Fund (Werkloosheidversekeringsfonds) eis, en werkgewers moet die Fonds inligting oor hulle werknemers gee, ook wanneer hulle vertrek.
-Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig dit in die wet, of by die Department of Employment and Labour (Departement van Indiensneming en Arbeid), voordat jy daarop staatmaak.
+Ondersteun: werknemers wat werkloos word, kan werkloosheidsvoordele van die Unemployment Insurance Fund (Werkloosheidversekeringsfonds) eis, en werkgewers moet die Fonds inligting oor hulle werknemers gee, ook wanneer hulle vertrek. Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig dit in die wet, of by die Department of Employment and Labour (Departement van Indiensneming en Arbeid), voordat jy daarop staatmaak.
 
 **[Amptelik] Protection of Personal Information Act 4 of 2013, artikel 14**
-Ondersteun: persoonlike inligting mag net so lank gehou word as wat dit nodig is, tensy ’n wet vereis dat dit langer gehou word, en moet daarna vernietig of uitgevee word.
-Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig die artikel in die wet voordat jy daarop staatmaak.
+Ondersteun: persoonlike inligting mag net so lank gehou word as wat dit nodig is, tensy ’n wet vereis dat dit langer gehou word, en moet daarna vernietig of uitgevee word. Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig die artikel in die wet voordat jy daarop staatmaak.
 
 **[Amptelik] Prescription Act 68 of 1969, artikel 11(d)**
-Ondersteun: die meeste gewone skulde verjaar ná drie jaar.
-Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig die artikel in die wet voordat jy daarop staatmaak.
+Ondersteun: die meeste gewone skulde verjaar ná drie jaar. Nie oopgemaak toe hierdie inskrywing bygevoeg is nie. Bevestig die artikel in die wet voordat jy daarop staatmaak.
 
 ## Navorsing oor kleur en materiale vir uithangborde
 
