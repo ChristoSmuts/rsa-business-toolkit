@@ -192,6 +192,12 @@
   --st-weight-medium: 500;
   --st-weight-semibold: 600;
   --st-weight-bold: 700;
+
+  /*
+   * Inert since WP-50 Phase 2: the wght-only Fraunces files have no optical-size axis, so a
+   * `font-variation-settings: 'opsz' …` that reads these does nothing. Kept so the component
+   * rules that still read them (the logo, the design-system page) stay valid until Phase 3.
+   */
   --st-opsz-display: 144;
   --st-opsz-heading: 48;
   --st-measure: 68ch;

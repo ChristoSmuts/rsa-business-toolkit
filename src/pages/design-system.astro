@@ -409,8 +409,9 @@ const trust = {
     <section class="ds-section">
       <h2 id="typography">Typography</h2>
       <p class="ds-intro">
-        Headings: Fraunces (variable, weight 600, optical size 48; 144 for display). Body and UI:
-        Instrument Sans (variable). Code: system monospace. Self-hosted latin and latin-ext subsets.
+        Page titles and section headings (h1, h2) and display figures: Fraunces, from the wght-only
+        file (the text cut, weight 600). Smaller headings (h3, h4), body and UI: Instrument Sans
+        (variable). Code: system monospace. Self-hosted latin and latin-ext subsets.
       </p>
       <div class="ds-type">
         <p class="st-display">{displayFigure}</p>
@@ -1592,8 +1593,8 @@ const trust = {
   .ds-type__h3 {
     font-family: var(--st-font-display);
     font-weight: var(--st-weight-semibold);
-    font-variation-settings: 'opsz' var(--st-opsz-heading);
     line-height: var(--st-leading-tight);
+    letter-spacing: -0.005em;
   }
 
   .ds-type__h1 {
@@ -1604,8 +1605,11 @@ const trust = {
     font-size: var(--st-text-2xl);
   }
 
+  /* As in base.css: the serif is for h1 and h2 only. */
   .ds-type__h3 {
+    font-family: var(--st-font-body);
     font-size: var(--st-text-xl);
+    letter-spacing: 0;
   }
 
   .ds-diacritics {
@@ -1633,7 +1637,6 @@ const trust = {
 
   .ds-diacritics__display {
     font-family: var(--st-font-display);
-    font-variation-settings: 'opsz' var(--st-opsz-heading);
   }
 
   .ds-diacritics__bold {

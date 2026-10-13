@@ -5,12 +5,18 @@
 
 /* ---------- Webfonts (latin + latin-ext only; files resolved and hashed by Vite) ---------- */
 
+/*
+ * Fraunces from the wght-only files (WP-50, direction A). They have no optical-size axis: the
+ * outlines are the text end of Fraunces, sturdy and low in contrast, which is the heading voice
+ * direction A chose instead of the high-contrast display cut. The latin file is 36.6 KB, against
+ * 67.3 KB for the opsz file every page preloaded before.
+ */
 @font-face {
   font-family: 'Fraunces Variable';
   font-style: normal;
   font-display: swap;
   font-weight: 100 900;
-  src: url('@fontsource-variable/fraunces/files/fraunces-latin-ext-opsz-normal.woff2')
+  src: url('@fontsource-variable/fraunces/files/fraunces-latin-ext-wght-normal.woff2')
     format('woff2');
   unicode-range:
     U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
@@ -23,7 +29,7 @@
   font-style: normal;
   font-display: swap;
   font-weight: 100 900;
-  src: url('@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2') format('woff2');
+  src: url('@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2') format('woff2');
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
@@ -215,16 +221,26 @@ svg {
 
 /* ---------- Typography ---------- */
 
+/*
+ * Type roles (WP-50, direction A): the serif is for reading titles, the sans for everything a
+ * reader acts on. Fraunces sets h1 and h2 only; h3 and h4 are Instrument Sans. Fraunces' text cut
+ * needs less negative tracking than the display cut did.
+ */
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--st-font-display);
   font-weight: var(--st-weight-semibold);
-  font-variation-settings: 'opsz' var(--st-opsz-heading);
   line-height: var(--st-leading-tight);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
   text-wrap: balance;
+}
+
+h3,
+h4 {
+  font-family: var(--st-font-body);
+  letter-spacing: 0;
 }
 
 h1 {
@@ -249,7 +265,6 @@ h4 {
   font-family: var(--st-font-display);
   font-size: var(--st-text-display);
   font-weight: var(--st-weight-semibold);
-  font-variation-settings: 'opsz' var(--st-opsz-display);
   line-height: 1.05;
   letter-spacing: -0.02em;
   font-variant-numeric: lining-nums;
