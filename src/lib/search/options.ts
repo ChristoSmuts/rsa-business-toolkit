@@ -97,6 +97,47 @@ export const DOC_WEIGHT: Readonly<Record<string, number>> = {
   'start/what-has-changed': 0.25,
 };
 
+/**
+ * Pages about one moment in a business's life, and the words that ask for that moment. "Closing as
+ * a sole proprietor" lists every registration, tax and licence to cancel, so its short sections
+ * hold the guide's topic words (`vat`, `sars`, `licences`, `staff`, `deregister`) next to an Act's
+ * name. In a search that does not say it is about closing, every result from it weighs this much
+ * (`boostDocument`): `licences` opens where a reader gets one, `employing staff` and `sars act` do
+ * not open what to do when you stop, and `deregistreer my maatskappy` opens the company's closing
+ * section (review post-WP-50a pass 1, minor 2). A query that holds one of the words (folded, the
+ * last word also while it is typed) keeps the page at full weight, as does one that names the page
+ * by its title (`titleCoverage`).
+ */
+export const MOMENT_WEIGHT: Readonly<
+  Record<string, { readonly weight: number; readonly words: ReadonlySet<string> }>
+> = {
+  'core/closing-as-a-sole-proprietor': {
+    weight: 0.5,
+    words: new Set([
+      // English
+      'close',
+      'closes',
+      'closed',
+      'closing',
+      'stop',
+      'stops',
+      'stopped',
+      'stopping',
+      'shut',
+      'cease',
+      'ceased',
+      // Afrikaans
+      'sluit',
+      'sluiting',
+      'gesluit',
+      'toemaak',
+      'toegemaak',
+      'afsluit',
+      'ophou',
+    ]),
+  },
+};
+
 /** Fuzzy distance as a fraction of the term length, for terms longer than `FUZZY_MIN_LENGTH`. */
 export const FUZZY = 0.2;
 export const FUZZY_MIN_LENGTH = 4;
