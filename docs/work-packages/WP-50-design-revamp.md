@@ -46,7 +46,7 @@ Deliverable: the audit file, the baseline screenshots, and a one-page summary of
 
 ### Phase 1: direction (owner decision gate)
 
-Done: two directions, their mocks and the owner's questions are in `WP-50-directions.md`.
+Done: two directions, their mocks and the owner's questions are in `WP-50-directions.md`. Decided on 13 October 2026: direction A, gentler reduced motion, home element A1, illustrations stay, the language link stays visible on phones, and the contents column drops its underline until hover (see "Decided" in `WP-50-directions.md`).
 
 Follow `frontend-design`'s two passes inside the `stoep-design` brief. Produce at most two directions. Each one has:
 

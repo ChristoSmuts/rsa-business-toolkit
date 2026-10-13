@@ -478,6 +478,25 @@ Round 2 (the 55 final files) was checked the same way; nothing else was removed.
 
 Also asked: whether the document contents column may drop its underline until hover (see "Document" above).
 
+## Decided (13 October 2026)
+
+The owner asked for the decisions to follow established UI practice. They are:
+
+| # | Decision | Why |
+| --- | --- | --- |
+| D1 | **A**: today's palette, ink focus ring, rooibos only for "In plain words" | Readers who come back recognise the site, and recognition is part of trust on a site about tax and the law. Every token keeps its value except the focus alias, so the measured contrast holds, and the weakest focus ring goes from 3.37:1 to 11.90:1. It fixes the audit's three top findings at the lowest risk to the test suites. B's identity is stronger, but a full palette and type change costs more review than it returns for readers. |
+| D2 | **A**: Fraunces text cut for h1 and h2 only, Instrument Sans for everything else | A low-contrast serif used sparingly reads as a heading voice, not as the "high-contrast display serif" look `frontend-design` warns about. The wght-only file is 30.7 KB smaller than today's preloaded one, which matters on prepaid data. |
+| D3 | **Gentler, not zero**: opacity changes of at most 120 ms stay; all movement goes | WCAG 2.3.3 and the vestibular guidance behind it concern movement (parallax, slides, scaling, smooth scroll), not fades. A short fade keeps the cause and effect of an action visible for readers who asked for less motion. Apple's and GOV.UK's practice is the same. |
+| D4 | **A1, the stoep** | A home page works best when it previews the main task. A1 shows Find my path's three questions and is the logo's own shape. A2 would repeat the "Three numbers" section further down the page. |
+| D5 | **Keep the illustrations**; only the tile changes | They are Stoep's own and already pass contrast. Changing them adds nothing a reader needs. |
+
+The two extra questions:
+
+- **Language switch on phones: it stays visible and does not move into the menu.** The W3C internationalisation guidance and GOV.UK's Welsh toggle agree that a reader who can't read the current language must not have to open a menu to find their own. Phase 3 puts one link in the header row, naming the other language in that language ("Afrikaans" on English pages, "English" on Afrikaans pages), with `lang` and `hreflang` set. The theme switch moves into the menu and the footer settings as planned. If the row can't hold the link at 320 px with the longest Afrikaans labels, the search control shows its icon with a visible label below 360 px and an accessible name. The header stays one row with a layout shift of 0.1 or less (WP-50 Phase 3, item 5).
+- **Contents column: no underline until hover and focus.** Stoep rule 7 is about links in running text, where the underline is what tells a link apart from the words around it (WCAG 1.4.1). A contents list is navigation, and its position, heading and list form already say "these are links". The current entry keeps its marker, and focus keeps the ink ring. `stoep-design` rule 7 now says this.
+
+Next: delete direction B's mock and the shared mock scaffolding as "Removing the mocks after the decision" says, then Phase 2 (tokens and base) with direction A.
+
 ## Files in this change
 
 | File | What |
