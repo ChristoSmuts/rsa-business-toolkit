@@ -112,7 +112,7 @@ Logo, cover photo, and at least ten real photos of real work. See [Marketing pro
 
 Logo top left, your colours used sparingly, your body typeface throughout. Nothing else. An invoice is not the place for a design.
 
-Templates are in [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md). Keep the layout plain and the details correct. A wrong VAT line matters more than a nice header.
+Templates are in [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md). Keep the layout plain and the details correct. A wrong VAT line matters more than a nice header.
 
 ### 4. Email signature
 
@@ -276,7 +276,7 @@ Set this up in Google Drive or on your laptop. See [Free tools](../03%20Paperwor
 
 ```
 07 Brand/
-├── brand-guide.pdf The one-page guide from Prompt 10
+├── brand-guide.pdf The one-page guide from Prompt 11
 ├── logo/
 │ ├── logo-colour.svg
 │ ├── logo-colour.pdf

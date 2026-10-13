@@ -58,7 +58,7 @@ If you qualify, you can claim a share of rent or bond interest, rates, and elect
 
 Your risk is not a faulty product. It is scope creep and non-payment.
 
-Use the service agreement prompt in [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md). Make sure it covers:
+Use the service agreement prompt in [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md). Make sure it covers:
 
 What is included, in specific deliverables, not vague descriptions.
 

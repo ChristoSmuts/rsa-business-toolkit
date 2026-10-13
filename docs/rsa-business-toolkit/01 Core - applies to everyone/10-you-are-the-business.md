@@ -104,7 +104,7 @@ A few more points worth knowing:
 
 Everything above is what you do after it has gone wrong. The cheaper controls are earlier:
 
-- Take a deposit. See [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
+- Take a deposit. See [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
 - Invoice the day you finish, not at month end.
 - State late payment terms in writing before the work, because interest on an overdue amount is enforceable only if it was agreed in advance.
 - For creative or professional work, transfer ownership on full payment rather than on delivery.

@@ -56,7 +56,7 @@ MOKOENA MOTORS
 A trading name of Mokoena Holdings (Pty) Ltd | Reg. No. 2026/123456/07
 ```
 
-The templates in [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) have a place for this. For a company it is not optional.
+The templates in [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) have a place for this. For a company it is not optional.
 
 ## Do you need a tagline?
 

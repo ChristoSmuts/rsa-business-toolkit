@@ -90,7 +90,7 @@ Most of your customer contact will be messages, calls and voice notes. That is f
 
 **Use one business number.** WhatsApp Business on a separate SIM, not your personal number. Your personal number stays private, your business chats stay in one place, and you can hand the number to someone else one day. See [Marketing prompts](../02%20Branding%20and%20marketing/04-marketing-prompts.md) for setting it up.
 
-**Keep the records.** Export or back up WhatsApp chats for any sale worth arguing about. Voice notes about a deal are business records too. Under POPIA you must also be careful with what you keep: customer ID copies and addresses should be stored somewhere safe, kept only as long as you need them, and never forwarded. Your privacy notice in [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) tells customers what you keep and why.
+**Keep the records.** Export or back up WhatsApp chats for any sale worth arguing about. Voice notes about a deal are business records too. Under POPIA you must also be careful with what you keep: customer ID copies and addresses should be stored somewhere safe, kept only as long as you need them, and never forwarded. Your privacy notice in [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) tells customers what you keep and why.
 
 **Do not put your home address in adverts or photos.** Be careful not to give out too much information in the advert or on the phone. Make sure photos posted online do not have geotag data embedded in them, which could give away your home address. Most phones let you switch off location in the camera settings. Do that before you photograph stock at home. Give your area, not your street.
 

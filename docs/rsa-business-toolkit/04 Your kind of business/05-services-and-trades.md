@@ -54,7 +54,7 @@ Goods you install carry the six-month implied warranty separately from your work
 
 Most disputes in trade work are not about quality. They are about scope.
 
-Use the quote template in [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) and fill in both lists. What is included, and what is not included. The second list is the one that saves you.
+Use the quote template in [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) and fill in both lists. What is included, and what is not included. The second list is the one that saves you.
 
 Write down:
 
@@ -80,13 +80,13 @@ Send the invoice the day you finish. Trades that invoice weekly get paid weekly.
 
 Public liability cover. If you flood a house, burn a roof, or drop a tool on a car, this is what stands between you and personal bankruptcy. It is not expensive for a one-person trade.
 
-Tell your vehicle insurer the vehicle is used for business, and ask about goods in transit cover if you carry customer property or expensive tools. See [Vehicles for your business](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
+Tell your vehicle insurer the vehicle is used for business, and ask about goods in transit cover if you carry customer property or expensive tools. See [Vehicles and your business](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
 
 Tool insurance is worth it once your tools are worth more than a few months of profit.
 
 ## Vehicles
 
-Most trades need one. Read [Vehicles for your business](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md) before deciding whether to put it in a business name. For a single owner-operator, personal ownership plus a logbook is usually the better answer.
+Most trades need one. Read [Vehicles and your business](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md) before deciding whether to put it in a business name. For a single owner-operator, personal ownership plus a logbook is usually the better answer.
 
 Extra rules apply if your vehicle weighs over 3,500 kg fully loaded, or if you carry passengers for money. You need a Professional Driving Permit and a roadworthy test every year. For passenger transport you also need an operating licence.
 

@@ -319,7 +319,7 @@ For each name give me:
 - Any word in any South African language that sounds similar to it, so
  I can check the meaning with a speaker of that language. Do not tell
  me it is safe. List what sounds close and let me check.
-- A suggested.co.za domain
+- A suggested .co.za domain
 
 Number them 1 to 5. Then tell me which is weakest and why. Then stop.
 ```

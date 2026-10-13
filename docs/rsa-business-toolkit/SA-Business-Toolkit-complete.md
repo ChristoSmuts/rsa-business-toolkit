@@ -24,7 +24,7 @@ Written for one person running a business in South Africa.
 - [Register: what you actually need](#doc-register-what-you-actually-need)
 - [Tax and SARS](#doc-tax-and-sars)
 - [What you need to sell things](#doc-what-you-need-to-sell-things)
-- [Vehicles for your business](#doc-vehicles-for-your-business)
+- [Vehicles and your business](#doc-vehicles-for-your-business)
 - [Running a Pty Ltd](#doc-running-a-pty-ltd)
 - [Paying yourself from a Pty Ltd](#doc-paying-yourself-from-a-pty-ltd)
 - [Adding new lines of business](#doc-adding-new-lines-of-business)
@@ -41,7 +41,7 @@ Written for one person running a business in South Africa.
 
 **03 Paperwork and templates**
 
-- [Which template to use when](#doc-which-template-to-use-when)
+- [Documents and templates](#doc-which-template-to-use-when)
 - [Free tools](#doc-free-tools)
 
 **03 Paperwork and templates/templates-to-fill-in**
@@ -206,7 +206,7 @@ Read in this order. Do not skip.
 4. [What you need to sell things](#doc-what-you-need-to-sell-things) — check whether you need a licence
 5. [Branding prompts](#doc-branding-prompts), then [Brand applications and polish](#doc-brand-applications-and-polish) — build your name and look, then test it
 6. [Free tools](#doc-free-tools) — set up your free tools
-7. [Which template to use when](#doc-which-template-to-use-when) — build your quote and invoice
+7. [Documents and templates](#doc-which-template-to-use-when) — build your quote and invoice
 8. [Tax and SARS](#doc-tax-and-sars) — sort out SARS
 9. [Register: what you actually need](#doc-register-what-you-actually-need) — decide about a company
 10. If you decide yes, [Running a Pty Ltd](#doc-running-a-pty-ltd) and [Paying yourself from a Pty Ltd](#doc-paying-yourself-from-a-pty-ltd)
@@ -271,9 +271,9 @@ This is a worked path for one specific reader. Read in this order.
 2. [Running a Pty Ltd](#doc-running-a-pty-ltd) — what your company already owes each year
 3. [Paying yourself from a Pty Ltd](#doc-paying-yourself-from-a-pty-ltd) — before you move a rand out of the company account
 4. [Vehicle dealer](#doc-vehicle-dealer) — the three registration layers, the CPA position, and why VAT and turnover tax work differently for you
-5. [Vehicles for your business](#doc-vehicles-for-your-business) — the BRNC and proxy process in full
+5. [Vehicles and your business](#doc-vehicles-for-your-business) — the BRNC and proxy process in full
 6. [Tax and SARS](#doc-tax-and-sars) — read the SBC section; skip the turnover tax section, it is wrong for a dealer
-7. [Which template to use when](#doc-which-template-to-use-when) — build the VAT-registered invoice and the sale agreement with a defect schedule
+7. [Documents and templates](#doc-which-template-to-use-when) — build the VAT-registered invoice and the sale agreement with a defect schedule
 8. [Branding prompts](#doc-branding-prompts) — name the trading brand, not the company
 9. [Working from home and meeting safely](#doc-working-from-home-and-meeting-safely) — if you have no yard: zoning for stock at home, and every viewing and test drive
 10. [Adding new lines of business](#doc-adding-new-lines-of-business) — before you add tyres, servicing, or anything else
@@ -379,7 +379,7 @@ Companies with more than one shareholder. The two Pty Ltd files assume you are t
 
 Pricing. How much to charge is the hardest question a new business faces, and nothing here answers it. The toolkit tells you what a quote must contain, not what number to put on it.
 
-Cash flow forecasting. The cash book in [Which template to use when](#doc-which-template-to-use-when) records what already happened. It does not predict whether you can pay next month's bills.
+Cash flow forecasting. The cash book in [Documents and templates](#doc-which-template-to-use-when) records what already happened. It does not predict whether you can pay next month's bills.
 
 Insurance detail. Each business type file says what cover to ask for. None of them compares products or prices. Use a broker.
 
@@ -557,7 +557,7 @@ A verification pass was run on 13 September 2026, after the first draft. Two fac
 
 **Corrected: Small Claims Court limit.** An earlier draft gave the limit as R20,000. It rose to R30,000 on 1 August 2026, determined in Government Gazette 55038, Government Notice 7717 of 20 July 2026. Most websites still say R20,000.
 
-**Softened, not corrected.** Four claims were weakened because they could not be verified to a standard worth stating flatly: the annual cost of a.co.za domain, the cost of a logo vector redraw, LibreOffice's mobile capability, and the law report citation for Cohen NO v Segal. Each now gives a range or tells you to check, rather than asserting a figure.
+**Softened, not corrected.** Four claims were weakened because they could not be verified to a standard worth stating flatly: the annual cost of a .co.za domain, the cost of a logo vector redraw, LibreOffice's mobile capability, and the law report citation for Cohen NO v Segal. Each now gives a range or tells you to check, rather than asserting a figure.
 
 **Third pass, same day: reader-specific review.** The toolkit was re-read as one specific person, a sole director of a Pty Ltd selling vehicles and planning to add other lines. No further factual errors were found. Five gaps were found and filled: turnover tax is wrong for a low-margin reseller and the dealer file did not say so; a dealer crosses the R2.3 million VAT threshold far faster than a service business because turnover is gross sales; unsold vehicles at year end are trading stock, not an expense; a holding deposit needs written cancellation terms to be enforceable; and nothing covered adding a second line of business, trading names, or the Small Business Corporation trap of holding shares in two companies. A new file, [Adding new lines of business](#doc-adding-new-lines-of-business), and a worked reading path in [How to use this toolkit](#doc-how-to-use-this-toolkit) now cover these.
 
@@ -767,7 +767,7 @@ These are deliberate, not errors.
 |---|---|---|
 | [Start here](#doc-start-here) | Merged into "00 START HERE" | A Drive folder listing does the job a README does, so a separate one was redundant. |
 | [Core: start here](#doc-core-start-here) | Now exists in Drive as "01 Start here" in the Core folder | Was wrongly merged into START HERE when Drive was built, leaving the Core folder numbered 02 to 09. Corrected 14 September 2026. |
-| [Which template to use when](#doc-which-template-to-use-when) contains the templates as text | Split into a guide plus 5 fill-in Google Docs | Templates you copy and fill in are more useful than templates printed inside a guide. |
+| [Documents and templates](#doc-which-template-to-use-when) contains the templates as text | Split into a guide plus 5 fill-in Google Docs | Templates you copy and fill in are more useful than templates printed inside a guide. |
 | Cash book and logbook are tables inside a markdown file | Two Google Sheets | A logbook you fill in on your phone beats one printed in a document. |
 | Plain markdown blockquotes for "In plain words" | Grey shaded single-cell tables | Google Docs silently flattens blockquotes, so they would have been invisible. |
 | Fenced code blocks for prompts | Grey shaded boxes in Courier | Makes the start and end of each prompt obvious for copying. |
@@ -811,7 +811,7 @@ Work through these in order. Do not skip ahead.
 
  If you will work from home with no shop, read [Working from home and meeting safely](#doc-working-from-home-and-meeting-safely) before your first sale. It is short and it covers the habits that stop you being scammed.
 3. Pick a name and a simple look. Use file [Branding prompts](#doc-branding-prompts).
-4. Make your quote and invoice templates. Use file [Which template to use when](#doc-which-template-to-use-when).
+4. Make your quote and invoice templates. Use file [Documents and templates](#doc-which-template-to-use-when).
 5. Check if your kind of business needs a licence to sell. Read [What you need to sell things](#doc-what-you-need-to-sell-things), then open your business type in `04-business-types/`. Some businesses may not trade without a licence.
 6. Sort out SARS. Use file [Tax and SARS](#doc-tax-and-sars). Do this even if you earn nothing.
 7. Decide if you need a registered company. Use file [Register: what you actually need](#doc-register-what-you-actually-need). Most solo businesses do not need one in year one. If you decide yes, read [Running a Pty Ltd](#doc-running-a-pty-ltd) before you register, not after.
@@ -825,7 +825,7 @@ Applies to everyone, in this folder:
 - [Register: what you actually need](#doc-register-what-you-actually-need) — company registration, bank, B-BBEE, POPIA. What is required and what is not.
 - [Tax and SARS](#doc-tax-and-sars) — SARS, turnover tax, VAT, and how to pay no tax legally when you earn little.
 - [What you need to sell things](#doc-what-you-need-to-sell-things) — licences and permits overview, and consumer law.
-- [Vehicles for your business](#doc-vehicles-for-your-business) — putting a vehicle in the business name, and when that is a bad idea.
+- [Vehicles and your business](#doc-vehicles-for-your-business) — putting a vehicle in the business name, and when that is a bad idea.
 
 Only if you registered a company:
 
@@ -842,7 +842,7 @@ Prompts and templates:
 - [Branding prompts](#doc-branding-prompts) — 11 AI prompts for the brief, name, logo, colours, type, photography, voice and about text. Each gives you 5 options. Opens with how to avoid branding that looks AI-made, and what the AI cannot do for you.
 - [Brand applications and polish](#doc-brand-applications-and-polish) — the logo files you actually need, signage and print basics, and tests to run before you spend money.
 - [Marketing prompts](#doc-marketing-prompts) — AI prompts for social media, WhatsApp, and Google Business Profile.
-- [Which template to use when](#doc-which-template-to-use-when) — quote, invoice, terms, privacy notice, logbook, cash book.
+- [Documents and templates](#doc-which-template-to-use-when) — quote, invoice, terms, privacy notice, logbook, cash book.
 - [Free tools](#doc-free-tools) — which free office software to use, and why.
 
 Rules for your kind of business:
@@ -957,7 +957,7 @@ Register a Pty if:
 - Corporate clients or government refuse to buy from an individual (this is common)
 - You want to bid for tenders
 - Your work could cause serious loss or injury, so you want a legal wall between the business and your house
-- You need to register a vehicle in the business name (see [Vehicles for your business](#doc-vehicles-for-your-business))
+- You need to register a vehicle in the business name (see [Vehicles and your business](#doc-vehicles-for-your-business))
 - You will bring in a partner or investor later
 
 Before you register, read [Running a Pty Ltd](#doc-running-a-pty-ltd). It sets out every filing a company owes each year, and what happens when those are missed. Read it first, not after registering.
@@ -1041,7 +1041,7 @@ Register on the Information Regulator portal at inforegulator.org.za. It costs n
 
 The Information Regulator is enforcing POPIA with administrative fines of up to R10 million. Small businesses are not the main target, but registration takes under an hour and removes the risk entirely.
 
-You also need a short privacy notice telling customers what data you collect and why. There is a template in [Which template to use when](#doc-which-template-to-use-when).
+You also need a short privacy notice telling customers what data you collect and why. There is a template in [Documents and templates](#doc-which-template-to-use-when).
 
 ### B-BBEE affidavit: free, do not pay for it
 
@@ -1182,7 +1182,7 @@ Things you can usually claim if they are genuinely for the business:
 - Stock and materials
 - Data, airtime, and internet used for work
 - Tools and equipment, written off over their useful life
-- Business travel, using a logbook (see [Vehicles for your business](#doc-vehicles-for-your-business))
+- Business travel, using a logbook (see [Vehicles and your business](#doc-vehicles-for-your-business))
 - Bank charges on the business account
 - Advertising, printing, and website costs
 - Accounting and legal fees
@@ -1270,7 +1270,7 @@ If you should be registered and you are not, SARS will backdate your registratio
 
 > **In plain words:** If you should have registered for VAT but did not, SARS will treat you as registered from the day you crossed the line. You will owe 15% on everything you sold since then, even though you never charged it, plus a penalty and interest.
 
-Until you are registered: do not write "Tax Invoice" on your invoices, do not show a VAT line, and do not charge VAT. Charging VAT you are not registered for is fraud. See [Which template to use when](#doc-which-template-to-use-when) for a correct non-VAT invoice.
+Until you are registered: do not write "Tax Invoice" on your invoices, do not show a VAT line, and do not charge VAT. Charging VAT you are not registered for is fraud. See [Documents and templates](#doc-which-template-to-use-when) for a correct non-VAT invoice.
 
 ### Records
 
@@ -1659,7 +1659,7 @@ Record your odometer on 1 March and again on 28 or 29 February so you have total
 
 Travel between your home and a fixed place of work is private travel, not business travel. Travel from home to a client site can be business travel. Keep the reason field honest.
 
-The easiest system: a note in your phone, filled in the moment you park. There is a template in [Which template to use when](#doc-which-template-to-use-when).
+The easiest system: a note in your phone, filled in the moment you park. There is a template in [Documents and templates](#doc-which-template-to-use-when).
 
 ### Other things to check
 
@@ -2348,7 +2348,7 @@ Most of your customer contact will be messages, calls and voice notes. That is f
 
 **Use one business number.** WhatsApp Business on a separate SIM, not your personal number. Your personal number stays private, your business chats stay in one place, and you can hand the number to someone else one day. See [Marketing prompts](#doc-marketing-prompts) for setting it up.
 
-**Keep the records.** Export or back up WhatsApp chats for any sale worth arguing about. Voice notes about a deal are business records too. Under POPIA you must also be careful with what you keep: customer ID copies and addresses should be stored somewhere safe, kept only as long as you need them, and never forwarded. Your privacy notice in [Which template to use when](#doc-which-template-to-use-when) tells customers what you keep and why.
+**Keep the records.** Export or back up WhatsApp chats for any sale worth arguing about. Voice notes about a deal are business records too. Under POPIA you must also be careful with what you keep: customer ID copies and addresses should be stored somewhere safe, kept only as long as you need them, and never forwarded. Your privacy notice in [Documents and templates](#doc-which-template-to-use-when) tells customers what you keep and why.
 
 **Do not put your home address in adverts or photos.** Be careful not to give out too much information in the advert or on the phone. Make sure photos posted online do not have geotag data embedded in them, which could give away your home address. Most phones let you switch off location in the camera settings. Do that before you photograph stock at home. Give your area, not your street.
 
@@ -2637,7 +2637,7 @@ A few more points worth knowing:
 
 Everything above is what you do after it has gone wrong. The cheaper controls are earlier:
 
-- Take a deposit. See [Which template to use when](#doc-which-template-to-use-when).
+- Take a deposit. See [Documents and templates](#doc-which-template-to-use-when).
 - Invoice the day you finish, not at month end.
 - State late payment terms in writing before the work, because interest on an overdue amount is enforceable only if it was agreed in advance.
 - For creative or professional work, transfer ownership on full payment rather than on delivery.
@@ -2790,7 +2790,7 @@ MOKOENA MOTORS
 A trading name of Mokoena Holdings (Pty) Ltd | Reg. No. 2026/123456/07
 ```
 
-The templates in [Which template to use when](#doc-which-template-to-use-when) have a place for this. For a company it is not optional.
+The templates in [Documents and templates](#doc-which-template-to-use-when) have a place for this. For a company it is not optional.
 
 ### Do you need a tagline?
 
@@ -3183,7 +3183,7 @@ For each name give me:
 - Any word in any South African language that sounds similar to it, so
  I can check the meaning with a speaker of that language. Do not tell
  me it is safe. List what sounds close and let me check.
-- A suggested.co.za domain
+- A suggested .co.za domain
 
 Number them 1 to 5. Then tell me which is weakest and why. Then stop.
 ```
@@ -3930,7 +3930,7 @@ Logo, cover photo, and at least ten real photos of real work. See [Marketing pro
 
 Logo top left, your colours used sparingly, your body typeface throughout. Nothing else. An invoice is not the place for a design.
 
-Templates are in [Which template to use when](#doc-which-template-to-use-when). Keep the layout plain and the details correct. A wrong VAT line matters more than a nice header.
+Templates are in [Documents and templates](#doc-which-template-to-use-when). Keep the layout plain and the details correct. A wrong VAT line matters more than a nice header.
 
 #### 4. Email signature
 
@@ -4094,7 +4094,7 @@ Set this up in Google Drive or on your laptop. See [Free tools](#doc-free-tools)
 
 ```
 07 Brand/
-├── brand-guide.pdf The one-page guide from Prompt 10
+├── brand-guide.pdf The one-page guide from Prompt 11
 ├── logo/
 │ ├── logo-colour.svg
 │ ├── logo-colour.pdf
@@ -4163,7 +4163,7 @@ Most South African customers will contact you on WhatsApp whether you invite the
 ```
 Here is my brand brief:
 
-[PASTE YOUR BRAND BRIEF FROM 05-branding-prompts.md]
+[PASTE YOUR BRAND BRIEF FROM 01-branding-prompts.md]
 
 Here is my brand voice:
 
@@ -4652,7 +4652,7 @@ If you use turnover tax, your records are lighter. You only track amounts receiv
 
 ### Template 7: vehicle logbook
 
-Required by SARS for any travel claim. See [Vehicles for your business](#doc-vehicles-for-your-business).
+Required by SARS for any travel claim. See [Vehicles and your business](#doc-vehicles-for-your-business).
 
 | Date | Odometer start | Odometer end | Km | Destination | Business reason |
 |---|---|---|---|---|---|
@@ -4792,7 +4792,7 @@ Weaknesses: no practical mobile editing. There is an Android viewer, but you wil
 
 Free desktop editors from onlyoffice.com, plus a free personal cloud tier.
 
-Strengths: the closest match to Microsoft Office. If a client sends you a.docx with tricky formatting and it must come back looking identical, OnlyOffice usually handles it best. The interface looks like Microsoft Office, so there is almost nothing to learn.
+Strengths: the closest match to Microsoft Office. If a client sends you a .docx with tricky formatting and it must come back looking identical, OnlyOffice usually handles it best. The interface looks like Microsoft Office, so there is almost nothing to learn.
 
 Weaknesses: smaller community, so fewer free templates and less help online. The free cloud tier has limits.
 
@@ -4950,7 +4950,7 @@ Get a deposit before you buy materials. A signed quote plus a deposit is a contr
 
 **Use this one if you are NOT registered for VAT.** That is most small businesses. You are not required to register until your turnover passes R2.3 million in any rolling 12 months.
 
-> Three rules you must follow on this invoice. Do NOT use the words "Tax Invoice". Do NOT show a VAT line. Do NOT show a VAT number. Do NOT add 15% to anything. Charging VAT when you are not registered is fraud, not a paperwork mistake.
+> Four rules you must follow on this invoice. Do NOT use the words "Tax Invoice". Do NOT show a VAT line. Do NOT show a VAT number. Do NOT add 15% to anything. Charging VAT when you are not registered is fraud, not a paperwork mistake.
 
 *Make a copy, rename it to the invoice number, replace everything in [SQUARE BRACKETS], then export to PDF.*
 
@@ -5205,7 +5205,7 @@ This is a rough guide to how much setup work to expect before you can legally tr
 | Food | High | Certificate of Acceptability, training, inspections |
 | Vehicle dealing | High | Three separate registration layers |
 
-If you are choosing between business ideas and money is tight, the left column of this table is worth reading as a cost comparison. A food business can take two to six months before it may legally open. A consulting business can invoice tomorrow.
+If you are choosing between business ideas and money is tight, the Business type column of this table is worth reading as a cost comparison. A food business can take two to six months before it may legally open. A consulting business can invoice tomorrow.
 
 ### What everyone needs, regardless of type
 
@@ -5354,7 +5354,7 @@ A vehicle you hold as stock has to sit somewhere on the national system.
 
 #### If you trade as a company
 
-You need a Business Register Number Certificate (BRNC). Full process, documents, costs, and the proxy rules are in [Vehicles for your business](#doc-vehicles-for-your-business).
+You need a Business Register Number Certificate (BRNC). Full process, documents, costs, and the proxy rules are in [Vehicles and your business](#doc-vehicles-for-your-business).
 
 Short version: eNaTIS identifies every vehicle owner by an identity number. A company does not have one, so the registering authority issues it a business register number the first time it needs to own a vehicle. You apply in person at your local traffic department with form ABR, and you nominate a proxy.
 
@@ -6141,7 +6141,7 @@ Goods you install carry the six-month implied warranty separately from your work
 
 Most disputes in trade work are not about quality. They are about scope.
 
-Use the quote template in [Which template to use when](#doc-which-template-to-use-when) and fill in both lists. What is included, and what is not included. The second list is the one that saves you.
+Use the quote template in [Documents and templates](#doc-which-template-to-use-when) and fill in both lists. What is included, and what is not included. The second list is the one that saves you.
 
 Write down:
 
@@ -6167,13 +6167,13 @@ Send the invoice the day you finish. Trades that invoice weekly get paid weekly.
 
 Public liability cover. If you flood a house, burn a roof, or drop a tool on a car, this is what stands between you and personal bankruptcy. It is not expensive for a one-person trade.
 
-Tell your vehicle insurer the vehicle is used for business, and ask about goods in transit cover if you carry customer property or expensive tools. See [Vehicles for your business](#doc-vehicles-for-your-business).
+Tell your vehicle insurer the vehicle is used for business, and ask about goods in transit cover if you carry customer property or expensive tools. See [Vehicles and your business](#doc-vehicles-for-your-business).
 
 Tool insurance is worth it once your tools are worth more than a few months of profit.
 
 ### Vehicles
 
-Most trades need one. Read [Vehicles for your business](#doc-vehicles-for-your-business) before deciding whether to put it in a business name. For a single owner-operator, personal ownership plus a logbook is usually the better answer.
+Most trades need one. Read [Vehicles and your business](#doc-vehicles-for-your-business) before deciding whether to put it in a business name. For a single owner-operator, personal ownership plus a logbook is usually the better answer.
 
 Extra rules apply if your vehicle weighs over 3,500 kg fully loaded, or if you carry passengers for money. You need a Professional Driving Permit and a roadworthy test every year. For passenger transport you also need an operating licence.
 
@@ -6268,7 +6268,7 @@ If you qualify, you can claim a share of rent or bond interest, rates, and elect
 
 Your risk is not a faulty product. It is scope creep and non-payment.
 
-Use the service agreement prompt in [Which template to use when](#doc-which-template-to-use-when). Make sure it covers:
+Use the service agreement prompt in [Documents and templates](#doc-which-template-to-use-when). Make sure it covers:
 
 What is included, in specific deliverables, not vague descriptions.
 
@@ -6647,7 +6647,7 @@ This page is meant to be printed, so the abbreviations are explained here.
 
 **Brand and documents**
 
-- [ ] Chosen a name, and checked it on CIPC, as a.co.za domain, and on social media
+- [ ] Chosen a name, and checked it on CIPC, as a .co.za domain, and on social media
 - [ ] Bought the domain, even if there is no website yet
 - [ ] Built a brand one-pager (`02-branding-and-marketing/01`)
 - [ ] Built a quote template

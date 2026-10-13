@@ -20,7 +20,7 @@ Read in this order. Do not skip.
 4. [What you need to sell things](../01%20Core%20-%20applies%20to%20everyone/04-what-you-need-to-sell-things.md) — check whether you need a licence
 5. [Branding prompts](../02%20Branding%20and%20marketing/01-branding-prompts.md), then [Brand applications and polish](../02%20Branding%20and%20marketing/03-brand-applications-and-polish.md) — build your name and look, then test it
 6. [Free tools](../03%20Paperwork%20and%20templates/02-free-tools.md) — set up your free tools
-7. [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) — build your quote and invoice
+7. [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) — build your quote and invoice
 8. [Tax and SARS](../01%20Core%20-%20applies%20to%20everyone/03-tax-and-sars.md) — sort out SARS
 9. [Register: what you actually need](../01%20Core%20-%20applies%20to%20everyone/02-register.md) — decide about a company
 10. If you decide yes, [Running a Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/06-running-a-pty-ltd.md) and [Paying yourself from a Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/07-paying-yourself.md)
@@ -85,9 +85,9 @@ This is a worked path for one specific reader. Read in this order.
 2. [Running a Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/06-running-a-pty-ltd.md) — what your company already owes each year
 3. [Paying yourself from a Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/07-paying-yourself.md) — before you move a rand out of the company account
 4. [Vehicle dealer](../04%20Your%20kind%20of%20business/01-vehicle-dealer.md) — the three registration layers, the CPA position, and why VAT and turnover tax work differently for you
-5. [Vehicles for your business](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md) — the BRNC and proxy process in full
+5. [Vehicles and your business](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md) — the BRNC and proxy process in full
 6. [Tax and SARS](../01%20Core%20-%20applies%20to%20everyone/03-tax-and-sars.md) — read the SBC section; skip the turnover tax section, it is wrong for a dealer
-7. [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) — build the VAT-registered invoice and the sale agreement with a defect schedule
+7. [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) — build the VAT-registered invoice and the sale agreement with a defect schedule
 8. [Branding prompts](../02%20Branding%20and%20marketing/01-branding-prompts.md) — name the trading brand, not the company
 9. [Working from home and meeting safely](../01%20Core%20-%20applies%20to%20everyone/09-working-from-home-and-safety.md) — if you have no yard: zoning for stock at home, and every viewing and test drive
 10. [Adding new lines of business](../01%20Core%20-%20applies%20to%20everyone/08-adding-new-lines.md) — before you add tyres, servicing, or anything else
@@ -193,7 +193,7 @@ Companies with more than one shareholder. The two Pty Ltd files assume you are t
 
 Pricing. How much to charge is the hardest question a new business faces, and nothing here answers it. The toolkit tells you what a quote must contain, not what number to put on it.
 
-Cash flow forecasting. The cash book in [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) records what already happened. It does not predict whether you can pay next month's bills.
+Cash flow forecasting. The cash book in [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) records what already happened. It does not predict whether you can pay next month's bills.
 
 Insurance detail. Each business type file says what cover to ask for. None of them compares products or prices. Use a broker.
 

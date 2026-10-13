@@ -38,7 +38,7 @@ Most South African customers will contact you on WhatsApp whether you invite the
 ```
 Here is my brand brief:
 
-[PASTE YOUR BRAND BRIEF FROM 05-branding-prompts.md]
+[PASTE YOUR BRAND BRIEF FROM 01-branding-prompts.md]
 
 Here is my brand voice:
 

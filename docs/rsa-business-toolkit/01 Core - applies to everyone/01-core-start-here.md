@@ -21,7 +21,7 @@ Work through these in order. Do not skip ahead.
 
  If you will work from home with no shop, read [Working from home and meeting safely](09-working-from-home-and-safety.md) before your first sale. It is short and it covers the habits that stop you being scammed.
 3. Pick a name and a simple look. Use file [Branding prompts](../02%20Branding%20and%20marketing/01-branding-prompts.md).
-4. Make your quote and invoice templates. Use file [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
+4. Make your quote and invoice templates. Use file [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
 5. Check if your kind of business needs a licence to sell. Read [What you need to sell things](04-what-you-need-to-sell-things.md), then open your business type in `04-business-types/`. Some businesses may not trade without a licence.
 6. Sort out SARS. Use file [Tax and SARS](03-tax-and-sars.md). Do this even if you earn nothing.
 7. Decide if you need a registered company. Use file [Register: what you actually need](02-register.md). Most solo businesses do not need one in year one. If you decide yes, read [Running a Pty Ltd](06-running-a-pty-ltd.md) before you register, not after.
@@ -35,7 +35,7 @@ Applies to everyone, in this folder:
 - [Register: what you actually need](02-register.md) — company registration, bank, B-BBEE, POPIA. What is required and what is not.
 - [Tax and SARS](03-tax-and-sars.md) — SARS, turnover tax, VAT, and how to pay no tax legally when you earn little.
 - [What you need to sell things](04-what-you-need-to-sell-things.md) — licences and permits overview, and consumer law.
-- [Vehicles for your business](05-vehicles.md) — putting a vehicle in the business name, and when that is a bad idea.
+- [Vehicles and your business](05-vehicles.md) — putting a vehicle in the business name, and when that is a bad idea.
 
 Only if you registered a company:
 
@@ -52,7 +52,7 @@ Prompts and templates:
 - [Branding prompts](../02%20Branding%20and%20marketing/01-branding-prompts.md) — 11 AI prompts for the brief, name, logo, colours, type, photography, voice and about text. Each gives you 5 options. Opens with how to avoid branding that looks AI-made, and what the AI cannot do for you.
 - [Brand applications and polish](../02%20Branding%20and%20marketing/03-brand-applications-and-polish.md) — the logo files you actually need, signage and print basics, and tests to run before you spend money.
 - [Marketing prompts](../02%20Branding%20and%20marketing/04-marketing-prompts.md) — AI prompts for social media, WhatsApp, and Google Business Profile.
-- [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) — quote, invoice, terms, privacy notice, logbook, cash book.
+- [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) — quote, invoice, terms, privacy notice, logbook, cash book.
 - [Free tools](../03%20Paperwork%20and%20templates/02-free-tools.md) — which free office software to use, and why.
 
 Rules for your kind of business:

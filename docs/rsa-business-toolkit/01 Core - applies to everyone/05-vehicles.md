@@ -149,7 +149,7 @@ Record your odometer on 1 March and again on 28 or 29 February so you have total
 
 Travel between your home and a fixed place of work is private travel, not business travel. Travel from home to a client site can be business travel. Keep the reason field honest.
 
-The easiest system: a note in your phone, filled in the moment you park. There is a template in [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
+The easiest system: a note in your phone, filled in the moment you park. There is a template in [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
 
 ## Other things to check
 

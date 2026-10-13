@@ -59,7 +59,7 @@ Register a Pty if:
 - Corporate clients or government refuse to buy from an individual (this is common)
 - You want to bid for tenders
 - Your work could cause serious loss or injury, so you want a legal wall between the business and your house
-- You need to register a vehicle in the business name (see [Vehicles for your business](05-vehicles.md))
+- You need to register a vehicle in the business name (see [Vehicles and your business](05-vehicles.md))
 - You will bring in a partner or investor later
 
 Before you register, read [Running a Pty Ltd](06-running-a-pty-ltd.md). It sets out every filing a company owes each year, and what happens when those are missed. Read it first, not after registering.
@@ -143,7 +143,7 @@ Register on the Information Regulator portal at inforegulator.org.za. It costs n
 
 The Information Regulator is enforcing POPIA with administrative fines of up to R10 million. Small businesses are not the main target, but registration takes under an hour and removes the risk entirely.
 
-You also need a short privacy notice telling customers what data you collect and why. There is a template in [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
+You also need a short privacy notice telling customers what data you collect and why. There is a template in [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
 
 ## B-BBEE affidavit: free, do not pay for it
 

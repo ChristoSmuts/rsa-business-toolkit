@@ -241,7 +241,7 @@
       "order": 5,
       "kind": "guide",
       "title": {
-        "en": "Vehicles for your business",
+        "en": "Vehicles and your business",
         "af": "Voertuie vir jou besigheid"
       },
       "tags": ["vehicles"]
@@ -418,7 +418,7 @@
       "order": 1,
       "kind": "guide",
       "title": {
-        "en": "Which template to use when",
+        "en": "Documents and templates",
         "af": "Watter sjabloon om wanneer te gebruik"
       },
       "tags": ["templates"],

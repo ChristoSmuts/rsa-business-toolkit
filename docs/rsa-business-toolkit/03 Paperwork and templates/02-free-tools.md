@@ -42,7 +42,7 @@ Weaknesses: no practical mobile editing. There is an Android viewer, but you wil
 
 Free desktop editors from onlyoffice.com, plus a free personal cloud tier.
 
-Strengths: the closest match to Microsoft Office. If a client sends you a.docx with tricky formatting and it must come back looking identical, OnlyOffice usually handles it best. The interface looks like Microsoft Office, so there is almost nothing to learn.
+Strengths: the closest match to Microsoft Office. If a client sends you a .docx with tricky formatting and it must come back looking identical, OnlyOffice usually handles it best. The interface looks like Microsoft Office, so there is almost nothing to learn.
 
 Weaknesses: smaller community, so fewer free templates and less help online. The free cloud tier has limits.
 
