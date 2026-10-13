@@ -1237,7 +1237,7 @@
           "v": "Almal anders"
         }
       ],
-      "hash": "b0ed620bc7dd6f0b",
+      "hash": "5e7695e901613841",
       "id": "your-closing-checklist.3",
       "items": [
         {
@@ -1279,11 +1279,11 @@
           "c": [
             {
               "t": "text",
-              "v": "Die munisipaliteit, SAPS, die Information Regulator en enige ander kantoor wat ’n lisensie of registrasie uitgereik het, laat weet"
+              "v": "Elke kantoor wat ’n lisensie of registrasie uitgereik het, laat weet: die munisipaliteit, en SAPS of die Information Regulator as ek by hulle geregistreer het"
             }
           ],
           "doc": "core/closing-as-a-sole-proprietor",
-          "id": "core/closing-as-a-sole-proprietor:c91fe9b9",
+          "id": "core/closing-as-a-sole-proprietor:9b7bfc11",
           "when": {
             "entity": "sole-prop"
           }
@@ -1318,7 +1318,7 @@
         }
       ],
       "kind": "tasklist",
-      "sourceHash": "ff6b49e3cae9e6f6"
+      "sourceHash": "e3c0df15c23d479f"
     },
     {
       "group": [
@@ -1377,7 +1377,7 @@
       "sourceHash": "0ed329f0e8702ef0"
     }
   ],
-  "contentHash": "48ff9dc66e0a908d",
+  "contentHash": "01451f14a995c5d5",
   "generated": {
     "date": "2026-10-13",
     "tool": "Claude, Anthropic"

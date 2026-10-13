@@ -35,6 +35,7 @@
     "business-types/vehicle-dealer:70c5bd63": "lookup/checklist:b196800c",
     "business-types/vehicle-dealer:9df05312": "lookup/checklist:9aefc6b4",
     "business-types/vehicle-dealer:ddf401f6": "lookup/checklist:57a8c2a4",
+    "core/closing-as-a-sole-proprietor:c91fe9b9": "core/closing-as-a-sole-proprietor:9b7bfc11",
     "core/running-a-pty-ltd:00f5fc24": "lookup/checklist:00f5fc24",
     "core/running-a-pty-ltd:2f83b8dc": "lookup/checklist:fe35c42c",
     "core/running-a-pty-ltd:44c17e09": "lookup/checklist:a39426e1",

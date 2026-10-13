@@ -153,7 +153,7 @@ Everyone else:
 
 - [ ] If I employed staff: got advice before giving notice, and gave each employee what they need to claim from the Unemployment Insurance Fund
 - [ ] If I employed staff: told the Compensation Fund I no longer employ anyone
-- [ ] Told the municipality, SAPS, the Information Regulator and any other office that issued a licence or registration
+- [ ] Told every office that issued a licence or registration: the municipality, and SAPS or the Information Regulator if I registered with them
 - [ ] Cancelled the card machine, debit orders and subscriptions on the business account
 - [ ] Closed the business account, or kept it as a personal account, after downloading the statements
 

@@ -1,4 +1,7 @@
 {
   "version": 1,
-  "renames": { "lookup/checklist:bcf0f339": "lookup/checklist:608a7dd6" }
+  "renames": {
+    "lookup/checklist:bcf0f339": "lookup/checklist:608a7dd6",
+    "core/closing-as-a-sole-proprietor:c91fe9b9": "core/closing-as-a-sole-proprietor:9b7bfc11"
+  }
 }

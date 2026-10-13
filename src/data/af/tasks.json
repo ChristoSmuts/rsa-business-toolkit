@@ -1186,7 +1186,7 @@
       "c": [
         {
           "t": "text",
-          "v": "Die munisipaliteit, SAPS, die Information Regulator en enige ander kantoor wat ’n lisensie of registrasie uitgereik het, laat weet"
+          "v": "Elke kantoor wat ’n lisensie of registrasie uitgereik het, laat weet: die munisipaliteit, en SAPS of die Information Regulator as ek by hulle geregistreer het"
         }
       ],
       "doc": "core/closing-as-a-sole-proprietor",
@@ -1197,7 +1197,7 @@
         }
       ],
       "heading": "your-closing-checklist",
-      "id": "core/closing-as-a-sole-proprietor:c91fe9b9",
+      "id": "core/closing-as-a-sole-proprietor:9b7bfc11",
       "order": 66,
       "when": {
         "entity": "sole-prop"

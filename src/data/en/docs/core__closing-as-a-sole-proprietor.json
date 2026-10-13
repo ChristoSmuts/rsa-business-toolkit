@@ -1177,7 +1177,7 @@
           "v": "Everyone else"
         }
       ],
-      "hash": "ff6b49e3cae9e6f6",
+      "hash": "e3c0df15c23d479f",
       "id": "your-closing-checklist.3",
       "items": [
         {
@@ -1219,11 +1219,11 @@
           "c": [
             {
               "t": "text",
-              "v": "Told the municipality, SAPS, the Information Regulator and any other office that issued a licence or registration"
+              "v": "Told every office that issued a licence or registration: the municipality, and SAPS or the Information Regulator if I registered with them"
             }
           ],
           "doc": "core/closing-as-a-sole-proprietor",
-          "id": "core/closing-as-a-sole-proprietor:c91fe9b9",
+          "id": "core/closing-as-a-sole-proprietor:9b7bfc11",
           "when": {
             "entity": "sole-prop"
           }
@@ -1315,7 +1315,7 @@
       "kind": "tasklist"
     }
   ],
-  "contentHash": "341ed5403e00fb9d",
+  "contentHash": "b0d64f85f11c6ed5",
   "generated": {
     "date": "2026-10-13",
     "tool": "Claude, Anthropic"

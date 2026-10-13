@@ -1186,7 +1186,7 @@
       "c": [
         {
           "t": "text",
-          "v": "Told the municipality, SAPS, the Information Regulator and any other office that issued a licence or registration"
+          "v": "Told every office that issued a licence or registration: the municipality, and SAPS or the Information Regulator if I registered with them"
         }
       ],
       "doc": "core/closing-as-a-sole-proprietor",
@@ -1197,7 +1197,7 @@
         }
       ],
       "heading": "your-closing-checklist",
-      "id": "core/closing-as-a-sole-proprietor:c91fe9b9",
+      "id": "core/closing-as-a-sole-proprietor:9b7bfc11",
       "order": 66,
       "when": {
         "entity": "sole-prop"

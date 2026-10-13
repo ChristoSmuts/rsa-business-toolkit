@@ -153,7 +153,7 @@ Almal anders:
 
 - [ ] As ek personeel in diens gehad het: advies gekry voordat ek kennis gegee het, en elke werknemer gegee wat hulle nodig het om uit die Unemployment Insurance Fund te eis
 - [ ] As ek personeel in diens gehad het: die Compensation Fund laat weet dat ek niemand meer in diens het nie
-- [ ] Die munisipaliteit, SAPS, die Information Regulator en enige ander kantoor wat ’n lisensie of registrasie uitgereik het, laat weet
+- [ ] Elke kantoor wat ’n lisensie of registrasie uitgereik het, laat weet: die munisipaliteit, en SAPS of die Information Regulator as ek by hulle geregistreer het
 - [ ] Die kaartmasjien, debietorders en intekeninge op die besigheidsrekening gekanselleer
 - [ ] Die besigheidsrekening gesluit, of as ’n persoonlike rekening gehou, nadat ek die state afgelaai het
 
