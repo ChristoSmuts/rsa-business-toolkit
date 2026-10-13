@@ -166,13 +166,17 @@
     0 8px 24px color-mix(in oklab, var(--st-shadow-ink) var(--st-shadow-strength-2), transparent);
 
   /* Typography */
-  --st-font-display: 'Fraunces Variable', 'Fraunces fallback', georgia, serif;
+  --st-font-display:
+    'Fraunces Variable', 'Fraunces fallback', 'Fraunces fallback Noto Serif',
+    'Fraunces fallback Times', georgia, serif;
   --st-font-body:
-    'Instrument Sans Variable', 'Instrument Sans fallback', system-ui, 'Segoe UI', roboto, arial,
-    sans-serif;
-  --st-font-display-fallback: 'Fraunces fallback', georgia, serif;
+    'Instrument Sans Variable', 'Instrument Sans fallback', 'Instrument Sans fallback Roboto',
+    system-ui, 'Segoe UI', roboto, arial, sans-serif;
+  --st-font-display-fallback:
+    'Fraunces fallback', 'Fraunces fallback Noto Serif', 'Fraunces fallback Times', georgia, serif;
   --st-font-body-fallback:
-    'Instrument Sans fallback', system-ui, 'Segoe UI', roboto, arial, sans-serif;
+    'Instrument Sans fallback', 'Instrument Sans fallback Roboto', system-ui, 'Segoe UI', roboto,
+    arial, sans-serif;
   --st-font-mono:
     ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', 'Liberation Mono', menlo, consolas, monospace;
 

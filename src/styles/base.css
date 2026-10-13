@@ -86,25 +86,91 @@
 }
 
 /*
- * Metric-matched fallbacks limit layout shift while webfonts swap in. Values were
- * measured from the woff2 files with @capsizecss/unpack (average character width
- * ratio for size-adjust; ascent/descent divided by the adjusted em).
+ * Metric-matched fallbacks: what the text is drawn in until the web fonts arrive, and in low data
+ * mode. Each local font a reader is likely to have gets its own face, because one set of numbers
+ * cannot fit Arial, Roboto and Georgia at once. The browser takes the first face whose local()
+ * font exists (Windows and Apple: Arial and Georgia; Android: Roboto and Noto Serif; Linux and
+ * ChromeOS: Liberation or Arimo/Tinos, which have Arial's and Times' widths).
+ *
+ * size-adjust makes the fallback's text as wide as the web font's: measured in Chromium (WP-50
+ * Phase 2) as the ratio of the advance widths of every document's text, English and Afrikaans,
+ * set in each font. Body faces are matched to Instrument Sans 400, the bold faces to the mean of
+ * 600 and 700, the serif faces to Fraunces 600 (their bold is synthesised, which keeps the regular
+ * widths). Georgia was not available to measure; its value is Noto Serif's scaled by the two
+ * fonts' average widths from @capsizecss/metrics, a method that reproduced the measured Noto
+ * Serif / Liberation Serif ratio to 0.2%.
+ * ascent-override and descent-override are the web font's own metrics (Instrument Sans 0.970 and
+ * 0.250 em, Fraunces 0.978 and 0.255 em) divided by size-adjust, so the baseline sits where the
+ * web font will put it. docs/design-system.md has the measurements and the layout shift they buy.
  */
 @font-face {
   font-family: 'Fraunces fallback';
   src: local('Georgia');
-  size-adjust: 116.2%;
-  ascent-override: 84.17%;
-  descent-override: 21.95%;
+  size-adjust: 108.6%;
+  ascent-override: 90.06%;
+  descent-override: 23.48%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Fraunces fallback Noto Serif';
+  src: local('Noto Serif'), local('NotoSerif');
+  size-adjust: 100.74%;
+  ascent-override: 97.08%;
+  descent-override: 25.31%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Fraunces fallback Times';
+  src: local('Liberation Serif'), local('LiberationSerif'), local('Tinos'), local('Tinos-Regular');
+  size-adjust: 119.1%;
+  ascent-override: 82.12%;
+  descent-override: 21.41%;
   line-gap-override: 0%;
 }
 
 @font-face {
   font-family: 'Instrument Sans fallback';
-  src: local('Arial'), local('ArialMT'), local('Roboto'), local('Helvetica');
-  size-adjust: 102.74%;
-  ascent-override: 94.42%;
-  descent-override: 24.33%;
+  font-weight: 400;
+  src:
+    local('Arial'), local('ArialMT'), local('Liberation Sans'), local('LiberationSans'),
+    local('Arimo'), local('Arimo-Regular');
+  size-adjust: 101.32%;
+  ascent-override: 95.74%;
+  descent-override: 24.67%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Instrument Sans fallback';
+  font-weight: 700;
+  src:
+    local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'),
+    local('LiberationSans-Bold'), local('Arimo Bold'), local('Arimo-Bold');
+  size-adjust: 97.1%;
+  ascent-override: 99.9%;
+  descent-override: 25.75%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Instrument Sans fallback Roboto';
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), local('Roboto Regular');
+  size-adjust: 102.6%;
+  ascent-override: 94.54%;
+  descent-override: 24.37%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Instrument Sans fallback Roboto';
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold');
+  size-adjust: 103.85%;
+  ascent-override: 93.4%;
+  descent-override: 24.07%;
   line-gap-override: 0%;
 }
 
