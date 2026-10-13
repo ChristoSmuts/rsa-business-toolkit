@@ -82,7 +82,7 @@
       "kind": "paragraph"
     },
     {
-      "hash": "6ca94142e474ab12",
+      "hash": "8bab4ea1f2826d90",
       "id": "path-1-i-have-not-started-yet.2",
       "items": [
         [
@@ -195,7 +195,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Which template to use when"
+                "v": "Documents and templates"
               }
             ],
             "doc": "paperwork/which-template-to-use-when",
@@ -1014,7 +1014,7 @@
       "kind": "paragraph"
     },
     {
-      "hash": "6d0556697890f3ce",
+      "hash": "15e0d65e5068ae2d",
       "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.2",
       "items": [
         [
@@ -1082,7 +1082,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Vehicles for your business"
+                "v": "Vehicles and your business"
               }
             ],
             "doc": "core/vehicles",
@@ -1114,7 +1114,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Which template to use when"
+                "v": "Documents and templates"
               }
             ],
             "doc": "paperwork/which-template-to-use-when",
@@ -1858,7 +1858,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Which template to use when"
+              "v": "Documents and templates"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -1869,7 +1869,7 @@
           "v": " records what already happened. It does not predict whether you can pay next month's bills."
         }
       ],
-      "hash": "1df25624f822e3e0",
+      "hash": "8abad9ddd8ec3946",
       "id": "what-this-toolkit-deliberately-leaves-out.7",
       "kind": "paragraph"
     },
@@ -2199,7 +2199,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "679bd57e467d6700",
+  "contentHash": "eb6055c49dd41a32",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

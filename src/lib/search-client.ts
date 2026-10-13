@@ -472,7 +472,7 @@ const NO_WORDS: ReadonlySet<string> = new Set();
  * How much a plural query word's singular counts (`expenses` finding "expense"). Enough to find
  * the section that holds only the singular ("Route 2: claim every real expense"), little enough
  * that holding both forms does not outrank holding the word as written: `vehicles` opens
- * "Vehicles for your business", not "Vehicle dealing and vehicles generally" (the acceptance set).
+ * "Vehicles and your business", not "Vehicle dealing and vehicles generally" (the acceptance set).
  */
 const SINGULAR_WEIGHT = 0.2;
 

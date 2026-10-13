@@ -320,7 +320,7 @@ If you use turnover tax, your records are lighter. You only track amounts receiv
 
 ## Template 7: vehicle logbook
 
-Required by SARS for any travel claim. See [Vehicles for your business](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
+Required by SARS for any travel claim. See [Vehicles and your business](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
 
 | Date | Odometer start | Odometer end | Km | Destination | Business reason |
 |---|---|---|---|---|---|

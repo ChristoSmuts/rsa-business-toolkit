@@ -600,7 +600,7 @@
       "kind": "paragraph"
     },
     {
-      "hash": "db1258631b76499c",
+      "hash": "2ebee49d4bc37673",
       "id": "route-2-claim-every-real-expense.3",
       "items": [
         [
@@ -630,7 +630,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Vehicles for your business"
+                "v": "Vehicles and your business"
               }
             ],
             "doc": "core/vehicles",
@@ -1192,7 +1192,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Which template to use when"
+              "v": "Documents and templates"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -1203,7 +1203,7 @@
           "v": " for a correct non-VAT invoice."
         }
       ],
-      "hash": "b44106edb351f67d",
+      "hash": "1e2dfe92628e6659",
       "id": "vat-probably-not-yet.10",
       "kind": "paragraph"
     },
@@ -1440,7 +1440,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "0051cde00d245143",
+  "contentHash": "4495b59845f2e5f4",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

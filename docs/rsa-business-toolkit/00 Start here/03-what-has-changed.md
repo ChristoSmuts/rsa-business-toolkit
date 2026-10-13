@@ -172,7 +172,7 @@ These are deliberate, not errors.
 |---|---|---|
 | [Start here](00-start-here.md) | Merged into "00 START HERE" | A Drive folder listing does the job a README does, so a separate one was redundant. |
 | [Core: start here](../01%20Core%20-%20applies%20to%20everyone/01-core-start-here.md) | Now exists in Drive as "01 Start here" in the Core folder | Was wrongly merged into START HERE when Drive was built, leaving the Core folder numbered 02 to 09. Corrected 14 September 2026. |
-| [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) contains the templates as text | Split into a guide plus 5 fill-in Google Docs | Templates you copy and fill in are more useful than templates printed inside a guide. |
+| [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) contains the templates as text | Split into a guide plus 5 fill-in Google Docs | Templates you copy and fill in are more useful than templates printed inside a guide. |
 | Cash book and logbook are tables inside a markdown file | Two Google Sheets | A logbook you fill in on your phone beats one printed in a document. |
 | Plain markdown blockquotes for "In plain words" | Grey shaded single-cell tables | Google Docs silently flattens blockquotes, so they would have been invisible. |
 | Fenced code blocks for prompts | Grey shaded boxes in Courier | Makes the start and end of each prompt obvious for copying. |

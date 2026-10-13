@@ -6,18 +6,20 @@ The Afrikaans translation is complete: all 36 documents, with 0 fidelity finding
 
 Fix these with `fix(content):` commits in `docs/rsa-business-toolkit/`. The Afrikaans files copy each problem faithfully, so they need the same fix afterwards. The fidelity check's `stale` rule points to each block.
 
-| Document | Problem |
-| --- | --- |
-| `03 Paperwork and templates/templates-to-fill-in/02-invoice-not-vat-registered.md` | Says "Three rules" and lists four. |
-| `04 Your kind of business/00-pick-your-business-type.md` | Points to the "left column" of the table; it means the business-type column. |
-| `00 Start here/02-how-this-was-made.md` | "a.co.za domain" is missing a space. |
-| `03 Paperwork and templates/02-free-tools.md` | "a.docx" is missing a space. |
-| `05 Look it up/02-master-checklist.md` | "a.co.za" is missing a space. |
-| `02 Branding and marketing/01-branding-prompts.md` | "A suggested.co.za domain" is missing a space. |
-| `02 Branding and marketing/04-marketing-prompts.md` | Prompt 1 points to `05-branding-prompts.md`, an old file name. |
-| `02 Branding and marketing/` (brand folder listing) | Says the one-page brand guide comes from Prompt 10; it comes from Prompt 11. |
-| `01 Core - applies to everyone/05-vehicles.md` | Its H1 is "Vehicles and your business"; every link to it says "Vehicles for your business". Pick one. |
-| Several documents | Link text "Which template to use when" points to a document titled "Documents and templates". |
+All fixed: English in `2ad2163` (`fix(content)`), Afrikaans in `872df44` (`fix(af)`). They are errata, not facts, so no official source was needed. `pnpm content:fidelity --lang af` gives 0 findings.
+
+| Document | Problem | Status |
+| --- | --- | --- |
+| `03 Paperwork and templates/templates-to-fill-in/02-invoice-not-vat-registered.md` | Says "Three rules" and lists four. | Fixed: "Four rules" (`2ad2163`, `872df44`) |
+| `04 Your kind of business/00-pick-your-business-type.md` | Points to the "left column" of the table; it means the business-type column. | Fixed: "the Business type column" (`2ad2163`, `872df44`) |
+| `00 Start here/02-how-this-was-made.md` | "a.co.za domain" is missing a space. | Fixed in the markdown, which lacked the space; the pipeline was not at fault (`2ad2163`) |
+| `03 Paperwork and templates/02-free-tools.md` | "a.docx" is missing a space. | Fixed in the markdown (`2ad2163`) |
+| `05 Look it up/02-master-checklist.md` | "a.co.za" is missing a space. | Fixed in the markdown (`2ad2163`); the task id change is recorded in `task-renames.json` |
+| `02 Branding and marketing/01-branding-prompts.md` | "A suggested.co.za domain" is missing a space. | Fixed in the markdown (`2ad2163`) |
+| `02 Branding and marketing/04-marketing-prompts.md` | Prompt 1 points to `05-branding-prompts.md`, an old file name. | Fixed: now `01-branding-prompts.md` (`2ad2163`, `872df44`) |
+| `02 Branding and marketing/` (brand folder listing) | Says the one-page brand guide comes from Prompt 10; it comes from Prompt 11. | Fixed: Prompt 11 writes the one-page brand guide (`2ad2163`, `872df44`) |
+| `01 Core - applies to everyone/05-vehicles.md` | Its H1 is "Vehicles and your business"; every link to it says "Vehicles for your business". Pick one. | Fixed: links and menu title now say "Vehicles and your business" / "Voertuie en jou besigheid", the H1 (`2ad2163`, `872df44`) |
+| Several documents | Link text "Which template to use when" points to a document titled "Documents and templates". | Fixed: links and menu title now say "Documents and templates" / "Dokumente en sjablone" (`2ad2163`, `872df44`) |
 
 ## Needs checking against an official source
 

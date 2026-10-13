@@ -58,7 +58,7 @@ As jy kwalifiseer, kan jy ’n deel van die huur of verbandrente, eiendomsbelast
 
 Jou risiko is nie ’n foutiewe produk nie. Dit is omvangkruip (scope creep) en wanbetaling.
 
-Gebruik die opdrag vir ’n diensooreenkoms in [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md). Maak seker dit dek:
+Gebruik die opdrag vir ’n diensooreenkoms in [Dokumente en sjablone](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md). Maak seker dit dek:
 
 Wat ingesluit is, in spesifieke lewerbare items, nie vae beskrywings nie.
 

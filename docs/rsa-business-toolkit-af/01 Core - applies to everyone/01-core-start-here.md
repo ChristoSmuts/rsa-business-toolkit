@@ -22,7 +22,7 @@ Werk hierdie stappe in volgorde deur. Moenie vorentoe spring nie.
  As jy van die huis af sonder ’n winkel gaan werk, lees [Van die huis af werk en veilig ontmoet](09-working-from-home-and-safety.md) voor jou eerste verkoping. Dit is kort, en dit dek die gewoontes wat keer dat jy geswendel word.
 
 3. Kies ’n naam en ’n eenvoudige voorkoms. Gebruik die lêer [Handelsmerkopdragte](../02%20Branding%20and%20marketing/01-branding-prompts.md).
-4. Maak jou kwotasie- en faktuursjablone. Gebruik die lêer [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
+4. Maak jou kwotasie- en faktuursjablone. Gebruik die lêer [Dokumente en sjablone](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
 5. Kyk of jou soort besigheid ’n lisensie nodig het om te verkoop. Lees [Wat jy nodig het om dinge te verkoop](04-what-you-need-to-sell-things.md), en maak dan jou besigheidstipe in `04-business-types/` oop. Sommige besighede mag nie sonder ’n lisensie handel dryf nie.
 6. Kry jou sake met SARS in orde. Gebruik die lêer [Belasting en SARS](03-tax-and-sars.md). Doen dit selfs as jy niks verdien nie.
 7. Besluit of jy ’n geregistreerde maatskappy nodig het. Gebruik die lêer [Registreer: wat jy regtig nodig het](02-register.md). Die meeste eenpersoonbesighede het nie een in die eerste jaar nodig nie. As jy ja besluit, lees [Bestuur van ’n Pty Ltd](06-running-a-pty-ltd.md) voordat jy registreer, nie daarna nie.
@@ -36,7 +36,7 @@ Geld vir almal, in hierdie vouer:
 - [Registreer: wat jy regtig nodig het](02-register.md) — maatskappyregistrasie, bank, B-BBEE, POPIA. Wat vereis word en wat nie.
 - [Belasting en SARS](03-tax-and-sars.md) — SARS, omsetbelasting, BTW, en hoe om wettig geen belasting te betaal wanneer jy min verdien.
 - [Wat jy nodig het om dinge te verkoop](04-what-you-need-to-sell-things.md) — ’n oorsig van lisensies en permitte, en verbruikersreg.
-- [Voertuie vir jou besigheid](05-vehicles.md) — om ’n voertuig in die besigheid se naam te sit, en wanneer dit ’n slegte idee is.
+- [Voertuie en jou besigheid](05-vehicles.md) — om ’n voertuig in die besigheid se naam te sit, en wanneer dit ’n slegte idee is.
 
 Net as jy ’n maatskappy geregistreer het:
 
@@ -53,7 +53,7 @@ Opdragte en sjablone:
 - [Handelsmerkopdragte](../02%20Branding%20and%20marketing/01-branding-prompts.md) — 11 KI-opdragte vir die kortbeskrywing, naam, logo, kleure, lettertipe, fotografie, stem en "oor ons"-teks. Elkeen gee jou 5 opsies. Dit begin met hoe om ’n handelsmerk te vermy wat lyk asof KI dit gemaak het, en wat die KI nie vir jou kan doen nie.
 - [Handelsmerktoepassings en afronding](../02%20Branding%20and%20marketing/03-brand-applications-and-polish.md) — die logolêers wat jy regtig nodig het, die basiese beginsels van uithangborde en drukwerk, en toetse om te doen voordat jy geld spandeer.
 - [Bemarkingsopdragte](../02%20Branding%20and%20marketing/04-marketing-prompts.md) — KI-opdragte vir sosiale media, WhatsApp en Google Business Profile.
-- [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) — kwotasie, faktuur, bepalings, privaatheidskennisgewing, logboek, kasboek.
+- [Dokumente en sjablone](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) — kwotasie, faktuur, bepalings, privaatheidskennisgewing, logboek, kasboek.
 - [Gratis gereedskap](../03%20Paperwork%20and%20templates/02-free-tools.md) — watter gratis kantoorsagteware om te gebruik, en waarom.
 
 Reëls vir jou soort besigheid:

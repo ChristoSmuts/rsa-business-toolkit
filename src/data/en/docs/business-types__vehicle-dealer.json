@@ -870,7 +870,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Vehicles for your business"
+              "v": "Vehicles and your business"
             }
           ],
           "doc": "core/vehicles",
@@ -881,7 +881,7 @@
           "v": "."
         }
       ],
-      "hash": "463e1f7e8fd68c5d",
+      "hash": "764162cb43a73e37",
       "id": "if-you-trade-as-a-company.1",
       "kind": "paragraph"
     },
@@ -3209,7 +3209,7 @@
       "kind": "tasklist"
     }
   ],
-  "contentHash": "ee1d02171a3235c6",
+  "contentHash": "6edc7c0a5133f458",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

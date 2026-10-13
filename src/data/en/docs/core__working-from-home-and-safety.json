@@ -677,7 +677,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Which template to use when"
+              "v": "Documents and templates"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -688,7 +688,7 @@
           "v": " tells customers what you keep and why."
         }
       ],
-      "hash": "2bf188115f26cc63",
+      "hash": "7eda7a01929b230b",
       "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.4",
       "kind": "paragraph"
     },
@@ -2057,7 +2057,7 @@
       "kind": "tasklist"
     }
   ],
-  "contentHash": "8b6b40f572709fce",
+  "contentHash": "97e34177f856a661",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

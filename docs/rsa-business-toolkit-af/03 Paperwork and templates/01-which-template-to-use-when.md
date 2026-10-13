@@ -320,7 +320,7 @@ As jy omsetbelasting gebruik, is jou rekords ligter. Jy hou net rekord van bedra
 
 ## Sjabloon 7: voertuiglogboek
 
-SARS vereis dit vir enige eis vir reiskoste. Sien [Voertuie vir jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
+SARS vereis dit vir enige eis vir reiskoste. Sien [Voertuie en jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
 
 | Datum | Odometer aan die begin | Odometer aan die einde | Km | Bestemming | Besigheidsrede |
 |---|---|---|---|---|---|

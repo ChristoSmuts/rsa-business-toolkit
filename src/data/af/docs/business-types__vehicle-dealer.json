@@ -920,7 +920,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Voertuie vir jou besigheid"
+              "v": "Voertuie en jou besigheid"
             }
           ],
           "doc": "core/vehicles",
@@ -931,10 +931,10 @@
           "v": "."
         }
       ],
-      "hash": "65bf98e3e65d0ad9",
+      "hash": "8b9a7b8fdb3b633d",
       "id": "if-you-trade-as-a-company.1",
       "kind": "paragraph",
-      "sourceHash": "463e1f7e8fd68c5d"
+      "sourceHash": "764162cb43a73e37"
     },
     {
       "c": [
@@ -3410,7 +3410,7 @@
       "sourceHash": "3cbbad0d8e4dd749"
     }
   ],
-  "contentHash": "2f8be8b72ad1d009",
+  "contentHash": "b8d662c8c150a1a5",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -3692,7 +3692,7 @@
       "small-claims-court-who-may-sue"
     ]
   },
-  "summary": "Voertuighandel is een van die mees gereguleerde klein besighede in Suid-Afrika.",
+  "summary": "Voertuighandel het drie lae van registrasie wat ander besighede nie het nie, en een regsrisiko wat ’n klein handelaar in ’n enkele transaksie kan vernietig.",
   "tags": [
     "business-types",
     "vehicles"

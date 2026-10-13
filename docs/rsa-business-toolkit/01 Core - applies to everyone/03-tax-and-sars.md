@@ -89,7 +89,7 @@ Things you can usually claim if they are genuinely for the business:
 - Stock and materials
 - Data, airtime, and internet used for work
 - Tools and equipment, written off over their useful life
-- Business travel, using a logbook (see [Vehicles for your business](05-vehicles.md))
+- Business travel, using a logbook (see [Vehicles and your business](05-vehicles.md))
 - Bank charges on the business account
 - Advertising, printing, and website costs
 - Accounting and legal fees
@@ -177,7 +177,7 @@ If you should be registered and you are not, SARS will backdate your registratio
 
 > **In plain words:** If you should have registered for VAT but did not, SARS will treat you as registered from the day you crossed the line. You will owe 15% on everything you sold since then, even though you never charged it, plus a penalty and interest.
 
-Until you are registered: do not write "Tax Invoice" on your invoices, do not show a VAT line, and do not charge VAT. Charging VAT you are not registered for is fraud. See [Which template to use when](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) for a correct non-VAT invoice.
+Until you are registered: do not write "Tax Invoice" on your invoices, do not show a VAT line, and do not charge VAT. Charging VAT you are not registered for is fraud. See [Documents and templates](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) for a correct non-VAT invoice.
 
 ## Records
 

@@ -149,7 +149,7 @@ Teken jou odometerlesing op 1 Maart aan en weer op 28 of 29 Februarie, sodat jy 
 
 Reise tussen jou huis en ’n vaste werkplek is privaat reise, nie besigheidsreise nie. Reise van die huis na ’n kliënt se perseel kan besigheidsreise wees. Hou die rede-veld eerlik.
 
-Die maklikste stelsel: ’n nota in jou foon, wat jy invul sodra jy parkeer. Daar is ’n sjabloon in [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
+Die maklikste stelsel: ’n nota in jou foon, wat jy invul sodra jy parkeer. Daar is ’n sjabloon in [Dokumente en sjablone](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
 
 ## Ander dinge om na te gaan
 

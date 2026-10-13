@@ -104,7 +104,7 @@ Die limiet is R30,000, vasgestel in Government Gazette (Staatskoerant) 55038, Go
 
 Alles hierbo is wat jy doen nadat dit verkeerd geloop het. Die goedkoper beheermaatreëls kom vroeër:
 
-- Vra ’n deposito. Sien [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
+- Vra ’n deposito. Sien [Dokumente en sjablone](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
 - Stuur die faktuur op die dag wat jy klaarmaak, nie aan die einde van die maand nie.
 - Stel bepalings oor laat betaling op skrif voor die werk, want rente op ’n agterstallige bedrag is net afdwingbaar as dit vooraf ooreengekom is.
 - Vir kreatiewe of professionele werk, dra eienaarskap oor by volle betaling eerder as by aflewering.

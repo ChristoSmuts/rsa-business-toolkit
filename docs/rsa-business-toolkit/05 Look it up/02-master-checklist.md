@@ -45,7 +45,7 @@ This page is meant to be printed, so the abbreviations are explained here.
 
 **Brand and documents**
 
-- [ ] Chosen a name, and checked it on CIPC, as a.co.za domain, and on social media
+- [ ] Chosen a name, and checked it on CIPC, as a .co.za domain, and on social media
 - [ ] Bought the domain, even if there is no website yet
 - [ ] Built a brand one-pager (`02-branding-and-marketing/01`)
 - [ ] Built a quote template

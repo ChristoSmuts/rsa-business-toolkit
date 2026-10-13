@@ -56,7 +56,7 @@ MOKOENA MOTORS
 A trading name of Mokoena Holdings (Pty) Ltd | Reg. No. 2026/123456/07
 ```
 
-Die sjablone in [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) het ’n plek hiervoor. Vir ’n maatskappy is dit nie opsioneel nie.
+Die sjablone in [Dokumente en sjablone](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) het ’n plek hiervoor. Vir ’n maatskappy is dit nie opsioneel nie.
 
 ## Het jy ’n slagspreuk nodig?
 

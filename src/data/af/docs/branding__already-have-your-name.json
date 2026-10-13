@@ -554,7 +554,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Watter sjabloon om wanneer te gebruik"
+              "v": "Dokumente en sjablone"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -565,10 +565,10 @@
           "v": " het ’n plek hiervoor. Vir ’n maatskappy is dit nie opsioneel nie."
         }
       ],
-      "hash": "18acfda8d765f14b",
+      "hash": "97818b8d97da0fc2",
       "id": "the-rule-that-applies-to-you-because-the-name-is-registered.4",
       "kind": "paragraph",
-      "sourceHash": "55c721cc9119ebee"
+      "sourceHash": "b9bdadc9e540669a"
     },
     {
       "c": [
@@ -840,7 +840,7 @@
       "sourceHash": "60dca965e4a3fb61"
     }
   ],
-  "contentHash": "8f0ba589a1baf727",
+  "contentHash": "cc38ad56af1e465d",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

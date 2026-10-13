@@ -715,7 +715,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Watter sjabloon om wanneer te gebruik"
+              "v": "Dokumente en sjablone"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -726,10 +726,10 @@
           "v": " sê vir kliënte wat jy hou en waarom."
         }
       ],
-      "hash": "a40b6819518cf455",
+      "hash": "5c03debe68ac607d",
       "id": "part-2-doing-business-by-phone-whatsapp-and-voice-note.4",
       "kind": "paragraph",
-      "sourceHash": "2bf188115f26cc63"
+      "sourceHash": "7eda7a01929b230b"
     },
     {
       "c": [
@@ -2175,7 +2175,7 @@
       "sourceHash": "94ab969df7ca2072"
     }
   ],
-  "contentHash": "9a5318e6f90a21d9",
+  "contentHash": "bf6e74bd8677d10d",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

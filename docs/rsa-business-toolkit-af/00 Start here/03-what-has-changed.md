@@ -172,7 +172,7 @@ Hierdie is doelbewus, nie foute nie.
 |---|---|---|
 | [Begin hier](00-start-here.md) | Saamgevoeg in "00 START HERE" | ’n Lys van ’n Drive-vouer doen die werk van ’n README, so ’n aparte een was oorbodig. |
 | [Kern: begin hier](../01%20Core%20-%20applies%20to%20everyone/01-core-start-here.md) | Bestaan nou in Drive as "01 Start here" in die Core-vouer | Is verkeerdelik by START HERE saamgevoeg toe Drive gebou is, sodat die Core-vouer van 02 tot 09 genommer was. Reggestel op 14 September 2026. |
-| [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) bevat die sjablone as teks | Verdeel in ’n gids plus 5 Google Docs om in te vul | Sjablone wat jy kopieer en invul, is nuttiger as sjablone wat binne ’n gids gedruk is. |
+| [Dokumente en sjablone](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) bevat die sjablone as teks | Verdeel in ’n gids plus 5 Google Docs om in te vul | Sjablone wat jy kopieer en invul, is nuttiger as sjablone wat binne ’n gids gedruk is. |
 | Die kasboek en logboek is tabelle binne ’n markdown-lêer | Twee Google Sheets | ’n Logboek wat jy op jou foon invul, is beter as een wat in ’n dokument gedruk is. |
 | Gewone markdown-blokaanhalings vir "In gewone taal" | Grys ingekleurde tabelle met een sel | Google Docs maak blokaanhalings stilweg plat, so hulle sou onsigbaar gewees het. |
 | Omheinde kodeblokke vir opdragte | Grys ingekleurde blokke in Courier | Maak die begin en einde van elke opdrag duidelik vir kopiëring. |

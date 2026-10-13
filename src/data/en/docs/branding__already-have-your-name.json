@@ -534,7 +534,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Which template to use when"
+              "v": "Documents and templates"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -545,7 +545,7 @@
           "v": " have a place for this. For a company it is not optional."
         }
       ],
-      "hash": "55c721cc9119ebee",
+      "hash": "b9bdadc9e540669a",
       "id": "the-rule-that-applies-to-you-because-the-name-is-registered.4",
       "kind": "paragraph"
     },
@@ -807,7 +807,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "017c88798bb860c5",
+  "contentHash": "0e8a60c11e9861fa",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

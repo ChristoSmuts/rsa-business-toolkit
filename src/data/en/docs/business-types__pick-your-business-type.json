@@ -371,10 +371,10 @@
       "c": [
         {
           "t": "text",
-          "v": "If you are choosing between business ideas and money is tight, the left column of this table is worth reading as a cost comparison. A food business can take two to six months before it may legally open. A consulting business can invoice tomorrow."
+          "v": "If you are choosing between business ideas and money is tight, the Business type column of this table is worth reading as a cost comparison. A food business can take two to six months before it may legally open. A consulting business can invoice tomorrow."
         }
       ],
-      "hash": "1b40b778e4800b98",
+      "hash": "87520b0821c5815b",
       "id": "how-much-regulation-each-type-carries.3",
       "kind": "paragraph"
     },
@@ -512,7 +512,7 @@
       "ordered": false
     }
   ],
-  "contentHash": "1ccca76ed9195706",
+  "contentHash": "c2d2d47ccdbd1123",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

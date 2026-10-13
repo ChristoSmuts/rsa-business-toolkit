@@ -125,7 +125,7 @@ For a dealer, a Traffic Register Number (TRN) or Business Register Number Certif
 
 ### If you trade as a company
 
-You need a Business Register Number Certificate (BRNC). Full process, documents, costs, and the proxy rules are in [Vehicles for your business](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
+You need a Business Register Number Certificate (BRNC). Full process, documents, costs, and the proxy rules are in [Vehicles and your business](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md).
 
 Short version: eNaTIS identifies every vehicle owner by an identity number. A company does not have one, so the registering authority issues it a business register number the first time it needs to own a vehicle. You apply in person at your local traffic department with form ABR, and you nominate a proxy.
 

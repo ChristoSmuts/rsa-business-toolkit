@@ -2,7 +2,7 @@
 
 **Use this one if you are NOT registered for VAT.** That is most small businesses. You are not required to register until your turnover passes R2.3 million in any rolling 12 months.
 
-> Three rules you must follow on this invoice. Do NOT use the words "Tax Invoice". Do NOT show a VAT line. Do NOT show a VAT number. Do NOT add 15% to anything. Charging VAT when you are not registered is fraud, not a paperwork mistake.
+> Four rules you must follow on this invoice. Do NOT use the words "Tax Invoice". Do NOT show a VAT line. Do NOT show a VAT number. Do NOT add 15% to anything. Charging VAT when you are not registered is fraud, not a paperwork mistake.
 
 *Make a copy, rename it to the invoice number, replace everything in [SQUARE BRACKETS], then export to PDF.*
 

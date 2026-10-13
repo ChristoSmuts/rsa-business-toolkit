@@ -241,8 +241,8 @@
       "order": 5,
       "kind": "guide",
       "title": {
-        "en": "Vehicles for your business",
-        "af": "Voertuie vir jou besigheid"
+        "en": "Vehicles and your business",
+        "af": "Voertuie en jou besigheid"
       },
       "tags": ["vehicles"]
     },
@@ -418,8 +418,8 @@
       "order": 1,
       "kind": "guide",
       "title": {
-        "en": "Which template to use when",
-        "af": "Watter sjabloon om wanneer te gebruik"
+        "en": "Documents and templates",
+        "af": "Dokumente en sjablone"
       },
       "tags": ["templates"],
       "fenceOverrides": {
@@ -549,7 +549,8 @@
         "af": "Voertuighandelaar"
       },
       "summary": {
-        "en": "Vehicle dealing has three registration layers other businesses do not have, and one legal risk that can destroy a small dealer in a single transaction."
+        "en": "Vehicle dealing has three registration layers other businesses do not have, and one legal risk that can destroy a small dealer in a single transaction.",
+        "af": "Voertuighandel het drie lae van registrasie wat ander besighede nie het nie, en een regsrisiko wat ’n klein handelaar in ’n enkele transaksie kan vernietig."
       },
       "appliesTo": {
         "businessTypes": ["vehicle-dealer"]

@@ -1249,7 +1249,7 @@
       "text": "Prompt 3: the name"
     },
     {
-      "hash": "d92823be14e21479",
+      "hash": "9063079034a8123d",
       "id": "prompt-3-the-name.1",
       "kind": "code",
       "placeholders": [
@@ -1269,7 +1269,7 @@
           "v": "PASTE WHAT YOU FOUND"
         }
       ],
-      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF]\n\nHere is my one-sentence description:\n\n[PASTE THE ONE YOU CHOSE]\n\nHere is how my competitors actually look, from my own search:\n\n[PASTE WHAT YOU FOUND]\n\nSuggest 5 names for this business in South Africa.\n\nRules:\n- Easy to say out loud over a noisy phone line\n- Easy to spell after hearing it once\n- Works for customers who speak English, Afrikaans, isiZulu, isiXhosa\n or Sesotho\n- Not almost the same as a big South African brand\n- Short enough to fit on a vehicle door and an Instagram handle\n- Not tied to one town, unless I said I only serve that town\n- Not tied to one product, unless I said I only sell that product\n- Not following the naming pattern most of my competitors use\n\nGive me a mix: at least one using my own name, at least one built on the\ndistinctive detail from my brief, and at least one plain and descriptive.\n\nFor each name give me:\n- The name\n- What it means or where it comes from\n- One risk or weakness of this name\n- Any word in any South African language that sounds similar to it, so\n I can check the meaning with a speaker of that language. Do not tell\n me it is safe. List what sounds close and let me check.\n- A suggested.co.za domain\n\nNumber them 1 to 5. Then tell me which is weakest and why. Then stop.",
+      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF]\n\nHere is my one-sentence description:\n\n[PASTE THE ONE YOU CHOSE]\n\nHere is how my competitors actually look, from my own search:\n\n[PASTE WHAT YOU FOUND]\n\nSuggest 5 names for this business in South Africa.\n\nRules:\n- Easy to say out loud over a noisy phone line\n- Easy to spell after hearing it once\n- Works for customers who speak English, Afrikaans, isiZulu, isiXhosa\n or Sesotho\n- Not almost the same as a big South African brand\n- Short enough to fit on a vehicle door and an Instagram handle\n- Not tied to one town, unless I said I only serve that town\n- Not tied to one product, unless I said I only sell that product\n- Not following the naming pattern most of my competitors use\n\nGive me a mix: at least one using my own name, at least one built on the\ndistinctive detail from my brief, and at least one plain and descriptive.\n\nFor each name give me:\n- The name\n- What it means or where it comes from\n- One risk or weakness of this name\n- Any word in any South African language that sounds similar to it, so\n I can check the meaning with a speaker of that language. Do not tell\n me it is safe. List what sounds close and let me check.\n- A suggested .co.za domain\n\nNumber them 1 to 5. Then tell me which is weakest and why. Then stop.",
       "variant": "prompt"
     },
     {
@@ -2324,7 +2324,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "a735c1c11fb15ec3",
+  "contentHash": "57b92c05c243b501",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

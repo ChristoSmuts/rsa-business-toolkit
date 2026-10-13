@@ -859,7 +859,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Which template to use when"
+              "v": "Documents and templates"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -870,7 +870,7 @@
           "v": ". Keep the layout plain and the details correct. A wrong VAT line matters more than a nice header."
         }
       ],
-      "hash": "ef6b144368a83031",
+      "hash": "80e3bb9a744b0f69",
       "id": "3-your-quote-and-invoice.2",
       "kind": "paragraph"
     },
@@ -1666,10 +1666,10 @@
       "kind": "paragraph"
     },
     {
-      "hash": "70d7048c313c49a1",
+      "hash": "53ef75d14c5c4748",
       "id": "part-7-your-brand-folder.2",
       "kind": "code",
-      "text": "07 Brand/\n├── brand-guide.pdf The one-page guide from Prompt 10\n├── logo/\n│ ├── logo-colour.svg\n│ ├── logo-colour.pdf\n│ ├── logo-colour-2000px.png\n│ ├── logo-black.svg\n│ ├── logo-white.svg\n│ ├── icon-1000px.png\n│ └── favicon-512px.png\n├── fonts/ The font files you downloaded\n├── colours.txt Hex codes, and CMYK from your printer\n├── photos/ Your best 20 work photos, full size\n└── templates/ Quote, invoice, email signature",
+      "text": "07 Brand/\n├── brand-guide.pdf The one-page guide from Prompt 11\n├── logo/\n│ ├── logo-colour.svg\n│ ├── logo-colour.pdf\n│ ├── logo-colour-2000px.png\n│ ├── logo-black.svg\n│ ├── logo-white.svg\n│ ├── icon-1000px.png\n│ └── favicon-512px.png\n├── fonts/ The font files you downloaded\n├── colours.txt Hex codes, and CMYK from your printer\n├── photos/ Your best 20 work photos, full size\n└── templates/ Quote, invoice, email signature",
       "variant": "listing"
     },
     {
@@ -1724,7 +1724,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "2ca761530f95a13e",
+  "contentHash": "7b99d2d01d7b2247",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -391,7 +391,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Watter sjabloon om wanneer te gebruik"
+              "v": "Dokumente en sjablone"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -402,10 +402,10 @@
           "v": " en vul albei lyste in. Wat ingesluit is, en wat nie ingesluit is nie. Die tweede lys is die een wat jou red."
         }
       ],
-      "hash": "f1d14607373cc74c",
+      "hash": "2d563f7046a45733",
       "id": "quoting-where-trades-lose-money.2",
       "kind": "paragraph",
-      "sourceHash": "1549c867b238bfb7"
+      "sourceHash": "af584d3a57a577e0"
     },
     {
       "c": [
@@ -568,7 +568,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Voertuie vir jou besigheid"
+              "v": "Voertuie en jou besigheid"
             }
           ],
           "doc": "core/vehicles",
@@ -579,10 +579,10 @@
           "v": "."
         }
       ],
-      "hash": "e9c82d6ab9bee402",
+      "hash": "cdf307a5be2dab7d",
       "id": "insurance.2",
       "kind": "paragraph",
-      "sourceHash": "2ced487ef1387b6e"
+      "sourceHash": "10e28a475a67cadd"
     },
     {
       "c": [
@@ -620,7 +620,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Voertuie vir jou besigheid"
+              "v": "Voertuie en jou besigheid"
             }
           ],
           "doc": "core/vehicles",
@@ -631,10 +631,10 @@
           "v": " voordat jy besluit of jy dit in ’n besigheidsnaam wil sit. Vir ’n enkele eienaar wat self die werk doen, is persoonlike eienaarskap plus ’n logboek gewoonlik die beter antwoord."
         }
       ],
-      "hash": "74c8cdfec61bc98a",
+      "hash": "25b59a53866b0b50",
       "id": "vehicles.1",
       "kind": "paragraph",
-      "sourceHash": "41477169d4b29484"
+      "sourceHash": "76d7a75f219902a8"
     },
     {
       "c": [
@@ -916,7 +916,7 @@
       "sourceHash": "fbd60cb2055ec4d4"
     }
   ],
-  "contentHash": "f33439680abdbf5e",
+  "contentHash": "86c330e774cc9b48",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

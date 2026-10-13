@@ -394,7 +394,7 @@
       "sourceHash": "4a0553ddcf8d65e9"
     },
     {
-      "hash": "2128900871be5537",
+      "hash": "f9b4182e0c35b1e6",
       "id": "which-one-should-you-choose.4",
       "items": [
         [
@@ -424,7 +424,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Voertuie vir jou besigheid"
+                "v": "Voertuie en jou besigheid"
               }
             ],
             "doc": "core/vehicles",
@@ -444,7 +444,7 @@
       ],
       "kind": "list",
       "ordered": false,
-      "sourceHash": "68d3a6bd68a71770"
+      "sourceHash": "e6602edf93c7dd08"
     },
     {
       "c": [
@@ -1072,7 +1072,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Watter sjabloon om wanneer te gebruik"
+              "v": "Dokumente en sjablone"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -1083,10 +1083,10 @@
           "v": "."
         }
       ],
-      "hash": "a30f085cf121a74c",
+      "hash": "2ffcf16cee0494ab",
       "id": "popia-register-your-information-officer.7",
       "kind": "paragraph",
-      "sourceHash": "78962dcf7a42a566"
+      "sourceHash": "4dc04074c09027f6"
     },
     {
       "c": [
@@ -1435,7 +1435,7 @@
       "sourceHash": "bce5c280bfc5098a"
     }
   ],
-  "contentHash": "9ad3f6ec8985b2bc",
+  "contentHash": "3144303d2bfc382b",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

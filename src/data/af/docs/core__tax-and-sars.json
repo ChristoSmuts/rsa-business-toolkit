@@ -636,7 +636,7 @@
       "sourceHash": "d0a7d19692cee264"
     },
     {
-      "hash": "ac0f5a1c70e53a60",
+      "hash": "6cb65498fe81dea9",
       "id": "route-2-claim-every-real-expense.3",
       "items": [
         [
@@ -666,7 +666,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Voertuie vir jou besigheid"
+                "v": "Voertuie en jou besigheid"
               }
             ],
             "doc": "core/vehicles",
@@ -710,7 +710,7 @@
       ],
       "kind": "list",
       "ordered": false,
-      "sourceHash": "db1258631b76499c"
+      "sourceHash": "2ebee49d4bc37673"
     },
     {
       "c": [
@@ -1267,7 +1267,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Watter sjabloon om wanneer te gebruik"
+              "v": "Dokumente en sjablone"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -1278,10 +1278,10 @@
           "v": " vir ’n korrekte faktuur sonder BTW."
         }
       ],
-      "hash": "782bbeb22b1054cd",
+      "hash": "57fb484676247c76",
       "id": "vat-probably-not-yet.10",
       "kind": "paragraph",
-      "sourceHash": "b44106edb351f67d"
+      "sourceHash": "1e2dfe92628e6659"
     },
     {
       "c": [
@@ -1530,7 +1530,7 @@
       "sourceHash": "cbc3a48ec3dc57e9"
     }
   ],
-  "contentHash": "cbfed8c7d6cbb996",
+  "contentHash": "3a543e04bf5583e6",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

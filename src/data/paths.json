@@ -227,8 +227,8 @@
       },
       "route": "core/vehicles/",
       "titles": {
-        "af": "Voertuie vir jou besigheid",
-        "en": "Vehicles for your business"
+        "af": "Voertuie en jou besigheid",
+        "en": "Vehicles and your business"
       }
     },
     "core/what-you-need-to-sell-things": {
@@ -282,8 +282,8 @@
       },
       "route": "paperwork/which-template-to-use-when/",
       "titles": {
-        "af": "Watter sjabloon om wanneer te gebruik",
-        "en": "Which template to use when"
+        "af": "Dokumente en sjablone",
+        "en": "Documents and templates"
       }
     }
   },
@@ -292,7 +292,7 @@
     "services-trades",
     "professional-creative"
   ],
-  "hash": "402d2bf6fcb8ac6a",
+  "hash": "f393f3dc3f6295a9",
   "rules": [
     {
       "list": "path-1-i-have-not-started-yet.2",

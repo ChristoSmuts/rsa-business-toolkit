@@ -89,7 +89,7 @@ Dinge wat jy gewoonlik kan eis as hulle werklik vir die besigheid is:
 - Voorraad en materiaal
 - Data, lugtyd en internet wat vir werk gebruik word
 - Gereedskap en toerusting, afgeskryf oor hulle nuttige leeftyd
-- Besigheidsreise, met ’n logboek (sien [Voertuie vir jou besigheid](05-vehicles.md))
+- Besigheidsreise, met ’n logboek (sien [Voertuie en jou besigheid](05-vehicles.md))
 - Bankkoste op die besigheidsrekening
 - Advertensies, drukwerk en webwerfkoste
 - Rekenmeesters- en regsfooie
@@ -177,7 +177,7 @@ As jy geregistreer behoort te wees en jy is nie, sal SARS jou registrasie terugd
 
 > **In gewone taal:** As jy vir BTW moes geregistreer het maar dit nie gedoen het nie, sal SARS jou behandel asof jy geregistreer was vanaf die dag wat jy oor die lyn gegaan het. Jy sal 15% skuld op alles wat jy sedertdien verkoop het, al het jy dit nooit gehef nie, plus ’n boete en rente.
 
-Totdat jy geregistreer is: moenie "Belastingfaktuur" ("Tax Invoice") op jou fakture skryf nie, moenie ’n BTW-reël wys nie, en moenie BTW hef nie. Om BTW te hef terwyl jy nie daarvoor geregistreer is nie, is bedrog. Sien [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) vir ’n korrekte faktuur sonder BTW.
+Totdat jy geregistreer is: moenie "Belastingfaktuur" ("Tax Invoice") op jou fakture skryf nie, moenie ’n BTW-reël wys nie, en moenie BTW hef nie. Om BTW te hef terwyl jy nie daarvoor geregistreer is nie, is bedrog. Sien [Dokumente en sjablone](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) vir ’n korrekte faktuur sonder BTW.
 
 ## Rekords
 

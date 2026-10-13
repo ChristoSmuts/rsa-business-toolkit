@@ -394,6 +394,15 @@ describe('committed content data', () => {
     expect(found).toEqual([]);
   });
 
+  // WP-50 "Found on the way": the Afrikaans vehicle-dealer lead was the document's first line, not
+  // the curated summary the English page has. Both now come from `content-meta/docs.meta.json`.
+  it('gives the vehicle-dealer page the same curated summary in English and Afrikaans', () => {
+    const summary = (lang: (typeof langs)[number]): string | undefined =>
+      docsByLang.get(lang)?.find((doc) => doc.id === 'business-types/vehicle-dealer')?.summary;
+    expect(summary('en')).toMatch(/^Vehicle dealing has three registration layers /);
+    expect(summary('af')).toMatch(/^Voertuighandel het drie lae van registrasie /);
+  });
+
   // WP-50a review pass 1, M4: a template's summary is the lead and meta description of its form
   // page, so it never tells the reader to copy a file or replace [PLACEHOLDERS].
   it('has no copy-the-file instruction and no [placeholder] in any template summary', () => {

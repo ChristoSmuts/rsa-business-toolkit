@@ -372,7 +372,7 @@
       "kind": "paragraph"
     },
     {
-      "hash": "68d3a6bd68a71770",
+      "hash": "e6602edf93c7dd08",
       "id": "which-one-should-you-choose.4",
       "items": [
         [
@@ -402,7 +402,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Vehicles for your business"
+                "v": "Vehicles and your business"
               }
             ],
             "doc": "core/vehicles",
@@ -1014,7 +1014,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Which template to use when"
+              "v": "Documents and templates"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -1025,7 +1025,7 @@
           "v": "."
         }
       ],
-      "hash": "78962dcf7a42a566",
+      "hash": "4dc04074c09027f6",
       "id": "popia-register-your-information-officer.7",
       "kind": "paragraph"
     },
@@ -1357,7 +1357,7 @@
       "ordered": false
     }
   ],
-  "contentHash": "ddf4ef38cd7096cf",
+  "contentHash": "c59443c231335583",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

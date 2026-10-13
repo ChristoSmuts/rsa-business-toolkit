@@ -233,14 +233,14 @@
       "text": "Prompt 1: content pillars"
     },
     {
-      "hash": "cf089ed8f9b49371",
+      "hash": "c6b8ef2f593ea27b",
       "id": "prompt-1-content-pillars.1",
       "kind": "code",
       "placeholders": [
         {
           "style": "instruction",
           "t": "placeholder",
-          "v": "PASTE YOUR BRAND BRIEF FROM 05-branding-prompts.md"
+          "v": "PASTE YOUR BRAND BRIEF FROM 01-branding-prompts.md"
         },
         {
           "style": "field",
@@ -248,7 +248,7 @@
           "v": "PASTE YOUR VOICE GUIDE"
         }
       ],
-      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF FROM 05-branding-prompts.md]\n\nHere is my brand voice:\n\n[PASTE YOUR VOICE GUIDE]\n\nGive me 5 sets of content pillars. A content pillar is a repeating topic\nI post about.\n\nEach set must have exactly 4 pillars. For each pillar give me:\n- The pillar name\n- Why my specific customers care about it\n- Three example post ideas\n\nMake the 5 sets genuinely different in approach. At least one set must be\nbuilt around things I can photograph with a phone while working, with no\nplanning.\n\nRemember I am one person with no time and no budget.\n\nNumber the sets 1 to 5. After the 5 sets, stop. Ask me which set is\nclosest and what I would change.",
+      "text": "Here is my brand brief:\n\n[PASTE YOUR BRAND BRIEF FROM 01-branding-prompts.md]\n\nHere is my brand voice:\n\n[PASTE YOUR VOICE GUIDE]\n\nGive me 5 sets of content pillars. A content pillar is a repeating topic\nI post about.\n\nEach set must have exactly 4 pillars. For each pillar give me:\n- The pillar name\n- Why my specific customers care about it\n- Three example post ideas\n\nMake the 5 sets genuinely different in approach. At least one set must be\nbuilt around things I can photograph with a phone while working, with no\nplanning.\n\nRemember I am one person with no time and no budget.\n\nNumber the sets 1 to 5. After the 5 sets, stop. Ask me which set is\nclosest and what I would change.",
       "variant": "prompt"
     },
     {
@@ -635,7 +635,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "187b957190eba872",
+  "contentHash": "6b8bb256d0cd67e8",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

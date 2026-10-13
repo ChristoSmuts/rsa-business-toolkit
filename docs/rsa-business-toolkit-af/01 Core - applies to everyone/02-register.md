@@ -59,7 +59,7 @@ Registreer ’n Pty as:
 - Korporatiewe kliënte of die regering weier om van ’n individu te koop (dit is algemeen)
 - Jy op tenders wil bie
 - Jou werk ernstige verlies of besering kan veroorsaak, en jy dus ’n regsmuur tussen die besigheid en jou huis wil hê
-- Jy ’n voertuig in die besigheid se naam moet registreer (sien [Voertuie vir jou besigheid](05-vehicles.md))
+- Jy ’n voertuig in die besigheid se naam moet registreer (sien [Voertuie en jou besigheid](05-vehicles.md))
 - Jy later ’n vennoot of belegger gaan inbring
 
 Lees [Bestuur van ’n Pty Ltd](06-running-a-pty-ltd.md) voordat jy registreer. Dit sit elke indiening uiteen wat ’n maatskappy elke jaar verskuldig is, en wat gebeur wanneer dit gemis word. Lees dit eerste, nie ná registrasie nie.
@@ -143,7 +143,7 @@ Registreer op die Information Regulator se portaal by inforegulator.org.za. Dit 
 
 Die Information Regulator dwing POPIA af met administratiewe boetes van tot R10 miljoen. Klein besighede is nie die hoofteiken nie, maar registrasie neem minder as ’n uur en haal die risiko heeltemal weg.
 
-Jy het ook ’n kort privaatheidskennisgewing nodig wat vir kliënte sê watter data jy insamel en waarom. Daar is ’n sjabloon in [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
+Jy het ook ’n kort privaatheidskennisgewing nodig wat vir kliënte sê watter data jy insamel en waarom. Daar is ’n sjabloon in [Dokumente en sjablone](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md).
 
 ## B-BBEE-beëdigde verklaring: gratis, moenie daarvoor betaal nie
 

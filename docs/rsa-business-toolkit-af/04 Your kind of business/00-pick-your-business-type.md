@@ -28,7 +28,7 @@ Dit is ’n rowwe riglyn vir hoeveel opstelwerk jy kan verwag voordat jy wettig 
 | Kos | Hoog | Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid), opleiding, inspeksies |
 | Voertuighandel | Hoog | Drie aparte lae van registrasie |
 
-As jy tussen besigheidsidees kies en geld is skaars, is die linkerkolom van hierdie tabel die moeite werd om as ’n kostevergelyking te lees. ’n Kosbesigheid kan twee tot ses maande neem voordat dit wettig mag oopmaak. ’n Konsultasiebesigheid kan môre al ’n faktuur stuur.
+As jy tussen besigheidsidees kies en geld is skaars, is die kolom Besigheidstipe in hierdie tabel die moeite werd om as ’n kostevergelyking te lees. ’n Kosbesigheid kan twee tot ses maande neem voordat dit wettig mag oopmaak. ’n Konsultasiebesigheid kan môre al ’n faktuur stuur.
 
 ## Wat almal nodig het, ongeag die tipe
 

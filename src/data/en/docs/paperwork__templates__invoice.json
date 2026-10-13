@@ -28,10 +28,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Three rules you must follow on this invoice. Do NOT use the words \"Tax Invoice\". Do NOT show a VAT line. Do NOT show a VAT number. Do NOT add 15% to anything. Charging VAT when you are not registered is fraud, not a paperwork mistake."
+          "v": "Four rules you must follow on this invoice. Do NOT use the words \"Tax Invoice\". Do NOT show a VAT line. Do NOT show a VAT number. Do NOT add 15% to anything. Charging VAT when you are not registered is fraud, not a paperwork mistake."
         }
       ],
-      "hash": "ba1396f383b9e33a",
+      "hash": "4453d1a7549df193",
       "id": "intro.2",
       "kind": "callout",
       "style": "note"
@@ -565,7 +565,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "b33d54d3be99f4e0",
+  "contentHash": "2082afc9efa99f82",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

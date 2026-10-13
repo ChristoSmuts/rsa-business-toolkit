@@ -38,7 +38,7 @@ Die meeste Suid-Afrikaanse kliënte sal jou op WhatsApp kontak, of jy hulle nooi
 ```
 Hier is my handelsmerk-kortbeskrywing:
 
-[PLAK JOU HANDELSMERK-KORTBESKRYWING UIT 05-branding-prompts.md]
+[PLAK JOU HANDELSMERK-KORTBESKRYWING UIT 01-branding-prompts.md]
 
 Hier is die stem van my handelsmerk:
 

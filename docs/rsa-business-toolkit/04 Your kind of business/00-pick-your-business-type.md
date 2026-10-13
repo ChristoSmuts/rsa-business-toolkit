@@ -28,7 +28,7 @@ This is a rough guide to how much setup work to expect before you can legally tr
 | Food | High | Certificate of Acceptability, training, inspections |
 | Vehicle dealing | High | Three separate registration layers |
 
-If you are choosing between business ideas and money is tight, the left column of this table is worth reading as a cost comparison. A food business can take two to six months before it may legally open. A consulting business can invoice tomorrow.
+If you are choosing between business ideas and money is tight, the Business type column of this table is worth reading as a cost comparison. A food business can take two to six months before it may legally open. A consulting business can invoice tomorrow.
 
 ## What everyone needs, regardless of type
 

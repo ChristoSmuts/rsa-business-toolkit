@@ -378,13 +378,13 @@
       "c": [
         {
           "t": "text",
-          "v": "As jy tussen besigheidsidees kies en geld is skaars, is die linkerkolom van hierdie tabel die moeite werd om as ’n kostevergelyking te lees. ’n Kosbesigheid kan twee tot ses maande neem voordat dit wettig mag oopmaak. ’n Konsultasiebesigheid kan môre al ’n faktuur stuur."
+          "v": "As jy tussen besigheidsidees kies en geld is skaars, is die kolom Besigheidstipe in hierdie tabel die moeite werd om as ’n kostevergelyking te lees. ’n Kosbesigheid kan twee tot ses maande neem voordat dit wettig mag oopmaak. ’n Konsultasiebesigheid kan môre al ’n faktuur stuur."
         }
       ],
-      "hash": "3815aa9294c8b0e5",
+      "hash": "e5835d558f8b923e",
       "id": "how-much-regulation-each-type-carries.3",
       "kind": "paragraph",
-      "sourceHash": "1b40b778e4800b98"
+      "sourceHash": "87520b0821c5815b"
     },
     {
       "c": [
@@ -525,7 +525,7 @@
       "sourceHash": "271ba8d70ca1c3cc"
     }
   ],
-  "contentHash": "1960cd0e629b2f26",
+  "contentHash": "b859a00ae0f84545",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

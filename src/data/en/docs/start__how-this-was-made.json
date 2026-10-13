@@ -1081,10 +1081,10 @@
         },
         {
           "t": "text",
-          "v": " Four claims were weakened because they could not be verified to a standard worth stating flatly: the annual cost of a.co.za domain, the cost of a logo vector redraw, LibreOffice's mobile capability, and the law report citation for Cohen NO v Segal. Each now gives a range or tells you to check, rather than asserting a figure."
+          "v": " Four claims were weakened because they could not be verified to a standard worth stating flatly: the annual cost of a .co.za domain, the cost of a logo vector redraw, LibreOffice's mobile capability, and the law report citation for Cohen NO v Segal. Each now gives a range or tells you to check, rather than asserting a figure."
         }
       ],
-      "hash": "9adceb825ade0a2a",
+      "hash": "845a345a4d8899c6",
       "id": "corrections-log.4",
       "kind": "paragraph"
     },
@@ -1479,7 +1479,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "f29ee1ce79909179",
+  "contentHash": "f586f79404670088",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

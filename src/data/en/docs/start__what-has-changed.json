@@ -1513,7 +1513,7 @@
         null,
         null
       ],
-      "hash": "349c1fcb4d8ab78c",
+      "hash": "c0333a673f6d9a30",
       "header": [
         [
           {
@@ -1595,7 +1595,7 @@
               "c": [
                 {
                   "t": "text",
-                  "v": "Which template to use when"
+                  "v": "Documents and templates"
                 }
               ],
               "doc": "paperwork/which-template-to-use-when",
@@ -1753,7 +1753,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "38ecec2bd767cc44",
+  "contentHash": "9005f5816630598a",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
