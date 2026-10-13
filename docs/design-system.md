@@ -71,7 +71,7 @@ Changes and additions, all documented in `tokens.css`:
 
 ### Verified contrast (WCAG 2.x)
 
-Text needs at least 4.5:1. Control borders and focus indicators need at least 3:1. Ratios are truncated to two decimals, never rounded up. The same list (`CONTRAST_PAIRS` in `src/scripts/color.ts`) drives the unit test and the live panel. It holds the plan B4 pairs plus every text, link and focus-ring pair the components render: callout bodies and links on every soft background, links and focus rings on every section tint, the inverse toast and the danger hover.
+Text needs at least 4.5:1. Control borders and focus indicators need at least 3:1. Ratios are truncated to two decimals, never rounded up. Every ratio in this file is computed by `src/scripts/color.ts` from `tokens.css`, including the OKLab mixing of the tints. A browser resolves `color-mix(in oklab, …)` with its own rounding, so a live measurement of a mixed colour (the panel on `/design-system/`, or DevTools) can differ by up to about 0.06: 11.88:1 against 11.90:1 for the light ring on the Look it up tint, 9.39:1 against 9.33:1 for the dark ring on the Paperwork tint (WP-50 Phase 2 review pass 1). The same list (`CONTRAST_PAIRS` in `src/scripts/color.ts`) drives the unit test and the live panel. It holds the plan B4 pairs plus every text, link and focus-ring pair the components render: callout bodies and links on every soft background, links and focus rings on every section tint, the inverse toast and the danger hover.
 
 | Foreground | Background | Use | Needs | Light | Dark |
 | --- | --- | --- | --- | --- | --- |
