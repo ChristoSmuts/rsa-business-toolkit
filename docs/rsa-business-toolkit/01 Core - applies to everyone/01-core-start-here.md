@@ -36,6 +36,7 @@ Applies to everyone, in this folder:
 - [Tax and SARS](03-tax-and-sars.md) — SARS, turnover tax, VAT, and how to pay no tax legally when you earn little.
 - [What you need to sell things](04-what-you-need-to-sell-things.md) — licences and permits overview, and consumer law.
 - [Vehicles and your business](05-vehicles.md) — putting a vehicle in the business name, and when that is a bad idea.
+- [Closing as a sole proprietor](11-closing-as-a-sole-proprietor.md) — what to do when you stop trading as yourself: SARS, staff, licences, the bank account, debts and records.
 
 Only if you registered a company:
 

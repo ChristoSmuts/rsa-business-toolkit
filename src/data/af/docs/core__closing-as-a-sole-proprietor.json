@@ -1,0 +1,1547 @@
+{
+  "appliesTo": {
+    "businessTypes": "all",
+    "entity": "sole-prop"
+  },
+  "blocks": [
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bestuur van ’n Pty Ltd"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " dek hoe jy ’n maatskappy sluit. Hierdie lêer is vir die ander geval: jy dryf handel as jouself, en jy wil ophou."
+        }
+      ],
+      "hash": "5f462d5d52f37e8a",
+      "id": "intro.1",
+      "kind": "paragraph",
+      "sourceHash": "9b659ac1bd341095"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "’n Eenmansaak (sole proprietor) het geen besigheid om te deregistreer nie. Jy het nooit een geregistreer nie. Sluit is dus nie een aansoek nie. Dit is ’n kort lys mense om te laat weet, en ’n lys dinge wat ná die laaste verkoop joune bly."
+        }
+      ],
+      "hash": "3d0de0f1522044bf",
+      "id": "intro.2",
+      "kind": "paragraph",
+      "sourceHash": "4a95a9dfb675b4d8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Woorde wat in hierdie lêer gebruik word"
+        }
+      ],
+      "depth": 2,
+      "hash": "8e5aead86ede370d",
+      "id": "words-used-in-this-file",
+      "kind": "heading",
+      "sourceHash": "f8f7e4fc9c5c8540",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "hash": "a80ab17be7db8ee2",
+      "id": "words-used-in-this-file.1",
+      "intro": [
+        {
+          "t": "text",
+          "v": "Eenvoudige betekenisse van die terme in hierdie lêer. Die volle lys is in die "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Woordelys"
+            }
+          ],
+          "doc": "lookup/glossary",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "items": [
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Jy dryf handel as jouself. Geen maatskappy nie. Die besigheid en jy is in die reg dieselfde persoon."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Eenmansaak"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Die jaarlikse belastingopgawe vir mense. Jou besigheidswins gaan daarop."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "ITR12"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Belasting vooruit betaal, twee keer per jaar, omdat geen werkgewer dit vir jou aftrek nie."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Voorlopige belasting"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Besigheid wat vir BTW geregistreer is."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "BTW-ondernemer"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Maandelikse betaalstaatopgawe / betaalstaatrekonsiliasie twee keer per jaar."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "EMP201 / EMP501"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "Unemployment Insurance Fund (Werkloosheidversekeringsfonds), bestuur deur die Department of Employment and Labour (Departement van Indiensneming en Arbeid). Jou werknemers kan daaruit eis wanneer hulle werk eindig."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "UIF"
+            }
+          ]
+        },
+        {
+          "meaning": [
+            {
+              "t": "text",
+              "v": "’n Skuld wat jy te lank laat staan, kan nie meer geëis word nie. Drie jaar vir die meeste gewone skulde."
+            }
+          ],
+          "term": [
+            {
+              "t": "text",
+              "v": "Verjaring"
+            }
+          ]
+        }
+      ],
+      "kind": "terms",
+      "sourceHash": "31f89e5383f06cf1"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.2",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Die kort weergawe: laat almal by wie jy geregistreer het, weet dat jy opgehou het, dien die laaste opgawes in, en hou jou rekords vir vyf jaar. Jou skuld sluit nie saam met die besigheid nie. Dit was nog altyd joune."
+        }
+      ],
+      "hash": "55d1e335fac65225",
+      "id": "words-used-in-this-file.3",
+      "kind": "paragraph",
+      "sourceHash": "bc0d65a8b52dd035"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "words-used-in-this-file.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Wat toemaak vir ’n eenmansaak beteken"
+        }
+      ],
+      "depth": 2,
+      "hash": "77a06b60f4fb3d38",
+      "id": "what-closing-means-for-a-sole-proprietor",
+      "kind": "heading",
+      "sourceHash": "4e7cc7211e93fbe1",
+      "text": "Wat toemaak vir ’n eenmansaak beteken"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "In die reg is jy en die besigheid een persoon. Besigheidsinkomste gaan op jou persoonlike belastingopgawe. As die besigheid geld skuld, skuld jy dit. Sien "
+        },
+        {
+          "anchor": "sole-proprietor-trading-as-yourself",
+          "c": [
+            {
+              "t": "text",
+              "v": "Registreer: wat jy regtig nodig het"
+            }
+          ],
+          "doc": "core/register",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "5b0647566d1fdd96",
+      "id": "what-closing-means-for-a-sole-proprietor.1",
+      "kind": "paragraph",
+      "sourceHash": "6ddc111e4d22204f"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dit het drie gevolge wanneer jy ophou."
+        }
+      ],
+      "hash": "3bf36c659e2b7ebb",
+      "id": "what-closing-means-for-a-sole-proprietor.2",
+      "kind": "paragraph",
+      "sourceHash": "4431239437c63310"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Daar is niks om by CIPC te deregistreer nie. ’n Eenmansaak het nooit die besigheid daar geregistreer nie. ’n Handelsnaam soos \"Thabo's Plumbing\" is ook nêrens geregistreer nie, so daar is niks om te kanselleer nie. Jy hou eenvoudig op om dit te gebruik."
+        }
+      ],
+      "hash": "1ac3a614aa4918fa",
+      "id": "what-closing-means-for-a-sole-proprietor.3",
+      "kind": "paragraph",
+      "sourceHash": "a5decd5933a1b5a4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou SARS-belastingnommer bly. Jy het nie die besigheid by SARS geregistreer nie. Jy het jouself geregistreer, en jy is steeds ’n belastingbetaler nadat die besigheid ophou."
+        }
+      ],
+      "hash": "3045123b7ac43375",
+      "id": "what-closing-means-for-a-sole-proprietor.4",
+      "kind": "paragraph",
+      "sourceHash": "7fce9d9cc24d3543"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Alles wat die besigheid geskuld het, en alles wat aan die besigheid geskuld word, is steeds joune. Om te sluit, beëindig nie ’n skuld nie."
+        }
+      ],
+      "hash": "c07e2fbbdfa7cc9d",
+      "id": "what-closing-means-for-a-sole-proprietor.5",
+      "kind": "paragraph",
+      "sourceHash": "0dd4147ceca78ea2"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kies ’n sluitingsdatum en skryf dit neer. Elke stap hieronder werk vanaf daardie datum."
+        }
+      ],
+      "hash": "fbf5d1d4a487c145",
+      "id": "what-closing-means-for-a-sole-proprietor.6",
+      "kind": "paragraph",
+      "sourceHash": "c7efcf12899a9bcf"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Laat SARS weet"
+        }
+      ],
+      "depth": 2,
+      "hash": "47dbb3abc30c1ce1",
+      "id": "tell-sars",
+      "kind": "heading",
+      "sourceHash": "6da5c6de1aadb62b",
+      "text": "Laat SARS weet"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Inkomstebelasting: die laaste ITR12 met besigheidsinkomste"
+        }
+      ],
+      "depth": 3,
+      "hash": "ce7375ae328e61aa",
+      "id": "income-tax-the-last-itr12-with-business-income",
+      "kind": "heading",
+      "sourceHash": "405714f4e1cf4c4e",
+      "text": "Inkomstebelasting: die laaste ITR12 met besigheidsinkomste"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Besigheidswins gaan op jou gewone ITR12, in die afdeling \"plaaslike besigheidsinkomste\" (\"local business income\"). Vir die belastingjaar waarin jy ophou, verklaar jy die besigheid se inkomste en uitgawes tot op jou sluitingsdatum, in dieselfde afdeling. Dien dit in die gewone indieningseisoen in. Sien "
+        },
+        {
+          "anchor": "what-sars-wants-from-a-sole-proprietor",
+          "c": [
+            {
+              "t": "text",
+              "v": "Belasting en SARS"
+            }
+          ],
+          "doc": "core/tax-and-sars",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "007f32d7a8c533fc",
+      "id": "income-tax-the-last-itr12-with-business-income.1",
+      "kind": "paragraph",
+      "sourceHash": "7416c4b3dd2ad655"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Ná daardie jaar hang dit van jou inkomste van dan af af, nie van die besigheid nie, of jy steeds moet indien. Kyk elke jaar."
+        }
+      ],
+      "hash": "06484e457f7f0480",
+      "id": "income-tax-the-last-itr12-with-business-income.2",
+      "kind": "paragraph",
+      "sourceHash": "434fb4a0bfbdd851"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Voorlopige belasting"
+        }
+      ],
+      "depth": 3,
+      "hash": "b4d60aee69073fa2",
+      "id": "provisional-tax",
+      "kind": "heading",
+      "sourceHash": "9ba2716c26ce940b",
+      "text": "Voorlopige belasting"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n besigheid besit, sê die Income Tax Act jy moet as ’n voorlopige belastingbetaler (provisional taxpayer) registreer. Sodra jy ophou handel dryf, val daardie rede weg."
+        }
+      ],
+      "hash": "b25aa38533bfec68",
+      "id": "provisional-tax.1",
+      "kind": "paragraph",
+      "sourceHash": "25bf693018bf17c6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Vra SARS hoe om jou registrasie as voorlopige belastingbetaler te beëindig. Totdat SARS dit skriftelik bevestig, hou aan om jou IRP6-opgawes op die gewone datums in "
+        },
+        {
+          "anchor": "provisional-tax",
+          "c": [
+            {
+              "t": "text",
+              "v": "Belasting en SARS"
+            }
+          ],
+          "doc": "core/tax-and-sars",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " in te dien. ’n IRP6-opgawe kan aangevra en ingedien word selfs al is die betaling van voorlopige belasting nul."
+        }
+      ],
+      "hash": "67684f834fb46af2",
+      "id": "provisional-tax.2",
+      "kind": "paragraph",
+      "sourceHash": "91b886d111eb2811"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jy het belasting vooruit betaal omdat jy ’n besigheid bedryf het. Wanneer jy ophou, vra SARS om jou van voorlopige belasting af te haal. Totdat SARS skriftelik ja sê, hou aan om die vorm twee keer per jaar in te dien, selfs as dit nul wys."
+        }
+      ],
+      "hash": "0512515757810b23",
+      "id": "provisional-tax.3",
+      "kind": "callout",
+      "pairsWith": "provisional-tax.2",
+      "sourceHash": "25f50f9f2eab3b9a",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Om ’n nulopgawe in te dien, kos niks. Om nie in te dien nie, skep boetes wat elke maand groei."
+        }
+      ],
+      "hash": "b757236c9978184b",
+      "id": "provisional-tax.4",
+      "kind": "paragraph",
+      "sourceHash": "0171a35f8a7721f5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Omsetbelasting, as jy daarvoor geregistreer het"
+        }
+      ],
+      "depth": 3,
+      "hash": "0aad0e165deb16a6",
+      "id": "turnover-tax-if-you-registered-for-it",
+      "kind": "heading",
+      "sourceHash": "16b78dbb700baf0f",
+      "text": "Omsetbelasting, as jy daarvoor geregistreer het"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sodra jy vir omsetbelasting geregistreer is, bly jy in die stelsel tensy jy vrywillig deregistreer of R2.3 miljoen oorskry. Om op te hou handel dryf, haal jou nie vanself uit nie. Vra SARS om ook jou registrasie vir omsetbelasting te beëindig."
+        }
+      ],
+      "hash": "2a1dd4f83b46f546",
+      "id": "turnover-tax-if-you-registered-for-it.1",
+      "kind": "paragraph",
+      "sourceHash": "1f006827b0b426e4"
+    },
+    {
+      "appliesTo": {
+        "tags": [
+          "vat-registered"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "BTW, as jy geregistreer is"
+        }
+      ],
+      "depth": 3,
+      "hash": "9b83d615ab575e18",
+      "id": "vat-if-you-are-registered",
+      "kind": "heading",
+      "sourceHash": "88b5ca96db5eb2f0",
+      "text": "BTW, as jy geregistreer is"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n BTW-ondernemer is, moet jy SARS laat weet dat jy opgehou het om handel te dryf, en SARS kanselleer die BTW-registrasie. Artikel 24 van die Value-Added Tax Act dek dit. Hou aan om vir elke BTW-tydperk in te dien totdat SARS die kansellasie bevestig."
+        }
+      ],
+      "hash": "5ebffc7a67b72118",
+      "id": "vat-if-you-are-registered.1",
+      "kind": "paragraph",
+      "sourceHash": "e11e60823dfc55bc"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Pas op vir een koste. Wanneer die registrasie eindig, behandel artikel 8(2) van die wet die voorraad en besigheidsbates wat jy nog besit asof hulle gelewer is, sodat BTW aan die einde op hulle waarde betaalbaar kan wees."
+        }
+      ],
+      "hash": "b260c63294421de3",
+      "id": "vat-if-you-are-registered.2",
+      "kind": "paragraph",
+      "sourceHash": "817fd2cfe5f97abb"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Laat SARS weet dat jy opgehou het, en dit kanselleer jou BTW-nommer. Die voorraad en toerusting wat jy hou, kan jou aan die einde steeds BTW kos. Vra ’n belastingpraktisyn om dit uit te werk voordat jy aansoek doen."
+        }
+      ],
+      "hash": "a6cd9d9c716ee9f4",
+      "id": "vat-if-you-are-registered.3",
+      "kind": "callout",
+      "pairsWith": "vat-if-you-are-registered.2",
+      "sourceHash": "9a173acbc3a788c4",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sodra die registrasie gekanselleer is, is jy nie meer geregistreer nie. Moenie daarna \"Belastingfaktuur\" (\"Tax Invoice\") skryf op enigiets wat jy uitreik nie, en moenie BTW hef nie. Om BTW te hef terwyl jy nie daarvoor geregistreer is nie, is bedrog."
+        }
+      ],
+      "hash": "1153c4725f513e42",
+      "id": "vat-if-you-are-registered.4",
+      "kind": "paragraph",
+      "sourceHash": "14759c5c3929c7dc"
+    },
+    {
+      "appliesTo": {
+        "tags": [
+          "employer"
+        ]
+      },
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy personeel gehad het"
+        }
+      ],
+      "depth": 2,
+      "hash": "b23141207a35b230",
+      "id": "if-you-had-staff",
+      "kind": "heading",
+      "sourceHash": "6fb9e31cc01de2ea",
+      "text": "As jy personeel gehad het"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Slaan hierdie deel oor as jy alleen gewerk het. ’n Eenmansaak kan nie vir homself tot die UIF bydra nie en is nie ’n werknemer kragtens COIDA nie, so daar is niks vir jou persoonlik om te sluit nie. Sien "
+        },
+        {
+          "anchor": "sole-proprietor-you-have-nothing",
+          "c": [
+            {
+              "t": "text",
+              "v": "Jy is die besigheid"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "52bdf4acf037bf43",
+      "id": "if-you-had-staff.1",
+      "kind": "paragraph",
+      "sourceHash": "e083f6d4a5548d97"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy vir jou personeel by SARS as werkgewer geregistreer het:"
+        }
+      ],
+      "hash": "ab5cd6121322bd8a",
+      "id": "if-you-had-staff.2",
+      "kind": "paragraph",
+      "sourceHash": "17dd7d6e3abf8ffe"
+    },
+    {
+      "hash": "bda2588fdc445bc2",
+      "id": "if-you-had-staff.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Dien die EMP201 vir die laaste maand waarin jy enigiemand betaal het, soos gewoonlik teen die 7de van die volgende maand in."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Maak seker dat die EMP501-rekonsiliasie elke maand dek waarin jy personeel betaal het."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Vra dan SARS om jou registrasie as werkgewer te beëindig."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "fccd906248aa03ab"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou werknemers kan dalk uit die Unemployment Insurance Fund eis wanneer hulle werk eindig. Die Unemployment Insurance Act vereis dat werkgewers die Fonds inligting oor hulle werknemers gee, ook wanneer hulle vertrek. Vra die Fonds wat dit vir elke werknemer van jou nodig het, en gee jou werknemers wat hulle nodig het om te eis."
+        }
+      ],
+      "hash": "0030e492edaff02b",
+      "id": "if-you-had-staff.4",
+      "kind": "paragraph",
+      "sourceHash": "aa8313200b270352"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy vir jou personeel by die Compensation Fund (Vergoedingsfonds) geregistreer het, laat die Fonds weet dat jy niemand meer in diens het nie. Vra wat dit vir die laaste tydperk van jou nodig het, ook die Return of Earnings (verdiensteopgawe)."
+        }
+      ],
+      "hash": "2c7a3fa7f3bcea6f",
+      "id": "if-you-had-staff.5",
+      "kind": "paragraph",
+      "sourceHash": "aba33b964bbccbba"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Arbeidsreg val buite die bestek van hierdie gereedskapstel. Kry behoorlike advies voordat jy enigiemand kennis gee. Die reëls oor kennisgewing en ontslag is streng, en foute is duur om reg te maak."
+        }
+      ],
+      "hash": "f59b9216f5370f32",
+      "id": "if-you-had-staff.6",
+      "kind": "paragraph",
+      "sourceHash": "e390f652f59970cb"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Lisensies en registrasies"
+        }
+      ],
+      "depth": 2,
+      "hash": "5c5bb70b61ad2a3c",
+      "id": "licences-and-registrations",
+      "kind": "heading",
+      "sourceHash": "14c6e6dca34b4e7d",
+      "text": "Lisensies en registrasies"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Gaan deur elke lisensie en registrasie wat die besigheid het. Laat vir elkeen die kantoor wat dit uitgereik het, weet dat jy opgehou het, en vra wat dit van jou nodig het. Die gewone lisensies en registrasies in hierdie gereedskapstel:"
+        }
+      ],
+      "hash": "eddbe9506a18ad96",
+      "id": "licences-and-registrations.1",
+      "kind": "paragraph",
+      "sourceHash": "1ff7de5ff9a6a293"
+    },
+    {
+      "hash": "b74222f43c9a059d",
+      "id": "licences-and-registrations.2",
+      "items": [
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Munisipale handelslisensie."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Uitgereik deur jou munisipaliteit kragtens die Businesses Act 71 of 1991. Die lisensie is aan die perseel gekoppel, nie aan jou nie. Laat die munisipale kantoor vir besigheidslisensiëring weet. Sien "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Wat jy nodig het om dinge te verkoop"
+              }
+            ],
+            "doc": "core/what-you-need-to-sell-things",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": "."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Certificate of Acceptability (Sertifikaat van Aanvaarbaarheid), vir ’n kosbesigheid."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Dit is spesifiek vir die perseel en kan nie na ’n nuwe plek of ’n nuwe eienaar oorgedra word nie. As iemand jou kosbesigheid koop, het hulle hul eie nodig."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "SAPS-registrasie vir tweedehandse goedere."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Die houer van ’n registrasiesertifikaat moet die Nasionale Kommissaris (National Commissioner) binne 30 dae skriftelik in kennis stel as enige van die inligting wat in die aansoek ingedien is, verander. Behandel ophou handel dryf as so ’n verandering. Laat die Designated Police Officer (aangewese polisiebeampte) by jou plaaslike SAPS-stasie skriftelik weet, en hou jou register van transaksies vir vyf jaar."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "POPIA-inligtingsbeampte."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Jy het jouself by die Information Regulator (Inligtingsreguleerder) by "
+          },
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "inforegulator.org.za"
+              }
+            ],
+            "external": true,
+            "href": "https://inforegulator.org.za/",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " geregistreer. Vra die Reguleerder hoe om die registrasie by te werk wanneer die besigheid ophou."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Compensation Fund, as jy personeel gehad het."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Sien die deel hierbo."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "086e12af81b391a1"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Laat elke kantoor wat jou ’n lisensie of ’n registrasie gegee het, weet dat jy opgehou het. Vra elkeen wat hulle nodig het."
+        }
+      ],
+      "hash": "11df273a341639dd",
+      "id": "licences-and-registrations.3",
+      "kind": "callout",
+      "pairsWith": "licences-and-registrations.2",
+      "sourceHash": "7171ecddd33b0b32",
+      "style": "plain"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kliënte se inligting sluit ook nie saam met die besigheid nie. POPIA sê jy mag persoonlike inligting net so lank hou as wat jy dit nodig het, tensy ’n wet vereis dat jy dit langer hou. Jou belastingrekords is so ’n geval. Vee dit daarna uit of vernietig dit."
+        }
+      ],
+      "hash": "b3ee5d970657dac8",
+      "id": "licences-and-registrations.4",
+      "kind": "paragraph",
+      "sourceHash": "40d11d3aa14048aa"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou bankrekening"
+        }
+      ],
+      "depth": 2,
+      "hash": "9485cc1b556c243b",
+      "id": "your-bank-account",
+      "kind": "heading",
+      "sourceHash": "86ded2523a123db3",
+      "text": "Jou bankrekening"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou besigheidsrekening is ’n rekening in jou eie naam. Om die besigheid te sluit, sluit nie die rekening nie."
+        }
+      ],
+      "hash": "486209121d81979b",
+      "id": "your-bank-account.1",
+      "kind": "paragraph",
+      "sourceHash": "7b7d98c254d158e8"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hou dit oop totdat die laaste kliënt betaal het, die laaste verskaffer betaal is en SARS vereffen is. Sluit dit dan, of hou dit as ’n persoonlike rekening. Laai in elk geval eers die state af. Hulle is deel van jou rekords."
+        }
+      ],
+      "hash": "23f191b86adeab46",
+      "id": "your-bank-account.2",
+      "kind": "paragraph",
+      "sourceHash": "0a31ff5bc116f76a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Kanselleer wat daardeur loop voordat jy dit sluit: ’n kontrak vir ’n kaartmasjien, debietorders en intekeninge wat jy net vir die besigheid nodig gehad het."
+        }
+      ],
+      "hash": "0fc8000a11c4e313",
+      "id": "your-bank-account.3",
+      "kind": "paragraph",
+      "sourceHash": "14b35cfc754f7ca5"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Skuld: joune voor, joune ná"
+        }
+      ],
+      "depth": 2,
+      "hash": "1faa35a25b6c6020",
+      "id": "debts-yours-before-yours-after",
+      "kind": "heading",
+      "sourceHash": "5288993f2dd630f9",
+      "text": "Skuld: joune voor, joune ná"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As die besigheid geld skuld, skuld jy dit. Dit verander nie wanneer jy ophou handel dryf nie. Jou huis en jou motor kan steeds geneem word om ’n besigheidskuld te betaal."
+        }
+      ],
+      "hash": "880a206571cbffdf",
+      "id": "debts-yours-before-yours-after.1",
+      "kind": "paragraph",
+      "sourceHash": "1d3e0d8f11a49b2a"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Dus, voordat jy aankondig dat jy sluit:"
+        }
+      ],
+      "hash": "8ddd5cc0e8fbfb22",
+      "id": "debts-yours-before-yours-after.2",
+      "kind": "paragraph",
+      "sourceHash": "f69a65bf0c899420"
+    },
+    {
+      "hash": "71f09d39a2062391",
+      "id": "debts-yours-before-yours-after.3",
+      "items": [
+        [
+          {
+            "t": "text",
+            "v": "Lys elke verskaffer, geldskieter en verhuurder aan wie jy skuld, en beplan hoe jy elkeen gaan betaal."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Lys elke kliënt wat ’n deposito betaal het vir werk wat jy nog nie gedoen het nie. Besluit of jy die werk gaan klaarmaak of die geld gaan terugbetaal. Hoe ook al, jy skuld die geld."
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Betaal SARS wat jy skuld. Belastingskuld is ook persoonlik."
+          }
+        ]
+      ],
+      "kind": "list",
+      "ordered": false,
+      "sourceHash": "6769fc77f55cbefe"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Geld wat aan jou geskuld word, is steeds joune om in te vorder. Moenie jare wag nie. ’n Geldeis moet oor die algemeen binne drie jaar ná die datum waarop die skuld ontstaan het, ingestel word, anders verjaar dit en jy verloor dit. "
+        },
+        {
+          "anchor": "part-2-when-a-customer-does-not-pay",
+          "c": [
+            {
+              "t": "text",
+              "v": "Jy is die besigheid"
+            }
+          ],
+          "doc": "core/you-are-the-business",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " verduidelik hoe jy agter die geld aan gaan."
+        }
+      ],
+      "hash": "ef6dfd5f11e198bb",
+      "id": "debts-yours-before-yours-after.4",
+      "kind": "paragraph",
+      "sourceHash": "415d86b62b88ecc0"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Rekords: hou hulle vir vyf jaar"
+        }
+      ],
+      "depth": 2,
+      "hash": "78e95e18780f7f2d",
+      "id": "records-keep-them-for-five-years",
+      "kind": "heading",
+      "sourceHash": "0ade0e69554e7cf8",
+      "text": "Rekords: hou hulle vir vyf jaar"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hou alles vir vyf jaar vanaf die datum waarop jy die opgawe indien. Dit sluit die opgawe in vir die jaar waarin jy opgehou het, so jou laaste rekords moet vir vyf jaar ná jou laaste ITR12 met besigheidsinkomste gehou word."
+        }
+      ],
+      "hash": "c90f4a09ece04e6a",
+      "id": "records-keep-them-for-five-years.1",
+      "kind": "paragraph",
+      "sourceHash": "04e97402fcad1d00"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Hou dieselfde dinge wat jy gehou het terwyl jy handel gedryf het: die bankstate, die gefotografeerde strokies, die kasboek-sigblad en ’n afskrif van elke faktuur wat jy uitgereik het. Sien "
+        },
+        {
+          "anchor": "records",
+          "c": [
+            {
+              "t": "text",
+              "v": "Belasting en SARS"
+            }
+          ],
+          "doc": "core/tax-and-sars",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "0f7c69d9b62c33c2",
+      "id": "records-keep-them-for-five-years.2",
+      "kind": "paragraph",
+      "sourceHash": "833fd41f8aa79313"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "As jy ’n handelaar in tweedehandse goedere was, hou die SAPS-register van transaksies ook vir vyf jaar."
+        }
+      ],
+      "hash": "2cd2a018f276ea21",
+      "id": "records-keep-them-for-five-years.3",
+      "kind": "paragraph",
+      "sourceHash": "5fc86d0076d110a7"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Sit alles in een vouer met die naam \"Besigheidsrekords, gesluit\", met die sluitingsdatum in die naam. Skryf iewers waar ’n vertroude persoon dit kan kry, neer waar die vouer is, en wanneer dit vernietig mag word."
+        }
+      ],
+      "hash": "27e0c39b83c585d4",
+      "id": "records-keep-them-for-five-years.4",
+      "kind": "paragraph",
+      "sourceHash": "6b07ec6f5f1fa1f6"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "records-keep-them-for-five-years.5",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Jou kontrolelys vir sluiting"
+        }
+      ],
+      "depth": 2,
+      "hash": "9590033421230339",
+      "id": "your-closing-checklist",
+      "kind": "heading",
+      "sourceHash": "2528178b0e5564bc",
+      "text": "Jou kontrolelys vir sluiting"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Voordat jy ophou"
+        }
+      ],
+      "hash": "0e987283a1e2c8cd",
+      "id": "your-closing-checklist.1",
+      "items": [
+        {
+          "block": "your-closing-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "’n Sluitingsdatum gekies en neergeskryf"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:b90b052d",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Elke skuld wat ek het gelys, en hoe ek elkeen gaan betaal"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:21ec1805",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Besluit wat gebeur met elke kliënt se deposito vir werk wat nog nie gedoen is nie"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:83dc373f",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.1",
+          "c": [
+            {
+              "t": "text",
+              "v": "Elke lisensie en registrasie wat die besigheid het, gelys"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:f3a0f205",
+          "when": {
+            "entity": "sole-prop"
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "8860eaa64020234f"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "By SARS"
+        }
+      ],
+      "hash": "0441bb09a1de7271",
+      "id": "your-closing-checklist.2",
+      "items": [
+        {
+          "block": "your-closing-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "Die besigheidsinkomste tot op die sluitingsdatum op my ITR12 vir daardie jaar verklaar"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:db702382",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "SARS gevra om my registrasie as voorlopige belastingbetaler te beëindig, en aangehou om IRP6-opgawes in te dien totdat dit skriftelik bevestig het"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:5dd16347",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "As ek op omsetbelasting is: SARS gevra om daardie registrasie te beëindig"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:2a9ea3ed",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "As ek vir BTW geregistreer is: SARS laat weet ek het opgehou, vir elke BTW-tydperk tot die kansellasie ingedien, en die BTW op voorraad en bates wat ek hou, nagegaan"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:292afe76",
+          "when": {
+            "entity": "sole-prop",
+            "tags": [
+              "vat-registered"
+            ]
+          }
+        },
+        {
+          "block": "your-closing-checklist.2",
+          "c": [
+            {
+              "t": "text",
+              "v": "As ek personeel in diens gehad het: laaste EMP201 ingedien, EMP501 dek elke maand, en SARS gevra om my registrasie as werkgewer te beëindig"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:1684dddc",
+          "when": {
+            "entity": "sole-prop",
+            "tags": [
+              "employer"
+            ]
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "c787f3b47d20351e"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Almal anders"
+        }
+      ],
+      "hash": "b0ed620bc7dd6f0b",
+      "id": "your-closing-checklist.3",
+      "items": [
+        {
+          "block": "your-closing-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "As ek personeel in diens gehad het: advies gekry voordat ek kennis gegee het, en elke werknemer gegee wat hulle nodig het om uit die Unemployment Insurance Fund te eis"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:424b0666",
+          "when": {
+            "entity": "sole-prop",
+            "tags": [
+              "employer"
+            ]
+          }
+        },
+        {
+          "block": "your-closing-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "As ek personeel in diens gehad het: die Compensation Fund laat weet dat ek niemand meer in diens het nie"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:71206b54",
+          "when": {
+            "entity": "sole-prop",
+            "tags": [
+              "employer"
+            ]
+          }
+        },
+        {
+          "block": "your-closing-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "Die munisipaliteit, SAPS, die Information Regulator en enige ander kantoor wat ’n lisensie of registrasie uitgereik het, laat weet"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:c91fe9b9",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "Die kaartmasjien, debietorders en intekeninge op die besigheidsrekening gekanselleer"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:8b02ddf2",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.3",
+          "c": [
+            {
+              "t": "text",
+              "v": "Die besigheidsrekening gesluit, of as ’n persoonlike rekening gehou, nadat ek die state afgelaai het"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:d5af694b",
+          "when": {
+            "entity": "sole-prop"
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "ff6b49e3cae9e6f6"
+    },
+    {
+      "group": [
+        {
+          "t": "text",
+          "v": "Daarna"
+        }
+      ],
+      "hash": "a7c5859f4e1a4043",
+      "id": "your-closing-checklist.4",
+      "items": [
+        {
+          "block": "your-closing-checklist.4",
+          "c": [
+            {
+              "t": "text",
+              "v": "Elke rekord in een vouer, gehou vir vyf jaar ná my laaste ITR12 met besigheidsinkomste"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:5fb9bdb9",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.4",
+          "c": [
+            {
+              "t": "text",
+              "v": "Kliënte se persoonlike inligting uitgevee sodra ek dit nie meer nodig het nie"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:a7cf7e05",
+          "when": {
+            "entity": "sole-prop"
+          }
+        },
+        {
+          "block": "your-closing-checklist.4",
+          "c": [
+            {
+              "t": "text",
+              "v": "Niks wat aan my geskuld word, is amper drie jaar oud nie"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "id": "core/closing-as-a-sole-proprietor:b6fe6cfd",
+          "when": {
+            "entity": "sole-prop"
+          }
+        }
+      ],
+      "kind": "tasklist",
+      "sourceHash": "0ed329f0e8702ef0"
+    }
+  ],
+  "contentHash": "b1bc3f333f17e709",
+  "generated": {
+    "date": "2026-10-13",
+    "tool": "Claude, Anthropic"
+  },
+  "h1": "Jou eenmansaak toemaak",
+  "headings": [
+    {
+      "depth": 2,
+      "id": "words-used-in-this-file",
+      "text": "Woorde wat in hierdie lêer gebruik word"
+    },
+    {
+      "depth": 2,
+      "id": "what-closing-means-for-a-sole-proprietor",
+      "text": "Wat toemaak vir ’n eenmansaak beteken"
+    },
+    {
+      "depth": 2,
+      "id": "tell-sars",
+      "text": "Laat SARS weet"
+    },
+    {
+      "depth": 3,
+      "id": "income-tax-the-last-itr12-with-business-income",
+      "text": "Inkomstebelasting: die laaste ITR12 met besigheidsinkomste"
+    },
+    {
+      "depth": 3,
+      "id": "provisional-tax",
+      "text": "Voorlopige belasting"
+    },
+    {
+      "depth": 3,
+      "id": "turnover-tax-if-you-registered-for-it",
+      "text": "Omsetbelasting, as jy daarvoor geregistreer het"
+    },
+    {
+      "appliesTo": {
+        "tags": [
+          "vat-registered"
+        ]
+      },
+      "depth": 3,
+      "id": "vat-if-you-are-registered",
+      "text": "BTW, as jy geregistreer is"
+    },
+    {
+      "appliesTo": {
+        "tags": [
+          "employer"
+        ]
+      },
+      "depth": 2,
+      "id": "if-you-had-staff",
+      "text": "As jy personeel gehad het"
+    },
+    {
+      "depth": 2,
+      "id": "licences-and-registrations",
+      "text": "Lisensies en registrasies"
+    },
+    {
+      "depth": 2,
+      "id": "your-bank-account",
+      "text": "Jou bankrekening"
+    },
+    {
+      "depth": 2,
+      "id": "debts-yours-before-yours-after",
+      "text": "Skuld: joune voor, joune ná"
+    },
+    {
+      "depth": 2,
+      "id": "records-keep-them-for-five-years",
+      "text": "Rekords: hou hulle vir vyf jaar"
+    },
+    {
+      "depth": 2,
+      "id": "your-closing-checklist",
+      "text": "Jou kontrolelys vir sluiting"
+    }
+  ],
+  "id": "core/closing-as-a-sole-proprietor",
+  "kind": "guide",
+  "lang": "af",
+  "order": 11,
+  "readingTime": 10,
+  "related": [
+    "core/tax-and-sars",
+    "core/you-are-the-business",
+    "core/running-a-pty-ltd",
+    "core/register",
+    "core/what-you-need-to-sell-things"
+  ],
+  "route": "core/closing-as-a-sole-proprietor/",
+  "section": "core",
+  "slug": "closing-as-a-sole-proprietor",
+  "sourcePath": "01 Core - applies to everyone/11-closing-as-a-sole-proprietor.md",
+  "sources": {
+    "acts": [
+      "income-tax-act-58-of-1962",
+      "value-added-tax-act-89-of-1991",
+      "protection-of-personal-information-act-4-of-2013",
+      "businesses-act-71-of-1991",
+      "second-hand-goods-act-6-of-2009"
+    ],
+    "entries": [
+      "sars--turnover-tax",
+      "sars--tax-calendar",
+      "sars--guide-to-provisional-tax",
+      "information-regulator-of-south-africa",
+      "saps--second-hand-goods-act-6-of-2009-full-text",
+      "nada-saps-dealer-inspections",
+      "regulation-r638-of-2018",
+      "businesses-act-71-of-1991",
+      "uif-and-the-self-employed",
+      "coida-and-working-directors",
+      "tax-administration-act-28-of-2011",
+      "value-added-tax-act-89-of-1991-sections-82-and-24",
+      "unemployment-insurance-act-63-of-2001",
+      "protection-of-personal-information-act-4-of-2013-section-14",
+      "prescription-act-68-of-1969-section-11d"
+    ]
+  },
+  "summary": "Wat om te doen wanneer jy ophou om as jouself handel te dryf: SARS, personeel, lisensies, die bankrekening, skuld wat joune bly, en rekords.",
+  "tags": [
+    "closing"
+  ],
+  "terms": [
+    {
+      "meaning": "Jy dryf handel as jouself. Geen maatskappy nie. Die besigheid en jy is in die reg dieselfde persoon.",
+      "term": "Eenmansaak"
+    },
+    {
+      "meaning": "Die jaarlikse belastingopgawe vir mense. Jou besigheidswins gaan daarop.",
+      "term": "ITR12"
+    },
+    {
+      "meaning": "Belasting vooruit betaal, twee keer per jaar, omdat geen werkgewer dit vir jou aftrek nie.",
+      "term": "Voorlopige belasting"
+    },
+    {
+      "meaning": "’n Besigheid wat vir BTW geregistreer is.",
+      "term": "BTW-ondernemer"
+    },
+    {
+      "meaning": "Maandelikse betaalstaatopgawe / betaalstaatrekonsiliasie twee keer per jaar.",
+      "term": "EMP201 / EMP501"
+    },
+    {
+      "meaning": "Unemployment Insurance Fund (Werkloosheidversekeringsfonds), bestuur deur die Department of Employment and Labour (Departement van Indiensneming en Arbeid). Jou werknemers kan daaruit eis wanneer hulle werk eindig.",
+      "term": "UIF"
+    },
+    {
+      "meaning": "’n Skuld wat jy te lank laat staan, kan nie meer geëis word nie. Drie jaar vir die meeste gewone skulde.",
+      "term": "Verjaring"
+    }
+  ],
+  "title": "Jou eenmansaak toemaak",
+  "translation": {
+    "sourceLang": "en",
+    "status": "machine-unreviewed"
+  },
+  "verification": {
+    "checkedOn": "2026-10-13",
+    "status": "ai-checked"
+  }
+}

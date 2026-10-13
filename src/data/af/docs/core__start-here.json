@@ -324,7 +324,7 @@
       "sourceHash": "8739ec63877976c6"
     },
     {
-      "hash": "d166943e1490d448",
+      "hash": "67150acd35ef608a",
       "id": "what-is-in-this-toolkit.2",
       "items": [
         [
@@ -390,11 +390,27 @@
             "t": "text",
             "v": " — om ’n voertuig in die besigheid se naam te sit, en wanneer dit ’n slegte idee is."
           }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Jou eenmansaak toemaak"
+              }
+            ],
+            "doc": "core/closing-as-a-sole-proprietor",
+            "t": "link"
+          },
+          {
+            "t": "text",
+            "v": " — wat om te doen wanneer jy ophou om as jouself handel te dryf: SARS, personeel, lisensies, die bankrekening, skuld en rekords."
+          }
         ]
       ],
       "kind": "list",
       "ordered": false,
-      "sourceHash": "230fb863c6d45cba"
+      "sourceHash": "655f05b11bcb2ded"
     },
     {
       "c": [
@@ -1039,7 +1055,7 @@
       "sourceHash": "ebfa64872b5baedd"
     }
   ],
-  "contentHash": "284550db179cc650",
+  "contentHash": "687e8174907ee173",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

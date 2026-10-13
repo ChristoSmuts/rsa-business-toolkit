@@ -1,5 +1,5 @@
 {
-  "contentHash": "9236922a4620c2e5",
+  "contentHash": "d3d687514cf28339",
   "docs": {
     "branding/already-have-your-name": {
       "appliesTo": {
@@ -258,6 +258,25 @@
       "titles": {
         "af": "Nuwe besigheidslyne byvoeg",
         "en": "Adding new lines of business"
+      }
+    },
+    "core/closing-as-a-sole-proprietor": {
+      "appliesTo": {
+        "businessTypes": "all",
+        "entity": "sole-prop"
+      },
+      "kind": "guide",
+      "langs": [
+        "en",
+        "af"
+      ],
+      "order": 11,
+      "route": "core/closing-as-a-sole-proprietor/",
+      "section": "core",
+      "slug": "closing-as-a-sole-proprietor",
+      "titles": {
+        "af": "Jou eenmansaak toemaak",
+        "en": "Closing as a sole proprietor"
       }
     },
     "core/paying-yourself": {
@@ -700,11 +719,11 @@
   },
   "langs": {
     "af": {
-      "docCount": 36,
+      "docCount": 37,
       "status": "machine-unreviewed"
     },
     "en": {
-      "docCount": 36,
+      "docCount": 37,
       "status": "source"
     }
   },
@@ -735,7 +754,8 @@
         "core/paying-yourself",
         "core/adding-new-lines",
         "core/working-from-home-and-safety",
-        "core/you-are-the-business"
+        "core/you-are-the-business",
+        "core/closing-as-a-sole-proprietor"
       ],
       "id": "core",
       "order": 2,

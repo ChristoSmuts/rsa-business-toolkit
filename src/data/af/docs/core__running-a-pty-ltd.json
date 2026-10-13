@@ -1532,11 +1532,37 @@
       "c": [
         {
           "t": "text",
+          "v": "Hierdie afdeling is vir ’n maatskappy. As jy as jouself handel dryf, sonder ’n maatskappy, lees eerder "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Jou eenmansaak toemaak"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": "."
+        }
+      ],
+      "hash": "02fdde7ef5332c08",
+      "id": "closing-a-company-properly.1",
+      "kind": "paragraph",
+      "sourceHash": "23a5138d1874a99b"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
           "v": "As jy die maatskappy nie meer nodig het nie, deregistreer dit doelbewus. Moenie net ophou indien nie."
         }
       ],
       "hash": "a96b445dc663534e",
-      "id": "closing-a-company-properly.1",
+      "id": "closing-a-company-properly.2",
       "kind": "paragraph",
       "sourceHash": "2ac480feac0a4397"
     },
@@ -1548,7 +1574,7 @@
         }
       ],
       "hash": "13ac0905afed1422",
-      "id": "closing-a-company-properly.2",
+      "id": "closing-a-company-properly.3",
       "kind": "paragraph",
       "sourceHash": "43622010ae373faf"
     },
@@ -1560,7 +1586,7 @@
         }
       ],
       "hash": "362ab6a6de0dfebf",
-      "id": "closing-a-company-properly.3",
+      "id": "closing-a-company-properly.4",
       "kind": "paragraph",
       "sourceHash": "d11fc2c7c50f7423"
     },
@@ -1572,7 +1598,7 @@
         }
       ],
       "hash": "aaeb3ae21981cb19",
-      "id": "closing-a-company-properly.4",
+      "id": "closing-a-company-properly.5",
       "kind": "paragraph",
       "sourceHash": "c2f95f2c433c0ede"
     },
@@ -1584,13 +1610,13 @@
         }
       ],
       "hash": "fc5c3440a64aef77",
-      "id": "closing-a-company-properly.5",
+      "id": "closing-a-company-properly.6",
       "kind": "paragraph",
       "sourceHash": "6fbc8a3cea6adab4"
     },
     {
       "hash": "58b63e273b964039",
-      "id": "closing-a-company-properly.6",
+      "id": "closing-a-company-properly.7",
       "kind": "hr",
       "sourceHash": "58b63e273b964039"
     },
@@ -1858,7 +1884,7 @@
       "sourceHash": "a53f3ad7f9cbd13c"
     }
   ],
-  "contentHash": "e7c932598f6a5e78",
+  "contentHash": "5c93310691e870ba",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

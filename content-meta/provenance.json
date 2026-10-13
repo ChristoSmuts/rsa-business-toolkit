@@ -9,6 +9,11 @@
       "status": "ai-checked",
       "checkedOn": "2026-09-14",
       "reason": "Written and checked on 14 September 2026, a day after the register's own check date, so the register date would say the page was checked before it existed. Its footer is dated 14 September and states that the facts in it were checked against official sources; \"What has changed\" change 4 and the twelfth pass in \"How this was made\" record that day's work, including the register section for this page."
+    },
+    "core/closing-as-a-sole-proprietor": {
+      "status": "ai-checked",
+      "checkedOn": "2026-10-13",
+      "reason": "Written on 13 October 2026, a month after the register's own check date, so the register date would say the page was checked before it existed. It was checked by an AI against the register's text, not against the live official pages: the environment could not reach SARS, gov.za or saflii.org. The register's section \"Closing as a sole proprietor\" marks each source added for it that was not opened, and the page reuses the guide's existing wording where the guide already states a fact."
     }
   }
 }

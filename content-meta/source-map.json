@@ -61,6 +61,11 @@
       "group": "branding-tools-referenced",
       "docs": ["branding/branding-prompts"],
       "reason": "Tells readers to check contrast at WebAIM, use OFL Google Fonts, build the logo in Inkscape, and search the CIPC trade marks database"
+    },
+    {
+      "group": "closing-as-a-sole-proprietor",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "Topic doc: states the five-year record rule, VAT cancellation and the VAT on assets kept, the UIF claim and employer information duty, deleting customer data, and three-year prescription"
     }
   ],
   "entries": [
@@ -542,6 +547,56 @@
       "entry": "consumer-goods-and-services-ombud--advisory-note-1-implied-warranty-of-quality",
       "docs": ["business-types/services-trades"],
       "reason": "States that goods you install carry the six-month implied warranty separately from your workmanship, which is the reading of CPA sections 55 and 56 that the Ombud advisory note sets out"
+    },
+    {
+      "entry": "sars--tax-calendar",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States the EMP201 for the last month of payroll is due by the 7th of the following month, and that the EMP501 must cover every month staff were paid"
+    },
+    {
+      "entry": "sars--guide-to-provisional-tax",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States the IRP6 dates of 31 August and the end of February, and that an IRP6 can be submitted even if the provisional tax payment is nil"
+    },
+    {
+      "entry": "sars--turnover-tax",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States that a registered micro business stays in turnover tax unless it deregisters voluntarily or exceeds R2.3 million, so a closing owner must ask SARS to deregister"
+    },
+    {
+      "entry": "businesses-act-71-of-1991",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States the municipal trading licence is issued by the municipality under the Businesses Act 71 of 1991 and is tied to the premises, not to the owner"
+    },
+    {
+      "entry": "regulation-r638-of-2018",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States the Certificate of Acceptability is specific to the premises and cannot be transferred to a new location or a new owner"
+    },
+    {
+      "entry": "saps--second-hand-goods-act-6-of-2009-full-text",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States a second-hand goods dealer registers with SAPS and keeps the register of transactions for five years"
+    },
+    {
+      "entry": "nada-saps-dealer-inspections",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States the holder of a SAPS certificate of registration must notify the National Commissioner in writing within 30 days of a change to the application information"
+    },
+    {
+      "entry": "information-regulator-of-south-africa",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States the owner registered as information officer with the Information Regulator at inforegulator.org.za and must ask it to update the registration"
+    },
+    {
+      "entry": "uif-and-the-self-employed",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States a sole proprietor cannot contribute to UIF for themselves, so only employees' UIF needs closing"
+    },
+    {
+      "entry": "coida-and-working-directors",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States a sole proprietor is not an employee under COIDA, and that an employer registered with the Compensation Fund submits a Return of Earnings"
     }
   ],
   "acts": [
@@ -635,6 +690,31 @@
       "act": "value-added-tax-act-89-of-1991",
       "docs": ["paperwork/templates/tax-invoice"],
       "reason": "Lists the seven particulars a full tax invoice must show, plus the R50 and R5,000 thresholds and the 21-day issue rule, which are the tax-invoice requirements of section 20 of the VAT Act"
+    },
+    {
+      "act": "income-tax-act-58-of-1962",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States that the Income Tax Act requires a business owner to register as a provisional taxpayer, and that business profit up to the closing date goes on the ITR12"
+    },
+    {
+      "act": "value-added-tax-act-89-of-1991",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States that a VAT vendor who stops trading must tell SARS, which cancels the registration, and that stock and assets kept can attract VAT in the last return"
+    },
+    {
+      "act": "protection-of-personal-information-act-4-of-2013",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States that customer personal information may be kept only as long as it is needed, unless a law requires longer, and must then be deleted or destroyed"
+    },
+    {
+      "act": "second-hand-goods-act-6-of-2009",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States that a registered second-hand goods dealer must tell SAPS in writing about a change and keep the register of transactions for five years"
+    },
+    {
+      "act": "businesses-act-71-of-1991",
+      "docs": ["core/closing-as-a-sole-proprietor"],
+      "reason": "States that the municipal trading licence is issued under the Businesses Act 71 of 1991 by the municipality where the premises are"
     }
   ]
 }

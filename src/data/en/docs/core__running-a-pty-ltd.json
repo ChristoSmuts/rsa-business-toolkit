@@ -1432,11 +1432,36 @@
       "c": [
         {
           "t": "text",
+          "v": "This section is for a company. If you trade as yourself, with no company, read "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Closing as a sole proprietor"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " instead."
+        }
+      ],
+      "hash": "23a5138d1874a99b",
+      "id": "closing-a-company-properly.1",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
           "v": "If you no longer need the company, deregister it deliberately. Do not just stop filing."
         }
       ],
       "hash": "2ac480feac0a4397",
-      "id": "closing-a-company-properly.1",
+      "id": "closing-a-company-properly.2",
       "kind": "paragraph"
     },
     {
@@ -1447,7 +1472,7 @@
         }
       ],
       "hash": "43622010ae373faf",
-      "id": "closing-a-company-properly.2",
+      "id": "closing-a-company-properly.3",
       "kind": "paragraph"
     },
     {
@@ -1458,7 +1483,7 @@
         }
       ],
       "hash": "d11fc2c7c50f7423",
-      "id": "closing-a-company-properly.3",
+      "id": "closing-a-company-properly.4",
       "kind": "paragraph"
     },
     {
@@ -1469,7 +1494,7 @@
         }
       ],
       "hash": "c2f95f2c433c0ede",
-      "id": "closing-a-company-properly.4",
+      "id": "closing-a-company-properly.5",
       "kind": "paragraph"
     },
     {
@@ -1480,12 +1505,12 @@
         }
       ],
       "hash": "6fbc8a3cea6adab4",
-      "id": "closing-a-company-properly.5",
+      "id": "closing-a-company-properly.6",
       "kind": "paragraph"
     },
     {
       "hash": "58b63e273b964039",
-      "id": "closing-a-company-properly.6",
+      "id": "closing-a-company-properly.7",
       "kind": "hr"
     },
     {
@@ -1747,7 +1772,7 @@
       "kind": "tasklist"
     }
   ],
-  "contentHash": "935673781e2f70cb",
+  "contentHash": "ac54fd8c6776aca7",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -77,19 +77,19 @@ function digest(doc: Doc) {
 }
 
 describe('the real corpus', () => {
-  it('builds 36 English documents with the expected counts', () => {
+  it('builds 37 English documents with the expected counts', () => {
     const counts = countContent(first);
     expect(counts.docsPerSection['en']).toEqual({
       branding: 5,
       'business-types': 7,
-      core: 10,
+      core: 11,
       lookup: 3,
       paperwork: 7,
       start: 4,
     });
     for (const [lang, sections] of Object.entries(counts.docsPerSection)) {
       const total = Object.values(sections).reduce((sum, n) => sum + n, 0);
-      if (lang !== 'en') expect(total, lang).toBeLessThanOrEqual(36);
+      if (lang !== 'en') expect(total, lang).toBeLessThanOrEqual(37);
     }
     expect(counts.glossaryEntries).toBe(121);
     expect(counts.glossaryGroups).toBe(7);
@@ -99,7 +99,7 @@ describe('the real corpus', () => {
       counts.sourcesWithUrl,
       counts.sourceCitations,
       counts.sourceSubgroups,
-    ]).toEqual([105, 101, 4, 7]);
+    ]).toEqual([110, 101, 9, 7]);
     // The register writes no "what it supports" text for these, so a page omits the label.
     expect(counts.sourcesWithoutSupports).toBe(7);
     expect(counts.fenceVariants).toEqual({
@@ -111,8 +111,8 @@ describe('the real corpus', () => {
     });
     expect(counts.fencesReplaced).toBe(1);
     expect(counts.bareDomains).toHaveLength(14);
-    expect(counts.blocksByKind['terms']).toBe(19);
-    expect(counts.blocksByKind['callout']).toBe(71);
+    expect(counts.blocksByKind['terms']).toBe(20);
+    expect(counts.blocksByKind['callout']).toBe(74);
     expect(first.fences).toHaveLength(55);
     expect(first.langs.find((build) => build.lang === 'en')?.tasks.tasks.length).toBe(counts.tasks);
     expect(formatSummary(first)).toContain('Unclassified fences: 0');

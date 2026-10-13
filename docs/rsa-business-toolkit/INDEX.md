@@ -1,6 +1,6 @@
 # SA Business Toolkit — index
 
-Every document, and every section inside it. 31 documents, plus 5 fill-in templates.
+Every document, and every section inside it. 32 documents, plus 5 fill-in templates.
 
 There is also a single-file edition with everything in one place: [SA-Business-Toolkit-complete.md](SA-Business-Toolkit-complete.md)
 
@@ -65,6 +65,10 @@ There is also a single-file edition with everything in one place: [SA-Business-T
 ### [You are the business](01%20Core%20-%20applies%20to%20everyone/10-you-are-the-business.md)
 
 [Words used in this file](01%20Core%20-%20applies%20to%20everyone/10-you-are-the-business.md#words-used-in-this-file) · [Part 1: if you cannot work](01%20Core%20-%20applies%20to%20everyone/10-you-are-the-business.md#part-1-if-you-cannot-work) · [Part 2: when a customer does not pay](01%20Core%20-%20applies%20to%20everyone/10-you-are-the-business.md#part-2-when-a-customer-does-not-pay) · [Part 3: if something happens to you](01%20Core%20-%20applies%20to%20everyone/10-you-are-the-business.md#part-3-if-something-happens-to-you) · [Checklist](01%20Core%20-%20applies%20to%20everyone/10-you-are-the-business.md#checklist)
+
+### [Closing as a sole proprietor](01%20Core%20-%20applies%20to%20everyone/11-closing-as-a-sole-proprietor.md)
+
+[Words used in this file](01%20Core%20-%20applies%20to%20everyone/11-closing-as-a-sole-proprietor.md#words-used-in-this-file) · [What closing means for a sole proprietor](01%20Core%20-%20applies%20to%20everyone/11-closing-as-a-sole-proprietor.md#what-closing-means-for-a-sole-proprietor) · [Tell SARS](01%20Core%20-%20applies%20to%20everyone/11-closing-as-a-sole-proprietor.md#tell-sars) · [If you had staff](01%20Core%20-%20applies%20to%20everyone/11-closing-as-a-sole-proprietor.md#if-you-had-staff) · [Licences and registrations](01%20Core%20-%20applies%20to%20everyone/11-closing-as-a-sole-proprietor.md#licences-and-registrations) · [Your bank account](01%20Core%20-%20applies%20to%20everyone/11-closing-as-a-sole-proprietor.md#your-bank-account) · [Debts: yours before, yours after](01%20Core%20-%20applies%20to%20everyone/11-closing-as-a-sole-proprietor.md#debts-yours-before-yours-after) · [Records: keep them for five years](01%20Core%20-%20applies%20to%20everyone/11-closing-as-a-sole-proprietor.md#records-keep-them-for-five-years) · [Your closing checklist](01%20Core%20-%20applies%20to%20everyone/11-closing-as-a-sole-proprietor.md#your-closing-checklist)
 
 ## 02 Branding and marketing
 
