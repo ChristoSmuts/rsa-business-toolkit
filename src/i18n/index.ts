@@ -156,8 +156,8 @@ interface ParamNames {
   'prompts.undoFillNamed': 'title';
   'prompts.titlePart': 'n' | 'title' | 'total';
   'prompts.placeholdersRemaining': 'count';
-  'prompts.showFullNamed': 'n' | 'title';
-  'prompts.showLessNamed': 'n' | 'title';
+  'prompts.showFullNamed': 'title';
+  'prompts.showLessNamed': 'title';
   'prompts.promptLabel': 'n' | 'title';
   'search.resultsFor': 'query';
   'search.noResults': 'query';

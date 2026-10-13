@@ -822,6 +822,10 @@ describe('accessible names that contain the visible label (WCAG 2.5.3)', () => {
     ['myPath.markNotDone', 'myPath.markNotDoneNamed'],
     ['prompts.fillFromProfile', 'prompts.fillFromProfileNamed'],
     ['prompts.undoFill', 'prompts.undoFillNamed'],
+    ['prompts.copy', 'prompts.copyNamed'],
+    ['prompts.copied', 'prompts.copiedNamed'],
+    ['prompts.showFull', 'prompts.showFullNamed'],
+    ['prompts.showLess', 'prompts.showLessNamed'],
   ] as const;
 
   for (const code of ['en', 'af']) {
@@ -837,6 +841,20 @@ describe('accessible names that contain the visible label (WCAG 2.5.3)', () => {
         ).toBe(true);
       });
     }
+  }
+});
+
+describe('the names in a prompt block (review WP-12 pass 3, P2)', () => {
+  // Each takes only the prompt's heading, which carries the guide's own numbering: a `{n}` beside
+  // it named one prompt two ways ("Show less of prompt 4: Prompt 0: …").
+  for (const code of ['en', 'af']) {
+    const dictionary = flatten(loadDictionary(code));
+    const named = [...dictionary.keys()].filter((key) => /^prompts\.\w+Named$/.test(key));
+    it(`${code}: every prompts.…Named key takes only {title}`, () => {
+      expect(named.length).toBeGreaterThanOrEqual(6);
+      for (const key of named)
+        expect([key, paramNames(dictionary.get(key)!)]).toEqual([key, ['title']]);
+    });
   }
 });
 
