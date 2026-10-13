@@ -1480,6 +1480,7 @@
   },
   "verification": {
     "checkedOn": "2026-10-13",
+    "sourcesNotOpened": true,
     "status": "ai-checked"
   }
 }
