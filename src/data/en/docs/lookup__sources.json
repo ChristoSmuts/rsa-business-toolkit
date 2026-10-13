@@ -212,7 +212,7 @@
         null,
         null
       ],
-      "hash": "de0694b2f7178c99",
+      "hash": "be60cfd5c2126af8",
       "header": [
         [
           {
@@ -276,7 +276,7 @@
           [
             {
               "t": "text",
-              "v": "VAT registration, tax invoices (s20), notional input tax on second-hand goods (s20(8))"
+              "v": "VAT registration, tax invoices (s20), notional input tax on second-hand goods (s20(8)), cancellation when you stop trading (s24) and VAT on assets kept at cancellation (s8(2)); s24 and s8(2) not opened: see \"Closing as a sole proprietor\" below"
             }
           ],
           [
@@ -400,7 +400,7 @@
           [
             {
               "t": "text",
-              "v": "Data protection, information officer registration (s55)"
+              "v": "Data protection, information officer registration (s55), keeping personal information only as long as needed (s14; not opened: see \"Closing as a sole proprietor\" below)"
             }
           ],
           [
@@ -5222,7 +5222,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "36e050163c2e8b37",
+  "contentHash": "33ecb96c21619f0c",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -31,11 +31,11 @@ Official sources are marked **[Official]**. These are government or regulator pu
 | Act or regulation | What it governs | Where it appears |
 |---|---|---|
 | Income Tax Act 58 of 1962 | Income tax, provisional tax, turnover tax (Sixth Schedule), small business corporations (s12E), assessed loss ring-fencing (s20A) | `01-core/03`, `01-core/11` |
-| Value-Added Tax Act 89 of 1991 | VAT registration, tax invoices (s20), notional input tax on second-hand goods (s20(8)) | `01-core/03`, `01-core/11`, `03-documents/01`, `04-business-types/01` |
+| Value-Added Tax Act 89 of 1991 | VAT registration, tax invoices (s20), notional input tax on second-hand goods (s20(8)), cancellation when you stop trading (s24) and VAT on assets kept at cancellation (s8(2)); s24 and s8(2) not opened: see "Closing as a sole proprietor" below | `01-core/03`, `01-core/11`, `03-documents/01`, `04-business-types/01` |
 | Companies Act 71 of 2008 | Company registration, directors, annual returns, beneficial ownership | `01-core/02` |
 | Consumer Protection Act 68 of 2008 | Consumer rights, implied warranty of quality (s55, s56), plain language, cancellation (s16, s17) | `01-core/04`, all business types |
 | Electronic Communications and Transactions Act 25 of 2002 | Online selling: disclosure (s43), cooling-off (s44), performance (s46), scope (s42) | `01-core/04`, `04-business-types/04` |
-| Protection of Personal Information Act 4 of 2013 | Data protection, information officer registration (s55) | `01-core/02`, `01-core/11`, `03-documents/01` |
+| Protection of Personal Information Act 4 of 2013 | Data protection, information officer registration (s55), keeping personal information only as long as needed (s14; not opened: see "Closing as a sole proprietor" below) | `01-core/02`, `01-core/11`, `03-documents/01` |
 | Businesses Act 71 of 1991 | Municipal trading licences for food, health and entertainment businesses | `01-core/04`, `01-core/11`, `04-business-types/02`, `03` |
 | Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 | Food hygiene (R638 of 2018), food labelling (R146 of 2012), cosmetics | `04-business-types/02`, `03` |
 | Second-Hand Goods Act 6 of 2009 | Dealer registration with SAPS, transaction registers, motor vehicle records | `01-core/11`, `04-business-types/01`, `04` |

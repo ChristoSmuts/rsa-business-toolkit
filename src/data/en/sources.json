@@ -24,7 +24,7 @@
       "governs": [
         {
           "t": "text",
-          "v": "VAT registration, tax invoices (s20), notional input tax on second-hand goods (s20(8))"
+          "v": "VAT registration, tax invoices (s20), notional input tax on second-hand goods (s20(8)), cancellation when you stop trading (s24) and VAT on assets kept at cancellation (s8(2)); s24 and s8(2) not opened: see \"Closing as a sole proprietor\" below"
         }
       ],
       "id": "value-added-tax-act-89-of-1991",
@@ -85,7 +85,7 @@
       "governs": [
         {
           "t": "text",
-          "v": "Data protection, information officer registration (s55)"
+          "v": "Data protection, information officer registration (s55), keeping personal information only as long as needed (s14; not opened: see \"Closing as a sole proprietor\" below)"
         }
       ],
       "id": "protection-of-personal-information-act-4-of-2013",

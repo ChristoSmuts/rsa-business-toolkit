@@ -31,11 +31,11 @@ Amptelike bronne word met **[Amptelik]** gemerk. Dit is publikasies van die rege
 | Wet of regulasie | Waaroor dit gaan | Waar dit verskyn |
 |---|---|---|
 | Income Tax Act 58 of 1962 | Inkomstebelasting, voorlopige belasting, omsetbelasting (Sesde Bylae), kleinsakekorporasies (s12E), omheining van vasgestelde verliese (s20A) | `01-core/03`, `01-core/11` |
-| Value-Added Tax Act 89 of 1991 | BTW-registrasie, belastingfakture (s20), nosionele insetbelasting op tweedehandse goedere (s20(8)) | `01-core/03`, `01-core/11`, `03-documents/01`, `04-business-types/01` |
+| Value-Added Tax Act 89 of 1991 | BTW-registrasie, belastingfakture (s20), nosionele insetbelasting op tweedehandse goedere (s20(8)), kansellasie wanneer jy ophou handel dryf (s24) en BTW op bates wat by kansellasie gehou word (s8(2)); s24 en s8(2) nie oopgemaak nie: sien "Jou eenmansaak toemaak" hieronder | `01-core/03`, `01-core/11`, `03-documents/01`, `04-business-types/01` |
 | Companies Act 71 of 2008 | Maatskappyregistrasie, direkteure, jaarlikse opgawes, voordelige eienaarskap | `01-core/02` |
 | Consumer Protection Act 68 of 2008 | Verbruikersregte, geïmpliseerde waarborg van gehalte (s55, s56), eenvoudige taal, kansellasie (s16, s17) | `01-core/04`, alle besigheidstipes |
 | Electronic Communications and Transactions Act 25 of 2002 | Aanlynverkope: openbaarmaking (s43), afkoelperiode (s44), nakoming (s46), toepassingsgebied (s42) | `01-core/04`, `04-business-types/04` |
-| Protection of Personal Information Act 4 of 2013 | Databeskerming, registrasie van die inligtingsbeampte (s55) | `01-core/02`, `01-core/11`, `03-documents/01` |
+| Protection of Personal Information Act 4 of 2013 | Databeskerming, registrasie van die inligtingsbeampte (s55), persoonlike inligting net so lank hou as wat nodig is (s14; nie oopgemaak nie: sien "Jou eenmansaak toemaak" hieronder) | `01-core/02`, `01-core/11`, `03-documents/01` |
 | Businesses Act 71 of 1991 | Munisipale handelslisensies vir kos-, gesondheids- en vermaaklikheidsbesighede | `01-core/04`, `01-core/11`, `04-business-types/02`, `03` |
 | Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 | Koshigiëne (R638 of 2018), etikettering van kos (R146 of 2012), skoonheidsmiddels | `04-business-types/02`, `03` |
 | Second-Hand Goods Act 6 of 2009 | Registrasie van handelaars by SAPS, transaksieregisters, rekords van motorvoertuie | `01-core/11`, `04-business-types/01`, `04` |
