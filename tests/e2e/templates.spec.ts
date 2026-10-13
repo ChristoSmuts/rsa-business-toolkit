@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { Page } from '@playwright/test';
 import { allowConsoleError, expect, test } from './fixtures';
+import { fontsSettled } from './helpers/fonts';
 import { holdModules, routeSameOrigin } from './helpers/network';
 import { REPO_ROOT } from './helpers/routes';
 
@@ -665,7 +666,7 @@ test.describe('a template before its script runs', () => {
             waitUntil: 'commit',
           });
           await expect(page.locator('footer.st-footer')).toBeAttached();
-          await page.evaluate(() => document.fonts.ready);
+          await fontsSettled(page);
           const gap = await page.locator('st-template-form').evaluate((tool) => {
             // What can be seen: text, form controls, icons, and the edges of a bordered box.
             const spans: [number, number][] = [];

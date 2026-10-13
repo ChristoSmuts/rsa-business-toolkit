@@ -5,6 +5,7 @@ import { PathsFileSchema } from '../../src/lib/content/schema';
 import { buildPath, pathDocs } from '../../src/lib/path-engine';
 import { profileOf, resultRoute, singleChoices } from '../../src/lib/profile';
 import { allowConsoleError, expect, test } from './fixtures';
+import { fontsSettled } from './helpers/fonts';
 import { holdModules, routeSameOrigin } from './helpers/network';
 import { DEFAULT_DIST_DIR, REPO_ROOT } from './helpers/routes';
 
@@ -949,6 +950,7 @@ test.describe('Find my path before its script runs', () => {
     test(`after "What is the difference?" and Back, the wizard holds what shows (${saved ? 'with' : 'without'} saved answers)`, async ({
       page,
       seedStorage,
+      browserName,
     }) => {
       // An unload listener keeps the page out of the back/forward cache, so Back loads it again.
       await page.addInitScript(() => window.addEventListener('unload', () => undefined));
@@ -982,10 +984,29 @@ test.describe('Find my path before its script runs', () => {
       await expect(next('entity')).not.toHaveAttribute('aria-disabled', /.*/);
       await next('entity').click();
       await expect(page.locator('#wz-h-type')).toBeFocused();
-      const shown = await page
-        .locator('input[name="type"]:checked')
-        .evaluateAll((inputs) => inputs.map((input) => (input as HTMLInputElement).value).sort());
-      expect(shown).toEqual(saved ? ['beauty', 'food'] : ['beauty']);
+      const ticked = () =>
+        page
+          .locator('input[name="type"]:checked')
+          .evaluateAll((inputs) => inputs.map((input) => (input as HTMLInputElement).value).sort());
+      // WebKit does not put back the kinds of business ticks: the page arrives with them as radios
+      // (the no-JavaScript "choose one") and the script makes them checkboxes, and WebKit restores
+      // a control only into one of the type it saved. The screen then shows the saved answers, or
+      // none, and the wizard must hold that instead.
+      const restored = browserName !== 'webkit';
+      let shown = await ticked();
+      expect(shown).toEqual(
+        restored
+          ? saved
+            ? ['beauty', 'food']
+            : ['beauty']
+          : saved
+            ? ['food', 'services-trades']
+            : [],
+      );
+      if (shown.length === 0) {
+        await page.locator('input[name="type"][value="beauty"]').check();
+        shown = await ticked();
+      }
       await next('type').click();
       if (!saved) await page.locator('input[name="stage"][value="not-started"]').check();
       await page.getByRole('button', { name: 'See my path' }).click();
@@ -1082,7 +1103,7 @@ test.describe('Find my path before its script runs', () => {
       await page.goto(`${lang === 'en' ? '' : 'af/'}find-my-path/`, { waitUntil: 'commit' });
       const stepper = page.locator('.st-wizard__stepper');
       await expect(stepper).toBeVisible();
-      await page.evaluate(() => document.fonts.ready);
+      await fontsSettled(page);
       const before = await stepper.boundingBox();
       release();
       await expect(page.locator('st-wizard')).toHaveAttribute('data-ready', '');
