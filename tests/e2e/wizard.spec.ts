@@ -969,8 +969,14 @@ test.describe('Find my path before its script runs', () => {
       await expect(wizard).toHaveAttribute('data-ready', '');
       if (!saved) await page.getByRole('radio', { name: /registered company/ }).check();
       await next('entity').click();
-      if (saved) await page.locator('input[name="type"][value="services-trades"]').uncheck();
+      if (saved) {
+        await page.locator('input[name="type"][value="services-trades"]').uncheck();
+        await page.locator('input[name="type"][value="food"]').uncheck();
+      }
+      // Beauty, then food: not page order (food comes first), so the order must survive Back
+      // (review pass 8, m1: the first kind is the primary type).
       await page.locator('input[name="type"][value="beauty"]').check();
+      await page.locator('input[name="type"][value="food"]').check();
       await page.locator('[data-step="type"] [data-back]').click();
       await page.getByRole('link', { name: 'What is the difference?' }).click();
       await page.waitForURL((url) => !url.pathname.includes('find-my-path'));
@@ -995,13 +1001,7 @@ test.describe('Find my path before its script runs', () => {
       const restored = browserName !== 'webkit';
       let shown = await ticked();
       expect(shown).toEqual(
-        restored
-          ? saved
-            ? ['beauty', 'food']
-            : ['beauty']
-          : saved
-            ? ['food', 'services-trades']
-            : [],
+        restored ? ['beauty', 'food'] : saved ? ['food', 'services-trades'] : [],
       );
       if (shown.length === 0) {
         await page.locator('input[name="type"][value="beauty"]').check();
@@ -1020,6 +1020,7 @@ test.describe('Find my path before its script runs', () => {
       );
       expect(stored?.entity).toBe(entity);
       expect([...(stored?.businessTypes ?? [])].sort()).toEqual(shown);
+      if (restored) expect(stored?.businessTypes).toEqual(['beauty', 'food']);
     });
   }
 

@@ -9,7 +9,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { pathView, profile } from '../../src/lib/profile-store';
 import { PATHS, viewOf } from '../../src/scripts/path-data';
 import { clearAll, storage } from '../../src/lib/store';
-import { StWizard } from '../../src/scripts/wizard';
+import { ORDER_STATE_KEY, StWizard } from '../../src/scripts/wizard';
 import { REPO_ROOT } from '../unit/site/data';
 import { mount } from './helpers';
 
@@ -20,6 +20,7 @@ const markup = { en: fixture('en'), af: fixture('af') };
 beforeEach(() => {
   clearAll();
   localStorage.clear();
+  window.history.replaceState(null, '');
   document.documentElement.classList.add('js');
 });
 
@@ -101,6 +102,42 @@ describe('<st-wizard>', () => {
     // A kind unticked without an event is never saved either.
     input('type', 'beauty').checked = false;
     expect(wizard.answers()?.businessTypes).toEqual(['food']);
+  });
+
+  it('keeps the tick order across Back without the back/forward cache (review pass 8, m1)', () => {
+    let wizard = setUp();
+    choose(input('entity', 'sole-prop'));
+    wizard.go(1);
+    // Page order is vehicle-dealer, food, beauty: the reader ticks beauty first.
+    choose(input('type', 'beauty'));
+    choose(input('type', 'food'));
+    expect(window.history.state).toEqual({ [ORDER_STATE_KEY]: ['beauty', 'food'] });
+    // The page is loaded again from the same history entry, as after Back, and the browser puts
+    // the ticks back in page order after load, with no change event.
+    document.body.innerHTML = '';
+    vi.spyOn(performance, 'getEntriesByType').mockReturnValue([
+      { type: 'back_forward' } as unknown as PerformanceEntry,
+    ]);
+    wizard = setUp();
+    input('entity', 'sole-prop').checked = true;
+    input('type', 'food').checked = true;
+    input('type', 'beauty').checked = true;
+    input('stage', 'trading').checked = true;
+    window.dispatchEvent(new Event('pageshow'));
+    expect(wizard.answers()?.businessTypes).toEqual(['beauty', 'food']);
+    // A kind remembered but no longer ticked is never saved, and a new tick goes last.
+    input('type', 'beauty').checked = false;
+    choose(input('type', 'vehicle-dealer'));
+    expect(wizard.answers()?.businessTypes).toEqual(['food', 'vehicle-dealer']);
+  });
+
+  it('keeps what else the history entry holds when it records the order', () => {
+    window.history.replaceState({ other: 1 }, '');
+    const wizard = setUp();
+    choose(input('entity', 'sole-prop'));
+    wizard.go(1);
+    choose(input('type', 'food'));
+    expect(window.history.state).toEqual({ other: 1, [ORDER_STATE_KEY]: ['food'] });
   });
 
   it('sends Next and "See my path" to the first unanswered question (review pass 6, m6)', () => {
