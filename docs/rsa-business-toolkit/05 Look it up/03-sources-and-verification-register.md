@@ -30,20 +30,23 @@ Official sources are marked **[Official]**. These are government or regulator pu
 
 | Act or regulation | What it governs | Where it appears |
 |---|---|---|
-| Income Tax Act 58 of 1962 | Income tax, provisional tax, turnover tax (Sixth Schedule), small business corporations (s12E), assessed loss ring-fencing (s20A) | `01-core/03` |
-| Value-Added Tax Act 89 of 1991 | VAT registration, tax invoices (s20), notional input tax on second-hand goods (s20(8)) | `01-core/03`, `03-documents/01`, `04-business-types/01` |
+| Income Tax Act 58 of 1962 | Income tax, provisional tax, turnover tax (Sixth Schedule), small business corporations (s12E), assessed loss ring-fencing (s20A) | `01-core/03`, `01-core/11` |
+| Value-Added Tax Act 89 of 1991 | VAT registration, tax invoices (s20), notional input tax on second-hand goods (s20(8)) | `01-core/03`, `01-core/11`, `03-documents/01`, `04-business-types/01` |
 | Companies Act 71 of 2008 | Company registration, directors, annual returns, beneficial ownership | `01-core/02` |
 | Consumer Protection Act 68 of 2008 | Consumer rights, implied warranty of quality (s55, s56), plain language, cancellation (s16, s17) | `01-core/04`, all business types |
 | Electronic Communications and Transactions Act 25 of 2002 | Online selling: disclosure (s43), cooling-off (s44), performance (s46), scope (s42) | `01-core/04`, `04-business-types/04` |
-| Protection of Personal Information Act 4 of 2013 | Data protection, information officer registration (s55) | `01-core/02`, `03-documents/01` |
-| Businesses Act 71 of 1991 | Municipal trading licences for food, health and entertainment businesses | `01-core/04`, `04-business-types/02`, `03` |
+| Protection of Personal Information Act 4 of 2013 | Data protection, information officer registration (s55) | `01-core/02`, `01-core/11`, `03-documents/01` |
+| Businesses Act 71 of 1991 | Municipal trading licences for food, health and entertainment businesses | `01-core/04`, `01-core/11`, `04-business-types/02`, `03` |
 | Foodstuffs, Cosmetics and Disinfectants Act 54 of 1972 | Food hygiene (R638 of 2018), food labelling (R146 of 2012), cosmetics | `04-business-types/02`, `03` |
-| Second-Hand Goods Act 6 of 2009 | Dealer registration with SAPS, transaction registers, motor vehicle records | `04-business-types/01`, `04` |
+| Second-Hand Goods Act 6 of 2009 | Dealer registration with SAPS, transaction registers, motor vehicle records | `01-core/11`, `04-business-types/01`, `04` |
 | National Road Traffic Act 93 of 1996 | Vehicle registration, business register numbers, motor trade numbers, roadworthiness | `01-core/05`, `04-business-types/01` |
 | National Credit Act 34 of 2005 | Credit provider registration with the NCR | `04-business-types/01` |
 | Financial Advisory and Intermediary Services Act 37 of 2002 | FSP licensing for financial products and advice | `04-business-types/01`, `06` |
 | Broad-Based Black Economic Empowerment Act 53 of 2003 | EME and QSE thresholds, sworn affidavits | `01-core/02` |
 | Occupational Health and Safety Act 85 of 1993 | Workplace and construction safety duties | `04-business-types/05` |
+| Tax Administration Act 28 of 2011 | Keeping records for five years after the return they relate to was submitted (s29). Not opened when this row was added: see "Closing as a sole proprietor" below | `01-core/11` |
+| Unemployment Insurance Act 63 of 2001 | Unemployment benefits from the Unemployment Insurance Fund, and the information employers must give the Fund about employees, including when they leave. Not opened when this row was added: see "Closing as a sole proprietor" below | `01-core/11` |
+| Prescription Act 68 of 1969 | When an ordinary debt can no longer be claimed: three years for most debts (s11(d)). Not opened when this row was added: see "Closing as a sole proprietor" below | `01-core/11` |
 
 Full text of any South African Act is available free at www.gov.za and at www.saflii.org.
 

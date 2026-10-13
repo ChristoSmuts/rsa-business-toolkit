@@ -358,7 +358,7 @@
       "text": "Not verified"
     },
     {
-      "hash": "b33a9dce0d516c5f",
+      "hash": "92371beb795cb1b8",
       "id": "not-verified.1",
       "items": [
         [
@@ -434,6 +434,35 @@
           {
             "t": "text",
             "v": " for turnover tax, SBC rates, the home office deduction, or a particular licence. That depends on your facts."
+          }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Five Acts cited in "
+              },
+              {
+                "c": [
+                  {
+                    "t": "text",
+                    "v": "Closing as a sole proprietor"
+                  }
+                ],
+                "doc": "core/closing-as-a-sole-proprietor",
+                "t": "link"
+              },
+              {
+                "t": "text",
+                "v": "."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " The Tax Administration Act, sections 8(2) and 24 of the VAT Act, the Unemployment Insurance Act, section 14 of POPIA and the Prescription Act were cited without their text being opened. The register marks each one \"Not opened\". Confirm the section before you rely on it."
           }
         ]
       ],
@@ -1416,17 +1445,66 @@
     {
       "c": [
         {
+          "c": [
+            {
+              "t": "text",
+              "v": "Thirteenth pass: closing as a sole proprietor."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " The toolkit explained how to close a company but not what a sole proprietor does when they stop. A new file, "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Closing as a sole proprietor"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", covers who to tell, the last tax returns, staff, licences, the bank account, debts and records. Where the guide already stated a fact, the file repeats its wording and its source. Five facts needed new sources: the five-year record rule in the Tax Administration Act, the VAT cancellation and the VAT on assets kept in sections 24 and 8(2) of the VAT Act, the employer's duties under the Unemployment Insurance Act, deleting personal information under section 14 of POPIA, and three-year prescription under the Prescription Act. The environment that wrote the file could not reach SARS, "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://gov.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " or the law-report websites, so these five Acts were cited without their text being opened. The register says so on each entry, and the file's AI notice says that some of its sources were not opened. Confirm each section before you rely on it."
+        }
+      ],
+      "hash": "a041336938cbd7cb",
+      "id": "corrections-log.15",
+      "kind": "paragraph"
+    },
+    {
+      "c": [
+        {
           "t": "text",
           "v": "The lesson generalises. Two of the six problems came from well-ranked South African articles that were simply out of date. Recency of the webpage is not the same as currency of the law. Where this toolkit and an official source disagree, the official source wins."
         }
       ],
       "hash": "f83ee39947aacb3d",
-      "id": "corrections-log.15",
+      "id": "corrections-log.16",
       "kind": "paragraph"
     },
     {
       "hash": "58b63e273b964039",
-      "id": "corrections-log.16",
+      "id": "corrections-log.17",
       "kind": "hr"
     },
     {
@@ -1479,7 +1557,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "f586f79404670088",
+  "contentHash": "1623f5cd0f170f4a",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -1546,13 +1624,13 @@
   "kind": "guide",
   "lang": "en",
   "order": 3,
-  "readingTime": 13,
+  "readingTime": 14,
   "related": [
+    "core/closing-as-a-sole-proprietor",
     "core/adding-new-lines",
     "start/how-to-use",
     "branding/already-have-your-name",
-    "branding/mood-and-materials",
-    "core/you-are-the-business"
+    "branding/mood-and-materials"
   ],
   "route": "start/how-this-was-made/",
   "section": "start",

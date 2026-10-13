@@ -224,7 +224,7 @@
         null,
         null
       ],
-      "hash": "3187e8e31b0c71f1",
+      "hash": "3484bb136fd31dc4",
       "header": [
         [
           {
@@ -266,6 +266,15 @@
               "doc": "core/tax-and-sars",
               "label": "01-core/03",
               "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
+              "t": "docref"
             }
           ]
         ],
@@ -286,6 +295,15 @@
             {
               "doc": "core/tax-and-sars",
               "label": "01-core/03",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
               "t": "docref"
             },
             {
@@ -408,6 +426,15 @@
               "v": ", "
             },
             {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
               "doc": "paperwork/which-template-to-use-when",
               "label": "03-documents/01",
               "t": "docref"
@@ -431,6 +458,15 @@
             {
               "doc": "core/what-you-need-to-sell-things",
               "label": "01-core/04",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
+            {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
               "t": "docref"
             },
             {
@@ -497,6 +533,15 @@
             }
           ],
           [
+            {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
+              "t": "docref"
+            },
+            {
+              "t": "text",
+              "v": ", "
+            },
             {
               "doc": "business-types/vehicle-dealer",
               "label": "04-business-types/01",
@@ -635,9 +680,72 @@
               "t": "docref"
             }
           ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Tax Administration Act 28 of 2011"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Rekords vir vyf jaar hou nadat die opgawe waarop hulle betrekking het, ingedien is (s29). Nie oopgemaak toe hierdie ry bygevoeg is nie: sien \"Jou eenmansaak toemaak\" hieronder"
+            }
+          ],
+          [
+            {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Unemployment Insurance Act 63 of 2001"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Werkloosheidsvoordele van die Unemployment Insurance Fund (Werkloosheidversekeringsfonds), en die inligting wat werkgewers die Fonds oor werknemers moet gee, ook wanneer hulle vertrek. Nie oopgemaak toe hierdie ry bygevoeg is nie: sien \"Jou eenmansaak toemaak\" hieronder"
+            }
+          ],
+          [
+            {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
+              "t": "docref"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "t": "text",
+              "v": "Prescription Act 68 of 1969"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Wanneer ’n gewone skuld nie meer geëis kan word nie: drie jaar vir die meeste skulde (s11(d)). Nie oopgemaak toe hierdie ry bygevoeg is nie: sien \"Jou eenmansaak toemaak\" hieronder"
+            }
+          ],
+          [
+            {
+              "doc": "core/closing-as-a-sole-proprietor",
+              "label": "01-core/11",
+              "t": "docref"
+            }
+          ]
         ]
       ],
-      "sourceHash": "89a59cfbd1dd9794"
+      "sourceHash": "de0694b2f7178c99"
     },
     {
       "c": [
@@ -5271,7 +5379,7 @@
       "sourceHash": "7dd4f142addf9213"
     }
   ],
-  "contentHash": "16d36dd2da3dabff",
+  "contentHash": "c2203052cdf5044d",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -5390,11 +5498,11 @@
   "order": 3,
   "readingTime": 26,
   "related": [
+    "core/closing-as-a-sole-proprietor",
     "business-types/vehicle-dealer",
     "core/register",
     "core/what-you-need-to-sell-things",
-    "core/tax-and-sars",
-    "paperwork/which-template-to-use-when"
+    "core/tax-and-sars"
   ],
   "route": "sources/",
   "section": "lookup",

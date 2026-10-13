@@ -334,10 +334,11 @@ describe('sources register', () => {
       issues,
     });
     expect(codes(issues)).toEqual([]);
-    expect(file?.acts).toHaveLength(14);
+    expect(file?.acts).toHaveLength(17);
     // The English source is being corrected ("Business Act" → "Businesses Act"), so match both spellings.
     expect(file?.acts.find((act) => act.id === 'businesses-act-71-of-1991')?.appearsIn).toEqual([
       'core/what-you-need-to-sell-things',
+      'core/closing-as-a-sole-proprietor',
       'business-types/food',
       'business-types/beauty',
     ]);

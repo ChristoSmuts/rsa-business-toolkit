@@ -2,7 +2,8 @@
   "acts": [
     {
       "appearsIn": [
-        "core/tax-and-sars"
+        "core/tax-and-sars",
+        "core/closing-as-a-sole-proprietor"
       ],
       "governs": [
         {
@@ -16,6 +17,7 @@
     {
       "appearsIn": [
         "core/tax-and-sars",
+        "core/closing-as-a-sole-proprietor",
         "paperwork/which-template-to-use-when",
         "business-types/vehicle-dealer"
       ],
@@ -77,6 +79,7 @@
     {
       "appearsIn": [
         "core/register",
+        "core/closing-as-a-sole-proprietor",
         "paperwork/which-template-to-use-when"
       ],
       "governs": [
@@ -91,6 +94,7 @@
     {
       "appearsIn": [
         "core/what-you-need-to-sell-things",
+        "core/closing-as-a-sole-proprietor",
         "business-types/food",
         "business-types/beauty"
       ],
@@ -119,6 +123,7 @@
     },
     {
       "appearsIn": [
+        "core/closing-as-a-sole-proprietor",
         "business-types/vehicle-dealer",
         "business-types/retail-online"
       ],
@@ -197,6 +202,45 @@
       ],
       "id": "occupational-health-and-safety-act-85-of-1993",
       "name": "Occupational Health and Safety Act 85 of 1993"
+    },
+    {
+      "appearsIn": [
+        "core/closing-as-a-sole-proprietor"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Keeping records for five years after the return they relate to was submitted (s29). Not opened when this row was added: see \"Closing as a sole proprietor\" below"
+        }
+      ],
+      "id": "tax-administration-act-28-of-2011",
+      "name": "Tax Administration Act 28 of 2011"
+    },
+    {
+      "appearsIn": [
+        "core/closing-as-a-sole-proprietor"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "Unemployment benefits from the Unemployment Insurance Fund, and the information employers must give the Fund about employees, including when they leave. Not opened when this row was added: see \"Closing as a sole proprietor\" below"
+        }
+      ],
+      "id": "unemployment-insurance-act-63-of-2001",
+      "name": "Unemployment Insurance Act 63 of 2001"
+    },
+    {
+      "appearsIn": [
+        "core/closing-as-a-sole-proprietor"
+      ],
+      "governs": [
+        {
+          "t": "text",
+          "v": "When an ordinary debt can no longer be claimed: three years for most debts (s11(d)). Not opened when this row was added: see \"Closing as a sole proprietor\" below"
+        }
+      ],
+      "id": "prescription-act-68-of-1969",
+      "name": "Prescription Act 68 of 1969"
     }
   ],
   "checkedOn": "2026-09-13",

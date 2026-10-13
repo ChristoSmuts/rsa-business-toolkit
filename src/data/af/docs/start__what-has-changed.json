@@ -1401,6 +1401,290 @@
       "c": [
         {
           "t": "text",
+          "v": "Verandering 5: jou eenmansaak toemaak"
+        }
+      ],
+      "depth": 2,
+      "hash": "f182e8f701383e56",
+      "id": "change-5-closing-as-a-sole-proprietor",
+      "kind": "heading",
+      "sourceHash": "6121acb07bb3bcd6",
+      "text": "Verandering 5: jou eenmansaak toemaak"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Datum:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " 13 Oktober 2026"
+        },
+        {
+          "t": "br"
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Rede:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Bestuur van ’n Pty Ltd"
+            }
+          ],
+          "doc": "core/running-a-pty-ltd",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " het verduidelik hoe om ’n maatskappy te sluit. Niks het verduidelik wat ’n eenmansaak-eienaar doen wanneer hy ophou handel dryf nie."
+        }
+      ],
+      "hash": "870867bab912fc77",
+      "id": "change-5-closing-as-a-sole-proprietor.1",
+      "kind": "paragraph",
+      "sourceHash": "93252afda6d43ba4"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Bygevoeg"
+        }
+      ],
+      "depth": 3,
+      "hash": "83e9c480082712b1",
+      "id": "added-4",
+      "kind": "heading",
+      "sourceHash": "f1ad429536dd7fe4",
+      "text": "Bygevoeg"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Jou eenmansaak toemaak"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " — die mense om te laat weet (SARS, die munisipaliteit, SAPS, die Information Regulator (Inligtingsreguleerder), die Unemployment Insurance Fund (Werkloosheidversekeringsfonds) en die Compensation Fund (Vergoedingsfonds)), die bankrekening, die skuld en rekords wat joune bly, en ’n kontrolelys vir sluiting."
+        }
+      ],
+      "hash": "231cbea629efd692",
+      "id": "added-4.1",
+      "kind": "paragraph",
+      "sourceHash": "81c916cec6cbfcd6"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
+          "v": "Verander"
+        }
+      ],
+      "depth": 3,
+      "hash": "6f3a2211e1cfb2ee",
+      "id": "changed",
+      "kind": "heading",
+      "sourceHash": "57a9b5a54fdc9b63",
+      "text": "Verander"
+    },
+    {
+      "align": [
+        null,
+        null
+      ],
+      "hash": "ee3091016d040bb9",
+      "header": [
+        [
+          {
+            "t": "text",
+            "v": "Lêer"
+          }
+        ],
+        [
+          {
+            "t": "text",
+            "v": "Wat bygevoeg is"
+          }
+        ]
+      ],
+      "id": "changed.1",
+      "kind": "table",
+      "rows": [
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Bestuur van ’n Pty Ltd"
+                }
+              ],
+              "doc": "core/running-a-pty-ltd",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "’n Reël onder \"Om ’n maatskappy behoorlik te sluit\" wat ’n eenmansaak-eienaar na die nuwe lêer stuur"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Kern: begin hier"
+                }
+              ],
+              "doc": "core/start-here",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Inskrywing in die indeks"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Bronne- en verifikasieregister"
+                }
+              ],
+              "doc": "lookup/sources",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Nuwe afdeling \"Jou eenmansaak toemaak\" met vyf nuwe inskrywings. Drie wette by die wetgewingstabel gevoeg, en die nuwe lêer gelys by die vyf wette waarop dit steun wat reeds daar was"
+            }
+          ]
+        ],
+        [
+          [
+            {
+              "c": [
+                {
+                  "t": "text",
+                  "v": "Hoe dit gemaak is en hoe om dit na te gaan"
+                }
+              ],
+              "doc": "start/how-this-was-made",
+              "t": "link"
+            }
+          ],
+          [
+            {
+              "t": "text",
+              "v": "Inskrywing vir die dertiende rondte"
+            }
+          ]
+        ]
+      ],
+      "sourceHash": "15df18045db611d9"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Nie oopgemaak nie."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die omgewing wat hierdie lêer geskryf het, kon nie SARS, "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://gov.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " of die webwerwe met hofverslae bereik nie. Die vyf nuwe inskrywings in die register (die Tax Administration Act, artikels 8(2) en 24 van die Value-Added Tax Act, die Unemployment Insurance Act, artikel 14 van POPIA en die Prescription Act) haal elke wet aan sonder dat die teks oopgemaak is, en elke inskrywing sê so. Elke ander feit in die lêer herhaal wat die gids reeds met bronne ondersteun. Bevestig ’n artikel in die wet voordat jy daarop staatmaak."
+        }
+      ],
+      "hash": "6cc4994a37001044",
+      "id": "changed.2",
+      "kind": "paragraph",
+      "sourceHash": "5ab0946d3d4a602e"
+    },
+    {
+      "c": [
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Status in Drive:"
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " NOG NIE. Die nuwe dokument en die veranderinge aan die register moet oorgedra word."
+        }
+      ],
+      "hash": "7fb73549c8a70245",
+      "id": "changed.3",
+      "kind": "paragraph",
+      "sourceHash": "9126eb5b345c381c"
+    },
+    {
+      "hash": "58b63e273b964039",
+      "id": "changed.4",
+      "kind": "hr",
+      "sourceHash": "58b63e273b964039"
+    },
+    {
+      "c": [
+        {
+          "t": "text",
           "v": "Wat jy in Drive moet plak"
         }
       ],
@@ -1818,7 +2102,7 @@
       "sourceHash": "facc1da44d972127"
     }
   ],
-  "contentHash": "8a40e273cff66672",
+  "contentHash": "38d03f649ac92594",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -1887,6 +2171,21 @@
     },
     {
       "depth": 2,
+      "id": "change-5-closing-as-a-sole-proprietor",
+      "text": "Verandering 5: jou eenmansaak toemaak"
+    },
+    {
+      "depth": 3,
+      "id": "added-4",
+      "text": "Bygevoeg"
+    },
+    {
+      "depth": 3,
+      "id": "changed",
+      "text": "Verander"
+    },
+    {
+      "depth": 2,
       "id": "what-you-need-to-paste-into-drive",
       "text": "Wat jy in Drive moet plak"
     },
@@ -1930,13 +2229,13 @@
   "kind": "guide",
   "lang": "af",
   "order": 4,
-  "readingTime": 10,
+  "readingTime": 11,
   "related": [
     "core/start-here",
     "start/start-here",
     "branding/already-have-your-name",
-    "branding/branding-prompts",
-    "core/register"
+    "start/how-this-was-made",
+    "core/running-a-pty-ltd"
   ],
   "route": "start/what-has-changed/",
   "section": "start",

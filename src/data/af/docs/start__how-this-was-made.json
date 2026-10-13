@@ -374,7 +374,7 @@
       "text": "Nie nagegaan nie"
     },
     {
-      "hash": "224ee24772495613",
+      "hash": "d5bd91eeda3645a4",
       "id": "not-verified.1",
       "items": [
         [
@@ -451,11 +451,40 @@
             "t": "text",
             "v": " vir omsetbelasting, SBC-koerse, die aftrekking vir ’n tuiskantoor of ’n bepaalde lisensie. Dit hang van jou feite af."
           }
+        ],
+        [
+          {
+            "c": [
+              {
+                "t": "text",
+                "v": "Vyf wette wat in "
+              },
+              {
+                "c": [
+                  {
+                    "t": "text",
+                    "v": "Jou eenmansaak toemaak"
+                  }
+                ],
+                "doc": "core/closing-as-a-sole-proprietor",
+                "t": "link"
+              },
+              {
+                "t": "text",
+                "v": " aangehaal word."
+              }
+            ],
+            "t": "strong"
+          },
+          {
+            "t": "text",
+            "v": " Die Tax Administration Act, artikels 8(2) en 24 van die VAT Act, die Unemployment Insurance Act, artikel 14 van POPIA en die Prescription Act is aangehaal sonder dat hulle teks oopgemaak is. Die register sê by elkeen dat dit nie oopgemaak is nie. Bevestig die artikel voordat jy daarop staatmaak."
+          }
         ]
       ],
       "kind": "list",
       "ordered": false,
-      "sourceHash": "b33a9dce0d516c5f"
+      "sourceHash": "92371beb795cb1b8"
     },
     {
       "hash": "58b63e273b964039",
@@ -1479,18 +1508,68 @@
     {
       "c": [
         {
+          "c": [
+            {
+              "t": "text",
+              "v": "Dertiende rondte: jou eenmansaak toemaak."
+            }
+          ],
+          "t": "strong"
+        },
+        {
+          "t": "text",
+          "v": " Die gereedskapstel het verduidelik hoe om ’n maatskappy te sluit, maar nie wat ’n eenmansaak-eienaar doen wanneer hy ophou nie. ’n Nuwe lêer, "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Jou eenmansaak toemaak"
+            }
+          ],
+          "doc": "core/closing-as-a-sole-proprietor",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": ", dek wie om te laat weet, die laaste belastingopgawes, personeel, lisensies, die bankrekening, skuld en rekords. Waar die gids ’n feit reeds gestel het, herhaal die lêer die gids se bewoording en bron. Vyf feite het nuwe bronne nodig gehad: die reël van vyf jaar vir rekords in die Tax Administration Act, die kansellasie van BTW en die BTW op bates wat gehou word in artikels 24 en 8(2) van die VAT Act, die werkgewer se pligte onder die Unemployment Insurance Act, die uitvee van persoonlike inligting onder artikel 14 van POPIA, en verjaring ná drie jaar onder die Prescription Act. Die omgewing wat die lêer geskryf het, kon nie SARS, "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "gov.za"
+            }
+          ],
+          "external": true,
+          "href": "https://gov.za/",
+          "t": "link"
+        },
+        {
+          "t": "text",
+          "v": " of die webwerwe met hofverslae bereik nie, so hierdie vyf wette is aangehaal sonder dat hulle teks oopgemaak is. Die register sê dit by elke inskrywing, en die lêer se KI-kennisgewing sê dat party van sy bronne nie oopgemaak is nie. Bevestig elke artikel voordat jy daarop staatmaak."
+        }
+      ],
+      "hash": "0aa7eb7f69f502b5",
+      "id": "corrections-log.15",
+      "kind": "paragraph",
+      "sourceHash": "a041336938cbd7cb"
+    },
+    {
+      "c": [
+        {
           "t": "text",
           "v": "Die les geld wyer. Twee van die ses probleme het gekom van Suid-Afrikaanse artikels wat hoog in soekresultate verskyn het maar eenvoudig verouderd was. Hoe onlangs ’n webblad is, sê nie of die reg daarin nog geld nie. Waar hierdie gereedskapstel en ’n amptelike bron verskil, wen die amptelike bron."
         }
       ],
       "hash": "909c9449fb5c22db",
-      "id": "corrections-log.15",
+      "id": "corrections-log.16",
       "kind": "paragraph",
       "sourceHash": "f83ee39947aacb3d"
     },
     {
       "hash": "58b63e273b964039",
-      "id": "corrections-log.16",
+      "id": "corrections-log.17",
       "kind": "hr",
       "sourceHash": "58b63e273b964039"
     },
@@ -1547,7 +1626,7 @@
       "sourceHash": "110f8219592071cb"
     }
   ],
-  "contentHash": "841668255215ec99",
+  "contentHash": "7c25cde1b2a22e0f",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -1614,13 +1693,13 @@
   "kind": "guide",
   "lang": "af",
   "order": 3,
-  "readingTime": 14,
+  "readingTime": 15,
   "related": [
+    "core/closing-as-a-sole-proprietor",
     "core/adding-new-lines",
     "start/how-to-use",
     "branding/already-have-your-name",
-    "branding/mood-and-materials",
-    "core/you-are-the-business"
+    "branding/mood-and-materials"
   ],
   "route": "start/how-this-was-made/",
   "section": "start",
