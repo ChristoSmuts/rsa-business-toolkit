@@ -106,10 +106,24 @@ export const DOC_WEIGHT: Readonly<Record<string, number>> = {
  * not open what to do when you stop, and `deregistreer my maatskappy` opens the company's closing
  * section (review post-WP-50a pass 1, minor 2). A query that holds one of the words (folded, the
  * last word also while it is typed) keeps the page at full weight, as does one that names the page
- * by its title (`titleCoverage`).
+ * by its title (`titleCoverage`), unless it also holds one of `notFor`: words for another kind of
+ * business the moment does not apply to. `close my pty ltd` keeps the sole proprietor's page at half
+ * weight and opens the company's closing section (post-WP-50a review pass 2, minor 1). The other
+ * way round, a query that names the moment and one of `favourFor`, the kind of business the page is
+ * for, weighs the page `favour` times: `sluit my eenmansaak` opens it before the company's closing
+ * section, which also names "eenmansaak" when it sends a sole proprietor here.
  */
 export const MOMENT_WEIGHT: Readonly<
-  Record<string, { readonly weight: number; readonly words: ReadonlySet<string> }>
+  Record<
+    string,
+    {
+      readonly weight: number;
+      readonly words: ReadonlySet<string>;
+      readonly notFor: ReadonlySet<string>;
+      readonly favourFor: ReadonlySet<string>;
+      readonly favour: number;
+    }
+  >
 > = {
   'core/closing-as-a-sole-proprietor': {
     weight: 0.5,
@@ -135,6 +149,16 @@ export const MOMENT_WEIGHT: Readonly<
       'afsluit',
       'ophou',
     ]),
+    notFor: new Set(['pty', 'ltd', 'company', 'companies', 'maatskappy', 'maatskappye', 'bpk']),
+    favourFor: new Set([
+      'sole',
+      'proprietor',
+      'proprietorship',
+      'prop',
+      'eenmansaak',
+      'eenmansake',
+    ]),
+    favour: 2,
   },
 };
 

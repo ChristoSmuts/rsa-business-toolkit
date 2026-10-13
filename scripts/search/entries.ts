@@ -49,7 +49,7 @@ export interface IndexInput {
   readonly quickAnswers?: LangData<QuickAnswersFile> | undefined;
   /**
    * Search keywords by document id (`content-meta/search-keywords.json`): indexed with the page's
-   * first entry, in its heading field.
+   * first entry, in its heading field. A key `doc#anchor` holds a section's own keywords.
    */
   readonly keywords?: ReadonlyMap<string, readonly string[]> | undefined;
 }
@@ -186,8 +186,14 @@ export function sectionEntries(input: IndexInput, doc: Doc): SearchEntry[] {
       // through the title rule (`titleCoverage`).
       const first = out.length === 0;
       const h1 = first && doc.h1 !== doc.title ? [doc.h1] : [];
-      // The page's keywords: owner words its own titles lack (review WP-33 pass 14).
-      const keywords = first ? (input.keywords?.get(doc.id) ?? []) : [];
+      // The page's keywords: owner words its own titles lack (review WP-33 pass 14); a section's
+      // own keywords, under `doc#anchor` (post-WP-50a review pass 2, minor 2).
+      const keywords = [
+        ...(first ? (input.keywords?.get(doc.id) ?? []) : []),
+        ...(current.anchor === undefined
+          ? []
+          : (input.keywords?.get(`${doc.id}#${current.anchor}`) ?? [])),
+      ];
       out.push(
         entry(
           'section',

@@ -198,6 +198,37 @@ type Query = Parameters<MiniSearch['search']>[0];
 /** MiniSearch's own search options. */
 type SearchOptionsOf = NonNullable<Parameters<MiniSearch['search']>[1]>;
 
+/** The sources register's section headings, as folded words, per loaded index (computed once). */
+const registerHeadingsCache = new WeakMap<LoadedIndex, { id: number; words: string[] }[]>();
+
+function registerHeadings(index: LoadedIndex): { id: number; words: string[] }[] {
+  const cached = registerHeadingsCache.get(index);
+  if (cached !== undefined) return cached;
+  const out: { id: number; words: string[] }[] = [];
+  for (let id = 0; id < index.search.documentCount; id++) {
+    const stored = index.search.getStoredFields(id) as Record<string, unknown> | undefined;
+    if (stored === undefined || stored['k'] !== 'section') continue;
+    if (REFERENCE_WEIGHT[String(stored['d'])] === undefined || stored['a'] === undefined) continue;
+    out.push({ id, words: tokenize(String(stored['t'])).map((word) => foldTerm(word)) });
+  }
+  registerHeadingsCache.set(index, out);
+  return out;
+}
+
+/**
+ * `true` when `word` is part of the compound heading word `heading`, as Afrikaans writes a subject
+ * into one word: `kos` begins "kosbesighede", `lisensie` is inside "besigheidslisensiëring" (post-
+ * WP-50a review pass 2, minor 3). The beginning of a compound counts from three letters; a part
+ * inside one only from five, or a plural's stem from seven (`lisensies` → `lisensi`), so a short
+ * word never matches by accident in the middle of another.
+ */
+export function inCompound(word: string, heading: string): boolean {
+  if (heading === word || word.length < 3) return false;
+  if (heading.startsWith(word)) return true;
+  if (word.length >= 5 && heading.includes(word)) return true;
+  return word.length >= 7 && heading.includes(word.slice(0, -2));
+}
+
 /** A word that says too little to be searched on its own: one character, or only digits. */
 function weak(word: string): boolean {
   return word.length < 2 || /^[\d.,]+$/.test(word);
@@ -635,9 +666,12 @@ export function runSearchCounted(
       typedLast.length >= 4 &&
       [...words].some((word) => word.startsWith(typedLast)));
   const momentWeight = new Map(
-    Object.entries(MOMENT_WEIGHT)
-      .filter(([, moment]) => !asksMoment(moment.words))
-      .map(([doc, moment]) => [doc, moment.weight]),
+    Object.entries(MOMENT_WEIGHT).flatMap(([doc, moment]): [string, number][] => {
+      const named = (words: ReadonlySet<string>): boolean =>
+        momentWords.some((word) => words.has(word));
+      if (!asksMoment(moment.words) || named(moment.notFor)) return [[doc, moment.weight]];
+      return named(moment.favourFor) ? [[doc, moment.favour]] : [];
+    }),
   );
   const searchOptions = {
     bm25: BM25,
@@ -1023,9 +1057,32 @@ export function runSearchCounted(
           searchOptions.filter(hit),
       },
     )[0];
+  // Then a heading that holds the subject inside a compound word (`bronne vir kos` heads
+  // "Kosbesighede", `bronne vir lisensie` "Besigheidslisensiëring"), the first in reading order.
+  const compoundInRegister = (): MiniSearchResult | undefined => {
+    const match = registerHeadings(index).find(({ words }) =>
+      subjectWords.every((subjectWord) => words.some((word) => inCompound(subjectWord, word))),
+    );
+    if (match === undefined) return undefined;
+    const stored = index.search.getStoredFields(match.id);
+    if (stored === undefined || !searchOptions.filter({ ...stored } as never)) return undefined;
+    return (
+      all.find((hit) => hit.id === match.id) ??
+      ({
+        ...stored,
+        id: match.id,
+        score: Number.POSITIVE_INFINITY,
+        terms: [],
+        queryTerms: [],
+        match: {},
+      } as MiniSearchResult)
+    );
+  };
   const sourceEntry =
     sourcesFor && subjectWords.length > 0
-      ? (headedInRegister() ?? all.find((hit) => REFERENCE_WEIGHT[String(hit['d'])] !== undefined))
+      ? (headedInRegister() ??
+        compoundInRegister() ??
+        all.find((hit) => REFERENCE_WEIGHT[String(hit['d'])] !== undefined))
       : undefined;
   const lead = whatIs ?? actEntry ?? sourceEntry;
   const allRanked = lead === undefined ? all : [lead, ...all.filter((hit) => hit.id !== lead.id)];

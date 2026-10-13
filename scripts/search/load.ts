@@ -63,6 +63,6 @@ export function loadIndexInput(lang: Locale, dataDir: string = DATA_DIR): IndexI
     glossary: inLangOrEnglish(dataDir, lang, 'glossary.json', GlossaryFileSchema),
     tasks: inLangOrEnglish(dataDir, lang, 'tasks.json', TasksFileSchema),
     quickAnswers: inLangOrEnglish(dataDir, lang, 'quick-answers.json', QuickAnswersFileSchema),
-    keywords: keywordsFor(lang, manifest),
+    keywords: keywordsFor(lang, manifest, undefined, docs),
   };
 }

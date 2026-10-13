@@ -2849,6 +2849,102 @@
       "from": "post-WP-50a pass 1 minor 2"
     },
     {
+      "lang": "en",
+      "query": "close my pty ltd",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 2 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "close pty ltd",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 2 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "close a pty ltd",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 2 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "close my pty",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 2 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "closing my pty ltd",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 2 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "close my sole prop",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "notFirst": ["core/running-a-pty-ltd#closing-a-company-properly"],
+      "from": "post-WP-50a pass 2 minor 1"
+    },
+    {
+      "lang": "en",
+      "query": "hiring staff",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor#if-you-had-staff"],
+      "from": "post-WP-50a pass 2 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "employ staff",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor#if-you-had-staff"],
+      "from": "post-WP-50a pass 2 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "employ an employee",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor#if-you-had-staff"],
+      "from": "post-WP-50a pass 2 minor 2"
+    },
+    {
+      "lang": "en",
+      "query": "sources for licence",
+      "doc": "lookup/sources",
+      "anchor": "business-licensing",
+      "need": "first",
+      "from": "post-WP-50a pass 2 minor 3"
+    },
+    {
+      "lang": "en",
+      "query": "sources for food",
+      "doc": "lookup/sources",
+      "anchor": "food-businesses",
+      "need": "first",
+      "from": "post-WP-50a pass 2 minor 3"
+    },
+    {
       "lang": "af",
       "query": "registreer my besigheid",
       "doc": "core/register",
@@ -5425,6 +5521,49 @@
       "anchor": "consumer-law-and-online-selling",
       "need": "first",
       "from": "post-WP-50a pass 1 minor 2"
+    },
+    {
+      "lang": "af",
+      "query": "sluit my pty ltd",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor"],
+      "from": "post-WP-50a pass 2 minor 1"
+    },
+    {
+      "lang": "af",
+      "query": "personeel in diens neem",
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "need": "first",
+      "notFirst": ["core/closing-as-a-sole-proprietor#if-you-had-staff"],
+      "from": "post-WP-50a pass 2 minor 2"
+    },
+    {
+      "lang": "af",
+      "query": "bronne vir lisensie",
+      "doc": "lookup/sources",
+      "anchor": "business-licensing",
+      "need": "first",
+      "notFirst": ["lookup/sources#branding-tools-referenced"],
+      "from": "post-WP-50a pass 2 minor 3"
+    },
+    {
+      "lang": "af",
+      "query": "bronne vir lisensies",
+      "doc": "lookup/sources",
+      "anchor": "business-licensing",
+      "need": "first",
+      "from": "post-WP-50a pass 2 minor 3"
+    },
+    {
+      "lang": "af",
+      "query": "bronne vir kos",
+      "doc": "lookup/sources",
+      "anchor": "food-businesses",
+      "need": "first",
+      "from": "post-WP-50a pass 2 minor 3"
     }
   ]
 }

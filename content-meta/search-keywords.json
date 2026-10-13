@@ -42,6 +42,18 @@
       "af": ["haarkapper", "salon"]
     },
     {
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "closing-a-company-properly",
+      "en": ["close", "close company", "close pty ltd"],
+      "af": ["sluit", "sluit maatskappy", "sluit pty ltd"]
+    },
+    {
+      "doc": "core/running-a-pty-ltd",
+      "anchor": "employees-including-yourself",
+      "en": ["staff", "hire staff", "hiring staff", "employ staff"],
+      "af": ["personeel", "personeel aanstel", "personeel in diens neem"]
+    },
+    {
       "doc": "core/closing-as-a-sole-proprietor",
       "en": ["stop trading", "close sole proprietorship"],
       "af": ["ophou handel dryf"]

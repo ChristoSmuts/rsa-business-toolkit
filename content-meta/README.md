@@ -153,6 +153,10 @@ business`, Tax and SARS also holds `tax return` and `income tax`.
 
 - Few, and only where the guide's own titles lack the owner's word. At most six per page and
   language.
+- With `anchor`, the words go to that section's entry instead of the page's first (post-WP-50a
+  review pass 2): "Employees, including yourself" also holds `staff`, `hiring staff` and `personeel
+aanstel`, and "Closing a company properly" holds `close` and `close pty ltd`, words its heading
+  ("Closing") lacks. The build fails when the heading is not on the page or a place is listed twice.
 - A separate file from the best bets, because the two do different jobs: a keyword is ranking input
   that helps every query that uses the word, a best bet pins one phrasing to one target.
 - `pnpm search:build` fails when a page is not in the manifest or is listed twice.
