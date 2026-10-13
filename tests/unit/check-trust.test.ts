@@ -376,3 +376,37 @@ describe('runCli and the design-system pages', () => {
     expect(runCli(site('core/register'), '/', 0)).toBe(1);
   });
 });
+
+// Post-WP-50a review pass 2, nit 2: the notice on the built page must match the page's record.
+describe('trustProblems with the page record', () => {
+  const notOpenedNotice = notice.replace(
+    /<p>Written by AI[^<]*<\/p>/,
+    '<p>Written by AI (Claude, Anthropic). An AI checked it on 13 October 2026 against what the sources register says about the sources below. Some of those sources could not be opened, and each of them says so. No person has checked it yet. Rules change: check the official source before you act. Not legal, tax or financial advice.</p>',
+  );
+  const registerNotice = notice.replace(
+    /<p>Written by AI[^<]*<\/p>/,
+    '<p>Written by AI (Claude, Anthropic). An AI checked it against the sources in the sources register, most recently on 13 October 2026. Some register entries could not be opened, and each of them says so. No person has checked it yet. Rules change: check the official source before you act. Not legal, tax or financial advice.</p>',
+  );
+  const flagged = () => ({ sourcesNotOpened: true });
+  const plain = () => ({});
+
+  it('accepts the sentence that matches the record', () => {
+    expect(trustProblems(page('guide', notOpenedNotice, listed), flagged)).toEqual([]);
+    expect(trustProblems(page('guide', notice, listed), plain)).toEqual([]);
+    expect(trustProblems(page('guide', registerNotice, noted), flagged)).toEqual([]);
+    expect(trustProblems(page('guide', noteNotice, noted), plain)).toEqual([]);
+  });
+
+  it('refuses the standard sentence on a page whose record says sources were not opened', () => {
+    expect(trustProblems(page('guide', notice, listed), flagged)).toEqual([
+      "the AI notice does not say that some sources were not opened, although the page's record does",
+    ]);
+    expect(trustProblems(page('guide', noteNotice, noted), flagged)).toHaveLength(1);
+  });
+
+  it('refuses the not-opened sentence on a page whose record does not say so', () => {
+    expect(trustProblems(page('guide', notOpenedNotice, listed), plain)).toEqual([
+      "the AI notice says that some sources were not opened, but the page's record does not",
+    ]);
+  });
+});

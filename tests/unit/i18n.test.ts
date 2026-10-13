@@ -655,6 +655,7 @@ describe('t', () => {
       t('af', 'trust.aiNotice.body', { date }),
       t('af', 'trust.aiNotice.bodyNoPageSources', { date }),
       t('af', 'trust.aiNotice.bodySourcesNotOpened', { date }),
+      t('af', 'trust.aiNotice.bodySourcesNotOpenedNoPageSources', { date }),
       t('af', 'trust.status.aiCheckedNotOpenedMeans'),
       t('af', 'trust.aiNotice.bodyHumanChecked', { date, reviewer }),
       t('af', 'trust.aiNotice.bodyHumanCheckedNoPageSources', { date, reviewer }),

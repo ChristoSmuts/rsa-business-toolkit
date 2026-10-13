@@ -1,6 +1,9 @@
 {
   "version": 1,
-  "generated": { "date": "2026-09-13", "tool": "Claude, Anthropic" },
+  "generated": {
+    "date": "2026-09-13",
+    "tool": "Claude, Anthropic"
+  },
   "sourceNoteExemptions": {
     "branding/marketing-prompts": "Owner decision (WP-10): the page holds AI prompts and marketing advice and makes no factual claim that a register entry supports, so it carries a source note instead of an invented source list."
   },
@@ -15,6 +18,24 @@
       "checkedOn": "2026-10-13",
       "sourcesNotOpened": true,
       "reason": "Written on 13 October 2026, a month after the register's own check date, so the register date would say the page was checked before it existed. It was checked by an AI against the register's text, not against the live official pages: the environment could not reach SARS, gov.za or saflii.org. The register's section \"Closing as a sole proprietor\" marks each source added for it that was not opened, so the page's AI notice says some of its sources were not opened (sourcesNotOpened). The page reuses the guide's existing wording where the guide already states a fact. \"What has changed\" change 5 and the thirteenth pass in \"How this was made\" record that day's work."
+    },
+    "lookup/sources": {
+      "status": "ai-checked",
+      "checkedOn": "2026-10-13",
+      "sourcesNotOpened": true,
+      "reason": "Three legislation-table rows and the section \"Closing as a sole proprietor\", with five entries marked \"Not opened\", were added on 13 October 2026. They were written and checked by an AI on 13 October 2026 for \"Closing as a sole proprietor\" (\"What has changed\" change 5, the thirteenth pass in \"How this was made\"), against the register's text: the environment could not reach SARS, gov.za or saflii.org. The rest of the page was checked on the register's date, 13 September 2026, so the notice gives 13 October as the most recent check and says that some register entries were not opened (sourcesNotOpened); each such entry or row says \"Not opened\" where it is listed (post-WP-50a review pass 2, minor 4)."
+    },
+    "start/what-has-changed": {
+      "status": "ai-checked",
+      "checkedOn": "2026-10-13",
+      "sourcesNotOpened": true,
+      "reason": "Change 5, which records Act citations that were not opened, was added on 13 October 2026. They were written and checked by an AI on 13 October 2026 for \"Closing as a sole proprietor\" (\"What has changed\" change 5, the thirteenth pass in \"How this was made\"), against the register's text: the environment could not reach SARS, gov.za or saflii.org. The rest of the page was checked on the register's date, 13 September 2026, so the notice gives 13 October as the most recent check and says that some register entries were not opened (sourcesNotOpened); each such entry or row says \"Not opened\" where it is listed (post-WP-50a review pass 2, minor 4)."
+    },
+    "start/how-this-was-made": {
+      "status": "ai-checked",
+      "checkedOn": "2026-10-13",
+      "sourcesNotOpened": true,
+      "reason": "The thirteenth pass and a \"Not verified\" item, which record Act citations that were not opened, were added on 13 October 2026. They were written and checked by an AI on 13 October 2026 for \"Closing as a sole proprietor\" (\"What has changed\" change 5, the thirteenth pass in \"How this was made\"), against the register's text: the environment could not reach SARS, gov.za or saflii.org. The rest of the page was checked on the register's date, 13 September 2026, so the notice gives 13 October as the most recent check and says that some register entries were not opened (sourcesNotOpened); each such entry or row says \"Not opened\" where it is listed (post-WP-50a review pass 2, minor 4)."
     }
   }
 }

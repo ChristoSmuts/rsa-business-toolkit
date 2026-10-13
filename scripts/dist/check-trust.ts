@@ -43,6 +43,12 @@ export interface NoticeShape {
   readonly pageSources: boolean;
   /** The status names a person who checked the page. */
   readonly humanChecked: boolean;
+  /**
+   * The page's record says some of its sources were not opened (`sourcesNotOpened`). Left out, an
+   * AI-checked page may say either; the CLI always sets it from the page's generated record
+   * (post-WP-50a review pass 2, nit 2).
+   */
+  readonly sourcesNotOpened?: boolean;
 }
 
 /**
@@ -70,15 +76,19 @@ export function noticeSentences(locale: Locale, shape?: NoticeShape): RegExp[] {
       .filter(([key]) => key.startsWith('body'))
       .map(([, sentence]) => sentencePattern(sentence));
   }
-  // An AI check of a page with sources of its own may say that some of them were not opened
-  // (`bodySourcesNotOpened`, post-WP-50a review pass 1, minor 3).
+  // An AI check says that some sources were not opened exactly when the page's record does
+  // (`sourcesNotOpened`; post-WP-50a review pass 1, minor 3, and pass 2, nit 2).
+  const opened = shape.pageSources ? 'body' : 'bodyNoPageSources';
+  const notOpened = shape.pageSources
+    ? 'bodySourcesNotOpened'
+    : 'bodySourcesNotOpenedNoPageSources';
   const keys = shape.humanChecked
     ? shape.pageSources
       ? ['bodyHumanChecked']
       : ['bodyHumanCheckedNoPageSources']
-    : shape.pageSources
-      ? ['body', 'bodySourcesNotOpened']
-      : ['bodyNoPageSources'];
+    : shape.sourcesNotOpened === undefined
+      ? [opened, notOpened]
+      : [shape.sourcesNotOpened ? notOpened : opened];
   return keys.map((key) => sentencePattern(bodies[key] ?? ''));
 }
 
@@ -99,7 +109,11 @@ function pageLocale(html: string): Locale {
  * and the "How this was made" link, and "Sources for this page" must list at least one source, or
  * give a note of real length together with a link to the full register.
  */
-export function trustProblems(html: string): string[] {
+export function trustProblems(
+  html: string,
+  /** The page's generated record, by document id and language (post-WP-50a review pass 2, nit 2). */
+  recordOf?: (doc: string, locale: Locale) => { sourcesNotOpened?: boolean } | undefined,
+): string[] {
   const article = /<article\b[^>]*\bdata-kind="([^"]+)"/.exec(html);
   if (!article) return [];
   const problems: string[] = [];
@@ -124,9 +138,12 @@ export function trustProblems(html: string): string[] {
     const status = /<p class="st-ai-notice__status"[^>]*>([\s\S]*?)<\/p>/.exec(header)?.[1];
     if (status === undefined) problems.push('the AI notice has no status');
     const said = textOf(header);
+    const docId = /<article\b[^>]*\bdata-doc="([^"]+)"/.exec(html)?.[1];
+    const record = docId === undefined ? undefined : recordOf?.(docId, locale);
     const shape: NoticeShape = {
       pageSources: listsSources,
       humanChecked: status !== undefined && humanStatus(locale).test(textOf(status)),
+      ...(recordOf === undefined ? {} : { sourcesNotOpened: record?.sourcesNotOpened === true }),
     };
     const says = (candidate: NoticeShape): boolean =>
       noticeSentences(locale, candidate).some((sentence) => sentence.test(said));
@@ -138,7 +155,12 @@ export function trustProblems(html: string): string[] {
             : 'the AI notice says "the sources below" but the page lists none'
           : says({ ...shape, humanChecked: !shape.humanChecked })
             ? 'the AI notice and its status disagree on who checked the page'
-            : 'the AI notice does not say who wrote and checked the page',
+            : shape.sourcesNotOpened !== undefined &&
+                says({ ...shape, sourcesNotOpened: !shape.sourcesNotOpened })
+              ? shape.sourcesNotOpened
+                ? "the AI notice does not say that some sources were not opened, although the page's record does"
+                : "the AI notice says that some sources were not opened, but the page's record does not"
+              : 'the AI notice does not say who wrote and checked the page',
       );
     }
     if (!/href="[^"]*\/start\/how-this-was-made\/"/.test(header)) {
@@ -451,6 +473,36 @@ export function namesForCheck(repoRoot = path.resolve('.')): string[] {
   return [...new Set([...PROTECTED_NAMES, ...shared])].sort((a, b) => b.length - a.length);
 }
 
+/**
+ * The verification record of each generated document, by id and language (`src/data/<lang>/docs`),
+ * so the AI notice on the built page is held to it (post-WP-50a review pass 2, nit 2).
+ */
+export function docRecords(
+  repoRoot = path.resolve('.'),
+): (doc: string, locale: Locale) => { sourcesNotOpened?: boolean } | undefined {
+  const cache = new Map<string, { sourcesNotOpened?: boolean } | undefined>();
+  return (doc, locale) => {
+    const key = `${locale}:${doc}`;
+    if (!cache.has(key)) {
+      const file = path.join(
+        repoRoot,
+        'src',
+        'data',
+        locale,
+        'docs',
+        `${doc.replaceAll('/', '__')}.json`,
+      );
+      const json = existsSync(file)
+        ? (JSON.parse(readFileSync(file, 'utf8')) as {
+            verification?: { sourcesNotOpened?: boolean };
+          })
+        : undefined;
+      cache.set(key, json?.verification);
+    }
+    return cache.get(key);
+  };
+}
+
 /** Document pages the build must contain: every manifest document in every enabled locale. */
 export function expectedDocumentPages(repoRoot = path.resolve('.')): number {
   const manifest = JSON.parse(
@@ -470,6 +522,7 @@ export function runCli(
   const files = listFiles(root).filter((name) => name.endsWith('.html'));
   const shared = sharedStrings();
   const names = namesForCheck();
+  const recordOf = docRecords();
   let afPages = 0;
   for (const file of files) {
     const html = readFileSync(path.join(root, ...file.split('/')), 'utf8');
@@ -487,7 +540,7 @@ export function runCli(
       }
     }
     if (/<article\b[^>]*\bdata-kind="/.test(html)) documents++;
-    for (const problem of trustProblems(html)) {
+    for (const problem of trustProblems(html, recordOf)) {
       failures.push(`/${routeOfHtmlFile(file)}: ${problem}`);
     }
   }

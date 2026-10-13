@@ -114,23 +114,49 @@ describe('hasOwnSources', () => {
   });
 
   // Post-WP-50a review pass 1, minor 3: a page that lists a source the register marks "Not opened"
-  // may not say that an AI checked it against the sources below.
-  it('matches the corpus: a page with a source marked "Not opened" says so in its notice', () => {
+  // may not say that an AI checked it against the sources below. Pass 2, minor 4: nor may a page
+  // whose own English text says "Not opened" (the register, the change records).
+  it('matches the corpus: a page with a source or text marked "Not opened" says so', () => {
     const sources = realSources('en');
     const notOpened = (value: unknown): boolean => JSON.stringify(value).includes('Not opened');
     const entries = new Set(sources.entries.filter(notOpened).map((entry) => entry.id));
     const acts = new Set(sources.acts.filter(notOpened).map((act) => act.id));
     expect(entries.size).toBeGreaterThan(0);
+    const englishText = new Map(
+      realDocs()
+        .filter((doc) => doc.lang === 'en')
+        .map((doc) => [doc.id, notOpened(doc.blocks)]),
+    );
+    const flagged: string[] = [];
     for (const doc of realDocs()) {
       const unopened =
         doc.sources.entries.some((id) => entries.has(id)) ||
-        doc.sources.acts.some((id) => acts.has(id));
+        doc.sources.acts.some((id) => acts.has(id)) ||
+        englishText.get(doc.id) === true;
       const notice = trustNotice(doc.verification, hasOwnSources(doc.sources));
-      expect(
-        notice.bodyKey === 'trust.aiNotice.bodySourcesNotOpened',
-        `${doc.lang} ${doc.id}: lists a source marked "Not opened"`,
-      ).toBe(unopened);
+      const says =
+        notice.bodyKey === 'trust.aiNotice.bodySourcesNotOpened' ||
+        notice.bodyKey === 'trust.aiNotice.bodySourcesNotOpenedNoPageSources';
+      expect(says, `${doc.lang} ${doc.id}: lists a source or holds text marked "Not opened"`).toBe(
+        unopened,
+      );
+      if (says && doc.lang === 'en') flagged.push(doc.id);
     }
+    expect(flagged.sort()).toEqual([
+      'core/closing-as-a-sole-proprietor',
+      'lookup/sources',
+      'start/how-this-was-made',
+      'start/what-has-changed',
+    ]);
+  });
+
+  it('uses the register wording, with its latest date, on a page without sources of its own', () => {
+    const notice = trustNotice({ ...aiChecked, sourcesNotOpened: true }, false);
+    expect(notice.bodyKey).toBe('trust.aiNotice.bodySourcesNotOpenedNoPageSources');
+    expect(notice.meansKey).toBe('trust.status.aiCheckedNotOpenedMeans');
+    const text = t('en', notice.bodyKey, { date: '13 October 2026' });
+    expect(text).toContain('most recently on 13 October 2026');
+    expect(text).not.toContain('sources below');
   });
 
   it('confirms no document in the corpus claims a human review yet', () => {

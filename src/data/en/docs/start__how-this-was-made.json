@@ -1658,7 +1658,8 @@
     "status": "source"
   },
   "verification": {
-    "checkedOn": "2026-09-13",
+    "checkedOn": "2026-10-13",
+    "sourcesNotOpened": true,
     "status": "ai-checked"
   }
 }

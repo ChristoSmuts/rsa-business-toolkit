@@ -106,6 +106,7 @@ interface ParamNames {
   'doc.checklistCompleteNamed': 'title';
   'trust.aiNotice.body': 'date';
   'trust.aiNotice.bodySourcesNotOpened': 'date';
+  'trust.aiNotice.bodySourcesNotOpenedNoPageSources': 'date';
   'trust.aiNotice.bodyNoPageSources': 'date';
   'trust.aiNotice.bodyHumanChecked': 'date' | 'reviewer';
   'trust.aiNotice.bodyHumanCheckedNoPageSources': 'date' | 'reviewer';
