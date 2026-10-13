@@ -13,7 +13,7 @@ Project notes:
 
 - Framer Motion, `useSpring` and `useReducedMotion` examples do not apply: there is no UI framework. Read them as the CSS or WAAPI equivalent.
 - Easing curves and durations become tokens in `src/styles/tokens.css` (`--st-ease`, `--st-duration-*`), not literals in components.
-- Its reduced-motion rule ("gentler, not zero") differs from the current project rule, which sets durations to near zero. The design revamp (WP-50) decides which to keep; until then the project rule stands.
+- Its reduced-motion rule ("gentler, not zero") is now the project rule too (WP-50 decision D3, 13 October 2026): under `prefers-reduced-motion` opacity, colour and shadow changes stay at 120ms or less and every movement goes. `base.css` enforces it; `docs/design-system.md` ("Motion") has the details.
 - The two easing websites it names are for a human to browse. Agents must not fetch them.
 
 To update: copy the folder at a named commit, diff it, read every change, and commit it with this table updated in one `chore(deps)` commit.

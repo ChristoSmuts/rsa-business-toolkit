@@ -36,7 +36,7 @@ What WP-30 added: the device store (`src/lib/store.ts`, `src/lib/storage/`), sav
   - Phase 0 (audit) is done: `docs/reviews/WP-50-audit.md`, with the code audit, the reader-journey audit and `tests/e2e/visual.spec.ts`.
   - WP-50a (the audit's rule breaks and bugs, plus two found on the way) is merged after twelve review passes (11 and 12 clean). Its open minors are rows in `docs/reviews/backlog.md`.
   - Phase 1 (direction) is done and waits on the owner: `docs/work-packages/WP-50-directions.md`, mock pages at `/design-system/directions/a/` and `/b/` (noindex), screenshots in `docs/reviews/WP-50-directions/`. Decisions D1 to D5 are in its last table; the recommendation is A, gentler reduced motion, home element A1, illustrations stay. Two extra questions: may the phone header move the language switch into the menu, and may the contents column drop its underline until hover.
-  - After the decision: delete the other direction's mock, `src/styles/directions.css` and its Stylelint exemption, then start Phase 2 (tokens and base).
+  - Decided on 13 October 2026 (direction A, gentler reduced motion, home element A1, illustrations stay). The mocks are deleted. Phase 2 (tokens and base) is built and waits for its review passes; Phase 3 (page types and components) is next.
 
 - **P4a, the accuracy review against official sources**: the cloud environment cannot reach SARS, CIPC, gov.za, SAFLII or the Information Regulator.
 - **WebKit**: run the WebKit project locally (merge checklist).

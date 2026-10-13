@@ -18,7 +18,7 @@ import '../styles/utilities.css';
 import '../styles/print.css';
 import tokensSource from '../styles/tokens.css?raw';
 import themeInitUrl from '../scripts/theme-init.js?url';
-import frauncesLatin from '@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2?url';
+import frauncesLatin from '@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2?url';
 import instrumentLatin from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
 import { href } from '../lib/paths';
 import { parseTokenBlocks } from '../scripts/color';
@@ -94,6 +94,20 @@ const themeColorDark = tokens.dark['bg'];
       data-st-scheme="dark"
       data-st-colour={themeColorDark}
     />
+    {/*
+     * Font preloads. theme-init.js copies the template into <head> unless low data mode is on,
+     * so a reader who asked for less data does not download fonts the page will not use (WP-50
+     * audit, item 5). The browser's preload scanner skips <template> content, and <noscript>
+     * content when scripts run. Without JavaScript the <noscript> copy preloads them.
+     */}
+    <template data-st-preload>
+      <link rel="preload" href={frauncesLatin} as="font" type="font/woff2" crossorigin />
+      <link rel="preload" href={instrumentLatin} as="font" type="font/woff2" crossorigin />
+    </template>
+    <noscript>
+      <link rel="preload" href={frauncesLatin} as="font" type="font/woff2" crossorigin />
+      <link rel="preload" href={instrumentLatin} as="font" type="font/woff2" crossorigin />
+    </noscript>
     <script is:inline src={themeInitUrl}></script>
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
@@ -103,8 +117,6 @@ const themeColorDark = tokens.dark['bg'];
       <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
     ))}
     <link rel="icon" type="image/svg+xml" href={href('en', 'favicon.svg')} />
-    <link rel="preload" href={frauncesLatin} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={instrumentLatin} as="font" type="font/woff2" crossorigin />
     <slot name="head" />
   </head>
   <body class={bodyClass}>

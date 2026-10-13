@@ -36,7 +36,11 @@
   --st-primary-soft: #e3f0e8;
   --st-on-primary-soft: #174730;
 
-  /* Accent: rooibos */
+  /*
+   * Accent: rooibos. Since WP-50 (direction A) it is the guide's voice and nothing else: the
+   * "In plain words" callout's edge, label and background. It is no longer the focus ring and no
+   * chrome uses it; a new use needs a reason in docs/design-system.md.
+   */
   --st-accent: #b5561a;
   --st-accent-text: #9a4a10;
   --st-on-accent: #fff;
@@ -79,7 +83,14 @@
   /* Aliases (resolve against the active palette, never redefine per theme) */
   --st-link: var(--st-primary);
   --st-link-hover: var(--st-primary-hover);
-  --st-focus: var(--st-accent);
+
+  /*
+   * The focus ring is ink in both themes (WP-50, direction A): 16.20:1 on the page in light,
+   * 15.75:1 in dark, and at least 9.33:1 on every tint and soft background, so it is never the
+   * pair that limits a palette change. It is the text colour, not the link colour, so a focused
+   * link still shows a ring that differs from its own colour.
+   */
+  --st-focus: var(--st-text);
   --st-selection-bg: var(--st-primary-soft);
   --st-danger-solid-hover: color-mix(in oklab, var(--st-danger-solid) 82%, var(--st-text));
 
@@ -92,12 +103,11 @@
    * apart. Separation is measured in OKLab (ΔE_OK) by tests/unit/tokens-contrast.test.ts,
    * which requires >= 0.025 for every pair in both themes.
    *
-   * The ceiling is accessibility, not taste: the light focus ring on a tint is the tightest
-   * pair in the whole system (3.37:1 to 3.85:1 against a 3:1 minimum), and a tint gets darker
-   * as its strength rises. The light values below were chosen so that no text, link or focus
-   * pair loses any margin at all compared with a flat 18%; Paperwork and Your kind of business
-   * are *weaker* than the default, which both separates them and raises their focus contrast.
-   * Dark has far more headroom (worst focus pair 5.10:1), so three hues move there.
+   * The strengths were chosen while the focus ring was rooibos, when the light ring on a tint
+   * was the tightest pair in the system (3.37:1). Since WP-50 the ring is ink (at least 11.90:1
+   * light and 9.33:1 dark on every tint), so the ring no longer caps them; the tightest tint pair
+   * is now a link on a tint (5.63:1 light, 5.49:1 dark). The values are unchanged: no text, link
+   * or focus pair loses margin against a flat 18%.
    * Measured worst pairs: light 0.0280 (Start here vs Core), dark 0.0389 (Core vs types).
    * See docs/design-system.md, "Section tints".
    */
@@ -156,13 +166,17 @@
     0 8px 24px color-mix(in oklab, var(--st-shadow-ink) var(--st-shadow-strength-2), transparent);
 
   /* Typography */
-  --st-font-display: 'Fraunces Variable', 'Fraunces fallback', georgia, serif;
+  --st-font-display:
+    'Fraunces Variable', 'Fraunces fallback', 'Fraunces fallback Noto Serif',
+    'Fraunces fallback Times', georgia, serif;
   --st-font-body:
-    'Instrument Sans Variable', 'Instrument Sans fallback', system-ui, 'Segoe UI', roboto, arial,
-    sans-serif;
-  --st-font-display-fallback: 'Fraunces fallback', georgia, serif;
+    'Instrument Sans Variable', 'Instrument Sans fallback', 'Instrument Sans fallback Roboto',
+    system-ui, 'Segoe UI', roboto, arial, sans-serif;
+  --st-font-display-fallback:
+    'Fraunces fallback', 'Fraunces fallback Noto Serif', 'Fraunces fallback Times', georgia, serif;
   --st-font-body-fallback:
-    'Instrument Sans fallback', system-ui, 'Segoe UI', roboto, arial, sans-serif;
+    'Instrument Sans fallback', 'Instrument Sans fallback Roboto', system-ui, 'Segoe UI', roboto,
+    arial, sans-serif;
   --st-font-mono:
     ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', 'Liberation Mono', menlo, consolas, monospace;
 
@@ -182,6 +196,12 @@
   --st-weight-medium: 500;
   --st-weight-semibold: 600;
   --st-weight-bold: 700;
+
+  /*
+   * Inert since WP-50 Phase 2: the wght-only Fraunces files have no optical-size axis, so a
+   * `font-variation-settings: 'opsz' …` that reads these does nothing. Kept so the component
+   * rules that still read them (the logo, the design-system page) stay valid until Phase 3.
+   */
   --st-opsz-display: 144;
   --st-opsz-heading: 48;
   --st-measure: 68ch;
@@ -206,7 +226,7 @@
 
   /* Borders and focus */
   --st-border-width: 1px;
-  --st-focus-width: 2px;
+  --st-focus-width: 3px;
   --st-focus-offset: 2px;
   --st-stripe-width: 4px;
 
@@ -281,8 +301,8 @@
      * Per-hue tint strengths for dark. At a flat 22% the Start here tint was a twin of Your
      * kind of business (ΔE_OK 0.0194) and Paperwork a twin of Core (0.0126). Raising Start and
      * Paperwork and easing Branding lifts the worst pair to 0.0389, with the worst focus ring
-     * still 5.10:1 against a 3:1 minimum. Types returns to the default here: its 12% is a
-     * light-only value.
+     * 9.33:1 against a 3:1 minimum. Types returns to the default here: its 12% is a light-only
+     * value.
      */
     --st-tint-strength-start: 26%;
     --st-tint-strength-branding: 16%;
@@ -340,8 +360,8 @@
      * Per-hue tint strengths for dark. At a flat 22% the Start here tint was a twin of Your
      * kind of business (ΔE_OK 0.0194) and Paperwork a twin of Core (0.0126). Raising Start and
      * Paperwork and easing Branding lifts the worst pair to 0.0389, with the worst focus ring
-     * still 5.10:1 against a 3:1 minimum. Types returns to the default here: its 12% is a
-     * light-only value.
+     * 9.33:1 against a 3:1 minimum. Types returns to the default here: its 12% is a light-only
+     * value.
      */
     --st-tint-strength-start: 26%;
     --st-tint-strength-branding: 16%;
@@ -351,11 +371,15 @@
   }
 }
 
+/*
+ * Reduced motion: gentler, not zero (WP-50, D3). Every duration is at most 120ms and nothing lifts;
+ * base.css drops every transition that would move something, so what is left is a short fade or
+ * colour change.
+ */
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --st-duration-fast: 0ms;
-    --st-duration-base: 0ms;
-    --st-duration-slow: 0ms;
+    --st-duration-base: var(--st-duration-fast);
+    --st-duration-slow: var(--st-duration-fast);
     --st-lift: 0px;
   }
 }

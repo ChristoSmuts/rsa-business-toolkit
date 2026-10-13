@@ -9,8 +9,9 @@
  *
  * Its link gets `aria-current="location"`; below 1280px the "Now reading" pill shows its title once
  * the list itself has scrolled away, steps aside for a heading coming up under it, and links back to
- * the list (opening it). Nothing animates that `prefers-reduced-motion` would object to: the pill's fade uses `--st-duration-base`, which
- * the tokens set to 0 under reduced motion, and nothing scrolls by itself.
+ * the list (opening it). Nothing animates that `prefers-reduced-motion` would object to: the pill
+ * only fades in, a keyframe animation that base.css finishes at once under reduced motion, and
+ * nothing scrolls by itself.
  */
 import { interpolate } from '../i18n';
 

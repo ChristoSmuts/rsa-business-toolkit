@@ -657,6 +657,14 @@ test.describe('language', () => {
       await page.goto('./', { waitUntil: 'commit' });
       const banner = page.locator('st-lang-banner[data-locale="af"]');
       await expect(banner).toBeVisible();
+      // Measure once the stylesheets apply (the fonts are still held). At `commit` the unstyled
+      // element can already be visible, 50px tall where the styled banner is 70px, and the test
+      // then failed about once in twenty runs (WP-50 Phase 2 review pass 1, minor 4).
+      await page.waitForFunction(() =>
+        [...document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]')].every(
+          (link) => link.sheet !== null,
+        ),
+      );
       const before = (await banner.boundingBox())?.height ?? 0;
       release();
       await page.waitForLoadState('load');
@@ -738,10 +746,98 @@ test.describe('motion', () => {
     const again = page.locator('[data-steps] > li:visible').nth(1).locator('[data-mark]');
     await expect(again).toBeVisible();
     await again.click();
-    const duration = await page
-      .locator('[data-progress] .st-ring__value')
-      .evaluate((arc) => parseFloat(getComputedStyle(arc).transitionDuration));
-    expect(duration).toBeLessThanOrEqual(0.001);
+    // Gentler, not zero (WP-50, D3): durations stay short under reduced motion, and base.css drops
+    // every transition that moves something. Drawing the arc is movement, so it jumps.
+    const arc = page.locator('[data-progress] .st-ring__value');
+    const style = await arc.evaluate((element) => {
+      const computed = getComputedStyle(element);
+      return { property: computed.transitionProperty, duration: computed.transitionDuration };
+    });
+    expect(style.property).not.toMatch(/stroke-dashoffset|transform|\ball\b/);
+    expect(
+      Math.max(...style.duration.split(',').map((value) => parseFloat(value))),
+    ).toBeLessThanOrEqual(0.12);
+    expect(await ringMotion(page)).toEqual([]);
+  });
+
+  test('reduced motion keeps short fades and colour changes and drops every movement', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('./');
+    // A card lifts and shadows on hover, a button changes colour and presses, a link thickens.
+    for (const selector of ['.st-card', '.st-btn', 'main a']) {
+      const style = await page
+        .locator(selector)
+        .first()
+        .evaluate((element) => {
+          const computed = getComputedStyle(element);
+          return { property: computed.transitionProperty, duration: computed.transitionDuration };
+        });
+      const properties = style.property.split(',').map((value) => value.trim());
+      expect(properties, selector).toContain('opacity');
+      expect(properties, selector).toContain('box-shadow');
+      for (const moving of [
+        'transform',
+        'translate',
+        'scale',
+        'rotate',
+        'all',
+        'stroke-dashoffset',
+      ])
+        expect(properties, selector).not.toContain(moving);
+      expect(
+        Math.max(...style.duration.split(',').map((value) => parseFloat(value))),
+        selector,
+      ).toBeLessThanOrEqual(0.12);
+    }
+    // Nothing lifts.
+    expect(
+      await page.evaluate(() =>
+        getComputedStyle(document.documentElement).getPropertyValue('--st-lift').trim(),
+      ),
+    ).toBe('0px');
+  });
+
+  /*
+   * WP-50 Phase 2 review pass 1, minor 2: the reduced-motion transition list once held `visibility`,
+   * so a button hidden that way stayed visible and clickable for 120ms. Hiding is instant.
+   */
+  test('under reduced motion a button that is hidden is gone at once', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('templates/invoice/');
+    await page.waitForLoadState('load');
+    // No transition of visibility, display or overlay is running anywhere on the page.
+    const discrete = await page.evaluate(() =>
+      document
+        .getAnimations()
+        .filter((animation) => animation instanceof CSSTransition)
+        .map((animation) => (animation as CSSTransition).transitionProperty)
+        .filter((property) => ['visibility', 'display', 'overlay'].includes(property)),
+    );
+    expect(discrete).toEqual([]);
+
+    const button = page.locator('main .st-btn:visible').first();
+    await button.scrollIntoViewIfNeeded();
+    const after = await button.evaluate(async (element) => {
+      let clicks = 0;
+      element.addEventListener('click', () => (clicks += 1));
+      const box = element.getBoundingClientRect();
+      (element as HTMLElement).style.visibility = 'hidden';
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      const hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
+      if (hit instanceof HTMLElement) hit.click();
+      return {
+        visibility: getComputedStyle(element).visibility,
+        hit: hit !== null && element.contains(hit),
+        clicks,
+        property: getComputedStyle(element).transitionProperty,
+      };
+    });
+    expect(after.visibility).toBe('hidden');
+    expect(after.hit).toBe(false);
+    expect(after.clicks).toBe(0);
+    expect(after.property).not.toMatch(/visibility|display|overlay|\ball\b/);
   });
 
   test('a tick moves the checklist ring, and opening the page does not', async ({ page }) => {

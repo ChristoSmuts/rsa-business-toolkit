@@ -7,8 +7,8 @@
  * page (a step marked done, a tick) moves the arc, in `--st-duration-base`. `drawRing()`
  * (`src/scripts/ring.ts`) sets `data-animate` after its first drawing, so a ring that the script
  * fills in after load does not animate either. The top bar's ring drew in for 960ms on every page
- * view before (WP-50 audit, `review-animations` verdict Block). Reduced motion sets the duration
- * to 0.
+ * view before (WP-50 audit, `review-animations` verdict Block). Under reduced motion the arc jumps:
+ * base.css keeps only transitions that move nothing, and drawing the arc is movement.
  */
 interface Props {
   value: number;
