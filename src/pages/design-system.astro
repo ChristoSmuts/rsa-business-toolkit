@@ -808,6 +808,34 @@ const trust = {
           <Icon name="lucide:triangle-alert" size="1em" /> A VAT number has 10 digits.
         </p>
       </div>
+
+      <h3>Quiet navigation links</h3>
+      <div class="ds-demo st-stack st-stack-sm">
+        <p>
+          <code>.st-quiet-links</code> on a list of links (the contents column, a menu): no
+          underline until hover or focus, and the base focus ring. Links in running text, like
+          <a href={href('en', 'core/')}>this one</a>, stay underlined.
+        </p>
+        <nav class="st-quiet-links" aria-label="Quiet links demo" data-ds-quiet-links>
+          <ul class="ds-quiet-list">
+            <li>
+              <a class="st-link-block" href={href('en', 'core/register/')}>
+                Register your business
+              </a>
+            </li>
+            <li>
+              <a class="st-link-block" href={href('en', 'core/tax-and-sars/')}>
+                Tax and SARS
+              </a>
+            </li>
+            <li>
+              <a class="st-link-block" href={href('en', 'business-types/')}>
+                Your kind of business
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </section>
 
     <section class="ds-section">
@@ -1611,6 +1639,12 @@ const trust = {
     font-family: var(--st-font-body);
     font-size: var(--st-text-xl);
     letter-spacing: 0;
+  }
+
+  .ds-quiet-list {
+    display: grid;
+    padding: 0;
+    list-style: none;
   }
 
   .ds-diacritics {

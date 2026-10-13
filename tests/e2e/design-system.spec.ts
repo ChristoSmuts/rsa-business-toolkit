@@ -970,6 +970,57 @@ test.describe('design system page', () => {
     }
   });
 
+  /*
+   * WP-50 (decided 13 October 2026): a list of navigation links shows its underline only on hover
+   * and focus. The ring is the base one (3px ink), and a link in running text keeps its underline.
+   */
+  test('quiet navigation links: no underline until hover or focus, ring intact', async ({
+    page,
+  }, testInfo) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto(DS);
+    const quiet = page.locator('[data-ds-quiet-links] a').first();
+    const look = (link: typeof quiet) =>
+      link.evaluate((el) => {
+        const style = getComputedStyle(el);
+        return {
+          line: style.textDecorationLine,
+          colour: style.textDecorationColor,
+          text: style.color,
+          outline: style.outlineStyle,
+          outlineWidth: Number.parseFloat(style.outlineWidth),
+          outlineColour: style.outlineColor,
+          ink: getComputedStyle(document.documentElement).color,
+        };
+      });
+    const transparent = (colour: string): boolean =>
+      colour === 'transparent' || /rgba\([^)]*,\s*0\)$/.test(colour) || / \/ 0\)$/.test(colour);
+
+    await page.mouse.move(0, 0);
+    const resting = await look(quiet);
+    expect(resting.line).toContain('underline');
+    expect(transparent(resting.colour), resting.colour).toBe(true);
+
+    // A link in running text beside it keeps its underline.
+    const prose = page.locator('[data-ds-quiet-links]').locator('xpath=..').locator('p a');
+    const inText = await look(prose);
+    expect(transparent(inText.colour), inText.colour).toBe(false);
+
+    if (testInfo.project.name !== 'mobile') {
+      await quiet.hover();
+      expect(transparent((await look(quiet)).colour)).toBe(false);
+      await page.mouse.move(0, 0);
+    }
+
+    await page.keyboard.press('Tab');
+    await quiet.focus();
+    const focused = await look(quiet);
+    expect(transparent(focused.colour), focused.colour).toBe(false);
+    expect(focused.outline).toBe('solid');
+    expect(focused.outlineWidth).toBeGreaterThanOrEqual(3);
+    expect(focused.outlineColour).toBe(focused.ink);
+  });
+
   test('disabled and loading buttons ignore activation and announce only the status', async ({
     page,
   }) => {
