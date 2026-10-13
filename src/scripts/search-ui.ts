@@ -128,7 +128,11 @@ export class SearchDialogController implements DialogController {
   opened(): void {
     // The chip only for a reader with saved answers; it starts off on every open.
     const types = profileBusinessTypes();
-    if (this.#filters) this.#filters.hidden = types === null;
+    if (this.#filters) {
+      this.#filters.hidden = types === null;
+      // From now on `hidden` decides; until then the row is kept for a reader with answers.
+      this.#filters.dataset['ready'] = '';
+    }
     this.#mine?.setAttribute('aria-pressed', 'false');
     // Low data: the index is fetched when the reader types, not when the dialog opens.
     if (!this.#client.ready && !(this.#deps.settings ?? searchSettings()).lowData) {

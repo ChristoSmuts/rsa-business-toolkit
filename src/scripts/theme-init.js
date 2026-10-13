@@ -16,7 +16,9 @@
     lang = window.localStorage.getItem('st.lang');
     profile = window.localStorage.getItem('st.profile.v1');
   } catch {
-    // Storage blocked: follow the system theme, with web fonts.
+    // Storage blocked: follow the system theme, with web fonts, and show the storage warnings from
+    // the first paint (utilities.css), so nothing moves when their script runs (WP-50a pass 11, m4).
+    root.setAttribute('data-st-storage', 'blocked');
   }
   if (lowData === 'true') root.setAttribute('data-low-data', '');
   if (answers(profile)) root.setAttribute('data-st-profile', '');

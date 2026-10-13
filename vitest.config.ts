@@ -62,8 +62,8 @@ export default getViteConfig({
       /**
        * The content pipeline decides what ships, so every file it owns has a floor just under the
        * measurement: a floor with slack in it lets code stop being covered without the gate noticing.
-       * Branches sit lower than the C5 target of 90 because of `report.ts`, a developer report that is
-       * not shipped; `docs/reviews/backlog.md` records that shortfall.
+       * Branches are held at the C5 target of 90 (measured 91 once `report.ts`, the developer report,
+       * got tests of its own: review WP-10 pass 3, m1).
        *
        * The two CLI entry modules are floored at 0 rather than excluded, so they stay measured and
        * visible in the report. Neither can be unit-tested as it stands: importing the module runs
@@ -73,7 +73,7 @@ export default getViteConfig({
        * and `content:drift`. `docs/reviews/backlog.md` records the gap.
        */
       thresholds: {
-        'scripts/content/**': { statements: 97, branches: 85, functions: 98, lines: 97 },
+        'scripts/content/**': { statements: 97, branches: 90, functions: 98, lines: 97 },
         'src/lib/content/**': { statements: 85, branches: 72, functions: 100, lines: 85 },
         // WP-30: what the site keeps on the device. The brief's floor is 90%; measured with the
         // unit and dom projects together (the store's tests need a real `localStorage`).

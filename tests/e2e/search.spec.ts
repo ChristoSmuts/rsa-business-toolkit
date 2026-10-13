@@ -499,3 +499,57 @@ test.describe('the first open of the search dialog keeps every key', () => {
     },
   );
 });
+
+/**
+ * WP-33 review pass 21, minor 1: for a reader with saved answers, the "My business types" chip
+ * appeared only when the results code arrived and pushed the common questions down 64px. Its row
+ * is now kept from the start; and no e2e test pressed the chip.
+ */
+test.describe('the "My business types" chip', () => {
+  test('keeps its row while the results code loads, then filters when pressed', async ({
+    page,
+    baseURL,
+    seedStorage,
+  }) => {
+    await seedStorage({
+      'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+    });
+    const release = await holdRequests(page, baseURL, (url) =>
+      /\/_astro\/search-ui\.[^/]+\.js$/.test(url.pathname),
+    );
+    // The index too: when it lands the "Loading search…" line clears, which is not the chip.
+    const releaseIndex = await holdRequests(page, baseURL, (url) =>
+      /\/search\/[a-z]{2,3}\.[0-9a-f]{10}\.json$/.test(url.pathname),
+    );
+    await open(page, DOC);
+    await page.waitForFunction(() => document.documentElement.hasAttribute('data-st-profile'));
+    await page.locator('a.st-topbar__search').click();
+    await expect(dialog(page)).toBeVisible();
+    const chip = dialog(page).getByRole('button', { name: 'My business types' });
+    const question = dialog(page).locator('[data-search-empty] a').first();
+    await expect(question).toBeVisible();
+    await expect(chip).toBeHidden();
+    const before = (await question.boundingBox())?.y ?? Number.NaN;
+    release();
+    await expect(chip).toBeVisible();
+    await expect(chip).toHaveAttribute('aria-pressed', 'false');
+    expect((await question.boundingBox())?.y ?? Number.NaN).toBeCloseTo(before, 0);
+    releaseIndex();
+
+    // Another kind of business's page among the results, then none once the chip is pressed.
+    const hrefs = () =>
+      page
+        .getByRole('option')
+        .evaluateAll((options) => options.map((option) => option.getAttribute('href') ?? ''));
+    const otherType = (href: string): boolean =>
+      /\/business-types\/(?!food\/|pick-your-business-type\/)[^/]+\//.test(href);
+    await field(page).fill('stock');
+    await expect(page.getByRole('option').first()).toBeVisible();
+    expect((await hrefs()).some(otherType), (await hrefs()).join('\n')).toBe(true);
+    await chip.click();
+    await expect(chip).toHaveAttribute('aria-pressed', 'true');
+    await expect.poll(async () => (await hrefs()).filter(otherType)).toEqual([]);
+    await expect(page.getByRole('option').first()).toBeVisible();
+    await expect(dialog(page).getByRole('status')).toContainText(/result/);
+  });
+});

@@ -650,8 +650,8 @@ export const ManifestSchema = z.strictObject({
     LangSchema,
     z.strictObject({ status: LangStatusSchema, docCount: z.number().int().nonnegative() }),
   ),
-  /** Filled by the search build (WP-33); absent until then. */
-  searchIndex: z.partialRecord(LangSchema, z.string()).optional(),
+  // No search index names here: `content:build` owns this file and `content:drift` checks it, so
+  // the search build records them in `src/generated/search-index.json` instead (ADR 0003).
 });
 export type Manifest = z.infer<typeof ManifestSchema>;
 

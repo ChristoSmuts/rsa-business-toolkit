@@ -136,6 +136,14 @@
   display: none;
 }
 
+/* Until the results code has decided (`data-ready`), a reader with saved answers
+   (`html[data-st-profile]`, set by `theme-init.js`) gets the chip's row, unseen, so the common
+   questions do not move down when it shows (WP-33 review pass 21, minor 1: 64px). */
+html[data-st-profile] .st-search-dialog__filters[hidden]:not([data-ready]) {
+  display: flex !important;
+  visibility: hidden;
+}
+
 .st-search-chip {
   min-block-size: var(--st-target);
   padding-inline: var(--st-space-3);

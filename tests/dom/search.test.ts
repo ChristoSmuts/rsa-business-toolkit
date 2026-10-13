@@ -694,6 +694,8 @@ describe('the business-type chip', () => {
     document.querySelector('dialog')!.showModal();
     controller.opened();
     expect(document.querySelector<HTMLElement>('[data-search-filters]')!.hidden).toBe(true);
+    // Marked decided, so the row kept for a reader with answers goes (review pass 21, minor 1).
+    expect(document.querySelector<HTMLElement>('[data-search-filters]')!.dataset['ready']).toBe('');
   });
 
   it("keeps only the reader's business types, and results for every type, while pressed", async () => {

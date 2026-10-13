@@ -169,3 +169,58 @@ test.describe('a template: nothing moves when its script arrives, wherever the r
     }
   }
 });
+
+/**
+ * WP-50a review pass 11, m4: with storage blocked, the template's storage warning appeared above the
+ * form only when the script ran, moving the first field down 97px (en) and 123px (af).
+ * `theme-init.js` now marks the page and the warning shows from the first paint.
+ */
+test.describe('a template with storage blocked: the warning is there before the script', () => {
+  for (const lang of ['en', 'af'] as const) {
+    test(`${lang} invoice, 360×740`, async ({ page, baseURL }) => {
+      await page.setViewportSize({ width: 360, height: 740 });
+      await page.addInitScript(() => {
+        Object.defineProperty(window, 'localStorage', {
+          configurable: true,
+          get() {
+            throw new DOMException('The operation is insecure.', 'SecurityError');
+          },
+        });
+      });
+      let open: () => void = () => {};
+      const gate = new Promise<void>((resolve) => {
+        open = resolve;
+      });
+      await routeSameOrigin(
+        page,
+        baseURL,
+        (target) =>
+          /\/_astro\/.+\.js$/.test(target.pathname) && !target.pathname.includes('theme-init'),
+        async (route) => {
+          await gate;
+          await route.continue();
+        },
+      );
+      await page.goto(`${lang === 'en' ? '' : 'af/'}templates/invoice/`, { waitUntil: 'commit' });
+      await expect(page.locator('footer.st-footer')).toBeAttached();
+      await page.evaluate(() => document.fonts.ready);
+      const tool = page.locator('st-template-form');
+      const warning = tool.locator('st-storage-notice:not([data-show])');
+      const saved = tool.locator('st-storage-notice[data-show="available"]');
+      const field = tool.locator('.st-tform input').first();
+      await expect(tool).not.toHaveAttribute('data-ready', /.*/);
+      await expect(warning).toBeVisible();
+      await expect(saved).toBeHidden();
+      const before = (await field.boundingBox())?.y ?? Number.NaN;
+      open();
+      await expect(tool).toHaveAttribute('data-ready', '');
+      await page.evaluate(
+        () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+      );
+      await expect(warning).toBeVisible();
+      await expect(saved).toBeHidden();
+      const after = (await field.boundingBox())?.y ?? Number.NaN;
+      expect(Math.abs(after - before)).toBeLessThanOrEqual(1);
+    });
+  }
+});

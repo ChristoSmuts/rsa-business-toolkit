@@ -20,6 +20,7 @@ import {
   profileQuery,
   QUERY,
   stageAllowed,
+  TYPE_CHOICES,
   type EntityChoice,
   type Profile,
   type StageChoice,
@@ -28,6 +29,36 @@ import {
 import { pathView, profile, storageAvailable } from '../lib/profile-store';
 import { viewOf } from './path-data';
 import './storage-notice';
+
+/**
+ * The key under which the tick order is kept in `history.state`. After Back without the
+ * back/forward cache the browser puts the ticks back in page order with no events, so without it
+ * the primary type could change without a word (WP-50a review pass 8, m1).
+ */
+export const ORDER_STATE_KEY = 'stWizardOrder';
+
+/** The tick order kept in this history entry, or `[]`. */
+function rememberedOrder(): TypeChoice[] {
+  const state: unknown = window.history.state;
+  if (!state || typeof state !== 'object') return [];
+  const order: unknown = (state as Record<string, unknown>)[ORDER_STATE_KEY];
+  if (!Array.isArray(order)) return [];
+  return order.filter(
+    (type): type is TypeChoice =>
+      typeof type === 'string' && (TYPE_CHOICES as readonly string[]).includes(type),
+  );
+}
+
+/** Keeps the tick order in this history entry, next to whatever else the entry holds. */
+function rememberOrder(order: readonly TypeChoice[]): void {
+  const state: unknown = window.history.state;
+  const base = state && typeof state === 'object' ? (state as Record<string, unknown>) : {};
+  try {
+    window.history.replaceState({ ...base, [ORDER_STATE_KEY]: [...order] }, '');
+  } catch {
+    // A browser that refuses (too many calls in a row) only loses the order after Back.
+  }
+}
 
 export class StWizard extends HTMLElement {
   #form: HTMLFormElement | null = null;
@@ -48,6 +79,7 @@ export class StWizard extends HTMLElement {
       const value = input.value as TypeChoice;
       this.#order = this.#order.filter((type) => type !== value);
       if (input.checked) this.#order.push(value);
+      rememberOrder(this.#order);
     }
     this.#update();
   };
@@ -228,9 +260,13 @@ export class StWizard extends HTMLElement {
       fill(QUERY.type, (value) => saved.businessTypes.includes(value as TypeChoice));
       fill(QUERY.stage, (value) => value === saved.stage);
     }
-    // Ticks the reader or the browser gave are taken in page order.
-    this.#order =
+    // Ticks the reader or the browser gave are taken in page order, unless this history entry
+    // remembers the order they were ticked in (after Back, `rememberOrder`): that comes first, and
+    // `#currentOrder` keeps only what still shows ticked.
+    const fallback =
       !saved || keepTypes ? (this.#checked(QUERY.type) as TypeChoice[]) : [...saved.businessTypes];
+    const remembered = rememberedOrder();
+    this.#order = [...remembered, ...fallback.filter((type) => !remembered.includes(type))];
   }
 
   /** The first step up to `last` (inclusive) that has no valid answer, or -1. */

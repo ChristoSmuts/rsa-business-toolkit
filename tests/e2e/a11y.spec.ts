@@ -226,8 +226,16 @@ async function analyse(page: Page, testInfo: TestInfo, name: string, label: stri
 test.describe('axe with the search dialog open', () => {
   for (const theme of THEMES) {
     for (const route of ['core/register/', 'af/business-types/vehicle-dealer/']) {
-      test(`${theme} theme: /${route}`, async ({ page, setTheme }, testInfo) => {
+      test(`${theme} theme: /${route}`, async ({ page, setTheme, seedStorage }, testInfo) => {
         await setTheme(theme);
+        // The Afrikaans run has saved answers, so axe also sees the "My business types" chip
+        // (WP-33 review pass 21, minor 1).
+        const withProfile = route.startsWith('af/');
+        if (withProfile) {
+          await seedStorage({
+            'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+          });
+        }
         const response = await page.goto(routeUrl(route));
         expect(response?.status(), 'HTTP status').toBe(200);
         await page.evaluate(async () => {
@@ -236,6 +244,7 @@ test.describe('axe with the search dialog open', () => {
         await page.keyboard.press('/');
         const dialog = page.locator('dialog.st-search-dialog');
         await expect(dialog).toBeVisible();
+        if (withProfile) await expect(dialog.locator('[data-search-mine]')).toBeVisible();
         await analyse(page, testInfo, attachmentName(`${route}-empty`, theme), `/${route} (empty)`);
 
         await page.getByRole('combobox').fill('VAT264');

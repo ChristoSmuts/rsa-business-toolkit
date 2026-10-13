@@ -423,6 +423,18 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
   }
 
   /*
+   * The same from the first paint when `theme-init.js` found storage blocked: the saved line will
+   * hide, so the slot keeps no room for the print line either, and the warning (`utilities.css`)
+   * shows in its place (review pass 11, m4). If the script then fails, the print line comes back.
+   */
+  html[data-st-storage='blocked']:not([data-st-script-failed~='TemplateTool'])
+    st-template-form:not([data-ready])
+    .st-tslot:has(> st-storage-notice[data-show='available'])
+    > .no-js-only.st-hint {
+    display: none !important;
+  }
+
+  /*
    * No visible tabs until the script has run, in the room they will take (an invisible element
    * takes no taps or focus).
    */
