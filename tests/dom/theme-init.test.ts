@@ -96,6 +96,30 @@ for (const [label, script] of [
       });
     });
 
+    // WP-50a review pass 11, m4: the storage warning shows from the first paint, not when the
+    // template's script runs and pushes the form down.
+    describe('theme-init and blocked storage', () => {
+      afterEach(() => {
+        vi.unstubAllGlobals();
+        document.documentElement.removeAttribute('data-st-storage');
+      });
+
+      it('marks the page when reading storage throws', () => {
+        vi.stubGlobal('localStorage', {
+          getItem: () => {
+            throw new DOMException('The operation is insecure.', 'SecurityError');
+          },
+        });
+        run();
+        expect(document.documentElement.getAttribute('data-st-storage')).toBe('blocked');
+      });
+
+      it('leaves it unmarked when storage works', () => {
+        run();
+        expect(document.documentElement.hasAttribute('data-st-storage')).toBe(false);
+      });
+    });
+
     describe('theme-init and scripts that fail to load (review WP-31 pass 5, nit 1)', () => {
       it('names each failed script, so only the parts that need it give up', () => {
         document.documentElement.removeAttribute('data-st-script-failed');

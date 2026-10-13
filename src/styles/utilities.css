@@ -47,6 +47,21 @@ html.js .no-js-only:not([data-enhance]:not([data-ready]) *) {
 }
 
 /*
+ * Storage blocked: `theme-init.js` sets `data-st-storage="blocked"` when its own read throws, and
+ * `<st-storage-notice>` will then show its warnings and hide the lines that say things are saved.
+ * Doing the same from the first paint means nothing moves when its script runs: the template's
+ * warning pushed the first field down 97px (WP-50a review pass 11, m4). A device that reads but
+ * cannot write is only found by the script, as before.
+ */
+html[data-st-storage='blocked'] st-storage-notice[hidden]:not([data-show]) {
+  display: block !important;
+}
+
+html[data-st-storage='blocked'] st-storage-notice[data-show='available'] {
+  display: none !important;
+}
+
+/*
  * A part that does not apply to the reader, while "Only what applies to me" is on
  * (`src/scripts/applies.ts`). It stays in the page; only its display goes.
  */
