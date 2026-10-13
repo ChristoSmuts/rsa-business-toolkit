@@ -171,5 +171,5 @@ html[data-st-profile] .st-search-dialog__filters[hidden]:not([data-ready]) {
 
 .st-search-chip:focus-visible {
   outline: var(--st-focus-width) solid var(--st-focus);
-  outline-offset: 2px;
+  outline-offset: var(--st-focus-offset);
 }

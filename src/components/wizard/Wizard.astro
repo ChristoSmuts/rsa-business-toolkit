@@ -491,8 +491,8 @@ const results = singleChoices().map((choice) => ({
   }
 
   .st-wizard__step h2:focus-visible {
-    outline: 2px solid var(--st-focus);
-    outline-offset: 2px;
+    outline: var(--st-focus-width) solid var(--st-focus);
+    outline-offset: var(--st-focus-offset);
   }
 
   .st-wizard__fieldset {
