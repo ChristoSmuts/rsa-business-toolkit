@@ -349,10 +349,10 @@
       "c": [
         {
           "t": "text",
-          "v": "Strengths: the closest match to Microsoft Office. If a client sends you a.docx with tricky formatting and it must come back looking identical, OnlyOffice usually handles it best. The interface looks like Microsoft Office, so there is almost nothing to learn."
+          "v": "Strengths: the closest match to Microsoft Office. If a client sends you a .docx with tricky formatting and it must come back looking identical, OnlyOffice usually handles it best. The interface looks like Microsoft Office, so there is almost nothing to learn."
         }
       ],
-      "hash": "4caf3b7233623ea8",
+      "hash": "9b6c9b0847535f8a",
       "id": "onlyoffice.2",
       "kind": "paragraph"
     },
@@ -740,7 +740,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "d25e2f054e050355",
+  "contentHash": "bd7bb0028eb2ff28",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

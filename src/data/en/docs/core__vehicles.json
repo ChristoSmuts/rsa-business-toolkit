@@ -961,7 +961,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Which template to use when"
+              "v": "Documents and templates"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -972,7 +972,7 @@
           "v": "."
         }
       ],
-      "hash": "32634d68e122d791",
+      "hash": "aef4af8cbe721452",
       "id": "the-logbook.6",
       "kind": "paragraph"
     },
@@ -1023,7 +1023,7 @@
       "kind": "paragraph"
     }
   ],
-  "contentHash": "e22c7a309a0fb637",
+  "contentHash": "3e0af541aa2fd4c8",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -1196,7 +1196,7 @@
       "term": "Logbook"
     }
   ],
-  "title": "Vehicles for your business",
+  "title": "Vehicles and your business",
   "translation": {
     "sourceLang": "en",
     "status": "source"

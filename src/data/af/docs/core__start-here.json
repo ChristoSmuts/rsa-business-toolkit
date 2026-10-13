@@ -153,7 +153,7 @@
       "sourceHash": "2f2e074c75144c3d"
     },
     {
-      "hash": "ce6c643ede2f3a31",
+      "hash": "389efeb2174f43ae",
       "id": "order-to-do-things.4",
       "items": [
         [
@@ -185,7 +185,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Watter sjabloon om wanneer te gebruik"
+                "v": "Dokumente en sjablone"
               }
             ],
             "doc": "paperwork/which-template-to-use-when",
@@ -282,7 +282,7 @@
       ],
       "kind": "list",
       "ordered": true,
-      "sourceHash": "2a3368367387208e",
+      "sourceHash": "042c8c50e0621527",
       "start": 3
     },
     {
@@ -324,7 +324,7 @@
       "sourceHash": "8739ec63877976c6"
     },
     {
-      "hash": "b9ed821b11a59972",
+      "hash": "d166943e1490d448",
       "id": "what-is-in-this-toolkit.2",
       "items": [
         [
@@ -380,7 +380,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Voertuie vir jou besigheid"
+                "v": "Voertuie en jou besigheid"
               }
             ],
             "doc": "core/vehicles",
@@ -394,7 +394,7 @@
       ],
       "kind": "list",
       "ordered": false,
-      "sourceHash": "a54fdacb47d2b7e6"
+      "sourceHash": "230fb863c6d45cba"
     },
     {
       "c": [
@@ -510,7 +510,7 @@
       "sourceHash": "2df94a9439a2ca8d"
     },
     {
-      "hash": "56459ae3699dcdf4",
+      "hash": "55c14dc6900a4143",
       "id": "what-is-in-this-toolkit.6",
       "items": [
         [
@@ -598,7 +598,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Watter sjabloon om wanneer te gebruik"
+                "v": "Dokumente en sjablone"
               }
             ],
             "doc": "paperwork/which-template-to-use-when",
@@ -628,7 +628,7 @@
       ],
       "kind": "list",
       "ordered": false,
-      "sourceHash": "52438aac2587ae4d"
+      "sourceHash": "9366e661d26314ad"
     },
     {
       "c": [
@@ -1039,7 +1039,7 @@
       "sourceHash": "ebfa64872b5baedd"
     }
   ],
-  "contentHash": "bb480c74adf1da94",
+  "contentHash": "284550db179cc650",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -112,7 +112,7 @@ Logo, voorbladfoto, en minstens tien werklike foto’s van werklike werk. Sien [
 
 Logo links bo, jou kleure spaarsamig gebruik, jou lettertipe vir die hoofteks regdeur. Niks anders nie. ’n Faktuur is nie die plek vir ’n ontwerp nie.
 
-Sjablone is in [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md). Hou die uitleg eenvoudig en die besonderhede korrek. ’n Verkeerde BTW-reël maak meer saak as ’n mooi opskrif.
+Sjablone is in [Dokumente en sjablone](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md). Hou die uitleg eenvoudig en die besonderhede korrek. ’n Verkeerde BTW-reël maak meer saak as ’n mooi opskrif.
 
 ### 4. E-poshandtekening
 
@@ -276,7 +276,7 @@ Stel dit op in Google Drive of op jou skootrekenaar. Sien [Gratis gereedskap](..
 
 ```
 07 Brand/
-├── brand-guide.pdf The one-page guide from Prompt 10
+├── brand-guide.pdf The one-page guide from Prompt 11
 ├── logo/
 │ ├── logo-colour.svg
 │ ├── logo-colour.pdf

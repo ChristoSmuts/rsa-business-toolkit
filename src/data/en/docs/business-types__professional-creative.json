@@ -404,7 +404,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Which template to use when"
+              "v": "Documents and templates"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -415,7 +415,7 @@
           "v": ". Make sure it covers:"
         }
       ],
-      "hash": "a9e3b1d794349d8f",
+      "hash": "f4e79907bb8e0ce3",
       "id": "contracts-matter-more-here-than-anywhere-else.2",
       "kind": "paragraph"
     },
@@ -889,7 +889,7 @@
       "kind": "tasklist"
     }
   ],
-  "contentHash": "21bb0ca4dde3e042",
+  "contentHash": "a09f4b13d3315f52",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

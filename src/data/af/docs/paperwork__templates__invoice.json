@@ -29,13 +29,13 @@
       "c": [
         {
           "t": "text",
-          "v": "Drie reëls wat jy op hierdie faktuur moet volg. Moet NIE die woord \"Belastingfaktuur\" (\"Tax Invoice\") gebruik nie. Moet NIE ’n BTW-reël wys nie. Moet NIE ’n BTW-nommer wys nie. Moet NIE 15% by enigiets tel nie. Om BTW te hef wanneer jy nie geregistreer is nie, is bedrog, nie ’n administratiewe fout nie."
+          "v": "Vier reëls wat jy op hierdie faktuur moet volg. Moet NIE die woord \"Belastingfaktuur\" (\"Tax Invoice\") gebruik nie. Moet NIE ’n BTW-reël wys nie. Moet NIE ’n BTW-nommer wys nie. Moet NIE 15% by enigiets tel nie. Om BTW te hef wanneer jy nie geregistreer is nie, is bedrog, nie ’n administratiewe fout nie."
         }
       ],
-      "hash": "ae5e38bfb2418173",
+      "hash": "9af1455585fe734d",
       "id": "intro.2",
       "kind": "callout",
-      "sourceHash": "ba1396f383b9e33a",
+      "sourceHash": "4453d1a7549df193",
       "style": "note"
     },
     {
@@ -585,7 +585,7 @@
       "sourceHash": "5a00e94426e6e682"
     }
   ],
-  "contentHash": "bd9ff729e9549952",
+  "contentHash": "a398006f0be398dc",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

@@ -368,7 +368,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Which template to use when"
+              "v": "Documents and templates"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -379,7 +379,7 @@
           "v": " and fill in both lists. What is included, and what is not included. The second list is the one that saves you."
         }
       ],
-      "hash": "1549c867b238bfb7",
+      "hash": "af584d3a57a577e0",
       "id": "quoting-where-trades-lose-money.2",
       "kind": "paragraph"
     },
@@ -535,7 +535,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Vehicles for your business"
+              "v": "Vehicles and your business"
             }
           ],
           "doc": "core/vehicles",
@@ -546,7 +546,7 @@
           "v": "."
         }
       ],
-      "hash": "2ced487ef1387b6e",
+      "hash": "10e28a475a67cadd",
       "id": "insurance.2",
       "kind": "paragraph"
     },
@@ -584,7 +584,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Vehicles for your business"
+              "v": "Vehicles and your business"
             }
           ],
           "doc": "core/vehicles",
@@ -595,7 +595,7 @@
           "v": " before deciding whether to put it in a business name. For a single owner-operator, personal ownership plus a logbook is usually the better answer."
         }
       ],
-      "hash": "41477169d4b29484",
+      "hash": "76d7a75f219902a8",
       "id": "vehicles.1",
       "kind": "paragraph"
     },
@@ -870,7 +870,7 @@
       "kind": "tasklist"
     }
   ],
-  "contentHash": "d6062c4a15ed8794",
+  "contentHash": "3c342eb027efc5f8",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

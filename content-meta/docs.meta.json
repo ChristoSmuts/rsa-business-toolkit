@@ -242,7 +242,7 @@
       "kind": "guide",
       "title": {
         "en": "Vehicles and your business",
-        "af": "Voertuie vir jou besigheid"
+        "af": "Voertuie en jou besigheid"
       },
       "tags": ["vehicles"]
     },
@@ -419,7 +419,7 @@
       "kind": "guide",
       "title": {
         "en": "Documents and templates",
-        "af": "Watter sjabloon om wanneer te gebruik"
+        "af": "Dokumente en sjablone"
       },
       "tags": ["templates"],
       "fenceOverrides": {

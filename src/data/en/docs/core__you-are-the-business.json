@@ -891,7 +891,7 @@
       "kind": "paragraph"
     },
     {
-      "hash": "7c6f8d2d3e8edaeb",
+      "hash": "c6cc49e4438abef0",
       "id": "prevention-beats-collection.2",
       "items": [
         [
@@ -903,7 +903,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Which template to use when"
+                "v": "Documents and templates"
               }
             ],
             "doc": "paperwork/which-template-to-use-when",
@@ -1660,7 +1660,7 @@
       "kind": "tasklist"
     }
   ],
-  "contentHash": "8bbc1d6a3138fe18",
+  "contentHash": "0080a9f2ffb40f04",
   "generated": {
     "date": "2026-09-14",
     "tool": "Claude, Anthropic"

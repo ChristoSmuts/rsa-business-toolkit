@@ -931,7 +931,7 @@
       "sourceHash": "f0553588d9a29fa5"
     },
     {
-      "hash": "698b27ed5e5015d6",
+      "hash": "7aea5b621383fbe6",
       "id": "prevention-beats-collection.2",
       "items": [
         [
@@ -943,7 +943,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Watter sjabloon om wanneer te gebruik"
+                "v": "Dokumente en sjablone"
               }
             ],
             "doc": "paperwork/which-template-to-use-when",
@@ -995,7 +995,7 @@
       ],
       "kind": "list",
       "ordered": false,
-      "sourceHash": "7c6f8d2d3e8edaeb"
+      "sourceHash": "c6cc49e4438abef0"
     },
     {
       "hash": "58b63e273b964039",
@@ -1732,7 +1732,7 @@
       "sourceHash": "79ab900f53dc5dc7"
     }
   ],
-  "contentHash": "548e4b731e81c690",
+  "contentHash": "bfc068f29cae841a",
   "generated": {
     "date": "2026-09-14",
     "tool": "Claude, Anthropic"

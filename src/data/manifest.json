@@ -1,5 +1,5 @@
 {
-  "contentHash": "e2dba91d02c826c7",
+  "contentHash": "a9270750138ba8c9",
   "docs": {
     "branding/already-have-your-name": {
       "appliesTo": {
@@ -370,8 +370,8 @@
       "section": "core",
       "slug": "vehicles",
       "titles": {
-        "af": "Voertuie vir jou besigheid",
-        "en": "Vehicles for your business"
+        "af": "Voertuie en jou besigheid",
+        "en": "Vehicles and your business"
       }
     },
     "core/what-you-need-to-sell-things": {
@@ -617,8 +617,8 @@
       "section": "paperwork",
       "slug": "which-template-to-use-when",
       "titles": {
-        "af": "Watter sjabloon om wanneer te gebruik",
-        "en": "Which template to use when"
+        "af": "Dokumente en sjablone",
+        "en": "Documents and templates"
       }
     },
     "start/how-this-was-made": {

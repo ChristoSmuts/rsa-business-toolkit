@@ -20,7 +20,7 @@ Lees in hierdie volgorde. Moenie iets oorslaan nie.
 4. [Wat jy nodig het om dinge te verkoop](../01%20Core%20-%20applies%20to%20everyone/04-what-you-need-to-sell-things.md) — kyk of jy ’n lisensie nodig het
 5. [Handelsmerkopdragte](../02%20Branding%20and%20marketing/01-branding-prompts.md), dan [Handelsmerktoepassings en afronding](../02%20Branding%20and%20marketing/03-brand-applications-and-polish.md) — bou jou naam en voorkoms, en toets dit dan
 6. [Gratis gereedskap](../03%20Paperwork%20and%20templates/02-free-tools.md) — stel jou gratis gereedskap op
-7. [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) — bou jou kwotasie en faktuur
+7. [Dokumente en sjablone](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) — bou jou kwotasie en faktuur
 8. [Belasting en SARS](../01%20Core%20-%20applies%20to%20everyone/03-tax-and-sars.md) — kry jou sake met SARS in orde
 9. [Registreer: wat jy regtig nodig het](../01%20Core%20-%20applies%20to%20everyone/02-register.md) — besluit oor ’n maatskappy
 10. As jy ja besluit, [Bestuur van ’n Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/06-running-a-pty-ltd.md) en [Betaal jouself uit ’n Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/07-paying-yourself.md)
@@ -85,9 +85,9 @@ Dit is ’n uitgewerkte roete vir een spesifieke leser. Lees in hierdie volgorde
 2. [Bestuur van ’n Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/06-running-a-pty-ltd.md) — wat jou maatskappy reeds elke jaar verskuldig is
 3. [Betaal jouself uit ’n Pty Ltd](../01%20Core%20-%20applies%20to%20everyone/07-paying-yourself.md) — voordat jy een rand uit die maatskappy se rekening skuif
 4. [Voertuighandelaar](../04%20Your%20kind%20of%20business/01-vehicle-dealer.md) — die drie lae van registrasie, die posisie kragtens die CPA, en waarom BTW en omsetbelasting vir jou anders werk
-5. [Voertuie vir jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md) — die BRNC- en gevolmagtigde-proses volledig
+5. [Voertuie en jou besigheid](../01%20Core%20-%20applies%20to%20everyone/05-vehicles.md) — die BRNC- en gevolmagtigde-proses volledig
 6. [Belasting en SARS](../01%20Core%20-%20applies%20to%20everyone/03-tax-and-sars.md) — lees die SBC-afdeling; slaan die afdeling oor omsetbelasting oor, dit is verkeerd vir ’n handelaar
-7. [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) — bou die faktuur vir ’n BTW-geregistreerde besigheid en die verkoopooreenkoms met ’n bylae van gebreke
+7. [Dokumente en sjablone](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) — bou die faktuur vir ’n BTW-geregistreerde besigheid en die verkoopooreenkoms met ’n bylae van gebreke
 8. [Handelsmerkopdragte](../02%20Branding%20and%20marketing/01-branding-prompts.md) — gee die handelsmerk ’n naam, nie die maatskappy nie
 9. [Van die huis af werk en veilig ontmoet](../01%20Core%20-%20applies%20to%20everyone/09-working-from-home-and-safety.md) — as jy geen werf het nie: sonering vir voorraad by die huis, en elke besigtiging en toetsrit
 10. [Nuwe besigheidslyne byvoeg](../01%20Core%20-%20applies%20to%20everyone/08-adding-new-lines.md) — voordat jy bande, diensbeurte of enigiets anders byvoeg
@@ -193,7 +193,7 @@ Maatskappye met meer as een aandeelhouer. Die twee Pty Ltd-lêers aanvaar dat jy
 
 Pryse. Hoeveel om te vra, is die moeilikste vraag wat ’n nuwe besigheid in die gesig staar, en niks hier beantwoord dit nie. Die gereedskapstel sê vir jou wat ’n kwotasie moet bevat, nie watter getal jy daarop moet sit nie.
 
-Vooruitskatting van kontantvloei. Die kasboek in [Watter sjabloon om wanneer te gebruik](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) teken aan wat reeds gebeur het. Dit voorspel nie of jy volgende maand se rekeninge kan betaal nie.
+Vooruitskatting van kontantvloei. Die kasboek in [Dokumente en sjablone](../03%20Paperwork%20and%20templates/01-which-template-to-use-when.md) teken aan wat reeds gebeur het. Dit voorspel nie of jy volgende maand se rekeninge kan betaal nie.
 
 Besonderhede oor versekering. Elke lêer vir ’n besigheidstipe sê watter dekking om voor te vra. Nie een vergelyk produkte of pryse nie. Gebruik ’n makelaar.
 

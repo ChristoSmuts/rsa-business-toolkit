@@ -1408,7 +1408,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Voertuie vir jou besigheid"
+              "v": "Voertuie en jou besigheid"
             }
           ],
           "doc": "core/vehicles",
@@ -1419,10 +1419,10 @@
           "v": "."
         }
       ],
-      "hash": "5f5ec41da49dab9e",
+      "hash": "ff7388dee707b868",
       "id": "template-7-vehicle-logbook.1",
       "kind": "paragraph",
-      "sourceHash": "311cde214b26f49b"
+      "sourceHash": "a6b2a9a4f52d8e04"
     },
     {
       "align": [
@@ -1733,7 +1733,7 @@
       "sourceHash": "8b3b366c3229bddd"
     }
   ],
-  "contentHash": "8a41f8ac3081aefa",
+  "contentHash": "0ec9cb973531678f",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -1919,7 +1919,7 @@
       "term": "Deposito"
     }
   ],
-  "title": "Watter sjabloon om wanneer te gebruik",
+  "title": "Dokumente en sjablone",
   "translation": {
     "sourceLang": "en",
     "status": "machine-unreviewed"

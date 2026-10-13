@@ -89,7 +89,7 @@
       "sourceHash": "8b1d6123ba10670f"
     },
     {
-      "hash": "b07efc7f5b725c31",
+      "hash": "124723af2ce1713c",
       "id": "path-1-i-have-not-started-yet.2",
       "items": [
         [
@@ -202,7 +202,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Watter sjabloon om wanneer te gebruik"
+                "v": "Dokumente en sjablone"
               }
             ],
             "doc": "paperwork/which-template-to-use-when",
@@ -278,7 +278,7 @@
       ],
       "kind": "list",
       "ordered": true,
-      "sourceHash": "6ca94142e474ab12",
+      "sourceHash": "8bab4ea1f2826d90",
       "start": 1
     },
     {
@@ -1030,7 +1030,7 @@
       "sourceHash": "598b219cf6ad2f99"
     },
     {
-      "hash": "3328dc2c14add633",
+      "hash": "110abecf971e7e6e",
       "id": "path-4-i-am-a-one-person-pty-ltd-selling-vehicles-and-i-want-to-grow.2",
       "items": [
         [
@@ -1098,7 +1098,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Voertuie vir jou besigheid"
+                "v": "Voertuie en jou besigheid"
               }
             ],
             "doc": "core/vehicles",
@@ -1130,7 +1130,7 @@
             "c": [
               {
                 "t": "text",
-                "v": "Watter sjabloon om wanneer te gebruik"
+                "v": "Dokumente en sjablone"
               }
             ],
             "doc": "paperwork/which-template-to-use-when",
@@ -1192,7 +1192,7 @@
       ],
       "kind": "list",
       "ordered": true,
-      "sourceHash": "6d0556697890f3ce",
+      "sourceHash": "15e0d65e5068ae2d",
       "start": 1
     },
     {
@@ -1918,7 +1918,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Watter sjabloon om wanneer te gebruik"
+              "v": "Dokumente en sjablone"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -1929,10 +1929,10 @@
           "v": " teken aan wat reeds gebeur het. Dit voorspel nie of jy volgende maand se rekeninge kan betaal nie."
         }
       ],
-      "hash": "570a213af2a82b94",
+      "hash": "e3c715422fe50183",
       "id": "what-this-toolkit-deliberately-leaves-out.7",
       "kind": "paragraph",
-      "sourceHash": "1df25624f822e3e0"
+      "sourceHash": "8abad9ddd8ec3946"
     },
     {
       "c": [
@@ -2281,7 +2281,7 @@
       "sourceHash": "7579b59cd0febf80"
     }
   ],
-  "contentHash": "8c63a2c9d5599ffa",
+  "contentHash": "03b0643f929a7fc2",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

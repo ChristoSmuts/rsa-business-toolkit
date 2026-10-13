@@ -1028,7 +1028,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Watter sjabloon om wanneer te gebruik"
+              "v": "Dokumente en sjablone"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -1039,10 +1039,10 @@
           "v": "."
         }
       ],
-      "hash": "2eee4c297d3a4f71",
+      "hash": "1241ee237364bd38",
       "id": "the-logbook.6",
       "kind": "paragraph",
-      "sourceHash": "32634d68e122d791"
+      "sourceHash": "aef4af8cbe721452"
     },
     {
       "c": [
@@ -1095,7 +1095,7 @@
       "sourceHash": "2e1fcdfb63c776b5"
     }
   ],
-  "contentHash": "1228665c8f9784cc",
+  "contentHash": "ca7fdde10e9a69dd",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
@@ -1268,7 +1268,7 @@
       "term": "Logboek"
     }
   ],
-  "title": "Voertuie vir jou besigheid",
+  "title": "Voertuie en jou besigheid",
   "translation": {
     "sourceLang": "en",
     "status": "machine-unreviewed"

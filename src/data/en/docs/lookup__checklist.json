@@ -498,7 +498,7 @@
       "text": "Brand and documents"
     },
     {
-      "hash": "0d15f5bc9f9fdaad",
+      "hash": "b27c5237dff2ce24",
       "id": "brand-and-documents.1",
       "items": [
         {
@@ -506,11 +506,11 @@
           "c": [
             {
               "t": "text",
-              "v": "Chosen a name, and checked it on CIPC, as a.co.za domain, and on social media"
+              "v": "Chosen a name, and checked it on CIPC, as a .co.za domain, and on social media"
             }
           ],
           "doc": "lookup/checklist",
-          "id": "lookup/checklist:bcf0f339"
+          "id": "lookup/checklist:608a7dd6"
         },
         {
           "block": "brand-and-documents.1",
@@ -2516,7 +2516,7 @@
       "start": 1
     }
   ],
-  "contentHash": "997d26da11f5c703",
+  "contentHash": "fe19018535a4e624",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

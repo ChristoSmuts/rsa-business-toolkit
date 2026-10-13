@@ -1571,7 +1571,7 @@
         null,
         null
       ],
-      "hash": "7a5d8bd9e6bc087b",
+      "hash": "d349e587be9722cf",
       "header": [
         [
           {
@@ -1653,7 +1653,7 @@
               "c": [
                 {
                   "t": "text",
-                  "v": "Watter sjabloon om wanneer te gebruik"
+                  "v": "Dokumente en sjablone"
                 }
               ],
               "doc": "paperwork/which-template-to-use-when",
@@ -1738,7 +1738,7 @@
           ]
         ]
       ],
-      "sourceHash": "349c1fcb4d8ab78c"
+      "sourceHash": "c0333a673f6d9a30"
     },
     {
       "hash": "58b63e273b964039",
@@ -1818,7 +1818,7 @@
       "sourceHash": "facc1da44d972127"
     }
   ],
-  "contentHash": "9a4c8d5bab829f81",
+  "contentHash": "8a40e273cff66672",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

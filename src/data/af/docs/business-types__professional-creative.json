@@ -429,7 +429,7 @@
           "c": [
             {
               "t": "text",
-              "v": "Watter sjabloon om wanneer te gebruik"
+              "v": "Dokumente en sjablone"
             }
           ],
           "doc": "paperwork/which-template-to-use-when",
@@ -440,10 +440,10 @@
           "v": ". Maak seker dit dek:"
         }
       ],
-      "hash": "85e5b55be71d1a56",
+      "hash": "9e3e0009d9eeb396",
       "id": "contracts-matter-more-here-than-anywhere-else.2",
       "kind": "paragraph",
-      "sourceHash": "a9e3b1d794349d8f"
+      "sourceHash": "f4e79907bb8e0ce3"
     },
     {
       "c": [
@@ -941,7 +941,7 @@
       "sourceHash": "577e0d64887649de"
     }
   ],
-  "contentHash": "0b3fa28454bad125",
+  "contentHash": "bc19c41ff76dd186",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"

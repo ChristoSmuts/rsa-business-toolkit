@@ -249,14 +249,14 @@
       "text": "Opdrag 1: inhoudspilare"
     },
     {
-      "hash": "ffe54a127be41fc3",
+      "hash": "fe78513fbdb57003",
       "id": "prompt-1-content-pillars.1",
       "kind": "code",
       "placeholders": [
         {
           "style": "instruction",
           "t": "placeholder",
-          "v": "PLAK JOU HANDELSMERK-KORTBESKRYWING UIT 05-branding-prompts.md"
+          "v": "PLAK JOU HANDELSMERK-KORTBESKRYWING UIT 01-branding-prompts.md"
         },
         {
           "style": "field",
@@ -264,8 +264,8 @@
           "v": "PLAK JOU STEMGIDS"
         }
       ],
-      "sourceHash": "cf089ed8f9b49371",
-      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING UIT 05-branding-prompts.md]\n\nHier is die stem van my handelsmerk:\n\n[PLAK JOU STEMGIDS]\n\nGee my 5 stelle inhoudspilare. ’n Inhoudspilaar is ’n onderwerp waaroor ek\nherhaaldelik plaas.\n\nElke stel moet presies 4 pilare hê. Gee my vir elke pilaar:\n- Die naam van die pilaar\n- Waarom dit vir my spesifieke kliënte belangrik is\n- Drie voorbeelde van idees vir plasings\n\nMaak die 5 stelle werklik verskillend in benadering. Minstens een stel moet\ngebou wees rondom dinge wat ek met ’n foon kan afneem terwyl ek werk, sonder\nbeplanning.\n\nOnthou dat ek een persoon is sonder tyd en sonder begroting.\n\nNommer die stelle 1 tot 5. Stop ná die 5 stelle. Vra my watter stel die\nnaaste is en wat ek sou verander.",
+      "sourceHash": "c6b8ef2f593ea27b",
+      "text": "Hier is my handelsmerk-kortbeskrywing:\n\n[PLAK JOU HANDELSMERK-KORTBESKRYWING UIT 01-branding-prompts.md]\n\nHier is die stem van my handelsmerk:\n\n[PLAK JOU STEMGIDS]\n\nGee my 5 stelle inhoudspilare. ’n Inhoudspilaar is ’n onderwerp waaroor ek\nherhaaldelik plaas.\n\nElke stel moet presies 4 pilare hê. Gee my vir elke pilaar:\n- Die naam van die pilaar\n- Waarom dit vir my spesifieke kliënte belangrik is\n- Drie voorbeelde van idees vir plasings\n\nMaak die 5 stelle werklik verskillend in benadering. Minstens een stel moet\ngebou wees rondom dinge wat ek met ’n foon kan afneem terwyl ek werk, sonder\nbeplanning.\n\nOnthou dat ek een persoon is sonder tyd en sonder begroting.\n\nNommer die stelle 1 tot 5. Stop ná die 5 stelle. Vra my watter stel die\nnaaste is en wat ek sou verander.",
       "variant": "prompt"
     },
     {
@@ -678,7 +678,7 @@
       "sourceHash": "dc855774236e1488"
     }
   ],
-  "contentHash": "90b5823f37f7903d",
+  "contentHash": "67ee5724d6ed2445",
   "generated": {
     "date": "2026-09-13",
     "tool": "Claude, Anthropic"
