@@ -21,7 +21,12 @@ import {
   type IndexInput,
 } from '../../../scripts/search/entries';
 import { DATA_DIR, docFileName, loadIndexInput } from '../../../scripts/search/load';
-import type { Block, Doc, Manifest } from '../../../src/lib/content/schema';
+import {
+  ManifestSchema,
+  type Block,
+  type Doc,
+  type Manifest,
+} from '../../../src/lib/content/schema';
 import { searchIndexUrl } from '../../../src/lib/search/files';
 import { INDEX_VERSION } from '../../../src/lib/search/options';
 import { searchElementData, searchStrings } from '../../../src/lib/search/ui-data';
@@ -417,6 +422,15 @@ describe('page data', () => {
       '/business-toolkit/search/af.def.json',
     );
     expect(searchIndexUrl('en', record)).toBe('/search/en.abc.json');
+  });
+
+  // ADR 0003: the index file names live in the gitignored record, never in the drift-checked
+  // manifest, which therefore has no field for them (WP-33 author note in the backlog).
+  it('keeps the index file names out of the manifest', () => {
+    expect(ManifestSchema.safeParse(realManifest()).success).toBe(true);
+    expect(
+      ManifestSchema.safeParse({ ...realManifest(), searchIndex: { en: 'en.abc.json' } }).success,
+    ).toBe(false);
   });
 
   it('says how to fix a missing, stale or incomplete record', () => {
