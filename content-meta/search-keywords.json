@@ -42,6 +42,11 @@
       "af": ["haarkapper", "salon"]
     },
     {
+      "doc": "core/closing-as-a-sole-proprietor",
+      "en": ["stop trading", "close sole proprietorship"],
+      "af": ["ophou handel dryf"]
+    },
+    {
       "doc": "lookup/sources",
       "en": ["source", "sources", "references", "legislation"],
       "af": ["bron", "bronne", "wetgewing"]

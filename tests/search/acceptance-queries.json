@@ -1050,6 +1050,62 @@
     },
     {
       "lang": "en",
+      "query": "close my sole proprietor business",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "from": "closing as a sole proprietor"
+    },
+    {
+      "lang": "en",
+      "query": "close sole proprietor",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "from": "closing as a sole proprietor"
+    },
+    {
+      "lang": "en",
+      "query": "how do i close my sole proprietor business",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "from": "closing as a sole proprietor"
+    },
+    {
+      "lang": "en",
+      "query": "close my sole proprietorship",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "from": "closing as a sole proprietor"
+    },
+    {
+      "lang": "en",
+      "query": "deregister sole prop",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "from": "closing as a sole proprietor"
+    },
+    {
+      "lang": "en",
+      "query": "deregister my sole proprietorship",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "from": "closing as a sole proprietor"
+    },
+    {
+      "lang": "en",
+      "query": "stop trading",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "from": "closing as a sole proprietor"
+    },
+    {
+      "lang": "en",
+      "query": "I want to stop trading",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "from": "closing as a sole proprietor"
+    },
+    {
+      "lang": "en",
       "query": "business type",
       "doc": "business-types/pick-your-business-type",
       "need": "first",
@@ -3518,6 +3574,48 @@
       "anchor": "closing-a-company-properly",
       "need": "first",
       "notFirst": ["core/register"]
+    },
+    {
+      "lang": "af",
+      "query": "sluit my eenmansaak",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "from": "closing as a sole proprietor"
+    },
+    {
+      "lang": "af",
+      "query": "sluit eenmansaak",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "from": "closing as a sole proprietor"
+    },
+    {
+      "lang": "af",
+      "query": "hoe sluit ek my eenmansaak",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "from": "closing as a sole proprietor"
+    },
+    {
+      "lang": "af",
+      "query": "deregistreer my eenmansaak",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "from": "closing as a sole proprietor"
+    },
+    {
+      "lang": "af",
+      "query": "ophou handel dryf",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "from": "closing as a sole proprietor"
+    },
+    {
+      "lang": "af",
+      "query": "ek wil ophou handel dryf",
+      "doc": "core/closing-as-a-sole-proprietor",
+      "need": "first",
+      "from": "closing as a sole proprietor"
     },
     {
       "lang": "af",
