@@ -424,7 +424,13 @@ test.describe('navigation between real pages', () => {
   test('a section landing lists its documents in order', async ({ page, basePath }) => {
     await open(page, 'core/');
     const cards = page.locator('.st-section-page__list > li');
-    await expect(cards).toHaveCount(10);
+    // Counted from the manifest, so a new Core document doesn't break the test.
+    const manifest = JSON.parse(
+      readFileSync(path.join(REPO_ROOT, 'src/data/manifest.json'), 'utf8'),
+    ) as { docs: Record<string, { section: string }> };
+    const core = Object.values(manifest.docs).filter((doc) => doc.section === 'core').length;
+    expect(core).toBeGreaterThanOrEqual(10);
+    await expect(cards).toHaveCount(core);
     await expect(cards.first().locator('a').first()).toHaveAttribute(
       'href',
       `${basePath}core/start-here/`,
