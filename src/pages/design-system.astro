@@ -56,7 +56,7 @@ const swatchGroups: { title: string; tokens: string[] }[] = [
     tokens: ['primary', 'primary-hover', 'on-primary', 'primary-soft', 'on-primary-soft'],
   },
   {
-    title: 'Accent (rooibos)',
+    title: 'Accent (rooibos: only the “In plain words” voice)',
     tokens: ['accent', 'accent-text', 'on-accent', 'accent-soft', 'on-accent-soft'],
   },
   {
@@ -409,8 +409,9 @@ const trust = {
     <section class="ds-section">
       <h2 id="typography">Typography</h2>
       <p class="ds-intro">
-        Headings: Fraunces (variable, weight 600, optical size 48; 144 for display). Body and UI:
-        Instrument Sans (variable). Code: system monospace. Self-hosted latin and latin-ext subsets.
+        Page titles and section headings (h1, h2) and display figures: Fraunces, from the wght-only
+        file (the text cut, weight 600). Smaller headings (h3, h4), body and UI: Instrument Sans
+        (variable). Code: system monospace. Self-hosted latin and latin-ext subsets.
       </p>
       <div class="ds-type">
         <p class="st-display">{displayFigure}</p>
@@ -540,7 +541,8 @@ const trust = {
         </table>
       </TableScroll>
       <p class="st-hint">
-        With reduced motion, all durations collapse to 0ms and hover lifts are removed.
+        With reduced motion nothing moves: no lift, slide, drawing ring or smooth scroll. Fades,
+        colour and shadow changes stay, at 120ms or less.
       </p>
     </section>
 
@@ -575,8 +577,8 @@ const trust = {
           </Button>
         </div>
         <p class="st-hint">
-          Tab through the buttons to see the 2px rooibos focus ring. Loading keeps the button colour
-          and shows a spinner; disabled is dashed and muted. Both stay focusable, use
+          Tab through the buttons to see the 3px ink focus ring. Loading keeps the button colour and
+          shows a spinner; disabled is dashed and muted. Both stay focusable, use
           <code>aria-disabled</code> and ignore clicks.
         </p>
       </div>
@@ -805,6 +807,34 @@ const trust = {
         <p class="st-error-text">
           <Icon name="lucide:triangle-alert" size="1em" /> A VAT number has 10 digits.
         </p>
+      </div>
+
+      <h3>Quiet navigation links</h3>
+      <div class="ds-demo st-stack st-stack-sm">
+        <p>
+          <code>.st-quiet-links</code> on a list of links (the contents column, a menu): no
+          underline until hover or focus, and the base focus ring. Links in running text, like
+          <a href={href('en', 'core/')}>this one</a>, stay underlined.
+        </p>
+        <nav class="st-quiet-links" aria-label="Quiet links demo" data-ds-quiet-links>
+          <ul class="ds-quiet-list">
+            <li>
+              <a class="st-link-block" href={href('en', 'core/register/')}>
+                Register your business
+              </a>
+            </li>
+            <li>
+              <a class="st-link-block" href={href('en', 'core/tax-and-sars/')}>
+                Tax and SARS
+              </a>
+            </li>
+            <li>
+              <a class="st-link-block" href={href('en', 'business-types/')}>
+                Your kind of business
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </section>
 
@@ -1592,8 +1622,8 @@ const trust = {
   .ds-type__h3 {
     font-family: var(--st-font-display);
     font-weight: var(--st-weight-semibold);
-    font-variation-settings: 'opsz' var(--st-opsz-heading);
     line-height: var(--st-leading-tight);
+    letter-spacing: -0.005em;
   }
 
   .ds-type__h1 {
@@ -1604,8 +1634,17 @@ const trust = {
     font-size: var(--st-text-2xl);
   }
 
+  /* As in base.css: the serif is for h1 and h2 only. */
   .ds-type__h3 {
+    font-family: var(--st-font-body);
     font-size: var(--st-text-xl);
+    letter-spacing: 0;
+  }
+
+  .ds-quiet-list {
+    display: grid;
+    padding: 0;
+    list-style: none;
   }
 
   .ds-diacritics {
@@ -1633,7 +1672,6 @@ const trust = {
 
   .ds-diacritics__display {
     font-family: var(--st-font-display);
-    font-variation-settings: 'opsz' var(--st-opsz-heading);
   }
 
   .ds-diacritics__bold {
@@ -1672,7 +1710,7 @@ const trust = {
   .ds-spacing__bar {
     block-size: 1rem;
     border-radius: 2px;
-    background-color: var(--st-accent);
+    background-color: var(--st-primary);
   }
 
   .ds-tiles {

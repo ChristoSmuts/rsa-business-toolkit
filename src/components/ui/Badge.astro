@@ -84,9 +84,13 @@ const iconName = icon === null ? undefined : (icon ?? ICONS[variant]);
     text-wrap: pretty;
   }
 
+  /*
+   * A kind of business is veld green, not rooibos: rooibos is only the "In plain words" voice
+   * (WP-50, direction A). on-primary-soft on primary-soft is 9.03:1 light, 8.36:1 dark.
+   */
   .st-badge[data-variant='type'] {
-    --st-badge-bg: var(--st-accent-soft);
-    --st-badge-fg: var(--st-on-accent-soft);
+    --st-badge-bg: var(--st-primary-soft);
+    --st-badge-fg: var(--st-on-primary-soft);
   }
 
   .st-badge[data-variant='official'] {

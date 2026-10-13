@@ -70,6 +70,8 @@ The owner decides:
 
 ### Phase 2: tokens and base
 
+Done, waiting for review: direction A's focus ring and rooibos rule in the tokens, Fraunces' wght-only file for h1 and h2 with Instrument Sans for the rest, no font preloads in low data mode (audit item 5), fallback faces per platform (layout shift when the fonts arrive late at 320px: 0.29 to 0.40 before, 0.08 or less after), gentler reduced motion, and `.st-quiet-links`. Measurements and rationale: `docs/design-system.md`; screenshots: `docs/reviews/WP-50-phase2/`.
+
 - Change `src/styles/tokens.css`, `base.css`, `utilities.css` and `print.css` to the chosen direction. Keep every existing token name unless a rename is unavoidable, and give any rename a migration commit of its own.
 - Update `CONTRAST_PAIRS`, the contrast unit test and the live panel on `/design-system/`.
 - Self-host any new font through `@fontsource-variable`, with metric-matched fallbacks measured the way `docs/design-system.md` describes.

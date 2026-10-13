@@ -9,8 +9,8 @@ Stoep is the design system of the SA Business Toolkit web app. A stoep is the po
 ## Principles
 
 1. **Plain first.** Content is the product. Components get out of the way of the words.
-2. **Warm, not corporate.** Paper, earth and veld: off-white paper, veld green, rooibos accent, section hues taken from the landscape.
-3. **Colour never carries meaning alone.** Every status has an icon and a text label. Links are always underlined. Meters and rings always have written values.
+2. **Warm, not corporate.** Paper, earth and veld: off-white paper, veld green, section hues taken from the landscape, and rooibos as the guide's own voice ("In plain words") and nothing else.
+3. **Colour never carries meaning alone.** Every status has an icon and a text label. Links in running text are always underlined; a list of navigation links shows the underline on hover and focus (see [Links](#links)). Meters and rings always have written values.
 4. **Fast on a cheap phone.** No raster images, two self-hosted variable fonts, one tiny blocking script per page, CSS-only decoration that switches off under reduced data.
 5. **One source of truth.** Literal colours exist only in `tokens.css` (Stylelint enforces this, including in `.astro` style blocks). Everything else uses `var(--st-*)`.
 
@@ -20,11 +20,24 @@ Stoep is the design system of the SA Business Toolkit web app. A stoep is the po
 
 - **Background** is a warm paper white (`#FBF8F3`), not pure white, so long reading is gentle. Cards are pure white (`--st-surface`) to lift off the page.
 - **Primary** is veld green (`#1E5A3C`). It is used for links, primary buttons, checkbox fills and progress. Green reads as "go" and as land, without the saturated look of a bank or a government portal.
-- **Accent** is rooibos (`#B5561A`). It is used for the focus ring and for spoken-aside "In plain words" callouts. The ring colour differs from the link colour, so focus is visible on links.
+- **Accent** is rooibos (`#B5561A`). Since WP-50 (direction A) it has one job: the "In plain words" callout, the guide speaking plainly. No chrome uses it (the pressed search chip, the prompt stripe and the business-type badge moved to veld green), so where a reader sees orange, the guide is explaining something. A new use needs a reason recorded here.
+- **Focus** is ink: `--st-focus` is `var(--st-text)` in both themes, 3px wide with a 2px offset. It was rooibos, 2px. Ink is at least 9.33:1 on every surface, tint and soft background in both themes (rooibos was 3.37:1 at its weakest), it differs from the link colour so a focused link still shows its ring, and an orange ring on cream was the generic look in miniature (see [Direction A](#direction-a-wp-50)).
 - **Section hues** give each part of the toolkit an identity: Start here (ochre `#8A5A00`), Core (veld `#1E5A3C`), Branding (protea `#9C2E63`), Paperwork (teal `#1F6B6B`), Your kind of business (clay `#A3401A`), Look it up (dusk `#4A3F8F`). Use them for text, stripes and icons, and as soft tints (`--st-hue-*-tint`) with `--st-text` on top.
 - **Section tints** mix the hue into the page background. `--st-tint-strength` is the default (**18% light, 22% dark**); plan B4 says 12%, and at a flat 12% Core, Paperwork and Look it up read as the same greige. Four hues use the default and four carry a per-hue strength, because a flat strength leaves some pairs indistinguishable. See [Section tints](#section-tints) for the measured numbers and why the separation stops where it does.
 - **Dark theme** keeps the same roles with lighter, less saturated hues on a warm near-black (`#15130F`).
 - **Decorative border** (`--st-border`) never marks a control boundary. Controls use `--st-border-strong` (at least 3:1).
+
+### Direction A (WP-50)
+
+The owner chose direction A, "Stoep, re-set", on 13 October 2026 (`docs/work-packages/WP-50-directions.md`, "Decided"). In short:
+
+- **Keep the palette.** Every colour token keeps its name and its value, except the focus alias. Readers who come back recognise the site, and recognition is part of trust on a site about tax and the law. The measured contrast below therefore holds, with every focus pair far above its minimum.
+- **Rooibos is the voice, ink is the ring.** The two changes above. They remove the clearest sign of the generic "cream, high-contrast serif, terracotta" look that `frontend-design` lists, without a new identity.
+- **Serif for reading titles, sans for things you act on.** Fraunces sets h1 and h2 only, from its wght-only file: the low-contrast text cut, not the display cut. Instrument Sans sets h3, h4 and everything else (see [Typography](#typography)).
+- **Gentler, not zero, reduced motion** (decision D3; see [Motion](#motion)).
+- **Quiet navigation chrome**: lists of navigation links drop the underline until hover and focus (see [Links](#links)).
+
+Phase 2 changed tokens, base, utility and print CSS only; component markup is unchanged, and Phase 3 restyles the page types. Before and after screenshots: `docs/reviews/WP-50-phase2/` (`before-*` and `after-*`: 320, 768 and 1280px, light and dark, both languages, plus three focus-ring shots).
 
 ### Theme mechanics
 
@@ -53,10 +66,12 @@ Changes and additions, all documented in `tokens.css`:
 | `--st-pattern-ink` | 30% | 40% | Shweshwe dot strength (visible at arm's length on a phone). |
 | `--st-pattern-display` | `block` | `block` | `none` under `prefers-reduced-data` and `html[data-low-data]`. |
 | `--st-selection-bg`, `--st-link-hover` | aliases | aliases | Text selection and hovered links. |
+| `--st-focus` | `var(--st-text)` | same alias | WP-50, direction A: the ring is ink, not rooibos (the plan's `var(--st-accent)`). |
+| `--st-focus-width` | 3px | 3px | WP-50, direction A (was 2px). |
 
 ### Verified contrast (WCAG 2.x)
 
-Text needs at least 4.5:1. Control borders and focus indicators need at least 3:1. Ratios are truncated to two decimals, never rounded up. The same list (`CONTRAST_PAIRS` in `src/scripts/color.ts`) drives the unit test and the live panel. It holds the plan B4 pairs plus every text, link and focus-ring pair the components render: callout bodies and links on every soft background, links and focus rings on every section tint, the inverse toast and the danger hover.
+Text needs at least 4.5:1. Control borders and focus indicators need at least 3:1. Ratios are truncated to two decimals, never rounded up. Every ratio in this file is computed by `src/scripts/color.ts` from `tokens.css`, including the OKLab mixing of the tints. A browser resolves `color-mix(in oklab, …)` with its own rounding, so a live measurement of a mixed colour (the panel on `/design-system/`, or DevTools) can differ by up to about 0.06: 11.88:1 against 11.90:1 for the light ring on the Look it up tint, 9.39:1 against 9.33:1 for the dark ring on the Paperwork tint (WP-50 Phase 2 review pass 1). The same list (`CONTRAST_PAIRS` in `src/scripts/color.ts`) drives the unit test and the live panel. It holds the plan B4 pairs plus every text, link and focus-ring pair the components render: callout bodies and links on every soft background, links and focus rings on every section tint, the inverse toast and the danger hover.
 
 | Foreground | Background | Use | Needs | Light | Dark |
 | --- | --- | --- | --- | --- | --- |
@@ -122,24 +137,32 @@ Text needs at least 4.5:1. Control borders and focus indicators need at least 3:
 | `--st-border-strong` | `--st-bg` | Control border on page | 3:1 | 4.40:1 | 4.90:1 |
 | `--st-border-strong` | `--st-surface` | Control border on cards | 3:1 | 4.66:1 | 4.48:1 |
 | `--st-border-strong` | `--st-surface-2` | Control border on raised areas | 3:1 | 4.03:1 | 4.01:1 |
-| `--st-focus` | `--st-bg` | Focus ring on page | 3:1 | 4.59:1 | 8.61:1 |
-| `--st-focus` | `--st-surface` | Focus ring on cards | 3:1 | 4.87:1 | 7.88:1 |
-| `--st-focus` | `--st-surface-2` | Focus ring in note callouts and code | 3:1 | 4.21:1 | 7.06:1 |
-| `--st-focus` | `--st-primary-soft` | Focus ring in official callouts and badges | 3:1 | 4.15:1 | 5.79:1 |
-| `--st-focus` | `--st-accent-soft` | Focus ring in plain-words callouts | 3:1 | 4.18:1 | 6.77:1 |
-| `--st-focus` | `--st-warning-bg` | Focus ring in warning callouts | 3:1 | 4.41:1 | 6.43:1 |
-| `--st-focus` | `--st-info-bg` | Focus ring in info callouts | 3:1 | 4.12:1 | 6.32:1 |
-| `--st-focus` | `--st-hue-start-tint` | Focus ring on Start here tint | 3:1 | 3.55:1 | 5.29:1 |
-| `--st-focus` | `--st-hue-core-tint` | Focus ring on Core tint | 3:1 | 3.40:1 | 5.93:1 |
-| `--st-focus` | `--st-hue-branding-tint` | Focus ring on Branding tint | 3:1 | 3.46:1 | 6.91:1 |
-| `--st-focus` | `--st-hue-paperwork-tint` | Focus ring on Paperwork tint | 3:1 | 3.74:1 | 5.10:1 |
-| `--st-focus` | `--st-hue-types-tint` | Focus ring on Business types tint | 3:1 | 3.85:1 | 6.07:1 |
-| `--st-focus` | `--st-hue-lookup-tint` | Focus ring on Look it up tint | 3:1 | 3.37:1 | 6.05:1 |
+| `--st-focus` | `--st-bg` | Focus ring on page | 3:1 | 16.20:1 | 15.75:1 |
+| `--st-focus` | `--st-surface` | Focus ring on cards | 3:1 | 17.16:1 | 14.42:1 |
+| `--st-focus` | `--st-surface-2` | Focus ring in note callouts and code | 3:1 | 14.85:1 | 12.92:1 |
+| `--st-focus` | `--st-primary-soft` | Focus ring in official callouts and badges | 3:1 | 14.62:1 | 10.59:1 |
+| `--st-focus` | `--st-accent-soft` | Focus ring in plain-words callouts | 3:1 | 14.73:1 | 12.38:1 |
+| `--st-focus` | `--st-warning-bg` | Focus ring in warning callouts | 3:1 | 15.56:1 | 11.77:1 |
+| `--st-focus` | `--st-info-bg` | Focus ring in info callouts | 3:1 | 14.53:1 | 11.56:1 |
+| `--st-focus` | `--st-hue-start-tint` | Focus ring on Start here tint | 3:1 | 12.51:1 | 9.68:1 |
+| `--st-focus` | `--st-hue-core-tint` | Focus ring on Core tint | 3:1 | 11.99:1 | 10.85:1 |
+| `--st-focus` | `--st-hue-branding-tint` | Focus ring on Branding tint | 3:1 | 12.22:1 | 12.64:1 |
+| `--st-focus` | `--st-hue-paperwork-tint` | Focus ring on Paperwork tint | 3:1 | 13.20:1 | 9.33:1 |
+| `--st-focus` | `--st-hue-types-tint` | Focus ring on Business types tint | 3:1 | 13.58:1 | 11.10:1 |
+| `--st-focus` | `--st-hue-lookup-tint` | Focus ring on Look it up tint | 3:1 | 11.90:1 | 11.06:1 |
 | `--st-primary` | `--st-bg` | Primary button edge, checkbox fill | 3:1 | 7.67:1 | 9.26:1 |
+| `--st-primary` | `--st-surface` | Selected chip edge, primary edge on cards | 3:1 | 8.13:1 | 8.48:1 |
 
-These match the plan's quoted ratios to one decimal (text on bg 16.2/15.8, muted 6.9/8.1, on-primary 8.1/7.7, on-accent 4.9/7.8, accent-text 5.9/8.6, focus 4.6/8.6, border-strong 4.4/4.9). Two notes on the plan's figures: dark border-strong on bg measures 4.90:1 (the plan says 4.5), and the Start here hue on light bg measures 5.59:1, which rounds to the plan's 5.6 (the unit test asserts 5.59, not a looser 5.5).
+These match the plan's quoted ratios to one decimal (text on bg 16.2/15.8, muted 6.9/8.1, on-primary 8.1/7.7, on-accent 4.9/7.8, accent-text 5.9/8.6, border-strong 4.4/4.9), except focus: the plan's rooibos ring measured 4.6/8.6, and the ink ring measures 16.2/15.8 (WP-50). Two notes on the plan's figures: dark border-strong on bg measures 4.90:1 (the plan says 4.5), and the Start here hue on light bg measures 5.59:1, which rounds to the plan's 5.6 (the unit test asserts 5.59, not a looser 5.5).
 
-**The light focus ring on a section tint is the tightest pair in the system** (3.37:1 to 3.85:1 against a 3:1 minimum) and it is what caps tint separation. See [Section tints](#section-tints) before changing any `--st-tint-strength-*`.
+Lowest pair of each kind (77 pairs, both themes, WP-50 Phase 2):
+
+| Theme | Text (needs 4.5:1) | Control edge (needs 3:1) | Focus ring (needs 3:1) |
+| --- | --- | --- | --- |
+| Light | 4.87:1 `on-accent` on `accent` | 4.03:1 `border-strong` on `surface-2` | 11.90:1 on the Look it up tint |
+| Dark | 5.49:1 `link` on the Paperwork tint | 4.01:1 `border-strong` on `surface-2` | 9.33:1 on the Paperwork tint |
+
+Before WP-50 the light focus ring on a section tint was the tightest pair in the system (3.37:1 to 3.85:1) and it capped tint separation. With the ink ring it is among the safest. The tightest pairs on a tint are now links (5.63:1 light, 5.49:1 dark). See [Section tints](#section-tints) before changing any `--st-tint-strength-*`.
 
 ### Section tints
 
@@ -149,12 +172,12 @@ Measured strengths and worst pairs:
 
 | Theme | start | core | branding | paperwork | types | lookup | Worst pair (ΔE_OK) | Worst focus ring |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Light | 18% | 18% | 18% | 14% | 12% | 18% | **0.0280** Start here vs Core | 3.37:1 |
-| Dark | 26% | 22% | 16% | 28% | 22% | 22% | **0.0389** Core vs Your kind of business | 5.10:1 |
+| Light | 18% | 18% | 18% | 14% | 12% | 18% | **0.0280** Start here vs Core | 11.90:1 (3.37:1 before WP-50) |
+| Dark | 26% | 22% | 16% | 28% | 22% | 22% | **0.0389** Core vs Your kind of business | 9.33:1 (5.10:1 before WP-50) |
 
 Before this round, with a flat strength per theme, the worst pairs were 0.0141 (light Start here vs Your kind of business) and **0.0126** (dark Core vs Paperwork) — the two dark pairs reported in review. The unit test asserts **ΔE_OK ≥ 0.025** for every pair in both themes, which those three pairs fail and the current palette passes.
 
-**Why the separation stops there.** A tint darkens as its strength rises, and the light focus ring on a tint is already the tightest pair in the system. The search found a light configuration reaching ΔE_OK 0.0400, but it puts that ring at **3.02:1** against a 3:1 minimum — a 0.02 margin. Accessibility wins over separation, so the light tints were instead chosen to lose **no margin at all**: every light text, link and focus pair is at least as good as it was at a flat 18%, and Paperwork and Your kind of business are deliberately *weaker* than the default, which both separates them from their neighbours and raises their focus contrast (3.52 → 3.74 and 3.51 → 3.85). Dark has much more headroom, so three hues move there and the worst ring is still 5.10:1.
+**Why the separation stopped there** (history: the ink ring of WP-50 lifted this limit and the strengths were left as they are; a change now is limited by links on a tint, 5.63:1 light). A tint darkens as its strength rises, and the light focus ring on a tint is already the tightest pair in the system. The search found a light configuration reaching ΔE_OK 0.0400, but it puts that ring at **3.02:1** against a 3:1 minimum — a 0.02 margin. Accessibility wins over separation, so the light tints were instead chosen to lose **no margin at all**: every light text, link and focus pair is at least as good as it was at a flat 18%, and Paperwork and Your kind of business are deliberately *weaker* than the default, which both separates them from their neighbours and raises their focus contrast (3.52 → 3.74 and 3.51 → 3.85). Dark has much more headroom, so three hues move there and the worst ring is still 5.10:1.
 
 If you change a hue or a strength, re-run `pnpm test`: the test asserts each tint against its hue, background and strength, so the numbers above can be re-derived rather than trusted.
 
@@ -162,17 +185,61 @@ If you change a hue or a strength, re-run `pnpm test`: the test asserts each tin
 
 | Role | Family | Details |
 | --- | --- | --- |
-| Headings and display | Fraunces Variable (`@fontsource-variable/fraunces`, `opsz` + `wght` axes) | Weight 600, `font-variation-settings: 'opsz' 48` for headings, `144` for `.st-display` |
-| Body and UI | Instrument Sans Variable (`@fontsource-variable/instrument-sans`, `wght`) | 400 to 700, normal and italic |
+| Page titles and section headings (h1, h2), display figures (`.st-display`) | Fraunces Variable (`@fontsource-variable/fraunces`, the wght-only files) | Weight 600, tracking -0.005em (display figures -0.02em). The wght-only files have no optical-size axis: their outlines are Fraunces' text end, sturdy and low in contrast |
+| Smaller headings (h3, h4), body and UI | Instrument Sans Variable (`@fontsource-variable/instrument-sans`, `wght`) | 400 to 700, normal and italic; h3 and h4 at 600 with no tracking |
 | Code | System monospace stack | `--st-font-mono` |
 
+- **Why** (WP-50, direction A, decision D2): the serif is for reading titles, the sans for everything a reader acts on. A low-contrast serif used sparingly reads as a heading voice, not as the high-contrast display serif that `frontend-design` lists among the generic looks. Components that set their own titles in `--st-font-display` (the logo's name, the template sheet's title, the home page's figures) keep Fraunces until Phase 3 restyles them.
+- **The font files.** Fraunces moved from the opsz file to the wght-only file of the same package (5.3.0): latin 36,620 bytes instead of 67,304, latin-ext 33,584 instead of 59,388. Instrument Sans is unchanged (latin 30,092 bytes). A first visit therefore downloads 66,712 bytes of preloaded fonts instead of 97,396 (measured in Chromium on the vehicle-dealer page and home, WP-50 Phase 2). `--st-opsz-display` and `--st-opsz-heading` remain as tokens but are inert: the files have no `opsz` axis, and base CSS no longer sets it.
 - Subsets: latin and latin-ext only, with the fontsource `unicode-range` values. Latin-ext covers Afrikaans (ê, ô, ë, ï, ü). It does **not** cover the Venda letters ḓ ṱ ṋ ṅ and their capitals Ḓ Ṱ Ṋ Ṅ: neither the Fraunces nor the Instrument Sans latin-ext file has a glyph for them (fontTools finds no glyph in either file, and Chromium draws each of them differently against two different fallbacks, WP-50a), so a browser draws them from a system font, in the middle of a word set in the web font. No built page uses them today except `/design-system/` (the name "Tshivenḓa" is in `src/i18n/locales.ts` for a planned language, but nothing renders it); a Venda translation would need a typeface that covers them. The design-system page shows the test string `Kôsê, sê, môre, ëïü` in every family, and the Venda letters on a line of their own, labelled as drawn from a system font.
-- `font-display: swap`. `Base.astro` preloads only the two latin woff2 files, imported with Vite `?url` so the hashed URLs match the ones in `base.css`.
-- Metric-matched fallbacks keep layout shift low while fonts swap. Values were measured from the font files with `@capsizecss/unpack`:
-  - `Fraunces fallback` = `local('Georgia')`, `size-adjust 116.2%`, `ascent-override 84.17%`, `descent-override 21.95%`, `line-gap-override 0%`.
-  - `Instrument Sans fallback` = `local('Arial')`, `local('Roboto')` …, `size-adjust 102.74%`, `ascent-override 94.42%`, `descent-override 24.33%`, `line-gap-override 0%`.
-- Low data (`prefers-reduced-data: reduce` or `html[data-low-data]`) switches `--st-font-display` and `--st-font-body` to the fallback stacks, so CSS never requests the webfonts. See [Known limits](#known-limits) for the preloads.
+- **Preloads and low data.** `font-display: swap`. `Base.astro` keeps the preloads of the two latin files (imported with Vite `?url`, so the hashed URLs match `base.css`) in a `<template data-st-preload>` just before `theme-init.js`, plus a `<noscript>` copy. `theme-init.js` moves the template's links into `<head>` unless low data mode is on (`st.lowData`), so a reader who asked for less data downloads **no** font: 0 bytes on a first visit, against 97,396 before (WP-50 audit, item 5). The preload scanner skips `<template>` content, and `<noscript>` content when scripts run; without JavaScript the `<noscript>` copy preloads them. `prefers-reduced-data` is left to the CSS: no stable browser ships it, and a check in `theme-init.js` would grow every page's script. `tests/dom/theme-init.test.ts` checks low data off and on, and blocked storage.
+- **What the conditional preload costs.** The preload scanner cannot see the template, so the font requests wait until `theme-init.js` has downloaded and run: on a first visit (nothing cached) that is one round trip later. Measured at 360px, 150ms latency, 1.6 Mbit/s, cache disabled, median of 7 cold loads each (WP-50 Phase 2 review pass 1; the first version of this section said 370 against 358ms, from single runs with the cache left on, and understated the cost):
+
+  | Build | Page | Font requests start | Fonts finished | First contentful paint | Font bytes, low data on |
+  | --- | --- | --- | --- | --- | --- |
+  | Before Phase 2 (static preloads, opsz file) | vehicle dealer / home | 171 / 172ms | 1,487 / 1,323ms | 1,092 / 984ms | 97,396 |
+  | Static preloads of the new files (not shipped) | vehicle dealer / home | 173 / 172ms | 1,137 / 1,074ms | 1,136 / 1,032ms | 66,712 |
+  | Phase 2 (preloads through `theme-init.js`) | vehicle dealer / home | 366 / 355ms | 1,321 / 1,187ms | 888 / 840ms | 0 |
+
+  So the fonts start about 190ms later than static preloads of the same files would, and finish 113 to 184ms later; they still finish earlier than before Phase 2, because the Fraunces file is smaller. First paint comes 250ms *earlier* than with static preloads, because 67 KB of fonts no longer compete with the stylesheet for the first round trips. With the matched fallbacks (layout shift at most 0.081 when the fonts arrive late, below), a later swap costs a reader little, and a reader on low data saves all 66,712 bytes. That is the trade-off, accepted for now. No cheaper way exists on a static host with `script-src 'self'`: nothing can read `st.lowData` before the preload scanner runs, and an inline script is not allowed. On a repeat visit `theme-init.js` usually comes from the cache and the delay mostly goes. Phase 5 checks it on a real phone (see [Known limits](#known-limits)).
+- Low data (`prefers-reduced-data: reduce` or `html[data-low-data]`) switches `--st-font-display` and `--st-font-body` to the fallback stacks, so CSS never requests the webfonts either.
 - Display figures use no-break spaces between digit groups (`R 1 234.56` with U+00A0), so an amount never breaks across lines. The decimal separator for rand amounts follows the toolkit markdown (i18n package).
+
+### Fallback fonts and layout shift
+
+The fallbacks are what a reader sees until the web fonts arrive, and in low data mode. Each local font a reader is likely to have gets its own `@font-face`, because one set of numbers cannot fit Arial, Roboto and Georgia at once. The stacks in `--st-font-display` and `--st-font-body` name them in turn, and the browser takes the first whose `local()` font exists.
+
+| Face | `local()` sources | For | size-adjust | ascent-override | descent-override |
+| --- | --- | --- | --- | --- | --- |
+| `Instrument Sans fallback` 400 | Arial, ArialMT, Liberation Sans, Arimo | Windows, Apple, Linux, ChromeOS | 101.32% | 95.74% | 24.67% |
+| `Instrument Sans fallback` 700 | Arial Bold, Liberation Sans Bold, Arimo Bold | the same, for 600 and 700 | 97.1% | 99.9% | 25.75% |
+| `Instrument Sans fallback Roboto` 400 | Roboto, Roboto-Regular | Android | 102.6% | 94.54% | 24.37% |
+| `Instrument Sans fallback Roboto` 700 | Roboto Bold, Roboto-Bold | Android, for 600 and 700 | 103.85% | 93.4% | 24.07% |
+| `Fraunces fallback` | Georgia | Windows, Apple | 108.6% | 90.06% | 23.48% |
+| `Fraunces fallback Noto Serif` | Noto Serif | Android | 100.74% | 97.08% | 25.31% |
+| `Fraunces fallback Times` | Liberation Serif, Tinos | Linux, ChromeOS | 119.1% | 82.12% | 21.41% |
+
+`line-gap-override` is 0% on every face.
+
+How they were measured (WP-50 Phase 2):
+
+- **size-adjust** is the ratio of advance widths, in Chromium, of the text of every document (37 English and 37 Afrikaans: about 734,000 characters of body text, and the h1 and h2 titles for the serif) set in the web font and in the local font. Body faces are matched to Instrument Sans 400, the bold faces to the mean of 600 and 700 (Arial Bold measures 96.47% against 600 and 97.80% against 700), and the serif faces to Fraunces 600 drawn with synthetic bold, which keeps the regular widths (Liberation Serif and Liberation Sans measure the same at 400, 600 and 700). English alone and Afrikaans alone differ by 0.2% to 0.3%. Roboto and Noto Serif were measured from their `@fontsource` files (the outlines Android ships), and Arial from Liberation Sans, which has Arial's advance widths. Georgia was not available: its value is Noto Serif's scaled by the two fonts' average widths in `@capsizecss/metrics` (Georgia 913/2048, Noto Serif 481/1000), a method that reproduced the measured Noto Serif to Liberation Serif ratio to 0.2% (1.1840 against 1.1823).
+- **ascent-override** and **descent-override** are the web font's own metrics divided by size-adjust (Instrument Sans: ascent 0.970 em, descent 0.250 em; Fraunces: 0.978 and 0.255 em, the same in the wght and opsz files, read with `@capsizecss/unpack`), so the baseline sits where the web font will put it.
+- Before WP-50 there were two faces: `local('Georgia')`, and Arial, Roboto and Helvetica sharing Arial's numbers from capsize (116.2% and 102.74%). On a phone (no Arial, no Georgia) and on Linux both failed, and the text fell through to an unadjusted system font.
+
+**Layout shift when the fonts arrive late.** Measured at 320×568 in Chromium: every `.woff2` request held until the reader is in place, then released; the figure is the layout shift from the release to `document.fonts.ready` plus 800ms, the method of WP-50a review pass 4. This machine has the Liberation fonts, so it measures the Arial and Times faces; Android's Roboto and Noto Serif faces and Georgia were not measured live (see [Known limits](#known-limits)).
+
+| Page and position | EN before | EN after | AF before | AF after |
+| --- | --- | --- | --- | --- |
+| `business-types/food/`, scrolled 1500px | 0.401 | 0.081 | 0.286 | 0.080 |
+| `business-types/vehicle-dealer/`, scrolled 1500px | 0.401 | 0.077 | 0.337 | 0.037 |
+| Find my path, question 1's heading at 80px | 0.172 | 0.056 | 0.133 | 0.046 |
+| Find my path, question 2's heading at 80px | 0.283 | 0.046 | 0.319 | 0.046 |
+| Find my path, question 3's heading at 80px | 0.133 | 0.046 | 0.093 | 0.046 |
+| Home, top of the page | 0.230 | 0.010 | 0.230 | 0.000 |
+| Header height at 320px, fallback then web font | 217 → 165px | 165 → 165px | 217 → 165px | 165 → 165px |
+
+Every case is under 0.1, so body text keeps `font-display: swap`: `optional` would keep the web font from a first visit on a slow connection and buy nothing the metrics have not already bought. The 320px header no longer changes rows when the fonts arrive, which WP-50 Phase 3 (item 5) asked for.
 
 ### Fluid scale (320px to 1280px viewport)
 
@@ -196,11 +263,36 @@ Body line height 1.6; headings 1.15 (h3 and h4 1.3). Measure `--st-measure: 68ch
 | Spacing | `--st-space-1` … `--st-space-9` = 4, 8, 12, 16, 24, 32, 48, 64, 96px (in rem) |
 | Radius | `--st-radius-sm` 4px, `-md` 8px, `-lg` 14px, `-pill` 999px |
 | Shadow | `--st-shadow-1` (resting card), `--st-shadow-2` (lifted card, toast) |
-| Motion | `--st-duration-fast` 120ms, `-base` 200ms, `-slow` 320ms, `--st-ease`, `--st-lift` −2px. Under `prefers-reduced-motion: reduce` durations become 0ms and the lift 0px; `base.css` also clamps all animations and transitions. |
+| Motion | `--st-duration-fast` 120ms, `-base` 200ms, `-slow` 320ms, `--st-ease`, `--st-lift` −2px. Under `prefers-reduced-motion: reduce` every duration is at most 120ms and the lift 0px; `base.css` keeps only transitions that move nothing. See [Motion](#motion). |
 | Layers | `--st-z-sticky` 10, `-drawer` 40, `-dialog` 50, `-toast` 60 |
 | Targets | `--st-target` 44px, `--st-target-lg` 52px |
-| Borders and focus | `--st-border-width` 1px, `--st-focus-width` 2px, `--st-focus-offset` 2px, `--st-stripe-width` 4px |
+| Borders and focus | `--st-border-width` 1px, `--st-focus-width` 3px (2px before WP-50), `--st-focus-offset` 2px, `--st-stripe-width` 4px |
 | Layout | `--st-container` 1360px, `--st-sidebar` 272px, `--st-toc` 240px, `--st-topbar` 56px, `--st-gutter` fluid 16 → 32px |
+
+### Motion
+
+**The rule (WP-50, decision D3, "gentler, not zero").** With `prefers-reduced-motion: reduce` nothing moves: no transform, slide, lift, scroll animation or drawing ring. Changes that move nothing stay, at 120ms or less: a fade, a colour, a shadow, an underline. WCAG 2.3.3 and the vestibular guidance behind it concern movement, not fades, and a short fade keeps the cause and effect of a tap visible. Apple's and GOV.UK's practice is the same.
+
+How it is enforced:
+
+- `tokens.css` sets `--st-duration-base` and `--st-duration-slow` to `--st-duration-fast` (120ms) and `--st-lift` to 0.
+- `base.css` sets `transition-property`, on every element and pseudo-element, to the properties that cannot move anything: `opacity`, the colours (`color`, `background-color`, `border-color`, `outline-color`, `text-decoration-color`), `text-decoration-thickness`, `fill`, `stroke` and `box-shadow`. Never `visibility`, `display` or `overlay`: with them, a control hidden that way stayed visible and clickable for 120ms under reduced motion (review pass 1, minor 2). The list replaces each element's own, so an element can gain a short fade it did not have; Phase 4 should gate movement where it is declared instead. A `transform` or `stroke-dashoffset` transition drops out of the list, so that change is instant. Durations stay as authored, which is why **transitions must use the duration tokens**: a literal 300ms would survive as a 300ms fade.
+- Keyframe animations cannot be split by property, so they all still finish at once (`animation-duration: 0.01ms`), and `scroll-behavior` stays `auto`. An opacity-only entrance that should survive (the "Now reading" pill) needs a transition with `@starting-style` instead, in Phase 4.
+- `tests/e2e/interactive.spec.ts` ("motion") checks a card, a button and a link under reduced motion: `opacity` and `box-shadow` stay in the list, no movement property does, every duration is 120ms or less and the lift is 0; and a ring's arc jumps.
+
+**`review-animations` over every transition in `src/styles/**` and `src/scripts/**`** (WP-50 Phase 2). Verdict: **Approve**, no Block.
+
+| Where | Motion | Verdict and why |
+| --- | --- | --- |
+| `base.css`, `a` | `text-decoration-thickness` over `--st-duration-fast` with `--st-ease`, on hover | Keep. Hover feedback, 120ms, not movement; a thin line on one link, so the non-GPU property costs nothing. Not gated behind `(hover: hover)`: after a tap the thicker line stays until the next tap, which is harmless. Stays under reduced motion |
+| `base.css`, reduced-motion block | Narrowed from "every duration 0" to "drop movement, keep short fades" | The D3 rule above |
+| `search.css`, `.st-search-target` | `background-color` keyframes, 2s, once | Keep. The landing highlight of a search result (build plan B3, "2s highlight"): colour only, once per search, a timer more than an animation, and it never needs to retarget. Static under reduced motion; the script removes the class after the same 2s |
+| `tokens.css`, `--st-ease` | `cubic-bezier(0.2, 0.7, 0.2, 1)` | A strong ease-out, as the standards ask for UI |
+| `src/scripts/ring.ts` | Sets `data-animate` after the first drawing | Keep. A ring moves only when its value changes on the page, never on load (WP-50a fixed the Block the audit found). Under reduced motion the arc jumps |
+| `search.ts`, `site.ts`, `applies.ts`, `template-form.ts`, `search-ui.ts` | `scrollIntoView`, five calls | Keep. All instant: no `behavior: 'smooth'`, and `scroll-behavior` is never smooth (WP-50a) |
+| `src/scripts/search.ts` | Restarts the highlight when the same heading is chosen twice | Keep. A second choice must show again where the reader landed |
+
+For Phases 3 and 4 (component CSS, outside the files this review covers): the card hover lift is ungated `:hover` motion on an element seen many times a day (direction A removes it); the toast enters with keyframes, which cannot be interrupted, and moves 0.5rem (D3 wants an opacity-only entrance); and the "Now reading" pill's opacity keyframes would read better as a transition.
 
 ## Grid and breakpoints
 
@@ -217,7 +309,13 @@ Custom properties cannot be used inside media queries, so breakpoints are litera
 
 The last two are component-level widths, not system breakpoints: they belong to one component each and no layout depends on them.
 
-Layout utilities (`src/styles/utilities.css`): `.st-container`, `.st-measure`, `.st-stack` (+ `-sm`, `-lg`, `-xl`), `.st-flow`, `.st-cluster`, `.st-grid` (`--st-grid-min`), `.st-doc-grid` (`272px | minmax(0,1fr) | 240px`), `.st-visually-hidden`, `.st-link-block` (a stand-alone link with a 44px target; see [Wrapping and min-content](#wrapping-and-min-content)), `.js-only`, `.no-js-only` (inside an element marked `data-enhance`, both follow that element's `data-ready` instead of the page's `js` class; see [Controls that need a script](#controls-that-need-a-script-wp-50a)), `.st-num`, and the `[data-section]` hue scopes.
+Layout utilities (`src/styles/utilities.css`): `.st-quiet-links` (see [Links](#links)), `.st-container`, `.st-measure`, `.st-stack` (+ `-sm`, `-lg`, `-xl`), `.st-flow`, `.st-cluster`, `.st-grid` (`--st-grid-min`), `.st-doc-grid` (`272px | minmax(0,1fr) | 240px`), `.st-visually-hidden`, `.st-link-block` (a stand-alone link with a 44px target; see [Wrapping and min-content](#wrapping-and-min-content)), `.js-only`, `.no-js-only` (inside an element marked `data-enhance`, both follow that element's `data-ready` instead of the page's `js` class; see [Controls that need a script](#controls-that-need-a-script-wp-50a)), `.st-num`, and the `[data-section]` hue scopes.
+
+## Links
+
+- **In running text, links are always underlined** (WCAG 1.4.1): the underline is what tells a link apart from the words around it. Offset 0.18em, thickness `max(1px, 0.0625em)`, thicker on hover.
+- **In a list of navigation links** (the document contents column, menus), put `.st-quiet-links` on the list: its links show no underline until hover or focus. A contents list's place, heading and list form already say "these are links", and a column of underlines was louder than the article (WP-50 audit, finding 6; decided on 13 October 2026, `stoep-design` rule 7). The underline keeps its room (`text-decoration-color: transparent`, not removed), so nothing moves on hover; focus keeps the base 3px ink ring; forced colours paint the underline anyway; print shows it again, because paper has no hover. The current entry keeps its own marker. Phase 3 applies it to the contents column. `/design-system/` shows it next to an underlined link in a sentence, and `tests/e2e/design-system.spec.ts` checks the resting, hover and focus states.
+- Never put `.st-quiet-links` on prose, a card's text or a single stand-alone link.
 
 ## Components
 
@@ -654,7 +752,8 @@ Ctrl+K (⌘K) are the `search` action since the WP-33 merge: the same handler ca
 search dialog. Their rows appear in the `/about/` table when `SEARCH_AVAILABLE` is on.
 
 Low data: the `lowData` store sets `<html data-low-data>`, which `tokens.css` already maps to the
-system fonts and no pattern. `theme-init.js` applies it before paint from `st.lowData`.
+system fonts and no pattern. `theme-init.js` applies it before paint from `st.lowData`, and then
+skips the font preloads (WP-50 Phase 2; see [Typography](#typography)).
 
 ### Fillable templates (WP-32)
 
@@ -766,7 +865,7 @@ migration, or uses a new key (`.v2`). `src/lib/storage/adapter.ts` is the `local
 never throws.
 
 `theme-init.js` is the one documented exception to "only the store reads storage": it must run
-before any module, so it reads `st.theme`, `st.lowData`, `st.lang` and `st.profile.v1` itself, in the formats the store writes; keep it in step with the `theme`, `lowData`, `lang` and `profile` stores. It sets `data-low-data`, `data-theme`, `data-st-lang-offer` (the saved language, when it is not the page's, so the language banner shows from first paint) `data-st-script-failed` (the names of scripts that failed to load, from the start of the file name: `YourPathCard`, `my-path`) and `data-st-profile` (saved answers that `parseProfile` would accept, with the same rules, which `tests/dom/theme-init.test.ts` keeps equal, so My path and the home card keep their space only for real answers) and `data-st-storage="blocked"` (its own read threw, so `utilities.css` shows the storage warnings and hides the "saved on this device" lines from the first paint; WP-50a review pass 11, m4). From 1024px it also opens "Words used in this file" (`#words-used-in-this-file`) as the parser adds it, through a `MutationObserver` that stops once the list is found or the page has been parsed (WP-50a). The build minifies the copy the pages load (`scripts/minify-theme-init.ts`), so its comments cost no page weight; the source stays readable, and is what `tests/dom/theme-init.test.ts` runs. The store is built on `nanostores` alone; it does not use `@nanostores/persistent` (removed), because its adapter has to survive a throwing `localStorage`.
+before any module, so it reads `st.theme`, `st.lowData`, `st.lang` and `st.profile.v1` itself, in the formats the store writes; keep it in step with the `theme`, `lowData`, `lang` and `profile` stores. It sets `data-low-data`, `data-theme`, `data-st-lang-offer` (the saved language, when it is not the page's, so the language banner shows from first paint) `data-st-script-failed` (the names of scripts that failed to load, from the start of the file name: `YourPathCard`, `my-path`) and `data-st-profile` (saved answers that `parseProfile` would accept, with the same rules, which `tests/dom/theme-init.test.ts` keeps equal, so My path and the home card keep their space only for real answers) and `data-st-storage="blocked"` (its own read threw, so `utilities.css` shows the storage warnings and hides the "saved on this device" lines from the first paint; WP-50a review pass 11, m4). It copies the font preloads from `<template data-st-preload>` into `<head>` unless low data is on (WP-50 Phase 2). From 1024px it also opens "Words used in this file" (`#words-used-in-this-file`) as the parser adds it, through a `MutationObserver` that stops once the list is found or the page has been parsed (WP-50a). The build minifies the copy the pages load (`scripts/minify-theme-init.ts`), so its comments cost no page weight; the source stays readable, and is what `tests/dom/theme-init.test.ts` runs. The store is built on `nanostores` alone; it does not use `@nanostores/persistent` (removed), because its adapter has to survive a throwing `localStorage`.
 
 ### Find my path and My path (WP-31)
 
@@ -1022,7 +1121,9 @@ One last piece of wording. An unparseable token fails its pair, which is the rig
 
 ## Known limits
 
-- **Low data and preloads.** The two `<link rel="preload">` font files (about 97 KB) are still fetched in low-data mode; a meta-level preload cannot react to a runtime toggle, and `prefers-reduced-data` ships in no stable browser. The toggle landed on `/about/` (WP-30) and this is still true: the preloads come after `theme-init.js` in `<head>`, so it cannot remove them, and moving them would cost every other reader the early font request. The fonts themselves are not used in low-data mode.
+- **Low data and `prefers-reduced-data`.** The low data toggle now stops the font preloads too (WP-50 Phase 2; see [Typography](#typography)). A browser that ships `prefers-reduced-data` would still get the preloads, though the CSS would not use the fonts; no stable browser ships it, and checking it in `theme-init.js` would grow every page's script.
+- **Font preloads start one round trip late on a first visit.** They go through `theme-init.js` so that low data mode can stop them; fonts start about 190ms later than static preloads would at 150ms latency, while first paint comes about 250ms earlier (figures under [Typography](#typography)). Check on a real low-end phone in Phase 5; if the late swap is noticed, the alternative is static preloads for everyone, at 66,712 bytes for low data readers too.
+- **Fallback metrics on Android and with Georgia were not measured live.** The Roboto and Noto Serif faces were measured from the same outlines in `@fontsource` packages, and Georgia from capsize's average widths. Whether Android Chrome matches `local('Roboto')` and `local('Noto Serif')` by those names should be checked on a real phone (WP-50 Phase 5); if it does not, the text falls through to the unadjusted system font, as before WP-50.
 - **Safari table semantics.** Stacked cells are `display: grid`. Playwright's accessibility snapshot keeps table, rowheader and cell roles in Chromium and WebKit, but that is computed from the DOM. Real VoiceOver on Safari has not been checked; the Table component can add explicit ARIA table roles if needed.
 - **`:has()`** drives the card ring and the segmented control's checked style. Browsers without `:has()` get the ring on the card link; the checked segment then shows only the native radio state to assistive technology, not the fill.
 - **The stacked table mode has no data to run on.** `TableScroll wide` stacks a table into labelled
@@ -1040,7 +1141,10 @@ One last piece of wording. An unparseable token fails its pair, which is the rig
 | --- | --- |
 | Use `var(--st-*)` for every colour, size and duration | Write hex, `rgb()`, `hsl()` or named colours outside `tokens.css` |
 | Pair every status colour with an icon and words | Use colour, position or shape alone to mean something |
-| Keep links underlined | Remove underlines to "clean up" a list of links |
+| Keep links in running text underlined | Remove underlines from links in a sentence, a card's text or a lone link |
+| Put `.st-quiet-links` on a navigation list (contents, menus) | Hide a navigation link's underline on focus, or drop its focus ring |
+| Use rooibos only for "In plain words" | Use `--st-accent` for chrome: chips, stripes, rings, active states |
+| Use the duration tokens for every transition | Write a literal duration, or transition `transform` without checking reduced motion |
 | Use `--st-border-strong` for control edges | Use `--st-border` for inputs, checkboxes or buttons |
 | Put hue-coloured text on `--st-bg` or `--st-surface` | Put hue text on its own tint (not verified) |
 | Give icon-only buttons a `label` | Put meaning in an `aria-hidden` icon |
@@ -1107,18 +1211,19 @@ Where the system states it:
 - `<details>` content is expanded where the browser supports `::details-content`. JavaScript should also open `<details>` on `beforeprint`.
 - External links print their URL after the text. The generated `::after` is an `inline-block`, because text decoration propagates from the inline parent into generated content: without it the printed "(https://…)" was underlined along with the link. It carries `max-inline-size: 100%` and `overflow-wrap: anywhere` so a long URL still wraps inside the page.
 - Checkboxes print as empty boxes, unless `<html data-print-ticks>` is set.
+- A `.st-quiet-links` list prints with its underlines (paper has no hover).
 - When an element has `data-print-sheet`, only that element prints (templates). Everything that is not the sheet, inside it or one of its ancestors gets `display: none`, so no blank pages are left behind and the sheet stays in normal flow.
 - Headings avoid breaks after; table rows, figures, callouts and code avoid breaks inside; table headers repeat.
 - Verified automatically on the template pages (see Known limits for what is not).
 
 ## Forced colours and preferences
 
-- `forced-colors: active`: focus rings become 3px `CanvasText`, cards, callouts, badges and toasts get visible borders, native checkboxes keep system rendering, the loading spinner keeps its gap, and illustration fills and the shweshwe pattern are removed.
+- `forced-colors: active`: focus rings become 3px `CanvasText` (the same width as the ink ring), cards, callouts, badges and toasts get visible borders, native checkboxes keep system rendering, the loading spinner keeps its gap, and illustration fills and the shweshwe pattern are removed.
 - The selected theme segment is filled with `Highlight`/`HighlightText` behind `forced-color-adjust: none`. A selected state must never come down to border colour alone, which is what happens if you let forced colours paint a transparent border as `CanvasText` and the fill as `Canvas`.
 - The live contrast panel **pauses** in forced colours and says so. The system palette replaces every author colour, so `getComputedStyle` returns the same forced value for every token and each pair would read "1.00:1 ✗ FAIL". Reporting 76 failures would tell a high-contrast user the design system is broken when nothing has drifted. The panel resumes when the override is turned off; the build-time Light and Dark columns stay visible throughout.
-- `prefers-reduced-motion: reduce`: durations 0ms, no lift, no spinner rotation, no ring transition.
+- `prefers-reduced-motion: reduce`: gentler, not zero (WP-50, D3). Nothing moves (no lift, slide, spinner rotation, drawing ring or keyframe animation); fades and colour changes stay at 120ms or less. See [Motion](#motion).
 - No smooth scrolling anywhere. `html:focus-within { scroll-behavior: smooth }` animated the scroll on every Tab, so it was removed (WP-50a, `review-animations` verdict Block in the WP-50 audit); contents links jump too.
-- `prefers-reduced-data: reduce` or `html[data-low-data]`: system fonts, no decorative pattern.
+- `prefers-reduced-data: reduce` or `html[data-low-data]`: system fonts, no decorative pattern; with the toggle, no font preloads either.
 
 ## Contribution checklist
 
@@ -1132,4 +1237,5 @@ Where the system states it:
 8. Scripts that read computed styles wait until the tokens resolve (see Scripts).
 9. Strings come from props (i18n), with room for +25% length. Then check the component again at 320px with a 38-character Afrikaans label **and** with one unbreakable 27-character compound, in Chromium **and** WebKit — several of these rules behave differently per engine. Read [Wrapping and min-content](#wrapping-and-min-content) before reaching for a fix, add the component to the Long labels section of `/design-system/`, and add its selector to the long-label e2e injection. If the component's box is sized by its own content, add it to `SHRINK_WRAPPED` in the same spec as well — the page-level injection alone will not fail when its declaration is deleted.
 10. Any real number in an example comes from the verification register, with the register's date. If a figure can go stale, add it to `tests/unit/forbidden-strings.test.ts` when it does.
-11. Run `pnpm typecheck`, `pnpm test`, `pnpm build` and `pnpm exec playwright test tests/e2e/design-system.spec.ts --project chromium --project webkit --project mobile`.
+11. Rooibos (`--st-accent`) is only for "In plain words", and the focus ring is ink. Do not give either a new job without recording why here. Transitions use the duration tokens and move nothing that reduced motion would object to (see [Motion](#motion)).
+12. Run `pnpm typecheck`, `pnpm test`, `pnpm build` and `pnpm exec playwright test tests/e2e/design-system.spec.ts --project chromium --project webkit --project mobile`.

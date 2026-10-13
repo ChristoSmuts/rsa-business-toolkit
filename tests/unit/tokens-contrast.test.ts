@@ -228,7 +228,11 @@ describe('tokens.css structure', () => {
       expect(toHex(resolveColor(name, dark)), `dark --st-${name}`).toBe(d.toLowerCase());
     }
     expect(light['link']).toBe('var(--st-primary)');
-    expect(light['focus']).toBe('var(--st-accent)');
+    // WP-50, direction A: the ring is ink in both themes; rooibos is only "In plain words". The
+    // alias is defined once on :root, so the dark blocks must not redefine it.
+    expect(light['focus']).toBe('var(--st-text)');
+    expect(blocks.dark).not.toHaveProperty('focus');
+    expect(light['focus-width']).toBe('3px');
   });
 
   it('mixes each section tint at its own strength', () => {
@@ -273,12 +277,12 @@ describe('tokens.css structure', () => {
    * business at 0.0194, and light Start here vs Your kind of business at 0.0141.
    *
    * 0.025 is not an aspiration, it is what this palette can actually hold while every contrast
-   * pair keeps its margin. The binding constraint is the light focus ring on a tint, the
-   * tightest pair in the system: a tint darkens as its strength rises, and pushing light
-   * separation to 0.0400 would drop that ring to 3.02:1 against a 3:1 minimum. Accessibility
-   * wins, so the light tints were instead chosen to lose no margin at all (worst focus ring
-   * still 3.37:1) for a worst pair of 0.0280 (Start here vs Core). Dark has far more headroom
-   * and reaches 0.0389 (Core vs Your kind of business) with its worst ring at 5.10:1.
+   * pair keeps its margin. The strengths were chosen while the focus ring was rooibos and the
+   * light ring on a tint was the tightest pair in the system: a tint darkens as its strength
+   * rises, and pushing light separation to 0.0400 would have dropped that ring to 3.02:1. The
+   * light tints were instead chosen to lose no margin at all, for a worst pair of 0.0280 (Start
+   * here vs Core); dark reaches 0.0389 (Core vs Your kind of business). Since WP-50 the ring is
+   * ink (at least 11.90:1 light, 9.33:1 dark on a tint), so it no longer caps the strengths.
    *
    * Re-derive with the strengths asserted above; docs/design-system.md carries the same numbers.
    */
@@ -327,8 +331,10 @@ describe('verified contrast pairs (plan B4)', () => {
     expect(ratio('on-accent', 'accent', dark)).toBe(7.8);
     expect(ratio('accent-text', 'bg', light)).toBe(5.9);
     expect(ratio('accent-text', 'bg', dark)).toBe(8.6);
-    expect(ratio('focus', 'bg', light)).toBe(4.6);
-    expect(ratio('focus', 'bg', dark)).toBe(8.6);
+    // The plan's rooibos ring measured 4.6 and 8.6. WP-50 (direction A) made the ring ink, so it
+    // now matches text on bg in both themes.
+    expect(ratio('focus', 'bg', light)).toBe(16.2);
+    expect(ratio('focus', 'bg', dark)).toBe(15.8);
     expect(ratio('border-strong', 'bg', light)).toBe(4.4);
   });
 

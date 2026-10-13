@@ -74,6 +74,11 @@
     color: var(--st-text);
   }
 
+  /* Paper has no hover: a quiet navigation list that prints shows its underlines again. */
+  .st-quiet-links a:not(:hover, :focus-visible) {
+    text-decoration-color: currentcolor;
+  }
+
   h1,
   h2,
   h3,

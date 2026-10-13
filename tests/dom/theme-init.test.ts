@@ -206,5 +206,71 @@ for (const [label, script] of [
         expect(list.open).toBe(false);
       });
     });
+
+    /*
+     * WP-50 audit, item 5: the font preloads wait in a <template> (Base.astro) and theme-init copies
+     * them into <head> only when the page will use the fonts. In low data mode the CSS uses the
+     * device's fonts, so a preload would only spend the reader's data.
+     */
+    describe('theme-init and the font preloads', () => {
+      const FONTS = ['/_astro/fraunces.woff2', '/_astro/instrument.woff2'];
+      /** A phone: no media query matches, so nothing but the preloads is under test. */
+      const phone = (): void => {
+        vi.stubGlobal('matchMedia', (query: string) => ({
+          matches: false,
+          media: query,
+          addEventListener: () => undefined,
+          removeEventListener: () => undefined,
+        }));
+      };
+      const preloaded = (): string[] =>
+        [...document.head.querySelectorAll('link[rel="preload"][as="font"]')].map(
+          (link) => link.getAttribute('href') ?? '',
+        );
+
+      beforeEach(() => {
+        const template = document.createElement('template');
+        template.setAttribute('data-st-preload', '');
+        template.innerHTML = FONTS.map(
+          (font) => `<link rel="preload" href="${font}" as="font" type="font/woff2" crossorigin>`,
+        ).join('');
+        document.head.append(template);
+      });
+
+      afterEach(() => {
+        vi.unstubAllGlobals();
+        document.head.replaceChildren();
+        document.documentElement.removeAttribute('data-low-data');
+      });
+
+      it('preloads both fonts, once, with low data off', () => {
+        phone();
+        run();
+        expect(preloaded()).toEqual(FONTS);
+        const link = document.head.querySelector('link[rel="preload"]');
+        expect(link?.getAttribute('crossorigin')).toBe('');
+        expect(link?.getAttribute('type')).toBe('font/woff2');
+      });
+
+      it('preloads nothing with the low data toggle on', () => {
+        phone();
+        localStorage.setItem('st.lowData', 'true');
+        run();
+        expect(document.documentElement.hasAttribute('data-low-data')).toBe(true);
+        expect(preloaded()).toEqual([]);
+      });
+
+      it('preloads the fonts when storage is blocked (the toggle cannot be read)', () => {
+        phone();
+        vi.stubGlobal('localStorage', {
+          getItem: () => {
+            throw new DOMException('The operation is insecure.', 'SecurityError');
+          },
+        });
+        run();
+        document.documentElement.removeAttribute('data-st-storage');
+        expect(preloaded()).toEqual(FONTS);
+      });
+    });
   });
 }

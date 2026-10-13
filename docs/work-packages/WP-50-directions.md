@@ -512,3 +512,5 @@ Next: delete direction B's mock and the shared mock scaffolding as "Removing the
 ## Removing the mocks after the decision
 
 Delete `src/styles/directions.css`, `src/components/directions/`, `src/pages/[...locale]/design-system/directions/`, `tests/unit/directions-contrast.test.ts`, the Stylelint override, and (if A is chosen) the Commissioner dependency. The chosen palette moves into `tokens.css` in Phase 2 with its pairs in `CONTRAST_PAIRS`.
+
+Done at the start of Phase 2: all of the above is deleted, direction B included. Direction A's measured values now live in `src/styles/tokens.css` and `docs/design-system.md`. The screenshots in `docs/reviews/WP-50-directions/` stay as the record of what the owner chose from, so the mock routes named at the top of this file no longer exist.

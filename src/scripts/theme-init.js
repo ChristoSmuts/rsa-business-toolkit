@@ -1,28 +1,42 @@
 // @ts-check
-/* global document, window, Element, HTMLScriptElement, MutationObserver */
+/* global document, localStorage, matchMedia, addEventListener, Element, HTMLScriptElement, MutationObserver */
 // Blocking theme init, copied via `?url` and minified in the build (scripts/minify-theme-init.ts):
 // keep it tiny, ES2019, no imports.
 // The documented exception to "only the store reads storage"; docs/design-system.md, "Scripts, CSP
 // and JavaScript budget", says what it reads and sets and why.
 (function () {
   var root = document.documentElement;
-  var saved = null;
-  var lowData = null;
-  var lang = null;
-  var profile = null;
+  /** @type {string | null | undefined} */
+  var saved;
+  /** @type {string | null | undefined} */
+  var lang;
+  /** @type {string | null | undefined} */
+  var profile;
+  var lowData = false;
   try {
-    saved = window.localStorage.getItem('st.theme');
-    lowData = window.localStorage.getItem('st.lowData');
-    lang = window.localStorage.getItem('st.lang');
-    profile = window.localStorage.getItem('st.profile.v1');
+    var store = localStorage;
+    saved = store.getItem('st.theme');
+    lowData = store.getItem('st.lowData') === 'true';
+    lang = store.getItem('st.lang');
+    profile = store.getItem('st.profile.v1');
   } catch {
     // Storage blocked: follow the system theme, with web fonts, and show the storage warnings from
     // the first paint (utilities.css), so nothing moves when their script runs (WP-50a pass 11, m4).
     root.setAttribute('data-st-storage', 'blocked');
   }
-  if (lowData === 'true') root.setAttribute('data-low-data', '');
-  if (answers(profile)) root.setAttribute('data-st-profile', '');
-  if (lang && lang !== (root.getAttribute('lang') || '').split('-')[0]) {
+  root.toggleAttribute('data-low-data', lowData);
+  // The font preloads (Base.astro keeps them in a <template> just before this script): only when
+  // the page will use the fonts. In low data mode the CSS uses the device's fonts, so a preload
+  // would only spend the reader's data (WP-50 audit, item 5). `prefers-reduced-data` is left to
+  // the CSS: no stable browser ships it, and checking it here would grow every page's script.
+  var preloads = /** @type {HTMLTemplateElement | null} */ (
+    document.querySelector('[data-st-preload]')
+  );
+  if (preloads && !lowData) {
+    document.head.append(preloads.content);
+  }
+  root.toggleAttribute('data-st-profile', answers(profile));
+  if (lang && lang !== root.lang.split('-')[0]) {
     root.setAttribute('data-st-lang-offer', lang);
   }
   if (saved === 'light' || saved === 'dark') {
@@ -37,7 +51,7 @@
   }
   root.classList.add('js');
   // Opens "Words used in this file" from 1024px before it is painted (Doc.astro).
-  if (window.matchMedia('(min-width: 1024px)').matches) {
+  if (matchMedia('(min-width: 1024px)').matches) {
     var words = new MutationObserver(function () {
       var list = document.getElementById('words-used-in-this-file');
       if (list) list.setAttribute('open', '');
@@ -49,7 +63,7 @@
   // the home card and My path stop keeping space for what they cannot draw, and the wizard shows its
   // no-JavaScript form. Every rule that reads this waits for its element's data-ready, so a later
   // error in an element that is already drawn changes nothing.
-  window.addEventListener(
+  addEventListener(
     'error',
     function (event) {
       var script = event.target;
@@ -76,7 +90,7 @@
   );
 
   // `parseProfile`'s rules (src/lib/profile.ts; tests/dom/theme-init.test.ts keeps them equal).
-  /** @param {string | null} raw */
+  /** @param {string | null | undefined} raw */
   function answers(raw) {
     var v;
     try {
@@ -86,10 +100,11 @@
     }
     var t = v && v.businessTypes;
     if (!Array.isArray(t) || !t.length) return false;
-    var ok =
-      'vehicle-dealer food beauty retail-online services-trades professional-creative general'
-        .split(' ')
-        .concat('sole-prop', 'pty', 'undecided', 'not-started', 'trading', 'pty-growing');
+    // Kinds of business (0 to 6), then entities (7 to 9), then stages (10 to 12).
+    var ok = (
+      'vehicle-dealer food beauty retail-online services-trades professional-creative general ' +
+      'sole-prop pty undecided not-started trading pty-growing'
+    ).split(' ');
     for (var i = 0; i < t.length; i++) {
       var k = ok.indexOf(t[i]);
       if (k < 0 || k > 6 || t.indexOf(t[i]) < i) return false;

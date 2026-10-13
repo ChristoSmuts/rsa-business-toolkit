@@ -25,7 +25,7 @@ Apply every rule in `guidelines.md` except these:
 | `focus-visible:ring-*`, `min-w-0`, `truncate`, `line-clamp-*` | These are Tailwind names. Read them as the CSS they stand for (`:focus-visible` outline from `--st-focus`, `min-inline-size: 0`, and so on). Never truncate translated text: let it wrap. |
 | Virtualise lists over 50 items (`virtua`) | Use `content-visibility: auto` if a list is slow; no new runtime libraries. |
 | URL reflects state (nuqs) | Same principle, without a library: filters, tabs and open panels that matter belong in the query string or the hash, and the page must work without JavaScript. |
-| `prefers-reduced-motion`: provide a reduced variant | The current rule in `src/styles/base.css` and `tokens.css` sets durations to near zero. Keep that until the design revamp (WP-50) decides otherwise. |
+| `prefers-reduced-motion`: provide a reduced variant | WP-50 decision D3, "gentler, not zero": under reduced motion nothing moves (no transform, slide, lift, drawing ring or smooth scroll), and fades and colour changes stay at 120ms or less. `src/styles/base.css` and `tokens.css` enforce it; the rule and its limits are in `docs/design-system.md#motion`. Flag a transition that moves something without going through that rule, or a literal duration. |
 
 ## Output
 

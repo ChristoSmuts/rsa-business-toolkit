@@ -134,9 +134,12 @@
   font-size: var(--st-text-sm);
 }
 
-/* A prompt is meant to be copied whole, so it is set apart from a worked example. */
+/*
+ * A prompt is meant to be copied whole, so it is set apart from a worked example. The stripe is
+ * veld green, something to act on; rooibos is only the "In plain words" voice (WP-50, A).
+ */
 .st-code[data-variant='prompt'] pre {
-  border-inline-start: var(--st-stripe-width) solid var(--st-accent);
+  border-inline-start: var(--st-stripe-width) solid var(--st-primary);
 }
 
 /* ---------- Tables ---------- */

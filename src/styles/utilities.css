@@ -93,6 +93,18 @@ st-table-scroll {
   overflow-wrap: anywhere;
 }
 
+/*
+ * Navigation lists (the contents column, menus): no underline until hover or focus (WP-50,
+ * decided 13 October 2026; `stoep-design` rule 7). Their place, heading and list form already say
+ * "these are links", and a column of underlines is louder than the article beside it. Links in
+ * running text keep their underline (WCAG 1.4.1), so this goes on a list of links, never on prose.
+ * The underline keeps its room (transparent, not removed), so nothing moves on hover; the focus
+ * ring is the base one, untouched. Forced colours paint the underline in the link colour.
+ */
+.st-quiet-links a:not(:hover, :focus-visible) {
+  text-decoration-color: transparent;
+}
+
 /* Page container: max 1360px with fluid side gutters. */
 .st-container {
   inline-size: 100%;

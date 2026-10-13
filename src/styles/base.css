@@ -5,12 +5,18 @@
 
 /* ---------- Webfonts (latin + latin-ext only; files resolved and hashed by Vite) ---------- */
 
+/*
+ * Fraunces from the wght-only files (WP-50, direction A). They have no optical-size axis: the
+ * outlines are the text end of Fraunces, sturdy and low in contrast, which is the heading voice
+ * direction A chose instead of the high-contrast display cut. The latin file is 36.6 KB, against
+ * 67.3 KB for the opsz file every page preloaded before.
+ */
 @font-face {
   font-family: 'Fraunces Variable';
   font-style: normal;
   font-display: swap;
   font-weight: 100 900;
-  src: url('@fontsource-variable/fraunces/files/fraunces-latin-ext-opsz-normal.woff2')
+  src: url('@fontsource-variable/fraunces/files/fraunces-latin-ext-wght-normal.woff2')
     format('woff2');
   unicode-range:
     U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
@@ -23,7 +29,7 @@
   font-style: normal;
   font-display: swap;
   font-weight: 100 900;
-  src: url('@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2') format('woff2');
+  src: url('@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2') format('woff2');
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
@@ -80,25 +86,91 @@
 }
 
 /*
- * Metric-matched fallbacks limit layout shift while webfonts swap in. Values were
- * measured from the woff2 files with @capsizecss/unpack (average character width
- * ratio for size-adjust; ascent/descent divided by the adjusted em).
+ * Metric-matched fallbacks: what the text is drawn in until the web fonts arrive, and in low data
+ * mode. Each local font a reader is likely to have gets its own face, because one set of numbers
+ * cannot fit Arial, Roboto and Georgia at once. The browser takes the first face whose local()
+ * font exists (Windows and Apple: Arial and Georgia; Android: Roboto and Noto Serif; Linux and
+ * ChromeOS: Liberation or Arimo/Tinos, which have Arial's and Times' widths).
+ *
+ * size-adjust makes the fallback's text as wide as the web font's: measured in Chromium (WP-50
+ * Phase 2) as the ratio of the advance widths of every document's text, English and Afrikaans,
+ * set in each font. Body faces are matched to Instrument Sans 400, the bold faces to the mean of
+ * 600 and 700, the serif faces to Fraunces 600 (their bold is synthesised, which keeps the regular
+ * widths). Georgia was not available to measure; its value is Noto Serif's scaled by the two
+ * fonts' average widths from @capsizecss/metrics, a method that reproduced the measured Noto
+ * Serif / Liberation Serif ratio to 0.2%.
+ * ascent-override and descent-override are the web font's own metrics (Instrument Sans 0.970 and
+ * 0.250 em, Fraunces 0.978 and 0.255 em) divided by size-adjust, so the baseline sits where the
+ * web font will put it. docs/design-system.md has the measurements and the layout shift they buy.
  */
 @font-face {
   font-family: 'Fraunces fallback';
   src: local('Georgia');
-  size-adjust: 116.2%;
-  ascent-override: 84.17%;
-  descent-override: 21.95%;
+  size-adjust: 108.6%;
+  ascent-override: 90.06%;
+  descent-override: 23.48%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Fraunces fallback Noto Serif';
+  src: local('Noto Serif'), local('NotoSerif');
+  size-adjust: 100.74%;
+  ascent-override: 97.08%;
+  descent-override: 25.31%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Fraunces fallback Times';
+  src: local('Liberation Serif'), local('LiberationSerif'), local('Tinos'), local('Tinos-Regular');
+  size-adjust: 119.1%;
+  ascent-override: 82.12%;
+  descent-override: 21.41%;
   line-gap-override: 0%;
 }
 
 @font-face {
   font-family: 'Instrument Sans fallback';
-  src: local('Arial'), local('ArialMT'), local('Roboto'), local('Helvetica');
-  size-adjust: 102.74%;
-  ascent-override: 94.42%;
-  descent-override: 24.33%;
+  font-weight: 400;
+  src:
+    local('Arial'), local('ArialMT'), local('Liberation Sans'), local('LiberationSans'),
+    local('Arimo'), local('Arimo-Regular');
+  size-adjust: 101.32%;
+  ascent-override: 95.74%;
+  descent-override: 24.67%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Instrument Sans fallback';
+  font-weight: 700;
+  src:
+    local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'),
+    local('LiberationSans-Bold'), local('Arimo Bold'), local('Arimo-Bold');
+  size-adjust: 97.1%;
+  ascent-override: 99.9%;
+  descent-override: 25.75%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Instrument Sans fallback Roboto';
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), local('Roboto Regular');
+  size-adjust: 102.6%;
+  ascent-override: 94.54%;
+  descent-override: 24.37%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Instrument Sans fallback Roboto';
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold');
+  size-adjust: 103.85%;
+  ascent-override: 93.4%;
+  descent-override: 24.07%;
   line-gap-override: 0%;
 }
 
@@ -215,16 +287,26 @@ svg {
 
 /* ---------- Typography ---------- */
 
+/*
+ * Type roles (WP-50, direction A): the serif is for reading titles, the sans for everything a
+ * reader acts on. Fraunces sets h1 and h2 only; h3 and h4 are Instrument Sans. Fraunces' text cut
+ * needs less negative tracking than the display cut did.
+ */
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--st-font-display);
   font-weight: var(--st-weight-semibold);
-  font-variation-settings: 'opsz' var(--st-opsz-heading);
   line-height: var(--st-leading-tight);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
   text-wrap: balance;
+}
+
+h3,
+h4 {
+  font-family: var(--st-font-body);
+  letter-spacing: 0;
 }
 
 h1 {
@@ -249,7 +331,6 @@ h4 {
   font-family: var(--st-font-display);
   font-size: var(--st-text-display);
   font-weight: var(--st-weight-semibold);
-  font-variation-settings: 'opsz' var(--st-opsz-display);
   line-height: 1.05;
   letter-spacing: -0.02em;
   font-variant-numeric: lining-nums;
@@ -655,13 +736,35 @@ td[data-numeric] {
 
 /* ---------- Reduced motion ---------- */
 
+/*
+ * Gentler, not zero (WP-50, decision D3). With reduced motion nothing moves: no transform, slide,
+ * lift, scroll animation or drawing ring. Changes that do not move anything stay, as short as
+ * `--st-duration-fast` (tokens.css caps every duration token at 120ms here): a fade, a colour, a
+ * shadow. WCAG 2.3.3 and the vestibular guidance behind it are about movement, and a short fade
+ * keeps the cause and effect of a tap visible.
+ *
+ * How: every transition keeps only the properties that cannot move anything. A transition of
+ * `transform` or `stroke-dashoffset` is dropped from the list, so that change is instant; the
+ * durations stay as authored, which is why transitions must use the duration tokens. Keyframe
+ * animations cannot be split by property, so all of them still finish at once; an opacity-only
+ * entrance that should stay (the "Now reading" pill) needs a transition with `@starting-style`
+ * instead (WP-50 Phase 4).
+ *
+ * The list replaces each element's own list, so it can add a fade an element did not have (a card's
+ * shadow-only transition also gets opacity and colours, at its own duration). That is harmless for
+ * what is in it. It must never hold `visibility`, `display` or `overlay`: a control hidden that way
+ * stayed visible and clickable for 120ms (WP-50 Phase 2 review pass 1, minor 2). Phase 4 should
+ * gate movement where it is declared instead (`prefers-reduced-motion: no-preference`).
+ */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-property:
+      opacity, color, background-color, border-color, outline-color, text-decoration-color,
+      text-decoration-thickness, fill, stroke, box-shadow !important;
     scroll-behavior: auto !important;
   }
 }

@@ -126,6 +126,7 @@ export const CONTRAST_PAIRS: readonly ContrastPair[] = [
     use: `Focus ring on ${name} tint`,
   })),
   { fg: 'primary', bg: 'bg', min: UI, use: 'Primary button edge, checkbox fill' },
+  { fg: 'primary', bg: 'surface', min: UI, use: 'Selected chip edge, primary edge on cards' },
 ];
 
 /** Parse `#rgb`, `#rgba`, `#rrggbb` or `#rrggbbaa` (case-insensitive); alpha is ignored. */
