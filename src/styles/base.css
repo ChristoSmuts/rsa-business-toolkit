@@ -749,6 +749,12 @@ td[data-numeric] {
  * animations cannot be split by property, so all of them still finish at once; an opacity-only
  * entrance that should stay (the "Now reading" pill) needs a transition with `@starting-style`
  * instead (WP-50 Phase 4).
+ *
+ * The list replaces each element's own list, so it can add a fade an element did not have (a card's
+ * shadow-only transition also gets opacity and colours, at its own duration). That is harmless for
+ * what is in it. It must never hold `visibility`, `display` or `overlay`: a control hidden that way
+ * stayed visible and clickable for 120ms (WP-50 Phase 2 review pass 1, minor 2). Phase 4 should
+ * gate movement where it is declared instead (`prefers-reduced-motion: no-preference`).
  */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -758,7 +764,7 @@ td[data-numeric] {
     animation-iteration-count: 1 !important;
     transition-property:
       opacity, color, background-color, border-color, outline-color, text-decoration-color,
-      text-decoration-thickness, fill, stroke, box-shadow, visibility, display, overlay !important;
+      text-decoration-thickness, fill, stroke, box-shadow !important;
     scroll-behavior: auto !important;
   }
 }

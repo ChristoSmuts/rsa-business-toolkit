@@ -791,6 +791,47 @@ test.describe('motion', () => {
     ).toBe('0px');
   });
 
+  /*
+   * WP-50 Phase 2 review pass 1, minor 2: the reduced-motion transition list once held `visibility`,
+   * so a button hidden that way stayed visible and clickable for 120ms. Hiding is instant.
+   */
+  test('under reduced motion a button that is hidden is gone at once', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('templates/invoice/');
+    await page.waitForLoadState('load');
+    // No transition of visibility, display or overlay is running anywhere on the page.
+    const discrete = await page.evaluate(() =>
+      document
+        .getAnimations()
+        .filter((animation) => animation instanceof CSSTransition)
+        .map((animation) => (animation as CSSTransition).transitionProperty)
+        .filter((property) => ['visibility', 'display', 'overlay'].includes(property)),
+    );
+    expect(discrete).toEqual([]);
+
+    const button = page.locator('main .st-btn:visible').first();
+    await button.scrollIntoViewIfNeeded();
+    const after = await button.evaluate(async (element) => {
+      let clicks = 0;
+      element.addEventListener('click', () => (clicks += 1));
+      const box = element.getBoundingClientRect();
+      (element as HTMLElement).style.visibility = 'hidden';
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      const hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
+      if (hit instanceof HTMLElement) hit.click();
+      return {
+        visibility: getComputedStyle(element).visibility,
+        hit: hit !== null && element.contains(hit),
+        clicks,
+        property: getComputedStyle(element).transitionProperty,
+      };
+    });
+    expect(after.visibility).toBe('hidden');
+    expect(after.hit).toBe(false);
+    expect(after.clicks).toBe(0);
+    expect(after.property).not.toMatch(/visibility|display|overlay|\ball\b/);
+  });
+
   test('a tick moves the checklist ring, and opening the page does not', async ({ page }) => {
     await page.goto(CHECKLIST);
     await page.waitForLoadState('networkidle');
