@@ -736,13 +736,29 @@ td[data-numeric] {
 
 /* ---------- Reduced motion ---------- */
 
+/*
+ * Gentler, not zero (WP-50, decision D3). With reduced motion nothing moves: no transform, slide,
+ * lift, scroll animation or drawing ring. Changes that do not move anything stay, as short as
+ * `--st-duration-fast` (tokens.css caps every duration token at 120ms here): a fade, a colour, a
+ * shadow. WCAG 2.3.3 and the vestibular guidance behind it are about movement, and a short fade
+ * keeps the cause and effect of a tap visible.
+ *
+ * How: every transition keeps only the properties that cannot move anything. A transition of
+ * `transform` or `stroke-dashoffset` is dropped from the list, so that change is instant; the
+ * durations stay as authored, which is why transitions must use the duration tokens. Keyframe
+ * animations cannot be split by property, so all of them still finish at once; an opacity-only
+ * entrance that should stay (the "Now reading" pill) needs a transition with `@starting-style`
+ * instead (WP-50 Phase 4).
+ */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-property:
+      opacity, color, background-color, border-color, outline-color, text-decoration-color,
+      text-decoration-thickness, fill, stroke, box-shadow, visibility, display, overlay !important;
     scroll-behavior: auto !important;
   }
 }

@@ -371,11 +371,15 @@
   }
 }
 
+/*
+ * Reduced motion: gentler, not zero (WP-50, D3). Every duration is at most 120ms and nothing lifts;
+ * base.css drops every transition that would move something, so what is left is a short fade or
+ * colour change.
+ */
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --st-duration-fast: 0ms;
-    --st-duration-base: 0ms;
-    --st-duration-slow: 0ms;
+    --st-duration-base: var(--st-duration-fast);
+    --st-duration-slow: var(--st-duration-fast);
     --st-lift: 0px;
   }
 }

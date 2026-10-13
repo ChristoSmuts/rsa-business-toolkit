@@ -738,10 +738,57 @@ test.describe('motion', () => {
     const again = page.locator('[data-steps] > li:visible').nth(1).locator('[data-mark]');
     await expect(again).toBeVisible();
     await again.click();
-    const duration = await page
-      .locator('[data-progress] .st-ring__value')
-      .evaluate((arc) => parseFloat(getComputedStyle(arc).transitionDuration));
-    expect(duration).toBeLessThanOrEqual(0.001);
+    // Gentler, not zero (WP-50, D3): durations stay short under reduced motion, and base.css drops
+    // every transition that moves something. Drawing the arc is movement, so it jumps.
+    const arc = page.locator('[data-progress] .st-ring__value');
+    const style = await arc.evaluate((element) => {
+      const computed = getComputedStyle(element);
+      return { property: computed.transitionProperty, duration: computed.transitionDuration };
+    });
+    expect(style.property).not.toMatch(/stroke-dashoffset|transform|\ball\b/);
+    expect(
+      Math.max(...style.duration.split(',').map((value) => parseFloat(value))),
+    ).toBeLessThanOrEqual(0.12);
+    expect(await ringMotion(page)).toEqual([]);
+  });
+
+  test('reduced motion keeps short fades and colour changes and drops every movement', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('./');
+    // A card lifts and shadows on hover, a button changes colour and presses, a link thickens.
+    for (const selector of ['.st-card', '.st-btn', 'main a']) {
+      const style = await page
+        .locator(selector)
+        .first()
+        .evaluate((element) => {
+          const computed = getComputedStyle(element);
+          return { property: computed.transitionProperty, duration: computed.transitionDuration };
+        });
+      const properties = style.property.split(',').map((value) => value.trim());
+      expect(properties, selector).toContain('opacity');
+      expect(properties, selector).toContain('box-shadow');
+      for (const moving of [
+        'transform',
+        'translate',
+        'scale',
+        'rotate',
+        'all',
+        'stroke-dashoffset',
+      ])
+        expect(properties, selector).not.toContain(moving);
+      expect(
+        Math.max(...style.duration.split(',').map((value) => parseFloat(value))),
+        selector,
+      ).toBeLessThanOrEqual(0.12);
+    }
+    // Nothing lifts.
+    expect(
+      await page.evaluate(() =>
+        getComputedStyle(document.documentElement).getPropertyValue('--st-lift').trim(),
+      ),
+    ).toBe('0px');
   });
 
   test('a tick moves the checklist ring, and opening the page does not', async ({ page }) => {
