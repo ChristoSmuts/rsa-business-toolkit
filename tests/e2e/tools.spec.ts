@@ -70,6 +70,7 @@ test.describe('Find my path on a phone', () => {
   for (const lang of LANGS) {
     test(`/${lang}find-my-path/ at 320px: the stepper is one bar and the first answer is higher`, async ({
       page,
+      browserName,
     }) => {
       await startWizard(page, lang);
       const stepper = page.locator('.st-wizard__stepper');
@@ -81,9 +82,11 @@ test.describe('Find my path on a phone', () => {
       expect(new Set(items).size, 'three segments on one row').toBe(1);
       // At `ea15b4a` the first answer started 780px (EN) and 803px (AF) down at 320×568; with the
       // stepper's two rows of words gone and the heading a size smaller it is 635px in both. The
-      // rest of the first screen is the header (Phase 3, item 5).
+      // rest of the first screen is the header (Phase 3, item 5). Measured in Chromium; other
+      // engines' font metrics wrap the header and heading differently, so they get a line more
+      // (48px), still well above where it was.
       const first = page.locator('[data-step="entity"] .st-choice').first();
-      expect(await pageTop(first)).toBeLessThanOrEqual(650);
+      expect(await pageTop(first)).toBeLessThanOrEqual(browserName === 'chromium' ? 650 : 698);
       await noSidewaysScroll(page, `${lang}find-my-path/ step 1`);
     });
   }
