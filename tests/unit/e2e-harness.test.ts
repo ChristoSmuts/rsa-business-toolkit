@@ -921,13 +921,23 @@ describe('the a11y projects (playwright.config.ts)', () => {
           expect(grep.test(title), title).toBe(true);
         }
       }
+      // Titles copied from `playwright test --project a11y --list` (describe and test title joined
+      // by a space, which is what `grep` sees), one or more from each group the phone skips.
       for (const other of [
         'axe with the interactive states open the "Remove all ticks?" dialog (light)',
+        'axe with the interactive states open af/business-types/vehicle-dealer/ at 360px, the sources control closed and open (dark)',
+        'axe with the interactive states open the Afrikaans quotation on a phone, preview tab (light)',
         'axe on Find my path and My path every wizard step (dark)',
+        'axe on Find my path and My path My path and the "Remove your answers?" dialog (light)',
         'axe with the search dialog open dark theme: /core/register/',
+        'axe with the search dialog open light theme: /af/business-types/vehicle-dealer/',
       ]) {
         expect(grep.test(other), other).toBe(false);
       }
+      // Nothing may take part of the sweep away again: a grepInvert on a theme or on /af/ would
+      // halve it, and a testIgnore would leave it empty.
+      expect(phone?.grepInvert).toBeUndefined();
+      expect(phone?.testIgnore).toBeUndefined();
       expect(phone?.testMatch).toEqual(byName('a11y')?.testMatch);
 
       const desktop = byName('a11y');
@@ -935,6 +945,7 @@ describe('the a11y projects (playwright.config.ts)', () => {
       expect(desktop?.use?.isMobile).toBe(false);
       expect(desktop?.use?.reducedMotion).toBe('reduce');
       expect(desktop?.grep).toBeUndefined();
+      expect(desktop?.grepInvert).toBeUndefined();
 
       // The e2e sweep checks the page against these by project name.
       expect(A11Y_VIEWPORTS).toEqual({

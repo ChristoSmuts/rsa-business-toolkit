@@ -314,10 +314,11 @@ test.describe('axe WCAG 2.1 A/AA', () => {
           // The site's theme script may run after the first check; contrast depends on the theme.
           await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
           // The page is laid out at that width. `innerWidth` includes a visible scrollbar (headed
-          // or --ui runs), so this holds there too. It fails on a missing or wrong meta viewport
-          // (980 on the phone) and, on the phone only, on sideways overflow: there the layout
-          // viewport grows to the page's width. On desktop overflow does not change innerWidth;
-          // the 320px reflow sweep (reflow.spec.ts, chromium) is the overflow test.
+          // or --ui runs), so this holds there too. On the phone it fails on a missing or wrong
+          // meta viewport (980) and on sideways overflow, where the layout viewport grows to the
+          // page's width. On desktop, where Chromium ignores the meta viewport and overflow does
+          // not change innerWidth, it only confirms the 1280px viewport; the 320px reflow sweep
+          // (reflow.spec.ts, chromium) is the overflow test.
           expect(
             await page.evaluate(() => window.innerWidth),
             `layout width (${width} expected; wider means sideways overflow or no meta viewport)`,
