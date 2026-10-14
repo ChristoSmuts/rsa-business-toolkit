@@ -177,6 +177,36 @@ test.describe('the document page at 1280px', () => {
     ).toContain('underline');
   });
 
+  // Review pass 2, minor 2: the column scrolls, and its links' focus ring lost its sides.
+  test('a focused contents link shows its whole ring inside the column', async ({
+    page,
+  }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'A desktop width with a keyboard.');
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto(DEALER);
+    const link = page.locator('.st-toc--column .st-toc__list a').nth(1);
+    await link.focus();
+    const fit = await link.evaluate((element) => {
+      const css = getComputedStyle(element);
+      const ring = parseFloat(css.outlineWidth) + parseFloat(css.outlineOffset);
+      const box = element.getBoundingClientRect();
+      const column = element.closest('.st-toc--column');
+      if (!column) throw new Error('No column.');
+      const outer = column.getBoundingClientRect();
+      return {
+        visible: element.matches(':focus-visible'),
+        width: parseFloat(css.outlineWidth),
+        left: box.left - ring - outer.left,
+        // The scroll box ends before a scrollbar, if the column has one.
+        right: outer.left + column.clientLeft + column.clientWidth - (box.right + ring),
+      };
+    });
+    expect(fit.visible).toBe(true);
+    expect(fit.width).toBeGreaterThanOrEqual(3);
+    expect(fit.left).toBeGreaterThanOrEqual(0);
+    expect(fit.right).toBeGreaterThanOrEqual(0);
+  });
+
   test('the article is wider without the sidebar', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name === 'mobile', 'A desktop width.');
     await page.setViewportSize({ width: 1280, height: 800 });

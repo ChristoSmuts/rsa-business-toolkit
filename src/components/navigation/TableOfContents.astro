@@ -138,7 +138,16 @@ const detailsId = 'st-on-this-page';
    * The column is navigation chrome, quieter than the article: muted, smaller, no underline until
    * hover or focus (`.st-quiet-links`). Every entry keeps the bar's room, so marking the section
    * being read does not push its text sideways; hover and the current entry take the text colour.
+   *
+   * The column scrolls, so it clips what spills out of it, and a link as wide as the column lost
+   * the sides of its focus ring (WP-50 Phase 3 review pass 2, minor 2). The list keeps the ring's
+   * width and offset as padding on every side but the top, so the whole 3px ring shows.
    */
+  .st-toc--column .st-toc__list {
+    padding: 0 calc(var(--st-focus-width) + var(--st-focus-offset))
+      calc(var(--st-focus-width) + var(--st-focus-offset));
+  }
+
   .st-toc--column .st-toc__list a,
   .st-toc--column .st-toc__list a:visited {
     padding-inline-start: var(--st-space-3);
