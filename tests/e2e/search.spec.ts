@@ -375,15 +375,33 @@ test.describe('the search dialog while it loads', () => {
    * reader quicker than the script lost both keys (and the e2e tests above sometimes did, under
    * CPU load).
    */
-  const SCRIPT = /\/_astro\/search\.[^/]+\.js$/;
+  // The dialog's script (`search.<hash>.js`), not the search page's (`search.astro_….js`).
+  const SCRIPT = /\/_astro\/search\.[\w-]{8}\.js$/;
+  const holdScript = (page: Page, baseURL: string | undefined) =>
+    holdRequests(page, baseURL, (url) => SCRIPT.test(url.pathname));
+  /**
+   * Resolves once the script has run. Whatever it does with a held Enter it does in the same turn
+   * (`openSearch()`'s `then`), before this polling function can run again.
+   */
   const scriptArrived = (page: Page) =>
     page.waitForFunction(() => customElements.get('st-search') !== undefined);
+  /** From now on, count the submits of the dialog's form: a replayed Enter is one. */
+  const countSubmits = (page: Page) =>
+    page.evaluate(() => {
+      const counter = { submits: 0 };
+      Object.assign(window, { stSubmits: counter });
+      document.addEventListener('submit', () => (counter.submits += 1), true);
+    });
+  const submits = (page: Page) =>
+    page.evaluate(
+      () => (window as unknown as { stSubmits: { submits: number } }).stSubmits.submits,
+    );
 
   test('Enter before the script arrives opens the result for the text once it does', async ({
     page,
     baseURL,
   }) => {
-    const release = await holdRequests(page, baseURL, (url) => SCRIPT.test(url.pathname));
+    const release = await holdScript(page, baseURL);
     await open(page, DOC);
     const before = page.url();
     await page.keyboard.press('/');
@@ -401,20 +419,18 @@ test.describe('the search dialog while it loads', () => {
     baseURL,
   }) => {
     const requests = indexRequests(page);
-    const release = await holdRequests(page, baseURL, (url) => SCRIPT.test(url.pathname));
+    const release = await holdScript(page, baseURL);
     await open(page, DOC);
     const before = page.url();
     await page.keyboard.press('/');
     await field(page).fill('notional input tax');
     await page.keyboard.press('Enter');
+    await countSubmits(page);
     await page.keyboard.press('Escape');
     await expect(dialog(page)).toBeHidden();
     release();
     await scriptArrived(page);
-    // Give the script time to (wrongly) act on the Enter.
-    await page.waitForFunction(
-      () => new Promise((resolve) => setTimeout(() => resolve(true), 500)),
-    );
+    expect(await submits(page), 'the Enter is not replayed').toBe(0);
     expect(page.url()).toBe(before);
     await expect(dialog(page)).toBeHidden();
     expect(requests, 'a closed dialog fetches no index').toHaveLength(0);
@@ -424,7 +440,7 @@ test.describe('the search dialog while it loads', () => {
     page,
     baseURL,
   }) => {
-    const release = await holdRequests(page, baseURL, (url) => SCRIPT.test(url.pathname));
+    const release = await holdScript(page, baseURL);
     await open(page, DOC);
     const skip = page.locator('.st-skip-link');
     await skip.focus();
