@@ -554,6 +554,30 @@ test.describe('the AI notice on a 320×568 screen without JavaScript', () => {
 });
 
 /** WCAG 1.4.10 at 320px without JavaScript (WP-50a review pass 2, M2; with it: `reflow.spec.ts`). */
+test.describe('the tools at 320px without JavaScript (WP-50 Phase 3, item 4)', () => {
+  test('the wizard shows no stepper or answers summary; a template group has no frame', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 320, height: 568 });
+    for (const lang of ['', 'af/']) {
+      await page.goto(`${lang}find-my-path/`);
+      await expect(page.locator('.st-wizard__stepper')).toBeHidden();
+      await expect(page.locator('[data-summary]')).toBeHidden();
+      // All three questions, with their answers, are on the page.
+      await expect(page.locator('.st-wizard__step:visible')).toHaveCount(3);
+
+      await page.goto(`${lang}templates/tax-invoice/`);
+      const group = page.locator('.st-tgroup').first();
+      await expect(group).toBeVisible();
+      expect(await group.evaluate((element) => getComputedStyle(element).borderTopWidth)).toBe(
+        '0px',
+      );
+      // No actions without a script, so no heading for them either.
+      await expect(page.locator('#st-tool-actions-heading')).toBeHidden();
+    }
+  });
+});
+
 test.describe('no sideways scrolling at 320px without JavaScript', () => {
   if (skipReason) {
     test('route discovery', () => test.skip(true, skipReason));

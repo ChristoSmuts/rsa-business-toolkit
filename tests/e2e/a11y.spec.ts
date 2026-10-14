@@ -232,6 +232,68 @@ test.describe('axe on Find my path and My path', () => {
   }
 });
 
+/**
+ * WP-50 Phase 3, item 4: the tools as a phone shows them, at 320px in Afrikaans (the longest
+ * strings), in both themes — the wizard's last question with "Your answers so far", My path with
+ * "Do this next", the tax invoice's unframed groups and wrapped required items, and the search
+ * dialog with no results.
+ */
+test.describe('axe on the tools at 320px', () => {
+  for (const theme of THEMES) {
+    test(`Find my path, question 3 with the answers so far (${theme})`, async ({
+      page,
+      setTheme,
+    }, testInfo) => {
+      await setTheme(theme);
+      await page.setViewportSize({ width: 320, height: 568 });
+      await page.goto('af/find-my-path/');
+      await page.locator('input[name="entity"][value="sole-prop"]').check();
+      await page.locator('[data-step="entity"] [data-next]').click();
+      await page.locator('input[name="type"][value="food"]').check();
+      await page.locator('[data-step="type"] [data-next]').click();
+      await expect(page.locator('[data-summary]')).toBeVisible();
+      await expectNoBlocking(page, `af wizard summary 320 ${theme}`, testInfo);
+    });
+
+    test(`My path with "Do this next" (${theme})`, async ({
+      page,
+      setTheme,
+      seedStorage,
+    }, testInfo) => {
+      await setTheme(theme);
+      await seedStorage({
+        'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+      });
+      await page.setViewportSize({ width: 320, height: 568 });
+      await page.goto('af/my-path/');
+      await expect(page.locator('[data-steps] > li[data-next]')).toBeVisible();
+      await expectNoBlocking(page, `af my path 320 ${theme}`, testInfo);
+    });
+
+    test(`the tax invoice form and its actions (${theme})`, async ({
+      page,
+      setTheme,
+    }, testInfo) => {
+      await setTheme(theme);
+      await page.setViewportSize({ width: 320, height: 568 });
+      await page.goto('af/templates/tax-invoice/');
+      await expect(page.locator('st-template-form[data-ready]')).toHaveCount(1);
+      await expectNoBlocking(page, `af tax invoice 320 ${theme}`, testInfo);
+    });
+
+    test(`the search dialog with no results (${theme})`, async ({ page, setTheme }, testInfo) => {
+      await setTheme(theme);
+      await page.setViewportSize({ width: 320, height: 568 });
+      await page.goto('af/business-types/food/');
+      await page.waitForLoadState('networkidle');
+      await page.keyboard.press('Control+k');
+      await page.locator('.st-search-dialog__input').fill('zzqxv');
+      await expect(page.locator('.st-search-dialog [role="status"]')).toContainText('zzqxv');
+      await expectNoBlocking(page, `af search no results 320 ${theme}`, testInfo);
+    });
+  }
+});
+
 const { routes, skipReason } = discoverPageRoutes();
 
 async function analyse(page: Page, testInfo: TestInfo, name: string, label: string): Promise<void> {
