@@ -42,6 +42,7 @@ import {
 import { cspDifferences, EXPECTED_CSP, EXPECTED_REFERRER, parseCsp } from '../e2e/helpers/policy';
 import { previewBaseUrl, previewOrigin, previewPort } from '../e2e/helpers/preview-url';
 import { isNoindex } from '../e2e/helpers/routes';
+import { A11Y_VIEWPORTS, a11yViewport } from '../e2e/helpers/a11y-viewports';
 import { a11yTimeout, pageSetupTimeout } from '../e2e/helpers/timeouts';
 import { buildOutputProblem } from '../e2e/helpers/web-server';
 
@@ -882,14 +883,102 @@ describe('timeout policy (tests/e2e/helpers/timeouts.ts)', () => {
     expect(source).toMatch(/import \{ a11yTimeout \} from '\.\/tests\/e2e\/helpers\/timeouts';/);
     expect(source).toMatch(/const A11Y_TIMEOUT = a11yTimeout\(\);/);
     expect(source).not.toMatch(/process\.env\.PW_A11Y_TIMEOUT/);
-    // A11Y_TIMEOUT belongs to the a11y project only. The default test timeout stays Playwright's
-    // 30 s, because page setup no longer spends it; raising it instead of separating the budgets
-    // would hand every assertion a longer rope for a cost that is not the site's.
+    // A11Y_TIMEOUT belongs to the two a11y projects (desktop and phone) only. The default test
+    // timeout stays Playwright's 30 s, because page setup no longer spends it; raising it instead
+    // of separating the budgets would hand every assertion a longer rope for a cost that is not the
+    // site's.
     const a11yUses = source.match(/(?<![A-Z_])A11Y_TIMEOUT/g) ?? [];
-    expect(a11yUses).toHaveLength(2);
-    expect(source).toMatch(
-      /testMatch: \/\(\^\|\[\\\\\/\]\)a11y\\\.spec\\\.ts\$\/,[\s\S]{0,120}?timeout: A11Y_TIMEOUT,/,
-    );
+    expect(a11yUses).toHaveLength(3);
+    const a11yProjects =
+      source.match(
+        /testMatch: \/\(\^\|\[\\\\\/\]\)a11y\\\.spec\\\.ts\$\/,[\s\S]{0,120}?timeout: A11Y_TIMEOUT,/g,
+      ) ?? [];
+    expect(a11yProjects).toHaveLength(2);
+  });
+});
+
+describe('the a11y projects (playwright.config.ts)', () => {
+  // Importing the config loads the Playwright toolchain; see the budget note above.
+  it(
+    'a11y-phone is a 360x740 touch phone with reduced motion that runs only the per-page sweep',
+    { timeout: 120_000 },
+    async () => {
+      const config = (await import('../../playwright.config')).default;
+      const byName = (name: string) => config.projects?.find((project) => project.name === name);
+      const phone = byName('a11y-phone');
+      expect(phone, 'a11y-phone project').toBeDefined();
+      expect(phone?.use?.viewport).toEqual({ width: 360, height: 740 });
+      expect(phone?.use?.isMobile).toBe(true);
+      expect(phone?.use?.hasTouch).toBe(true);
+      expect(phone?.use?.reducedMotion).toBe('reduce');
+      expect(phone?.use?.javaScriptEnabled).not.toBe(false);
+      expect(phone?.grep).toBeInstanceOf(RegExp);
+      const grep = phone?.grep as RegExp;
+      // Both themes of the sweep, so narrowing the grep to one theme fails here.
+      for (const theme of ['light', 'dark']) {
+        for (const route of ['/', '/core/', '/af/core/register/']) {
+          const title = `axe WCAG 2.1 A/AA ${theme} theme ${route}`;
+          expect(grep.test(title), title).toBe(true);
+        }
+      }
+      // Titles copied from `playwright test --project a11y --list` (describe and test title joined
+      // by a space, which is what `grep` sees), one or more from each group the phone skips.
+      for (const other of [
+        'axe with the interactive states open the "Remove all ticks?" dialog (light)',
+        'axe with the interactive states open af/business-types/vehicle-dealer/ at 360px, the sources control closed and open (dark)',
+        'axe with the interactive states open the Afrikaans quotation on a phone, preview tab (light)',
+        'axe on Find my path and My path every wizard step (dark)',
+        'axe on Find my path and My path My path and the "Remove your answers?" dialog (light)',
+        'axe with the search dialog open dark theme: /core/register/',
+        'axe with the search dialog open light theme: /af/business-types/vehicle-dealer/',
+      ]) {
+        expect(grep.test(other), other).toBe(false);
+      }
+      // A grepInvert on a theme or on /af/ would halve the sweep and a testIgnore would empty it,
+      // whether set on the project or at the top of the config, which every project inherits.
+      expect(phone?.grepInvert).toBeUndefined();
+      expect(phone?.testIgnore).toBeUndefined();
+      expect(config.grep).toBeUndefined();
+      expect(config.grepInvert).toBeUndefined();
+      expect(config.testIgnore).toBeUndefined();
+      expect(phone?.testMatch).toEqual(byName('a11y')?.testMatch);
+
+      const desktop = byName('a11y');
+      expect(desktop?.use?.viewport).toEqual({ width: 1280, height: 720 });
+      expect(desktop?.use?.isMobile).toBe(false);
+      expect(desktop?.use?.reducedMotion).toBe('reduce');
+      expect(desktop?.grep).toBeUndefined();
+      expect(desktop?.grepInvert).toBeUndefined();
+
+      // The e2e sweep checks the page against these by project name.
+      expect(A11Y_VIEWPORTS).toEqual({
+        a11y: { width: 1280, height: 720 },
+        'a11y-phone': { width: 360, height: 740 },
+      });
+      expect(a11yViewport('a11y-phone').width).toBe(360);
+      expect(() => a11yViewport('chromium')).toThrow(/no expected viewport for project "chromium"/);
+    },
+  );
+
+  // A script or CI step pointed at the wrong project would keep the phone job green without
+  // running the phone pass.
+  it('the scripts and CI jobs run the project their names promise', () => {
+    const scripts = (
+      JSON.parse(readFileSync(path.join(repoRoot, 'package.json'), 'utf8')) as {
+        scripts: Record<string, string>;
+      }
+    ).scripts;
+    expect(scripts['test:a11y:desktop']).toBe('playwright test --project a11y');
+    expect(scripts['test:a11y:phone']).toBe('playwright test --project a11y-phone');
+    expect(scripts['test:a11y']).toBe('playwright test --project a11y --project a11y-phone');
+
+    const ci = readFileSync(path.join(repoRoot, '.github', 'workflows', 'ci.yml'), 'utf8');
+    const job = (id: string) =>
+      ci.match(new RegExp(`^  ${id}:\\n([\\s\\S]*?)(?=^  \\S|(?![\\s\\S]))`, 'm'))?.[1] ?? '';
+    expect(job('a11y')).toMatch(/^\s+- run: pnpm test:a11y:desktop$/m);
+    expect(job('a11y')).not.toMatch(/test:a11y:phone/);
+    expect(job('a11y-phone')).toMatch(/^\s+- run: pnpm test:a11y:phone$/m);
+    expect(job('a11y-phone')).not.toMatch(/test:a11y:desktop/);
   });
 });
 

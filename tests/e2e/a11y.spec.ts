@@ -1,10 +1,13 @@
 import AxeBuilder from '@axe-core/playwright';
 import type { Page, TestInfo } from '@playwright/test';
 import { expect, test, type Theme } from './fixtures';
+import { a11yViewport } from './helpers/a11y-viewports';
 import { discoverPageRoutes, routeLabel, routeUrl } from './helpers/routes';
 
 /**
- * axe on every page route (sitemap plus noindex pages) in light and dark themes.
+ * axe on every page route (sitemap plus noindex pages) in light and dark themes, at desktop width
+ * (project `a11y`, 1280px) and on a phone (project `a11y-phone`, 360x740 with touch; it runs only
+ * the "axe WCAG 2.1 A/AA" sweep, see playwright.config.ts).
  * Serious and critical violations fail the test; moderate and minor ones become annotations.
  * The full axe JSON is attached to every test (see docs/testing.md).
  */
@@ -294,7 +297,9 @@ test.describe('axe with the search dialog open', () => {
   }
 });
 
-// The per-test timeout comes from the a11y project in playwright.config.ts (PW_A11Y_TIMEOUT).
+// The per-test timeout comes from the a11y projects in playwright.config.ts (PW_A11Y_TIMEOUT).
+// This sweep runs in both `a11y` (1280px) and `a11y-phone` (360px): each page is loaded at the
+// project's width, so what CSS and scripts build for that width is what axe sees.
 test.describe('axe WCAG 2.1 A/AA', () => {
   if (skipReason) {
     test('route discovery', () => test.skip(true, skipReason));
@@ -306,6 +311,14 @@ test.describe('axe WCAG 2.1 A/AA', () => {
       for (const route of routes) {
         test(routeLabel(route), async ({ page, setTheme }, testInfo) => {
           await setTheme(theme);
+          // The width this project must have, by name (a11y 1280, a11y-phone 360; an unknown
+          // project throws). The project's own declaration must agree: if the phone project lost
+          // its override it would declare Pixel 7's 412 and fail here. The unit test
+          // (tests/unit/e2e-harness.test.ts) pins the rest of the config.
+          const width = a11yViewport(testInfo.project.name).width;
+          expect(testInfo.project.use.viewport?.width, 'the width the project declares').toBe(
+            width,
+          );
           const response = await page.goto(routeUrl(route));
           expect(response?.status(), 'HTTP status').toBe(200);
           await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
@@ -314,8 +327,19 @@ test.describe('axe WCAG 2.1 A/AA', () => {
           });
           // The site's theme script may run after the first check; contrast depends on the theme.
           await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
+          // The page is laid out at that width. `innerWidth` includes a visible scrollbar (headed
+          // or --ui runs), so this holds there too. On the phone it fails on a missing or wrong
+          // meta viewport (980) and on sideways overflow, where the layout viewport grows to the
+          // page's width. On desktop, where Chromium ignores the meta viewport and overflow does
+          // not change innerWidth, it only confirms the 1280px viewport; the 320px reflow sweep
+          // (reflow.spec.ts, chromium) is the overflow test.
+          expect(
+            await page.evaluate(() => window.innerWidth),
+            `layout width (${width} expected; wider means sideways overflow or no meta viewport)`,
+          ).toBe(width);
 
           const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze();
+
           await testInfo.attach(attachmentName(route, theme), {
             body: JSON.stringify(results, null, 2),
             contentType: 'application/json',
@@ -331,7 +355,7 @@ test.describe('axe WCAG 2.1 A/AA', () => {
 
           expect(
             blocking.map((violation) => violation.id),
-            `${blocking.length} serious/critical axe violation(s) on ${routeLabel(route)} (${theme}):\n` +
+            `${blocking.length} serious/critical axe violation(s) on ${routeLabel(route)} (${theme}, ${width}px):\n` +
               formatViolations(blocking),
           ).toEqual([]);
         });

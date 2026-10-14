@@ -60,7 +60,8 @@ export function pageSetupTimeout(env: NodeJS.ProcessEnv = process.env): number {
 }
 
 /**
- * Per-test timeout of the a11y project: `PW_A11Y_TIMEOUT` (ms), default 60 s in CI, 90 s locally.
+ * Per-test timeout of the two a11y projects (`a11y`, `a11y-phone`): `PW_A11Y_TIMEOUT` (ms),
+ * default 60 s in CI, 90 s locally.
  * Each analysis also opens a page for axe's report step.
  */
 export function a11yTimeout(env: NodeJS.ProcessEnv = process.env): number {
