@@ -82,7 +82,7 @@ Done, waiting for review: direction A's focus ring and rooibos rule in the token
 
 Work in reader-traffic order. Each item is a separate commit series and review:
 
-1. the document page (`Doc.astro` and the content components): the most-read page and the one most often read on a phone;
+1. the document page (`Doc.astro` and the content components): the most-read page and the one most often read on a phone. Done, waiting for review: see `docs/design-system.md`, "The document page (WP-50 Phase 3)", and `docs/reviews/WP-50-phase3-doc/`;
 2. the home page and the section hubs;
 3. business-type pages;
 4. the tools: Find my path, My path, the templates, the checklist and the search dialog;
