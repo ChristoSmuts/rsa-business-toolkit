@@ -940,8 +940,9 @@ test.describe('motion', () => {
     await page.goto(CHECKLIST);
     await page.waitForLoadState('networkidle');
     expect(await ringMotion(page)).toEqual([]);
+    await recordRingMotion(page);
     await page.locator('st-checklist input[type="checkbox"]').first().check();
-    await expect.poll(() => ringMotion(page)).toContain('transition:stroke-dashoffset');
+    await expect.poll(() => recordedRingMotion(page)).toContain('transition:stroke-dashoffset');
   });
 
   test('Tab does not scroll smoothly', async ({ page }, testInfo) => {
