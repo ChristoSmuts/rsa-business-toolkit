@@ -42,6 +42,7 @@ import {
 import { cspDifferences, EXPECTED_CSP, EXPECTED_REFERRER, parseCsp } from '../e2e/helpers/policy';
 import { previewBaseUrl, previewOrigin, previewPort } from '../e2e/helpers/preview-url';
 import { isNoindex } from '../e2e/helpers/routes';
+import { A11Y_VIEWPORTS, a11yViewport } from '../e2e/helpers/a11y-viewports';
 import { a11yTimeout, pageSetupTimeout } from '../e2e/helpers/timeouts';
 import { buildOutputProblem } from '../e2e/helpers/web-server';
 
@@ -913,7 +914,13 @@ describe('the a11y projects (playwright.config.ts)', () => {
       expect(phone?.use?.javaScriptEnabled).not.toBe(false);
       expect(phone?.grep).toBeInstanceOf(RegExp);
       const grep = phone?.grep as RegExp;
-      expect(grep.test('axe WCAG 2.1 A/AA dark theme /core/')).toBe(true);
+      // Both themes of the sweep, so narrowing the grep to one theme fails here.
+      for (const theme of ['light', 'dark']) {
+        for (const route of ['/', '/core/', '/af/core/register/']) {
+          const title = `axe WCAG 2.1 A/AA ${theme} theme ${route}`;
+          expect(grep.test(title), title).toBe(true);
+        }
+      }
       for (const other of [
         'axe with the interactive states open the "Remove all ticks?" dialog (light)',
         'axe on Find my path and My path every wizard step (dark)',
@@ -928,6 +935,14 @@ describe('the a11y projects (playwright.config.ts)', () => {
       expect(desktop?.use?.isMobile).toBe(false);
       expect(desktop?.use?.reducedMotion).toBe('reduce');
       expect(desktop?.grep).toBeUndefined();
+
+      // The e2e sweep checks the page against these by project name.
+      expect(A11Y_VIEWPORTS).toEqual({
+        a11y: { width: 1280, height: 720 },
+        'a11y-phone': { width: 360, height: 740 },
+      });
+      expect(a11yViewport('a11y-phone').width).toBe(360);
+      expect(() => a11yViewport('chromium')).toThrow(/no expected viewport for project "chromium"/);
     },
   );
 });

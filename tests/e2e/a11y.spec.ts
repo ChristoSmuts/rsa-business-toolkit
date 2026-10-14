@@ -1,6 +1,7 @@
 import AxeBuilder from '@axe-core/playwright';
 import type { Page, TestInfo } from '@playwright/test';
 import { expect, test, type Theme } from './fixtures';
+import { a11yViewport } from './helpers/a11y-viewports';
 import { discoverPageRoutes, routeLabel, routeUrl } from './helpers/routes';
 
 /**
@@ -296,10 +297,14 @@ test.describe('axe WCAG 2.1 A/AA', () => {
       for (const route of routes) {
         test(routeLabel(route), async ({ page, setTheme }, testInfo) => {
           await setTheme(theme);
-          // The width the project declares (1280 or 360), not what the page reports: a project
-          // that lost its viewport override must fail here, not scan at the wrong width.
-          const width = testInfo.project.use.viewport?.width;
-          expect(width, 'the project declares a viewport').toBeDefined();
+          // The width this project must have, by name (a11y 1280, a11y-phone 360; an unknown
+          // project throws). The project's own declaration must agree: if the phone project lost
+          // its override it would declare Pixel 7's 412 and fail here. The unit test
+          // (tests/unit/e2e-harness.test.ts) pins the rest of the config.
+          const width = a11yViewport(testInfo.project.name).width;
+          expect(testInfo.project.use.viewport?.width, 'the width the project declares').toBe(
+            width,
+          );
           const response = await page.goto(routeUrl(route));
           expect(response?.status(), 'HTTP status').toBe(200);
           await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
@@ -308,10 +313,15 @@ test.describe('axe WCAG 2.1 A/AA', () => {
           });
           // The site's theme script may run after the first check; contrast depends on the theme.
           await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
-          // The page is scanned at the project's width. `innerWidth` includes a visible scrollbar
-          // (headed or --ui runs), so the check holds there too. It does not look for sideways
-          // overflow: the 320px reflow sweep (reflow.spec.ts, chromium) does.
-          expect(await page.evaluate(() => window.innerWidth), 'layout width').toBe(width);
+          // The page is laid out at that width. `innerWidth` includes a visible scrollbar (headed
+          // or --ui runs), so this holds there too. It fails on a missing or wrong meta viewport
+          // (980 on the phone) and, on the phone only, on sideways overflow: there the layout
+          // viewport grows to the page's width. On desktop overflow does not change innerWidth;
+          // the 320px reflow sweep (reflow.spec.ts, chromium) is the overflow test.
+          expect(
+            await page.evaluate(() => window.innerWidth),
+            `layout width (${width} expected; wider means sideways overflow or no meta viewport)`,
+          ).toBe(width);
 
           const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze();
 

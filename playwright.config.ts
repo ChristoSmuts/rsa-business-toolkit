@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import { normaliseBase } from './scripts/base-path';
 import { previewOrigin, previewPort } from './tests/e2e/helpers/preview-url';
+import { A11Y_VIEWPORTS } from './tests/e2e/helpers/a11y-viewports';
 import { a11yTimeout } from './tests/e2e/helpers/timeouts';
 
 const BASE = normaliseBase(process.env.BASE_PATH);
@@ -31,15 +32,13 @@ const chromiumOnly = /(^|[\\/])(reflow|wizard-shift|template-shift)\.spec\.ts$/;
 const GUARD_REPORTER = ['./tests/e2e/helpers/guard-reporter.ts'] as const;
 
 /**
- * Per-test timeout of the a11y project: `PW_A11Y_TIMEOUT` (ms), default 60 s in CI, 90 s locally.
+ * Per-test timeout of the two a11y projects (`a11y`, `a11y-phone`): `PW_A11Y_TIMEOUT` (ms), default 60 s in CI, 90 s locally.
  * The default test timeout is deliberately left at Playwright's 30 s: creating a page no longer
  * spends it (`tests/e2e/helpers/timeouts.ts` explains what that cost is and why it has its own
  * budget), so the 30 s is the budget for what a spec actually does.
  */
 const A11Y_TIMEOUT = a11yTimeout();
 
-/** The phone width of the `a11y-phone` sweep: the narrowest common Android phone. */
-const PHONE_VIEWPORT = { width: 360, height: 740 };
 /** Title of the per-page sweep in `tests/e2e/a11y.spec.ts`, the one test group `a11y-phone` runs. */
 const A11Y_SWEEP = /axe WCAG 2\.1 A\/AA/;
 
@@ -116,7 +115,11 @@ export default defineConfig({
     },
     {
       name: 'a11y',
-      use: { ...devices['Desktop Chrome'], reducedMotion: 'reduce' },
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { ...A11Y_VIEWPORTS.a11y },
+        reducedMotion: 'reduce',
+      },
       testMatch: /(^|[\\/])a11y\.spec\.ts$/,
       // `--timeout` on the command line wins.
       timeout: A11Y_TIMEOUT,
@@ -128,7 +131,7 @@ export default defineConfig({
       name: 'a11y-phone',
       use: {
         ...devices['Pixel 7'],
-        viewport: PHONE_VIEWPORT,
+        viewport: { ...A11Y_VIEWPORTS['a11y-phone'] },
         reducedMotion: 'reduce',
       },
       testMatch: /(^|[\\/])a11y\.spec\.ts$/,
