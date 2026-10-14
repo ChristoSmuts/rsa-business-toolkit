@@ -129,7 +129,6 @@ export default defineConfig({
       use: {
         ...devices['Pixel 7'],
         viewport: PHONE_VIEWPORT,
-        screen: PHONE_VIEWPORT,
         reducedMotion: 'reduce',
       },
       testMatch: /(^|[\\/])a11y\.spec\.ts$/,
