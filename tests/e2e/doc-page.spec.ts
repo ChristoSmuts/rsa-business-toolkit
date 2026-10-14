@@ -297,28 +297,30 @@ test.describe('"Sources for this page"', () => {
 });
 
 /*
- * The left sidebar used to list a section's pages from 1024px. On a section's landing that is a
- * document ("Pick your business type", at `business-types/`) the page now lists them itself, at
- * every width (Phase 3 home/hubs review).
+ * The left sidebar used to list a section's pages from 1024px. "Pick your business type" is both a
+ * document and its section's landing (`business-types/`); its "Find your kind of business" cards
+ * link every other document of the section, so it needs no second list (main repair review pass 1,
+ * major 1). This holds that coverage.
  */
-test.describe('a section landing that is a document', () => {
+test.describe('the business-types hub', () => {
   const section = MANIFEST.sections.find((entry) => entry.id === 'business-types');
   if (!section) throw new Error('No business-types section in the manifest.');
   for (const prefix of ['', 'af/']) {
-    test(`/${prefix}${section.route} links to every document in its section`, async ({ page }) => {
+    test(`/${prefix}${section.route}: its cards link every document of the section`, async ({
+      page,
+    }) => {
       await page.goto(`${prefix}${section.route}`);
-      const list = page.getByRole('navigation', { name: /^(Pages in|Bladsye in) / });
-      await expect(list).toBeVisible();
-      const hrefs = await list
-        .locator('a')
+      const hrefs = await page
+        .locator('section[aria-labelledby="st-hub-tiles"] a[href]')
         .evaluateAll((links) =>
           links.map((link) => new URL((link as HTMLAnchorElement).href).pathname),
         );
-      const expected = section.docs.map(
-        (id) => `/business-toolkit/${prefix}${MANIFEST.docs[id]?.route ?? ''}`,
-      );
-      expect(hrefs).toEqual(expected);
-      await expect(list.locator('a[aria-current="page"]')).toHaveCount(1);
+      const others = section.docs
+        .map((id) => MANIFEST.docs[id]?.route ?? '')
+        .filter((route) => route !== section.route)
+        .map((route) => `/business-toolkit/${prefix}${route}`);
+      expect(others.length).toBeGreaterThan(5);
+      for (const route of others) expect(hrefs, route).toContain(route);
     });
   }
 });
