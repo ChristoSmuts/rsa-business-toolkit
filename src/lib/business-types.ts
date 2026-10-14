@@ -8,11 +8,11 @@
  *   labels (`pickTable.rows` in `content-meta/business-types.json`, which `content:check` holds
  *   against the table), and the translated table has the same rows in the same order
  *   (`content:fidelity`).
- * - The sections of the type's own document that answer "what do I need", "how long does it take"
- *   and "what do I tick off", by heading id (`BusinessType.glance`), with their headings' words in
+ * - The sections of the type's own document that answer "how long does it take" and "what do I
+ *   tick off", by heading id (`BusinessType.glance`), with their headings' words in
  *   the document's language.
  */
-import { plainText, TERMS_HEADING_ID } from './content/render';
+import { plainText } from './content/render';
 import type { Block, BusinessType, Doc, InlineRun } from './content/schema';
 
 type TableBlock = Extract<Block, { kind: 'table' }>;
@@ -52,24 +52,22 @@ export function effortReason(
 export interface GlanceLink {
   readonly id: string;
   readonly text: string;
-  readonly kind: 'need' | 'timing' | 'checklist';
+  readonly kind: 'timing' | 'checklist';
 }
 
 /**
- * The sections "Go straight to" links to, in the order the reader needs them. The text's first
- * section is left out (on all six types it is the first "what you need" section): it starts right
- * under the disclosures, so a link to it would only repeat the next thing on the page.
+ * The sections "Go straight to" links to: how long it takes (where the page says) and the
+ * checklist, which is the end of a long page. The "what you need" sections are left out (review
+ * pass 1, minor 5): the first starts right under the disclosures, and the rest are in "On this
+ * page" just below.
  */
 export function glanceLinks(type: BusinessType, doc: Pick<Doc, 'headings'>): GlanceLink[] {
-  const { need, timing, checklist } = type.glance;
-  const first = doc.headings.find((entry) => entry.id !== TERMS_HEADING_ID && !entry.pseudo)?.id;
+  const { timing, checklist } = type.glance;
   const wanted: [string, GlanceLink['kind']][] = [
-    ...need.map((id): [string, GlanceLink['kind']] => [id, 'need']),
     ...(timing ? [[timing, 'timing'] as [string, GlanceLink['kind']]] : []),
     [checklist, 'checklist'],
   ];
   return wanted.flatMap(([id, kind]) => {
-    if (id === first) return [];
     const heading = doc.headings.find((entry) => entry.id === id && !entry.pseudo);
     return heading ? [{ id, text: heading.text, kind }] : [];
   });

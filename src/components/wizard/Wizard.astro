@@ -38,7 +38,7 @@ import {
 import { resultKey, wizardInputId } from '../../lib/path-pages';
 import { href } from '../../lib/paths';
 import pathsData from '../../data/paths.json';
-import { APP_ROUTES } from '../../lib/routes';
+import { APP_ROUTES, WIZARD_QUESTIONS } from '../../lib/routes';
 
 interface Props {
   locale: Locale;
@@ -48,7 +48,7 @@ interface Props {
 
 const { locale, manifest, businessTypes } = Astro.props;
 const t = useTranslations(locale);
-const total = 3;
+const total = WIZARD_QUESTIONS;
 const stepTitles = [t('wizard.steps.entity'), t('wizard.steps.types'), t('wizard.steps.stage')];
 const differenceHref = docHref(manifest, 'core/register', locale, 'two-ways-to-trade');
 const myPathHref = href(locale, APP_ROUTES.myPath);

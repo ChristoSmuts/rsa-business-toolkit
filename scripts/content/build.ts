@@ -198,8 +198,8 @@ function checkTaxonomy(config: ContentConfig, docs: readonly Doc[], issues: Issu
       );
     }
     // "Go straight to" links to these sections of the type's own document.
-    const { need, timing, checklist: own } = type.glance;
-    for (const id of [...need, ...(timing ? [timing] : []), own]) {
+    const { timing, checklist: own } = type.glance;
+    for (const id of [...(timing ? [timing] : []), own]) {
       if (doc && !doc.headings.some((heading) => heading.id === id && !heading.pseudo))
         issues.add(
           'taxonomy',

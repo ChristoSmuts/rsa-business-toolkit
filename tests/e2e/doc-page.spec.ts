@@ -13,7 +13,10 @@ import { REPO_ROOT } from './helpers/routes';
  *   label), the H1, the lead, the read time and the effort meter on one line (on a business type,
  *   inside its facts, `tests/e2e/types.spec.ts`), the compact AI notice,
  *   the translation notice, then two closed disclosures with a chevron, then the text.
- * - On the vehicle-dealer page the text's first heading is within two phone screens at 360×740.
+ * - On the English vehicle-dealer page the text's first heading is within two phone screens at
+ *   360×740, plus the height of the "Go straight to" row (at most 48px; WP-50 Phase 3, item 3),
+ *   which a business type adds above the text. Only English is held to it: the Afrikaans dealer is
+ *   already past two screens (1,677px after item 1) and is not tested (docs/reviews/backlog.md).
  * - From 1280px: no left section sidebar, and a quiet contents column of h2 sections on the right.
  * - "Sources for this page" shows its first entries on a phone and keeps the rest in a disclosure;
  *   every entry stays in the HTML, and from 768px all of them show.

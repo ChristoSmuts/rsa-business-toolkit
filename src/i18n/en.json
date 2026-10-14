@@ -249,7 +249,7 @@
     "showHiddenNamed": "Show hidden part: {title}",
     "onlyWhatApplies": "Only what applies to me",
     "onlyWhatAppliesHelp": "Hides the parts that are not for how you trade or for your kind of business. Nothing is removed. You can show them again at any time.",
-    "onlyWhatAppliesNoProfile": "To see only the parts of this page that apply to you, first answer three short questions:",
+    "onlyWhatAppliesNoProfile": "To see only the parts of this page that apply to you, first answer {total} short questions:",
     "plainWords": "In plain words",
     "note": "Note",
     "warning": "Warning",
@@ -257,6 +257,7 @@
     "copyLinkTo": "Copy link to {heading}",
     "linkCopied": "Link copied",
     "tableRegion": "Table: {caption}. Scroll sideways to see all of it.",
+    "tableRegionStacked": "Table: {caption}.",
     "codeRegion": "Text block: {caption}. Scroll sideways to see all of it.",
     "readCoreFirstTitle": "Read Core first",
     "readCoreFirst": "Read the core section first. It applies to every business.",
@@ -851,7 +852,8 @@
     "effortLabel": "Setup effort",
     "effortScale": "{level} of {total}",
     "glance": {
-      "goTo": "Go straight to"
+      "reasonLabel": "Main reason:",
+      "goTo": "Go straight to:"
     },
     "effort": {
       "lowest": "Lowest",

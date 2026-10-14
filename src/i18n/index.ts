@@ -98,8 +98,10 @@ interface ParamNames {
   'doc.showHiddenSections': 'count';
   'doc.hiddenPart': 'title';
   'doc.showHiddenNamed': 'title';
+  'doc.onlyWhatAppliesNoProfile': 'total';
   'doc.copyLinkTo': 'heading';
   'doc.tableRegion': 'caption';
+  'doc.tableRegionStacked': 'caption';
   'doc.codeRegion': 'caption';
   'doc.related.item': 'name';
   'doc.checklistCompleteNamed': 'title';

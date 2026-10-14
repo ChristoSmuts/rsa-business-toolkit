@@ -44,6 +44,12 @@
  */
 import pathsData from '../data/paths.json';
 import Page from './Page.astro';
+/*
+ * The effort table's row map (`pickTable`) is not in the `businessTypes` collection: that collection
+ * is the file's `types` array, one entry per kind of business, and `pickTable` belongs to the
+ * table, not to a type. Reading the same file here, rather than copying the map into each type or
+ * adding a one-entry collection, keeps one source that `content:check` already validates.
+ */
 import businessTypesFile from '../../content-meta/business-types.json';
 import BusinessTypeTiles from '../components/pages/BusinessTypeTiles.astro';
 import TypeFacts from '../components/pages/TypeFacts.astro';

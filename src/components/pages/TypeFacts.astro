@@ -61,8 +61,11 @@ const effortLabels = [
       />
     </span>
     {reason && (
-      <span class="st-type-facts__reason" lang={reasonLang}>
-        <Inline runs={reason} context={context} />
+      <span class="st-type-facts__reason">
+        <span class="st-visually-hidden">{t('businessTypes.glance.reasonLabel')} </span>
+        <span class="st-type-facts__reason-text" lang={reasonLang}>
+          <Inline runs={reason} context={context} />
+        </span>
       </span>
     )}
   </p>

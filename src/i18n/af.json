@@ -249,7 +249,7 @@
     "showHiddenNamed": "Wys versteekte deel: {title}",
     "onlyWhatApplies": "Net wat vir my geld",
     "onlyWhatAppliesHelp": "Versteek die dele wat nie vir jou manier van handeldryf of vir jou soort besigheid is nie. Niks word verwyder nie. Jy kan dit enige tyd weer wys.",
-    "onlyWhatAppliesNoProfile": "Om net die dele van dié bladsy te sien wat vir jou geld, beantwoord eers drie kort vrae:",
+    "onlyWhatAppliesNoProfile": "Om net die dele van dié bladsy te sien wat vir jou geld, beantwoord eers {total} kort vrae:",
     "plainWords": "In gewone taal",
     "note": "Let wel",
     "warning": "Waarskuwing",
@@ -257,6 +257,7 @@
     "copyLinkTo": "Kopieer skakel na {heading}",
     "linkCopied": "Skakel gekopieer",
     "tableRegion": "Tabel: {caption}. Rol sywaarts om alles te sien.",
+    "tableRegionStacked": "Tabel: {caption}.",
     "codeRegion": "Teksblok: {caption}. Rol sywaarts om alles te sien.",
     "readCoreFirstTitle": "Lees eers Kern",
     "readCoreFirst": "Lees eers die kernafdeling. Dit geld vir elke besigheid.",
@@ -851,7 +852,8 @@
     "effortLabel": "Werk om te begin",
     "effortScale": "{level} van {total}",
     "glance": {
-      "goTo": "Gaan direk na"
+      "reasonLabel": "Hoofrede:",
+      "goTo": "Gaan direk na:"
     },
     "effort": {
       "lowest": "Laagste",

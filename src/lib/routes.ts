@@ -29,6 +29,9 @@ export type AppRoute = (typeof APP_ROUTES)[keyof typeof APP_ROUTES];
  */
 export const WIZARD_AVAILABLE: boolean = true;
 
+/** How many questions Find my path asks (`Wizard.astro`), for the lines that count them. */
+export const WIZARD_QUESTIONS = 3;
+
 /**
  * Whether search (WP-33) is built: the header's search control and dialog, the forms on `/search/`
  * and the 404 page, the home page's "I know what I need", and the 404 page's suggestions. While it

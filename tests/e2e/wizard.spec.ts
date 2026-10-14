@@ -760,7 +760,7 @@ test.describe('personalisation elsewhere', () => {
     ).toHaveText(
       // WP-50 Phase 3, item 3: the line says what the switch is for ("Answer the questions in Find
       // my path to use this." named nothing the reader could see).
-      /^\s*To see only the parts of this page that apply to you, first answer three short questions:\s+Find my path\s*$/,
+      /^\s*To see only the parts of this page that apply to you, first answer 3 short questions:\s+Find my path\s*$/,
     );
   });
 

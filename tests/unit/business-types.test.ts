@@ -45,14 +45,13 @@ describe('effortReason', () => {
 });
 
 describe('glanceLinks', () => {
-  it('names every section by its heading, in order, without the text’s first section', () => {
+  it('names the timing, where there is one, and the checklist by their headings', () => {
     const food = glanceLinks(type('food'), realDoc('business-types/food'));
     expect(food.map((link) => [link.id, link.kind])).toEqual([
-      ['everything-else-you-may-need', 'need'],
       ['realistic-timing', 'timing'],
       ['your-checklist', 'checklist'],
     ]);
-    expect(food[1]?.text).toBe('Realistic timing');
+    expect(food[0]?.text).toBe('Realistic timing');
     const dealer = glanceLinks(type('vehicle-dealer'), afDoc('business-types/vehicle-dealer'));
     expect(dealer.map((link) => link.id)).toEqual(['your-startup-checklist']);
     for (const entry of file.types) {

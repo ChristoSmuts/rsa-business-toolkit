@@ -319,6 +319,25 @@ describe('applicability attributes round trip', () => {
     });
   });
 
+  it('on a business-type page, drops only a condition that is the page’s own kind of business', () => {
+    // WP-50 Phase 3, item 3, review pass 1, minor 1: an entity keeps the whole condition.
+    expect(appliesAttributes({ entity: 'pty', businessTypes: ['food'] }, 'food')).toEqual({
+      'data-entity': 'pty',
+      'data-types': 'food',
+    });
+    expect(appliesAttributes({ entity: 'sole-prop', businessTypes: ['food'] }, 'food')).toEqual({
+      'data-entity': 'sole-prop',
+      'data-types': 'food',
+    });
+    expect(appliesAttributes({ businessTypes: ['food', 'beauty'] }, 'food')).toEqual({});
+    expect(appliesAttributes({ businessTypes: ['beauty'] }, 'food')).toEqual({
+      'data-types': 'beauty',
+    });
+    expect(appliesAttributes({ entity: 'all', businessTypes: ['food'] }, 'food')).toEqual({});
+    // Without a page type nothing changes.
+    expect(appliesAttributes({ businessTypes: ['food'] })).toEqual({ 'data-types': 'food' });
+  });
+
   it('writes nothing for everyone and reads nothing back', () => {
     expect(appliesAttributes(undefined)).toEqual({});
     expect(appliesAttributes({ entity: 'all', businessTypes: 'all' })).toEqual({});

@@ -38,6 +38,14 @@ const wide = tableIsWide(block);
  */
 const stack = !wide && context.docId?.startsWith('business-types/') ? 'rows' : undefined;
 const labelled = wide || stack !== undefined;
+/*
+ * A stacked table never scrolls (below 36rem it is cards, above it fits), so its name has no
+ * "scroll sideways" instruction. Its elements also carry their table roles: `display: block` on
+ * table parts drops the table from WebKit's tree for VoiceOver, and explicit roles are the
+ * standard fix (WP-50 Phase 3, item 3, review pass 1).
+ */
+type TableRole = 'table' | 'rowgroup' | 'row' | 'columnheader' | 'cell';
+const role = (value: TableRole): TableRole | undefined => (stack ? value : undefined);
 const headerText = block.header.map((cell) => plainText(cell));
 /** A row's own condition (`rowWhen`, WP-31), for "Only what applies to me". */
 const rowConditions = block.rows.map((_, index) =>
@@ -46,28 +54,34 @@ const rowConditions = block.rows.map((_, index) =>
 ---
 
 <TableScroll labelledby={captionId} wide={wide} stack={stack}>
-  <table>
+  <table role={role('table')} aria-labelledby={stack ? captionId : undefined}>
     <caption class="st-visually-hidden" id={captionId}>
-      {t('doc.tableRegion', { caption })}
+      {t(stack ? 'doc.tableRegionStacked' : 'doc.tableRegion', { caption })}
     </caption>
-    <thead>
-      <tr>
+    <thead role={role('rowgroup')}>
+      <tr role={role('row')}>
         {block.header.map((cell, column) => (
-          <th scope="col" class:list={[alignClass(block.align[column])]}>
+          <th
+            scope="col"
+            role={role('columnheader')}
+            class:list={[alignClass(block.align[column])]}
+          >
             <Inline runs={cell} context={context} />
           </th>
         ))}
       </tr>
     </thead>
     {block.rows.length > 0 && (
-      <tbody>
+      <tbody role={role('rowgroup')}>
         {block.rows.map((row, index) => (
           <tr
+            role={role('row')}
             data-applies={Object.keys(rowConditions[index] ?? {}).length > 0 ? '' : undefined}
             {...rowConditions[index]}
           >
             {row.map((cell, column) => (
               <td
+                role={role('cell')}
                 class:list={[alignClass(block.align[column])]}
                 data-label={labelled ? headerText[column] : undefined}
               >

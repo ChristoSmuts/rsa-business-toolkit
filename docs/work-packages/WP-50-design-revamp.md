@@ -101,7 +101,7 @@ Add motion only where it answers a reader's action: opening, expanding, confirmi
 - Visual diffs against the Phase 0 baselines, reviewed by a person, never auto-approved.
 - Manual checks:
   - NVDA with Firefox and TalkBack with Chrome, on the nine B3 flows;
-  - WebKit on a real Mac or iPhone, which also covers the open WebKit item in `docs/outstanding-work.md`;
+  - WebKit on a real Mac or iPhone, which also covers the open WebKit item in `docs/outstanding-work.md`, including the stacked hub tables with VoiceOver ("Pick your business type" at 320px: each card read as a table row with its column headers; WP-50 Phase 3, item 3);
   - one real low-end Android phone on a throttled connection.
 
 ## Measures of done

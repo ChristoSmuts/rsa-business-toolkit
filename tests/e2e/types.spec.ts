@@ -8,8 +8,10 @@ import { expect, test } from './fixtures';
  * - A type's facts sit in its header: the read time and the effort meter on one line, the hub's
  *   "Main reason" under them, on the first screen of a 360×740 phone in both languages; the art
  *   square only from 480px.
- * - "Go straight to" links to the type's other "what you need" sections, its timing and its
- *   checklist, each a 44px target that lands on its heading.
+ * - "Go straight to" is one wrapping line of links to the type's timing, where it has one, and its
+ *   checklist, each a 44px target that lands on its heading; not shown beside the contents column.
+ * - The "Main reason" has a visually hidden label; the stacked tables have no "scroll sideways"
+ *   caption and carry explicit table roles (review pass 1, minors 2, 3 and 6).
  * - "Only what applies to me" is offered only where it can hide something besides the page's own
  *   kind of business (the vehicle dealer's "If you trade as a company").
  * - The hub's two tables stack as cards in a narrow column, with nothing scrolling sideways and
@@ -56,17 +58,29 @@ test.describe('a business type’s facts', () => {
 
   test('quote the hub’s "Main reason" in the page’s language', async ({ page }) => {
     await page.goto('business-types/food/');
-    await expect(page.locator('.st-type-facts__reason')).toHaveText(
+    await expect(page.locator('.st-type-facts__reason-text')).toHaveText(
       'Certificate of Acceptability, training, inspections',
+    );
+    // A screen reader hears it as its own fact, not run on after the meter (review pass 1, m6).
+    await expect(page.locator('.st-type-facts__reason')).toHaveText(
+      'Main reason: Certificate of Acceptability, training, inspections',
+    );
+    await expect(page.locator('.st-type-facts__reason .st-visually-hidden')).toHaveText(
+      'Main reason:',
     );
     await expect(page.locator('.st-type-facts .st-effort__value')).toHaveText('High');
     await page.goto('business-types/professional-creative/');
-    await expect(page.locator('.st-type-facts__reason')).toHaveText('Usually no licence at all');
+    await expect(page.locator('.st-type-facts__reason-text')).toHaveText(
+      'Usually no licence at all',
+    );
     await page.goto('af/business-types/vehicle-dealer/');
-    await expect(page.locator('.st-type-facts__reason')).toHaveText(
+    await expect(page.locator('.st-type-facts__reason-text')).toHaveText(
       'Drie aparte lae van registrasie',
     );
-    await expect(page.locator('.st-type-facts__reason')).not.toHaveAttribute('lang');
+    await expect(page.locator('.st-type-facts__reason .st-visually-hidden')).toHaveText(
+      'Hoofrede:',
+    );
+    await expect(page.locator('.st-type-facts__reason-text')).not.toHaveAttribute('lang');
   });
 
   test('show the type’s illustration from 480px, and not on a narrower phone', async ({
@@ -84,26 +98,31 @@ test.describe('a business type’s facts', () => {
 });
 
 test.describe('"Go straight to"', () => {
-  test('links to the other sections a reader looks for, and each lands on its heading', async ({
+  test('links to the timing and the checklist on one line, each landing on its heading', async ({
     page,
   }) => {
     await page.setViewportSize(PHONE);
     await page.goto('business-types/food/');
-    const links = page.locator('.st-type-jump a');
-    await expect(links).toHaveText([
-      'Everything else you may need',
-      'Realistic timing',
-      'Your checklist',
-    ]);
-    await expect(page.getByRole('list', { name: 'Go straight to' })).toBeVisible();
+    const row = page.locator('.st-type-jump');
+    const links = row.locator('a');
+    // Review pass 1, minor 5: no "what you need" sections, which "On this page" lists just below.
+    await expect(links).toHaveText(['Realistic timing', 'Your checklist']);
+    await expect(page.getByRole('list', { name: 'Go straight to:' })).toBeVisible();
     for (const link of await links.all()) {
       const box = await link.boundingBox();
       expect(box?.height ?? 0).toBeGreaterThanOrEqual(44);
     }
+    // One line in English at 360px: the label and both links share a row.
+    expect((await row.boundingBox())?.height ?? 0).toBeLessThanOrEqual(48);
+    // The dot between links is not read out.
+    const dot = await row
+      .locator('li')
+      .nth(1)
+      .evaluate((li) => getComputedStyle(li, '::before').content);
+    expect(dot).toContain('""');
     await links.filter({ hasText: 'Your checklist' }).click();
     await expect(page).toHaveURL(/#your-checklist$/);
     await expect(page.locator('#your-checklist')).toBeInViewport();
-    // The text's first section starts under the disclosures, so it has no link of its own.
     await page.goto('business-types/vehicle-dealer/');
     await expect(page.locator('.st-type-jump a')).toHaveCount(1);
     await expect(page.locator('.st-type-jump a')).toHaveAttribute(
@@ -112,10 +131,19 @@ test.describe('"Go straight to"', () => {
     );
     await page.goto('af/business-types/food/');
     await expect(page.locator('.st-type-jump a')).toHaveText([
-      'Alles anders wat jy dalk nodig het',
       'Realistiese tydsberekening',
       'Jou kontrolelys',
     ]);
+  });
+
+  test('is not shown where the contents column is', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'A desktop width.');
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('business-types/food/');
+    await expect(page.locator('.st-type-jump')).toBeHidden();
+    await expect(
+      page.locator('.st-toc__list.st-quiet-links a[href="#your-checklist"]'),
+    ).toBeVisible();
   });
 
   test('comes after the AI notice, and the facts before it on a tall phone', async ({ page }) => {
@@ -150,7 +178,7 @@ test.describe('"Only what applies to me" on business types', () => {
     await expect(page.locator('#if-you-trade-as-a-company')).toHaveAttribute('data-entity', 'pty');
     // Without answers the line says what the switch is for before pointing at Find my path.
     await expect(page.locator('st-applies-switch [data-no-profile]')).toContainText(
-      'To see only the parts of this page that apply to you',
+      'To see only the parts of this page that apply to you, first answer 3 short questions:',
     );
   });
 });
@@ -185,6 +213,16 @@ test.describe('the tables on "Pick your business type"', () => {
       }
     }
     await expect(page.locator('html')).toHaveJSProperty('scrollWidth', 320);
+    // Nothing scrolls, so the name has no "scroll sideways"; explicit table roles keep the table
+    // for WebKit and VoiceOver, where `display: block` drops it (review pass 1, minors 2 and 3).
+    for (const region of await regions.all()) {
+      await expect(region.locator('caption')).toHaveText(/^\s*Tabel: .+\.\s*$/);
+      await expect(region.locator('caption')).not.toContainText('Rol sywaarts');
+      await expect(region.locator('table')).toHaveAttribute('role', 'table');
+      await expect(region.locator('tbody tr').first()).toHaveAttribute('role', 'row');
+      await expect(region.locator('thead th').first()).toHaveAttribute('role', 'columnheader');
+      await expect(region.locator('tbody td').first()).toHaveAttribute('role', 'cell');
+    }
   });
 
   test('stay tables in a wide column', async ({ page }, testInfo) => {

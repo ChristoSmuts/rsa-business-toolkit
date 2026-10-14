@@ -1,14 +1,16 @@
 ---
 /**
- * "Go straight to" on a business type (WP-50 Phase 3, item 3): links to the parts of the page a
- * first-time owner looks for, named by their own headings: what else the type needs, how long it
- * takes (where the page says) and its checklist, which on the vehicle dealer is 30,000px down a
- * phone. The text's first section is left out: it starts right under the disclosures anyway.
+ * "Go straight to" on a business type (WP-50 Phase 3, item 3): one wrapping line of links to the
+ * parts of a long page a first-time owner looks for and "On this page" does not put first: how
+ * long it takes, where the page says, and the checklist, which on the vehicle dealer is 30,000px
+ * down a phone. Each is named by its own heading.
  *
- * It sits after the AI notice, so it never pushes the notice off the first screen. Each link is a
- * 44px target; the arrow says "further down this page".
+ * Review pass 1, minor 5: the first build listed the "what you need" sections too and took 118 to
+ * 162px on food, repeating the contents list just below; it is now the label and at most two links
+ * on one line, a dot between them that is not read out. Each link is still a 44px target. It sits
+ * after the AI notice, so it never pushes the notice off the first screen, and from 1280px, where
+ * the contents column is always in view, it is not shown. Print leaves it out.
  */
-import Icon from '../ui/Icon.astro';
 import { useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
 import type { GlanceLink } from '../../lib/business-types';
@@ -27,17 +29,14 @@ const labelId = 'st-type-jump-label';
 
 {links.length > 0 && (
   <div class="st-type-jump st-no-print">
-    <p class="st-type-jump__label" id={labelId}>
+    <span class="st-type-jump__label" id={labelId}>
       {t('businessTypes.glance.goTo')}
-    </p>
+    </span>
     <ul class="st-type-jump__links" role="list" aria-labelledby={labelId}>
       {links.map((link) => (
         <li>
-          <a href={`#${link.id}`} data-jump={link.kind}>
-            <span class="st-type-jump__arrow">
-              <Icon name="lucide:arrow-down" />
-            </span>
-            <span lang={contentLang}>{link.text}</span>
+          <a href={`#${link.id}`} data-jump={link.kind} lang={contentLang}>
+            {link.text}
           </a>
         </li>
       ))}
@@ -47,47 +46,56 @@ const labelId = 'st-type-jump-label';
 
 <style>
   /*
-   * The label and the links share a row while they fit; a 44px row each when they wrap. The row
-   * sits 4px under the notices, not the header's 12px: a 44px target already centres its words
-   * about 10px below its top.
+   * One line that wraps: the label, then the links with a dot between them. It sits 4px under the
+   * notices, not the header's 12px: a 44px target already centres its words about 10px down.
    */
   .st-type-jump {
-    margin-block-start: calc(var(--st-space-1) - var(--st-space-3));
     display: flex;
+    font-size: var(--st-text-sm);
     flex-wrap: wrap;
-    gap: 0 var(--st-space-3);
+    gap: 0 var(--st-space-2);
     align-items: center;
     max-inline-size: var(--st-measure);
+    margin-block-start: calc(var(--st-space-1) - var(--st-space-3));
   }
 
   .st-type-jump__label {
-    margin: 0;
-    padding-block: var(--st-space-1);
     color: var(--st-text-muted);
-    font-size: var(--st-text-sm);
   }
 
-  /* The links wrap as a row; each one is a 44px target. */
   .st-type-jump__links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0 var(--st-space-5);
+    align-items: center;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  .st-type-jump__links a {
+  .st-type-jump__links li {
     display: flex;
-    gap: var(--st-space-1);
+    align-items: center;
+  }
+
+  /* The dot is decoration: empty alternative text, so it is not read out. */
+  .st-type-jump__links li + li::before {
+    content: '·';
+    content: '·' / '';
+    padding-inline: var(--st-space-2);
+    color: var(--st-text-muted);
+  }
+
+  .st-type-jump__links a {
+    display: inline-flex;
     align-items: center;
     min-block-size: var(--st-target);
     overflow-wrap: break-word;
   }
 
-  .st-type-jump__arrow {
-    display: inline-flex;
-    flex: none;
-    color: var(--st-text-muted);
+  /* From 1280px the contents column is always in view and lists the same sections. */
+  @media (width >= 1280px) {
+    .st-type-jump {
+      display: none;
+    }
   }
 </style>

@@ -11,7 +11,7 @@
 import { useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
 import { href } from '../../lib/paths';
-import { APP_ROUTES } from '../../lib/routes';
+import { APP_ROUTES, WIZARD_QUESTIONS } from '../../lib/routes';
 import { uid } from '../../scripts/uid';
 
 interface Props {
@@ -34,7 +34,7 @@ const helpId = uid('st-applies-help');
     </p>
   </div>
   <p class="st-hint" data-no-profile hidden>
-    {t('doc.onlyWhatAppliesNoProfile')}{' '}
+    {t('doc.onlyWhatAppliesNoProfile', { total: WIZARD_QUESTIONS })}{' '}
     <a href={href(locale, APP_ROUTES.wizard)}>{t('nav.findMyPath')}</a>
   </p>
 </st-applies-switch>
