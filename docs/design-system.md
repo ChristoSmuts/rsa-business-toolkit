@@ -621,6 +621,62 @@ The reason line is new and ends on the first screen on all twelve pages (`types.
 
 `tests/e2e/types.spec.ts` holds the facts (on the first screen at 360×740 in both languages, the reason quoted from the hub in the page's language, the art only from 480px), "Go straight to" (the links per type, 44px each, landing on their headings, after the AI notice), the switch (only on the dealer) and the hub's tables (cards at 320px in Afrikaans with every cell labelled and nothing sideways, tables at 1280px, table semantics in Chromium's own tree, skipped in other engines). `nojs.spec.ts` checks the facts, a jump link and the cards without a script; `a11y.spec.ts` runs axe at 320px on the Afrikaans hub and food page in both themes.
 
+### The tools (WP-50 Phase 3)
+
+Phase 3, item 4 is the five tools as one product: Find my path, My path, the templates (the index and each template), the checklist and the search dialog, plus the confirm dialog they share. Readers use them on a phone, often for the first time, to do something: answer, tick, fill in, print, find. Screenshots, `ea15b4a` on the left and this branch on the right: `docs/reviews/WP-50-phase3-tools/` (36 files: Find my path at questions 1 and 3 at 320px and question 2 at 1280px, My path at 320 and 1280px, the tax invoice at 320 and 1280px and its required items and actions at 320px, `/templates/`, the checklist, a confirm dialog at 320 and 1280px, and the search dialog with no results at 320px and with results at 1280px; English and Afrikaans, light and dark where it matters).
+
+**The critique** (walked at 320×568, 360×740, 768 and 1280px, both languages, both themes, with and without JavaScript), in order of harm to a reader:
+
+1. **Every confirm dialog sat against the top and start edges of the screen, at every width.** The reset in `base.css` sets every `margin` to 0, and a native modal `<dialog>` centres itself with `margin: auto`. "Remove all ticks?", "Remove your answers?", "Clear this form?" and "Clear all your data?" looked broken. On a phone its two buttons were two ragged right-aligned shapes of different widths.
+2. **A template's Print button was two screens under the form on a phone.** "Required items" listed each missing item on its own line: thirteen on an empty tax invoice, about 620px at 320px, between the last field and Print. The buttons had no heading, so the end of the form and the actions read as one list.
+3. **Find my path's first answer started below the first screen** (780px at 320×568, 803px in Afrikaans; 725px at 360×740). The stepper's words took two rows (about 120px) and said what the step's heading under it says again ("Step 1 of 3 / How you trade", then "Question 1 of 3: How you trade").
+4. **Find my path never showed the answers before "See my path".** And a question already answered looked exactly like one still to come in the stepper (both muted, both on a grey bar).
+5. **My path did not say where the reader was.** Every step looked the same, and the answers came first as a second h2 the size of "Your path", with a plain link to change them.
+6. **On a phone a template's form was boxes in boxes.** Each group was a frame with 16px inside, so a field was 254px wide at 320px, and an invoice line was a grey box inside it.
+7. **The checklist's items had about 210px of line at 320px** inside the box's 20px padding; most took three or four lines.
+8. **"Nothing found … or look in the glossary"** in the search dialog, with no way to the glossary on screen.
+
+What was already right and stays: one question per step, Back that keeps every answer (native inputs), 44px answer rows with visible labels, Next's reason written under it ("Choose an answer first."), the template's Fill in / Preview tabs, the checklist's 44px tick rows with a real tick (not colour), the counts on every list, the search dialog's field, results, failed and empty states at 320px, and the held-Enter logic in `search-boot.ts` (not touched).
+
+**What changed**, by tool. No new component and no new colour pair: everything uses tokens and pairs already in `CONTRAST_PAIRS`.
+
+| Tool | Change | Why |
+| --- | --- | --- |
+| Confirm dialog (`ConfirmDialog.astro`) | `margin: auto`, so it is centred with the page's 16px gutter. Below 30rem each choice takes a full row, the safe one first and focused, as before | Critique 1 |
+| Find my path (`Wizard.astro`, `wizard.ts`) | Below 30rem the stepper is three 6px bars on one row; its words are visually hidden and stay in the accessibility tree (the list "Questions", "Step 2 of 3", "Kind of business"). The step's h2 is `--st-text-xl` there. First answer at 320×568: 780 → 635px (EN), 803 → 635px (AF); at 360×740: 725 → 554px (EN), 754 → 608px (AF), now on the first screen | Critique 3. The h2 still says "Question 2 of 3", so the bar never carries the step alone |
+| | A question already answered has a filled bar and a tick drawn from two borders in `currentcolor`, in the item's start padding (16px, at every step, so no word moves and no row wraps when it appears). In forced colours its bar is `Highlight`, like the current one | Critique 4: done, current and to come are three states, not by colour alone |
+| | "Your answers so far" (`wizard.summary.*`) on the last question, above Back and "See my path": each answer in its own label's words, the kinds of business in the order they were ticked (the first is the primary), and "Change" (a ghost button, 44px, named "Change: How you trade") that goes back to that question with focus on its heading and every answer kept. `#summarise()` in `wizard.ts` writes the words; the rows are server-rendered `.js-only`, so without JavaScript (all three questions on one page) there is no summary | Critique 4 |
+| My path (`my-path.astro`, `PathSteps.astro`, `my-path.ts`) | The first step not done gets "Do this next" (`myPath.upNext`, with an arrow icon) and a second ring round its circle (`--st-bg` then `--st-primary`, a box shadow; a 2px `CanvasText` outline in forced colours). It moves on as steps are marked done; none once all are | Critique 5 |
+| | The answers are one strip: "Your answers" as a small muted heading (the h2 and its id stay), the chips, and "Edit answers" as a secondary button with a pencil (still a link, same name), closed by a hairline | Critique 5 |
+| Templates (`TemplateTool.astro`) | Below 30rem of the tool (its own container) a group has no frame and its legend is the group's heading (Fraunces, `--st-text-xl`); fields are 288px at 320px. From 30rem the frames stay | Critique 6 |
+| | The missing required items wrap as one paragraph of links (`display: flex; flex-wrap: wrap`), each still a 44px target. The actions have a heading, "When you are done" / "As jy klaar is" (`templates.actionsHeading`; hidden with the actions without JavaScript and in print). Print at 320×568: 5,228 → 4,773px (EN), 5,581 → 5,145px (AF) | Critique 2 |
+| Checklist (`content.css`) | Below 30rem `.st-tasklist` keeps 12px inside, not 16/20px. The rows stay 44px. `/checklist/` at 320px: 19,462 → 18,796px (EN), 21,335 → 20,363px (AF) | Critique 7. Every checklist on a document page gets the same room |
+| Search dialog (`SearchDialog.astro`) | The empty state, which also shows under "Nothing found", ends with "Browse all pages" and "Look a word up in the glossary" (`search.browseGlossary`), 44px link rows. Server-rendered; no script change | Critique 8 |
+
+**Critique, round 1** ("remove one accessory"). From the first build's screenshots: the answers strip on My path had a hairline above and below; the one above sat right under the lead and read as a rule under the title, so it went. The template groups lost their frame on a phone (above), and the stepper its words. The wizard's summary has hairlines between its rows and no box. Not added: a frame round the summary, a chip or badge for "Do this next" (it is words and an icon), colour on the ticked checklist rows.
+
+**Measured** (Chromium, Liberation fonts, web fonts loaded; top of the element in page pixels; `ea15b4a` → this branch). The first screen is 568px at 320×568 and 740px at 360×740; today's header (165px at both) is item 5's.
+
+| Page, size | Element | EN | AF |
+| --- | --- | --- | --- |
+| Find my path, 320×568 | first answer | 780 → 635 | 803 → 635 |
+| Find my path, 360×740 | first answer | 725 → 554 | 754 → 608 |
+| Find my path, 320×568 | Next | 1,308 → 1,163 | 1,330 → 1,163 |
+| Find my path, 320×568 | "See my path" (the summary is above it) | 1,245 → 1,336 | 1,290 → 1,358 |
+| My path, 320×568 | first step | 700 → 708 | 700 → 708 |
+| My path, 360×740 | first step | 657 → 666 | 657 → 666 |
+| Tax invoice, 320×568 | Print | 5,228 → 4,773 | 5,581 → 5,145 |
+| Tax invoice, 320×568 | page height | 7,449 → 6,994 | 7,979 → 7,544 |
+| Checklist, 320×568 | page height | 19,462 → 18,796 | 21,335 → 20,363 |
+
+My path's first step moves 8px down: the answers strip is about as tall as the h2, chips and link were (the chips take two rows at 320px), plus 8px above it. "Do this next" is what tells the reader where to start; at 360×740 that step is on the first screen (666px).
+
+**Layout shift with the web fonts late** (every `.woff2` held until the page and its stylesheets are in, then released; the method in [Fallback fonts and layout shift](#fallback-fonts-and-layout-shift)), the top of `find-my-path/`, `my-path/` (with answers), `templates/`, `templates/tax-invoice/`, `checklist/` and `search/`, both languages: 320×568, worst 0.015 → 0.029 (`/find-my-path/`, which now has the answers on its first screen); 1280×800, worst 0.002 → 0.002. None over 0.1. Nothing moves when the scripts arrive: the summary is on question 3, which is hidden until the wizard is ready, and "Do this next" is inside My path's steps, which are drawn by its script into the room `theme-init.js` keeps (`wizard-shift.spec.ts` and the template and My path shift tests pass unchanged).
+
+**Weight** (gzip, the `pnpm dist:budget` method; JavaScript / CSS files / HTML): `find-my-path/` 22.3 → 22.5 KB / 9.0 → 9.3 / 12.5 → 12.7 (the summary in `wizard.ts`; a tool page, budget 45 KB); `my-path/` 26.7 → 26.7 / 7.8 → 7.8 / 25.1 → 25.6 (a "Do this next" in each step card); `templates/` 17.4 / 9.0 / 8.1, unchanged; `templates/tax-invoice/` 24.2 → 24.2 / 13.3 → 13.4 / 18.6 → 18.7; `checklist/` 23.8 → 23.8 / 13.3 → 13.4 / 26.0 → 26.0; `/af/search/` 34.9 → 34.9 / 7.8 / 11.2 → 11.3 (the glossary link in the dialog, on every page). The heaviest document page is unchanged (`/af/core/adding-new-lines/`, 24.3 KB of 25 KB), and so is the heaviest other page (`/af/search/`, 34.9 KB of 45 KB).
+
+`tests/e2e/tools.spec.ts` holds the stepper at 320px (one row, at most 8px, the first answer within 650px, its words in Chromium's own tree), the done tick, the summary and "Change" (answers kept, focus on the heading), "Do this next" moving on, "Edit answers" as a 44px button above the path, the template groups (no frame at 320px, a frame at 1280px, 286px or wider fields), the wrapped 44px required links and the actions heading, the checklist's 44px rows and 12px padding, the centred "Remove all ticks?" with both choices one width and the safe one focused, the glossary link under "no results", and no sideways scroll on any of them, in both languages. `nojs.spec.ts` checks there is no stepper or summary without JavaScript and that a template group is unframed at 320px. `a11y.spec.ts` runs axe at 320px in Afrikaans, in both themes, on the wizard's last question with the summary, My path with "Do this next", the tax invoice, and the search dialog with no results. `tests/dom/wizard.test.ts` and `tests/dom/my-path.test.ts` hold the summary's words and order and the "Do this next" rule.
+
 ### Search (WP-33)
 
 | File | What it is |
