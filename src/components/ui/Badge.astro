@@ -14,6 +14,12 @@ interface Props {
   /** Icon name, or `null` for text only. Defaults per variant. */
   icon?: string | null | undefined;
   class?: string | undefined;
+  /**
+   * Icon and words with no chip: no fill, border or side padding. For a line of plain facts, such
+   * as a document's read time beside its effort meter (WP-50 Phase 3), where a chip was one box
+   * too many. The border is removed, not made transparent, so forced colours draw none.
+   */
+  bare?: boolean | undefined;
 }
 
 const ICONS: Record<Variant, string> = {
@@ -26,11 +32,15 @@ const ICONS: Record<Variant, string> = {
   flag: 'lucide:circle-alert',
 };
 
-const { variant = 'entity', icon, class: className } = Astro.props;
+const { variant = 'entity', icon, class: className, bare = false } = Astro.props;
 const iconName = icon === null ? undefined : (icon ?? ICONS[variant]);
 ---
 
-<span class:list={['st-badge', className]} data-variant={variant}>
+<span
+  class:list={['st-badge', className]}
+  data-variant={variant}
+  data-bare={bare ? 'true' : undefined}
+>
   {iconName && (
     <span class="st-badge__icon">
       <Icon name={iconName} size="1.1em" />
@@ -116,6 +126,12 @@ const iconName = icon === null ? undefined : (icon ?? ICONS[variant]);
   .st-badge[data-variant='flag'] {
     --st-badge-bg: var(--st-warning-bg);
     --st-badge-fg: var(--st-warning-text);
+  }
+
+  .st-badge[data-bare='true'] {
+    padding-inline: 0;
+    border-style: none;
+    background-color: transparent;
   }
 
   @media (forced-colors: active) {

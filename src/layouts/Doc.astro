@@ -188,11 +188,11 @@ const relatedTypes = businessType
             {doc.summary}
           </p>
           <p class="st-cluster st-doc__meta st-doc__after-notice">
-            <Badge variant="status" icon="lucide:clock">
+            <Badge variant="status" icon="lucide:clock" bare>
               {t('doc.readTime', { minutes: doc.readingTime })}
             </Badge>
             {doc.appliesTo.entity !== 'all' && (
-              <Badge variant="entity">
+              <Badge variant="entity" bare>
                 {doc.appliesTo.entity === 'pty' ? t('doc.ptyOnly') : t('doc.soleProprietorOnly')}
               </Badge>
             )}
@@ -403,17 +403,6 @@ const relatedTypes = businessType
   .st-doc article > st-toc > .st-toc--details,
   .st-doc article > .st-doc__more {
     margin-block-start: calc(var(--st-space-4) - var(--st-space-6));
-  }
-
-  /*
-   * The read time and the applies-to note are plain words with their icon on the meta line, like
-   * the effort meter beside them: a chip around each was one box too many above the notice (WP-50
-   * Phase 3 critique, "remove one accessory"). The badge keeps its icon, words and wrapping.
-   */
-  .st-doc .st-doc__meta > .st-badge {
-    padding-inline: 0;
-    border-color: transparent;
-    background-color: transparent;
   }
 
   @media (width < 1280px) {
