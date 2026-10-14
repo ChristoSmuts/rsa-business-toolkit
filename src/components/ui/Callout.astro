@@ -82,13 +82,16 @@ const nameId = labelId ?? uid('st-callout');
   }
 
   /*
-   * The body's size, not the box's: the box keeps its measure in the page's em, so a compact
-   * notice lines up with the text around it.
+   * The body's size, not the box's, so the box's width is in the page's em. It is narrower than
+   * the reading measure: small type across the full measure ran to about 110 characters a line at
+   * 1280px, longer than the text beside it (review pass 2, nit 2). 38em of the page's size is about
+   * 85 characters of the compact body; on a phone the screen is narrower anyway.
    */
   .st-callout[data-size='compact'] {
     --st-flow-gap: var(--st-space-1);
 
     gap: var(--st-space-1);
+    max-inline-size: min(var(--st-measure), 38em);
     padding: var(--st-space-3) var(--st-space-4);
   }
 
