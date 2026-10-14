@@ -218,6 +218,26 @@ test.describe('the interactive pieces without JavaScript', () => {
       .click();
     await expect(page).toHaveURL(/\/templates\/quotation\/$/);
   });
+
+  test('a business type’s facts, "Go straight to" and stacked tables need no script (WP-50 Phase 3, item 3)', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 320, height: 568 });
+    await page.goto('af/business-types/food/');
+    await expect(page.locator('.st-type-facts .st-effort__value')).toHaveText('Hoog');
+    await expect(page.locator('.st-type-facts__reason')).toContainText(
+      'Certificate of Acceptability',
+    );
+    await page.locator('.st-type-jump a[href="#realistic-timing"]').click();
+    await expect(page).toHaveURL(/#realistic-timing$/);
+    await expect(page.locator('#realistic-timing')).toBeInViewport();
+    await page.goto('af/business-types/');
+    const regions = page.locator('st-table-scroll[data-stack="rows"]');
+    await expect(regions).toHaveCount(2);
+    for (const region of await regions.all()) {
+      expect(await region.evaluate((el) => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(0);
+    }
+  });
 });
 
 /**

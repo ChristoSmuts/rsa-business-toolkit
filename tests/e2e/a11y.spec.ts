@@ -116,6 +116,20 @@ test.describe('axe with the interactive states open', () => {
       });
     }
 
+    // WP-50 Phase 3, item 3: what only a phone shows on the business-type pages — the hub's tables
+    // stacked as cards, and a type's facts without the art square — at 320px in Afrikaans.
+    for (const route of ['af/business-types/', 'af/business-types/food/']) {
+      test(`${route} at 320px, tables as cards and the type's facts (${theme})`, async ({
+        page,
+        setTheme,
+      }, testInfo) => {
+        await setTheme(theme);
+        await page.setViewportSize({ width: 320, height: 568 });
+        await page.goto(route);
+        await expectNoBlocking(page, `${route} 320 ${theme}`, testInfo);
+      });
+    }
+
     test(`the Afrikaans quotation on a phone, preview tab (${theme})`, async ({
       page,
       setTheme,
