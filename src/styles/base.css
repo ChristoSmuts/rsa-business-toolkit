@@ -251,16 +251,19 @@ h6 {
 }
 
 /*
- * Afrikaans writes compounds as one word ("verifikasieregister", "Privaatheidskennisgewing"), and at
- * 320px a heading may have to break one. Where the browser has an Afrikaans hyphenation dictionary
- * it breaks at a syllable with a hyphen; only words of 12 letters or more, with at least 5 on each
- * side, so ordinary words still wrap whole. Where it has none (the Chromium the tests use), the
- * `anywhere` break above still keeps the heading inside the screen (WP-50 Phase 3 review pass 1,
- * minor 6).
+ * Afrikaans writes compounds as one word ("verifikasieregister", "Privaatheidskennisgewing"), and on
+ * a narrow phone a heading may have to break one. Where the browser has an Afrikaans hyphenation
+ * dictionary it breaks at a syllable with a hyphen; only words of 12 letters or more, with at least
+ * 5 on each side, so ordinary words still wrap whole. Only below 480px, where a long compound can
+ * be wider than the line: on a wider screen a heading word wraps whole, as it always did (review
+ * pass 2, minor 4). Where the browser has no dictionary (the Chromium the tests use), the `anywhere`
+ * break above still keeps the heading inside the screen (WP-50 Phase 3 review pass 1, minor 6).
  */
-:is(h1, h2, h3):lang(af) {
-  hyphens: auto;
-  hyphenate-limit-chars: 12 5 5;
+@media (width < 480px) {
+  :is(h1, h2, h3):lang(af) {
+    hyphens: auto;
+    hyphenate-limit-chars: 12 5 5;
+  }
 }
 
 img,

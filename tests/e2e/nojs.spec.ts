@@ -463,9 +463,11 @@ test.describe('the AI notice on a 320×568 screen without JavaScript', () => {
     });
   }
 
-  // WP-50 Phase 3 review pass 1, minor 5 and minor 2. Without JavaScript the header carries every
-  // menu (213px below 1024px), so on landscape phones lower than 412px the notice cannot reach the
-  // first screen until the header is one row (Phase 3, item 5); 915×412 is the lowest that does.
+  // WP-50 Phase 3 review passes 1 and 2. Without JavaScript the header carries every menu (213px
+  // below 1024px), so on a landscape phone the notice reaches the first screen only at 412px high
+  // and more, and only where the H1 is one line (65 of 74 pages at 915×412; the vehicle dealer is
+  // one of them). The rest waits for the one-row header (Phase 3, item 5); see
+  // docs/design-system.md, "AI notice".
   for (const [width, height] of [
     [360, 740],
     [412, 915],
