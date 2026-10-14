@@ -479,6 +479,23 @@ test.describe('the search dialog while it loads', () => {
     await expect(dialog(page)).toBeVisible();
   });
 
+  test('Enter while the script never arrives goes to the search page after a while', async ({
+    page,
+    baseURL,
+  }) => {
+    // Held for the whole test: a stalled connection neither loads the script nor fails it.
+    await holdScript(page, baseURL);
+    await open(page, DOC);
+    const before = page.url();
+    await page.keyboard.press('/');
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    await expect(dialog(page)).toBeVisible();
+    expect(page.url()).toBe(before);
+    // search-boot.ts gives the script 8 s (HELD_ENTER_MS) before it sends the form after all.
+    await expect(page).toHaveURL(/\/search\/\?q=PIS$/, { timeout: 15_000 });
+  });
+
   test('one Escape before the script arrives closes the dialog, also with text in the field', async ({
     page,
     baseURL,

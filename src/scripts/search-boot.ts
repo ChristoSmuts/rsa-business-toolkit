@@ -109,6 +109,11 @@ export function openSearch(from: HTMLElement | null, doc: Document = document): 
 let entered: string | null = null;
 /** The handlers below are on the dialog (once per page). */
 let keysHeld = false;
+/**
+ * How long a held Enter waits for the dialog's script. A stalled connection neither loads nor fails
+ * it; Enter then goes to the search page, as it did before Enter was held.
+ */
+const HELD_ENTER_MS = 8000;
 
 /** `requestSubmit()`, or on an older browser (Safari before 16) the same submit event. */
 function submit(form: HTMLFormElement | null): void {
@@ -125,9 +130,10 @@ function submit(form: HTMLFormElement | null): void {
  * arrived.
  *
  * The keys the script handles do the same before it arrives. Enter does not submit the form, which
- * left for the search page; `openSearch()` hands it to the script. Escape and the close button
- * close the dialog, also with text in the field, whose own Escape only cleared the text. All were
- * lost on a slow phone whenever the reader was quicker than the script.
+ * left for the search page; `openSearch()` hands it to the script, or after `HELD_ENTER_MS` the
+ * form goes to the search page after all. Escape and the close button close the dialog, also with
+ * text in the field, whose own Escape only cleared the text. All were lost on a slow phone whenever
+ * the reader was quicker than the script.
  */
 function waiting(host: Dialog, dialog: HTMLDialogElement, field: HTMLInputElement): void {
   if (!keysHeld) {
@@ -140,6 +146,9 @@ function waiting(host: Dialog, dialog: HTMLDialogElement, field: HTMLInputElemen
       const text = field.value;
       if (!dialog.open || text.trim() === '') return;
       entered = text;
+      setTimeout(() => {
+        if (!host.open && dialog.open && field.value === entered) form.submit();
+      }, HELD_ENTER_MS);
     });
     field.addEventListener('keydown', (event) => {
       if (host.open || event.key !== 'Escape' || event.isComposing) return;
