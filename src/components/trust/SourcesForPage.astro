@@ -295,8 +295,13 @@ const itemProps = { acts, locale, registerContext, dataLang, titleLang, actLang,
       display: none;
     }
 
+    /*
+     * One list to the eye: the section's gap plus this makes the joint between entries 3 and 4 as
+     * wide as the 2rem between any other two (main repair review pass 5, minor 1; doc-page.spec.ts
+     * holds it).
+     */
     .st-sources__rest {
-      padding-block-start: 0;
+      padding-block-start: calc(var(--st-space-6) - var(--st-space-3));
     }
   }
 </style>

@@ -331,6 +331,42 @@ test.describe('"Sources for this page"', () => {
     await expect(sources.locator('.st-sources__rest li.st-source').last()).toBeVisible();
     await expect(sources.locator('.st-sources__more-label')).toBeHidden();
   });
+
+  /*
+   * Main repair review pass 5, minor 1: where the two lists read as one (from 768px, and on paper)
+   * the joint between entries 3 and 4 is the same as the space between any other two entries, so
+   * entry 4 does not look like part of entry 3.
+   */
+  for (const [label, setUp] of [
+    ['at 1280px', async (page: Page) => page.setViewportSize({ width: 1280, height: 900 })],
+    [
+      'on paper',
+      async (page: Page) => {
+        await page.setViewportSize(PHONE);
+        await page.emulateMedia({ media: 'print' });
+      },
+    ],
+  ] as const) {
+    test(`${label}, entries 3 and 4 sit as far apart as any other two`, async ({
+      page,
+    }, testInfo) => {
+      test.skip(testInfo.project.name === 'mobile', 'Sets its own width.');
+      await page.goto(DEALER);
+      await setUp(page);
+      const gaps = await page.locator('section.st-sources li.st-source').evaluateAll((items) => {
+        const top = (items as HTMLElement[]).filter(
+          (item) => item.parentElement?.closest('li.st-source') === null && item.offsetParent,
+        );
+        return top.slice(1).map((item, index) => {
+          const above = top[index]!.getBoundingClientRect();
+          return Math.round(item.getBoundingClientRect().top - above.bottom);
+        });
+      });
+      expect(gaps.length).toBeGreaterThan(4);
+      // gaps[2] is the joint between the first list's last entry and the rest's first.
+      expect(Math.abs(gaps[2]! - gaps[0]!), `gaps ${gaps.join(', ')}`).toBeLessThanOrEqual(1);
+    });
+  }
 });
 
 /*
