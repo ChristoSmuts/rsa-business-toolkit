@@ -1,0 +1,210 @@
+---
+/**
+ * "Before you can trade" (WP-50 Phase 3, item 3): what a kind of business needs, near the top of
+ * its page, so a first-time owner on a phone does not have to hunt for it.
+ *
+ * It is the type tile they tapped on the hub or home, opened: the same white tile with a hairline
+ * and the same two-tone illustration on its section tint (D5: the illustrations stay), then
+ *
+ * 1. the setup effort, as the five-bar meter with its level in words, and the hub's "Main reason"
+ *    for it ("Certificate of Acceptability, training, inspections"), in the hub's language;
+ * 2. "Go straight to": links to the sections of this page that say what is needed, how long it
+ *    takes (where the page says) and the checklist, named by their own headings.
+ *
+ * Every word of the content comes from the markdown (`src/lib/business-types.ts`); the panel adds
+ * no fact. It sits after the AI notice, so it never pushes the notice off the first screen, and it
+ * is plain HTML and CSS: no script.
+ */
+import EffortMeter from '../ui/EffortMeter.astro';
+import Icon from '../ui/Icon.astro';
+import Inline from '../content/Inline.astro';
+import { TYPE_ILLUSTRATIONS } from '../illustrations/by-type';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { GlanceLink } from '../../lib/business-types';
+import type { ContentContext } from '../../lib/content/context';
+import type { BusinessType, InlineRun } from '../../lib/content/schema';
+import { effortLevel } from '../../lib/pages';
+
+interface Props {
+  locale: Locale;
+  type: BusinessType;
+  /** The hub's "Main reason" cell for this type, when the table has it. */
+  reason: readonly InlineRun[] | undefined;
+  /** `lang` for the reason when its language is not the page's. */
+  reasonLang?: string | undefined;
+  links: readonly GlanceLink[];
+  /** `lang` for the headings' words when the document is not in the page's language. */
+  contentLang?: string | undefined;
+  context: ContentContext;
+}
+
+const { locale, type, reason, reasonLang, links, contentLang, context } = Astro.props;
+const t = useTranslations(locale);
+const Illustration = TYPE_ILLUSTRATIONS[type.id];
+const level = effortLevel(type.effort);
+const effortLabels = [
+  t('businessTypes.effort.lowest'),
+  t('businessTypes.effort.low-medium'),
+  t('businessTypes.effort.medium'),
+  t('businessTypes.effort.medium-high'),
+  t('businessTypes.effort.high'),
+] as const;
+const headingId = 'st-type-glance';
+const goToId = 'st-type-glance-go';
+---
+
+<section class="st-type-glance" aria-labelledby={headingId} data-section="types">
+  <div class="st-type-glance__head">
+    <span class="st-type-glance__art">
+      <Illustration />
+    </span>
+    <h2 id={headingId}>{t('businessTypes.glance.heading')}</h2>
+  </div>
+  <p class="st-type-glance__effort">
+    <EffortMeter
+      level={level}
+      label={t('businessTypes.effortLabel')}
+      levelLabels={effortLabels}
+      scaleText={t('businessTypes.effortScale', { level, total: 5 })}
+    />
+    {reason && (
+      <span class="st-type-glance__reason" lang={reasonLang}>
+        <Inline runs={reason} context={context} />
+      </span>
+    )}
+  </p>
+  {links.length > 0 && (
+    <Fragment>
+      <p class="st-type-glance__go" id={goToId}>
+        {t('businessTypes.glance.goTo')}
+      </p>
+      <ul class="st-type-glance__links" role="list" aria-labelledby={goToId}>
+        {links.map((link) => (
+          <li>
+            <a href={`#${link.id}`} data-glance={link.kind}>
+              <span class="st-type-glance__arrow">
+                <Icon name="lucide:arrow-down" />
+              </span>
+              <span lang={contentLang}>{link.text}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </Fragment>
+  )}
+</section>
+
+<style>
+  /*
+   * The type tile, opened: white, a hairline, the 8px radius, no shadow (the card set's `type`
+   * shape). Only the tool frame is green; this is something to read, so it stays quiet.
+   */
+  .st-type-glance {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-2);
+    max-inline-size: var(--st-measure);
+    padding: var(--st-space-3) var(--st-space-4) var(--st-space-2);
+    border: var(--st-border-width) solid var(--st-border);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface);
+  }
+
+  .st-type-glance__head {
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    gap: var(--st-space-3);
+    align-items: center;
+  }
+
+  /* The tile's art square: the illustration on the section tint, its fills in the tile's white. */
+  .st-type-glance__art {
+    --st-illustration-fill: var(--st-surface);
+    --st-illustration-size: 2.75rem;
+
+    display: grid;
+    place-items: center;
+    inline-size: 3.5rem;
+    block-size: 3.5rem;
+    border-radius: var(--st-radius-sm);
+    background-color: var(--st-section-tint);
+  }
+
+  /*
+   * A label for the panel, not a section of the text: the body face at the type tile's title size
+   * (D2 keeps Fraunces for the page's own h1 and h2 sections).
+   */
+  .st-type-glance h2 {
+    margin: 0;
+    font-family: var(--st-font-body);
+    font-size: var(--st-text-md);
+    font-weight: var(--st-weight-bold);
+    letter-spacing: 0;
+    line-height: var(--st-leading-snug);
+  }
+
+  /*
+   * The meter on a line of its own, full width, so the Afrikaans "Werk om te begin: ▮▮▮▮▮ Hoog"
+   * stays on one line at 320px; the reason it is that level under it.
+   */
+  .st-type-glance__effort {
+    display: grid;
+    gap: var(--st-space-1);
+    margin: 0;
+  }
+
+  .st-type-glance__reason {
+    display: block;
+  }
+
+  .st-type-glance__go {
+    margin: 0;
+    padding-block-start: var(--st-space-2);
+    border-block-start: var(--st-border-width) solid var(--st-border);
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+  }
+
+  .st-type-glance__links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /*
+   * Each link is a 44px row: a list of links to jump to is not running text. The arrow says
+   * "further down this page"; the underline says "link".
+   */
+  .st-type-glance__links a {
+    display: flex;
+    gap: var(--st-space-2);
+    align-items: baseline;
+    min-block-size: var(--st-target);
+    padding-block: var(--st-space-2);
+    overflow-wrap: break-word;
+  }
+
+  .st-type-glance__arrow {
+    display: inline-flex;
+    flex: none;
+    align-self: center;
+    color: var(--st-text-muted);
+  }
+
+  @media print {
+    .st-type-glance {
+      break-inside: avoid;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .st-type-glance {
+      border-color: CanvasText;
+    }
+
+    .st-type-glance__art {
+      border: 1px solid CanvasText;
+    }
+  }
+</style>

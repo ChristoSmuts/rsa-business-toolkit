@@ -249,7 +249,7 @@
     "showHiddenNamed": "Show hidden part: {title}",
     "onlyWhatApplies": "Only what applies to me",
     "onlyWhatAppliesHelp": "Hides the parts that are not for how you trade or for your kind of business. Nothing is removed. You can show them again at any time.",
-    "onlyWhatAppliesNoProfile": "Answer the questions in Find my path to use this.",
+    "onlyWhatAppliesNoProfile": "To see only the parts of this page that apply to you, first answer three short questions:",
     "plainWords": "In plain words",
     "note": "Note",
     "warning": "Warning",
@@ -850,6 +850,10 @@
     },
     "effortLabel": "Setup effort",
     "effortScale": "{level} of {total}",
+    "glance": {
+      "heading": "Before you can trade",
+      "goTo": "Go straight to"
+    },
     "effort": {
       "lowest": "Lowest",
       "low-medium": "Low to medium",

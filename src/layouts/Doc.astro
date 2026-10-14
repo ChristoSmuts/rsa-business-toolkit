@@ -39,14 +39,15 @@
  */
 import pathsData from '../data/paths.json';
 import Page from './Page.astro';
+import businessTypesFile from '../../content-meta/business-types.json';
 import BusinessTypeTiles from '../components/pages/BusinessTypeTiles.astro';
+import TypeGlance from '../components/pages/TypeGlance.astro';
 import ChecklistElsewhere from '../components/interactive/ChecklistElsewhere.astro';
 import AppliesScope from '../components/interactive/AppliesScope.astro';
 import AppliesSwitch from '../components/interactive/AppliesSwitch.astro';
 import ChecklistSummary from '../components/interactive/ChecklistSummary.astro';
 import Badge from '../components/ui/Badge.astro';
 import Callout from '../components/ui/Callout.astro';
-import EffortMeter from '../components/ui/EffortMeter.astro';
 import Blocks from '../components/content/Blocks.astro';
 import TermsBlock from '../components/content/TermsBlock.astro';
 import Breadcrumb from '../components/navigation/Breadcrumb.astro';
@@ -63,15 +64,9 @@ import type { BusinessType, Doc, GlossaryFile, Manifest, SourcesFile } from '../
 import { splitTermsBlocks, TERMS_HEADING_ID } from '../lib/content/render';
 import { hasOwnSources } from '../lib/content/trust';
 import { documentCrumbs } from '../lib/nav';
-import {
-  assertDocTrust,
-  docPager,
-  effortLevel,
-  pageTitle,
-  sectionHue,
-  splitAroundParam,
-} from '../lib/pages';
+import { assertDocTrust, docPager, pageTitle, sectionHue, splitAroundParam } from '../lib/pages';
 import { docHasConditions } from '../lib/path-pages';
+import { effortReason, glanceLinks } from '../lib/business-types';
 import { href } from '../lib/paths';
 import { APP_ROUTES, CHECKLIST_SAVES, TEMPLATES_FILLABLE, WIZARD_AVAILABLE } from '../lib/routes';
 import { isTemplateSlug } from '../lib/templates/draft';
@@ -91,10 +86,24 @@ interface Props {
   englishSources?: SourcesFile | undefined;
   /** Every business type, for the effort meter and the related-type hints. */
   businessTypes: readonly BusinessType[];
+  /**
+   * On a business type: "Pick your business type" in the page's content language and in English,
+   * for the effort table's "Main reason" in "Before you can trade".
+   */
+  typeHub?: { doc: Doc; english: Doc } | undefined;
 }
 
-const { locale, manifest, doc, glossary, sources, sourcesLang, englishSources, businessTypes } =
-  Astro.props;
+const {
+  locale,
+  manifest,
+  doc,
+  glossary,
+  sources,
+  sourcesLang,
+  englishSources,
+  businessTypes,
+  typeHub,
+} = Astro.props;
 /** The document that is the business-types hub; B6 gives it the type tiles above its text. */
 const BUSINESS_TYPES_HUB = 'business-types/pick-your-business-type';
 assertDocTrust(doc);
@@ -142,13 +151,6 @@ const translationStatus = isFallback ? 'fallback' : doc.translation.status;
 const englishHref = locale === DEFAULT_LOCALE ? undefined : href(DEFAULT_LOCALE, route);
 
 const businessType = businessTypes.find((type) => type.doc === doc.id);
-const effortLabels = [
-  t('businessTypes.effort.lowest'),
-  t('businessTypes.effort.low-medium'),
-  t('businessTypes.effort.medium'),
-  t('businessTypes.effort.medium-high'),
-  t('businessTypes.effort.high'),
-] as const;
 const coreHref = sectionHref(manifest, 'core', locale);
 /**
  * Every business type's text opens with "Read [Core] first. This file adds …", the link included,
@@ -163,7 +165,16 @@ const saysReadCoreFirst =
  * "Only what applies to me" (WP-31): on a page with parts for one entity or some kinds of business.
  * The master checklist has its own "Show: Only what applies to me" choice instead of the switch.
  */
-const filterable = WIZARD_AVAILABLE && docHasConditions(doc);
+const filterable = WIZARD_AVAILABLE && docHasConditions(doc, businessType?.id);
+/** "Before you can trade" on a business type (WP-50 Phase 3, item 3). */
+const glanceReason =
+  businessType && typeHub
+    ? effortReason(businessTypesFile.pickTable, typeHub.english, typeHub.doc, businessType.id)
+    : undefined;
+const glanceReasonLang =
+  typeHub && typeHub.doc.lang !== locale
+    ? (getLocale(typeHub.doc.lang as Locale)?.hreflang ?? typeHub.doc.lang)
+    : undefined;
 const scopeMode = doc.kind === 'checklist' ? 'checklist' : 'switch';
 const showSwitch = filterable && scopeMode === 'switch';
 const relatedTypes = businessType
@@ -200,17 +211,6 @@ const relatedTypes = businessType
                 {doc.appliesTo.entity === 'pty' ? t('doc.ptyOnly') : t('doc.soleProprietorOnly')}
               </Badge>
             )}
-            {businessType && (
-              <EffortMeter
-                level={effortLevel(businessType.effort)}
-                label={t('businessTypes.effortLabel')}
-                levelLabels={effortLabels}
-                scaleText={t('businessTypes.effortScale', {
-                  level: effortLevel(businessType.effort),
-                  total: 5,
-                })}
-              />
-            )}
           </p>
           <AiNotice
             verification={doc.verification}
@@ -220,6 +220,18 @@ const relatedTypes = businessType
           />
           <TranslationNotice status={translationStatus} locale={locale} englishHref={englishHref} />
         </header>
+
+        {businessType && (
+          <TypeGlance
+            locale={locale}
+            type={businessType}
+            reason={glanceReason}
+            reasonLang={glanceReasonLang}
+            links={glanceLinks(businessType, doc)}
+            contentLang={contentLangTag}
+            context={context}
+          />
+        )}
 
         {!template && (
           <TableOfContents

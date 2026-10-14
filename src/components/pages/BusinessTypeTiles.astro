@@ -8,13 +8,8 @@
  */
 import Card from '../ui/Card.astro';
 import EffortMeter from '../ui/EffortMeter.astro';
-import BeautyCare from '../illustrations/BeautyCare.astro';
-import FoodBusiness from '../illustrations/FoodBusiness.astro';
 import General from '../illustrations/General.astro';
-import ProfessionalCreative from '../illustrations/ProfessionalCreative.astro';
-import RetailOnline from '../illustrations/RetailOnline.astro';
-import ServicesTrades from '../illustrations/ServicesTrades.astro';
-import VehicleDealer from '../illustrations/VehicleDealer.astro';
+import { TYPE_ILLUSTRATIONS as ILLUSTRATIONS } from '../illustrations/by-type';
 import { useTranslations, type TranslationKey } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
 import { docHref, sectionHref } from '../../lib/content/manifest';
@@ -31,14 +26,6 @@ interface Props {
 
 const { locale, manifest, businessTypes, headingLevel = 3, general = true } = Astro.props;
 const t = useTranslations(locale);
-const ILLUSTRATIONS = {
-  'vehicle-dealer': VehicleDealer,
-  food: FoodBusiness,
-  beauty: BeautyCare,
-  'retail-online': RetailOnline,
-  'services-trades': ServicesTrades,
-  'professional-creative': ProfessionalCreative,
-} as const;
 const effortLabels = [
   t('businessTypes.effort.lowest'),
   t('businessTypes.effort.low-medium'),

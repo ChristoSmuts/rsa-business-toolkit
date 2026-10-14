@@ -47,10 +47,23 @@ export function stepWhy(source: Doc, listId: string, item: number): string | und
   return why === '' ? undefined : why;
 }
 
-/** Whether "Only what applies to me" can hide anything on this document. */
-export function docHasConditions(doc: Pick<Doc, 'blocks'>): boolean {
-  const has = (value: Parameters<typeof appliesAttributes>[0]): boolean =>
-    Object.keys(appliesAttributes(value)).length > 0;
+/**
+ * Whether "Only what applies to me" can hide anything on this document.
+ *
+ * `ownType` is the kind of business a business-type document is about. A part whose only condition
+ * is that kind of business (the type's own checklist, `when: { businessTypes: ['food'] }` on the
+ * food page) does not count: the reader opened the page about that kind of business, so the switch
+ * would only hide the page's own subject from them, and without a profile it showed a line under
+ * the disclosures about a switch the page did not need (WP-50 Phase 3, item 3). A part with an
+ * entity (the vehicle dealer's "If you trade as a company") still counts.
+ */
+export function docHasConditions(doc: Pick<Doc, 'blocks'>, ownType?: string): boolean {
+  const has = (value: Parameters<typeof appliesAttributes>[0]): boolean => {
+    const attributes = appliesAttributes(value);
+    if (Object.keys(attributes).length === 0) return false;
+    const types = attributes['data-types']?.split(' ') ?? [];
+    return !(ownType && !attributes['data-entity'] && types.includes(ownType));
+  };
   return doc.blocks.some((block) => {
     if (block.kind === 'heading') return has(block.appliesTo);
     if (block.kind === 'tasklist') return block.items.some((task) => has(task.when));

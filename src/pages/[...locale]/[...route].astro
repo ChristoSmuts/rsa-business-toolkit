@@ -52,6 +52,19 @@ const sources = doc ? await loadSources(sourcesLang) : undefined;
 const englishSources =
   doc && sourcesLang !== DEFAULT_LOCALE ? await loadSources(DEFAULT_LOCALE) : undefined;
 const businessTypes = (await getCollection('businessTypes')).map((entry) => entry.data);
+/** A business type's "Before you can trade" quotes the hub's effort table (WP-50 Phase 3). */
+const TYPES_HUB = 'business-types/pick-your-business-type';
+const typeHub =
+  doc && businessTypes.some((type) => type.doc === doc.id)
+    ? {
+        doc: await requireDoc(TYPES_HUB),
+        english:
+          (await loadDoc(DEFAULT_LOCALE, TYPES_HUB)) ??
+          (() => {
+            throw new Error(`${TYPES_HUB} is missing. Run \`pnpm content:build\`.`);
+          })(),
+      }
+    : undefined;
 const sectionDescription =
   page.kind === 'section' ? t(`nav.sections.${page.sectionId}.description` as TranslationKey) : '';
 const sectionDocs =
@@ -70,6 +83,7 @@ const sectionDocs =
     sourcesLang={sourcesLang}
     englishSources={englishSources}
     businessTypes={businessTypes}
+    typeHub={typeHub}
   />
 ) : (
   <Page

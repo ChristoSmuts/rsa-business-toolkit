@@ -31,6 +31,13 @@ const { block, context, caption } = Astro.props;
 const t = useTranslations(context.contentLang);
 const captionId = uid('st-table');
 const wide = tableIsWide(block);
+/*
+ * The business-type pages' tables are lookups a reader reads one row at a time ("find yourself in
+ * the table"), so on a narrow column each row stacks as a card instead of scrolling sideways
+ * (`TableScroll` `stack="rows"`; WP-50 Phase 3, item 3). Other sections keep their tables for now.
+ */
+const stack = !wide && context.docId?.startsWith('business-types/') ? 'rows' : undefined;
+const labelled = wide || stack !== undefined;
 const headerText = block.header.map((cell) => plainText(cell));
 /** A row's own condition (`rowWhen`, WP-31), for "Only what applies to me". */
 const rowConditions = block.rows.map((_, index) =>
@@ -38,7 +45,7 @@ const rowConditions = block.rows.map((_, index) =>
 );
 ---
 
-<TableScroll labelledby={captionId} wide={wide}>
+<TableScroll labelledby={captionId} wide={wide} stack={stack}>
   <table>
     <caption class="st-visually-hidden" id={captionId}>
       {t('doc.tableRegion', { caption })}
@@ -62,7 +69,7 @@ const rowConditions = block.rows.map((_, index) =>
             {row.map((cell, column) => (
               <td
                 class:list={[alignClass(block.align[column])]}
-                data-label={wide ? headerText[column] : undefined}
+                data-label={labelled ? headerText[column] : undefined}
               >
                 <span>
                   <Inline runs={cell} context={context} />

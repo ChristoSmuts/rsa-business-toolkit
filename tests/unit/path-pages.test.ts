@@ -70,6 +70,16 @@ describe('docHasConditions', () => {
     expect(docHasConditions(realDoc('lookup/glossary'))).toBe(false);
     expect(docHasConditions(realDoc('start/start-here'))).toBe(false);
   });
+
+  it('on a business type, ignores parts whose only condition is that kind of business', () => {
+    // The food page's only conditions are its own checklist's: the switch would hide its subject.
+    expect(docHasConditions(realDoc('business-types/food'), 'food')).toBe(false);
+    expect(docHasConditions(realDoc('business-types/beauty'), 'beauty')).toBe(false);
+    // The dealer page has "If you trade as a company" and "… as a sole proprietor".
+    expect(docHasConditions(realDoc('business-types/vehicle-dealer'), 'vehicle-dealer')).toBe(true);
+    // Another kind of business still counts.
+    expect(docHasConditions(realDoc('business-types/food'), 'beauty')).toBe(true);
+  });
 });
 
 describe('step cards', () => {

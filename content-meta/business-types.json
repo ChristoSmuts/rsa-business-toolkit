@@ -6,7 +6,11 @@
       "order": 1,
       "effort": "high",
       "masterChecklistGroup": "vehicle-dealer",
-      "titles": { "en": "Vehicle dealer", "af": "Voertuighandelaar" }
+      "titles": { "en": "Vehicle dealer", "af": "Voertuighandelaar" },
+      "glance": {
+        "need": ["quick-answer-what-you-must-have"],
+        "checklist": "your-startup-checklist"
+      }
     },
     {
       "id": "food",
@@ -14,7 +18,12 @@
       "order": 2,
       "effort": "high",
       "masterChecklistGroup": "food",
-      "titles": { "en": "Food", "af": "Kos" }
+      "titles": { "en": "Food", "af": "Kos" },
+      "glance": {
+        "need": ["the-one-document-you-cannot-trade-without", "everything-else-you-may-need"],
+        "timing": "realistic-timing",
+        "checklist": "your-checklist"
+      }
     },
     {
       "id": "beauty",
@@ -22,7 +31,8 @@
       "order": 3,
       "effort": "medium-high",
       "masterChecklistGroup": "beauty-and-personal-care",
-      "titles": { "en": "Beauty and personal care", "af": "Skoonheid en persoonlike versorging" }
+      "titles": { "en": "Beauty and personal care", "af": "Skoonheid en persoonlike versorging" },
+      "glance": { "need": ["you-need-a-municipal-licence"], "checklist": "your-checklist" }
     },
     {
       "id": "retail-online",
@@ -30,7 +40,8 @@
       "order": 4,
       "effort": "medium",
       "masterChecklistGroup": "retail-and-online",
-      "titles": { "en": "Retail and online", "af": "Kleinhandel en aanlyn" }
+      "titles": { "en": "Retail and online", "af": "Kleinhandel en aanlyn" },
+      "glance": { "need": ["do-you-need-a-licence"], "checklist": "your-checklist" }
     },
     {
       "id": "services-trades",
@@ -38,7 +49,8 @@
       "order": 5,
       "effort": "low-medium",
       "masterChecklistGroup": "services-and-trades",
-      "titles": { "en": "Services and trades", "af": "Dienste en ambagte" }
+      "titles": { "en": "Services and trades", "af": "Dienste en ambagte" },
+      "glance": { "need": ["check-whether-your-trade-is-regulated"], "checklist": "your-checklist" }
     },
     {
       "id": "professional-creative",
@@ -46,7 +58,8 @@
       "order": 6,
       "effort": "lowest",
       "masterChecklistGroup": "professional-and-creative",
-      "titles": { "en": "Professional and creative", "af": "Professioneel en kreatief" }
+      "titles": { "en": "Professional and creative", "af": "Professioneel en kreatief" },
+      "glance": { "need": ["what-you-need"], "checklist": "your-checklist" }
     }
   ],
   "effortScale": ["lowest", "low-medium", "medium", "medium-high", "high"],
