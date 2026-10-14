@@ -704,8 +704,8 @@ test.describe('personalisation elsewhere', () => {
       'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
     });
     await page.goto('core/tax-and-sars/');
-    // Two copies (sidebar from 1024px, above the text below that); one is shown at any width.
-    await expect(page.locator('st-applies-switch input[role="switch"]')).toHaveCount(2);
+    // One copy, under the disclosures at every width (WP-50 Phase 3 removed the sidebar's second).
+    await expect(page.locator('st-applies-switch input[role="switch"]')).toHaveCount(1);
     const shown = page.getByRole('switch', { name: 'Only what applies to me' });
     await expect(shown).toHaveCount(1);
     await shown.check();

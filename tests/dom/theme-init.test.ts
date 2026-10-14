@@ -35,9 +35,13 @@ describe('theme-init’s copy of the answer lists', () => {
   });
 });
 
+/*
+ * WP-50 Phase 3 (direction A): "Words used on this page" is a closed disclosure at every width, so
+ * theme-init no longer opens it from 1024px. It must not come back by accident.
+ */
 describe('theme-init’s text', () => {
-  it('looks for the id the document layout renders', () => {
-    expect(SOURCE).toContain(`document.getElementById('${TERMS_HEADING_ID}')`);
+  it('does not touch the "Words used" list', () => {
+    expect(SOURCE).not.toContain(TERMS_HEADING_ID);
   });
 });
 
@@ -165,43 +169,26 @@ for (const [label, script] of [
     });
 
     /**
-     * WP-50a, item 1: "Words used in this file" is closed in the HTML (the phone's first screen needs the
-     * AI notice, not the word list) and opened from 1024px by theme-init, as the parser adds it, so it
-     * never moves the page after the first paint.
+     * WP-50a, item 1, then WP-50 Phase 3: "Words used on this page" is closed in the HTML and stays
+     * closed at every width; theme-init used to open it from 1024px and no longer does.
      */
-    describe('theme-init and "Words used in this file"', () => {
-      const wide = (matches: boolean): void => {
-        vi.stubGlobal('matchMedia', (query: string) => ({
-          matches: query === '(min-width: 1024px)' ? matches : false,
-          media: query,
-          addEventListener: () => undefined,
-          removeEventListener: () => undefined,
-        }));
-      };
-      const addList = (): HTMLDetailsElement => {
-        const list = document.createElement('details');
-        list.id = TERMS_HEADING_ID;
-        document.body.append(list);
-        return list;
-      };
-
+    describe('theme-init and "Words used on this page"', () => {
       afterEach(() => {
         vi.unstubAllGlobals();
         document.getElementById(TERMS_HEADING_ID)?.remove();
       });
 
-      it('opens the list from 1024px as soon as it is added', async () => {
-        wide(true);
+      it('leaves the list closed on a wide screen', async () => {
+        vi.stubGlobal('matchMedia', (query: string) => ({
+          matches: true,
+          media: query,
+          addEventListener: () => undefined,
+          removeEventListener: () => undefined,
+        }));
         run();
-        const list = addList();
-        await Promise.resolve();
-        expect(list.open).toBe(true);
-      });
-
-      it('leaves it closed below 1024px', async () => {
-        wide(false);
-        run();
-        const list = addList();
+        const list = document.createElement('details');
+        list.id = TERMS_HEADING_ID;
+        document.body.append(list);
         await Promise.resolve();
         expect(list.open).toBe(false);
       });

@@ -4,8 +4,9 @@
  * `role="switch"`, bound to the `onlyMine` store by `<st-applies-switch>` (`src/scripts/applies.ts`).
  *
  * Shown only when the reader has a profile; without one, a line points at "Find my path" instead.
- * It needs JavaScript (the profile is on the device), so it is `.js-only`. A page can hold two
- * copies (the sidebar from 1024px, the article below that); the store keeps them in step.
+ * It needs JavaScript (the profile is on the device), so it is `.js-only`. A document has one copy,
+ * under its two disclosures at every width (WP-50 Phase 3 removed the section sidebar that held a
+ * second one from 1024px); the store would keep several in step.
  */
 import { useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
@@ -15,20 +16,14 @@ import { uid } from '../../scripts/uid';
 
 interface Props {
   locale: Locale;
-  /**
-   * `sidebar` shows from 1024px (inside the section sidebar); `inline` below 1024px (above the
-   * document's text). A page renders both; the media queries live here, because a class passed in
-   * would carry this component's scope, not the page's.
-   */
-  placement: 'sidebar' | 'inline';
 }
 
-const { locale, placement } = Astro.props;
+const { locale } = Astro.props;
 const t = useTranslations(locale);
 const helpId = uid('st-applies-help');
 ---
 
-<st-applies-switch class="st-applies-switch js-only st-no-print" data-placement={placement}>
+<st-applies-switch class="st-applies-switch js-only st-no-print">
   <div class="st-applies-switch__control" data-switch hidden>
     <label class="st-check">
       <input type="checkbox" role="switch" aria-describedby={helpId} />
@@ -51,12 +46,6 @@ const helpId = uid('st-applies-help');
 <style>
   st-applies-switch {
     display: block;
-  }
-
-  @media (width >= 1024px) {
-    st-applies-switch[data-placement='inline'] {
-      display: none;
-    }
   }
 
   .st-applies-switch__control {

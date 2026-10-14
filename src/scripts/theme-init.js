@@ -1,5 +1,5 @@
 // @ts-check
-/* global document, localStorage, matchMedia, addEventListener, Element, HTMLScriptElement, MutationObserver */
+/* global document, localStorage, addEventListener, Element, HTMLScriptElement */
 // Blocking theme init, copied via `?url` and minified in the build (scripts/minify-theme-init.ts):
 // keep it tiny, ES2019, no imports.
 // The documented exception to "only the store reads storage"; docs/design-system.md, "Scripts, CSP
@@ -50,15 +50,6 @@
     }
   }
   root.classList.add('js');
-  // Opens "Words used in this file" from 1024px before it is painted (Doc.astro).
-  if (matchMedia('(min-width: 1024px)').matches) {
-    var words = new MutationObserver(function () {
-      var list = document.getElementById('words-used-in-this-file');
-      if (list) list.setAttribute('open', '');
-      if (list || document.readyState !== 'loading') words.disconnect();
-    });
-    words.observe(root, { childList: true, subtree: true });
-  }
   // Scripts that fail to load, or throw as they run, by name ("YourPathCard", "my-path", "Wizard"):
   // the home card and My path stop keeping space for what they cannot draw, and the wizard shows its
   // no-JavaScript form. Every rule that reads this waits for its element's data-ready, so a later

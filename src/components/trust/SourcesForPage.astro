@@ -7,6 +7,14 @@
  * flag — never silence, and never colour alone — and the register's own sentence about what the
  * source supports, so a reader can tell which fact rests on which source.
  *
+ * On a long page the list is in two parts (WP-50 audit, finding 6: the section was 8,183px tall on
+ * a phone on the vehicle-dealer page). The first `SHOWN` entries are always shown; the rest sit in a
+ * native `<details>` ("12 more sources") that works with no JavaScript. Every entry stays in the
+ * HTML, so `dist:trust`, find in page (the browser opens the disclosure) and print (print.css opens
+ * every disclosure) still see all of them. From 768px, where the browser supports
+ * `::details-content`, the rest is simply shown and the summary hidden: the collapse is for phones.
+ * The section itself, its heading and its count are never collapsed (ADR 0006, Stoep rule 9).
+ *
  * Three shapes, all from the data:
  * - a **web** source: the title is the link, with the external-link icon inside the link text so
  *   it stays in the run when a long translated title wraps;
@@ -16,9 +24,7 @@
  *   as a sentence, then the links it names as stand-alone 44px targets in a cluster, not hung off
  *   the end of the sentence.
  */
-import Badge from '../ui/Badge.astro';
-import Icon from '../ui/Icon.astro';
-import Inline from '../content/Inline.astro';
+import SourceItems, { type SourceItem } from './SourceItems.astro';
 import { useTranslations } from '../../i18n';
 import { DEFAULT_LOCALE, getLocale, type Locale } from '../../i18n/locales';
 import type { ContentContext } from '../../lib/content/context';
@@ -43,6 +49,20 @@ const headingId = id ?? uid('st-sources');
 const entries = sourceEntriesFor(context.sources, sources.entries);
 const acts = actsFor(context.sources, sources.acts);
 const count = entries.length + acts.length;
+/** Entries shown before the disclosure; a page with one or two more shows them all. */
+const SHOWN = 3;
+const items: SourceItem[] = [
+  ...entries.map((entry) => ({ kind: 'entry' as const, entry })),
+  ...(acts.length > 0 ? [{ kind: 'acts' as const }] : []),
+];
+const split = items.length > SHOWN + 2;
+const firstItems = split ? items.slice(0, SHOWN) : items;
+const moreItems = split ? items.slice(SHOWN) : [];
+/** Sources in the disclosure: each register entry, and each Act in the one Acts item. */
+const moreCount = moreItems.reduce(
+  (sum, item) => sum + (item.kind === 'acts' ? acts.length : 1),
+  0,
+);
 /*
  * The AI notice says "checked against the sources below" whenever the data lists sources, so every
  * listed id must resolve in the register this page was given. A missing or partial register (an
@@ -108,6 +128,7 @@ const noteLinks = (sourceNote?.see ?? [])
     };
   })
   .filter((link) => link.href !== undefined);
+const itemProps = { acts, locale, registerContext, dataLang, titleLang, actLang, reasonLang };
 ---
 
 <section class="st-sources" aria-labelledby={headingId}>
@@ -116,63 +137,16 @@ const noteLinks = (sourceNote?.see ?? [])
     <Fragment>
       <p class="st-hint">{t('trust.sources.count', { count })}</p>
       <ul class="st-stack" role="list">
-        {entries.map((entry) => (
-          <li class="st-source">
-            <p class="st-source__title">
-              {entry.url ? (
-                <a class="st-link-block" href={entry.url} rel="noopener noreferrer">
-                  <span lang={titleLang(entry.id)}>{entry.title}</span>{' '}
-                  <Icon name="lucide:external-link" size="0.9em" />
-                  <span class="st-visually-hidden">
-                    {entry.official
-                      ? t('trust.sources.externalLink')
-                      : t('trust.sources.externalLinkOther')}
-                  </span>
-                </a>
-              ) : (
-                <span class="st-source__name" lang={titleLang(entry.id)}>
-                  {entry.title}
-                </span>
-              )}
-              {entry.official ? (
-                <Badge variant="official">{t('trust.sources.officialLabel')}</Badge>
-              ) : (
-                <Badge variant="flag">{t('trust.sources.notOfficialLabel')}</Badge>
-              )}
-            </p>
-            {entry.supports && (
-              <p class="st-hint">
-                {t('trust.sources.supportsLabel')}:{' '}
-                <span lang={dataLang}>
-                  <Inline runs={entry.supports} context={registerContext} />
-                </span>
-              </p>
-            )}
-            {entry.noUrlReason && (
-              <p class="st-hint" lang={reasonLang(entry.id)}>
-                {entry.noUrlReason}
-              </p>
-            )}
-          </li>
-        ))}
-        {acts.length > 0 && (
-          <li class="st-source">
-            <p class="st-source__title">{t('trust.sources.actsHeading')}</p>
-            <ul class="st-stack st-stack-sm" role="list">
-              {acts.map((act) => (
-                <li>
-                  <span class="st-source__name" lang={actLang(act.id)}>
-                    {act.name}
-                  </span>
-                  <span class="st-hint" lang={dataLang}>
-                    <Inline runs={act.governs} context={registerContext} />
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </li>
-        )}
+        <SourceItems items={firstItems} {...itemProps} />
       </ul>
+      {moreItems.length > 0 && (
+        <details class="st-disclosure st-sources__more">
+          <summary>{t('trust.sources.more', { count: moreCount })}</summary>
+          <ul class="st-stack" role="list">
+            <SourceItems items={moreItems} {...itemProps} />
+          </ul>
+        </details>
+      )}
       {registerHref && (
         <p>
           <a class="st-link-block" href={registerHref}>
@@ -211,25 +185,28 @@ const noteLinks = (sourceNote?.see ?? [])
     max-inline-size: var(--st-measure);
   }
 
+  .st-sources__more > ul {
+    padding-block-start: var(--st-space-3);
+  }
+
   /*
-   * The title and its badge sit on one line while they fit and wrap when they do not. The badge
-   * is `inline-flex`, so it stays beside the end of the title text rather than starting a block.
+   * From 768px the whole list shows: the disclosure is for a phone's screen. Only where the
+   * browser can style the content of a closed `<details>`; elsewhere the summary stays and works.
    */
-  .st-source__title {
-    font-weight: var(--st-weight-semibold);
-  }
+  @supports selector(::details-content) {
+    @media (width >= 768px) {
+      .st-sources__more > summary {
+        display: none;
+      }
 
-  .st-source__name {
-    overflow-wrap: anywhere;
-  }
+      .st-sources__more::details-content {
+        content-visibility: visible;
+        block-size: auto;
+      }
 
-  .st-source ul {
-    padding-inline-start: var(--st-space-4);
-    border-inline-start: var(--st-border-width) solid var(--st-border);
-    margin-block-start: var(--st-space-2);
-  }
-
-  .st-source li > .st-hint {
-    display: block;
+      .st-sources__more > ul {
+        padding-block-start: 0;
+      }
+    }
   }
 </style>

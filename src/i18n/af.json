@@ -230,7 +230,7 @@
     "soleProprietorOnly": "Net vir eenmansake",
     "ptyOnly": "Net vir Pty Ltd",
     "effort": "Werk om te begin: {level}",
-    "wordsUsed": "Woorde in hierdie lêer",
+    "wordsUsed": "Woorde op hierdie bladsy",
     "show": "Wys",
     "hide": "Versteek",
     "showNamed": "Wys {name}",
@@ -302,7 +302,11 @@
       "actsHeading": "Wette en regulasies",
       "noPageSources": "Hierdie bladsy het geen eie bronne nie.",
       "seeRegister": "Sien die volledige bronneregister",
-      "seeHowMade": "Sien hoe hierdie gids gemaak is"
+      "seeHowMade": "Sien hoe hierdie gids gemaak is",
+      "more": {
+        "one": "Nog {count} bron",
+        "other": "Nog {count} bronne"
+      }
     },
     "fact": {
       "checked": "KI-nagegaan op {date}",

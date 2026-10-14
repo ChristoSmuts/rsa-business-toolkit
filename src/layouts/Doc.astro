@@ -1,23 +1,34 @@
 ---
 /**
- * A document page (build plan B6): breadcrumb · sidebar · article header with the D5 AI notice
- * (and, on Afrikaans routes, the translation notice directly under it) · "Words used in this
- * file" · contents · blocks · sources for this page · pager · contents column.
+ * A document page (build plan B6, WP-50 Phase 3 direction A). The top of the page, in order:
  *
- * The article half is what `/design-system/content/` drafted in milestone 1, from the same
- * components. Additions by kind of page:
+ * 1. the breadcrumb on one line, with a dot in the section's hue before the section (there is no
+ *    separate "Section:" label: it repeated the breadcrumb);
+ * 2. the H1 and the lead;
+ * 3. the read time and, on a business type, the effort meter, on one line;
+ * 4. the D5 AI notice (compact) and, on Afrikaans routes, the translation notice directly under it;
+ * 5. two closed disclosures with a chevron: "On this page (N sections)" and "Words used on this
+ *    page" (closed at every width since WP-50 Phase 3; B6 had it open from 1024px);
+ * 6. the text, then "Sources for this page" and the pager.
+ *
+ * From 1280px the contents column sits on the right: h2 entries only, muted, underlined only on
+ * hover and focus (`.st-quiet-links`). There is no left section sidebar: the breadcrumb and the
+ * header's Read menu lead to the section, and the article gets the room.
+ *
+ * Additions by kind of page:
  * - the hub ("Pick your business type") gets the six type tiles with their effort meters;
- * - a business-type document gets its effort meter, the "Read Core first" callout and the
- *   related-type hints;
+ * - a business-type document gets its effort meter and the related-type hints. Its first line
+ *   already says "Read Core first" with a link to Core, so the separate callout is shown only on a
+ *   type whose text does not (`saysReadCoreFirst`);
  * - the master checklist says it is a reminder list, not proof of compliance (D5);
  * - a template says when its required-content rules were checked (D5).
  *
- * On a phone (below 768px) the AI notice must be on the first screen, at 320×568 too (Stoep rule 9,
- * ADR 0006; WP-50a). So there the section label, which repeats the one-crumb breadcrumb above it,
- * is not shown, and the notices come straight after the H1: the lead, the read time and the effort
- * meter (`st-doc__after-notice`) follow them. Only their order on screen changes; none of them has
- * a link or control, so the order of focus is the same either way. "Words used in this file" is
- * closed below 1024px and open from 1024px (B6), set before the first paint (`theme-init.js`).
+ * On a short phone screen (below 768px wide and 740px high, so 320×568 and 360×640) the AI notice
+ * must still be on the first screen (Stoep rule 9, ADR 0006; WP-50a) under today's two- and
+ * three-row header, so there the notices come straight after the H1 and the lead and the meta line
+ * (`st-doc__after-notice`) follow them. Only their order on screen changes; neither has a link or
+ * control, so the order of focus and of reading is the same either way. Once the header is one row
+ * (WP-50 Phase 3, item 5) this can go.
  *
  * `assertDocTrust` runs first, so a document that would render without sources and without a
  * source note fails the build instead of shipping (D5).
@@ -35,7 +46,6 @@ import EffortMeter from '../components/ui/EffortMeter.astro';
 import Blocks from '../components/content/Blocks.astro';
 import TermsBlock from '../components/content/TermsBlock.astro';
 import Breadcrumb from '../components/navigation/Breadcrumb.astro';
-import SectionSidebar from '../components/navigation/SectionSidebar.astro';
 import TableOfContents from '../components/navigation/TableOfContents.astro';
 import AiNotice from '../components/trust/AiNotice.astro';
 import SourcesForPage from '../components/trust/SourcesForPage.astro';
@@ -136,6 +146,15 @@ const effortLabels = [
   t('businessTypes.effort.high'),
 ] as const;
 const coreHref = sectionHref(manifest, 'core', locale);
+/**
+ * Every business type's text opens with "Read [Core] first. This file adds …", the link included,
+ * in both languages. A type whose first paragraph says so needs no second "Read Core first"; one
+ * that does not (a new type, or an edited intro) still gets the callout, so nothing is lost.
+ */
+const firstParagraph = rest.find((block) => block.kind === 'paragraph');
+const saysReadCoreFirst =
+  firstParagraph?.kind === 'paragraph' &&
+  firstParagraph.c.some((run) => run.t === 'docref' && 'section' in run && run.section === 'core');
 /*
  * "Only what applies to me" (WP-31): on a page with parts for one entity or some kinds of business.
  * The master checklist has its own "Show: Only what applies to me" choice instead of the switch.
@@ -158,32 +177,17 @@ const relatedTypes = businessType
   description={doc.summary}
   ogType="article"
 >
-  <div
-    class:list={['st-container st-doc-grid st-doc', { 'st-doc--tool': template }]}
-    data-section={hue}
-  >
-    <SectionSidebar
-      manifest={manifest}
-      sectionId={doc.section}
-      currentDocId={doc.id}
-      locale={locale}
-    >
-      {showSwitch && <AppliesSwitch slot="after" locale={locale} placement="sidebar" />}
-    </SectionSidebar>
-
+  <div class:list={['st-container st-doc', { 'st-doc--tool': template }]} data-section={hue}>
     <div class="st-stack st-stack-lg st-doc__main">
-      <Breadcrumb crumbs={crumbs} locale={locale} />
+      <Breadcrumb crumbs={crumbs} locale={locale} sectionDot />
 
       <article class="st-stack st-stack-lg" data-doc={doc.id} data-kind={doc.kind}>
         <header class="st-stack st-doc__header">
-          <p class="st-hint st-doc__section">
-            {t('doc.sectionLabel')}: {section}
-          </p>
           <h1 lang={contentLangTag}>{doc.h1}</h1>
-          <p class="st-lead st-doc__after-notice" lang={contentLangTag}>
+          <p class="st-lead st-doc__lead st-doc__after-notice" lang={contentLangTag}>
             {doc.summary}
           </p>
-          <p class="st-cluster st-doc__after-notice">
+          <p class="st-cluster st-doc__meta st-doc__after-notice">
             <Badge variant="status" icon="lucide:clock">
               {t('doc.readTime', { minutes: doc.readingTime })}
             </Badge>
@@ -192,19 +196,18 @@ const relatedTypes = businessType
                 {doc.appliesTo.entity === 'pty' ? t('doc.ptyOnly') : t('doc.soleProprietorOnly')}
               </Badge>
             )}
+            {businessType && (
+              <EffortMeter
+                level={effortLevel(businessType.effort)}
+                label={t('businessTypes.effortLabel')}
+                levelLabels={effortLabels}
+                scaleText={t('businessTypes.effortScale', {
+                  level: effortLevel(businessType.effort),
+                  total: 5,
+                })}
+              />
+            )}
           </p>
-          {businessType && (
-            <EffortMeter
-              class="st-doc__after-notice"
-              level={effortLevel(businessType.effort)}
-              label={t('businessTypes.effortLabel')}
-              levelLabels={effortLabels}
-              scaleText={t('businessTypes.effortScale', {
-                level: effortLevel(businessType.effort),
-                total: 5,
-              })}
-            />
-          )}
           <AiNotice
             verification={doc.verification}
             hasPageSources={hasOwnSources(doc.sources)}
@@ -214,7 +217,30 @@ const relatedTypes = businessType
           <TranslationNotice status={translationStatus} locale={locale} englishHref={englishHref} />
         </header>
 
-        {businessType && coreHref && (
+        {!template && (
+          <TableOfContents
+            headings={doc.headings}
+            locale={locale}
+            variant="details"
+            contentLang={contentLangTag}
+          />
+        )}
+
+        {(terms || showSwitch) && (
+          <div class="st-stack st-stack-sm st-doc__more">
+            {terms && (
+              <details class="st-disclosure st-doc__terms" id={TERMS_HEADING_ID}>
+                <summary>{t('doc.wordsUsed')}</summary>
+                <div class="st-doc__terms-body" lang={contentLangTag}>
+                  <TermsBlock block={terms} context={context} />
+                </div>
+              </details>
+            )}
+            {showSwitch && <AppliesSwitch locale={locale} />}
+          </div>
+        )}
+
+        {businessType && coreHref && !saysReadCoreFirst && (
           <Callout variant="info" label={t('doc.readCoreFirstTitle')}>
             <p>{t('doc.readCoreFirst')}</p>
             <p>
@@ -258,15 +284,6 @@ const relatedTypes = businessType
           </section>
         )}
 
-        {terms && (
-          <details class="st-doc__terms" id={TERMS_HEADING_ID}>
-            <summary>{t('doc.wordsUsed')}</summary>
-            <div lang={contentLangTag}>
-              <TermsBlock block={terms} context={context} />
-            </div>
-          </details>
-        )}
-
         {template && templateSlug ? (
           <Fragment>
             <Blocks blocks={templateIntro} context={context} fallbackCaption={doc.title} />
@@ -279,25 +296,12 @@ const relatedTypes = businessType
             />
             <Blocks blocks={template.after} context={context} fallbackCaption={doc.title} />
           </Fragment>
+        ) : filterable ? (
+          <AppliesScope locale={locale} mode={scopeMode}>
+            <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
+          </AppliesScope>
         ) : (
-          <Fragment>
-            <TableOfContents
-              headings={doc.headings}
-              locale={locale}
-              variant="details"
-              contentLang={contentLangTag}
-            />
-
-            {showSwitch && <AppliesSwitch locale={locale} placement="inline" />}
-
-            {filterable ? (
-              <AppliesScope locale={locale} mode={scopeMode}>
-                <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
-              </AppliesScope>
-            ) : (
-              <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
-            )}
-          </Fragment>
+          <Blocks blocks={rest} context={context} fallbackCaption={doc.title} />
         )}
 
         {doc.kind === 'checklist' && CHECKLIST_SAVES && (
@@ -382,12 +386,39 @@ const relatedTypes = businessType
 
 <style is:global>
   /*
-   * A phone's first screen (see the comment at the top): the AI notice and the translation notice
-   * straight after the H1. Global, because the effort meter is another component's element.
+   * Spacing between other components' elements (the breadcrumb, the contents list's `<st-toc>`),
+   * so global, and held to `.st-doc`. The breadcrumb sits 8px above the H1: its link is a 44px
+   * target, which already leaves room.
    */
-  @media (width < 768px) {
-    .st-doc__header > .st-doc__after-notice {
-      order: 1;
+  .st-doc__main > .st-breadcrumb {
+    margin-block-end: calc(var(--st-space-2) - var(--st-space-6));
+  }
+
+  /*
+   * The two disclosures, and the "Only what applies to me" switch, read as one group 16px under
+   * the notices and 8px apart, not the article's 32px. (The "Now reading" pill track between them
+   * takes back its own gap, `TableOfContents.astro`.) From 1280px the contents are the column
+   * instead. A page with neither keeps 32px between the notices and its text.
+   */
+  .st-doc article > st-toc > .st-toc--details,
+  .st-doc article > .st-doc__more {
+    margin-block-start: calc(var(--st-space-4) - var(--st-space-6));
+  }
+
+  /*
+   * The read time and the applies-to note are plain words with their icon on the meta line, like
+   * the effort meter beside them: a chip around each was one box too many above the notice (WP-50
+   * Phase 3 critique, "remove one accessory"). The badge keeps its icon, words and wrapping.
+   */
+  .st-doc .st-doc__meta > .st-badge {
+    padding-inline: 0;
+    border-color: transparent;
+    background-color: transparent;
+  }
+
+  @media (width < 1280px) {
+    .st-doc article > st-toc ~ .st-doc__more {
+      margin-block-start: calc(var(--st-space-2) - var(--st-space-6));
     }
   }
 </style>
@@ -397,34 +428,60 @@ const relatedTypes = businessType
     display: block;
   }
 
+  /*
+   * One column; from 1280px the article and the contents column on its right. No left sidebar
+   * (WP-50 Phase 3): the breadcrumb and the header's Read menu lead to the section.
+   */
   .st-doc {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-7);
     padding-block: var(--st-space-5) var(--st-space-8);
+  }
+
+  @media (width >= 1280px) {
+    .st-doc {
+      grid-template-columns: minmax(0, 1fr) var(--st-toc);
+    }
+
+    /* A fillable template has no contents column: the form and its preview take the room. */
+    .st-doc--tool {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (width < 768px) {
+    .st-doc {
+      padding-block-start: var(--st-space-2);
+    }
   }
 
   .st-doc__main {
     min-inline-size: 0;
   }
 
-  /* A fillable template has no contents column: the form and its preview take the room. */
-  @media (width >= 1280px) {
-    .st-doc--tool {
-      grid-template-columns: var(--st-sidebar) minmax(0, 1fr);
-    }
+  /*
+   * The top of the article sits closer together than the text below it: the title block is one
+   * thing to read, and on a phone every 8px decides whether the text starts on the second screen.
+   * The header is 12px apart inside.
+   */
+  .st-doc__header {
+    --st-stack-gap: var(--st-space-3);
   }
 
-  .st-doc__section {
-    color: var(--st-section, var(--st-text-muted));
-    font-weight: var(--st-weight-semibold);
+  .st-doc__meta {
+    --st-cluster-gap: var(--st-space-2) var(--st-space-4);
   }
 
   /*
-   * A phone's first screen (see the comment at the top): the notices straight after the H1, and no
-   * section label, which only repeats the breadcrumb's one crumb here. At 320×568 the notice
-   * started 625 to 812px down before.
+   * A short phone screen (see the comment at the top): the AI notice and the translation notice
+   * straight after the H1, the lead and the meta line after them, so the notice is on the first
+   * screen at 320×568 under today's header. Taller phones and every wider screen keep the order of
+   * the HTML.
    */
-  @media (width < 768px) {
-    .st-doc__section {
-      display: none;
+  @media (width < 768px) and (height < 740px) {
+    .st-doc__header > .st-doc__after-notice {
+      order: 1;
     }
   }
 
@@ -432,12 +489,8 @@ const relatedTypes = businessType
     max-inline-size: var(--st-measure);
   }
 
-  .st-doc__terms summary {
-    min-block-size: var(--st-target);
-    display: flex;
-    align-items: center;
-    font-weight: var(--st-weight-semibold);
-    cursor: pointer;
+  .st-doc__terms-body {
+    padding-block: var(--st-space-2) var(--st-space-3);
   }
 
   .st-pager {

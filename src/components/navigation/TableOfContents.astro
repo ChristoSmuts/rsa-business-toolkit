@@ -2,8 +2,11 @@
 /**
  * "On this page" (build plan B2, B6). Two presentations of the same headings:
  *
- * - `variant="details"`: a native `<details>` under the article header, shown below 1280px;
- * - `variant="column"`: the third grid column, shown from 1280px.
+ * - `variant="details"`: a native `<details>` under the article header, shown below 1280px. It is a
+ *   `.st-disclosure`, so its summary shows a chevron that turns when it opens (WP-50 Phase 3);
+ * - `variant="column"`: the grid column on the right, shown from 1280px. It lists the h2 sections
+ *   only, in the muted text colour, as a `.st-quiet-links` list: no underline until hover or focus
+ *   (WP-50, decided on 13 October 2026). The section being read keeps its bar and weight.
  *
  * Only one of the two is displayed at any width, so a screen reader is never offered the list
  * twice. The list itself is plain links to heading ids, which work with no JavaScript at all.
@@ -16,10 +19,13 @@
  * package.
  *
  * Pseudo headings (depth 4, a bold lead-in line) and hidden headings are left out: the contents
- * of a page should be its sections, not every bold line in it.
+ * of a page should be its sections, not every bold line in it. The "Words used in this file"
+ * heading is listed under the page's own name for it, "Words used on this page" (`doc.wordsUsed`),
+ * the same words as the disclosure it opens.
  */
 import { useTranslations } from '../../i18n';
-import type { Locale } from '../../i18n/locales';
+import { getLocale, type Locale } from '../../i18n/locales';
+import { TERMS_HEADING_ID } from '../../lib/content/render';
 import type { DocHeading } from '../../lib/content/schema';
 
 interface Props {
@@ -33,10 +39,20 @@ interface Props {
 
 const { headings, locale, variant, contentLang, class: className } = Astro.props;
 const t = useTranslations(locale);
-const items = headings.filter(
+const listed = headings.filter(
   (heading) => heading.depth <= 3 && !heading.pseudo && !heading.hidden,
 );
-const label = t('nav.onThisPageCount', { count: items.length });
+const items = (variant === 'column' ? listed.filter((heading) => heading.depth === 2) : listed).map(
+  (heading) =>
+    heading.id === TERMS_HEADING_ID
+      ? {
+          ...heading,
+          text: t('doc.wordsUsed'),
+          lang: contentLang ? getLocale(locale)?.hreflang : undefined,
+        }
+      : { ...heading, lang: undefined },
+);
+const label = t('nav.onThisPageCount', { count: listed.length });
 /** The `<details>` the pill links back to. */
 const detailsId = 'st-on-this-page';
 ---
@@ -44,13 +60,18 @@ const detailsId = 'st-on-this-page';
 {items.length > 0 &&
   (variant === 'details' ? (
     <st-toc class="st-toc-host">
-      <details class:list={['st-toc', 'st-toc--details', 'st-no-print', className]} id={detailsId}>
+      <details
+        class:list={['st-toc', 'st-toc--details', 'st-disclosure', 'st-no-print', className]}
+        id={detailsId}
+      >
         <summary class="st-toc__summary">{label}</summary>
         <nav aria-label={t('nav.onThisPage')}>
           <ul class="st-toc__list" role="list" lang={contentLang}>
             {items.map((heading) => (
               <li data-depth={heading.depth}>
-                <a href={`#${heading.id}`}>{heading.text}</a>
+                <a href={`#${heading.id}`} lang={heading.lang}>
+                  {heading.text}
+                </a>
               </li>
             ))}
           </ul>
@@ -73,10 +94,12 @@ const detailsId = 'st-on-this-page';
     <st-toc class="st-toc-host">
       <nav class:list={['st-toc', 'st-toc--column', className]} aria-label={t('nav.onThisPage')}>
         <p class="st-toc__title">{t('nav.onThisPage')}</p>
-        <ul class="st-toc__list" role="list" lang={contentLang}>
+        <ul class="st-toc__list st-quiet-links" role="list" lang={contentLang}>
           {items.map((heading) => (
             <li data-depth={heading.depth}>
-              <a href={`#${heading.id}`}>{heading.text}</a>
+              <a href={`#${heading.id}`} lang={heading.lang}>
+                {heading.text}
+              </a>
             </li>
           ))}
         </ul>
@@ -105,19 +128,27 @@ const detailsId = 'st-on-this-page';
     display: contents;
   }
 
-  .st-toc__summary {
-    display: flex;
-    align-items: center;
-    min-block-size: var(--st-target);
-    font-weight: var(--st-weight-semibold);
-    overflow-wrap: anywhere;
-    cursor: pointer;
-  }
-
   .st-toc__title {
     color: var(--st-text-muted);
     font-size: var(--st-text-sm);
     font-weight: var(--st-weight-semibold);
+  }
+
+  /*
+   * The column is navigation chrome, quieter than the article: muted, smaller, no underline until
+   * hover or focus (`.st-quiet-links`). Every entry keeps the bar's room, so marking the section
+   * being read does not push its text sideways; hover and the current entry take the text colour.
+   */
+  .st-toc--column .st-toc__list a,
+  .st-toc--column .st-toc__list a:visited {
+    padding-inline-start: var(--st-space-3);
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+  }
+
+  .st-toc--column .st-toc__list a:hover,
+  .st-toc--column .st-toc__list a[aria-current='location'] {
+    color: var(--st-text);
   }
 
   .st-toc__list {
@@ -168,6 +199,9 @@ const detailsId = 'st-on-this-page';
     inset-block-start: var(--st-topbar-offset, 0);
     z-index: var(--st-z-sticky);
     block-size: 0;
+
+    /* It has no height, so it takes back the gap its parent's stack puts before it (WP-50 Phase 3). */
+    margin-block-start: calc(-1 * var(--st-stack-gap, 0px));
   }
 
   .st-toc__pill {

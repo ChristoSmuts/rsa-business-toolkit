@@ -423,7 +423,7 @@ test.describe('Find my path without JavaScript', () => {
 /**
  * WP-50a, item 1: without JavaScript the header carries every menu and is taller, and the AI notice
  * must still start on the first screen of a 320×568 phone, with its label row in view (Stoep rule
- * 9, ADR 0006). "Words used in this file" is closed: only theme-init opens it, from 1024px.
+ * 9, ADR 0006). "Words used on this page" is closed (at every width since WP-50 Phase 3).
  */
 test.describe('the AI notice on a 320×568 screen without JavaScript', () => {
   for (const route of [
@@ -442,12 +442,22 @@ test.describe('the AI notice on a 320×568 screen without JavaScript', () => {
     });
   }
 
-  test('"Words used in this file" is closed, and opens with no script', async ({ page }) => {
+  test('"Words used on this page" is closed, and opens with no script', async ({ page }) => {
     await page.goto('business-types/vehicle-dealer/');
     const words = page.locator('details#words-used-in-this-file');
     await expect(words).not.toHaveAttribute('open');
     await words.locator('summary').click();
     await expect(words).toHaveAttribute('open', '');
+  });
+
+  // WP-50 Phase 3: on a phone the sources past the first three wait in a native disclosure.
+  test('the rest of "Sources for this page" opens with no script', async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 740 });
+    await page.goto('business-types/vehicle-dealer/');
+    const more = page.locator('section.st-sources details.st-sources__more');
+    await expect(more.locator('li.st-source').first()).toBeHidden();
+    await more.locator('summary').click();
+    await expect(more.locator('li.st-source').first()).toBeVisible();
   });
 });
 

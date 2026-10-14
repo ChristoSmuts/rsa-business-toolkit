@@ -9,7 +9,10 @@ import { REPO_ROOT } from './helpers/routes';
  *
  * - Item 1: the AI notice starts on the first screen at 320×568 (Stoep rule 9, ADR 0006), with the
  *   header in its final state (after the modules and, with saved answers, the path ring), and
- *   "Words used in this file" is closed below 1024px and open from 1024px, with no layout shift.
+ *   "Words used on this page" is closed. WP-50a opened it from 1024px; since WP-50 Phase 3
+ *   (direction A) it is a closed disclosure at every width, with no layout shift.
+ * - WP-50 Phase 3: on the vehicle-dealer page the first heading of the text is within two phone
+ *   screens at 360×740, and the order of the top of the page is the one direction A set.
  * - Item 5: the "Now reading" pill wraps the longest Afrikaans heading instead of cutting it off.
  * - Item 8: a two-column table fits the screen, and a checkbox keeps its size beside long text.
  *
@@ -69,8 +72,8 @@ test.describe('the AI notice on a 320×568 screen', () => {
   });
 });
 
-test.describe('"Words used in this file"', () => {
-  test('is closed below 1024px, so the page starts with the text', async ({ page }) => {
+test.describe('"Words used on this page"', () => {
+  test('is closed on a phone, so the page starts with the text', async ({ page }) => {
     await page.setViewportSize(PHONE);
     await page.goto('business-types/vehicle-dealer/');
     const words = page.locator('details#words-used-in-this-file');
@@ -93,9 +96,8 @@ test.describe('"Words used in this file"', () => {
     await expect(page.locator('details#words-used-in-this-file')).toHaveAttribute('open', '');
   });
 
-  test('is open from 1024px, set before the first paint, so nothing moves', async ({
-    page,
-  }, testInfo) => {
+  // WP-50 Phase 3: closed on a wide screen too (it was opened from 1024px by theme-init).
+  test('is closed at 1280px too, and nothing moves', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name === 'mobile', 'A desktop width.');
     await page.addInitScript(() => {
       const shifts: number[] = [];
@@ -109,7 +111,10 @@ test.describe('"Words used in this file"', () => {
     await page.setViewportSize({ width: 1280, height: 800 });
     await page.goto('business-types/vehicle-dealer/');
     await page.waitForLoadState('networkidle');
-    await expect(page.locator('details#words-used-in-this-file')).toHaveAttribute('open', '');
+    const words = page.locator('details#words-used-in-this-file');
+    await expect(words).toBeVisible();
+    await expect(words).not.toHaveAttribute('open');
+    await expect(words.locator('summary')).toHaveText('Words used on this page');
     const shift = await page.evaluate(() =>
       (window as unknown as { stShifts: number[] }).stShifts.reduce((sum, value) => sum + value, 0),
     );

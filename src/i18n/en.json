@@ -230,7 +230,7 @@
     "soleProprietorOnly": "Sole proprietor only",
     "ptyOnly": "Pty Ltd only",
     "effort": "Setup effort: {level}",
-    "wordsUsed": "Words used in this file",
+    "wordsUsed": "Words used on this page",
     "show": "Show",
     "hide": "Hide",
     "showNamed": "Show {name}",
@@ -302,7 +302,11 @@
       "actsHeading": "Acts and regulations",
       "noPageSources": "This page has no sources of its own.",
       "seeRegister": "See the full sources register",
-      "seeHowMade": "See how this guide was made"
+      "seeHowMade": "See how this guide was made",
+      "more": {
+        "one": "{count} more source",
+        "other": "{count} more sources"
+      }
     },
     "fact": {
       "checked": "AI-checked {date}",

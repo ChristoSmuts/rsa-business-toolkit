@@ -1,0 +1,119 @@
+---
+/**
+ * The entries of "Sources for this page" (`SourcesForPage.astro`), as list items: a register
+ * entry or the one "Acts and regulations" item. A part of its own because the section renders its
+ * list in two parts on a long page: the first few entries, then the rest in a disclosure.
+ *
+ * Every entry shows its title as a link, an "Official source" badge or a "Not an official source"
+ * flag — never silence, and never colour alone — and the register's own sentence about what the
+ * source supports, so a reader can tell which fact rests on which source.
+ */
+import Badge from '../ui/Badge.astro';
+import Icon from '../ui/Icon.astro';
+import Inline from '../content/Inline.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { ContentContext } from '../../lib/content/context';
+import type { SourceEntry, SourcesFile } from '../../lib/content/schema';
+
+export type SourceItem = { kind: 'entry'; entry: SourceEntry } | { kind: 'acts' };
+
+interface Props {
+  items: readonly SourceItem[];
+  acts: SourcesFile['acts'];
+  locale: Locale;
+  /** The register's text, as one island in the register's language. */
+  registerContext: ContentContext;
+  /** `lang` of register text, when it is not the page's language. */
+  dataLang: string | undefined;
+  titleLang: (id: string) => string | undefined;
+  actLang: (id: string) => string | undefined;
+  reasonLang: (id: string) => string | undefined;
+}
+
+const { items, acts, locale, registerContext, dataLang, titleLang, actLang, reasonLang } =
+  Astro.props;
+const t = useTranslations(locale);
+---
+
+{items.map((item) =>
+  item.kind === 'entry' ? (
+    <li class="st-source">
+      <p class="st-source__title">
+        {item.entry.url ? (
+          <a class="st-link-block" href={item.entry.url} rel="noopener noreferrer">
+            <span lang={titleLang(item.entry.id)}>{item.entry.title}</span>{' '}
+            <Icon name="lucide:external-link" size="0.9em" />
+            <span class="st-visually-hidden">
+              {item.entry.official
+                ? t('trust.sources.externalLink')
+                : t('trust.sources.externalLinkOther')}
+            </span>
+          </a>
+        ) : (
+          <span class="st-source__name" lang={titleLang(item.entry.id)}>
+            {item.entry.title}
+          </span>
+        )}
+        {item.entry.official ? (
+          <Badge variant="official">{t('trust.sources.officialLabel')}</Badge>
+        ) : (
+          <Badge variant="flag">{t('trust.sources.notOfficialLabel')}</Badge>
+        )}
+      </p>
+      {item.entry.supports && (
+        <p class="st-hint">
+          {t('trust.sources.supportsLabel')}:{' '}
+          <span lang={dataLang}>
+            <Inline runs={item.entry.supports} context={registerContext} />
+          </span>
+        </p>
+      )}
+      {item.entry.noUrlReason && (
+        <p class="st-hint" lang={reasonLang(item.entry.id)}>
+          {item.entry.noUrlReason}
+        </p>
+      )}
+    </li>
+  ) : (
+    <li class="st-source">
+      <p class="st-source__title">{t('trust.sources.actsHeading')}</p>
+      <ul class="st-stack st-stack-sm" role="list">
+        {acts.map((act) => (
+          <li>
+            <span class="st-source__name" lang={actLang(act.id)}>
+              {act.name}
+            </span>
+            <span class="st-hint" lang={dataLang}>
+              <Inline runs={act.governs} context={registerContext} />
+            </span>
+          </li>
+        ))}
+      </ul>
+    </li>
+  ),
+)}
+
+<style>
+  /*
+   * The title and its badge sit on one line while they fit and wrap when they do not. The badge
+   * is `inline-flex`, so it stays beside the end of the title text rather than starting a block.
+   */
+  .st-source__title {
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-source__name {
+    overflow-wrap: anywhere;
+  }
+
+  .st-source ul {
+    padding-inline-start: var(--st-space-4);
+    border-inline-start: var(--st-border-width) solid var(--st-border);
+    margin-block-start: var(--st-space-2);
+  }
+
+  .st-source li > .st-hint {
+    display: block;
+  }
+</style>

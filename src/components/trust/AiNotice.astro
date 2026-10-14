@@ -15,6 +15,9 @@
  *
  * Which sentence is used is decided by `trustNotice()`, which reserves the "checked by" wording
  * for a record that really names a person.
+ *
+ * It is a compact callout (WP-50 Phase 3): small type and padding, so on a phone it stays on the
+ * first screen and the text starts sooner. Nothing in it is dropped or reordered.
  */
 import Badge from '../ui/Badge.astro';
 import Callout from '../ui/Callout.astro';
@@ -45,7 +48,13 @@ if (howMade === undefined) {
 }
 ---
 
-<Callout variant="info" label={t('trust.aiNotice.label')} icon="lucide:bot" class="st-ai-notice">
+<Callout
+  variant="info"
+  label={t('trust.aiNotice.label')}
+  icon="lucide:bot"
+  class="st-ai-notice"
+  compact
+>
   <p>{t(notice.bodyKey, { date: checkedOn, reviewer: notice.reviewer })}</p>
   <p class="st-ai-notice__status">
     <Badge variant="status" icon={notice.icon}>
