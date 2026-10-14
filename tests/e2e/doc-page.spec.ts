@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
+import { browserName } from './helpers/ax';
 import { REPO_ROOT } from './helpers/routes';
 
 /**
@@ -249,42 +250,45 @@ test.describe('"Sources for this page"', () => {
     await expect(rest.first()).toBeHidden();
     const toggle = sources.getByRole('checkbox');
     await expect(toggle).toHaveCount(1);
-    // Each register entry counts, and each Act in the one Acts item, so the number is read back.
-    const n = Number(
-      /\d+/.exec(
-        (await sources.locator('.st-sources__more-label').getAttribute('data-show')) ?? '',
-      )?.[0],
-    );
-    expect(n).toBeGreaterThanOrEqual(total - 3);
-    // Main repair review pass 1, minors 1 and 5: the words on screen are the checkbox's name, read
-    // once, and they change with the state.
-    const words = (): Promise<string> =>
-      sources
-        .locator('.st-sources__more-label')
-        .evaluate((label) => getComputedStyle(label, '::after').content.replace(/^"|"$/g, ''));
-    await expect(toggle).toHaveAccessibleName(`Show the other ${n} sources`);
-    expect(await words()).toBe(`Show the other ${n} sources`);
     await expect(toggle).not.toBeChecked();
-    const once = (text: string, tree: string): number => tree.split(text).length - 1;
-    expect(once(`Show the other ${n} sources`, await sources.ariaSnapshot())).toBe(1);
-    await sources.locator('.st-sources__more-label').click();
+    // The whole 44px label row is the checkbox's hit area (main repair review pass 2, nit 3).
+    const row = await sources.locator('.st-sources__more-label').boundingBox();
+    const box = await toggle.boundingBox();
+    expect(box?.height ?? 0).toBeGreaterThanOrEqual(44);
+    expect(box?.width ?? 0).toBeGreaterThanOrEqual((row?.width ?? 0) - 1);
+    // A tap on the label row lands on the transparent checkbox that covers it.
+    await sources.locator('.st-sources__toggle').click();
     await expect(toggle).toBeChecked();
-    await expect(toggle).toHaveAccessibleName(`Hide the other ${n} sources`);
-    expect(await words()).toBe(`Hide the other ${n} sources`);
-    expect(once(`Hide the other ${n} sources`, await sources.ariaSnapshot())).toBe(1);
     await expect(rest.first()).toBeVisible();
     await expect(rest.last()).toBeVisible();
   });
 
-  test('the Afrikaans control says the same in Afrikaans', async ({ page }) => {
-    await page.setViewportSize(PHONE);
-    await page.goto(`af/${DEALER}`);
-    const sources = page.locator('section.st-sources');
-    const toggle = sources.getByRole('checkbox');
-    await expect(toggle).toHaveAccessibleName(/^Wys die ander \d+ bronne$/);
-    await sources.locator('.st-sources__more-label').click();
-    await expect(toggle).toHaveAccessibleName(/^Steek die ander \d+ bronne weg$/);
-  });
+  /*
+   * Main repair review pass 2, blocker 1 and major 1: the name a screen reader gets is the visible
+   * phrase, one phrase in both states (checked means shown). Read from Chromium's own accessibility
+   * tree over CDP: Playwright's `toHaveAccessibleName` computes a name itself, so it passed while
+   * the browser's name was empty.
+   */
+  for (const [prefix, phrase] of [
+    ['', /^Show the other \d+ sources$/],
+    ['af/', /^Wys die ander \d+ bronne$/],
+  ] as const) {
+    test(`/${prefix}${DEALER}: the browser names the control with the visible words, in both states`, async ({
+      page,
+    }) => {
+      await page.setViewportSize(PHONE);
+      await page.goto(`${prefix}${DEALER}`);
+      const label = page.locator('section.st-sources .st-sources__more-label');
+      const toggle = page.locator('section.st-sources .st-sources__toggle');
+      const visible = ((await label.textContent()) ?? '').trim();
+      expect(visible).toMatch(phrase);
+      expect(await browserName(page, '.st-sources__toggle')).toBe(visible);
+      await toggle.click();
+      await expect(toggle).toBeChecked();
+      expect(((await label.textContent()) ?? '').trim()).toBe(visible);
+      expect(await browserName(page, '.st-sources__toggle')).toBe(visible);
+    });
+  }
 
   test('the control works from the keyboard and shows its focus', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name === 'mobile', 'A keyboard.');
@@ -339,6 +343,7 @@ test.describe('the business-types hub', () => {
   for (const prefix of ['', 'af/']) {
     test(`/${prefix}${section.route}: its cards link every document of the section`, async ({
       page,
+      basePath,
     }) => {
       await page.goto(`${prefix}${section.route}`);
       const hrefs = await page
@@ -349,7 +354,7 @@ test.describe('the business-types hub', () => {
       const others = section.docs
         .map((id) => MANIFEST.docs[id]?.route ?? '')
         .filter((route) => route !== section.route)
-        .map((route) => `/business-toolkit/${prefix}${route}`);
+        .map((route) => `${basePath}${prefix}${route}`);
       expect(others.length).toBeGreaterThan(5);
       for (const route of others) expect(hrefs, route).toContain(route);
     });

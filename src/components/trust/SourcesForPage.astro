@@ -54,7 +54,6 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
 const headingId = id ?? uid('st-sources');
 const moreId = `${headingId}-more`;
 const restId = `${headingId}-rest`;
-const labelId = `${headingId}-more-label`;
 const entries = sourceEntriesFor(context.sources, sources.entries);
 const acts = actsFor(context.sources, sources.acts);
 const count = entries.length + acts.length;
@@ -155,16 +154,10 @@ const itemProps = { acts, locale, registerContext, dataLang, titleLang, actLang,
             class="st-sources__toggle st-no-print"
             id={moreId}
             aria-controls={restId}
-            aria-labelledby={labelId}
           />
-          <label
-            class="st-sources__more-label st-no-print"
-            for={moreId}
-            id={labelId}
-            aria-hidden="true"
-            data-show={t('trust.sources.more', { count: moreCount })}
-            data-hide={t('trust.sources.less', { count: moreCount })}
-          ></label>
+          <label class="st-sources__more-label st-no-print" for={moreId}>
+            {t('trust.sources.more', { count: moreCount })}
+          </label>
           <ul class="st-stack st-sources__rest" role="list" id={restId}>
             <SourceItems items={moreItems} {...itemProps} />
           </ul>
@@ -238,17 +231,22 @@ const itemProps = { acts, locale, registerContext, dataLang, titleLang, actLang,
   }
 
   /*
-   * Out of sight but in the accessibility tree and the tab order, also while focused (unlike
-   * `.st-visually-hidden`, which shows a focused element). Its name is the label's text.
+   * The checkbox is transparent and lies over the whole 44px label row: the row is its hit area,
+   * and a screen reader's focus box sits around the words, not in a corner (main repair review
+   * pass 2, nit 3). It stays in the accessibility tree and the tab order, also while focused
+   * (unlike `.st-visually-hidden`, which shows a focused element). Its name is the label's text, a
+   * real text node tied by `for`: one phrase in both states, "Show the other 38 sources", and
+   * checked means shown (pass 2, blocker 1 and major 1).
    */
   .st-sources__toggle {
     position: absolute;
     inset-block-start: 0;
     inset-inline-start: 0;
-    inline-size: 1px;
-    block-size: 1px;
+    inline-size: 100%;
+    block-size: var(--st-target);
     margin: 0;
     opacity: 0;
+    cursor: pointer;
   }
 
   .st-sources__more-label::before {
@@ -260,21 +258,6 @@ const itemProps = { acts, locale, registerContext, dataLang, titleLang, actLang,
     border-inline-end: 2px solid currentcolor;
     content: '';
     transform: translateX(-0.125em) rotate(-45deg);
-  }
-
-  /*
-   * The words are the label's generated text, from `data-show` and `data-hide`, so they follow the
-   * box: "Show the other 38 sources", then "Hide the other 38 sources" once it is checked, with no
-   * script (main repair review pass 1, minor 5). The label is `aria-hidden` and names the checkbox
-   * through `aria-labelledby`, so a screen reader hears the words once, as the checkbox's name, and
-   * the name always matches what is on screen (minor 1; WCAG 2.5.3).
-   */
-  .st-sources__more-label::after {
-    content: attr(data-show);
-  }
-
-  .st-sources__toggle:checked + .st-sources__more-label::after {
-    content: attr(data-hide);
   }
 
   .st-sources__toggle:checked + .st-sources__more-label::before {
