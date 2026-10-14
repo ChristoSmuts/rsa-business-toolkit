@@ -201,7 +201,7 @@ If you change a hue or a strength, re-run `pnpm test`: the test asserts each tin
   | Static preloads of the new files (not shipped) | vehicle dealer / home | 173 / 172ms | 1,137 / 1,074ms | 1,136 / 1,032ms | 66,712 |
   | Phase 2 (preloads through `theme-init.js`) | vehicle dealer / home | 366 / 355ms | 1,321 / 1,187ms | 888 / 840ms | 0 |
 
-  So the fonts start about 190ms later than static preloads of the same files would, and finish 113 to 184ms later; they still finish earlier than before Phase 2, because the Fraunces file is smaller. First paint comes 250ms *earlier* than with static preloads, because 67 KB of fonts no longer compete with the stylesheet for the first round trips. With the matched fallbacks (layout shift at most 0.081 when the fonts arrive late, below), a later swap costs a reader little, and a reader on low data saves all 66,712 bytes. That is the trade-off, accepted for now. No cheaper way exists on a static host with `script-src 'self'`: nothing can read `st.lowData` before the preload scanner runs, and an inline script is not allowed. On a repeat visit `theme-init.js` usually comes from the cache and the delay mostly goes. Phase 5 checks it on a real phone (see [Known limits](#known-limits)).
+  So the fonts start about 190ms later than static preloads of the same files would, and finish 113 to 184ms later; they still finish earlier than before Phase 2, because the Fraunces file is smaller. First paint comes 250ms *earlier* than with static preloads, because 67 KB of fonts no longer compete with the stylesheet for the first round trips. With the matched fallbacks and the em measures (layout shift at most 0.081 when the fonts arrive late, at any width; see below), a later swap costs a reader little, and a reader on low data saves all 66,712 bytes. That is the trade-off, accepted for now. No cheaper way exists on a static host with `script-src 'self'`: nothing can read `st.lowData` before the preload scanner runs, and an inline script is not allowed. On a repeat visit `theme-init.js` usually comes from the cache and the delay mostly goes. Phase 5 checks it on a real phone (see [Known limits](#known-limits)).
 - Low data (`prefers-reduced-data: reduce` or `html[data-low-data]`) switches `--st-font-display` and `--st-font-body` to the fallback stacks, so CSS never requests the webfonts either.
 - Display figures use no-break spaces between digit groups (`R 1 234.56` with U+00A0), so an amount never breaks across lines. The decimal separator for rand amounts follows the toolkit markdown (i18n package).
 
@@ -227,7 +227,7 @@ How they were measured (WP-50 Phase 2):
 - **ascent-override** and **descent-override** are the web font's own metrics divided by size-adjust (Instrument Sans: ascent 0.970 em, descent 0.250 em; Fraunces: 0.978 and 0.255 em, the same in the wght and opsz files, read with `@capsizecss/unpack`), so the baseline sits where the web font will put it.
 - Before WP-50 there were two faces: `local('Georgia')`, and Arial, Roboto and Helvetica sharing Arial's numbers from capsize (116.2% and 102.74%). On a phone (no Arial, no Georgia) and on Linux both failed, and the text fell through to an unadjusted system font.
 
-**Layout shift when the fonts arrive late.** Measured at 320×568 in Chromium: every `.woff2` request held until the reader is in place, then released; the figure is the layout shift from the release to `document.fonts.ready` plus 800ms, the method of WP-50a review pass 4. This machine has the Liberation fonts, so it measures the Arial and Times faces; Android's Roboto and Noto Serif faces and Georgia were not measured live (see [Known limits](#known-limits)).
+**Layout shift when the fonts arrive late.** First table: 320×568 in Chromium, the reader scrolled into the page; every `.woff2` request held until the reader is in place, then released; the figure is the layout shift from the release to `document.fonts.ready` plus 800ms, the method of WP-50a review pass 4. This machine has the Liberation fonts, so it measures the Arial and Times faces; Android's Roboto and Noto Serif faces and Georgia were not measured live (see [Known limits](#known-limits)).
 
 | Page and position | EN before | EN after | AF before | AF after |
 | --- | --- | --- | --- | --- |
@@ -239,7 +239,32 @@ How they were measured (WP-50 Phase 2):
 | Home, top of the page | 0.230 | 0.010 | 0.230 | 0.000 |
 | Header height at 320px, fallback then web font | 217 → 165px | 165 → 165px | 217 → 165px | 165 → 165px |
 
-Every case is under 0.1, so body text keeps `font-display: swap`: `optional` would keep the web font from a first visit on a slow connection and buy nothing the metrics have not already bought. The 320px header no longer changes rows when the fonts arrive, which WP-50 Phase 3 (item 5) asked for.
+The 320px header no longer changes rows when the fonts arrive, which WP-50 Phase 3 (item 5) asked for.
+
+The table above is 320px only, where the reading measure never binds. On a wide screen it does, and the first Phase 2 build had a desktop-only shift the 320px table could not show: the measures were in `ch`, the width of "0" in whichever font is drawn (0.67em in Instrument Sans, about 0.56em in the fallbacks), so every capped column was 17% narrower until the web font came, and the Afrikaans home page's lead wrapped to three lines and then two (review pass 2, major 1). The measures are now in em (see [Fluid scale](#fluid-scale-320px-to-1280px-viewport)).
+
+Second table: the top of the page, fonts held until the page and its stylesheets are in, then released, at 1024×800, 1280×800 and 1440×800 (320×568 for the first column). Each cell is before Phase 2 (`3437e75`) → the first Phase 2 build (`ch` measures) → now. The first Phase 2 build was not swept at 320px.
+
+| Page, top | 320px | 1024px | 1280px | 1440px |
+| --- | --- | --- | --- | --- |
+| `/` | 0.230 → 0.010 | 0.084 → 0.038 → 0.006 | 0.068 → 0.029 → 0.001 | 0.065 → 0.024 → 0.001 |
+| `/af/` | 0.230 → 0.000 | 0.292 → **0.304** → 0.068 | 0.280 → **0.240** → 0.012 | 0.198 → **0.200** → 0.010 |
+| `business-types/vehicle-dealer/` | 0.229 → 0.000 | 0.006 → 0.010 → 0.010 | 0.009 → 0.006 → 0.006 | 0.020 → 0.006 → 0.006 |
+| `af/business-types/vehicle-dealer/` | 0.231 → 0.000 | 0.009 → 0.002 → 0.002 | 0.014 → 0.005 → 0.005 | 0.012 → 0.004 → 0.004 |
+| `af/business-types/food/` | 0.231 → 0.000 | 1.379 → 0.002 → 0.002 | 0.022 → 0.001 → 0.001 | 0.023 → 0.001 → 0.001 |
+| `find-my-path/` | 0.230 → 0.015 | 0.005 → 0.008 → 0.001 | 0.004 → 0.005 → 0.002 | 0.007 → 0.004 → 0.001 |
+| `af/core/` | 0.230 → 0.000 | 1.379 → 0.001 → 0.001 | 0.011 → 0.000 → 0.000 | 0.005 → 0.000 → 0.000 |
+| `af/templates/invoice/` | 0.230 → 0.000 | 1.379 → 0.001 → 0.001 | 0.008 → 0.001 → 0.003 | 0.021 → 0.007 → 0.007 |
+
+Across the top of all 98 sitemap pages (both languages), cases over 0.1:
+
+| Build | 320px | 1024px | 1280px | 1440px |
+| --- | --- | --- | --- | --- |
+| Before Phase 2 (`3437e75`) | 98 | 18 | 2 | 1 |
+| First Phase 2 build (`ch` measures) | not swept | 1 (`/af/` 0.304) | 1 (`/af/` 0.240) | 1 (`/af/` 0.200) |
+| Now | **0** (worst 0.027) | **0** (worst 0.068, `/af/`) | **0** (worst 0.019) | **0** (worst 0.016) |
+
+No page is worse than before Phase 2 by more than 0.01 at any of the four widths. The 1.379 cases before Phase 2 are the Afrikaans header changing rows at 1024px when the font arrives. Body text keeps `font-display: swap`: `optional` would keep the web font from a first visit on a slow connection and buy nothing the metrics have not already bought. `tests/e2e/interactive.spec.ts` ("late web fonts on a wide screen") holds `/af/` at 1024 and 1280px and `/` at 1280px to 0.1 or less; it fails on the `ch` build.
 
 ### Fluid scale (320px to 1280px viewport)
 
@@ -254,7 +279,7 @@ Every case is under 0.1, so body text keeps `font-display: swap`: `optional` wou
 | `--st-text-sm` | 14 → 15px | Meta, badges, hints |
 | `--st-text-xs` | 13px | Swatch values only |
 
-Body line height 1.6; headings 1.15 (h3 and h4 1.3). Measure `--st-measure: 68ch`, tables and sheets `--st-measure-wide: 90ch`. The pipeline emits no h4 or deeper.
+Body line height 1.6; headings 1.15 (h3 and h4 1.3). Measure `--st-measure: 45.56em`, tables and sheets `--st-measure-wide: 60.3em`: 68 and 90 times the width of "0" in Instrument Sans (0.67em), in em so the fallback font draws the same column. Never size text containers in `ch`: it is the "0" of whichever font is on screen, and the fallbacks are matched on running text, not on figures. The pipeline emits no h4 or deeper.
 
 ## Other tokens
 
