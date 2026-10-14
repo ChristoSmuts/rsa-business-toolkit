@@ -600,6 +600,80 @@ test.describe('the search dialog while it loads', () => {
     await expect(page.locator('#st-search-q')).toHaveValue('PIS');
   });
 
+  test(
+    'a dialog closed before its script fails to load stays closed, on the same page',
+    {
+      annotation: allowConsoleError(
+        '/ERR_FAILED|Failed to fetch dynamically imported module|error loading dynamically imported module/',
+        'The test makes the dialog script fail on purpose.',
+      ),
+    },
+    async ({ page, baseURL }) => {
+      let fail: () => void = () => undefined;
+      const gate = new Promise<void>((resolve) => {
+        fail = resolve;
+      });
+      let scriptUrl = '';
+      await routeSameOrigin(
+        page,
+        baseURL,
+        (url) => SCRIPT.test(url.pathname),
+        async (route) => {
+          scriptUrl = route.request().url();
+          await gate;
+          await route.abort();
+        },
+      );
+      const navigations: string[] = [];
+      page.on('request', (request) => {
+        if (request.isNavigationRequest()) navigations.push(request.url());
+      });
+      await open(page, DOC);
+      const before = page.url();
+      navigations.length = 0;
+      await page.locator('a.st-topbar__search').click();
+      await field(page).fill('VAT');
+      await dialog(page).locator('[data-search-close]').click();
+      await expect(dialog(page)).toBeHidden();
+      // Count the navigations the page starts (the Navigation API, where there is one).
+      const counted = await page.evaluate(() => {
+        const api = (window as unknown as { navigation?: EventTarget }).navigation;
+        const counter = { starts: 0 };
+        Object.assign(window, { stNavigations: counter });
+        api?.addEventListener('navigate', () => (counter.starts += 1));
+        return api !== undefined;
+      });
+      fail();
+      // A module script for the same URL, added after the page's own import, hears of the failure
+      // after it: by then the page's handler has run.
+      expect(
+        await page.evaluate(
+          (url) =>
+            new Promise<string>((resolve) => {
+              const script = document.createElement('script');
+              script.type = 'module';
+              script.src = url;
+              script.addEventListener('load', () => resolve('loaded'));
+              script.addEventListener('error', () => resolve('failed'));
+              document.head.append(script);
+            }),
+          scriptUrl,
+        ),
+      ).toBe('failed');
+      if (counted) {
+        expect(
+          await page.evaluate(
+            () => (window as unknown as { stNavigations: { starts: number } }).stNavigations.starts,
+          ),
+          'no navigation started',
+        ).toBe(0);
+      }
+      expect(navigations).toEqual([]);
+      expect(page.url()).toBe(before);
+      await expect(dialog(page)).toBeHidden();
+    },
+  );
+
   test('one Escape before the script arrives closes the dialog, also with text in the field', async ({
     page,
     baseURL,

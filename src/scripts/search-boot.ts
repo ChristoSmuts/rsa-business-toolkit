@@ -92,6 +92,8 @@ export function openSearch(from: HTMLElement | null, doc: Document = document): 
       forget();
     },
     () => {
+      // Not for a dialog the reader has closed, nor after the held Enter has left already.
+      if (left || !dialog?.open) return;
       const query = field?.value.trim() ?? '';
       doc.defaultView?.location.assign(
         `${host.dataset['page'] ?? ''}${query ? `?q=${encodeURIComponent(query)}` : ''}`,
@@ -109,6 +111,8 @@ export function openSearch(from: HTMLElement | null, doc: Document = document): 
 let entered: string | null = null;
 /** The timer of the held Enter: one at most, for the latest Enter. */
 let timer = 0;
+/** The held Enter has sent the form to the search page after `HELD_ENTER_MS`. */
+let left = false;
 /** Cancel the held Enter and its timer. */
 function forget(): void {
   entered = null;
@@ -155,10 +159,10 @@ function waiting(host: Dialog, dialog: HTMLDialogElement, field: HTMLInputElemen
       if (!dialog.open || text.trim() === '') return;
       entered = text;
       timer = window.setTimeout(() => {
-        const go = !host.open && dialog.open && field.value === entered;
+        left = !host.open && dialog.open && field.value === entered;
         // Forgotten first, so a script that arrives while the search page loads does not replay it.
         forget();
-        if (go) form.submit();
+        if (left) form.submit();
       }, HELD_ENTER_MS);
     });
     field.addEventListener('keydown', (event) => {
