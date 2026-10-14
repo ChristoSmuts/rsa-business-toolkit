@@ -525,6 +525,19 @@ test.describe('the search dialog while it loads', () => {
     await page.keyboard.press('Enter');
     await page.keyboard.press('Escape');
     await expect(dialog(page)).toBeHidden();
+    // `/` is a shortcut only outside a field (site.ts, isTypingTarget). The dialog was opened from
+    // <body>, which WebKit does not record as the element to give focus back to, so the closed
+    // dialog's field keeps focus until WebKit's focus fixup takes it away; a `/` sent before then
+    // is typed into that field (WebKit, CI run 38589830144). Wait for focus to leave the dialog.
+    // Polled from the test: the page's requestAnimationFrame is Playwright's paused clock.
+    await expect
+      .poll(() =>
+        page.evaluate(
+          () =>
+            !document.querySelector('dialog.st-search-dialog')?.contains(document.activeElement),
+        ),
+      )
+      .toBe(true);
     await page.clock.runFor(6000);
     await page.keyboard.press('/');
     await expect(field(page)).toHaveValue('PIS');
