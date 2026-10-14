@@ -71,9 +71,10 @@ const { name = 'SA Business Toolkit', markOnly = false, label, class: className 
     font-family: var(--st-font-display);
     font-size: 1.125em;
     font-weight: var(--st-weight-semibold);
-    font-variation-settings: 'opsz' var(--st-opsz-heading);
     line-height: 1.1;
-    letter-spacing: -0.01em;
+
+    /* Fraunces' wght-only text cut (WP-50), set like h1 and h2: no optical size, light tracking. */
+    letter-spacing: -0.005em;
   }
 
   @media (forced-colors: active) {

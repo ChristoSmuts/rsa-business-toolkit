@@ -99,6 +99,11 @@
  * widths). Georgia was not available to measure; its value is Noto Serif's scaled by the two
  * fonts' average widths from @capsizecss/metrics, a method that reproduced the measured Noto
  * Serif / Liberation Serif ratio to 0.2%.
+ * Re-checked in WP-50 Phase 3 on text laid out in the adjusted faces: unhinted (as Windows, macOS
+ * and Android lay text out), the Arial face comes to 0.995 to 0.998 of Instrument Sans. Chromium
+ * on Linux hints Liberation Sans at a whole number of pixels per em, which makes it 4% narrower at
+ * 16 and 18px; no value below 103.5% changes that, and above it the text is 2.7% wider and desktop
+ * pages shift more, so the value stays (docs/design-system.md, "Fallback fonts and layout shift").
  * ascent-override and descent-override are the web font's own metrics (Instrument Sans 0.970 and
  * 0.250 em, Fraunces 0.978 and 0.255 em) divided by size-adjust, so the baseline sits where the
  * web font will put it. docs/design-system.md has the measurements and the layout shift they buy.

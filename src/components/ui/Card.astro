@@ -74,18 +74,23 @@ const hasMeta = Astro.slots.has('meta');
     border-radius: var(--st-radius-lg);
     background-color: var(--st-surface);
     box-shadow: var(--st-shadow-1);
-    transition:
-      transform var(--st-duration-base) var(--st-ease),
-      box-shadow var(--st-duration-base) var(--st-ease);
+    transition: box-shadow var(--st-duration-base) var(--st-ease);
   }
 
-  .st-card[data-interactive='true']:hover,
+  /*
+   * No hover lift (WP-50 Phase 3, direction A's card set): a card that rose under the pointer
+   * moved on every pass of a mouse and on every tap on a touch screen, where `:hover` sticks.
+   * Hover deepens the shadow only, and only for a pointer that can hover; focus does the same
+   * with the ring below.
+   */
+  @media (hover: hover) {
+    .st-card[data-interactive='true']:hover {
+      box-shadow: var(--st-shadow-2);
+    }
+  }
+
   .st-card:has(.st-card__link:focus-visible) {
     box-shadow: var(--st-shadow-2);
-    transform: translateY(var(--st-lift));
-  }
-
-  .st-card:has(.st-card__link:focus-visible) {
     outline: var(--st-focus-width) solid var(--st-focus);
     outline-offset: var(--st-focus-offset);
   }

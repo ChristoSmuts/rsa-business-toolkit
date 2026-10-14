@@ -56,6 +56,11 @@
     display: none;
   }
 
+  /* Paper shows the content open, so a "closed" chevron would say the wrong thing. */
+  .st-disclosure > summary::before {
+    display: none;
+  }
+
   /*
    * Full URLs after external links. `text-decoration` propagates from the inline parent into
    * generated content, so `text-decoration: none` here does nothing. An inline-block stops the

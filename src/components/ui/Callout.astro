@@ -2,6 +2,9 @@
 /**
  * Callout with an icon and a visible text label, so meaning never relies on colour.
  * `plain-words` is the spoken-aside style for "In plain words" and is never collapsed.
+ * `compact` sets the body in the small text size with less padding. The AI notice and the
+ * translation notice at the top of a document use it, so the reader reaches the text sooner
+ * (WP-50 Phase 3, direction A): same words, same order, same link, smaller type.
  */
 import Icon from './Icon.astro';
 import { uid } from '../../scripts/uid';
@@ -16,6 +19,8 @@ interface Props {
   /** Id given to the visible label, which names the note. Generated when omitted. */
   labelId?: string | undefined;
   class?: string | undefined;
+  /** Small type and padding, for the notices at the top of a document page. */
+  compact?: boolean | undefined;
 }
 
 const DEFAULTS: Record<Variant, { label: string; icon: string }> = {
@@ -26,7 +31,7 @@ const DEFAULTS: Record<Variant, { label: string; icon: string }> = {
   info: { label: 'Good to know', icon: 'lucide:info' },
 };
 
-const { variant = 'note', label, icon, labelId, class: className } = Astro.props;
+const { variant = 'note', label, icon, labelId, class: className, compact = false } = Astro.props;
 const defaults = DEFAULTS[variant];
 // `role="note"` is announced as a bare "note" without a name, so the visible label names it.
 const nameId = labelId ?? uid('st-callout');
@@ -35,6 +40,7 @@ const nameId = labelId ?? uid('st-callout');
 <div
   class:list={['st-callout', className]}
   data-variant={variant}
+  data-size={compact ? 'compact' : undefined}
   role="note"
   aria-labelledby={nameId}
 >
@@ -73,6 +79,22 @@ const nameId = labelId ?? uid('st-callout');
     font-size: var(--st-text-sm);
     font-weight: var(--st-weight-bold);
     line-height: var(--st-leading-snug);
+  }
+
+  /*
+   * The body's size, not the box's: the box keeps its measure in the page's em, so a compact
+   * notice lines up with the text around it.
+   */
+  .st-callout[data-size='compact'] {
+    --st-flow-gap: var(--st-space-1);
+
+    gap: var(--st-space-1);
+    padding: var(--st-space-3) var(--st-space-4);
+  }
+
+  .st-callout[data-size='compact'] .st-callout__body {
+    font-size: var(--st-text-sm);
+    line-height: 1.5;
   }
 
   .st-callout[data-variant='plain-words'] {

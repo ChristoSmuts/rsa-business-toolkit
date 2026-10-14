@@ -3,6 +3,11 @@
  * The trail on every page that is not the home page (build plan B2).
  * The last crumb is the current page: it is text, not a link, and carries `aria-current="page"`.
  * On a phone only the parent crumb is shown, so the trail never wraps to three lines.
+ *
+ * `sectionDot` (document pages, WP-50 Phase 3): a small dot in the section's hue
+ * (`--st-section`, set by the page's `data-section`) before the parent crumb, the section. It
+ * replaces the "Section: …" label that repeated the trail. It is decoration: the crumb's words
+ * name the section, so the dot is hidden from assistive technology and absent in forced colours.
  */
 import Icon from '../ui/Icon.astro';
 import { useTranslations } from '../../i18n';
@@ -12,10 +17,12 @@ import type { Crumb } from '../../lib/nav';
 interface Props {
   crumbs: readonly Crumb[];
   locale: Locale;
+  /** Show a dot in the section's hue before the parent crumb. */
+  sectionDot?: boolean | undefined;
   class?: string | undefined;
 }
 
-const { crumbs, locale, class: className } = Astro.props;
+const { crumbs, locale, sectionDot = false, class: className } = Astro.props;
 const t = useTranslations(locale);
 const last = crumbs.length - 1;
 ---
@@ -29,7 +36,12 @@ const last = crumbs.length - 1;
           data-position={index === last ? 'current' : index === last - 1 ? 'parent' : 'ancestor'}
         >
           {index > 0 && (
-            <Icon name="lucide:chevron-right" size="0.9em" class="st-breadcrumb__sep" />
+            <span class="st-breadcrumb__sep">
+              <Icon name="lucide:chevron-right" size="0.9em" />
+            </span>
+          )}
+          {sectionDot && index > 0 && index === last - 1 && (
+            <span class="st-breadcrumb__dot" aria-hidden="true" />
           )}
           {index === last || crumb.href === undefined ? (
             <span aria-current={index === last ? 'page' : undefined} lang={crumb.lang}>
@@ -66,6 +78,19 @@ const last = crumbs.length - 1;
     overflow-wrap: anywhere;
   }
 
+  .st-breadcrumb__sep {
+    display: inline-flex;
+  }
+
+  .st-breadcrumb__dot {
+    flex-shrink: 0;
+    inline-size: 0.625em;
+    block-size: 0.625em;
+    margin-inline: var(--st-space-1);
+    border-radius: 50%;
+    background-color: var(--st-section);
+  }
+
   /* A crumb link stands alone, so it is a full 44px target (B4, B5; review WP-20 pass 5). */
   .st-breadcrumb__item a {
     display: inline-flex;
@@ -74,13 +99,24 @@ const last = crumbs.length - 1;
     min-inline-size: var(--st-target);
   }
 
-  /* On a phone the trail is "‹ parent" only; the current page is the heading right below it. */
+  /* On a phone the trail is the parent only; the current page is the heading right below it. */
   @media (width < 768px) {
     .st-breadcrumb__item:not([data-position='parent']) {
       display: none;
     }
 
-    .st-breadcrumb__item[data-position='parent'] .st-breadcrumb__sep {
+    /* The dot leads the one crumb; without it, the chevron does. */
+    .st-breadcrumb__item[data-position='parent']:has(.st-breadcrumb__dot) .st-breadcrumb__sep {
+      display: none;
+    }
+
+    .st-breadcrumb__dot {
+      margin-inline-start: 0;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .st-breadcrumb__dot {
       display: none;
     }
   }

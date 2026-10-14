@@ -87,9 +87,14 @@ const steps = [1, 2, 3, 4, 5] as const;
     block-size: 100%;
   }
 
+  /*
+   * Veld green, not the section's hue (WP-50 Phase 3): the meter lives on business-type pages and
+   * tiles, whose hue is a rust close to rooibos, and rooibos is only the "In plain words" voice.
+   * Primary on the page: 7.67:1 light, 9.27:1 dark (3:1 needed for a graphic).
+   */
   .st-effort__bar[data-on='true'] {
-    border-color: var(--st-section);
-    background-color: var(--st-section);
+    border-color: var(--st-primary);
+    background-color: var(--st-primary);
   }
 
   .st-effort__value {

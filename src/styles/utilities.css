@@ -105,6 +105,43 @@ st-table-scroll {
   text-decoration-color: transparent;
 }
 
+/*
+ * A native <details> whose summary says whether it is open (WP-50 audit, finding 6): a chevron
+ * that points right when closed and down when open, drawn from two borders in the text colour, so
+ * it needs no icon file and forced colours draw it too. It turns at once; nothing animates. The
+ * browser's own triangle is removed, and print (print.css) opens the content and drops the
+ * chevron. The summary is a 44px target and wraps a long Afrikaans label.
+ */
+.st-disclosure > summary {
+  display: flex;
+  align-items: center;
+  gap: var(--st-space-3);
+  min-block-size: var(--st-target);
+  font-weight: var(--st-weight-semibold);
+  overflow-wrap: anywhere;
+  list-style: none;
+  cursor: pointer;
+}
+
+.st-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.st-disclosure > summary::before {
+  flex-shrink: 0;
+  inline-size: 0.5em;
+  block-size: 0.5em;
+  margin-inline: 0.125em;
+  border-block-end: 2px solid currentcolor;
+  border-inline-end: 2px solid currentcolor;
+  content: '';
+  transform: translateX(-0.125em) rotate(-45deg);
+}
+
+.st-disclosure[open] > summary::before {
+  transform: translateY(-0.125em) rotate(45deg);
+}
+
 /* Page container: max 1360px with fluid side gutters. */
 .st-container {
   inline-size: 100%;
