@@ -105,8 +105,8 @@
    *
    * The strengths were chosen while the focus ring was rooibos, when the light ring on a tint
    * was the tightest pair in the system (3.37:1). Since WP-50 the ring is ink (about 11.9:1
-   * light and 9.3:1 dark on every tint by color.ts; a browser measures 11.88:1), so the ring no longer caps them; the tightest tint pair
-   * is now a link on a tint (5.63:1 light, 5.49:1 dark). The values are unchanged: no text, link
+   * light and 9.3:1 dark on every tint by color.ts; a browser measures 11.88:1), so the ring no
+   * longer caps them; the tightest tint pair is now a link on a tint (5.63:1 light, 5.49:1 dark). The values are unchanged: no text, link
    * or focus pair loses margin against a flat 18%.
    * Measured worst pairs: light 0.0280 (Start here vs Core), dark 0.0389 (Core vs types).
    * See docs/design-system.md, "Section tints".
