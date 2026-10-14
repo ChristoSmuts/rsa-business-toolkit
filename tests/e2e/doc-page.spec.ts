@@ -116,7 +116,17 @@ test.describe('the top of a document page', () => {
     await page.setViewportSize(PHONE);
     await page.goto(DEALER);
     await page.waitForLoadState('networkidle');
-    expect(await pageTop(page, 'article .st-blocks h2')).toBeLessThanOrEqual(TWO_SCREENS);
+    /*
+     * WP-50 Phase 3, item 3 adds the "Go straight to" row (one 44px link to the startup checklist,
+     * about 30,000px further down) above the text. In Chromium the heading is still within two
+     * screens (1,477px); the row's own height is allowed for, so a few pixels of another engine's
+     * font metrics do not fail the page for the link that saves the longest scroll on it.
+     */
+    const row = await page
+      .locator('.st-type-jump')
+      .evaluate((el) => el.getBoundingClientRect().height);
+    expect(row).toBeLessThanOrEqual(48);
+    expect(await pageTop(page, 'article .st-blocks h2')).toBeLessThanOrEqual(TWO_SCREENS + row);
   });
 
   test('both disclosures are closed and show a chevron that turns when opened', async ({
