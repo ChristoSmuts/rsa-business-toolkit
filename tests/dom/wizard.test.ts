@@ -224,6 +224,36 @@ describe('<st-wizard>', () => {
     expect(growing.checked).toBe(false);
   });
 
+  it('sums up the answers so far on the last question, and "Change" goes back to one (WP-50 Phase 3)', () => {
+    const wizard = setUp();
+    const answer = (name: string): string =>
+      document.querySelector(`[data-summary-answer="${name}"]`)?.textContent ?? '';
+    expect(answer('entity')).toBe('Not answered yet');
+    choose(input('entity', 'pty'));
+    button('entity', '[data-next]').click();
+    choose(input('type', 'general'));
+    choose(input('type', 'food'));
+    button('type', '[data-next]').click();
+    expect(answer('entity')).toBe('As a registered company (Pty Ltd)');
+    // In the order they were ticked, the first being the primary kind.
+    expect(answer('type')).toBe('General: I sell or do many things, Food business');
+    const change = step('stage').querySelectorAll<HTMLButtonElement>('[data-go]');
+    expect([...change].map((b) => b.textContent?.replace(/\s+/g, ' ').trim())).toEqual([
+      'Change: How you trade',
+      'Change: Kind of business',
+    ]);
+    change[1]!.click();
+    expect(wizard.current).toBe(1);
+    expect(document.activeElement).toBe(step('type').querySelector('[data-step-heading]'));
+    expect(input('type', 'food').checked).toBe(true);
+    choose(input('type', 'general'));
+    button('type', '[data-next]').click();
+    expect(answer('type')).toBe('Food business');
+    change[0]!.click();
+    expect(wizard.current).toBe(0);
+    expect(input('entity', 'pty').checked).toBe(true);
+  });
+
   it('keeps the types in the order they were ticked, and saves the profile', () => {
     const wizard = setUp();
     choose(input('entity', 'pty'));

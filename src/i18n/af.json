@@ -393,7 +393,12 @@
       "save": "Stoor hierdie antwoorde"
     },
     "noJsList": "Kies jou roete uit hierdie lys",
-    "noJsListHint": "Jou blaaier kan nie die knoppie vir die antwoorde hierbo wys nie. Kies hoe jy handel dryf, dan jou soort besigheid en waar jy nou is."
+    "noJsListHint": "Jou blaaier kan nie die knoppie vir die antwoorde hierbo wys nie. Kies hoe jy handel dryf, dan jou soort besigheid en waar jy nou is.",
+    "summary": {
+      "title": "Jou antwoorde tot dusver",
+      "none": "Nog nie beantwoord nie",
+      "change": "Verander"
+    }
   },
   "myPath": {
     "title": "My roete",
@@ -411,6 +416,7 @@
     "markDone": "Merk as klaar",
     "markDoneNamed": "Merk as klaar: {title}",
     "done": "Klaar",
+    "upNext": "Doen dit volgende",
     "markNotDone": "Haal die merkie af",
     "markNotDoneNamed": "Haal die merkie af: {title}",
     "why": "Waarom hierdie stap",
@@ -563,6 +569,7 @@
     "removeLineShort": "Verwyder reël",
     "totalsNoJs": "Sonder JavaScript word die totale nie uitgewerk nie. Skryf dit op die gedrukte bladsy.",
     "noJsPrint": "Gebruik jou blaaier se Druk-opdrag om te druk. Sonder JavaScript word wat jy tik nie gestoor nie.",
+    "actionsHeading": "As jy klaar is",
     "requiredHeading": "Verpligte items",
     "ambiguous": "Dit kan as twee verskillende bedrae gelees word. Skryf dit soos {example}, met ’n punt voor die sente.",
     "tooManyDecimals": "’n Bedrag het hoogstens twee desimale. Skryf dit soos {example}.",
@@ -673,6 +680,7 @@
       "answer": "Vinnige antwoord"
     },
     "browseContents": "Blaai deur alle bladsye",
+    "browseGlossary": "Slaan ’n woord in die woordelys na",
     "clear": "Vee soektog uit",
     "close": "Maak soektog toe",
     "noJs": "Die soektog het JavaScript nodig. Gebruik die inhoudsbladsy om te vind wat jy nodig het."

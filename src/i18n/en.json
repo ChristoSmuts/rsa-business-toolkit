@@ -393,7 +393,12 @@
       "save": "Save these answers"
     },
     "noJsList": "Choose your path from this list",
-    "noJsListHint": "Your browser cannot show the button for the answers above. Choose how you trade, then your kind of business and where you are now."
+    "noJsListHint": "Your browser cannot show the button for the answers above. Choose how you trade, then your kind of business and where you are now.",
+    "summary": {
+      "title": "Your answers so far",
+      "none": "Not answered yet",
+      "change": "Change"
+    }
   },
   "myPath": {
     "title": "My path",
@@ -411,6 +416,7 @@
     "markDone": "Mark as done",
     "markDoneNamed": "Mark as done: {title}",
     "done": "Done",
+    "upNext": "Do this next",
     "markNotDone": "Remove the tick",
     "markNotDoneNamed": "Remove the tick: {title}",
     "why": "Why this step",
@@ -563,6 +569,7 @@
     "removeLineShort": "Remove line",
     "totalsNoJs": "Without JavaScript the totals are not worked out. Write them on the printed page.",
     "noJsPrint": "To print, use your browser’s Print command. Without JavaScript, what you type is not saved.",
+    "actionsHeading": "When you are done",
     "requiredHeading": "Required items",
     "ambiguous": "This could be read as two different amounts. Write it like {example}, with a full stop before the cents.",
     "tooManyDecimals": "An amount has at most two decimals. Write it like {example}.",
@@ -673,6 +680,7 @@
       "answer": "Quick answer"
     },
     "browseContents": "Browse all pages",
+    "browseGlossary": "Look a word up in the glossary",
     "clear": "Clear search",
     "close": "Close search",
     "noJs": "Search needs JavaScript. Use the contents page to find what you need."

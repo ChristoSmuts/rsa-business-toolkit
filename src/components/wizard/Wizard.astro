@@ -277,6 +277,28 @@ const results = singleChoices().map((choice) => ({
           ))}
         </div>
       </fieldset>
+      {/*
+        The answers so far, before "See my path" (WP-50 Phase 3, item 4): the script writes each
+        answer's own label, and "Change" goes back to that question with its answers kept. Only
+        with JavaScript: without it the three questions are on the page together.
+      */}
+      <section class="st-wizard__summary js-only" aria-labelledby="wz-summary-title" data-summary>
+        <h3 id="wz-summary-title">{t('wizard.summary.title')}</h3>
+        <dl>
+          {[QUERY.entity, QUERY.type].map((name, index) => (
+            <div class="st-wizard__summary-row">
+              <dt>{stepTitles[index]}</dt>
+              <dd>
+                <span data-summary-answer={name}>{t('wizard.summary.none')}</span>
+                <Button variant="ghost" data-go={index}>
+                  {t('wizard.summary.change')}
+                  <span class="st-visually-hidden">: {stepTitles[index]}</span>
+                </Button>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
       <div class="st-wizard__nav js-only">
         <Button variant="secondary" data-back iconStart="lucide:arrow-left">
           {t('wizard.back')}
@@ -440,6 +462,7 @@ const results = singleChoices().map((choice) => ({
   }
 
   .st-wizard__stepper li {
+    position: relative;
     display: grid;
     flex: 1 1 8rem;
     min-inline-size: 0;
@@ -458,6 +481,63 @@ const results = singleChoices().map((choice) => ({
 
   .st-wizard__stepper-n {
     font-weight: var(--st-weight-semibold);
+  }
+
+  /*
+   * A question already answered (every step before the current one): its bar is filled and a tick,
+   * drawn from two borders in the text colour, sits in the padding before its number (so no word
+   * moves and no row wraps when it appears), so done, current and to come are
+   * three different things, and not by colour alone (WP-50 Phase 3, item 4). The tick is
+   * decoration; the order and `aria-current` say it to assistive technology.
+   */
+  .st-wizard__stepper li:has(~ li[aria-current='step']) {
+    border-block-start-color: var(--st-primary);
+    color: var(--st-text);
+  }
+
+  .st-wizard__stepper li:has(~ li[aria-current='step']) .st-wizard__stepper-n::before {
+    content: '';
+    position: absolute;
+    inset-block-start: calc(var(--st-space-2) + 0.3em);
+    inset-inline-start: 0.2em;
+    inline-size: 0.35em;
+    block-size: 0.7em;
+    border: solid currentcolor;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  /*
+   * On a phone the stepper is a bar of three segments and nothing else: the step's heading below it
+   * already says "Question 2 of 3: Kind of business", and the stepper's words took two rows (about
+   * 120px at 320px) and pushed the first answer off the first screen. The words stay for screen
+   * readers, visually hidden, and the bar keeps one height whatever the step.
+   */
+  @media (width < 30rem) {
+    .st-wizard__stepper {
+      flex-wrap: nowrap;
+      gap: var(--st-space-1);
+    }
+
+    .st-wizard__stepper li {
+      flex: 1 1 0;
+      padding: 0;
+      border-block-start-width: 6px;
+    }
+
+    /* The step's heading one size down: the question under it is the line to read. */
+    .st-wizard__step h2 {
+      font-size: var(--st-text-xl);
+    }
+
+    .st-wizard__stepper li > span {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
   }
 
   /*
@@ -607,6 +687,43 @@ const results = singleChoices().map((choice) => ({
     min-inline-size: 0;
   }
 
+  /* "Your answers so far": a hairline above and below each answer, no box. */
+  .st-wizard__summary h3 {
+    margin-block-end: var(--st-space-2);
+    font-size: var(--st-text-md);
+  }
+
+  .st-wizard__summary dl {
+    margin: 0;
+    border-block-start: var(--st-border-width) solid var(--st-border);
+  }
+
+  .st-wizard__summary-row {
+    padding-block: var(--st-space-2);
+    border-block-end: var(--st-border-width) solid var(--st-border);
+  }
+
+  .st-wizard__summary dt {
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+  }
+
+  .st-wizard__summary dd {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0 var(--st-space-3);
+    margin: 0;
+  }
+
+  .st-wizard__summary dd > span {
+    flex: 1 1 8rem;
+    min-inline-size: 0;
+    font-weight: var(--st-weight-semibold);
+    overflow-wrap: break-word;
+  }
+
   .st-wizard__results {
     display: grid;
     justify-items: start;
@@ -635,7 +752,8 @@ const results = singleChoices().map((choice) => ({
       border-color: Highlight;
     }
 
-    .st-wizard__stepper li[aria-current='step'] {
+    .st-wizard__stepper li[aria-current='step'],
+    .st-wizard__stepper li:has(~ li[aria-current='step']) {
       border-block-start-color: Highlight;
     }
   }

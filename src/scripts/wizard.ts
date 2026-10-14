@@ -102,6 +102,7 @@ export class StWizard extends HTMLElement {
     if (!button || button.getAttribute('aria-disabled') === 'true') return;
     if (button.hasAttribute('data-next')) this.#advance();
     else if (button.hasAttribute('data-back')) this.go(this.#current - 1);
+    else if (button.dataset['go']) this.go(Number(button.dataset['go']));
   };
 
   readonly #onSubmit = (event: SubmitEvent): void => {
@@ -333,6 +334,33 @@ export class StWizard extends HTMLElement {
         else button.removeAttribute('aria-describedby');
       }
     });
+    this.#summarise();
+  }
+
+  /**
+   * "Your answers so far" on the last question: each answer in its own words (the label of the
+   * checked input), the kinds of business in the order they were ticked. A question with no answer
+   * keeps the server's "Not answered yet".
+   */
+  #summarise(): void {
+    const label = (input: HTMLInputElement | undefined): string =>
+      (input &&
+        document
+          .getElementById(input.getAttribute('aria-labelledby') ?? '')
+          ?.textContent?.trim()) ??
+      '';
+    const answers: Record<string, string[]> = {
+      [QUERY.entity]: this.#checked(QUERY.entity),
+      [QUERY.type]: this.#currentOrder(),
+    };
+    for (const slot of this.querySelectorAll<HTMLElement>('[data-summary-answer]')) {
+      const name = slot.dataset['summaryAnswer'] ?? '';
+      slot.dataset['none'] ??= slot.textContent ?? '';
+      const words = (answers[name] ?? [])
+        .map((value) => label(this.#inputs(name).find((input) => input.value === value)))
+        .filter(Boolean);
+      slot.textContent = words.length > 0 ? words.join(', ') : (slot.dataset['none'] ?? '');
+    }
   }
 }
 
