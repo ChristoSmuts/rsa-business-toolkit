@@ -41,7 +41,8 @@ import pathsData from '../data/paths.json';
 import Page from './Page.astro';
 import businessTypesFile from '../../content-meta/business-types.json';
 import BusinessTypeTiles from '../components/pages/BusinessTypeTiles.astro';
-import TypeGlance from '../components/pages/TypeGlance.astro';
+import TypeFacts from '../components/pages/TypeFacts.astro';
+import TypeJump from '../components/pages/TypeJump.astro';
 import ChecklistElsewhere from '../components/interactive/ChecklistElsewhere.astro';
 import AppliesScope from '../components/interactive/AppliesScope.astro';
 import AppliesSwitch from '../components/interactive/AppliesSwitch.astro';
@@ -202,16 +203,35 @@ const relatedTypes = businessType
           <p class="st-lead st-doc__lead st-doc__after-notice" lang={contentLangTag}>
             {doc.summary}
           </p>
-          <p class="st-cluster st-doc__meta st-doc__after-notice">
-            <Badge variant="status" icon="lucide:clock" bare>
-              {t('doc.readTime', { minutes: doc.readingTime })}
-            </Badge>
-            {doc.appliesTo.entity !== 'all' && (
-              <Badge variant="entity" bare>
-                {doc.appliesTo.entity === 'pty' ? t('doc.ptyOnly') : t('doc.soleProprietorOnly')}
+          {businessType ? (
+            <TypeFacts
+              locale={locale}
+              type={businessType}
+              reason={glanceReason}
+              reasonLang={glanceReasonLang}
+              context={context}
+            >
+              <Badge variant="status" icon="lucide:clock" bare>
+                {t('doc.readTime', { minutes: doc.readingTime })}
               </Badge>
-            )}
-          </p>
+              {doc.appliesTo.entity !== 'all' && (
+                <Badge variant="entity" bare>
+                  {doc.appliesTo.entity === 'pty' ? t('doc.ptyOnly') : t('doc.soleProprietorOnly')}
+                </Badge>
+              )}
+            </TypeFacts>
+          ) : (
+            <p class="st-cluster st-doc__meta st-doc__after-notice">
+              <Badge variant="status" icon="lucide:clock" bare>
+                {t('doc.readTime', { minutes: doc.readingTime })}
+              </Badge>
+              {doc.appliesTo.entity !== 'all' && (
+                <Badge variant="entity" bare>
+                  {doc.appliesTo.entity === 'pty' ? t('doc.ptyOnly') : t('doc.soleProprietorOnly')}
+                </Badge>
+              )}
+            </p>
+          )}
           <AiNotice
             verification={doc.verification}
             hasPageSources={hasOwnSources(doc.sources)}
@@ -219,19 +239,14 @@ const relatedTypes = businessType
             manifest={manifest}
           />
           <TranslationNotice status={translationStatus} locale={locale} englishHref={englishHref} />
+          {businessType && (
+            <TypeJump
+              locale={locale}
+              links={glanceLinks(businessType, doc)}
+              contentLang={contentLangTag}
+            />
+          )}
         </header>
-
-        {businessType && (
-          <TypeGlance
-            locale={locale}
-            type={businessType}
-            reason={glanceReason}
-            reasonLang={glanceReasonLang}
-            links={glanceLinks(businessType, doc)}
-            contentLang={contentLangTag}
-            context={context}
-          />
-        )}
 
         {!template && (
           <TableOfContents
@@ -419,6 +434,27 @@ const relatedTypes = businessType
   .st-doc article > st-toc > .st-toc--details,
   .st-doc article > .st-doc__more {
     margin-block-start: calc(var(--st-space-4) - var(--st-space-6));
+  }
+
+  /*
+   * A business type's facts and its "Go straight to" links (other components, so global). On a
+   * short phone screen the facts follow the lead and the meta line after the notices, as they do in
+   * the HTML, and the links stay last (see the scoped rule for `.st-doc__after-notice`).
+   */
+
+  /* Under "Go straight to" (44px targets, their words centred) the contents sit 8px down, not 16px. */
+  .st-doc article > header:has(> .st-type-jump) + st-toc > .st-toc--details {
+    margin-block-start: calc(var(--st-space-2) - var(--st-space-6));
+  }
+
+  @media (width < 768px) and (height < 740px), (orientation: landscape) and (height < 500px) {
+    .st-doc__header > .st-type-facts {
+      order: 1;
+    }
+
+    .st-doc__header > .st-type-jump {
+      order: 2;
+    }
   }
 
   @media (width < 1280px) {

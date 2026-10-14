@@ -234,7 +234,7 @@ const { labelledby, wide = false, stack, class: className } = Astro.props;
 
     .st-table-scroll[data-stack='rows'] tbody tr {
       margin-block-end: var(--st-space-3);
-      padding: var(--st-space-1) var(--st-space-3);
+      padding: var(--st-space-2) var(--st-space-3);
       border: var(--st-border-width) solid var(--st-border);
       border-radius: var(--st-radius-md);
       background-color: var(--st-surface);
@@ -244,14 +244,11 @@ const { labelledby, wide = false, stack, class: className } = Astro.props;
       margin-block-end: 0;
     }
 
+    /* No rule between a card's cells: each label already starts its cell (critique, round 1). */
     .st-table-scroll[data-stack='rows'] tbody td {
-      padding: var(--st-space-2) 0;
-      border-block-end: var(--st-border-width) solid var(--st-border);
+      padding: var(--st-space-1) 0;
+      border: 0;
       text-align: start;
-    }
-
-    .st-table-scroll[data-stack='rows'] tbody tr > :last-child {
-      border-block-end: 0;
     }
 
     .st-table-scroll[data-stack='rows'] tbody td[data-label]::before {

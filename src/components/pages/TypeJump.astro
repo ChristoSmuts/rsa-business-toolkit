@@ -1,0 +1,93 @@
+---
+/**
+ * "Go straight to" on a business type (WP-50 Phase 3, item 3): links to the parts of the page a
+ * first-time owner looks for, named by their own headings: what else the type needs, how long it
+ * takes (where the page says) and its checklist, which on the vehicle dealer is 30,000px down a
+ * phone. The text's first section is left out: it starts right under the disclosures anyway.
+ *
+ * It sits after the AI notice, so it never pushes the notice off the first screen. Each link is a
+ * 44px target; the arrow says "further down this page".
+ */
+import Icon from '../ui/Icon.astro';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { GlanceLink } from '../../lib/business-types';
+
+interface Props {
+  locale: Locale;
+  links: readonly GlanceLink[];
+  /** `lang` for the headings' words when the document is not in the page's language. */
+  contentLang?: string | undefined;
+}
+
+const { locale, links, contentLang } = Astro.props;
+const t = useTranslations(locale);
+const labelId = 'st-type-jump-label';
+---
+
+{links.length > 0 && (
+  <div class="st-type-jump st-no-print">
+    <p class="st-type-jump__label" id={labelId}>
+      {t('businessTypes.glance.goTo')}
+    </p>
+    <ul class="st-type-jump__links" role="list" aria-labelledby={labelId}>
+      {links.map((link) => (
+        <li>
+          <a href={`#${link.id}`} data-jump={link.kind}>
+            <span class="st-type-jump__arrow">
+              <Icon name="lucide:arrow-down" />
+            </span>
+            <span lang={contentLang}>{link.text}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+
+<style>
+  /*
+   * The label and the links share a row while they fit; a 44px row each when they wrap. The row
+   * sits 4px under the notices, not the header's 12px: a 44px target already centres its words
+   * about 10px below its top.
+   */
+  .st-type-jump {
+    margin-block-start: calc(var(--st-space-1) - var(--st-space-3));
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--st-space-3);
+    align-items: center;
+    max-inline-size: var(--st-measure);
+  }
+
+  .st-type-jump__label {
+    margin: 0;
+    padding-block: var(--st-space-1);
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+  }
+
+  /* The links wrap as a row; each one is a 44px target. */
+  .st-type-jump__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--st-space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .st-type-jump__links a {
+    display: flex;
+    gap: var(--st-space-1);
+    align-items: center;
+    min-block-size: var(--st-target);
+    overflow-wrap: break-word;
+  }
+
+  .st-type-jump__arrow {
+    display: inline-flex;
+    flex: none;
+    color: var(--st-text-muted);
+  }
+</style>

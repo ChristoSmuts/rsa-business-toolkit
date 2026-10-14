@@ -851,7 +851,6 @@
     "effortLabel": "Setup effort",
     "effortScale": "{level} of {total}",
     "glance": {
-      "heading": "Before you can trade",
       "goTo": "Go straight to"
     },
     "effort": {

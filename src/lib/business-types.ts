@@ -11,7 +11,7 @@
  *   and "what do I tick off", by heading id (`BusinessType.glance`), with their headings' words in
  *   the document's language.
  */
-import { plainText } from './content/render';
+import { plainText, TERMS_HEADING_ID } from './content/render';
 import type { Block, BusinessType, Doc, InlineRun } from './content/schema';
 
 type TableBlock = Extract<Block, { kind: 'table' }>;
@@ -54,15 +54,21 @@ export interface GlanceLink {
   readonly kind: 'need' | 'timing' | 'checklist';
 }
 
-/** The sections "Before you can trade" links to, in the order the reader needs them. */
+/**
+ * The sections "Go straight to" links to, in the order the reader needs them. The text's first
+ * section is left out (on all six types it is the first "what you need" section): it starts right
+ * under the disclosures, so a link to it would only repeat the next thing on the page.
+ */
 export function glanceLinks(type: BusinessType, doc: Pick<Doc, 'headings'>): GlanceLink[] {
   const { need, timing, checklist } = type.glance;
+  const first = doc.headings.find((entry) => entry.id !== TERMS_HEADING_ID && !entry.pseudo)?.id;
   const wanted: [string, GlanceLink['kind']][] = [
     ...need.map((id): [string, GlanceLink['kind']] => [id, 'need']),
     ...(timing ? [[timing, 'timing'] as [string, GlanceLink['kind']]] : []),
     [checklist, 'checklist'],
   ];
   return wanted.flatMap(([id, kind]) => {
+    if (id === first) return [];
     const heading = doc.headings.find((entry) => entry.id === id && !entry.pseudo);
     return heading ? [{ id, text: heading.text, kind }] : [];
   });

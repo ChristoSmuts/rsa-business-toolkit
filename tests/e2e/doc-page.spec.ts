@@ -10,7 +10,8 @@ import { REPO_ROOT } from './helpers/routes';
  * "Layout concepts → Document"; `src/layouts/Doc.astro`).
  *
  * - The top of the page, in order: a one-line breadcrumb with the section's hue dot (no "Section:"
- *   label), the H1, the lead, the read time and the effort meter on one line, the compact AI notice,
+ *   label), the H1, the lead, the read time and the effort meter on one line (on a business type,
+ *   inside its facts, `tests/e2e/types.spec.ts`), the compact AI notice,
  *   the translation notice, then two closed disclosures with a chevron, then the text.
  * - On the vehicle-dealer page the text's first heading is within two phone screens at 360×740.
  * - From 1280px: no left section sidebar, and a quiet contents column of h2 sections on the right.
@@ -47,7 +48,8 @@ test.describe('the top of a document page', () => {
         '.st-breadcrumb',
         'article h1',
         'article header .st-lead',
-        'article header .st-doc__meta',
+        // On a business type the read time and the effort meter are the type's facts (item 3).
+        'article header .st-type-facts',
         '.st-ai-notice',
         'details.st-toc--details',
         'details#words-used-in-this-file',
@@ -59,8 +61,13 @@ test.describe('the top of a document page', () => {
         tops.every((top, index) => index === 0 || top > (tops[index - 1] ?? 0)),
         `${route}: ${tops.join(', ')}`,
       ).toBe(true);
-      // The read time and the effort meter share one paragraph.
-      await expect(page.locator('article header .st-doc__meta .st-effort')).toHaveCount(1);
+      // The read time and the effort meter share one line of the type's facts.
+      await expect(
+        page.locator('article header .st-type-facts__line').filter({
+          has: page.locator('.st-effort'),
+        }),
+      ).toHaveCount(1);
+      await expect(page.locator('article header .st-type-facts__line .st-badge')).toHaveCount(1);
       // No "Section:" label: the breadcrumb names the section, with a dot in its hue.
       await expect(page.locator('.st-doc__section')).toHaveCount(0);
       await expect(page.locator('.st-breadcrumb .st-breadcrumb__dot')).toBeVisible();

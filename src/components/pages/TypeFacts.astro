@@ -1,0 +1,132 @@
+---
+/**
+ * A business type's facts, in its page's header (WP-50 Phase 3, item 3): what it takes before you
+ * can trade, on the first screen of a phone, so a first-time owner does not hunt for it.
+ *
+ * The card set's fact shape (a 3px veld-green rule above), holding the type tile's two-tone
+ * illustration on its section tint (D5: the illustrations stay; the reader sees the picture of the
+ * tile they tapped), the setup effort as the five-bar meter with its level in words, and the hub's
+ * "Main reason" for that level ("Certificate of Acceptability, training, inspections"), in the
+ * hub's language. Every word comes from the markdown (`src/lib/business-types.ts`): it adds no
+ * fact.
+ *
+ * It has no link or control, so `Doc.astro` can move it after the AI notice on a short phone screen
+ * (`st-doc__after-notice`) without changing the order of focus.
+ */
+import EffortMeter from '../ui/EffortMeter.astro';
+import Inline from '../content/Inline.astro';
+import { TYPE_ILLUSTRATIONS } from '../illustrations/by-type';
+import { useTranslations } from '../../i18n';
+import type { Locale } from '../../i18n/locales';
+import type { ContentContext } from '../../lib/content/context';
+import type { BusinessType, InlineRun } from '../../lib/content/schema';
+import { effortLevel } from '../../lib/pages';
+
+interface Props {
+  locale: Locale;
+  type: BusinessType;
+  /** The hub's "Main reason" cell for this type, when the table has it. */
+  reason: readonly InlineRun[] | undefined;
+  /** `lang` for the reason when its language is not the page's. */
+  reasonLang?: string | undefined;
+  context: ContentContext;
+  class?: string | undefined;
+}
+
+const { locale, type, reason, reasonLang, context, class: className } = Astro.props;
+const t = useTranslations(locale);
+const Illustration = TYPE_ILLUSTRATIONS[type.id];
+const level = effortLevel(type.effort);
+const effortLabels = [
+  t('businessTypes.effort.lowest'),
+  t('businessTypes.effort.low-medium'),
+  t('businessTypes.effort.medium'),
+  t('businessTypes.effort.medium-high'),
+  t('businessTypes.effort.high'),
+] as const;
+---
+
+<div class:list={['st-type-facts', className]} data-section="types">
+  <span class="st-type-facts__art">
+    <Illustration />
+  </span>
+  <p class="st-type-facts__text">
+    <span class="st-cluster st-type-facts__line">
+      <slot />
+      <EffortMeter
+        level={level}
+        label={t('businessTypes.effortLabel')}
+        levelLabels={effortLabels}
+        scaleText={t('businessTypes.effortScale', { level, total: 5 })}
+      />
+    </span>
+    {reason && (
+      <span class="st-type-facts__reason" lang={reasonLang}>
+        <Inline runs={reason} context={context} />
+      </span>
+    )}
+  </p>
+</div>
+
+<style>
+  .st-type-facts {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: var(--st-space-3);
+    align-items: center;
+    align-self: start;
+    inline-size: fit-content;
+    max-inline-size: min(100%, var(--st-measure));
+  }
+
+  /* The type tile's art square, smaller: the illustration on the tint, its fills in white. */
+  .st-type-facts__art {
+    --st-illustration-fill: var(--st-surface);
+    --st-illustration-size: 2.25rem;
+
+    display: grid;
+    place-items: center;
+    inline-size: 3rem;
+    block-size: 3rem;
+    border-radius: var(--st-radius-sm);
+    background-color: var(--st-section-tint);
+  }
+
+  .st-type-facts__text {
+    display: grid;
+    gap: var(--st-space-1);
+    min-inline-size: 0;
+    margin: 0;
+  }
+
+  /* The read time (the slot) and the meter on one line, as on every document's meta line. */
+  .st-type-facts__line {
+    --st-cluster-gap: var(--st-space-1) var(--st-space-4);
+  }
+
+  .st-type-facts__reason {
+    display: block;
+  }
+
+  /*
+   * Critique, round 1 ("remove one accessory"): on a phone the art square took 60px of a 288px
+   * line, and the Afrikaans reason ("Certificate of Acceptability (Sertifikaat van
+   * Aanvaarbaarheid), opleiding, inspeksies") wrapped to four lines beside it. Below 480px the words
+   * get the line; the reader has just seen the picture on the tile they tapped.
+   */
+  @media (width < 480px) {
+    .st-type-facts {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .st-type-facts__art {
+      display: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .st-type-facts__art {
+      border: 1px solid CanvasText;
+    }
+  }
+</style>
