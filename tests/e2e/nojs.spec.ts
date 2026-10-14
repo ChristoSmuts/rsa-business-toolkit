@@ -196,6 +196,20 @@ test.describe('the interactive pieces without JavaScript', () => {
     await page.goto('./');
     await expect(page.locator('st-lang-banner')).toBeHidden();
   });
+
+  test('the stoep and the card set need no script (WP-50 Phase 3)', async ({ page, basePath }) => {
+    await page.goto('./');
+    await expect(page.locator('.st-stoep__steps > li')).toHaveCount(3);
+    await page.locator('.st-stoep__link').click();
+    await expect(page).toHaveURL(new RegExp(`${basePath}find-my-path/$`));
+    await page.goto('paperwork/');
+    await page
+      .locator('.st-card[data-variant="tool"]')
+      .first()
+      .getByRole('link', { name: /^Open template: / })
+      .click();
+    await expect(page).toHaveURL(/\/templates\/quotation\/$/);
+  });
 });
 
 /**

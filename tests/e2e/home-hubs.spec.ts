@@ -1,0 +1,233 @@
+import type { Locator, Page } from '@playwright/test';
+import { expect, test } from './fixtures';
+
+/**
+ * WP-50 Phase 3, item 2: the home page, the section hubs and the card set, to direction A
+ * (`docs/work-packages/WP-50-directions.md`, "Layout concepts → Home" and "Section hub", "The card
+ * set", and decision D4 = A1, the stoep).
+ *
+ * - Home: the stoep previews Find my path's three questions as three steps widening downward under
+ *   the logo's roof, links into the wizard, and fits 320px in Afrikaans.
+ * - The card set: a page to read is a row (no box), a tool is a framed panel whose button-shaped
+ *   action is its link, a kind of business is a tile, a step on a path is a numbered circle. Each
+ *   shape means one thing on every page that shows it.
+ * - Hubs: the pages to read in order as rows, the section's tools as tools.
+ * - Hover changes colours only, and only for a pointer that can hover; nothing moves.
+ */
+const RESULT = 'find-my-path/result/pty/vehicle-dealer/pty-growing/';
+
+async function box(locator: Locator): Promise<{ x: number; y: number; w: number; h: number }> {
+  const rect = await locator.evaluate((el) => {
+    const r = el.getBoundingClientRect();
+    return { x: r.left, y: r.top + window.scrollY, w: r.width, h: r.height };
+  });
+  return rect;
+}
+
+async function style(locator: Locator, property: string): Promise<string> {
+  return locator.evaluate((el, name) => getComputedStyle(el).getPropertyValue(name), property);
+}
+
+async function noSidewaysScroll(page: Page): Promise<void> {
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= document.documentElement.clientWidth,
+    ),
+  ).toBe(true);
+}
+
+test.describe('the home page', () => {
+  test('the stoep shows the three questions as widening steps under a roof', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('./');
+    const stoep = page.locator('figure.st-stoep');
+    await expect(stoep).toBeVisible();
+    await expect(stoep.locator('svg.st-stoep__roof')).toHaveAttribute('aria-hidden', 'true');
+    const steps = stoep.locator('.st-stoep__steps > li');
+    await expect(steps).toHaveText(['How you trade', 'Kind of business', 'Where you are now']);
+    const widths = await steps.evaluateAll((items) =>
+      items.map((item) => item.getBoundingClientRect().width),
+    );
+    expect(widths[0]).toBeLessThan(widths[1] ?? 0);
+    expect(widths[1]).toBeLessThan(widths[2] ?? 0);
+    await expect(stoep.locator('figcaption')).toHaveText(
+      'Three short questions. Then you get the steps that apply to you, in order.',
+    );
+    // On the wide screen it sits beside the hero's words, not under them.
+    const text = await box(page.locator('.st-home__hero-text'));
+    const figure = await box(stoep);
+    expect(figure.x).toBeGreaterThan(text.x + text.w - 1);
+  });
+
+  test('the stoep links into the wizard: a tap on a step opens it', async ({ page, basePath }) => {
+    await page.goto('./');
+    const link = page.locator('.st-stoep__link');
+    await expect(link).toHaveAttribute('href', `${basePath}find-my-path/`);
+    // The caption's link covers the figure, so the step is under it: click where the step is.
+    await page.locator('.st-stoep__steps > li').nth(1).click({ force: true });
+    await expect(page).toHaveURL(/\/find-my-path\/$/);
+  });
+
+  test('the stoep fits 320px in Afrikaans, and every step keeps its words', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 568 });
+    await page.goto('af/');
+    await noSidewaysScroll(page);
+    const steps = page.locator('.st-stoep__steps > li');
+    await expect(steps).toHaveText(['Hoe jy handel dryf', 'Soort besigheid', 'Waar jy nou is']);
+    for (const clipped of await steps.evaluateAll((items) =>
+      items.map((item) => item.scrollWidth > item.clientWidth),
+    ))
+      expect(clipped).toBe(false);
+  });
+
+  test('the stoep keeps its edges in forced colours', async ({ page }) => {
+    await page.emulateMedia({ forcedColors: 'active' });
+    await page.goto('./');
+    const step = page.locator('.st-stoep__steps > li').first();
+    expect(await style(step, 'border-top-style')).toBe('solid');
+  });
+
+  test('where to start: two pages to read and one tool', async ({ page, basePath }) => {
+    await page.goto('./');
+    const where = page.locator('section[aria-labelledby="home-where"]');
+    await expect(where.locator('.st-card[data-variant="page"]')).toHaveCount(2);
+    const tool = where.locator('.st-card[data-variant="tool"]');
+    await expect(tool).toHaveCount(1);
+    await expect(tool.getByRole('link')).toHaveAccessibleName('Open the checklist');
+    await expect(tool.getByRole('link')).toHaveAttribute('href', `${basePath}checklist/`);
+    await expect(page.locator('.st-type-tiles .st-card[data-variant="type"]')).toHaveCount(7);
+    // The three numbers are facts with a rule, and their figures use Fraunces' wght-only settings.
+    const value = page.locator('.st-home__number-value').first();
+    expect(await style(value, 'font-weight')).toBe('600');
+    expect(await style(value, 'font-variation-settings')).toBe('normal');
+  });
+});
+
+test.describe('the card set', () => {
+  test('each shape looks like what it is', async ({ page }) => {
+    await page.goto('./');
+    const row = page.locator('.st-card[data-variant="page"]').first();
+    const tool = page.locator('.st-card[data-variant="tool"]').first();
+    const tile = page.locator('.st-card[data-variant="type"]').first();
+    // A page to read has no box: no fill, no shadow, a rule in the section's hue on its start.
+    expect(await style(row, 'background-color')).toBe('rgba(0, 0, 0, 0)');
+    expect(await style(row, 'box-shadow')).toBe('none');
+    expect(await style(row, 'border-left-width')).toBe('4px');
+    expect(await style(row, 'border-top-width')).toBe('0px');
+    // A tool is framed all round, 2px, with the large radius.
+    for (const side of ['top', 'right', 'bottom', 'left'])
+      expect(await style(tool, `border-${side}-width`)).toBe('2px');
+    expect(await style(tool, 'border-top-left-radius')).toBe('14px');
+    // A kind of business is a tile with a hairline.
+    expect(await style(tile, 'border-top-width')).toBe('1px');
+    expect(await style(tile, 'box-shadow')).toBe('none');
+  });
+
+  test('hover changes a colour and moves nothing, only for a pointer that can hover', async ({
+    page,
+  }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'A touch screen has no hover.');
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('./');
+    for (const [card, part] of [
+      ['.st-card[data-variant="page"]', '.st-card__link'],
+      ['.st-card[data-variant="tool"]', '.st-card__action'],
+    ] as const) {
+      const target = page.locator(card).first();
+      const before = await box(target);
+      const colour = await style(target.locator(part), 'color');
+      await target.hover({ position: { x: 8, y: 8 } });
+      await expect.poll(() => style(target.locator(part), 'color')).not.toBe(colour);
+      expect(await box(target)).toEqual(before);
+      expect(await style(target, 'transform')).toBe('none');
+    }
+  });
+
+  test('a touch screen gets no hover state', async ({ page }) => {
+    await page.emulateMedia({ media: 'screen' });
+    await page.goto('./');
+    // The hover rules sit inside `(hover: hover)`, so a touch device never matches them.
+    const gated = await page.evaluate(() => {
+      const found: string[] = [];
+      for (const sheet of document.styleSheets) {
+        let rules: CSSRuleList;
+        try {
+          rules = sheet.cssRules;
+        } catch {
+          continue;
+        }
+        const walk = (list: CSSRuleList, inHover: boolean): void => {
+          for (const rule of list) {
+            if (rule instanceof CSSMediaRule)
+              walk(rule.cssRules, inHover || rule.conditionText.includes('hover: hover'));
+            else if (
+              rule instanceof CSSStyleRule &&
+              /\.st-card|\.st-stoep/.test(rule.selectorText) &&
+              rule.selectorText.includes(':hover') &&
+              !inHover
+            )
+              found.push(rule.selectorText);
+          }
+        };
+        walk(rules, false);
+      }
+      return found;
+    });
+    expect(gated).toEqual([]);
+  });
+});
+
+test.describe('section hubs', () => {
+  test('the pages to read are rows in order, the templates are tools', async ({
+    page,
+    basePath,
+  }) => {
+    await page.goto('paperwork/');
+    await expect(page.locator('.st-section-header')).toBeVisible();
+    const rows = page.locator('.st-section-page__list > li');
+    await expect(rows).toHaveCount(2);
+    await expect(rows.first().locator('a').first()).toHaveAttribute(
+      'href',
+      `${basePath}paperwork/which-template-to-use-when/`,
+    );
+    await expect(page.getByText(/^Page \d+ of \d+$/)).toHaveCount(0);
+    const tools = page.locator('.st-section-page__tools .st-card[data-variant="tool"]');
+    await expect(tools).toHaveCount(5);
+    const action = tools.first().getByRole('link');
+    await expect(action).toHaveText('Open template');
+    await expect(action).toHaveAccessibleName(/^Open template: \S/);
+  });
+
+  test('the checklist is a tool on Look it up', async ({ page, basePath }) => {
+    await page.goto('look-it-up/');
+    await expect(page.locator('.st-section-page__list > li')).toHaveCount(2);
+    const tool = page.locator('.st-card[data-variant="tool"]');
+    await expect(tool).toHaveCount(1);
+    await expect(tool.getByRole('link')).toHaveAttribute('href', `${basePath}checklist/`);
+  });
+
+  test('the templates index shows the templates as tools', async ({ page }) => {
+    await page.goto('templates/');
+    await expect(page.locator('.st-templates__list .st-card[data-variant="tool"]')).toHaveCount(5);
+  });
+});
+
+test.describe('a step on a path', () => {
+  test('is a numbered circle on a rail, the number from the step', async ({ page }) => {
+    await page.goto(`${RESULT}?entity=pty&type=vehicle-dealer&stage=pty-growing`);
+    const steps = page.locator('.st-step');
+    const count = await steps.count();
+    expect(count).toBeGreaterThan(2);
+    for (let index = 0; index < count; index++) {
+      const step = steps.nth(index);
+      await expect(step).toHaveAttribute('data-n', String(index + 1));
+      const number = await step.evaluate((el) => getComputedStyle(el, '::before').content);
+      expect(number).toContain(`"${index + 1}"`);
+      // "Step 3" is still there for assistive technology.
+      await expect(step.locator('[data-step-label]')).toHaveText(`Step ${index + 1}`);
+    }
+    // The last step has no rail below it.
+    const last = await steps.last().evaluate((el) => getComputedStyle(el, '::after').display);
+    expect(last).toBe('none');
+  });
+});
