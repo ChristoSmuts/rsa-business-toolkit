@@ -83,7 +83,7 @@ Done, waiting for review: direction A's focus ring and rooibos rule in the token
 Work in reader-traffic order. Each item is a separate commit series and review:
 
 1. the document page (`Doc.astro` and the content components): the most-read page and the one most often read on a phone. Done, waiting for review: see `docs/design-system.md`, "The document page (WP-50 Phase 3)", and `docs/reviews/WP-50-phase3-doc/`;
-2. the home page and the section hubs;
+2. the home page and the section hubs. Done, waiting for review: the stoep (D4 = A1) on home, the card set (page row, tool, type tile, step, fact) on home, the hubs, the business-types hub, `/templates/` and My path, and the hubs' tools as tools; see `docs/design-system.md`, "The home page, the hubs and the card set (WP-50 Phase 3)", and `docs/reviews/WP-50-phase3-home/`;
 3. business-type pages;
 4. the tools: Find my path, My path, the templates, the checklist and the search dialog;
 5. the header, footer and navigation. Known from WP-50a: at 320px the top bar changes rows when the web fonts arrive (217px before, 165px after: a layout shift of about 0.13, with or without the language banner). The new header must stay at or under the 0.1 limit at 320px with the fonts held, and keep the AI notice on the first screen at 320×568 (`tests/e2e/first-screen.spec.ts`);
