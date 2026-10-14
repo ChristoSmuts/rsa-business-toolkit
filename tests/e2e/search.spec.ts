@@ -185,22 +185,35 @@ test.describe('the search dialog', () => {
     await expect(page.locator('[role="option"][href$="/glossary/#emp201"]')).toBeVisible();
   });
 
-  /** Hold every index request until `release()` is called. */
-  async function holdIndex(page: Page, baseURL: string | undefined): Promise<() => void> {
+  /**
+   * Hold every index request until `release()` is called. `requested` settles once the dialog has
+   * asked for the index: only from then on is the index what the dialog waits for. Before it, the
+   * dialog's own script may still be on its way, and keys typed then are another case (the tests
+   * under "the search dialog while it loads").
+   */
+  async function holdIndex(
+    page: Page,
+    baseURL: string | undefined,
+  ): Promise<{ release: () => void; requested: Promise<void> }> {
     let release: () => void = () => undefined;
+    let asked: () => void = () => undefined;
     const gate = new Promise<void>((resolve) => {
       release = resolve;
+    });
+    const requested = new Promise<void>((resolve) => {
+      asked = resolve;
     });
     await routeSameOrigin(
       page,
       baseURL,
       (url) => /\/search\/[a-z]{2,3}\.[0-9a-f]{10}\.json$/.test(url.pathname),
       async (route) => {
+        asked();
         await gate;
         await route.continue();
       },
     );
-    return () => release();
+    return { release: () => release(), requested };
   }
 
   // Review WP-33 pass 2, major 1 and minor 3: Enter while the index is still loading.
@@ -208,10 +221,11 @@ test.describe('the search dialog', () => {
     page,
     baseURL,
   }) => {
-    const release = await holdIndex(page, baseURL);
+    const { release, requested } = await holdIndex(page, baseURL);
     await open(page, DOC);
     await page.keyboard.press('/');
     await field(page).fill('PIS');
+    await requested;
     await page.keyboard.press('Enter');
     await expect(dialog(page)).toBeVisible();
     release();
@@ -219,11 +233,12 @@ test.describe('the search dialog', () => {
   });
 
   test('Enter while the index loads, then Escape: nothing opens', async ({ page, baseURL }) => {
-    const release = await holdIndex(page, baseURL);
+    const { release, requested } = await holdIndex(page, baseURL);
     await open(page, DOC);
     const before = page.url();
     await page.keyboard.press('/');
     await field(page).fill('notional input tax');
+    await requested;
     await page.keyboard.press('Enter');
     await page.keyboard.press('Escape');
     await expect(dialog(page)).toBeHidden();
@@ -352,6 +367,329 @@ test.describe('the search dialog while it loads', () => {
     await expect(page.getByRole('option').first()).toBeVisible();
     await expect(status(page)).toContainText(/result/);
     await expect(common(page)).toBeHidden();
+  });
+
+  /*
+   * Enter, Escape and the close button before the dialog's own script has arrived. Enter submitted
+   * the form to the search page, Escape with text in the field only cleared the text, and a tap on
+   * Close did nothing: on a slow phone a reader quicker than the script lost them all (and the e2e
+   * tests above sometimes did, under CPU load). A held Enter is cancelled as the script cancels an
+   * Enter waiting for the index (`search-ui.ts`, `enterCurrent()`): by closing the dialog or by
+   * changing the text.
+   */
+  // The dialog's script (`search.<hash>.js`), not the search page's (`search.astro_….js`).
+  const SCRIPT = /\/_astro\/search\.[\w-]{8}\.js$/;
+  const holdScript = (page: Page, baseURL: string | undefined) =>
+    holdRequests(page, baseURL, (url) => SCRIPT.test(url.pathname));
+  /**
+   * Resolves once the script has run. Whatever it does with a held Enter it does in the same turn
+   * (`openSearch()`'s `then`), before this polling function can run again.
+   */
+  const scriptArrived = (page: Page) =>
+    page.waitForFunction(() => customElements.get('st-search') !== undefined);
+  /** From now on, count the submits of the dialog's form: a replayed Enter is one. */
+  const countSubmits = (page: Page) =>
+    page.evaluate(() => {
+      const counter = { submits: 0 };
+      Object.assign(window, { stSubmits: counter });
+      document.addEventListener('submit', () => (counter.submits += 1), true);
+    });
+  const submits = (page: Page) =>
+    page.evaluate(
+      () => (window as unknown as { stSubmits: { submits: number } }).stSubmits.submits,
+    );
+
+  test('Enter before the script arrives opens the result for the text once it does', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdScript(page, baseURL);
+    await open(page, DOC);
+    const before = page.url();
+    await page.keyboard.press('/');
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    await expect(status(page)).toHaveText('Loading search…');
+    await expect(dialog(page)).toBeVisible();
+    expect(page.url()).toBe(before);
+    release();
+    await expect(page).toHaveURL(/\/glossary\/#pis$/);
+  });
+
+  test('Enter, then Escape, before the script arrives: nothing opens', async ({
+    page,
+    baseURL,
+  }) => {
+    const requests = indexRequests(page);
+    const release = await holdScript(page, baseURL);
+    await open(page, DOC);
+    const before = page.url();
+    await page.keyboard.press('/');
+    await field(page).fill('notional input tax');
+    await page.keyboard.press('Enter');
+    await countSubmits(page);
+    await page.keyboard.press('Escape');
+    await expect(dialog(page)).toBeHidden();
+    release();
+    await scriptArrived(page);
+    expect(await submits(page), 'the Enter is not replayed').toBe(0);
+    expect(page.url()).toBe(before);
+    await expect(dialog(page)).toBeHidden();
+    expect(requests, 'a closed dialog fetches no index').toHaveLength(0);
+  });
+
+  test('Enter, then the close button, before the script arrives: it closes, and nothing opens', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdScript(page, baseURL);
+    await open(page, DOC);
+    const before = page.url();
+    await page.locator('a.st-topbar__search').click();
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    await countSubmits(page);
+    await dialog(page).locator('[data-search-close]').click();
+    await expect(dialog(page)).toBeHidden();
+    release();
+    await scriptArrived(page);
+    expect(await submits(page), 'the Enter is not replayed').toBe(0);
+    expect(page.url()).toBe(before);
+    await expect(dialog(page)).toBeHidden();
+  });
+
+  test('Enter, then other text, before the script arrives: the script searches it and opens nothing', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdScript(page, baseURL);
+    await open(page, DOC);
+    const before = page.url();
+    await page.keyboard.press('/');
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    await countSubmits(page);
+    await field(page).fill('EMP201');
+    release();
+    await scriptArrived(page);
+    // The script took over and searched the new text: it is past any replay.
+    await expect(page.locator('[role="option"][href$="/glossary/#emp201"]')).toBeVisible();
+    expect(await submits(page), 'the Enter is not replayed').toBe(0);
+    expect(page.url()).toBe(before);
+    await expect(dialog(page)).toBeVisible();
+  });
+
+  /*
+   * A script that stalls (neither loads nor fails): a held Enter goes to the search page
+   * `HELD_ENTER_MS` (8 s, search-boot.ts) after the latest Enter, once. The page's clock is
+   * Playwright's: installed before the page loads, so the page loads with time flowing, then
+   * paused, so that only the test moves it, instead of waiting 8 s.
+   */
+  const HELD_ENTER_MS = 8000;
+  const SEARCH_PAGE = /\/search\/\?q=PIS$/;
+  const START = new Date('2026-01-05T08:00:00+02:00');
+  const installClock = (page: Page) => page.clock.install({ time: START });
+  const pauseClock = (page: Page) => page.clock.pauseAt(START.getTime() + 3_600_000);
+
+  test('Enter while the script never arrives goes to the search page 8 s later', async ({
+    page,
+    baseURL,
+  }) => {
+    await installClock(page);
+    // Held for the whole test: a stalled connection neither loads the script nor fails it.
+    await holdScript(page, baseURL);
+    await open(page, DOC);
+    await pauseClock(page);
+    const before = page.url();
+    await page.keyboard.press('/');
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    await page.clock.runFor(HELD_ENTER_MS - 100);
+    await expect(dialog(page)).toBeVisible();
+    expect(page.url()).toBe(before);
+    await page.clock.runFor(100);
+    await expect(page).toHaveURL(SEARCH_PAGE);
+  });
+
+  test('an Enter cancelled by Escape does not cut the wait of the next Enter short', async ({
+    page,
+    baseURL,
+  }) => {
+    await installClock(page);
+    await holdScript(page, baseURL);
+    await open(page, DOC);
+    await pauseClock(page);
+    const before = page.url();
+    await page.keyboard.press('/');
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    await page.keyboard.press('Escape');
+    await expect(dialog(page)).toBeHidden();
+    await page.clock.runFor(6000);
+    await page.keyboard.press('/');
+    await expect(field(page)).toHaveValue('PIS');
+    await page.keyboard.press('Enter');
+    // The first Enter's timer would have fired 2 s after this one.
+    await page.clock.runFor(HELD_ENTER_MS - 100);
+    await expect(dialog(page)).toBeVisible();
+    expect(page.url()).toBe(before);
+    await page.clock.runFor(100);
+    await expect(page).toHaveURL(SEARCH_PAGE);
+  });
+
+  test('a second Enter replaces the first: the wait counts from the second', async ({
+    page,
+    baseURL,
+  }) => {
+    await installClock(page);
+    await holdScript(page, baseURL);
+    await open(page, DOC);
+    await pauseClock(page);
+    const before = page.url();
+    await page.keyboard.press('/');
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    await page.clock.runFor(3000);
+    await page.keyboard.press('Enter');
+    await page.clock.runFor(HELD_ENTER_MS - 100);
+    await expect(dialog(page)).toBeVisible();
+    expect(page.url()).toBe(before);
+    await page.clock.runFor(100);
+    await expect(page).toHaveURL(SEARCH_PAGE);
+  });
+
+  test('a script that arrives after the 8 s fallback does not replay the Enter', async ({
+    page,
+    baseURL,
+  }) => {
+    await installClock(page);
+    const releaseScript = await holdScript(page, baseURL);
+    await open(page, DOC);
+    await pauseClock(page);
+    // Held from now on: the search page loads as slowly as the script did.
+    const releasePage = await holdRequests(page, baseURL, (url) =>
+      url.pathname.endsWith('/search/'),
+    );
+    await page.keyboard.press('/');
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    // While the search page is on its way the page cannot be asked (page.evaluate waits for the
+    // next document), so it reports each submit on the console.
+    const replays: string[] = [];
+    page.on('console', (message) => {
+      if (message.text() === 'st-submit') replays.push(message.text());
+    });
+    await page.evaluate(() => {
+      document.addEventListener('submit', () => console.log('st-submit'), true);
+    });
+    const leaving = page.waitForRequest(
+      (request) => request.isNavigationRequest() && SEARCH_PAGE.test(request.url()),
+    );
+    await page.clock.runFor(HELD_ENTER_MS);
+    await leaving;
+    // The script arrives on the page that is still shown. It replays a held Enter in the turn it
+    // runs in; it asks for the index only after loading the results code, a round trip later.
+    const indexAsked = page.waitForRequest((request) =>
+      /\/search\/[a-z]{2,3}\.[0-9a-f]{10}\.json$/.test(new URL(request.url()).pathname),
+    );
+    releaseScript();
+    await indexAsked;
+    expect(replays, 'the Enter is not replayed').toEqual([]);
+    releasePage();
+    await expect(page).toHaveURL(SEARCH_PAGE);
+    await expect(page.locator('#st-search-q')).toHaveValue('PIS');
+  });
+
+  test(
+    'a dialog closed before its script fails to load stays closed, on the same page',
+    {
+      annotation: allowConsoleError(
+        '/ERR_FAILED|Failed to fetch dynamically imported module|error loading dynamically imported module/',
+        'The test makes the dialog script fail on purpose.',
+      ),
+    },
+    async ({ page, baseURL }) => {
+      let fail: () => void = () => undefined;
+      const gate = new Promise<void>((resolve) => {
+        fail = resolve;
+      });
+      let scriptUrl = '';
+      await routeSameOrigin(
+        page,
+        baseURL,
+        (url) => SCRIPT.test(url.pathname),
+        async (route) => {
+          scriptUrl = route.request().url();
+          await gate;
+          await route.abort();
+        },
+      );
+      const navigations: string[] = [];
+      page.on('request', (request) => {
+        if (request.isNavigationRequest()) navigations.push(request.url());
+      });
+      await open(page, DOC);
+      const before = page.url();
+      navigations.length = 0;
+      await page.locator('a.st-topbar__search').click();
+      await field(page).fill('VAT');
+      await dialog(page).locator('[data-search-close]').click();
+      await expect(dialog(page)).toBeHidden();
+      // Count the navigations the page starts (the Navigation API, where there is one).
+      const counted = await page.evaluate(() => {
+        const api = (window as unknown as { navigation?: EventTarget }).navigation;
+        const counter = { starts: 0 };
+        Object.assign(window, { stNavigations: counter });
+        api?.addEventListener('navigate', () => (counter.starts += 1));
+        return api !== undefined;
+      });
+      fail();
+      // A module script for the same URL, added after the page's own import, hears of the failure
+      // after it: by then the page's handler has run.
+      expect(
+        await page.evaluate(
+          (url) =>
+            new Promise<string>((resolve) => {
+              const script = document.createElement('script');
+              script.type = 'module';
+              script.src = url;
+              script.addEventListener('load', () => resolve('loaded'));
+              script.addEventListener('error', () => resolve('failed'));
+              document.head.append(script);
+            }),
+          scriptUrl,
+        ),
+      ).toBe('failed');
+      if (counted) {
+        expect(
+          await page.evaluate(
+            () => (window as unknown as { stNavigations: { starts: number } }).stNavigations.starts,
+          ),
+          'no navigation started',
+        ).toBe(0);
+      }
+      expect(navigations).toEqual([]);
+      expect(page.url()).toBe(before);
+      await expect(dialog(page)).toBeHidden();
+    },
+  );
+
+  test('one Escape before the script arrives closes the dialog, also with text in the field', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdScript(page, baseURL);
+    await open(page, DOC);
+    const skip = page.locator('.st-skip-link');
+    await skip.focus();
+    await page.keyboard.press('Control+k');
+    await field(page).fill('VAT');
+    await page.keyboard.press('Escape');
+    await expect(dialog(page)).toBeHidden();
+    await expect(skip).toBeFocused();
+    release();
+    await scriptArrived(page);
+    await expect(dialog(page)).toBeHidden();
   });
 });
 
