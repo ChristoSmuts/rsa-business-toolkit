@@ -18,7 +18,7 @@ pnpm build          # astro build + pnpm dist:audit
 | `pnpm search:typos` | `scripts/search-typo-sweep.ts`               | Not a test: counts how many one-keystroke typos (dropped, doubled, extra neighbouring-key, wrong neighbouring-key and swapped letters, at every position) of every glossary term and page title open the correct spelling's first result (and one of its first three), as finished and typed |
 | `pnpm dist:budget`  | `scripts/dist/check-budget.ts`               | The JavaScript each built page loads up front, gzipped, against 25 KB (document pages) and 45 KB (tool pages); also prints what opening search costs |
 | `pnpm test:e2e`     | `tests/e2e` (chromium, webkit, mobile, nojs) | Page contract, CSP, no third-party requests, 404 page, no-JS reading, content rendering, navigation and search |
-| `pnpm test:a11y`    | `tests/e2e/a11y.spec.ts`                     | axe (WCAG 2.0/2.1 A and AA) on every page in light and dark themes                                            |
+| `pnpm test:a11y`    | `tests/e2e/a11y.spec.ts`                     | axe (WCAG 2.0/2.1 A and AA) on every page in light and dark themes, at 1280px and on a 360px phone (`test:a11y:desktop` and `test:a11y:phone` run one each) |
 | `pnpm test:visual`  | `tests/e2e/visual.spec.ts`                   | Screenshot comparison of every page type (WP-50), see Visual baselines                                        |
 | `pnpm lhci`         | `tests/lighthouse/lighthouserc.cjs`          | Lighthouse scores and size budgets, desktop and mobile                                                        |
 
@@ -528,6 +528,19 @@ subject (pass 20, major 2).
 
 Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, runs axe with the tags `wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa` and `best-practice`. The theme is checked again right before the analysis.
 
+**Two widths.** That per-page sweep (`axe WCAG 2.1 A/AA`) runs in two projects:
+
+| Project      | Device                                                                    | Script                   | CI job                        |
+| ------------ | ------------------------------------------------------------------------- | ------------------------ | ----------------------------- |
+| `a11y`       | Desktop Chrome, 1280×720                                                  | `pnpm test:a11y:desktop` | `Accessibility (axe)`         |
+| `a11y-phone` | Pixel 7 (touch, no hover, mobile viewport handling) at 360×740            | `pnpm test:a11y:phone`   | `Accessibility (axe, phone)`  |
+
+`pnpm test:a11y` runs both. Every route of the sitemap (both languages) plus the noindex pages, in both themes, with the same tags, the same blocking rule and the same annotations, so a control that exists only on a phone (the "Show the other N sources" checkbox under 768px, the menus of the narrow top bar) is in what axe sees. Each page is loaded at the project's width, not resized after load, and the test checks the layout width before it trusts the result; a failure names the width (`/core/ (dark, 360px)`). `a11y-phone` runs only the sweep (project `grep`): the interactive-state tests below set their own sizes where a phone matters.
+
+Why a project and not a second scan in the same test: the phone pass needs touch and mobile viewport emulation, which are context options that a resize cannot switch on; and as its own project CI runs it on a second runner, so it adds no wall-clock time there. Measured in the cloud container (4 cores, 2 workers, `dist/` with 200 pages): `a11y` 424 tests in 8.0 min, `a11y-phone` 400 tests in 6.5 min, `pnpm test:a11y` about 14.5 min locally. For a quick local look use `E2E_ROUTE_LIMIT`.
+
+Proof that it can fail: with the `for` of the sources label removed from the built `business-types/vehicle-dealer/` page, `a11y-phone` fails with `label [critical] Form elements must have labels … #sources-for-this-page-more`, and `a11y` passes, because from 768px the checkbox is not displayed.
+
 - `serious` and `critical` violations fail the test.
 - `moderate` and `minor` violations are recorded as annotations (`a11y-moderate`, `a11y-minor`); they do not fail the test.
 - The per-test timeout is `PW_A11Y_TIMEOUT` (milliseconds): 60 s in CI, 90 s locally. `--timeout` on the command line overrides it.
@@ -680,11 +693,12 @@ Review WP-22a pass 4 found four shapes that put a real `console.error` **and** a
 
 ## Running part of a suite
 
-Run one page by matching its test title (the route path) with `-g`:
+Run one page by matching its test title (the route path) with `-g`. `-g` matches the titles joined by spaces, not by the ` › ` the reporter prints:
 
 ```bash
-pnpm exec playwright test --project chromium -g "page contract › /core/$"
-pnpm exec playwright test --project a11y -g "dark theme › /af/core/register/"
+pnpm exec playwright test --project chromium -g "page contract /core/$"
+pnpm exec playwright test --project a11y -g "dark theme /af/core/register/"
+pnpm exec playwright test --project a11y-phone -g "dark theme /af/core/register/"
 pnpm exec playwright test --project nojs -g "/design-system/"
 ```
 
@@ -704,7 +718,7 @@ Other variables:
 | `PW_PORT`         | `4321`                   | Port for the preview server. Change it when another checkout already uses 4321.         |
 | `PW_REUSE_SERVER` | unset                    | `1` reuses a server already running on `PW_PORT` (for example your own `pnpm preview`). |
 | `PW_DEV`          | unset                    | `1` tests `astro dev` instead of the build. Route-driven specs skip.                    |
-| `PW_A11Y_TIMEOUT` | 60000 in CI, 90000 local | Per-test timeout of the `a11y` project, in milliseconds.                                |
+| `PW_A11Y_TIMEOUT` | 60000 in CI, 90000 local | Per-test timeout of the `a11y` and `a11y-phone` projects, in milliseconds.              |
 | `PW_PAGE_SETUP_TIMEOUT` | `120000`           | Budget for creating the `page` fixture, separate from the test timeout. See below.      |
 | `E2E_ROUTE_LIMIT` | unset                    | Sample size for route-driven specs.                                                     |
 
@@ -734,7 +748,7 @@ pnpm exec playwright test --project a11y --reporter=html
 pnpm exec playwright show-report
 ```
 
-In CI the `a11y` job uploads `test-results/` as the `a11y-report` artifact. Contrast issues in dark mode usually come from token pairs in `src/styles/tokens.css`.
+In CI the `a11y` job uploads `test-results/` as the `a11y-report` artifact, and the `a11y-phone` job as `a11y-phone-report`. Contrast issues in dark mode usually come from token pairs in `src/styles/tokens.css`.
 
 ## Link audit: `pnpm dist:audit`
 
