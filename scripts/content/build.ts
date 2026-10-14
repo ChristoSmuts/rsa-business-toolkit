@@ -197,7 +197,7 @@ function checkTaxonomy(config: ContentConfig, docs: readonly Doc[], issues: Issu
         `business type ${type.id}: no pseudo heading "${type.masterChecklistGroup}" in ${checklist.id}`,
       );
     }
-    // "Before you can trade" links to these sections of the type's own document.
+    // "Go straight to" links to these sections of the type's own document.
     const { need, timing, checklist: own } = type.glance;
     for (const id of [...need, ...(timing ? [timing] : []), own]) {
       if (doc && !doc.headings.some((heading) => heading.id === id && !heading.pseudo))

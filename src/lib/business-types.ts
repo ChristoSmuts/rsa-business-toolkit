@@ -1,6 +1,7 @@
 /**
- * What a business-type page shows in "Before you can trade" (WP-50 Phase 3, item 3), taken from
- * content that is already in the guide: nothing here adds a fact.
+ * What a business-type page shows in its facts (`TypeFacts`) and "Go straight to" (`TypeJump`)
+ * (WP-50 Phase 3, item 3), taken from content that is already in the guide: nothing here adds a
+ * fact.
  *
  * - The "Main reason" cell of the hub's effort table ("How much regulation each type carries" in
  *   "Pick your business type"), in the hub's language. The table's rows are found by their English

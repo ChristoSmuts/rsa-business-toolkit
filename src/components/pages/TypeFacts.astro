@@ -3,15 +3,15 @@
  * A business type's facts, in its page's header (WP-50 Phase 3, item 3): what it takes before you
  * can trade, on the first screen of a phone, so a first-time owner does not hunt for it.
  *
- * The card set's fact shape (a 3px veld-green rule above), holding the type tile's two-tone
- * illustration on its section tint (D5: the illustrations stay; the reader sees the picture of the
- * tile they tapped), the setup effort as the five-bar meter with its level in words, and the hub's
- * "Main reason" for that level ("Certificate of Acceptability, training, inspections"), in the
- * hub's language. Every word comes from the markdown (`src/lib/business-types.ts`): it adds no
- * fact.
+ * It takes the place of the meta line: the read time (the slot) and the setup effort as the
+ * five-bar meter with its level in words on one line, then the hub's "Main reason" for that level
+ * ("Certificate of Acceptability, training, inspections"), in the hub's language; from 480px the
+ * type tile's two-tone illustration on its section tint beside them (D5: the illustrations stay;
+ * the reader sees the picture of the tile they tapped). No box and no rule: it is two lines of the
+ * header. Every word comes from the markdown (`src/lib/business-types.ts`): it adds no fact.
  *
  * It has no link or control, so `Doc.astro` can move it after the AI notice on a short phone screen
- * (`st-doc__after-notice`) without changing the order of focus.
+ * without changing the order of focus.
  */
 import EffortMeter from '../ui/EffortMeter.astro';
 import Inline from '../content/Inline.astro';

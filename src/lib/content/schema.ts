@@ -678,8 +678,8 @@ export const BusinessTypeSchema = z.strictObject({
   masterChecklistGroup: HeadingIdSchema,
   titles: z.partialRecord(LangSchema, z.string().min(1)),
   /**
-   * The sections of the type's own document that "Before you can trade" (WP-50 Phase 3, item 3)
-   * links to, by heading id (English slugs, so the same in every language): what the type needs,
+   * The sections of the type's own document that "Go straight to" (WP-50 Phase 3, item 3) links
+   * to, by heading id (English slugs, so the same in every language): what the type needs,
    * how long it takes where the document says, and its checklist. `content:check` checks that
    * each is a heading of the document.
    */

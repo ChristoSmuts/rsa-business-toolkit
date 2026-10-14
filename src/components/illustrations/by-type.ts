@@ -1,7 +1,7 @@
 /**
  * The two-tone illustration of each kind of business, shared by the type tiles
- * (`BusinessTypeTiles`) and the business-type page's "Before you can trade" (`TypeGlance`), so a
- * reader sees on the page the picture of the tile they tapped.
+ * (`BusinessTypeTiles`) and the business-type page's facts (`TypeFacts`, from 480px), so a reader
+ * sees on the page the picture of the tile they tapped.
  */
 import BeautyCare from './BeautyCare.astro';
 import FoodBusiness from './FoodBusiness.astro';

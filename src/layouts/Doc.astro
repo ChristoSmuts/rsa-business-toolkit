@@ -5,8 +5,11 @@
  * 1. the breadcrumb on one line, with a dot in the section's hue before the section (there is no
  *    separate "Section:" label: it repeated the breadcrumb);
  * 2. the H1 and the lead;
- * 3. the read time and, on a business type, the effort meter, on one line;
+ * 3. the read time; on a business type, the type's facts instead (`TypeFacts`, WP-50 Phase 3,
+ *    item 3): the read time and the effort meter on one line, the hub's "Main reason" under them,
+ *    and from 480px the type's illustration;
  * 4. the D5 AI notice (compact) and, on Afrikaans routes, the translation notice directly under it;
+ *    on a business type, "Go straight to" (`TypeJump`) after them;
  * 5. two closed disclosures with a chevron: "On this page (N sections)" and "Words used on this
  *    page" (closed at every width since WP-50 Phase 3; B6 had it open from 1024px);
  * 6. the text, then "Sources for this page" and the pager.
@@ -17,7 +20,9 @@
  *
  * Additions by kind of page:
  * - the hub ("Pick your business type") gets the six type tiles with their effort meters;
- * - a business-type document gets its effort meter and the related-type hints. Its first line
+ * - a business-type document gets its facts, "Go straight to" and the related-type hints, and
+ *   "Only what applies to me" only when it can hide more than the page's own kind of business
+ *   (`docHasConditions(doc, type)`). Its first line
  *   already says "Read Core first" with a link to Core, so the separate callout is shown only on a
  *   type whose text does not (`saysReadCoreFirst`);
  * - the master checklist says it is a reminder list, not proof of compliance (D5);
@@ -89,7 +94,7 @@ interface Props {
   businessTypes: readonly BusinessType[];
   /**
    * On a business type: "Pick your business type" in the page's content language and in English,
-   * for the effort table's "Main reason" in "Before you can trade".
+   * for the effort table's "Main reason" in the type's facts (`TypeFacts`).
    */
   typeHub?: { doc: Doc; english: Doc } | undefined;
 }
@@ -167,7 +172,7 @@ const saysReadCoreFirst =
  * The master checklist has its own "Show: Only what applies to me" choice instead of the switch.
  */
 const filterable = WIZARD_AVAILABLE && docHasConditions(doc, businessType?.id);
-/** "Before you can trade" on a business type (WP-50 Phase 3, item 3). */
+/** A business type's facts: the hub's "Main reason" for its effort (WP-50 Phase 3, item 3). */
 const glanceReason =
   businessType && typeHub
     ? effortReason(businessTypesFile.pickTable, typeHub.english, typeHub.doc, businessType.id)
