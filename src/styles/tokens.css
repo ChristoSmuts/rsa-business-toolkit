@@ -204,8 +204,19 @@
    */
   --st-opsz-display: 144;
   --st-opsz-heading: 48;
-  --st-measure: 68ch;
-  --st-measure-wide: 90ch;
+
+  /*
+   * Measures in em, not ch (WP-50 Phase 2 review pass 2, major 1). `ch` is the width of "0" in
+   * whichever font is drawn: 0.67em in Instrument Sans, about 0.56em in the metric-matched
+   * fallbacks (matched on running text, not on figures). A ch measure was therefore 17% narrower
+   * until the web font arrived, so a line that fitted in the font wrapped in the fallback and the
+   * page jumped (Afrikaans home at 1280px: 0.240). Instrument Sans' "0" is 0.67em (670 of 1000
+   * units), so these are 68ch and 90ch in that font, whatever font is on screen. Chromium rounds
+   * 1ch to whole pixels, so the old ch widths drifted with the font size (between 0.65 and
+   * 0.67em); the em values are within 3% of what each size drew.
+   */
+  --st-measure: 45.56em;
+  --st-measure-wide: 60.3em;
 
   /* Spacing (4/8/12/16/24/32/48/64/96 px) */
   --st-space-1: 0.25rem;

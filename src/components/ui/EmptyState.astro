@@ -70,7 +70,8 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3' | 'h4';
   }
 
   .st-empty__body {
-    max-inline-size: 48ch;
+    /* 48ch in Instrument Sans; em, so the fallback font draws the same width (tokens.css). */
+    max-inline-size: 32.16em;
     color: var(--st-text-muted);
   }
 

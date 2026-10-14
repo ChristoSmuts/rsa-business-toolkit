@@ -173,7 +173,8 @@
 
 @media (width >= 768px) {
   .st-terms {
-    grid-template-columns: minmax(8rem, 15ch) minmax(0, 1fr);
+    /* 15ch in Instrument Sans; em, so the fallback font draws the same column (tokens.css). */
+    grid-template-columns: minmax(8rem, 10.05em) minmax(0, 1fr);
     column-gap: var(--st-space-5);
   }
 
