@@ -1,11 +1,32 @@
 ---
 /**
- * Card with a single tab stop: the title link's ::after covers the whole card, so the
- * card is clickable while the accessible name stays the title. Other links or buttons
- * placed in the meta slot are lifted above the overlay and remain separately usable.
+ * The card set (WP-50 Phase 3, direction A): one component, three shapes, and each shape means
+ * one thing wherever it appears, so a reader can tell a page from a tool before reading the words.
+ *
+ * - `page` (default), **a page to read**: no box and no shadow; a rule in the section's hue on the
+ *   inline start, the title in Fraunces as the link, one line of summary, a hairline under the row.
+ *   Put page cards in a `.st-rows` list (`utilities.css`), which draws the hairline above the first.
+ * - `tool`, **a tool to use**: a white panel with a 2px veld-green frame and the only large radius,
+ *   an icon tile, and a button-shaped action (`action`). The action is the card's link, so its name
+ *   is the words on it (WCAG 2.5.3); `actionContext` names the tool after them in the link's accessible
+ *   name when several tools share one action ("Open template: Invoice"; the visible words come
+ *   first, so a speech user can say them).
+ * - `type`, **a kind of business**: a white tile with a hairline, the illustration on its section
+ *   tint beside the name, and the slots for the summary and the effort meter.
+ *
+ * A step on a reading path is the fourth shape and lives in `PathSteps.astro`; a dated figure with
+ * its source is the fifth, on the home page.
+ *
+ * Every shape has one tab stop: the link's `::after` covers the card, so the whole card is
+ * clickable while the link keeps its own name. Links or buttons in the `meta` slot sit above that
+ * layer and stay usable. Hover changes colours only, and only for a pointer that can hover; nothing
+ * moves (WP-50 audit, finding 3).
  * Slots: default (summary), `illustration`, `meta`.
  */
+import Icon from './Icon.astro';
+
 type Section = 'start' | 'core' | 'branding' | 'paperwork' | 'types' | 'lookup';
+export type CardVariant = 'page' | 'tool' | 'type';
 
 interface Props {
   title: string;
@@ -15,6 +36,13 @@ interface Props {
   section?: Section | undefined;
   eyebrow?: string | undefined;
   headingLevel?: 2 | 3 | 4 | undefined;
+  variant?: CardVariant | undefined;
+  /** Tool only: the words on the button-shaped link ("Open the checklist"). */
+  action?: string | undefined;
+  /** Tool only: words added after the action in its accessible name, when tools share one. */
+  actionContext?: string | undefined;
+  /** Tool only: a Lucide icon name for the icon tile. */
+  icon?: string | undefined;
   class?: string | undefined;
 }
 
@@ -25,15 +53,23 @@ const {
   section,
   eyebrow,
   headingLevel = 3,
+  variant = 'page',
+  action,
+  actionContext,
+  icon,
   class: className,
 } = Astro.props;
 const Heading = `h${headingLevel}` as 'h2' | 'h3' | 'h4';
 const hasArt = Astro.slots.has('illustration');
 const hasMeta = Astro.slots.has('meta');
+/** A tool's link is its action; every other card links its title. */
+const actionLink = variant === 'tool' && href !== undefined && action !== undefined;
+const titleLink = href !== undefined && !actionLink;
 ---
 
 <article
-  class:list={['st-card', className]}
+  class:list={['st-card', variant === 'page' && 'st-row', className]}
+  data-variant={variant}
   data-section={section}
   data-interactive={href ? 'true' : undefined}
 >
@@ -42,10 +78,15 @@ const hasMeta = Astro.slots.has('meta');
       <slot name="illustration" />
     </div>
   )}
+  {variant === 'tool' && icon && (
+    <span class="st-card__icon">
+      <Icon name={icon} size="1.5em" />
+    </span>
+  )}
   <div class="st-card__body">
     {eyebrow && <p class="st-card__eyebrow">{eyebrow}</p>}
     <Heading class="st-card__title" lang={titleLang}>
-      {href ? (
+      {titleLink ? (
         <a class="st-card__link" href={href}>
           {title}
         </a>
@@ -56,6 +97,17 @@ const hasMeta = Astro.slots.has('meta');
     <div class="st-card__summary">
       <slot />
     </div>
+    {actionLink && (
+      <p class="st-card__action-row">
+        <a
+          class="st-card__link st-card__action"
+          href={href}
+          aria-label={actionContext ? `${action}: ${actionContext}` : undefined}
+        >
+          {action}
+        </a>
+      </p>
+    )}
     {hasMeta && (
       <div class="st-card__meta">
         <slot name="meta" />
@@ -65,73 +117,16 @@ const hasMeta = Astro.slots.has('meta');
 </article>
 
 <style>
+  /* ---------- Shared: one tab stop, the ring on the whole card ---------- */
+
   .st-card {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    border: var(--st-border-width) solid var(--st-border);
-    border-block-start: var(--st-stripe-width) solid var(--st-section);
-    border-radius: var(--st-radius-lg);
-    background-color: var(--st-surface);
-    box-shadow: var(--st-shadow-1);
-    transition: box-shadow var(--st-duration-base) var(--st-ease);
-  }
-
-  /*
-   * No hover lift (WP-50 Phase 3, direction A's card set): a card that rose under the pointer
-   * moved on every pass of a mouse and on every tap on a touch screen, where `:hover` sticks.
-   * Hover deepens the shadow only, and only for a pointer that can hover; focus does the same
-   * with the ring below.
-   */
-  @media (hover: hover) {
-    .st-card[data-interactive='true']:hover {
-      box-shadow: var(--st-shadow-2);
-    }
+    min-inline-size: 0;
   }
 
   .st-card:has(.st-card__link:focus-visible) {
-    box-shadow: var(--st-shadow-2);
     outline: var(--st-focus-width) solid var(--st-focus);
     outline-offset: var(--st-focus-offset);
-  }
-
-  .st-card__art {
-    /* The art area is tinted, so illustration fills use the card surface to stay two-tone. */
-    --st-illustration-fill: var(--st-surface);
-
-    display: flex;
-    justify-content: center;
-    padding: var(--st-space-4);
-    border-start-start-radius: calc(var(--st-radius-lg) - var(--st-stripe-width));
-    border-start-end-radius: calc(var(--st-radius-lg) - var(--st-stripe-width));
-    background-color: var(--st-section-tint);
-  }
-
-  .st-card__body {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: var(--st-space-2);
-    padding: var(--st-space-5);
-  }
-
-  .st-card__eyebrow {
-    color: var(--st-text-muted);
-    font-size: var(--st-text-sm);
-    font-weight: var(--st-weight-semibold);
-  }
-
-  .st-card__title {
-    font-size: var(--st-text-xl);
-  }
-
-  .st-card__link {
-    color: var(--st-text);
-    text-decoration-color: var(--st-section);
-  }
-
-  .st-card__link:visited {
-    color: var(--st-text);
   }
 
   .st-card__link:focus-visible {
@@ -149,12 +144,33 @@ const hasMeta = Astro.slots.has('meta');
   .st-card__link::after {
     content: '';
     position: absolute;
-    inset: calc(var(--st-stripe-width) * -1) calc(var(--st-border-width) * -1)
-      calc(var(--st-border-width) * -1);
-    border-radius: var(--st-radius-lg);
+    inset: 0;
+    border-radius: inherit;
   }
 
-  .st-card__summary {
+  .st-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--st-space-1);
+    min-inline-size: 0;
+  }
+
+  .st-card__eyebrow {
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-semibold);
+  }
+
+  .st-card__title {
+    overflow-wrap: anywhere;
+  }
+
+  .st-card__link {
+    color: var(--st-text);
+    text-decoration-color: var(--st-section);
+  }
+
+  .st-card__link:visited {
     color: var(--st-text);
   }
 
@@ -166,15 +182,203 @@ const hasMeta = Astro.slots.has('meta');
     flex-wrap: wrap;
     align-items: center;
     gap: var(--st-space-2) var(--st-space-3);
-    margin-block-start: auto;
-    padding-block-start: var(--st-space-3);
     color: var(--st-text-muted);
     font-size: var(--st-text-sm);
   }
 
+  /* ---------- Page: a page to read ---------- */
+
+  /* The rule, padding and hairline are `.st-row` (utilities.css), shared with plain link rows. */
+  .st-card[data-variant='page'] .st-card__title {
+    font-family: var(--st-font-display);
+    font-size: var(--st-text-lg);
+    font-weight: var(--st-weight-semibold);
+    line-height: var(--st-leading-snug);
+    letter-spacing: -0.005em;
+  }
+
+  .st-card[data-variant='page'] .st-card__summary {
+    color: var(--st-text-muted);
+    max-inline-size: var(--st-measure);
+  }
+
+  .st-card[data-variant='page'] .st-card__meta {
+    padding-block-start: var(--st-space-1);
+  }
+
+  /* ---------- Tool: a tool to use ---------- */
+
+  .st-card[data-variant='tool'] {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--st-space-2) var(--st-space-4);
+    align-items: start;
+    padding: var(--st-space-5);
+    border: 2px solid var(--st-primary);
+    border-radius: var(--st-radius-lg);
+    background-color: var(--st-surface);
+  }
+
+  /* In a grid of tools every panel is as tall as its row, with the actions on one line. */
+  li > .st-card[data-variant='tool'] {
+    block-size: 100%;
+  }
+
+  .st-card[data-variant='tool']:not(:has(.st-card__icon)) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .st-card__icon {
+    display: grid;
+    place-items: center;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-primary-soft);
+    color: var(--st-on-primary-soft);
+  }
+
+  .st-card[data-variant='tool'] .st-card__body {
+    block-size: 100%;
+    gap: var(--st-space-2);
+  }
+
+  .st-card[data-variant='tool'] .st-card__title,
+  .st-card[data-variant='type'] .st-card__title {
+    font-family: var(--st-font-body);
+    font-size: var(--st-text-lg);
+    font-weight: var(--st-weight-bold);
+    line-height: var(--st-leading-snug);
+    letter-spacing: 0;
+  }
+
+  .st-card__action-row {
+    margin-block-start: auto;
+    padding-block-start: var(--st-space-1);
+  }
+
+  /* Shaped like the secondary button: the words say what happens. */
+  .st-card__action {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--st-target);
+    padding: var(--st-space-2) var(--st-space-4);
+    border: 2px solid var(--st-border-strong);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface);
+    color: var(--st-link);
+    font-weight: var(--st-weight-semibold);
+    line-height: 1.2;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  .st-card__action:visited {
+    color: var(--st-link);
+  }
+
+  /* The action's overlay covers the panel, whose radius it keeps. */
+  .st-card[data-variant='tool'] .st-card__action::after {
+    border-radius: calc(var(--st-radius-lg) - 2px);
+  }
+
+  /* ---------- Type: a kind of business ---------- */
+
+  .st-card[data-variant='type'] {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    gap: var(--st-space-4);
+    align-items: start;
+    padding: var(--st-space-3);
+    border: var(--st-border-width) solid var(--st-border);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface);
+  }
+
+  .st-card[data-variant='type'] .st-card__art {
+    /* The art sits on the section tint, so its fills use the tile's surface to stay two-tone. */
+    --st-illustration-fill: var(--st-surface);
+    --st-illustration-size: 3.5rem;
+
+    display: grid;
+    place-items: center;
+    inline-size: 4.5rem;
+    block-size: 4.5rem;
+    border-radius: var(--st-radius-sm);
+    background-color: var(--st-section-tint);
+  }
+
+  .st-card[data-variant='type'] .st-card__title {
+    font-size: var(--st-text-md);
+  }
+
+  .st-card[data-variant='type'] .st-card__summary {
+    font-size: var(--st-text-sm);
+  }
+
+  .st-card[data-variant='type'] .st-card__meta {
+    padding-block-start: var(--st-space-1);
+  }
+
+  /*
+   * On a phone the frame and the action already say "tool": the icon tile gives its column back to
+   * the words, which an Afrikaans title needs at 320px.
+   */
+  @media (width < 480px) {
+    .st-card[data-variant='tool'] {
+      grid-template-columns: minmax(0, 1fr);
+      padding: var(--st-space-4);
+    }
+
+    .st-card__icon {
+      display: none;
+    }
+
+    .st-card[data-variant='type'] {
+      grid-template-columns: 3.5rem minmax(0, 1fr);
+      gap: var(--st-space-3);
+    }
+
+    .st-card[data-variant='type'] .st-card__art {
+      --st-illustration-size: 2.75rem;
+
+      inline-size: 3.5rem;
+      block-size: 3.5rem;
+    }
+  }
+
+  /*
+   * Hover: colours only, and only for a pointer that can hover. On a touch screen `:hover` sticks
+   * after a tap, so the card would stay "hovered" on the page the reader comes back to.
+   */
+  @media (hover: hover) {
+    .st-card[data-variant='page']:has(.st-card__link:hover) .st-card__link {
+      color: var(--st-link-hover);
+    }
+
+    .st-card[data-variant='tool']:has(.st-card__link:hover) .st-card__action {
+      border-color: var(--st-primary);
+      background-color: var(--st-primary-soft);
+      color: var(--st-on-primary-soft);
+    }
+
+    .st-card[data-variant='type']:has(.st-card__link:hover) {
+      border-color: var(--st-border-strong);
+    }
+  }
+
   @media (forced-colors: active) {
-    .st-card {
+    .st-card[data-variant='tool'],
+    .st-card[data-variant='type'] {
       border-color: CanvasText;
+    }
+
+    .st-card__action {
+      border-color: LinkText;
+    }
+
+    .st-card__icon {
+      border: 1px solid CanvasText;
     }
   }
 </style>

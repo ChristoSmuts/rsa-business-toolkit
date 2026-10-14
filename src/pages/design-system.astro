@@ -583,32 +583,61 @@ const trust = {
         </p>
       </div>
 
-      <h3>Card</h3>
+      <h3>Card: the card set</h3>
+      <p class="st-hint">
+        One component, three shapes, each meaning one thing (WP-50 Phase 3). A page to read is a row
+        in a <code>.st-rows</code> list with a rule in the section's hue; a tool is a framed panel
+        whose button-shaped action is its link; a kind of business is a tile with its illustration.
+        A step on a path is <code>PathSteps</code>: a numbered circle on a rail. Hover changes a
+        colour only, and only for a mouse; nothing lifts.
+      </p>
+      <ul class="st-rows ds-demo" role="list">
+        <li>
+          <Card
+            title="Register your business"
+            href={href('en')}
+            section="core"
+            eyebrow="Core · 2"
+            headingLevel={4}
+          >
+            <p>Choose between sole proprietor and Pty Ltd, then register with CIPC and SARS.</p>
+            <Fragment slot="meta">
+              <span>8 min read</span>
+              <Badge variant="entity">Everyone</Badge>
+            </Fragment>
+          </Card>
+        </li>
+        <li>
+          <Card title="Static row (no link)" section="lookup" headingLevel={4}>
+            <p>
+              A card without <code>href</code> has no tab stop and no hover state.
+            </p>
+          </Card>
+        </li>
+      </ul>
       <div class="st-grid ds-demo">
         <Card
-          title="Register your business"
+          title="If you know what you need"
           href={href('en')}
-          section="core"
-          eyebrow="Core · 2"
           headingLevel={4}
+          variant="tool"
+          icon="lucide:list-checks"
+          action="Open the checklist"
         >
-          <p>Choose between sole proprietor and Pty Ltd, then register with CIPC and SARS.</p>
-          <Fragment slot="meta">
-            <span>8 min read</span>
-            <Badge variant="entity">Everyone</Badge>
-          </Fragment>
+          <p>Open the master checklist. Tick each item when you finish it.</p>
         </Card>
-        <Card title="Food business" href={href('en')} section="types" headingLevel={4}>
+        <Card
+          title="Food business"
+          href={href('en')}
+          section="types"
+          headingLevel={4}
+          variant="type"
+        >
           <FoodBusiness slot="illustration" />
           <p>Certificate of Acceptability, training and inspections.</p>
           <Fragment slot="meta">
             <EffortMeter level={5} />
           </Fragment>
-        </Card>
-        <Card title="Static card (no link)" section="lookup" headingLevel={4}>
-          <p>
-            Cards without <code>href</code> have no tab stop and no hover lift.
-          </p>
         </Card>
       </div>
 
@@ -866,21 +895,23 @@ const trust = {
       </p>
 
       <h3>The same label in a card meta row</h3>
-      <div class="st-grid ds-demo">
-        <Card
-          title={af.cardTitle}
-          href={href('af')}
-          section="core"
-          eyebrow="Kern · 2"
-          headingLevel={4}
-        >
-          <p lang="af">{af.compound}</p>
-          <Fragment slot="meta">
-            <span>8 min lees</span>
-            <Badge variant="mt">{af.mtBadge}</Badge>
-          </Fragment>
-        </Card>
-      </div>
+      <ul class="st-rows ds-demo" role="list">
+        <li>
+          <Card
+            title={af.cardTitle}
+            href={href('af')}
+            section="core"
+            eyebrow="Kern · 2"
+            headingLevel={4}
+          >
+            <p lang="af">{af.compound}</p>
+            <Fragment slot="meta">
+              <span>8 min lees</span>
+              <Badge variant="mt">{af.mtBadge}</Badge>
+            </Fragment>
+          </Card>
+        </li>
+      </ul>
 
       <h3>Callout, button, effort meter and keys</h3>
       <div class="st-stack ds-demo" lang="af">

@@ -1,8 +1,13 @@
 ---
 /**
- * The steps of a reading path as cards (build plan B6 "StepCards"; WP-31): "Step 3", the pages to
- * read (each a link, at its section when the rule names one), and why, in the words of "How to use
- * this toolkit" (`stepWhy`).
+ * The steps of a reading path (build plan B6 "StepCards"; WP-31): "Step 3", the pages to read (each
+ * a link, at its section when the rule names one), and why, in the words of "How to use this
+ * toolkit" (`stepWhy`).
+ *
+ * The card set's "step" shape (WP-50 Phase 3): a numbered circle on a rail, no box, so a step on the
+ * reader's path never looks like a page row or a tool. The circle's number is generated from
+ * `data-n` with empty alternative text, and "Step 3" stays in the markup for assistive technology
+ * (visually hidden: the circle says it on screen). A step marked done fills its circle.
  *
  * - On a result page the cards are exactly the reader's path (`interactive` off).
  * - On My path every step of every rule is rendered, `hidden`, with every page it can hold, and
@@ -67,10 +72,11 @@ const cards = steps.map((step) => {
       class="st-step"
       data-stage={card.stage}
       data-item={card.item}
+      data-n={card.n}
       hidden={interactive ? true : undefined}
     >
       <p class="st-step__head">
-        <span class="st-step__label" data-step-label>
+        <span class="st-step__label st-visually-hidden" data-step-label>
           {t('myPath.stepLabel', { n: card.n })}
         </span>
         {interactive && (
@@ -119,30 +125,69 @@ const cards = steps.map((step) => {
   .st-steps {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--st-space-3);
     padding: 0;
     list-style: none;
   }
 
   .st-step {
+    --st-step-dot: 2.5rem;
+
+    position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--st-space-2);
-    padding: var(--st-space-4);
-    border: var(--st-border-width) solid var(--st-border);
-    border-inline-start: 4px solid var(--st-primary);
-    border-radius: var(--st-radius-md);
-    background-color: var(--st-surface);
+    grid-template-columns: var(--st-step-dot) minmax(0, 1fr);
+    gap: var(--st-space-2) var(--st-space-4);
+    align-content: start;
+    min-block-size: calc(var(--st-step-dot) + var(--st-space-5));
+    padding-block-end: var(--st-space-6);
+  }
+
+  .st-step > * {
+    grid-column: 2;
+  }
+
+  /* The number in a circle: the logo's steps, one at a time. Alternative text is empty. */
+  .st-step::before {
+    content: attr(data-n);
+    content: attr(data-n) / '';
+    grid-column: 1;
+    grid-row: 1 / span 4;
+    display: grid;
+    place-items: center;
+    inline-size: var(--st-step-dot);
+    block-size: var(--st-step-dot);
+    border: 2px solid var(--st-primary);
+    border-radius: var(--st-radius-pill);
+    background-color: var(--st-primary-soft);
+    color: var(--st-on-primary-soft);
+    font-weight: var(--st-weight-bold);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  /* The rail: from under this circle to the next one. The last step shown has none. */
+  .st-step::after {
+    content: '';
+    position: absolute;
+    inset-block: calc(var(--st-step-dot) + var(--st-space-1)) var(--st-space-1);
+    inset-inline-start: calc(var(--st-step-dot) / 2 - 1px);
+    inline-size: 2px;
+    background-color: var(--st-border-strong);
+  }
+
+  .st-step:not(:has(~ .st-step:not([hidden])))::after {
+    display: none;
   }
 
   .st-step[hidden] {
     display: none;
   }
 
-  .st-step[data-done] {
-    border-inline-start-color: var(--st-border-strong);
+  .st-step[data-done]::before {
+    background-color: var(--st-primary);
+    color: var(--st-on-primary);
   }
 
+  /* "Step 3" is visually hidden, so the head shows only "Done", and takes no room without it. */
   .st-step__head {
     display: flex;
     flex-wrap: wrap;
@@ -152,6 +197,10 @@ const cards = steps.map((step) => {
     color: var(--st-text-muted);
     font-size: var(--st-text-sm);
     font-weight: var(--st-weight-semibold);
+  }
+
+  .st-step__head:not(:has(.st-step__done:not([hidden]))) {
+    position: absolute;
   }
 
   .st-step__done {
@@ -178,6 +227,7 @@ const cards = steps.map((step) => {
 
   .st-step__title {
     margin: 0;
+    padding-block-start: 0.35rem;
     font-size: var(--st-text-lg);
     overflow-wrap: anywhere;
   }
@@ -196,8 +246,19 @@ const cards = steps.map((step) => {
   }
 
   @media (forced-colors: active) {
-    .st-step {
-      border-inline-start-color: CanvasText;
+    .st-step::before {
+      border-color: CanvasText;
+    }
+
+    .st-step[data-done]::before {
+      forced-color-adjust: none;
+      background-color: CanvasText;
+      color: Canvas;
+    }
+
+    .st-step::after {
+      forced-color-adjust: none;
+      background-color: CanvasText;
     }
   }
 </style>

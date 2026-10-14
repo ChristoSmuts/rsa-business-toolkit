@@ -94,6 +94,45 @@ st-table-scroll {
 }
 
 /*
+ * Rows of pages to read (WP-50 Phase 3, the card set's "page" shape): a list with a hairline
+ * above the first row and under each one, and on each row a rule in the section's hue. `Card`
+ * (`variant="page"`) puts `.st-row` on itself; a plain link row (the home page's four early
+ * things) puts it on its `<li>`. No box, no shadow: a framed panel means a tool.
+ */
+.st-rows {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding: 0;
+  list-style: none;
+  border-block-start: var(--st-border-width) solid var(--st-border);
+}
+
+.st-row {
+  padding-block: var(--st-space-3);
+  padding-inline-start: var(--st-space-4);
+  border-block-end: var(--st-border-width) solid var(--st-border);
+  border-inline-start: var(--st-stripe-width) solid var(--st-section, var(--st-primary));
+}
+
+/*
+ * A row's read time and applies-to note are plain words with their icon, as on the document
+ * page's meta line: a chip round each was one box too many on a row that has no box (WP-50
+ * Phase 3 critique, "remove one accessory"). The badge keeps its icon, words and wrapping. Here
+ * and not in `Card.astro`, whose scoped styles do not reach a badge passed into its slot.
+ */
+.st-row .st-card__meta .st-badge {
+  padding-inline: 0;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+@media (forced-colors: active) {
+  .st-row {
+    border-inline-start-color: CanvasText;
+  }
+}
+
+/*
  * Navigation lists (the contents column, menus): no underline until hover or focus (WP-50,
  * decided 13 October 2026; `stoep-design` rule 7). Their place, heading and list form already say
  * "these are links", and a column of underlines is louder than the article beside it. Links in

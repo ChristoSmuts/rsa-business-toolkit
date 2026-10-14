@@ -1,6 +1,6 @@
 ---
 /**
- * The six kinds of business as illustrated tiles with their setup effort (build plan B6), shared by
+ * The six kinds of business as illustrated tiles (the card set's "type" shape, WP-50 Phase 3) with their setup effort (build plan B6), shared by
  * the home page and the business-types hub so both always show the same names, order and effort.
  *
  * The "General" tile leads to the hub, so the hub itself leaves it out (`general={false}`): a tile
@@ -61,7 +61,13 @@ const hubHref = sectionHref(manifest, 'business-types', locale);
 <ul class="st-type-tiles" role="list" data-section="types">
   {types.map(({ Illustration, ...type }) => (
     <li>
-      <Card title={type.name} href={type.href} section="types" headingLevel={headingLevel}>
+      <Card
+        title={type.name}
+        href={type.href}
+        section="types"
+        headingLevel={headingLevel}
+        variant="type"
+      >
         <Illustration slot="illustration" />
         <p>{type.description}</p>
         <EffortMeter
@@ -81,6 +87,7 @@ const hubHref = sectionHref(manifest, 'business-types', locale);
         href={hubHref}
         section="types"
         headingLevel={headingLevel}
+        variant="type"
       >
         <General slot="illustration" />
         <p>{t('businessTypes.general.description')}</p>
@@ -97,8 +104,8 @@ const hubHref = sectionHref(manifest, 'business-types', locale);
    */
   .st-type-tiles {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
-    gap: var(--st-space-4);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+    gap: var(--st-space-3);
     padding: 0;
     list-style: none;
   }
