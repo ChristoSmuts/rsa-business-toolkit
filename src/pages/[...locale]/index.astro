@@ -95,6 +95,18 @@ const readFirst = [
       <div class="st-home__hero-text st-stack">
         <h1 id="home-title">{t('home.heroTitle')}</h1>
         <p class="st-lead">{t(WIZARD_AVAILABLE ? 'home.heroLead' : 'home.heroLeadStatic')}</p>
+        {/*
+          The AI line comes before the actions (build plan B6), so it starts on the first screen of
+          a 320×568 phone in both languages, with or without JavaScript (WP-50 Phase 3 review
+          pass 1, m3; first-screen.spec.ts).
+        */}
+        <p class="st-home__ai-line">
+          <Icon name="lucide:bot" size="1.15em" />
+          <span>
+            {t('home.heroVerify', { date: checkedOn })}{' '}
+            {howMadeHref && <a href={howMadeHref}>{t('home.trust.howThisWasMade')}</a>}
+          </span>
+        </p>
         <p class="st-cluster">
           {WIZARD_AVAILABLE && (
             <Button href={wizardHref} variant="primary" size="lg">
@@ -123,19 +135,14 @@ const readFirst = [
             </Button>
           )}
         </p>
-        <p class="st-home__ai-line">
-          <Icon name="lucide:bot" size="1.15em" />
-          <span>
-            {t('home.heroVerify', { date: checkedOn })}{' '}
-            {howMadeHref && <a href={howMadeHref}>{t('home.trust.howThisWasMade')}</a>}
-          </span>
-        </p>
       </div>
       {WIZARD_AVAILABLE && (
         // The stoep (WP-50, decision D4 = A1): Find my path's three questions as three steps
         // widening downward under the logo's roof. The roof is drawn; the steps are text. The
-        // caption is the link into the wizard and its target covers the figure.
-        <figure class="st-stoep" aria-labelledby="home-stoep-caption">
+        // caption is the link into the wizard and its target covers the figure. The figure takes
+        // no name of its own, so the caption is heard once, as the link, whose name adds "Start
+        // Find my path" after the visible words.
+        <figure class="st-stoep">
           <svg
             class="st-stoep__roof"
             viewBox="0 0 200 24"
@@ -158,8 +165,12 @@ const readFirst = [
               <li>{step}</li>
             ))}
           </ol>
-          <figcaption id="home-stoep-caption" class="st-stoep__caption">
-            <a class="st-stoep__link st-link-block" href={wizardHref}>
+          <figcaption class="st-stoep__caption">
+            <a
+              class="st-stoep__link st-link-block"
+              href={wizardHref}
+              aria-label={`${t('home.stoepCaption')} ${t('home.stoepLink')}`}
+            >
               {t('home.stoepCaption')}
             </a>
           </figcaption>
@@ -303,6 +314,20 @@ const readFirst = [
   .st-home {
     gap: var(--st-space-7);
     padding-block: var(--st-space-6) var(--st-space-8);
+  }
+
+  /*
+   * On a phone the hero sits a little tighter, so the AI line starts on the first screen of a
+   * 320×568 phone even under the taller no-JavaScript header (WP-50 Phase 3 review pass 1, m3).
+   */
+  @media (width < 480px) {
+    .st-home {
+      padding-block-start: var(--st-space-4);
+    }
+
+    .st-home__hero-text {
+      --st-stack-gap: var(--st-space-3);
+    }
   }
 
   /* ---------- Hero: the words on the left, the stoep on the right (below on a phone) ---------- */
@@ -527,7 +552,19 @@ const readFirst = [
     }
   }
 
+  /* On paper the stoep is a link nobody can follow; the hero's buttons are left out too. */
+  @media print {
+    .st-stoep {
+      display: none;
+    }
+  }
+
   @media (forced-colors: active) {
+    /* Chromium does not force `color` on an SVG, so the roof would keep the author's green. */
+    .st-stoep__roof {
+      color: CanvasText;
+    }
+
     .st-stoep__steps li {
       border: 1px solid CanvasText;
     }

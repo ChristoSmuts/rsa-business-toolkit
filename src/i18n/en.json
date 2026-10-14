@@ -135,6 +135,7 @@
     "findMyPath": "Find my path",
     "findMyPathHint": "Answer {total} short questions",
     "stoepCaption": "Three short questions. Then you get the steps that apply to you, in order.",
+    "stoepLink": "Start Find my path",
     "knowWhatINeed": "I know what I need",
     "whereToStart": {
       "heading": "Where to start",

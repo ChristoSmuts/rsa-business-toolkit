@@ -198,6 +198,13 @@ test.describe('the interactive pieces without JavaScript', () => {
   });
 
   test('the stoep and the card set need no script (WP-50 Phase 3)', async ({ page, basePath }) => {
+    // The home AI line starts on the first screen of a 320×568 phone without JavaScript too.
+    await page.setViewportSize({ width: 320, height: 568 });
+    for (const route of ['./', 'af/']) {
+      await page.goto(route);
+      const box = await page.locator('.st-home__ai-line').boundingBox();
+      expect(box?.y ?? Infinity, route).toBeLessThanOrEqual(568 - 44);
+    }
     await page.goto('./');
     await expect(page.locator('.st-stoep__steps > li')).toHaveCount(3);
     await page.locator('.st-stoep__link').click();

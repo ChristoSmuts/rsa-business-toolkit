@@ -41,6 +41,22 @@ async function noticeTop(page: Page): Promise<number> {
   return box.y;
 }
 
+test.describe('the home page on a 320×568 screen', () => {
+  // The AI line ("Written by AI…") comes before the actions, so a first-time reader learns the guide
+  // is AI-written before scrolling (WP-50 Phase 3 review pass 1, m3; the no-JavaScript side is in
+  // nojs.spec.ts). Its first line must be on screen, like the notice's label row below.
+  for (const route of ['', 'af/']) {
+    test(`/${route}: the AI line starts on the first screen`, async ({ page }) => {
+      await page.setViewportSize(PHONE);
+      await page.goto(route);
+      await page.waitForLoadState('networkidle');
+      await page.evaluate(() => window.scrollTo(0, 0));
+      const box = await page.locator('.st-home__ai-line').boundingBox();
+      expect(box?.y ?? Infinity).toBeLessThanOrEqual(PHONE.height - 44);
+    });
+  }
+});
+
 test.describe('the AI notice on a 320×568 screen', () => {
   for (const route of NOTICE_PAGES) {
     test(`${route}: starts on the first screen`, async ({ page }) => {
