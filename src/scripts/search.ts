@@ -154,7 +154,12 @@ export class StSearch extends HTMLElement {
         // The results code did not load: the search page is the way on (review WP-33 pass 7,
         // minor 2).
         this.#uiFailed = true;
-        form?.requestSubmit();
+        if (!form) return;
+        // Safari before 16 has no requestSubmit(); submit() skips the handlers, so it also checks
+        // the field this handler checks.
+        if ((form as Partial<HTMLFormElement>).requestSubmit) {
+          form.requestSubmit();
+        } else if (this.#field()?.value.trim()) form.submit();
       },
     );
   };

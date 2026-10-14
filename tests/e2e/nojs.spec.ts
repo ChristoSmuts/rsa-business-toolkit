@@ -1,4 +1,5 @@
 import { expect, test } from './fixtures';
+import { chromiumAxName } from './helpers/ax';
 import { routeSameOrigin } from './helpers/network';
 import { enforceCheck, mainTextProblems } from './helpers/page-checks';
 import { discoverPageRoutes, routeLabel, routeUrl } from './helpers/routes';
@@ -491,14 +492,44 @@ test.describe('the AI notice on a 320×568 screen without JavaScript', () => {
     await expect(words).toHaveAttribute('open', '');
   });
 
-  // WP-50 Phase 3: on a phone the sources past the first three wait in a native disclosure.
+  // WP-50 Phase 3: on a phone the sources past the first three wait behind a native checkbox.
   test('the rest of "Sources for this page" opens with no script', async ({ page }) => {
     await page.setViewportSize({ width: 360, height: 740 });
     await page.goto('business-types/vehicle-dealer/');
-    const more = page.locator('section.st-sources details.st-sources__more');
-    await expect(more.locator('li.st-source').first()).toBeHidden();
-    await more.locator('summary').click();
-    await expect(more.locator('li.st-source').first()).toBeVisible();
+    const sources = page.locator('section.st-sources');
+    const rest = sources.locator('.st-sources__rest li.st-source');
+    await expect(rest.first()).toBeHidden();
+    // A tap on the label row lands on the transparent checkbox that covers it.
+    await sources.locator('.st-sources__toggle').click();
+    await expect(rest.first()).toBeVisible();
+  });
+
+  // Main repair review pass 2, blocker 1: the name in Chromium's own tree is the visible phrase.
+  for (const prefix of ['', 'af/']) {
+    test(`/${prefix}business-types/vehicle-dealer/: the browser names the sources control with its words`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: 360, height: 740 });
+      await page.goto(`${prefix}business-types/vehicle-dealer/`);
+      const label = page.locator('section.st-sources .st-sources__more-label');
+      const toggle = page.locator('section.st-sources .st-sources__toggle');
+      const visible = ((await label.textContent()) ?? '').trim();
+      expect(visible.length).toBeGreaterThan(10);
+      expect(await chromiumAxName(page, '.st-sources__toggle')).toBe(visible);
+      await toggle.click();
+      await expect(toggle).toBeChecked();
+      expect(await chromiumAxName(page, '.st-sources__toggle')).toBe(visible);
+    });
+  }
+
+  test('every source shows at 768px and prints with no script', async ({ page }) => {
+    await page.setViewportSize({ width: 768, height: 900 });
+    await page.goto('business-types/vehicle-dealer/');
+    const rest = page.locator('section.st-sources .st-sources__rest li.st-source');
+    await expect(rest.last()).toBeVisible();
+    await page.setViewportSize({ width: 360, height: 740 });
+    await page.emulateMedia({ media: 'print' });
+    await expect(rest.last()).toBeVisible();
   });
 });
 

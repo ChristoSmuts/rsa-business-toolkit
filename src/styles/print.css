@@ -61,11 +61,6 @@
     display: none;
   }
 
-  /* "38 more sources" would print as a bold line in the middle of the list; paper shows them all. */
-  .st-sources__more > summary {
-    display: none;
-  }
-
   /*
    * Full URLs after external links. `text-decoration` propagates from the inline parent into
    * generated content, so `text-decoration: none` here does nothing. An inline-block stops the

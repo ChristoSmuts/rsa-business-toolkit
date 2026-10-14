@@ -305,8 +305,8 @@
       "seeRegister": "Sien die volledige bronneregister",
       "seeHowMade": "Sien hoe hierdie gids gemaak is",
       "more": {
-        "one": "Nog {count} bron",
-        "other": "Nog {count} bronne"
+        "one": "Wys die ander {count} bron",
+        "other": "Wys die ander {count} bronne"
       }
     },
     "fact": {

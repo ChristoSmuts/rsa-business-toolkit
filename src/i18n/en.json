@@ -305,8 +305,8 @@
       "seeRegister": "See the full sources register",
       "seeHowMade": "See how this guide was made",
       "more": {
-        "one": "{count} more source",
-        "other": "{count} more sources"
+        "one": "Show the other {count} source",
+        "other": "Show the other {count} sources"
       }
     },
     "fact": {

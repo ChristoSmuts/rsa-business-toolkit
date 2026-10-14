@@ -98,6 +98,24 @@ test.describe('axe with the interactive states open', () => {
       await expectNoBlocking(page, `clear form dialog ${theme}`, testInfo);
     });
 
+    // Main repair review pass 2: the narrow-screen "Show the other N sources" control, closed and
+    // open, on a long document in both languages.
+    for (const route of ['business-types/vehicle-dealer/', 'af/business-types/vehicle-dealer/']) {
+      test(`${route} at 360px, the sources control closed and open (${theme})`, async ({
+        page,
+        setTheme,
+      }, testInfo) => {
+        await setTheme(theme);
+        await page.setViewportSize({ width: 360, height: 740 });
+        await page.goto(route);
+        await expectNoBlocking(page, `${route} 360 sources closed ${theme}`, testInfo);
+        // The transparent checkbox lies over the label row: a tap on the row lands on it.
+        await page.locator('section.st-sources .st-sources__toggle').click();
+        await expect(page.locator('section.st-sources .st-sources__toggle')).toBeChecked();
+        await expectNoBlocking(page, `${route} 360 sources open ${theme}`, testInfo);
+      });
+    }
+
     test(`the Afrikaans quotation on a phone, preview tab (${theme})`, async ({
       page,
       setTheme,

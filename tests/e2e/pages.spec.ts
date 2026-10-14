@@ -314,7 +314,9 @@ test.describe('navigation between real pages', () => {
           const target = el.classList.contains('st-card__link')
             ? el.closest('.st-card')
             : el.matches('input[type="checkbox"], input[type="radio"]')
-              ? el.closest('label')
+              ? // Its label is the target, around it or tied to it by `for` (the sources' "Show
+                // the other N sources" checkbox, WP-50 Phase 3).
+                (el.closest('label') ?? (el as HTMLInputElement).labels?.[0] ?? el)
               : el;
           const box = (target ?? el).getBoundingClientRect();
           if (box.width === 0 && box.height === 0) continue;

@@ -1,5 +1,9 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
+import { chromiumAxName } from './helpers/ax';
+import { REPO_ROOT } from './helpers/routes';
 
 /**
  * WP-50 Phase 3, item 1: the document page to direction A (`docs/work-packages/WP-50-directions.md`,
@@ -14,6 +18,12 @@ import { expect, test } from './fixtures';
  *   every entry stays in the HTML, and from 768px all of them show.
  */
 const DEALER = 'business-types/vehicle-dealer/';
+const MANIFEST = JSON.parse(
+  readFileSync(path.join(REPO_ROOT, 'src', 'data', 'manifest.json'), 'utf8'),
+) as {
+  sections: { id: string; route: string; docs: string[] }[];
+  docs: Record<string, { route: string }>;
+};
 const PHONE = { width: 360, height: 740 } as const;
 /** Two screens of a 360×740 phone. */
 const TWO_SCREENS = 2 * PHONE.height;
@@ -217,41 +227,174 @@ test.describe('the document page at 1280px', () => {
   });
 });
 
+/*
+ * Not a <details>: a closed <details> hides its content in WebKit at every width and in print, and
+ * revealing it needs `::details-content`, which CI's WebKit does not apply (WP-50 Phase 3 fix after
+ * the merge). The rest of the list is hidden only by `screen and (width < 768px)` until a native
+ * checkbox is checked, so nothing here depends on an engine's support for `::details-content`.
+ */
 test.describe('"Sources for this page"', () => {
-  test('on a phone shows the first entries and keeps the rest, in the HTML, in a disclosure', async ({
+  test('on a phone shows the first entries and keeps the rest, in the HTML, one tap away', async ({
     page,
   }) => {
     await page.setViewportSize(PHONE);
     await page.goto(DEALER);
     const sources = page.locator('section.st-sources');
+    await expect(sources.locator('details')).toHaveCount(0);
     const all = sources.locator('li.st-source');
     const total = await all.count();
     expect(total).toBeGreaterThan(10);
-    const more = sources.locator('details.st-sources__more');
-    await expect(more).not.toHaveAttribute('open');
-    const hidden = more.locator('li.st-source');
-    expect(await hidden.count()).toBe(total - 3);
-    await expect(hidden.first()).toBeHidden();
+    const rest = sources.locator('.st-sources__rest li.st-source');
+    expect(await rest.count()).toBe(total - 3);
     await expect(all.first()).toBeVisible();
-    await more.locator('summary').click();
-    await expect(hidden.first()).toBeVisible();
+    await expect(rest.first()).toBeHidden();
+    const toggle = sources.getByRole('checkbox');
+    await expect(toggle).toHaveCount(1);
+    await expect(toggle).not.toBeChecked();
+    // The whole 44px label row is the checkbox's hit area (main repair review pass 2, nit 3).
+    const row = await sources.locator('.st-sources__more-label').boundingBox();
+    const box = await toggle.boundingBox();
+    expect(box?.height ?? 0).toBeGreaterThanOrEqual(44);
+    expect(box?.width ?? 0).toBeGreaterThanOrEqual((row?.width ?? 0) - 1);
+    // A tap on the label row lands on the transparent checkbox that covers it.
+    await sources.locator('.st-sources__toggle').click();
+    await expect(toggle).toBeChecked();
+    await expect(rest.first()).toBeVisible();
+    await expect(rest.last()).toBeVisible();
   });
 
-  test('from 768px shows every entry, with no disclosure to open', async ({ page }, testInfo) => {
+  /*
+   * Main repair review pass 2, blocker 1 and major 1: the name a screen reader gets is the visible
+   * phrase, one phrase in both states (checked means shown). Read from Chromium's own accessibility
+   * tree over CDP: Playwright's `toHaveAccessibleName` computes a name itself, so it passed while
+   * the browser's name was empty.
+   */
+  for (const [prefix, phrase] of [
+    ['', /^Show the other \d+ sources$/],
+    ['af/', /^Wys die ander \d+ bronne$/],
+  ] as const) {
+    test(`/${prefix}${DEALER}: the browser names the control with the visible words, in both states`, async ({
+      page,
+      browserName,
+    }) => {
+      test.skip(browserName !== 'chromium', 'Reads the name over CDP, which only Chromium has.');
+      await page.setViewportSize(PHONE);
+      await page.goto(`${prefix}${DEALER}`);
+      const label = page.locator('section.st-sources .st-sources__more-label');
+      const toggle = page.locator('section.st-sources .st-sources__toggle');
+      const visible = ((await label.textContent()) ?? '').trim();
+      expect(visible).toMatch(phrase);
+      expect(await chromiumAxName(page, '.st-sources__toggle')).toBe(visible);
+      await toggle.click();
+      await expect(toggle).toBeChecked();
+      expect(((await label.textContent()) ?? '').trim()).toBe(visible);
+      expect(await chromiumAxName(page, '.st-sources__toggle')).toBe(visible);
+    });
+  }
+
+  test('the control works from the keyboard and shows its focus', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'A keyboard.');
+    await page.setViewportSize(PHONE);
+    await page.goto(DEALER);
+    const sources = page.locator('section.st-sources');
+    const toggle = sources.locator('.st-sources__toggle');
+    const label = sources.locator('.st-sources__more-label');
+    // Tab to it from the link before it, as a keyboard reader would.
+    await sources.locator('ul').first().locator('a').last().focus();
+    await page.keyboard.press('Tab');
+    await expect(toggle).toBeFocused();
+    expect(await label.evaluate((element) => getComputedStyle(element).outlineStyle)).not.toBe(
+      'none',
+    );
+    await page.keyboard.press('Space');
+    await expect(toggle).toBeChecked();
+    await expect(sources.locator('.st-sources__rest li.st-source').first()).toBeVisible();
+  });
+
+  test('from 768px shows every entry, with nothing to open', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name === 'mobile', 'A tablet width.');
     await page.setViewportSize({ width: 768, height: 900 });
     await page.goto(DEALER);
-    const more = page.locator('section.st-sources details.st-sources__more');
-    await expect(more.locator('summary')).toBeHidden();
-    await expect(more.locator('li.st-source').last()).toBeVisible();
+    const sources = page.locator('section.st-sources');
+    await expect(sources.locator('.st-sources__more-label')).toBeHidden();
+    await expect(sources.locator('.st-sources__toggle')).toBeHidden();
+    await expect(sources.locator('.st-sources__rest li.st-source').first()).toBeVisible();
+    await expect(sources.locator('.st-sources__rest li.st-source').last()).toBeVisible();
   });
 
-  test('prints every entry', async ({ page }) => {
+  test('prints every entry, and not the control', async ({ page }) => {
     await page.setViewportSize(PHONE);
     await page.goto(DEALER);
     await page.emulateMedia({ media: 'print' });
-    await expect(
-      page.locator('section.st-sources details.st-sources__more li.st-source').last(),
-    ).toBeVisible();
+    const sources = page.locator('section.st-sources');
+    await expect(sources.locator('.st-sources__rest li.st-source').first()).toBeVisible();
+    await expect(sources.locator('.st-sources__rest li.st-source').last()).toBeVisible();
+    await expect(sources.locator('.st-sources__more-label')).toBeHidden();
   });
+
+  /*
+   * Main repair review pass 5, minor 1: where the two lists read as one (from 768px, and on paper)
+   * the joint between entries 3 and 4 is the same as the space between any other two entries, so
+   * entry 4 does not look like part of entry 3.
+   */
+  for (const [label, setUp] of [
+    ['at 1280px', async (page: Page) => page.setViewportSize({ width: 1280, height: 900 })],
+    [
+      'on paper',
+      async (page: Page) => {
+        await page.setViewportSize(PHONE);
+        await page.emulateMedia({ media: 'print' });
+      },
+    ],
+  ] as const) {
+    test(`${label}, entries 3 and 4 sit as far apart as any other two`, async ({
+      page,
+    }, testInfo) => {
+      test.skip(testInfo.project.name === 'mobile', 'Sets its own width.');
+      await page.goto(DEALER);
+      await setUp(page);
+      const gaps = await page.locator('section.st-sources li.st-source').evaluateAll((items) => {
+        const top = (items as HTMLElement[]).filter(
+          (item) => item.parentElement?.closest('li.st-source') === null && item.offsetParent,
+        );
+        return top.slice(1).map((item, index) => {
+          const above = top[index]!.getBoundingClientRect();
+          return Math.round(item.getBoundingClientRect().top - above.bottom);
+        });
+      });
+      expect(gaps.length).toBeGreaterThan(4);
+      // gaps[2] is the joint between the first list's last entry and the rest's first.
+      expect(Math.abs(gaps[2]! - gaps[0]!), `gaps ${gaps.join(', ')}`).toBeLessThanOrEqual(1);
+    });
+  }
+});
+
+/*
+ * The left sidebar used to list a section's pages from 1024px. "Pick your business type" is both a
+ * document and its section's landing (`business-types/`); its "Find your kind of business" cards
+ * link every other document of the section, so it needs no second list (main repair review pass 1,
+ * major 1). This holds that coverage.
+ */
+test.describe('the business-types hub', () => {
+  const section = MANIFEST.sections.find((entry) => entry.id === 'business-types');
+  if (!section) throw new Error('No business-types section in the manifest.');
+  for (const prefix of ['', 'af/']) {
+    test(`/${prefix}${section.route}: its cards link every document of the section`, async ({
+      page,
+      basePath,
+    }) => {
+      await page.goto(`${prefix}${section.route}`);
+      const hrefs = await page
+        .locator('section[aria-labelledby="st-hub-tiles"] a[href]')
+        .evaluateAll((links) =>
+          links.map((link) => new URL((link as HTMLAnchorElement).href).pathname),
+        );
+      const others = section.docs
+        .map((id) => MANIFEST.docs[id]?.route ?? '')
+        .filter((route) => route !== section.route)
+        .map((route) => `${basePath}${prefix}${route}`);
+      expect(others.length).toBeGreaterThan(5);
+      for (const route of others) expect(hrefs, route).toContain(route);
+    });
+  }
 });

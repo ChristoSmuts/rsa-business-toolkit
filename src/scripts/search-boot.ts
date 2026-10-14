@@ -83,15 +83,58 @@ export function openSearch(from: HTMLElement | null, doc: Document = document): 
     host.opener = from;
     dialog.showModal();
     field?.focus();
-    if (field) waiting(host, field);
+    if (field) waiting(host, dialog, field);
   }
-  load().catch(() => {
-    const query = field?.value.trim() ?? '';
-    doc.defaultView?.location.assign(
-      `${host.dataset['page'] ?? ''}${query ? `?q=${encodeURIComponent(query)}` : ''}`,
-    );
-  });
+  load().then(
+    () => {
+      // Enter pressed before the script took over: the script now does what Enter does there.
+      if (dialog?.open && field && field.value === entered) submit(field.form);
+      forget();
+    },
+    () => {
+      // Not for a dialog the reader has closed, nor after the held Enter has left already.
+      if (left || !dialog?.open) return;
+      const query = field?.value.trim() ?? '';
+      // The held Enter's timer would send the form a second time (main repair review pass 3).
+      forget();
+      left = true;
+      doc.defaultView?.location.assign(
+        `${host.dataset['page'] ?? ''}${query ? `?q=${encodeURIComponent(query)}` : ''}`,
+      );
+    },
+  );
   return true;
+}
+
+/**
+ * The text in the field when Enter was pressed in the open dialog before its script took over, or
+ * `null`. Closing the dialog cancels it, and so does changing the text: the script only acts on an
+ * Enter for the text that is still in the field (as `search-ui.ts`, `enterCurrent()`, does).
+ */
+let entered: string | null = null;
+/** The timer of the held Enter: one at most, for the latest Enter. */
+let timer = 0;
+/** The held Enter has sent the form to the search page after `HELD_ENTER_MS`. */
+let left = false;
+/** Cancel the held Enter and its timer. */
+function forget(): void {
+  entered = null;
+  clearTimeout(timer);
+}
+/** The handlers below are on the dialog (once per page). */
+let keysHeld = false;
+/**
+ * How long a held Enter waits for the dialog's script. A stalled connection neither loads nor fails
+ * it; Enter then goes to the search page, as it did before Enter was held.
+ */
+const HELD_ENTER_MS = 8000;
+
+/** `requestSubmit()`, or on an older browser (Safari before 16) the same submit event. */
+function submit(form: HTMLFormElement | null): void {
+  if (!form) return;
+  // Typed as always there; it is not, before Safari 16.
+  if ((form as Partial<HTMLFormElement>).requestSubmit) form.requestSubmit();
+  else form.dispatchEvent(new Event('submit', { cancelable: true }));
 }
 
 /**
@@ -99,8 +142,45 @@ export function openSearch(from: HTMLElement | null, doc: Document = document): 
  * status line, and hide the common questions while the field has text: they are not results for it
  * (WP-50 audit, flow 3). The results code (`search-ui.ts`) keeps the same state until the index has
  * arrived.
+ *
+ * The keys the script handles do the same before it arrives. Enter does not submit the form, which
+ * left for the search page; `openSearch()` hands it to the script, or after `HELD_ENTER_MS` the
+ * form goes to the search page after all. Escape and the close button close the dialog, also with
+ * text in the field, whose own Escape only cleared the text. All were lost on a slow phone whenever
+ * the reader was quicker than the script.
  */
-function waiting(host: Dialog, field: HTMLInputElement): void {
+function waiting(host: Dialog, dialog: HTMLDialogElement, field: HTMLInputElement): void {
+  if (!keysHeld) {
+    keysHeld = true;
+    const form = field.form;
+    form?.addEventListener('submit', (event) => {
+      if (host.open) return;
+      event.preventDefault();
+      forget();
+      // An empty query goes nowhere, as in the script (review WP-33 pass 4, nit 1).
+      const text = field.value;
+      if (!dialog.open || text.trim() === '') return;
+      entered = text;
+      timer = window.setTimeout(() => {
+        left = !host.open && dialog.open && field.value === entered;
+        // Forgotten first, so a script that arrives while the search page loads does not replay it.
+        forget();
+        if (left) form.submit();
+      }, HELD_ENTER_MS);
+    });
+    field.addEventListener('keydown', (event) => {
+      if (host.open || event.key !== 'Escape' || event.isComposing) return;
+      event.preventDefault();
+      dialog.close();
+    });
+    host.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!host.open && target instanceof Element && target.closest('[data-search-close]')) {
+        dialog.close();
+      }
+    });
+    dialog.addEventListener('close', forget);
+  }
   const status = host.querySelector<HTMLElement>('[role="status"]');
   const common = host.querySelector<HTMLElement>('[data-search-empty]');
   const show = (): void => {
