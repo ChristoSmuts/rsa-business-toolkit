@@ -934,10 +934,13 @@ describe('the a11y projects (playwright.config.ts)', () => {
       ]) {
         expect(grep.test(other), other).toBe(false);
       }
-      // Nothing may take part of the sweep away again: a grepInvert on a theme or on /af/ would
-      // halve it, and a testIgnore would leave it empty.
+      // A grepInvert on a theme or on /af/ would halve the sweep and a testIgnore would empty it,
+      // whether set on the project or at the top of the config, which every project inherits.
       expect(phone?.grepInvert).toBeUndefined();
       expect(phone?.testIgnore).toBeUndefined();
+      expect(config.grep).toBeUndefined();
+      expect(config.grepInvert).toBeUndefined();
+      expect(config.testIgnore).toBeUndefined();
       expect(phone?.testMatch).toEqual(byName('a11y')?.testMatch);
 
       const desktop = byName('a11y');
@@ -956,6 +959,27 @@ describe('the a11y projects (playwright.config.ts)', () => {
       expect(() => a11yViewport('chromium')).toThrow(/no expected viewport for project "chromium"/);
     },
   );
+
+  // A script or CI step pointed at the wrong project would keep the phone job green without
+  // running the phone pass.
+  it('the scripts and CI jobs run the project their names promise', () => {
+    const scripts = (
+      JSON.parse(readFileSync(path.join(repoRoot, 'package.json'), 'utf8')) as {
+        scripts: Record<string, string>;
+      }
+    ).scripts;
+    expect(scripts['test:a11y:desktop']).toBe('playwright test --project a11y');
+    expect(scripts['test:a11y:phone']).toBe('playwright test --project a11y-phone');
+    expect(scripts['test:a11y']).toBe('playwright test --project a11y --project a11y-phone');
+
+    const ci = readFileSync(path.join(repoRoot, '.github', 'workflows', 'ci.yml'), 'utf8');
+    const job = (id: string) =>
+      ci.match(new RegExp(`^  ${id}:\\n([\\s\\S]*?)(?=^  \\S|(?![\\s\\S]))`, 'm'))?.[1] ?? '';
+    expect(job('a11y')).toMatch(/^\s+- run: pnpm test:a11y:desktop$/m);
+    expect(job('a11y')).not.toMatch(/test:a11y:phone/);
+    expect(job('a11y-phone')).toMatch(/^\s+- run: pnpm test:a11y:phone$/m);
+    expect(job('a11y-phone')).not.toMatch(/test:a11y:desktop/);
+  });
 });
 
 describe('Astro internals the e2e and Lighthouse launchers rely on', () => {
