@@ -589,7 +589,8 @@
         "af": "Kosbesigheid"
       },
       "summary": {
-        "en": "For anyone who handles, prepares, stores, transports or sells food for money: what you need before you may open, and how long it really takes."
+        "en": "For anyone who handles, prepares, stores, transports or sells food for money: what you need before you may open, and how long it really takes.",
+        "af": "Vir enigiemand wat kos vir geld hanteer, voorberei, berg, vervoer of verkoop: wat jy nodig het voordat jy mag oopmaak, en hoe lank dit regtig neem."
       },
       "appliesTo": {
         "businessTypes": ["food"]
