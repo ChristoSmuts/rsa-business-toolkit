@@ -115,12 +115,13 @@ st-table-scroll {
 }
 
 /*
- * A row's read time and applies-to note are plain words with their icon, as on the document
+ * A row's (and a tool's) read time and applies-to note are plain words with their icon, as on the document
  * page's meta line: a chip round each was one box too many on a row that has no box (WP-50
  * Phase 3 critique, "remove one accessory"). The badge keeps its icon, words and wrapping. Here
  * and not in `Card.astro`, whose scoped styles do not reach a badge passed into its slot.
  */
-.st-row .st-card__meta .st-badge {
+.st-row .st-card__meta .st-badge,
+.st-card[data-variant='tool'] .st-card__meta .st-badge {
   padding-inline: 0;
   border-color: transparent;
   background-color: transparent;

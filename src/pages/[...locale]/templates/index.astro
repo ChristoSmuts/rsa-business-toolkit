@@ -107,6 +107,11 @@ const checkedOn = latestCheck(templateDocs.filter((doc) => doc !== undefined));
     padding-block: var(--st-space-5) var(--st-space-8);
   }
 
+  /* Each item is a grid, so its tool panel stretches to the row's height. */
+  .st-templates__list:not(.st-rows) > li {
+    display: grid;
+  }
+
   .st-templates__list:not(.st-rows) {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));

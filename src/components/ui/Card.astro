@@ -97,6 +97,11 @@ const titleLink = href !== undefined && !actionLink;
     <div class="st-card__summary">
       <slot />
     </div>
+    {hasMeta && (
+      <div class="st-card__meta">
+        <slot name="meta" />
+      </div>
+    )}
     {actionLink && (
       <p class="st-card__action-row">
         <a
@@ -107,11 +112,6 @@ const titleLink = href !== undefined && !actionLink;
           {action}
         </a>
       </p>
-    )}
-    {hasMeta && (
-      <div class="st-card__meta">
-        <slot name="meta" />
-      </div>
     )}
   </div>
 </article>
@@ -219,11 +219,12 @@ const titleLink = href !== undefined && !actionLink;
     background-color: var(--st-surface);
   }
 
-  /* In a grid of tools every panel is as tall as its row, with the actions on one line. */
-  li > .st-card[data-variant='tool'] {
-    block-size: 100%;
-  }
-
+  /*
+   * In a grid of tools every panel is as tall as its row, with the actions on one line: the list
+   * that owns the grid makes each `<li>` a grid, so the panel stretches (a `li >` rule here would be
+   * scoped to Card and never match a list item another component renders). The body fills the
+   * panel and the action row's auto margin takes it to the bottom.
+   */
   .st-card[data-variant='tool']:not(:has(.st-card__icon)) {
     grid-template-columns: minmax(0, 1fr);
   }
