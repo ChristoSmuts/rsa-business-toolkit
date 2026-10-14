@@ -27,11 +27,12 @@
  * landscape phone (below 500px high: 800×360, 844×390, 915×412) the AI notice must still be on the
  * first screen (Stoep rule 9, ADR 0006; WP-50a) under today's two- and three-row header, so there
  * the notices come straight after the H1 and the lead and the meta line (`st-doc__after-notice`)
- * follow them. Without JavaScript the header is 213px below 1024px, and on a landscape phone lower
- * than about 400px (568×320 to 844×390) the notice still starts below the first screen; only the
- * one-row header can fix that. Only their order on screen changes; neither has a link or
- * control, so the order of focus and of reading is the same either way. Once the header is one row
- * (WP-50 Phase 3, item 5) this can go.
+ * follow them, and the page starts 8px under the header. Only their order on screen changes;
+ * neither has a link or control, so the order of focus and of reading is the same either way.
+ * Known gaps until the header is one row (WP-50 Phase 3, item 5), measured on all 74 documents
+ * (docs/design-system.md, "AI notice"): with JavaScript, `af/start/start-here/` at 568×320; without
+ * it (a 213px header below 1024px), every page at 360px high, 13 at 844×390 and 9 at 915×412,
+ * where the H1 takes two lines.
  *
  * `assertDocTrust` runs first, so a document that would render without sources and without a
  * source note fails the build instead of shipping (D5).
@@ -442,7 +443,8 @@ const relatedTypes = businessType
     }
   }
 
-  @media (width < 768px) {
+  /* A phone, upright or on its side: the breadcrumb's 44px target already leaves room above it. */
+  @media (width < 768px), (orientation: landscape) and (height < 500px) {
     .st-doc {
       padding-block-start: var(--st-space-2);
     }

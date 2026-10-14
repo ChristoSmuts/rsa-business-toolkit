@@ -67,16 +67,23 @@ test.describe('the top of a document page', () => {
   });
 
   // Review pass 1, minor 5 and minor 2: the notice's label row (44px) ends inside the first screen
-  // on tall phones, which keep the HTML order, and on landscape phones, which reorder.
+  // on tall phones, which keep the HTML order, and on landscape phones, which reorder. Pass 2,
+  // minor 1: two pages whose H1 or breadcrumb take an extra line too (AF start here, AF beauty).
   for (const [width, height] of [
     [360, 740],
     [412, 915],
     [800, 360],
     [844, 390],
+    [915, 412],
   ] as const) {
     test(`the AI notice is on the first screen at ${width}×${height}`, async ({ page }) => {
       await page.setViewportSize({ width, height });
-      for (const route of [DEALER, `af/${DEALER}`]) {
+      for (const route of [
+        DEALER,
+        `af/${DEALER}`,
+        'af/start/start-here/',
+        'af/business-types/beauty/',
+      ]) {
         await page.goto(route);
         await page.waitForLoadState('networkidle');
         await page.evaluate(() => window.scrollTo(0, 0));
