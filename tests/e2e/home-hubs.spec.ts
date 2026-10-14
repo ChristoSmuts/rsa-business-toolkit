@@ -85,6 +85,27 @@ test.describe('the home page', () => {
     await page.goto('./');
     const step = page.locator('.st-stoep__steps > li').first();
     expect(await style(step, 'border-top-style')).toBe('solid');
+    // The roof is drawn in the system's text colour, like the steps' edges, not the author's green
+    // (review pass 1, m4).
+    const ink = await style(step, 'border-top-color');
+    expect(await style(page.locator('.st-stoep__roof'), 'color')).toBe(ink);
+  });
+
+  test('the stoep is named once, by its link, which says where it goes', async ({ page }) => {
+    await page.goto('./');
+    // The figure takes no name from its caption, so the caption is heard once (review pass 1, n1).
+    await expect(page.locator('figure.st-stoep')).not.toHaveAttribute('aria-labelledby', /.*/);
+    await expect(page.locator('figure.st-stoep')).not.toHaveAttribute('aria-label', /.*/);
+    // The link's name starts with its visible words and names Find my path (n2).
+    await expect(page.locator('.st-stoep__link')).toHaveAccessibleName(
+      'Three short questions. Then you get the steps that apply to you, in order. Start Find my path',
+    );
+  });
+
+  test('the stoep is left out of print', async ({ page }) => {
+    await page.goto('./');
+    await page.emulateMedia({ media: 'print' });
+    await expect(page.locator('figure.st-stoep')).toBeHidden();
   });
 
   test('where to start: two pages to read and one tool', async ({ page, basePath }) => {
@@ -204,6 +225,34 @@ test.describe('section hubs', () => {
     const tool = page.locator('.st-card[data-variant="tool"]');
     await expect(tool).toHaveCount(1);
     await expect(tool.getByRole('link')).toHaveAttribute('href', `${basePath}checklist/`);
+    // A tool keeps its read time, as plain words, like a page row (review pass 1, m2).
+    const time = tool.locator('.st-card__meta .st-badge[data-variant="status"]');
+    await expect(time).toHaveText(/\d+ min read/);
+    expect(await style(time, 'background-color')).toBe('rgba(0, 0, 0, 0)');
+  });
+
+  test('tools in one row share a height, with their actions on one line', async ({
+    page,
+  }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'One tool per row on a phone.');
+    await page.setViewportSize({ width: 1280, height: 800 });
+    for (const route of ['paperwork/', 'templates/']) {
+      await page.goto(route);
+      const tools = page.locator('.st-card[data-variant="tool"]');
+      const boxes = await tools.evaluateAll((cards) =>
+        cards.map((card) => {
+          const panel = card.getBoundingClientRect();
+          const action = card.querySelector('.st-card__action')?.getBoundingClientRect();
+          return { top: panel.top, height: panel.height, action: action?.top ?? -1 };
+        }),
+      );
+      const firstRow = boxes.filter((item) => Math.abs(item.top - (boxes[0]?.top ?? 0)) < 1);
+      expect(firstRow.length, route).toBeGreaterThan(1);
+      for (const item of firstRow) {
+        expect(Math.abs(item.height - (firstRow[0]?.height ?? 0)), route).toBeLessThan(1);
+        expect(Math.abs(item.action - (firstRow[0]?.action ?? 0)), route).toBeLessThan(1);
+      }
+    }
   });
 
   test('the templates index shows the templates as tools', async ({ page }) => {
