@@ -50,7 +50,16 @@ const pages = docs.filter((doc) => !isTool(doc));
 const tools = docs.filter(isTool).map((doc) => {
   const name = docTitle(manifest, doc.id, locale);
   return doc.kind === 'template'
-    ? { doc, name, action: t('templates.open'), context: name, icon: 'lucide:notebook-pen' }
+    ? {
+        doc,
+        name,
+        action: t('templates.open'),
+        // The short name, as on /templates/: the title's "(template)" would repeat the action.
+        context: t(
+          `templates.items.${manifest.docs[doc.id]?.slug ?? doc.id}.name` as TranslationKey,
+        ),
+        icon: 'lucide:notebook-pen',
+      }
     : {
         doc,
         name,
@@ -67,7 +76,8 @@ const contentLang = (doc: Doc): string | undefined =>
   <Breadcrumb crumbs={crumbs} locale={locale} />
   <SectionHeader section={hue} title={title} level={1} />
   <p class="st-lead">{description}</p>
-  <p class="st-hint">{t('section.docCount', { count: docs.length })}</p>
+  {/* Pages to read only: the tools are counted by their own list (review pass 2). */}
+  <p class="st-hint">{t('section.docCount', { count: pages.length })}</p>
 
   {pages.length > 0 && (
     <ol
@@ -86,11 +96,11 @@ const contentLang = (doc: Doc): string | undefined =>
           >
             <p lang={contentLang(doc)}>{doc.summary}</p>
             <p slot="meta" class="st-cluster">
-              <Badge variant="status" icon="lucide:clock">
+              <Badge variant="status" icon="lucide:clock" bare>
                 {t('doc.readTime', { minutes: doc.readingTime })}
               </Badge>
               {doc.appliesTo.entity !== 'all' && (
-                <Badge variant="entity">
+                <Badge variant="entity" bare>
                   {doc.appliesTo.entity === 'pty' ? t('doc.ptyOnly') : t('doc.soleProprietorOnly')}
                 </Badge>
               )}
@@ -122,11 +132,11 @@ const contentLang = (doc: Doc): string | undefined =>
             >
               <p lang={contentLang(tool.doc)}>{tool.doc.summary}</p>
               <p slot="meta" class="st-cluster">
-                <Badge variant="status" icon="lucide:clock">
+                <Badge variant="status" icon="lucide:clock" bare>
                   {t('doc.readTime', { minutes: tool.doc.readingTime })}
                 </Badge>
                 {tool.doc.appliesTo.entity !== 'all' && (
-                  <Badge variant="entity">
+                  <Badge variant="entity" bare>
                     {tool.doc.appliesTo.entity === 'pty'
                       ? t('doc.ptyOnly')
                       : t('doc.soleProprietorOnly')}

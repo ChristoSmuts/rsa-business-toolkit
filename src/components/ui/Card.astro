@@ -174,7 +174,10 @@ const titleLink = href !== undefined && !actionLink;
     color: var(--st-text);
   }
 
-  /* Meta sits above the link overlay so links or buttons placed in it stay usable. */
+  /*
+   * Meta sits above the link overlay so links or buttons placed in it stay usable. With none in it
+   * (everywhere today) it lets taps through, so the read time on a tool or a row opens it too.
+   */
   .st-card__meta {
     position: relative;
     z-index: 1;
@@ -184,6 +187,10 @@ const titleLink = href !== undefined && !actionLink;
     gap: var(--st-space-2) var(--st-space-3);
     color: var(--st-text-muted);
     font-size: var(--st-text-sm);
+  }
+
+  .st-card__meta:not(:has(a, button, input, select, textarea, summary)) {
+    pointer-events: none;
   }
 
   /* ---------- Page: a page to read ---------- */
@@ -365,6 +372,24 @@ const titleLink = href !== undefined && !actionLink;
 
     .st-card[data-variant='type']:has(.st-card__link:hover) {
       border-color: var(--st-border-strong);
+    }
+  }
+
+  /*
+   * On paper a tool's action is a link to print, not a button nobody can press, and a panel or a
+   * tile is never cut across two pages.
+   */
+  @media print {
+    .st-card[data-variant='tool'],
+    .st-card[data-variant='type'] {
+      break-inside: avoid;
+    }
+
+    .st-card__action {
+      min-block-size: 0;
+      padding: 0;
+      border: 0;
+      text-decoration: underline;
     }
   }
 
