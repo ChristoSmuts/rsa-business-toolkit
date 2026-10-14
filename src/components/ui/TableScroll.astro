@@ -61,7 +61,17 @@ const { labelledby, wide = false, class: className } = Astro.props;
     position: relative;
     display: block;
     max-inline-size: 100%;
-    overflow-x: auto;
+
+    /*
+     * The region only scrolls sideways (x `auto`, y `hidden`). `overflow-x: auto` alone made the
+     * other axis `auto` too, and a few pixels of vertical overflow (a visually hidden span
+     * positioned in a cell) then made a table that fits its column a scrollable region with no tab
+     * stop, which axe reports
+     * (scrollable-region-focusable). The region's height is its content's, so nothing that shows is
+     * clipped; `auto` already clipped on both axes. Seen once the document's text column grew to
+     * the full measure at 1280px (WP-50 Phase 3), on "Which template to use when".
+     */
+    overflow: auto hidden;
 
     /*
      * Keeps the caption clear of the focus ring. Block padding only: inline padding makes
