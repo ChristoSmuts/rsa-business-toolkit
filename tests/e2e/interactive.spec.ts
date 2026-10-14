@@ -847,6 +847,9 @@ test.describe('motion', () => {
         'stroke-dashoffset',
       ])
         expect(properties, selector).not.toContain(moving);
+      // The focus ring appears at once: with `outline-color` in the list it faded in from white
+      // (WP-50 Phase 2 review pass 3, minor 1).
+      expect(properties, selector).not.toContain('outline-color');
       expect(
         Math.max(...style.duration.split(',').map((value) => parseFloat(value))),
         selector,
