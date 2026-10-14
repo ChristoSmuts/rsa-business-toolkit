@@ -284,7 +284,14 @@ test.describe('content rendering', () => {
     expect(labelledBy).toBeTruthy();
     const caption = page.locator(`#${labelledBy ?? ''}`);
     await expect(caption).toHaveCount(1);
-    await expect(caption).toContainText('Scroll sideways');
+    // The sample can be a business-types table, which stacks into cards instead of scrolling
+    // (`stack="rows"`, WP-50 Phase 3 item 3), so its name must not tell anyone to scroll.
+    if ((await narrow.getAttribute('data-stack')) === 'rows') {
+      await expect(caption).toContainText('Table:');
+      await expect(caption).not.toContainText('Scroll sideways');
+    } else {
+      await expect(caption).toContainText('Scroll sideways');
+    }
     await expect(caption).toHaveClass(/st-visually-hidden/);
     await expect(caption.locator('xpath=..')).toHaveJSProperty('tagName', 'TABLE');
 
