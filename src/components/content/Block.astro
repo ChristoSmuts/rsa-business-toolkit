@@ -53,7 +53,8 @@ const Heading = tag ?? (block.kind === 'heading' ? headingTag(block.depth) : 'h2
  * A heading that applies to one entity or some kinds of business (WP-31) carries its condition, so
  * `src/scripts/applies.ts` can collapse its section into the marker rendered before it.
  */
-const applies = block.kind === 'heading' ? appliesAttributes(block.appliesTo) : {};
+const applies =
+  block.kind === 'heading' ? appliesAttributes(block.appliesTo, context.ownBusinessType) : {};
 const filterable = block.kind === 'heading' && block.appliesTo && Object.keys(applies).length > 0;
 ---
 

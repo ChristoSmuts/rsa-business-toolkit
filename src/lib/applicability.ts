@@ -55,13 +55,32 @@ export function appliesFromAttributes(
   return out.entity === undefined && out.businessTypes === undefined ? undefined : out;
 }
 
-/** The attributes `appliesFromAttributes` reads, for a server-rendered part. */
-export function appliesAttributes(appliesTo: AppliesTo): {
+/**
+ * The attributes `appliesFromAttributes` reads, for a server-rendered part.
+ *
+ * `ownType`: the kind of business the page is about, on a business-type page. A part whose only
+ * condition is that kind of business (the food page's own checklist, `when: { businessTypes:
+ * ['food'] }`) gets no condition there: the reader opened the page about it, so "Only what applies
+ * to me" must not hide the page's subject from them (WP-50 Phase 3, item 3). A part with an entity
+ * keeps its whole condition.
+ */
+export function appliesAttributes(
+  appliesTo: AppliesTo,
+  ownType?: string | undefined,
+): {
   'data-entity'?: string;
   'data-types'?: string;
 } {
   const out: { 'data-entity'?: string; 'data-types'?: string } = {};
   if (!appliesTo) return out;
+  if (
+    ownType !== undefined &&
+    appliesTo.entity !== 'sole-prop' &&
+    appliesTo.entity !== 'pty' &&
+    Array.isArray(appliesTo.businessTypes) &&
+    (appliesTo.businessTypes as readonly string[]).includes(ownType)
+  )
+    return out;
   if (appliesTo.entity === 'sole-prop' || appliesTo.entity === 'pty')
     out['data-entity'] = appliesTo.entity;
   if (Array.isArray(appliesTo.businessTypes) && appliesTo.businessTypes.length > 0)

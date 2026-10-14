@@ -44,6 +44,11 @@ export interface ContentContext {
   readonly officialUrls: ReadonlySet<string>;
   /** The document being rendered, when there is one. Used for task ids and same-page anchors. */
   readonly docId: string | undefined;
+  /**
+   * On a business-type page, the kind of business it is about: its own parts get no "Only what
+   * applies to me" condition there (`appliesAttributes`, WP-50 Phase 3, item 3).
+   */
+  readonly ownBusinessType?: string | undefined;
 }
 
 export interface ContentContextInput {
@@ -57,6 +62,7 @@ export interface ContentContextInput {
   /** The English register, to tell which of a translated register's texts stayed English. */
   readonly englishSources?: SourcesFile | undefined;
   readonly docId?: string | undefined;
+  readonly ownBusinessType?: string | undefined;
 }
 
 export function createContentContext(input: ContentContextInput): ContentContext {
@@ -75,6 +81,7 @@ export function createContentContext(input: ContentContextInput): ContentContext
         : keptInEnglish(input.englishSources, input.sources),
     officialUrls: officialUrls(input.sources),
     docId: input.docId,
+    ownBusinessType: input.ownBusinessType,
   };
 }
 

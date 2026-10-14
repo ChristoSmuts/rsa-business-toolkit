@@ -119,6 +119,7 @@ const route = doc.route;
 const contentLang = doc.lang as Locale;
 const isFallback = contentLang !== locale;
 const contentLangTag = isFallback ? (getLocale(contentLang)?.hreflang ?? contentLang) : undefined;
+const businessType = businessTypes.find((type) => type.doc === doc.id);
 const context = createContentContext({
   locale,
   contentLang,
@@ -128,6 +129,7 @@ const context = createContentContext({
   sourcesLang,
   englishSources,
   docId: doc.id,
+  ownBusinessType: businessType?.id,
 });
 
 const section = sectionTitle(manifest, doc.section, locale);
@@ -156,7 +158,6 @@ const templateIntro = template
 const translationStatus = isFallback ? 'fallback' : doc.translation.status;
 const englishHref = locale === DEFAULT_LOCALE ? undefined : href(DEFAULT_LOCALE, route);
 
-const businessType = businessTypes.find((type) => type.doc === doc.id);
 const coreHref = sectionHref(manifest, 'core', locale);
 /**
  * Every business type's text opens with "Read [Core] first. This file adds …", the link included,

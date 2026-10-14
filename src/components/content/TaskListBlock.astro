@@ -53,7 +53,7 @@ const siteLang = isFallbackContent(context)
 const ids = block.items.map((task) => task.sameAs ?? task.id);
 const progressTemplate = siteT('checklist.progress', { done: '{done}', total: '{total}' });
 /** Each task's condition (WP-31), for "Only what applies to me" (`src/scripts/applies.ts`). */
-const conditions = block.items.map((task) => appliesAttributes(task.when));
+const conditions = block.items.map((task) => appliesAttributes(task.when, context.ownBusinessType));
 const filterable = conditions.some((attrs) => Object.keys(attrs).length > 0);
 ---
 

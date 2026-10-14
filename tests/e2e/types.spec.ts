@@ -144,6 +144,10 @@ test.describe('"Only what applies to me" on business types', () => {
     }
     await page.goto('business-types/vehicle-dealer/');
     await expect(page.locator('st-applies-switch')).toHaveCount(1);
+    // The dealer's own checklist carries no condition on its own page, so the switch never hides
+    // it; "If you trade as a company" keeps its entity.
+    await expect(page.locator('article [data-types]')).toHaveCount(0);
+    await expect(page.locator('#if-you-trade-as-a-company')).toHaveAttribute('data-entity', 'pty');
     // Without answers the line says what the switch is for before pointing at Find my path.
     await expect(page.locator('st-applies-switch [data-no-profile]')).toContainText(
       'To see only the parts of this page that apply to you',

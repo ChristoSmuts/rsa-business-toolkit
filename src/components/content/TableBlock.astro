@@ -41,7 +41,7 @@ const labelled = wide || stack !== undefined;
 const headerText = block.header.map((cell) => plainText(cell));
 /** A row's own condition (`rowWhen`, WP-31), for "Only what applies to me". */
 const rowConditions = block.rows.map((_, index) =>
-  appliesAttributes(block.rowWhen?.[index] ?? undefined),
+  appliesAttributes(block.rowWhen?.[index] ?? undefined, context.ownBusinessType),
 );
 ---
 

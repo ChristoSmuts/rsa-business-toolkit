@@ -586,7 +586,9 @@ test.describe('personalisation elsewhere', () => {
     seedStorage,
   }) => {
     await seedStorage({ 'st.profile.v1': FOOD, 'st.onlyMine': true });
-    await page.goto('business-types/beauty/');
+    // A Pty Ltd checklist for a sole proprietor. (It was the beauty page's own checklist for a food
+    // reader until WP-50 Phase 3, item 3: a type page no longer hides its own subject.)
+    await page.goto('core/adding-new-lines/');
     const list = page
       .locator('st-checklist')
       .filter({ has: page.locator('[data-show-list]') })
@@ -755,7 +757,11 @@ test.describe('personalisation elsewhere', () => {
     await expect(page.getByRole('switch')).toHaveCount(0);
     await expect(
       page.locator('st-applies-switch [data-no-profile]').locator('visible=true'),
-    ).toContainText('Answer the questions in Find my path');
+    ).toHaveText(
+      // WP-50 Phase 3, item 3: the line says what the switch is for ("Answer the questions in Find
+      // my path to use this." named nothing the reader could see).
+      /^\s*To see only the parts of this page that apply to you, first answer three short questions:\s+Find my path\s*$/,
+    );
   });
 
   test('/checklist/ offers “Only what applies to me” only with answers', async ({
