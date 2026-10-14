@@ -58,7 +58,14 @@ import TemplateTool from '../components/templates/TemplateTool.astro';
 import { formatDate, useTranslations } from '../i18n';
 import { DEFAULT_LOCALE, getLocale, type Locale } from '../i18n/locales';
 import { createContentContext } from '../lib/content/context';
-import { docHref, docTitle, sectionHref, sectionTitle } from '../lib/content/manifest';
+import {
+  docHref,
+  docTitle,
+  docTitleLang,
+  sectionDocIds,
+  sectionHref,
+  sectionTitle,
+} from '../lib/content/manifest';
 import type { BusinessType, Doc, GlossaryFile, Manifest, SourcesFile } from '../lib/content/schema';
 import { splitTermsBlocks, TERMS_HEADING_ID } from '../lib/content/render';
 import { hasOwnSources } from '../lib/content/trust';
@@ -150,6 +157,24 @@ const effortLabels = [
   t('businessTypes.effort.high'),
 ] as const;
 const coreHref = sectionHref(manifest, 'core', locale);
+/**
+ * A document that is its section's landing page (today only "Pick your business type", at
+ * `business-types/`) lists the section's pages, the current one marked. The other sections' landings
+ * are `SectionLanding` pages with their own list. Before WP-50 Phase 3 the left sidebar carried this
+ * list from 1024px; a document's own section is one breadcrumb tap away, but the landing must not
+ * lose it (home/hubs review of Phase 3).
+ */
+const sectionPages =
+  sectionHref(manifest, doc.section, locale) === docHref(manifest, doc.id, locale)
+    ? sectionDocIds(manifest, doc.section)
+        .map((id) => ({
+          id,
+          title: docTitle(manifest, id, locale),
+          lang: docTitleLang(manifest, id, locale),
+          href: docHref(manifest, id, locale),
+        }))
+        .filter((page) => page.href !== undefined)
+    : [];
 /**
  * Every business type's text opens with "Read [Core] first. This file adds …", the link included,
  * in both languages. A type whose first paragraph says so needs no second "Read Core first"; one
@@ -286,6 +311,26 @@ const relatedTypes = businessType
               general={false}
             />
           </section>
+        )}
+
+        {sectionPages.length > 1 && (
+          <nav class="st-stack st-stack-sm" aria-labelledby="st-section-pages">
+            <h2 id="st-section-pages">{t('section.pagesLabel', { section })}</h2>
+            <ol class="st-doc__section-pages" role="list">
+              {sectionPages.map((page) => (
+                <li>
+                  <a
+                    class="st-link-block"
+                    href={page.href}
+                    lang={page.lang}
+                    aria-current={page.id === doc.id ? 'page' : undefined}
+                  >
+                    {page.title}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
         )}
 
         {template && templateSlug ? (
@@ -481,6 +526,24 @@ const relatedTypes = businessType
 
   .st-doc__terms {
     max-inline-size: var(--st-measure);
+  }
+
+  /*
+   * A simple list for now; Phase 3 item 2 restyles it with the page rows of direction A's card set.
+   * The current page is marked by weight and a bar, never colour alone.
+   */
+  .st-doc__section-pages {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    max-inline-size: var(--st-measure);
+    padding: 0;
+    list-style: none;
+  }
+
+  .st-doc__section-pages a[aria-current='page'] {
+    padding-inline-start: var(--st-space-3);
+    box-shadow: inset var(--st-stripe-width) 0 0 var(--st-primary);
+    font-weight: var(--st-weight-semibold);
   }
 
   .st-doc__terms-body {

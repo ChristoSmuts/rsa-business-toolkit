@@ -1,5 +1,8 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
+import { REPO_ROOT } from './helpers/routes';
 
 /**
  * WP-50 Phase 3, item 1: the document page to direction A (`docs/work-packages/WP-50-directions.md`,
@@ -14,6 +17,12 @@ import { expect, test } from './fixtures';
  *   every entry stays in the HTML, and from 768px all of them show.
  */
 const DEALER = 'business-types/vehicle-dealer/';
+const MANIFEST = JSON.parse(
+  readFileSync(path.join(REPO_ROOT, 'src', 'data', 'manifest.json'), 'utf8'),
+) as {
+  sections: { id: string; route: string; docs: string[] }[];
+  docs: Record<string, { route: string }>;
+};
 const PHONE = { width: 360, height: 740 } as const;
 /** Two screens of a 360×740 phone. */
 const TWO_SCREENS = 2 * PHONE.height;
@@ -285,4 +294,31 @@ test.describe('"Sources for this page"', () => {
     await expect(sources.locator('.st-sources__rest li.st-source').last()).toBeVisible();
     await expect(sources.locator('.st-sources__more-label')).toBeHidden();
   });
+});
+
+/*
+ * The left sidebar used to list a section's pages from 1024px. On a section's landing that is a
+ * document ("Pick your business type", at `business-types/`) the page now lists them itself, at
+ * every width (Phase 3 home/hubs review).
+ */
+test.describe('a section landing that is a document', () => {
+  const section = MANIFEST.sections.find((entry) => entry.id === 'business-types');
+  if (!section) throw new Error('No business-types section in the manifest.');
+  for (const prefix of ['', 'af/']) {
+    test(`/${prefix}${section.route} links to every document in its section`, async ({ page }) => {
+      await page.goto(`${prefix}${section.route}`);
+      const list = page.getByRole('navigation', { name: /^(Pages in|Bladsye in) / });
+      await expect(list).toBeVisible();
+      const hrefs = await list
+        .locator('a')
+        .evaluateAll((links) =>
+          links.map((link) => new URL((link as HTMLAnchorElement).href).pathname),
+        );
+      const expected = section.docs.map(
+        (id) => `/business-toolkit/${prefix}${MANIFEST.docs[id]?.route ?? ''}`,
+      );
+      expect(hrefs).toEqual(expected);
+      await expect(list.locator('a[aria-current="page"]')).toHaveCount(1);
+    });
+  }
 });
