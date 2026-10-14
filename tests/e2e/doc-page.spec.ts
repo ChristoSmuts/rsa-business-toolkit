@@ -66,6 +66,26 @@ test.describe('the top of a document page', () => {
     expect(next).toContain('Masjienvertaling');
   });
 
+  // Review pass 1, minor 5 and minor 2: the notice's label row (44px) ends inside the first screen
+  // on tall phones, which keep the HTML order, and on landscape phones, which reorder.
+  for (const [width, height] of [
+    [360, 740],
+    [412, 915],
+    [800, 360],
+    [844, 390],
+  ] as const) {
+    test(`the AI notice is on the first screen at ${width}×${height}`, async ({ page }) => {
+      await page.setViewportSize({ width, height });
+      for (const route of [DEALER, `af/${DEALER}`]) {
+        await page.goto(route);
+        await page.waitForLoadState('networkidle');
+        await page.evaluate(() => window.scrollTo(0, 0));
+        const box = await page.locator('.st-ai-notice').boundingBox();
+        expect(box?.y ?? Number.POSITIVE_INFINITY, route).toBeLessThanOrEqual(height - 44);
+      }
+    });
+  }
+
   test('vehicle dealer: the first heading of the text is within two screens at 360×740', async ({
     page,
   }) => {
