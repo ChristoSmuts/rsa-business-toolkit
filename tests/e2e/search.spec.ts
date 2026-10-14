@@ -370,10 +370,12 @@ test.describe('the search dialog while it loads', () => {
   });
 
   /*
-   * Enter and Escape typed before the dialog's own script has arrived. Enter submitted the form to
-   * the search page, and Escape with text in the field only cleared the text: on a slow phone a
-   * reader quicker than the script lost both keys (and the e2e tests above sometimes did, under
-   * CPU load).
+   * Enter, Escape and the close button before the dialog's own script has arrived. Enter submitted
+   * the form to the search page, Escape with text in the field only cleared the text, and a tap on
+   * Close did nothing: on a slow phone a reader quicker than the script lost them all (and the e2e
+   * tests above sometimes did, under CPU load). A held Enter is cancelled as the script cancels an
+   * Enter waiting for the index (`search-ui.ts`, `enterCurrent()`): by closing the dialog or by
+   * changing the text.
    */
   // The dialog's script (`search.<hash>.js`), not the search page's (`search.astro_….js`).
   const SCRIPT = /\/_astro\/search\.[\w-]{8}\.js$/;
@@ -434,6 +436,47 @@ test.describe('the search dialog while it loads', () => {
     expect(page.url()).toBe(before);
     await expect(dialog(page)).toBeHidden();
     expect(requests, 'a closed dialog fetches no index').toHaveLength(0);
+  });
+
+  test('Enter, then the close button, before the script arrives: it closes, and nothing opens', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdScript(page, baseURL);
+    await open(page, DOC);
+    const before = page.url();
+    await page.locator('a.st-topbar__search').click();
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    await countSubmits(page);
+    await dialog(page).locator('[data-search-close]').click();
+    await expect(dialog(page)).toBeHidden();
+    release();
+    await scriptArrived(page);
+    expect(await submits(page), 'the Enter is not replayed').toBe(0);
+    expect(page.url()).toBe(before);
+    await expect(dialog(page)).toBeHidden();
+  });
+
+  test('Enter, then other text, before the script arrives: the script searches it and opens nothing', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdScript(page, baseURL);
+    await open(page, DOC);
+    const before = page.url();
+    await page.keyboard.press('/');
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    await countSubmits(page);
+    await field(page).fill('EMP201');
+    release();
+    await scriptArrived(page);
+    // The script took over and searched the new text: it is past any replay.
+    await expect(page.locator('[role="option"][href$="/glossary/#emp201"]')).toBeVisible();
+    expect(await submits(page), 'the Enter is not replayed').toBe(0);
+    expect(page.url()).toBe(before);
+    await expect(dialog(page)).toBeVisible();
   });
 
   test('one Escape before the script arrives closes the dialog, also with text in the field', async ({

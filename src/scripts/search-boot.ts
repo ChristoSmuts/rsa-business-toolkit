@@ -88,8 +88,8 @@ export function openSearch(from: HTMLElement | null, doc: Document = document): 
   load().then(
     () => {
       // Enter pressed before the script took over: the script now does what Enter does there.
-      if (entered && dialog?.open) field?.form?.requestSubmit();
-      entered = false;
+      if (dialog?.open && field && field.value === entered) submit(field.form);
+      entered = null;
     },
     () => {
       const query = field?.value.trim() ?? '';
@@ -101,10 +101,22 @@ export function openSearch(from: HTMLElement | null, doc: Document = document): 
   return true;
 }
 
-/** Enter was pressed in the open dialog before its script took over. */
-let entered = false;
-/** The key handlers below are on the dialog (once per page). */
+/**
+ * The text in the field when Enter was pressed in the open dialog before its script took over, or
+ * `null`. Closing the dialog cancels it, and so does changing the text: the script only acts on an
+ * Enter for the text that is still in the field (as `search-ui.ts`, `enterCurrent()`, does).
+ */
+let entered: string | null = null;
+/** The handlers below are on the dialog (once per page). */
 let keysHeld = false;
+
+/** `requestSubmit()`, or on an older browser (Safari before 16) the same submit event. */
+function submit(form: HTMLFormElement | null): void {
+  if (!form) return;
+  // Typed as always there; it is not, before Safari 16.
+  if (typeof (form as Partial<HTMLFormElement>).requestSubmit === 'function') form.requestSubmit();
+  else form.dispatchEvent(new Event('submit', { cancelable: true }));
+}
 
 /**
  * Until the dialog's script has taken over (`host.open` exists), say "Loading search…" on the
@@ -113,25 +125,35 @@ let keysHeld = false;
  * arrived.
  *
  * The keys the script handles do the same before it arrives. Enter does not submit the form, which
- * left for the search page; `openSearch()` hands it to the script. Escape closes the dialog, also
- * with text in the field, whose own Escape only cleared the text. Both were lost on a slow phone
- * whenever the reader was quicker than the script.
+ * left for the search page; `openSearch()` hands it to the script. Escape and the close button
+ * close the dialog, also with text in the field, whose own Escape only cleared the text. All were
+ * lost on a slow phone whenever the reader was quicker than the script.
  */
 function waiting(host: Dialog, dialog: HTMLDialogElement, field: HTMLInputElement): void {
   if (!keysHeld) {
     keysHeld = true;
-    field.form?.addEventListener('submit', (event) => {
+    const form = field.form;
+    form?.addEventListener('submit', (event) => {
       if (host.open) return;
       event.preventDefault();
-      entered = dialog.open;
+      // An empty query goes nowhere, as in the script (review WP-33 pass 4, nit 1).
+      const text = field.value;
+      if (!dialog.open || text.trim() === '') return;
+      entered = text;
     });
     field.addEventListener('keydown', (event) => {
       if (host.open || event.key !== 'Escape' || event.isComposing) return;
       event.preventDefault();
       dialog.close();
     });
+    host.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!host.open && target instanceof Element && target.closest('[data-search-close]')) {
+        dialog.close();
+      }
+    });
     dialog.addEventListener('close', () => {
-      entered = false;
+      entered = null;
     });
   }
   const status = host.querySelector<HTMLElement>('[role="status"]');
