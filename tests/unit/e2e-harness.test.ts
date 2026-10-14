@@ -882,14 +882,17 @@ describe('timeout policy (tests/e2e/helpers/timeouts.ts)', () => {
     expect(source).toMatch(/import \{ a11yTimeout \} from '\.\/tests\/e2e\/helpers\/timeouts';/);
     expect(source).toMatch(/const A11Y_TIMEOUT = a11yTimeout\(\);/);
     expect(source).not.toMatch(/process\.env\.PW_A11Y_TIMEOUT/);
-    // A11Y_TIMEOUT belongs to the a11y project only. The default test timeout stays Playwright's
-    // 30 s, because page setup no longer spends it; raising it instead of separating the budgets
-    // would hand every assertion a longer rope for a cost that is not the site's.
+    // A11Y_TIMEOUT belongs to the two a11y projects (desktop and phone) only. The default test
+    // timeout stays Playwright's 30 s, because page setup no longer spends it; raising it instead
+    // of separating the budgets would hand every assertion a longer rope for a cost that is not the
+    // site's.
     const a11yUses = source.match(/(?<![A-Z_])A11Y_TIMEOUT/g) ?? [];
-    expect(a11yUses).toHaveLength(2);
-    expect(source).toMatch(
-      /testMatch: \/\(\^\|\[\\\\\/\]\)a11y\\\.spec\\\.ts\$\/,[\s\S]{0,120}?timeout: A11Y_TIMEOUT,/,
-    );
+    expect(a11yUses).toHaveLength(3);
+    const a11yProjects =
+      source.match(
+        /testMatch: \/\(\^\|\[\\\\\/\]\)a11y\\\.spec\\\.ts\$\/,[\s\S]{0,120}?timeout: A11Y_TIMEOUT,/g,
+      ) ?? [];
+    expect(a11yProjects).toHaveLength(2);
   });
 });
 

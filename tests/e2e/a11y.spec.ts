@@ -4,7 +4,9 @@ import { expect, test, type Theme } from './fixtures';
 import { discoverPageRoutes, routeLabel, routeUrl } from './helpers/routes';
 
 /**
- * axe on every page route (sitemap plus noindex pages) in light and dark themes.
+ * axe on every page route (sitemap plus noindex pages) in light and dark themes, at desktop width
+ * (project `a11y`, 1280px) and on a phone (project `a11y-phone`, 360x740 with touch; it runs only
+ * the "axe WCAG 2.1 A/AA" sweep, see playwright.config.ts).
  * Serious and critical violations fail the test; moderate and minor ones become annotations.
  * The full axe JSON is attached to every test (see docs/testing.md).
  */
@@ -280,7 +282,9 @@ test.describe('axe with the search dialog open', () => {
   }
 });
 
-// The per-test timeout comes from the a11y project in playwright.config.ts (PW_A11Y_TIMEOUT).
+// The per-test timeout comes from the a11y projects in playwright.config.ts (PW_A11Y_TIMEOUT).
+// This sweep runs in both `a11y` (1280px) and `a11y-phone` (360px): each page is loaded at the
+// project's width, so what CSS and scripts build for that width is what axe sees.
 test.describe('axe WCAG 2.1 A/AA', () => {
   if (skipReason) {
     test('route discovery', () => test.skip(true, skipReason));
@@ -292,6 +296,7 @@ test.describe('axe WCAG 2.1 A/AA', () => {
       for (const route of routes) {
         test(routeLabel(route), async ({ page, setTheme }, testInfo) => {
           await setTheme(theme);
+          const width = page.viewportSize()?.width ?? 0;
           const response = await page.goto(routeUrl(route));
           expect(response?.status(), 'HTTP status').toBe(200);
           await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
@@ -302,6 +307,12 @@ test.describe('axe WCAG 2.1 A/AA', () => {
           await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
 
           const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze();
+          // The page really is laid out at the project's width (the meta viewport is honoured).
+          expect(
+            await page.evaluate(() => document.documentElement.clientWidth),
+            'layout width',
+          ).toBe(width);
+
           await testInfo.attach(attachmentName(route, theme), {
             body: JSON.stringify(results, null, 2),
             contentType: 'application/json',
@@ -317,7 +328,7 @@ test.describe('axe WCAG 2.1 A/AA', () => {
 
           expect(
             blocking.map((violation) => violation.id),
-            `${blocking.length} serious/critical axe violation(s) on ${routeLabel(route)} (${theme}):\n` +
+            `${blocking.length} serious/critical axe violation(s) on ${routeLabel(route)} (${theme}, ${width}px):\n` +
               formatViolations(blocking),
           ).toEqual([]);
         });
