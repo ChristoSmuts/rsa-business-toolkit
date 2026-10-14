@@ -205,6 +205,16 @@
   padding-block-end: var(--st-space-2);
 }
 
+/*
+ * On a phone the box keeps 12px inside, not 20px: at 320px the items had about 210px, and most
+ * took three or four lines (WP-50 Phase 3, item 4). The tick and its row stay 44px.
+ */
+@media (width < 30rem) {
+  .st-tasklist {
+    padding: var(--st-space-3);
+  }
+}
+
 /* ---------- Contents list (a `toc` block) ---------- */
 
 .st-contents-list > li + li {
