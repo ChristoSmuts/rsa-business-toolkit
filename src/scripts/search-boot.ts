@@ -89,7 +89,7 @@ export function openSearch(from: HTMLElement | null, doc: Document = document): 
     () => {
       // Enter pressed before the script took over: the script now does what Enter does there.
       if (dialog?.open && field && field.value === entered) submit(field.form);
-      entered = null;
+      forget();
     },
     () => {
       const query = field?.value.trim() ?? '';
@@ -107,6 +107,13 @@ export function openSearch(from: HTMLElement | null, doc: Document = document): 
  * Enter for the text that is still in the field (as `search-ui.ts`, `enterCurrent()`, does).
  */
 let entered: string | null = null;
+/** The timer of the held Enter: one at most, for the latest Enter. */
+let timer = 0;
+/** Cancel the held Enter and its timer. */
+function forget(): void {
+  entered = null;
+  clearTimeout(timer);
+}
 /** The handlers below are on the dialog (once per page). */
 let keysHeld = false;
 /**
@@ -142,12 +149,16 @@ function waiting(host: Dialog, dialog: HTMLDialogElement, field: HTMLInputElemen
     form?.addEventListener('submit', (event) => {
       if (host.open) return;
       event.preventDefault();
+      forget();
       // An empty query goes nowhere, as in the script (review WP-33 pass 4, nit 1).
       const text = field.value;
       if (!dialog.open || text.trim() === '') return;
       entered = text;
-      setTimeout(() => {
-        if (!host.open && dialog.open && field.value === entered) form.submit();
+      timer = window.setTimeout(() => {
+        const go = !host.open && dialog.open && field.value === entered;
+        // Forgotten first, so a script that arrives while the search page loads does not replay it.
+        forget();
+        if (go) form.submit();
       }, HELD_ENTER_MS);
     });
     field.addEventListener('keydown', (event) => {
@@ -161,9 +172,7 @@ function waiting(host: Dialog, dialog: HTMLDialogElement, field: HTMLInputElemen
         dialog.close();
       }
     });
-    dialog.addEventListener('close', () => {
-      entered = null;
-    });
+    dialog.addEventListener('close', forget);
   }
   const status = host.querySelector<HTMLElement>('[role="status"]');
   const common = host.querySelector<HTMLElement>('[data-search-empty]');

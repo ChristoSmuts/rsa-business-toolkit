@@ -479,21 +479,125 @@ test.describe('the search dialog while it loads', () => {
     await expect(dialog(page)).toBeVisible();
   });
 
-  test('Enter while the script never arrives goes to the search page after a while', async ({
+  /*
+   * A script that stalls (neither loads nor fails): a held Enter goes to the search page
+   * `HELD_ENTER_MS` (8 s, search-boot.ts) after the latest Enter, once. The page's clock is
+   * Playwright's: installed before the page loads, so the page loads with time flowing, then
+   * paused, so that only the test moves it, instead of waiting 8 s.
+   */
+  const HELD_ENTER_MS = 8000;
+  const SEARCH_PAGE = /\/search\/\?q=PIS$/;
+  const START = new Date('2026-01-05T08:00:00+02:00');
+  const installClock = (page: Page) => page.clock.install({ time: START });
+  const pauseClock = (page: Page) => page.clock.pauseAt(START.getTime() + 3_600_000);
+
+  test('Enter while the script never arrives goes to the search page 8 s later', async ({
     page,
     baseURL,
   }) => {
+    await installClock(page);
     // Held for the whole test: a stalled connection neither loads the script nor fails it.
     await holdScript(page, baseURL);
     await open(page, DOC);
+    await pauseClock(page);
     const before = page.url();
     await page.keyboard.press('/');
     await field(page).fill('PIS');
     await page.keyboard.press('Enter');
+    await page.clock.runFor(HELD_ENTER_MS - 100);
     await expect(dialog(page)).toBeVisible();
     expect(page.url()).toBe(before);
-    // search-boot.ts gives the script 8 s (HELD_ENTER_MS) before it sends the form after all.
-    await expect(page).toHaveURL(/\/search\/\?q=PIS$/, { timeout: 15_000 });
+    await page.clock.runFor(100);
+    await expect(page).toHaveURL(SEARCH_PAGE);
+  });
+
+  test('an Enter cancelled by Escape does not cut the wait of the next Enter short', async ({
+    page,
+    baseURL,
+  }) => {
+    await installClock(page);
+    await holdScript(page, baseURL);
+    await open(page, DOC);
+    await pauseClock(page);
+    const before = page.url();
+    await page.keyboard.press('/');
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    await page.keyboard.press('Escape');
+    await expect(dialog(page)).toBeHidden();
+    await page.clock.runFor(6000);
+    await page.keyboard.press('/');
+    await expect(field(page)).toHaveValue('PIS');
+    await page.keyboard.press('Enter');
+    // The first Enter's timer would have fired 2 s after this one.
+    await page.clock.runFor(HELD_ENTER_MS - 100);
+    await expect(dialog(page)).toBeVisible();
+    expect(page.url()).toBe(before);
+    await page.clock.runFor(100);
+    await expect(page).toHaveURL(SEARCH_PAGE);
+  });
+
+  test('a second Enter replaces the first: the wait counts from the second', async ({
+    page,
+    baseURL,
+  }) => {
+    await installClock(page);
+    await holdScript(page, baseURL);
+    await open(page, DOC);
+    await pauseClock(page);
+    const before = page.url();
+    await page.keyboard.press('/');
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    await page.clock.runFor(3000);
+    await page.keyboard.press('Enter');
+    await page.clock.runFor(HELD_ENTER_MS - 100);
+    await expect(dialog(page)).toBeVisible();
+    expect(page.url()).toBe(before);
+    await page.clock.runFor(100);
+    await expect(page).toHaveURL(SEARCH_PAGE);
+  });
+
+  test('a script that arrives after the 8 s fallback does not replay the Enter', async ({
+    page,
+    baseURL,
+  }) => {
+    await installClock(page);
+    const releaseScript = await holdScript(page, baseURL);
+    await open(page, DOC);
+    await pauseClock(page);
+    // Held from now on: the search page loads as slowly as the script did.
+    const releasePage = await holdRequests(page, baseURL, (url) =>
+      url.pathname.endsWith('/search/'),
+    );
+    await page.keyboard.press('/');
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    // While the search page is on its way the page cannot be asked (page.evaluate waits for the
+    // next document), so it reports each submit on the console.
+    const replays: string[] = [];
+    page.on('console', (message) => {
+      if (message.text() === 'st-submit') replays.push(message.text());
+    });
+    await page.evaluate(() => {
+      document.addEventListener('submit', () => console.log('st-submit'), true);
+    });
+    const leaving = page.waitForRequest(
+      (request) => request.isNavigationRequest() && SEARCH_PAGE.test(request.url()),
+    );
+    await page.clock.runFor(HELD_ENTER_MS);
+    await leaving;
+    // The script arrives on the page that is still shown. It replays a held Enter in the turn it
+    // runs in; it asks for the index only after loading the results code, a round trip later.
+    const indexAsked = page.waitForRequest((request) =>
+      /\/search\/[a-z]{2,3}\.[0-9a-f]{10}\.json$/.test(new URL(request.url()).pathname),
+    );
+    releaseScript();
+    await indexAsked;
+    expect(replays, 'the Enter is not replayed').toEqual([]);
+    releasePage();
+    await expect(page).toHaveURL(SEARCH_PAGE);
+    await expect(page.locator('#st-search-q')).toHaveValue('PIS');
   });
 
   test('one Escape before the script arrives closes the dialog, also with text in the field', async ({
