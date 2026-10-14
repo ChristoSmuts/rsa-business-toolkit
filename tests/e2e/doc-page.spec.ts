@@ -217,41 +217,72 @@ test.describe('the document page at 1280px', () => {
   });
 });
 
+/*
+ * Not a <details>: a closed <details> hides its content in WebKit at every width and in print, and
+ * revealing it needs `::details-content`, which CI's WebKit does not apply (WP-50 Phase 3 fix after
+ * the merge). The rest of the list is hidden only by `screen and (width < 768px)` until a native
+ * checkbox is checked, so nothing here depends on an engine's support for `::details-content`.
+ */
 test.describe('"Sources for this page"', () => {
-  test('on a phone shows the first entries and keeps the rest, in the HTML, in a disclosure', async ({
+  test('on a phone shows the first entries and keeps the rest, in the HTML, one tap away', async ({
     page,
   }) => {
     await page.setViewportSize(PHONE);
     await page.goto(DEALER);
     const sources = page.locator('section.st-sources');
+    await expect(sources.locator('details')).toHaveCount(0);
     const all = sources.locator('li.st-source');
     const total = await all.count();
     expect(total).toBeGreaterThan(10);
-    const more = sources.locator('details.st-sources__more');
-    await expect(more).not.toHaveAttribute('open');
-    const hidden = more.locator('li.st-source');
-    expect(await hidden.count()).toBe(total - 3);
-    await expect(hidden.first()).toBeHidden();
+    const rest = sources.locator('.st-sources__rest li.st-source');
+    expect(await rest.count()).toBe(total - 3);
     await expect(all.first()).toBeVisible();
-    await more.locator('summary').click();
-    await expect(hidden.first()).toBeVisible();
+    await expect(rest.first()).toBeHidden();
+    const toggle = sources.getByRole('checkbox', { name: /^Show the other \d+ sources$/ });
+    await expect(toggle).not.toBeChecked();
+    await sources.locator('.st-sources__more-label').click();
+    await expect(toggle).toBeChecked();
+    await expect(rest.first()).toBeVisible();
+    await expect(rest.last()).toBeVisible();
   });
 
-  test('from 768px shows every entry, with no disclosure to open', async ({ page }, testInfo) => {
+  test('the control works from the keyboard and shows its focus', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'A keyboard.');
+    await page.setViewportSize(PHONE);
+    await page.goto(DEALER);
+    const sources = page.locator('section.st-sources');
+    const toggle = sources.locator('.st-sources__toggle');
+    const label = sources.locator('.st-sources__more-label');
+    // Tab to it from the link before it, as a keyboard reader would.
+    await sources.locator('ul').first().locator('a').last().focus();
+    await page.keyboard.press('Tab');
+    await expect(toggle).toBeFocused();
+    expect(await label.evaluate((element) => getComputedStyle(element).outlineStyle)).not.toBe(
+      'none',
+    );
+    await page.keyboard.press('Space');
+    await expect(toggle).toBeChecked();
+    await expect(sources.locator('.st-sources__rest li.st-source').first()).toBeVisible();
+  });
+
+  test('from 768px shows every entry, with nothing to open', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name === 'mobile', 'A tablet width.');
     await page.setViewportSize({ width: 768, height: 900 });
     await page.goto(DEALER);
-    const more = page.locator('section.st-sources details.st-sources__more');
-    await expect(more.locator('summary')).toBeHidden();
-    await expect(more.locator('li.st-source').last()).toBeVisible();
+    const sources = page.locator('section.st-sources');
+    await expect(sources.locator('.st-sources__more-label')).toBeHidden();
+    await expect(sources.locator('.st-sources__toggle')).toBeHidden();
+    await expect(sources.locator('.st-sources__rest li.st-source').first()).toBeVisible();
+    await expect(sources.locator('.st-sources__rest li.st-source').last()).toBeVisible();
   });
 
-  test('prints every entry', async ({ page }) => {
+  test('prints every entry, and not the control', async ({ page }) => {
     await page.setViewportSize(PHONE);
     await page.goto(DEALER);
     await page.emulateMedia({ media: 'print' });
-    await expect(
-      page.locator('section.st-sources details.st-sources__more li.st-source').last(),
-    ).toBeVisible();
+    const sources = page.locator('section.st-sources');
+    await expect(sources.locator('.st-sources__rest li.st-source').first()).toBeVisible();
+    await expect(sources.locator('.st-sources__rest li.st-source').last()).toBeVisible();
+    await expect(sources.locator('.st-sources__more-label')).toBeHidden();
   });
 });

@@ -8,12 +8,18 @@
  * source supports, so a reader can tell which fact rests on which source.
  *
  * On a long page the list is in two parts (WP-50 audit, finding 6: the section was 8,183px tall on
- * a phone on the vehicle-dealer page). The first `SHOWN` entries are always shown; the rest sit in a
- * native `<details>` ("12 more sources") that works with no JavaScript. Every entry stays in the
- * HTML, so `dist:trust`, find in page (the browser opens the disclosure) and print (print.css opens
- * every disclosure) still see all of them. From 768px, where the browser supports
- * `::details-content`, the rest is simply shown and the summary hidden: the collapse is for phones.
- * The section itself, its heading and its count are never collapsed (ADR 0006, Stoep rule 9).
+ * a phone on the vehicle-dealer page). The first `SHOWN` entries are always shown. On a phone's
+ * screen the rest is hidden behind a native checkbox, "Show the other 38 sources", whose label
+ * looks like a disclosure; it works with no JavaScript, and a screen reader hears its name and its
+ * checked state. Only a phone's screen hides anything (a screen narrower than 768px): from 768px,
+ * and in print in every engine, the rest is a plain list and the checkbox is not shown.
+ *
+ * Not a `<details>`: a closed `<details>` hides its content in WebKit at every width and on paper,
+ * and showing it anyway needs `::details-content`, which the WebKit in CI does not apply, so Safari
+ * readers at 768px and wider saw neither the rest nor a summary to open it, and nothing printed
+ * (WP-50 Phase 3 fix after the merge). Every entry stays in the HTML either way, so `dist:trust`
+ * sees all of them. The section, its heading, its count and the first entries are never collapsed
+ * (ADR 0006, Stoep rule 9).
  *
  * Three shapes, all from the data:
  * - a **web** source: the title is the link, with the external-link icon inside the link text so
@@ -46,6 +52,8 @@ const { sources, sourceNote, context, locale, headingLevel = 2, id } = Astro.pro
 const t = useTranslations(locale);
 const Heading = `h${headingLevel}` as 'h2' | 'h3';
 const headingId = id ?? uid('st-sources');
+const moreId = `${headingId}-more`;
+const restId = `${headingId}-rest`;
 const entries = sourceEntriesFor(context.sources, sources.entries);
 const acts = actsFor(context.sources, sources.acts);
 const count = entries.length + acts.length;
@@ -140,12 +148,20 @@ const itemProps = { acts, locale, registerContext, dataLang, titleLang, actLang,
         <SourceItems items={firstItems} {...itemProps} />
       </ul>
       {moreItems.length > 0 && (
-        <details class="st-disclosure st-sources__more">
-          <summary>{t('trust.sources.more', { count: moreCount })}</summary>
-          <ul class="st-stack" role="list">
+        <div class="st-sources__more">
+          <input
+            type="checkbox"
+            class="st-sources__toggle st-no-print"
+            id={moreId}
+            aria-controls={restId}
+          />
+          <label class="st-sources__more-label st-no-print" for={moreId}>
+            {t('trust.sources.more', { count: moreCount })}
+          </label>
+          <ul class="st-stack st-sources__rest" role="list" id={restId}>
             <SourceItems items={moreItems} {...itemProps} />
           </ul>
-        </details>
+        </div>
       )}
       {registerHref && (
         <p>
@@ -185,28 +201,82 @@ const itemProps = { acts, locale, registerContext, dataLang, titleLang, actLang,
     max-inline-size: var(--st-measure);
   }
 
-  .st-sources__more > ul {
-    padding-block-start: var(--st-space-3);
+  /* The visually hidden checkbox is positioned; this keeps it inside the section. */
+  .st-sources__more {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   /*
-   * From 768px the whole list shows: the disclosure is for a phone's screen. Only where the
-   * browser can style the content of a closed `<details>`; elsewhere the summary stays and works.
+   * The label is the visible control: a 44px row with the same chevron as a disclosure, right when
+   * the rest is hidden and down when it shows. The checkbox itself is visually hidden but keeps the
+   * focus, so its ring is drawn on the label.
    */
-  @supports selector(::details-content) {
-    @media (width >= 768px) {
-      .st-sources__more > summary {
-        display: none;
-      }
+  .st-sources__more-label {
+    display: flex;
+    align-items: center;
+    gap: var(--st-space-3);
+    min-block-size: var(--st-target);
+    font-weight: var(--st-weight-semibold);
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
 
-      .st-sources__more::details-content {
-        content-visibility: visible;
-        block-size: auto;
-      }
+  /*
+   * Out of sight but in the accessibility tree and the tab order, also while focused (unlike
+   * `.st-visually-hidden`, which shows a focused element). Its name is the label's text.
+   */
+  .st-sources__toggle {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: 0;
+    opacity: 0;
+  }
 
-      .st-sources__more > ul {
-        padding-block-start: 0;
-      }
+  .st-sources__more-label::before {
+    flex-shrink: 0;
+    inline-size: 0.5em;
+    block-size: 0.5em;
+    margin-inline: 0.125em;
+    border-block-end: 2px solid currentcolor;
+    border-inline-end: 2px solid currentcolor;
+    content: '';
+    transform: translateX(-0.125em) rotate(-45deg);
+  }
+
+  .st-sources__toggle:checked + .st-sources__more-label::before {
+    transform: translateY(-0.125em) rotate(45deg);
+  }
+
+  .st-sources__toggle:focus-visible + .st-sources__more-label {
+    outline: var(--st-focus-width) solid var(--st-focus);
+    outline-offset: var(--st-focus-offset);
+  }
+
+  .st-sources__rest {
+    padding-block-start: var(--st-space-3);
+  }
+
+  /* Only a phone's screen hides the rest, until the reader asks for it. */
+  @media screen and (width < 768px) {
+    .st-sources__toggle:not(:checked) ~ .st-sources__rest {
+      display: none;
+    }
+  }
+
+  /* From 768px, and on paper, the rest is a plain list and there is nothing to open. */
+  @media print, (width >= 768px) {
+    .st-sources__toggle,
+    .st-sources__more-label {
+      display: none;
+    }
+
+    .st-sources__rest {
+      padding-block-start: 0;
     }
   }
 </style>
