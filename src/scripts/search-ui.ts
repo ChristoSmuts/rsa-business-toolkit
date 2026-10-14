@@ -185,7 +185,12 @@ export class SearchDialogController implements DialogController {
     } else if (this.#failed?.hidden !== false) {
       // Nothing found: one Enter goes to the search page, as it does when the results are
       // already on screen (review WP-33 pass 2, nit 2).
-      this.#input.form?.requestSubmit();
+      const form = this.#input.form;
+      // Safari before 16 has no requestSubmit(); submit() skips `#onSubmit`, so this makes its one
+      // check here: an empty query goes nowhere.
+      if ((form as Partial<HTMLFormElement> | null)?.requestSubmit) {
+        form?.requestSubmit();
+      } else if (query) form?.submit();
     }
   }
 

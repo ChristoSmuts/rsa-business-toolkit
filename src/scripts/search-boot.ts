@@ -130,7 +130,7 @@ const HELD_ENTER_MS = 8000;
 function submit(form: HTMLFormElement | null): void {
   if (!form) return;
   // Typed as always there; it is not, before Safari 16.
-  if (typeof (form as Partial<HTMLFormElement>).requestSubmit === 'function') form.requestSubmit();
+  if ((form as Partial<HTMLFormElement>).requestSubmit) form.requestSubmit();
   else form.dispatchEvent(new Event('submit', { cancelable: true }));
 }
 
