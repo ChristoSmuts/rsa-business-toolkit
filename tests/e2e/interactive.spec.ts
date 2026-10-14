@@ -682,6 +682,67 @@ test.describe('language', () => {
   }
 });
 
+/*
+ * WP-50 Phase 2 review pass 2, major 1: on a wide screen the measure binds, and with `ch` it was
+ * 17% narrower in the fallback font than in Instrument Sans (`ch` is the width of "0"). The
+ * Afrikaans home page's lead then wrapped to three lines until the web font came and the page
+ * jumped 0.240 at 1280px. The measures are in em now (`tokens.css`); this holds them to it.
+ */
+test.describe('late web fonts on a wide screen', () => {
+  for (const [route, width] of [
+    ['af/', 1280],
+    ['af/', 1024],
+    ['', 1280],
+  ] as const) {
+    test(`/${route} at ${width}px moves 0.1 or less when the fonts arrive late`, async ({
+      page,
+      seedStorage,
+      baseURL,
+    }, testInfo) => {
+      test.skip(
+        testInfo.project.name !== 'chromium',
+        'Sets its own viewport; Chromium-only entries.',
+      );
+      await seedStorage({ 'st.lang': route === '' ? 'en' : 'af' });
+      await page.addInitScript(() => {
+        const shifts: number[] = [];
+        Object.assign(window, { stShifts: shifts });
+        new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            const shift = entry as PerformanceEntry & { value: number; hadRecentInput: boolean };
+            if (!shift.hadRecentInput) shifts.push(shift.value);
+          }
+        }).observe({ type: 'layout-shift', buffered: true });
+      });
+      await page.setViewportSize({ width, height: 800 });
+      const release = await holdRequests(page, baseURL, (url) => url.pathname.endsWith('.woff2'));
+      await page.goto(route, { waitUntil: 'domcontentloaded' });
+      // Measure from the styled page, not from the moment the HTML arrives.
+      await page.waitForFunction(() =>
+        [...document.querySelectorAll('link[rel="stylesheet"]')].every(
+          (link) => (link as HTMLLinkElement).sheet !== null,
+        ),
+      );
+      const before = await page.evaluate(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 300));
+        (window as unknown as { stShifts: number[] }).stShifts.length = 0;
+        return [...document.fonts].filter((font) => font.family.includes('Variable')).length;
+      });
+      expect(before, 'web font faces declared').toBeGreaterThan(0);
+      release();
+      const shift = await page.evaluate(async () => {
+        await document.fonts.ready;
+        await new Promise((resolve) => setTimeout(resolve, 800));
+        return (window as unknown as { stShifts: number[] }).stShifts.reduce((a, b) => a + b, 0);
+      });
+      expect(
+        await page.evaluate(() => document.fonts.check('16px "Instrument Sans Variable"')),
+      ).toBe(true);
+      expect(shift).toBeLessThanOrEqual(0.1);
+    });
+  }
+});
+
 /**
  * WP-50a, item 7 (`review-animations` verdict Block in the WP-50 audit): nothing moves when a page
  * opens, and nothing scrolls smoothly on Tab. A ring moves only when its value changes on the page.

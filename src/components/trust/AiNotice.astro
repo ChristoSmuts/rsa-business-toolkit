@@ -75,6 +75,8 @@ if (howMade === undefined) {
 
   .st-ai-notice__status > span {
     min-inline-size: 0;
-    flex: 1 1 18ch;
+
+    /* 18ch in Instrument Sans; em, so the fallback font draws the same width (tokens.css). */
+    flex: 1 1 12.06em;
   }
 </style>
