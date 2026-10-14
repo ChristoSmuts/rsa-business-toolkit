@@ -18,7 +18,7 @@ pnpm build          # astro build + pnpm dist:audit
 | `pnpm search:typos` | `scripts/search-typo-sweep.ts`               | Not a test: counts how many one-keystroke typos (dropped, doubled, extra neighbouring-key, wrong neighbouring-key and swapped letters, at every position) of every glossary term and page title open the correct spelling's first result (and one of its first three), as finished and typed |
 | `pnpm dist:budget`  | `scripts/dist/check-budget.ts`               | The JavaScript each built page loads up front, gzipped, against 25 KB (document pages) and 45 KB (tool pages); also prints what opening search costs |
 | `pnpm test:e2e`     | `tests/e2e` (chromium, webkit, mobile, nojs) | Page contract, CSP, no third-party requests, 404 page, no-JS reading, content rendering, navigation and search |
-| `pnpm test:a11y`    | `tests/e2e/a11y.spec.ts`                     | axe (WCAG 2.0/2.1 A and AA) on every page in light and dark themes, at 1280px and on a 360px phone (`test:a11y:desktop` and `test:a11y:phone` run one each) |
+| `pnpm test:a11y`    | `tests/e2e/a11y.spec.ts`                     | axe (WCAG 2.0/2.1 A and AA) on every page, light and dark, at 1280px and on a 360px phone                     |
 | `pnpm test:visual`  | `tests/e2e/visual.spec.ts`                   | Screenshot comparison of every page type (WP-50), see Visual baselines                                        |
 | `pnpm lhci`         | `tests/lighthouse/lighthouserc.cjs`          | Lighthouse scores and size budgets, desktop and mobile                                                        |
 
@@ -530,14 +530,18 @@ Project `a11y` (reduced motion). For every page, in `light` and `dark` themes, r
 
 **Two widths.** That per-page sweep (`axe WCAG 2.1 A/AA`) runs in two projects:
 
-| Project      | Device                                                                    | Script                   | CI job                        |
-| ------------ | ------------------------------------------------------------------------- | ------------------------ | ----------------------------- |
-| `a11y`       | Desktop Chrome, 1280×720                                                  | `pnpm test:a11y:desktop` | `Accessibility (axe)`         |
-| `a11y-phone` | Pixel 7 (touch, no hover, mobile viewport handling) at 360×740            | `pnpm test:a11y:phone`   | `Accessibility (axe, phone)`  |
+| Project      | Device                                                         | Script                   | CI job                       |
+| ------------ | -------------------------------------------------------------- | ------------------------ | ---------------------------- |
+| `a11y`       | Desktop Chrome, 1280×720                                       | `pnpm test:a11y:desktop` | `Accessibility (axe)`        |
+| `a11y-phone` | Pixel 7 (touch, no hover, mobile viewport handling) at 360×740 | `pnpm test:a11y:phone`   | `Accessibility (axe, phone)` |
 
-`pnpm test:a11y` runs both. Every route of the sitemap (both languages) plus the noindex pages, in both themes, with the same tags, the same blocking rule and the same annotations, so a control that exists only on a phone (the "Show the other N sources" checkbox under 768px, the menus of the narrow top bar) is in what axe sees. Each page is loaded at the project's width, not resized after load, and the test checks the layout width before it trusts the result; a failure names the width (`/core/ (dark, 360px)`). `a11y-phone` runs only the sweep (project `grep`): the interactive-state tests below set their own sizes where a phone matters.
+`pnpm test:a11y` runs both. Every route of the sitemap (both languages) plus the noindex pages, in both themes, with the same tags, the same blocking rule and the same annotations, so a control that exists only on a phone (the "Show the other N sources" checkbox under 768px, the narrow top bar's menu buttons) is in what axe sees. Each page is loaded at the project's width, not resized after load. Before the analysis the test checks that `window.innerWidth` is the width the project declares (`testInfo.project.use.viewport`), so a project that lost its viewport cannot pass at the wrong width, and `tests/unit/e2e-harness.test.ts` pins `a11y-phone` to 360×740, `isMobile`, `hasTouch`, reduced motion and its `grep`. That check is not a test for sideways overflow: the 320px reflow sweep (`reflow.spec.ts`, chromium) is. A failure names the width (`/core/ (dark, 360px)`).
 
-Why a project and not a second scan in the same test: the phone pass needs touch and mobile viewport emulation, which are context options that a resize cannot switch on; and as its own project CI runs it on a second runner, so it adds no wall-clock time there. Measured in the cloud container (4 cores, 2 workers, `dist/` with 200 pages): `a11y` 424 tests in 8.0 min, `a11y-phone` 400 tests in 6.5 min, `pnpm test:a11y` (both, 824 tests) 15.7 min locally. For a quick local look use `E2E_ROUTE_LIMIT`.
+What the phone pass does not see: it scans each page as it loads, so the narrow top bar's menus are seen closed only. The open states (the search dialog, the confirm dialogs, the wizard steps, the sources control open, the quotation preview) are the interactive-state tests below, which run in `a11y`; where a phone matters they resize a desktop context to 360 or 390px, without touch or mobile viewport emulation. `a11y-phone` runs only the sweep (project `grep`).
+
+Why a project and not a second scan in the same test: the phone pass needs touch and mobile viewport emulation, which are context options that a resize cannot switch on; and as its own project CI runs it on a second runner, so it adds no wall-clock time there. Measured in the cloud container (4 cores, 2 workers, `dist/` with 200 pages): `a11y` 424 tests in 8.0 min, `a11y-phone` 400 tests in 6.5 min, `pnpm test:a11y` (both, 824 tests) 15.7 min locally. **`pnpm test:a11y` now takes about 16 minutes.** Where a command is limited to 10 minutes (an agent's shell, for example), run `pnpm test:a11y:desktop` and `pnpm test:a11y:phone` one after the other, or run `pnpm test:a11y` in the background. For a quick local look use `E2E_ROUTE_LIMIT`.
+
+CI runs the two projects as two jobs, `Accessibility (axe)` and `Accessibility (axe, phone)`. If branch protection lists required status checks, add `Accessibility (axe, phone)` there, or the phone pass can fail without blocking a merge.
 
 Proof that it can fail: with the `for` of the sources label removed from the built `business-types/vehicle-dealer/` page, `a11y-phone` fails with `label [critical] Form elements must have labels … #sources-for-this-page-more`, and `a11y` passes, because from 768px the checkbox is not displayed.
 

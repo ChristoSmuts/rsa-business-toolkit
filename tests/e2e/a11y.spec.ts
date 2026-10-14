@@ -296,7 +296,10 @@ test.describe('axe WCAG 2.1 A/AA', () => {
       for (const route of routes) {
         test(routeLabel(route), async ({ page, setTheme }, testInfo) => {
           await setTheme(theme);
-          const width = page.viewportSize()?.width ?? 0;
+          // The width the project declares (1280 or 360), not what the page reports: a project
+          // that lost its viewport override must fail here, not scan at the wrong width.
+          const width = testInfo.project.use.viewport?.width;
+          expect(width, 'the project declares a viewport').toBeDefined();
           const response = await page.goto(routeUrl(route));
           expect(response?.status(), 'HTTP status').toBe(200);
           await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
@@ -305,13 +308,12 @@ test.describe('axe WCAG 2.1 A/AA', () => {
           });
           // The site's theme script may run after the first check; contrast depends on the theme.
           await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
+          // The page is scanned at the project's width. `innerWidth` includes a visible scrollbar
+          // (headed or --ui runs), so the check holds there too. It does not look for sideways
+          // overflow: the 320px reflow sweep (reflow.spec.ts, chromium) does.
+          expect(await page.evaluate(() => window.innerWidth), 'layout width').toBe(width);
 
           const results = await new AxeBuilder({ page }).withTags(WCAG_TAGS).analyze();
-          // The page really is laid out at the project's width (the meta viewport is honoured).
-          expect(
-            await page.evaluate(() => document.documentElement.clientWidth),
-            'layout width',
-          ).toBe(width);
 
           await testInfo.attach(attachmentName(route, theme), {
             body: JSON.stringify(results, null, 2),

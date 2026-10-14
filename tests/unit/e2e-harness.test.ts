@@ -896,6 +896,42 @@ describe('timeout policy (tests/e2e/helpers/timeouts.ts)', () => {
   });
 });
 
+describe('the a11y projects (playwright.config.ts)', () => {
+  // Importing the config loads the Playwright toolchain; see the budget note above.
+  it(
+    'a11y-phone is a 360x740 touch phone with reduced motion that runs only the per-page sweep',
+    { timeout: 120_000 },
+    async () => {
+      const config = (await import('../../playwright.config')).default;
+      const byName = (name: string) => config.projects?.find((project) => project.name === name);
+      const phone = byName('a11y-phone');
+      expect(phone, 'a11y-phone project').toBeDefined();
+      expect(phone?.use?.viewport).toEqual({ width: 360, height: 740 });
+      expect(phone?.use?.isMobile).toBe(true);
+      expect(phone?.use?.hasTouch).toBe(true);
+      expect(phone?.use?.reducedMotion).toBe('reduce');
+      expect(phone?.use?.javaScriptEnabled).not.toBe(false);
+      expect(phone?.grep).toBeInstanceOf(RegExp);
+      const grep = phone?.grep as RegExp;
+      expect(grep.test('axe WCAG 2.1 A/AA dark theme /core/')).toBe(true);
+      for (const other of [
+        'axe with the interactive states open the "Remove all ticks?" dialog (light)',
+        'axe on Find my path and My path every wizard step (dark)',
+        'axe with the search dialog open dark theme: /core/register/',
+      ]) {
+        expect(grep.test(other), other).toBe(false);
+      }
+      expect(phone?.testMatch).toEqual(byName('a11y')?.testMatch);
+
+      const desktop = byName('a11y');
+      expect(desktop?.use?.viewport).toEqual({ width: 1280, height: 720 });
+      expect(desktop?.use?.isMobile).toBe(false);
+      expect(desktop?.use?.reducedMotion).toBe('reduce');
+      expect(desktop?.grep).toBeUndefined();
+    },
+  );
+});
+
 describe('Astro internals the e2e and Lighthouse launchers rely on', () => {
   const markers = [
     ['preview', 'ASTRO_PREVIEW_BACKGROUND'],
