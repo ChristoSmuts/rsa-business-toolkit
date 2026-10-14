@@ -442,6 +442,24 @@ test.describe('the AI notice on a 320×568 screen without JavaScript', () => {
     });
   }
 
+  // WP-50 Phase 3 review pass 1, minor 5 and minor 2. Without JavaScript the header carries every
+  // menu (213px below 1024px), so on landscape phones lower than 412px the notice cannot reach the
+  // first screen until the header is one row (Phase 3, item 5); 915×412 is the lowest that does.
+  for (const [width, height] of [
+    [360, 740],
+    [412, 915],
+    [915, 412],
+  ] as const) {
+    test(`the AI notice is on the first screen at ${width}×${height}`, async ({ page }) => {
+      await page.setViewportSize({ width, height });
+      for (const route of ['business-types/vehicle-dealer/', 'af/business-types/vehicle-dealer/']) {
+        await page.goto(route);
+        const box = await page.locator('.st-ai-notice').boundingBox();
+        expect(box?.y ?? Number.POSITIVE_INFINITY, route).toBeLessThanOrEqual(height - 44);
+      }
+    });
+  }
+
   test('"Words used on this page" is closed, and opens with no script', async ({ page }) => {
     await page.goto('business-types/vehicle-dealer/');
     const words = page.locator('details#words-used-in-this-file');

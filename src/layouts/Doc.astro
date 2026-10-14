@@ -23,10 +23,13 @@
  * - the master checklist says it is a reminder list, not proof of compliance (D5);
  * - a template says when its required-content rules were checked (D5).
  *
- * On a short phone screen (below 768px wide and 740px high, so 320×568 and 360×640) the AI notice
- * must still be on the first screen (Stoep rule 9, ADR 0006; WP-50a) under today's two- and
- * three-row header, so there the notices come straight after the H1 and the lead and the meta line
- * (`st-doc__after-notice`) follow them. Only their order on screen changes; neither has a link or
+ * On a short phone screen (below 768px wide and 740px high, so 320×568 and 360×640) and on a
+ * landscape phone (below 500px high: 800×360, 844×390, 915×412) the AI notice must still be on the
+ * first screen (Stoep rule 9, ADR 0006; WP-50a) under today's two- and three-row header, so there
+ * the notices come straight after the H1 and the lead and the meta line (`st-doc__after-notice`)
+ * follow them. Without JavaScript the header is 213px below 1024px, and on a landscape phone lower
+ * than about 400px (568×320 to 844×390) the notice still starts below the first screen; only the
+ * one-row header can fix that. Only their order on screen changes; neither has a link or
  * control, so the order of focus and of reading is the same either way. Once the header is one row
  * (WP-50 Phase 3, item 5) this can go.
  *
@@ -463,12 +466,12 @@ const relatedTypes = businessType
   }
 
   /*
-   * A short phone screen (see the comment at the top): the AI notice and the translation notice
-   * straight after the H1, the lead and the meta line after them, so the notice is on the first
-   * screen at 320×568 under today's header. Taller phones and every wider screen keep the order of
-   * the HTML.
+   * A short phone screen or a landscape phone (see the comment at the top): the AI notice and the
+   * translation notice straight after the H1, the lead and the meta line after them, so the notice
+   * is on the first screen at 320×568 and 800×360 under today's header. Taller phones and laptops
+   * (a landscape screen 500px high or more) keep the order of the HTML.
    */
-  @media (width < 768px) and (height < 740px) {
+  @media (width < 768px) and (height < 740px), (orientation: landscape) and (height < 500px) {
     .st-doc__header > .st-doc__after-notice {
       order: 1;
     }
