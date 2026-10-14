@@ -12,6 +12,8 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import Wizard from '../../../src/components/wizard/Wizard.astro';
 import { BusinessTypesFileSchema } from '../../../src/lib/content/schema';
+import { WIZARD_QUESTIONS } from '../../../src/lib/routes';
+import en from '../../../src/i18n/en.json';
 import { REPO_ROOT, realManifest } from '../site/data';
 
 const FIXTURES = path.join(REPO_ROOT, 'tests', 'dom', 'fixtures');
@@ -38,4 +40,14 @@ describe('the wizard markup fixture', () => {
       expect(html).toBe(readFileSync(file, 'utf8'));
     });
   }
+});
+
+describe('WIZARD_QUESTIONS', () => {
+  // The no-answers line of "Only what applies to me" counts the questions with it (WP-50 Phase 3,
+  // item 3, review pass 2, minor 5), so it must be the wizard's own count.
+  it('is the number of wizard step titles and of steps the wizard renders', async () => {
+    expect(Object.keys(en.wizard.steps)).toHaveLength(WIZARD_QUESTIONS);
+    const html = await render('en');
+    expect(html.match(/class="st-wizard__stepper-n"/g) ?? []).toHaveLength(WIZARD_QUESTIONS);
+  });
 });

@@ -107,7 +107,7 @@ Add motion only where it answers a reader's action: opening, expanding, confirmi
 ## Measures of done
 
 - No new third-party request. The CSP test and `csp-and-network.spec.ts` pass unchanged.
-- Script budgets don't grow. The heaviest document page is 23.7 KB today against a 25 KB budget; the revamp must not add to it, and should bring it back under the 22 KB target.
+- Script budgets don't grow. The heaviest document page was 23.7 KB when this plan was written and is 24.3 KB after Phase 3, item 3 (`/af/core/adding-new-lines/`; `/af/business-types/food/` is down to 21.9 KB) against a 25 KB budget; the revamp must not add to it, and should bring it back under the 22 KB target.
 - Layout shift stays at or below today's level on the home and document pages (measured in WP-31: CLS under 0.1 with scripts 2.5 s late).
 - axe reports zero violations in both themes. The manual checks above are done and written up.
 - The audit's top findings are each fixed or explicitly deferred with a reason.

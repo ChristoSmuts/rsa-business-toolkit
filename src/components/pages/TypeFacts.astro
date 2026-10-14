@@ -47,7 +47,7 @@ const effortLabels = [
 ---
 
 <div class:list={['st-type-facts', className]} data-section="types">
-  <span class="st-type-facts__art">
+  <span class="st-type-facts__art st-no-print">
     <Illustration />
   </span>
   <p class="st-type-facts__text">
@@ -124,6 +124,13 @@ const effortLabels = [
 
     .st-type-facts__art {
       display: none;
+    }
+  }
+
+  /* On paper the picture is decoration that costs ink and a column (review pass 2, minor 6). */
+  @media print {
+    .st-type-facts {
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 

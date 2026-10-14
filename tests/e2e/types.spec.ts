@@ -1,5 +1,8 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
+import { REPO_ROOT } from './helpers/routes';
 
 /**
  * WP-50 Phase 3, item 3: the business-type pages and "Pick your business type"
@@ -26,6 +29,12 @@ const TYPES = [
   'professional-creative',
 ] as const;
 const PHONE = { width: 360, height: 740 } as const;
+/** The hub's effort-table rows by their English label (`content-meta/business-types.json`). */
+const PICK_ROWS = (
+  JSON.parse(readFileSync(path.join(REPO_ROOT, 'content-meta', 'business-types.json'), 'utf8')) as {
+    pickTable: { rows: Record<string, string> };
+  }
+).pickTable.rows;
 
 /** Bottom of an element in page pixels, after the web fonts. */
 async function pageBottom(page: Page, selector: string): Promise<number> {
@@ -97,6 +106,37 @@ test.describe('a business type’s facts', () => {
   });
 });
 
+test.describe('the "Main reason" on every type', () => {
+  // Review pass 2, minor 4a: each page's reason is the hub's effort-table cell for its row, in the
+  // built HTML, byte for byte, in both languages.
+  test('is the hub’s cell for that type, byte for byte', async ({ page }) => {
+    const table = (lang: string) =>
+      page.goto(`${lang}business-types/`).then(() =>
+        page
+          .locator('#how-much-regulation-each-type-carries ~ st-table-scroll')
+          .first()
+          .locator('tbody tr')
+          .evaluateAll((rows) =>
+            rows.map((row) => [...row.children].map((cell) => cell.textContent?.trim() ?? '')),
+          ),
+      );
+    // The English labels say which row is which type; the Afrikaans table has the same rows in the
+    // same order (content:fidelity).
+    const order = (await table('')).map((row) => PICK_ROWS[row[0] ?? '']);
+    expect([...order].sort()).toEqual([...TYPES].sort());
+    for (const lang of ['', 'af/']) {
+      const rows = await table(lang);
+      for (const type of TYPES) {
+        await page.goto(`${lang}business-types/${type}/`);
+        const reason = await page
+          .locator('.st-type-facts__reason-text')
+          .evaluate((el) => el.textContent?.trim() ?? '');
+        expect(reason, `${lang}${type}`).toBe(rows[order.indexOf(type)]?.[2]);
+      }
+    }
+  });
+});
+
 test.describe('"Go straight to"', () => {
   test('links to the timing and the checklist on one line, each landing on its heading', async ({
     page,
@@ -134,6 +174,28 @@ test.describe('"Go straight to"', () => {
       'Realistiese tydsberekening',
       'Jou kontrolelys',
     ]);
+  });
+
+  test('is announced once, as the name of its list (Chromium’s own tree)', async ({
+    page,
+    browserName,
+  }) => {
+    test.skip(browserName !== 'chromium', 'Reads the tree over CDP, which only Chromium has.');
+    await page.setViewportSize(PHONE);
+    await page.goto('business-types/food/');
+    const session = await page.context().newCDPSession(page);
+    try {
+      await session.send('Accessibility.enable');
+      const { nodes } = await session.send('Accessibility.getFullAXTree');
+      const named = nodes.filter(
+        (node) => !node.ignored && String(node.name?.value ?? '').includes('Go straight to'),
+      );
+      // Review pass 2, minor 3: the visible label is aria-hidden, so only the list carries it.
+      expect(named.map((node) => node.role?.value)).toEqual(['list']);
+      expect(named[0]?.name?.value).toBe('Go straight to:');
+    } finally {
+      await session.detach();
+    }
   });
 
   test('is not shown where the contents column is', async ({ page }, testInfo) => {
@@ -219,9 +281,21 @@ test.describe('the tables on "Pick your business type"', () => {
       await expect(region.locator('caption')).toHaveText(/^\s*Tabel: .+\.\s*$/);
       await expect(region.locator('caption')).not.toContainText('Rol sywaarts');
       await expect(region.locator('table')).toHaveAttribute('role', 'table');
-      await expect(region.locator('tbody tr').first()).toHaveAttribute('role', 'row');
-      await expect(region.locator('thead th').first()).toHaveAttribute('role', 'columnheader');
-      await expect(region.locator('tbody td').first()).toHaveAttribute('role', 'cell');
+      // Every part, not only the first (review pass 2, minor 4b).
+      const roles = await region
+        .locator('thead, tbody, tr, th, td')
+        .evaluateAll((parts) =>
+          parts.map((part) => [part.tagName.toLowerCase(), part.getAttribute('role')]),
+        );
+      const expected: Record<string, string> = {
+        thead: 'rowgroup',
+        tbody: 'rowgroup',
+        tr: 'row',
+        th: 'columnheader',
+        td: 'cell',
+      };
+      expect(roles.length).toBeGreaterThan(10);
+      for (const [tag, role] of roles) expect(role, String(tag)).toBe(expected[String(tag)]);
     }
   });
 
@@ -254,6 +328,16 @@ test.describe('the tables on "Pick your business type"', () => {
       // 6 rows of 2 cells and 6 rows of 3: 30 body cells, and the column headers.
       expect(roles.filter((role) => role === 'cell').length).toBeGreaterThanOrEqual(30);
       expect(roles.filter((role) => role === 'columnheader').length).toBeGreaterThanOrEqual(5);
+      // Each row holds its cells (review pass 2, minor 4c): 2 header rows and 12 body rows, each
+      // with two or three cells or column headers as its children.
+      const byId = new Map(nodes.map((node) => [node.nodeId, node]));
+      const rows = nodes.filter((node) => node.role?.value === 'row');
+      expect(rows.length).toBeGreaterThanOrEqual(14);
+      for (const row of rows) {
+        const kids = (row.childIds ?? []).map((id) => byId.get(id)?.role?.value);
+        const cells = kids.filter((role) => role === 'cell' || role === 'columnheader');
+        expect(cells.length, kids.join()).toBeGreaterThanOrEqual(2);
+      }
     } finally {
       await session.detach();
     }

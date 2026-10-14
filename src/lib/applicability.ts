@@ -62,7 +62,9 @@ export function appliesFromAttributes(
  * condition is that kind of business (the food page's own checklist, `when: { businessTypes:
  * ['food'] }`) gets no condition there: the reader opened the page about it, so "Only what applies
  * to me" must not hide the page's subject from them (WP-50 Phase 3, item 3). A part with an entity
- * keeps its whole condition.
+ * keeps its whole condition, even when its types include the page's own: `{ entity: 'pty',
+ * businessTypes: ['food'] }` on the food page still hides from a sole proprietor. No content has
+ * such a condition today; one that is added gets this on purpose, and the unit tests hold it.
  */
 export function appliesAttributes(
   appliesTo: AppliesTo,

@@ -14,8 +14,8 @@ import { REPO_ROOT } from './helpers/routes';
  *   inside its facts, `tests/e2e/types.spec.ts`), the compact AI notice,
  *   the translation notice, then two closed disclosures with a chevron, then the text.
  * - On the English vehicle-dealer page the text's first heading is within two phone screens at
- *   360×740, plus the height of the "Go straight to" row (at most 48px; WP-50 Phase 3, item 3),
- *   which a business type adds above the text. Only English is held to it: the Afrikaans dealer is
+ *   360×740 in Chromium; other engines may add the height of the "Go straight to" row (at most
+ *   48px; WP-50 Phase 3, item 3), which a business type puts above the text. Only English is held to it: the Afrikaans dealer is
  *   already past two screens (1,677px after item 1) and is not tested (docs/reviews/backlog.md).
  * - From 1280px: no left section sidebar, and a quiet contents column of h2 sections on the right.
  * - "Sources for this page" shows its first entries on a phone and keeps the rest in a disclosure;
@@ -115,21 +115,24 @@ test.describe('the top of a document page', () => {
 
   test('vehicle dealer: the first heading of the text is within two screens at 360×740', async ({
     page,
+    browserName,
   }) => {
     await page.setViewportSize(PHONE);
     await page.goto(DEALER);
     await page.waitForLoadState('networkidle');
     /*
      * WP-50 Phase 3, item 3 adds the "Go straight to" row (one 44px link to the startup checklist,
-     * about 30,000px further down) above the text. In Chromium the heading is still within two
-     * screens (1,477px); the row's own height is allowed for, so a few pixels of another engine's
-     * font metrics do not fail the page for the link that saves the longest scroll on it.
+     * about 30,000px further down) above the text. Chromium, where the page was measured, keeps
+     * the plain limit (1,477px of 1,480). Other engines (WebKit in CI) may also take the row's own
+     * height, at most 48px, so a few pixels of their font metrics do not fail the page for the link
+     * that saves the longest scroll on it (review pass 2, minor 1).
      */
     const row = await page
       .locator('.st-type-jump')
       .evaluate((el) => el.getBoundingClientRect().height);
     expect(row).toBeLessThanOrEqual(48);
-    expect(await pageTop(page, 'article .st-blocks h2')).toBeLessThanOrEqual(TWO_SCREENS + row);
+    const limit = browserName === 'chromium' ? TWO_SCREENS : TWO_SCREENS + row;
+    expect(await pageTop(page, 'article .st-blocks h2')).toBeLessThanOrEqual(limit);
   });
 
   test('both disclosures are closed and show a chevron that turns when opened', async ({

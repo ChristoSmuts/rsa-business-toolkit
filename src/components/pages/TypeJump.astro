@@ -10,6 +10,9 @@
  * on one line, a dot between them that is not read out. Each link is still a 44px target. It sits
  * after the AI notice, so it never pushes the notice off the first screen, and from 1280px, where
  * the contents column is always in view, it is not shown. Print leaves it out.
+ *
+ * The visible label is `aria-hidden`: it names the list (`aria-labelledby` still reads it), so a
+ * screen reader hears "Go straight to:" once, as the list's name (review pass 2, minor 3).
  */
 import { useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
@@ -29,7 +32,7 @@ const labelId = 'st-type-jump-label';
 
 {links.length > 0 && (
   <div class="st-type-jump st-no-print">
-    <span class="st-type-jump__label" id={labelId}>
+    <span class="st-type-jump__label" id={labelId} aria-hidden="true">
       {t('businessTypes.glance.goTo')}
     </span>
     <ul class="st-type-jump__links" role="list" aria-labelledby={labelId}>
