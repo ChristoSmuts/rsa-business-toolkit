@@ -216,7 +216,11 @@ test.describe('section hubs', () => {
     await expect(tools).toHaveCount(5);
     const action = tools.first().getByRole('link');
     await expect(action).toHaveText('Open template');
-    await expect(action).toHaveAccessibleName(/^Open template: \S/);
+    // The short name, as on /templates/: "(template)" would repeat the action (review pass 2, n3).
+    await expect(action).toHaveAccessibleName('Open template: Quotation');
+    // The count is of pages to read; the tools have their own heading (review pass 2).
+    await expect(page.locator('.st-section-page > .st-hint').first()).toHaveText('2 pages');
+    await expect(page.locator('#st-section-tools')).toHaveText('Tools on this site');
   });
 
   test('the checklist is a tool on Look it up', async ({ page, basePath }) => {
@@ -229,6 +233,33 @@ test.describe('section hubs', () => {
     const time = tool.locator('.st-card__meta .st-badge[data-variant="status"]');
     await expect(time).toHaveText(/\d+ min read/);
     expect(await style(time, 'background-color')).toBe('rgba(0, 0, 0, 0)');
+    // A tap on the read time opens the tool too: the meta row lets it through (pass 2, n4).
+    // `force`: the words take no pointer events themselves; the click lands on the overlay below.
+    await time.click({ force: true });
+    await expect(page).toHaveURL(/\/checklist\/$/);
+  });
+
+  test('a read time is plain words in forced colours too, on rows and tools', async ({ page }) => {
+    // Forced colours repaint a transparent border; a bare badge has none (review pass 2, m1).
+    await page.emulateMedia({ forcedColors: 'active' });
+    for (const [route, card] of [
+      ['core/', '.st-card[data-variant="page"]'],
+      ['look-it-up/', '.st-card[data-variant="tool"]'],
+    ] as const) {
+      await page.goto(route);
+      const time = page.locator(`${card} .st-card__meta .st-badge`).first();
+      expect(await style(time, 'border-top-style'), route).toBe('none');
+    }
+  });
+
+  test('on paper a tool’s action is a link and a panel is never split', async ({ page }) => {
+    await page.goto('paperwork/');
+    await page.emulateMedia({ media: 'print' });
+    const tool = page.locator('.st-card[data-variant="tool"]').first();
+    expect(await style(tool, 'break-inside')).toBe('avoid');
+    const action = tool.locator('.st-card__action');
+    expect(await style(action, 'border-top-style')).toBe('none');
+    expect(await style(action, 'text-decoration-line')).toBe('underline');
   });
 
   test('tools in one row share a height, with their actions on one line', async ({
