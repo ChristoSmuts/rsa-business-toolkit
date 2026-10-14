@@ -23,6 +23,7 @@ import { docHref } from '../../lib/content/manifest';
 import { plainText } from '../../lib/content/render';
 import type { Manifest } from '../../lib/content/schema';
 import { docContentLang } from '../../lib/pages';
+import { NAV_DOC_IDS } from '../../lib/routes';
 import { searchElementData } from '../../lib/search/ui-data';
 import '../../styles/search.css';
 
@@ -48,6 +49,7 @@ const questions = (answers?.items ?? [])
     return url === undefined ? [] : [{ id: item.id, text: plainText(item.question), href: url }];
   })
   .slice(0, COMMON_QUESTIONS);
+const glossaryHref = docHref(manifest, NAV_DOC_IDS.glossary, locale);
 const ids = {
   title: 'st-search-title',
   input: 'st-search-input',
@@ -159,11 +161,24 @@ const ids = {
               </li>
             ))}
           </ul>
-          <p>
-            <a class="st-link-block" href={data.contents}>
-              {t('search.browseContents')}
-            </a>
-          </p>
+          {/*
+            The no-results line suggests the glossary, so the way to it is here too, under the
+            questions it shows with that line (WP-50 Phase 3, item 4).
+          */}
+          <ul class="st-search-dialog__more" role="list">
+            <li>
+              <a class="st-link-block" href={data.contents}>
+                {t('search.browseContents')}
+              </a>
+            </li>
+            {glossaryHref && (
+              <li>
+                <a class="st-link-block" href={glossaryHref}>
+                  {t('search.browseGlossary')}
+                </a>
+              </li>
+            )}
+          </ul>
         </section>
       </div>
     </div>
@@ -291,7 +306,8 @@ const ids = {
     display: none;
   }
 
-  .st-search-dialog__questions {
+  .st-search-dialog__questions,
+  .st-search-dialog__more {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     padding: 0;
