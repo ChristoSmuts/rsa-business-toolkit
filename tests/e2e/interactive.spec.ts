@@ -775,6 +775,28 @@ test.describe('motion', () => {
     );
   }
 
+  /**
+   * From now on, note every transition that starts on a ring (`transitionrun`), so a test can ask
+   * afterwards whether one ran. A ring's transition lasts 200 ms (`--st-duration-base`), and under
+   * CPU load the first `ringMotion()` after a click often came back after it had ended: the ring
+   * had moved, and the poll saw nothing for 5 s.
+   */
+  async function recordRingMotion(page: Page): Promise<void> {
+    await page.evaluate(() => {
+      const seen: string[] = [];
+      (window as unknown as { stRingMotion: string[] }).stRingMotion = seen;
+      document.addEventListener('transitionrun', (event) => {
+        const target = event.target;
+        if (target instanceof Element && target.matches('.st-ring__value')) {
+          seen.push(`transition:${event.propertyName}`);
+        }
+      });
+    });
+  }
+
+  const recordedRingMotion = (page: Page): Promise<string[]> =>
+    page.evaluate(() => (window as unknown as { stRingMotion: string[] }).stRingMotion);
+
   test('the top bar ring does not move when a page opens', async ({ page, seedStorage }) => {
     await seedStorage({ 'st.profile.v1': PROFILE });
     // My path stores the path, so the next page's top bar draws its ring.
@@ -799,14 +821,24 @@ test.describe('motion', () => {
     const mark = page.locator('[data-steps] > li:visible').first().locator('[data-mark]');
     await expect(mark).toBeVisible();
     expect(await ringMotion(page)).toEqual([]);
+    await recordRingMotion(page);
     await mark.click();
-    await expect.poll(() => ringMotion(page)).toContain('transition:stroke-dashoffset');
+    await expect.poll(() => recordedRingMotion(page)).toContain('transition:stroke-dashoffset');
 
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.reload();
     const again = page.locator('[data-steps] > li:visible').nth(1).locator('[data-mark]');
     await expect(again).toBeVisible();
+    const percent = page.locator('[data-progress] .st-ring__text');
+    const shown = await percent.textContent();
+    await recordRingMotion(page);
     await again.click();
+    // The ring has its new value, and a frame has been drawn with it: a transition would have run.
+    await expect(percent).not.toHaveText(shown ?? '');
+    await page.evaluate(
+      () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+    );
+    expect(await recordedRingMotion(page)).toEqual([]);
     // Gentler, not zero (WP-50, D3): durations stay short under reduced motion, and base.css drops
     // every transition that moves something. Drawing the arc is movement, so it jumps.
     const arc = page.locator('[data-progress] .st-ring__value');
