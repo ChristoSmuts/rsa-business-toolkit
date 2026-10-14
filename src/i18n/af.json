@@ -306,6 +306,10 @@
       "more": {
         "one": "Wys die ander {count} bron",
         "other": "Wys die ander {count} bronne"
+      },
+      "less": {
+        "one": "Steek die ander {count} bron weg",
+        "other": "Steek die ander {count} bronne weg"
       }
     },
     "fact": {

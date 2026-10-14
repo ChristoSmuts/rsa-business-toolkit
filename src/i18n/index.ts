@@ -114,6 +114,7 @@ interface ParamNames {
   'trust.status.humanCheckedMeans': 'reviewer';
   'trust.sources.count': 'count';
   'trust.sources.more': 'count';
+  'trust.sources.less': 'count';
   'trust.fact.checked': 'date';
   'trust.fact.source': 'title';
   'trust.fact.sourceNamed': 'title';

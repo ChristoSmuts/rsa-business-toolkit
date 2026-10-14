@@ -247,12 +247,43 @@ test.describe('"Sources for this page"', () => {
     expect(await rest.count()).toBe(total - 3);
     await expect(all.first()).toBeVisible();
     await expect(rest.first()).toBeHidden();
-    const toggle = sources.getByRole('checkbox', { name: /^Show the other \d+ sources$/ });
+    const toggle = sources.getByRole('checkbox');
+    await expect(toggle).toHaveCount(1);
+    // Each register entry counts, and each Act in the one Acts item, so the number is read back.
+    const n = Number(
+      /\d+/.exec(
+        (await sources.locator('.st-sources__more-label').getAttribute('data-show')) ?? '',
+      )?.[0],
+    );
+    expect(n).toBeGreaterThanOrEqual(total - 3);
+    // Main repair review pass 1, minors 1 and 5: the words on screen are the checkbox's name, read
+    // once, and they change with the state.
+    const words = (): Promise<string> =>
+      sources
+        .locator('.st-sources__more-label')
+        .evaluate((label) => getComputedStyle(label, '::after').content.replace(/^"|"$/g, ''));
+    await expect(toggle).toHaveAccessibleName(`Show the other ${n} sources`);
+    expect(await words()).toBe(`Show the other ${n} sources`);
     await expect(toggle).not.toBeChecked();
+    const once = (text: string, tree: string): number => tree.split(text).length - 1;
+    expect(once(`Show the other ${n} sources`, await sources.ariaSnapshot())).toBe(1);
     await sources.locator('.st-sources__more-label').click();
     await expect(toggle).toBeChecked();
+    await expect(toggle).toHaveAccessibleName(`Hide the other ${n} sources`);
+    expect(await words()).toBe(`Hide the other ${n} sources`);
+    expect(once(`Hide the other ${n} sources`, await sources.ariaSnapshot())).toBe(1);
     await expect(rest.first()).toBeVisible();
     await expect(rest.last()).toBeVisible();
+  });
+
+  test('the Afrikaans control says the same in Afrikaans', async ({ page }) => {
+    await page.setViewportSize(PHONE);
+    await page.goto(`af/${DEALER}`);
+    const sources = page.locator('section.st-sources');
+    const toggle = sources.getByRole('checkbox');
+    await expect(toggle).toHaveAccessibleName(/^Wys die ander \d+ bronne$/);
+    await sources.locator('.st-sources__more-label').click();
+    await expect(toggle).toHaveAccessibleName(/^Steek die ander \d+ bronne weg$/);
   });
 
   test('the control works from the keyboard and shows its focus', async ({ page }, testInfo) => {

@@ -306,6 +306,10 @@
       "more": {
         "one": "Show the other {count} source",
         "other": "Show the other {count} sources"
+      },
+      "less": {
+        "one": "Hide the other {count} source",
+        "other": "Hide the other {count} sources"
       }
     },
     "fact": {

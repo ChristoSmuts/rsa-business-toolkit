@@ -54,6 +54,7 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
 const headingId = id ?? uid('st-sources');
 const moreId = `${headingId}-more`;
 const restId = `${headingId}-rest`;
+const labelId = `${headingId}-more-label`;
 const entries = sourceEntriesFor(context.sources, sources.entries);
 const acts = actsFor(context.sources, sources.acts);
 const count = entries.length + acts.length;
@@ -154,10 +155,16 @@ const itemProps = { acts, locale, registerContext, dataLang, titleLang, actLang,
             class="st-sources__toggle st-no-print"
             id={moreId}
             aria-controls={restId}
+            aria-labelledby={labelId}
           />
-          <label class="st-sources__more-label st-no-print" for={moreId}>
-            {t('trust.sources.more', { count: moreCount })}
-          </label>
+          <label
+            class="st-sources__more-label st-no-print"
+            for={moreId}
+            id={labelId}
+            aria-hidden="true"
+            data-show={t('trust.sources.more', { count: moreCount })}
+            data-hide={t('trust.sources.less', { count: moreCount })}
+          ></label>
           <ul class="st-stack st-sources__rest" role="list" id={restId}>
             <SourceItems items={moreItems} {...itemProps} />
           </ul>
@@ -199,6 +206,13 @@ const itemProps = { acts, locale, registerContext, dataLang, titleLang, actLang,
     grid-template-columns: minmax(0, 1fr);
     gap: var(--st-space-3);
     max-inline-size: var(--st-measure);
+  }
+
+  /* The entries are a list for assistive technology, not a bulleted list on screen. */
+  .st-sources > ul,
+  .st-sources__rest {
+    padding-inline-start: 0;
+    list-style: none;
   }
 
   /* The visually hidden checkbox is positioned; this keeps it inside the section. */
@@ -248,6 +262,21 @@ const itemProps = { acts, locale, registerContext, dataLang, titleLang, actLang,
     transform: translateX(-0.125em) rotate(-45deg);
   }
 
+  /*
+   * The words are the label's generated text, from `data-show` and `data-hide`, so they follow the
+   * box: "Show the other 38 sources", then "Hide the other 38 sources" once it is checked, with no
+   * script (main repair review pass 1, minor 5). The label is `aria-hidden` and names the checkbox
+   * through `aria-labelledby`, so a screen reader hears the words once, as the checkbox's name, and
+   * the name always matches what is on screen (minor 1; WCAG 2.5.3).
+   */
+  .st-sources__more-label::after {
+    content: attr(data-show);
+  }
+
+  .st-sources__toggle:checked + .st-sources__more-label::after {
+    content: attr(data-hide);
+  }
+
   .st-sources__toggle:checked + .st-sources__more-label::before {
     transform: translateY(-0.125em) rotate(45deg);
   }
@@ -261,15 +290,23 @@ const itemProps = { acts, locale, registerContext, dataLang, titleLang, actLang,
     padding-block-start: var(--st-space-3);
   }
 
-  /* Only a phone's screen hides the rest, until the reader asks for it. */
-  @media screen and (width < 768px) {
+  /*
+   * Only a phone's screen hides the rest, until the reader asks for it.
+   *
+   * Prefix syntax on purpose (main repair review pass 1, nit 2): an engine that does not know range
+   * queries would ignore both rules and show a control that does nothing; with min-width and
+   * max-width every engine hides the rest only on a phone's screen.
+   */
+  /* stylelint-disable-next-line media-feature-range-notation */
+  @media screen and (max-width: 767.98px) {
     .st-sources__toggle:not(:checked) ~ .st-sources__rest {
       display: none;
     }
   }
 
   /* From 768px, and on paper, the rest is a plain list and there is nothing to open. */
-  @media print, (width >= 768px) {
+  /* stylelint-disable-next-line media-feature-range-notation -- prefix syntax, see above */
+  @media print, (min-width: 768px) {
     .st-sources__toggle,
     .st-sources__more-label {
       display: none;
