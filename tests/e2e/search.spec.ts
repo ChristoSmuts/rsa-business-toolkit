@@ -571,48 +571,68 @@ test.describe('the search dialog while it loads', () => {
     await expect(page).toHaveURL(SEARCH_PAGE);
   });
 
-  test('a script that arrives after the 8 s fallback does not replay the Enter', async ({
-    page,
-    baseURL,
-  }) => {
-    await installClock(page);
-    const releaseScript = await holdScript(page, baseURL);
-    await open(page, DOC);
-    await pauseClock(page);
-    // Held from now on: the search page loads as slowly as the script did.
-    const releasePage = await holdRequests(page, baseURL, (url) =>
-      url.pathname.endsWith('/search/'),
-    );
-    await page.keyboard.press('/');
-    await field(page).fill('PIS');
-    await page.keyboard.press('Enter');
-    // While the search page is on its way the page cannot be asked (page.evaluate waits for the
-    // next document), so it reports each submit on the console.
-    const replays: string[] = [];
-    page.on('console', (message) => {
-      if (message.text() === 'st-submit') replays.push(message.text());
-    });
-    await page.evaluate(() => {
-      document.addEventListener('submit', () => console.log('st-submit'), true);
-    });
-    const leaving = page.waitForRequest(
-      (request) => request.isNavigationRequest() && SEARCH_PAGE.test(request.url()),
-    );
-    await page.clock.runFor(HELD_ENTER_MS);
-    await leaving;
-    // The script arrives on the page that is still shown. It replays a held Enter in the turn it
-    // runs in; it asks for the index only after loading the results code, a round trip later.
-    const indexAsked = page.waitForRequest((request) =>
-      /\/search\/[a-z]{2,3}\.[0-9a-f]{10}\.json$/.test(new URL(request.url()).pathname),
-    );
-    releaseScript();
-    await indexAsked;
-    expect(replays, 'the Enter is not replayed').toEqual([]);
-    releasePage();
-    await expect(page).toHaveURL(SEARCH_PAGE);
-    await expect(page.locator('#st-search-q')).toHaveValue('PIS');
-  });
-
+  test(
+    'a script that arrives after the 8 s fallback does not replay the Enter',
+    {
+      annotation: allowConsoleError(
+        '/Importing a module script failed|Failed to load resource: cancelled/',
+        'WebKit drops the held dialog script when the search page navigation starts (see the test).',
+      ),
+    },
+    async ({ page, baseURL }) => {
+      await installClock(page);
+      const releaseScript = await holdScript(page, baseURL);
+      await open(page, DOC);
+      await pauseClock(page);
+      // Held from now on: the search page loads as slowly as the script did.
+      const releasePage = await holdRequests(page, baseURL, (url) =>
+        url.pathname.endsWith('/search/'),
+      );
+      await page.keyboard.press('/');
+      await field(page).fill('PIS');
+      await page.keyboard.press('Enter');
+      // While the search page is on its way the page cannot be asked (page.evaluate waits for the
+      // next document), so it reports each submit on the console.
+      const replays: string[] = [];
+      page.on('console', (message) => {
+        if (message.text() === 'st-submit') replays.push(message.text());
+      });
+      await page.evaluate(() => {
+        document.addEventListener('submit', () => console.log('st-submit'), true);
+      });
+      /*
+       * What happens to the held script once the search page navigation has started depends on
+       * the engine. Chromium keeps loading the old page's requests until the new page commits, so
+       * the script arrives and runs there: it would replay a held Enter in the turn it runs in,
+       * and it asks for the index only after loading the results code, a round trip later.
+       * WebKit stops the old page's loads as soon as a navigation starts, so the script never
+       * runs there and its import fails (search-boot's failure handler then stays put, `left`).
+       * Either way no submit may follow the fallback's own.
+       */
+      const scriptDropped = page
+        .waitForEvent('requestfailed', (request) => SCRIPT.test(new URL(request.url()).pathname))
+        .then(() => 'dropped' as const);
+      const indexAsked = page
+        .waitForRequest((request) =>
+          /\/search\/[a-z]{2,3}\.[0-9a-f]{10}\.json$/.test(new URL(request.url()).pathname),
+        )
+        .then(() => 'ran' as const);
+      // The loser of the race below rejects when the page closes; that is not a failure.
+      scriptDropped.catch(() => undefined);
+      indexAsked.catch(() => undefined);
+      const leaving = page.waitForRequest(
+        (request) => request.isNavigationRequest() && SEARCH_PAGE.test(request.url()),
+      );
+      await page.clock.runFor(HELD_ENTER_MS);
+      await leaving;
+      releaseScript();
+      const outcome = await Promise.race([indexAsked, scriptDropped]);
+      expect(replays, `the Enter is not replayed (script ${outcome})`).toEqual([]);
+      releasePage();
+      await expect(page).toHaveURL(SEARCH_PAGE);
+      await expect(page.locator('#st-search-q')).toHaveValue('PIS');
+    },
+  );
   test(
     'a script that fails after a held Enter goes to the search page once, not again at 8 s',
     {
