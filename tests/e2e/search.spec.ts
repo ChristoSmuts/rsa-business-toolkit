@@ -601,6 +601,62 @@ test.describe('the search dialog while it loads', () => {
   });
 
   test(
+    'a script that fails after a held Enter goes to the search page once, not again at 8 s',
+    {
+      annotation: allowConsoleError(
+        '/ERR_FAILED|Failed to fetch dynamically imported module|error loading dynamically imported module/',
+        'The test makes the dialog script fail on purpose.',
+      ),
+    },
+    async ({ page, baseURL }) => {
+      // Main repair review pass 3, minor 1: the failure handler went to the search page but left
+      // the held Enter's timer running, so the form was sent a second time at 8 s.
+      await installClock(page);
+      let fail: () => void = () => undefined;
+      const gate = new Promise<void>((resolve) => {
+        fail = resolve;
+      });
+      await routeSameOrigin(
+        page,
+        baseURL,
+        (url) => SCRIPT.test(url.pathname),
+        async (route) => {
+          await gate;
+          await route.abort();
+        },
+      );
+      await open(page, DOC);
+      await pauseClock(page);
+      // Each trip to the search page is counted and then cancelled, so the page that sent the
+      // Enter stays and its timer could still fire (the clock cannot run while a page loads).
+      const counting = await page.evaluate(() => {
+        const api = (window as unknown as { navigation?: EventTarget }).navigation;
+        const counter = { trips: 0 };
+        Object.assign(window, { stTrips: counter });
+        api?.addEventListener('navigate', (event) => {
+          const navigate = event as Event & { destination: { url: string } };
+          if (!new URL(navigate.destination.url).pathname.endsWith('/search/')) return;
+          counter.trips += 1;
+          navigate.preventDefault();
+        });
+        return api !== undefined;
+      });
+      test.skip(!counting, 'Counts trips with the Navigation API, which this browser lacks.');
+      const trips = () =>
+        page.evaluate(() => (window as unknown as { stTrips: { trips: number } }).stTrips.trips);
+      await page.keyboard.press('/');
+      await field(page).fill('PIS');
+      await page.keyboard.press('Enter');
+      await page.clock.runFor(5000);
+      expect(await trips()).toBe(0);
+      fail();
+      await expect.poll(trips).toBe(1);
+      await page.clock.runFor(HELD_ENTER_MS);
+      expect(await trips(), 'one trip to the search page').toBe(1);
+    },
+  );
+
+  test(
     'a dialog closed before its script fails to load stays closed, on the same page',
     {
       annotation: allowConsoleError(

@@ -95,6 +95,9 @@ export function openSearch(from: HTMLElement | null, doc: Document = document): 
       // Not for a dialog the reader has closed, nor after the held Enter has left already.
       if (left || !dialog?.open) return;
       const query = field?.value.trim() ?? '';
+      // The held Enter's timer would send the form a second time (main repair review pass 3).
+      forget();
+      left = true;
       doc.defaultView?.location.assign(
         `${host.dataset['page'] ?? ''}${query ? `?q=${encodeURIComponent(query)}` : ''}`,
       );

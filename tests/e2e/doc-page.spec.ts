@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { Page } from '@playwright/test';
 import { expect, test } from './fixtures';
-import { browserName } from './helpers/ax';
+import { chromiumAxName } from './helpers/ax';
 import { REPO_ROOT } from './helpers/routes';
 
 /**
@@ -275,18 +275,20 @@ test.describe('"Sources for this page"', () => {
   ] as const) {
     test(`/${prefix}${DEALER}: the browser names the control with the visible words, in both states`, async ({
       page,
+      browserName,
     }) => {
+      test.skip(browserName !== 'chromium', 'Reads the name over CDP, which only Chromium has.');
       await page.setViewportSize(PHONE);
       await page.goto(`${prefix}${DEALER}`);
       const label = page.locator('section.st-sources .st-sources__more-label');
       const toggle = page.locator('section.st-sources .st-sources__toggle');
       const visible = ((await label.textContent()) ?? '').trim();
       expect(visible).toMatch(phrase);
-      expect(await browserName(page, '.st-sources__toggle')).toBe(visible);
+      expect(await chromiumAxName(page, '.st-sources__toggle')).toBe(visible);
       await toggle.click();
       await expect(toggle).toBeChecked();
       expect(((await label.textContent()) ?? '').trim()).toBe(visible);
-      expect(await browserName(page, '.st-sources__toggle')).toBe(visible);
+      expect(await chromiumAxName(page, '.st-sources__toggle')).toBe(visible);
     });
   }
 

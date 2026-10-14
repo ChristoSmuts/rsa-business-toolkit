@@ -1,5 +1,5 @@
 import { expect, test } from './fixtures';
-import { browserName } from './helpers/ax';
+import { chromiumAxName } from './helpers/ax';
 import { routeSameOrigin } from './helpers/network';
 import { enforceCheck, mainTextProblems } from './helpers/page-checks';
 import { discoverPageRoutes, routeLabel, routeUrl } from './helpers/routes';
@@ -494,10 +494,10 @@ test.describe('the AI notice on a 320×568 screen without JavaScript', () => {
       const toggle = page.locator('section.st-sources .st-sources__toggle');
       const visible = ((await label.textContent()) ?? '').trim();
       expect(visible.length).toBeGreaterThan(10);
-      expect(await browserName(page, '.st-sources__toggle')).toBe(visible);
+      expect(await chromiumAxName(page, '.st-sources__toggle')).toBe(visible);
       await toggle.click();
       await expect(toggle).toBeChecked();
-      expect(await browserName(page, '.st-sources__toggle')).toBe(visible);
+      expect(await chromiumAxName(page, '.st-sources__toggle')).toBe(visible);
     });
   }
 
