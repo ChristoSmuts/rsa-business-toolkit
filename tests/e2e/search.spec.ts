@@ -185,22 +185,35 @@ test.describe('the search dialog', () => {
     await expect(page.locator('[role="option"][href$="/glossary/#emp201"]')).toBeVisible();
   });
 
-  /** Hold every index request until `release()` is called. */
-  async function holdIndex(page: Page, baseURL: string | undefined): Promise<() => void> {
+  /**
+   * Hold every index request until `release()` is called. `requested` settles once the dialog has
+   * asked for the index: only from then on is the index what the dialog waits for. Before it, the
+   * dialog's own script may still be on its way, and keys typed then are another case (the tests
+   * under "the search dialog while it loads").
+   */
+  async function holdIndex(
+    page: Page,
+    baseURL: string | undefined,
+  ): Promise<{ release: () => void; requested: Promise<void> }> {
     let release: () => void = () => undefined;
+    let asked: () => void = () => undefined;
     const gate = new Promise<void>((resolve) => {
       release = resolve;
+    });
+    const requested = new Promise<void>((resolve) => {
+      asked = resolve;
     });
     await routeSameOrigin(
       page,
       baseURL,
       (url) => /\/search\/[a-z]{2,3}\.[0-9a-f]{10}\.json$/.test(url.pathname),
       async (route) => {
+        asked();
         await gate;
         await route.continue();
       },
     );
-    return () => release();
+    return { release: () => release(), requested };
   }
 
   // Review WP-33 pass 2, major 1 and minor 3: Enter while the index is still loading.
@@ -208,10 +221,11 @@ test.describe('the search dialog', () => {
     page,
     baseURL,
   }) => {
-    const release = await holdIndex(page, baseURL);
+    const { release, requested } = await holdIndex(page, baseURL);
     await open(page, DOC);
     await page.keyboard.press('/');
     await field(page).fill('PIS');
+    await requested;
     await page.keyboard.press('Enter');
     await expect(dialog(page)).toBeVisible();
     release();
@@ -219,11 +233,12 @@ test.describe('the search dialog', () => {
   });
 
   test('Enter while the index loads, then Escape: nothing opens', async ({ page, baseURL }) => {
-    const release = await holdIndex(page, baseURL);
+    const { release, requested } = await holdIndex(page, baseURL);
     await open(page, DOC);
     const before = page.url();
     await page.keyboard.press('/');
     await field(page).fill('notional input tax');
+    await requested;
     await page.keyboard.press('Enter');
     await page.keyboard.press('Escape');
     await expect(dialog(page)).toBeHidden();
@@ -352,6 +367,75 @@ test.describe('the search dialog while it loads', () => {
     await expect(page.getByRole('option').first()).toBeVisible();
     await expect(status(page)).toContainText(/result/);
     await expect(common(page)).toBeHidden();
+  });
+
+  /*
+   * Enter and Escape typed before the dialog's own script has arrived. Enter submitted the form to
+   * the search page, and Escape with text in the field only cleared the text: on a slow phone a
+   * reader quicker than the script lost both keys (and the e2e tests above sometimes did, under
+   * CPU load).
+   */
+  const SCRIPT = /\/_astro\/search\.[^/]+\.js$/;
+  const scriptArrived = (page: Page) =>
+    page.waitForFunction(() => customElements.get('st-search') !== undefined);
+
+  test('Enter before the script arrives opens the result for the text once it does', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdRequests(page, baseURL, (url) => SCRIPT.test(url.pathname));
+    await open(page, DOC);
+    const before = page.url();
+    await page.keyboard.press('/');
+    await field(page).fill('PIS');
+    await page.keyboard.press('Enter');
+    await expect(status(page)).toHaveText('Loading search…');
+    await expect(dialog(page)).toBeVisible();
+    expect(page.url()).toBe(before);
+    release();
+    await expect(page).toHaveURL(/\/glossary\/#pis$/);
+  });
+
+  test('Enter, then Escape, before the script arrives: nothing opens', async ({
+    page,
+    baseURL,
+  }) => {
+    const requests = indexRequests(page);
+    const release = await holdRequests(page, baseURL, (url) => SCRIPT.test(url.pathname));
+    await open(page, DOC);
+    const before = page.url();
+    await page.keyboard.press('/');
+    await field(page).fill('notional input tax');
+    await page.keyboard.press('Enter');
+    await page.keyboard.press('Escape');
+    await expect(dialog(page)).toBeHidden();
+    release();
+    await scriptArrived(page);
+    // Give the script time to (wrongly) act on the Enter.
+    await page.waitForFunction(
+      () => new Promise((resolve) => setTimeout(() => resolve(true), 500)),
+    );
+    expect(page.url()).toBe(before);
+    await expect(dialog(page)).toBeHidden();
+    expect(requests, 'a closed dialog fetches no index').toHaveLength(0);
+  });
+
+  test('one Escape before the script arrives closes the dialog, also with text in the field', async ({
+    page,
+    baseURL,
+  }) => {
+    const release = await holdRequests(page, baseURL, (url) => SCRIPT.test(url.pathname));
+    await open(page, DOC);
+    const skip = page.locator('.st-skip-link');
+    await skip.focus();
+    await page.keyboard.press('Control+k');
+    await field(page).fill('VAT');
+    await page.keyboard.press('Escape');
+    await expect(dialog(page)).toBeHidden();
+    await expect(skip).toBeFocused();
+    release();
+    await scriptArrived(page);
+    await expect(dialog(page)).toBeHidden();
   });
 });
 

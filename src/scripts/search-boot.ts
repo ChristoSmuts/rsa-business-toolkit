@@ -83,24 +83,57 @@ export function openSearch(from: HTMLElement | null, doc: Document = document): 
     host.opener = from;
     dialog.showModal();
     field?.focus();
-    if (field) waiting(host, field);
+    if (field) waiting(host, dialog, field);
   }
-  load().catch(() => {
-    const query = field?.value.trim() ?? '';
-    doc.defaultView?.location.assign(
-      `${host.dataset['page'] ?? ''}${query ? `?q=${encodeURIComponent(query)}` : ''}`,
-    );
-  });
+  load().then(
+    () => {
+      // Enter pressed before the script took over: the script now does what Enter does there.
+      if (entered && dialog?.open) field?.form?.requestSubmit();
+      entered = false;
+    },
+    () => {
+      const query = field?.value.trim() ?? '';
+      doc.defaultView?.location.assign(
+        `${host.dataset['page'] ?? ''}${query ? `?q=${encodeURIComponent(query)}` : ''}`,
+      );
+    },
+  );
   return true;
 }
+
+/** Enter was pressed in the open dialog before its script took over. */
+let entered = false;
+/** The key handlers below are on the dialog (once per page). */
+let keysHeld = false;
 
 /**
  * Until the dialog's script has taken over (`host.open` exists), say "Loading search…" on the
  * status line, and hide the common questions while the field has text: they are not results for it
  * (WP-50 audit, flow 3). The results code (`search-ui.ts`) keeps the same state until the index has
  * arrived.
+ *
+ * The keys the script handles do the same before it arrives. Enter does not submit the form, which
+ * left for the search page; `openSearch()` hands it to the script. Escape closes the dialog, also
+ * with text in the field, whose own Escape only cleared the text. Both were lost on a slow phone
+ * whenever the reader was quicker than the script.
  */
-function waiting(host: Dialog, field: HTMLInputElement): void {
+function waiting(host: Dialog, dialog: HTMLDialogElement, field: HTMLInputElement): void {
+  if (!keysHeld) {
+    keysHeld = true;
+    field.form?.addEventListener('submit', (event) => {
+      if (host.open) return;
+      event.preventDefault();
+      entered = dialog.open;
+    });
+    field.addEventListener('keydown', (event) => {
+      if (host.open || event.key !== 'Escape' || event.isComposing) return;
+      event.preventDefault();
+      dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      entered = false;
+    });
+  }
   const status = host.querySelector<HTMLElement>('[role="status"]');
   const common = host.querySelector<HTMLElement>('[data-search-empty]');
   const show = (): void => {
