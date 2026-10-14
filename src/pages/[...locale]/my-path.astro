@@ -154,7 +154,12 @@ const progressTemplate = t('myPath.progress', { done: '{done}', total: '{total}'
       </div>
 
       <div class="st-my-path__dashboard st-stack st-stack-lg" data-dashboard hidden>
-        <section class="st-stack st-stack-sm" aria-labelledby="my-path-answers">
+        {/*
+          The answers are context for the path, not the page's subject: a small heading, the chips
+          and "Edit answers" as a button on one wrapping line, so the steps start higher (WP-50
+          Phase 3, item 4).
+        */}
+        <section class="st-my-path__answers" aria-labelledby="my-path-answers">
           <h2 id="my-path-answers">{t('myPath.profileLabel')}</h2>
           <ul class="st-cluster st-my-path__chips" role="list">
             {chips.map((chip) => (
@@ -165,11 +170,9 @@ const progressTemplate = t('myPath.progress', { done: '{done}', total: '{total}'
               </li>
             ))}
           </ul>
-          <p>
-            <a class="st-link-block" href={wizardHref}>
-              {t('myPath.editAnswers')}
-            </a>
-          </p>
+          <Button href={wizardHref} variant="secondary" iconStart="lucide:pencil">
+            {t('myPath.editAnswers')}
+          </Button>
         </section>
 
         <section class="st-stack" aria-labelledby="my-path-steps">
@@ -287,7 +290,25 @@ const progressTemplate = t('myPath.progress', { done: '{done}', total: '{total}'
     display: none;
   }
 
+  .st-my-path__answers {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-2) var(--st-space-3);
+    padding-block-end: var(--st-space-4);
+    border-block-end: var(--st-border-width) solid var(--st-border);
+  }
+
+  .st-my-path__answers h2 {
+    flex-basis: 100%;
+    color: var(--st-text-muted);
+    font-family: var(--st-font-body);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-semibold);
+  }
+
   .st-my-path__chips {
+    flex: 1 1 auto;
     padding: 0;
     list-style: none;
   }

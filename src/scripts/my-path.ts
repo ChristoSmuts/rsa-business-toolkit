@@ -159,6 +159,14 @@ export class StMyPath extends HTMLElement {
       this.#renderDone(card, stepDone(step, done), titles.join(', '));
       list.append(card);
     }
+    // "Do this next" on the first step not done (WP-50 Phase 3, item 4).
+    const next = path.steps.find((step) => !stepDone(step, done));
+    for (const card of cards) {
+      const isNext = !card.hidden && next !== undefined && card.dataset['n'] === String(next.n);
+      card.toggleAttribute('data-next', isNext);
+      const badge = card.querySelector<HTMLElement>('[data-next-badge]');
+      if (badge) badge.hidden = !isNext;
+    }
   }
 
   /** Done or not, with the button's label and its name for the pages this step shows. */

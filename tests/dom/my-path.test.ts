@@ -16,7 +16,7 @@ function cards(): string {
           ref === '$businessTypes' ? PATHS.businessTypes.map((t) => t.doc) : [ref.split('#')[0]],
         );
         return `<li data-stage="${rule.stage}" data-item="${step.item}" hidden>
-          <p><span data-step-label>Step ?</span><span data-done-badge hidden>Done</span></p>
+          <p><span data-step-label>Step ?</span><span data-next-badge hidden>Do this next</span><span data-done-badge hidden>Done</span></p>
           <ul>${docs.map((doc) => `<li data-doc="${doc}" hidden><h3><a href="#">${doc}</a></h3></li>`).join('')}</ul>
           <p data-why>Why this step: …</p>
           <button type="button" data-mark data-label-done="Mark as done" data-label-undo="Remove the tick"
@@ -119,6 +119,27 @@ describe('<st-my-path>', () => {
       ['business-types/food'],
       ['core/register#popia-register-your-information-officer'],
     ]);
+  });
+
+  it('says "Do this next" on the first step not done, and only there (WP-50 Phase 3)', () => {
+    profile.set({ entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' });
+    setUp();
+    const next = (): HTMLElement[] => [
+      ...document.querySelectorAll<HTMLElement>('[data-steps] > li[data-next]'),
+    ];
+    const badges = (): HTMLElement[] =>
+      [...document.querySelectorAll<HTMLElement>('[data-next-badge]')].filter((b) => !b.hidden);
+    expect(next()).toEqual([shown()[0]]);
+    expect(badges()).toHaveLength(1);
+    shown()[0]!.querySelector<HTMLButtonElement>('[data-mark]')!.click();
+    expect(next()).toEqual([shown()[1]]);
+    expect(badges()).toHaveLength(1);
+    for (const card of shown()) {
+      if (!card.hasAttribute('data-done'))
+        card.querySelector<HTMLButtonElement>('[data-mark]')!.click();
+    }
+    expect(next(), 'none once every step is done').toEqual([]);
+    expect(badges()).toHaveLength(0);
   });
 
   it('marks a step as done and back, and the ring follows', () => {
