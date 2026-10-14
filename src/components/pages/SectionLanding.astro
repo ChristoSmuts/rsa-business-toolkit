@@ -1,7 +1,12 @@
 ---
 /**
- * A section landing (build plan B6): breadcrumb · hue-striped header · the section's documents
- * in order as cards (number, title, summary, read time, badges) · the AI line with its date.
+ * A section landing (build plan B6; WP-50 Phase 3, direction A): breadcrumb · the shweshwe section
+ * header · the section's pages to read, in order, as page rows (title, summary, read time, badges) ·
+ * the section's tools as tool panels (a fillable template, the saving checklist) · the AI line.
+ *
+ * The list's own order is the reading order, so the rows carry no "Page 2 of 10" eyebrow. A
+ * template is a tool while `TEMPLATES_FILLABLE` is on and the checklist while `CHECKLIST_SAVES` is;
+ * with the flag off each is a page to read again.
  *
  * The cards are built from each document's own data, so a summary or reading time on a landing
  * is always the one the document page shows. An Afrikaans landing whose documents are not
@@ -18,7 +23,7 @@ import type { Doc, Manifest } from '../../lib/content/schema';
 import type { Crumb } from '../../lib/nav';
 import { latestCheck, sectionHue } from '../../lib/pages';
 import { href } from '../../lib/paths';
-import { APP_ROUTES, NAV_DOC_IDS } from '../../lib/routes';
+import { APP_ROUTES, CHECKLIST_SAVES, NAV_DOC_IDS, TEMPLATES_FILLABLE } from '../../lib/routes';
 
 interface Props {
   locale: Locale;
@@ -39,6 +44,23 @@ const crumbs: Crumb[] = [
 ];
 const howMadeHref = docHref(manifest, NAV_DOC_IDS.howThisWasMade, locale);
 const description = t(`nav.sections.${sectionId}.description` as TranslationKey);
+const isTool = (doc: Doc): boolean =>
+  (doc.kind === 'template' && TEMPLATES_FILLABLE) || (doc.kind === 'checklist' && CHECKLIST_SAVES);
+const pages = docs.filter((doc) => !isTool(doc));
+const tools = docs.filter(isTool).map((doc) => {
+  const name = docTitle(manifest, doc.id, locale);
+  return doc.kind === 'template'
+    ? { doc, name, action: t('templates.open'), context: name, icon: 'lucide:notebook-pen' }
+    : {
+        doc,
+        name,
+        action: t('home.whereToStart.checklist.action'),
+        context: undefined,
+        icon: 'lucide:list-checks',
+      };
+});
+const contentLang = (doc: Doc): string | undefined =>
+  doc.lang === locale ? undefined : (getLocale(doc.lang)?.hreflang ?? doc.lang);
 ---
 
 <div class="st-container st-stack st-stack-lg st-section-page" data-section={hue}>
@@ -47,24 +69,22 @@ const description = t(`nav.sections.${sectionId}.description` as TranslationKey)
   <p class="st-lead">{description}</p>
   <p class="st-hint">{t('section.docCount', { count: docs.length })}</p>
 
-  <ol
-    class="st-section-page__list"
-    role="list"
-    aria-label={t('section.pagesLabel', { section: title })}
-  >
-    {docs.map((doc, index) => {
-      const lang = doc.lang === locale ? undefined : (getLocale(doc.lang)?.hreflang ?? doc.lang);
-      return (
+  {pages.length > 0 && (
+    <ol
+      class="st-rows st-section-page__list"
+      role="list"
+      aria-label={t('section.pagesLabel', { section: title })}
+    >
+      {pages.map((doc) => (
         <li>
           <Card
             title={docTitle(manifest, doc.id, locale)}
             titleLang={docTitleLang(manifest, doc.id, locale)}
             href={docHref(manifest, doc.id, locale)}
             section={hue}
-            eyebrow={t('section.pageNumber', { n: index + 1, total: docs.length })}
             headingLevel={2}
           >
-            <p lang={lang}>{doc.summary}</p>
+            <p lang={contentLang(doc)}>{doc.summary}</p>
             <p slot="meta" class="st-cluster">
               <Badge variant="status" icon="lucide:clock">
                 {t('doc.readTime', { minutes: doc.readingTime })}
@@ -77,9 +97,36 @@ const description = t(`nav.sections.${sectionId}.description` as TranslationKey)
             </p>
           </Card>
         </li>
-      );
-    })}
-  </ol>
+      ))}
+    </ol>
+  )}
+
+  {tools.length > 0 && (
+    <section class="st-stack" aria-labelledby="st-section-tools">
+      <h2 id="st-section-tools" class="st-section-page__tools-title">
+        {t('section.toolsHeading')}
+      </h2>
+      <ul class="st-section-page__tools" role="list">
+        {tools.map((tool) => (
+          <li>
+            <Card
+              title={tool.name}
+              titleLang={docTitleLang(manifest, tool.doc.id, locale)}
+              href={docHref(manifest, tool.doc.id, locale)}
+              section={hue}
+              headingLevel={3}
+              variant="tool"
+              icon={tool.icon}
+              action={tool.action}
+              actionContext={tool.context}
+            >
+              <p lang={contentLang(tool.doc)}>{tool.doc.summary}</p>
+            </Card>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
 
   <p class="st-hint">
     {checkedOn && t('site.checkedOn', { date: formatDate(locale, checkedOn) })}{' '}
@@ -93,16 +140,21 @@ const description = t(`nav.sections.${sectionId}.description` as TranslationKey)
   }
 
   .st-section-page__list {
+    max-inline-size: var(--st-measure);
+  }
+
+  /* The tools' heading is a sans label, not a reading title: these are things to use. */
+  .st-section-page__tools-title {
+    font-family: var(--st-font-body);
+    font-size: var(--st-text-lg);
+    letter-spacing: 0;
+  }
+
+  .st-section-page__tools {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
     gap: var(--st-space-4);
     padding: 0;
     list-style: none;
-  }
-
-  @media (width >= 768px) {
-    .st-section-page__list {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
   }
 </style>

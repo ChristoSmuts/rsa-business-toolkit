@@ -1,6 +1,7 @@
 ---
 /**
- * `/templates/`: the five templates as cards, plus "Which one do I need?" (build plan B6).
+ * `/templates/`: the five templates as tools (the card set's "tool" shape, WP-50 Phase 3; a page to
+ * read while they cannot be filled in), plus "Which one do I need?" (build plan B6).
  * Each card opens the template's page, where it is filled in and printed (WP-32,
  * `TEMPLATES_FILLABLE`).
  */
@@ -74,10 +75,19 @@ const checkedOn = latestCheck(templateDocs.filter((doc) => doc !== undefined));
         </a>
       </p>
     )}
-    <ul class="st-templates__list" role="list">
+    <ul class:list={['st-templates__list', !TEMPLATES_FILLABLE && 'st-rows']} role="list">
       {templates.map((item) => (
         <li>
-          <Card title={item.name} href={item.href} section="paperwork" headingLevel={2}>
+          <Card
+            title={item.name}
+            href={item.href}
+            section="paperwork"
+            headingLevel={2}
+            variant={TEMPLATES_FILLABLE ? 'tool' : 'page'}
+            icon="lucide:notebook-pen"
+            action={TEMPLATES_FILLABLE ? t('templates.open') : undefined}
+            actionContext={item.name}
+          >
             <p>{item.description}</p>
           </Card>
         </li>
@@ -97,17 +107,11 @@ const checkedOn = latestCheck(templateDocs.filter((doc) => doc !== undefined));
     padding-block: var(--st-space-5) var(--st-space-8);
   }
 
-  .st-templates__list {
+  .st-templates__list:not(.st-rows) {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
     gap: var(--st-space-4);
     padding: 0;
     list-style: none;
-  }
-
-  @media (width >= 768px) {
-    .st-templates__list {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
   }
 </style>

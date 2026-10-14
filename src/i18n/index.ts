@@ -88,7 +88,6 @@ interface ParamNames {
   'home.yourPath.continue': 'n' | 'total';
   'section.startWithNamed': 'title';
   'section.docCount': 'count';
-  'section.pageNumber': 'n' | 'total';
   'section.pagesLabel': 'section';
   'businessTypesHub.effortMeter': 'level' | 'name';
   'doc.readTime': 'minutes';

@@ -134,6 +134,7 @@
     "heroVerify": "Written by AI. An AI checked the facts against the sources in the sources register, most recently on {date}. No person has checked them yet. Check the official link before you pay or sign.",
     "findMyPath": "Find my path",
     "findMyPathHint": "Answer {total} short questions",
+    "stoepCaption": "Three short questions. Then you get the steps that apply to you, in order.",
     "knowWhatINeed": "I know what I need",
     "whereToStart": {
       "heading": "Where to start",
@@ -144,8 +145,7 @@
       },
       "anHour": {
         "title": "If you have an hour",
-        "body": "Read the whole core section. Then open your kind of business.",
-        "action": "Open the core section"
+        "body": "Read the whole core section. Then open your kind of business."
       },
       "checklist": {
         "title": "If you know what you need",
@@ -202,7 +202,7 @@
       "one": "{count} page",
       "other": "{count} pages"
     },
-    "pageNumber": "Page {n} of {total}",
+    "toolsHeading": "Tools in this section",
     "pagesLabel": "Pages in {section}"
   },
   "businessTypesHub": {

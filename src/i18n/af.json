@@ -134,6 +134,7 @@
     "heroVerify": "Deur KI geskryf. ’n KI het die feite in die Engelse teks teen die bronne in die bronneregister nagegaan, laas op {date}. Geen mens het hulle nog nagegaan nie. Kontroleer die amptelike skakel voordat jy betaal of teken.",
     "findMyPath": "Vind my roete",
     "findMyPathHint": "Beantwoord {total} kort vrae",
+    "stoepCaption": "Drie kort vrae. Dan kry jy die stappe wat vir jou geld, in volgorde.",
     "knowWhatINeed": "Ek weet wat ek nodig het",
     "whereToStart": {
       "heading": "Waar om te begin",
@@ -144,8 +145,7 @@
       },
       "anHour": {
         "title": "As jy ’n uur het",
-        "body": "Lees die hele kernafdeling. Maak dan jou soort besigheid oop.",
-        "action": "Maak die kernafdeling oop"
+        "body": "Lees die hele kernafdeling. Maak dan jou soort besigheid oop."
       },
       "checklist": {
         "title": "As jy weet wat jy nodig het",
@@ -202,7 +202,7 @@
       "one": "{count} bladsy",
       "other": "{count} bladsye"
     },
-    "pageNumber": "Bladsy {n} van {total}",
+    "toolsHeading": "Nutsgoed in hierdie afdeling",
     "pagesLabel": "Bladsye in {section}"
   },
   "businessTypesHub": {

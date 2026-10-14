@@ -1,8 +1,10 @@
 ---
 /**
- * Home, in every enabled language (build plan B6): hero with the AI line · where to start ·
- * your kind of business · four things that matter early · three numbers that changed in 2026,
- * each with its date and official source (D5) · trust strip.
+ * Home, in every enabled language (build plan B6; WP-50 Phase 3, direction A): hero with the AI
+ * line and the stoep (Find my path's three questions under the logo's roof, decision D4 = A1) ·
+ * where to start (two pages to read and one tool) · your kind of business · four things that
+ * matter early · three numbers that changed in 2026, each with its date and official source (D5) ·
+ * trust list. Each item uses the card set's shape for what it is: page row, tool, type tile, fact.
  *
  * With answers saved on the device, the "Your path" card (WP-31, `YourPathCard.astro`) shows above
  * the hero; everything else is what every visitor sees, and works without JavaScript.
@@ -59,34 +61,22 @@ const coreStartHref = docHref(manifest, 'core/start-here', locale);
 const coreHref = sectionHref(manifest, 'core', locale);
 const checklistHref = docHref(manifest, NAV_DOC_IDS.checklist, locale);
 const typesHref = sectionHref(manifest, 'business-types', locale);
+const wizardHref = href(locale, APP_ROUTES.wizard);
+const wizardSteps = [t('wizard.steps.entity'), t('wizard.steps.types'), t('wizard.steps.stage')];
 
 const businessTypes = (await getCollection('businessTypes')).map((entry) => entry.data);
 
-const whereToStart = [
+/** Pages to read first, as page rows; the checklist beside them is a tool. */
+const readFirst = [
   {
-    key: 'fiveMinutes',
     title: t('home.whereToStart.fiveMinutes.title', { minutes: 5 }),
     body: t('home.whereToStart.fiveMinutes.body'),
-    action: t('home.whereToStart.fiveMinutes.action'),
     href: coreStartHref,
   },
   {
-    key: 'anHour',
     title: t('home.whereToStart.anHour.title'),
     body: t('home.whereToStart.anHour.body'),
-    action: t('home.whereToStart.anHour.action'),
     href: coreHref,
-  },
-  {
-    key: 'checklist',
-    title: t('home.whereToStart.checklist.title'),
-    body: t(
-      CHECKLIST_SAVES
-        ? 'home.whereToStart.checklist.body'
-        : 'home.whereToStart.checklist.bodyStatic',
-    ),
-    action: t('home.whereToStart.checklist.action'),
-    href: checklistHref,
   },
 ];
 ---
@@ -101,57 +91,113 @@ const whereToStart = [
   <div class="st-container st-stack st-home">
     <LangBanner locale={locale} />
     {WIZARD_AVAILABLE && <YourPathCard locale={locale} version={pathsData.hash} />}
-    <section class="st-home__hero st-stack" aria-labelledby="home-title">
-      <h1 id="home-title">{t('home.heroTitle')}</h1>
-      <p class="st-lead">{t(WIZARD_AVAILABLE ? 'home.heroLead' : 'home.heroLeadStatic')}</p>
-      <p class="st-hint">
-        {t('home.heroVerify', { date: checkedOn })}{' '}
-        {howMadeHref && <a href={howMadeHref}>{t('home.trust.howThisWasMade')}</a>}
-      </p>
-      <p class="st-cluster">
-        {WIZARD_AVAILABLE && (
-          <Button href={href(locale, APP_ROUTES.wizard)} variant="primary" size="lg">
-            {t('home.findMyPath')}
-          </Button>
-        )}
-        {!WIZARD_AVAILABLE && coreStartHref && (
-          <Button href={coreStartHref} variant="primary" size="lg">
-            {t('home.whereToStart.fiveMinutes.action')}
-          </Button>
-        )}
-        {SEARCH_AVAILABLE ? (
-          // "I know what I need" (B3 flow 1) opens the search dialog; without JavaScript it is
-          // the link to the search page it always was.
-          <Button
-            href={href(locale, APP_ROUTES.search)}
-            variant="secondary"
-            size="lg"
-            data-search-open
+    <section class="st-home__hero" aria-labelledby="home-title">
+      <div class="st-home__hero-text st-stack">
+        <h1 id="home-title">{t('home.heroTitle')}</h1>
+        <p class="st-lead">{t(WIZARD_AVAILABLE ? 'home.heroLead' : 'home.heroLeadStatic')}</p>
+        <p class="st-cluster">
+          {WIZARD_AVAILABLE && (
+            <Button href={wizardHref} variant="primary" size="lg">
+              {t('home.findMyPath')}
+            </Button>
+          )}
+          {!WIZARD_AVAILABLE && coreStartHref && (
+            <Button href={coreStartHref} variant="primary" size="lg">
+              {t('home.whereToStart.fiveMinutes.action')}
+            </Button>
+          )}
+          {SEARCH_AVAILABLE ? (
+            // "I know what I need" (B3 flow 1) opens the search dialog; without JavaScript it is
+            // the link to the search page it always was.
+            <Button
+              href={href(locale, APP_ROUTES.search)}
+              variant="secondary"
+              size="lg"
+              data-search-open
+            >
+              {t('home.knowWhatINeed')}
+            </Button>
+          ) : (
+            <Button href={href(locale, APP_ROUTES.contents)} variant="secondary" size="lg">
+              {t('search.browseContents')}
+            </Button>
+          )}
+        </p>
+        <p class="st-home__ai-line">
+          <Icon name="lucide:bot" size="1.15em" />
+          <span>
+            {t('home.heroVerify', { date: checkedOn })}{' '}
+            {howMadeHref && <a href={howMadeHref}>{t('home.trust.howThisWasMade')}</a>}
+          </span>
+        </p>
+      </div>
+      {WIZARD_AVAILABLE && (
+        // The stoep (WP-50, decision D4 = A1): Find my path's three questions as three steps
+        // widening downward under the logo's roof. The roof is drawn; the steps are text. The
+        // caption is the link into the wizard and its target covers the figure.
+        <figure class="st-stoep" aria-labelledby="home-stoep-caption">
+          <svg
+            class="st-stoep__roof"
+            viewBox="0 0 200 24"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+            focusable="false"
           >
-            {t('home.knowWhatINeed')}
-          </Button>
-        ) : (
-          <Button href={href(locale, APP_ROUTES.contents)} variant="secondary" size="lg">
-            {t('search.browseContents')}
-          </Button>
-        )}
-      </p>
+            <path
+              d="M4 21 100 3l96 18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              vector-effect="non-scaling-stroke"
+            />
+          </svg>
+          <ol class="st-stoep__steps" role="list">
+            {wizardSteps.map((step) => (
+              <li>{step}</li>
+            ))}
+          </ol>
+          <figcaption id="home-stoep-caption" class="st-stoep__caption">
+            <a class="st-stoep__link st-link-block" href={wizardHref}>
+              {t('home.stoepCaption')}
+            </a>
+          </figcaption>
+        </figure>
+      )}
     </section>
 
     <section class="st-stack" aria-labelledby="home-where">
       <h2 id="home-where">{t('home.whereToStart.heading')}</h2>
-      <ul class="st-home__grid st-home__grid--3" role="list">
-        {whereToStart.map((item) => (
-          <li>
-            <Card title={item.title} href={item.href} headingLevel={3}>
-              <p>{item.body}</p>
-              <p slot="meta" class="st-hint">
-                {item.action}
-              </p>
-            </Card>
-          </li>
-        ))}
-      </ul>
+      <div class="st-home__where">
+        <ul class="st-rows" role="list" data-section="core">
+          {readFirst.map((item) => (
+            <li>
+              <Card title={item.title} href={item.href} section="core" headingLevel={3}>
+                <p>{item.body}</p>
+              </Card>
+            </li>
+          ))}
+        </ul>
+        {checklistHref && (
+          <Card
+            title={t('home.whereToStart.checklist.title')}
+            href={checklistHref}
+            headingLevel={3}
+            variant="tool"
+            icon="lucide:list-checks"
+            action={t('home.whereToStart.checklist.action')}
+          >
+            <p>
+              {t(
+                CHECKLIST_SAVES
+                  ? 'home.whereToStart.checklist.body'
+                  : 'home.whereToStart.checklist.bodyStatic',
+              )}
+            </p>
+          </Card>
+        )}
+      </div>
     </section>
 
     <section class="st-stack" aria-labelledby="home-types" data-section="types">
@@ -169,23 +215,23 @@ const whereToStart = [
 
     <section class="st-stack" aria-labelledby="home-four">
       <h2 id="home-four">{t('home.fourThings.heading')}</h2>
-      <ol class="st-home__four">
+      <ul class="st-rows st-home__four" role="list" data-section="core">
         {HOME_FOUR_THINGS.map((item) => (
-          <li>
+          <li class="st-row">
             <a class="st-link-block" href={docHref(manifest, item.doc, locale, item.anchor)}>
               {t(item.labelKey)}
             </a>
           </li>
         ))}
-      </ol>
+      </ul>
     </section>
 
     <section class="st-stack" aria-labelledby="home-numbers">
       <h2 id="home-numbers">{t('home.threeNumbers.heading', { year: HOME_NUMBERS_YEAR })}</h2>
       <p>{t('home.threeNumbers.lead')}</p>
-      <ul class="st-home__grid st-home__grid--3" role="list">
+      <ul class="st-home__facts" role="list">
         {numbers.map((item) => (
-          <li class="st-home__number st-stack st-stack-sm" data-number={item.id}>
+          <li class="st-home__number" data-number={item.id}>
             <h3 class="st-home__number-label">{t(item.labelKey)}</h3>
             <p class="st-home__number-value st-num">{item.amount}</p>
             {item.oldAmount && (
@@ -206,7 +252,7 @@ const whereToStart = [
             )}
             <p class="st-hint">{t('trust.fact.checked', { date: registerCheckedOn })}</p>
             {/* The link says "Official source"; home.test.ts guarantees every cited source is. */}
-            <p class="st-cluster">
+            <p>
               <a class="st-link-block" href={item.sourceUrl} rel="noopener noreferrer">
                 {t('home.threeNumbers.officialSource')}
                 <Icon name="lucide:external-link" size="0.9em" />
@@ -259,59 +305,206 @@ const whereToStart = [
     padding-block: var(--st-space-6) var(--st-space-8);
   }
 
+  /* ---------- Hero: the words on the left, the stoep on the right (below on a phone) ---------- */
+
   .st-home__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-6);
+  }
+
+  .st-home__hero-text {
     max-inline-size: var(--st-measure);
   }
 
-  .st-home__grid {
+  .st-home__ai-line {
+    display: flex;
+    gap: var(--st-space-2);
+    align-items: flex-start;
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+  }
+
+  .st-home__ai-line .st-icon {
+    flex: none;
+    margin-block-start: 0.2em;
+  }
+
+  @media (width >= 1024px) {
+    .st-home__hero {
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      align-items: center;
+      column-gap: var(--st-space-8);
+    }
+  }
+
+  /*
+   * The stoep (WP-50 D4 = A1), the page's one bold element. Three steps under the logo's roof,
+   * each wider than the one above it, as in the logo. Nothing moves, on load or on hover.
+   */
+  .st-stoep {
+    position: relative;
+    display: grid;
+    gap: var(--st-space-3);
+    inline-size: 100%;
+    max-inline-size: 34rem;
+    margin: 0;
+  }
+
+  .st-stoep__roof {
+    display: block;
+    inline-size: 100%;
+    block-size: 1.75rem;
+    margin-block-end: calc(var(--st-space-1) * -1);
+    color: var(--st-primary);
+  }
+
+  .st-stoep__steps {
+    display: grid;
+    gap: var(--st-space-1);
+    padding: 0;
+    list-style: none;
+    counter-reset: st-stoep;
+  }
+
+  .st-stoep__steps li {
+    counter-increment: st-stoep;
+    display: flex;
+    gap: var(--st-space-3);
+    align-items: center;
+    min-block-size: var(--st-target);
+    padding: var(--st-space-2) var(--st-space-4);
+    border-radius: var(--st-radius-sm);
+    background-color: var(--st-primary-soft);
+    color: var(--st-on-primary-soft);
+    font-weight: var(--st-weight-semibold);
+    line-height: var(--st-leading-snug);
+    overflow-wrap: anywhere;
+  }
+
+  /* The question's number, in the serif of the titles; the list already numbers it for AT. */
+  .st-stoep__steps li::before {
+    content: counter(st-stoep);
+    content: counter(st-stoep) / '';
+    flex: none;
+    font-family: var(--st-font-display);
+    font-size: var(--st-text-xl);
+    font-weight: var(--st-weight-semibold);
+    line-height: 1;
+  }
+
+  .st-stoep__steps li:nth-child(1) {
+    margin-inline: 14%;
+  }
+
+  .st-stoep__steps li:nth-child(2) {
+    margin-inline: 7%;
+  }
+
+  .st-stoep__caption {
+    color: var(--st-text-muted);
+    font-size: var(--st-text-sm);
+  }
+
+  .st-stoep__link {
+    color: inherit;
+  }
+
+  .st-stoep__link:visited {
+    color: inherit;
+  }
+
+  /* One tab stop: the caption's link covers the figure, and the ring goes round the figure. */
+  .st-stoep__link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .st-stoep:has(.st-stoep__link:focus-visible) {
+    outline: var(--st-focus-width) solid var(--st-focus);
+    outline-offset: var(--st-space-2);
+  }
+
+  .st-stoep:has(.st-stoep__link:focus-visible) .st-stoep__link {
+    outline: none;
+  }
+
+  @media (hover: hover) {
+    .st-stoep:has(.st-stoep__link:hover) .st-stoep__link {
+      color: var(--st-link-hover);
+    }
+  }
+
+  /* ---------- Where to start: pages to read beside the one tool ---------- */
+
+  .st-home__where {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--st-space-4);
+    gap: var(--st-space-5);
+    align-items: start;
+  }
+
+  /* From 1024px the tool stands beside the rows; at tablet width it was too narrow for its action. */
+  @media (width >= 1024px) {
+    .st-home__where {
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: var(--st-space-6);
+    }
+  }
+
+  .st-home__four {
+    max-inline-size: var(--st-measure);
+  }
+
+  .st-home__four > .st-row {
+    padding-block: var(--st-space-1);
+  }
+
+  /* ---------- Three numbers: facts, each a figure with its date and source ---------- */
+
+  .st-home__facts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--st-space-5);
     padding: 0;
     list-style: none;
   }
 
   @media (width >= 768px) {
-    .st-home__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (width >= 1024px) {
-    .st-home__grid {
+    .st-home__facts {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
-  .st-home__four {
-    display: grid;
-    gap: var(--st-space-2);
-    max-inline-size: var(--st-measure);
-  }
-
   .st-home__number {
-    padding: var(--st-space-4);
-    border: var(--st-border-width) solid var(--st-border);
-    border-radius: var(--st-radius-md);
-    background-color: var(--st-surface);
+    display: grid;
+    gap: var(--st-space-1);
+    align-content: start;
+    padding-block-start: var(--st-space-3);
+    border-block-start: 3px solid var(--st-primary);
   }
 
   .st-home__number-label {
     font-size: var(--st-text-md);
   }
 
+  /* Fraunces' wght-only text cut, set like the display figures (`.st-display`): no optical size. */
   .st-home__number-value {
     font-family: var(--st-font-display);
-    font-size: var(--st-text-display);
-    line-height: 1.1;
-    color: var(--st-primary);
+    font-size: var(--st-text-2xl);
+    font-weight: var(--st-weight-semibold);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-variant-numeric: lining-nums;
     overflow-wrap: anywhere;
   }
 
+  /* ---------- Why you can use this guide ---------- */
+
   .st-home__trust {
-    padding: var(--st-space-5);
-    border-radius: var(--st-radius-lg);
-    background-color: var(--st-surface-2);
+    padding-block-start: var(--st-space-5);
+    border-block-start: var(--st-border-width) solid var(--st-border);
   }
 
   .st-home__trust-list {
@@ -335,8 +528,12 @@ const whereToStart = [
   }
 
   @media (forced-colors: active) {
+    .st-stoep__steps li {
+      border: 1px solid CanvasText;
+    }
+
     .st-home__number {
-      border-color: CanvasText;
+      border-block-start-color: CanvasText;
     }
   }
 </style>
