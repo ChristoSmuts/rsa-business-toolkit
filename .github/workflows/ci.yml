@@ -121,11 +121,43 @@ jobs:
           path: ~/.cache/ms-playwright
           key: pw-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
       - run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm test:a11y
+      - run: pnpm test:a11y:desktop
       - if: always()
         uses: actions/upload-artifact@v7
         with:
           name: a11y-report
+          path: test-results
+          retention-days: 7
+
+  # The same per-page sweep on a 360px phone (project a11y-phone), on its own runner so the two
+  # passes run side by side instead of doubling the a11y job.
+  a11y-phone:
+    name: Accessibility (axe, phone)
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+      - uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ env.PLAYWRIGHT_VERSION }}
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:a11y:phone
+      - if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: a11y-phone-report
           path: test-results
           retention-days: 7
 
