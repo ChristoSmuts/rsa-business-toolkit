@@ -257,6 +257,9 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
   </section>
 
   <div class="st-tool__actions st-stack st-stack-sm">
+    <h2 class="st-tool__heading" id="st-tool-actions-heading">
+      {t('templates.actionsHeading')}
+    </h2>
     {/*
       The buttons need the script. Until it runs they keep their room, unseen, with one line in it
       that says they are coming, read by screen readers too (WP-50a review pass 10, M1).
@@ -477,13 +480,41 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
     font-size: var(--st-text-md);
   }
 
+  /*
+   * On a phone a group is its legend and its fields, with no frame: the frame and its padding took
+   * 34px from every field (254px wide at 320px), and a line of the invoice was a box in a box
+   * (WP-50 Phase 3, item 4). The legend reads as the group's heading.
+   */
+  @container (inline-size < 30rem) {
+    .st-tgroup {
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+    }
+
+    .st-tgroup__legend {
+      margin-block-end: var(--st-space-2);
+      padding-inline: 0;
+      font-family: var(--st-font-display);
+      font-size: var(--st-text-xl);
+      font-weight: var(--st-weight-semibold);
+      line-height: var(--st-leading-tight);
+    }
+  }
+
   .st-tform__print-title {
     display: none;
   }
 
+  /*
+   * The missing items wrap as one paragraph of links, each still a 44px target: one per line, an
+   * empty tax invoice's thirteen took about 620px at 320px and put Print two screens under the
+   * form (WP-50 Phase 3, item 4).
+   */
   .st-tool__missing {
-    display: grid;
-    gap: var(--st-space-1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--st-space-4);
     padding: 0;
     list-style: none;
   }
