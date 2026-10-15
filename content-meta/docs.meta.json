@@ -161,7 +161,7 @@
         "af": "Wat het verander"
       },
       "summary": {
-        "en": "Read this if you keep a copy of the toolkit in Google Drive: each change, what to paste into Drive, and how to keep the two copies the same.",
+        "en": "Read this if you keep a copy of the toolkit in Google Drive: each change, what to paste into Drive, and how to keep both copies in sync.",
         "af": "Lees dit as jy ’n kopie van die gereedskapstel in Google Drive hou: elke verandering, wat jy in Drive moet plak, en hoe om die twee kopieë gelyk te hou."
       },
       "tags": ["orientation", "changelog"],
@@ -374,7 +374,7 @@
         "af": "Handelsmerkopdragte"
       },
       "summary": {
-        "en": "Eleven AI prompts, in order, for your brief, name, tagline, logo, colours, type, photographs, voice and about text. Each prompt gives you 5 options to refine.",
+        "en": "Twelve AI prompts, in order, for your brief, name, tagline, logo, colours, type, photographs, voice and about text. Each prompt gives you 5 options to refine.",
         "af": "Elf KI-opdragte, in volgorde, vir jou kortbeskrywing, naam, slagspreuk, logo, kleure, lettertipe, foto’s, stem en \"oor ons\"-teks. Elke opdrag gee jou 5 opsies om te verfyn."
       },
       "tags": ["prompts"],
@@ -429,7 +429,7 @@
         "af": "Bemarkingsopdragte"
       },
       "summary": {
-        "en": "Where South African small businesses actually find customers, plus AI prompts for content pillars, posts, WhatsApp messages and your Google Business Profile.",
+        "en": "Where your first customers are most likely to come from, two things to set up before any posts, and AI prompts for posts, WhatsApp messages and your Google Business Profile.",
         "af": "Waar Suid-Afrikaanse klein besighede werklik kliënte kry, plus KI-opdragte vir inhoudspilare, plasings, WhatsApp-boodskappe en jou Google Business Profile."
       },
       "tags": ["prompts", "marketing"],
@@ -557,7 +557,7 @@
         "af": "Kies jou besigheidstipe"
       },
       "summary": {
-        "en": "Find your kind of business in one table, see how much setup work each type carries, and what everyone needs regardless of type.",
+        "en": "Find your kind of business, compare the setup work each kind carries, and see what every business needs and what can wait.",
         "af": "Vind jou soort besigheid in een tabel, sien hoeveel opstelwerk elke soort vra, en wat almal nodig het, watter soort besigheid ook al."
       },
       "tags": ["business-types"]
@@ -574,7 +574,7 @@
         "af": "Voertuighandelaar"
       },
       "summary": {
-        "en": "The three registrations a dealer needs (SAPS, vehicles in the business’s name, motor trade numbers) and the consumer law behind every sale.",
+        "en": "SAPS registration, registering the vehicles you sell, trade numbers if you drive unregistered stock, and the consumer law behind every sale.",
         "af": "Die drie registrasies wat ’n handelaar nodig het (SAPS, voertuie op die besigheid se naam, motorhandelnommers) en die verbruikersreg agter elke verkoping."
       },
       "appliesTo": {
@@ -594,7 +594,7 @@
         "af": "Kosbesigheid"
       },
       "summary": {
-        "en": "The one document you must have before you sell food, the other permits you may need, labelling, and how long it all takes, from home baking to a food truck.",
+        "en": "The certificate every food business needs, the business licence and other papers around it, labelling, and how long it all takes, from home baking to a food truck.",
         "af": "Die een dokument wat jy moet hê voordat jy kos verkoop, ander permitte wat jy dalk nodig het, etikettering, en hoe lank dit alles neem, van tuisbak tot ’n kosvragmotor."
       },
       "appliesTo": {
@@ -614,7 +614,7 @@
         "af": "Skoonheid en persoonlike versorging"
       },
       "summary": {
-        "en": "The licence and inspection your salon or studio needs, the insurance worth having, and how to handle bookings and no-shows.",
+        "en": "The licence and inspection for your salon or studio, the insurance you actually need, and how to handle bookings and no-shows.",
         "af": "Die lisensie en inspeksie vir jou salon of ateljee, die versekering wat jy nodig het, en hoe om besprekings en wegbly-kliënte te hanteer."
       },
       "appliesTo": {
