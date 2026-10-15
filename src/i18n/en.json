@@ -398,6 +398,7 @@
       "title": "Your answers so far",
       "none": "Not answered yet",
       "change": "Change",
+      "changeNamed": "Change: {step}",
       "main": "(main)"
     }
   },

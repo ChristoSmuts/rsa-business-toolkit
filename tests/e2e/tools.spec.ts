@@ -57,8 +57,10 @@ async function startWizard(page: Page, lang: string): Promise<void> {
 async function answerTwo(page: Page): Promise<void> {
   await page.locator('input[name="entity"][value="sole-prop"]').check();
   await page.locator('[data-step="entity"] [data-next]').click();
-  await page.locator('input[name="type"][value="food"]').check();
+  // General first, then Food: the server renders Food before General, so the summary shows this
+  // order only if the script really reorders the list (review pass 2, m2).
   await page.locator('input[name="type"][value="general"]').check();
+  await page.locator('input[name="type"][value="food"]').check();
   await page.locator('[data-step="type"] [data-next]').click();
   await expect(page.locator('[data-stepper="2"]')).toHaveAttribute('aria-current', 'step');
 }
@@ -219,8 +221,8 @@ test.describe('Find my path on a phone', () => {
       // A list in tick order, the first marked as the main one (review pass 1, m5).
       await expect(summary.locator('[data-summary-types] > li:visible')).toHaveText(
         lang
-          ? ['Kosbesigheid (hoof)', 'Algemeen: ek verkoop of doen baie dinge']
-          : ['Food business (main)', 'General: I sell or do many things'],
+          ? ['Algemeen: ek verkoop of doen baie dinge (hoof)', 'Kosbesigheid']
+          : ['General: I sell or do many things (main)', 'Food business'],
         { useInnerText: true },
       );
       const change = summary.locator('[data-go]');
@@ -236,12 +238,59 @@ test.describe('Find my path on a phone', () => {
       await expect(page.locator('#wz-h-stage')).toBeFocused();
       await expect(summary.locator('[data-summary-types] > li:visible')).toHaveText(
         lang
-          ? ['Kosbesigheid (hoof)', 'Algemeen: ek verkoop of doen baie dinge']
-          : ['Food business (main)', 'General: I sell or do many things'],
+          ? ['Algemeen: ek verkoop of doen baie dinge (hoof)', 'Kosbesigheid']
+          : ['General: I sell or do many things (main)', 'Food business'],
         { useInnerText: true },
       );
     });
   }
+});
+
+test.describe('Find my path: the names of "Change"', () => {
+  test('each "Change" is named after its question, starting with its visible word (Chromium tree)', async ({
+    page,
+    browserName,
+  }, testInfo) => {
+    test.skip(browserName !== 'chromium', 'Reads the tree over CDP, which only Chromium has.');
+    test.skip(testInfo.project.name === 'mobile', 'Sets its own widths.');
+    await page.setViewportSize(PHONE);
+    for (const [lang, names] of [
+      ['', ['Change: How you trade', 'Change: Kind of business']],
+      ['af/', ['Verander: Hoe jy handel dryf', 'Verander: Soort besigheid']],
+    ] as const) {
+      await startWizard(page, lang);
+      await answerTwo(page);
+      for (const [index, name] of names.entries()) {
+        const button = page.locator(`[data-step="stage"] [data-go="${index}"]`);
+        await expect(button).toHaveText(lang ? 'Verander' : 'Change');
+        // WCAG 2.5.3: the name starts with the visible label, with no stray space.
+        expect(await chromiumAxName(page, `[data-step="stage"] [data-go="${index}"]`)).toBe(name);
+      }
+      // The answers so far are a group named by its heading, not a landmark (review pass 2, m4).
+      const summary = page.locator('[data-step="stage"] [data-summary]');
+      await expect(summary).toHaveAttribute('role', 'group');
+      expect(await chromiumAxName(page, '[data-step="stage"] [data-summary]')).toBe(
+        lang ? 'Jou antwoorde tot dusver' : 'Your answers so far',
+      );
+    }
+  });
+
+  test('one kind of business is a list with no bullet', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'Sets its own widths.');
+    await page.setViewportSize(PHONE);
+    await startWizard(page, '');
+    await page.locator('input[name="entity"][value="pty"]').check();
+    await page.locator('[data-step="entity"] [data-next]').click();
+    await page.locator('input[name="type"][value="food"]').check();
+    await page.locator('[data-step="type"] [data-next]').click();
+    const list = page.locator('[data-step="stage"] [data-summary-types]');
+    await expect(list).toHaveAttribute('role', 'list');
+    expect(await list.evaluate((element) => getComputedStyle(element).listStyleType)).toBe('none');
+    await page.locator('[data-step="stage"] [data-go="1"]').click();
+    await page.locator('input[name="type"][value="beauty"]').check();
+    await page.locator('[data-step="type"] [data-next]').click();
+    expect(await list.evaluate((element) => getComputedStyle(element).listStyleType)).toBe('disc');
+  });
 });
 
 test.describe('My path on a phone', () => {

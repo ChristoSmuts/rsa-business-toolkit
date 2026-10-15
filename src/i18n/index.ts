@@ -124,6 +124,7 @@ interface ParamNames {
   'wizard.stepHeading': 'n' | 'title' | 'total';
   'wizard.types.effort': 'level';
   'wizard.stage.ptyGrowingDisabled': 'step';
+  'wizard.summary.changeNamed': 'step';
   'myPath.empty.body': 'total';
   'myPath.progress': 'done' | 'total';
   'myPath.stepLabel': 'n';

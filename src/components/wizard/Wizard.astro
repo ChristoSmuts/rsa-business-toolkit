@@ -284,7 +284,12 @@ const results = singleChoices().map((choice) => ({
         answer's own label, and "Change" goes back to that question with its answers kept. Only
         with JavaScript: without it the three questions are on the page together.
       */}
-      <section class="st-wizard__summary js-only" aria-labelledby="wz-summary-title" data-summary>
+      <div
+        class="st-wizard__summary js-only"
+        role="group"
+        aria-labelledby="wz-summary-title"
+        data-summary
+      >
         <h3 id="wz-summary-title">{t('wizard.summary.title')}</h3>
         <dl>
           {[QUERY.entity, QUERY.type].map((name, index) => (
@@ -312,15 +317,18 @@ const results = singleChoices().map((choice) => ({
                     {t('wizard.summary.none')}
                   </span>
                 )}
-                <Button variant="ghost" data-go={index}>
+                <Button
+                  variant="ghost"
+                  data-go={index}
+                  aria-label={t('wizard.summary.changeNamed', { step: stepTitles[index] ?? '' })}
+                >
                   {t('wizard.summary.change')}
-                  <span class="st-visually-hidden">: {stepTitles[index]}</span>
                 </Button>
               </dd>
             </div>
           ))}
         </dl>
-      </section>
+      </div>
       <div class="st-wizard__nav js-only">
         <Button variant="secondary" data-back iconStart="lucide:arrow-left">
           {t('wizard.back')}
@@ -751,6 +759,12 @@ const results = singleChoices().map((choice) => ({
   .st-wizard__summary-types {
     margin: 0;
     padding-inline-start: 1.25em;
+  }
+
+  /* One kind of business: no bullet, but still a list (review pass 2, m4). */
+  .st-wizard__summary-types:not(:has(> li:not([hidden]) ~ li:not([hidden]))) {
+    padding-inline-start: 0;
+    list-style: none;
   }
 
   .st-wizard__summary-types li[hidden],

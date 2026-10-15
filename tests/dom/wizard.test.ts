@@ -256,7 +256,12 @@ describe('<st-wizard>', () => {
     expect(types()).toEqual(['General: I sell or do many things (main)', 'Food business']);
     expect(none()).toBe(false);
     const change = step('stage').querySelectorAll<HTMLButtonElement>('[data-go]');
+    // Visible "Change", named after the question it goes to (review pass 2, m1).
     expect([...change].map((b) => b.textContent?.replace(/\s+/g, ' ').trim())).toEqual([
+      'Change',
+      'Change',
+    ]);
+    expect([...change].map((b) => b.getAttribute('aria-label'))).toEqual([
       'Change: How you trade',
       'Change: Kind of business',
     ]);

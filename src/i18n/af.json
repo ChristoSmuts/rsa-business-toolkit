@@ -398,6 +398,7 @@
       "title": "Jou antwoorde tot dusver",
       "none": "Nog nie beantwoord nie",
       "change": "Verander",
+      "changeNamed": "Verander: {step}",
       "main": "(hoof)"
     }
   },
