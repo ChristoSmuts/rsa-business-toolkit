@@ -397,7 +397,8 @@
     "summary": {
       "title": "Your answers so far",
       "none": "Not answered yet",
-      "change": "Change"
+      "change": "Change",
+      "main": "(main)"
     }
   },
   "myPath": {

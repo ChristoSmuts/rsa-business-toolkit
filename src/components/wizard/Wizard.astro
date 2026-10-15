@@ -94,8 +94,10 @@ const results = singleChoices().map((choice) => ({
   <ol class="st-wizard__stepper" aria-label={t('wizard.stepsLabel')} role="list">
     {stepTitles.map((title, index) => (
       <li data-stepper={index} aria-current={index === 0 ? 'step' : undefined}>
-        <span class="st-wizard__stepper-n">{t('wizard.stepOf', { n: index + 1, total })}</span>
-        <span class="st-wizard__stepper-title" data-text={title}>
+        <span class="st-wizard__stepper-n st-visually-hidden-narrow">
+          {t('wizard.stepOf', { n: index + 1, total })}
+        </span>
+        <span class="st-wizard__stepper-title st-visually-hidden-narrow" data-text={title}>
           <span>{title}</span>
         </span>
       </li>
@@ -289,7 +291,27 @@ const results = singleChoices().map((choice) => ({
             <div class="st-wizard__summary-row">
               <dt>{stepTitles[index]}</dt>
               <dd>
-                <span data-summary-answer={name}>{t('wizard.summary.none')}</span>
+                {name === QUERY.type ? (
+                  <div class="st-wizard__summary-answer" data-summary-answer={name}>
+                    <span data-summary-none>{t('wizard.summary.none')}</span>
+                    {/* The kinds of business, shown and put in tick order by the script. */}
+                    <ul class="st-wizard__summary-types" role="list" data-summary-types>
+                      {types.map((type) => (
+                        <li data-summary-type={type.value} hidden>
+                          {type.label}
+                          <span class="st-wizard__summary-main" data-summary-main hidden>
+                            {' '}
+                            {t('wizard.summary.main')}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <span class="st-wizard__summary-answer" data-summary-answer={name}>
+                    {t('wizard.summary.none')}
+                  </span>
+                )}
                 <Button variant="ghost" data-go={index}>
                   {t('wizard.summary.change')}
                   <span class="st-visually-hidden">: {stepTitles[index]}</span>
@@ -484,10 +506,12 @@ const results = singleChoices().map((choice) => ({
   }
 
   /*
-   * A question already answered (every step before the current one): its bar is filled and a tick,
-   * drawn from two borders in the text colour, sits in the padding before its number (so no word
-   * moves and no row wraps when it appears), so done, current and to come are
-   * three different things, and not by colour alone (WP-50 Phase 3, item 4). The tick is
+   * From 30rem, where the stepper shows its words: a question already answered (every step before
+   * the current one) has its bar filled and a tick, drawn from two borders in the text colour, in
+   * the padding before its number (every item has that padding, so no word moves and no row wraps
+   * when the tick appears). So done, current and to come are three states, and not by colour alone:
+   * done has the tick, current is semibold. "Done" means "before the current step": after "Change"
+   * goes back, a later question already answered shows as to come (backlog). The tick is
    * decoration; the order and `aria-current` say it to assistive technology.
    */
   .st-wizard__stepper li:has(~ li[aria-current='step']) {
@@ -495,48 +519,55 @@ const results = singleChoices().map((choice) => ({
     color: var(--st-text);
   }
 
-  .st-wizard__stepper li:has(~ li[aria-current='step']) .st-wizard__stepper-n::before {
-    content: '';
-    position: absolute;
-    inset-block-start: calc(var(--st-space-2) + 0.3em);
-    inset-inline-start: 0.15em;
-    inline-size: 0.35em;
-    block-size: 0.7em;
-    border: solid currentcolor;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
+  @media (width >= 30rem) {
+    .st-wizard__stepper li:has(~ li[aria-current='step']) .st-wizard__stepper-n::before {
+      content: '';
+      position: absolute;
+      inset-block-start: calc(var(--st-space-2) + 0.3em);
+      inset-inline-start: 0.15em;
+      inline-size: 0.35em;
+      block-size: 0.7em;
+      border: solid currentcolor;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
   }
 
   /*
-   * On a phone the stepper is a bar of three segments and nothing else: the step's heading below it
+   * On a phone the stepper is a segmented progress bar and nothing else: the step's heading below it
    * already says "Question 2 of 3: Kind of business", and the stepper's words took two rows (about
    * 120px at 320px) and pushed the first answer off the first screen. The words stay for screen
-   * readers, visually hidden, and the bar keeps one height whatever the step.
+   * readers (`.st-visually-hidden-narrow`). The bar is filled up to and including the current step
+   * and empty after it, and the three states differ in height as well as colour: to come is a 2px
+   * line in `--st-border-strong` (3:1 or more on the page in both themes), done a 6px filled
+   * segment, current a 10px filled segment. The bars share a bottom edge, and the stepper is 10px
+   * tall at every step, so nothing moves on Next or Back. There is no tick here: the heading names
+   * the step.
    */
   @media (width < 30rem) {
     .st-wizard__stepper {
       flex-wrap: nowrap;
+      align-items: end;
       gap: var(--st-space-1);
     }
 
     .st-wizard__stepper li {
       flex: 1 1 0;
       padding: 0;
-      border-block-start-width: 6px;
+      border-block-start: 2px solid var(--st-border-strong);
+    }
+
+    .st-wizard__stepper li:has(~ li[aria-current='step']) {
+      border-block-start: 6px solid var(--st-primary);
+    }
+
+    .st-wizard__stepper li[aria-current='step'] {
+      border-block-start: 10px solid var(--st-primary);
     }
 
     /* The step's heading one size down: the question under it is the line to read. */
     .st-wizard__step h2 {
       font-size: var(--st-text-xl);
-    }
-
-    .st-wizard__stepper li > span {
-      position: absolute;
-      inline-size: 1px;
-      block-size: 1px;
-      overflow: hidden;
-      clip-path: inset(50%);
-      white-space: nowrap;
     }
   }
 
@@ -717,7 +748,23 @@ const results = singleChoices().map((choice) => ({
     margin: 0;
   }
 
-  .st-wizard__summary dd > span {
+  .st-wizard__summary-types {
+    margin: 0;
+    padding-inline-start: 1.25em;
+  }
+
+  .st-wizard__summary-types li[hidden],
+  .st-wizard__summary-main[hidden],
+  .st-wizard__summary-answer [data-summary-none][hidden] {
+    display: none;
+  }
+
+  .st-wizard__summary-main {
+    color: var(--st-text-muted);
+    font-weight: var(--st-weight-regular);
+  }
+
+  .st-wizard__summary-answer {
     flex: 1 1 8rem;
     min-inline-size: 0;
     font-weight: var(--st-weight-semibold);
@@ -755,6 +802,11 @@ const results = singleChoices().map((choice) => ({
     .st-wizard__stepper li[aria-current='step'],
     .st-wizard__stepper li:has(~ li[aria-current='step']) {
       border-block-start-color: Highlight;
+    }
+
+    /* Steps still to come (review pass 1, m1). */
+    .st-wizard__stepper li[aria-current='step'] ~ li {
+      border-block-start-color: GrayText;
     }
   }
 </style>

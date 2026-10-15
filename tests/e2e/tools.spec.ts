@@ -6,10 +6,12 @@ import { chromiumAxName } from './helpers/ax';
  * WP-50 Phase 3, item 4: the tools (Find my path, My path, the templates, the checklist, the
  * confirm dialogs and the search dialog) on a phone, as one product.
  *
- * - Find my path: below 30rem the stepper is a bar of three segments, its words visually hidden
- *   but still in the accessibility tree; a question already answered is marked done (a tick, not
- *   colour alone); the last question shows "Your answers so far" with a "Change" for each, which
- *   goes back with the answers kept.
+ * - Find my path: below 30rem the stepper is a segmented progress bar (to come a 2px line, done a
+ *   6px filled segment, current a 10px one), its words visually hidden but still in the
+ *   accessibility tree; from 30rem a done step shows a tick that is really drawn. The last
+ *   question shows "Your answers so far", the kinds of business as a list in tick order with the
+ *   first marked "(main)", and a "Change" for each, which goes back with the answers kept. The
+ *   first answer is on the first screen at 360×740.
  * - My path: the first step not done says "Do this next"; "Edit answers" is a button-shaped link.
  * - The templates: on a phone a group has no frame, the missing required items wrap as one
  *   paragraph of 44px links, and the actions have a heading.
@@ -75,21 +77,104 @@ test.describe('Find my path on a phone', () => {
       await startWizard(page, lang);
       const stepper = page.locator('.st-wizard__stepper');
       const box = await stepper.boundingBox();
-      expect(box?.height ?? 99, 'the stepper is one row of bars').toBeLessThanOrEqual(8);
+      expect(box?.height ?? 99, 'the stepper is one row of bars').toBeLessThanOrEqual(12);
       const items = await stepper
         .locator(':scope > li')
-        .evaluateAll((lis) => lis.map((li) => Math.round(li.getBoundingClientRect().top)));
-      expect(new Set(items).size, 'three segments on one row').toBe(1);
+        .evaluateAll((lis) => lis.map((li) => Math.round(li.getBoundingClientRect().bottom)));
+      expect(new Set(items).size, 'three segments on one bottom line').toBe(1);
       // At `ea15b4a` the first answer started 780px (EN) and 803px (AF) down at 320×568; with the
       // stepper's two rows of words gone and the heading a size smaller it is 635px in both. The
-      // rest of the first screen is the header (Phase 3, item 5). Measured in Chromium; other
-      // engines' font metrics wrap the header and heading differently, so they get a line more
-      // (48px), still well above where it was.
+      // rest of the first screen is the header (Phase 3, item 5). Measured in Chromium. Other
+      // engines get a line more (48px) for their font metrics: provisional, until the first CI
+      // WebKit figure is recorded (review pass 1, m3).
       const first = page.locator('[data-step="entity"] .st-choice').first();
       expect(await pageTop(first)).toBeLessThanOrEqual(browserName === 'chromium' ? 650 : 698);
       await noSidewaysScroll(page, `${lang}find-my-path/ step 1`);
     });
+
+    // Review pass 1, m3: the reader's real gain is the first answer on the first screen of a
+    // 360×740 phone (725px EN and 754px AF at `ea15b4a`, below the 740px screen).
+    test(`/${lang}find-my-path/ at 360×740: the first answer is on the first screen`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: 360, height: 740 });
+      await startWizard(page, lang);
+      const first = page.locator('[data-step="entity"] .st-choice').first();
+      expect(await pageTop(first)).toBeLessThanOrEqual(740);
+    });
+
+    // Review pass 1, M1: on a phone the bar is a segmented progress bar, filled up to and including
+    // the current step; to come, done and current differ in height as well as colour.
+    test(`/${lang}find-my-path/ at 320px: to come, done and current are three bars`, async ({
+      page,
+    }) => {
+      await startWizard(page, lang);
+      const bars = () =>
+        page.locator('.st-wizard__stepper > li').evaluateAll((lis) =>
+          lis.map((li) => {
+            const style = getComputedStyle(li);
+            return { width: style.borderTopWidth, colour: style.borderTopColor };
+          }),
+        );
+      let now = await bars();
+      expect(now.map((bar) => bar.width)).toEqual(['10px', '2px', '2px']);
+      const height = (await page.locator('.st-wizard__stepper').boundingBox())?.height;
+      await answerTwo(page);
+      now = await bars();
+      expect(
+        now.map((bar) => bar.width),
+        'done, done, current',
+      ).toEqual(['6px', '6px', '10px']);
+      expect(now[0]?.colour, 'done and current are both filled').toBe(now[2]?.colour);
+      expect((await page.locator('.st-wizard__stepper').boundingBox())?.height).toBe(height);
+      await page.locator('[data-step="stage"] [data-back]').click();
+      now = await bars();
+      expect(
+        now.map((bar) => bar.width),
+        'done, current, to come',
+      ).toEqual(['6px', '10px', '2px']);
+      expect(now[2]?.colour, 'to come is not filled').not.toBe(now[1]?.colour);
+      // No tick on a phone: it would sit inside the visually hidden words.
+      const tick = await page
+        .locator('[data-stepper="0"] .st-wizard__stepper-n')
+        .evaluate((element) => getComputedStyle(element, '::before').content);
+      expect(tick).toBe('none');
+    });
   }
+
+  test('from 30rem a done step shows its tick, drawn and not clipped', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await startWizard(page, '');
+    await page.locator('input[name="entity"][value="sole-prop"]').check();
+    await page.locator('[data-step="entity"] [data-next]').click();
+    const drawn = await page
+      .locator('[data-stepper="0"] .st-wizard__stepper-n')
+      .evaluate((span) => {
+        const tick = getComputedStyle(span, '::before');
+        const box = span.getBoundingClientRect();
+        return {
+          content: tick.content,
+          right: tick.borderRightWidth,
+          width: parseFloat(tick.width),
+          height: parseFloat(tick.height),
+          spanWidth: box.width,
+          spanClip: getComputedStyle(span).clipPath,
+        };
+      });
+    expect(drawn.content).toBe('""');
+    expect(drawn.right).toBe('2px');
+    expect(drawn.width, 'the tick has a box of its own').toBeGreaterThan(1);
+    expect(drawn.height).toBeGreaterThan(1);
+    expect(drawn.spanWidth, 'its words are shown, not visually hidden').toBeGreaterThan(1);
+    expect(drawn.spanClip).toBe('none');
+    // Not on the current step or the one to come.
+    for (const n of ['1', '2']) {
+      const content = await page
+        .locator(`[data-stepper="${n}"] .st-wizard__stepper-n`)
+        .evaluate((span) => getComputedStyle(span, '::before').content);
+      expect(content).toBe('none');
+    }
+  });
 
   test('the stepper keeps its words for assistive technology (Chromium tree)', async ({
     page,
@@ -109,7 +194,10 @@ test.describe('Find my path on a phone', () => {
         .filter((node) => node.role?.value === 'StaticText' && !node.ignored)
         .map((node) => String(node.name?.value ?? ''));
       for (const words of ['Step 1 of 3', 'How you trade', 'Step 2 of 3', 'Kind of business'])
-        expect(texts, `"${words}" is in the tree`).toContain(words);
+        expect(
+          texts.map((text) => text.trim()),
+          `"${words}" is in the tree`,
+        ).toContain(words);
     } finally {
       await session.detach();
     }
@@ -123,20 +211,17 @@ test.describe('Find my path on a phone', () => {
     }) => {
       await startWizard(page, lang);
       await answerTwo(page);
-      // Done steps: the bar filled and a tick drawn in the padding (not colour alone).
-      const tick = await page
-        .locator('[data-stepper="0"] .st-wizard__stepper-n')
-        .evaluate((element) => getComputedStyle(element, '::before').borderRightWidth);
-      expect(tick).toBe('2px');
       const summary = page.locator('[data-step="stage"] [data-summary]');
       await expect(summary).toBeVisible();
       await expect(summary.locator('[data-summary-answer="entity"]')).toHaveText(
         lang ? 'In my eie naam (eenmansaak)' : 'In my own name (sole proprietor)',
       );
-      await expect(summary.locator('[data-summary-answer="type"]')).toHaveText(
+      // A list in tick order, the first marked as the main one (review pass 1, m5).
+      await expect(summary.locator('[data-summary-types] > li:visible')).toHaveText(
         lang
-          ? 'Kosbesigheid, Algemeen: ek verkoop of doen baie dinge'
-          : 'Food business, General: I sell or do many things',
+          ? ['Kosbesigheid (hoof)', 'Algemeen: ek verkoop of doen baie dinge']
+          : ['Food business (main)', 'General: I sell or do many things'],
+        { useInnerText: true },
       );
       const change = summary.locator('[data-go]');
       await expect(change).toHaveCount(2);
@@ -149,8 +234,11 @@ test.describe('Find my path on a phone', () => {
       await expect(page.locator('input[name="type"][value="general"]')).toBeChecked();
       await page.locator('[data-step="type"] [data-next]').click();
       await expect(page.locator('#wz-h-stage')).toBeFocused();
-      await expect(summary.locator('[data-summary-answer="type"]')).toContainText(
-        lang ? 'Kosbesigheid' : 'Food business',
+      await expect(summary.locator('[data-summary-types] > li:visible')).toHaveText(
+        lang
+          ? ['Kosbesigheid (hoof)', 'Algemeen: ek verkoop of doen baie dinge']
+          : ['Food business (main)', 'General: I sell or do many things'],
+        { useInnerText: true },
       );
     });
   }

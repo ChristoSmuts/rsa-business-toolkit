@@ -228,7 +228,23 @@ describe('<st-wizard>', () => {
     const wizard = setUp();
     const answer = (name: string): string =>
       document.querySelector(`[data-summary-answer="${name}"]`)?.textContent ?? '';
+    /** The kinds of business shown, in order, with what of each shows ("(main)" or not). */
+    const types = (): string[] =>
+      [...document.querySelectorAll<HTMLElement>('[data-summary-types] > li')]
+        .filter((item) => !item.hidden)
+        .map((item) =>
+          [...item.childNodes]
+            .filter((node) => !(node instanceof HTMLElement && node.hidden))
+            .map((node) => node.textContent ?? '')
+            .join('')
+            .replace(/\s+/g, ' ')
+            .trim(),
+        );
+    const none = (): boolean =>
+      document.querySelector<HTMLElement>('[data-summary-none]')?.hidden === false;
     expect(answer('entity')).toBe('Not answered yet');
+    expect(types()).toEqual([]);
+    expect(none()).toBe(true);
     choose(input('entity', 'pty'));
     button('entity', '[data-next]').click();
     choose(input('type', 'general'));
@@ -236,7 +252,9 @@ describe('<st-wizard>', () => {
     button('type', '[data-next]').click();
     expect(answer('entity')).toBe('As a registered company (Pty Ltd)');
     // In the order they were ticked, the first being the primary kind.
-    expect(answer('type')).toBe('General: I sell or do many things, Food business');
+    // A list in tick order, the first marked as the main kind (review pass 1, m5).
+    expect(types()).toEqual(['General: I sell or do many things (main)', 'Food business']);
+    expect(none()).toBe(false);
     const change = step('stage').querySelectorAll<HTMLButtonElement>('[data-go]');
     expect([...change].map((b) => b.textContent?.replace(/\s+/g, ' ').trim())).toEqual([
       'Change: How you trade',
@@ -248,7 +266,8 @@ describe('<st-wizard>', () => {
     expect(input('type', 'food').checked).toBe(true);
     choose(input('type', 'general'));
     button('type', '[data-next]').click();
-    expect(answer('type')).toBe('Food business');
+    // One kind of business is not marked "(main)".
+    expect(types()).toEqual(['Food business']);
     change[0]!.click();
     expect(wizard.current).toBe(0);
     expect(input('entity', 'pty').checked).toBe(true);

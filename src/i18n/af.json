@@ -397,7 +397,8 @@
     "summary": {
       "title": "Jou antwoorde tot dusver",
       "none": "Nog nie beantwoord nie",
-      "change": "Verander"
+      "change": "Verander",
+      "main": "(hoof)"
     }
   },
   "myPath": {

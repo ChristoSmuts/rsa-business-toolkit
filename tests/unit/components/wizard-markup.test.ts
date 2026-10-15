@@ -48,6 +48,6 @@ describe('WIZARD_QUESTIONS', () => {
   it('is the number of wizard step titles and of steps the wizard renders', async () => {
     expect(Object.keys(en.wizard.steps)).toHaveLength(WIZARD_QUESTIONS);
     const html = await render('en');
-    expect(html.match(/class="st-wizard__stepper-n"/g) ?? []).toHaveLength(WIZARD_QUESTIONS);
+    expect(html.match(/class="st-wizard__stepper-n[ "]/g) ?? []).toHaveLength(WIZARD_QUESTIONS);
   });
 });

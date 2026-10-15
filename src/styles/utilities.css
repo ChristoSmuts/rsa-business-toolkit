@@ -14,6 +14,22 @@
 }
 
 /*
+ * The same, below 30rem only: words a phone does not show but a screen reader still reads (the
+ * wizard's stepper, WP-50 Phase 3, item 4). Keep the declarations in step with the rule above.
+ * The element's nearest positioned ancestor must be inside anything that clips or scrolls.
+ */
+@media (width < 30rem) {
+  .st-visually-hidden-narrow {
+    position: absolute !important;
+    inline-size: 1px !important;
+    block-size: 1px !important;
+    overflow: hidden !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+  }
+}
+
+/*
  * Shown only once theme-init has set the `js` class on <html>. Inside an element marked
  * `data-enhance` (the wizard, a template form), shown only once that element's script has set
  * `data-ready`: a control that needs the script must not show before the script runs, or a tap on

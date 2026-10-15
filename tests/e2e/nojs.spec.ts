@@ -553,7 +553,6 @@ test.describe('the AI notice on a 320×568 screen without JavaScript', () => {
   });
 });
 
-/** WCAG 1.4.10 at 320px without JavaScript (WP-50a review pass 2, M2; with it: `reflow.spec.ts`). */
 test.describe('the tools at 320px without JavaScript (WP-50 Phase 3, item 4)', () => {
   test('the wizard shows no stepper or answers summary; a template group has no frame', async ({
     page,
@@ -578,6 +577,7 @@ test.describe('the tools at 320px without JavaScript (WP-50 Phase 3, item 4)', (
   });
 });
 
+/** WCAG 1.4.10 at 320px without JavaScript (WP-50a review pass 2, M2; with it: `reflow.spec.ts`). */
 test.describe('no sideways scrolling at 320px without JavaScript', () => {
   if (skipReason) {
     test('route discovery', () => test.skip(true, skipReason));

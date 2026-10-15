@@ -338,29 +338,37 @@ export class StWizard extends HTMLElement {
   }
 
   /**
-   * "Your answers so far" on the last question: each answer in its own words (the label of the
-   * checked input), the kinds of business in the order they were ticked. A question with no answer
-   * keeps the server's "Not answered yet".
+   * "Your answers so far" on the last question: how the reader trades in its own label's words,
+   * and the kinds of business as the server-rendered list items, shown and put in the order they
+   * were ticked, the first marked "(main)" when there is more than one. A question with no answer
+   * keeps "Not answered yet". The script writes text and order only, never markup.
    */
   #summarise(): void {
-    const label = (input: HTMLInputElement | undefined): string =>
-      (input &&
-        document
-          .getElementById(input.getAttribute('aria-labelledby') ?? '')
-          ?.textContent?.trim()) ??
-      '';
-    const answers: Record<string, string[]> = {
-      [QUERY.entity]: this.#checked(QUERY.entity),
-      [QUERY.type]: this.#currentOrder(),
-    };
-    for (const slot of this.querySelectorAll<HTMLElement>('[data-summary-answer]')) {
-      const name = slot.dataset['summaryAnswer'] ?? '';
-      slot.dataset['none'] ??= slot.textContent ?? '';
-      const words = (answers[name] ?? [])
-        .map((value) => label(this.#inputs(name).find((input) => input.value === value)))
-        .filter(Boolean);
-      slot.textContent = words.length > 0 ? words.join(', ') : (slot.dataset['none'] ?? '');
+    const entity = this.querySelector<HTMLElement>(`[data-summary-answer="${QUERY.entity}"]`);
+    if (entity) {
+      entity.dataset['none'] ??= entity.textContent?.trim() ?? '';
+      const chosen = this.#checked(QUERY.entity)[0];
+      const input = this.#inputs(QUERY.entity).find((candidate) => candidate.value === chosen);
+      const words = input
+        ? document.getElementById(input.getAttribute('aria-labelledby') ?? '')?.textContent?.trim()
+        : undefined;
+      entity.textContent = words || (entity.dataset['none'] ?? '');
     }
+    const list = this.querySelector<HTMLElement>('[data-summary-types]');
+    if (!list) return;
+    const order = this.#currentOrder();
+    const items = [...list.querySelectorAll<HTMLElement>(':scope > li[data-summary-type]')];
+    for (const item of items) item.hidden = true;
+    order.forEach((type, index) => {
+      const item = items.find((candidate) => candidate.dataset['summaryType'] === type);
+      if (!item) return;
+      item.hidden = false;
+      const main = item.querySelector<HTMLElement>('[data-summary-main]');
+      if (main) main.hidden = !(index === 0 && order.length > 1);
+      list.append(item);
+    });
+    const none = this.querySelector<HTMLElement>('[data-summary-none]');
+    if (none) none.hidden = order.length > 0;
   }
 }
 
