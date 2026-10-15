@@ -2321,6 +2321,7 @@
     "entries": []
   },
   "summary": "A set of plain text files you read in order, plus a set of prompts you copy into an AI chat tool.",
+  "summarySource": "derived",
   "tags": [
     "orientation"
   ],

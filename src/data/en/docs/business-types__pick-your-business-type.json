@@ -563,6 +563,7 @@
     ]
   },
   "summary": "Find your kind of business in one table, see how much setup work each type carries, and what everyone needs regardless of type.",
+  "summarySource": "override",
   "tags": [
     "business-types"
   ],

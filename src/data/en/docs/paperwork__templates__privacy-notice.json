@@ -494,6 +494,7 @@
     ]
   },
   "summary": "Put this on your website, or send it as a PDF when a customer asks. It is short on purpose.",
+  "summarySource": "override",
   "tags": [
     "template",
     "popia"

@@ -2679,6 +2679,7 @@
     ]
   },
   "summary": "Voor Opdrag 5, gebruik Stemming en materiale (gebruik ná Opdrag 4).",
+  "summarySource": "derived",
   "tags": [
     "prompts"
   ],

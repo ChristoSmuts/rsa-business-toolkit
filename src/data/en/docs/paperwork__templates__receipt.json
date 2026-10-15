@@ -245,6 +245,7 @@
     ]
   },
   "summary": "Send this when money arrives. It stops the \"did you get my payment?\" message.",
+  "summarySource": "override",
   "tags": [
     "template"
   ],

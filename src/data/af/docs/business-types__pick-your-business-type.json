@@ -576,6 +576,7 @@
     ]
   },
   "summary": "Vind jou soort besigheid in een tabel, sien hoeveel opstelwerk elke soort vra, en wat almal nodig het, watter soort besigheid ook al.",
+  "summarySource": "override",
   "tags": [
     "business-types"
   ],

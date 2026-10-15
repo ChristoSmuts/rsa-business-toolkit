@@ -1566,6 +1566,7 @@
     ]
   },
   "summary": "Numbers here are for the tax year 1 March 2026 to 28 February 2027. They changed a lot in the February 2026 Budget. Check www.sars.gov.za before you file.",
+  "summarySource": "derived",
   "tags": [
     "tax"
   ],

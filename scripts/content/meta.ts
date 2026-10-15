@@ -1,4 +1,11 @@
-import type { Block, Doc, DocHeading, Lang, TranslationStatus } from '../../src/lib/content/schema';
+import type {
+  Block,
+  Doc,
+  DocHeading,
+  Lang,
+  SummarySource,
+  TranslationStatus,
+} from '../../src/lib/content/schema';
 import { docAppliesTo } from './applicability';
 import type { ParsedDoc } from './parse';
 import type { DocProvenance } from './provenance';
@@ -80,7 +87,11 @@ export function buildDoc(
 ): Doc {
   const { entry, lang } = parsed;
   const title = entry.title?.[lang] ?? parsed.h1;
-  const summary = entry.summary?.[lang] ?? deriveSummary(parsed.blocks) ?? fallbackSummary ?? title;
+  const override = entry.summary?.[lang];
+  const derived = override === undefined ? deriveSummary(parsed.blocks) : undefined;
+  const summary = override ?? derived ?? fallbackSummary ?? title;
+  const summarySource: SummarySource =
+    override !== undefined ? 'override' : derived !== undefined ? 'derived' : 'fallback';
   const headings: DocHeading[] = parsed.blocks
     .filter((block): block is Extract<Block, { kind: 'heading' }> => block.kind === 'heading')
     .map((heading) => {
@@ -104,6 +115,7 @@ export function buildDoc(
     title,
     h1: parsed.h1,
     summary: truncateSummary(summary),
+    summarySource,
     readingTime: readingTime(title, parsed.blocks),
     appliesTo: docAppliesTo(entry),
     tags: entry.tags ?? [],

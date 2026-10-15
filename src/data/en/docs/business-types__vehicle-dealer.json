@@ -3492,6 +3492,7 @@
     ]
   },
   "summary": "Vehicle dealing has three registration layers other businesses do not have, and one legal risk that can destroy a small dealer in a single transaction.",
+  "summarySource": "override",
   "tags": [
     "business-types",
     "vehicles"

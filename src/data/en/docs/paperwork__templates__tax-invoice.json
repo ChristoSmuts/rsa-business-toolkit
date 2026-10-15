@@ -620,6 +620,7 @@
     ]
   },
   "summary": "Only use this once SARS has issued your VAT number. If you are not registered, use the other invoice template instead.",
+  "summarySource": "derived",
   "tags": [
     "template",
     "vat"

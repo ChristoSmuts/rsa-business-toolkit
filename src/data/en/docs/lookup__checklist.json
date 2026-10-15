@@ -2733,6 +2733,7 @@
     ]
   },
   "summary": "One printable checklist: everyone's steps in order, extra steps for a Pty Ltd, additions per business type, a recurring calendar and the four things that cause real trouble.",
+  "summarySource": "override",
   "tags": [
     "reference",
     "checklist"

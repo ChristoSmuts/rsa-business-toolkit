@@ -2179,6 +2179,7 @@
     "entries": []
   },
   "summary": "What changed in the toolkit, and where the Google Drive copy and the markdown copy still differ.",
+  "summarySource": "override",
   "tags": [
     "orientation",
     "changelog"

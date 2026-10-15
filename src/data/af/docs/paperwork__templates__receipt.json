@@ -252,6 +252,7 @@
     ]
   },
   "summary": "Stuur dit wanneer geld inkom. Dit keer die \"het jy my betaling gekry?\"-boodskap.",
+  "summarySource": "override",
   "tags": [
     "template"
   ],

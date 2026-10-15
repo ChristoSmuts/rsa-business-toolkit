@@ -519,6 +519,7 @@
     ]
   },
   "summary": "Sit dit op jou webwerf, of stuur dit as ’n PDF wanneer ’n kliënt daarvoor vra. Dit is doelbewus kort.",
+  "summarySource": "override",
   "tags": [
     "template",
     "popia"

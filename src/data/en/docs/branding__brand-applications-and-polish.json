@@ -1871,6 +1871,7 @@
     ]
   },
   "summary": "You have a name, a logo, colours, type and a voice. This file turns that into files you can actually use, and checks whether it looks professional before you spend money.",
+  "summarySource": "derived",
   "tags": [
     "prompts"
   ],
