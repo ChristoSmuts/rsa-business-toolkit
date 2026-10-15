@@ -431,6 +431,8 @@
       "confirm": "Remove answers"
     },
     "resetDone": "Your answers were removed.",
+    "stepMarkedDone": "Step {n} done. {done} of {total} done.",
+    "stepMarkedNotDone": "Step {n} not done. {done} of {total} done.",
     "typeChecklists": "From the pages for your kind of business"
   },
   "checklist": {

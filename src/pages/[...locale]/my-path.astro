@@ -127,6 +127,12 @@ const progressTemplate = t('myPath.progress', { done: '{done}', total: '{total}'
       class="st-my-path st-stack st-stack-lg"
       data-saved-tip={t('wizard.savedTip')}
       data-reset-done={t('myPath.resetDone')}
+      data-step-done={t('myPath.stepMarkedDone', { n: '{n}', done: '{done}', total: '{total}' })}
+      data-step-undone={t('myPath.stepMarkedNotDone', {
+        n: '{n}',
+        done: '{done}',
+        total: '{total}',
+      })}
       data-progress-template={progressTemplate}
       data-version={paths.hash}
     >

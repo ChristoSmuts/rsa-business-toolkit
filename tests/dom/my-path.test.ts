@@ -28,7 +28,7 @@ function cards(): string {
 }
 
 const PAGE = `
-  <st-my-path data-version="${PATHS.hash}" data-saved-tip="Saved on this device only." data-reset-done="Your answers were removed." data-progress-template="{done} of {total} done">
+  <st-my-path data-version="${PATHS.hash}" data-saved-tip="Saved on this device only." data-reset-done="Your answers were removed." data-progress-template="{done} of {total} done" data-step-done="Step {n} done. {done} of {total} done." data-step-undone="Step {n} not done. {done} of {total} done.">
     <h1 tabindex="-1">My path</h1>
     <p role="status" data-status></p>
     <div data-empty>Find my path</div>
@@ -142,26 +142,75 @@ describe('<st-my-path>', () => {
     expect(badges()).toHaveLength(0);
   });
 
-  it('moves no card once the steps are in order, so a pressed button keeps focus (review pass 3, m1)', () => {
-    profile.set({ entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' });
+  it('moves no card or page link once the steps are in order (review pass 3, m1; pass 4, M1)', () => {
+    profile.set({ entity: 'pty', businessTypes: ['food', 'general'], stage: 'trading' });
     setUp();
     const list = document.querySelector('[data-steps]')!;
-    const moved: Node[] = [];
-    const observer = new MutationObserver((records) => {
-      // Text the script writes (labels, the step number) replaces text nodes; that is not a move.
-      for (const record of records)
-        moved.push(...[...record.removedNodes].filter((node) => node instanceof Element));
-    });
-    observer.observe(list, { childList: true, subtree: true });
+    // Spy on every way to move a node, not on mutation records: happy-dom treats
+    // `insertBefore(x, x.nextSibling)` (a node put back where it is) as a no-op and records nothing,
+    // while Chromium removes and re-inserts the node and drops focus to <body>. So any call on the
+    // list or inside it after the first render fails this test, whatever happy-dom does with it.
+    // Text the script writes (labels, the step number) goes through the same methods in
+    // happy-dom, so only element arguments count.
+    const moves: string[] = [];
+    const original = {
+      insertBefore: Node.prototype.insertBefore,
+      appendChild: Node.prototype.appendChild,
+      append: Element.prototype.append,
+      prepend: Element.prototype.prepend,
+      replaceChildren: Element.prototype.replaceChildren,
+    };
+    const spies = [
+      vi.spyOn(Node.prototype, 'insertBefore').mockImplementation(function <T extends Node>(
+        this: Node,
+        node: T,
+        child: Node | null,
+      ): T {
+        if (list.contains(this) && node instanceof Element) moves.push('insertBefore');
+        return original.insertBefore.call(this, node, child) as T;
+      }),
+      vi.spyOn(Node.prototype, 'appendChild').mockImplementation(function <T extends Node>(
+        this: Node,
+        node: T,
+      ): T {
+        if (list.contains(this) && node instanceof Element) moves.push('appendChild');
+        return original.appendChild.call(this, node) as T;
+      }),
+      ...(['append', 'prepend', 'replaceChildren'] as const).map((name) =>
+        vi.spyOn(Element.prototype, name).mockImplementation(function (
+          this: Element,
+          ...nodes: (Node | string)[]
+        ) {
+          if (list.contains(this) && nodes.some((node) => node instanceof Element))
+            moves.push(name);
+          original[name].apply(this, nodes);
+        }),
+      ),
+    ];
+    try {
+      for (const card of shown()) {
+        const mark = card.querySelector<HTMLButtonElement>('[data-mark]')!;
+        mark.focus();
+        mark.click();
+        mark.click();
+        expect(document.activeElement).toBe(mark);
+      }
+    } finally {
+      for (const spy of spies) spy.mockRestore();
+    }
+    expect(shown().length, 'a path long enough to have a middle').toBeGreaterThanOrEqual(4);
+    expect(moves, 'nothing in the list was moved after the first render').toEqual([]);
+  });
+
+  it('says politely what "Mark as done" changed (review pass 4, m1)', () => {
+    profile.set({ entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' });
+    setUp();
+    const status = document.querySelector('[data-status]')!;
     const mark = shown()[0]!.querySelector<HTMLButtonElement>('[data-mark]')!;
-    mark.focus();
     mark.click();
+    expect(status.textContent).toBe('Step 1 done. 1 of 4 done.');
     mark.click();
-    for (const record of observer.takeRecords())
-      moved.push(...[...record.removedNodes].filter((node) => node instanceof Element));
-    observer.disconnect();
-    expect(moved, 'no card or page link left the list').toEqual([]);
-    expect(document.activeElement).toBe(mark);
+    expect(status.textContent).toBe('Step 1 not done. 0 of 4 done.');
   });
 
   it('marks a step as done and back, and the ring follows', () => {

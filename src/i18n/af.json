@@ -431,6 +431,8 @@
       "confirm": "Verwyder antwoorde"
     },
     "resetDone": "Jou antwoorde is verwyder.",
+    "stepMarkedDone": "Stap {n} klaar. {done} van {total} klaar.",
+    "stepMarkedNotDone": "Stap {n} nie klaar nie. {done} van {total} klaar.",
     "typeChecklists": "Van die bladsye vir jou soort besigheid"
   },
   "checklist": {

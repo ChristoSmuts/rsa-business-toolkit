@@ -131,6 +131,8 @@ interface ParamNames {
   'myPath.readStep': 'n' | 'title';
   'myPath.markDoneNamed': 'title';
   'myPath.markNotDoneNamed': 'title';
+  'myPath.stepMarkedDone': 'done' | 'n' | 'total';
+  'myPath.stepMarkedNotDone': 'done' | 'n' | 'total';
   'checklist.progress': 'done' | 'total';
   'checklist.partProgress': 'done' | 'part' | 'total';
   'checklist.hiddenItems': 'count';

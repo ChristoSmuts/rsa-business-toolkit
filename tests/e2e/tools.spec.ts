@@ -144,39 +144,44 @@ test.describe('Find my path on a phone', () => {
     });
   }
 
-  test('from 30rem a done step shows its tick, drawn and not clipped', async ({ page }) => {
-    await page.setViewportSize({ width: 1280, height: 800 });
-    await startWizard(page, '');
-    await page.locator('input[name="entity"][value="sole-prop"]').check();
-    await page.locator('[data-step="entity"] [data-next]').click();
-    const drawn = await page
-      .locator('[data-stepper="0"] .st-wizard__stepper-n')
-      .evaluate((span) => {
-        const tick = getComputedStyle(span, '::before');
-        const box = span.getBoundingClientRect();
-        return {
-          content: tick.content,
-          right: tick.borderRightWidth,
-          width: parseFloat(tick.width),
-          height: parseFloat(tick.height),
-          spanWidth: box.width,
-          spanClip: getComputedStyle(span).clipPath,
-        };
-      });
-    expect(drawn.content).toBe('""');
-    expect(drawn.right).toBe('2px');
-    expect(drawn.width, 'the tick has a box of its own').toBeGreaterThan(1);
-    expect(drawn.height).toBeGreaterThan(1);
-    expect(drawn.spanWidth, 'its words are shown, not visually hidden').toBeGreaterThan(1);
-    expect(drawn.spanClip).toBe('none');
-    // Not on the current step or the one to come.
-    for (const n of ['1', '2']) {
-      const content = await page
-        .locator(`[data-stepper="${n}"] .st-wizard__stepper-n`)
-        .evaluate((span) => getComputedStyle(span, '::before').content);
-      expect(content).toBe('none');
-    }
-  });
+  // 500px is just above 30rem, where the words come back (review pass 4, m3); 1280px is a desktop.
+  for (const width of [500, 1280]) {
+    test(`from 30rem a done step shows its tick, drawn and not clipped (${width}px)`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width, height: 800 });
+      await startWizard(page, '');
+      await page.locator('input[name="entity"][value="sole-prop"]').check();
+      await page.locator('[data-step="entity"] [data-next]').click();
+      const drawn = await page
+        .locator('[data-stepper="0"] .st-wizard__stepper-n')
+        .evaluate((span) => {
+          const tick = getComputedStyle(span, '::before');
+          const box = span.getBoundingClientRect();
+          return {
+            content: tick.content,
+            right: tick.borderRightWidth,
+            width: parseFloat(tick.width),
+            height: parseFloat(tick.height),
+            spanWidth: box.width,
+            spanClip: getComputedStyle(span).clipPath,
+          };
+        });
+      expect(drawn.content).toBe('""');
+      expect(drawn.right).toBe('2px');
+      expect(drawn.width, 'the tick has a box of its own').toBeGreaterThan(1);
+      expect(drawn.height).toBeGreaterThan(1);
+      expect(drawn.spanWidth, 'its words are shown, not visually hidden').toBeGreaterThan(1);
+      expect(drawn.spanClip).toBe('none');
+      // Not on the current step or the one to come.
+      for (const n of ['1', '2']) {
+        const content = await page
+          .locator(`[data-stepper="${n}"] .st-wizard__stepper-n`)
+          .evaluate((span) => getComputedStyle(span, '::before').content);
+        expect(content).toBe('none');
+      }
+    });
+  }
 
   test('the stepper keeps its words for assistive technology (Chromium tree)', async ({
     page,
@@ -242,6 +247,10 @@ test.describe('Find my path on a phone', () => {
           : ['General: I sell or do many things (main)', 'Food business'],
         { useInnerText: true },
       );
+      // The first "Change" ("0" is a real index, review pass 4, m2).
+      await change.nth(0).click();
+      await expect(page.locator('#wz-h-entity')).toBeFocused();
+      await expect(page.locator('input[name="entity"][value="sole-prop"]')).toBeChecked();
     });
   }
 });
@@ -383,10 +392,6 @@ test.describe('My path on a phone', () => {
       await page.keyboard.press('Enter');
       await expect(mark, '"Mark as done" keeps focus').toBeFocused();
       await expect(mark).toHaveText(lang ? 'Haal die merkie af' : 'Remove the tick');
-      await page.keyboard.press('Enter');
-      await expect(mark, '"Remove the tick" keeps focus').toBeFocused();
-      await page.keyboard.press('Enter');
-      await expect(mark).toBeFocused();
       await expect(page.locator('[data-steps] > li[data-next]')).toHaveAttribute('data-n', '2');
       await expect(page.locator('[data-steps] [data-next-badge]:visible')).toHaveCount(1);
 
@@ -398,6 +403,105 @@ test.describe('My path on a phone', () => {
       await noSidewaysScroll(page, `${lang}my-path/`);
     });
   }
+});
+
+/**
+ * Review pass 4, M1: focus on every step, not only the first. Chromium removes and re-inserts a
+ * node put back where it already is, which drops focus, so this runs in a real browser on a path
+ * with a first, a middle and a last step.
+ */
+test.describe('My path keeps focus on every step', () => {
+  const LONG = { entity: 'pty', businessTypes: ['food', 'general'], stage: 'trading' };
+
+  for (const width of [320, 1280]) {
+    for (const lang of LANGS) {
+      test(`/${lang}my-path/ at ${width}px: Mark as done and Remove the tick on every step`, async ({
+        page,
+        seedStorage,
+      }, testInfo) => {
+        test.skip(testInfo.project.name === 'mobile', 'Sets its own widths.');
+        await seedStorage({ 'st.profile.v1': LONG });
+        await page.setViewportSize({ width, height: 800 });
+        await page.goto(`${lang}my-path/`);
+        const cards = page.locator('[data-steps] > li:not([hidden])');
+        await expect(cards.first()).toBeVisible();
+        const total = await cards.count();
+        expect(total, 'a first, a middle and a last step').toBeGreaterThanOrEqual(4);
+        const status = page.locator('st-my-path [data-status]');
+        for (let n = 1; n <= total; n++) {
+          const mark = page.locator(`[data-steps] > li:not([hidden])[data-n="${n}"] [data-mark]`);
+          await mark.focus();
+          await page.keyboard.press('Enter');
+          await expect(mark, `step ${n}: "Mark as done" keeps focus`).toBeFocused();
+          await expect(mark).toHaveText(lang ? 'Haal die merkie af' : 'Remove the tick');
+          await expect(status).toHaveText(
+            lang ? `Stap ${n} klaar. 1 van ${total} klaar.` : `Step ${n} done. 1 of ${total} done.`,
+          );
+          await page.keyboard.press('Space');
+          await expect(mark, `step ${n}: "Remove the tick" keeps focus`).toBeFocused();
+          await expect(status).toHaveText(
+            lang
+              ? `Stap ${n} nie klaar nie. 0 van ${total} klaar.`
+              : `Step ${n} not done. 0 of ${total} done.`,
+          );
+          await mark.click();
+          await expect(mark, `step ${n}: a click keeps focus`).toBeFocused();
+          await mark.click();
+        }
+        const order = await cards.evaluateAll((all) =>
+          all.map((card) => Number(card.dataset['n'])),
+        );
+        expect(order).toEqual([...Array(total).keys()].map((index) => index + 1));
+      });
+    }
+  }
+
+  test('new answers saved from a second page redraw the path in order, and focus holds', async ({
+    page,
+    context,
+    seedStorage,
+  }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'Sets its own widths.');
+    await seedStorage({
+      'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+    });
+    await page.setViewportSize(PHONE);
+    await page.goto('my-path/');
+    const cards = page.locator('[data-steps] > li:not([hidden])');
+    await expect(cards.first()).toBeVisible();
+    const pages = () =>
+      page
+        .locator('[data-steps] > li:not([hidden]) li[data-doc]:not([hidden])')
+        .evaluateAll((all) => all.map((item) => item.dataset['doc']).join(' '));
+    const before = await pages();
+    const mark = page.locator('[data-steps] > li:not([hidden])[data-n="1"] [data-mark]');
+    await mark.focus();
+    await mark.evaluate((button) => button.setAttribute('data-test-focused', ''));
+
+    // A second tab answers Find my path the normal way and saves new answers.
+    const other = await context.newPage();
+    await other.goto('find-my-path/');
+    await expect(other.locator('st-wizard[data-ready]')).toHaveCount(1);
+    await other.locator('input[name="entity"][value="pty"]').check();
+    await other.locator('[data-step="entity"] [data-next]').click();
+    await other.locator('input[name="type"][value="food"]').check();
+    await other.locator('input[name="type"][value="general"]').check();
+    await other.locator('[data-step="type"] [data-next]').click();
+    await other.locator('input[name="stage"][value="trading"]').check();
+    await other.locator('[data-finish]').click();
+    await expect(other).toHaveURL(/my-path\/$/);
+
+    // The first page follows: other pages on the path, numbered in order, and the focused button
+    // kept focus.
+    await expect.poll(pages).not.toBe(before);
+    const order = await cards.evaluateAll((all) => all.map((card) => Number(card.dataset['n'])));
+    expect(order).toEqual([...Array(order.length).keys()].map((index) => index + 1));
+    // The same button element, not only one at the same place.
+    expect(
+      await page.evaluate(() => document.activeElement?.hasAttribute('data-test-focused') ?? false),
+    ).toBe(true);
+    await other.close();
+  });
 });
 
 test.describe('the templates on a phone', () => {
@@ -508,6 +612,15 @@ test.describe('the checklist and the confirm dialog on a phone', () => {
         .evaluate((element) => getComputedStyle(element).paddingInlineStart);
       expect(padding).toBe('12px');
       await noSidewaysScroll(page, `${lang}checklist/`);
+      // And the wider padding is back on a desktop (review pass 4, m4).
+      await page.setViewportSize({ width: 1280, height: 800 });
+      expect(
+        await page
+          .locator('.st-tasklist')
+          .first()
+          .evaluate((element) => getComputedStyle(element).paddingInlineStart),
+      ).toBe('24px');
+      await page.setViewportSize(PHONE);
 
       await page.locator('st-checklist input[type="checkbox"]').first().check();
       await page.locator('[data-checklist-reset]').click();
