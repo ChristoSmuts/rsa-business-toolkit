@@ -575,7 +575,7 @@
       },
       "summary": {
         "en": "SAPS registration, stock registered to the business or your ID, trade numbers to drive unregistered or unlicensed stock, and the consumer law.",
-        "af": "SAPS-registrasie, die registrasie van die voertuie wat jy verkoop, handelsnommers as jy ongeregistreerde voorraad ry, en die verbruikersreg agter elke verkoping."
+        "af": "SAPS-registrasie, voorraad op die besigheid of jou ID-nommer geregistreer, motorhandelnommers om ongeregistreerde of ongelisensieerde voorraad te ry, en die verbruikersreg."
       },
       "appliesTo": {
         "businessTypes": ["vehicle-dealer"]
@@ -595,7 +595,7 @@
       },
       "summary": {
         "en": "The certificate every food business needs, the business licence and other papers around it, labelling, and how long it all takes, from home baking to a food truck.",
-        "af": "Die sertifikaat wat elke kosbesigheid nodig het, die besigheidslisensie en ander papiere daarom, etikettering, en hoe lank dit alles neem, van tuisbakkery tot ’n kosvragmotor."
+        "af": "Die sertifikaat wat elke kosbesigheid nodig het, die besigheidslisensie en ander papiere wat daarby hoort, etikettering, en hoe lank dit alles neem, van tuisbakkery tot ’n kosvragmotor."
       },
       "appliesTo": {
         "businessTypes": ["food"]

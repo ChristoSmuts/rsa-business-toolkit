@@ -409,7 +409,7 @@ describe('committed content data', () => {
     expect(summary('en')).toMatch(
       /^SAPS registration, stock registered to the business or your ID, /,
     );
-    expect(summary('af')).toMatch(/^SAPS-registrasie, die registrasie van die voertuie /);
+    expect(summary('af')).toMatch(/^SAPS-registrasie, voorraad op die besigheid of jou ID-nommer /);
   });
 
   // WP-50a review pass 1, M4: a template's summary is the lead and meta description of its form
