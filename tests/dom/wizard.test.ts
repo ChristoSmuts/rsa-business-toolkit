@@ -251,8 +251,7 @@ describe('<st-wizard>', () => {
     choose(input('type', 'food'));
     button('type', '[data-next]').click();
     expect(answer('entity')).toBe('As a registered company (Pty Ltd)');
-    // In the order they were ticked, the first being the primary kind.
-    // A list in tick order, the first marked as the main kind (review pass 1, m5).
+    // A list in the order they were ticked, the first marked as the main kind (review pass 1, m5).
     expect(types()).toEqual(['General: I sell or do many things (main)', 'Food business']);
     expect(none()).toBe(false);
     const change = step('stage').querySelectorAll<HTMLButtonElement>('[data-go]');

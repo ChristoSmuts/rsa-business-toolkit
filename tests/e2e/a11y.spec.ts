@@ -249,9 +249,12 @@ test.describe('axe on the tools at 320px', () => {
       await page.goto('af/find-my-path/');
       await page.locator('input[name="entity"][value="sole-prop"]').check();
       await page.locator('[data-step="entity"] [data-next]').click();
+      // Two kinds, so axe sees the bulleted list and "(hoof)" (review pass 3, m4).
+      await page.locator('input[name="type"][value="general"]').check();
       await page.locator('input[name="type"][value="food"]').check();
       await page.locator('[data-step="type"] [data-next]').click();
       await expect(page.locator('[data-summary]')).toBeVisible();
+      await expect(page.locator('[data-summary-main]:visible')).toHaveCount(1);
       await expectNoBlocking(page, `af wizard summary 320 ${theme}`, testInfo);
     });
 

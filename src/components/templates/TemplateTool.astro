@@ -475,9 +475,18 @@ const groupLabel = (group: TemplateModel['groups'][number]): string =>
     border-radius: var(--st-radius-md);
   }
 
+  /*
+   * A legend is shrink-wrapped, so one long word ("Dokumentbesonderhede" with text at 200%) set its
+   * width, and the fieldset's, and pushed the page sideways at 320px (review pass 3, m5). Capped at
+   * the group's width it wraps; `overflow-wrap: anywhere` also lowers its min-content width, and
+   * `hyphens` adds a hyphen where the browser has a dictionary.
+   */
   .st-tgroup__legend {
+    max-inline-size: 100%;
     padding-inline: var(--st-space-2);
     font-size: var(--st-text-md);
+    overflow-wrap: anywhere;
+    hyphens: auto;
   }
 
   /*

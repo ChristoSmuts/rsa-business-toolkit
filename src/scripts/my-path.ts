@@ -33,6 +33,18 @@ import { currentView } from './path-progress';
 import { drawRing } from './ring';
 import './storage-notice';
 
+/**
+ * Puts `child` right after `previous` (first when `previous` is null), and moves it only when it
+ * is not there already: moving a node out of the document and back drops focus to `<body>`, so a
+ * reader who pressed "Mark as done" with the keyboard lost their place on every press (WP-50
+ * Phase 3, item 4, review pass 3, m1). The first render puts the reader's steps in order; later
+ * renders find them in place and move nothing.
+ */
+function placeAfter(parent: Element, child: Element, previous: Element | null): void {
+  const wanted = previous ? previous.nextElementSibling : parent.firstElementChild;
+  if (wanted !== child) parent.insertBefore(child, wanted);
+}
+
 function sameProfile(a: Profile | null, b: Profile | null): boolean {
   return a !== null && b !== null && profileQuery(a) === profileQuery(b);
 }
@@ -131,6 +143,7 @@ export class StMyPath extends HTMLElement {
     const template = list.dataset['labelTemplate'] ?? '{n}';
     const cards = [...list.querySelectorAll<HTMLElement>(':scope > li[data-stage]')];
     for (const card of cards) card.hidden = true;
+    let lastCard: Element | null = null;
     for (const step of path.steps) {
       const card = cards.find(
         (candidate) =>
@@ -145,11 +158,13 @@ export class StMyPath extends HTMLElement {
       const docs = card.querySelector('ul');
       const items = [...card.querySelectorAll<HTMLElement>('li[data-doc]')];
       for (const item of items) item.hidden = true;
+      let lastItem: Element | null = null;
       for (const entry of step.items) {
         const item = items.find((candidate) => candidate.dataset['doc'] === entry.doc);
         if (!item) continue;
         item.hidden = false;
-        docs?.append(item);
+        if (docs) placeAfter(docs, item, lastItem);
+        lastItem = item;
       }
       const why = card.querySelector<HTMLElement>('[data-why]');
       if (why) why.hidden = !step.why;
@@ -157,7 +172,8 @@ export class StMyPath extends HTMLElement {
         (link) => link.textContent?.trim() ?? '',
       );
       this.#renderDone(card, stepDone(step, done), titles.join(', '));
-      list.append(card);
+      placeAfter(list, card, lastCard);
+      lastCard = card;
     }
     // "Do this next" on the first step not done (WP-50 Phase 3, item 4).
     const next = path.steps.find((step) => !stepDone(step, done));

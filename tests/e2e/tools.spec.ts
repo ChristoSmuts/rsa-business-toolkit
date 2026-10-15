@@ -293,6 +293,66 @@ test.describe('Find my path: the names of "Change"', () => {
   });
 });
 
+/**
+ * Forced colours and the "Do this next" ring (review pass 3, m2). A system colour is compared with
+ * what the browser resolves it to on a probe element, so the test does not hard-code a palette.
+ */
+test.describe('the tools in forced colours', () => {
+  async function systemColour(page: Page, name: string): Promise<string> {
+    return page.evaluate((colour) => {
+      const probe = document.createElement('div');
+      probe.style.borderTop = `1px solid ${colour}`;
+      document.body.append(probe);
+      const value = getComputedStyle(probe).borderTopColor;
+      probe.remove();
+      return value;
+    }, name);
+  }
+
+  test('the phone stepper: done and current Highlight, to come GrayText', async ({
+    page,
+  }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'Sets its own widths.');
+    await page.setViewportSize(PHONE);
+    await page.emulateMedia({ forcedColors: 'active' });
+    await startWizard(page, '');
+    await page.locator('input[name="entity"][value="sole-prop"]').check();
+    await page.locator('[data-step="entity"] [data-next]').click();
+    const colours = await page
+      .locator('.st-wizard__stepper > li')
+      .evaluateAll((lis) => lis.map((li) => getComputedStyle(li).borderTopColor));
+    const highlight = await systemColour(page, 'Highlight');
+    const grey = await systemColour(page, 'GrayText');
+    expect(highlight).not.toBe(grey);
+    expect(colours).toEqual([highlight, highlight, grey]);
+  });
+
+  test('"Do this next" has a second ring, and an outline in forced colours', async ({
+    page,
+    seedStorage,
+  }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'Sets its own widths.');
+    await seedStorage({
+      'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+    });
+    await page.setViewportSize(PHONE);
+    await page.goto('my-path/');
+    const ring = (selector: string) =>
+      page.locator(selector).evaluate((card) => {
+        const circle = getComputedStyle(card, '::before');
+        return { shadow: circle.boxShadow, outline: circle.outlineStyle };
+      });
+    const next = await ring('[data-steps] > li[data-next]');
+    // Two shadows: the page colour, then the primary ring round it.
+    expect(next.shadow.match(/rgb/g) ?? []).toHaveLength(2);
+    const other = await ring('[data-steps] > li:not([hidden]):not([data-next]) >> nth=0');
+    expect(other.shadow).toBe('none');
+    await page.emulateMedia({ forcedColors: 'active' });
+    const forced = await ring('[data-steps] > li[data-next]');
+    expect(forced.outline, 'the ring is an outline in forced colours').toBe('solid');
+  });
+});
+
 test.describe('My path on a phone', () => {
   const PROFILE = { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' };
 
@@ -316,7 +376,17 @@ test.describe('My path on a phone', () => {
       await expect(next.locator('[data-next-badge]')).toHaveText(
         lang ? 'Doen dit volgende' : 'Do this next',
       );
-      await next.locator('[data-mark]').click();
+      // By keyboard: the button keeps focus when the steps are drawn again (review pass 3, m1).
+      // Step 1's own button (the "next" marker moves on to step 2 when it is pressed).
+      const mark = page.locator('[data-steps] > li:not([hidden])[data-n="1"] [data-mark]');
+      await mark.focus();
+      await page.keyboard.press('Enter');
+      await expect(mark, '"Mark as done" keeps focus').toBeFocused();
+      await expect(mark).toHaveText(lang ? 'Haal die merkie af' : 'Remove the tick');
+      await page.keyboard.press('Enter');
+      await expect(mark, '"Remove the tick" keeps focus').toBeFocused();
+      await page.keyboard.press('Enter');
+      await expect(mark).toBeFocused();
       await expect(page.locator('[data-steps] > li[data-next]')).toHaveAttribute('data-n', '2');
       await expect(page.locator('[data-steps] [data-next-badge]:visible')).toHaveCount(1);
 
@@ -358,14 +428,55 @@ test.describe('the templates on a phone', () => {
         all.map((link) => Math.round(link.getBoundingClientRect().top)),
       );
       expect(new Set(tops).size, 'the links share rows').toBeLessThan(tops.length);
+      // And wrap onto more than one row, every link inside the list (review pass 3, m3).
+      expect(new Set(tops).size, 'more than one row').toBeGreaterThan(1);
+      const listRight = await page
+        .locator('[data-missing]')
+        .evaluate((list) => list.getBoundingClientRect().right);
+      const rights = await links.evaluateAll((all) =>
+        all.map((link) => link.getBoundingClientRect().right),
+      );
+      for (const right of rights) expect(right).toBeLessThanOrEqual(listRight + 0.5);
 
       const heading = page.locator('#st-tool-actions-heading');
       await expect(heading).toHaveText(lang ? 'As jy klaar is' : 'When you are done');
+      await expect(heading, 'shown, not only in the markup (review pass 3, M1)').toBeVisible();
       const print = page.locator('[data-print]');
       expect(await pageTop(print)).toBeGreaterThan(await pageTop(heading));
       await noSidewaysScroll(page, `${lang}templates/tax-invoice/`);
     });
   }
+
+  // Review pass 3, m5: "Dokumentbesonderhede" ended at 555px with text at 200%.
+  test('with text at 200% at 320px every legend stays inside the column', async ({ page }) => {
+    await page.setViewportSize(PHONE);
+    for (const lang of LANGS) {
+      await page.goto(`${lang}templates/tax-invoice/`);
+      await expect(page.locator('st-template-form[data-ready]')).toHaveCount(1);
+      const outside = await page.evaluate(async () => {
+        document.documentElement.style.fontSize = '200%';
+        await document.fonts.ready;
+        await new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
+        return [...document.querySelectorAll('.st-tgroup')].flatMap((group) => {
+          const legend = group.querySelector('.st-tgroup__legend');
+          if (!legend) return [];
+          // The words, not only the legend's box: a capped box can still overflow its text.
+          const words = document.createRange();
+          words.selectNodeContents(legend);
+          const right = Math.max(
+            legend.getBoundingClientRect().right,
+            ...[...words.getClientRects()].map((rect) => rect.right),
+          );
+          // Against the tool's column: a fieldset grows to its legend's longest word.
+          const column = document.querySelector('st-template-form')!.getBoundingClientRect().right;
+          return right > Math.min(column, group.getBoundingClientRect().right) + 0.5
+            ? [`${legend.textContent?.trim()}: ${Math.round(right)}`]
+            : [];
+        });
+      });
+      expect(outside, `${lang}templates/tax-invoice/`).toEqual([]);
+    }
+  });
 
   test('the groups keep their frame where form and preview sit side by side', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 });
@@ -414,8 +525,12 @@ test.describe('the checklist and the confirm dialog on a phone', () => {
         all.map((button) => Math.round(button.getBoundingClientRect().width)),
       );
       expect(widths[0], 'the two choices are one width').toBe(widths[1]);
-      // The safe choice first, and focused.
+      // The safe choice first, and focused; on a phone first means above (review pass 3, m2).
       await expect(buttons.first()).toBeFocused();
+      const tops = await buttons.evaluateAll((all) =>
+        all.map((button) => button.getBoundingClientRect().top),
+      );
+      expect(tops[0] ?? 0, 'the safe choice is above the other').toBeLessThan(tops[1] ?? 0);
       await page.keyboard.press('Escape');
       await expect(dialog).toBeHidden();
       await expect(page.locator('st-checklist input[type="checkbox"]').first()).toBeChecked();
@@ -447,6 +562,9 @@ test.describe('the search dialog on a phone', () => {
         lang ? 'Slaan ’n woord in die woordelys na' : 'Look a word up in the glossary',
       );
       expect(await glossary.getAttribute('href')).toMatch(/\/glossary\/$/);
+      // Shown, not only in the markup, on a 44px row (review pass 3, M1).
+      await expect(glossary).toBeVisible();
+      expect((await glossary.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
       const overflow = await dialog.evaluate(
         (element) => element.scrollWidth - element.clientWidth,
       );

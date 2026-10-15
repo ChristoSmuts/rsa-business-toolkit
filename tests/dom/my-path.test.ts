@@ -142,6 +142,28 @@ describe('<st-my-path>', () => {
     expect(badges()).toHaveLength(0);
   });
 
+  it('moves no card once the steps are in order, so a pressed button keeps focus (review pass 3, m1)', () => {
+    profile.set({ entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' });
+    setUp();
+    const list = document.querySelector('[data-steps]')!;
+    const moved: Node[] = [];
+    const observer = new MutationObserver((records) => {
+      // Text the script writes (labels, the step number) replaces text nodes; that is not a move.
+      for (const record of records)
+        moved.push(...[...record.removedNodes].filter((node) => node instanceof Element));
+    });
+    observer.observe(list, { childList: true, subtree: true });
+    const mark = shown()[0]!.querySelector<HTMLButtonElement>('[data-mark]')!;
+    mark.focus();
+    mark.click();
+    mark.click();
+    for (const record of observer.takeRecords())
+      moved.push(...[...record.removedNodes].filter((node) => node instanceof Element));
+    observer.disconnect();
+    expect(moved, 'no card or page link left the list').toEqual([]);
+    expect(document.activeElement).toBe(mark);
+  });
+
   it('marks a step as done and back, and the ring follows', () => {
     profile.set({ entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' });
     setUp();
