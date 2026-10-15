@@ -71,3 +71,4 @@ Lead with what changed, including corrections to earlier advice, and put the Dri
   - Mutations: removing the whole-lead and every-sentence rules, the main-reason rule, the H1 or the form view each makes the probe test fail. Each was tried and reverted.
   - `design-system.md` covers m6 and m7.
   - The sweep was remeasured on the final summaries and is unchanged from pass 3: 244 measurements up and 78 down. 10 of the 78 are on pages whose first h2 is not a heading of the text: the forms' "Required items", the hub tiles' heading and the checklist's "Your progress".
+- `1a659d3` test(tests): a type fix in the same check. Its opening texts were mapped through an untyped callback, which made `astro check` in `gate:fast` fail after `4ea607b`. The logic is unchanged.
