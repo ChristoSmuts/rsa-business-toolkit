@@ -2678,7 +2678,7 @@
       "cipc-trade-mark-search"
     ]
   },
-  "summary": "Twaalf KI-opdragte, in volgorde, vir jou kortbeskrywing, naam, slagspreuk, logo, kleure, lettertipe, foto’s, stem en \"oor ons\"-teks. Elke opdrag gee jou 5 opsies om te verfyn.",
+  "summary": "Twaalf KI-opdragte, in volgorde, vir jou kortbeskrywing, naam, slagspreuk, logo, kleure, lettertipe, foto’s, stem en \"oor ons\"-teks; tien daarvan gee jou 5 opsies om te verfyn.",
   "summarySource": "override",
   "tags": [
     "prompts"

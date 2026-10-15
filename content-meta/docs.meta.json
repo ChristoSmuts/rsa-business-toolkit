@@ -162,7 +162,7 @@
       },
       "summary": {
         "en": "Every change to the toolkit, including corrections to earlier advice, and what to paste into a Google Drive copy to keep it in sync.",
-        "af": "Lees dit as jy ’n kopie van die gereedskapstel in Google Drive hou: elke verandering, wat jy in Drive moet plak, en hoe om albei kopieë gelyk te hou."
+        "af": "Elke verandering aan die gereedskapstel, ook regstellings van vroeëre raad, en wat jy in ’n Google Drive-kopie moet plak om dit gelyk te hou."
       },
       "tags": ["orientation", "changelog"],
       "fenceVariant": "snippet"
@@ -375,7 +375,7 @@
       },
       "summary": {
         "en": "Twelve AI prompts, in order, for your brief, name, tagline, logo, colours, type, photographs, voice and about text; ten of them give you 5 options to refine.",
-        "af": "Twaalf KI-opdragte, in volgorde, vir jou kortbeskrywing, naam, slagspreuk, logo, kleure, lettertipe, foto’s, stem en \"oor ons\"-teks. Elke opdrag gee jou 5 opsies om te verfyn."
+        "af": "Twaalf KI-opdragte, in volgorde, vir jou kortbeskrywing, naam, slagspreuk, logo, kleure, lettertipe, foto’s, stem en \"oor ons\"-teks; tien daarvan gee jou 5 opsies om te verfyn."
       },
       "tags": ["prompts"],
       "fenceVariant": "prompt",
