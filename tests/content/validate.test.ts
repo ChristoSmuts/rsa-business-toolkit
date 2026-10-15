@@ -450,21 +450,28 @@ describe('committed content data', () => {
 
   /*
    * A lead that says again what the reader sees first is the same fault in a smaller dose: review
-   * pass 1 of the change found seven hand-written leads that repeated a sentence of their page's
-   * opening, and pass 2 one that echoed a heading. The check compares words only (case,
-   * punctuation and a closing "…" ignored) with the first OPENING_BLOCKS visible blocks that carry
-   * text (paragraphs, notes, callouts, list and task-list items, table cells and headings) and, on
-   * a business type, the "Main reason" its facts show under the H1 (`effortReason`). A sentence of the
-   * lead (split at . ! ?) fails when it shares a run of RUN words with one of those texts, when a
-   * sentence of five words or more is inside one, or, for a heading, when the sentence is inside it
-   * or shares a run of HEADING_RUN words with it. A lead that names a heading's topic in passing
-   * ("the turnover tax trap") is a contents line, not a repeat. The "Words used" table is a closed disclosure, so it is
-   * not part of the opening. Both renderings of a template count: the form page (`formIntro`
-   * replaces the "make a copy" note) and the plain document view, so the rule holds with
-   * `TEMPLATES_FILLABLE` on or off. This guards the data; `doc-page.spec.ts` guards that the layout
-   * shows a lead only through `docLead`. Not compared: blocks from the eleventh on, the closed
-   * "Words used" table, and a lead sentence pieced together from several list items or cells of
-   * fewer than five words each (no single text holds it, and no run of eight words crosses them).
+   * passes 1 to 4 of lead-dedupe found hand-written leads that repeated a sentence of their page's
+   * opening, echoed a heading, or were a short line of the text itself. The check compares words
+   * only (case, punctuation and a closing "…" ignored) with what the reader sees first:
+   *
+   * - the H1, compared as a heading;
+   * - the first OPENING_BLOCKS visible blocks that carry text: paragraphs, notes, callouts, list and
+   *   task-list items, table cells and headings;
+   * - on a business type, the "Main reason" its facts show under the H1 (`effortReason`).
+   *
+   * The lead fails when the whole of it is inside one of those texts, or when every one of its
+   * sentences (split at . ! ?) is inside one, whatever their length. A single sentence fails when it
+   * shares a run of RUN words with a text or, at five words or more, is inside one; against a heading
+   * when it is inside it or shares a run of HEADING_RUN words; against the main reason when it is
+   * inside it. A "Topic: …" lead that names the page's subject passes, and so does a lead that names
+   * a heading's topic in passing ("the turnover tax trap"): that is a contents line, not a repeat.
+   * Both renderings of a template count: the form page (`formIntro` replaces the "make a copy" note)
+   * and the plain document view, so the rule holds with `TEMPLATES_FILLABLE` on or off.
+   *
+   * Not compared: blocks from the eleventh on, the closed "Words used" table, and a lead sentence
+   * pieced together from several list items or cells of fewer than five words each (no single text
+   * holds it, and no run of eight words crosses them). This guards the data; `doc-page.spec.ts`
+   * guards that the layout shows a lead only through `docLead`.
    */
   const docOf = (lang: (typeof langs)[number], id: string): Doc => {
     const doc = docsByLang.get(lang)?.find((item) => item.id === id);
@@ -525,35 +532,45 @@ describe('committed content data', () => {
     const reason = effortReason(businessTypesMeta.pickTable, englishHub, hub, type.id);
     return reason ? [runsToText(reason)] : [];
   };
+  type Seen = { text: string; kind: 'body' | 'heading' | 'reason' };
   /** What the reader sees first: the texts of the first visible blocks that carry words. */
-  const opening = (blocks: readonly Block[]): { text: string; heading: boolean }[] =>
+  const opening = (blocks: readonly Block[]): Seen[] =>
     blocks
       .filter((block) => !block.hidden && TEXT_KINDS.has(block.kind))
       .slice(0, OPENING_BLOCKS)
       .flatMap((block) =>
-        blockRunLists(block).map((runs) => ({
+        blockRunLists(block).map((runs): Seen => ({
           text: runsToText(runs),
-          heading: block.kind === 'heading',
+          kind: block.kind === 'heading' ? 'heading' : 'body',
         })),
       );
-  /** The sentence of `lead` that repeats the opening of `doc`, or undefined. */
-  const repeatsOpening = (lead: string, doc: Doc): string | undefined => {
-    const views = [doc.blocks, formView(doc)].filter(
+  /** The part of `lead` that repeats what the reader of `doc` sees first, or undefined. */
+  const repeatsOpening = (
+    lead: string,
+    doc: Doc,
+    options: { formView?: boolean } = {},
+  ): string | undefined => {
+    const views = [doc.blocks, options.formView === false ? undefined : formView(doc)].filter(
       (blocks): blocks is readonly Block[] => blocks !== undefined,
     );
-    const texts = [
+    const texts: Seen[] = [
+      { text: doc.h1, kind: 'heading' },
       ...views.flatMap(opening),
-      ...typeReason(doc).map((text) => ({ text, heading: false })),
-    ];
-    return sentencesOf(lead).find((sentence) => {
+      ...typeReason(doc).map((text): Seen => ({ text, kind: 'reason' })),
+    ].map(({ text, kind }) => ({ text: ` ${words(text).join(' ')} `, kind }));
+    const inside = (list: readonly string[], body: string): boolean =>
+      list.length > 0 && body.includes(` ${list.join(' ')} `);
+    const whole = words(lead);
+    if (texts.some(({ text }) => inside(whole, text))) return lead;
+    const sentences = sentencesOf(lead);
+    if (sentences.every((sentence) => texts.some(({ text }) => inside(words(sentence), text))))
+      return lead;
+    return sentences.find((sentence) => {
       const list = words(sentence);
-      return texts.some(({ text, heading }) => {
-        const own = words(text);
-        const body = ` ${own.join(' ')} `;
-        if (heading) return body.includes(` ${list.join(' ')} `) || hasRun(list, body, HEADING_RUN);
-        return (
-          (list.length >= 5 && body.includes(` ${list.join(' ')} `)) || hasRun(list, body, RUN)
-        );
+      return texts.some(({ text, kind }) => {
+        if (kind === 'reason') return inside(list, text);
+        if (kind === 'heading') return inside(list, text) || hasRun(list, text, HEADING_RUN);
+        return (list.length >= 5 && inside(list, text)) || hasRun(list, text, RUN);
       });
     });
   };
@@ -594,7 +611,7 @@ describe('committed content data', () => {
   });
 
   // Review pass 2 of lead-dedupe: probes that hold the check to what it should catch and pass.
-  it('catches a lead that repeats a paragraph, item, callout, table cell, heading or type reason', () => {
+  it('catches a lead that repeats what the reader sees first, and passes a topic line', () => {
     const dealer = docOf('en', 'business-types/vehicle-dealer');
     const receipt = docOf('en', 'paperwork/templates/receipt');
     const marketing = docOf('en', 'branding/marketing-prompts');
@@ -637,10 +654,50 @@ describe('committed content data', () => {
         docOf('en', 'business-types/beauty'),
       ),
     ).toBeDefined();
+    // Review pass 4: a lead of short sentences that are all in the text, a lead equal to the
+    // type's main reason, and a line caught only in the form view.
+    expect(repeatsOpening('Print this. Tick as you go.', docOf('en', 'lookup/checklist'))).toBe(
+      'Print this. Tick as you go.',
+    );
+    expect(repeatsOpening('Pick two channels. Do those two properly.', marketing)).toBeDefined();
+    expect(repeatsOpening('Three separate registration layers.', dealer)).toBeDefined();
+    // A short sentence that is the main reason, or the H1, beside a sentence that is new.
+    expect(
+      repeatsOpening('Three separate registration layers. Plus the consumer law and VAT.', dealer),
+    ).toBe('Three separate registration layers.');
+    expect(
+      repeatsOpening('Buying and selling vehicles. What to register and what to sign.', dealer),
+    ).toBe('Buying and selling vehicles.');
+    const formLine = 'Fill in the form, check the preview, then save it as a PDF to send.';
+    expect(repeatsOpening(formLine, receipt)).toBeDefined();
+    expect(repeatsOpening(formLine, receipt, { formView: false })).toBeUndefined();
     // H: a "Topic: …" lead that names the page's subject is not a repeat.
     expect(
       repeatsOpening('Vehicle dealing: the registrations, the consumer law and VAT.', dealer),
     ).toBeUndefined();
+  });
+
+  // Review pass 4, m4: every written English summary has a written Afrikaans one, with the same
+  // numbers (CLAUDE.md: Afrikaans keeps numbers byte-identical to English).
+  it('gives every English summary override an Afrikaans one with the same numbers', () => {
+    const written = JSON.parse(
+      readFileSync(join(repoRoot, 'content-meta', 'docs.meta.json'), 'utf8'),
+    ) as { docs: { id: string; summary?: Partial<Record<string, string>> }[] };
+    const numbers = (text: string): string[] => text.match(/\d[\d,. ]*\d|\d/g) ?? [];
+    const withEnglish = written.docs.filter((entry) => entry.summary?.['en'] !== undefined);
+    expect(withEnglish.length).toBeGreaterThan(0);
+    expect(
+      withEnglish.filter((entry) => entry.summary?.['af'] === undefined).map((e) => e.id),
+    ).toEqual([]);
+    expect(
+      withEnglish
+        .filter(
+          (entry) =>
+            numbers(entry.summary?.['en'] ?? '').join('|') !==
+            numbers(entry.summary?.['af'] ?? '').join('|'),
+        )
+        .map((entry) => entry.id),
+    ).toEqual([]);
   });
 
   it('has a sane heading tree in every document', () => {
