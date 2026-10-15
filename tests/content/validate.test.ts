@@ -5,7 +5,6 @@ import { describe, expect, it } from 'vitest';
 import { buildContent } from '../../scripts/content/build';
 import { ProvenanceSchema } from '../../scripts/content/config';
 import { docFileName } from '../../scripts/content/ids';
-import { deriveSummary } from '../../scripts/content/meta';
 import { blockRunLists, runsToText, walkRuns } from '../../scripts/content/text';
 import { diffOutputs } from '../../scripts/content/write';
 import {
@@ -23,7 +22,6 @@ import {
   type InlineRun,
 } from '../../src/lib/content/schema';
 import { docLead } from '../../src/lib/pages';
-import { TEMPLATES_FILLABLE } from '../../src/lib/routes';
 import { isTemplateSlug } from '../../src/lib/templates/draft';
 import { formHowToKey, formIntro } from '../../src/lib/templates/intro';
 import { parseTemplate } from '../../src/lib/templates/placeholders';
@@ -447,19 +445,46 @@ describe('committed content data', () => {
     expect(wrong).toEqual([]);
   });
 
-  it('shows no lead that repeats, or cuts short, the first visible paragraph of its page', () => {
-    const plain = (text: string): string => text.replace(/\s+/g, ' ').trim();
-    const repeats = (lead: string, paragraph: string): boolean => {
-      const stem = plain(lead).replace(/…$/, '').trim();
-      return stem !== '' && plain(paragraph).startsWith(stem);
+  /*
+   * A lead that says again what the opening text says is the same fault in a smaller dose: review
+   * pass 1 of the change found seven hand-written leads that repeated a sentence of their page's
+   * first paragraphs. So the check is per sentence, on words only (case, punctuation and a closing
+   * "…" ignored): no sentence of a shown lead may appear inside one of the page's first three
+   * visible paragraphs or notes, or share a run of eight words with one. Both renderings of a
+   * template count: the form page (`TEMPLATES_FILLABLE`, where `formIntro` replaces the "make a
+   * copy" note) and the plain document view. This test guards the data; `doc-page.spec.ts` guards
+   * that the layout shows a lead only through `docLead`.
+   */
+  it('shows no lead that repeats a sentence of the opening text of its page', () => {
+    const RUN = 8;
+    const words = (text: string): string[] =>
+      text
+        .toLowerCase()
+        .replace(/[’']/g, '')
+        .split(/[^\p{L}\p{N}]+/u)
+        .filter((word) => word !== '');
+    const sentencesOf = (text: string): string[] =>
+      text
+        .replace(/\s+/g, ' ')
+        .trim()
+        .replace(/…$/, '')
+        .split(/(?<=[.!?:;])\s+/)
+        .filter((sentence) => words(sentence).length > 0);
+    /** The sentence of `lead` that `paragraph` repeats, or undefined. */
+    const repeated = (lead: string, paragraph: string): string | undefined => {
+      const body = ` ${words(paragraph).join(' ')} `;
+      return sentencesOf(lead).find((sentence) => {
+        const list = words(sentence);
+        if (body.includes(` ${list.join(' ')} `)) return true;
+        for (let index = 0; index + RUN <= list.length; index += 1)
+          if (body.includes(` ${list.slice(index, index + RUN).join(' ')} `)) return true;
+        return false;
+      });
     };
-    /**
-     * The blocks the page shows, as `src/layouts/Doc.astro` renders them: on a fillable template the
-     * "make a copy" note above the form gives way to the form's own line (`formIntro`).
-     */
-    const rendered = (doc: Doc): readonly Block[] => {
+    /** The blocks the form page shows: the "make a copy" note gives way to the form's line. */
+    const formView = (doc: Doc): readonly Block[] | undefined => {
       const slug = doc.kind === 'template' && isTemplateSlug(doc.slug) ? doc.slug : undefined;
-      if (!TEMPLATES_FILLABLE || slug === undefined) return doc.blocks;
+      if (slug === undefined) return undefined;
       const template = parseTemplate(doc);
       const key = formHowToKey(slug);
       const intro = formIntro(
@@ -468,24 +493,26 @@ describe('committed content data', () => {
       );
       return [...intro, ...doc.blocks.slice(template.before.length)];
     };
+    const opening = (blocks: readonly Block[]): string[] =>
+      blocks
+        .filter((block) => !block.hidden)
+        .flatMap((block) =>
+          block.kind === 'paragraph' || block.kind === 'note' ? [runsToText(block.c)] : [],
+        )
+        .slice(0, 3);
     const found = langs.flatMap((lang) =>
       (docsByLang.get(lang) ?? []).flatMap((doc) => {
         const lead = docLead(doc);
         if (lead === undefined) return [];
-        const blocks = rendered(doc);
-        const texts = blocks
-          .filter((block) => !block.hidden)
-          .flatMap((block) =>
-            block.kind === 'paragraph' || block.kind === 'note' ? [runsToText(block.c)] : [],
-          );
-        // The first visible paragraph, and the one the build takes as a summary when there is no
-        // override (it passes over a "Read Core first" line).
-        const derived = deriveSummary(blocks);
-        const opening = [
-          texts[0],
-          texts.find((text) => derived !== undefined && repeats(derived, text)),
-        ].filter((text): text is string => text !== undefined);
-        return opening.some((text) => repeats(lead, text)) ? [`${lang} ${doc.id}: ${lead}`] : [];
+        const views = [doc.blocks, formView(doc)].filter(
+          (blocks): blocks is readonly Block[] => blocks !== undefined,
+        );
+        for (const blocks of views)
+          for (const paragraph of opening(blocks)) {
+            const sentence = repeated(lead, paragraph);
+            if (sentence !== undefined) return [`${lang} ${doc.id}: "${sentence}"`];
+          }
+        return [];
       }),
     );
     expect(found).toEqual([]);
@@ -495,6 +522,20 @@ describe('committed content data', () => {
     expect(
       all.filter((doc) => doc.summarySource !== 'override' && docLead(doc) !== undefined),
     ).toEqual([]);
+    // A derived summary is a cut-short start of its page's text, which the check above would catch.
+    const derived = all.filter((doc) => doc.summarySource === 'derived');
+    expect(derived.length).toBeGreaterThan(0);
+    for (const doc of derived)
+      expect(
+        opening(doc.blocks).some((paragraph) => repeated(doc.summary, paragraph) !== undefined) ||
+          doc.blocks.some(
+            (block) =>
+              !block.hidden &&
+              (block.kind === 'paragraph' || block.kind === 'note') &&
+              repeated(doc.summary, runsToText(block.c)) !== undefined,
+          ),
+        `${doc.lang} ${doc.id}`,
+      ).toBe(true);
   });
 
   it('has a sane heading tree in every document', () => {

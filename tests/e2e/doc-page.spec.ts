@@ -181,13 +181,16 @@ test.describe('the top of a document page', () => {
       ['core/tax-and-sars/', 'en', 'core__tax-and-sars', false],
       ['af/core/tax-and-sars/', 'af', 'core__tax-and-sars', false],
       ['templates/tax-invoice/', 'en', 'paperwork__templates__tax-invoice', false],
-      ['af/start/what-has-changed/', 'af', 'start__what-has-changed', false],
+      ['af/templates/tax-invoice/', 'af', 'paperwork__templates__tax-invoice', false],
+      ['start/start-here/', 'en', 'start__start-here', false],
       ['start/what-has-changed/', 'en', 'start__what-has-changed', true],
+      ['af/start/what-has-changed/', 'af', 'start__what-has-changed', true],
       [DEALER, 'en', 'business-types__vehicle-dealer', true],
       [`af/${DEALER}`, 'af', 'business-types__vehicle-dealer', true],
     ] as const) {
       await page.goto(route);
       const doc = data(lang, file);
+      // Guards the choice of examples: if a summary is written or removed, pick another page.
       expect(doc.summarySource === 'override', route).toBe(shown);
       await expect(page.locator('article header .st-doc__lead'), route).toHaveCount(shown ? 1 : 0);
       if (shown) await expect(page.locator('article header .st-doc__lead')).toHaveText(doc.summary);
