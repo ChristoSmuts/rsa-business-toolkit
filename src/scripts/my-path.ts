@@ -210,12 +210,13 @@ export class StMyPath extends HTMLElement {
     const current = pathDone.get();
     const nowDone = !stepDone(step, current);
     pathDone.set(markStep(current, step, nowDone));
-    // Say what changed and where the path stands, politely (review pass 4, m1).
+    // Say what changed and where the path stands, politely and only to screen readers, in a region
+    // of its own (review pass 4, m1; pass 5, M1).
     if (!this.#path) return;
     const progress = pathProgress(this.#path, pathDone.get());
     const template = nowDone ? this.dataset['stepDone'] : this.dataset['stepUndone'];
     announce(
-      this.querySelector('[data-status]'),
+      this.querySelector('[data-step-status]'),
       interpolate(template ?? '', { n: step.n, done: progress.done, total: progress.total }),
     );
   }

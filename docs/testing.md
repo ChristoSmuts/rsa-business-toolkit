@@ -732,6 +732,8 @@ Other variables:
 
 By default Playwright starts its own preview server and fails if the port is already taken, so a server from another worktree is never tested by mistake.
 
+**One Playwright run per worktree at a time.** Every run empties `test-results/` when it starts, so two runs from the same worktree (say the e2e projects and `pnpm test:a11y`, side by side) delete each other's traces and attachments, and a failure can lose its evidence (WP-50 Phase 3, item 4, review pass 5). Run them one after the other, run the second from another worktree with its own `PW_PORT`, or give each its own `--output` directory (`pnpm exec playwright test --project a11y --output test-results-a11y`).
+
 ## Reading the accessibility report
 
 A failing test prints one block per serious or critical violation:

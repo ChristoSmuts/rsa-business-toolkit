@@ -1,9 +1,27 @@
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { pathDone, pathView, profile } from '../../src/lib/profile-store';
 import { clearAll, storage } from '../../src/lib/store';
 import { StMyPath } from '../../src/scripts/my-path';
 import { PATHS } from '../../src/scripts/path-data';
+import { REPO_ROOT } from '../unit/site/data';
 import { mount } from './helpers';
+
+/**
+ * The step announcements' live region exactly as `my-path.astro` writes it, so the role and the
+ * class the test sees are the page's, not this fixture's (review pass 5, M2). The page is a whole
+ * route, which Astro's container cannot render here, so the element is taken from its source.
+ */
+const STEP_STATUS = (() => {
+  const source = readFileSync(
+    path.join(REPO_ROOT, 'src', 'pages', '[...locale]', 'my-path.astro'),
+    'utf8',
+  );
+  const element = /<p\b[^>]*\bdata-step-status\b[^>]*><\/p>/.exec(source)?.[0];
+  if (!element) throw new Error('my-path.astro has no data-step-status element');
+  return element;
+})();
 
 const RING = `<span class="st-ring"><svg role="img" aria-label=""><circle class="st-ring__value" stroke-dashoffset="100"></circle></svg><span class="st-ring__text">0%</span></span>`;
 
@@ -44,6 +62,7 @@ const PAGE = `
       <button type="button" data-reset>Remove my answers</button>
       <dialog><form method="dialog"><button value="cancel">Cancel</button><button value="confirm">Remove</button></form></dialog>
     </div>
+    ${STEP_STATUS}
   </st-my-path>`;
 
 function setUp(): StMyPath {
@@ -202,15 +221,27 @@ describe('<st-my-path>', () => {
     expect(moves, 'nothing in the list was moved after the first render').toEqual([]);
   });
 
-  it('says politely what "Mark as done" changed (review pass 4, m1)', () => {
-    profile.set({ entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' });
+  it('says what "Mark as done" changed in a hidden polite region of its own (review pass 4, m1; pass 5)', () => {
+    profile.set({ entity: 'pty', businessTypes: ['food', 'general'], stage: 'trading' });
+    window.history.replaceState(null, '', '/business-toolkit/my-path/?saved=1');
     setUp();
-    const status = document.querySelector('[data-status]')!;
-    const mark = shown()[0]!.querySelector<HTMLButtonElement>('[data-mark]')!;
-    mark.click();
-    expect(status.textContent).toBe('Step 1 done. 1 of 4 done.');
-    mark.click();
-    expect(status.textContent).toBe('Step 1 not done. 0 of 4 done.');
+    const region = document.querySelector<HTMLElement>('[data-step-status]')!;
+    expect(region.getAttribute('role')).toBe('status');
+    expect(region.classList.contains('st-visually-hidden')).toBe(true);
+    const visible = document.querySelector('[data-status]')!;
+    expect(visible.textContent).toBe('Saved on this device only.');
+    const cards = shown();
+    // Earlier steps stay marked, so the count runs up, then back down.
+    cards.forEach((card, index) => {
+      card.querySelector<HTMLButtonElement>('[data-mark]')!.click();
+      expect(region.textContent).toBe(`Step ${index + 1} done. ${index + 1} of 4 done.`);
+    });
+    [...cards].reverse().forEach((card, index) => {
+      card.querySelector<HTMLButtonElement>('[data-mark]')!.click();
+      expect(region.textContent).toBe(`Step ${4 - index} not done. ${3 - index} of 4 done.`);
+    });
+    // The visible line keeps the saved message.
+    expect(visible.textContent).toBe('Saved on this device only.');
   });
 
   it('marks a step as done and back, and the ring follows', () => {

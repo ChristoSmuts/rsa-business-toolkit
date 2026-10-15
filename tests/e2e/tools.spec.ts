@@ -409,6 +409,10 @@ test.describe('My path on a phone', () => {
  * Review pass 4, M1: focus on every step, not only the first. Chromium removes and re-inserts a
  * node put back where it already is, which drops focus, so this runs in a real browser on a path
  * with a first, a middle and a last step.
+ *
+ * Review pass 5: what a press changed is said in a visually hidden polite region of its own
+ * (`[data-step-status]`), never in the visible line under the heading, which keeps "Saved on this
+ * device only" and takes no line on a press.
  */
 test.describe('My path keeps focus on every step', () => {
   const LONG = { entity: 'pty', businessTypes: ['food', 'general'], stage: 'trading' };
@@ -427,26 +431,38 @@ test.describe('My path keeps focus on every step', () => {
         await expect(cards.first()).toBeVisible();
         const total = await cards.count();
         expect(total, 'a first, a middle and a last step').toBeGreaterThanOrEqual(4);
-        const status = page.locator('st-my-path [data-status]');
+        const said = page.locator('st-my-path [data-step-status]');
+        const mark = (n: number) =>
+          page.locator(`[data-steps] > li:not([hidden])[data-n="${n}"] [data-mark]`);
+        // Up: earlier steps stay marked, so the count runs 1, 2, 3, 4 (review pass 5, M2).
         for (let n = 1; n <= total; n++) {
-          const mark = page.locator(`[data-steps] > li:not([hidden])[data-n="${n}"] [data-mark]`);
-          await mark.focus();
+          await mark(n).focus();
           await page.keyboard.press('Enter');
-          await expect(mark, `step ${n}: "Mark as done" keeps focus`).toBeFocused();
-          await expect(mark).toHaveText(lang ? 'Haal die merkie af' : 'Remove the tick');
-          await expect(status).toHaveText(
-            lang ? `Stap ${n} klaar. 1 van ${total} klaar.` : `Step ${n} done. 1 of ${total} done.`,
-          );
-          await page.keyboard.press('Space');
-          await expect(mark, `step ${n}: "Remove the tick" keeps focus`).toBeFocused();
-          await expect(status).toHaveText(
+          await expect(mark(n), `step ${n}: "Mark as done" keeps focus`).toBeFocused();
+          await expect(mark(n)).toHaveText(lang ? 'Haal die merkie af' : 'Remove the tick');
+          await expect(said).toHaveText(
             lang
-              ? `Stap ${n} nie klaar nie. 0 van ${total} klaar.`
-              : `Step ${n} not done. 0 of ${total} done.`,
+              ? `Stap ${n} klaar. ${n} van ${total} klaar.`
+              : `Step ${n} done. ${n} of ${total} done.`,
           );
-          await mark.click();
-          await expect(mark, `step ${n}: a click keeps focus`).toBeFocused();
-          await mark.click();
+        }
+        // And back down.
+        for (let n = total; n >= 1; n--) {
+          await mark(n).focus();
+          await page.keyboard.press('Space');
+          await expect(mark(n), `step ${n}: "Remove the tick" keeps focus`).toBeFocused();
+          await expect(said).toHaveText(
+            lang
+              ? `Stap ${n} nie klaar nie. ${n - 1} van ${total} klaar.`
+              : `Step ${n} not done. ${n - 1} of ${total} done.`,
+          );
+        }
+        // A click keeps focus too, on every step.
+        for (let n = 1; n <= total; n++) {
+          await mark(n).click();
+          await expect(mark(n), `step ${n}: a click keeps focus`).toBeFocused();
+          await mark(n).click();
+          await expect(mark(n)).toBeFocused();
         }
         const order = await cards.evaluateAll((all) =>
           all.map((card) => Number(card.dataset['n'])),
@@ -456,50 +472,138 @@ test.describe('My path keeps focus on every step', () => {
     }
   }
 
-  test('new answers saved from a second page redraw the path in order, and focus holds', async ({
+  test("the step region is a polite status in Chromium's own tree", async ({
+    page,
+    seedStorage,
+    browserName,
+  }, testInfo) => {
+    test.skip(browserName !== 'chromium', 'Reads the tree over CDP, which only Chromium has.');
+    test.skip(testInfo.project.name === 'mobile', 'Sets its own widths.');
+    await seedStorage({ 'st.profile.v1': LONG });
+    await page.setViewportSize(PHONE);
+    await page.goto('my-path/');
+    await expect(page.locator('[data-steps] > li:not([hidden])').first()).toBeVisible();
+    const session = await page.context().newCDPSession(page);
+    try {
+      await session.send('DOM.enable');
+      await session.send('Accessibility.enable');
+      const { root } = await session.send('DOM.getDocument', { depth: 0 });
+      const { nodeId } = await session.send('DOM.querySelector', {
+        nodeId: root.nodeId,
+        selector: 'st-my-path [data-step-status]',
+      });
+      const { nodes } = await session.send('Accessibility.getPartialAXTree', {
+        nodeId,
+        fetchRelatives: false,
+      });
+      const node = nodes[0];
+      expect(node?.role?.value).toBe('status');
+      const live = node?.properties?.find((property) => property.name === 'live');
+      expect(live?.value.value).toBe('polite');
+    } finally {
+      await session.detach();
+    }
+  });
+
+  test('a press moves the button no more than at ea15b4a, and the message going moves nothing', async ({
+    page,
+    seedStorage,
+  }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'Sets its own widths.');
+    await seedStorage({ 'st.profile.v1': LONG });
+    await page.setViewportSize(PHONE);
+    await page.goto('my-path/?saved=1');
+    // No scroll anchoring, as in Safari: a line added or removed above would move the button.
+    await page.addStyleTag({ content: 'html { overflow-anchor: none; }' });
+    const visible = page.locator('st-my-path [data-status]');
+    await expect(visible).not.toBeEmpty();
+    const saved = (await visible.textContent()) ?? '';
+    const mark = page.locator('[data-steps] > li:not([hidden])[data-n="1"] [data-mark]');
+    const top = async (): Promise<number> => (await mark.boundingBox())?.y ?? 0;
+    const before = await top();
+    await mark.click();
+    await expect(page.locator('st-my-path [data-step-status]')).not.toBeEmpty();
+    // At ea15b4a the press moved the button 30px (270 → 300 at 320px): the "Done" badge's line.
+    expect((await top()) - before).toBeLessThanOrEqual(31);
+    const afterPress = await top();
+    await page.evaluate(() => {
+      const shifts: number[] = [];
+      Object.assign(window, { stShifts: shifts });
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries())
+          shifts.push((entry as PerformanceEntry & { value: number }).value);
+      }).observe({ type: 'layout-shift' });
+    });
+    // The message is cleared after 6 s; nothing on the page moves when it goes.
+    await expect(page.locator('st-my-path [data-step-status]')).toBeEmpty({ timeout: 9000 });
+    expect(await top()).toBe(afterPress);
+    expect(
+      await page.evaluate(() => (window as unknown as { stShifts: number[] }).stShifts),
+    ).toEqual([]);
+    // The visible line still says the answers are saved on this device.
+    await expect(visible).toHaveText(saved);
+  });
+
+  test('answers reordered in a second page redraw the path in order, and focus holds', async ({
     page,
     context,
     seedStorage,
   }, testInfo) => {
     test.skip(testInfo.project.name === 'mobile', 'Sets its own widths.');
     await seedStorage({
-      'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+      'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food', 'beauty'], stage: 'trading' },
     });
     await page.setViewportSize(PHONE);
     await page.goto('my-path/');
     const cards = page.locator('[data-steps] > li:not([hidden])');
     await expect(cards.first()).toBeVisible();
-    const pages = () =>
+    /** The kinds of business' pages, in the order the step that holds them lists them. */
+    const typePages = () =>
       page
-        .locator('[data-steps] > li:not([hidden]) li[data-doc]:not([hidden])')
-        .evaluateAll((all) => all.map((item) => item.dataset['doc']).join(' '));
-    const before = await pages();
+        .locator('[data-steps] > li:not([hidden]) li[data-doc^="business-types/"]:not([hidden])')
+        .evaluateAll((all) => all.map((item) => item.dataset['doc'] ?? ''));
+    expect(await typePages()).toEqual(['business-types/food', 'business-types/beauty']);
     const mark = page.locator('[data-steps] > li:not([hidden])[data-n="1"] [data-mark]');
     await mark.focus();
     await mark.evaluate((button) => button.setAttribute('data-test-focused', ''));
+    // Everything written to the step region from now on (a 6 s timer could clear it again before
+    // the test looks, so the region's state at the end is not enough).
+    await page.evaluate(() => {
+      const region = document.querySelector('st-my-path [data-step-status]');
+      const said: string[] = [];
+      Object.assign(window, { stSaid: said });
+      if (region)
+        new MutationObserver(() => said.push(region.textContent ?? '')).observe(region, {
+          childList: true,
+          characterData: true,
+          subtree: true,
+        });
+    });
 
-    // A second tab answers Find my path the normal way and saves new answers.
+    // A second tab opens Find my path with the saved answers and ticks Beauty before Food.
     const other = await context.newPage();
     await other.goto('find-my-path/');
     await expect(other.locator('st-wizard[data-ready]')).toHaveCount(1);
-    await other.locator('input[name="entity"][value="pty"]').check();
     await other.locator('[data-step="entity"] [data-next]').click();
+    await other.locator('input[name="type"][value="food"]').uncheck();
     await other.locator('input[name="type"][value="food"]').check();
-    await other.locator('input[name="type"][value="general"]').check();
     await other.locator('[data-step="type"] [data-next]').click();
-    await other.locator('input[name="stage"][value="trading"]').check();
     await other.locator('[data-finish]').click();
     await expect(other).toHaveURL(/my-path\/$/);
 
-    // The first page follows: other pages on the path, numbered in order, and the focused button
-    // kept focus.
-    await expect.poll(pages).not.toBe(before);
+    // The first page follows: Beauty's page now first in its step (review pass 5, m3), the steps
+    // numbered in order, the same button still focused, and nothing said for a press nobody made.
+    await expect.poll(typePages).toEqual(['business-types/beauty', 'business-types/food']);
     const order = await cards.evaluateAll((all) => all.map((card) => Number(card.dataset['n'])));
     expect(order).toEqual([...Array(order.length).keys()].map((index) => index + 1));
-    // The same button element, not only one at the same place.
     expect(
       await page.evaluate(() => document.activeElement?.hasAttribute('data-test-focused') ?? false),
     ).toBe(true);
+    await expect(page.locator('st-my-path [data-step-status]')).toBeEmpty();
+    const said = await page.evaluate(() =>
+      (window as unknown as { stSaid: string[] }).stSaid.filter((text) => text.trim() !== ''),
+    );
+    expect(said, 'nothing is said for answers changed elsewhere').toEqual([]);
     await other.close();
   });
 });
@@ -647,6 +751,26 @@ test.describe('the checklist and the confirm dialog on a phone', () => {
       await page.keyboard.press('Escape');
       await expect(dialog).toBeHidden();
       await expect(page.locator('st-checklist input[type="checkbox"]').first()).toBeChecked();
+
+      // Centred at a tablet and a desktop width too (review pass 5, m1).
+      for (const size of [
+        { width: 768, height: 1024 },
+        { width: 1280, height: 800 },
+      ]) {
+        await page.setViewportSize(size);
+        await page.locator('[data-checklist-reset]').click();
+        await expect(dialog).toBeVisible();
+        const wide = await dialog.boundingBox();
+        const start = wide?.x ?? 0;
+        const end = size.width - start - (wide?.width ?? 0);
+        expect(Math.abs(start - end), `centred across at ${size.width}px`).toBeLessThanOrEqual(1);
+        const above = wide?.y ?? 0;
+        const below = size.height - above - (wide?.height ?? 0);
+        expect(Math.abs(above - below), `centred down at ${size.width}px`).toBeLessThanOrEqual(1);
+        await page.keyboard.press('Escape');
+        await expect(dialog).toBeHidden();
+      }
+      await page.setViewportSize(PHONE);
     });
   }
 });
@@ -660,6 +784,7 @@ test.describe('the search dialog on a phone', () => {
   for (const lang of LANGS) {
     test(`/${lang}: no results points at the glossary, and the glossary is a link`, async ({
       page,
+      basePath,
     }) => {
       await page.goto(`${lang}business-types/food/`);
       await page.waitForLoadState('networkidle');
@@ -674,7 +799,11 @@ test.describe('the search dialog on a phone', () => {
       await expect(glossary).toHaveText(
         lang ? 'Slaan ’n woord in die woordelys na' : 'Look a word up in the glossary',
       );
-      expect(await glossary.getAttribute('href')).toMatch(/\/glossary\/$/);
+      const glossaryHref = (await glossary.getAttribute('href')) ?? '';
+      expect(glossaryHref).toMatch(/\/glossary\/$/);
+      // The glossary in the page's language (review pass 5, m2).
+      expect(glossaryHref.startsWith(`${basePath}${lang}`)).toBe(true);
+      if (!lang) expect(glossaryHref.startsWith(`${basePath}af/`)).toBe(false);
       // Shown, not only in the markup, on a 44px row (review pass 3, M1).
       await expect(glossary).toBeVisible();
       expect((await glossary.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);

@@ -246,6 +246,13 @@ const progressTemplate = t('myPath.progress', { done: '{done}', total: '{total}'
           />
         </section>
       </div>
+      {/*
+        What a press of "Mark as done" changed, for screen readers only: in the visible line above,
+        each message added a line over the path and took it away again 6 s later, a layout shift
+        with no input, and replaced the "saved on this device" line (WP-50 Phase 3, item 4, review
+        pass 5, M1). Present from the first render, so the live region is known before it speaks.
+      */}
+      <p class="st-visually-hidden" role="status" data-step-status></p>
     </st-my-path>
   </div>
 </Page>
