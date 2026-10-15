@@ -21,6 +21,7 @@ import {
   type Doc,
   type InlineRun,
 } from '../../src/lib/content/schema';
+import { effortReason } from '../../src/lib/business-types';
 import { docLead } from '../../src/lib/pages';
 import { isTemplateSlug } from '../../src/lib/templates/draft';
 import { formHowToKey, formIntro } from '../../src/lib/templates/intro';
@@ -452,7 +453,8 @@ describe('committed content data', () => {
    * pass 1 of the change found seven hand-written leads that repeated a sentence of their page's
    * opening, and pass 2 one that echoed a heading. The check compares words only (case,
    * punctuation and a closing "…" ignored) with the first OPENING_BLOCKS visible blocks that carry
-   * text: paragraphs, notes, callouts, list and task-list items, and headings. A sentence of the
+   * text (paragraphs, notes, callouts, list and task-list items, table cells and headings) and, on
+   * a business type, the "Main reason" its facts show under the H1 (`effortReason`). A sentence of the
    * lead (split at . ! ?) fails when it shares a run of RUN words with one of those texts, when a
    * sentence of five words or more is inside one, or, for a heading, when the sentence is inside it
    * or shares a run of HEADING_RUN words with it. A lead that names a heading's topic in passing
@@ -460,8 +462,18 @@ describe('committed content data', () => {
    * not part of the opening. Both renderings of a template count: the form page (`formIntro`
    * replaces the "make a copy" note) and the plain document view, so the rule holds with
    * `TEMPLATES_FILLABLE` on or off. This guards the data; `doc-page.spec.ts` guards that the layout
-   * shows a lead only through `docLead`.
+   * shows a lead only through `docLead`. Not compared: blocks from the eleventh on, the closed
+   * "Words used" table, and a lead sentence pieced together from several list items or cells of
+   * fewer than five words each (no single text holds it, and no run of eight words crosses them).
    */
+  const docOf = (lang: (typeof langs)[number], id: string): Doc => {
+    const doc = docsByLang.get(lang)?.find((item) => item.id === id);
+    if (!doc) throw new Error(`no ${lang} ${id}`);
+    return doc;
+  };
+  const businessTypesMeta = JSON.parse(
+    readFileSync(join(repoRoot, 'content-meta', 'business-types.json'), 'utf8'),
+  ) as { types: { id: string; doc: string }[]; pickTable: Parameters<typeof effortReason>[0] };
   const OPENING_BLOCKS = 10;
   const RUN = 8;
   const HEADING_RUN = 6;
@@ -495,7 +507,24 @@ describe('committed content data', () => {
     );
     return [...intro, ...doc.blocks.slice(template.before.length)];
   };
-  const TEXT_KINDS = new Set(['paragraph', 'note', 'callout', 'list', 'tasklist', 'heading']);
+  const TEXT_KINDS = new Set([
+    'paragraph',
+    'note',
+    'callout',
+    'list',
+    'tasklist',
+    'table',
+    'heading',
+  ]);
+  /** On a business type, the hub table's "Main reason" that its facts show under the H1. */
+  const typeReason = (doc: Doc): string[] => {
+    const type = businessTypesMeta.types.find((item) => item.doc === doc.id);
+    if (!type) return [];
+    const hub = docOf(doc.lang as (typeof langs)[number], 'business-types/pick-your-business-type');
+    const englishHub = docOf('en', 'business-types/pick-your-business-type');
+    const reason = effortReason(businessTypesMeta.pickTable, englishHub, hub, type.id);
+    return reason ? [runsToText(reason)] : [];
+  };
   /** What the reader sees first: the texts of the first visible blocks that carry words. */
   const opening = (blocks: readonly Block[]): { text: string; heading: boolean }[] =>
     blocks
@@ -512,7 +541,10 @@ describe('committed content data', () => {
     const views = [doc.blocks, formView(doc)].filter(
       (blocks): blocks is readonly Block[] => blocks !== undefined,
     );
-    const texts = views.flatMap(opening);
+    const texts = [
+      ...views.flatMap(opening),
+      ...typeReason(doc).map((text) => ({ text, heading: false })),
+    ];
     return sentencesOf(lead).find((sentence) => {
       const list = words(sentence);
       return texts.some(({ text, heading }) => {
@@ -524,11 +556,6 @@ describe('committed content data', () => {
         );
       });
     });
-  };
-  const docOf = (lang: (typeof langs)[number], id: string): Doc => {
-    const doc = docsByLang.get(lang)?.find((item) => item.id === id);
-    if (!doc) throw new Error(`no ${lang} ${id}`);
-    return doc;
   };
 
   it('shows no lead that repeats what the reader sees first on its page', () => {
@@ -567,7 +594,7 @@ describe('committed content data', () => {
   });
 
   // Review pass 2 of lead-dedupe: probes that hold the check to what it should catch and pass.
-  it('catches a lead that repeats a paragraph, a list item, a callout or a heading', () => {
+  it('catches a lead that repeats a paragraph, item, callout, table cell, heading or type reason', () => {
     const dealer = docOf('en', 'business-types/vehicle-dealer');
     const receipt = docOf('en', 'paperwork/templates/receipt');
     const marketing = docOf('en', 'branding/marketing-prompts');
@@ -594,6 +621,20 @@ describe('committed content data', () => {
       repeatsOpening(
         'Where South African small businesses actually find customers, plus AI prompts for content pillars, posts, WhatsApp messages and your Google Business Profile.',
         marketing,
+      ),
+    ).toBeDefined();
+    // Review pass 3: a cell of a table near the top (the hub's effort table) and a business
+    // type's "Main reason", which its facts show under the H1.
+    expect(
+      repeatsOpening(
+        'Some trades need professional registration.',
+        docOf('en', 'business-types/pick-your-business-type'),
+      ),
+    ).toBeDefined();
+    expect(
+      repeatsOpening(
+        'Health inspection and municipal licence.',
+        docOf('en', 'business-types/beauty'),
       ),
     ).toBeDefined();
     // H: a "Topic: …" lead that names the page's subject is not a repeat.
