@@ -446,73 +446,96 @@ describe('committed content data', () => {
   });
 
   /*
-   * A lead that says again what the opening text says is the same fault in a smaller dose: review
+   * A lead that says again what the reader sees first is the same fault in a smaller dose: review
    * pass 1 of the change found seven hand-written leads that repeated a sentence of their page's
-   * first paragraphs. So the check is per sentence, on words only (case, punctuation and a closing
-   * "…" ignored): no sentence of a shown lead may appear inside one of the page's first three
-   * visible paragraphs or notes, or share a run of eight words with one. Both renderings of a
-   * template count: the form page (`TEMPLATES_FILLABLE`, where `formIntro` replaces the "make a
-   * copy" note) and the plain document view. This test guards the data; `doc-page.spec.ts` guards
-   * that the layout shows a lead only through `docLead`.
+   * opening, and pass 2 one that echoed a heading. The check compares words only (case,
+   * punctuation and a closing "…" ignored) with the first OPENING_BLOCKS visible blocks that carry
+   * text: paragraphs, notes, callouts, list and task-list items, and headings. A sentence of the
+   * lead (split at . ! ?) fails when it shares a run of RUN words with one of those texts, when a
+   * sentence of five words or more is inside one, or, for a heading, when the sentence is inside it
+   * or shares a run of HEADING_RUN words with it. A lead that names a heading's topic in passing
+   * ("the turnover tax trap") is a contents line, not a repeat. The "Words used" table is a closed disclosure, so it is
+   * not part of the opening. Both renderings of a template count: the form page (`formIntro`
+   * replaces the "make a copy" note) and the plain document view, so the rule holds with
+   * `TEMPLATES_FILLABLE` on or off. This guards the data; `doc-page.spec.ts` guards that the layout
+   * shows a lead only through `docLead`.
    */
-  it('shows no lead that repeats a sentence of the opening text of its page', () => {
-    const RUN = 8;
-    const words = (text: string): string[] =>
-      text
-        .toLowerCase()
-        .replace(/[’']/g, '')
-        .split(/[^\p{L}\p{N}]+/u)
-        .filter((word) => word !== '');
-    const sentencesOf = (text: string): string[] =>
-      text
-        .replace(/\s+/g, ' ')
-        .trim()
-        .replace(/…$/, '')
-        .split(/(?<=[.!?:;])\s+/)
-        .filter((sentence) => words(sentence).length > 0);
-    /** The sentence of `lead` that `paragraph` repeats, or undefined. */
-    const repeated = (lead: string, paragraph: string): string | undefined => {
-      const body = ` ${words(paragraph).join(' ')} `;
-      return sentencesOf(lead).find((sentence) => {
-        const list = words(sentence);
-        if (body.includes(` ${list.join(' ')} `)) return true;
-        for (let index = 0; index + RUN <= list.length; index += 1)
-          if (body.includes(` ${list.slice(index, index + RUN).join(' ')} `)) return true;
-        return false;
-      });
-    };
-    /** The blocks the form page shows: the "make a copy" note gives way to the form's line. */
-    const formView = (doc: Doc): readonly Block[] | undefined => {
-      const slug = doc.kind === 'template' && isTemplateSlug(doc.slug) ? doc.slug : undefined;
-      if (slug === undefined) return undefined;
-      const template = parseTemplate(doc);
-      const key = formHowToKey(slug);
-      const intro = formIntro(
-        template.before,
-        key ? useTranslations(doc.lang as Locale)(key) : undefined,
+  const OPENING_BLOCKS = 10;
+  const RUN = 8;
+  const HEADING_RUN = 6;
+  const words = (text: string): string[] =>
+    text
+      .toLowerCase()
+      .replace(/[’']/g, '')
+      .split(/[^\p{L}\p{N}]+/u)
+      .filter((word) => word !== '');
+  const sentencesOf = (text: string): string[] =>
+    text
+      .replace(/\s+/g, ' ')
+      .trim()
+      .replace(/…$/, '')
+      .split(/(?<=[.!?])\s+/)
+      .filter((sentence) => words(sentence).length > 0);
+  const hasRun = (list: readonly string[], body: string, size: number): boolean => {
+    for (let index = 0; index + size <= list.length; index += 1)
+      if (body.includes(` ${list.slice(index, index + size).join(' ')} `)) return true;
+    return false;
+  };
+  /** The blocks the form page shows: the "make a copy" note gives way to the form's line. */
+  const formView = (doc: Doc): readonly Block[] | undefined => {
+    const slug = doc.kind === 'template' && isTemplateSlug(doc.slug) ? doc.slug : undefined;
+    if (slug === undefined) return undefined;
+    const template = parseTemplate(doc);
+    const key = formHowToKey(slug);
+    const intro = formIntro(
+      template.before,
+      key ? useTranslations(doc.lang as Locale)(key) : undefined,
+    );
+    return [...intro, ...doc.blocks.slice(template.before.length)];
+  };
+  const TEXT_KINDS = new Set(['paragraph', 'note', 'callout', 'list', 'tasklist', 'heading']);
+  /** What the reader sees first: the texts of the first visible blocks that carry words. */
+  const opening = (blocks: readonly Block[]): { text: string; heading: boolean }[] =>
+    blocks
+      .filter((block) => !block.hidden && TEXT_KINDS.has(block.kind))
+      .slice(0, OPENING_BLOCKS)
+      .flatMap((block) =>
+        blockRunLists(block).map((runs) => ({
+          text: runsToText(runs),
+          heading: block.kind === 'heading',
+        })),
       );
-      return [...intro, ...doc.blocks.slice(template.before.length)];
-    };
-    const opening = (blocks: readonly Block[]): string[] =>
-      blocks
-        .filter((block) => !block.hidden)
-        .flatMap((block) =>
-          block.kind === 'paragraph' || block.kind === 'note' ? [runsToText(block.c)] : [],
-        )
-        .slice(0, 3);
+  /** The sentence of `lead` that repeats the opening of `doc`, or undefined. */
+  const repeatsOpening = (lead: string, doc: Doc): string | undefined => {
+    const views = [doc.blocks, formView(doc)].filter(
+      (blocks): blocks is readonly Block[] => blocks !== undefined,
+    );
+    const texts = views.flatMap(opening);
+    return sentencesOf(lead).find((sentence) => {
+      const list = words(sentence);
+      return texts.some(({ text, heading }) => {
+        const own = words(text);
+        const body = ` ${own.join(' ')} `;
+        if (heading) return body.includes(` ${list.join(' ')} `) || hasRun(list, body, HEADING_RUN);
+        return (
+          (list.length >= 5 && body.includes(` ${list.join(' ')} `)) || hasRun(list, body, RUN)
+        );
+      });
+    });
+  };
+  const docOf = (lang: (typeof langs)[number], id: string): Doc => {
+    const doc = docsByLang.get(lang)?.find((item) => item.id === id);
+    if (!doc) throw new Error(`no ${lang} ${id}`);
+    return doc;
+  };
+
+  it('shows no lead that repeats what the reader sees first on its page', () => {
     const found = langs.flatMap((lang) =>
       (docsByLang.get(lang) ?? []).flatMap((doc) => {
         const lead = docLead(doc);
         if (lead === undefined) return [];
-        const views = [doc.blocks, formView(doc)].filter(
-          (blocks): blocks is readonly Block[] => blocks !== undefined,
-        );
-        for (const blocks of views)
-          for (const paragraph of opening(blocks)) {
-            const sentence = repeated(lead, paragraph);
-            if (sentence !== undefined) return [`${lang} ${doc.id}: "${sentence}"`];
-          }
-        return [];
+        const sentence = repeatsOpening(lead, doc);
+        return sentence === undefined ? [] : [`${lang} ${doc.id}: "${sentence}"`];
       }),
     );
     expect(found).toEqual([]);
@@ -522,20 +545,59 @@ describe('committed content data', () => {
     expect(
       all.filter((doc) => doc.summarySource !== 'override' && docLead(doc) !== undefined),
     ).toEqual([]);
-    // A derived summary is a cut-short start of its page's text, which the check above would catch.
+    // Every derived summary would fail the check, which is why a derived summary is never a lead.
     const derived = all.filter((doc) => doc.summarySource === 'derived');
     expect(derived.length).toBeGreaterThan(0);
-    for (const doc of derived)
-      expect(
-        opening(doc.blocks).some((paragraph) => repeated(doc.summary, paragraph) !== undefined) ||
-          doc.blocks.some(
-            (block) =>
-              !block.hidden &&
-              (block.kind === 'paragraph' || block.kind === 'note') &&
-              repeated(doc.summary, runsToText(block.c)) !== undefined,
-          ),
-        `${doc.lang} ${doc.id}`,
-      ).toBe(true);
+    expect(
+      derived
+        .filter(
+          (doc) =>
+            repeatsOpening(doc.summary, doc) === undefined &&
+            !doc.blocks.some(
+              (block) =>
+                !block.hidden &&
+                (block.kind === 'paragraph' || block.kind === 'note') &&
+                runsToText(block.c).replace(/\s+/g, ' ').includes(doc.summary.replace(/…$/, '')),
+            ),
+        )
+        .map((doc) => `${doc.lang} ${doc.id}`),
+    ).toEqual([]);
+  });
+
+  // Review pass 2 of lead-dedupe: probes that hold the check to what it should catch and pass.
+  it('catches a lead that repeats a paragraph, a list item, a callout or a heading', () => {
+    const dealer = docOf('en', 'business-types/vehicle-dealer');
+    const receipt = docOf('en', 'paperwork/templates/receipt');
+    const marketing = docOf('en', 'branding/marketing-prompts');
+    // A: the dealer's old lead, the second sentence of its second paragraph.
+    expect(
+      repeatsOpening(
+        'Vehicle dealing has three registration layers other businesses do not have, and one legal risk that can destroy a small dealer in a single transaction.',
+        dealer,
+      ),
+    ).toBeDefined();
+    // C: an item of the dealer's "Quick answer" list.
+    expect(
+      repeatsOpening(
+        'Registration as a second-hand goods dealer with SAPS, free but compulsory.',
+        dealer,
+      ),
+    ).toBeDefined();
+    // E: the receipt's callout.
+    expect(
+      repeatsOpening('Only send a receipt once the money is in your account balance.', receipt),
+    ).toBeDefined();
+    // The marketing page's old lead echoed its first heading.
+    expect(
+      repeatsOpening(
+        'Where South African small businesses actually find customers, plus AI prompts for content pillars, posts, WhatsApp messages and your Google Business Profile.',
+        marketing,
+      ),
+    ).toBeDefined();
+    // H: a "Topic: …" lead that names the page's subject is not a repeat.
+    expect(
+      repeatsOpening('Vehicle dealing: the registrations, the consumer law and VAT.', dealer),
+    ).toBeUndefined();
   });
 
   it('has a sane heading tree in every document', () => {
