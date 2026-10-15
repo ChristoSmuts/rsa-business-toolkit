@@ -408,7 +408,7 @@ describe('committed content data', () => {
   it('gives the vehicle-dealer page the same curated summary in English and Afrikaans', () => {
     const summary = (lang: (typeof langs)[number]): string | undefined =>
       docsByLang.get(lang)?.find((doc) => doc.id === 'business-types/vehicle-dealer')?.summary;
-    expect(summary('en')).toMatch(/^Vehicle dealing has three registration layers /);
+    expect(summary('en')).toMatch(/^The three registrations a dealer needs /);
     expect(summary('af')).toMatch(/^Voertuighandel het drie lae van registrasie /);
   });
 

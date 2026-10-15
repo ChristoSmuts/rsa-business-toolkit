@@ -161,7 +161,7 @@
         "af": "Wat het verander"
       },
       "summary": {
-        "en": "What changed in the toolkit, and where the Google Drive copy and the markdown copy still differ."
+        "en": "Read this if you keep a copy of the toolkit in Google Drive: each change, what to paste into Drive, and how to keep the two copies the same."
       },
       "tags": ["orientation", "changelog"],
       "fenceVariant": "snippet"
@@ -258,7 +258,7 @@
         "af": "Bestuur van ’n Pty Ltd"
       },
       "summary": {
-        "en": "What a company costs you in time and duties every year, what goes wrong when you stop filing, and when the company does not protect you."
+        "en": "Your yearly duties as a company owner, in the order people most often miss them, what happens if you stop filing, and when the company does not protect you."
       },
       "appliesTo": {
         "entity": "pty"
@@ -518,7 +518,7 @@
         "af": "Kwitansie (sjabloon)"
       },
       "summary": {
-        "en": "Send this when money arrives. It stops the \"did you get my payment?\" message.",
+        "en": "Proof for your customer that their payment arrived, so they do not have to ask whether you got it.",
         "af": "Stuur dit wanneer geld inkom. Dit keer die \"het jy my betaling gekry?\"-boodskap."
       },
       "tags": ["template"]
@@ -535,7 +535,7 @@
         "af": "Privaatheidskennisgewing, POPIA (sjabloon)"
       },
       "summary": {
-        "en": "Put this on your website, or send it as a PDF when a customer asks. It is short on purpose.",
+        "en": "Tell your customers, in plain words, what you keep about them, why, who sees it and how long you keep it.",
         "af": "Sit dit op jou webwerf, of stuur dit as ’n PDF wanneer ’n kliënt daarvoor vra. Dit is doelbewus kort."
       },
       "tags": ["template", "popia"]
@@ -569,7 +569,7 @@
         "af": "Voertuighandelaar"
       },
       "summary": {
-        "en": "Vehicle dealing has three registration layers other businesses do not have, and one legal risk that can destroy a small dealer in a single transaction.",
+        "en": "The three registrations a dealer needs (SAPS, vehicles in the business’s name, motor trade numbers), the consumer law that applies to every sale, and a startup checklist.",
         "af": "Voertuighandel het drie lae van registrasie wat ander besighede nie het nie, en een regsrisiko wat ’n klein handelaar in ’n enkele transaksie kan vernietig."
       },
       "appliesTo": {
@@ -589,7 +589,7 @@
         "af": "Kosbesigheid"
       },
       "summary": {
-        "en": "For anyone who handles, prepares, stores, transports or sells food for money: what you need before you may open, and how long it really takes.",
+        "en": "The one document you must have before you sell food, the other permits you may need, labelling, and how long it all takes, from home baking to a food truck.",
         "af": "Vir enigiemand wat kos vir geld hanteer, voorberei, berg, vervoer of verkoop: wat jy nodig het voordat jy mag oopmaak, en hoe lank dit regtig neem."
       },
       "appliesTo": {
@@ -609,7 +609,7 @@
         "af": "Skoonheid en persoonlike versorging"
       },
       "summary": {
-        "en": "Hairdressing, barbering, nails, beauty therapy, lashes, massage, tattooing and piercing: the licence, inspection, insurance and booking rules."
+        "en": "The municipal licence and inspection your salon or studio needs, the insurance worth having, and how to handle bookings, deposits and no-shows."
       },
       "appliesTo": {
         "businessTypes": ["beauty"]
