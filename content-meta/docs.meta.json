@@ -575,7 +575,7 @@
       },
       "summary": {
         "en": "The three registrations a dealer needs (SAPS, vehicles in the business’s name, motor trade numbers) and the consumer law behind every sale.",
-        "af": "Die drie registrasies wat ’n handelaar nodig het (SAPS, voertuie op die besigheid se naam, motorhandelnommers), die verbruikersreg by elke verkoping, en ’n kontrolelys vir die begin."
+        "af": "Die drie registrasies wat ’n handelaar nodig het (SAPS, voertuie op die besigheid se naam, motorhandelnommers) en die verbruikersreg agter elke verkoping."
       },
       "appliesTo": {
         "businessTypes": ["vehicle-dealer"]
