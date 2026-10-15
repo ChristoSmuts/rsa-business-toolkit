@@ -567,7 +567,9 @@ test.describe('the line above the form', () => {
         });
         expect(above).not.toMatch(FILE_WORDS);
         // The lead and the meta description too (review pass 1, M4).
-        const lead = (await article.locator('.st-lead').first().textContent()) ?? '';
+        // A template whose summary is its own first paragraph (the invoice, the tax invoice) shows
+        // no lead (`docLead`), so there may be none to read.
+        const lead = (await article.locator('.st-lead').allTextContents())[0] ?? '';
         const meta = (await page.locator('meta[name="description"]').getAttribute('content')) ?? '';
         for (const text of [lead, meta]) {
           expect(text).not.toMatch(FILE_WORDS);

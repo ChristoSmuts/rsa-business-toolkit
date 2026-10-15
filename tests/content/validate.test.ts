@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { buildContent } from '../../scripts/content/build';
 import { ProvenanceSchema } from '../../scripts/content/config';
 import { docFileName } from '../../scripts/content/ids';
+import { deriveSummary } from '../../scripts/content/meta';
 import { blockRunLists, runsToText, walkRuns } from '../../scripts/content/text';
 import { diffOutputs } from '../../scripts/content/write';
 import {
@@ -17,9 +18,17 @@ import {
   SourcesFileSchema,
   TaskKeysFileSchema,
   TasksFileSchema,
+  type Block,
   type Doc,
   type InlineRun,
 } from '../../src/lib/content/schema';
+import { docLead } from '../../src/lib/pages';
+import { TEMPLATES_FILLABLE } from '../../src/lib/routes';
+import { isTemplateSlug } from '../../src/lib/templates/draft';
+import { formHowToKey, formIntro } from '../../src/lib/templates/intro';
+import { parseTemplate } from '../../src/lib/templates/placeholders';
+import { useTranslations } from '../../src/i18n';
+import type { Locale } from '../../src/i18n/locales';
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const dataDir = join(repoRoot, 'src', 'data');
@@ -417,6 +426,75 @@ describe('committed content data', () => {
     expect(
       langs.flatMap((lang) => docsByLang.get(lang) ?? []).filter((d) => d.kind === 'template'),
     ).toHaveLength(10);
+  });
+
+  // A summary taken from the page's own first paragraph made 48 of 74 pages show that paragraph
+  // twice, once as the lead and once as the text. Only a summary written for the language in
+  // content-meta/docs.meta.json is a lead (`docLead`), and none may repeat the opening paragraph.
+  it('marks a summary as an override exactly when docs.meta.json has one for that language', () => {
+    const written = JSON.parse(
+      readFileSync(join(repoRoot, 'content-meta', 'docs.meta.json'), 'utf8'),
+    ) as { docs: { id: string; summary?: Partial<Record<string, string>> }[] };
+    const wrong = langs.flatMap((lang) =>
+      (docsByLang.get(lang) ?? [])
+        .filter((doc) => {
+          const has =
+            written.docs.find((entry) => entry.id === doc.id)?.summary?.[lang] !== undefined;
+          return has !== (doc.summarySource === 'override');
+        })
+        .map((doc) => `${lang} ${doc.id}: ${doc.summarySource}`),
+    );
+    expect(wrong).toEqual([]);
+  });
+
+  it('shows no lead that repeats, or cuts short, the first visible paragraph of its page', () => {
+    const plain = (text: string): string => text.replace(/\s+/g, ' ').trim();
+    const repeats = (lead: string, paragraph: string): boolean => {
+      const stem = plain(lead).replace(/…$/, '').trim();
+      return stem !== '' && plain(paragraph).startsWith(stem);
+    };
+    /**
+     * The blocks the page shows, as `src/layouts/Doc.astro` renders them: on a fillable template the
+     * "make a copy" note above the form gives way to the form's own line (`formIntro`).
+     */
+    const rendered = (doc: Doc): readonly Block[] => {
+      const slug = doc.kind === 'template' && isTemplateSlug(doc.slug) ? doc.slug : undefined;
+      if (!TEMPLATES_FILLABLE || slug === undefined) return doc.blocks;
+      const template = parseTemplate(doc);
+      const key = formHowToKey(slug);
+      const intro = formIntro(
+        template.before,
+        key ? useTranslations(doc.lang as Locale)(key) : undefined,
+      );
+      return [...intro, ...doc.blocks.slice(template.before.length)];
+    };
+    const found = langs.flatMap((lang) =>
+      (docsByLang.get(lang) ?? []).flatMap((doc) => {
+        const lead = docLead(doc);
+        if (lead === undefined) return [];
+        const blocks = rendered(doc);
+        const texts = blocks
+          .filter((block) => !block.hidden)
+          .flatMap((block) =>
+            block.kind === 'paragraph' || block.kind === 'note' ? [runsToText(block.c)] : [],
+          );
+        // The first visible paragraph, and the one the build takes as a summary when there is no
+        // override (it passes over a "Read Core first" line).
+        const derived = deriveSummary(blocks);
+        const opening = [
+          texts[0],
+          texts.find((text) => derived !== undefined && repeats(derived, text)),
+        ].filter((text): text is string => text !== undefined);
+        return opening.some((text) => repeats(lead, text)) ? [`${lang} ${doc.id}: ${lead}`] : [];
+      }),
+    );
+    expect(found).toEqual([]);
+    // The rule has something to check: some pages keep a lead, and a derived summary gives none.
+    const all = langs.flatMap((lang) => docsByLang.get(lang) ?? []);
+    expect(all.filter((doc) => docLead(doc) !== undefined).length).toBeGreaterThan(0);
+    expect(
+      all.filter((doc) => doc.summarySource !== 'override' && docLead(doc) !== undefined),
+    ).toEqual([]);
   });
 
   it('has a sane heading tree in every document', () => {
