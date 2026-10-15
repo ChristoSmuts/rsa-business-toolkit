@@ -161,7 +161,8 @@
         "af": "Wat het verander"
       },
       "summary": {
-        "en": "Read this if you keep a copy of the toolkit in Google Drive: each change, what to paste into Drive, and how to keep the two copies the same."
+        "en": "Read this if you keep a copy of the toolkit in Google Drive: each change, what to paste into Drive, and how to keep the two copies the same.",
+        "af": "Lees dit as jy ’n kopie van die gereedskapstel in Google Drive hou: elke verandering, wat jy in Drive moet plak, en hoe om die twee kopieë gelyk te hou."
       },
       "tags": ["orientation", "changelog"],
       "fenceVariant": "snippet"
@@ -258,7 +259,8 @@
         "af": "Bestuur van ’n Pty Ltd"
       },
       "summary": {
-        "en": "Your yearly duties as a company owner, in the order people most often miss them, what happens if you stop filing, and when the company does not protect you."
+        "en": "Your yearly duties as a company owner, in the order people most often miss them, what happens if you stop filing, and when the company does not protect you.",
+        "af": "Jou jaarlikse pligte as maatskappy-eienaar, in die volgorde waarin mense hulle die meeste mis, wat gebeur as jy ophou indien, en wanneer die maatskappy jou nie beskerm nie."
       },
       "appliesTo": {
         "entity": "pty"
@@ -372,7 +374,8 @@
         "af": "Handelsmerkopdragte"
       },
       "summary": {
-        "en": "Eleven AI prompts, in order, for your brief, name, tagline, logo, colours, type, photographs, voice and about text. Each prompt gives you 5 options to refine."
+        "en": "Eleven AI prompts, in order, for your brief, name, tagline, logo, colours, type, photographs, voice and about text. Each prompt gives you 5 options to refine.",
+        "af": "Elf KI-opdragte, in volgorde, vir jou kortbeskrywing, naam, slagspreuk, logo, kleure, lettertipe, foto’s, stem en \"oor ons\"-teks. Elke opdrag gee jou 5 opsies om te verfyn."
       },
       "tags": ["prompts"],
       "fenceVariant": "prompt",
@@ -394,7 +397,8 @@
         "af": "Stemming en materiale (gebruik ná Opdrag 4)"
       },
       "summary": {
-        "en": "Settle the overall mood and the physical materials before the logo, so your logo, colours and photographs agree. Includes what South African sun does to signage."
+        "en": "Settle the overall mood and the physical materials before the logo, so your logo, colours and photographs agree. Includes what South African sun does to signage.",
+        "af": "Besluit oor die algehele stemming en die fisiese materiale voor die logo, sodat jou logo, kleure en foto’s ooreenstem. Met wat die Suid-Afrikaanse son aan uithangborde doen."
       },
       "tags": ["prompts"],
       "fenceVariant": "prompt"
@@ -425,7 +429,8 @@
         "af": "Bemarkingsopdragte"
       },
       "summary": {
-        "en": "Where South African small businesses actually find customers, plus AI prompts for content pillars, posts, WhatsApp messages and your Google Business Profile."
+        "en": "Where South African small businesses actually find customers, plus AI prompts for content pillars, posts, WhatsApp messages and your Google Business Profile.",
+        "af": "Waar Suid-Afrikaanse klein besighede werklik kliënte kry, plus KI-opdragte vir inhoudspilare, plasings, WhatsApp-boodskappe en jou Google Business Profile."
       },
       "tags": ["prompts", "marketing"],
       "fenceVariant": "prompt"
@@ -519,7 +524,7 @@
       },
       "summary": {
         "en": "Proof for your customer that their payment arrived, so they do not have to ask whether you got it.",
-        "af": "Stuur dit wanneer geld inkom. Dit keer die \"het jy my betaling gekry?\"-boodskap."
+        "af": "Bewys vir jou kliënt dat hulle betaling ingekom het, sodat hulle nie hoef te vra of jy dit gekry het nie."
       },
       "tags": ["template"]
     },
@@ -536,7 +541,7 @@
       },
       "summary": {
         "en": "Tell your customers, in plain words, what you keep about them, why, who sees it and how long you keep it.",
-        "af": "Sit dit op jou webwerf, of stuur dit as ’n PDF wanneer ’n kliënt daarvoor vra. Dit is doelbewus kort."
+        "af": "Sê vir jou kliënte, in gewone woorde, wat jy oor hulle hou, waarom, wie dit sien en hoe lank jy dit hou."
       },
       "tags": ["template", "popia"]
     },
@@ -570,7 +575,7 @@
       },
       "summary": {
         "en": "The three registrations a dealer needs (SAPS, vehicles in the business’s name, motor trade numbers), the consumer law that applies to every sale, and a startup checklist.",
-        "af": "Voertuighandel het drie lae van registrasie wat ander besighede nie het nie, en een regsrisiko wat ’n klein handelaar in ’n enkele transaksie kan vernietig."
+        "af": "Die drie registrasies wat ’n handelaar nodig het (SAPS, voertuie op die besigheid se naam, motorhandelnommers), die verbruikersreg by elke verkoping, en ’n kontrolelys vir die begin."
       },
       "appliesTo": {
         "businessTypes": ["vehicle-dealer"]
@@ -590,7 +595,7 @@
       },
       "summary": {
         "en": "The one document you must have before you sell food, the other permits you may need, labelling, and how long it all takes, from home baking to a food truck.",
-        "af": "Vir enigiemand wat kos vir geld hanteer, voorberei, berg, vervoer of verkoop: wat jy nodig het voordat jy mag oopmaak, en hoe lank dit regtig neem."
+        "af": "Die een dokument wat jy moet hê voordat jy kos verkoop, ander permitte wat jy dalk nodig het, etikettering, en hoe lank dit alles neem, van tuisbak tot ’n kosvragmotor."
       },
       "appliesTo": {
         "businessTypes": ["food"]
@@ -609,7 +614,8 @@
         "af": "Skoonheid en persoonlike versorging"
       },
       "summary": {
-        "en": "The municipal licence and inspection your salon or studio needs, the insurance worth having, and how to handle bookings, deposits and no-shows."
+        "en": "The municipal licence and inspection your salon or studio needs, the insurance worth having, and how to handle bookings, deposits and no-shows.",
+        "af": "Die munisipale lisensie en inspeksie vir jou salon of ateljee, die versekering wat die moeite werd is, en hoe om besprekings, deposito’s en wegbly-kliënte te hanteer."
       },
       "appliesTo": {
         "businessTypes": ["beauty"]
@@ -628,7 +634,8 @@
         "af": "Kleinhandel en aanlynwinkel"
       },
       "summary": {
-        "en": "Selling physical products in a shop, at a market or online: licences, second-hand goods, online selling law, warranties and importing."
+        "en": "Selling physical products in a shop, at a market or online: licences, second-hand goods, online selling law, warranties and importing.",
+        "af": "Fisiese produkte in ’n winkel, by ’n mark of aanlyn verkoop: lisensies, tweedehandse goedere, wetgewing oor aanlyn verkoop, waarborge en invoer."
       },
       "appliesTo": {
         "businessTypes": ["retail-online"]
@@ -647,7 +654,8 @@
         "af": "Dienste en ambagte"
       },
       "summary": {
-        "en": "Plumbers, electricians, builders, cleaners, couriers and other trades: registration, safety, quoting, deposits and insurance."
+        "en": "Plumbers, electricians, builders, cleaners, couriers and other trades: registration, safety, quoting, deposits and insurance.",
+        "af": "Loodgieters, elektrisiëns, bouers, skoonmakers, koeriers en ander ambagte: registrasie, veiligheid, kwotasies, deposito’s en versekering."
       },
       "appliesTo": {
         "businessTypes": ["services-trades"]
@@ -666,7 +674,8 @@
         "af": "Professionele en kreatiewe werk"
       },
       "summary": {
-        "en": "Consultants, designers, developers, writers, tutors and other freelancers: the turnover tax trap, contracts, intellectual property and getting paid."
+        "en": "Consultants, designers, developers, writers, tutors and other freelancers: the turnover tax trap, contracts, intellectual property and getting paid.",
+        "af": "Konsultante, ontwerpers, ontwikkelaars, skrywers, privaat onderwysers en ander vryskutwerkers: die omsetbelasting-strik, kontrakte, intellektuele eiendom en betaal word."
       },
       "appliesTo": {
         "businessTypes": ["professional-creative"]
@@ -698,7 +707,8 @@
         "af": "Hoofkontrolelys"
       },
       "summary": {
-        "en": "One printable checklist: everyone's steps in order, extra steps for a Pty Ltd, additions per business type, a recurring calendar and the four things that cause real trouble."
+        "en": "One printable checklist: everyone's steps in order, extra steps for a Pty Ltd, additions per business type, a recurring calendar and the four things that cause real trouble.",
+        "af": "Een kontrolelys om uit te druk: almal se stappe in volgorde, ekstra stappe vir ’n Pty Ltd, byvoegings per besigheidstipe, ’n herhalende kalender en die vier dinge wat moeilikheid gee."
       },
       "tags": ["reference", "checklist"]
     },

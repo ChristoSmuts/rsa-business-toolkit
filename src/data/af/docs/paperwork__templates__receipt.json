@@ -251,7 +251,7 @@
       "flip-the-market"
     ]
   },
-  "summary": "Stuur dit wanneer geld inkom. Dit keer die \"het jy my betaling gekry?\"-boodskap.",
+  "summary": "Bewys vir jou kliënt dat hulle betaling ingekom het, sodat hulle nie hoef te vra of jy dit gekry het nie.",
   "summarySource": "override",
   "tags": [
     "template"

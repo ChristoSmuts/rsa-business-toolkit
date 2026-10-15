@@ -1022,8 +1022,8 @@
       "sars--turnover-tax"
     ]
   },
-  "summary": "Dit dek konsultante, ontwerpers, ontwikkelaars, kopieskrywers, fotograwe, videograwe, privaat onderwysers, boekhouers, virtuele assistente, vertalers en bemarkers.",
-  "summarySource": "derived",
+  "summary": "Konsultante, ontwerpers, ontwikkelaars, skrywers, privaat onderwysers en ander vryskutwerkers: die omsetbelasting-strik, kontrakte, intellektuele eiendom en betaal word.",
+  "summarySource": "override",
   "tags": [
     "business-types"
   ],

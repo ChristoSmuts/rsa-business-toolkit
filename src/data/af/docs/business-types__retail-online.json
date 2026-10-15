@@ -1171,8 +1171,8 @@
       "cipc-trade-mark-search"
     ]
   },
-  "summary": "Dit dek ’n winkel, ’n markstalletjie, ’n aanlynwinkel, ’n Instagram-winkel, en verkope op Takealot of Facebook Marketplace.",
-  "summarySource": "derived",
+  "summary": "Fisiese produkte in ’n winkel, by ’n mark of aanlyn verkoop: lisensies, tweedehandse goedere, wetgewing oor aanlyn verkoop, waarborge en invoer.",
+  "summarySource": "override",
   "tags": [
     "business-types"
   ],

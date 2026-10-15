@@ -2779,8 +2779,8 @@
       "looksee-standard-bank"
     ]
   },
-  "summary": "Druk dit uit. Merk af soos jy gaan.",
-  "summarySource": "derived",
+  "summary": "Een kontrolelys om uit te druk: almal se stappe in volgorde, ekstra stappe vir ’n Pty Ltd, byvoegings per besigheidstipe, ’n herhalende kalender en die vier dinge wat moeilikheid gee.",
+  "summarySource": "override",
   "tags": [
     "reference",
     "checklist"
