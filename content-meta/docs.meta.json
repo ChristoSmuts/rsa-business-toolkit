@@ -162,7 +162,7 @@
       },
       "summary": {
         "en": "Read this if you keep a copy of the toolkit in Google Drive: each change, what to paste into Drive, and how to keep both copies in sync.",
-        "af": "Lees dit as jy ’n kopie van die gereedskapstel in Google Drive hou: elke verandering, wat jy in Drive moet plak, en hoe om die twee kopieë gelyk te hou."
+        "af": "Lees dit as jy ’n kopie van die gereedskapstel in Google Drive hou: elke verandering, wat jy in Drive moet plak, en hoe om albei kopieë gelyk te hou."
       },
       "tags": ["orientation", "changelog"],
       "fenceVariant": "snippet"
@@ -375,7 +375,7 @@
       },
       "summary": {
         "en": "Twelve AI prompts, in order, for your brief, name, tagline, logo, colours, type, photographs, voice and about text. Each prompt gives you 5 options to refine.",
-        "af": "Elf KI-opdragte, in volgorde, vir jou kortbeskrywing, naam, slagspreuk, logo, kleure, lettertipe, foto’s, stem en \"oor ons\"-teks. Elke opdrag gee jou 5 opsies om te verfyn."
+        "af": "Twaalf KI-opdragte, in volgorde, vir jou kortbeskrywing, naam, slagspreuk, logo, kleure, lettertipe, foto’s, stem en \"oor ons\"-teks. Elke opdrag gee jou 5 opsies om te verfyn."
       },
       "tags": ["prompts"],
       "fenceVariant": "prompt",
@@ -398,7 +398,7 @@
       },
       "summary": {
         "en": "Settle the overall mood and the physical materials before the logo, so your logo, colours and photographs agree. Includes what South African sun does to signage.",
-        "af": "Besluit oor die algehele stemming en die fisiese materiale voor die logo, sodat jou logo, kleure en foto’s ooreenstem. Met wat die Suid-Afrikaanse son aan uithangborde doen."
+        "af": "Besluit oor die algehele stemming en die fisiese materiale voor die logo, sodat jou logo, kleure en foto’s ooreenstem. Dit sluit in wat die Suid-Afrikaanse son aan uithangborde doen."
       },
       "tags": ["prompts"],
       "fenceVariant": "prompt"
@@ -430,7 +430,7 @@
       },
       "summary": {
         "en": "Where your first customers are most likely to come from, two things to set up before any posts, and AI prompts for posts, WhatsApp messages and your Google Business Profile.",
-        "af": "Waar Suid-Afrikaanse klein besighede werklik kliënte kry, plus KI-opdragte vir inhoudspilare, plasings, WhatsApp-boodskappe en jou Google Business Profile."
+        "af": "Waar jou eerste kliënte heel waarskynlik vandaan kom, twee dinge om op te stel voor enige plasings, en KI-opdragte vir plasings, WhatsApp-boodskappe en jou Google Business Profile."
       },
       "tags": ["prompts", "marketing"],
       "fenceVariant": "prompt"
@@ -558,7 +558,7 @@
       },
       "summary": {
         "en": "Find your kind of business, compare the setup work each kind carries, and see what every business needs and what can wait.",
-        "af": "Vind jou soort besigheid in een tabel, sien hoeveel opstelwerk elke soort vra, en wat almal nodig het, watter soort besigheid ook al."
+        "af": "Vind jou soort besigheid, vergelyk die opstelwerk wat elke soort vra, en sien wat elke besigheid nodig het en wat kan wag."
       },
       "tags": ["business-types"]
     },
@@ -575,7 +575,7 @@
       },
       "summary": {
         "en": "SAPS registration, registering the vehicles you sell, trade numbers if you drive unregistered stock, and the consumer law behind every sale.",
-        "af": "Die drie registrasies wat ’n handelaar nodig het (SAPS, voertuie op die besigheid se naam, motorhandelnommers) en die verbruikersreg agter elke verkoping."
+        "af": "SAPS-registrasie, die registrasie van die voertuie wat jy verkoop, handelsnommers as jy ongeregistreerde voorraad ry, en die verbruikersreg agter elke verkoping."
       },
       "appliesTo": {
         "businessTypes": ["vehicle-dealer"]
@@ -595,7 +595,7 @@
       },
       "summary": {
         "en": "The certificate every food business needs, the business licence and other papers around it, labelling, and how long it all takes, from home baking to a food truck.",
-        "af": "Die een dokument wat jy moet hê voordat jy kos verkoop, ander permitte wat jy dalk nodig het, etikettering, en hoe lank dit alles neem, van tuisbak tot ’n kosvragmotor."
+        "af": "Die sertifikaat wat elke kosbesigheid nodig het, die besigheidslisensie en ander papiere daarom, etikettering, en hoe lank dit alles neem, van tuisbakkery tot ’n kosvragmotor."
       },
       "appliesTo": {
         "businessTypes": ["food"]
@@ -615,7 +615,7 @@
       },
       "summary": {
         "en": "The licence and inspection for your salon or studio, the insurance you actually need, and how to handle bookings and no-shows.",
-        "af": "Die lisensie en inspeksie vir jou salon of ateljee, die versekering wat jy nodig het, en hoe om besprekings en wegbly-kliënte te hanteer."
+        "af": "Lisensie en inspeksie vir jou salon of ateljee, versekering wat jy regtig nodig het, en besprekings en kliënte wat nie opdaag nie."
       },
       "appliesTo": {
         "businessTypes": ["beauty"]
@@ -675,7 +675,7 @@
       },
       "summary": {
         "en": "Consultants, designers, developers, writers, tutors and other freelancers: the turnover tax trap, contracts, intellectual property and getting paid.",
-        "af": "Konsultante, ontwerpers, ontwikkelaars, skrywers, privaat onderwysers en ander vryskutwerkers: die omsetbelasting-strik, kontrakte, intellektuele eiendom en betaal word."
+        "af": "Konsultante, ontwerpers, ontwikkelaars, skrywers, privaat onderwysers en ander vryskutwerkers: die omsetbelasting-strik, kontrakte, intellektuele eiendom en om betaal te word."
       },
       "appliesTo": {
         "businessTypes": ["professional-creative"]
@@ -708,7 +708,7 @@
       },
       "summary": {
         "en": "One printable checklist: everyone's steps in order, extra steps for a Pty Ltd, additions per business type, a recurring calendar and the four things that cause real trouble.",
-        "af": "Een kontrolelys om uit te druk: almal se stappe in volgorde, ekstra stappe vir ’n Pty Ltd, byvoegings per besigheidstipe, ’n herhalende kalender en die vier dinge wat moeilikheid gee."
+        "af": "Een kontrolelys om uit te druk: almal se stappe in volgorde, ekstra stappe vir ’n Pty Ltd, byvoegings per besigheidstipe, ’n herhalende kalender en die vier dinge wat regte moeilikheid gee."
       },
       "tags": ["reference", "checklist"]
     },

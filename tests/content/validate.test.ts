@@ -407,7 +407,7 @@ describe('committed content data', () => {
     const summary = (lang: (typeof langs)[number]): string | undefined =>
       docsByLang.get(lang)?.find((doc) => doc.id === 'business-types/vehicle-dealer')?.summary;
     expect(summary('en')).toMatch(/^SAPS registration, registering the vehicles you sell, /);
-    expect(summary('af')).toMatch(/^Die drie registrasies wat ’n handelaar nodig het /);
+    expect(summary('af')).toMatch(/^SAPS-registrasie, die registrasie van die voertuie /);
   });
 
   // WP-50a review pass 1, M4: a template's summary is the lead and meta description of its form
