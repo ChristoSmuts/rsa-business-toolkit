@@ -406,7 +406,9 @@ describe('committed content data', () => {
   it('gives the vehicle-dealer page the same curated summary in English and Afrikaans', () => {
     const summary = (lang: (typeof langs)[number]): string | undefined =>
       docsByLang.get(lang)?.find((doc) => doc.id === 'business-types/vehicle-dealer')?.summary;
-    expect(summary('en')).toMatch(/^SAPS registration, registering the vehicles you sell, /);
+    expect(summary('en')).toMatch(
+      /^SAPS registration, stock registered to the business or your ID, /,
+    );
     expect(summary('af')).toMatch(/^SAPS-registrasie, die registrasie van die voertuie /);
   });
 
