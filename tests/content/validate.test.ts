@@ -553,11 +553,15 @@ describe('committed content data', () => {
     const views = [doc.blocks, options.formView === false ? undefined : formView(doc)].filter(
       (blocks): blocks is readonly Block[] => blocks !== undefined,
     );
-    const texts: Seen[] = [
+    const seen: Seen[] = [
       { text: doc.h1, kind: 'heading' },
       ...views.flatMap(opening),
       ...typeReason(doc).map((text): Seen => ({ text, kind: 'reason' })),
-    ].map(({ text, kind }) => ({ text: ` ${words(text).join(' ')} `, kind }));
+    ];
+    const texts = seen.map(({ text, kind }): Seen => ({
+      text: ` ${words(text).join(' ')} `,
+      kind,
+    }));
     const inside = (list: readonly string[], body: string): boolean =>
       list.length > 0 && body.includes(` ${list.join(' ')} `);
     const whole = words(lead);
