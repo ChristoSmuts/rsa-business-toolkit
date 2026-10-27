@@ -239,7 +239,7 @@ How they were measured (WP-50 Phase 2):
 | Home, top of the page | 0.230 | 0.010 | 0.230 | 0.000 |
 | Header height at 320px, fallback then web font | 217 → 165px | 165 → 165px | 217 → 165px | 165 → 165px |
 
-The 320px header no longer changes rows when the fonts arrive, which WP-50 Phase 3 (item 5) asked for.
+The 320px header no longer changes rows when the fonts arrive, which WP-50 Phase 3 (item 5) asked for. Since item 5 it is one 61px row, the same before and after the fonts (see [The header, footer and navigation](#the-header-footer-and-navigation-wp-50-phase-3)).
 
 The table above is 320px only, where the reading measure never binds. On a wide screen it does, and the first Phase 2 build had a desktop-only shift the 320px table could not show: the measures were in `ch`, the width of "0" in whichever font is drawn (0.67em in Instrument Sans, about 0.56em in the fallbacks), so every capped column was 17% narrower until the web font came, and the Afrikaans home page's lead wrapped to three lines and then two (review pass 2, major 1). The measures are now in em (see [Fluid scale](#fluid-scale-320px-to-1280px-viewport)).
 
@@ -432,11 +432,11 @@ its summary (heard on the document, so it works after a Safari click that focuse
 or focus outside closes it, and scrolling closes it, moving focus to the summary if it was inside,
 so an open list never rides the sticky bar over the article. A side effect, accepted: after a scroll closes the menu and focus lands on its summary, Space toggles the menu rather than paging the document, as it does on any focused `<summary>`.
 
-Without JavaScript the drawer cannot open, and it does not have to: below 1024px `SiteHeader` shows
-the same `<details>` menus stacked whenever `<html>` has no `js` class, so a phone with scripting off
-reaches every section and tool from the header, and there is no second copy of the links to keep in
-step. The language switcher is plain links either way; `<st-lang-switch>` only adds the current
-`#fragment` to them.
+Without JavaScript the drawer cannot open, and it does not have to: below 1024px the header's Menu
+is then a link to the footer's site map, which lists every section and tool (WP-50 Phase 3, item 5;
+until then the same `<details>` menus were shown stacked in the bar, 213px tall). All three copies
+of the links come from `lib/nav.ts`. The language switcher is a plain link either way;
+`<st-lang-switch>` only adds the current `#fragment` to it.
 
 ### Pages (WP-20 milestone 2)
 
@@ -471,10 +471,10 @@ Three flags in `src/lib/routes.ts` keep the site from offering what is not built
 
 Each package sets its flag to `true` in the change that builds the feature.
 
-The top bar is sticky only from 1024px and only with JavaScript. On a phone it wraps to two or three
-rows, and without JavaScript it carries the theme hint and, below 1024px, every menu, so pinned it
-would cover anchor targets and focus. Where it is sticky its height still varies (one row at 1280px,
-two at 1024px), so the scroll padding is not a constant: `trackTopbar()` in
+The top bar is sticky only from 1024px and only with JavaScript. Since WP-50 Phase 3, item 5 it is
+one 61px row at every width, but on a phone it stays static (61px is a fifth of a landscape phone's
+screen) and without JavaScript nothing could measure it. The scroll padding is still not a
+constant, in case a reader's text size makes the row wrap: `trackTopbar()` in
 `src/scripts/navigation.ts` publishes the bar's measured height as `--st-topbar-offset` (0 while the
 bar is not sticky), and `SiteHeader.astro` sets `scroll-padding-block-start` from it. That rule owns the
 scroll padding on every page with the header: it outranks the `html` rule in `base.css`, so a change
@@ -527,7 +527,7 @@ On a short phone screen (below 768px wide and 740px high) and on a landscape pho
 | Core start here, EN / AF: first heading | 1,345 / 1,701 | 1,081 / 1,321 |
 | Sources register, EN / AF: first heading | 1,476 / 1,818 | 1,198 / 1,398 |
 
-(The audit's 3,291px was measured before WP-50a.) English meets the two-screen target; Afrikaans is 197px over. What fills it is the header and real content: today's header is 165px at 360px (the mock had 57px; Phase 3, item 5 makes it one row), the Afrikaans translation notice is 178px (rule 9 keeps it), the Afrikaans lead wraps to five lines and the meta line to two, and the text's own three opening paragraphs are 389px. With a one-row header the Afrikaans page comes to about 1,570px. At 1280px the first heading moved from 2,368 / 2,803px to 939 / 1,114 (EN / AF). The AI notice starts 354px down at 320×568 in Afrikaans (402px without JavaScript), inside the 524px the first-screen test allows.
+(The audit's 3,291px was measured before WP-50a.) English meets the two-screen target; Afrikaans is 197px over. What fills it is the header and real content: the header was 165px at 360px (the mock had 57px; Phase 3, item 5 made it one 61px row, which brings the Afrikaans page to 1,636px), the Afrikaans translation notice is 178px (rule 9 keeps it), the Afrikaans lead wraps to five lines and the meta line to two, and the text's own three opening paragraphs are 389px. With a one-row header the Afrikaans page comes to about 1,570px. At 1280px the first heading moved from 2,368 / 2,803px to 939 / 1,114 (EN / AF). The AI notice starts 354px down at 320×568 in Afrikaans (402px without JavaScript), inside the 524px the first-screen test allows.
 
 `tests/e2e/doc-page.spec.ts` holds the order, the two-screen target (English), the closed disclosures and their chevrons, the absent "Read Core first" callout, the 1280px column (h2 only, muted, no underline at rest, underline on hover, prose links underlined), the wider article, and the sources control (rest hidden on a phone until shown, by tap or keyboard; all entries shown from 768px with no control; all printed).
 
@@ -620,6 +620,70 @@ The reason line is new and ends on the first screen on all twelve pages (`types.
 **Weight.** JavaScript (gzip, `pnpm dist:budget` method): the dealer and the hub unchanged (23.3 and 19.5 KB); food and retail 24.3 → 21.9 KB, the other three types 23.3 → 20.9 KB (no `applies.ts`). Food was the heaviest document page; the heaviest is now `/af/core/adding-new-lines/` at 24.3 KB, unchanged. CSS +0.3 KB gzip on every document page (the facts, the links and `stack="rows"`). No new colour pair: the facts, the links and the cards use text, muted text and link colours on `--st-bg` and `--st-surface`, and the art the type tile's pairs, all already in `CONTRAST_PAIRS`. In forced colours the art square and each stacked card get a `CanvasText` edge.
 
 `tests/e2e/types.spec.ts` holds the facts (on the first screen at 360×740 in both languages, the reason quoted from the hub in the page's language, the art only from 480px), "Go straight to" (the links per type, 44px each, landing on their headings, after the AI notice), the switch (only on the dealer) and the hub's tables (cards at 320px in Afrikaans with every cell labelled and nothing sideways, tables at 1280px, table semantics in Chromium's own tree, skipped in other engines). `nojs.spec.ts` checks the facts, a jump link and the cards without a script; `a11y.spec.ts` runs axe at 320px on the Afrikaans hub and food page in both themes.
+
+### The header, footer and navigation (WP-50 Phase 3)
+
+Phase 3, item 5. `SiteHeader.astro`, `SiteFooter.astro`, `LanguageSwitcher.astro`, `NavDrawer.astro` and `ThemeControl.astro`; direction A's "Header: one row at every width" and the owner's decision that the language link stays visible on phones (`docs/work-packages/WP-50-directions.md`, "Decided"). Screenshots, `ea15b4a` left and this branch right: `docs/reviews/WP-50-phase3-header/`.
+
+**Critique at `ea15b4a`** (320×568, 360×740, 568×320, 768, 1024, 1280; EN and AF; light and dark; with and without JavaScript), in order of reader harm:
+
+1. **Landscape phones without JavaScript.** The bar carried the Read and Tools menus stacked (213px, three rows): on a 568×320 screen two thirds of the first screen was chrome, and the AI notice was below it on every one of the 74 document pages (`dealer-af-568x320-nojs-dark.png`).
+2. **The phone bar was three rows** (165px at 320 and 360px, 29% of a 320×568 screen): wordmark; search with a `/` key hint a touch screen cannot use (the hint showed on any narrow screen with a mouse); then two language links and Menu. With saved answers the ring joined the second row after load, as an empty circle with no number and no word (`mypath-en-320x568-js-light.png`).
+3. **Two language links where a reader needs one.** "English Afrikaans", the current one a filled chip, which sits beside the theme control's filled chip and the home page's filled primary action: three green chips in one glance at 1280px, and on a phone a link to the page the reader is already on.
+4. **The theme control was the widest thing in the desktop bar** (the audit's finding), and forced special cases: from 1024 to 1365px search became an unlabelled icon and the ring lost its word so the bar would stay one row.
+5. **The footer** held the disclaimer and three links; nothing a reader who scrolled to the end could go on to.
+
+**What changed:**
+
+| | Before (`ea15b4a`) | After |
+| --- | --- | --- |
+| Phone (below 1024px) | Wordmark / search + `/` / two language links + Menu: 165px, three rows | Wordmark, search, the other language, Menu: **61px, one row**, at 320, 360, 412, 568 (landscape) and 768px, both languages |
+| Below 480px | — | Search and Menu put their word under the icon (`--st-text-xs`), so "Soek", "Afrikaans" and "Kieslys" fit with the wordmark; the name is set at body size so "SA Business / Toolkit" is two lines inside the 44px row |
+| Below 360px | — | The wordmark shows its mark only; the name is visually hidden and stays the link's accessible name (checked in Chromium's own tree) |
+| Without JavaScript, below 1024px | The Read and Tools menus stacked in the bar (213px) | **Menu is a link to the footer's site map** (`#st-site-map`), every section and tool; the bar is the same 61px row |
+| From 1024px | Wordmark, menus, search icon, ring, two language links, theme control: 71px with JavaScript, 89 to 93px without | Wordmark and Read/Tools on the left; search as a field ("Search", `/`), the ring with "My path", the other language on the right: 61px with or without JavaScript, 1024 to 1600px, both languages, answers saved or not |
+| Language | Two links, the current one a chip with `aria-current` | **One link** naming the other language in that language ("Afrikaans" / "English", `lang` and `hreflang` set, accessible name "Read this page in Afrikaans" / "Lees hierdie bladsy in English"), in the row at every width; the drawer no longer repeats it |
+| Theme | In the bar from 1024px; in the drawer | In the footer ("Theme" / "Tema", every width) and in the drawer |
+| My path ring | In the bar at every width, joining after load | From 1024px only, with its word; on a phone My path is the first tool in the menu |
+| Footer | Disclaimer; Contents, About, How this was made | Disclaimer first (unchanged words); then **Read** (the six sections), **Tools**, **About this guide** (Contents, About, "How this was made and how to check it"), one to three columns; then the theme control |
+
+Nothing in the row depends on the web fonts or on a script having run, so its height is set from the first paint: the controls are 44px, the name fits two lines inside them, every control and the language link keep their width (`flex-shrink: 0`; the wordmark gives way), and the `js` class that `theme-init.js` sets before the body is parsed picks the Menu button or the Menu link. The ring, which is the one thing that appears after load, is not in the phone row. The `/` hint is hidden below 1024px as well as on touch screens.
+
+**Remove one accessory.** Four things left the bar: the theme control (to the footer), the second language link (the page's own language), the phone's ring (to the menu's first tool), and the `/` hint below 1024px. Each special case they needed went with them: the 1024 to 1365px icon-only search, the 1024 to 1279px hidden ring label and icon-less theme control, and the narrowed gaps. The drawer lost its language switcher, which the bar now always shows.
+
+**Without JavaScript.** Menu is `<a href="#st-site-map">` (`.no-js-only`); the drawer button stays `.js-only`. Below 1024px the Read and Tools `<details>` are no longer shown stacked; from 1024px they still open with no script. A reader with scripting off taps Menu and lands on the footer's lists, the "footer anchor" pattern; with JavaScript the same position opens the drawer. One copy of the links is rendered for the bar, one for the footer and one for the drawer, all from `lib/nav.ts` (`sectionLinks`, `toolLinks`, `footerLinks`), so they cannot drift; `nojs.spec.ts` and `header.spec.ts` check the footer has every link the bar's menus have.
+
+**Measured** (Chromium, Linux, this build; `ea15b4a` → branch):
+
+| | `ea15b4a` | Branch |
+| --- | --- | --- |
+| Bar at 320×568, JS / no JS | 165 / 213px | 61 / 61px |
+| Bar at 568×320, JS / no JS | 113 / 213px | 61 / 61px |
+| Bar at 1024 / 1280px, no JS (AF) | 89 / 93px | 61 / 61px |
+| AI notice top, AF dealer, 320×568, JS / no JS | 354 / 402px | 250 / 250px |
+| AI notice top, AF dealer, 568×320, JS / no JS | 272 / 372px | 220 / 220px |
+| AI notice top, AF start here, 568×320, JS / no JS | 315 / 415px (label row off screen) | 263 / 263px |
+| Home AI line top, 320×568 | 466 / 514px | 362 / 362px |
+| My path's first step, 320×568, with answers | 700px | 596px (still below the 568px screen; see below) |
+| Dealer's first text heading, 360×740, EN / AF | 1,477 / 1,740px | 1,373 / 1,636px |
+| Late web fonts at 320 and 360px (home and dealer, EN and AF): bar before → after, layout shift | 165 → 165px; 0.000 to 0.015 | 61 → 61px; 0.000 to 0.019 (header's share ≤ 0.001) |
+| JavaScript, heaviest document page / `/af/search/` | 24,832 / 35,759 B | 24,832 / 35,759 B (unchanged) |
+| CSS + HTML gzip, `/af/core/register/` | 18.0 + 20.7 KB | 18.2 + 21.2 KB (the footer's lists) |
+
+The WP-50a figure of "217 → 165px when the fonts arrive" no longer reproduces at `ea15b4a` (Phase 2's fallback metrics fixed the wrap); the new row is checked against the same method anyway (`header.spec.ts`, "late web fonts": the bar's height is the same before and after, to the pixel).
+
+**Accessibility.** Landmarks: one `banner` (the header), the "Main" / "Hoof" navigation (Read and Tools), "Language" / "Taal" around the language link, the drawer's "Menu", the footer's "All pages and tools" / "Alle bladsye en nutsgoed" with a heading per group, and one `contentinfo`. Every control is 44 × 44px at 320, 360, 568 and 1280px; the focus ring is the base one; Tab order on a phone is skip link, wordmark, search, language, Menu. `aria-current="page"` marks the page in the Read and Tools menus, the drawer and the footer (where it is also semibold), and the home link on the home page. In forced colours the bar keeps its rule and its controls their border; print leaves out the bar and the footer as before.
+
+**Not changed:** the drawer, the search dialog and its held-Enter behaviour (`search-boot.ts`), the menus' scripted closing, the sticky bar from 1024px and the static bar below it, the skip link, the scroll padding (`trackTopbar`), and the short-phone and landscape reorder of the AI notice in `Doc.astro` (it can now go, but that is a document-page change). With the one-row bar the notice's label row ends inside the first screen on all 74 document pages, EN and AF, with and without JavaScript, at 320×568, 568×320, 640×360, 800×360, 844×390 and 915×412 (worst top 289px at 320×568, 263px at 568×320).
+
+**Known limits:**
+
+- My path's first step is 596px down at 320×568 (was 700): the breadcrumb, h1, lead and "Your answers" chips sit above it. That is item 4 (the tools).
+- The Afrikaans dealer's first text heading is 1,636px at 360×740 (was 1,740); two screens are 1,480. The translation notice and the Afrikaans lead fill the rest.
+- The 404 page and `/design-system/` have their own shell (`Base.astro`), not this header; the 404 page is item 6.
+- The bar is not sticky on a phone. It is short enough now, but 61px is a fifth of a landscape phone's screen on every page, and making it sticky needs the "Now reading" pill and scroll padding retuned; left for a decision with Phase 5's real-phone check.
+
+`tests/e2e/header.spec.ts` holds the one row (seven sizes, four pages, both languages, with saved answers), the late-font check at 320 and 360px, the language link on fourteen kinds of page in both languages, 44px targets, the phone's Tab order and focus ring, the drawer without a switcher, Chromium accessibility-tree names (the mark-only wordmark included; skipped in other engines), landmarks, `aria-current`, the footer, forced colours and print. `nojs.spec.ts` checks Menu reaches the site map at 320, 568 and 768px, the menus from 1024px, and the AI notice on the first screen at seven sizes on four pages, landscape included.
 
 ### Search (WP-33)
 
@@ -1102,7 +1166,7 @@ Rules the pieces follow:
   (`your-path.ts`) rebuilds it with `import('./path-data')` when the answers or the rules (the hash
   of `paths.json`, `data-version`) changed. Until then a document page shows no ring and keeps its
   pager in section order. On the path's last page, Next leads to My path.
-- **The top bar from 1024 to 1279px** shows the ring without its "My path" label and the theme control without icons, so the sticky bar keeps one row with answers saved. Since the WP-33 merge the search control is its icon alone from 1024 to 1365px (44px, its name the visually hidden "Search"/"Soek", no `/` hint), and below 1280px the bar's gaps narrow to `--st-space-1`: with the word, the hint and "My path" the bar wrapped to two rows (124px) up to 1365px, and the Afrikaans bar was a few pixels too wide at 1024px.
+- **The top bar** shows the ring with its "My path" word from 1024px, in one 61px row with the search field and the language link (WP-50 Phase 3, item 5: the theme control left the bar, so the 1024 to 1365px icon-only search and hidden label went too). Below 1024px the ring is not in the bar: it joined the phone row after load. My path is the first tool in the menu.
 - **The home card keeps its space.** With `html[data-st-profile]` the card's box is kept, invisible, from first paint, so the page does not move when it appears; the card drops it (`data-no-path`) when there are no answers after all. Only what stops the card from drawing gives the space back: its own module failing to load (`data-st-script-failed~="YourPathCard"`) or the lazy path rules failing to load (`data-path-failed`, and the next trigger tries again). A slow load moves nothing, a dropped request leaves no gap, and another script failing leaves the card alone.
 - **Rebuilding the stored path** happens only on an element's own triggers (connecting, new answers), never on a change to `st.pathView.v1` from another tab, so two tabs on different builds cannot keep overwriting each other.
 - `theme-init.js` sets `<html data-st-profile>` before paint when answers are saved, so My path never
@@ -1221,16 +1285,17 @@ Every content page carries an AI notice near the top and a "Sources for this pag
 3. **Its one-sentence explanation** (`trust.status.aiCheckedMeans` / `humanCheckedMeans`), immediately beside the status.
 4. **The link** to `start/how-this-was-made`, as `.st-link-block` so it is a 44px target.
 
-**On a phone the notice is on the first screen** (WP-50a), at 320×568 too, with JavaScript or without, in both languages: before WP-50a it started 625 to 812px down. Since WP-50 Phase 3 it is a compact callout (small type and padding; same words, order and link) and there is no section label anywhere (the breadcrumb's hue dot names the section). The order is direction A's (H1, lead, meta line, notice) wherever the notice still fits the first screen; on a short phone screen (below 768px wide and 740px high) and on a landscape phone (below 500px high) the notices come straight after the H1 and the lead and meta line follow them (`st-doc__after-notice`, CSS `order`), because today's two- and three-row header leaves no room. Neither has a link or control, so the order of focus is the same; a screen reader still reads the lead first. That rule can go once the header is one row (Phase 3, item 5). "Words used on this page" is a closed disclosure at every width (it was open from 1024px until Phase 3). Measured at 320×568 on the vehicle-dealer page: the notice starts 354px down in Afrikaans with JavaScript and 402px without (the no-JS header carries every menu). On landscape phones the page also starts 8px under the header. Measured on all 74 document pages (EN and AF), the notice's label row ends inside the first screen:
+**On a phone the notice is on the first screen** (WP-50a), at 320×568 too, with JavaScript or without, in both languages: before WP-50a it started 625 to 812px down. Since WP-50 Phase 3 it is a compact callout (small type and padding; same words, order and link) and there is no section label anywhere (the breadcrumb's hue dot names the section). The order is direction A's (H1, lead, meta line, notice) wherever the notice still fits the first screen; on a short phone screen (below 768px wide and 740px high) and on a landscape phone (below 500px high) the notices come straight after the H1 and the lead and meta line follow them (`st-doc__after-notice`, CSS `order`), because the two- and three-row header left no room. Neither has a link or control, so the order of focus is the same; a screen reader still reads the lead first. The header is one row since Phase 3, item 5, so the rule can go; it stays until the document page is next changed. "Words used on this page" is a closed disclosure at every width (it was open from 1024px until Phase 3). Measured at 320×568 on the vehicle-dealer page: the notice starts 250px down in Afrikaans with or without JavaScript (354 and 402px before the one-row header). On landscape phones the page also starts 8px under the header. Measured on all 74 document pages (EN and AF), the notice's label row ends inside the first screen:
 
-| Landscape size | With JavaScript (worst top) | Without JavaScript (213px header) |
-| --- | --- | --- |
-| 568×320 | 73 of 74 (`af/start/start-here/` misses, top 315px) | 0 of 74 (328 to 415px) |
-| 640×360, 740×360, 800×360 | 74 of 74 (274, 225, 227px) | 0 of 74 (329 to 379px) |
-| 844×390 | 74 of 74 (229px) | 61 of 74 (13 miss at 381px) |
-| 896×414, 915×412 | 74 of 74 (231px) | 65 of 74 (9 miss at 383px: those whose H1 takes two lines, such as AF beauty and AF start here) |
+| Landscape size | Before item 5, with JavaScript (worst top) | Before item 5, without (213px header) | Since item 5, with and without JavaScript (61px header) |
+| --- | --- | --- | --- |
+| 320×568 | 74 of 74 | 74 of 74 | 74 of 74 (289px) |
+| 568×320 | 73 of 74 (`af/start/start-here/` misses, top 315px) | 0 of 74 (328 to 415px) | 74 of 74 (263px) |
+| 640×360, 800×360 | 74 of 74 (274, 227px) | 0 of 74 (329 to 379px) | 74 of 74 (222, 227px) |
+| 844×390 | 74 of 74 (229px) | 61 of 74 (13 miss at 381px) | 74 of 74 (229px) |
+| 915×412 | 74 of 74 (231px) | 65 of 74 (9 miss at 383px) | 74 of 74 (231px) |
 
-**Known gap:** the misses above wait for the one-row header (Phase 3, item 5); every one of them was further down at `5fbea62`. `doc-page.spec.ts` checks 360×740, 412×915, 800×360, 844×390 and 915×412 with JavaScript, on the vehicle dealer (EN and AF), AF start here and AF beauty; `nojs.spec.ts` checks 360×740, 412×915 and 915×412 without, on the vehicle dealer. `tests/e2e/first-screen.spec.ts` and `nojs.spec.ts` check it.
+The gap the one-row header was waiting for is closed. `doc-page.spec.ts` checks 360×740, 412×915, 800×360, 844×390 and 915×412 with JavaScript, and `nojs.spec.ts` 360×740, 412×915, 568×320, 640×360, 800×360, 844×390 and 915×412 without, each on the vehicle dealer (EN and AF), AF start here and AF beauty. `tests/e2e/first-screen.spec.ts` and `nojs.spec.ts` check it.
 
 On an **Afrikaans page** the Afrikaans AI notice comes first in the article header and says the *English* text was checked, and the machine-translation notice (`Callout variant="warning"`, `icon="lucide:languages"`) sits directly under it, in the same header. Neither notice is dismissible. Put the link to the English version inside the MT notice with `lang="en"` on the link text.
 
@@ -1349,6 +1414,7 @@ One last piece of wording. An unparseable token fails its pair, which is the rig
 | Use `var(--st-*)` for every colour, size and duration | Write hex, `rgb()`, `hsl()` or named colours outside `tokens.css` |
 | Pair every status colour with an icon and words | Use colour, position or shape alone to mean something |
 | Keep links in running text underlined | Remove underlines from links in a sentence, a card's text or a lone link |
+| Keep the top bar one row whose height is set at first paint: fixed 44px controls, the wordmark giving way | Add anything to the phone bar that appears after a script or a saved setting, or move the language link into a menu |
 | Put `.st-quiet-links` on a navigation list (contents, menus) | Hide a navigation link's underline on focus, or drop its focus ring |
 | Use rooibos only for "In plain words" | Use `--st-accent` for chrome: chips, stripes, rings, active states |
 | Use the duration tokens for every transition | Write a literal duration, or transition `transform` without checking reduced motion |
