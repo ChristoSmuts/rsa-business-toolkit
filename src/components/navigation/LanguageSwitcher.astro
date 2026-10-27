@@ -1,7 +1,13 @@
 ---
 /**
- * The language switcher (build plan B2, B3 flow 7): plain links to the same page under the other
- * language prefix. It never redirects and never depends on JavaScript.
+ * The language switcher (build plan B2, B3 flow 7): a plain link to the same page in each other
+ * language, named in that language ("Afrikaans" on an English page, "English" on an Afrikaans
+ * one). It never redirects and never depends on JavaScript.
+ *
+ * Only the other languages are links. The page's own language was a second link marked
+ * `aria-current`, a link to the page the reader is on; since WP-50 Phase 3, item 5 the header row
+ * holds one link at every width, which is what a reader who cannot read this page looks for
+ * (WP-50 directions, "Decided": the W3C internationalisation guidance and GOV.UK's Welsh link).
  *
  * `<st-lang-switch>` adds the current `#fragment` to the links once JavaScript runs, so a reader
  * who switches language halfway down a page lands on the same heading. Heading ids are English
@@ -28,7 +34,7 @@ const t = useTranslations(locale);
  * be read in whichever single language the link carried (review WP-20 pass 3).
  */
 const switchParts = splitAroundParam((language) => t('lang.switchTo', { language }));
-const options = ENABLED_LOCALES.map((code) => {
+const options = ENABLED_LOCALES.filter((code) => code !== locale).map((code) => {
   const meta = getLocale(code);
   return {
     code,
@@ -49,13 +55,10 @@ const options = ENABLED_LOCALES.map((code) => {
             href={option.href}
             hreflang={option.hreflang}
             data-locale={option.code}
-            aria-current={option.code === locale ? 'true' : undefined}
           >
-            {option.code !== locale && <span class="st-visually-hidden">{switchParts[0]}</span>}
-            <span lang={option.code === locale ? undefined : option.hreflang}>{option.name}</span>
-            {option.code !== locale && switchParts[1] && (
-              <span class="st-visually-hidden">{switchParts[1]}</span>
-            )}
+            <span class="st-visually-hidden">{switchParts[0]}</span>
+            <span lang={option.hreflang}>{option.name}</span>
+            {switchParts[1] && <span class="st-visually-hidden">{switchParts[1]}</span>}
           </a>
         </li>
       ))}
@@ -97,21 +100,8 @@ const options = ENABLED_LOCALES.map((code) => {
     color: var(--st-text);
   }
 
-  /*
-   * The current language is marked by a filled chip and by `aria-current`. The underline stays:
-   * a link that looks like a link is the house rule, and the chip is the extra cue, not the only
-   * one.
-   */
-  .st-lang__link[aria-current='true'] {
+  .st-lang__link:hover {
     background-color: var(--st-primary-soft);
     color: var(--st-on-primary-soft);
-  }
-
-  @media (forced-colors: active) {
-    .st-lang__link[aria-current='true'] {
-      forced-color-adjust: none;
-      background-color: Highlight;
-      color: HighlightText;
-    }
   }
 </style>

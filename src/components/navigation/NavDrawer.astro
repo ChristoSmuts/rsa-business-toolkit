@@ -1,17 +1,18 @@
 ---
 /**
  * The phone menu (build plan B2): a full-height native `<dialog>` with the sections and tools as
- * accordions, the search link, the language switcher and the theme control.
+ * accordions, the search link and the theme control. The language link is not repeated here: it
+ * is in the header row at every width (WP-50 Phase 3, item 5).
  *
  * A native `<dialog>` gives Escape, the backdrop and focus handling for free (plan B5).
  * `<st-nav-drawer>` (src/scripts/navigation.ts) only opens and closes it.
  *
- * **Without JavaScript nothing here is reachable, and nothing needs to be**: the same menus are
- * rendered in the top bar itself, where `SiteHeader` shows them below 1024px whenever the page
- * has no `js` class. The drawer is the enhancement, not the only way through the site.
+ * **Without JavaScript nothing here is reachable, and nothing needs to be**: below 1024px the
+ * header's Menu is then a link to the footer's list of every section and tool (`SiteFooter`), and
+ * from 1024px the header's own Read and Tools menus show. The drawer is the enhancement, not the
+ * only way through the site.
  */
 import Icon from '../ui/Icon.astro';
-import LanguageSwitcher from './LanguageSwitcher.astro';
 import NavMenu from './NavMenu.astro';
 import ThemeControl from './ThemeControl.astro';
 import { useTranslations } from '../../i18n';
@@ -60,7 +61,6 @@ const titleId = `${id}-title`;
         <NavMenu label={t('nav.read')} links={sections} route={route} descriptions open />
         <NavMenu label={t('nav.tools')} links={tools} route={route} descriptions />
       </nav>
-      <LanguageSwitcher locale={locale} route={route} />
       <ThemeControl locale={locale} />
     </div>
   </dialog>

@@ -1,17 +1,32 @@
 ---
 /**
- * The top bar (build plan B2): wordmark, the Read and Tools menus, search, the language switcher,
- * the theme control, and — below 1024px — the drawer button.
+ * The top bar (build plan B2; WP-50 Phase 3, item 5): one row at every width.
+ *
+ * - From 1024px: the wordmark, the Read and Tools menus, then search, the My path ring and the
+ *   language link on the right.
+ * - Below 1024px: the wordmark, search, the language link and Menu. Below 480px search and Menu
+ *   show their word under the icon, so the row holds the longest Afrikaans labels at 320px; below
+ *   360px the wordmark's name is visually hidden (it stays the link's name). The My path ring is
+ *   not in the phone row (My path is the first tool in the menu): it appeared after load and
+ *   pushed the page down.
+ * - The language link names the other language in that language ("Afrikaans" on an English page,
+ *   "English" on an Afrikaans one) and is in the row at every width, never only in a menu
+ *   (WP-50 directions, "Decided").
+ * - The theme control is in the footer (every width) and in the phone menu, not in the row.
+ *
+ * Nothing in the row depends on the web fonts or on a script having run, so its height is fixed
+ * from the first paint: the `js` class (set by the blocking `theme-init.js`) picks the Menu
+ * button or the Menu link before anything is drawn.
  *
  * How it works without JavaScript, which is the rule for every surface here:
  * - the menus are native `<details>`, so they open and close with no script;
- * - below 1024px the menus are normally hidden in favour of the drawer button, **except** when
- *   the page has no `js` class, where the same menus are shown stacked instead. So a phone with
- *   JavaScript off reaches every section and tool through the header itself, and there is no
- *   second copy of the links to keep in step;
+ * - below 1024px Menu is a link to the footer's list of every section and tool (`#st-site-map`,
+ *   SiteFooter.astro) instead of the drawer button. The header stays one row; before WP-50 Phase
+ *   3 it carried every menu stacked, 213px tall, and on a landscape phone the page started below
+ *   the screen;
  * - the search control is a link to `/search/`, which is a real page. With JavaScript,
  *   `<st-search>` (SearchDialog.astro) turns a plain click on it into the search dialog, and the
- *   `/` hint shows (`js-only`: without the script the key does nothing, so no hint).
+ *   `/` hint shows from 1024px (`js-only`: without the script the key does nothing, so no hint).
  */
 import pathsData from '../../data/paths.json';
 import Icon from '../ui/Icon.astro';
@@ -22,10 +37,9 @@ import Logo from '../illustrations/Logo.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import NavDrawer from './NavDrawer.astro';
 import NavMenu from './NavMenu.astro';
-import ThemeControl from './ThemeControl.astro';
 import { useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
-import { sectionLinks, toolLinks } from '../../lib/nav';
+import { SITE_MAP_ID, sectionLinks, toolLinks } from '../../lib/nav';
 import { href } from '../../lib/paths';
 import type { Manifest } from '../../lib/content/schema';
 import { APP_ROUTES, SEARCH_AVAILABLE, WIZARD_AVAILABLE } from '../../lib/routes';
@@ -63,9 +77,9 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
       <NavMenu label={t('nav.tools')} links={tools} route={route} group="st-topbar-menu" />
     </nav>
     {searchHref && (
-      <a class="st-topbar__search" href={searchHref} data-search-open>
-        <Icon name="lucide:search" size="1em" />
-        <span class="st-topbar__search-label">{t('nav.search')}</span>
+      <a class="st-topbar__search st-topbar__control" href={searchHref} data-search-open>
+        <Icon name="lucide:search" size="1.25em" />
+        <span class="st-topbar__search-label st-topbar__word">{t('nav.search')}</span>
         {/* A visual hint only: the script announces the keys as `aria-keyshortcuts`. */}
         <span class="st-topbar__kbd js-only" aria-hidden="true" data-search-key-hint>
           <Kbd>/</Kbd>
@@ -97,18 +111,19 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
       </st-path-progress>
     )}
     <LanguageSwitcher class="st-topbar__lang" locale={locale} route={route} />
-    <div class="st-topbar__theme">
-      <ThemeControl locale={locale} />
-    </div>
     <button
       type="button"
-      class="st-topbar__menu-button js-only"
+      class="st-topbar__menu-button st-topbar__control js-only"
       data-drawer-open="st-nav-drawer"
       aria-haspopup="dialog"
     >
       <Icon name="lucide:menu" size="1.25em" />
-      <span>{t('nav.menu')}</span>
+      <span class="st-topbar__word">{t('nav.menu')}</span>
     </button>
+    <a class="st-topbar__menu-link st-topbar__control no-js-only" href={`#${SITE_MAP_ID}`}>
+      <Icon name="lucide:menu" size="1.25em" />
+      <span class="st-topbar__word">{t('nav.menu')}</span>
+    </a>
   </div>
   <NavDrawer
     id="st-nav-drawer"
@@ -127,6 +142,93 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
 </script>
 
 <style>
+  .st-topbar {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--st-z-sticky);
+    border-block-end: var(--st-border-width) solid var(--st-border);
+    background-color: var(--st-surface);
+  }
+
+  /*
+   * One row. Every control is a 44px target and the row is 44px plus its padding (60px), at every
+   * width, in both languages, with or without the web fonts. `flex-wrap` stays on so that text
+   * enlarged to 200% wraps the row instead of pushing it off the screen; at normal sizes nothing
+   * wraps, which `header.spec.ts` checks.
+   */
+  .st-topbar__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-2);
+    min-block-size: var(--st-topbar);
+    padding-block: var(--st-space-2);
+  }
+
+  /*
+   * The wordmark takes the room the controls leave. Its name wraps to two lines on a phone
+   * ("SA Business / Toolkit"), which still fits the 44px row, so a late web font cannot add a row.
+   */
+  .st-topbar__home {
+    display: inline-flex;
+    flex: 1 1 0;
+    align-items: center;
+    min-inline-size: 0;
+    min-block-size: var(--st-target);
+    color: var(--st-text);
+    text-decoration: none;
+  }
+
+  .st-topbar__home:visited {
+    color: var(--st-text);
+  }
+
+  .st-topbar__menus {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--st-space-1);
+    min-inline-size: 0;
+  }
+
+  /* Search and Menu (button or link): icon and word, 44px, bordered like the controls they are. */
+  .st-topbar__control {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: var(--st-space-2);
+    min-inline-size: var(--st-target);
+    min-block-size: var(--st-target);
+    padding-inline: var(--st-space-3);
+    border: var(--st-border-width) solid var(--st-border-strong);
+    border-radius: var(--st-radius-md);
+    background-color: var(--st-surface);
+    color: var(--st-text);
+    font-weight: var(--st-weight-semibold);
+    line-height: var(--st-leading-tight);
+    text-decoration: none;
+
+    /*
+     * A translated word longer than any today must not widen the page. The control never shrinks
+     * in the row (`flex-shrink: 0`), so a real word such as "Kieslys" is never split.
+     */
+    overflow-wrap: anywhere;
+  }
+
+  .st-topbar__control:visited {
+    color: var(--st-text);
+  }
+
+  .st-topbar__control:hover {
+    background-color: var(--st-primary-soft);
+    color: var(--st-on-primary-soft);
+  }
+
+  .st-topbar__search {
+    border-radius: var(--st-radius-pill);
+  }
+
   .st-topbar__path[hidden] {
     display: none;
   }
@@ -151,169 +253,74 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
     display: inline-flex;
   }
 
-  /*
-   * From 1024 to 1279px the bar is sticky and tight: with the ring and its "My path" label it
-   * wrapped to two rows, 71 to 123px (review WP-31 pass 2, minor 3). There the ring stands alone
-   * and the theme control drops its icons (its words stay). The link's name stays "My path: 3 of
-   * 10 steps done" (the visually hidden progress text). `wizard.spec.ts` checks one row.
-   */
-  @media (width < 1280px) {
-    .st-topbar__path-label {
-      position: absolute;
-      inline-size: 1px;
-      block-size: 1px;
-      overflow: hidden;
-      clip-path: inset(50%);
-      white-space: nowrap;
-    }
-
-    .st-topbar__path-link {
-      min-inline-size: var(--st-target);
-      justify-content: center;
-    }
-  }
-
-  .st-topbar {
-    position: sticky;
-    inset-block-start: 0;
-    z-index: var(--st-z-sticky);
-    border-block-end: var(--st-border-width) solid var(--st-border);
-    background-color: var(--st-surface);
-  }
-
-  .st-topbar__inner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--st-space-2);
-    min-block-size: var(--st-topbar);
-    padding-block: var(--st-space-2);
-  }
-
-  .st-topbar__home {
-    display: inline-flex;
-    align-items: center;
-    min-block-size: var(--st-target);
-    margin-inline-end: auto;
-    text-decoration: none;
-  }
-
-  .st-topbar__menus {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--st-space-1);
-    min-inline-size: 0;
-  }
-
-  .st-topbar__search {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--st-space-2);
-    min-block-size: var(--st-target);
-    padding-inline: var(--st-space-3);
-    border: var(--st-border-width) solid var(--st-border-strong);
-    border-radius: var(--st-radius-pill);
-    color: var(--st-text);
-    overflow-wrap: anywhere;
-  }
-
-  /* A key hint is no use on a touch screen. */
-  @media (hover: none) {
-    .st-topbar__kbd {
-      display: none;
-    }
-  }
-
-  /*
-   * From 1024 to 1365px the search control is the icon alone, still 44px, its name the visually
-   * hidden word, and `/` and Ctrl+K still announced (`aria-keyshortcuts`). With "Search"/"Soek",
-   * the `/` hint and "My path" the bar wrapped to two rows again up to 1365px (124px; WP-33 merged
-   * with WP-31). Below 1280px, where the ring also stands alone, the gaps narrow as well: the
-   * Afrikaans bar was a few pixels too wide at 1024px. `wizard.spec.ts` checks one row.
-   */
-  @media (1024px <= width < 1280px) {
-    .st-topbar__inner {
-      gap: var(--st-space-1);
-    }
-  }
-
-  @media (1024px <= width < 1366px) {
-    .st-topbar__search {
-      position: relative;
-      justify-content: center;
-      min-inline-size: var(--st-target);
-      padding-inline: var(--st-space-2);
-    }
-
-    .st-topbar__search-label {
-      position: absolute;
-      inline-size: 1px;
-      block-size: 1px;
-      overflow: hidden;
-      clip-path: inset(50%);
-      white-space: nowrap;
-    }
-
-    .st-topbar__kbd {
-      display: none;
-    }
-  }
-
-  .st-topbar__search:visited {
-    color: var(--st-text);
-  }
-
-  .st-topbar__menu-button {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--st-space-2);
-    min-block-size: var(--st-target);
-    padding-inline: var(--st-space-3);
-    border: var(--st-border-width) solid var(--st-border-strong);
-    border-radius: var(--st-radius-md);
-    background-color: var(--st-surface);
-    color: var(--st-text);
-    font-weight: var(--st-weight-semibold);
-    overflow-wrap: anywhere;
-  }
-
-  /*
-   * Below the sidebar breakpoint the drawer takes over — unless there is no JavaScript, and then
-   * the same `<details>` menus are shown stacked, so the header alone still reaches every page.
-   */
+  /* Below 1024px: wordmark, search, language, Menu. */
   @media (width < 1024px) {
     /*
-     * Not sticky on a phone: the bar wraps to two or three rows (wordmark, search and language,
-     * menu) and, with JavaScript off, carries every menu stacked. Pinned, it covered up to 40% of
-     * a 320px screen and every anchor target under it (review WP-20 pass 3). While it is static,
-     * `trackTopbar()` publishes an offset of 0, so the scroll padding below drops with it.
+     * Not sticky on a phone. The row is short now, but on a 568×320 landscape phone 60px is a fifth
+     * of the screen on every page. While it is static, `trackTopbar()` publishes an offset of 0, so
+     * the scroll padding drops with it.
      */
     .st-topbar {
       position: static;
     }
 
-    /*
-     * The theme control is wrapped in an element this component owns. As a class passed to
-     * <ThemeControl> it landed on that component's element with *its* scope attribute, this scoped
-     * rule never matched, and the full control stayed in the bar, 227px tall at 320px (review
-     * WP-20 pass 3). The drawer has its own theme control.
-     */
+    /* The drawer (with JavaScript) or the footer's site map (without) holds the menus. */
     .st-topbar__menus,
-    .st-topbar__theme {
+    .st-topbar__path,
+    .st-topbar__kbd {
       display: none;
-    }
-
-    html:not(.js) .st-topbar__menus {
-      display: flex;
-      flex-basis: 100%;
-      flex-direction: column;
-      align-items: stretch;
     }
   }
 
+  /* Below 480px search and Menu put their word under the icon, in small type. */
+  @media (width < 480px) {
+    .st-topbar__inner {
+      gap: var(--st-space-1);
+    }
+
+    .st-topbar__control {
+      flex-direction: column;
+      gap: 0;
+      padding-inline: var(--st-space-1);
+      font-size: var(--st-text-xs);
+    }
+
+    .st-topbar__search {
+      border-radius: var(--st-radius-md);
+    }
+  }
+
+  /* From 1024px: wordmark and menus on the left; search, My path and language on the right. */
   @media (width >= 1024px) {
-    .st-topbar__menu-button {
+    .st-topbar__home {
+      flex: 0 1 auto;
+      margin-inline-end: var(--st-space-4);
+    }
+
+    .st-topbar__menus {
+      margin-inline-end: auto;
+    }
+
+    /* Search looks like a field: a wide pill with the word and the `/` hint. */
+    .st-topbar__search {
+      justify-content: flex-start;
+      min-inline-size: 13rem;
+      font-weight: var(--st-weight-regular);
+    }
+
+    .st-topbar__kbd {
+      margin-inline-start: auto;
+    }
+
+    .st-topbar__menu-button,
+    .st-topbar__menu-link {
+      display: none;
+    }
+  }
+
+  /* A key hint is no use on a touch screen. */
+  @media (hover: none) {
+    .st-topbar__kbd {
       display: none;
     }
   }
@@ -326,10 +333,42 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
 </style>
 
 <style is:global>
-  /* The theme control's icons, between 1024 and 1279px (see the top bar's own styles above). */
-  @media (1024px <= width < 1280px) {
-    .st-topbar__theme .st-segmented__icon {
-      display: none;
+  /*
+   * Rules on the language link and the wordmark, which are other components: a class passed to
+   * <LanguageSwitcher> lands on that component's element with *its* scope attribute, so a scoped
+   * rule here would never match (the same trap as the theme control's, review WP-20 pass 3). Each
+   * selector starts at `.st-topbar` so it outranks the component's own scoped rule.
+   *
+   * The language link is never squeezed: "Afrikaans" and "English" are one word each and must not
+   * break; the wordmark gives way instead.
+   */
+  .st-topbar .st-topbar__inner > .st-topbar__lang {
+    flex-shrink: 0;
+  }
+
+  @media (width < 480px) {
+    .st-topbar .st-topbar__lang .st-lang__link {
+      padding-inline: var(--st-space-1);
+    }
+
+    /* The name at body size, so "SA Business" stays on one line at 360px in either face. */
+    .st-topbar .st-topbar__home .st-logo__text {
+      font-size: var(--st-text-md);
+    }
+  }
+
+  /*
+   * Below 360px the three controls leave too little room for the name beside the mark, so the mark
+   * stands alone; the name stays the link's accessible name.
+   */
+  @media (width < 360px) {
+    .st-topbar .st-topbar__home .st-logo__text {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
     }
   }
 
@@ -337,8 +376,7 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
    * Anchor targets and focused elements scroll to just below the bar, whatever its real height.
    * `--st-topbar-offset` is the bar's measured height while it is sticky and 0 while it scrolls away
    * (src/scripts/navigation.ts, `trackTopbar`). Without JavaScript it is unset, and the bar is never
-   * sticky then, so 0 is right. A fixed 72px was wrong whenever the bar wrapped: 123px at 1024px
-   * with JavaScript, 93px without (review WP-20 pass 4).
+   * sticky then, so 0 is right.
    *
    * `--st-toc-pill-space` is the room the table of contents keeps for its "Now reading" pill below
    * 1280px (WP-30, `TableOfContents.astro`); 0 on every other page.
@@ -353,9 +391,8 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
   }
 
   /*
-   * Without JavaScript the bar is never sticky: the theme control's hint and, below 1024px, every
-   * menu make it two rows or more, and nothing could measure it for the padding above. This beats
-   * the component's scoped `position: sticky` on specificity.
+   * Without JavaScript nothing can measure the bar for the padding above, so it is never sticky.
+   * This beats the component's scoped `position: sticky` on specificity.
    */
   html:not(.js) .st-topbar {
     position: static;

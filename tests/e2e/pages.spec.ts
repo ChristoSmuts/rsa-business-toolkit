@@ -447,7 +447,7 @@ test.describe('navigation between real pages', () => {
     const anchor = await page.locator('article .st-blocks h2[id]').first().getAttribute('id');
     expect(anchor).toBeTruthy();
     await page.goto(`core/tax-and-sars/#${anchor ?? ''}`);
-    const af = page.locator('.st-topbar__lang a').nth(1);
+    const af = page.locator('.st-topbar__lang a[data-locale="af"]');
     await expect(af).toHaveAttribute('href', `${basePath}af/core/tax-and-sars/#${anchor ?? ''}`);
     await af.click();
     await expect(page).toHaveURL(new RegExp(`/af/core/tax-and-sars/#${anchor ?? ''}$`));

@@ -14,10 +14,12 @@ import { uid } from '../../scripts/uid';
 
 interface Props {
   locale: Locale;
+  /** Show "Theme" above the segments (the footer does; in the drawer the options say enough). */
+  showLegend?: boolean | undefined;
   class?: string | undefined;
 }
 
-const { locale, class: className } = Astro.props;
+const { locale, showLegend = false, class: className } = Astro.props;
 const t = useTranslations(locale);
 // One radio group per control: two controls on a page (header and drawer) must not share a name.
 const name = uid('st-theme');
@@ -31,7 +33,9 @@ const options = [
 <div class:list={['st-theme-control', className]}>
   <st-theme-toggle class="js-only">
     <fieldset>
-      <legend class="st-visually-hidden">{t('theme.label')}</legend>
+      <legend class={showLegend ? 'st-theme-control__legend' : 'st-visually-hidden'}>
+        {t('theme.label')}
+      </legend>
       <div class="st-segmented">
         {options.map((option) => (
           <label class="st-segmented__option">
@@ -60,6 +64,13 @@ const options = [
 <style>
   .st-theme-control {
     min-inline-size: 0;
+  }
+
+  /* Set like the footer's group headings, where it is shown. */
+  .st-theme-control__legend {
+    margin-block-end: var(--st-space-2);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-bold);
   }
 
   /* Equal-width segments on one row at every width, 320px included. */

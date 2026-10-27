@@ -174,6 +174,22 @@ describe('language of parts on an Afrikaans page', () => {
     expect(langProblems(af, en)).toEqual([]);
   });
 
+  // WP-50 Phase 3, item 5: the header links only the other language, so the English twin has no
+  // "English" to match the Afrikaans page's link. Only the exact name in its own language passes.
+  it("passes a language's own name marked with that language, and nothing longer", () => {
+    const enHeader =
+      '<html lang="en-ZA"><body><a hreflang="af-ZA"><span lang="af-ZA">Afrikaans</span></a></body></html>';
+    const afHeader =
+      '<html lang="af-ZA"><body><a hreflang="en-ZA"><span lang="en-ZA">English</span></a></body></html>';
+    expect(langProblems(afHeader, enHeader)).toEqual([]);
+    const afOther =
+      '<html lang="af-ZA"><body><p lang="en-ZA">English weergawe</p><p lang="en-ZA">Engels</p></body></html>';
+    expect(langProblems(afOther, enHeader)).toEqual([
+      'Afrikaans text marked as English: "English weergawe"',
+      'Afrikaans text marked as English: "Engels"',
+    ]);
+  });
+
   it('fails Afrikaans text that inherits English, as inside an English fallback block', () => {
     const af =
       '<html lang="af-ZA"><body><div lang="en-ZA"><p>Merkies word nie gestoor nie.</p></div></body></html>';

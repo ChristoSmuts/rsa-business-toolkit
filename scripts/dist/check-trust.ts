@@ -10,7 +10,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { ENABLED_LOCALES, type Locale } from '../../src/i18n/locales';
+import { ENABLED_LOCALES, getLocale, type Locale } from '../../src/i18n/locales';
 import { normaliseBase } from '../base-path';
 import { decodeEntities, listFiles, resolveDistRoot, routeOfHtmlFile } from './audit-links';
 import af from '../../src/i18n/af.json';
@@ -333,6 +333,12 @@ const OTHER_NAMES = [
   'Werksmans Attorneys',
 ];
 
+/** The name an enabled language gives itself ("English" for `en-ZA`), from its `lang` tag. */
+function ownName(lang: string): string | undefined {
+  const code = ENABLED_LOCALES.find((locale) => getLocale(locale)?.hreflang === lang);
+  return code === undefined ? undefined : getLocale(code)?.nativeName;
+}
+
 /**
  * Words and labels spelled and meant the same in Afrikaans and English, so a twin that has them is
  * not untranslated: loanwords (Favicon, Odometer), product and file names (Pantone, Markdown,
@@ -425,6 +431,10 @@ function isNeutralResidue(rest: string): boolean {
  * both directions: text marked Afrikaans that the English twin also has is English read with an
  * Afrikaans voice, and text marked English that the English twin lacks is Afrikaans read with an
  * English voice. Shared names, `<code>` and language-neutral text are skipped.
+ *
+ * So is a language's own name marked with that language: the header's language link reads
+ * "English" on an Afrikaans page, in `lang="en-ZA"`, and since WP-50 Phase 3, item 5 the English
+ * twin has no "English" of its own to match it (its link reads "Afrikaans").
  */
 export function langProblems(
   afHtml: string,
@@ -447,7 +457,8 @@ export function langProblems(
     const englishAsAfrikaans = node.lang.startsWith('af') && inEnglish;
     // Afrikaans text read with an English voice: it inherits en-ZA and the English twin lacks it,
     // as when a site line inside an English fallback block loses its own lang (review pass 7).
-    const afrikaansAsEnglish = node.lang.startsWith('en') && !inEnglish;
+    const afrikaansAsEnglish =
+      node.lang.startsWith('en') && !inEnglish && node.text !== ownName(node.lang);
     // Names are checked last, and only for a would-be finding: it is the slow test.
     if (!(englishAsAfrikaans || afrikaansAsEnglish) || isProtectedText(node.text, names)) continue;
     report(

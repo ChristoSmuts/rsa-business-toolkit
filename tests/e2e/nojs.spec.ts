@@ -43,10 +43,12 @@ test.describe('readable without JavaScript', () => {
 });
 
 /**
- * The drawer is a `<dialog>` and cannot open without JavaScript, so on a phone the header shows
- * the same `<details>` menus instead. This is the test that keeps that arrangement honest: if the
- * menus were hidden below 1024px unconditionally, a phone with JavaScript off could reach no
- * section and no tool from the header at all.
+ * The drawer is a `<dialog>` and cannot open without JavaScript. Until WP-50 Phase 3, item 5 the
+ * header then showed the Read and Tools menus stacked below 1024px (213px, three rows, and on a
+ * landscape phone the page started below the screen). Now Menu is a link to the footer's site map,
+ * which lists every section and tool, and the header stays one row. From 1024px the header's own
+ * `<details>` menus work with no script. This keeps both honest: if Menu went nowhere, or the map
+ * lost a link the menus have, a phone with JavaScript off could not reach it from the header.
  */
 test.describe('the header navigates without JavaScript', () => {
   if (skipReason) {
@@ -54,8 +56,49 @@ test.describe('the header navigates without JavaScript', () => {
     return;
   }
 
-  for (const width of [320, 1280]) {
-    test(`sections and tools are reachable at ${width}px`, async ({ page }) => {
+  test('below 1024px, Menu is one row away from every section and tool, in the footer', async ({
+    page,
+  }) => {
+    for (const [width, height] of [
+      [320, 568],
+      [568, 320],
+      [768, 1024],
+    ] as const) {
+      await page.setViewportSize({ width, height });
+      await page.goto(routeUrl(CONTENT_REFERENCE));
+      const bar = await page.locator('header.st-topbar').boundingBox();
+      expect(bar?.height ?? Infinity, `the bar at ${width}px`).toBeLessThanOrEqual(62);
+      await expect(page.locator('.st-topbar__menus')).toBeHidden();
+      await expect(page.locator('.st-topbar__menu-button')).toBeHidden();
+      await expect(page.locator('dialog.st-drawer')).toBeHidden();
+      // The language link is a plain link, so it works too.
+      await expect(page.locator('.st-topbar__lang a')).toHaveCount(1);
+      await expect(page.locator('.st-topbar__lang a')).toBeVisible();
+
+      const menu = page.locator('a.st-topbar__menu-link');
+      await expect(menu).toBeVisible();
+      await expect(menu).toHaveText('Menu');
+      const box = await menu.boundingBox();
+      expect(box?.height ?? 0).toBeGreaterThanOrEqual(44);
+      expect(box?.width ?? 0).toBeGreaterThanOrEqual(44);
+      await menu.click();
+      await expect(page).toHaveURL(/#st-site-map$/);
+      const map = page.locator('footer #st-site-map');
+      await expect(map).toBeInViewport();
+      // Every link the header's menus hold (they are in the HTML, hidden at this width).
+      const menuLinks = await page
+        .locator('.st-topbar__menus a')
+        .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
+      const mapLinks = await map
+        .locator('a')
+        .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
+      expect(menuLinks.length).toBeGreaterThanOrEqual(10);
+      for (const href of menuLinks) expect(mapLinks, `${width}px`).toContain(href);
+    }
+  });
+
+  test('from 1024px, the Read and Tools menus open with no script', async ({ page }) => {
+    for (const width of [1024, 1280]) {
       await page.setViewportSize({ width, height: 900 });
       await page.goto(routeUrl(CONTENT_REFERENCE));
 
@@ -69,11 +112,13 @@ test.describe('the header navigates without JavaScript', () => {
       await expect(menus.first().locator('a').first()).toBeVisible();
 
       await expect(page.locator('.st-topbar__menu-button')).toBeHidden();
+      await expect(page.locator('.st-topbar__menu-link')).toBeHidden();
       await expect(page.locator('dialog.st-drawer')).toBeHidden();
-      // The language switcher is plain links, so it works too.
-      await expect(page.locator('.st-topbar__lang a')).toHaveCount(2);
-    });
-  }
+      await expect(page.locator('.st-topbar__lang a')).toHaveCount(1);
+      const bar = await page.locator('header.st-topbar').boundingBox();
+      expect(bar?.height ?? Infinity, `the bar at ${width}px`).toBeLessThanOrEqual(62);
+    }
+  });
 });
 
 test.describe('anchors without JavaScript', () => {
@@ -463,9 +508,9 @@ test.describe('Find my path without JavaScript', () => {
 });
 
 /**
- * WP-50a, item 1: without JavaScript the header carries every menu and is taller, and the AI notice
- * must still start on the first screen of a 320×568 phone, with its label row in view (Stoep rule
- * 9, ADR 0006). "Words used on this page" is closed (at every width since WP-50 Phase 3).
+ * WP-50a, item 1: without JavaScript the AI notice must start on the first screen of a 320×568
+ * phone, with its label row in view (Stoep rule 9, ADR 0006). The header carried every menu then
+ * (213px); since WP-50 Phase 3, item 5 it is one row (61px) with or without JavaScript. "Words used on this page" is closed (at every width since WP-50 Phase 3).
  */
 test.describe('the AI notice on a 320×568 screen without JavaScript', () => {
   for (const route of [
@@ -484,19 +529,28 @@ test.describe('the AI notice on a 320×568 screen without JavaScript', () => {
     });
   }
 
-  // WP-50 Phase 3 review passes 1 and 2. Without JavaScript the header carries every menu (213px
-  // below 1024px), so on a landscape phone the notice reaches the first screen only at 412px high
-  // and more, and only where the H1 is one line (65 of 74 pages at 915×412; the vehicle dealer is
-  // one of them). The rest waits for the one-row header (Phase 3, item 5); see
-  // docs/design-system.md, "AI notice".
+  // WP-50 Phase 3 review passes 1 and 2: without JavaScript the header carried every menu (213px
+  // below 1024px), and on a landscape phone the notice missed the first screen on every page at
+  // 568×320 and 640 to 800×360, and on pages with a two-line H1 up to 915×412. With the one-row
+  // header (item 5) the label row is on the first screen at every size here, on the longest-titled
+  // pages too (AF start here, AF beauty); see docs/design-system.md, "AI notice".
   for (const [width, height] of [
     [360, 740],
     [412, 915],
+    [568, 320],
+    [640, 360],
+    [800, 360],
+    [844, 390],
     [915, 412],
   ] as const) {
     test(`the AI notice is on the first screen at ${width}×${height}`, async ({ page }) => {
       await page.setViewportSize({ width, height });
-      for (const route of ['business-types/vehicle-dealer/', 'af/business-types/vehicle-dealer/']) {
+      for (const route of [
+        'business-types/vehicle-dealer/',
+        'af/business-types/vehicle-dealer/',
+        'af/start/start-here/',
+        'af/business-types/beauty/',
+      ]) {
         await page.goto(route);
         const box = await page.locator('.st-ai-notice').boundingBox();
         expect(box?.y ?? Number.POSITIVE_INFINITY, route).toBeLessThanOrEqual(height - 44);

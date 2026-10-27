@@ -566,21 +566,24 @@ test.describe('navigation', () => {
     }
   });
 
-  test('the language switcher is plain links to the same page, and keeps the anchor', async ({
+  // Since WP-50 Phase 3, item 5 the switcher links only the other language (one link in the bar at
+  // every width, named in that language); the page's own language was a second link to itself.
+  test('the language switcher is a plain link to the same page, and keeps the anchor', async ({
     page,
   }) => {
     await open(page, EN);
     const links = page.locator('.st-topbar__lang a');
-    await expect(links).toHaveCount(2);
-    await expect(links.nth(0)).toHaveAttribute('aria-current', 'true');
-    await expect(links.nth(1)).toHaveAttribute('href', `/business-toolkit/${AF}`);
+    await expect(links).toHaveCount(1);
+    await expect(links.first()).toHaveAttribute('data-locale', 'af');
+    await expect(links.first()).not.toHaveAttribute('aria-current', /.*/);
+    await expect(links.first()).toHaveAttribute('href', `/business-toolkit/${AF}`);
 
     await page.goto(`${EN}#how-much-regulation-each-type-carries`);
-    await expect(links.nth(1)).toHaveAttribute(
+    await expect(links.first()).toHaveAttribute(
       'href',
       `/business-toolkit/${AF}#how-much-regulation-each-type-carries`,
     );
-    await links.nth(1).click();
+    await links.first().click();
     await expect(page).toHaveURL(`/business-toolkit/${AF}#how-much-regulation-each-type-carries`);
     await expect(page.locator('html')).toHaveAttribute('lang', 'af-ZA');
   });
@@ -589,7 +592,7 @@ test.describe('navigation', () => {
     page,
   }) => {
     await open(page, EN);
-    const other = page.locator('.st-topbar__lang a').nth(1);
+    const other = page.locator('.st-topbar__lang a[data-locale="af"]');
     await page.goto(`${EN}#how-much-regulation-each-type-carries`);
     await expect(other).toHaveAttribute('href', /#how-much-regulation-each-type-carries$/);
     await page.goBack();
@@ -597,12 +600,14 @@ test.describe('navigation', () => {
     await expect(other).toHaveAttribute('href', `/business-toolkit/${AF}`);
   });
 
+  // Since WP-50 Phase 3, item 5 the footer also lists every section and tool (the site map); the
+  // standing links are its "About this guide" group, in the same order.
   test('the footer carries the short disclaimer and the standing links', async ({ page }) => {
     await open(page, EN);
     const footer = page.locator('footer.st-footer');
     await expect(footer).toContainText('Not legal, tax or financial advice');
     const hrefs = await footer
-      .locator('a')
+      .locator('[data-footer-group="st-footer-guide"] a')
       .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('href') ?? ''));
     expect(hrefs).toEqual([
       '/business-toolkit/contents/',

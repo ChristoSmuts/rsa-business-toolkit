@@ -20,6 +20,12 @@ import {
 } from './routes';
 import { DEFAULT_LOCALE } from '../i18n/locales';
 
+/**
+ * The footer's list of every section and tool. Below 1024px without JavaScript the header's Menu is
+ * a link to it (WP-50 Phase 3, item 5), so it is one id shared by `SiteHeader` and `SiteFooter`.
+ */
+export const SITE_MAP_ID = 'st-site-map';
+
 export interface NavLink {
   readonly id: string;
   readonly href: string;

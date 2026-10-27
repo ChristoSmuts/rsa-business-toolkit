@@ -68,7 +68,9 @@ test.describe('the AI notice on a 320×568 screen', () => {
     });
   }
 
-  test('stays on the first screen with saved answers, once the top bar shows the path ring', async ({
+  // Since WP-50 Phase 3, item 5 the ring is not in the phone's bar (it joined the row after load
+  // and made it a third row); the bar's script still runs, and the notice must not move either way.
+  test('stays on the first screen with saved answers, once the top bar’s path script has run', async ({
     page,
     seedStorage,
   }) => {
@@ -81,7 +83,12 @@ test.describe('the AI notice on a 320×568 screen', () => {
     await page.waitForLoadState('networkidle');
     for (const route of ['business-types/vehicle-dealer/', 'af/business-types/vehicle-dealer/']) {
       await page.goto(route);
-      await expect(page.locator('st-path-progress.st-topbar__path')).toBeVisible();
+      // The script found the path (it drops `hidden`); below 1024px the bar's CSS keeps it out.
+      await page.waitForFunction(
+        () =>
+          document.querySelector<HTMLElement>('st-path-progress.st-topbar__path')?.hidden === false,
+      );
+      await expect(page.locator('st-path-progress.st-topbar__path')).toBeHidden();
       await page.waitForLoadState('networkidle');
       expect(await noticeTop(page), route).toBeLessThanOrEqual(PHONE.height - 44);
     }

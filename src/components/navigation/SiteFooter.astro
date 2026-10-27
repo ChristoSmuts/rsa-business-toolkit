@@ -1,15 +1,32 @@
 ---
 /**
- * The footer (build plan B2, B4 FooterDisclaimer): the short disclaimer every page carries, plus
- * Contents, About and "How this was made".
+ * The footer (build plan B2, B4 FooterDisclaimer; WP-50 Phase 3, item 5).
  *
- * The disclaimer is the short form (`site.disclaimerShort`). It does not replace the D5 AI notice
- * near the top of a content page — ADR 0006 is explicit that the notice must not live only in the
- * footer — and it never says more than the sources support.
+ * In this order:
+ * 1. the short disclaimer every page carries (`site.disclaimerShort`). It does not replace the D5
+ *    AI notice near the top of a content page (ADR 0006 is explicit that the notice must not live
+ *    only in the footer), and it never says more than the sources support;
+ * 2. the site map (`#st-site-map`): the six sections, the tools, and the guide's own pages
+ *    (Contents, About, "How this was made and how to check it"). Below 1024px without JavaScript
+ *    the header's Menu is a link here, which is what keeps that header to one row;
+ * 3. the theme control, which left the top bar in WP-50 Phase 3 (it was the widest thing in it).
+ *    It needs JavaScript to save a choice; without it a line says the page follows the device.
+ *
+ * The links are navigation lists (`.st-quiet-links`: the underline shows on hover and focus) in the
+ * text colour, which is verified on `--st-surface-2`. `aria-current="page"` marks the page the
+ * reader is on, in words for a screen reader and in weight on screen.
  */
+import ThemeControl from './ThemeControl.astro';
 import { useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
-import { footerLinks, isCurrent } from '../../lib/nav';
+import {
+  SITE_MAP_ID,
+  footerLinks,
+  isCurrent,
+  sectionLinks,
+  toolLinks,
+  type NavLink,
+} from '../../lib/nav';
 import type { Manifest } from '../../lib/content/schema';
 
 interface Props {
@@ -20,27 +37,39 @@ interface Props {
 
 const { locale, manifest, route } = Astro.props;
 const t = useTranslations(locale);
-const links = footerLinks(manifest, locale, t);
+const groups: { id: string; label: string; links: NavLink[] }[] = [
+  { id: 'st-footer-read', label: t('nav.read'), links: sectionLinks(manifest, locale, t) },
+  { id: 'st-footer-tools', label: t('nav.tools'), links: toolLinks(manifest, locale, t) },
+  { id: 'st-footer-guide', label: t('site.footerGuide'), links: footerLinks(manifest, locale, t) },
+];
 ---
 
 <footer class="st-footer">
   <div class="st-container st-footer__inner">
     <p class="st-footer__disclaimer">{t('site.disclaimerShort')}</p>
-    <nav aria-label={t('site.footerLabel')}>
-      <ul class="st-footer__links" role="list">
-        {links.map((link) => (
-          <li>
-            <a
-              class="st-link-block"
-              href={link.href}
-              aria-current={isCurrent(link, route) ? 'page' : undefined}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+    <nav class="st-footer__map" id={SITE_MAP_ID} aria-label={t('site.footerLabel')}>
+      {groups.map((group) => (
+        <div class="st-footer__group" data-footer-group={group.id}>
+          <h2 class="st-footer__heading" id={group.id}>
+            {group.label}
+          </h2>
+          <ul class="st-footer__links st-quiet-links" role="list" aria-labelledby={group.id}>
+            {group.links.map((link) => (
+              <li>
+                <a
+                  class="st-link-block st-footer__link"
+                  href={link.href}
+                  aria-current={isCurrent(link, route) ? 'page' : undefined}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </nav>
+    <ThemeControl class="st-footer__theme" locale={locale} showLegend />
   </div>
 </footer>
 
@@ -53,7 +82,7 @@ const links = footerLinks(manifest, locale, t);
   .st-footer__inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--st-space-3);
+    gap: var(--st-space-5);
     padding-block: var(--st-space-6);
   }
 
@@ -63,13 +92,37 @@ const links = footerLinks(manifest, locale, t);
     font-size: var(--st-text-sm);
   }
 
+  /* One column on a phone, two from 480px, three from about 640px. */
+  .st-footer__map {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    gap: var(--st-space-5);
+  }
+
+  .st-footer__heading {
+    margin-block-end: var(--st-space-1);
+    color: var(--st-text);
+    font-family: var(--st-font-body);
+    font-size: var(--st-text-sm);
+    font-weight: var(--st-weight-bold);
+    letter-spacing: normal;
+    line-height: var(--st-leading-snug);
+  }
+
   .st-footer__links {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--st-space-2) var(--st-space-4);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
     padding: 0;
     list-style: none;
+  }
+
+  .st-footer__link,
+  .st-footer__link:visited {
+    color: var(--st-text);
+  }
+
+  .st-footer__link[aria-current='page'] {
+    font-weight: var(--st-weight-semibold);
   }
 
   @media (forced-colors: active) {

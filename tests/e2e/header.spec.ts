@@ -1,0 +1,433 @@
+import type { Page } from '@playwright/test';
+import { expect, test } from './fixtures';
+import { chromiumAxName } from './helpers/ax';
+import { holdRequests } from './helpers/network';
+
+/**
+ * WP-50 Phase 3, item 5: the header, footer and navigation (`SiteHeader.astro`, `SiteFooter.astro`,
+ * `LanguageSwitcher.astro`; docs/design-system.md, "The header, footer and navigation").
+ *
+ * - The top bar is one row, 61px, at every width, in both languages: 165px (three rows) on a 320px
+ *   phone and 113px on a landscape phone before.
+ * - Its height does not change when the web fonts arrive late (the 320px bar changed rows then).
+ * - Every page links the same page in the other language from the bar, named in that language.
+ * - Each control is a 44px target, named in Chromium's own accessibility tree, and the page the
+ *   reader is on is marked `aria-current="page"` in the bar, the drawer and the footer.
+ *
+ * Without JavaScript (Menu is a link to the footer's site map): `nojs.spec.ts`.
+ */
+
+/** 44px of controls plus 8px of padding above and below, and the 1px rule under it. */
+const ONE_ROW = 62;
+
+const SIZES = [
+  [320, 568],
+  [360, 740],
+  [568, 320],
+  [768, 1024],
+  [1024, 768],
+  [1280, 800],
+  [1600, 900],
+] as const;
+
+interface Bar {
+  height: number;
+  /** From the top of the highest control to the bottom of the lowest. */
+  span: number;
+  overflow: number;
+}
+
+async function bar(page: Page): Promise<Bar> {
+  return page.evaluate(() => {
+    const header = document.querySelector('header.st-topbar');
+    const inner = header?.querySelector('.st-topbar__inner');
+    if (!header || !inner) throw new Error('No top bar.');
+    const boxes = [...inner.children]
+      .map((child) => child.getBoundingClientRect())
+      .filter((box) => box.width > 0 && box.height > 0);
+    return {
+      height: header.getBoundingClientRect().height,
+      span: Math.max(...boxes.map((box) => box.bottom)) - Math.min(...boxes.map((box) => box.top)),
+      overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    };
+  });
+}
+
+test.describe('the top bar is one row', () => {
+  for (const [width, height] of SIZES) {
+    test(`at ${width}×${height}, in English and Afrikaans`, async ({ page }, testInfo) => {
+      test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
+      await page.setViewportSize({ width, height });
+      for (const route of ['', 'af/', 'business-types/vehicle-dealer/', 'af/search/']) {
+        await page.goto(route);
+        await page.evaluate(() => document.fonts.ready);
+        const measured = await bar(page);
+        expect(measured.height, `/${route}`).toBeLessThanOrEqual(ONE_ROW);
+        expect(measured.span, `/${route}`).toBeLessThanOrEqual(45);
+        expect(measured.overflow, `/${route}`).toBeLessThanOrEqual(0);
+      }
+    });
+  }
+
+  test('with saved answers too: the ring joins the row from 1024px and stays out of it below', async ({
+    page,
+    seedStorage,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
+    await seedStorage({
+      'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+    });
+    await page.goto('my-path/');
+    await page.waitForLoadState('networkidle');
+    for (const [width, height] of [
+      [320, 568],
+      [1024, 768],
+      [1280, 800],
+    ] as const) {
+      await page.setViewportSize({ width, height });
+      for (const route of ['core/tax-and-sars/', 'af/core/tax-and-sars/']) {
+        await page.goto(route);
+        await page.waitForLoadState('networkidle');
+        const ring = page.locator('header st-path-progress');
+        if (width >= 1024) await expect(ring).toBeVisible();
+        else await expect(ring).toBeHidden();
+        const measured = await bar(page);
+        expect(measured.height, `${route} at ${width}px`).toBeLessThanOrEqual(ONE_ROW);
+        expect(measured.span, `${route} at ${width}px`).toBeLessThanOrEqual(45);
+      }
+    }
+  });
+});
+
+/*
+ * WP-50a and the Phase 3 plan: at 320px the bar changed rows when the web fonts arrived (217px
+ * before, 165px after, a layout shift of about 0.13). The fonts are held here until the page has
+ * drawn with the fallback faces.
+ */
+test.describe('late web fonts', () => {
+  for (const width of [320, 360]) {
+    for (const route of ['', 'af/', 'business-types/vehicle-dealer/', 'af/business-types/food/']) {
+      test(`/${route} at ${width}px: the bar keeps its height and the page moves 0.1 or less`, async ({
+        page,
+        baseURL,
+      }, testInfo) => {
+        test.skip(testInfo.project.name !== 'chromium', 'Layout-shift entries are Chromium-only.');
+        await page.addInitScript(() => {
+          const shifts: number[] = [];
+          Object.assign(window, { stShifts: shifts });
+          new PerformanceObserver((list) => {
+            for (const entry of list.getEntries()) {
+              shifts.push((entry as PerformanceEntry & { value: number }).value);
+            }
+          }).observe({ type: 'layout-shift', buffered: true });
+        });
+        await page.setViewportSize({ width, height: 740 });
+        const release = await holdRequests(page, baseURL, (url) => url.pathname.endsWith('.woff2'));
+        await page.goto(route, { waitUntil: 'commit' });
+        await page.waitForFunction(
+          () =>
+            document.readyState !== 'loading' &&
+            [...document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]')].every(
+              (link) => link.sheet !== null,
+            ),
+        );
+        // Drawn in the fallback faces: neither web font has loaded (the fallbacks are `local()`
+        // faces, which load at once, so only the two web families, "… Variable", are checked).
+        expect(
+          await page.evaluate(() =>
+            [...document.fonts].some(
+              (face) => face.family.endsWith('Variable') && face.status === 'loaded',
+            ),
+          ),
+        ).toBe(false);
+        const before = (await bar(page)).height;
+        release();
+        await page.waitForLoadState('load');
+        await page.evaluate(() => document.fonts.ready);
+        await page.evaluate(
+          () =>
+            new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+        );
+        const after = (await bar(page)).height;
+        expect(after, `bar ${before}px, then ${after}px`).toBe(before);
+        expect(after).toBeLessThanOrEqual(ONE_ROW);
+        const shift = await page.evaluate(() =>
+          (window as unknown as { stShifts: number[] }).stShifts.reduce((sum, v) => sum + v, 0),
+        );
+        expect(shift).toBeLessThanOrEqual(0.1);
+      });
+    }
+  }
+});
+
+/**
+ * One route per kind of page that has the site header, each in English and in Afrikaans. The 404
+ * page and `/design-system/` have their own shell (`Base.astro` alone): the 404 page's is item 6.
+ */
+const PAGE_TYPES = [
+  '',
+  'core/',
+  'core/tax-and-sars/',
+  'business-types/',
+  'business-types/vehicle-dealer/',
+  'templates/',
+  'templates/invoice/',
+  'checklist/',
+  'find-my-path/',
+  'my-path/',
+  'search/',
+  'contents/',
+  'about/',
+] as const;
+
+test.describe('the language link', () => {
+  test('is in the bar on every kind of page, names the other language in it, and goes to the same page', async ({
+    page,
+    basePath,
+  }) => {
+    test.setTimeout(120_000);
+    for (const route of PAGE_TYPES) {
+      for (const [prefix, other, name, tag] of [
+        ['', 'af', 'Afrikaans', 'af-ZA'],
+        ['af/', 'en', 'English', 'en-ZA'],
+      ] as const) {
+        const response = await page.goto(`${prefix}${route}`);
+        expect(response?.status(), `/${prefix}${route}`).toBe(200);
+        const links = page.locator('header.st-topbar .st-topbar__lang a');
+        await expect(links, `/${prefix}${route}`).toHaveCount(1);
+        const link = links.first();
+        await expect(link).toBeVisible();
+        await expect(link).toHaveAttribute('data-locale', other);
+        await expect(link).toHaveAttribute('hreflang', tag);
+        const target = other === 'en' ? route : `af/${route}`;
+        await expect(link).toHaveAttribute('href', `${basePath}${target}`);
+        await expect(link.locator(`span[lang="${tag}"]`)).toHaveText(name);
+      }
+    }
+  });
+});
+
+/** Every visible link, button and summary in the bar is at least 44 by 44 CSS pixels. */
+async function smallTargets(page: Page): Promise<string[]> {
+  return page.evaluate(() => {
+    const found: string[] = [];
+    for (const element of document.querySelectorAll<HTMLElement>(
+      'header.st-topbar .st-topbar__inner :is(a[href], button, summary)',
+    )) {
+      const box = element.getBoundingClientRect();
+      if (box.width === 0 && box.height === 0) continue;
+      // An open menu's links are in the list below the bar, measured by the menu's own tests.
+      if (element.closest('.st-menu__list')) continue;
+      if (box.width < 43.5 || box.height < 43.5) {
+        found.push(`${element.className} "${element.textContent?.trim().slice(0, 20)}"`);
+      }
+    }
+    return found;
+  });
+}
+
+test.describe('the controls', () => {
+  test('are 44px targets at 320, 360, 568 and 1280px, in both languages', async ({
+    page,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
+    for (const [width, height] of [
+      [320, 568],
+      [360, 740],
+      [568, 320],
+      [1280, 800],
+    ] as const) {
+      await page.setViewportSize({ width, height });
+      for (const route of ['core/tax-and-sars/', 'af/core/tax-and-sars/']) {
+        await page.goto(route);
+        expect(await smallTargets(page), `${route} at ${width}px`).toEqual([]);
+      }
+    }
+  });
+
+  test('a phone reaches the wordmark, search, the language link and Menu in that order, and Menu opens the drawer', async ({
+    page,
+    browserName,
+  }) => {
+    test.skip(browserName === 'webkit', 'WebKit moves Tab only between form controls by default.');
+    await page.setViewportSize({ width: 320, height: 568 });
+    await page.goto('af/core/tax-and-sars/');
+    await page.keyboard.press('Tab');
+    await expect(page.locator('.st-skip-link')).toBeFocused();
+    const order = ['.st-topbar__home', '.st-topbar__search', '.st-topbar__lang a'];
+    for (const selector of order) {
+      await page.keyboard.press('Tab');
+      await expect(page.locator(selector)).toBeFocused();
+      // A visible focus ring: the base outline, not removed.
+      const outline = await page
+        .locator(selector)
+        .evaluate((element) => getComputedStyle(element).outlineStyle);
+      expect(outline, selector).not.toBe('none');
+    }
+    await page.keyboard.press('Tab');
+    const menu = page.locator('.st-topbar__menu-button');
+    await expect(menu).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('dialog.st-drawer')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(page.locator('dialog.st-drawer')).toBeHidden();
+    await expect(menu).toBeFocused();
+  });
+
+  test('the drawer has no second language switcher: the bar holds it', async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 740 });
+    await page.goto('core/tax-and-sars/');
+    await page.locator('.st-topbar__menu-button').click();
+    const drawer = page.locator('dialog.st-drawer');
+    await expect(drawer).toBeVisible();
+    await expect(drawer.locator('a[hreflang]')).toHaveCount(0);
+    await expect(drawer.locator('st-theme-toggle')).toBeVisible();
+  });
+
+  test('the browser names each control: the wordmark too, where only its mark shows', async ({
+    page,
+    browserName,
+  }) => {
+    test.skip(browserName !== 'chromium', 'Reads Chromium’s accessibility tree over CDP.');
+    for (const [width, route, names] of [
+      [
+        320,
+        'core/tax-and-sars/',
+        ['SA Business Toolkit', 'Search', 'Read this page in Afrikaans', 'Menu'],
+      ],
+      [
+        320,
+        'af/core/tax-and-sars/',
+        ['SA Business Toolkit', 'Soek', 'Lees hierdie bladsy in English', 'Kieslys'],
+      ],
+      [
+        1280,
+        'core/tax-and-sars/',
+        ['SA Business Toolkit', 'Search', 'Read this page in Afrikaans'],
+      ],
+    ] as const) {
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto(route);
+      const selectors = [
+        '.st-topbar__home',
+        '.st-topbar__search',
+        '.st-topbar__lang a',
+        '.st-topbar__menu-button',
+      ].slice(0, names.length);
+      const got: string[] = [];
+      for (const selector of selectors) got.push(await chromiumAxName(page, selector));
+      expect(got, `${route} at ${width}px`).toEqual(names);
+    }
+    // The landmarks' names, from the same tree.
+    await page.goto('af/core/tax-and-sars/');
+    expect(await chromiumAxName(page, 'header .st-topbar__menus')).toBe('Hoof');
+    expect(await chromiumAxName(page, 'header .st-topbar__lang nav')).toBe('Taal');
+    expect(await chromiumAxName(page, 'footer nav')).toBe('Alle bladsye en nutsgoed');
+  });
+});
+
+test.describe('landmarks and the current page', () => {
+  test('one banner, one contentinfo, and every navigation region named', async ({ page }) => {
+    for (const route of ['', 'af/core/tax-and-sars/', 'my-path/']) {
+      await page.goto(route);
+      await expect(page.getByRole('banner')).toHaveCount(1);
+      await expect(page.getByRole('contentinfo')).toHaveCount(1);
+      const unnamed = await page.locator('nav').evaluateAll((navs) =>
+        navs
+          .filter((nav) => !nav.closest('dialog'))
+          .filter((nav) => !nav.getAttribute('aria-label') && !nav.getAttribute('aria-labelledby'))
+          .map((nav) => nav.className),
+      );
+      expect(unnamed, `/${route}`).toEqual([]);
+    }
+  });
+
+  test('aria-current marks the page in the bar, the menus and the footer', async ({
+    page,
+    basePath,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('');
+    await expect(page.locator('.st-topbar__home')).toHaveAttribute('aria-current', 'page');
+    await page.goto('core/');
+    await expect(page.locator('.st-topbar__home')).not.toHaveAttribute('aria-current', /.*/);
+    const read = page.locator('.st-topbar__menus .st-menu').first();
+    await expect(read.locator('a[aria-current="page"]')).toHaveAttribute(
+      'href',
+      `${basePath}core/`,
+    );
+    await expect(page.locator('footer a[aria-current="page"]')).toHaveAttribute(
+      'href',
+      `${basePath}core/`,
+    );
+    await page.goto('af/contents/');
+    await expect(page.locator('footer a[aria-current="page"]')).toHaveAttribute(
+      'href',
+      `${basePath}af/contents/`,
+    );
+    await expect(page.locator('footer a[aria-current="page"]')).toHaveCSS('font-weight', '600');
+    // The drawer marks it too.
+    await page.setViewportSize({ width: 360, height: 740 });
+    await page.goto('checklist/');
+    await page.locator('.st-topbar__menu-button').click();
+    await expect(
+      page.locator('dialog.st-drawer a[aria-current="page"]').filter({ hasText: 'Checklist' }),
+    ).toHaveCount(1);
+  });
+});
+
+test.describe('the footer', () => {
+  test('lists every section and tool, the guide’s own pages and the theme control', async ({
+    page,
+  }) => {
+    await page.goto('core/tax-and-sars/');
+    const footer = page.locator('footer.st-footer');
+    const headerLinks = await page
+      .locator('.st-topbar__menus .st-menu a')
+      .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
+    const mapLinks = await footer
+      .locator('#st-site-map a')
+      .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
+    expect(headerLinks.length).toBeGreaterThanOrEqual(10);
+    for (const href of headerLinks) expect(mapLinks).toContain(href);
+    await expect(footer.locator('h2')).toHaveText(['Read', 'Tools', 'About this guide']);
+    await expect(footer.locator('st-theme-toggle legend')).toHaveText('Theme');
+    await expect(footer.locator('st-theme-toggle')).toBeVisible();
+  });
+
+  test('the theme is not in the top bar at any width', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
+    for (const width of [320, 1024, 1280]) {
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto('core/tax-and-sars/');
+      await expect(page.locator('.st-topbar__inner st-theme-toggle')).toHaveCount(0);
+    }
+  });
+});
+
+test.describe('forced colours and print', () => {
+  test('in forced colours the bar keeps one row and its controls keep a border', async ({
+    page,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
+    await page.emulateMedia({ forcedColors: 'active' });
+    await page.setViewportSize({ width: 320, height: 568 });
+    await page.goto('af/core/tax-and-sars/');
+    const measured = await bar(page);
+    expect(measured.height).toBeLessThanOrEqual(ONE_ROW);
+    for (const selector of ['.st-topbar__search', '.st-topbar__menu-button']) {
+      const style = await page
+        .locator(selector)
+        .evaluate((element) => getComputedStyle(element).borderTopStyle);
+      expect(style, selector).toBe('solid');
+    }
+  });
+
+  test('print leaves out the bar and the footer', async ({ page }) => {
+    await page.goto('core/tax-and-sars/');
+    await page.emulateMedia({ media: 'print' });
+    await expect(page.locator('header.st-topbar')).toBeHidden();
+    await expect(page.locator('footer.st-footer')).toBeHidden();
+  });
+});

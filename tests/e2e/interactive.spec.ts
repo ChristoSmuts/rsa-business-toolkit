@@ -623,9 +623,10 @@ test.describe('language', () => {
    * page jumped (layout shift 0.144 at 360px, WP-50 audit, flow 7). The fonts are held here until
    * the page has drawn with the device fonts.
    *
-   * At 320px the top bar itself also changes rows when the web font arrives (about 0.13, with or
-   * without the banner). That shift is the header's, left to the Phase 1 header work, so it is
-   * counted apart (`header`), and the total is bounded only where it does not occur.
+   * At 320px the top bar itself also changed rows when the web font arrived (about 0.13, with or
+   * without the banner). Since WP-50 Phase 3, item 5 it is one row that no font changes, so the
+   * total is bounded at every width, and the header's own share must be all but nothing (at 1024px
+   * the menus slide a few pixels sideways as the wordmark's width changes: about 0.003).
    */
   for (const width of [320, 360, 1024]) {
     test(`the banner is as tall before the web fonts as after, and moves nothing, at ${width}px`, async ({
@@ -681,11 +682,8 @@ test.describe('language', () => {
         list.reduce((total, entry) => total + entry.value, 0);
       // The page's other text also reflows when the web font arrives (0.05 at 1024px; 0.13 at
       // 1024px without the banner), so the total is bounded, not zero.
-      if (width === 320) {
-        expect(sum(shifts.filter((entry) => !entry.header))).toBeLessThanOrEqual(0.1);
-      } else {
-        expect(sum(shifts)).toBeLessThanOrEqual(0.1);
-      }
+      expect(sum(shifts)).toBeLessThanOrEqual(0.1);
+      expect(sum(shifts.filter((entry) => entry.header))).toBeLessThanOrEqual(0.01);
     });
   }
 });
