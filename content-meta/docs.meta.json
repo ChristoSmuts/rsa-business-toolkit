@@ -541,7 +541,7 @@
       },
       "summary": {
         "en": "Tell your customers, in plain words, what you keep about them, why, who sees it and how long you keep it.",
-        "af": "Sê vir jou kliënte, in gewone woorde, wat jy oor hulle hou, waarom, wie dit sien en hoe lank jy dit hou."
+        "af": "Sê vir jou kliënte, in gewone woorde, wat jy oor hulle bewaar, waarom, wie dit sien en hoe lank jy dit hou."
       },
       "tags": ["template", "popia"]
     },
@@ -575,7 +575,7 @@
       },
       "summary": {
         "en": "SAPS registration, stock registered to the business or your ID, trade numbers to drive unregistered or unlicensed stock, and the consumer law.",
-        "af": "SAPS-registrasie, voorraad op die besigheid of jou ID-nommer geregistreer, motorhandelnommers om ongeregistreerde of ongelisensieerde voorraad te ry, en die verbruikersreg."
+        "af": "SAPS-registrasie, voorraad wat op die besigheid of jou ID-nommer geregistreer is, motorhandelnommers om ongeregistreerde of ongelisensieerde voorraad te ry, en die verbruikersreg."
       },
       "appliesTo": {
         "businessTypes": ["vehicle-dealer"]
