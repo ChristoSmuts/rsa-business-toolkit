@@ -374,8 +374,8 @@
         "af": "Handelsmerkopdragte"
       },
       "summary": {
-        "en": "Twelve AI prompts, in order, for your brief, name, tagline, logo, colours, type, photographs, voice and about text; ten of them give you 5 options to refine.",
-        "af": "Twaalf KI-opdragte, in volgorde, vir jou kortbeskrywing, naam, slagspreuk, logo, kleure, lettertipe, foto’s, stem en \"oor ons\"-teks; tien daarvan gee jou 5 opsies om te verfyn."
+        "en": "Twelve AI prompts, in order, for your brief, name, tagline, logo, colours, type, photographs, voice and about text; most of them give you 5 options to refine.",
+        "af": "Twaalf KI-opdragte, in volgorde, vir jou kortbeskrywing, naam, slagspreuk, logo, kleure, lettertipe, foto’s, stem en \"oor ons\"-teks; die meeste daarvan gee jou 5 opsies om te verfyn."
       },
       "tags": ["prompts"],
       "fenceVariant": "prompt",
