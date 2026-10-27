@@ -461,8 +461,8 @@ describe('committed content data', () => {
    *   task-list items, table cells and headings;
    * - on a business type, the "Main reason" its facts show under the H1 (`effortReason`).
    *
-   * The lead fails when the whole of it is inside one of those texts, or when every one of its
-   * sentences (split at . ! ?) is inside one, whatever their length. A single sentence fails when it
+   * The lead fails when every one of its sentences (split at . ! ?) is inside one of those texts,
+   * whatever their length; that includes a lead wholly inside one text. A single sentence fails when it
    * shares a run of RUN words with a text or, at five words or more, is inside one; against a heading
    * when it is inside it or shares a run of HEADING_RUN words; against the main reason when it is
    * inside it. A "Topic: …" lead that names the page's subject passes, and so does a lead that names
@@ -566,8 +566,8 @@ describe('committed content data', () => {
     }));
     const inside = (list: readonly string[], body: string): boolean =>
       list.length > 0 && body.includes(` ${list.join(' ')} `);
-    const whole = words(lead);
-    if (texts.some(({ text }) => inside(whole, text))) return lead;
+    // A lead whose every sentence is inside the opening, whatever their length. This also covers a
+    // lead that is wholly inside one text, so there is no separate whole-lead rule.
     const sentences = sentencesOf(lead);
     if (sentences.every((sentence) => texts.some(({ text }) => inside(words(sentence), text))))
       return lead;
@@ -666,6 +666,11 @@ describe('committed content data', () => {
       'Print this. Tick as you go.',
     );
     expect(repeatsOpening('Pick two channels. Do those two properly.', marketing)).toBeDefined();
+    // Review pass 5: two short sentences from two different blocks ("Required, in this order:" and
+    // "Optional but often needed:"). Only the every-sentence rule catches it.
+    expect(repeatsOpening('Required, in this order. Optional but often needed.', dealer)).toBe(
+      'Required, in this order. Optional but often needed.',
+    );
     expect(repeatsOpening('Three separate registration layers.', dealer)).toBeDefined();
     // A short sentence that is the main reason, or the H1, beside a sentence that is new.
     expect(
@@ -683,13 +688,64 @@ describe('committed content data', () => {
     ).toBeUndefined();
   });
 
+  /*
+   * The numbers in a summary, as numerals, in order of size: figures as written, and the counts one
+   * to twelve written as words in English or Afrikaans ("Twelve AI prompts", "Twaalf KI-opdragte").
+   */
+  const NUMBER_WORDS: Record<string, string> = {
+    one: '1',
+    two: '2',
+    three: '3',
+    four: '4',
+    five: '5',
+    six: '6',
+    seven: '7',
+    eight: '8',
+    nine: '9',
+    ten: '10',
+    eleven: '11',
+    twelve: '12',
+    een: '1',
+    twee: '2',
+    drie: '3',
+    vier: '4',
+    vyf: '5',
+    ses: '6',
+    sewe: '7',
+    agt: '8',
+    nege: '9',
+    tien: '10',
+    elf: '11',
+    twaalf: '12',
+  };
+  const summaryNumbers = (text: string): string[] => {
+    const figures = text.match(/\d[\d,. ]*\d|\d/g) ?? [];
+    const counted = (text.toLowerCase().match(/\p{L}+/gu) ?? []).flatMap((word) =>
+      NUMBER_WORDS[word] ? [NUMBER_WORDS[word]] : [],
+    );
+    return [...figures, ...counted].sort();
+  };
+
+  it('counts numbers written as words when it compares English and Afrikaans summaries', () => {
+    expect(
+      summaryNumbers('Twelve AI prompts; ten of them give you 5 options to refine.').join('|'),
+    ).toBe(
+      summaryNumbers('Twaalf KI-opdragte; tien daarvan gee jou 5 opsies om te verfyn.').join('|'),
+    );
+    expect(
+      summaryNumbers('Twelve AI prompts; ten of them give you 5 options to refine.').join('|'),
+    ).not.toBe(
+      summaryNumbers('Elf KI-opdragte; nege daarvan gee jou 5 opsies om te verfyn.').join('|'),
+    );
+  });
+
   // Review pass 4, m4: every written English summary has a written Afrikaans one, with the same
   // numbers (CLAUDE.md: Afrikaans keeps numbers byte-identical to English).
   it('gives every English summary override an Afrikaans one with the same numbers', () => {
     const written = JSON.parse(
       readFileSync(join(repoRoot, 'content-meta', 'docs.meta.json'), 'utf8'),
     ) as { docs: { id: string; summary?: Partial<Record<string, string>> }[] };
-    const numbers = (text: string): string[] => text.match(/\d[\d,. ]*\d|\d/g) ?? [];
+    const numbers = summaryNumbers;
     const withEnglish = written.docs.filter((entry) => entry.summary?.['en'] !== undefined);
     expect(withEnglish.length).toBeGreaterThan(0);
     expect(
