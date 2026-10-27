@@ -472,7 +472,7 @@ test.describe('My path keeps focus on every step', () => {
     }
   }
 
-  test("the step region is a polite status in Chromium's own tree", async ({
+  test("the two status regions are polite statuses in Chromium's own tree", async ({
     page,
     seedStorage,
     browserName,
@@ -488,22 +488,87 @@ test.describe('My path keeps focus on every step', () => {
       await session.send('DOM.enable');
       await session.send('Accessibility.enable');
       const { root } = await session.send('DOM.getDocument', { depth: 0 });
-      const { nodeId } = await session.send('DOM.querySelector', {
-        nodeId: root.nodeId,
-        selector: 'st-my-path [data-step-status]',
-      });
-      const { nodes } = await session.send('Accessibility.getPartialAXTree', {
-        nodeId,
-        fetchRelatives: false,
-      });
-      const node = nodes[0];
-      expect(node?.role?.value).toBe('status');
-      const live = node?.properties?.find((property) => property.name === 'live');
-      expect(live?.value.value).toBe('polite');
+      // The hidden step region, and the visible line for the saved and removed messages (review
+      // pass 6, m3): each a polite status.
+      for (const selector of ['st-my-path [data-step-status]', 'st-my-path [data-status]']) {
+        const { nodeId } = await session.send('DOM.querySelector', {
+          nodeId: root.nodeId,
+          selector,
+        });
+        const { nodes } = await session.send('Accessibility.getPartialAXTree', {
+          nodeId,
+          fetchRelatives: false,
+        });
+        const node = nodes[0];
+        expect(node?.role?.value, selector).toBe('status');
+        const live = node?.properties?.find((property) => property.name === 'live');
+        expect(live?.value.value, selector).toBe('polite');
+        const focusable = node?.properties?.find((property) => property.name === 'focusable');
+        expect(focusable?.value.value ?? false, `${selector} is not focusable`).toBe(false);
+      }
     } finally {
       await session.detach();
     }
+    // Never a tab stop (review pass 6, m4).
+    expect(await page.locator('st-my-path [data-step-status]').getAttribute('tabindex')).toBeNull();
   });
+
+  test('the step region is silent on load and with ?saved=1, and speaks once per press', async ({
+    page,
+    seedStorage,
+  }, testInfo) => {
+    test.skip(testInfo.project.name === 'mobile', 'Sets its own widths.');
+    await seedStorage({ 'st.profile.v1': LONG });
+    // Every text the step region ever holds, from before the page's scripts run (review pass 6, m1).
+    await page.addInitScript(() => {
+      const said: string[] = [];
+      Object.assign(window, { stStepSaid: said });
+      new MutationObserver((records) => {
+        const region = document.querySelector('[data-step-status]');
+        if (!region) return;
+        if (records.some((record) => region.contains(record.target) || record.target === region))
+          said.push(region.textContent ?? '');
+      }).observe(document, { childList: true, characterData: true, subtree: true });
+    });
+    const writes = () =>
+      page.evaluate(() =>
+        (window as unknown as { stStepSaid: string[] }).stStepSaid.filter(
+          (text) => text.trim() !== '',
+        ),
+      );
+    await page.setViewportSize(PHONE);
+    for (const route of ['my-path/', 'my-path/?saved=1']) {
+      await page.goto(route);
+      await expect(page.locator('[data-steps] > li:not([hidden])').first()).toBeVisible();
+      if (route.includes('saved'))
+        await expect(page.locator('st-my-path [data-status]')).not.toBeEmpty();
+      expect(await writes(), `${route}: nothing said on load`).toEqual([]);
+      await page.locator('[data-steps] > li:not([hidden])[data-n="1"] [data-mark]').click();
+      await expect(page.locator('st-my-path [data-step-status]')).not.toBeEmpty();
+      expect(await writes(), `${route}: one message for one press`).toHaveLength(1);
+      // Put the step back for the next route.
+      await page.locator('[data-steps] > li:not([hidden])[data-n="1"] [data-mark]').click();
+    }
+  });
+
+  for (const width of [320, 1280]) {
+    test(`"Do this next" sits above the step's first page at ${width}px`, async ({
+      page,
+      seedStorage,
+    }, testInfo) => {
+      test.skip(testInfo.project.name === 'mobile', 'Sets its own widths.');
+      await seedStorage({ 'st.profile.v1': LONG });
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto('my-path/');
+      const card = page.locator('[data-steps] > li[data-next]');
+      await expect(card).toHaveCount(1);
+      // Review pass 6, m2: the badge takes its own line, never over the page link.
+      const badge = await card.locator('[data-next-badge]').boundingBox();
+      const link = await card.locator('li[data-doc]:not([hidden]) a').first().boundingBox();
+      expect(badge, 'the badge shows').not.toBeNull();
+      expect((badge?.y ?? 0) + (badge?.height ?? 0)).toBeLessThanOrEqual((link?.y ?? 0) + 0.5);
+    });
+  }
 
   test('a press moves the button no more than at ea15b4a, and the message going moves nothing', async ({
     page,

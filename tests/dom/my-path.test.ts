@@ -228,6 +228,10 @@ describe('<st-my-path>', () => {
     const region = document.querySelector<HTMLElement>('[data-step-status]')!;
     expect(region.getAttribute('role')).toBe('status');
     expect(region.classList.contains('st-visually-hidden')).toBe(true);
+    // Not hidden from anyone and never a tab stop, as the page writes it (review pass 6, m4, m5).
+    expect(region.hasAttribute('hidden')).toBe(false);
+    expect(region.hasAttribute('aria-hidden')).toBe(false);
+    expect(region.hasAttribute('tabindex')).toBe(false);
     const visible = document.querySelector('[data-status]')!;
     expect(visible.textContent).toBe('Saved on this device only.');
     const cards = shown();
