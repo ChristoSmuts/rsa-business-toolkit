@@ -41,6 +41,24 @@ async function minHeight(locator: Locator): Promise<number> {
   return Math.min(...boxes);
 }
 
+/**
+ * What `value` resolves to for `property` on a probe element in the page, so a test compares a
+ * colour or a size with the token the design names, not with a number or "something different".
+ */
+async function resolved(page: Page, property: string, value: string): Promise<string> {
+  return page.evaluate(
+    ([name, css]) => {
+      const probe = document.createElement('div');
+      probe.style.setProperty(name, css);
+      document.body.append(probe);
+      const out = getComputedStyle(probe).getPropertyValue(name);
+      probe.remove();
+      return out;
+    },
+    [property, value] as const,
+  );
+}
+
 /** Top of an element in page pixels, after the web fonts. */
 async function pageTop(locator: Locator): Promise<number> {
   return locator.evaluate(async (element) => {
@@ -120,6 +138,27 @@ test.describe('Find my path on a phone', () => {
         );
       let now = await bars();
       expect(now.map((bar) => bar.width)).toEqual(['10px', '2px', '2px']);
+      // The colours are the tokens the design names (review pass 7, m1): filled in
+      // --st-primary, to come in --st-border-strong (3:1 or more on the page).
+      const primary = await resolved(page, 'border-top-color', 'var(--st-primary)');
+      const strong = await resolved(page, 'border-top-color', 'var(--st-border-strong)');
+      expect(now.map((bar) => bar.colour)).toEqual([primary, strong, strong]);
+      // The bars share a bottom edge: each bar is its item's top border.
+      const barBottoms = () =>
+        page
+          .locator('.st-wizard__stepper > li')
+          .evaluateAll((lis) =>
+            lis.map((li) =>
+              Math.round(
+                li.getBoundingClientRect().top + parseFloat(getComputedStyle(li).borderTopWidth),
+              ),
+            ),
+          );
+      expect(new Set(await barBottoms()).size, 'one bottom edge').toBe(1);
+      // The step's heading is one size down on a phone.
+      expect(
+        await page.locator('#wz-h-entity').evaluate((h2) => getComputedStyle(h2).fontSize),
+      ).toBe(await resolved(page, 'font-size', 'var(--st-text-xl)'));
       const height = (await page.locator('.st-wizard__stepper').boundingBox())?.height;
       await answerTwo(page);
       now = await bars();
@@ -127,7 +166,8 @@ test.describe('Find my path on a phone', () => {
         now.map((bar) => bar.width),
         'done, done, current',
       ).toEqual(['6px', '6px', '10px']);
-      expect(now[0]?.colour, 'done and current are both filled').toBe(now[2]?.colour);
+      expect(now.map((bar) => bar.colour)).toEqual([primary, primary, primary]);
+      expect(new Set(await barBottoms()).size, 'one bottom edge').toBe(1);
       expect((await page.locator('.st-wizard__stepper').boundingBox())?.height).toBe(height);
       await page.locator('[data-step="stage"] [data-back]').click();
       now = await bars();
@@ -135,7 +175,7 @@ test.describe('Find my path on a phone', () => {
         now.map((bar) => bar.width),
         'done, current, to come',
       ).toEqual(['6px', '10px', '2px']);
-      expect(now[2]?.colour, 'to come is not filled').not.toBe(now[1]?.colour);
+      expect(now.map((bar) => bar.colour)).toEqual([primary, primary, strong]);
       // No tick on a phone: it would sit inside the visually hidden words.
       const tick = await page
         .locator('[data-stepper="0"] .st-wizard__stepper-n')
@@ -169,6 +209,40 @@ test.describe('Find my path on a phone', () => {
         });
       expect(drawn.content).toBe('""');
       expect(drawn.right).toBe('2px');
+      // Where it is (review pass 7, M1): positioned against its own item, inside the item's start
+      // padding and its height. Without the item's `position: relative` it was drawn at the page's
+      // origin, and a negative inset put it outside the item, and both passed before.
+      const place = await page
+        .locator('[data-stepper="0"] .st-wizard__stepper-n')
+        .evaluate((span) => {
+          const li = span.closest('li')!;
+          const tick = getComputedStyle(span, '::before');
+          const item = getComputedStyle(li);
+          return {
+            offsetParentIsItem: (span as HTMLElement).offsetParent === li,
+            left: parseFloat(tick.left),
+            top: parseFloat(tick.top),
+            width: parseFloat(tick.width),
+            height: parseFloat(tick.height),
+            padding: parseFloat(item.paddingLeft),
+            itemHeight: li.clientHeight,
+            textLeft: span.getBoundingClientRect().left - li.getBoundingClientRect().left,
+          };
+        });
+      expect(place.offsetParentIsItem, 'the tick is positioned against its item').toBe(true);
+      expect(place.left).toBeGreaterThanOrEqual(0);
+      expect(place.left + place.width, 'inside the start padding').toBeLessThanOrEqual(
+        place.padding,
+      );
+      expect(place.left + place.width, 'before the words').toBeLessThanOrEqual(place.textLeft);
+      expect(place.top).toBeGreaterThanOrEqual(0);
+      expect(place.top + place.height).toBeLessThanOrEqual(place.itemHeight);
+      // The current step's words are semibold; the others are not.
+      const weights = await page
+        .locator('.st-wizard__stepper > li')
+        .evaluateAll((lis) => lis.map((li) => getComputedStyle(li).fontWeight));
+      expect(weights[1]).toBe('600');
+      expect(weights[2]).not.toBe('600');
       expect(drawn.width, 'the tick has a box of its own').toBeGreaterThan(1);
       expect(drawn.height).toBeGreaterThan(1);
       expect(drawn.spanWidth, 'its words are shown, not visually hidden').toBeGreaterThan(1);
@@ -713,6 +787,10 @@ test.describe('the templates on a phone', () => {
 
       const heading = page.locator('#st-tool-actions-heading');
       await expect(heading).toHaveText(lang ? 'As jy klaar is' : 'When you are done');
+      // A heading by role and name, not only words (review pass 7, m2).
+      await expect(
+        page.getByRole('heading', { name: lang ? 'As jy klaar is' : 'When you are done' }),
+      ).toBeVisible();
       await expect(heading, 'shown, not only in the markup (review pass 3, M1)').toBeVisible();
       const print = page.locator('[data-print]');
       expect(await pageTop(print)).toBeGreaterThan(await pageTop(heading));
@@ -838,6 +916,140 @@ test.describe('the checklist and the confirm dialog on a phone', () => {
       await page.setViewportSize(PHONE);
     });
   }
+});
+
+/**
+ * Review pass 7, the audit: claims in docs/design-system.md, "The tools", that no test held. Each
+ * is checked against the token or the role the design names, so a mutation of the real CSS or
+ * markup fails here (the table is in docs/reviews/WP-50-phase3-tools-pass7.md).
+ */
+test.describe('the tools as the design record describes them', () => {
+  test.skip(({ isMobile }) => isMobile, 'Sets its own widths.');
+
+  test('My path: the answers strip is a small muted heading, the chips, a button, a hairline', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({
+      'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+    });
+    await page.setViewportSize(PHONE);
+    await page.goto('my-path/');
+    await expect(page.locator('[data-steps] > li:not([hidden])').first()).toBeVisible();
+    const strip = page.locator('.st-my-path__answers');
+    const heading = page.getByRole('heading', { name: 'Your answers', exact: true });
+    await expect(heading).toBeVisible();
+    const style = await heading.evaluate((h2) => {
+      const css = getComputedStyle(h2);
+      return { size: css.fontSize, colour: css.color, family: css.fontFamily };
+    });
+    expect(style.size).toBe(await resolved(page, 'font-size', 'var(--st-text-sm)'));
+    expect(style.colour).toBe(await resolved(page, 'color', 'var(--st-text-muted)'));
+    expect(style.family).toBe(await resolved(page, 'font-family', 'var(--st-font-body)'));
+    const rule = await strip.evaluate((element) => {
+      const css = getComputedStyle(element);
+      return {
+        width: css.borderBottomWidth,
+        style: css.borderBottomStyle,
+        colour: css.borderBottomColor,
+      };
+    });
+    expect(rule.style).toBe('solid');
+    expect(rule.width).toBe('1px');
+    expect(rule.colour).toBe(await resolved(page, 'border-bottom-color', 'var(--st-border)'));
+    expect(
+      await strip.evaluate((element) => getComputedStyle(element).borderTopStyle),
+      'no hairline above',
+    ).toBe('none');
+    await expect(strip.locator('li[data-chip]:not([hidden])')).toHaveCount(3);
+    const edit = strip.getByRole('link', { name: 'Edit answers' });
+    await expect(edit).toHaveAttribute('data-variant', 'secondary');
+    await expect(edit.locator('svg')).toHaveCount(1);
+  });
+
+  test('My path on paper: no "Edit answers", but "Do this next" and its ring', async ({
+    page,
+    seedStorage,
+  }) => {
+    await seedStorage({
+      'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+    });
+    await page.setViewportSize(PHONE);
+    await page.goto('my-path/');
+    await expect(page.locator('[data-steps] > li[data-next]')).toHaveCount(1);
+    await page.emulateMedia({ media: 'print' });
+    await expect(page.getByRole('link', { name: 'Edit answers' })).toBeHidden();
+    await expect(page.locator('[data-steps] > li[data-next] [data-next-badge]')).toBeVisible();
+    expect(
+      await page
+        .locator('[data-steps] > li[data-next]')
+        .evaluate((card) => getComputedStyle(card, '::before').boxShadow),
+    ).not.toBe('none');
+    await expect(page.locator('.st-my-path__answers h2')).toBeVisible();
+  });
+
+  test('a template group on a phone: its legend is the heading, in the display face at xl', async ({
+    page,
+  }) => {
+    await page.setViewportSize(PHONE);
+    await page.goto('templates/tax-invoice/');
+    const legend = page.locator('.st-tgroup__legend').first();
+    const style = await legend.evaluate((element) => {
+      const css = getComputedStyle(element);
+      return { family: css.fontFamily, size: css.fontSize, weight: css.fontWeight };
+    });
+    expect(style.family).toBe(await resolved(page, 'font-family', 'var(--st-font-display)'));
+    expect(style.size).toBe(await resolved(page, 'font-size', 'var(--st-text-xl)'));
+    expect(style.weight).toBe('600');
+  });
+
+  test('the template actions heading is not printed', async ({ page }) => {
+    await page.setViewportSize(PHONE);
+    await page.goto('templates/tax-invoice/');
+    await expect(page.locator('st-template-form[data-ready]')).toHaveCount(1);
+    await page.emulateMedia({ media: 'print' });
+    await expect(page.locator('#st-tool-actions-heading')).toBeHidden();
+  });
+
+  test('a confirm dialog on a phone: each choice takes the full row, safe one first', async ({
+    page,
+  }) => {
+    await page.setViewportSize(PHONE);
+    await page.goto('checklist/');
+    await page.locator('st-checklist input[type="checkbox"]').first().check();
+    await page.locator('[data-checklist-reset]').click();
+    const dialog = page.locator('dialog#st-checklist-reset');
+    await expect(dialog).toBeVisible();
+    const rows = await dialog.locator('.st-dialog__actions').evaluate((actions) => {
+      const inner = actions.getBoundingClientRect();
+      return [...actions.querySelectorAll('.st-btn')].map((button) => {
+        const box = button.getBoundingClientRect();
+        return { width: Math.round(box.width), full: Math.round(inner.width), top: box.top };
+      });
+    });
+    for (const row of rows) expect(row.width, 'a full row').toBe(row.full);
+    expect(rows[0]!.top).toBeLessThan(rows[1]!.top);
+    await expect(dialog.getByRole('button').first()).toBeFocused();
+    await expect(dialog.getByRole('button').first()).toHaveAttribute('value', 'cancel');
+  });
+
+  test('the search dialog: "Browse all pages" and the glossary are 44px link rows', async ({
+    page,
+  }) => {
+    await page.setViewportSize(PHONE);
+    await page.goto('business-types/food/');
+    await page.waitForLoadState('networkidle');
+    await page.keyboard.press('Control+k');
+    const more = page.locator(
+      'dialog.st-search-dialog [data-search-empty] .st-search-dialog__more',
+    );
+    await expect(more.getByRole('link', { name: 'Browse all pages' })).toBeVisible();
+    await expect(more.getByRole('link', { name: 'Look a word up in the glossary' })).toBeVisible();
+    const heights = await more
+      .locator('a')
+      .evaluateAll((links) => links.map((link) => link.getBoundingClientRect().height));
+    for (const height of heights) expect(height).toBeGreaterThanOrEqual(44);
+  });
 });
 
 test.describe('the search dialog on a phone', () => {

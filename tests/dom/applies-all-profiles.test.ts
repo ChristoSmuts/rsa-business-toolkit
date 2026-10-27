@@ -108,6 +108,8 @@ function mountDoc(doc: Doc): Part[] {
 }
 
 const profiles = singleChoices().map(profileOf);
+/** Per document; see the comment where it is used. */
+const PER_DOCUMENT_TIMEOUT = 10_000;
 const hiddenItems = (count: number): string => `${count} hidden`;
 
 afterAll(() => {
@@ -123,24 +125,40 @@ describe('“Only what applies to me” on the real content, for all 49 answers'
     const dir = path.join(REPO_ROOT, 'src', 'data', locale, 'docs');
     const files = readdirSync(dir).filter((name) => name.endsWith('.json'));
 
-    it(`${locale}: hides nothing that applies to the reader`, () => {
+    it(`${locale}: has the documents to check`, () => {
       expect(files.length).toBeGreaterThan(30);
-      const problems = new Set<string>();
-      for (const file of files) {
-        const doc = JSON.parse(readFileSync(path.join(dir, file), 'utf8')) as Doc;
-        const parts = mountDoc(doc);
-        for (const who of profiles) {
-          filterByProfile(document.body, who, { markers: true, hiddenItems });
-          for (const part of parts) {
-            const forReader = part.conditions.every((condition) => applies(condition, who));
-            if (forReader && part.element.closest(`.${FILTERED}`))
-              problems.add(
-                `${doc.id} ${part.label} hidden for ${who.entity}/${who.businessTypes[0]}`,
-              );
-          }
-        }
-      }
-      expect([...problems]).toEqual([]);
     });
+
+    /*
+     * One test per document (review pass 7, m3; backlog "load-sensitive unit tests"): the whole
+     * language in one test took about 2.4 s alone and passed the 5 s default only without load; at
+     * a load average of 14 to 22 on 4 cores it timed out twice. Each document takes at most about
+     * 0.5 s alone, the first one with the warm-up (measured with --reporter=verbose: 529 ms, the
+     * rest 260 ms or less), so the timeout below leaves a margin of about 20 times.
+     */
+    for (const file of files) {
+      it(
+        `${locale}: ${file.replace(/\.json$/, '')} hides nothing that applies to the reader`,
+        {
+          timeout: PER_DOCUMENT_TIMEOUT,
+        },
+        () => {
+          const doc = JSON.parse(readFileSync(path.join(dir, file), 'utf8')) as Doc;
+          const parts = mountDoc(doc);
+          const problems = new Set<string>();
+          for (const who of profiles) {
+            filterByProfile(document.body, who, { markers: true, hiddenItems });
+            for (const part of parts) {
+              const forReader = part.conditions.every((condition) => applies(condition, who));
+              if (forReader && part.element.closest(`.${FILTERED}`))
+                problems.add(
+                  `${doc.id} ${part.label} hidden for ${who.entity}/${who.businessTypes[0]}`,
+                );
+            }
+          }
+          expect([...problems]).toEqual([]);
+        },
+      );
+    }
   }
 });
