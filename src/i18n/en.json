@@ -782,6 +782,7 @@
       },
       "clearDone": "All your data was removed from this device.",
       "themeHelp": "Light or dark is under Theme at the end of every page.",
+      "themeHelpNoJs": "Without JavaScript the page follows your device’s light or dark setting.",
       "themeLink": "Go to Theme"
     }
   },

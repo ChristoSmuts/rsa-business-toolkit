@@ -14,12 +14,18 @@ import { uid } from '../../scripts/uid';
 
 interface Props {
   locale: Locale;
+  /**
+   * An id for the group, which also makes it focusable (`tabindex="-1"`): the footer's control is
+   * the target of "Light or dark" and of `/about/` Settings, and focus landing there is announced
+   * as the Theme group (WP-50 Phase 3, item 5, review pass 2, m6).
+   */
+  id?: string | undefined;
   /** Show "Theme" above the segments (the footer does; in the drawer the options say enough). */
   showLegend?: boolean | undefined;
   class?: string | undefined;
 }
 
-const { locale, showLegend = false, class: className } = Astro.props;
+const { locale, id, showLegend = false, class: className } = Astro.props;
 const t = useTranslations(locale);
 // One radio group per control: two controls on a page (header and drawer) must not share a name.
 const name = uid('st-theme');
@@ -30,32 +36,30 @@ const options = [
 ] as const;
 ---
 
-<div class:list={['st-theme-control', className]}>
+<fieldset class:list={['st-theme-control', className]} id={id} tabindex={id ? -1 : undefined}>
+  <legend class={showLegend ? 'st-theme-control__legend' : 'st-visually-hidden'}>
+    {t('theme.label')}
+  </legend>
   <st-theme-toggle class="js-only">
-    <fieldset>
-      <legend class={showLegend ? 'st-theme-control__legend' : 'st-visually-hidden'}>
-        {t('theme.label')}
-      </legend>
-      <div class="st-segmented">
-        {options.map((option) => (
-          <label class="st-segmented__option">
-            <input
-              type="radio"
-              name={name}
-              value={option.value}
-              checked={option.value === 'system'}
-            />
-            <span class="st-segmented__icon">
-              <Icon name={option.icon} />
-            </span>
-            <span>{option.label}</span>
-          </label>
-        ))}
-      </div>
-    </fieldset>
+    <div class="st-segmented">
+      {options.map((option) => (
+        <label class="st-segmented__option">
+          <input
+            type="radio"
+            name={name}
+            value={option.value}
+            checked={option.value === 'system'}
+          />
+          <span class="st-segmented__icon">
+            <Icon name={option.icon} />
+          </span>
+          <span>{option.label}</span>
+        </label>
+      ))}
+    </div>
   </st-theme-toggle>
   <p class="no-js-only st-hint">{t('theme.noJs')}</p>
-</div>
+</fieldset>
 
 <script>
   import '../../scripts/theme-control';

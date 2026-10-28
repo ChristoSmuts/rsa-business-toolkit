@@ -68,6 +68,24 @@ const switches = [
         </p>
       </st-setting>
     ))}
+  </div>
+  {/*
+   * Light or dark, beside low data mode: not a switch here, because the theme control is at the
+   * foot of every page (WP-50 Phase 3, item 5). Without JavaScript nothing can be saved, so the
+   * line says the page follows the device (review pass 2, m7).
+   */}
+  <div class="st-settings__item">
+    <p class="st-hint" id="st-setting-theme-help">
+      <span class="js-only">{t('about.settings.themeHelp')}</span>
+      <span class="no-js-only">{t('about.settings.themeHelpNoJs')}</span>
+    </p>
+    <p>
+      <a class="st-link-block" href={`#${THEME_ID}`} aria-describedby="st-setting-theme-help">
+        {t('about.settings.themeLink')}
+      </a>
+    </p>
+  </div>
+  <div class="st-stack js-only">
     <st-clear-data class="st-settings__item" data-done={t('about.settings.clearDone')}>
       <p class="st-hint" id="st-clear-data-help">
         {t('about.settings.clearDataHelp')}
@@ -92,20 +110,6 @@ const switches = [
         cancelLabel={t('common.cancel')}
       />
     </st-clear-data>
-  </div>
-  {/*
-   * Light or dark is not a switch here: the theme control is at the foot of every page (WP-50
-   * Phase 3, item 5). This says where, beside low data mode, with or without JavaScript.
-   */}
-  <div class="st-settings__item">
-    <p class="st-hint" id="st-setting-theme-help">
-      {t('about.settings.themeHelp')}
-    </p>
-    <p>
-      <a class="st-link-block" href={`#${THEME_ID}`} aria-describedby="st-setting-theme-help">
-        {t('about.settings.themeLink')}
-      </a>
-    </p>
   </div>
 </section>
 

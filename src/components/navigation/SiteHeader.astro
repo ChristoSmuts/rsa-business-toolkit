@@ -65,6 +65,8 @@ const themeLink: NavLink = {
   href: `#${THEME_ID}`,
   route: `#${THEME_ID}`,
   label: t('nav.themeLink'),
+  // Last, after a rule: it is not a page, it moves down this one (review pass 2, m2 and m8).
+  separated: true,
 };
 const homeHref = href(locale, APP_ROUTES.home);
 // While search is switched off, the page's common questions are in the footer instead.
@@ -167,7 +169,7 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
   }
 
   /*
-   * One row. Every control is a 44px target and the row is 44px plus its padding (60px), at every
+   * One row. Every control is a 44px target and the row is 44px plus its padding and its 1px rule (61px), at every
    * width, in both languages, with or without the web fonts. `flex-wrap` stays on so that text
    * enlarged to 200% wraps the row instead of pushing it off the screen; at normal sizes nothing
    * wraps, which `header.spec.ts` checks.
@@ -276,7 +278,7 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
   /* Below 1024px: wordmark, search, language, Menu. */
   @media (width < 1024px) {
     /*
-     * Not sticky on a phone. The row is short now, but on a 568×320 landscape phone 60px is a fifth
+     * Not sticky on a phone. The row is short now, but on a 568×320 landscape phone 61px is a fifth
      * of the screen on every page. While it is static, `trackTopbar()` publishes an offset of 0, so
      * the scroll padding drops with it.
      */

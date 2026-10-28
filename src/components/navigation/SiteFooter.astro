@@ -12,9 +12,10 @@
  * 3. the theme control (`#st-theme`), which left the top bar in WP-50 Phase 3 (it was the widest
  *    thing in it). It needs JavaScript to save a choice; without it a line says the page follows
  *    the device. From 1024px the bar's Tools menu ends with "Light or dark", a link here;
- * 4. "Back to top", `#top`, which every browser takes to the top of the document when no element
- *    has that id: it works without JavaScript, and from 1024px, where the bar is sticky, a link to
- *    the bar itself would not scroll at all.
+ * 4. "Back to top", a link to `#top`, the skip link (`Base.astro`): the first focusable thing on
+ *    the page. Following it scrolls to the top and moves focus there, with or without JavaScript,
+ *    so the next Tab reaches the wordmark (review pass 2, M1: `#top` with no element scrolled but
+ *    left focus on the link at the foot of the page).
  *
  * The links are navigation lists (`.st-quiet-links`: the underline shows on hover and focus) in the
  * text colour, which is verified on `--st-surface-2`. `aria-current="page"` marks the page the
@@ -75,9 +76,7 @@ const groups: { id: string; label: string; links: NavLink[] }[] = [
       ))}
     </nav>
     {/* The target of "Light or dark" (the bar's Tools menu) and of `/about/` Settings. */}
-    <div class="st-footer__theme" id={THEME_ID} tabindex="-1">
-      <ThemeControl locale={locale} showLegend />
-    </div>
+    <ThemeControl class="st-footer__theme" id={THEME_ID} locale={locale} showLegend />
     <p class="st-footer__top">
       <a class="st-link-block st-footer__link" href="#top">
         {t('nav.backToTop')}

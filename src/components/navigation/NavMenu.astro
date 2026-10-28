@@ -43,7 +43,7 @@ const {
   </summary>
   <ul class="st-menu__list" role="list">
     {links.map((link) => (
-      <li>
+      <li class:list={{ 'st-menu__item--separated': link.separated }}>
         <a
           class="st-menu__link"
           href={link.href}
@@ -90,6 +90,13 @@ const {
     gap: var(--st-space-1);
     padding: var(--st-space-2);
     list-style: none;
+  }
+
+  /* A rule above an item that is not another page ("Light or dark" in the bar's Tools). */
+  .st-menu__item--separated {
+    margin-block-start: var(--st-space-1);
+    padding-block-start: var(--st-space-2);
+    border-block-start: var(--st-border-width) solid var(--st-border);
   }
 
   .st-menu__link {

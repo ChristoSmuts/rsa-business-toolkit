@@ -782,6 +782,7 @@
       },
       "clearDone": "Al jou data is van hierdie toestel verwyder.",
       "themeHelp": "Lig of donker is onder Tema aan die einde van elke bladsy.",
+      "themeHelpNoJs": "Sonder JavaScript volg die bladsy jou toestel se lig- of donkerinstelling.",
       "themeLink": "Gaan na Tema"
     }
   },

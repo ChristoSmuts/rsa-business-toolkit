@@ -120,7 +120,8 @@ const themeColorDark = tokens.dark['bg'];
     <slot name="head" />
   </head>
   <body class={bodyClass}>
-    <a class="st-skip-link" href="#main">
+    {/* `id="top"`: the target of the footer's "Back to top", so focus lands here (WP-50 Phase 3). */}
+    <a class="st-skip-link" id="top" href="#main">
       {skipLinkLabel}
     </a>
     <slot name="header" />

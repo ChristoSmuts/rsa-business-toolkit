@@ -110,9 +110,29 @@ test.describe('the header navigates without JavaScript', () => {
     await expect(page.locator('#st-theme')).toBeFocused();
     // Without a script the footer says the theme follows the device.
     await expect(page.locator('#st-theme .no-js-only')).toBeVisible();
-    await page.locator('footer a[href="#top"]').click();
+    // Without a script the menu stays open until it is closed (docs/design-system.md).
+    await tools.locator('summary').click();
+    // "Back to top" from the keyboard: focus moves to the skip link at the top, and Tab goes on to
+    // the wordmark (review pass 2, M1).
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.locator('footer a[href="#top"]').focus();
+    await page.keyboard.press('Enter');
     await expect(page).toHaveURL(/#top$/);
-    await expect(page.locator('header.st-topbar')).toBeInViewport();
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+    await expect(page.locator('#top')).toBeFocused();
+    await page.keyboard.press('Tab');
+    await expect(page.locator('.st-topbar__home')).toBeFocused();
+  });
+
+  test('/about/ Settings says plainly that the page follows the device', async ({ page }) => {
+    for (const [route, words] of [
+      ['about/', 'Without JavaScript the page follows your device’s light or dark setting.'],
+      ['af/about/', 'Sonder JavaScript volg die bladsy jou toestel se lig- of donkerinstelling.'],
+    ] as const) {
+      await page.goto(route);
+      await expect(page.locator('#st-setting-theme-help')).toHaveJSProperty('innerText', words);
+      await expect(page.locator('main a[href="#st-theme"]')).toBeVisible();
+    }
   });
 
   test('from 1024px, the Read and Tools menus open with no script', async ({ page }) => {

@@ -92,6 +92,14 @@ async function overlaps(page: Page): Promise<{ pairs: string[]; home: number }> 
         if (x > 0.5 && y > 0.5) pairs.push(`${a.name} × ${b.name}`);
       }
     }
+    // Every child lies within the screen: a row that cannot wrap pushes Menu off it (pass 2, M2).
+    for (const { name, box } of boxes) {
+      if (box.left < -0.5 || box.right > window.innerWidth + 0.5) {
+        pairs.push(
+          `${name} outside the screen (${Math.round(box.left)} to ${Math.round(box.right)})`,
+        );
+      }
+    }
     // The wordmark's own content must stay inside its link.
     const home = inner.querySelector('.st-topbar__home');
     const homeBox = home?.getBoundingClientRect();
@@ -445,7 +453,7 @@ test.describe('the footer', () => {
       expect(mapLinks).toContain(href);
     }
     await expect(footer.locator('h2')).toHaveText(['Read', 'Tools', 'About this guide']);
-    await expect(footer.locator('st-theme-toggle legend')).toHaveText('Theme');
+    await expect(footer.locator('fieldset#st-theme > legend')).toHaveText('Theme');
     await expect(footer.locator('st-theme-toggle')).toBeVisible();
   });
 
@@ -469,11 +477,24 @@ test.describe('forced colours and print', () => {
     await page.goto('af/core/tax-and-sars/');
     const measured = await bar(page);
     expect(measured.height).toBeLessThanOrEqual(ONE_ROW);
-    for (const selector of ['.st-topbar__search', '.st-topbar__menu-button']) {
-      const style = await page
-        .locator(selector)
-        .evaluate((element) => getComputedStyle(element).borderTopStyle);
-      expect(style, selector).toBe('solid');
+    const canvas = await page.evaluate(() => {
+      const probe = document.createElement('span');
+      probe.style.color = 'Canvas';
+      document.body.append(probe);
+      const colour = getComputedStyle(probe).color;
+      probe.remove();
+      return colour;
+    });
+    for (const selector of ['.st-topbar__search', '.st-topbar__menu-button', 'header.st-topbar']) {
+      const border = await page.locator(selector).evaluate((element) => {
+        const style = getComputedStyle(element);
+        return element.matches('header')
+          ? { style: style.borderBottomStyle, color: style.borderBottomColor }
+          : { style: style.borderTopStyle, color: style.borderTopColor };
+      });
+      expect(border.style, selector).toBe('solid');
+      expect(border.color, selector).not.toBe(canvas);
+      expect(border.color, selector).not.toBe('rgba(0, 0, 0, 0)');
     }
   });
 
@@ -513,6 +534,12 @@ test.describe('large text and zoom', () => {
         const measured = await overlaps(page);
         expect(measured.pairs, `/${route}`).toEqual([]);
         expect(measured.home, `/${route}`).toBeGreaterThanOrEqual(43.5);
+        if (route === '' || route === 'af/') {
+          const sideways = await page.evaluate(
+            () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          );
+          expect(sideways, `/${route} scrolls sideways`).toBeLessThanOrEqual(0);
+        }
       }
     });
   }
@@ -534,6 +561,23 @@ test.describe('review pass 1: tokens, the key hint, the theme and back to top', 
       .locator('footer .st-footer__link')
       .evaluateAll((links) => [...new Set(links.map((link) => getComputedStyle(link).color))]);
     expect(colours).toEqual([text]);
+    // Review pass 2, m5: the language link, the wordmark, the footer's headings, the footer's
+    // ground and the bar's rule.
+    for (const selector of [
+      '.st-topbar__lang a',
+      '.st-topbar__home',
+      'footer .st-footer__heading',
+    ]) {
+      await expect(page.locator(selector).first(), selector).toHaveCSS('color', text);
+    }
+    await expect(page.locator('footer.st-footer')).toHaveCSS(
+      'background-color',
+      await tokenColour(page, '--st-surface-2'),
+    );
+    await expect(page.locator('header.st-topbar')).toHaveCSS(
+      'border-bottom-color',
+      await tokenColour(page, '--st-border'),
+    );
   });
 
   test('the "/" hint is hidden below 1024px and shown from 1024px', async ({ page }, testInfo) => {
@@ -563,9 +607,24 @@ test.describe('review pass 1: tokens, the key hint, the theme and back to top', 
       await expect(link).toHaveAttribute('href', '#st-theme');
       await link.click();
       await expect(page).toHaveURL(/#st-theme$/);
-      await expect(page.locator('#st-theme')).toBeFocused();
+      // Focus lands on the Theme group itself, a <fieldset> named by its legend (pass 2, m6).
+      await expect(page.locator('fieldset#st-theme')).toBeFocused();
       await expect(page.locator('#st-theme st-theme-toggle')).toBeInViewport();
+      // Last in Tools, after a rule (pass 2, m2 and m8).
+      const rule = await link
+        .locator('xpath=..')
+        .evaluate((item) => getComputedStyle(item).borderTopStyle);
+      expect(rule).toBe('solid');
     }
+  });
+
+  test('the theme group is announced by its name in Chromium’s own tree', async ({
+    page,
+    browserName,
+  }) => {
+    test.skip(browserName !== 'chromium', 'Reads Chromium’s accessibility tree over CDP.');
+    await page.goto('af/core/tax-and-sars/');
+    expect(await chromiumAxName(page, 'fieldset#st-theme')).toBe('Tema');
   });
 
   test('/about/ Settings says where light or dark is, and links it', async ({ page }) => {
@@ -574,9 +633,19 @@ test.describe('review pass 1: tokens, the key hint, the theme and back to top', 
       ['af/about/', 'Lig of donker is onder Tema aan die einde van elke bladsy.'],
     ] as const) {
       await page.goto(route);
-      await expect(page.locator('#st-setting-theme-help')).toHaveText(words);
+      await expect(page.locator('#st-setting-theme-help')).toHaveJSProperty('innerText', words);
       const link = page.locator('main a[href="#st-theme"]');
       await expect(link).toBeVisible();
+      // Beside low data mode: after its switch, before "Clear all my data" (pass 2, m7).
+      const order = await page.evaluate(() => {
+        const low = document.querySelector('st-setting[data-setting="lowData"]');
+        const theme = document.querySelector('#st-setting-theme-help');
+        const clear = document.querySelector('st-clear-data');
+        const before = (a: Node | null, b: Node | null): boolean =>
+          Boolean(a && b && a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
+        return before(low, theme) && before(theme, clear);
+      });
+      expect(order).toBe(true);
       await link.click();
       await expect(page.locator('#st-theme')).toBeFocused();
     }
@@ -594,5 +663,107 @@ test.describe('review pass 1: tokens, the key hint, the theme and back to top', 
     await back.click();
     await expect(page).toHaveURL(/#top$/);
     await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  });
+
+  // Review pass 2, M1: `#top` naming no element scrolled but left focus at the foot of the page.
+  test('"Back to top" from the keyboard moves focus to the top, and Tab goes on to the wordmark', async ({
+    page,
+    browserName,
+  }) => {
+    test.skip(browserName === 'webkit', 'WebKit moves Tab only between form controls by default.');
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    for (const width of [360, 1280]) {
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto('core/tax-and-sars/');
+      const back = page.locator('footer a[href="#top"]');
+      await back.focus();
+      await page.keyboard.press('Enter');
+      await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+      await expect(page.locator('#top')).toBeFocused();
+      await page.keyboard.press('Tab');
+      await expect(page.locator('.st-topbar__home')).toBeFocused();
+    }
+  });
+});
+
+/*
+ * Review pass 2, m1: the language link carries the reader's place in the text to the other
+ * language, and nothing else: not the footer's theme control, its site map or the top.
+ */
+test.describe('the language link and fragments', () => {
+  test('carries a heading id, never a fragment of the page’s chrome', async ({
+    page,
+    basePath,
+  }) => {
+    const link = page.locator('.st-topbar__lang a');
+    for (const hash of ['#st-theme', '#st-site-map', '#top']) {
+      await page.goto(`core/tax-and-sars/${hash}`);
+      await expect(link, hash).toHaveAttribute('href', `${basePath}af/core/tax-and-sars/`);
+    }
+    const heading = await page.locator('article .st-blocks h2[id]').first().getAttribute('id');
+    await page.goto(`core/tax-and-sars/#${heading ?? ''}`);
+    await expect(link).toHaveAttribute('href', `${basePath}af/core/tax-and-sars/#${heading ?? ''}`);
+  });
+});
+
+/** The bar's items from left to right, by their left edge. */
+async function barOrder(page: Page, selectors: readonly string[]): Promise<string[]> {
+  const shown: { selector: string; left: number }[] = [];
+  for (const selector of selectors) {
+    const box = await page.locator(selector).first().boundingBox();
+    if (box && box.width > 0) shown.push({ selector, left: box.x });
+  }
+  return shown.sort((a, b) => a.left - b.left).map((item) => item.selector);
+}
+
+// Review pass 2, m3 and m4: the order the reader sees, and where the bar is pinned.
+test.describe('order and position', () => {
+  test('left to right: wordmark, Search, language, Menu on a phone; wordmark, Read, Tools, search, ring, language from 1024px', async ({
+    page,
+    seedStorage,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
+    await seedStorage({
+      'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+    });
+    await page.goto('my-path/');
+    await page.waitForLoadState('networkidle');
+    await page.setViewportSize({ width: 360, height: 740 });
+    await page.goto('af/core/tax-and-sars/');
+    const phone = [
+      '.st-topbar__home',
+      '.st-topbar__search',
+      '.st-topbar__lang',
+      '.st-topbar__menu-button',
+    ];
+    expect(await barOrder(page, phone)).toEqual(phone);
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('af/core/tax-and-sars/');
+    await expect(page.locator('header st-path-progress')).toBeVisible();
+    const wide = [
+      '.st-topbar__home',
+      '.st-topbar__menus .st-menu >> nth=0',
+      '.st-topbar__menus .st-menu >> nth=1',
+      '.st-topbar__search',
+      'header st-path-progress',
+      '.st-topbar__lang',
+    ];
+    expect(await barOrder(page, wide)).toEqual(wide);
+  });
+
+  test('the bar scrolls away below 1024px and is pinned from 1024px', async ({
+    page,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
+    for (const [width, position] of [
+      [320, 'static'],
+      [768, 'static'],
+      [1023, 'static'],
+      [1024, 'sticky'],
+    ] as const) {
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto('core/tax-and-sars/');
+      await expect(page.locator('header.st-topbar'), `${width}px`).toHaveCSS('position', position);
+    }
   });
 });

@@ -36,6 +36,8 @@ export interface NavLink {
   readonly description?: string | undefined;
   /** Site-relative route (no locale prefix, no base), for the current-page comparison. */
   readonly route: string;
+  /** Drawn after a rule in a menu: a jump within the page, not another page. */
+  readonly separated?: boolean | undefined;
 }
 
 /** `true` when this link is the page the reader is on. */

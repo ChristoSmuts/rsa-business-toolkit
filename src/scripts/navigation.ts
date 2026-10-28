@@ -55,7 +55,15 @@ export class StNavDrawer extends HTMLElement {
 
 export class StLangSwitch extends HTMLElement {
   readonly #apply = (): void => {
-    const { hash } = window.location;
+    // Only a place in the text travels to the other language: an id inside <main>. The page's own
+    // chrome (#st-theme, #st-site-map, #top) is not a place to read from (review pass 2, m1).
+    let hash = '';
+    try {
+      const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+      if (target?.closest('main')) hash = window.location.hash;
+    } catch {
+      // A malformed escape keeps no fragment.
+    }
     for (const link of this.querySelectorAll<HTMLAnchorElement>('a[data-locale]')) {
       const locale = link.dataset['locale'];
       if (!isEnabledLocale(locale)) continue;
