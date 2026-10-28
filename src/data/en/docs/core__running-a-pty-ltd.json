@@ -1896,7 +1896,8 @@
       "death-of-a-sole-director-and-shareholder"
     ]
   },
-  "summary": "What a company costs you in time and duties every year, what goes wrong when you stop filing, and when the company does not protect you.",
+  "summary": "Your yearly duties as a company owner, in the order people most often miss them, what happens if you stop filing, and when the company does not protect you.",
+  "summarySource": "override",
   "tags": [
     "pty"
   ],

@@ -493,7 +493,8 @@
       "serr-synergy"
     ]
   },
-  "summary": "Put this on your website, or send it as a PDF when a customer asks. It is short on purpose.",
+  "summary": "Tell your customers, in plain words, what you keep about them, why, who sees it and how long you keep it.",
+  "summarySource": "override",
   "tags": [
     "template",
     "popia"

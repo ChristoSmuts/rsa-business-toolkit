@@ -3491,7 +3491,8 @@
       "small-claims-court-who-may-sue"
     ]
   },
-  "summary": "Vehicle dealing has three registration layers other businesses do not have, and one legal risk that can destroy a small dealer in a single transaction.",
+  "summary": "SAPS registration, stock registered to the business or your ID, trade numbers to drive unregistered or unlicensed stock, and the consumer law.",
+  "summarySource": "override",
   "tags": [
     "business-types",
     "vehicles"

@@ -563,12 +563,17 @@ test.describe('the AI notice on a 320×568 screen without JavaScript', () => {
   ] as const) {
     test(`the AI notice is on the first screen at ${width}×${height}`, async ({ page }) => {
       await page.setViewportSize({ width, height });
-      for (const route of [
+      const routes = [
         'business-types/vehicle-dealer/',
         'af/business-types/vehicle-dealer/',
         'af/start/start-here/',
         'af/business-types/beauty/',
-      ]) {
+      ];
+      // On a tall phone, also the pages where the notice comes lowest without JavaScript since
+      // they have a written Afrikaans lead (lead-dedupe review passes 2 and 3).
+      if (height > width)
+        routes.push('af/business-types/professional-creative/', 'af/business-types/retail-online/');
+      for (const route of routes) {
         await page.goto(route);
         const box = await page.locator('.st-ai-notice').boundingBox();
         expect(box?.y ?? Number.POSITIVE_INFINITY, route).toBeLessThanOrEqual(height - 44);

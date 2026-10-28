@@ -2178,7 +2178,8 @@
     "acts": [],
     "entries": []
   },
-  "summary": "What changed in the toolkit, and where the Google Drive copy and the markdown copy still differ.",
+  "summary": "What changed in the toolkit since 13 September 2026, including three corrections to earlier advice, and what to paste into the Google Drive copy to keep it in sync.",
+  "summarySource": "override",
   "tags": [
     "orientation",
     "changelog"

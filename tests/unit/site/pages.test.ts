@@ -9,6 +9,7 @@ import {
   contentPageTitle,
   contentStaticPaths,
   docContentLang,
+  docLead,
   docLocales,
   docPager,
   effortLevel,
@@ -223,5 +224,14 @@ describe('latestCheck', () => {
   it('is not the same date for every page in the corpus, which is why pages say "most recently"', () => {
     const dates = new Set(realDocs().map((doc) => doc.verification.checkedOn));
     expect(latestCheck(realDocs())).toBe([...dates].sort().at(-1));
+  });
+});
+
+describe('docLead', () => {
+  const summary = 'A summary.';
+  it('shows a summary written for the page, and none taken from its text or borrowed', () => {
+    expect(docLead({ summary, summarySource: 'override' })).toBe(summary);
+    expect(docLead({ summary, summarySource: 'derived' })).toBeUndefined();
+    expect(docLead({ summary, summarySource: 'fallback' })).toBeUndefined();
   });
 });

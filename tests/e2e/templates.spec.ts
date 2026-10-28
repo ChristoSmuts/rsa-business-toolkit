@@ -5,6 +5,8 @@ import { allowConsoleError, expect, test } from './fixtures';
 import { fontsSettled } from './helpers/fonts';
 import { holdModules, routeSameOrigin } from './helpers/network';
 import { REPO_ROOT } from './helpers/routes';
+import type { Doc } from '../../src/lib/content/schema';
+import { docLead } from '../../src/lib/pages';
 
 /**
  * WP-32: the fillable templates on the built site (projects chromium, webkit and mobile).
@@ -567,7 +569,18 @@ test.describe('the line above the form', () => {
         });
         expect(above).not.toMatch(FILE_WORDS);
         // The lead and the meta description too (review pass 1, M4).
-        const lead = (await article.locator('.st-lead').first().textContent()) ?? '';
+        // A template whose summary is its own first paragraph (the invoice, the tax invoice) shows
+        // no lead (`docLead`); one with a summary written for it shows exactly that.
+        const data = JSON.parse(
+          readFileSync(
+            path.join(REPO_ROOT, 'src', 'data', lang, 'docs', `paperwork__templates__${slug}.json`),
+            'utf8',
+          ),
+        ) as Pick<Doc, 'summary' | 'summarySource'>;
+        const expected = docLead(data);
+        await expect(article.locator('header .st-doc__lead')).toHaveCount(expected ? 1 : 0);
+        if (expected) await expect(article.locator('header .st-doc__lead')).toHaveText(expected);
+        const lead = expected ?? '';
         const meta = (await page.locator('meta[name="description"]').getAttribute('content')) ?? '';
         for (const text of [lead, meta]) {
           expect(text).not.toMatch(FILE_WORDS);

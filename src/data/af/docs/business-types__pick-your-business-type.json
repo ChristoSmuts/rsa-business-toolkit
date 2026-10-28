@@ -575,7 +575,8 @@
       "asc-food-safety"
     ]
   },
-  "summary": "Vind jou soort besigheid in een tabel, sien hoeveel opstelwerk elke soort vra, en wat almal nodig het, watter soort besigheid ook al.",
+  "summary": "Vind jou soort besigheid, vergelyk die opstelwerk wat elke soort vra, en sien wat elke besigheid nodig het en wat kan wag.",
+  "summarySource": "override",
   "tags": [
     "business-types"
   ],

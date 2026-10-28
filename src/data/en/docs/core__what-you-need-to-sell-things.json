@@ -1404,6 +1404,7 @@
     ]
   },
   "summary": "Some businesses may not trade until they hold a licence. Others need nothing. This file tells you which one you are.",
+  "summarySource": "derived",
   "tags": [
     "licensing",
     "consumer-law"

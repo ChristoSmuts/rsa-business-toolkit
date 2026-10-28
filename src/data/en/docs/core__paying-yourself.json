@@ -1284,6 +1284,7 @@
     ]
   },
   "summary": "The money in the company bank account is not yours. It belongs to the company.",
+  "summarySource": "derived",
   "tags": [
     "pty",
     "tax"
