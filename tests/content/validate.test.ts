@@ -434,6 +434,22 @@ describe('committed content data', () => {
   // A summary taken from the page's own first paragraph made 48 of 74 pages show that paragraph
   // twice, once as the lead and once as the text. Only a summary written for the language in
   // content-meta/docs.meta.json is a lead (`docLead`), and none may repeat the opening paragraph.
+  // Review pass 7, m2: a lead is the summary as written, never cut short to fit the meta limit.
+  it('shows every summary override exactly as docs.meta.json writes it', () => {
+    const written = JSON.parse(
+      readFileSync(join(repoRoot, 'content-meta', 'docs.meta.json'), 'utf8'),
+    ) as { docs: { id: string; summary?: Partial<Record<string, string>> }[] };
+    const changed = langs.flatMap((lang) =>
+      (docsByLang.get(lang) ?? []).flatMap((doc) => {
+        const text = written.docs.find((entry) => entry.id === doc.id)?.summary?.[lang];
+        return text === undefined || (doc.summary === text && docLead(doc) === text)
+          ? []
+          : [`${lang} ${doc.id}: "${doc.summary}"`];
+      }),
+    );
+    expect(changed).toEqual([]);
+  });
+
   it('marks a summary as an override exactly when docs.meta.json has one for that language', () => {
     const written = JSON.parse(
       readFileSync(join(repoRoot, 'content-meta', 'docs.meta.json'), 'utf8'),
@@ -477,7 +493,8 @@ describe('committed content data', () => {
    * repeats a paragraph, note, callout, list item or cell passes on its own; it fails only when every
    * sentence of the lead is inside the opening. Each rule and limit here has a probe in "pins each
    * rule of the lead check" or the tests before it that fails when only that rule is removed or the
-   * limit moved by one (docs/reviews/lead-dedupe-pass6.md has the table). This guards the data;
+   * limit moved by one: 47 mutations, all caught (docs/reviews/lead-dedupe-pass6.md and
+   * lead-dedupe-pass7.md have the tables). This guards the data;
    * `doc-page.spec.ts` guards that the layout shows a lead only through `docLead`.
    */
   const docOf = (lang: (typeof langs)[number], id: string): Doc => {
@@ -803,6 +820,17 @@ describe('committed content data', () => {
     expect(
       repeatsOpening('Second-hand goods dealer registration comes first.', dealer),
     ).toBeUndefined();
+    // The last eight words of a sentence count as a run too.
+    expect(
+      repeatsOpening('New words here: then ask every happy customer for a review.', marketing),
+    ).toBeDefined();
+    // The Afrikaans main reason comes from the Afrikaans hub, not the English one.
+    expect(
+      repeatsOpening(
+        'Gesondheidsinspeksie en munisipale lisensie.',
+        docOf('af', 'business-types/beauty'),
+      ),
+    ).toBeDefined();
     // Case does not matter.
     expect(repeatsOpening('PRINT THIS. TICK AS YOU GO.', checklist)).toBeDefined();
     // A short sentence that repeats the opening passes beside a sentence that does not.
@@ -873,6 +901,11 @@ describe('committed content data', () => {
     // Figures count in the English and Afrikaans number comparison, not only words.
     expect(summaryNumbers('Since 13 September, 5 options.').join('|')).not.toBe(
       summaryNumbers('Sedert 14 September, 5 opsies.').join('|'),
+    );
+    // A figure is read whole, separators included, and a number that is there twice counts twice.
+    expect(summaryNumbers('R1,200').join('|')).not.toBe(summaryNumbers('R1 200').join('|'));
+    expect(summaryNumbers('5 steps, 5 options.').join('|')).not.toBe(
+      summaryNumbers('5 steps and options.').join('|'),
     );
     // An English override without an Afrikaans one, or with other numbers, is a gap.
     expect(
