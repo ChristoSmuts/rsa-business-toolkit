@@ -454,7 +454,8 @@ describe('committed content data', () => {
    * A lead that says again what the reader sees first is the same fault in a smaller dose: review
    * passes 1 to 4 of lead-dedupe found hand-written leads that repeated a sentence of their page's
    * opening, echoed a heading, or were a short line of the text itself. The check compares words
-   * only (case, punctuation and a closing "…" ignored) with what the reader sees first:
+   * only (case, punctuation and a closing "…" ignored; an apostrophe joins its word) with what the
+   * reader sees first:
    *
    * - the H1, compared as a heading;
    * - the first OPENING_BLOCKS visible blocks that carry text: paragraphs, notes, callouts, list and
@@ -472,8 +473,12 @@ describe('committed content data', () => {
    *
    * Not compared: blocks from the eleventh on, the closed "Words used" table, and a lead sentence
    * pieced together from several list items or cells of fewer than five words each (no single text
-   * holds it, and no run of eight words crosses them). This guards the data; `doc-page.spec.ts`
-   * guards that the layout shows a lead only through `docLead`.
+   * holds it, and no run of eight words crosses them). A sentence of fewer than five words that
+   * repeats a paragraph, note, callout, list item or cell passes on its own; it fails only when every
+   * sentence of the lead is inside the opening. Each rule and limit here has a probe in "pins each
+   * rule of the lead check" or the tests before it that fails when only that rule is removed or the
+   * limit moved by one (docs/reviews/lead-dedupe-pass6.md has the table). This guards the data;
+   * `doc-page.spec.ts` guards that the layout shows a lead only through `docLead`.
    */
   const docOf = (lang: (typeof langs)[number], id: string): Doc => {
     const doc = docsByLang.get(lang)?.find((item) => item.id === id);
@@ -565,7 +570,7 @@ describe('committed content data', () => {
       kind,
     }));
     const inside = (list: readonly string[], body: string): boolean =>
-      list.length > 0 && body.includes(` ${list.join(' ')} `);
+      body.includes(` ${list.join(' ')} `);
     // A lead whose every sentence is inside the opening, whatever their length. This also covers a
     // lead that is wholly inside one text, so there is no separate whole-lead rule.
     const sentences = sentencesOf(lead);
@@ -602,16 +607,7 @@ describe('committed content data', () => {
     expect(derived.length).toBeGreaterThan(0);
     expect(
       derived
-        .filter(
-          (doc) =>
-            repeatsOpening(doc.summary, doc) === undefined &&
-            !doc.blocks.some(
-              (block) =>
-                !block.hidden &&
-                (block.kind === 'paragraph' || block.kind === 'note') &&
-                runsToText(block.c).replace(/\s+/g, ' ').includes(doc.summary.replace(/…$/, '')),
-            ),
-        )
+        .filter((doc) => repeatsOpening(doc.summary, doc) === undefined)
         .map((doc) => `${doc.lang} ${doc.id}`),
     ).toEqual([]);
   });
@@ -726,6 +722,19 @@ describe('committed content data', () => {
     return [...figures, ...counted].sort();
   };
 
+  type WrittenSummary = { id: string; summary?: Partial<Record<string, string>> };
+  /** English summary overrides with no Afrikaans one, or with other numbers in the Afrikaans one. */
+  const overrideGaps = (entries: readonly WrittenSummary[]): string[] =>
+    entries.flatMap((entry) => {
+      const en = entry.summary?.['en'];
+      const af = entry.summary?.['af'];
+      if (en === undefined) return [];
+      if (af === undefined) return [`${entry.id}: no Afrikaans summary`];
+      return summaryNumbers(en).join('|') === summaryNumbers(af).join('|')
+        ? []
+        : [`${entry.id}: other numbers`];
+    });
+
   it('counts numbers written as words when it compares English and Afrikaans summaries', () => {
     expect(
       summaryNumbers('Twelve AI prompts; ten of them give you 5 options to refine.').join('|'),
@@ -745,21 +754,135 @@ describe('committed content data', () => {
     const written = JSON.parse(
       readFileSync(join(repoRoot, 'content-meta', 'docs.meta.json'), 'utf8'),
     ) as { docs: { id: string; summary?: Partial<Record<string, string>> }[] };
-    const numbers = summaryNumbers;
-    const withEnglish = written.docs.filter((entry) => entry.summary?.['en'] !== undefined);
-    expect(withEnglish.length).toBeGreaterThan(0);
     expect(
-      withEnglish.filter((entry) => entry.summary?.['af'] === undefined).map((e) => e.id),
-    ).toEqual([]);
+      written.docs.filter((entry) => entry.summary?.['en'] !== undefined).length,
+    ).toBeGreaterThan(0);
+    expect(overrideGaps(written.docs)).toEqual([]);
+  });
+
+  // Review pass 6: one probe per rule of the check. docs/reviews/lead-dedupe-pass6.md lists which
+  // probe fails when only that rule is removed.
+  it('pins each rule of the lead check', () => {
+    const dealer = docOf('en', 'business-types/vehicle-dealer');
+    const checklist = docOf('en', 'lookup/checklist');
+    const marketing = docOf('en', 'branding/marketing-prompts');
+    const receipt = docOf('en', 'paperwork/templates/receipt');
+    const food = docOf('en', 'business-types/food');
+    // A task-list item near the top (the checklist's first task).
     expect(
-      withEnglish
-        .filter(
-          (entry) =>
-            numbers(entry.summary?.['en'] ?? '').join('|') !==
-            numbers(entry.summary?.['af'] ?? '').join('|'),
-        )
-        .map((entry) => entry.id),
-    ).toEqual([]);
+      repeatsOpening('Sold something once and got paid, to prove people want it.', checklist),
+    ).toBeDefined();
+    // A note: the receipt's note in the document view.
+    expect(repeatsOpening('Send this when money arrives.', receipt)).toBeDefined();
+    // A sentence of five words or more inside a paragraph, beside a sentence that is new.
+    expect(
+      repeatsOpening(
+        'Instagram and TikTok are slow starts. Prompts for posts and WhatsApp.',
+        marketing,
+      ),
+    ).toBe('Instagram and TikTok are slow starts.');
+    // A sentence that shares a run of eight words with a paragraph but is not inside it.
+    expect(
+      repeatsOpening(
+        'For anyone who handles, prepares, stores, transports or sells food for money: what you need before you may open, and how long it really takes.',
+        food,
+      ),
+    ).toBeDefined();
+    // Eight words in a row is a repeat, seven is not ("Then ask every happy customer for a review.").
+    expect(
+      repeatsOpening('Then ask every happy customer for a review, by WhatsApp.', marketing),
+    ).toBeDefined();
+    expect(
+      repeatsOpening('Ask every happy customer for a review, by WhatsApp.', marketing),
+    ).toBeUndefined();
+    // Against a heading six words in a row is a repeat, five is not (the dealer's tenth block,
+    // "Layer 1: SAPS second-hand goods dealer registration").
+    expect(
+      repeatsOpening('SAPS second-hand goods dealer registration comes first.', dealer),
+    ).toBeDefined();
+    expect(
+      repeatsOpening('Second-hand goods dealer registration comes first.', dealer),
+    ).toBeUndefined();
+    // Case does not matter.
+    expect(repeatsOpening('PRINT THIS. TICK AS YOU GO.', checklist)).toBeDefined();
+    // A short sentence that repeats the opening passes beside a sentence that does not.
+    expect(
+      repeatsOpening('Print this. A checklist of every step, in order.', checklist),
+    ).toBeUndefined();
+    // A colon does not end a sentence: "Vehicle dealing:" and "required, in this order" are each in
+    // the text, but the sentence as a whole is not.
+    expect(repeatsOpening('Vehicle dealing: required, in this order.', dealer)).toBeUndefined();
+    // Block ten is the opening (the marketing page's line on reviews) ...
+    expect(
+      repeatsOpening(
+        'Reviews are the single biggest factor in whether you show up above your competitors.',
+        marketing,
+      ),
+    ).toBeDefined();
+    // ... and block eleven and later are not (the dealer's first line under "Layer 1").
+    expect(
+      repeatsOpening('This is compulsory and most small dealers do not know about it.', dealer),
+    ).toBeUndefined();
+    // The "Words used" table is a closed disclosure, not the opening.
+    expect(
+      repeatsOpening(
+        'The free form to register as a second-hand goods dealer with the police.',
+        dealer,
+      ),
+    ).toBeUndefined();
+    // A hidden block is not on the page: the dealer's old lead passes once its paragraph is hidden.
+    const hiddenSecond: Doc = {
+      ...dealer,
+      blocks: dealer.blocks.map((block, index) =>
+        index === 1 ? ({ ...block, hidden: true } as Block) : block,
+      ),
+    };
+    expect(
+      repeatsOpening(
+        'Vehicle dealing has three registration layers other businesses do not have, and one legal risk that can destroy a small dealer in a single transaction.',
+        hiddenSecond,
+      ),
+    ).toBeUndefined();
+    // Four words is not enough: a sentence of four words inside a paragraph passes beside a
+    // sentence that is new (inside a heading, the H1 or the main reason it would not).
+    expect(
+      repeatsOpening('Tick as you go. A checklist of every step, in order.', checklist),
+    ).toBeUndefined();
+    // Five words is enough: the receipt's note, beside a sentence that is new.
+    expect(
+      repeatsOpening('Send this when money arrives. Keep a copy for your records too.', receipt),
+    ).toBe('Send this when money arrives.');
+    // An apostrophe joins its word: "customers insurance" is "customer's insurance" in the text.
+    expect(
+      repeatsOpening(
+        'Your customers insurance may refuse to pay.',
+        docOf('en', 'business-types/services-trades'),
+      ),
+    ).toBeDefined();
+    // The sentence it reports is the lead's own, with spaces tidied and a closing "…" left off.
+    expect(
+      repeatsOpening(
+        ' Prompts for posts and WhatsApp.\nInstagram and TikTok  are slow starts… ',
+        marketing,
+      ),
+    ).toBe('Instagram and TikTok are slow starts');
+    // A closing "…" after the last full stop is not a sentence that is new.
+    expect(repeatsOpening('Print this. Tick as you go. …', checklist)).toBe(
+      'Print this. Tick as you go. …',
+    );
+    // Figures count in the English and Afrikaans number comparison, not only words.
+    expect(summaryNumbers('Since 13 September, 5 options.').join('|')).not.toBe(
+      summaryNumbers('Sedert 14 September, 5 opsies.').join('|'),
+    );
+    // An English override without an Afrikaans one, or with other numbers, is a gap.
+    expect(
+      overrideGaps([
+        { id: 'a', summary: { en: 'Five steps.', af: 'Vyf stappe.' } },
+        { id: 'b', summary: { en: 'Since 13 September.' } },
+        { id: 'c', summary: { en: 'Since 13 September.', af: 'Sedert 14 September.' } },
+        { id: 'd', summary: { af: 'Net Afrikaans.' } },
+      ]),
+    ).toEqual(['b: no Afrikaans summary', 'c: other numbers']);
   });
 
   it('has a sane heading tree in every document', () => {
