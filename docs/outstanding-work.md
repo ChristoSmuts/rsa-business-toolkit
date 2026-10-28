@@ -1,8 +1,70 @@
 # Outstanding work
 
-**Status on 10 October 2026 (work paused by the owner). `main` carries every built package: WP-20 (the site), WP-40 (Afrikaans), WP-30 (the store), WP-32 (templates), WP-31 (Find my path, My path, applies-to), WP-33 (search) and WP-50a (the fixes the design audit found). WP-50 Phase 1 is done: two design directions wait for the owner's decisions D1 to D5.**
+**Status on 28 October 2026 (work paused by the owner). `main` is at `0a618bb`. WP-50 Phase 3 items 1 to 3, the 360px accessibility pass and the lead change are merged; items 4 and 5 are on pushed branches waiting for more review; item 6 and Phases 4 and 5 are not started. Branches go to `main` by pull request from now on.**
 
 Read `docs/build-plan.md` first for the design, then this file for where the work stopped. `docs/reviews/merge-checklist.md` holds the tasks that must happen at merge time.
+
+## Where to pick up (28 October 2026)
+
+The owner paused the work after the reviews below finished. Every branch is pushed to GitHub; nothing is half-committed. From now on a finished branch goes to `main` through a pull request, after two consecutive clean fresh reviews (minors from a clean pass may be fixed without restarting the count).
+
+### Merged to `main` since 10 October
+
+| Change | Commit on `main` | Reviews |
+| --- | --- | --- |
+| WP-50 Phase 2, tokens and base | `5fbea62` | `WP-50-phase2-pass1.md` to `pass4.md` |
+| WP-50 Phase 3 item 1, the document page (and the repair after it) | `983f555` | `WP-50-phase3-doc-pass1.md`, `pass2.md`, `main-repair-pass1.md` to `pass5.md` |
+| WP-50 Phase 3 item 2, home, hubs and card set | `bebd0de` | `WP-50-phase3-home-pass1.md`, `pass2.md` |
+| Axe sweep at 360px (`a11y-phone` project and CI job) | `32c72cf` | `a11y-phone-pass1.md` to `pass4.md`; 3 and 4 clean |
+| WP-50 Phase 3 item 3, business-type pages | `ea15b4a` | `WP-50-phase3-types-pass1.md`, `pass2.md` |
+| A document shows a lead only when its summary was written for it (squash of `lead-dedupe`) | `0a618bb` | `lead-dedupe-pass1.md` to `pass7.md`; 6 and 7 clean |
+
+CI (including WebKit and both axe jobs) and the Pages deploy passed for each.
+
+### In progress, on pushed branches
+
+**`wp50-p3-tools`: WP-50 Phase 3 item 4, the tools** (Find my path, My path, templates, checklist, search dialog). Head `d119c1a`; it already merges `main` at `0a618bb`.
+- Ten review passes, `docs/reviews/WP-50-phase3-tools-pass1.md` to `pass10.md`. Pass 10 is clean; pass 9 was not, so **one more clean fresh review** is needed before the pull request.
+- Before that review, fix pass 10's six minors (listed in `pass10.md`): "Find my path" in My path's empty state and the template tabs still break inside words at 200% text; pin the 30rem breakpoint and the checklist-summary and template-line padding in the padding test; correct the checklist box's "before" figure; assert "(main)" is hidden for one kind of business in e2e.
+- Deliberate change to know about: below 30rem, button side padding is now a fixed phone value at every text size (md 20px, lg 24px, ghost 12px, confirm dialog 20px; was 24/32/12/24 at 100% text). Recorded with before and after figures in `docs/design-system.md`, "Wrapping and min-content".
+- Last full run on `d550d99` (pass 10): `gate:fast` 3,524 + 47 tests, build within budget (heaviest document page 24.3 KB of 25 KB), e2e chromium + mobile + nojs 1,834 passed 0 failed, `test:a11y` 836 passed.
+
+**`wp50-p3-header`: WP-50 Phase 3 item 5, the header, footer and navigation.** Head `e4adc59`; it already merges `main` at `0a618bb`.
+- One 61px row at every width with and without JavaScript; one language link; a footer site map that Menu reaches without JavaScript; the theme control in the footer and drawer, with "Light or dark" in Tools from 1024px; "Back to top". The AI notice is on the first screen on all 74 document pages at every size measured, including landscape phones without JavaScript.
+- Three review passes, `WP-50-phase3-header-pass1.md` to `pass3.md`; none clean yet. **Pass 3's findings are not fixed** (listed in `pass3.md`):
+  - M1: the language-link fragment filter adds 46 bytes of script (heaviest document page 24,832 → 24,878 B), against the measure of done "script budgets don't grow"; the record wrongly says "unchanged". The reviewer built and tested a +1 B alternative using `main :target`, described in `pass3.md`.
+  - M2: three tests claim more than they check (in-page jumps through `hashchange`, "Back to top" being last, the footer Theme legend and focus ring).
+  - Five minors.
+- Then two consecutive clean fresh reviews before the pull request.
+
+**Other pushed branches**: `lead-dedupe` and `a11y-phone` are already on `main` (squashed or fast-forwarded) and kept only for history.
+
+### Not started
+
+- **WP-50 Phase 3 item 6**: the 404, about and contents pages. Start it from `wp50-p3-header` (or after that merges), so the 404 page can take the new header; the 404 page and `/design-system/` still have their own shell.
+- **WP-50 Phase 4**: motion and interaction (`docs/work-packages/WP-50-design-revamp.md`).
+- **WP-50 Phase 5**: verification, including real devices: NVDA with Firefox, TalkBack with Chrome, VoiceOver on an iPhone (stacked hub tables, the tools), one low-end Android phone on a slow connection, and a person reviewing the visual diffs.
+
+### Owner items
+
+- **Repository setting**: if branch protection lists required checks, add "Accessibility (axe, phone)".
+- **Your local clone**: `/home/user/rsa-business-toolkit` in the cloud container is on a detached HEAD at `bebd0de`; run `git checkout claude/lucid-bell-t5acdn && git pull` there before working in it.
+- **Afrikaans review**: the Afrikaans summaries added by the lead change are machine translated (`content-meta/docs.meta.json`, flagged in their `fix(af)` commits), as are earlier items in `docs/reviews/WP-40-owner-items.md`.
+- **Content review, in `docs/reviews/backlog.md`**:
+  - "What has changed": the status line says "all four corrections" while Change 4 lists three; "Last updated: 13 September 2026" while Change 5 is dated 13 October; the paste list covers only Change 1.
+  - Vehicle dealer: the Quick answer's item 8 leaves out "unlicensed" (Layer 3 says "unregistered or unlicensed"); "Three separate registration layers" reads as if all three are required while Layer 3 is optional.
+  - Branding prompts, line 7: "Each one gives you 5 options" is not true of Prompts 0, 6 (Path A) and 11.
+- **P4a accuracy review** against official sources, and the expert review, are still open (the cloud environment cannot reach SARS, CIPC, gov.za, SAFLII or the Information Regulator).
+- **WebKit** runs only in CI on a push; it cannot be installed in the cloud container.
+
+### Notes for whoever resumes
+
+- The cloud container restarts without warning and stops background runs; committed work survives, uncommitted mutation probes may not be reverted. Check `git diff` in a worktree before continuing.
+- Disk is limited: remove finished worktrees (`git worktree remove`) and delete `test-results/` after runs. On 28 October 117 stale worktrees were removed to free space after runs failed with `ENOSPC`.
+- Run one Playwright invocation per worktree at a time, shard long suites into runs under 10 minutes, and give each run its own `PW_PORT`.
+- Fresh reviewers kept finding one untested claim per pass until each builder audited every claim in its design record against a mutation; do that audit before asking for a review.
+
+## Earlier status (10 October 2026)
 
 ## Where to pick up (7 October 2026)
 
