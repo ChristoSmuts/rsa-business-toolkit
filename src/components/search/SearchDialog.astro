@@ -149,21 +149,11 @@ const ids = {
           </p>
         </div>
         <section class="st-search-dialog__empty" data-search-empty aria-labelledby={ids.common}>
-          <h3 class="st-search-dialog__subtitle" id={ids.common}>
-            {t('search.commonQuestions')}
-          </h3>
-          <ul class="st-search-dialog__questions" role="list" lang={questionsLang}>
-            {questions.map((question) => (
-              <li>
-                <a class="st-link-block" href={question.href}>
-                  {question.text}
-                </a>
-              </li>
-            ))}
-          </ul>
           {/*
-            The no-results line suggests the glossary, so the way to it is here too, under the
-            questions it shows with that line (WP-50 Phase 3, item 4).
+            The no-results line suggests the glossary, so the way to it is here too (WP-50 Phase 3,
+            item 4). First, above the common questions, so that under "Nothing found" the way out
+            is on the first screen at every size (review pass 8, m1: below the questions the
+            glossary link was at 772px at 320×568 and under the fold of the dialog at 1280×800).
           */}
           <ul class="st-search-dialog__more" role="list">
             <li>
@@ -178,6 +168,18 @@ const ids = {
                 </a>
               </li>
             )}
+          </ul>
+          <h3 class="st-search-dialog__subtitle" id={ids.common}>
+            {t('search.commonQuestions')}
+          </h3>
+          <ul class="st-search-dialog__questions" role="list" lang={questionsLang}>
+            {questions.map((question) => (
+              <li>
+                <a class="st-link-block" href={question.href}>
+                  {question.text}
+                </a>
+              </li>
+            ))}
           </ul>
         </section>
       </div>

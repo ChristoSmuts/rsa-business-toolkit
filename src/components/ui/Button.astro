@@ -280,6 +280,23 @@ const hasEnd = Astro.slots.has('icon-end') || Boolean(iconEnd);
     overflow-wrap: anywhere;
   }
 
+  /*
+   * On a phone the side padding stops growing with the text size: at 200% text at 320px it was
+   * 40px a side, which left "Edit answers" 108px beside its pencil and broke it as
+   * "Edit / answe / rs" (WP-50 Phase 3, item 4, review pass 8, m2). At the default text size this
+   * is the same 20px (24px for `lg`); only larger text keeps more room for the words, so a word is
+   * broken only when it is longer than the button.
+   */
+  @media (width < 30rem) {
+    .st-btn:not([data-size='lg']) {
+      padding-inline: min(var(--st-space-5), 20px);
+    }
+
+    .st-btn[data-size='lg'] {
+      padding-inline: min(var(--st-space-6), 24px);
+    }
+  }
+
   .st-btn__spinner {
     display: inline-block;
     inline-size: 1.1em;

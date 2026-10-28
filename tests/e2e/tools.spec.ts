@@ -252,6 +252,13 @@ test.describe('Find my path on a phone', () => {
         .evaluateAll((lis) => lis.map((li) => getComputedStyle(li).fontWeight));
       expect(weights[1]).toBe('600');
       expect(weights[2]).not.toBe('600');
+      // A done step's bar is filled in --st-primary; the one to come is not (review pass 8, m3).
+      const primary = await resolved(page, 'border-top-color', 'var(--st-primary)');
+      const barColours = await page
+        .locator('.st-wizard__stepper > li')
+        .evaluateAll((lis) => lis.map((li) => getComputedStyle(li).borderTopColor));
+      expect(barColours[0], 'done is filled').toBe(primary);
+      expect(barColours[2], 'to come is not filled').not.toBe(primary);
       expect(drawn.width, 'the tick has a box of its own').toBeGreaterThan(1);
       expect(drawn.height).toBeGreaterThan(1);
       expect(drawn.spanWidth, 'its words are shown, not visually hidden').toBeGreaterThan(1);
@@ -938,6 +945,13 @@ test.describe('the checklist and the confirm dialog on a phone', () => {
         const above = wide?.y ?? 0;
         const below = size.height - above - (wide?.height ?? 0);
         expect(Math.abs(above - below), `centred down at ${size.width}px`).toBeLessThanOrEqual(1);
+        if (size.width === 1280) {
+          // On a desktop the two choices share one row (review pass 8, m4).
+          const rowTops = await buttons.evaluateAll((all) =>
+            all.map((button) => Math.round(button.getBoundingClientRect().top)),
+          );
+          expect(rowTops[0], 'one row at 1280px').toBe(rowTops[1]);
+        }
         await page.keyboard.press('Escape');
         await expect(dialog).toBeHidden();
       }
@@ -990,6 +1004,18 @@ test.describe('the tools as the design record describes them', () => {
       'no hairline above',
     ).toBe('none');
     await expect(strip.locator('li[data-chip]:not([hidden])')).toHaveCount(3);
+    // The heading has a row of its own, above the chips, at a phone and a desktop width, where
+    // the chips would fit beside it (review pass 8, m5).
+    for (const size of [PHONE, { width: 1280, height: 800 }]) {
+      await page.setViewportSize(size);
+      const headingBox = await heading.boundingBox();
+      const chipBox = await strip.locator('li[data-chip]:not([hidden])').first().boundingBox();
+      expect(
+        (headingBox?.y ?? 0) + (headingBox?.height ?? 0),
+        `above the chips at ${size.width}px`,
+      ).toBeLessThanOrEqual((chipBox?.y ?? 0) + 0.5);
+    }
+    await page.setViewportSize(PHONE);
     const edit = strip.getByRole('link', { name: 'Edit answers' });
     await expect(edit).toHaveAttribute('data-variant', 'secondary');
     await expect(edit.locator('svg')).toHaveCount(1);
@@ -1116,6 +1142,115 @@ test.describe('the search dialog on a phone', () => {
         (element) => element.scrollWidth - element.clientWidth,
       );
       expect(overflow, 'nothing in the dialog scrolls sideways').toBeLessThanOrEqual(0);
+    });
+  }
+});
+
+/**
+ * Review pass 8, m1: under "Nothing found" the way out (all pages, the glossary) is in the
+ * dialog's visible area, not only shown somewhere down its scroll, at a phone, a tall phone and a
+ * desktop, in both languages.
+ */
+test.describe('the search dialog: the way out of "Nothing found" is in view', () => {
+  test.skip(({ isMobile }) => isMobile, 'Sets its own widths.');
+
+  for (const size of [
+    { width: 320, height: 568 },
+    { width: 360, height: 740 },
+    { width: 1280, height: 800 },
+  ]) {
+    for (const lang of LANGS) {
+      test(`/${lang} at ${size.width}×${size.height}`, async ({ page }) => {
+        await page.setViewportSize(size);
+        await page.goto(`${lang}business-types/food/`);
+        await page.waitForLoadState('networkidle');
+        await page.keyboard.press('Control+k');
+        const dialog = page.locator('dialog.st-search-dialog');
+        await expect(dialog).toBeVisible();
+        await dialog.locator('.st-search-dialog__input').fill('zzqxv');
+        await expect(dialog.locator('[role="status"]')).toContainText('zzqxv');
+        const links = dialog.locator('[data-search-empty] .st-search-dialog__more a');
+        await expect(links).toHaveCount(2);
+        // In the viewport and not clipped by the dialog's own scroll area, whole.
+        for (const link of await links.all()) await expect(link).toBeInViewport({ ratio: 1 });
+        const bottom = await links.last().evaluate((link) => {
+          const box = link.getBoundingClientRect();
+          const body = link.closest('.st-search-dialog__body')!.getBoundingClientRect();
+          return { link: box.bottom, body: body.bottom, screen: window.innerHeight };
+        });
+        expect(bottom.link).toBeLessThanOrEqual(Math.min(bottom.body, bottom.screen));
+      });
+    }
+  }
+});
+
+/**
+ * Review pass 8, m2: with text at 200% at 320px a button's label wraps between words, not inside
+ * one ("Edit / answe / rs" before); pass 1, m8: the confirm dialogs' choices did the same
+ * ("Verwyder merkies"). The words of each `.st-btn` under `scope` that are drawn on more than one
+ * line, after the text is set to 200%.
+ */
+async function brokenWords(page: Page, scope: string): Promise<string[]> {
+  return page.evaluate(async (selector) => {
+    document.documentElement.style.fontSize = '200%';
+    await document.fonts.ready;
+    await new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
+    const broken: string[] = [];
+    for (const button of document.querySelectorAll(`${selector} .st-btn`)) {
+      if (button.getClientRects().length === 0) continue;
+      const label = button.querySelector('.st-btn__label') ?? button;
+      const walker = document.createTreeWalker(label, NodeFilter.SHOW_TEXT);
+      for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+        for (const match of (node.textContent ?? '').matchAll(/\S+/g)) {
+          const range = document.createRange();
+          range.setStart(node, match.index);
+          range.setEnd(node, match.index + match[0].length);
+          const lines = new Set([...range.getClientRects()].map((rect) => Math.round(rect.top)));
+          if (lines.size > 1) broken.push(match[0]);
+        }
+      }
+    }
+    return broken;
+  }, scope);
+}
+
+test.describe('button labels at 200% text and 320px', () => {
+  test.skip(({ isMobile }) => isMobile, 'Sets its own widths.');
+
+  for (const lang of LANGS) {
+    test(`/${lang}my-path/: "Edit answers" breaks no word`, async ({ page, seedStorage }) => {
+      await seedStorage({
+        'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+      });
+      await page.setViewportSize(PHONE);
+      await page.goto(`${lang}my-path/`);
+      const edit = page.getByRole('link', { name: lang ? 'Wysig antwoorde' : 'Edit answers' });
+      await expect(edit).toBeVisible();
+      expect(await brokenWords(page, '.st-my-path__answers'), 'words broken').toEqual([]);
+      await noSidewaysScroll(page, `${lang}my-path/ at 200%`);
+    });
+
+    test(`/${lang}: the confirm dialogs' choices break no word`, async ({ page, seedStorage }) => {
+      await seedStorage({
+        'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+      });
+      await page.setViewportSize(PHONE);
+      for (const [route, id] of [
+        ['checklist/', 'st-checklist-reset'],
+        ['my-path/', 'st-profile-reset'],
+        ['templates/tax-invoice/', 'st-tool-clear'],
+        ['about/', 'st-clear-data'],
+      ] as const) {
+        await page.goto(`${lang}${route}`);
+        const dialog = page.locator(`dialog#${id}`);
+        await dialog.evaluate((element) => (element as HTMLDialogElement).showModal());
+        await expect(dialog).toBeVisible();
+        expect(await brokenWords(page, `dialog#${id}`), `${lang}${route}`).toEqual([]);
+        expect(
+          await dialog.evaluate((element) => element.scrollWidth - element.clientWidth),
+          `${lang}${route}: the dialog scrolls sideways`,
+        ).toBeLessThanOrEqual(0);
+      }
     });
   }
 });
