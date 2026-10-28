@@ -113,14 +113,23 @@ test.describe('Find my path on a phone', () => {
     });
 
     // Review pass 1, m3: the reader's real gain is the first answer on the first screen of a
-    // 360×740 phone (725px EN and 754px AF at `ea15b4a`, below the 740px screen).
+    // 360×740 phone (725px EN and 754px AF at `ea15b4a`, below the 740px screen). Review pass 7,
+    // the audit: "within 740px" still passed with the stepper's words shown again (about 100px
+    // more), so the bound is the measured 554px (EN) and 608px (AF) with 16px to spare, and a line
+    // more (48px) outside Chromium, as at 320px.
     test(`/${lang}find-my-path/ at 360×740: the first answer is on the first screen`, async ({
       page,
+      browserName,
     }) => {
       await page.setViewportSize({ width: 360, height: 740 });
       await startWizard(page, lang);
       const first = page.locator('[data-step="entity"] .st-choice').first();
-      expect(await pageTop(first)).toBeLessThanOrEqual(740);
+      const top = await pageTop(first);
+      const measured = lang ? 608 : 554;
+      expect(top).toBeLessThanOrEqual(measured + 16 + (browserName === 'chromium' ? 0 : 48));
+      expect(top + 44, 'at least its first 44px row is on the first screen').toBeLessThanOrEqual(
+        740,
+      );
     });
 
     // Review pass 1, M1: on a phone the bar is a segmented progress bar, filled up to and including
@@ -306,6 +315,8 @@ test.describe('Find my path on a phone', () => {
       );
       const change = summary.locator('[data-go]');
       await expect(change).toHaveCount(2);
+      // A ghost button, as the design record says (review pass 7, the audit).
+      for (const n of [0, 1]) await expect(change.nth(n)).toHaveAttribute('data-variant', 'ghost');
       expect(await minHeight(change)).toBeGreaterThanOrEqual(44);
       await noSidewaysScroll(page, `${lang}find-my-path/ step 3`);
 
@@ -459,6 +470,8 @@ test.describe('My path on a phone', () => {
       await expect(next.locator('[data-next-badge]')).toHaveText(
         lang ? 'Doen dit volgende' : 'Do this next',
       );
+      // Words and an arrow icon (review pass 7, the audit).
+      await expect(next.locator('[data-next-badge] svg')).toHaveCount(1);
       // By keyboard: the button keeps focus when the steps are drawn again (review pass 3, m1).
       // Step 1's own button (the "next" marker moves on to step 2 when it is pressed).
       const mark = page.locator('[data-steps] > li:not([hidden])[data-n="1"] [data-mark]');
@@ -661,7 +674,12 @@ test.describe('My path keeps focus on every step', () => {
     const top = async (): Promise<number> => (await mark.boundingBox())?.y ?? 0;
     const before = await top();
     await mark.click();
-    await expect(page.locator('st-my-path [data-step-status]')).not.toBeEmpty();
+    const region = page.locator('st-my-path [data-step-status]');
+    await expect(region).not.toBeEmpty();
+    // The message is said, not shown: the region is a 1×1 clipped box (review pass 7, the audit).
+    const regionBox = await region.boundingBox();
+    expect(regionBox?.width ?? 99).toBeLessThanOrEqual(1);
+    expect(regionBox?.height ?? 99).toBeLessThanOrEqual(1);
     // At ea15b4a the press moved the button 30px (270 → 300 at 320px): the "Done" badge's line.
     expect((await top()) - before).toBeLessThanOrEqual(31);
     const afterPress = await top();
@@ -826,6 +844,16 @@ test.describe('the templates on a phone', () => {
         });
       });
       expect(outside, `${lang}templates/tax-invoice/`).toEqual([]);
+      // Either rule alone keeps the words in the column, so the outcome above fails only without
+      // both (review pass 7, the audit); the rules the design record names are checked here.
+      const rules = await page
+        .locator('.st-tgroup__legend')
+        .first()
+        .evaluate((legend) => {
+          const css = getComputedStyle(legend);
+          return { cap: css.maxInlineSize, wrap: css.overflowWrap };
+        });
+      expect(rules).toEqual({ cap: '100%', wrap: 'anywhere' });
     }
   });
 
