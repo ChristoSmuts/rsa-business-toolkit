@@ -4,7 +4,8 @@
  *
  * 1. the breadcrumb on one line, with a dot in the section's hue before the section (there is no
  *    separate "Section:" label: it repeated the breadcrumb);
- * 2. the H1 and the lead;
+ * 2. the H1 and the lead, when the summary was written for the page (`docLead`): a summary the
+ *    build took from the first paragraph would repeat it, so then the H1 stands alone;
  * 3. the read time; on a business type, the type's facts instead (`TypeFacts`, WP-50 Phase 3,
  *    item 3): the read time and the effort meter on one line, the hub's "Main reason" under them,
  *    and from 480px the type's illustration;
@@ -76,7 +77,14 @@ import type { BusinessType, Doc, GlossaryFile, Manifest, SourcesFile } from '../
 import { splitTermsBlocks, TERMS_HEADING_ID } from '../lib/content/render';
 import { hasOwnSources } from '../lib/content/trust';
 import { documentCrumbs } from '../lib/nav';
-import { assertDocTrust, docPager, pageTitle, sectionHue, splitAroundParam } from '../lib/pages';
+import {
+  assertDocTrust,
+  docLead,
+  docPager,
+  pageTitle,
+  sectionHue,
+  splitAroundParam,
+} from '../lib/pages';
 import { docHasConditions } from '../lib/path-pages';
 import { effortReason, glanceLinks } from '../lib/business-types';
 import { href } from '../lib/paths';
@@ -145,6 +153,8 @@ const pager = docPager(manifest, doc.id, locale);
 const previousParts = splitAroundParam((title) => t('nav.previous', { title }));
 const nextParts = splitAroundParam((title) => t('nav.next', { title }));
 const hue = sectionHue(doc.section);
+/** Only a hand-written summary is shown under the H1; a derived one repeats the first paragraph. */
+const lead = docLead(doc);
 const { terms, rest } = splitTermsBlocks(doc.blocks);
 /**
  * A template becomes a form with a live preview (WP-32): its text before and after the template
@@ -212,9 +222,11 @@ const relatedTypes = businessType
       <article class="st-stack st-stack-lg" data-doc={doc.id} data-kind={doc.kind}>
         <header class="st-stack st-doc__header">
           <h1 lang={contentLangTag}>{doc.h1}</h1>
-          <p class="st-lead st-doc__lead st-doc__after-notice" lang={contentLangTag}>
-            {doc.summary}
-          </p>
+          {lead && (
+            <p class="st-lead st-doc__lead st-doc__after-notice" lang={contentLangTag}>
+              {lead}
+            </p>
+          )}
           {businessType ? (
             <TypeFacts
               locale={locale}

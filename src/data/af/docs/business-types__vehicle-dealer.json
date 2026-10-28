@@ -3692,7 +3692,8 @@
       "small-claims-court-who-may-sue"
     ]
   },
-  "summary": "Voertuighandel het drie lae van registrasie wat ander besighede nie het nie, en een regsrisiko wat ’n klein handelaar in ’n enkele transaksie kan vernietig.",
+  "summary": "SAPS-registrasie, voorraad wat op die besigheid of jou ID-nommer geregistreer is, motorhandelnommers om ongeregistreerde of ongelisensieerde voorraad te ry, en die verbruikersreg.",
+  "summarySource": "override",
   "tags": [
     "business-types",
     "vehicles"

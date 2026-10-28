@@ -774,6 +774,7 @@
     "entries": []
   },
   "summary": "Sê vir ’n kliënt wat die prys is voordat jy die werk doen, en stuur dit as ’n PDF.",
+  "summarySource": "override",
   "tags": [
     "template"
   ],

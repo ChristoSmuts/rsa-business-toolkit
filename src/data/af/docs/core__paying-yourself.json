@@ -1368,6 +1368,7 @@
     ]
   },
   "summary": "Die geld in die maatskappy se bankrekening is nie joune nie. Dit behoort aan die maatskappy.",
+  "summarySource": "derived",
   "tags": [
     "pty",
     "tax"

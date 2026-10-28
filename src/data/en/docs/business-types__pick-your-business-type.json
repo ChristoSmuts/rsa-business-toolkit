@@ -562,7 +562,8 @@
       "asc-food-safety"
     ]
   },
-  "summary": "Find your kind of business in one table, see how much setup work each type carries, and what everyone needs regardless of type.",
+  "summary": "Find your kind of business, compare the setup work each kind carries, and see what every business needs and what can wait.",
+  "summarySource": "override",
   "tags": [
     "business-types"
   ],

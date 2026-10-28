@@ -997,7 +997,8 @@
       "hanekom-attorneys-webuycars-consent-order"
     ]
   },
-  "summary": "Dit dek loodgieters, elektrisiëns, bouers, verwers, werktuigkundiges, tuiniers, skoonmakers, nutsmanne, koeriers en installeerders.",
+  "summary": "Loodgieters, elektrisiëns, bouers, skoonmakers, koeriers en ander ambagte: registrasie, veiligheid, kwotasies, deposito’s en versekering.",
+  "summarySource": "override",
   "tags": [
     "business-types"
   ],

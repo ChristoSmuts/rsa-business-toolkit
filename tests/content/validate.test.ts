@@ -17,9 +17,17 @@ import {
   SourcesFileSchema,
   TaskKeysFileSchema,
   TasksFileSchema,
+  type Block,
   type Doc,
   type InlineRun,
 } from '../../src/lib/content/schema';
+import { effortReason } from '../../src/lib/business-types';
+import { docLead } from '../../src/lib/pages';
+import { isTemplateSlug } from '../../src/lib/templates/draft';
+import { formHowToKey, formIntro } from '../../src/lib/templates/intro';
+import { parseTemplate } from '../../src/lib/templates/placeholders';
+import { useTranslations } from '../../src/i18n';
+import type { Locale } from '../../src/i18n/locales';
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const dataDir = join(repoRoot, 'src', 'data');
@@ -399,8 +407,12 @@ describe('committed content data', () => {
   it('gives the vehicle-dealer page the same curated summary in English and Afrikaans', () => {
     const summary = (lang: (typeof langs)[number]): string | undefined =>
       docsByLang.get(lang)?.find((doc) => doc.id === 'business-types/vehicle-dealer')?.summary;
-    expect(summary('en')).toMatch(/^Vehicle dealing has three registration layers /);
-    expect(summary('af')).toMatch(/^Voertuighandel het drie lae van registrasie /);
+    expect(summary('en')).toMatch(
+      /^SAPS registration, stock registered to the business or your ID, /,
+    );
+    expect(summary('af')).toMatch(
+      /^SAPS-registrasie, voorraad wat op die besigheid of jou ID-nommer /,
+    );
   });
 
   // WP-50a review pass 1, M4: a template's summary is the lead and meta description of its form
@@ -417,6 +429,493 @@ describe('committed content data', () => {
     expect(
       langs.flatMap((lang) => docsByLang.get(lang) ?? []).filter((d) => d.kind === 'template'),
     ).toHaveLength(10);
+  });
+
+  // A summary taken from the page's own first paragraph made 48 of 74 pages show that paragraph
+  // twice, once as the lead and once as the text. Only a summary written for the language in
+  // content-meta/docs.meta.json is a lead (`docLead`), and none may repeat the opening paragraph.
+  // Review pass 7, m2: a lead is the summary as written, never cut short to fit the meta limit.
+  it('shows every summary override exactly as docs.meta.json writes it', () => {
+    const written = JSON.parse(
+      readFileSync(join(repoRoot, 'content-meta', 'docs.meta.json'), 'utf8'),
+    ) as { docs: { id: string; summary?: Partial<Record<string, string>> }[] };
+    const changed = langs.flatMap((lang) =>
+      (docsByLang.get(lang) ?? []).flatMap((doc) => {
+        const text = written.docs.find((entry) => entry.id === doc.id)?.summary?.[lang];
+        return text === undefined || (doc.summary === text && docLead(doc) === text)
+          ? []
+          : [`${lang} ${doc.id}: "${doc.summary}"`];
+      }),
+    );
+    expect(changed).toEqual([]);
+  });
+
+  it('marks a summary as an override exactly when docs.meta.json has one for that language', () => {
+    const written = JSON.parse(
+      readFileSync(join(repoRoot, 'content-meta', 'docs.meta.json'), 'utf8'),
+    ) as { docs: { id: string; summary?: Partial<Record<string, string>> }[] };
+    const wrong = langs.flatMap((lang) =>
+      (docsByLang.get(lang) ?? [])
+        .filter((doc) => {
+          const has =
+            written.docs.find((entry) => entry.id === doc.id)?.summary?.[lang] !== undefined;
+          return has !== (doc.summarySource === 'override');
+        })
+        .map((doc) => `${lang} ${doc.id}: ${doc.summarySource}`),
+    );
+    expect(wrong).toEqual([]);
+  });
+
+  /*
+   * A lead that says again what the reader sees first is the same fault in a smaller dose: review
+   * passes 1 to 4 of lead-dedupe found hand-written leads that repeated a sentence of their page's
+   * opening, echoed a heading, or were a short line of the text itself. The check compares words
+   * only (case, punctuation and a closing "…" ignored; an apostrophe joins its word) with what the
+   * reader sees first:
+   *
+   * - the H1, compared as a heading;
+   * - the first OPENING_BLOCKS visible blocks that carry text: paragraphs, notes, callouts, list and
+   *   task-list items, table cells and headings;
+   * - on a business type, the "Main reason" its facts show under the H1 (`effortReason`).
+   *
+   * The lead fails when every one of its sentences (split at . ! ?) is inside one of those texts,
+   * whatever their length; that includes a lead wholly inside one text. A single sentence fails when it
+   * shares a run of RUN words with a text or, at five words or more, is inside one; against a heading
+   * when it is inside it or shares a run of HEADING_RUN words; against the main reason when it is
+   * inside it. A "Topic: …" lead that names the page's subject passes, and so does a lead that names
+   * a heading's topic in passing ("the turnover tax trap"): that is a contents line, not a repeat.
+   * Both renderings of a template count: the form page (`formIntro` replaces the "make a copy" note)
+   * and the plain document view, so the rule holds with `TEMPLATES_FILLABLE` on or off.
+   *
+   * Not compared: blocks from the eleventh on, the closed "Words used" table, and a lead sentence
+   * pieced together from several list items or cells of fewer than five words each (no single text
+   * holds it, and no run of eight words crosses them). A sentence of fewer than five words that
+   * repeats a paragraph, note, callout, list item or cell passes on its own; it fails only when every
+   * sentence of the lead is inside the opening. Each rule and limit here has a probe in "pins each
+   * rule of the lead check" or the tests before it that fails when only that rule is removed or the
+   * limit moved by one: 47 mutations, all caught (docs/reviews/lead-dedupe-pass6.md and
+   * lead-dedupe-pass7.md have the tables). This guards the data;
+   * `doc-page.spec.ts` guards that the layout shows a lead only through `docLead`.
+   */
+  const docOf = (lang: (typeof langs)[number], id: string): Doc => {
+    const doc = docsByLang.get(lang)?.find((item) => item.id === id);
+    if (!doc) throw new Error(`no ${lang} ${id}`);
+    return doc;
+  };
+  const businessTypesMeta = JSON.parse(
+    readFileSync(join(repoRoot, 'content-meta', 'business-types.json'), 'utf8'),
+  ) as { types: { id: string; doc: string }[]; pickTable: Parameters<typeof effortReason>[0] };
+  const OPENING_BLOCKS = 10;
+  const RUN = 8;
+  const HEADING_RUN = 6;
+  const words = (text: string): string[] =>
+    text
+      .toLowerCase()
+      .replace(/[’']/g, '')
+      .split(/[^\p{L}\p{N}]+/u)
+      .filter((word) => word !== '');
+  const sentencesOf = (text: string): string[] =>
+    text
+      .replace(/\s+/g, ' ')
+      .trim()
+      .replace(/…$/, '')
+      .split(/(?<=[.!?])\s+/)
+      .filter((sentence) => words(sentence).length > 0);
+  const hasRun = (list: readonly string[], body: string, size: number): boolean => {
+    for (let index = 0; index + size <= list.length; index += 1)
+      if (body.includes(` ${list.slice(index, index + size).join(' ')} `)) return true;
+    return false;
+  };
+  /** The blocks the form page shows: the "make a copy" note gives way to the form's line. */
+  const formView = (doc: Doc): readonly Block[] | undefined => {
+    const slug = doc.kind === 'template' && isTemplateSlug(doc.slug) ? doc.slug : undefined;
+    if (slug === undefined) return undefined;
+    const template = parseTemplate(doc);
+    const key = formHowToKey(slug);
+    const intro = formIntro(
+      template.before,
+      key ? useTranslations(doc.lang as Locale)(key) : undefined,
+    );
+    return [...intro, ...doc.blocks.slice(template.before.length)];
+  };
+  const TEXT_KINDS = new Set([
+    'paragraph',
+    'note',
+    'callout',
+    'list',
+    'tasklist',
+    'table',
+    'heading',
+  ]);
+  /** On a business type, the hub table's "Main reason" that its facts show under the H1. */
+  const typeReason = (doc: Doc): string[] => {
+    const type = businessTypesMeta.types.find((item) => item.doc === doc.id);
+    if (!type) return [];
+    const hub = docOf(doc.lang as (typeof langs)[number], 'business-types/pick-your-business-type');
+    const englishHub = docOf('en', 'business-types/pick-your-business-type');
+    const reason = effortReason(businessTypesMeta.pickTable, englishHub, hub, type.id);
+    return reason ? [runsToText(reason)] : [];
+  };
+  type Seen = { text: string; kind: 'body' | 'heading' | 'reason' };
+  /** What the reader sees first: the texts of the first visible blocks that carry words. */
+  const opening = (blocks: readonly Block[]): Seen[] =>
+    blocks
+      .filter((block) => !block.hidden && TEXT_KINDS.has(block.kind))
+      .slice(0, OPENING_BLOCKS)
+      .flatMap((block) =>
+        blockRunLists(block).map((runs): Seen => ({
+          text: runsToText(runs),
+          kind: block.kind === 'heading' ? 'heading' : 'body',
+        })),
+      );
+  /** The part of `lead` that repeats what the reader of `doc` sees first, or undefined. */
+  const repeatsOpening = (
+    lead: string,
+    doc: Doc,
+    options: { formView?: boolean } = {},
+  ): string | undefined => {
+    const views = [doc.blocks, options.formView === false ? undefined : formView(doc)].filter(
+      (blocks): blocks is readonly Block[] => blocks !== undefined,
+    );
+    const seen: Seen[] = [
+      { text: doc.h1, kind: 'heading' },
+      ...views.flatMap(opening),
+      ...typeReason(doc).map((text): Seen => ({ text, kind: 'reason' })),
+    ];
+    const texts = seen.map(({ text, kind }): Seen => ({
+      text: ` ${words(text).join(' ')} `,
+      kind,
+    }));
+    const inside = (list: readonly string[], body: string): boolean =>
+      body.includes(` ${list.join(' ')} `);
+    // A lead whose every sentence is inside the opening, whatever their length. This also covers a
+    // lead that is wholly inside one text, so there is no separate whole-lead rule.
+    const sentences = sentencesOf(lead);
+    if (sentences.every((sentence) => texts.some(({ text }) => inside(words(sentence), text))))
+      return lead;
+    return sentences.find((sentence) => {
+      const list = words(sentence);
+      return texts.some(({ text, kind }) => {
+        if (kind === 'reason') return inside(list, text);
+        if (kind === 'heading') return inside(list, text) || hasRun(list, text, HEADING_RUN);
+        return (list.length >= 5 && inside(list, text)) || hasRun(list, text, RUN);
+      });
+    });
+  };
+
+  it('shows no lead that repeats what the reader sees first on its page', () => {
+    const found = langs.flatMap((lang) =>
+      (docsByLang.get(lang) ?? []).flatMap((doc) => {
+        const lead = docLead(doc);
+        if (lead === undefined) return [];
+        const sentence = repeatsOpening(lead, doc);
+        return sentence === undefined ? [] : [`${lang} ${doc.id}: "${sentence}"`];
+      }),
+    );
+    expect(found).toEqual([]);
+    // The rule has something to check: some pages keep a lead, and a derived summary gives none.
+    const all = langs.flatMap((lang) => docsByLang.get(lang) ?? []);
+    expect(all.filter((doc) => docLead(doc) !== undefined).length).toBeGreaterThan(0);
+    expect(
+      all.filter((doc) => doc.summarySource !== 'override' && docLead(doc) !== undefined),
+    ).toEqual([]);
+    // Every derived summary would fail the check, which is why a derived summary is never a lead.
+    const derived = all.filter((doc) => doc.summarySource === 'derived');
+    expect(derived.length).toBeGreaterThan(0);
+    expect(
+      derived
+        .filter((doc) => repeatsOpening(doc.summary, doc) === undefined)
+        .map((doc) => `${doc.lang} ${doc.id}`),
+    ).toEqual([]);
+  });
+
+  // Review pass 2 of lead-dedupe: probes that hold the check to what it should catch and pass.
+  it('catches a lead that repeats what the reader sees first, and passes a topic line', () => {
+    const dealer = docOf('en', 'business-types/vehicle-dealer');
+    const receipt = docOf('en', 'paperwork/templates/receipt');
+    const marketing = docOf('en', 'branding/marketing-prompts');
+    // A: the dealer's old lead, the second sentence of its second paragraph.
+    expect(
+      repeatsOpening(
+        'Vehicle dealing has three registration layers other businesses do not have, and one legal risk that can destroy a small dealer in a single transaction.',
+        dealer,
+      ),
+    ).toBeDefined();
+    // C: an item of the dealer's "Quick answer" list.
+    expect(
+      repeatsOpening(
+        'Registration as a second-hand goods dealer with SAPS, free but compulsory.',
+        dealer,
+      ),
+    ).toBeDefined();
+    // E: the receipt's callout.
+    expect(
+      repeatsOpening('Only send a receipt once the money is in your account balance.', receipt),
+    ).toBeDefined();
+    // The marketing page's old lead echoed its first heading.
+    expect(
+      repeatsOpening(
+        'Where South African small businesses actually find customers, plus AI prompts for content pillars, posts, WhatsApp messages and your Google Business Profile.',
+        marketing,
+      ),
+    ).toBeDefined();
+    // Review pass 3: a cell of a table near the top (the hub's effort table) and a business
+    // type's "Main reason", which its facts show under the H1.
+    expect(
+      repeatsOpening(
+        'Some trades need professional registration.',
+        docOf('en', 'business-types/pick-your-business-type'),
+      ),
+    ).toBeDefined();
+    expect(
+      repeatsOpening(
+        'Health inspection and municipal licence.',
+        docOf('en', 'business-types/beauty'),
+      ),
+    ).toBeDefined();
+    // Review pass 4: a lead of short sentences that are all in the text, a lead equal to the
+    // type's main reason, and a line caught only in the form view.
+    expect(repeatsOpening('Print this. Tick as you go.', docOf('en', 'lookup/checklist'))).toBe(
+      'Print this. Tick as you go.',
+    );
+    expect(repeatsOpening('Pick two channels. Do those two properly.', marketing)).toBeDefined();
+    // Review pass 5: two short sentences from two different blocks ("Required, in this order:" and
+    // "Optional but often needed:"). Only the every-sentence rule catches it.
+    expect(repeatsOpening('Required, in this order. Optional but often needed.', dealer)).toBe(
+      'Required, in this order. Optional but often needed.',
+    );
+    expect(repeatsOpening('Three separate registration layers.', dealer)).toBeDefined();
+    // A short sentence that is the main reason, or the H1, beside a sentence that is new.
+    expect(
+      repeatsOpening('Three separate registration layers. Plus the consumer law and VAT.', dealer),
+    ).toBe('Three separate registration layers.');
+    expect(
+      repeatsOpening('Buying and selling vehicles. What to register and what to sign.', dealer),
+    ).toBe('Buying and selling vehicles.');
+    const formLine = 'Fill in the form, check the preview, then save it as a PDF to send.';
+    expect(repeatsOpening(formLine, receipt)).toBeDefined();
+    expect(repeatsOpening(formLine, receipt, { formView: false })).toBeUndefined();
+    // H: a "Topic: …" lead that names the page's subject is not a repeat.
+    expect(
+      repeatsOpening('Vehicle dealing: the registrations, the consumer law and VAT.', dealer),
+    ).toBeUndefined();
+  });
+
+  /*
+   * The numbers in a summary, as numerals, in order of size: figures as written, and the counts one
+   * to twelve written as words in English or Afrikaans ("Twelve AI prompts", "Twaalf KI-opdragte").
+   */
+  const NUMBER_WORDS: Record<string, string> = {
+    one: '1',
+    two: '2',
+    three: '3',
+    four: '4',
+    five: '5',
+    six: '6',
+    seven: '7',
+    eight: '8',
+    nine: '9',
+    ten: '10',
+    eleven: '11',
+    twelve: '12',
+    een: '1',
+    twee: '2',
+    drie: '3',
+    vier: '4',
+    vyf: '5',
+    ses: '6',
+    sewe: '7',
+    agt: '8',
+    nege: '9',
+    tien: '10',
+    elf: '11',
+    twaalf: '12',
+  };
+  const summaryNumbers = (text: string): string[] => {
+    const figures = text.match(/\d[\d,. ]*\d|\d/g) ?? [];
+    const counted = (text.toLowerCase().match(/\p{L}+/gu) ?? []).flatMap((word) =>
+      NUMBER_WORDS[word] ? [NUMBER_WORDS[word]] : [],
+    );
+    return [...figures, ...counted].sort();
+  };
+
+  type WrittenSummary = { id: string; summary?: Partial<Record<string, string>> };
+  /** English summary overrides with no Afrikaans one, or with other numbers in the Afrikaans one. */
+  const overrideGaps = (entries: readonly WrittenSummary[]): string[] =>
+    entries.flatMap((entry) => {
+      const en = entry.summary?.['en'];
+      const af = entry.summary?.['af'];
+      if (en === undefined) return [];
+      if (af === undefined) return [`${entry.id}: no Afrikaans summary`];
+      return summaryNumbers(en).join('|') === summaryNumbers(af).join('|')
+        ? []
+        : [`${entry.id}: other numbers`];
+    });
+
+  it('counts numbers written as words when it compares English and Afrikaans summaries', () => {
+    expect(
+      summaryNumbers('Twelve AI prompts; ten of them give you 5 options to refine.').join('|'),
+    ).toBe(
+      summaryNumbers('Twaalf KI-opdragte; tien daarvan gee jou 5 opsies om te verfyn.').join('|'),
+    );
+    expect(
+      summaryNumbers('Twelve AI prompts; ten of them give you 5 options to refine.').join('|'),
+    ).not.toBe(
+      summaryNumbers('Elf KI-opdragte; nege daarvan gee jou 5 opsies om te verfyn.').join('|'),
+    );
+  });
+
+  // Review pass 4, m4: every written English summary has a written Afrikaans one, with the same
+  // numbers (CLAUDE.md: Afrikaans keeps numbers byte-identical to English).
+  it('gives every English summary override an Afrikaans one with the same numbers', () => {
+    const written = JSON.parse(
+      readFileSync(join(repoRoot, 'content-meta', 'docs.meta.json'), 'utf8'),
+    ) as { docs: { id: string; summary?: Partial<Record<string, string>> }[] };
+    expect(
+      written.docs.filter((entry) => entry.summary?.['en'] !== undefined).length,
+    ).toBeGreaterThan(0);
+    expect(overrideGaps(written.docs)).toEqual([]);
+  });
+
+  // Review pass 6: one probe per rule of the check. docs/reviews/lead-dedupe-pass6.md lists which
+  // probe fails when only that rule is removed.
+  it('pins each rule of the lead check', () => {
+    const dealer = docOf('en', 'business-types/vehicle-dealer');
+    const checklist = docOf('en', 'lookup/checklist');
+    const marketing = docOf('en', 'branding/marketing-prompts');
+    const receipt = docOf('en', 'paperwork/templates/receipt');
+    const food = docOf('en', 'business-types/food');
+    // A task-list item near the top (the checklist's first task).
+    expect(
+      repeatsOpening('Sold something once and got paid, to prove people want it.', checklist),
+    ).toBeDefined();
+    // A note: the receipt's note in the document view.
+    expect(repeatsOpening('Send this when money arrives.', receipt)).toBeDefined();
+    // A sentence of five words or more inside a paragraph, beside a sentence that is new.
+    expect(
+      repeatsOpening(
+        'Instagram and TikTok are slow starts. Prompts for posts and WhatsApp.',
+        marketing,
+      ),
+    ).toBe('Instagram and TikTok are slow starts.');
+    // A sentence that shares a run of eight words with a paragraph but is not inside it.
+    expect(
+      repeatsOpening(
+        'For anyone who handles, prepares, stores, transports or sells food for money: what you need before you may open, and how long it really takes.',
+        food,
+      ),
+    ).toBeDefined();
+    // Eight words in a row is a repeat, seven is not ("Then ask every happy customer for a review.").
+    expect(
+      repeatsOpening('Then ask every happy customer for a review, by WhatsApp.', marketing),
+    ).toBeDefined();
+    expect(
+      repeatsOpening('Ask every happy customer for a review, by WhatsApp.', marketing),
+    ).toBeUndefined();
+    // Against a heading six words in a row is a repeat, five is not (the dealer's tenth block,
+    // "Layer 1: SAPS second-hand goods dealer registration").
+    expect(
+      repeatsOpening('SAPS second-hand goods dealer registration comes first.', dealer),
+    ).toBeDefined();
+    expect(
+      repeatsOpening('Second-hand goods dealer registration comes first.', dealer),
+    ).toBeUndefined();
+    // The last eight words of a sentence count as a run too.
+    expect(
+      repeatsOpening('New words here: then ask every happy customer for a review.', marketing),
+    ).toBeDefined();
+    // The Afrikaans main reason comes from the Afrikaans hub, not the English one.
+    expect(
+      repeatsOpening(
+        'Gesondheidsinspeksie en munisipale lisensie.',
+        docOf('af', 'business-types/beauty'),
+      ),
+    ).toBeDefined();
+    // Case does not matter.
+    expect(repeatsOpening('PRINT THIS. TICK AS YOU GO.', checklist)).toBeDefined();
+    // A short sentence that repeats the opening passes beside a sentence that does not.
+    expect(
+      repeatsOpening('Print this. A checklist of every step, in order.', checklist),
+    ).toBeUndefined();
+    // A colon does not end a sentence: "Vehicle dealing:" and "required, in this order" are each in
+    // the text, but the sentence as a whole is not.
+    expect(repeatsOpening('Vehicle dealing: required, in this order.', dealer)).toBeUndefined();
+    // Block ten is the opening (the marketing page's line on reviews) ...
+    expect(
+      repeatsOpening(
+        'Reviews are the single biggest factor in whether you show up above your competitors.',
+        marketing,
+      ),
+    ).toBeDefined();
+    // ... and block eleven and later are not (the dealer's first line under "Layer 1").
+    expect(
+      repeatsOpening('This is compulsory and most small dealers do not know about it.', dealer),
+    ).toBeUndefined();
+    // The "Words used" table is a closed disclosure, not the opening.
+    expect(
+      repeatsOpening(
+        'The free form to register as a second-hand goods dealer with the police.',
+        dealer,
+      ),
+    ).toBeUndefined();
+    // A hidden block is not on the page: the dealer's old lead passes once its paragraph is hidden.
+    const hiddenSecond: Doc = {
+      ...dealer,
+      blocks: dealer.blocks.map((block, index) =>
+        index === 1 ? ({ ...block, hidden: true } as Block) : block,
+      ),
+    };
+    expect(
+      repeatsOpening(
+        'Vehicle dealing has three registration layers other businesses do not have, and one legal risk that can destroy a small dealer in a single transaction.',
+        hiddenSecond,
+      ),
+    ).toBeUndefined();
+    // Four words is not enough: a sentence of four words inside a paragraph passes beside a
+    // sentence that is new (inside a heading, the H1 or the main reason it would not).
+    expect(
+      repeatsOpening('Tick as you go. A checklist of every step, in order.', checklist),
+    ).toBeUndefined();
+    // Five words is enough: the receipt's note, beside a sentence that is new.
+    expect(
+      repeatsOpening('Send this when money arrives. Keep a copy for your records too.', receipt),
+    ).toBe('Send this when money arrives.');
+    // An apostrophe joins its word: "customers insurance" is "customer's insurance" in the text.
+    expect(
+      repeatsOpening(
+        'Your customers insurance may refuse to pay.',
+        docOf('en', 'business-types/services-trades'),
+      ),
+    ).toBeDefined();
+    // The sentence it reports is the lead's own, with spaces tidied and a closing "…" left off.
+    expect(
+      repeatsOpening(
+        ' Prompts for posts and WhatsApp.\nInstagram and TikTok  are slow starts… ',
+        marketing,
+      ),
+    ).toBe('Instagram and TikTok are slow starts');
+    // A closing "…" after the last full stop is not a sentence that is new.
+    expect(repeatsOpening('Print this. Tick as you go. …', checklist)).toBe(
+      'Print this. Tick as you go. …',
+    );
+    // Figures count in the English and Afrikaans number comparison, not only words.
+    expect(summaryNumbers('Since 13 September, 5 options.').join('|')).not.toBe(
+      summaryNumbers('Sedert 14 September, 5 opsies.').join('|'),
+    );
+    // A figure is read whole, separators included, and a number that is there twice counts twice.
+    expect(summaryNumbers('R1,200').join('|')).not.toBe(summaryNumbers('R1 200').join('|'));
+    expect(summaryNumbers('5 steps, 5 options.').join('|')).not.toBe(
+      summaryNumbers('5 steps and options.').join('|'),
+    );
+    // An English override without an Afrikaans one, or with other numbers, is a gap.
+    expect(
+      overrideGaps([
+        { id: 'a', summary: { en: 'Five steps.', af: 'Vyf stappe.' } },
+        { id: 'b', summary: { en: 'Since 13 September.' } },
+        { id: 'c', summary: { en: 'Since 13 September.', af: 'Sedert 14 September.' } },
+        { id: 'd', summary: { af: 'Net Afrikaans.' } },
+      ]),
+    ).toEqual(['b: no Afrikaans summary', 'c: other numbers']);
   });
 
   it('has a sane heading tree in every document', () => {

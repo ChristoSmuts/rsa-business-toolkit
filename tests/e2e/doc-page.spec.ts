@@ -168,6 +168,40 @@ test.describe('the top of a document page', () => {
       await expect(first.locator('a[href$="/core/"]')).toHaveCount(1);
     }
   });
+
+  // A summary the build took from the first paragraph made the lead and the text say the same
+  // thing twice. Such a page has no lead; its summary is still the meta and social description.
+  // A summary written for the page (content-meta/docs.meta.json) stays as the lead.
+  test('shows a lead only when the summary was written for the page', async ({ page }) => {
+    const data = (lang: 'en' | 'af', file: string) =>
+      JSON.parse(
+        readFileSync(path.join(REPO_ROOT, 'src', 'data', lang, 'docs', `${file}.json`), 'utf8'),
+      ) as { summary: string; summarySource: string };
+    for (const [route, lang, file, shown] of [
+      ['core/tax-and-sars/', 'en', 'core__tax-and-sars', false],
+      ['af/core/tax-and-sars/', 'af', 'core__tax-and-sars', false],
+      ['templates/tax-invoice/', 'en', 'paperwork__templates__tax-invoice', false],
+      ['af/templates/tax-invoice/', 'af', 'paperwork__templates__tax-invoice', false],
+      ['start/start-here/', 'en', 'start__start-here', false],
+      ['start/what-has-changed/', 'en', 'start__what-has-changed', true],
+      ['af/start/what-has-changed/', 'af', 'start__what-has-changed', true],
+      [DEALER, 'en', 'business-types__vehicle-dealer', true],
+      [`af/${DEALER}`, 'af', 'business-types__vehicle-dealer', true],
+    ] as const) {
+      await page.goto(route);
+      const doc = data(lang, file);
+      // Guards the choice of examples: if a summary is written or removed, pick another page.
+      expect(doc.summarySource === 'override', route).toBe(shown);
+      await expect(page.locator('article header .st-doc__lead'), route).toHaveCount(shown ? 1 : 0);
+      if (shown) await expect(page.locator('article header .st-doc__lead')).toHaveText(doc.summary);
+      for (const selector of ['meta[name="description"]', 'meta[property="og:description"]']) {
+        await expect(page.locator(selector), `${route} ${selector}`).toHaveAttribute(
+          'content',
+          doc.summary,
+        );
+      }
+    }
+  });
 });
 
 test.describe('the document page at 1280px', () => {

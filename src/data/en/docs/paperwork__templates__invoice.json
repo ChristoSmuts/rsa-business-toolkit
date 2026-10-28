@@ -616,6 +616,7 @@
     ]
   },
   "summary": "Use this one if you are NOT registered for VAT. That is most small businesses. You are not required to register until your turnover passes R2.3 million in any rolling 12 months.",
+  "summarySource": "derived",
   "tags": [
     "template"
   ],
