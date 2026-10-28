@@ -188,6 +188,17 @@ export function assertDocTrust(doc: Pick<Doc, 'id' | 'sources' | 'sourceNote'>):
   );
 }
 
+/**
+ * The visible lead under a document's H1: its summary, but only one written for this language in
+ * `content-meta/docs.meta.json`. A summary the build took from the page's own first paragraph
+ * (`summarySource: 'derived'`), or the English summary or title in its place (`'fallback'`), would
+ * show the same words twice at the top of the page, so the page has no lead then. The summary
+ * still serves as the meta description, the social preview and the section page's row.
+ */
+export function docLead(doc: Pick<Doc, 'summary' | 'summarySource'>): string | undefined {
+  return doc.summarySource === 'override' ? doc.summary : undefined;
+}
+
 /** The `canonical` URL of a page: itself, absolute, under the base. */
 export function canonicalUrl(locale: Locale, route: string, site: string | URL): string {
   return new URL(href(locale, route), site).href;

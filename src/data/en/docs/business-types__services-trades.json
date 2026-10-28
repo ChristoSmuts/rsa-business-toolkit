@@ -952,6 +952,7 @@
     ]
   },
   "summary": "Plumbers, electricians, builders, cleaners, couriers and other trades: registration, safety, quoting, deposits and insurance.",
+  "summarySource": "override",
   "tags": [
     "business-types"
   ],

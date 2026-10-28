@@ -638,6 +638,7 @@
     ]
   },
   "summary": "Gebruik dit eers nadat SARS jou BTW-nommer uitgereik het. As jy nie geregistreer is nie, gebruik eerder die ander faktuursjabloon.",
+  "summarySource": "derived",
   "tags": [
     "template",
     "vat"

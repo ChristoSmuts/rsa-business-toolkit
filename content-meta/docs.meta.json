@@ -161,7 +161,8 @@
         "af": "Wat het verander"
       },
       "summary": {
-        "en": "What changed in the toolkit, and where the Google Drive copy and the markdown copy still differ."
+        "en": "What changed in the toolkit since 13 September 2026, including three corrections to earlier advice, and what to paste into the Google Drive copy to keep it in sync.",
+        "af": "Wat sedert 13 September 2026 in die gereedskapstel verander het, ook drie regstellings aan vroeëre raad, en wat jy in die Google Drive-kopie moet plak om dit gelyk te hou."
       },
       "tags": ["orientation", "changelog"],
       "fenceVariant": "snippet"
@@ -258,7 +259,8 @@
         "af": "Bestuur van ’n Pty Ltd"
       },
       "summary": {
-        "en": "What a company costs you in time and duties every year, what goes wrong when you stop filing, and when the company does not protect you."
+        "en": "Your yearly duties as a company owner, in the order people most often miss them, what happens if you stop filing, and when the company does not protect you.",
+        "af": "Jou jaarlikse pligte as maatskappy-eienaar, in die volgorde waarin mense hulle die meeste mis, wat gebeur as jy ophou indien, en wanneer die maatskappy jou nie beskerm nie."
       },
       "appliesTo": {
         "entity": "pty"
@@ -372,7 +374,8 @@
         "af": "Handelsmerkopdragte"
       },
       "summary": {
-        "en": "Eleven AI prompts, in order, for your brief, name, tagline, logo, colours, type, photographs, voice and about text. Each prompt gives you 5 options to refine."
+        "en": "Twelve AI prompts, in order, for your brief, name, tagline, logo, colours, type, photographs, voice and about text; most of them give you 5 options to refine.",
+        "af": "Twaalf KI-opdragte, in volgorde, vir jou kortbeskrywing, naam, slagspreuk, logo, kleure, lettertipe, foto’s, stem en \"oor ons\"-teks; die meeste daarvan gee jou 5 opsies om te verfyn."
       },
       "tags": ["prompts"],
       "fenceVariant": "prompt",
@@ -394,7 +397,8 @@
         "af": "Stemming en materiale (gebruik ná Opdrag 4)"
       },
       "summary": {
-        "en": "Settle the overall mood and the physical materials before the logo, so your logo, colours and photographs agree. Includes what South African sun does to signage."
+        "en": "Settle the overall mood and the physical materials before the logo, so your logo, colours and photographs agree. Includes what South African sun does to signage.",
+        "af": "Besluit oor die algehele stemming en die fisiese materiale voor die logo, sodat jou logo, kleure en foto’s ooreenstem. Dit sluit in wat die Suid-Afrikaanse son aan uithangborde doen."
       },
       "tags": ["prompts"],
       "fenceVariant": "prompt"
@@ -425,7 +429,8 @@
         "af": "Bemarkingsopdragte"
       },
       "summary": {
-        "en": "Where South African small businesses actually find customers, plus AI prompts for content pillars, posts, WhatsApp messages and your Google Business Profile."
+        "en": "Where your first customers are most likely to come from, two things to set up before any posts, and AI prompts for posts, WhatsApp messages and your Google Business Profile.",
+        "af": "Waar jou eerste kliënte heel waarskynlik vandaan kom, twee dinge om op te stel voor enige plasings, en KI-opdragte vir plasings, WhatsApp-boodskappe en jou Google Business Profile."
       },
       "tags": ["prompts", "marketing"],
       "fenceVariant": "prompt"
@@ -518,8 +523,8 @@
         "af": "Kwitansie (sjabloon)"
       },
       "summary": {
-        "en": "Send this when money arrives. It stops the \"did you get my payment?\" message.",
-        "af": "Stuur dit wanneer geld inkom. Dit keer die \"het jy my betaling gekry?\"-boodskap."
+        "en": "Proof for your customer that their payment arrived, so they do not have to ask whether you got it.",
+        "af": "Bewys vir jou kliënt dat hulle betaling ingekom het, sodat hulle nie hoef te vra of jy dit gekry het nie."
       },
       "tags": ["template"]
     },
@@ -535,8 +540,8 @@
         "af": "Privaatheidskennisgewing, POPIA (sjabloon)"
       },
       "summary": {
-        "en": "Put this on your website, or send it as a PDF when a customer asks. It is short on purpose.",
-        "af": "Sit dit op jou webwerf, of stuur dit as ’n PDF wanneer ’n kliënt daarvoor vra. Dit is doelbewus kort."
+        "en": "Tell your customers, in plain words, what you keep about them, why, who sees it and how long you keep it.",
+        "af": "Sê vir jou kliënte, in gewone woorde, wat jy oor hulle bewaar, waarom, wie dit sien en hoe lank jy dit hou."
       },
       "tags": ["template", "popia"]
     },
@@ -552,8 +557,8 @@
         "af": "Kies jou besigheidstipe"
       },
       "summary": {
-        "en": "Find your kind of business in one table, see how much setup work each type carries, and what everyone needs regardless of type.",
-        "af": "Vind jou soort besigheid in een tabel, sien hoeveel opstelwerk elke soort vra, en wat almal nodig het, watter soort besigheid ook al."
+        "en": "Find your kind of business, compare the setup work each kind carries, and see what every business needs and what can wait.",
+        "af": "Vind jou soort besigheid, vergelyk die opstelwerk wat elke soort vra, en sien wat elke besigheid nodig het en wat kan wag."
       },
       "tags": ["business-types"]
     },
@@ -569,8 +574,8 @@
         "af": "Voertuighandelaar"
       },
       "summary": {
-        "en": "Vehicle dealing has three registration layers other businesses do not have, and one legal risk that can destroy a small dealer in a single transaction.",
-        "af": "Voertuighandel het drie lae van registrasie wat ander besighede nie het nie, en een regsrisiko wat ’n klein handelaar in ’n enkele transaksie kan vernietig."
+        "en": "SAPS registration, stock registered to the business or your ID, trade numbers to drive unregistered or unlicensed stock, and the consumer law.",
+        "af": "SAPS-registrasie, voorraad wat op die besigheid of jou ID-nommer geregistreer is, motorhandelnommers om ongeregistreerde of ongelisensieerde voorraad te ry, en die verbruikersreg."
       },
       "appliesTo": {
         "businessTypes": ["vehicle-dealer"]
@@ -589,8 +594,8 @@
         "af": "Kosbesigheid"
       },
       "summary": {
-        "en": "For anyone who handles, prepares, stores, transports or sells food for money: what you need before you may open, and how long it really takes.",
-        "af": "Vir enigiemand wat kos vir geld hanteer, voorberei, berg, vervoer of verkoop: wat jy nodig het voordat jy mag oopmaak, en hoe lank dit regtig neem."
+        "en": "The certificate every food business needs, the business licence and other papers around it, labelling, and how long it all takes, from home baking to a food truck.",
+        "af": "Die sertifikaat wat elke kosbesigheid nodig het, die besigheidslisensie en ander papiere wat daarby hoort, etikettering, en hoe lank dit alles neem, van tuisbakkery tot ’n kosvragmotor."
       },
       "appliesTo": {
         "businessTypes": ["food"]
@@ -609,7 +614,8 @@
         "af": "Skoonheid en persoonlike versorging"
       },
       "summary": {
-        "en": "Hairdressing, barbering, nails, beauty therapy, lashes, massage, tattooing and piercing: the licence, inspection, insurance and booking rules."
+        "en": "The licence and inspection for your salon or studio, the insurance you actually need, and how to handle bookings and no-shows.",
+        "af": "Lisensie en inspeksie vir jou salon of ateljee, versekering wat jy regtig nodig het, en besprekings en kliënte wat nie opdaag nie."
       },
       "appliesTo": {
         "businessTypes": ["beauty"]
@@ -628,7 +634,8 @@
         "af": "Kleinhandel en aanlynwinkel"
       },
       "summary": {
-        "en": "Selling physical products in a shop, at a market or online: licences, second-hand goods, online selling law, warranties and importing."
+        "en": "Selling physical products in a shop, at a market or online: licences, second-hand goods, online selling law, warranties and importing.",
+        "af": "Fisiese produkte in ’n winkel, by ’n mark of aanlyn verkoop: lisensies, tweedehandse goedere, wetgewing oor aanlyn verkoop, waarborge en invoer."
       },
       "appliesTo": {
         "businessTypes": ["retail-online"]
@@ -647,7 +654,8 @@
         "af": "Dienste en ambagte"
       },
       "summary": {
-        "en": "Plumbers, electricians, builders, cleaners, couriers and other trades: registration, safety, quoting, deposits and insurance."
+        "en": "Plumbers, electricians, builders, cleaners, couriers and other trades: registration, safety, quoting, deposits and insurance.",
+        "af": "Loodgieters, elektrisiëns, bouers, skoonmakers, koeriers en ander ambagte: registrasie, veiligheid, kwotasies, deposito’s en versekering."
       },
       "appliesTo": {
         "businessTypes": ["services-trades"]
@@ -666,7 +674,8 @@
         "af": "Professionele en kreatiewe werk"
       },
       "summary": {
-        "en": "Consultants, designers, developers, writers, tutors and other freelancers: the turnover tax trap, contracts, intellectual property and getting paid."
+        "en": "Consultants, designers, developers, writers, tutors and other freelancers: the turnover tax trap, contracts, intellectual property and getting paid.",
+        "af": "Konsultante, ontwerpers, ontwikkelaars, skrywers, privaat onderwysers en ander vryskutwerkers: die omsetbelasting-strik, kontrakte, intellektuele eiendom en om betaal te word."
       },
       "appliesTo": {
         "businessTypes": ["professional-creative"]
@@ -698,7 +707,8 @@
         "af": "Hoofkontrolelys"
       },
       "summary": {
-        "en": "One printable checklist: everyone's steps in order, extra steps for a Pty Ltd, additions per business type, a recurring calendar and the four things that cause real trouble."
+        "en": "One printable checklist: everyone's steps in order, extra steps for a Pty Ltd, additions per business type, a recurring calendar and the four things that cause real trouble.",
+        "af": "Een kontrolelys om uit te druk: almal se stappe in volgorde, ekstra stappe vir ’n Pty Ltd, byvoegings per besigheidstipe, ’n herhalende kalender en die vier dinge wat regte moeilikheid gee."
       },
       "tags": ["reference", "checklist"]
     },

@@ -375,6 +375,9 @@ export const VerificationSchema = z
   });
 export type Verification = z.infer<typeof VerificationSchema>;
 
+export const SummarySourceSchema = z.enum(['override', 'derived', 'fallback']);
+export type SummarySource = z.infer<typeof SummarySourceSchema>;
+
 export const DocSchema = z
   .strictObject({
     id: DocIdSchema,
@@ -387,6 +390,13 @@ export const DocSchema = z
     title: z.string().min(1),
     h1: z.string().min(1),
     summary: z.string().min(1).max(200),
+    /**
+     * Where `summary` came from: `override` is written for this language in
+     * `content-meta/docs.meta.json`; `derived` is the page's own first visible paragraph (or a cut-short
+     * start of it); `fallback` is the English page's summary or the title. Only an `override` is shown
+     * as the visible lead under the H1 (`docLead`); the others would repeat text already on the page.
+     */
+    summarySource: SummarySourceSchema,
     readingTime: z.number().int().positive(),
     appliesTo: DocAppliesToSchema,
     tags: z.array(z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)),

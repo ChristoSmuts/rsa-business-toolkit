@@ -746,6 +746,7 @@
     "entries": []
   },
   "summary": "Tell a customer the price before you do the work, and send it as a PDF.",
+  "summarySource": "override",
   "tags": [
     "template"
   ],

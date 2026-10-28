@@ -42,7 +42,7 @@ import type { Block } from '../../../lib/content/schema';
 import { documentCrumbs } from '../../../lib/nav';
 import { href } from '../../../lib/paths';
 import { localeStaticPaths } from '../../../lib/i18n-routes';
-import { docContentLang } from '../../../lib/pages';
+import { docContentLang, docLead } from '../../../lib/pages';
 
 export function getStaticPaths() {
   return localeStaticPaths();
@@ -150,9 +150,11 @@ const coveredFeatures = [...new Set(coverage.flatMap((item) => item.features))].
             {t('doc.sectionLabel')}: {section}
           </p>
           <h1 lang={contentLangTag}>{doc.h1}</h1>
-          <p class="st-lead" lang={contentLangTag}>
-            {doc.summary}
-          </p>
+          {docLead(doc) && (
+            <p class="st-lead" lang={contentLangTag}>
+              {docLead(doc)}
+            </p>
+          )}
           <p class="st-cluster">
             <Badge variant="status" icon="lucide:clock">
               {t('doc.readTime', { minutes: doc.readingTime })}
