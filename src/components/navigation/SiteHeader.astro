@@ -39,7 +39,7 @@ import NavDrawer from './NavDrawer.astro';
 import NavMenu from './NavMenu.astro';
 import { useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
-import { SITE_MAP_ID, sectionLinks, toolLinks } from '../../lib/nav';
+import { SITE_MAP_ID, THEME_ID, sectionLinks, toolLinks, type NavLink } from '../../lib/nav';
 import { href } from '../../lib/paths';
 import type { Manifest } from '../../lib/content/schema';
 import { APP_ROUTES, SEARCH_AVAILABLE, WIZARD_AVAILABLE } from '../../lib/routes';
@@ -55,6 +55,17 @@ const { locale, manifest, route } = Astro.props;
 const t = useTranslations(locale);
 const sections = sectionLinks(manifest, locale, t);
 const tools = toolLinks(manifest, locale, t);
+/*
+ * From 1024px the theme control is only in the footer, so the bar's Tools menu ends with a jump to
+ * it: a fragment link, so it works without JavaScript, and the target takes focus (review pass 1,
+ * m4). Below 1024px the drawer has its own theme control.
+ */
+const themeLink: NavLink = {
+  id: 'theme',
+  href: `#${THEME_ID}`,
+  route: `#${THEME_ID}`,
+  label: t('nav.themeLink'),
+};
 const homeHref = href(locale, APP_ROUTES.home);
 // While search is switched off, the page's common questions are in the footer instead.
 const searchHref = SEARCH_AVAILABLE ? href(locale, APP_ROUTES.search) : undefined;
@@ -74,7 +85,12 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
     </a>
     <nav class="st-topbar__menus" aria-label={t('nav.mainLabel')}>
       <NavMenu label={t('nav.read')} links={sections} route={route} group="st-topbar-menu" />
-      <NavMenu label={t('nav.tools')} links={tools} route={route} group="st-topbar-menu" />
+      <NavMenu
+        label={t('nav.tools')}
+        links={[...tools, themeLink]}
+        route={route}
+        group="st-topbar-menu"
+      />
     </nav>
     {searchHref && (
       <a class="st-topbar__search st-topbar__control" href={searchHref} data-search-open>
@@ -168,12 +184,16 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
   /*
    * The wordmark takes the room the controls leave. Its name wraps to two lines on a phone
    * ("SA Business / Toolkit"), which still fits the 44px row, so a late web font cannot add a row.
+   * It never shrinks below its longest word beside the mark (`min-content`), and the mark-only
+   * wordmark never below 44px (the global rule below): with text at 200%, or at 240px and narrower
+   * from browser zoom, the row wraps instead, so nothing is drawn over the wordmark (review pass 1,
+   * M1: with `min-inline-size: 0` the link shrank to 12 to 19px under Search and the language).
    */
   .st-topbar__home {
     display: inline-flex;
     flex: 1 1 0;
     align-items: center;
-    min-inline-size: 0;
+    min-inline-size: min-content;
     min-block-size: var(--st-target);
     color: var(--st-text);
     text-decoration: none;
@@ -344,6 +364,11 @@ const pathTemplate = t('nav.pathProgress', { done: '{done}', total: '{total}' })
    */
   .st-topbar .st-topbar__inner > .st-topbar__lang {
     flex-shrink: 0;
+  }
+
+  /* The wordmark is a 44px target even when only its mark shows (below 360px). */
+  .st-topbar .st-topbar__home .st-logo {
+    min-inline-size: var(--st-target);
   }
 
   @media (width < 480px) {

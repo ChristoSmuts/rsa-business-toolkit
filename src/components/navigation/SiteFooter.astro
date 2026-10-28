@@ -9,8 +9,12 @@
  * 2. the site map (`#st-site-map`): the six sections, the tools, and the guide's own pages
  *    (Contents, About, "How this was made and how to check it"). Below 1024px without JavaScript
  *    the header's Menu is a link here, which is what keeps that header to one row;
- * 3. the theme control, which left the top bar in WP-50 Phase 3 (it was the widest thing in it).
- *    It needs JavaScript to save a choice; without it a line says the page follows the device.
+ * 3. the theme control (`#st-theme`), which left the top bar in WP-50 Phase 3 (it was the widest
+ *    thing in it). It needs JavaScript to save a choice; without it a line says the page follows
+ *    the device. From 1024px the bar's Tools menu ends with "Light or dark", a link here;
+ * 4. "Back to top", `#top`, which every browser takes to the top of the document when no element
+ *    has that id: it works without JavaScript, and from 1024px, where the bar is sticky, a link to
+ *    the bar itself would not scroll at all.
  *
  * The links are navigation lists (`.st-quiet-links`: the underline shows on hover and focus) in the
  * text colour, which is verified on `--st-surface-2`. `aria-current="page"` marks the page the
@@ -21,6 +25,7 @@ import { useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
 import {
   SITE_MAP_ID,
+  THEME_ID,
   footerLinks,
   isCurrent,
   sectionLinks,
@@ -69,7 +74,15 @@ const groups: { id: string; label: string; links: NavLink[] }[] = [
         </div>
       ))}
     </nav>
-    <ThemeControl class="st-footer__theme" locale={locale} showLegend />
+    {/* The target of "Light or dark" (the bar's Tools menu) and of `/about/` Settings. */}
+    <div class="st-footer__theme" id={THEME_ID} tabindex="-1">
+      <ThemeControl locale={locale} showLegend />
+    </div>
+    <p class="st-footer__top">
+      <a class="st-link-block st-footer__link" href="#top">
+        {t('nav.backToTop')}
+      </a>
+    </p>
   </div>
 </footer>
 

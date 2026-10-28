@@ -53,6 +53,56 @@ async function bar(page: Page): Promise<Bar> {
   });
 }
 
+/** A token's computed colour, read from a probe element (as `design-system.spec.ts` does). */
+async function tokenColour(page: Page, token: string): Promise<string> {
+  return page.evaluate((name) => {
+    const probe = document.createElement('span');
+    probe.style.color = `var(${name})`;
+    document.body.append(probe);
+    const colour = getComputedStyle(probe).color;
+    probe.remove();
+    return colour;
+  }, token);
+}
+
+/** The focus ring the tokens define: `--st-focus-width` in `--st-focus`. */
+async function focusToken(page: Page): Promise<{ width: string; color: string }> {
+  const width = await page.evaluate(() =>
+    getComputedStyle(document.documentElement).getPropertyValue('--st-focus-width').trim(),
+  );
+  return { width, color: await tokenColour(page, '--st-focus') };
+}
+
+/** Pairs of the bar's visible children whose boxes overlap, and the wordmark's width. */
+async function overlaps(page: Page): Promise<{ pairs: string[]; home: number }> {
+  return page.evaluate(() => {
+    const inner = document.querySelector('header.st-topbar .st-topbar__inner');
+    if (!inner) throw new Error('No top bar.');
+    const boxes = [...inner.children]
+      .map((child) => ({
+        name: child.className.split(' ')[0] ?? '',
+        box: child.getBoundingClientRect(),
+      }))
+      .filter(({ box }) => box.width > 0 && box.height > 0);
+    const pairs: string[] = [];
+    for (const [index, a] of boxes.entries()) {
+      for (const b of boxes.slice(index + 1)) {
+        const x = Math.min(a.box.right, b.box.right) - Math.max(a.box.left, b.box.left);
+        const y = Math.min(a.box.bottom, b.box.bottom) - Math.max(a.box.top, b.box.top);
+        if (x > 0.5 && y > 0.5) pairs.push(`${a.name} × ${b.name}`);
+      }
+    }
+    // The wordmark's own content must stay inside its link.
+    const home = inner.querySelector('.st-topbar__home');
+    const homeBox = home?.getBoundingClientRect();
+    const logoBox = home?.querySelector('.st-logo')?.getBoundingClientRect();
+    if (homeBox && logoBox && logoBox.right > homeBox.right + 0.5) {
+      pairs.push('the wordmark runs out of its link');
+    }
+    return { pairs, home: homeBox?.width ?? 0 };
+  });
+}
+
 test.describe('the top bar is one row', () => {
   for (const [width, height] of SIZES) {
     test(`at ${width}×${height}, in English and Afrikaans`, async ({ page }, testInfo) => {
@@ -258,11 +308,12 @@ test.describe('the controls', () => {
     for (const selector of order) {
       await page.keyboard.press('Tab');
       await expect(page.locator(selector)).toBeFocused();
-      // A visible focus ring: the base outline, not removed.
-      const outline = await page
-        .locator(selector)
-        .evaluate((element) => getComputedStyle(element).outlineStyle);
-      expect(outline, selector).not.toBe('none');
+      // A visible focus ring: the base one, in the focus colour and width (review pass 1, m1).
+      const ring = await page.locator(selector).evaluate((element) => {
+        const style = getComputedStyle(element);
+        return { style: style.outlineStyle, width: style.outlineWidth, color: style.outlineColor };
+      });
+      expect(ring, selector).toEqual({ style: 'solid', ...(await focusToken(page)) });
     }
     await page.keyboard.press('Tab');
     const menu = page.locator('.st-topbar__menu-button');
@@ -390,7 +441,9 @@ test.describe('the footer', () => {
       .locator('#st-site-map a')
       .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
     expect(headerLinks.length).toBeGreaterThanOrEqual(10);
-    for (const href of headerLinks) expect(mapLinks).toContain(href);
+    for (const href of headerLinks.filter((link) => !link?.startsWith('#'))) {
+      expect(mapLinks).toContain(href);
+    }
     await expect(footer.locator('h2')).toHaveText(['Read', 'Tools', 'About this guide']);
     await expect(footer.locator('st-theme-toggle legend')).toHaveText('Theme');
     await expect(footer.locator('st-theme-toggle')).toBeVisible();
@@ -429,5 +482,117 @@ test.describe('forced colours and print', () => {
     await page.emulateMedia({ media: 'print' });
     await expect(page.locator('header.st-topbar')).toBeHidden();
     await expect(page.locator('footer.st-footer')).toBeHidden();
+  });
+});
+
+/*
+ * Review pass 1, M1: with text at 200% at 320 and 360px, or at 240px (English) and 160px
+ * (Afrikaans) CSS width from browser zoom, the wordmark shrank to 12 to 19px and Search and the
+ * language link were drawn over it. Now it keeps its longest word (or, mark only, 44px) and the row
+ * wraps instead (WCAG 1.4.4, 1.4.10).
+ */
+test.describe('large text and zoom', () => {
+  const CASES = [
+    { width: 320, text: '200%' },
+    { width: 360, text: '200%' },
+    { width: 240, text: '100%' },
+    { width: 160, text: '100%' },
+  ] as const;
+  for (const { width, text } of CASES) {
+    test(`at ${width}px with text at ${text}, nothing in the bar overlaps and the wordmark stays 44px wide`, async ({
+      page,
+    }, testInfo) => {
+      test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
+      await page.setViewportSize({ width, height: 740 });
+      for (const route of ['', 'af/', 'core/tax-and-sars/', 'af/core/tax-and-sars/']) {
+        await page.goto(route);
+        if (text !== '100%') {
+          await page.addStyleTag({ content: `html { font-size: ${text} !important; }` });
+        }
+        await page.evaluate(() => document.fonts.ready);
+        const measured = await overlaps(page);
+        expect(measured.pairs, `/${route}`).toEqual([]);
+        expect(measured.home, `/${route}`).toBeGreaterThanOrEqual(43.5);
+      }
+    });
+  }
+});
+
+test.describe('review pass 1: tokens, the key hint, the theme and back to top', () => {
+  test('search and Menu are drawn with the strong border, and footer links in the text colour', async ({
+    page,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
+    await page.setViewportSize({ width: 360, height: 740 });
+    await page.goto('af/core/tax-and-sars/');
+    const border = await tokenColour(page, '--st-border-strong');
+    for (const selector of ['.st-topbar__search', '.st-topbar__menu-button']) {
+      await expect(page.locator(selector), selector).toHaveCSS('border-top-color', border);
+    }
+    const text = await tokenColour(page, '--st-text');
+    const colours = await page
+      .locator('footer .st-footer__link')
+      .evaluateAll((links) => [...new Set(links.map((link) => getComputedStyle(link).color))]);
+    expect(colours).toEqual([text]);
+  });
+
+  test('the "/" hint is hidden below 1024px and shown from 1024px', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'A mouse screen; touch screens never show it.');
+    const hint = page.locator('.st-topbar__kbd');
+    await page.setViewportSize({ width: 768, height: 900 });
+    await page.goto('core/tax-and-sars/');
+    await expect(hint).toBeHidden();
+    await page.setViewportSize({ width: 1024, height: 900 });
+    await expect(hint).toBeVisible();
+  });
+
+  test('from 1024px, "Light or dark" in Tools goes to the footer’s theme control and focuses it', async ({
+    page,
+  }, testInfo) => {
+    test.skip(testInfo.project.name !== 'chromium', 'Sets its own viewport.');
+    await page.setViewportSize({ width: 1280, height: 800 });
+    for (const [route, label] of [
+      ['core/tax-and-sars/', 'Light or dark'],
+      ['af/core/tax-and-sars/', 'Lig of donker'],
+    ] as const) {
+      await page.goto(route);
+      const tools = page.locator('.st-topbar__menus .st-menu').nth(1);
+      await tools.locator('summary').click();
+      const link = tools.locator('a').last();
+      await expect(link).toHaveText(label);
+      await expect(link).toHaveAttribute('href', '#st-theme');
+      await link.click();
+      await expect(page).toHaveURL(/#st-theme$/);
+      await expect(page.locator('#st-theme')).toBeFocused();
+      await expect(page.locator('#st-theme st-theme-toggle')).toBeInViewport();
+    }
+  });
+
+  test('/about/ Settings says where light or dark is, and links it', async ({ page }) => {
+    for (const [route, words] of [
+      ['about/', 'Light or dark is under Theme at the end of every page.'],
+      ['af/about/', 'Lig of donker is onder Tema aan die einde van elke bladsy.'],
+    ] as const) {
+      await page.goto(route);
+      await expect(page.locator('#st-setting-theme-help')).toHaveText(words);
+      const link = page.locator('main a[href="#st-theme"]');
+      await expect(link).toBeVisible();
+      await link.click();
+      await expect(page.locator('#st-theme')).toBeFocused();
+    }
+  });
+
+  test('"Back to top" ends the footer, is 44px tall and goes to the top of the page', async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('af/core/tax-and-sars/');
+    const back = page.locator('footer a[href="#top"]');
+    await expect(back).toHaveText('Terug na bo');
+    const box = await back.boundingBox();
+    expect(box?.height ?? 0).toBeGreaterThanOrEqual(44);
+    await back.click();
+    await expect(page).toHaveURL(/#top$/);
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
   });
 });

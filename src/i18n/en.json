@@ -85,7 +85,8 @@
     "previous": "Previous: {title}",
     "next": "Next: {title}",
     "backToTop": "Back to top",
-    "skipLink": "Skip to main content"
+    "skipLink": "Skip to main content",
+    "themeLink": "Light or dark"
   },
   "lang": {
     "switcherLabel": "Language",
@@ -779,7 +780,9 @@
         "body": "This removes everything this guide saved on this device. You cannot undo this.",
         "confirm": "Clear my data"
       },
-      "clearDone": "All your data was removed from this device."
+      "clearDone": "All your data was removed from this device.",
+      "themeHelp": "Light or dark is under Theme at the end of every page.",
+      "themeLink": "Go to Theme"
     }
   },
   "designSystem": {

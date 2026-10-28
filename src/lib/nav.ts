@@ -26,6 +26,9 @@ import { DEFAULT_LOCALE } from '../i18n/locales';
  */
 export const SITE_MAP_ID = 'st-site-map';
 
+/** The footer's theme control, which the bar's Tools menu and `/about/` Settings link to. */
+export const THEME_ID = 'st-theme';
+
 export interface NavLink {
   readonly id: string;
   readonly href: string;

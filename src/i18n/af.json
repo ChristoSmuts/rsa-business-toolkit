@@ -85,7 +85,8 @@
     "previous": "Vorige: {title}",
     "next": "Volgende: {title}",
     "backToTop": "Terug na bo",
-    "skipLink": "Gaan na die hoofinhoud"
+    "skipLink": "Gaan na die hoofinhoud",
+    "themeLink": "Lig of donker"
   },
   "lang": {
     "switcherLabel": "Taal",
@@ -779,7 +780,9 @@
         "body": "Dit verwyder alles wat hierdie gids op hierdie toestel gestoor het. Jy kan dit nie ongedaan maak nie.",
         "confirm": "Vee my data uit"
       },
-      "clearDone": "Al jou data is van hierdie toestel verwyder."
+      "clearDone": "Al jou data is van hierdie toestel verwyder.",
+      "themeHelp": "Lig of donker is onder Tema aan die einde van elke bladsy.",
+      "themeLink": "Gaan na Tema"
     }
   },
   "designSystem": {

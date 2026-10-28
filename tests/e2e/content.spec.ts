@@ -508,6 +508,9 @@ test.describe('navigation', () => {
       '/business-toolkit/templates/',
       '/business-toolkit/glossary/',
       '/business-toolkit/sources/',
+      // From 1024px the theme control is in the footer; the Tools menu ends with a jump to it
+      // (WP-50 Phase 3, item 5, review pass 1, m4).
+      '#st-theme',
     ]);
   });
 

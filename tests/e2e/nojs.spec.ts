@@ -93,8 +93,26 @@ test.describe('the header navigates without JavaScript', () => {
         .locator('a')
         .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
       expect(menuLinks.length).toBeGreaterThanOrEqual(10);
-      for (const href of menuLinks) expect(mapLinks, `${width}px`).toContain(href);
+      // The Tools menu's "Light or dark" is a jump within the page, to the footer itself.
+      for (const href of menuLinks.filter((link) => !link?.startsWith('#'))) {
+        expect(mapLinks, `${width}px`).toContain(href);
+      }
     }
+  });
+
+  // Review pass 1, m4 and m5: both are fragment links, so they work with no script.
+  test('"Light or dark" and "Back to top" work with no script', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('af/core/tax-and-sars/');
+    const tools = page.locator('.st-topbar__menus .st-menu').nth(1);
+    await tools.locator('summary').click();
+    await tools.locator('a[href="#st-theme"]').click();
+    await expect(page.locator('#st-theme')).toBeFocused();
+    // Without a script the footer says the theme follows the device.
+    await expect(page.locator('#st-theme .no-js-only')).toBeVisible();
+    await page.locator('footer a[href="#top"]').click();
+    await expect(page).toHaveURL(/#top$/);
+    await expect(page.locator('header.st-topbar')).toBeInViewport();
   });
 
   test('from 1024px, the Read and Tools menus open with no script', async ({ page }) => {

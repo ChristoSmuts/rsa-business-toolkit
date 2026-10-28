@@ -1,6 +1,7 @@
 ---
 /**
- * Settings on `/about/` (build plan B1): single-key shortcuts, low data, and clear all my data.
+ * Settings on `/about/` (build plan B1): single-key shortcuts, low data, clear all my data, and
+ * where light or dark is (the footer's theme control).
  *
  * While search is not built (`SEARCH_AVAILABLE`), the help lines do not mention `/` or loading
  * search, which would promise what is not there (review WP-30 pass 1).
@@ -14,6 +15,7 @@ import Callout from '../ui/Callout.astro';
 import ConfirmDialog from '../ui/ConfirmDialog.astro';
 import { useTranslations } from '../../i18n';
 import type { Locale } from '../../i18n/locales';
+import { THEME_ID } from '../../lib/nav';
 import { SEARCH_AVAILABLE } from '../../lib/routes';
 
 interface Props {
@@ -90,6 +92,20 @@ const switches = [
         cancelLabel={t('common.cancel')}
       />
     </st-clear-data>
+  </div>
+  {/*
+   * Light or dark is not a switch here: the theme control is at the foot of every page (WP-50
+   * Phase 3, item 5). This says where, beside low data mode, with or without JavaScript.
+   */}
+  <div class="st-settings__item">
+    <p class="st-hint" id="st-setting-theme-help">
+      {t('about.settings.themeHelp')}
+    </p>
+    <p>
+      <a class="st-link-block" href={`#${THEME_ID}`} aria-describedby="st-setting-theme-help">
+        {t('about.settings.themeLink')}
+      </a>
+    </p>
   </div>
 </section>
 
