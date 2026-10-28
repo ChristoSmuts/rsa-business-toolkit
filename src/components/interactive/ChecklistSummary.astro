@@ -135,6 +135,18 @@ const filters = [
     background-color: var(--st-surface);
   }
 
+  /*
+   * On a phone the box's padding stops growing with the text size, as a button's does: at 200%
+   * text at 320px it was 32px a side, and "Verwyder merkies" broke inside "Verwyder" (WP-50 Phase
+   * 3, item 4, review pass 9, m1). A deliberate phone change at every text size, as the checklist
+   * box's own 12px below 30rem: 16 → 12px at 100%, 32 → 12px at 200%.
+   */
+  @media (width < 30rem) {
+    .st-checklist-summary {
+      padding: min(var(--st-space-3), 12px);
+    }
+  }
+
   .st-checklist-summary__overall {
     display: flex;
     flex-wrap: wrap;

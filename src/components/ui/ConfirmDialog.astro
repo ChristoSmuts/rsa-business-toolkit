@@ -98,8 +98,9 @@ const { id, title, body, confirmLabel, cancelLabel, lang } = Astro.props;
 
     /*
      * The padding stops growing with the text size on a phone, as the buttons' does: at 200% text
-     * at 320px it was 40px a side, and "Verwyder merkies" broke inside its words (review pass 1,
-     * m8; pass 8, m2). At the default text size it is the same 20px.
+     * at 320px it was 48px a side, and "Verwyder merkies" broke inside its words (review pass 1,
+     * m8; passes 8 and 9). A deliberate phone change at every text size: 24 → 20px at 100%,
+     * 48 → 20px at 200%.
      */
     .st-dialog__form {
       padding: min(var(--st-space-5), 20px);

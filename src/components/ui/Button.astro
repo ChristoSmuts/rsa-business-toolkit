@@ -281,15 +281,25 @@ const hasEnd = Astro.slots.has('icon-end') || Boolean(iconEnd);
   }
 
   /*
-   * On a phone the side padding stops growing with the text size: at 200% text at 320px it was
-   * 40px a side, which left "Edit answers" 108px beside its pencil and broke it as
-   * "Edit / answe / rs" (WP-50 Phase 3, item 4, review pass 8, m2). At the default text size this
-   * is the same 20px (24px for `lg`); only larger text keeps more room for the words, so a word is
-   * broken only when it is longer than the button.
+   * Below 30rem the side padding stops growing with the text size (WP-50 Phase 3, item 4, review
+   * passes 8 and 9). At 200% text at 320px a button's 1.5rem was 48px a side, which left "Edit
+   * answers" 108px beside its pencil and broke it as "Edit / answe / rs"; a 24px cap still broke
+   * "antwoorde" and "Kanselleer". This is a deliberate phone change at every text size: md 24 → 20px
+   * and lg 32 → 24px at 100% (48 → 20px and 64 → 24px at 200%). A ghost button keeps its own
+   * 12px, capped there (24 → 12px at 200%). The gap between icon and words stays 8px (16px at
+   * 200% before). From 30rem nothing changes.
    */
   @media (width < 30rem) {
-    .st-btn:not([data-size='lg']) {
+    .st-btn {
+      gap: min(var(--st-space-2), 8px);
+    }
+
+    .st-btn:not([data-size='lg'], [data-variant='ghost']) {
       padding-inline: min(var(--st-space-5), 20px);
+    }
+
+    .st-btn[data-variant='ghost']:not([data-size='lg']) {
+      padding-inline: min(var(--st-space-3), 12px);
     }
 
     .st-btn[data-size='lg'] {

@@ -148,12 +148,17 @@ const ids = {
             </a>
           </p>
         </div>
-        <section class="st-search-dialog__empty" data-search-empty aria-labelledby={ids.common}>
+        {/*
+          The empty state: a plain wrapper, so only the common questions are the region named
+          "Common questions" (review pass 9, m2). The script shows and hides the whole of it.
+        */}
+        <div class="st-search-dialog__empty" data-search-empty>
           {/*
             The no-results line suggests the glossary, so the way to it is here too (WP-50 Phase 3,
-            item 4). First, above the common questions, so that under "Nothing found" the way out
-            is on the first screen at every size (review pass 8, m1: below the questions the
-            glossary link was at 772px at 320×568 and under the fold of the dialog at 1280×800).
+            item 4). First, above the common questions and outside their region, so that under
+            "Nothing found" the way out is on the first screen at every size (review pass 8, m1:
+            below the questions the glossary link was at 772px at 320×568 and under the fold of the
+            dialog at 1280×800).
           */}
           <ul class="st-search-dialog__more" role="list">
             <li>
@@ -169,19 +174,21 @@ const ids = {
               </li>
             )}
           </ul>
-          <h3 class="st-search-dialog__subtitle" id={ids.common}>
-            {t('search.commonQuestions')}
-          </h3>
-          <ul class="st-search-dialog__questions" role="list" lang={questionsLang}>
-            {questions.map((question) => (
-              <li>
-                <a class="st-link-block" href={question.href}>
-                  {question.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
+          <section class="st-search-dialog__common" aria-labelledby={ids.common}>
+            <h3 class="st-search-dialog__subtitle" id={ids.common}>
+              {t('search.commonQuestions')}
+            </h3>
+            <ul class="st-search-dialog__questions" role="list" lang={questionsLang}>
+              {questions.map((question) => (
+                <li>
+                  <a class="st-link-block" href={question.href}>
+                    {question.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </div>
     </div>
   </dialog>
@@ -297,6 +304,7 @@ const ids = {
   }
 
   .st-search-dialog__empty,
+  .st-search-dialog__common,
   .st-search-dialog__failed {
     display: grid;
     gap: var(--st-space-2);

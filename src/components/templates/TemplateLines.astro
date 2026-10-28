@@ -188,6 +188,17 @@ const priceMessages = numberMessages(t, locale, 'money');
     background-color: var(--st-surface-2);
   }
 
+  /*
+   * On a phone a line's padding stops growing with the text size: at 200% text at 320px it was
+   * 24px a side, and "Verwyder reël" broke inside "Verwyder" (WP-50 Phase 3, item 4, review pass
+   * 9, m1). 12px at 100%, unchanged; 24 → 12px at 200%.
+   */
+  @media (width < 30rem) {
+    .st-tline__set {
+      padding: min(var(--st-space-3), 12px);
+    }
+  }
+
   .st-tline__legend {
     font-size: var(--st-text-sm);
   }

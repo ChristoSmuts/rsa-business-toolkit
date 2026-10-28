@@ -1171,6 +1171,13 @@ test.describe('the search dialog: the way out of "Nothing found" is in view', ()
         await expect(dialog.locator('[role="status"]')).toContainText('zzqxv');
         const links = dialog.locator('[data-search-empty] .st-search-dialog__more a');
         await expect(links).toHaveCount(2);
+        // The way out is not inside the region named "Common questions" (review pass 9, m2).
+        const common = dialog.getByRole('region', {
+          name: lang ? 'Algemene vrae' : 'Common questions',
+        });
+        await expect(common).toHaveCount(1);
+        await expect(common.locator('.st-search-dialog__more')).toHaveCount(0);
+        await expect(common.getByRole('link').first()).toBeVisible();
         // In the viewport and not clipped by the dialog's own scroll area, whole.
         for (const link of await links.all()) await expect(link).toBeInViewport({ ratio: 1 });
         const bottom = await links.last().evaluate((link) => {
@@ -1188,7 +1195,8 @@ test.describe('the search dialog: the way out of "Nothing found" is in view', ()
  * Review pass 8, m2: with text at 200% at 320px a button's label wraps between words, not inside
  * one ("Edit / answe / rs" before); pass 1, m8: the confirm dialogs' choices did the same
  * ("Verwyder merkies"). The words of each `.st-btn` under `scope` that are drawn on more than one
- * line, after the text is set to 200%.
+ * line after the text is set to 200%, although they would fit the button's width on one line: a
+ * word longer than the button ("belastingfaktuur") may still break, as the last resort.
  */
 async function brokenWords(page: Page, scope: string): Promise<string[]> {
   return page.evaluate(async (selector) => {
@@ -1196,9 +1204,17 @@ async function brokenWords(page: Page, scope: string): Promise<string[]> {
     await document.fonts.ready;
     await new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
     const broken: string[] = [];
+    // A word's width on one line, in the label's font: a word longer than the button may break.
+    const ruler = document.createElement('span');
+    ruler.style.cssText = 'position: absolute; visibility: hidden; white-space: nowrap;';
+    document.body.append(ruler);
     for (const button of document.querySelectorAll(`${selector} .st-btn`)) {
       if (button.getClientRects().length === 0) continue;
       const label = button.querySelector('.st-btn__label') ?? button;
+      const css = getComputedStyle(button);
+      const room =
+        button.clientWidth - parseFloat(css.paddingInlineStart) - parseFloat(css.paddingInlineEnd);
+      ruler.style.font = getComputedStyle(label).font;
       const walker = document.createTreeWalker(label, NodeFilter.SHOW_TEXT);
       for (let node = walker.nextNode(); node; node = walker.nextNode()) {
         for (const match of (node.textContent ?? '').matchAll(/\S+/g)) {
@@ -1206,10 +1222,13 @@ async function brokenWords(page: Page, scope: string): Promise<string[]> {
           range.setStart(node, match.index);
           range.setEnd(node, match.index + match[0].length);
           const lines = new Set([...range.getClientRects()].map((rect) => Math.round(rect.top)));
-          if (lines.size > 1) broken.push(match[0]);
+          ruler.textContent = match[0];
+          const fits = ruler.getBoundingClientRect().width <= room;
+          if (lines.size > 1 && fits) broken.push(match[0]);
         }
       }
     }
+    ruler.remove();
     return broken;
   }, scope);
 }
@@ -1228,6 +1247,25 @@ test.describe('button labels at 200% text and 320px', () => {
       await expect(edit).toBeVisible();
       expect(await brokenWords(page, '.st-my-path__answers'), 'words broken').toEqual([]);
       await noSidewaysScroll(page, `${lang}my-path/ at 200%`);
+    });
+
+    test(`/${lang}: the tool pages' own buttons break no word`, async ({ page, seedStorage }) => {
+      await seedStorage({
+        'st.profile.v1': { entity: 'sole-prop', businessTypes: ['food'], stage: 'trading' },
+      });
+      await page.setViewportSize(PHONE);
+      // Review pass 9, m1: "Remove ticks" in the checklist's summary and "Remove line" on a
+      // template. (The home page's "Continue: step 1 of 4" is in the backlog.)
+      for (const [route, scope, ready] of [
+        ['checklist/', '.st-checklist-summary', '[data-checklist-reset]'],
+        ['templates/tax-invoice/', 'st-template-form', 'st-template-form[data-ready]'],
+      ] as const) {
+        await page.goto(`${lang}${route}`);
+        await expect(page.locator(ready).first()).toBeVisible();
+        const count = await page.locator(`${scope} .st-btn:visible`).count();
+        expect(count, `${lang}${route}: buttons to check`).toBeGreaterThan(0);
+        expect(await brokenWords(page, scope), `${lang}${route}`).toEqual([]);
+      }
     });
 
     test(`/${lang}: the confirm dialogs' choices break no word`, async ({ page, seedStorage }) => {
@@ -1251,6 +1289,61 @@ test.describe('button labels at 200% text and 320px', () => {
           `${lang}${route}: the dialog scrolls sideways`,
         ).toBeLessThanOrEqual(0);
       }
+    });
+  }
+});
+
+/**
+ * Review pass 9, M1: below 30rem a button's side padding is a deliberate phone value at every text
+ * size (md 20px, lg 24px), a ghost button keeps its own 12px, a confirm dialog's padding is 20px,
+ * and from 30rem nothing changed.
+ */
+test.describe("buttons' side padding", () => {
+  test.skip(({ isMobile }) => isMobile, 'Sets its own widths.');
+
+  for (const { width, text, md, lg, ghost, dialog } of [
+    { width: 320, text: '100%', md: '20px', lg: '24px', ghost: '12px', dialog: '20px' },
+    { width: 320, text: '200%', md: '20px', lg: '24px', ghost: '12px', dialog: '20px' },
+    { width: 1280, text: '100%', md: '24px', lg: '32px', ghost: '12px', dialog: '24px' },
+  ]) {
+    test(`at ${width}px with text at ${text}`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto('design-system/');
+      const padding = await page.evaluate(async (size) => {
+        document.documentElement.style.fontSize = size;
+        await new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
+        const of = (selector: string): string[] =>
+          [...document.querySelectorAll(selector)].map((button) => {
+            const css = getComputedStyle(button);
+            return `${css.paddingInlineStart} ${css.paddingInlineEnd}`;
+          });
+        return {
+          md: of(".st-btn[data-size='md']:not([data-variant='ghost'])"),
+          lg: of(".st-btn[data-size='lg']"),
+          ghost: of(".st-btn[data-size='md'][data-variant='ghost']"),
+        };
+      }, text);
+      expect(padding.md.length).toBeGreaterThan(0);
+      expect(padding.lg.length).toBeGreaterThan(0);
+      expect(padding.ghost.length).toBeGreaterThan(0);
+      expect(new Set(padding.md)).toEqual(new Set([`${md} ${md}`]));
+      expect(new Set(padding.lg)).toEqual(new Set([`${lg} ${lg}`]));
+      expect(new Set(padding.ghost)).toEqual(new Set([`${ghost} ${ghost}`]));
+
+      // The confirm dialog's own padding, which the word test cannot see once a button is
+      // narrower than its longest word.
+      await page.goto('checklist/');
+      const form = page.locator('dialog#st-checklist-reset .st-dialog__form');
+      await page
+        .locator('dialog#st-checklist-reset')
+        .evaluate((element) => (element as HTMLDialogElement).showModal());
+      const inline = await form.evaluate(async (element, size) => {
+        document.documentElement.style.fontSize = size;
+        await new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
+        const css = getComputedStyle(element);
+        return `${css.paddingInlineStart} ${css.paddingInlineEnd}`;
+      }, text);
+      expect(inline, 'the confirm dialog').toBe(`${dialog} ${dialog}`);
     });
   }
 });

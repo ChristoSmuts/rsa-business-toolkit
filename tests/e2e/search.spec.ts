@@ -953,7 +953,9 @@ test.describe('the "My business types" chip', () => {
     await page.locator('a.st-topbar__search').click();
     await expect(dialog(page)).toBeVisible();
     const chip = dialog(page).getByRole('button', { name: 'My business types' });
-    const question = dialog(page).locator('[data-search-empty] a').first();
+    const question = dialog(page)
+      .locator('[data-search-empty] .st-search-dialog__questions a')
+      .first();
     await expect(question).toBeVisible();
     await expect(chip).toBeHidden();
     const before = (await question.boundingBox())?.y ?? Number.NaN;
